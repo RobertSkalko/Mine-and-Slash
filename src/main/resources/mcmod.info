@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mmorpg",
+  "name": "Mine and Slash",
+  "description": "Diablo like mod for minecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["robertx22"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

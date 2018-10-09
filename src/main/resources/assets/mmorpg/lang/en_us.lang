@@ -1,0 +1,72 @@
+## POWDERS
+item.magic_powder.name=Magic Powder
+item.rare_powder.name=Rare Powder
+item.epic_powder.name=Epic Powder
+item.legendary_powder.name=Legendary Powder
+item.mythical_powder.name=Mythical Powder
+
+## SOCKETS
+item.magic_socket.name=Magic Socket
+item.rare_socket.name=Rare Socket
+item.epic_socket.name=Epic Socket
+item.legendary_socket.name=Legendary Socket
+item.mythical_socket.name=Mythical Socket
+
+## ORES
+item.magic_ore.name=Magic Ore
+item.rare_ore.name=Rare Ore
+item.epic_ore.name=Epic Ore
+item.legendary_ore.name=Legendary Ore
+item.mythical_ore.name=Mythical Ore
+
+## ARMORS
+item.mmorpg.magic_helmet.name=Magic Helmet
+item.mmorpg.magic_chestplate.name=Magic Chestplate
+item.mmorpg.magic_leggings.name=Magic Leggings
+item.mmorpg.magic_boots.name=Magic Boots
+
+item.mmorpg.mythical_helmet.name=Mythical Helmet
+item.mmorpg.mythical_chestplate.name=Mythical Chestplate
+item.mmorpg.mythical_leggings.name=Mythical Leggings
+item.mmorpg.mythical_boots.name=Mythical Boots
+
+item.mmorpg.legendary_helmet.name=Legendary Helmet
+item.mmorpg.legendary_chestplate.name=Legendary Chestplate
+item.mmorpg.legendary_leggings.name=Legendary Leggings
+item.mmorpg.legendary_boots.name=Legendary Boots
+
+item.mmorpg.epic_helmet.name=Epic Helmet
+item.mmorpg.epic_chestplate.name=Epic Chestplate
+item.mmorpg.epic_leggings.name=Epic Leggings
+item.mmorpg.epic_boots.name=Epic Boots
+
+item.mmorpg.rare_helmet.name=Rare Helmet
+item.mmorpg.rare_chestplate.name=Rare Chestplate
+item.mmorpg.rare_leggings.name=Rare Leggings
+item.mmorpg.rare_boots.name=Rare Boots
+
+## WEAPONS
+item.mmorpg.magic_sword.name=Magic Sword
+item.mmorpg.rare_sword.name=Rare Sword
+item.mmorpg.epic_sword.name=Epic Sword
+item.mmorpg.legendary_sword.name=Legendary Sword
+item.mmorpg.mythical_sword.name=Mythical Sword
+
+
+## CREATIVE TAB
+itemGroup.Mine and Slash=Mine and Slash
+
+## ORES
+tile.mmorpg:magic_ore_block.name=Magic Ore
+tile.mmorpg:rare_ore_block.name=Rare Ore
+tile.mmorpg:epic_ore_block.name=Epic Ore
+tile.mmorpg:legendary_ore_block.name=Legendary Ore
+tile.mmorpg:mythical_ore_block.name=Mythical Ore
+
+
+
+
+
+
+
+
