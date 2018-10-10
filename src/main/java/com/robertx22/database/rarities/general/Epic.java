@@ -4,24 +4,23 @@ import com.robertx22.constants.Rarity;
 
 import net.minecraft.util.text.TextFormatting;
 
-public class Common  extends Rarity {
+public class Epic extends Rarity {
 
 	@Override
 	public String Name() {
 		
-		return "Common";
+		return "Epic";
 	}
 
 	@Override
 	public int Rank() {
 	
-		return 0;
+		return 3;
 	}
 
 	@Override
-	public String Color() {
-		// TODO Auto-generated method stub
-		return TextFormatting.GRAY.toString();
+	public String Color() {		
+		return TextFormatting.BLUE.toString();
 	}
 
 }
