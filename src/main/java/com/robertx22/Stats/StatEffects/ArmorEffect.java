@@ -1,9 +1,9 @@
-package com.robertx22.Stats.StatEffects;
+package com.robertx22.stats.StatEffects;
 
-import com.robertx22.Stats.IStatEffect;
-import com.robertx22.Stats.IEffects.IArmorReducable;
+import com.robertx22.EffectDatas.EffectData;
+import com.robertx22.stats.IStatEffect;
+import com.robertx22.stats.IEffects.IArmorReducable;
 
-import EffectDatas.EffectData;
 
 public class ArmorEffect implements IStatEffect {
 

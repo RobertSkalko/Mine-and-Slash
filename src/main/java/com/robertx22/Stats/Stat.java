@@ -1,8 +1,9 @@
-package com.robertx22.Stats;
+package com.robertx22.stats;
 
 import java.util.ArrayList;
+
 import com.robertx22.Enums.*;
-import com.robertx22.Units.Unit;
+import com.robertx22.unit.Unit;
 
 public abstract class Stat {
 	

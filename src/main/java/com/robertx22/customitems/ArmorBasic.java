@@ -2,6 +2,7 @@ package com.robertx22.customitems;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.utilityclasses.Utils;
+
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 

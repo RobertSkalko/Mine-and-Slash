@@ -1,6 +1,7 @@
 package com.robertx22.customitems;
 
 import com.robertx22.utilityclasses.Utils;
+
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemSword;
 

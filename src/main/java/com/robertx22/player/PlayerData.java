@@ -1,10 +1,5 @@
 package com.robertx22.player;
 
-import com.robertx22.Stats.Stat;
-import com.robertx22.capability.EntityData;
-import com.robertx22.capability.EntityData.IData;
-import com.robertx22.constants.Tags;
-import com.robertx22.mmorpg.ModConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +14,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.List;
+
+import com.robertx22.capability.EntityData;
+import com.robertx22.capability.EntityData.IData;
+import com.robertx22.constants.Tags;
+import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.stats.Stat;
 
 public class PlayerData {
 

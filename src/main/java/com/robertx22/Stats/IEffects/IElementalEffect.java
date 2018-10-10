@@ -1,4 +1,4 @@
-package com.robertx22.Stats.IEffects;
+package com.robertx22.stats.IEffects;
 
 import com.robertx22.Enums.Elements;
 

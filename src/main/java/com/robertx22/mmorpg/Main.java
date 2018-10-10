@@ -1,28 +1,5 @@
 package com.robertx22.mmorpg;
 
-import com.robertx22.capability.EntityData;
-import com.robertx22.capability.EntityData.DefaultImpl;
-import com.robertx22.capability.EntityData.IData;
-import com.robertx22.capability.EntityData.Storage;
-import com.robertx22.combat.*;
-import com.robertx22.commands.GiveGear;
-import com.robertx22.commands.GiveSocket;
-import com.robertx22.commands.SetLevel;
-import com.robertx22.customitems.MyItems;
-import com.robertx22.customitems.NewItemCreator;
-import com.robertx22.gearupgrade.OnAnvilRepair;
-import com.robertx22.gearupgrade.OnAnvilSetLevel;
-import com.robertx22.gearupgrade.OnAnvilSocket;
-import com.robertx22.gearupgrade.OnAnvilUpgrade;
-import com.robertx22.item.OnPickup;
-import com.robertx22.item.OnTooltip;
-import com.robertx22.loot.OnMobDeathDrops;
-import com.robertx22.loot.OnMobDeathGetExp;
-import com.robertx22.ontick.OnTickRegen;
-import com.robertx22.ontick.OnTickRenderItemNames;
-import com.robertx22.oregen.OreGen;
-import com.robertx22.player.OnLogin;
-import com.robertx22.player.PlayerData;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,6 +11,30 @@ import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.Arrays;
+
+import com.robertx22.capability.EntityData;
+import com.robertx22.capability.EntityData.DefaultImpl;
+import com.robertx22.capability.EntityData.IData;
+import com.robertx22.capability.EntityData.Storage;
+import com.robertx22.commands.GiveGear;
+import com.robertx22.commands.GiveSocket;
+import com.robertx22.commands.SetLevel;
+import com.robertx22.customitems.MyItems;
+import com.robertx22.customitems.NewItemCreator;
+import com.robertx22.onevent.OnLogin;
+import com.robertx22.onevent.Combat.*;
+import com.robertx22.onevent.Gearupgrade.OnAnvilRepair;
+import com.robertx22.onevent.Gearupgrade.OnAnvilSetLevel;
+import com.robertx22.onevent.Gearupgrade.OnAnvilSocket;
+import com.robertx22.onevent.Gearupgrade.OnAnvilUpgrade;
+import com.robertx22.onevent.Item.OnPickup;
+import com.robertx22.onevent.Item.OnTooltip;
+import com.robertx22.onevent.Loot.OnMobDeathDrops;
+import com.robertx22.onevent.Loot.OnMobDeathGetExp;
+import com.robertx22.onevent.Ontick.OnTickRegen;
+import com.robertx22.onevent.Ontick.OnTickRenderItemNames;
+import com.robertx22.oregen.OreGen;
+import com.robertx22.player.PlayerData;
 
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME)
 public class Main {

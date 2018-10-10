@@ -1,6 +1,6 @@
-package com.robertx22.Stats;
+package com.robertx22.stats;
 
-import EffectDatas.EffectData;
+import com.robertx22.EffectDatas.EffectData;
 
 public interface IStatEffect {
 

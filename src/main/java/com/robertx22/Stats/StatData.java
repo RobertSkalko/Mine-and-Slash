@@ -1,9 +1,12 @@
-package com.robertx22.Stats;
+package com.robertx22.stats;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import com.robertx22.Enums.*;
+import com.robertx22.database.Stats;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 

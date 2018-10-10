@@ -1,7 +1,5 @@
 package com.robertx22.customitems;
 
-import com.robertx22.mmorpg.Ref;
-import com.robertx22.utilityclasses.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -18,6 +16,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.robertx22.mmorpg.Ref;
+import com.robertx22.utilityclasses.Utils;
 
 public class NewItemCreator {
 

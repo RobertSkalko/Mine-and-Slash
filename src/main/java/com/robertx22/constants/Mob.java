@@ -1,10 +1,11 @@
 package com.robertx22.constants;
 
-import com.robertx22.capability.EntityData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.Random;
+
+import com.robertx22.capability.EntityData;
 
 public class Mob {
 

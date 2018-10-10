@@ -1,8 +1,8 @@
 package com.robertx22.utilityclasses;
 
-import com.robertx22.constants.Chances;
-
 import java.util.Random;
+
+import com.robertx22.constants.Chances;
 
 public class RandomUtils {
 
