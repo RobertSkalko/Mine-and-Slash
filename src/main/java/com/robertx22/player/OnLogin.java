@@ -19,6 +19,7 @@ public class OnLogin {
         if (event.player.world.isRemote) {
             return;
         }
+        /*
 
         EntityPlayer player = event.player;
 
@@ -37,9 +38,10 @@ public class OnLogin {
             player.addItemStackToInventory(new ItemStack(Blocks.ANVIL));
 
             data.setNBT(nbt);
+            
 
         }
-
+*/
     }
 
 }

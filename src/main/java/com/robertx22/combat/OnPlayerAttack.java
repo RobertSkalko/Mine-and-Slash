@@ -1,5 +1,9 @@
 package com.robertx22.combat;
 
+import com.robertx22.Enums.SuffixOrPrefix;
+import com.robertx22.GearItemClasses.AffixData;
+import com.robertx22.GearItemClasses.GearItem;
+import com.robertx22.Saving.Saving;
 import com.robertx22.capability.EntityData;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.player.PlayerData;
@@ -8,11 +12,17 @@ import com.robertx22.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
+
+import org.apache.commons.lang3.time.StopWatch;
 
 public class OnPlayerAttack {
 
@@ -38,13 +48,35 @@ public class OnPlayerAttack {
             return;
 
         }
-
+        EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+        
+        GearItem geartest = new GearItem();
+        geartest.Name = "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT";       
+        geartest.Prefix= new AffixData("testtesttesttesttesttesttesttesttesttest", new ArrayList<Integer>(), SuffixOrPrefix.Prefix );
+        geartest.Suffix= new AffixData("testtesttesttesttesttesttest", new ArrayList<Integer>(), SuffixOrPrefix.Prefix );
+        
+        
+        
+        {               
+        ItemStack item = player.getHeldItemMainhand();        
+        StopWatch watch = new StopWatch();
+        watch.start();              
+        GearItem gearloaded;
+        
+        for (int i = 0;i <1000;i++) {
+         item.setTagCompound(Saving.Save(item.getTagCompound(), geartest)); 
+         gearloaded = Saving.Load(item.getTagCompound(), GearItem.class);
+         
+        }
+        watch.stop();         
+        System.out.println(watch.getTime() + " miliseconds for full read and write " + item.getTagCompound().toString() );
+        }
+        
+      
+       
+        /*
         if (event.getEntityLiving() instanceof EntityMob) {
 
-            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-            EntityLiving mob = (EntityLiving) event.getEntityLiving();
-            Random ran = new Random();
-/*
             Hashtable<String, Integer> stats = PlayerData.getStats(player);
 
             int minDMG = stats.get(Stats.MIN_DAMAGE.name);
@@ -128,13 +160,13 @@ public class OnPlayerAttack {
             //TESTING PURPOSES
             //event.setAmount(555555);
             event.setAmount(combinedDMG * mobHPMulti);
-*/
+
         }
         else {
             // if its not a mob
             event.setAmount(event.getEntityLiving().getMaxHealth() / 5);
         }
-        
+*/        
 
     }
     

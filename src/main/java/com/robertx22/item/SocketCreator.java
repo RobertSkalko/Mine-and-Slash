@@ -1,7 +1,5 @@
 package com.robertx22.item;
 
-import com.robertx22.constants.Stat;
-import com.robertx22.constants.Stats;
 import com.robertx22.constants.Tags;
 import com.robertx22.customitems.MyItems;
 import net.minecraft.item.ItemStack;
@@ -29,46 +27,7 @@ public class SocketCreator {
             item = new ItemStack(MyItems.mythical_socket);
         }
 
-        List<Stat> randomStats = Stats.getAllRandomStats();
-
-        NBTTagCompound sockets = new NBTTagCompound();
-
-        Random ran = new Random();
-
-        int statAmount = ran.nextInt(2) + 1;
-
-        sockets.setString(Tags.GEAR_TYPE, gearType);
-        sockets.setInteger(Tags.RARITY_NUMBER, rarity);
-
-        while (statAmount > 0) {
-
-            int statNum = ran.nextInt(randomStats.size());
-            Stat ranStat = randomStats.get(statNum);
-
-            if (sockets.hasKey(ranStat.name)) {
-                if (sockets.getInteger(ranStat.name) != 0) {
-                    continue;
-                }
-            }
-
-            if (ranStat.type != gearType) {
-                continue;
-            }
-
-            int num = ran.nextInt(ranStat.maxValue / 2) + (int) ((float) ranStat.maxValue / 5 * (rarity + 1));
-
-            // if the stat scales / not a perecent, multiply with lvl
-            if (!randomStats.get(statNum).isPercent) {
-                num *= lvl;
-            }
-
-            sockets.setInteger(ranStat.name, num);
-
-            statAmount--;
-
-        }
-
-        item.setTagCompound(sockets);
+      
 
         return item;
     }

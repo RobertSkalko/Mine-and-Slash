@@ -28,6 +28,9 @@ public class OnMobSpawn {
             return;
         }
 
+        
+        /*
+        
         if (event.getEntityLiving().hasCapability(EntityData.Data, null) && !event.getEntityLiving()
                 .getCapability(EntityData.Data, null).getNBT().getBoolean(Tags.ENTITY_INFO)) {
 
@@ -61,8 +64,10 @@ public class OnMobSpawn {
             data.setNBT(nbt);
 
             event.setResult(Event.Result.ALLOW);
+            
         }
 
+*/
     }
 
 }

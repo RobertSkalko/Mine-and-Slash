@@ -1,6 +1,5 @@
 package com.robertx22.ontick;
 
-import com.robertx22.constants.Stats;
 import com.robertx22.player.PlayerData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
