@@ -4,7 +4,6 @@ import com.robertx22.EffectDatas.EffectData;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IEffects.IArmorReducable;
 
-
 public class ArmorEffect implements IStatEffect {
 
 	@Override
@@ -14,15 +13,11 @@ public class ArmorEffect implements IStatEffect {
 
 	@Override
 	public EffectData TryModifyEffect(EffectData Effect) {
-		
+
 		if (Effect instanceof IArmorReducable) {
-			
-			
-			
+
 		}
-	
-		
-		
+
 		return Effect;
 	}
 

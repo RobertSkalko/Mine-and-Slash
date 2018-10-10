@@ -17,39 +17,35 @@ import com.robertx22.utilityclasses.ItemUtils;
 
 public class OnTooltip {
 
-    ItemStack item;
-    NBTTagCompound nbt;
-    NBTTagCompound statsNBT;
-    NBTTagCompound enchantsNBT;
-    NBTTagCompound socketNBT;
-  
-    @SubscribeEvent
-    public void onTooltip(ItemTooltipEvent event) {
+	ItemStack item;
+	NBTTagCompound nbt;
+	NBTTagCompound statsNBT;
+	NBTTagCompound enchantsNBT;
+	NBTTagCompound socketNBT;
 
-        if (event.getEntityPlayer() != null && event.getEntityPlayer().world != null
-                && !event.getEntityPlayer().world.isRemote) {
-            return;
-        }
+	@SubscribeEvent
+	public void onTooltip(ItemTooltipEvent event) {
 
-        item = event.getItemStack();
+		if (event.getEntityPlayer() != null && event.getEntityPlayer().world != null
+				&& !event.getEntityPlayer().world.isRemote) {
+			return;
+		}
 
-        if (item == null) {
-            return;
-        }
-        if (!item.hasTagCompound()) {
-            return;
-        }
+		item = event.getItemStack();
 
-        if (ItemUtils.isGear(item)) {
+		if (item == null) {
+			return;
+		}
+		if (!item.hasTagCompound()) {
+			return;
+		}
 
-        
-         
-         //   event.getToolTip().add("Stats:");
+		if (ItemUtils.isGear(item)) {
 
-         
-        }      
+			// event.getToolTip().add("Stats:");
 
-    }
+		}
 
+	}
 
 }

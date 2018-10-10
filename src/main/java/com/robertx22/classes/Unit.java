@@ -1,4 +1,4 @@
-package com.robertx22.unit;
+package com.robertx22.classes;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,23 +11,22 @@ import net.minecraft.item.ItemStack;
 public class Unit {
 
 	public EntityLiving Entityliving;
-	
+
 	public Unit(EntityLiving entity) {
 		this.Entityliving = entity;
 	}
+
 	
 	
-	
-	
-	public List<ItemStack> GetEquips(){
-		
+	public List<ItemStack> GetEquips() {
+
 		List<ItemStack> list = new ArrayList<ItemStack>();
-		
+
 		list.addAll((Collection<? extends ItemStack>) Entityliving.getArmorInventoryList());
 		list.add(Entityliving.getHeldItemMainhand());
-		
-		return  list;
-		
+
+		return list;
+
 	}
-	
+
 }

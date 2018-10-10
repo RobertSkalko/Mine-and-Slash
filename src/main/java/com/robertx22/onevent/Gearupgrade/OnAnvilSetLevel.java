@@ -9,21 +9,21 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OnAnvilSetLevel {
 
-    @SubscribeEvent
-    public void setLevelBack(AnvilRepairEvent event) {
+	@SubscribeEvent
+	public void setLevelBack(AnvilRepairEvent event) {
 
-        if (!event.getEntityLiving().world.isRemote) {
+		if (!event.getEntityLiving().world.isRemote) {
 
-            EntityPlayer player = event.getEntityPlayer();
+			EntityPlayer player = event.getEntityPlayer();
 
-            EntityData.IData data = player.getCapability(EntityData.Data, null);
+			EntityData.IData data = player.getCapability(EntityData.Data, null);
 
-            PlayerData.updateClientXPAndLvl(player);
+			PlayerData.updateClientXPAndLvl(player);
 
-            event.setBreakChance(0);
+			event.setBreakChance(0);
 
-        }
+		}
 
-    }
+	}
 
 }

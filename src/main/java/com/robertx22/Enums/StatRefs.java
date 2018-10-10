@@ -1,7 +1,6 @@
-package com.robertx22.Enums;
+package com.robertx22.enums;
 
 public enum StatRefs {
-	Health,
-	Armor,
+	Health, Armor, Fire_Damage, Water_Damage, Thunder_Damage, Damage, 
 
 }

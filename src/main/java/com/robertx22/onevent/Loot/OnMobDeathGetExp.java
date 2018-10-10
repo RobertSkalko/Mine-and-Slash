@@ -14,37 +14,37 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OnMobDeathGetExp {
 
-    @SubscribeEvent
-    public void mobOnDeathgetExp(LivingDeathEvent event) {
+	@SubscribeEvent
+	public void mobOnDeathgetExp(LivingDeathEvent event) {
 
-        if (event.getEntityLiving().world.isRemote) {
-            return;
-        }
-        if (!(event.getEntityLiving() instanceof EntityMob)) {
-            return;
-        }
-        if (event.getSource() == null) {
-            return;
-        }
-        if (event.getSource().getTrueSource() == null) {
-            return;
-        }
+		if (event.getEntityLiving().world.isRemote) {
+			return;
+		}
+		if (!(event.getEntityLiving() instanceof EntityMob)) {
+			return;
+		}
+		if (event.getSource() == null) {
+			return;
+		}
+		if (event.getSource().getTrueSource() == null) {
+			return;
+		}
 
-        if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 
-            Entity mob = event.getEntity();
+			Entity mob = event.getEntity();
 
-            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 
-            EntityData.IData mobdata = mob.getCapability(EntityData.Data, null);
+			EntityData.IData mobdata = mob.getCapability(EntityData.Data, null);
 
-            NBTTagCompound mobnbt = mobdata.getNBT();
+			NBTTagCompound mobnbt = mobdata.getNBT();
 
-            int exp = mobnbt.getInteger(Tags.LEVEL) * (Mob.rarityXPMulti[mobnbt.getInteger(Tags.RARITY_NUMBER)]);
+			int exp = mobnbt.getInteger(Tags.LEVEL) * (Mob.rarityXPMulti[mobnbt.getInteger(Tags.RARITY_NUMBER)]);
 
-            PlayerData.giveExp(player, exp);
+			PlayerData.giveExp(player, exp);
 
-        }
+		}
 
-    }
+	}
 }

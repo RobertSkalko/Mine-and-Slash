@@ -1,8 +1,7 @@
 package com.robertx22.stats.IEffects;
 
-import com.robertx22.Enums.Elements;
+import com.robertx22.enums.Elements;
 
-public interface IElementalEffect extends IBasicEffect
-{
-    Elements Element();
+public interface IElementalEffect extends IBasicEffect {
+	Elements Element();
 }

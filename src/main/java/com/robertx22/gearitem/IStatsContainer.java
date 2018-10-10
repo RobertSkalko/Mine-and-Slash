@@ -6,5 +6,5 @@ import com.robertx22.stats.StatData;
 
 public interface IStatsContainer {
 
-	public List<StatData>GetAllStats();
+	public List<StatData> GetAllStats();
 }

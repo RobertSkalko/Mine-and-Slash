@@ -18,82 +18,81 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EntityData {
 
+	@CapabilityInject(IData.class)
+	public static final Capability<IData> Data = null;
 
-    @CapabilityInject(IData.class)
-    public static final Capability<IData> Data = null;
+	public interface IData {
 
-    public interface IData {
+		NBTTagCompound getNBT();
 
-        NBTTagCompound getNBT();
+		void setNBT(NBTTagCompound value);
 
-        void setNBT(NBTTagCompound value);
+	}
 
-    }
+	public static class EventHandler {
+		@SubscribeEvent
+		public void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
-    public static class EventHandler {
-        @SubscribeEvent
-        public void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
+			if (event.getObject() instanceof EntityMob || event.getObject() instanceof EntityPlayer) {
 
-            if (event.getObject() instanceof EntityMob || event.getObject() instanceof EntityPlayer) {
+				event.addCapability(new ResourceLocation(Ref.MODID, "mmorpg"),
+						new ICapabilitySerializable<NBTTagCompound>() {
+							IData inst = Data.getDefaultInstance();
 
-                event.addCapability(new ResourceLocation(Ref.MODID, "mmorpg"),
-                        new ICapabilitySerializable<NBTTagCompound>() {
-                            IData inst = Data.getDefaultInstance();
+							@Override
+							public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+								return capability == Data;
+							}
 
-                            @Override
-                            public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-                                return capability == Data;
-                            }
+							@Override
+							public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+								return capability == Data ? Data.<T>cast(inst) : null;
+							}
 
-                            @Override
-                            public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-                                return capability == Data ? Data.<T>cast(inst) : null;
-                            }
+							@Override
+							public NBTTagCompound serializeNBT() {
+								return (NBTTagCompound) Data.getStorage().writeNBT(Data, inst, null);
+							}
 
-                            @Override
-                            public NBTTagCompound serializeNBT() {
-                                return (NBTTagCompound) Data.getStorage().writeNBT(Data, inst, null);
-                            }
+							@Override
+							public void deserializeNBT(NBTTagCompound nbt) {
+								Data.getStorage().readNBT(Data, inst, null, nbt);
+							}
 
-                            @Override
-                            public void deserializeNBT(NBTTagCompound nbt) {
-                                Data.getStorage().readNBT(Data, inst, null, nbt);
-                            }
+						});
+			}
+		}
 
-                        });
-            }
-        }
+	}
 
-    }
+	public static class Storage implements IStorage<IData> {
+		@Override
+		public NBTBase writeNBT(Capability<IData> capability, IData instance, EnumFacing side) {
 
-    public static class Storage implements IStorage<IData> {
-        @Override
-        public NBTBase writeNBT(Capability<IData> capability, IData instance, EnumFacing side) {
+			return instance.getNBT();
+		}
 
-            return instance.getNBT();
-        }
+		@Override
+		public void readNBT(Capability<IData> capability, IData instance, EnumFacing side, NBTBase nbt) {
 
-        @Override
-        public void readNBT(Capability<IData> capability, IData instance, EnumFacing side, NBTBase nbt) {
+			instance.setNBT((NBTTagCompound) nbt);
 
-            instance.setNBT((NBTTagCompound) nbt);
+		}
+	}
 
-        }
-    }
+	public static class DefaultImpl implements IData {
+		private NBTTagCompound nbt = new NBTTagCompound();
 
-    public static class DefaultImpl implements IData {
-        private NBTTagCompound nbt = new NBTTagCompound();
+		@Override
+		public NBTTagCompound getNBT() {
+			return nbt;
+		}
 
-        @Override
-        public NBTTagCompound getNBT() {
-            return nbt;
-        }
+		@Override
+		public void setNBT(NBTTagCompound value) {
+			this.nbt = value;
+		}
 
-        @Override
-        public void setNBT(NBTTagCompound value) {
-            this.nbt = value;
-        }
-
-    }
+	}
 
 }

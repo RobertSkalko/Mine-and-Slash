@@ -12,74 +12,74 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OnAnvilUpgrade {
 
-    @SubscribeEvent
-    public void OnAnvilDoUpgrade(AnvilUpdateEvent event) {
+	@SubscribeEvent
+	public void OnAnvilDoUpgrade(AnvilUpdateEvent event) {
 
-        Item mat = event.getRight().getItem();
-        ItemStack item = event.getLeft().copy();
+		Item mat = event.getRight().getItem();
+		ItemStack item = event.getLeft().copy();
 
-        if (ItemUtils.isGear(event.getLeft())) {
+		if (ItemUtils.isGear(event.getLeft())) {
 
-            int matCost = 10;
+			int matCost = 10;
 
-            NBTTagCompound nbt = item.getTagCompound();
+			NBTTagCompound nbt = item.getTagCompound();
 
-            int upgradeNumber = nbt.getInteger(Tags.UPGRADE_NUMBER);
+			int upgradeNumber = nbt.getInteger(Tags.UPGRADE_NUMBER);
 
-            if (upgradeNumber > 9) {
-                return;
-            }
+			if (upgradeNumber > 9) {
+				return;
+			}
 
-            if (event.getRight().getCount() < 10) {
-                return;
-            }
+			if (event.getRight().getCount() < 10) {
+				return;
+			}
 
-            if (mat.equals(MyItems.magic_powder)) {
+			if (mat.equals(MyItems.magic_powder)) {
 
-                if (upgradeNumber == 0 || upgradeNumber == 1) {
+				if (upgradeNumber == 0 || upgradeNumber == 1) {
 
-                    event.setOutput(ItemUtils.upgradeItem(item));
-                }
+					event.setOutput(ItemUtils.upgradeItem(item));
+				}
 
-            }
-            if (mat.equals(MyItems.rare_powder)) {
+			}
+			if (mat.equals(MyItems.rare_powder)) {
 
-                if (upgradeNumber == 2 || upgradeNumber == 3) {
+				if (upgradeNumber == 2 || upgradeNumber == 3) {
 
-                    event.setOutput(ItemUtils.upgradeItem(item));
-                }
+					event.setOutput(ItemUtils.upgradeItem(item));
+				}
 
-            }
-            if (mat.equals(MyItems.epic_powder)) {
+			}
+			if (mat.equals(MyItems.epic_powder)) {
 
-                if (upgradeNumber == 4 || upgradeNumber == 5) {
+				if (upgradeNumber == 4 || upgradeNumber == 5) {
 
-                    event.setOutput(ItemUtils.upgradeItem(item));
-                }
+					event.setOutput(ItemUtils.upgradeItem(item));
+				}
 
-            }
-            if (mat.equals(MyItems.legendary_powder)) {
+			}
+			if (mat.equals(MyItems.legendary_powder)) {
 
-                if (upgradeNumber == 6 || upgradeNumber == 7) {
+				if (upgradeNumber == 6 || upgradeNumber == 7) {
 
-                    event.setOutput(ItemUtils.upgradeItem(item));
-                }
+					event.setOutput(ItemUtils.upgradeItem(item));
+				}
 
-            }
-            if (mat.equals(MyItems.mythical_powder)) {
+			}
+			if (mat.equals(MyItems.mythical_powder)) {
 
-                if (upgradeNumber == 8 || upgradeNumber == 9) {
+				if (upgradeNumber == 8 || upgradeNumber == 9) {
 
-                    event.setOutput(ItemUtils.upgradeItem(item));
-                }
+					event.setOutput(ItemUtils.upgradeItem(item));
+				}
 
-            }
+			}
 
-            event.setCost(1);
-            event.setMaterialCost(matCost);
+			event.setCost(1);
+			event.setMaterialCost(matCost);
 
-        }
+		}
 
-    }
+	}
 
 }

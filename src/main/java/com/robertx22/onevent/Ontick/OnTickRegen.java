@@ -11,39 +11,38 @@ import com.robertx22.player.PlayerData;
 
 public class OnTickRegen {
 
-    int tick = 0;
+	int tick = 0;
 
-    int time = 150;
+	int time = 150;
 
-    @SubscribeEvent
-    public void onTickRegen(TickEvent.PlayerTickEvent event) {
+	@SubscribeEvent
+	public void onTickRegen(TickEvent.PlayerTickEvent event) {
 
-        if (event.phase == Phase.END && event.side.isServer()) {
+		if (event.phase == Phase.END && event.side.isServer()) {
 
-            tick++;
+			tick++;
 
-            if (tick > time) {
+			if (tick > time) {
 
-            	/*
-                EntityPlayer player = event.player;
+				/*
+				 * EntityPlayer player = event.player;
+				 * 
+				 * Hashtable<String, Integer> stats = PlayerData.getStats(player);
+				 * 
+				 * int hpGainPercent = stats.get(Stats.HEALTH_REGEN.name); int manaGainPercent =
+				 * stats.get(Stats.MANA_REGEN.name);
+				 * 
+				 * float hp = player.getMaxHealth(); int mana = stats.get(Stats.MANA.name);
+				 * 
+				 * player.heal(hpGainPercent * hp / 100);
+				 * 
+				 * tick = 0;
+				 * 
+				 */
+			}
 
-                Hashtable<String, Integer> stats = PlayerData.getStats(player);
+		}
 
-                int hpGainPercent = stats.get(Stats.HEALTH_REGEN.name);
-                int manaGainPercent = stats.get(Stats.MANA_REGEN.name);
-
-                float hp = player.getMaxHealth();
-                int mana = stats.get(Stats.MANA.name);
-
-                player.heal(hpGainPercent * hp / 100);
-
-                tick = 0;
-
-*/
-            }
-
-        }
-
-    }
+	}
 
 }

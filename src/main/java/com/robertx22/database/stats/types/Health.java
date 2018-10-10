@@ -1,11 +1,10 @@
-package com.robertx22.database.stats.StatTypes;
+package com.robertx22.database.stats.types;
 
-import com.robertx22.Enums.Elements;
-import com.robertx22.Enums.StatRefs;
+import com.robertx22.enums.Elements;
+import com.robertx22.enums.StatRefs;
 import com.robertx22.stats.FillableStat;
 
 public class Health extends FillableStat {
-
 
 	@Override
 	public String Name() {

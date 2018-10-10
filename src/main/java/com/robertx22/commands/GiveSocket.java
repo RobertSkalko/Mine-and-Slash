@@ -13,34 +13,33 @@ import net.minecraft.util.text.TextComponentString;
 
 public class GiveSocket extends CommandBase {
 
-    @Override
-    public String getName() {
-        return "givesocket";
-    }
+	@Override
+	public String getName() {
+		return "givesocket";
+	}
 
-    @Override
-    public String getUsage(ICommandSender sender) {
-        return "/givesocket (lvl), (rarity 0-4), (type: ARMOR, WEAPON etc)";
-    }
+	@Override
+	public String getUsage(ICommandSender sender) {
+		return "/givesocket (lvl), (rarity 0-4), (type: ARMOR, WEAPON etc)";
+	}
 
-    @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+	@Override
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-        if (ModConfig.Cheats.CHEAT_MODE) {
+		if (ModConfig.Cheats.CHEAT_MODE) {
 
-            int lvl = Integer.valueOf(args[0]);
-            int rarity = Integer.valueOf(args[1]);
-            String type = args[2];
+			int lvl = Integer.valueOf(args[0]);
+			int rarity = Integer.valueOf(args[1]);
+			String type = args[2];
 
-            ItemStack item = SocketCreator.createSocket(lvl, rarity, type);
+			ItemStack item = SocketCreator.createSocket(lvl, rarity, type);
 
-            EntityPlayer player = (EntityPlayer) sender;
+			EntityPlayer player = (EntityPlayer) sender;
 
-            player.addItemStackToInventory(item);
-        }
-        else {
-            sender.sendMessage(new TextComponentString("You have to enable Cheats in mod config to use commands!"));
-        }
+			player.addItemStackToInventory(item);
+		} else {
+			sender.sendMessage(new TextComponentString("You have to enable Cheats in mod config to use commands!"));
+		}
 
-    }
+	}
 }

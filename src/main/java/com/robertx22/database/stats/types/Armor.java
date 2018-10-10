@@ -1,12 +1,10 @@
-package com.robertx22.database.stats.StatTypes;
+package com.robertx22.database.stats.types;
 
-import com.robertx22.Enums.*;
 import com.robertx22.database.Stats;
+import com.robertx22.enums.*;
 import com.robertx22.stats.Stat;
 
-public class Armor extends Stat{
-
-
+public class Armor extends Stat {
 
 	@Override
 	public String Name() {
@@ -32,6 +30,4 @@ public class Armor extends Stat{
 		return StatRefs.Armor;
 	}
 
-	
-	
 }

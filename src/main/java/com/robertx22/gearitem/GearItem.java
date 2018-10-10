@@ -16,18 +16,14 @@ import com.robertx22.constants.Tags;
 
 public class GearItem {
 
-	public String Name;	
-	
+	public String Name;
+
 	public AffixData Suffix;
 	public AffixData Prefix;
-	
-	
-	
-	
+
 	public int GetStat(String Name) {
-		
+
 		return 0;
 	}
-	
-	
+
 }

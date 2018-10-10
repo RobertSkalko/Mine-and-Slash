@@ -10,42 +10,40 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OnAnvilSocket {
 
-    @SubscribeEvent
-    public void OnAnvilDoSocket(AnvilUpdateEvent event) {
+	@SubscribeEvent
+	public void OnAnvilDoSocket(AnvilUpdateEvent event) {
 
-        Item mat = event.getRight().getItem();
-        ItemStack item = event.getLeft().copy();
+		Item mat = event.getRight().getItem();
+		ItemStack item = event.getLeft().copy();
 
-        if (ItemUtils.isGear(event.getLeft())) {
+		if (ItemUtils.isGear(event.getLeft())) {
 
-            if (ItemUtils.isSocket(mat)) {
+			if (ItemUtils.isSocket(mat)) {
 
-                if (item.getTagCompound().getString(Tags.GEAR_TYPE).equals(event.getRight().getTagCompound().getString
-                        (Tags.GEAR_TYPE))) {
+				if (item.getTagCompound().getString(Tags.GEAR_TYPE)
+						.equals(event.getRight().getTagCompound().getString(Tags.GEAR_TYPE))) {
 
-                    event.setCost(1);
-                    event.setMaterialCost(1);
+					event.setCost(1);
+					event.setMaterialCost(1);
 
-                    item = transferSocketToItem(item, event.getRight());
+					item = transferSocketToItem(item, event.getRight());
 
-                    event.setOutput(item);
-                }
-                else {
-                    event.setCost(0);
-                }
+					event.setOutput(item);
+				} else {
+					event.setCost(0);
+				}
 
-            }
+			}
 
-        }
+		}
 
-    }
+	}
 
-    ItemStack transferSocketToItem(ItemStack item, ItemStack socket) {
+	ItemStack transferSocketToItem(ItemStack item, ItemStack socket) {
 
-        item.getTagCompound().setTag(Tags.SOCKETS, socket.getTagCompound());
+		item.getTagCompound().setTag(Tags.SOCKETS, socket.getTagCompound());
 
-        return item;
-    }
+		return item;
+	}
 
 }
-

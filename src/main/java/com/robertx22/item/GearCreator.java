@@ -14,20 +14,17 @@ import com.robertx22.utilityclasses.ItemUtils;
 
 public class GearCreator {
 
-    public static ItemStack createGear(int lvl, int rarity, String type) {
+	public static ItemStack createGear(int lvl, int rarity, String type) {
 
-     return null;
-    }
+		return null;
+	}
 
+	ItemStack setName(ItemStack item, int rarityNum) {
 
-    ItemStack setName(ItemStack item, int rarityNum) {
+		item = item.setStackDisplayName(
+				Gear.rarityChatColors[rarityNum] + "" + TextFormatting.BOLD + item.getDisplayName());
 
-        item = item.setStackDisplayName(
-                Gear.rarityChatColors[rarityNum] + "" + TextFormatting.BOLD + item.getDisplayName());
-
-        return item;
-    }
-
-   
+		return item;
+	}
 
 }

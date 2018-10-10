@@ -12,31 +12,30 @@ import net.minecraft.util.text.TextComponentString;
 
 public class SetLevel extends CommandBase {
 
-    @Override
-    public String getName() {
-        return "setlevel";
-    }
+	@Override
+	public String getName() {
+		return "setlevel";
+	}
 
-    @Override
-    public String getUsage(ICommandSender sender) {
-        return "/setlevel (lvl) 1";
-    }
+	@Override
+	public String getUsage(ICommandSender sender) {
+		return "/setlevel (lvl) 1";
+	}
 
-    @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+	@Override
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-        if (ModConfig.Cheats.CHEAT_MODE) {
+		if (ModConfig.Cheats.CHEAT_MODE) {
 
-            int lvl = Integer.valueOf(args[0]);
+			int lvl = Integer.valueOf(args[0]);
 
-            EntityPlayer player = (EntityPlayer) sender;
+			EntityPlayer player = (EntityPlayer) sender;
 
-            PlayerData.setLevel(player, lvl);
+			PlayerData.setLevel(player, lvl);
 
-        }
-        else {
-            sender.sendMessage(new TextComponentString("You have to enable Cheats in mod config to use commands!"));
-        }
+		} else {
+			sender.sendMessage(new TextComponentString("You have to enable Cheats in mod config to use commands!"));
+		}
 
-    }
+	}
 }

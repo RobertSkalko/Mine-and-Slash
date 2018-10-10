@@ -10,40 +10,36 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OnAnvilRepair {
 
-    @SubscribeEvent
-    public void OnAnvilDoRepair(AnvilUpdateEvent event) {
+	@SubscribeEvent
+	public void OnAnvilDoRepair(AnvilUpdateEvent event) {
 
-        Item mat = event.getRight().getItem();
-        ItemStack item = event.getLeft().copy();
+		Item mat = event.getRight().getItem();
+		ItemStack item = event.getLeft().copy();
 
-        int repaired = 0;
+		int repaired = 0;
 
-        if (mat.equals(MyItems.magic_ore)) {
-            repaired = 50;
-        }
-        else if (mat.equals(MyItems.rare_ore)) {
-            repaired = 150;
-        }
-        else if (mat.equals(MyItems.epic_ore)) {
-            repaired = 250;
-        }
-        else if (mat.equals(MyItems.legendary_ore)) {
-            repaired = 400;
-        }
-        else if (mat.equals(MyItems.mythical_ore)) {
-            repaired = 500;
-        }
+		if (mat.equals(MyItems.magic_ore)) {
+			repaired = 50;
+		} else if (mat.equals(MyItems.rare_ore)) {
+			repaired = 150;
+		} else if (mat.equals(MyItems.epic_ore)) {
+			repaired = 250;
+		} else if (mat.equals(MyItems.legendary_ore)) {
+			repaired = 400;
+		} else if (mat.equals(MyItems.mythical_ore)) {
+			repaired = 500;
+		}
 
-        item.setItemDamage(item.getItemDamage() - repaired);
+		item.setItemDamage(item.getItemDamage() - repaired);
 
-        if (ItemUtils.isGear(event.getLeft())) {
+		if (ItemUtils.isGear(event.getLeft())) {
 
-            event.setOutput(item);
+			event.setOutput(item);
 
-            event.setCost(1);
-            event.setMaterialCost(1);
+			event.setCost(1);
+			event.setMaterialCost(1);
 
-        }
+		}
 
-    }
+	}
 }

@@ -23,98 +23,97 @@ import com.robertx22.utilityclasses.RandomUtils;
 
 public class OnMobDeathDrops {
 
-    @SubscribeEvent
-    public void mobOnDeathDrop(LivingDeathEvent event) {
+	@SubscribeEvent
+	public void mobOnDeathDrop(LivingDeathEvent event) {
 
-        if (event.getEntityLiving().world.isRemote) {
-            return;
-        }
-        if (event.getEntityLiving() instanceof EntityPlayer) {
-            return;
-        }
+		if (event.getEntityLiving().world.isRemote) {
+			return;
+		}
+		if (event.getEntityLiving() instanceof EntityPlayer) {
+			return;
+		}
 
-        if (event.getEntity() instanceof EntityMob) {
+		if (event.getEntity() instanceof EntityMob) {
 
-            Entity mob = event.getEntity();
+			Entity mob = event.getEntity();
 
-            if (mob.hasCapability(EntityData.Data, null)) {
+			if (mob.hasCapability(EntityData.Data, null)) {
 
-                NBTTagCompound nbt = mob.getCapability(EntityData.Data, null).getNBT();
-                int lvl = nbt.getInteger(Tags.LEVEL);
-                int rarity = nbt.getInteger(Tags.RARITY_NUMBER);
+				NBTTagCompound nbt = mob.getCapability(EntityData.Data, null).getNBT();
+				int lvl = nbt.getInteger(Tags.LEVEL);
+				int rarity = nbt.getInteger(Tags.RARITY_NUMBER);
 
-                List<ItemStack> items = createDropTable(mob, lvl, rarity);
+				List<ItemStack> items = createDropTable(mob, lvl, rarity);
 
-                for (ItemStack item : items) {
+				for (ItemStack item : items) {
 
-                    mob.entityDropItem(item, 0);
+					mob.entityDropItem(item, 0);
 
-                }
+				}
 
-            }
-        }
-    }
+			}
+		}
+	}
 
-    List<ItemStack> createDropTable(Entity mob, int lvl, int rarity) {
+	List<ItemStack> createDropTable(Entity mob, int lvl, int rarity) {
 
-        List<ItemStack> items = new ArrayList<>();
+		List<ItemStack> items = new ArrayList<>();
 
-        int gearAmount = RandomUtils.rollArray(Chances.GEAR_AMOUNT, ModConfig.Cheats.DROP_RATES, rarity * 0.05F);
-        int socketChance = (int) ((3 + rarity) * ModConfig.Cheats.DROP_RATES);
-        int powderChance = (int) (30 * ModConfig.Cheats.DROP_RATES);
+		int gearAmount = RandomUtils.rollArray(Chances.GEAR_AMOUNT, ModConfig.Cheats.DROP_RATES, rarity * 0.05F);
+		int socketChance = (int) ((3 + rarity) * ModConfig.Cheats.DROP_RATES);
+		int powderChance = (int) (30 * ModConfig.Cheats.DROP_RATES);
 
-        if (rarity >= 3) {
-            gearAmount++;
-        }
-        if (rarity == 4) {
-            gearAmount++;
-        }
+		if (rarity >= 3) {
+			gearAmount++;
+		}
+		if (rarity == 4) {
+			gearAmount++;
+		}
 
-        if (RandomUtils.roll(socketChance)) {
-            int socketRarity = RandomUtils.rollArray(Chances.GEAR_RARITY, ModConfig.Cheats.DROP_RATES, rarity * 0.05F);
-            String gearType = new Random().nextBoolean() ? Tags.ARMOR : Tags.WEAPON;
+		if (RandomUtils.roll(socketChance)) {
+			int socketRarity = RandomUtils.rollArray(Chances.GEAR_RARITY, ModConfig.Cheats.DROP_RATES, rarity * 0.05F);
+			String gearType = new Random().nextBoolean() ? Tags.ARMOR : Tags.WEAPON;
 
-            items.add((SocketCreator.createSocket(lvl, socketRarity, gearType)));
-        }
+			items.add((SocketCreator.createSocket(lvl, socketRarity, gearType)));
+		}
 
-        if (RandomUtils.roll(powderChance)) {
-            if (rarity == 0) {
-                items.add(new ItemStack(MyItems.magic_powder));
-            }
-            if (rarity == 1) {
-                items.add(new ItemStack(MyItems.rare_powder));
-            }
-            if (rarity == 2) {
-                items.add(new ItemStack(MyItems.epic_powder));
-            }
-            if (rarity == 3) {
-                items.add(new ItemStack(MyItems.legendary_powder));
-            }
-            if (rarity == 4) {
-                items.add(new ItemStack(MyItems.mythical_powder));
-            }
-        }
+		if (RandomUtils.roll(powderChance)) {
+			if (rarity == 0) {
+				items.add(new ItemStack(MyItems.magic_powder));
+			}
+			if (rarity == 1) {
+				items.add(new ItemStack(MyItems.rare_powder));
+			}
+			if (rarity == 2) {
+				items.add(new ItemStack(MyItems.epic_powder));
+			}
+			if (rarity == 3) {
+				items.add(new ItemStack(MyItems.legendary_powder));
+			}
+			if (rarity == 4) {
+				items.add(new ItemStack(MyItems.mythical_powder));
+			}
+		}
 
-        for (int i = 0; i < gearAmount; i++) {
+		for (int i = 0; i < gearAmount; i++) {
 
-            int gearRarity = RandomUtils.rollWhile(30, 0, 4);
-            String type;
+			int gearRarity = RandomUtils.rollWhile(30, 0, 4);
+			String type;
 
-            if (RandomUtils.roll(20)) {
-                type = Tags.WEAPON;
-            }
-            else {
-                type = Tags.ARMOR;
-            }
+			if (RandomUtils.roll(20)) {
+				type = Tags.WEAPON;
+			} else {
+				type = Tags.ARMOR;
+			}
 
-            ItemStack drop = GearCreator.createGear(lvl, gearRarity, type);
+			ItemStack drop = GearCreator.createGear(lvl, gearRarity, type);
 
-            items.add((drop));
+			items.add((drop));
 
-        }
+		}
 
-        return items;
+		return items;
 
-    }
+	}
 
 }
