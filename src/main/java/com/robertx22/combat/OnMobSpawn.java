@@ -29,7 +29,7 @@ public class OnMobSpawn {
         }
 
         if (event.getEntityLiving().hasCapability(EntityData.Data, null) && !event.getEntityLiving()
-                .getCapability(EntityData.Data, null).getNBT().getBoolean(Tag.ENTITY_INFO)) {
+                .getCapability(EntityData.Data, null).getNBT().getBoolean(Tags.ENTITY_INFO)) {
 
             EntityLiving mob = (EntityLiving) event.getEntityLiving();
 
@@ -44,12 +44,12 @@ public class OnMobSpawn {
             int hp = (int) (mob.getMaxHealth() * lvl * Mob.rarityHPMulti[rarity] * ModConfig.Cheats.DIFFICULTY);
             int dmg = (int) (10 * lvl * Mob.rarityDMGMulti[rarity] / 4 * ModConfig.Cheats.DIFFICULTY);
 
-            nbt.setInteger(Stats.HEALTH.name, hp);
-            nbt.setInteger(Tag.LEVEL, lvl);
-            nbt.setInteger(Tag.RARITY_NUMBER, rarity);
-            nbt.setString(Tag.RARITY, Mob.rarityNames[rarity]);
-            nbt.setBoolean(Tag.ENTITY_INFO, true);
-            nbt.setInteger(Tag.DAMAGE, dmg);
+            nbt.setInteger(com.robertx22.Stats.HEALTH.name, hp);
+            nbt.setInteger(Tags.LEVEL, lvl);
+            nbt.setInteger(Tags.RARITY_NUMBER, rarity);
+            nbt.setString(Tags.RARITY, Mob.rarityNames[rarity]);
+            nbt.setBoolean(Tags.ENTITY_INFO, true);
+            nbt.setInteger(Tags.DAMAGE, dmg);
 
             mob.setCustomNameTag(Gear.rarityChatColors[rarity] + "" + " " + "LvL " + lvl + " " + Mob
                     .rarityNames[rarity]

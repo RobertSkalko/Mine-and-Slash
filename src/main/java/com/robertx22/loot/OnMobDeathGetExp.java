@@ -2,7 +2,7 @@ package com.robertx22.loot;
 
 import com.robertx22.capability.EntityData;
 import com.robertx22.constants.Mob;
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.player.PlayerData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
@@ -39,7 +39,7 @@ public class OnMobDeathGetExp {
 
             NBTTagCompound mobnbt = mobdata.getNBT();
 
-            int exp = mobnbt.getInteger(Tag.LEVEL) * (Mob.rarityXPMulti[mobnbt.getInteger(Tag.RARITY_NUMBER)]);
+            int exp = mobnbt.getInteger(Tags.LEVEL) * (Mob.rarityXPMulti[mobnbt.getInteger(Tags.RARITY_NUMBER)]);
 
             PlayerData.giveExp(player, exp);
 

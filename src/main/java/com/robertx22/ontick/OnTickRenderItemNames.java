@@ -1,6 +1,6 @@
 package com.robertx22.ontick;
 
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.utilityclasses.ItemUtils;
 import net.minecraft.client.Minecraft;
@@ -63,7 +63,7 @@ public class OnTickRenderItemNames {
                         continue;
                     }
 
-                    int rarity = item.getTagCompound().getInteger(Tag.RARITY_NUMBER);
+                    int rarity = item.getTagCompound().getInteger(Tags.RARITY_NUMBER);
 
                     if (ItemUtils.isGear(item)) {
 

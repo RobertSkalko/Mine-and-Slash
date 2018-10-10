@@ -3,7 +3,7 @@ package com.robertx22.item;
 import com.robertx22.constants.Gear;
 import com.robertx22.constants.Stat;
 import com.robertx22.constants.Stats;
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.utilityclasses.ItemUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -32,15 +32,15 @@ public class GearCreator {
 
         NBTTagCompound nbt = new NBTTagCompound();
 
-        nbt.setBoolean(Tag.IS_GEAR, true);
+        nbt.setBoolean(Tags.IS_GEAR, true);
 
-        nbt.setTag(Tag.STATS, new NBTTagCompound());
-        nbt.setTag(Tag.ENCHANTS, new NBTTagCompound());
-        nbt.setTag(Tag.SOCKETS, new NBTTagCompound());
+        nbt.setTag(Tags.STATS, new NBTTagCompound());
+        nbt.setTag(Tags.ENCHANTS, new NBTTagCompound());
+        nbt.setTag(Tags.SOCKETS, new NBTTagCompound());
 
         Random ran = new Random();
 
-        if (type.equals(Tag.WEAPON)) {
+        if (type.equals(Tags.WEAPON)) {
             switch (rarity) {
 
                 case 0:
@@ -61,7 +61,7 @@ public class GearCreator {
 
             }
 
-            nbt.setString(Tag.GEAR_TYPE, Tag.WEAPON);
+            nbt.setString(Tags.GEAR_TYPE, Tags.WEAPON);
         }
         else {
 
@@ -85,14 +85,14 @@ public class GearCreator {
 
             }
 
-            nbt.setString(Tag.GEAR_TYPE, Tag.ARMOR);
+            nbt.setString(Tags.GEAR_TYPE, Tags.ARMOR);
         }
 
-        nbt.setString(Tag.RARITY, Gear.rarityNames[rarity]);
-        nbt.setInteger(Tag.RARITY_NUMBER, rarity);
+        nbt.setString(Tags.RARITY, Gear.rarityNames[rarity]);
+        nbt.setInteger(Tags.RARITY_NUMBER, rarity);
         nbt.setInteger("HideFlags", 63);
-        nbt.setInteger(Tag.LEVEL, lvl);
-        nbt.setInteger(Tag.UPGRADE_NUMBER, 0);
+        nbt.setInteger(Tags.LEVEL, lvl);
+        nbt.setInteger(Tags.UPGRADE_NUMBER, 0);
 
         item.setTagCompound(nbt);
 
@@ -113,11 +113,11 @@ public class GearCreator {
 
         List<Stat> randomStats = Stats.getAllRandomStats();
 
-        int lvl = item.getTagCompound().getInteger(Tag.LEVEL);
+        int lvl = item.getTagCompound().getInteger(Tags.LEVEL);
 
-        String gearType = item.getTagCompound().getString(Tag.GEAR_TYPE);
-        int rarityNumber = item.getTagCompound().getInteger(Tag.RARITY_NUMBER);
-        NBTTagCompound nbt = item.getTagCompound().getCompoundTag(Tag.STATS);
+        String gearType = item.getTagCompound().getString(Tags.GEAR_TYPE);
+        int rarityNumber = item.getTagCompound().getInteger(Tags.RARITY_NUMBER);
+        NBTTagCompound nbt = item.getTagCompound().getCompoundTag(Tags.STATS);
         int statAmount = 1;
 
         switch (rarity) {
@@ -137,20 +137,20 @@ public class GearCreator {
 
         Random ran = new Random();
 
-        if (gearType == Tag.ARMOR) {
+        if (gearType == Tags.ARMOR) {
 
-            int num = ItemUtils.randomizeBaseStat(Stats.HEALTH, rarityNumber) * lvl;
-            nbt.setInteger(Stats.HEALTH.name, num);
+            int num = ItemUtils.randomizeBaseStat(com.robertx22.Stats.HEALTH, rarityNumber) * lvl;
+            nbt.setInteger(com.robertx22.Stats.HEALTH.name, num);
         }
 
-        if (gearType == Tag.WEAPON) {
-            int min = ItemUtils.randomizeBaseStat(Stats.MIN_DAMAGE, rarityNumber) * lvl;
-            int max = ItemUtils.randomizeBaseStat(Stats.MAX_DAMAGE, rarityNumber) * lvl;
+        if (gearType == Tags.WEAPON) {
+            int min = ItemUtils.randomizeBaseStat(com.robertx22.Stats.MIN_DAMAGE, rarityNumber) * lvl;
+            int max = ItemUtils.randomizeBaseStat(com.robertx22.Stats.MAX_DAMAGE, rarityNumber) * lvl;
 
             max = max + min;
 
-            nbt.setInteger(Stats.MIN_DAMAGE.name, min);
-            nbt.setInteger(Stats.MAX_DAMAGE.name, max);
+            nbt.setInteger(com.robertx22.Stats.MIN_DAMAGE.name, min);
+            nbt.setInteger(com.robertx22.Stats.MAX_DAMAGE.name, max);
         }
 
         while (statAmount > 0) {
@@ -164,7 +164,7 @@ public class GearCreator {
                 }
             }
 
-            if (ranStat.type != gearType && ranStat.type != Tag.ALL_TYPES) {
+            if (ranStat.type != gearType && ranStat.type != Tags.ALL_TYPES) {
                 continue;
             }
 
@@ -181,7 +181,7 @@ public class GearCreator {
 
         }
 
-        item.getTagCompound().setTag(Tag.STATS, nbt);
+        item.getTagCompound().setTag(Tags.STATS, nbt);
 
         return item;
     }

@@ -1,6 +1,6 @@
 package com.robertx22.item;
 
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.utilityclasses.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,12 +22,12 @@ public class OnPickup {
             return;
         }
 
-        if (ItemUtils.isGear(item) && item.getTagCompound().getInteger(Tag.RARITY_NUMBER) < ModConfig.Options
+        if (ItemUtils.isGear(item) && item.getTagCompound().getInteger(Tags.RARITY_NUMBER) < ModConfig.Options
                 .PICKUP_ONLY_RARITIES_GEAR) {
             event.setCanceled(true);
         }
 
-        if (ItemUtils.isSocket(item.getItem()) && item.getTagCompound().getInteger(Tag.RARITY_NUMBER) < ModConfig
+        if (ItemUtils.isSocket(item.getItem()) && item.getTagCompound().getInteger(Tags.RARITY_NUMBER) < ModConfig
                 .Options
                 .PICKUP_ONLY_RARITIES_SOCKETS) {
             event.setCanceled(true);

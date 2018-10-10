@@ -1,9 +1,14 @@
 package com.robertx22.constants;
 
-public class Tag {
+public class Tags {
 
+	//shouldnt be needed after i serialize everything
+	
     // instead of doing Tag.ARMOR.name() i can just Tag.ARMOR
-
+	public final static String Suffix = "Suffix";
+	public final static String Prefix = "Prefix";
+	public final static String PrimaryStats = "PrimaryStats";
+	public final static String SecondaryStats = "SecondaryStats";	
     public final static String WEAPON = "WEAPON";
     public final static String ARMOR = "ARMOR";
     public final static String GEAR_TYPE = "GEAR_TYPE";

@@ -1,7 +1,7 @@
 package com.robertx22.player;
 
 import com.robertx22.capability.EntityData;
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.item.GearCreator;
 import com.robertx22.utilityclasses.GeneralUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,14 +26,14 @@ public class OnLogin {
 
         if (player.hasCapability(EntityData.Data, null)
                 && !player.getCapability(EntityData.Data,
-                null).getNBT().getBoolean(Tag.ENTITY_INFO)) {
+                null).getNBT().getBoolean(Tags.ENTITY_INFO)) {
 
             EntityData.IData data = player.getCapability(EntityData.Data, null);
 
             NBTTagCompound nbt = GeneralUtils.getdefaultEntityNBT();
-            nbt.setBoolean(Tag.ENTITY_INFO, true);
+            nbt.setBoolean(Tags.ENTITY_INFO, true);
 
-            player.addItemStackToInventory(GearCreator.createGear(1, 0, Tag.WEAPON));
+            player.addItemStackToInventory(GearCreator.createGear(1, 0, Tags.WEAPON));
             player.addItemStackToInventory(new ItemStack(Blocks.ANVIL));
 
             data.setNBT(nbt);

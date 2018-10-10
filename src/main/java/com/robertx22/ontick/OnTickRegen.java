@@ -24,6 +24,7 @@ public class OnTickRegen {
 
             if (tick > time) {
 
+            	/*
                 EntityPlayer player = event.player;
 
                 Hashtable<String, Integer> stats = PlayerData.getStats(player);
@@ -38,6 +39,7 @@ public class OnTickRegen {
 
                 tick = 0;
 
+*/
             }
 
         }

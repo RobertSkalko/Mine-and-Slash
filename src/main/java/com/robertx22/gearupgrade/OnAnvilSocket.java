@@ -1,6 +1,6 @@
 package com.robertx22.gearupgrade;
 
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.utilityclasses.ItemUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,8 +19,8 @@ public class OnAnvilSocket {
 
             if (ItemUtils.isSocket(mat)) {
 
-                if (item.getTagCompound().getString(Tag.GEAR_TYPE).equals(event.getRight().getTagCompound().getString
-                        (Tag.GEAR_TYPE))) {
+                if (item.getTagCompound().getString(Tags.GEAR_TYPE).equals(event.getRight().getTagCompound().getString
+                        (Tags.GEAR_TYPE))) {
 
                     event.setCost(1);
                     event.setMaterialCost(1);
@@ -41,7 +41,7 @@ public class OnAnvilSocket {
 
     ItemStack transferSocketToItem(ItemStack item, ItemStack socket) {
 
-        item.getTagCompound().setTag(Tag.SOCKETS, socket.getTagCompound());
+        item.getTagCompound().setTag(Tags.SOCKETS, socket.getTagCompound());
 
         return item;
     }

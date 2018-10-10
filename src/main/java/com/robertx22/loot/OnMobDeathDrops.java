@@ -2,7 +2,7 @@ package com.robertx22.loot;
 
 import com.robertx22.capability.EntityData;
 import com.robertx22.constants.Chances;
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.customitems.MyItems;
 import com.robertx22.item.GearCreator;
 import com.robertx22.item.SocketCreator;
@@ -39,8 +39,8 @@ public class OnMobDeathDrops {
             if (mob.hasCapability(EntityData.Data, null)) {
 
                 NBTTagCompound nbt = mob.getCapability(EntityData.Data, null).getNBT();
-                int lvl = nbt.getInteger(Tag.LEVEL);
-                int rarity = nbt.getInteger(Tag.RARITY_NUMBER);
+                int lvl = nbt.getInteger(Tags.LEVEL);
+                int rarity = nbt.getInteger(Tags.RARITY_NUMBER);
 
                 List<ItemStack> items = createDropTable(mob, lvl, rarity);
 
@@ -71,7 +71,7 @@ public class OnMobDeathDrops {
 
         if (RandomUtils.roll(socketChance)) {
             int socketRarity = RandomUtils.rollArray(Chances.GEAR_RARITY, ModConfig.Cheats.DROP_RATES, rarity * 0.05F);
-            String gearType = new Random().nextBoolean() ? Tag.ARMOR : Tag.WEAPON;
+            String gearType = new Random().nextBoolean() ? Tags.ARMOR : Tags.WEAPON;
 
             items.add((SocketCreator.createSocket(lvl, socketRarity, gearType)));
         }
@@ -100,10 +100,10 @@ public class OnMobDeathDrops {
             String type;
 
             if (RandomUtils.roll(20)) {
-                type = Tag.WEAPON;
+                type = Tags.WEAPON;
             }
             else {
-                type = Tag.ARMOR;
+                type = Tags.ARMOR;
             }
 
             ItemStack drop = GearCreator.createGear(lvl, gearRarity, type);

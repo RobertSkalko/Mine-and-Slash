@@ -1,20 +1,22 @@
 package com.robertx22.player;
 
+import com.robertx22.Stats.Stat;
 import com.robertx22.capability.EntityData;
 import com.robertx22.capability.EntityData.IData;
-import com.robertx22.constants.Stat;
-import com.robertx22.constants.Stats;
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.mmorpg.ModConfig;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import scala.collection.mutable.HashTable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -30,8 +32,8 @@ public class PlayerData {
 
         EntityPlayer clientPlayer = Minecraft.getMinecraft().player;
 
-        int lvl = nbt.getInteger(Tag.LEVEL);
-        int exp = nbt.getInteger(Tag.CURRENT_XP);
+        int lvl = nbt.getInteger(Tags.LEVEL);
+        int exp = nbt.getInteger(Tags.CURRENT_XP);
 
         int maxXP = getMaxXP(lvl);
 
@@ -56,8 +58,8 @@ public class PlayerData {
 
         NBTTagCompound nbt = data.getNBT();
 
-        nbt.setInteger(Tag.LEVEL, lvl);
-        nbt.setInteger(Tag.CURRENT_XP, currentXP);
+        nbt.setInteger(Tags.LEVEL, lvl);
+        nbt.setInteger(Tags.CURRENT_XP, currentXP);
 
         data.setNBT(nbt);
 
@@ -80,32 +82,32 @@ public class PlayerData {
 
         NBTTagCompound nbt = data.getNBT();
 
-        int currentXP = nbt.getInteger(Tag.CURRENT_XP) + exp;
+        int currentXP = nbt.getInteger(Tags.CURRENT_XP) + exp;
 
-        int maxExp = nbt.getInteger(Tag.MAX_XP);
+        int maxExp = nbt.getInteger(Tags.MAX_XP);
 
         if (currentXP > maxExp) {
             currentXP = maxExp;
         }
 
-        int lvl = nbt.getInteger(Tag.LEVEL);
+        int lvl = nbt.getInteger(Tags.LEVEL);
 
         EntityPlayer clientPlayer = Minecraft.getMinecraft().player;
 
-        if (nbt.getInteger(Tag.CURRENT_XP) >= maxExp) {
+        if (nbt.getInteger(Tags.CURRENT_XP) >= maxExp) {
 
-            nbt.setInteger(Tag.CURRENT_XP, 0);
+            nbt.setInteger(Tags.CURRENT_XP, 0);
 
-            nbt.setInteger(Tag.LEVEL, lvl + 1);
+            nbt.setInteger(Tags.LEVEL, lvl + 1);
 
             int maxXp = lvl * 200;
 
-            nbt.setInteger(Tag.MAX_XP, maxXp);
+            nbt.setInteger(Tags.MAX_XP, maxXp);
 
             currentXP = 0;
         }
 
-        nbt.setInteger(Tag.CURRENT_XP, currentXP);
+        nbt.setInteger(Tags.CURRENT_XP, currentXP);
 
         data.setNBT(nbt);
 
@@ -113,73 +115,63 @@ public class PlayerData {
 
     }
 
-    public static Hashtable<String, Integer> getStats(EntityPlayer player) {
+    public static Hashtable<String,Stat> getStats(EntityLiving entity) {
 
-        Hashtable<String, Integer> playerStats = new Hashtable<>();
+    	return null;
+    	/*
+        Hashtable<String,Stat> stats = new Hashtable<String, Stat>();
 
         // here we add all possible gear pieces player uses that can add STATS
         List<ItemStack> gear = new ArrayList<>();
 
-        gear.addAll(player.inventory.armorInventory);
-        gear.add(player.getHeldItemMainhand());
+        gear.addAll((Collection<? extends ItemStack>) entity.getArmorInventoryList());
+        gear.add(entity.getHeldItemMainhand());
 
-        int lvl = player.getCapability(EntityData.Data, null).getNBT().getInteger(Tag.LEVEL);
+        int lvl = entity.getCapability(EntityData.Data, null).getNBT().getInteger(Tags.LEVEL);
 
         List<Stat> stats = Stats.getAllStats();
         // reset all STATS to 0
         for (Stat stat : stats) {
 
-            playerStats.put(stat.name, 0);
+            stats.put(stat.name, new Stat());
 
         }
 
         // minimum STATS so naked combat doesn't crash the game
-        playerStats.put(Stats.MIN_DAMAGE.name, 2 * lvl);
-        playerStats.put(Stats.MAX_DAMAGE.name, 8 * lvl);
-        playerStats.put(Stats.HEALTH.name, 50 * lvl);
-        playerStats.put(Stats.MANA.name, 25 * lvl);
-        playerStats.put(Stats.HEALTH_REGEN.name, 1);
-        playerStats.put(Stats.MANA_REGEN.name, 1);
+        stats.put(Stats.MIN_DAMAGE.name, 2 * lvl);
+        stats.put(Stats.MAX_DAMAGE.name, 8 * lvl);
+        stats.put(Stats.HEALTH.name, 50 * lvl);
+        stats.put(Stats.MANA.name, 25 * lvl);
+        stats.put(Stats.HEALTH_REGEN.name, 1);
+        stats.put(Stats.MANA_REGEN.name, 1);
 
-        for (ItemStack piece : gear) {
+        for (ItemStack item : gear) {
 
-            if (piece == null) {
+            if (item == null || !item.hasTagCompound() || !item.getTagCompound().hasKey(Tags.STATS) || !item.getTagCompound().hasKey(Tags.ENCHANTS) || !item.getTagCompound().hasKey(Tags.SOCKETS)) {
                 continue;
             }
-            if (!piece.hasTagCompound()) {
-                continue;
-            }
-            if (!piece.getTagCompound().hasKey(Tag.STATS)) {
-                continue;
-            }
-            if (!piece.getTagCompound().hasKey(Tag.ENCHANTS)) {
-                continue;
-            }
-            if (!piece.getTagCompound().hasKey(Tag.SOCKETS)) {
-                continue;
-            }
-
-            NBTTagCompound nbtStats = piece.getTagCompound().getCompoundTag(Tag.STATS);
-            NBTTagCompound nbtEnchants = piece.getTagCompound().getCompoundTag(Tag.ENCHANTS);
-            NBTTagCompound nbtSockets = piece.getTagCompound().getCompoundTag(Tag.SOCKETS);
+            
+            NBTTagCompound nbtStats = item.getTagCompound().getCompoundTag(Tags.STATS);
+            NBTTagCompound nbtEnchants = item.getTagCompound().getCompoundTag(Tags.ENCHANTS);
+            NBTTagCompound nbtSockets = item.getTagCompound().getCompoundTag(Tags.SOCKETS);
 
             for (Stat stat : stats) {
 
                 if (nbtStats.hasKey(stat.name)) {
-                    playerStats.put(stat.name, playerStats.get(stat.name) + nbtStats.getInteger(stat.name));
+                    stats.put(stat.name, stats.get(stat.name) + nbtStats.getInteger(stat.name));
                 }
                 if (nbtEnchants.hasKey(stat.name)) {
-                    playerStats.put(stat.name, playerStats.get(stat.name) + nbtEnchants.getInteger(stat.name));
+                    stats.put(stat.name, stats.get(stat.name) + nbtEnchants.getInteger(stat.name));
                 }
                 if (nbtSockets.hasKey(stat.name)) {
-                    playerStats.put(stat.name, playerStats.get(stat.name) + nbtSockets.getInteger(stat.name));
+                    stats.put(stat.name, stats.get(stat.name) + nbtSockets.getInteger(stat.name));
                 }
             }
 
         }
 
-        return playerStats;
-
+        return stats;
+*/
     }
 
     @SubscribeEvent

@@ -1,8 +1,7 @@
 package com.robertx22.combat;
 
 import com.robertx22.capability.EntityData;
-import com.robertx22.constants.Stats;
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.player.PlayerData;
 import net.minecraft.entity.EntityLiving;
@@ -54,10 +53,11 @@ public class OnMobAttack {
 
         Random ran = new Random();
 
-        int mobDMG = mob.getCapability(EntityData.Data, null).getNBT().getInteger(Tag.DAMAGE);
+        int mobDMG = mob.getCapability(EntityData.Data, null).getNBT().getInteger(Tags.DAMAGE);
 
         int DMG = mobDMG / 2 + (ran.nextInt(mobDMG + 2) + 2) / 2;
 
+        /*
         Hashtable<String, Integer> stats = PlayerData.getStats(player);
 
         DMG = reduceDMGByArmor(DMG, stats.get(Stats.ARMOR.name));
@@ -74,33 +74,10 @@ public class OnMobAttack {
         float hpmulti = getHpMultiplier(player.getMaxHealth(), stats.get(Stats.HEALTH.name));
 
         event.setAmount(DMG * hpmulti);
+        */
 
     }
 
-    private int reduceDMGByArmor(int dmg, int armor) {
-
-        if (armor > Stats.ARMOR.maxTotal) {
-            armor = Stats.ARMOR.maxTotal;
-        }
-
-        return dmg - (dmg * armor / 100);
-
-    }
-
-    private int reduceDMGByBlock(int dmg, int block) {
-
-        if (block > Stats.BLOCK.maxTotal) {
-            block = Stats.BLOCK.maxTotal;
-        }
-
-        if (roll(block)) {
-
-            return dmg / 2;
-        }
-        else {
-            return dmg;
-        }
-
-    }
+   
 
 }

@@ -1,6 +1,6 @@
 package com.robertx22.gearupgrade;
 
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.customitems.MyItems;
 import com.robertx22.utilityclasses.ItemUtils;
 import net.minecraft.item.Item;
@@ -23,7 +23,7 @@ public class OnAnvilUpgrade {
 
             NBTTagCompound nbt = item.getTagCompound();
 
-            int upgradeNumber = nbt.getInteger(Tag.UPGRADE_NUMBER);
+            int upgradeNumber = nbt.getInteger(Tags.UPGRADE_NUMBER);
 
             if (upgradeNumber > 9) {
                 return;

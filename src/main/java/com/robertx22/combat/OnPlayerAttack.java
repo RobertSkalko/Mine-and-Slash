@@ -1,7 +1,6 @@
 package com.robertx22.combat;
 
 import com.robertx22.capability.EntityData;
-import com.robertx22.constants.Stats;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.player.PlayerData;
 import com.robertx22.utilityclasses.GeneralUtils;
@@ -45,7 +44,7 @@ public class OnPlayerAttack {
             EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
             EntityLiving mob = (EntityLiving) event.getEntityLiving();
             Random ran = new Random();
-
+/*
             Hashtable<String, Integer> stats = PlayerData.getStats(player);
 
             int minDMG = stats.get(Stats.MIN_DAMAGE.name);
@@ -129,13 +128,15 @@ public class OnPlayerAttack {
             //TESTING PURPOSES
             //event.setAmount(555555);
             event.setAmount(combinedDMG * mobHPMulti);
-
+*/
         }
         else {
             // if its not a mob
             event.setAmount(event.getEntityLiving().getMaxHealth() / 5);
         }
+        
 
     }
+    
 
 }

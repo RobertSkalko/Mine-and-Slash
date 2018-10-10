@@ -2,7 +2,7 @@ package com.robertx22.item;
 
 import com.robertx22.constants.Stat;
 import com.robertx22.constants.Stats;
-import com.robertx22.constants.Tag;
+import com.robertx22.constants.Tags;
 import com.robertx22.customitems.MyItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,8 +37,8 @@ public class SocketCreator {
 
         int statAmount = ran.nextInt(2) + 1;
 
-        sockets.setString(Tag.GEAR_TYPE, gearType);
-        sockets.setInteger(Tag.RARITY_NUMBER, rarity);
+        sockets.setString(Tags.GEAR_TYPE, gearType);
+        sockets.setInteger(Tags.RARITY_NUMBER, rarity);
 
         while (statAmount > 0) {
 

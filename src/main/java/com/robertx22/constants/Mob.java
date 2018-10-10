@@ -8,6 +8,9 @@ import java.util.Random;
 
 public class Mob {
 
+	
+	
+	
     public static final String[] rarityNames = {
             "Magic",
             "Rare",
@@ -45,7 +48,7 @@ public class Mob {
             return 0;
         }
 
-        int lvl = playerNBT.getInteger(Tag.LEVEL) + 1;
+        int lvl = playerNBT.getInteger(Tags.LEVEL) + 1;
 
         lvl = lvl / 4 + lvl / 2 + (ran.nextInt(lvl) + 2) / 2;
 
