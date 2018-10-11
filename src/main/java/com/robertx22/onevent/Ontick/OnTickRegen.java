@@ -1,13 +1,8 @@
-package com.robertx22.onevent.Ontick;
+package com.robertx22.onevent.ontick;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-
-import java.util.Hashtable;
-
-import com.robertx22.player.PlayerData;
 
 public class OnTickRegen {
 

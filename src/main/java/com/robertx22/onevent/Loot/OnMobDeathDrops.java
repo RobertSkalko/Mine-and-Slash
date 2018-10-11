@@ -1,4 +1,4 @@
-package com.robertx22.onevent.Loot;
+package com.robertx22.onevent.loot;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;

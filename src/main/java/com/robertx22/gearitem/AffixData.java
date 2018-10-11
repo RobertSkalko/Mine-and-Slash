@@ -4,30 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.classes.BaseAffix;
-import com.robertx22.database.Affixes;
+import com.robertx22.classes.IHasBaseClass;
 import com.robertx22.enums.SuffixOrPrefix;
 import com.robertx22.stats.StatData;
 import com.robertx22.stats.StatMod;
 
-public class AffixData implements IStatsContainer {
+public class AffixData implements IStatsContainer, IHasBaseClass {
 
-	public AffixData(String name, List<Integer> percents, SuffixOrPrefix type) {
+	public AffixData(Class theclass, List<Integer> percents, SuffixOrPrefix type) {
 		super();
-		Name = name;
+		Base = theclass;
 		Percents = percents;
 		Type = type;
 	}
-
-	public String Name;
-
+	
 	public List<Integer> Percents = new ArrayList<Integer>();
 
 	public SuffixOrPrefix Type;
-
 	
-	public BaseAffix GetBase() {
-		return Affixes.All.get(Name);
+	public Class Base;	
+	
+	@Override
+	public Class<?> BaseClass() {
+		
+		return Base;
 	}
+	
 	@Override
 	public List<StatData> GetAllStats() {
 

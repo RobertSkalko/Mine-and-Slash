@@ -1,4 +1,4 @@
-package com.robertx22.onevent.Combat;
+package com.robertx22.onevent.combat;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;

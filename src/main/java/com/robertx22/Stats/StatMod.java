@@ -2,11 +2,10 @@ package com.robertx22.stats;
 
 import java.util.Random;
 
-import com.robertx22.database.Stats;
 import com.robertx22.enums.StatRefs;
 import com.robertx22.enums.StatTypes;
 
-public abstract class StatMod {
+public abstract class StatMod{
 
 	private static Random ran = new Random();
 
@@ -16,11 +15,7 @@ public abstract class StatMod {
 
 	public abstract int Max();
 	
-	public abstract StatTypes Type();
-
-	public Stat GetBase() {
-		return Stats.Classes.get(StatRef());
-	}
+	public abstract StatTypes Type();	
 
 	
 	public int GetValueByPercent(int percent) {

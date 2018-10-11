@@ -4,8 +4,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.Random;
-
 import com.robertx22.constants.Tags;
 import com.robertx22.customitems.MyItems;
 

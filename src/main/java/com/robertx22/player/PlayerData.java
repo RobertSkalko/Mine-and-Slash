@@ -3,18 +3,11 @@ package com.robertx22.player;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import scala.collection.mutable.HashTable;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Hashtable;
-import java.util.List;
-
 import com.robertx22.capability.EntityData;
 import com.robertx22.capability.EntityData.IData;
 import com.robertx22.constants.Tags;

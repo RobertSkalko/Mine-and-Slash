@@ -1,4 +1,4 @@
-package com.robertx22.onevent.Loot;
+package com.robertx22.onevent.loot;
 
 import com.robertx22.capability.EntityData;
 import com.robertx22.constants.Mob;

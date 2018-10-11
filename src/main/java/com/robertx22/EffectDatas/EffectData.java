@@ -1,6 +1,4 @@
-package com.robertx22.EffectDatas;
-
-import java.awt.List;
+package com.robertx22.effectdatas;
 
 import net.minecraft.entity.Entity;
 

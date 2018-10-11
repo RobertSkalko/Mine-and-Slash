@@ -1,4 +1,4 @@
-package com.robertx22.onevent.Ontick;
+package com.robertx22.onevent.ontick;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;

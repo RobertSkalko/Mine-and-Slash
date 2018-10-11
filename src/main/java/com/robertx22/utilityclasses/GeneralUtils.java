@@ -1,9 +1,5 @@
 package com.robertx22.utilityclasses;
 
-import com.robertx22.constants.Tags;
-
-import net.minecraft.nbt.NBTTagCompound;
-
 public class GeneralUtils {
 
 	public static String removeFormatting(String s) {

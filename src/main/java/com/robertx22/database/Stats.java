@@ -1,8 +1,6 @@
 package com.robertx22.database;
 
 import java.util.HashMap;
-import java.util.Hashtable;
-
 import com.robertx22.database.stats.mods.flat.HealthFlat;
 import com.robertx22.database.stats.types.*;
 import com.robertx22.enums.StatRefs;

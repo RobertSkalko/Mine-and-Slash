@@ -1,6 +1,6 @@
 package com.robertx22.stats.StatEffects;
 
-import com.robertx22.EffectDatas.EffectData;
+import com.robertx22.effectdatas.EffectData;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IEffects.IArmorReducable;
 

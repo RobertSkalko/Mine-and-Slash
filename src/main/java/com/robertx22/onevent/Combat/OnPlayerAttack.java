@@ -1,29 +1,19 @@
-package com.robertx22.onevent.Combat;
+package com.robertx22.onevent.combat;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Random;
-
 import org.apache.commons.lang3.time.StopWatch;
 
-import com.robertx22.capability.EntityData;
+import com.robertx22.database.prefixes.Flaming;
 import com.robertx22.enums.SuffixOrPrefix;
 import com.robertx22.gearitem.AffixData;
 import com.robertx22.gearitem.GearItem;
 import com.robertx22.mmorpg.ModConfig;
-import com.robertx22.player.PlayerData;
 import com.robertx22.saving.Saving;
-import com.robertx22.utilityclasses.GeneralUtils;
-import com.robertx22.utilityclasses.RandomUtils;
 
 public class OnPlayerAttack {
 
@@ -51,11 +41,12 @@ public class OnPlayerAttack {
 		}
 		EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 
+		
 		GearItem geartest = new GearItem();
 		geartest.Name = "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT";
-		geartest.Prefix = new AffixData("testtesttesttesttesttesttesttesttesttest", new ArrayList<Integer>(),
+		geartest.Prefix = new AffixData(Flaming.class, new ArrayList<Integer>(),
 				SuffixOrPrefix.Prefix);
-		geartest.Suffix = new AffixData("testtesttesttesttesttesttest", new ArrayList<Integer>(),
+		geartest.Suffix = new AffixData(Flaming.class, new ArrayList<Integer>(),
 				SuffixOrPrefix.Prefix);
 
 		{
@@ -64,7 +55,7 @@ public class OnPlayerAttack {
 			watch.start();
 			GearItem gearloaded;
 
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < 100; i++) {
 				item.setTagCompound(Saving.Save(item.getTagCompound(), geartest));
 				gearloaded = Saving.Load(item.getTagCompound(), GearItem.class);
 

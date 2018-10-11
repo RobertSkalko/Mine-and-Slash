@@ -1,6 +1,5 @@
 package com.robertx22.classes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.enums.SuffixOrPrefix;

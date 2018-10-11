@@ -1,4 +1,4 @@
-package com.robertx22.onevent.Combat;
+package com.robertx22.onevent.combat;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
@@ -6,16 +6,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import static com.robertx22.utilityclasses.GeneralUtils.getHpMultiplier;
-import static com.robertx22.utilityclasses.RandomUtils.roll;
-
-import java.util.Hashtable;
 import java.util.Random;
 
 import com.robertx22.capability.EntityData;
 import com.robertx22.constants.Tags;
 import com.robertx22.mmorpg.ModConfig;
-import com.robertx22.player.PlayerData;
 
 public class OnMobAttack {
 

@@ -4,7 +4,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import java.util.Arrays;
-import java.util.Objects;
 import static com.robertx22.mmorpg.Ref.MODID;
 import static java.lang.String.format;
 

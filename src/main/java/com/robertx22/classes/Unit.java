@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import net.minecraft.*;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 

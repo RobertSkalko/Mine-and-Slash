@@ -1,17 +1,8 @@
-package com.robertx22.onevent.Combat;
-
-import com.robertx22.capability.EntityData;
-import com.robertx22.constants.*;
-import com.robertx22.mmorpg.ModConfig;
-import com.robertx22.utilityclasses.GeneralUtils;
-import com.robertx22.utilityclasses.RandomUtils;
+package com.robertx22.onevent.combat;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OnMobSpawn {

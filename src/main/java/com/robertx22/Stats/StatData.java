@@ -1,20 +1,10 @@
 package com.robertx22.stats;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import com.robertx22.database.Stats;
+import com.robertx22.classes.IHasBaseClass;
 import com.robertx22.enums.*;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.item.ItemStack;
+public class StatData implements IHasBaseClass {
 
-public class StatData {
-
-	public Stat GetBase() {
-		return Stats.Classes.get(StatRef);
-	}
 
 	public StatData(StatRefs statRef, StatTypes type, int value) {
 		super();
@@ -22,10 +12,18 @@ public class StatData {
 		Type = type;
 		Value = value;
 	}
-
+	
 	public StatRefs StatRef;
 	public StatTypes Type;
 	public int Value;
+	
+	
+	public Class Base;	
+	@Override
+	public Class<?> BaseClass() {
+		
+		return Base;
+	}
 
 	/*
 	 * public Double CalcVal() {

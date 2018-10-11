@@ -3,18 +3,18 @@ package com.robertx22.saving;
 import com.google.gson.Gson;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.INBTSerializable;
 
 public class Saving {
 
+	private static Gson gson = new Gson();
+	
 	public static NBTTagCompound Save(NBTTagCompound nbt, Object thing) {
 
 		if (nbt == null) {
 			nbt = new NBTTagCompound();
 		}
 
-		nbt.setString("Data", new Gson().toJson(thing));
+		nbt.setString("Data", gson.toJson(thing));
 
 		return nbt;
 
@@ -22,6 +22,6 @@ public class Saving {
 
 	public static <T> T Load(NBTTagCompound nbt, Class type) {
 
-		return (T) new Gson().fromJson(nbt.getString("Data"), type);
+		return (T) gson.fromJson(nbt.getString("Data"), type);
 	}
 }

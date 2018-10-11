@@ -1,12 +1,6 @@
 package com.robertx22.item;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import java.util.List;
-import java.util.Random;
-
-import com.robertx22.constants.Tags;
 import com.robertx22.customitems.MyItems;
 
 public class SocketCreator {

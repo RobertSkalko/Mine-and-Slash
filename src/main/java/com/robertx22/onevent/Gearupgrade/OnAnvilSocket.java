@@ -1,4 +1,4 @@
-package com.robertx22.onevent.Gearupgrade;
+package com.robertx22.onevent.gearupgrade;
 
 import com.robertx22.constants.Tags;
 import com.robertx22.utilityclasses.ItemUtils;

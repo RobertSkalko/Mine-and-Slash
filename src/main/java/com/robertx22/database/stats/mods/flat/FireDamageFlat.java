@@ -26,4 +26,6 @@ public class FireDamageFlat extends StatMod {
 		return StatTypes.Flat;
 	}
 
+	
+
 }

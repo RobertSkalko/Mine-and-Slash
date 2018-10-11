@@ -1,14 +1,5 @@
 package com.robertx22.onevent;
 
-import com.robertx22.capability.EntityData;
-import com.robertx22.constants.Tags;
-import com.robertx22.item.GearCreator;
-import com.robertx22.utilityclasses.GeneralUtils;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
