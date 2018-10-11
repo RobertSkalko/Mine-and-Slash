@@ -5,13 +5,21 @@ import java.lang.reflect.InvocationTargetException;
 
 public interface IHasBaseClass {
 
-	public abstract Class<?> BaseClass();
+	public default String ClassToString(Object obj) {
+		return obj.getClass().toGenericString();
+	}
+	
+	public abstract String BaseClass();
 	
 	public default <T> T GetBase() {
 		
 		Class<?> clazz = null;
-		clazz = BaseClass();
-		Constructor<?> ctor = null;
+		try {
+			clazz = Class.forName(BaseClass());
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		Constructor<?> ctor = null;		
 		try {
 			ctor = clazz.getConstructor();
 		} catch (NoSuchMethodException e) {

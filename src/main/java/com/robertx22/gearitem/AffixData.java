@@ -30,16 +30,9 @@ public class AffixData implements IStatsContainer, IHasBaseClass {
 	public String Base;	
 	
 	@Override
-	public Class<?> BaseClass() {
-		
-		Class theclass = null;
-		try {
-			theclass =  Class.forName(Base);
-		} catch (ClassNotFoundException e) {			
-			e.printStackTrace();
+	public String BaseClass() {		
+		return Base;
 		}
-		return theclass;
-	}
 	
 	@Override
 	public List<StatData> GetAllStats() {
@@ -52,7 +45,7 @@ public class AffixData implements IStatsContainer, IHasBaseClass {
 		
 		StatMod mod = base.StatMods().get(i);			
 		
-		list.add(new StatData(mod.StatRef(), mod.Type(), Percents.get(i)));
+		list.add(new StatData(ClassToString(mod), mod.Type(), Percents.get(i)));
 	}
 	
 		

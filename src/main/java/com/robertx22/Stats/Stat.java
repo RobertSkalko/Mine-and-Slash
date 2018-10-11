@@ -18,6 +18,7 @@ public abstract class Stat {
 	public Double GetValue(Unit Source) {
 
 		return null;
+		
 	}
 
 	public ArrayList<IStatEffect> Effects;

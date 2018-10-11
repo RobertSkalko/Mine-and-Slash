@@ -15,7 +15,8 @@ public abstract class StatMod{
 
 	public abstract int Max();
 	
-	public abstract StatTypes Type();	
+	public abstract StatTypes Type();
+	
 
 	
 	public int GetValueByPercent(int percent) {

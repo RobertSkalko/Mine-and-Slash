@@ -6,21 +6,18 @@ import com.robertx22.enums.*;
 public class StatData implements IHasBaseClass {
 
 
-	public StatData(StatRefs statRef, StatTypes type, int value) {
-		super();
-		StatRef = statRef;
+	public StatData(String baseclass, StatTypes type, int value) {
+		Base = baseclass;
 		Type = type;
 		Value = value;
 	}
 	
-	public StatRefs StatRef;
 	public StatTypes Type;
-	public int Value;
+	public int Value;	
+	public String Base;	
 	
-	
-	public Class Base;	
 	@Override
-	public Class<?> BaseClass() {
+	public String BaseClass() {
 		
 		return Base;
 	}
