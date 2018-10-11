@@ -1,12 +1,14 @@
 package com.robertx22.saving;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Saving {
 
 	private static Gson gson = new Gson();
+
 	
 	public static NBTTagCompound Save(NBTTagCompound nbt, Object thing) {
 

@@ -49,21 +49,22 @@ public class OnPlayerAttack {
 		geartest.Suffix = new AffixData(Flaming.class, new ArrayList<Integer>(),
 				SuffixOrPrefix.Prefix);
 
-		{
+		
 			ItemStack item = player.getHeldItemMainhand();
 			StopWatch watch = new StopWatch();
 			watch.start();
-			GearItem gearloaded;
 
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 1; i++) {
+				
+				Saving.Save(item.getTagCompound(), geartest);
 				item.setTagCompound(Saving.Save(item.getTagCompound(), geartest));
-				gearloaded = Saving.Load(item.getTagCompound(), GearItem.class);
+				geartest = Saving.Load(item.getTagCompound(), GearItem.class);
 
 			}
 			watch.stop();
 			System.out.println(
 					watch.getTime() + " miliseconds for full read and write " + item.getTagCompound().toString());
-		}
+		
 
 		/*
 		 * if (event.getEntityLiving() instanceof EntityMob) {

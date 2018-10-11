@@ -11,9 +11,13 @@ import com.robertx22.stats.StatMod;
 
 public class AffixData implements IStatsContainer, IHasBaseClass {
 
+	public AffixData() {
+		
+	}
+	
 	public AffixData(Class theclass, List<Integer> percents, SuffixOrPrefix type) {
 		super();
-		Base = theclass;
+		Base = theclass.toGenericString();
 		Percents = percents;
 		Type = type;
 	}
@@ -22,12 +26,19 @@ public class AffixData implements IStatsContainer, IHasBaseClass {
 
 	public SuffixOrPrefix Type;
 	
-	public Class Base;	
+	
+	public String Base;	
 	
 	@Override
 	public Class<?> BaseClass() {
 		
-		return Base;
+		Class theclass = null;
+		try {
+			theclass =  Class.forName(Base);
+		} catch (ClassNotFoundException e) {			
+			e.printStackTrace();
+		}
+		return theclass;
 	}
 	
 	@Override
