@@ -4,12 +4,11 @@ import java.util.Random;
 
 import com.robertx22.enums.StatRefs;
 import com.robertx22.enums.StatTypes;
+import com.robertx22.saving.IHasBaseClass;
 
-public abstract class StatMod{
-
+public abstract class StatMod implements IHasBaseClass{	
+	
 	private static Random ran = new Random();
-
-	public abstract StatRefs StatRef();
 
 	public abstract int Min();
 

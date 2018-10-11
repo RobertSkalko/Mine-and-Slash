@@ -1,7 +1,7 @@
 package com.robertx22.stats;
 
-import com.robertx22.classes.IHasBaseClass;
 import com.robertx22.enums.*;
+import com.robertx22.saving.IHasBaseClass;
 
 public class StatData implements IHasBaseClass {
 

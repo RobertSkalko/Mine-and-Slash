@@ -7,13 +7,15 @@ import com.robertx22.enums.*;
 
 public abstract class Stat {
 
+	public abstract boolean IsPercent();
+	
 	public abstract String Name();
 
 	public abstract boolean ScalesToLevel();
 
 	public abstract Elements Element();
 
-	public abstract StatRefs StatRef();
+	//public abstract StatRefs StatRef();
 
 	public Double GetValue(Unit Source) {
 

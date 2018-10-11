@@ -1,19 +1,22 @@
 package com.robertx22.database.stats.mods.flat;
 
-import com.robertx22.enums.StatRefs;
 import com.robertx22.enums.StatTypes;
 import com.robertx22.stats.StatMod;
 
 public class FireDamageFlat extends StatMod {
 
+	public FireDamageFlat() {}
+	
+	
 	@Override
-	public StatRefs StatRef() {
-		return StatRefs.Fire_Damage;
+	public String BaseClass() {
+		return null;
 	}
 
 	@Override
 	public int Min() {
 		return 2;
+		
 	}
 
 	@Override
@@ -25,6 +28,10 @@ public class FireDamageFlat extends StatMod {
 	public StatTypes Type() {
 		return StatTypes.Flat;
 	}
+
+	
+
+	
 
 	
 

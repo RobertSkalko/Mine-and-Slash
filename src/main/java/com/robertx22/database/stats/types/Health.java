@@ -20,10 +20,9 @@ public class Health extends FillableStat {
 	public Elements Element() {
 		return null;
 	}
-
+	
 	@Override
-	public StatRefs StatRef() {
-		return StatRefs.Health;
+	public boolean IsPercent() {		
+		return false;
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.robertx22.classes;
+package com.robertx22.saving;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 public interface IHasBaseClass {
 
 	public default String ClassToString(Object obj) {
-		return obj.getClass().toGenericString();
+		return obj.getClass().toString();
 	}
 	
 	public abstract String BaseClass();

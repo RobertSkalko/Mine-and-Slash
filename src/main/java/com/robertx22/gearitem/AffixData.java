@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.classes.BaseAffix;
-import com.robertx22.classes.IHasBaseClass;
 import com.robertx22.enums.SuffixOrPrefix;
+import com.robertx22.saving.IHasBaseClass;
 import com.robertx22.stats.StatData;
 import com.robertx22.stats.StatMod;
 
