@@ -1,17 +1,11 @@
 package com.robertx22.onevent.combat;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import com.robertx22.classes.Unit;
+import com.robertx22.mmorpg.ModConfig;
+
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import java.util.ArrayList;
-import org.apache.commons.lang3.time.StopWatch;
-import com.robertx22.database.prefixes.Flaming;
-import com.robertx22.enums.SuffixOrPrefix;
-import com.robertx22.gearitem.AffixData;
-import com.robertx22.gearitem.GearItem;
-import com.robertx22.mmorpg.ModConfig;
-import com.robertx22.saving.Saving;
 
 public class OnPlayerAttack {
 
@@ -24,7 +18,7 @@ public class OnPlayerAttack {
 		if (event.getSource() == null) {
 			return;
 		}
-		if (!(event.getSource().getTrueSource() instanceof EntityPlayer)) {
+		if (!(event.getSource().getTrueSource() instanceof EntityLivingBase)) {
 			return;
 		}
 		if (event.getEntityLiving().world.isRemote) {
@@ -37,34 +31,34 @@ public class OnPlayerAttack {
 			return;
 
 		}
-		EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 
-	
-		
-		GearItem geartest = new GearItem();
-		geartest.name = "name";
-		geartest.prefix = new AffixData(Flaming.class, new ArrayList<Integer>(),
-				SuffixOrPrefix.Prefix);
+		EntityLivingBase player = (EntityLivingBase) event.getSource().getTrueSource();
+
+		Unit unit = new Unit(player);
+
+		unit.RecalculateStats();
+
 		/*
-		geartest.Suffix = new AffixData(Flaming.class, new ArrayList<Integer>(),
-				SuffixOrPrefix.Prefix);
-*/
-		
-			ItemStack item = player.getHeldItemMainhand();
-			StopWatch watch = new StopWatch();
-			watch.start();
-
-			for (int i = 0; i < 1; i++) {
-				
-				Saving.Save(item.getTagCompound(), geartest);
-				item.setTagCompound(Saving.Save(item.getTagCompound(), geartest));
-				geartest = Saving.Load(item.getTagCompound(), GearItem.class);
-
-			}
-			watch.stop();
-			System.out.println(
-					watch.getTime() + " miliseconds for full read and write " + item.getTagCompound().toString());
-		
+		 * 
+		 * GearItem geartest = new GearItem(); geartest.name = "name"; geartest.prefix =
+		 * new AffixData(Flaming.class, new ArrayList<Integer>(),
+		 * SuffixOrPrefix.Prefix);
+		 * 
+		 * 
+		 * 
+		 * ItemStack item = player.getHeldItemMainhand(); StopWatch watch = new
+		 * StopWatch(); watch.start();
+		 * 
+		 * for (int i = 0; i < 1; i++) {
+		 * 
+		 * Saving.Save(item.getTagCompound(), geartest);
+		 * item.setTagCompound(Saving.Save(item.getTagCompound(), geartest)); geartest =
+		 * Saving.Load(item.getTagCompound(), GearItem.class);
+		 * 
+		 * } watch.stop(); System.out .println(watch.getTime() +
+		 * " miliseconds for full read and write " + item.getTagCompound().toString());
+		 * 
+		 */
 
 		/*
 		 * if (event.getEntityLiving() instanceof EntityMob) {

@@ -18,9 +18,12 @@ public class GearItem implements IStatsContainer {
 
 		List<StatModData> datas = new ArrayList<StatModData>();
 
-		datas.addAll(suffix.GetAllStats());
-		datas.addAll(prefix.GetAllStats());
-
+		if (suffix != null) {
+			datas.addAll(suffix.GetAllStats());
+		}
+		if (prefix != null) {
+			datas.addAll(prefix.GetAllStats());
+		}
 		return datas;
 	}
 
