@@ -1,16 +1,17 @@
 package com.robertx22.database.stats.mods.flat;
 
+import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.enums.StatTypes;
 import com.robertx22.stats.StatMod;
 
-public class FireDamageFlat extends StatMod {
+public class CriticalHitFlat extends StatMod {
 
-	public FireDamageFlat() {
+	public CriticalHitFlat() {
 	}
 
 	@Override
 	public String BaseClass() {
-		return null;
+		return CriticalHit.class.toString();
 	}
 
 	@Override

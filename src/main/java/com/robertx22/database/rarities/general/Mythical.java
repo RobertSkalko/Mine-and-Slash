@@ -5,7 +5,9 @@ import com.robertx22.classes.Rarity;
 import net.minecraft.util.text.TextFormatting;
 
 public class Mythical extends Rarity {
-
+	
+	public Mythical() {}
+	
 	@Override
 	public String Name() {
 

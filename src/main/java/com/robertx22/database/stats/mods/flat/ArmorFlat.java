@@ -1,16 +1,17 @@
 package com.robertx22.database.stats.mods.flat;
 
+import com.robertx22.database.stats.types.Armor;
 import com.robertx22.enums.StatTypes;
 import com.robertx22.stats.StatMod;
 
-public class FireDamageFlat extends StatMod {
+public class ArmorFlat extends StatMod {
 
-	public FireDamageFlat() {
+	public ArmorFlat() {
 	}
 
 	@Override
 	public String BaseClass() {
-		return null;
+		return Armor.class.toString();
 	}
 
 	@Override

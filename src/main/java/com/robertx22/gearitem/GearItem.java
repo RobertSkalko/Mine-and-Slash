@@ -12,7 +12,7 @@ public class GearItem {
 	public AffixData suffix;
 	public AffixData prefix;	
 	
-	public Prefix _prefix = new Flaming();
+	//public Prefix _prefix = new Flaming();
 	
 	public int GetStat(String Name) {
 

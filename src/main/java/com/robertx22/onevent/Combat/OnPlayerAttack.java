@@ -4,11 +4,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import java.util.ArrayList;
 import org.apache.commons.lang3.time.StopWatch;
-
-import com.robertx22.classes.Prefix;
 import com.robertx22.database.prefixes.Flaming;
 import com.robertx22.enums.SuffixOrPrefix;
 import com.robertx22.gearitem.AffixData;
@@ -42,6 +39,7 @@ public class OnPlayerAttack {
 		}
 		EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 
+	
 		
 		GearItem geartest = new GearItem();
 		geartest.Name = "name";

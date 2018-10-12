@@ -1,7 +1,9 @@
 package com.robertx22.classes;
 
-public abstract class Rarity {
+import java.util.HashSet;
 
+public abstract class Rarity {	
+	
 	public abstract String Name();
 
 	public abstract int Rank();

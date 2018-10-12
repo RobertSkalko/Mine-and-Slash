@@ -5,7 +5,8 @@ import com.robertx22.classes.Rarity;
 import net.minecraft.util.text.TextFormatting;
 
 public class Epic extends Rarity {
-
+	public Epic() {}
+	
 	@Override
 	public String Name() {
 

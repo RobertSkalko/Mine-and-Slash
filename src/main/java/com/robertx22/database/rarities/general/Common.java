@@ -6,6 +6,10 @@ import net.minecraft.util.text.TextFormatting;
 
 public class Common extends Rarity {
 
+	private static Common common = new Common();
+	
+	public Common() {}
+	
 	@Override
 	public String Name() {
 

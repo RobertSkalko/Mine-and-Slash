@@ -3,29 +3,28 @@ package com.robertx22.database.prefixes;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.classes.BaseAffix;
 import com.robertx22.classes.Prefix;
 import com.robertx22.database.stats.mods.flat.FireDamageFlat;
-import com.robertx22.enums.SuffixOrPrefix;
 import com.robertx22.stats.StatMod;
 
-public class Flaming extends Prefix{
+public class Flaming extends Prefix {
 
-	public Flaming() {}
-	
+	public Flaming() {
+	}
+
 	@Override
-	public String Name() {		
+	public String Name() {
 		return "Flaming";
 	}
 
 	@Override
 	public List<StatMod> StatMods() {
-		
+
 		List<StatMod> mods = new ArrayList<StatMod>();
-		mods.add(new FireDamageFlat());		
-		
-		return null;
-		
-	}	
+		mods.add(new FireDamageFlat());
+
+		return mods;
+
+	}
 
 }

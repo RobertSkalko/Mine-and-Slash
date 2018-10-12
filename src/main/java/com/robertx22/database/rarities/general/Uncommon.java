@@ -5,7 +5,8 @@ import com.robertx22.classes.Rarity;
 import net.minecraft.util.text.TextFormatting;
 
 public class Uncommon extends Rarity {
-
+	public Uncommon() {}
+	
 	@Override
 	public String Name() {
 		return "Uncommon";

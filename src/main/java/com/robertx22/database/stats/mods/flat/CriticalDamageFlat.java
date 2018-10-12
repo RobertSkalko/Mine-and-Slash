@@ -1,27 +1,28 @@
 package com.robertx22.database.stats.mods.flat;
 
+import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.enums.StatTypes;
 import com.robertx22.stats.StatMod;
 
-public class FireDamageFlat extends StatMod {
+public class CriticalDamageFlat extends StatMod {
 
-	public FireDamageFlat() {
+	public CriticalDamageFlat() {
 	}
 
 	@Override
 	public String BaseClass() {
-		return null;
+		return CriticalDamage.class.toString();
 	}
 
 	@Override
 	public int Min() {
-		return 2;
+		return 5;
 
 	}
 
 	@Override
 	public int Max() {
-		return 10;
+		return 15;
 	}
 
 	@Override

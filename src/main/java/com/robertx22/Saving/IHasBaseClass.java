@@ -10,6 +10,7 @@ public interface IHasBaseClass {
 	}
 	
 	public abstract String BaseClass();
+		
 	
 	public default <T> T GetBase() {
 		
