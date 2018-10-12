@@ -10,12 +10,10 @@ import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Health;
-import com.robertx22.database.stats.types.MaxDamage;
-import com.robertx22.database.stats.types.MinDamage;
 import com.robertx22.gearitem.GearItem;
+import com.robertx22.saveclasses.StatModData;
 import com.robertx22.saving.Saving;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatModData;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -32,8 +30,6 @@ public class Unit {
 		{
 			put(Health.class, new Health());
 			put(Damage.class, new Damage());
-			put(MinDamage.class, new MinDamage());
-			put(MaxDamage.class, new MaxDamage());
 			put(Armor.class, new Armor());
 			put(CriticalHit.class, new CriticalHit());
 			put(CriticalDamage.class, new CriticalDamage());
@@ -86,7 +82,7 @@ public class Unit {
 
 				int val = data.GetActualVal(gear.level);
 
-				Stats.get(data.GetBaseStat().getClass()).Add(val, data.type);
+				Stats.get(data.GetBaseMod().GetBaseStat().getClass()).Add(val, data.type);
 
 			}
 		}

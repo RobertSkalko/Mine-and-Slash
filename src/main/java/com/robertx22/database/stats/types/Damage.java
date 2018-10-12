@@ -1,10 +1,9 @@
 package com.robertx22.database.stats.types;
 
 import com.robertx22.enums.Elements;
-import com.robertx22.stats.RangeStat;
-import com.robertx22.stats.RangeStatComp;
+import com.robertx22.stats.Stat;
 
-public class Damage extends RangeStat {
+public class Damage extends Stat {
 	public Damage() {
 	}
 
@@ -26,16 +25,6 @@ public class Damage extends RangeStat {
 	@Override
 	public boolean IsPercent() {
 		return false;
-	}
-
-	@Override
-	public RangeStatComp MinStat() {
-		return new MinDamage();
-	}
-
-	@Override
-	public RangeStatComp MaxStat() {
-		return new MaxDamage();
 	}
 
 }

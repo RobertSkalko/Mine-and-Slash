@@ -2,15 +2,17 @@ package com.robertx22.database.stats.mods.flat;
 
 import com.robertx22.database.stats.types.Health;
 import com.robertx22.enums.StatTypes;
+import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 
 public class HealthFlat extends StatMod {
 
-	public HealthFlat() {}
-	
+	public HealthFlat() {
+	}
+
 	@Override
-	public String BaseClass() {
-		return Health.class.toString();
+	public String GUID() {
+		return "HealthFlat";
 	}
 
 	@Override
@@ -22,9 +24,14 @@ public class HealthFlat extends StatMod {
 	public int Max() {
 		return 15;
 	}
-	
-	@Override	
+
+	@Override
 	public StatTypes Type() {
 		return StatTypes.Flat;
+	}
+
+	@Override
+	public Stat GetBaseStat() {
+		return new Health();
 	}
 }

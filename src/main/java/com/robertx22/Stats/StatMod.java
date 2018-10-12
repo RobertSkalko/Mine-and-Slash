@@ -4,17 +4,20 @@ import java.util.Random;
 
 import com.robertx22.classes.Unit;
 import com.robertx22.enums.StatTypes;
-import com.robertx22.saving.IHasBaseClass;
 
-public abstract class StatMod implements IHasBaseClass {
+public abstract class StatMod {
 
 	private static Random ran = new Random();
+
+	public abstract Stat GetBaseStat();
 
 	public abstract int Min();
 
 	public abstract int Max();
 
 	public abstract StatTypes Type();
+
+	public abstract String GUID();
 
 	public int GetValueByPercent(int percent) {
 
@@ -31,20 +34,20 @@ public abstract class StatMod implements IHasBaseClass {
 	}
 
 	public String NameText() {
-		Stat basestat = GetBase();
+		Stat basestat = GetBaseStat();
 
 		return basestat.Name() + ": ";
 	}
 
 	public String NameAndValueText(Unit Source) {
-		Stat basestat = GetBase();
+		Stat basestat = GetBaseStat();
 
 		return NameText() + basestat.GetValue(Source);
 	}
 
 	public String ToTooltipString(Unit Source) {
 
-		Stat basestat = GetBase();
+		Stat basestat = GetBaseStat();
 
 		String text = NameAndValueText(Source);
 

@@ -20,10 +20,10 @@ import com.robertx22.gearitem.Rarity;
 
 public class Rarities {
 
-	List<Rarity> All = Arrays.asList(new Common(), new Uncommon(), new Rare(), new Epic(), new Legendary(),
-			new Mythical());
+	public static List<Rarity> All = Arrays.asList(new Common(), new Uncommon(), new Rare(), new Epic(),
+			new Legendary(), new Mythical());
 
-	List<MobRarity> Mobs = Arrays.asList(new Normal(), new Veteran(), new Elite(), new Champion(), new Boss(),
-			new WorldBoss());
+	public static List<MobRarity> Mobs = Arrays.asList(new Normal(), new Veteran(), new Elite(), new Champion(),
+			new Boss(), new WorldBoss());
 
 }

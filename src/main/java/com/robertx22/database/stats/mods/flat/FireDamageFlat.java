@@ -1,6 +1,7 @@
 package com.robertx22.database.stats.mods.flat;
 
 import com.robertx22.enums.StatTypes;
+import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 
 public class FireDamageFlat extends StatMod {
@@ -9,8 +10,8 @@ public class FireDamageFlat extends StatMod {
 	}
 
 	@Override
-	public String BaseClass() {
-		return null;
+	public String GUID() {
+		return "FireDamageFlat";
 	}
 
 	@Override
@@ -29,4 +30,8 @@ public class FireDamageFlat extends StatMod {
 		return StatTypes.Flat;
 	}
 
+	@Override
+	public Stat GetBaseStat() {
+		return null;
+	}
 }

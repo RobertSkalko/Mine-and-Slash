@@ -3,7 +3,8 @@ package com.robertx22.gearitem;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.stats.StatModData;
+import com.robertx22.saveclasses.AffixData;
+import com.robertx22.saveclasses.StatModData;
 
 public class GearItem implements IStatsContainer {
 
