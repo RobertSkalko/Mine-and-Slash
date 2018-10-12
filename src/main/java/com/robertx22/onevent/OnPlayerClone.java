@@ -6,7 +6,6 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.saving.Saving;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -17,7 +16,7 @@ public class OnPlayerClone {
 
 		if (!event.getEntityPlayer().world.isRemote) {
 
-			event.getEntityPlayer().sendMessage(new TextComponentString("clone"));
+			// event.getEntityPlayer().sendMessage(new TextComponentString("clone"));
 
 			EntityPlayer player = event.getEntityPlayer();
 
@@ -29,7 +28,7 @@ public class OnPlayerClone {
 
 			Unit unit = Saving.Load(data.getNBT(), Unit.class);
 
-			unit.GiveExp(player, 0);
+			unit.updateClientExpGUI(player);
 
 		}
 

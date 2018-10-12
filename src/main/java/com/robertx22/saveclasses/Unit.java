@@ -48,7 +48,7 @@ public class Unit implements Serializable {
 		player.experience = percentXPFilled;
 	}
 
-	public HashMap<Class, Stat> Stats = new HashMap<Class, Stat>() {
+	transient public HashMap<Class, Stat> Stats = new HashMap<Class, Stat>() {
 		{
 			put(Health.class, new Health());
 			put(Damage.class, new Damage());
@@ -59,7 +59,7 @@ public class Unit implements Serializable {
 		}
 	};
 
-	public boolean StatsDirty = true;
+	transient public boolean StatsDirty = true;
 
 	public List<GearItemData> GetEquips(EntityLivingBase entity) {
 
@@ -118,6 +118,7 @@ public class Unit implements Serializable {
 
 		AddAllGearStats(entity);
 
+		// StatsDirty = false;
 	}
 
 	public void GiveExp(EntityPlayer player, int i) {

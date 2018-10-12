@@ -1,6 +1,8 @@
 package com.robertx22.onevent;
 
 import com.robertx22.capability.EntityData;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.saving.Saving;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -23,6 +25,11 @@ public class OnLogin {
 		}
 
 		EntityData.IData data = player.getCapability(EntityData.Data, null);
+
+		if (Saving.Load(data.getNBT(), Unit.class) == null) {
+			data.setNBT(Saving.Save(null, new Unit()));
+			System.out.println("Welcome!");
+		}
 
 		/*
 		 *
