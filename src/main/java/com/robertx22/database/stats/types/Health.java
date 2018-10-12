@@ -1,10 +1,11 @@
 package com.robertx22.database.stats.types;
 
 import com.robertx22.enums.Elements;
-import com.robertx22.enums.StatRefs;
 import com.robertx22.stats.FillableStat;
 
 public class Health extends FillableStat {
+	public Health() {
+	}
 
 	@Override
 	public String Name() {
@@ -20,9 +21,9 @@ public class Health extends FillableStat {
 	public Elements Element() {
 		return null;
 	}
-	
+
 	@Override
-	public boolean IsPercent() {		
+	public boolean IsPercent() {
 		return false;
 	}
 }

@@ -1,9 +1,12 @@
 package com.robertx22.database.stats.types;
 
-import com.robertx22.enums.*;
+import com.robertx22.enums.Elements;
 import com.robertx22.stats.Stat;
 
 public class Armor extends Stat {
+
+	public Armor() {
+	}
 
 	@Override
 	public String Name() {
@@ -11,18 +14,18 @@ public class Armor extends Stat {
 	}
 
 	@Override
-	public boolean ScalesToLevel() {		
+	public boolean ScalesToLevel() {
 		return false;
 	}
 
 	@Override
-	public Elements Element() {		
+	public Elements Element() {
 		return null;
 	}
 
 	@Override
-	public boolean IsPercent() {		
+	public boolean IsPercent() {
 		return true;
 	}
-	
+
 }

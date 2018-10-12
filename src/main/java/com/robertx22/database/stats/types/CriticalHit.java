@@ -4,6 +4,8 @@ import com.robertx22.enums.Elements;
 import com.robertx22.stats.Stat;
 
 public class CriticalHit extends Stat {
+	public CriticalHit() {
+	}
 
 	@Override
 	public String Name() {
