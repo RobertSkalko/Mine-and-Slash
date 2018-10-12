@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertx22.database.stats.mods.flat.FireDamageFlat;
 import com.robertx22.gearitem.Prefix;
+import com.robertx22.interfaces.IWeighted;
 import com.robertx22.stats.StatMod;
 
 public class Flaming extends Prefix {
@@ -25,6 +26,11 @@ public class Flaming extends Prefix {
 
 		return mods;
 
+	}
+
+	@Override
+	public int Weight() {
+		return IWeighted.NormalWeight;
 	}
 
 }

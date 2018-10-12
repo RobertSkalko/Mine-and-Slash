@@ -1,15 +1,15 @@
 package com.robertx22.gearitem;
 
-import java.util.HashSet;
+import com.robertx22.interfaces.IWeighted;
 
-public abstract class Rarity {	
-	
+public abstract class Rarity implements IWeighted {
+
 	public abstract String Name();
 
 	public abstract int Rank();
 
 	public abstract String Color();
-	
+
 	public abstract int Weight();
 
 }

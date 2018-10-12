@@ -1,5 +1,6 @@
-package com.robertx22.classes;
+package com.robertx22.saveclasses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,15 +11,15 @@ import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Health;
-import com.robertx22.gearitem.GearItem;
-import com.robertx22.saveclasses.StatModData;
 import com.robertx22.saving.Saving;
 import com.robertx22.stats.Stat;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class Unit {
+public class Unit implements Serializable {
+
+	private static final long serialVersionUID = -6658683548383891230L;
 
 	public EntityLivingBase entity;
 
@@ -39,18 +40,18 @@ public class Unit {
 
 	public boolean StatsDirty = true;
 
-	public List<GearItem> GetEquips() {
+	public List<GearItemData> GetEquips() {
 
 		List<ItemStack> list = new ArrayList<ItemStack>();
 
 		list.addAll((Collection<? extends ItemStack>) entity.getEquipmentAndArmor());
 		list.add(entity.getHeldItemMainhand());
 
-		List<GearItem> gearitems = new ArrayList<GearItem>();
+		List<GearItemData> gearitems = new ArrayList<GearItemData>();
 
 		for (ItemStack stack : list) {
 
-			GearItem gear = Saving.Load(stack.getTagCompound(), GearItem.class);
+			GearItemData gear = Saving.Load(stack.getTagCompound(), GearItemData.class);
 
 			if (gear != null) {
 				gearitems.add(gear);
@@ -72,9 +73,9 @@ public class Unit {
 
 	private void AddAllGearStats() {
 
-		List<GearItem> gears = GetEquips();
+		List<GearItemData> gears = GetEquips();
 
-		for (GearItem gear : gears) {
+		for (GearItemData gear : gears) {
 
 			List<StatModData> datas = gear.GetAllStats();
 

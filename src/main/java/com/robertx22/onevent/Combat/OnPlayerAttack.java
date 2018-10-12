@@ -1,7 +1,7 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.classes.Unit;
 import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.saveclasses.Unit;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;

@@ -2,8 +2,8 @@ package com.robertx22.stats;
 
 import java.util.Random;
 
-import com.robertx22.classes.Unit;
 import com.robertx22.enums.StatTypes;
+import com.robertx22.saveclasses.Unit;
 
 public abstract class StatMod {
 

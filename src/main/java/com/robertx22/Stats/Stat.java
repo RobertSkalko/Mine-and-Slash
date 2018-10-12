@@ -2,9 +2,9 @@ package com.robertx22.stats;
 
 import java.util.ArrayList;
 
-import com.robertx22.classes.Unit;
 import com.robertx22.enums.Elements;
 import com.robertx22.enums.StatTypes;
+import com.robertx22.saveclasses.Unit;
 
 public abstract class Stat {
 

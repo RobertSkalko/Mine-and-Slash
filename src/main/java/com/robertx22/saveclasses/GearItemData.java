@@ -1,15 +1,20 @@
-package com.robertx22.gearitem;
+package com.robertx22.saveclasses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.saveclasses.AffixData;
-import com.robertx22.saveclasses.StatModData;
+import com.robertx22.gearitem.IStatsContainer;
 
-public class GearItem implements IStatsContainer {
+public class GearItemData implements IStatsContainer, Serializable {
+
+	private static final long serialVersionUID = -8327205425334275976L;
 
 	public String name;
 	public int level;
+
+	public StatGroupData PrimaryStats;
+	public StatGroupData SecondaryStats;
 
 	public AffixData suffix;
 	public AffixData prefix;

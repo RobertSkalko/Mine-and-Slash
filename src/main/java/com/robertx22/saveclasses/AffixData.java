@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.IStatsContainer;
 import com.robertx22.stats.StatMod;
 
-public class AffixData implements IStatsContainer {
+public class AffixData implements IStatsContainer, Serializable {
+
+	private static final long serialVersionUID = 2388285649664919577L;
 
 	public AffixData() {
 
@@ -19,12 +22,12 @@ public class AffixData implements IStatsContainer {
 		super();
 		Base = affixname;
 		Percents = percents;
-		Type = type;
+		// Type = type;
 	}
 
 	public List<Integer> Percents = new ArrayList<Integer>();
 
-	public SuffixOrPrefix Type;
+	// public SuffixOrPrefix Type;
 
 	public String Base;
 

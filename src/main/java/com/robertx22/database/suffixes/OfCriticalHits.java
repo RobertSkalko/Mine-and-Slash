@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertx22.database.stats.mods.flat.CriticalHitFlat;
 import com.robertx22.gearitem.Suffix;
+import com.robertx22.interfaces.IWeighted;
 import com.robertx22.stats.StatMod;
 
 public class OfCriticalHits extends Suffix {
@@ -25,6 +26,11 @@ public class OfCriticalHits extends Suffix {
 
 		return mods;
 
+	}
+
+	@Override
+	public int Weight() {
+		return IWeighted.NormalWeight;
 	}
 
 }
