@@ -1,5 +1,6 @@
 package com.robertx22.onevent.combat;
 
+import com.robertx22.database.stats.types.Health;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.Unit;
 
@@ -34,9 +35,11 @@ public class OnPlayerAttack {
 
 		EntityLivingBase player = (EntityLivingBase) event.getSource().getTrueSource();
 
-		Unit unit = new Unit(player);
+		Unit unit = new Unit();
 
-		unit.RecalculateStats();
+		unit.RecalculateStats(player);
+
+		System.out.println("player hp is :" + unit.Stats.get(Health.class).GetActualVal());
 
 		/*
 		 * 

@@ -1,7 +1,13 @@
 package com.robertx22.onevent.combat;
 
+import com.robertx22.capability.EntityData;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.saving.Saving;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -18,7 +24,23 @@ public class OnMobSpawn {
 		}
 		if (event.getEntityLiving().world.isRemote) {
 			return;
+
 		}
+		if (!event.getEntityLiving().hasCapability(EntityData.Data, null)) {
+			return;
+		}
+
+		EntityLiving mob = (EntityLiving) event.getEntityLiving();
+
+		EntityData.IData data = mob.getCapability(EntityData.Data, null);
+
+		NBTTagCompound nbt = new NBTTagCompound();
+
+		Saving.Save(nbt, new Unit());
+
+		data.setNBT(nbt);
+
+		System.out.println("Saved unit to mob");
 
 		/*
 		 * 

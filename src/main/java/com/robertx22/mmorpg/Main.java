@@ -1,18 +1,5 @@
 package com.robertx22.mmorpg;
 
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.ModMetadata;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import java.io.File;
 import java.util.Arrays;
 
@@ -25,13 +12,17 @@ import com.robertx22.capability.EntityData.IData;
 import com.robertx22.capability.EntityData.Storage;
 import com.robertx22.commands.GiveGear;
 import com.robertx22.commands.GiveSocket;
-import com.robertx22.commands.SetLevel;
 import com.robertx22.customitems.MyItems;
 import com.robertx22.customitems.NewItemCreator;
 import com.robertx22.onevent.OnLogin;
+import com.robertx22.onevent.OnPlayerClone;
 import com.robertx22.onevent.Item.OnPickup;
 import com.robertx22.onevent.Item.OnTooltip;
-import com.robertx22.onevent.combat.*;
+import com.robertx22.onevent.combat.OnBurnStop;
+import com.robertx22.onevent.combat.OnMobAttack;
+import com.robertx22.onevent.combat.OnMobSpawn;
+import com.robertx22.onevent.combat.OnMobsAttackEachOther;
+import com.robertx22.onevent.combat.OnPlayerAttack;
 import com.robertx22.onevent.gearupgrade.OnAnvilRepair;
 import com.robertx22.onevent.gearupgrade.OnAnvilSetLevel;
 import com.robertx22.onevent.gearupgrade.OnAnvilSocket;
@@ -41,34 +32,42 @@ import com.robertx22.onevent.loot.OnMobDeathGetExp;
 import com.robertx22.onevent.ontick.OnTickRegen;
 import com.robertx22.onevent.ontick.OnTickRenderItemNames;
 import com.robertx22.oregen.OreGen;
-import com.robertx22.player.PlayerData;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import baubles.api.cap.BaubleItem;
 import baubles.api.cap.BaublesCapabilities;
+import baubles.api.cap.BaublesCapabilities.CapabilityBaubles;
 import baubles.api.cap.BaublesContainer;
 import baubles.api.cap.IBaublesItemHandler;
-import baubles.api.cap.BaublesCapabilities.CapabilityBaubles;
 import baubles.common.CommonProxy;
 import baubles.common.Config;
 import baubles.common.event.CommandBaubles;
 import baubles.common.network.PacketHandler;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.ModMetadata;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(
-		modid = Ref.MODID,
-		version = Ref.VERSION,
-		name = Ref.NAME,
-		guiFactory = "baubles.client.gui.BaublesGuiFactory",
-		dependencies = "required-after:forge@[14.21.0.2348,);"
-		)
+@Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, guiFactory = "baubles.client.gui.BaublesGuiFactory", dependencies = "required-after:forge@[14.21.0.2348,);")
 public class Main {
 
-	
 	@SidedProxy(clientSide = "baubles.client.ClientProxy", serverSide = "baubles.common.CommonProxy")
 	public static CommonProxy proxy;
 
-	@Instance(value=Ref.MODID)
+	@Instance(value = Ref.MODID)
 	public static Main instance;
 
 	public File modDir;
@@ -76,21 +75,16 @@ public class Main {
 	public static final Logger log = LogManager.getLogger(Ref.MODID.toUpperCase());
 	public static final int GUI = 0;
 
-	
-
 	@EventHandler
-	public void serverLoad(FMLServerStartingEvent event)
-	{
+	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandBaubles());
 	}
-	
-	
+
 	@EventHandler
 	public void start(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GiveGear());
 		event.registerServerCommand(new GiveSocket());
-		event.registerServerCommand(new SetLevel());
-		
+
 	}
 
 	@EventHandler
@@ -122,7 +116,7 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(new OnTooltip());
 		MinecraftForge.EVENT_BUS.register(new OnLogin());
 		MinecraftForge.EVENT_BUS.register(new OnPlayerAttack());
-		MinecraftForge.EVENT_BUS.register(new PlayerData());
+		MinecraftForge.EVENT_BUS.register(new OnPlayerClone());
 		MinecraftForge.EVENT_BUS.register(new OnMobSpawn());
 		MinecraftForge.EVENT_BUS.register(new OnMobAttack());
 		MinecraftForge.EVENT_BUS.register(new OnTickRegen());
@@ -138,7 +132,6 @@ public class Main {
 
 		NewItemCreator.createCustomItems();
 
-		
 		// Baubles stuff
 		modDir = event.getModConfigurationDirectory();
 
@@ -147,21 +140,22 @@ public class Main {
 		} catch (Exception e) {
 			log.error("BAUBLES has a problem loading it's configuration");
 		} finally {
-			if (Config.config!=null) Config.save();
+			if (Config.config != null)
+				Config.save();
 		}
 
-		CapabilityManager.INSTANCE.register(IBaublesItemHandler.class,
-				new CapabilityBaubles<IBaublesItemHandler>(), BaublesContainer.class);
+		CapabilityManager.INSTANCE.register(IBaublesItemHandler.class, new CapabilityBaubles<IBaublesItemHandler>(),
+				BaublesContainer.class);
 
-		CapabilityManager.INSTANCE
-				.register(IBauble.class, new BaublesCapabilities.CapabilityItemBaubleStorage(), () -> new BaubleItem(BaubleType.TRINKET));
+		CapabilityManager.INSTANCE.register(IBauble.class, new BaublesCapabilities.CapabilityItemBaubleStorage(),
+				() -> new BaubleItem(BaubleType.TRINKET));
 
 		proxy.registerEventHandlers();
 		PacketHandler.init();
 
 		Config.save();
 		// baubles
-		
+
 	}
 
 	@EventHandler
@@ -171,7 +165,7 @@ public class Main {
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		proxy.init();
 		//
-		
+
 		GameRegistry.registerWorldGenerator(new OreGen(MyItems.magic_ore_block, 7, 10, 50, 7), 0);
 		GameRegistry.registerWorldGenerator(new OreGen(MyItems.rare_ore_block, 6, 10, 40, 5), 0);
 		GameRegistry.registerWorldGenerator(new OreGen(MyItems.epic_ore_block, 5, 10, 35, 3), 0);

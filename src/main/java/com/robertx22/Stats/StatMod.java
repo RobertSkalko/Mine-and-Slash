@@ -5,6 +5,8 @@ import java.util.Random;
 import com.robertx22.enums.StatTypes;
 import com.robertx22.saveclasses.Unit;
 
+import net.minecraft.entity.EntityLivingBase;
+
 public abstract class StatMod {
 
 	private static Random ran = new Random();
@@ -39,17 +41,17 @@ public abstract class StatMod {
 		return basestat.Name() + ": ";
 	}
 
-	public String NameAndValueText(Unit Source) {
+	public String NameAndValueText(Unit Source, EntityLivingBase entity) {
 		Stat basestat = GetBaseStat();
 
-		return NameText() + basestat.GetValue(Source);
+		return NameText() + basestat.GetValue(Source, entity);
 	}
 
-	public String ToTooltipString(Unit Source) {
+	public String ToTooltipString(Unit Source, EntityLivingBase entity) {
 
 		Stat basestat = GetBaseStat();
 
-		String text = NameAndValueText(Source);
+		String text = NameAndValueText(Source, entity);
 
 		if (Type() == StatTypes.Flat) {
 

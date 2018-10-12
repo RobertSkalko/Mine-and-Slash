@@ -2,7 +2,6 @@ package com.robertx22.saveclasses;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,17 +13,39 @@ import com.robertx22.database.stats.types.Health;
 import com.robertx22.saving.Saving;
 import com.robertx22.stats.Stat;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class Unit implements Serializable {
 
 	private static final long serialVersionUID = -6658683548383891230L;
 
-	public EntityLivingBase entity;
+	public Unit() {
 
-	public Unit(EntityLivingBase entity) {
-		this.entity = entity;
+	}
+
+	public int Experience;
+	public int Level;
+
+	public int GetExpRequiredForLevelUp() {
+
+		return Level * 1000;
+
+	}
+
+	public void updateClientExpGUI(EntityPlayer player) {
+
+		EntityPlayer clientPlayer = Minecraft.getMinecraft().player;
+
+		float percentXPFilled = (float) Experience / (float) GetExpRequiredForLevelUp();
+
+		clientPlayer.experienceLevel = Level;
+		clientPlayer.experience = percentXPFilled;
+
+		player.experienceLevel = Level;
+		player.experience = percentXPFilled;
 	}
 
 	public HashMap<Class, Stat> Stats = new HashMap<Class, Stat>() {
@@ -40,11 +61,13 @@ public class Unit implements Serializable {
 
 	public boolean StatsDirty = true;
 
-	public List<GearItemData> GetEquips() {
+	public List<GearItemData> GetEquips(EntityLivingBase entity) {
 
 		List<ItemStack> list = new ArrayList<ItemStack>();
 
-		list.addAll((Collection<? extends ItemStack>) entity.getEquipmentAndArmor());
+		for (ItemStack stack : entity.getEquipmentAndArmor()) {
+			list.add(stack);
+		}
 		list.add(entity.getHeldItemMainhand());
 
 		List<GearItemData> gearitems = new ArrayList<GearItemData>();
@@ -71,9 +94,9 @@ public class Unit implements Serializable {
 		}
 	}
 
-	private void AddAllGearStats() {
+	private void AddAllGearStats(EntityLivingBase entity) {
 
-		List<GearItemData> gears = GetEquips();
+		List<GearItemData> gears = GetEquips(entity);
 
 		for (GearItemData gear : gears) {
 
@@ -89,11 +112,33 @@ public class Unit implements Serializable {
 		}
 	}
 
-	public void RecalculateStats() {
+	public void RecalculateStats(EntityLivingBase entity) {
 
 		ClearStats();
 
-		AddAllGearStats();
+		AddAllGearStats(entity);
+
+	}
+
+	public void GiveExp(EntityPlayer player, int i) {
+
+		Experience += i;
+
+		CheckIfLevelUp();
+
+	}
+
+	private void CheckIfLevelUp() {
+
+		if (Experience >= GetExpRequiredForLevelUp()) {
+			Experience = 0;
+			LevelUp();
+		}
+
+	}
+
+	private void LevelUp() {
+		Level++;
 
 	}
 

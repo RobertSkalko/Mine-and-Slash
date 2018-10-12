@@ -3,7 +3,8 @@ package com.robertx22.onevent.loot;
 import com.robertx22.capability.EntityData;
 import com.robertx22.constants.Mob;
 import com.robertx22.constants.Tags;
-import com.robertx22.player.PlayerData;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.saving.Saving;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
@@ -42,7 +43,9 @@ public class OnMobDeathGetExp {
 
 			int exp = mobnbt.getInteger(Tags.LEVEL) * (Mob.rarityXPMulti[mobnbt.getInteger(Tags.RARITY_NUMBER)]);
 
-			PlayerData.giveExp(player, exp);
+			Unit unit = Saving.Load(player, Unit.class);
+
+			unit.GiveExp(player, exp);
 
 		}
 

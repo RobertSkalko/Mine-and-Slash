@@ -1,5 +1,8 @@
 package com.robertx22.onevent;
 
+import com.robertx22.capability.EntityData;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
@@ -11,18 +14,18 @@ public class OnLogin {
 		if (event.player.world.isRemote) {
 			return;
 		}
+
+		EntityPlayer player = event.player;
+
+		if (!player.hasCapability(EntityData.Data, null)) {
+
+			return;
+		}
+
+		EntityData.IData data = player.getCapability(EntityData.Data, null);
+
 		/*
-		 * 
-		 * EntityPlayer player = event.player;
-		 * 
-		 * PlayerData.giveExp(player, 0);
-		 * 
-		 * if (player.hasCapability(EntityData.Data, null) &&
-		 * !player.getCapability(EntityData.Data,
-		 * null).getNBT().getBoolean(Tags.ENTITY_INFO)) {
-		 * 
-		 * EntityData.IData data = player.getCapability(EntityData.Data, null);
-		 * 
+		 *
 		 * NBTTagCompound nbt = GeneralUtils.getdefaultEntityNBT();
 		 * nbt.setBoolean(Tags.ENTITY_INFO, true);
 		 * 

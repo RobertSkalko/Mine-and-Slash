@@ -6,6 +6,8 @@ import com.robertx22.enums.Elements;
 import com.robertx22.enums.StatTypes;
 import com.robertx22.saveclasses.Unit;
 
+import net.minecraft.entity.EntityLivingBase;
+
 public abstract class Stat {
 
 	public int StatMinimum = 0;
@@ -55,10 +57,10 @@ public abstract class Stat {
 
 	public Double Value = (double) 0;
 
-	public Double GetValue(Unit Source) {
+	public Double GetValue(Unit Source, EntityLivingBase entity) {
 
 		if (Source.StatsDirty) {
-			Source.RecalculateStats();
+			Source.RecalculateStats(entity);
 		}
 
 		return Value;

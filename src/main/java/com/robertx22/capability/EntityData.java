@@ -35,7 +35,7 @@ public class EntityData {
 
 			if (event.getObject() instanceof EntityMob || event.getObject() instanceof EntityPlayer) {
 
-				event.addCapability(new ResourceLocation(Ref.MODID, "mmorpg"),
+				event.addCapability(new ResourceLocation(Ref.MODID, Ref.MODID),
 						new ICapabilitySerializable<NBTTagCompound>() {
 							IData inst = Data.getDefaultInstance();
 
