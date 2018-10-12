@@ -1,4 +1,4 @@
-package com.robertx22.classes;
+package com.robertx22.gearitem;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +15,7 @@ public abstract class GearItemSlot {
 
 	public abstract List<Prefix> PossiblePrefixes();
 
-	public abstract List<StatMod> PossiblePrimaryStats();
+	public abstract List<StatMod> PrimaryStats();
 
 	public abstract List<StatMod> PossibleSecondaryStats();
 

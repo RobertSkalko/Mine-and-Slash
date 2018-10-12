@@ -11,7 +11,37 @@ public interface IHasBaseClass {
 	
 	public abstract String BaseClass();
 		
-	
+public default <T> T GetBase(String theclass) {
+		
+		Class<?> clazz = null;
+		try {
+			clazz = Class.forName(theclass);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		Constructor<?> ctor = null;		
+		try {
+			ctor = clazz.getConstructor();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+		Object object = null;
+		try {
+			object = ctor.newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		
+		return (T) object;
+	}
 	public default <T> T GetBase() {
 		
 		Class<?> clazz = null;

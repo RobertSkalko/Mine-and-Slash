@@ -5,8 +5,11 @@ import com.robertx22.stats.FillableStat;
 
 public class Health extends FillableStat {
 	public Health() {
+		this.StatMinimum = 20;
 	}
-
+	
+	
+	
 	@Override
 	public String Name() {
 		return "Health";

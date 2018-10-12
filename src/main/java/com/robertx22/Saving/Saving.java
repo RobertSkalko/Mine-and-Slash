@@ -27,7 +27,16 @@ public class Saving {
 
 	public static <T> T Load(NBTTagCompound nbt, Class type) {
 
+		if (nbt == null) return null;
 		
-		return (T) gson.fromJson(nbt.getString("Data"), type);
+		String str = nbt.getString("Data");
+		
+		if (str == null)return null;
+		
+		Object object = gson.fromJson(str, type);
+		
+		if (object == null) return null;
+		
+		return (T) object;
 	}
 }

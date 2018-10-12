@@ -1,22 +1,27 @@
 package com.robertx22.gearitem;
 
-import com.robertx22.classes.BaseAffix;
-import com.robertx22.classes.Prefix;
-import com.robertx22.classes.Suffix;
-import com.robertx22.database.prefixes.Flaming;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GearItem {
+import com.robertx22.stats.StatModData;
 
-	public String Name;
+public class GearItem implements IStatsContainer {
+
+	public String name;
+	public int level;
 
 	public AffixData suffix;
-	public AffixData prefix;	
-	
-	//public Prefix _prefix = new Flaming();
-	
-	public int GetStat(String Name) {
+	public AffixData prefix;
 
-		return 0;
+	@Override
+	public List<StatModData> GetAllStats() {
+
+		List<StatModData> datas = new ArrayList<StatModData>();
+
+		datas.addAll(suffix.GetAllStats());
+		datas.addAll(prefix.GetAllStats());
+
+		return datas;
 	}
 
 }

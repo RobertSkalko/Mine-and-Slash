@@ -4,9 +4,9 @@ import com.robertx22.classes.Unit;
 
 public abstract class RangeStat extends Stat {
 
-	public abstract Stat MinStat();
+	public abstract RangeStatComp MinStat();
 
-	public abstract Stat MaxStat();
+	public abstract RangeStatComp MaxStat();
 
 	@Override
 	public Double GetValue(Unit Source) {
@@ -15,12 +15,6 @@ public abstract class RangeStat extends Stat {
 
 		return null;
 
-	}
-
-	@Override
-	public String ToTooltipString(Unit Source) {
-
-		return Name() + " " + MinStat().GetValue(Source) + "-" + MaxStat().GetValue(Source);
 	}
 
 }

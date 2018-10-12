@@ -42,7 +42,7 @@ public class OnPlayerAttack {
 	
 		
 		GearItem geartest = new GearItem();
-		geartest.Name = "name";
+		geartest.name = "name";
 		geartest.prefix = new AffixData(Flaming.class, new ArrayList<Integer>(),
 				SuffixOrPrefix.Prefix);
 		/*

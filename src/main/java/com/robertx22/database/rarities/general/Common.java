@@ -1,6 +1,6 @@
 package com.robertx22.database.rarities.general;
 
-import com.robertx22.classes.Rarity;
+import com.robertx22.gearitem.Rarity;
 
 import net.minecraft.util.text.TextFormatting;
 
