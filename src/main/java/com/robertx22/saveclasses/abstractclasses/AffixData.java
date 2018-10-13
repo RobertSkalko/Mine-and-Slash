@@ -15,6 +15,7 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
 	public boolean setRerollFully = false;
 	public List<Integer> percents = new ArrayList<Integer>();
 	public String baseAffix;
+	public int level;
 
 	public abstract BaseAffix BaseAffix();
 
@@ -29,7 +30,7 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
 
 			StatMod mod = base.StatMods().get(i);
 
-			list.add(StatModData.Load(mod, percents.get(i)));
+			list.add(StatModData.Load(mod, percents.get(i), level));
 		}
 
 		return list;

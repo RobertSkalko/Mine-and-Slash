@@ -3,11 +3,9 @@ package com.robertx22.stats;
 import java.util.Random;
 
 import com.robertx22.enums.StatTypes;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.interfaces.IWeighted;
 
-import net.minecraft.entity.EntityLivingBase;
-
-public abstract class StatMod {
+public abstract class StatMod implements IWeighted {
 
 	private static Random ran = new Random();
 
@@ -35,37 +33,4 @@ public abstract class StatMod {
 
 	}
 
-	public String NameText() {
-		Stat basestat = GetBaseStat();
-
-		return basestat.Name() + ": ";
-	}
-
-	public String NameAndValueText(Unit Source, EntityLivingBase entity) {
-		Stat basestat = GetBaseStat();
-
-		return NameText() + basestat.GetValue(Source, entity);
-	}
-
-	public String ToTooltipString(Unit Source, EntityLivingBase entity) {
-
-		Stat basestat = GetBaseStat();
-
-		String text = NameAndValueText(Source, entity);
-
-		if (Type() == StatTypes.Flat) {
-
-			if (basestat.IsPercent()) {
-				text += "%";
-			}
-
-		} else if (Type() == StatTypes.Percent) {
-			text += "%";
-		} else {
-			text += "% Multi";
-		}
-
-		return text;
-
-	}
 }

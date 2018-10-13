@@ -19,6 +19,8 @@ public abstract class StatGroupData implements IStatsContainer, IRerollable {
 		return Mods;
 	}
 
+	public int level;
+
 	public boolean setRerollNumbers = false;
 	public boolean setRerollFully = false;
 

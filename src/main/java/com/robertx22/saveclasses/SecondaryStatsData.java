@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.gearitem.ITooltipList;
 import com.robertx22.generation.StatGen;
 import com.robertx22.interfaces.IWeighted;
 import com.robertx22.saveclasses.abstractclasses.StatGroupData;
@@ -12,7 +13,7 @@ import com.robertx22.utilityclasses.ListUtils;
 import com.robertx22.utilityclasses.RandomUtils;
 import com.robertx22.utilityclasses.WeightedUtils;
 
-public class SecondaryStatsData extends StatGroupData implements Serializable {
+public class SecondaryStatsData extends StatGroupData implements Serializable, ITooltipList {
 
 	private static final long serialVersionUID = 6149243047165372987L;
 
@@ -43,13 +44,15 @@ public class SecondaryStatsData extends StatGroupData implements Serializable {
 
 			StatMod mod = (StatMod) WeightedUtils.WeightedRandom(possibleStats);
 
-			this.Mods.add(StatModData.NewRandom(mod));
+			this.Mods.add(StatModData.NewRandom(mod, level));
+
+			Stats--;
 
 		}
 
 		for (StatMod mod : gear.GetBaseGearType().PossibleSecondaryStats()) {
 
-			StatModData moddata = StatModData.NewRandom(mod);
+			StatModData moddata = StatModData.NewRandom(mod, level);
 
 			this.Mods.add(moddata);
 
@@ -62,6 +65,22 @@ public class SecondaryStatsData extends StatGroupData implements Serializable {
 		for (StatModData data : this.Mods) {
 			data.percent = StatGen.GenPercent();
 		}
+
+	}
+
+	@Override
+	public List<String> GetTooltipString() {
+
+		List<String> list = new ArrayList<String>();
+
+		list.add("Secondary Stats: ");
+
+		for (StatModData data : this.GetAllStats()) {
+
+			list.add(data.GetTooltipString());
+		}
+
+		return list;
 
 	}
 

@@ -2,16 +2,24 @@ package com.robertx22.saveclasses;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.lists.GearTypes;
+import com.robertx22.database.lists.Rarities;
 import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.IStatsContainer;
+import com.robertx22.gearitem.ITooltip;
+import com.robertx22.gearitem.ITooltipList;
+import com.robertx22.gearitem.ItemRarity;
 
-public class GearItemData implements IStatsContainer, Serializable {
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+
+public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	private static final long serialVersionUID = -8327205425334275976L;
 
+	public int Rarity;
 	public String gearTypeName;
 	public String name;
 	public int level;
@@ -25,6 +33,10 @@ public class GearItemData implements IStatsContainer, Serializable {
 	public GearItemSlot GetBaseGearType() {
 
 		return GearTypes.All.get(gearTypeName);
+	}
+
+	public ItemRarity GetRarity() {
+		return Rarities.Items.get(Rarity);
 	}
 
 	@Override
@@ -47,6 +59,19 @@ public class GearItemData implements IStatsContainer, Serializable {
 		}
 
 		return datas;
+	}
+
+	@Override
+	public void BuildTooltip(ItemTooltipEvent event) {
+
+		List<ITooltipList> list = Arrays.asList(prefix, suffix, primaryStats, secondaryStats);
+
+		for (ITooltipList part : list) {
+
+			event.getToolTip().addAll(part.GetTooltipString());
+
+		}
+
 	}
 
 }

@@ -1,15 +1,17 @@
 package com.robertx22.database.rarities.general;
 
-import com.robertx22.gearitem.Rarity;
+import com.robertx22.classes.MinMax;
+import com.robertx22.gearitem.ItemRarity;
 
 import net.minecraft.util.text.TextFormatting;
 
-public class Common extends Rarity {
+public class Common extends ItemRarity {
 
 	private static Common common = new Common();
-	
-	public Common() {}
-	
+
+	public Common() {
+	}
+
 	@Override
 	public String Name() {
 
@@ -28,8 +30,23 @@ public class Common extends Rarity {
 	}
 
 	@Override
-	public int Weight() {		
+	public int Weight() {
 		return 10000;
+	}
+
+	@Override
+	public int AffixChance() {
+		return 5;
+	}
+
+	@Override
+	public MinMax SecondaryStatsAmount() {
+		return new MinMax(0, 1);
+	}
+
+	@Override
+	public MinMax PrimaryStatsPercents() {
+		return new MinMax(3, 60);
 	}
 
 }

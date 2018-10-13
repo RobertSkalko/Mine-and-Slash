@@ -2,6 +2,7 @@ package com.robertx22.database.stats.mods.flat;
 
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.enums.StatTypes;
+import com.robertx22.interfaces.IWeighted;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 
@@ -34,6 +35,11 @@ public class CriticalHitFlat extends StatMod {
 	@Override
 	public Stat GetBaseStat() {
 		return new CriticalHit();
+	}
+
+	@Override
+	public int Weight() {
+		return IWeighted.NormalWeight;
 	}
 
 }

@@ -1,11 +1,12 @@
 package com.robertx22.onevent.Item;
 
+import com.robertx22.gearitem.ITooltip;
+import com.robertx22.saving.Saving;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import com.robertx22.utilityclasses.ItemUtils;
 
 public class OnTooltip {
 
@@ -32,9 +33,11 @@ public class OnTooltip {
 			return;
 		}
 
-		if (ItemUtils.isGear(item)) {
+		ITooltip data = Saving.Load(item.getTagCompound(), ITooltip.class);
 
-			// event.getToolTip().add("Stats:");
+		if (data != null) {
+
+			data.BuildTooltip(event);
 
 		}
 

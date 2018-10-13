@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.robertx22.database.lists.Suffixes;
 import com.robertx22.gearitem.BaseAffix;
+import com.robertx22.gearitem.ITooltipList;
 import com.robertx22.gearitem.Suffix;
 import com.robertx22.generation.StatGen;
 import com.robertx22.interfaces.IWeighted;
@@ -14,7 +15,7 @@ import com.robertx22.stats.StatMod;
 import com.robertx22.utilityclasses.ListUtils;
 import com.robertx22.utilityclasses.WeightedUtils;
 
-public class SuffixData extends AffixData implements Serializable {
+public class SuffixData extends AffixData implements Serializable, ITooltipList {
 
 	private static final long serialVersionUID = 8802998468539898482L;
 
@@ -65,6 +66,24 @@ public class SuffixData extends AffixData implements Serializable {
 	@Override
 	public BaseAffix BaseAffix() {
 		return Suffixes.All.get(baseAffix);
+	}
+
+	@Override
+	public List<String> GetTooltipString() {
+
+		BaseAffix affix = BaseAffix();
+
+		List<String> list = new ArrayList<String>();
+
+		list.add("Suffix: " + affix.Name());
+
+		for (StatModData data : this.GetAllStats()) {
+
+			list.add(data.GetTooltipString());
+		}
+
+		return list;
+
 	}
 
 }

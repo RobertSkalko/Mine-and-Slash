@@ -16,11 +16,11 @@ import com.robertx22.database.rarities.mobs.Elite;
 import com.robertx22.database.rarities.mobs.Normal;
 import com.robertx22.database.rarities.mobs.Veteran;
 import com.robertx22.database.rarities.mobs.WorldBoss;
-import com.robertx22.gearitem.Rarity;
+import com.robertx22.gearitem.ItemRarity;
 
 public class Rarities {
 
-	public static List<Rarity> All = Arrays.asList(new Common(), new Uncommon(), new Rare(), new Epic(),
+	public static List<ItemRarity> Items = Arrays.asList(new Common(), new Uncommon(), new Rare(), new Epic(),
 			new Legendary(), new Mythical());
 
 	public static List<MobRarity> Mobs = Arrays.asList(new Normal(), new Veteran(), new Elite(), new Champion(),
