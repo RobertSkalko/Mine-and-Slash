@@ -1,5 +1,6 @@
 package com.robertx22.database.stats.mods.flat;
 
+import com.robertx22.database.stats.types.FireDamage;
 import com.robertx22.enums.StatTypes;
 import com.robertx22.interfaces.IWeighted;
 import com.robertx22.stats.Stat;
@@ -33,7 +34,7 @@ public class FireDamageFlat extends StatMod {
 
 	@Override
 	public Stat GetBaseStat() {
-		return null;
+		return new FireDamage();
 	}
 
 	@Override

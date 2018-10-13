@@ -1,6 +1,6 @@
 package com.robertx22.onevent.Item;
 
-import com.robertx22.gearitem.ITooltip;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saving.Saving;
 
 import net.minecraft.item.ItemStack;
@@ -33,7 +33,7 @@ public class OnTooltip {
 			return;
 		}
 
-		ITooltip data = Saving.Load(item.getTagCompound(), ITooltip.class);
+		GearItemData data = Saving.Load(item.getTagCompound(), GearItemData.class);
 
 		if (data != null) {
 

@@ -9,6 +9,7 @@ import com.robertx22.database.stats.types.Armor;
 import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
+import com.robertx22.database.stats.types.FireDamage;
 import com.robertx22.database.stats.types.Health;
 import com.robertx22.enums.EntityTypes;
 import com.robertx22.saving.Saving;
@@ -68,6 +69,7 @@ public class Unit implements Serializable {
 			put(Armor.class, new Armor());
 			put(CriticalHit.class, new CriticalHit());
 			put(CriticalDamage.class, new CriticalDamage());
+			put(FireDamage.class, new FireDamage());
 
 		}
 	};
@@ -78,8 +80,10 @@ public class Unit implements Serializable {
 
 		List<ItemStack> list = new ArrayList<ItemStack>();
 
-		for (ItemStack stack : entity.getEquipmentAndArmor()) {
-			list.add(stack);
+		for (ItemStack stack : entity.getHeldEquipment()) {
+			if (stack != null) {
+				list.add(stack);
+			}
 		}
 		list.add(entity.getHeldItemMainhand());
 
@@ -92,10 +96,11 @@ public class Unit implements Serializable {
 			if (gear != null) {
 				gearitems.add(gear);
 
-				// System.out.println("Gearitemfound" + gear.toString());
 			}
 
 		}
+
+		System.out.println("Gearitemsfound" + gearitems.size());
 
 		return gearitems;
 

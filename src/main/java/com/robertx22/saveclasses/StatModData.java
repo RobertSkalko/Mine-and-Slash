@@ -9,6 +9,8 @@ import com.robertx22.generation.StatGen;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 
+import net.minecraft.util.text.TextFormatting;
+
 public class StatModData implements Serializable, ITooltipString {
 
 	private static final long serialVersionUID = -274938432076951259L;
@@ -74,7 +76,7 @@ public class StatModData implements Serializable, ITooltipString {
 
 	public String NameAndValueText() {
 
-		return NameText() + this.GetActualVal(level);
+		return TextFormatting.RED + " *" + NameText() + this.GetActualVal(level);
 	}
 
 	@Override

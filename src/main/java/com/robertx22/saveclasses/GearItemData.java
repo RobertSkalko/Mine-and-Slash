@@ -2,7 +2,6 @@ package com.robertx22.saveclasses;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.lists.GearTypes;
@@ -21,7 +20,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	public int Rarity;
 	public String gearTypeName;
-	public String name;
+	public String name = "Error no name";
 	public int level;
 
 	public PrimaryStatsData primaryStats;
@@ -64,11 +63,26 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	@Override
 	public void BuildTooltip(ItemTooltipEvent event) {
 
-		List<ITooltipList> list = Arrays.asList(prefix, suffix, primaryStats, secondaryStats);
+		event.getToolTip().clear();
+
+		event.getToolTip().add(name);
+		event.getToolTip().add("Level: " + level);
+
+		event.getToolTip().add("");
+
+		List<ITooltipList> list = new ArrayList<ITooltipList>();
+		list.add(primaryStats);
+		list.add(secondaryStats);
+		list.add(prefix);
+		list.add(suffix);
 
 		for (ITooltipList part : list) {
 
-			event.getToolTip().addAll(part.GetTooltipString());
+			if (part != null) {
+				event.getToolTip().addAll(part.GetTooltipString());
+				event.getToolTip().add("");
+
+			}
 
 		}
 
