@@ -13,8 +13,8 @@ public class GearItemData implements IStatsContainer, Serializable {
 	public String name;
 	public int level;
 
-	public StatGroupData PrimaryStats;
-	public StatGroupData SecondaryStats;
+	public StatGroupData primaryStats;
+	public StatGroupData secondaryStats;
 
 	public AffixData suffix;
 	public AffixData prefix;
@@ -31,6 +31,16 @@ public class GearItemData implements IStatsContainer, Serializable {
 			datas.addAll(prefix.GetAllStats());
 		}
 		return datas;
+	}
+
+	public void ReRollPrefixFully() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void ReRollPrefixNumbers() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

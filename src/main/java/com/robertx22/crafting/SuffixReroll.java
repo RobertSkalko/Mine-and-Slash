@@ -12,23 +12,7 @@ import net.minecraft.world.World;
 
 public class SuffixReroll implements IRecipe, IRecipeOutput {
 
-	public boolean AnyItemIsGearItem(InventoryCrafting inv) {
-
-		for (int i = 0; i < inv.getSizeInventory(); i++) {
-			ItemStack stack = inv.getStackInSlot(i);
-
-			if (Saving.Load(stack.getTagCompound(), GearItemData.class) != null) {
-				gearitem = stack;
-				output = gearitem;
-				return true;
-			}
-
-		}
-
-		return false;
-	}
-
-	ItemStack gearitem = null;
+	ItemStack output = null;
 
 	@Override
 	public IRecipe setRegistryName(ResourceLocation name) {
@@ -49,10 +33,24 @@ public class SuffixReroll implements IRecipe, IRecipeOutput {
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 
-		return AnyItemIsGearItem(inv);
-	}
+		ItemStack gear = RecipeUtils.AnyItemIsGearItem(inv);
 
-	ItemStack output = null;
+		if (gear != null) {
+
+			GearItemData gearitem = Saving.Load(gear.getTagCompound(), GearItemData.class);
+
+			if (gearitem.suffix != null) {
+				gearitem.suffix.setRerollFully = true;
+			} else {
+				return false;
+			}
+			Saving.SaveToItem(gear, gearitem);
+
+			this.output = gear;
+		}
+
+		return gear != null;
+	}
 
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv) {

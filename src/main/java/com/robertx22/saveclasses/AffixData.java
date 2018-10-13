@@ -1,37 +1,21 @@
 package com.robertx22.saveclasses;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.database.lists.Affixes;
+import com.robertx22.crafting.IRerollable;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.IStatsContainer;
 import com.robertx22.stats.StatMod;
 
-public class AffixData implements IStatsContainer, Serializable {
+public abstract class AffixData implements IStatsContainer, IRerollable {
 
-	private static final long serialVersionUID = 2388285649664919577L;
+	public boolean setRerollNumbers = false;
+	public boolean setRerollFully = false;
+	public List<Integer> percents = new ArrayList<Integer>();
+	public String baseAffix;
 
-	public AffixData() {
-
-	}
-
-	public AffixData(String affixname, List<Integer> percents) {
-		super();
-		Base = affixname;
-		Percents = percents;
-	}
-
-	public boolean SetRerollNumbers = false;
-	public boolean SetRerollFully = false;
-	public List<Integer> Percents = new ArrayList<Integer>();
-	public String Base;
-
-	public BaseAffix BaseClass() {
-
-		return Affixes.All.get(Base);
-	}
+	public abstract BaseAffix BaseClass();
 
 	@Override
 	public List<StatModData> GetAllStats() {
@@ -44,7 +28,7 @@ public class AffixData implements IStatsContainer, Serializable {
 
 			StatMod mod = base.StatMods().get(i);
 
-			list.add(new StatModData(mod.GUID(), mod.Type(), Percents.get(i)));
+			list.add(new StatModData(mod.GUID(), mod.Type(), percents.get(i)));
 		}
 
 		return list;
