@@ -1,12 +1,24 @@
 package com.robertx22.effectdatas;
 
-import net.minecraft.entity.Entity;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.saving.Saving;
+
+import net.minecraft.entity.EntityLivingBase;
 
 public abstract class EffectData {
-	public Entity Source;
-	public Entity Target;
+	public EntityLivingBase Source;
+	public EntityLivingBase Target;
 
-	public float Number;
+	public int Number;
+
+	public Unit GetSource() {
+
+		return Saving.Load(Source, Unit.class);
+	}
+
+	public Unit GetTarget() {
+		return Saving.Load(Target, Unit.class);
+	}
 
 	public abstract void Activate();
 

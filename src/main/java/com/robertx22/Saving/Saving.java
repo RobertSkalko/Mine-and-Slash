@@ -33,6 +33,12 @@ public class Saving {
 
 	}
 
+	public static <T> T Load(EntityLivingBase player, Class<?> type) {
+
+		return Load(player.getCapability(EntityData.Data, null).getNBT(), Unit.class);
+
+	}
+
 	public static <T> T Load(EntityLiving entity, Class<?> type) {
 
 		return Load(entity.getCapability(EntityData.Data, null).getNBT(), Unit.class);
