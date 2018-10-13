@@ -2,72 +2,16 @@ package com.robertx22.utilityclasses;
 
 import java.util.Random;
 
-import com.robertx22.constants.Chances;
-
 public class RandomUtils {
 
-	public static int rollArray(Chances.Chance[] chances) {
+	static Random ran = new Random();
 
-		int number = 0;
+	public static int RandomRange(int min, int max) {
 
-		// goes from least probable to most probable, only applies if its higher, that
-		// means if it rolled
-		// mythic and rolls rare next, mythic will stay
-		for (Chances.Chance chance : chances) {
+		int result = ran.nextInt(max - min);
 
-			if (roll(chance.chance)) {
-				if (chance.result > number) {
-					number = chance.result;
-				}
-			}
+		return result + min;
 
-		}
-
-		return number;
-	}
-
-	public static int rollArray(Chances.Chance[] chances, float settings, float bonusChance) {
-
-		int number = 0;
-
-		if (bonusChance < 1) {
-			bonusChance = 1;
-		}
-
-		// goes from least probable to most probable, only applies if its higher, that
-		// means if it rolled
-		// mythic and rolls rare next, mythic will stay
-		for (Chances.Chance chance : chances) {
-
-			if (roll(chance.chance * settings * bonusChance)) {
-				if (chance.result > number) {
-					number = chance.result;
-				}
-			}
-
-		}
-
-		return number;
-	}
-
-	public static int rollArray(Chances.Chance[] chances, float settings) {
-
-		int number = 0;
-
-		// goes from least probable to most probable, only applies if its higher, that
-		// means if it rolled
-		// mythic and rolls rare next, mythic will stay
-		for (Chances.Chance chance : chances) {
-
-			if (roll(chance.chance * settings)) {
-				if (chance.result > number) {
-					number = chance.result;
-				}
-			}
-
-		}
-
-		return number;
 	}
 
 	public static boolean roll(int chance) {

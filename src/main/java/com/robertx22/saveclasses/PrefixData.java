@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.database.lists.Suffixes;
+import com.robertx22.database.lists.Prefixes;
 import com.robertx22.gearitem.BaseAffix;
-import com.robertx22.gearitem.Suffix;
+import com.robertx22.gearitem.Prefix;
 import com.robertx22.generation.StatGen;
 import com.robertx22.interfaces.IWeighted;
 import com.robertx22.saveclasses.abstractclasses.AffixData;
@@ -14,15 +14,15 @@ import com.robertx22.stats.StatMod;
 import com.robertx22.utilityclasses.ListUtils;
 import com.robertx22.utilityclasses.WeightedUtils;
 
-public class SuffixData extends AffixData implements Serializable {
+public class PrefixData extends AffixData implements Serializable {
 
-	private static final long serialVersionUID = 8802998468539898482L;
+	private static final long serialVersionUID = -110285627065158395L;
 
-	public SuffixData() {
+	public PrefixData() {
 
 	}
 
-	public SuffixData(String affixname, List<Integer> percents) {
+	public PrefixData(String affixname, List<Integer> percents) {
 		super();
 		this.baseAffix = affixname;
 		this.percents = percents;
@@ -35,17 +35,16 @@ public class SuffixData extends AffixData implements Serializable {
 
 	@Override
 	public boolean IfRerollNumbers() {
-
 		return this.setRerollNumbers;
 	}
 
 	@Override
 	public void RerollFully(GearItemData gear) {
 
-		List<IWeighted> list = ListUtils.CollectionToList(Suffixes.All.values());
-		Suffix suffix = (Suffix) WeightedUtils.WeightedRandom(list);
+		List<IWeighted> list = ListUtils.CollectionToList(Prefixes.All.values());
+		Prefix prefix = (Prefix) WeightedUtils.WeightedRandom(list);
 
-		baseAffix = suffix.Name();
+		baseAffix = prefix.Name();
 
 		RerollNumbers(gear);
 
@@ -64,7 +63,7 @@ public class SuffixData extends AffixData implements Serializable {
 
 	@Override
 	public BaseAffix BaseAffix() {
-		return Suffixes.All.get(baseAffix);
+		return Prefixes.All.get(baseAffix);
 	}
 
 }

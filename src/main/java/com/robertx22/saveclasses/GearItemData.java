@@ -4,20 +4,28 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.database.lists.GearTypes;
+import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.IStatsContainer;
 
 public class GearItemData implements IStatsContainer, Serializable {
 
 	private static final long serialVersionUID = -8327205425334275976L;
 
+	public String gearTypeName;
 	public String name;
 	public int level;
 
-	public StatGroupData primaryStats;
-	public StatGroupData secondaryStats;
+	public PrimaryStatsData primaryStats;
+	public SecondaryStatsData secondaryStats;
 
-	public AffixData suffix;
-	public AffixData prefix;
+	public SuffixData suffix;
+	public PrefixData prefix;
+
+	public GearItemSlot GetBaseGearType() {
+
+		return GearTypes.All.get(gearTypeName);
+	}
 
 	@Override
 	public List<StatModData> GetAllStats() {
@@ -39,6 +47,16 @@ public class GearItemData implements IStatsContainer, Serializable {
 	}
 
 	public void ReRollPrefixNumbers() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void ReRollSuffixNumbers() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void ReRollSuffixFully() {
 		// TODO Auto-generated method stub
 
 	}
