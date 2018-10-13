@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.classes.MobRarity;
-import com.robertx22.database.rarities.general.Common;
-import com.robertx22.database.rarities.general.Epic;
-import com.robertx22.database.rarities.general.Legendary;
-import com.robertx22.database.rarities.general.Mythical;
-import com.robertx22.database.rarities.general.Rare;
-import com.robertx22.database.rarities.general.Uncommon;
+import com.robertx22.database.rarities.items.Common;
+import com.robertx22.database.rarities.items.Epic;
+import com.robertx22.database.rarities.items.Legendary;
+import com.robertx22.database.rarities.items.Mythical;
+import com.robertx22.database.rarities.items.Rare;
+import com.robertx22.database.rarities.items.Uncommon;
 import com.robertx22.database.rarities.mobs.Boss;
 import com.robertx22.database.rarities.mobs.Champion;
 import com.robertx22.database.rarities.mobs.Elite;

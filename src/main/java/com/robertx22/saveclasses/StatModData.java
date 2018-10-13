@@ -71,12 +71,16 @@ public class StatModData implements Serializable, ITooltipString {
 	public String NameText() {
 		StatMod mod = GetBaseMod();
 		Stat basestat = mod.GetBaseStat();
-		return basestat.Name() + ": ";
+		return TextFormatting.RED + "  * " + basestat.Name() + ": ";
 	}
 
 	public String NameAndValueText() {
 
-		return TextFormatting.RED + " *" + NameText() + this.GetActualVal(level);
+		int val = this.GetActualVal(level);
+
+		String minusplus = val > 0 ? "+" : "-";
+
+		return NameText() + minusplus + val;
 	}
 
 	@Override

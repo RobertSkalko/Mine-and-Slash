@@ -1,4 +1,4 @@
-package com.robertx22.database.rarities.general;
+package com.robertx22.database.rarities.items;
 
 import com.robertx22.classes.MinMax;
 import com.robertx22.gearitem.ItemRarity;

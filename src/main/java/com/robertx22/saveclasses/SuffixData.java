@@ -15,6 +15,8 @@ import com.robertx22.stats.StatMod;
 import com.robertx22.utilityclasses.ListUtils;
 import com.robertx22.utilityclasses.WeightedUtils;
 
+import net.minecraft.util.text.TextFormatting;
+
 public class SuffixData extends AffixData implements Serializable, ITooltipList {
 
 	private static final long serialVersionUID = 8802998468539898482L;
@@ -75,7 +77,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList 
 
 		List<String> list = new ArrayList<String>();
 
-		list.add("Suffix: " + affix.Name());
+		list.add(TextFormatting.LIGHT_PURPLE + "Suffix: " + affix.Name());
 
 		for (StatModData data : this.GetAllStats()) {
 

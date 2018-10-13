@@ -12,6 +12,7 @@ import com.robertx22.gearitem.ITooltip;
 import com.robertx22.gearitem.ITooltipList;
 import com.robertx22.gearitem.ItemRarity;
 
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 public class GearItemData implements IStatsContainer, Serializable, ITooltip {
@@ -36,6 +37,23 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	public ItemRarity GetRarity() {
 		return Rarities.Items.get(Rarity);
+	}
+
+	public String GetDisplayName() {
+
+		String text = GetRarity().Color();
+
+		if (prefix != null) {
+			text += prefix.BaseAffix().Name() + " ";
+		}
+		text += name;
+
+		if (suffix != null) {
+			text += suffix.BaseAffix().Name() + " ";
+		}
+
+		return text;
+
 	}
 
 	@Override
@@ -65,8 +83,8 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 		event.getToolTip().clear();
 
-		event.getToolTip().add(name);
-		event.getToolTip().add("Level: " + level);
+		event.getToolTip().add(GetDisplayName());
+		event.getToolTip().add(TextFormatting.YELLOW + "Level: " + level);
 
 		event.getToolTip().add("");
 

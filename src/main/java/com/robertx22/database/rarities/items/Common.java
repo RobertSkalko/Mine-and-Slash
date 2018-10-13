@@ -1,48 +1,52 @@
-package com.robertx22.database.rarities.general;
+package com.robertx22.database.rarities.items;
 
 import com.robertx22.classes.MinMax;
 import com.robertx22.gearitem.ItemRarity;
 
 import net.minecraft.util.text.TextFormatting;
 
-public class Legendary extends ItemRarity {
-	public Legendary() {
+public class Common extends ItemRarity {
+
+	private static Common common = new Common();
+
+	public Common() {
 	}
 
 	@Override
 	public String Name() {
 
-		return "Legendary";
+		return "Common";
 	}
 
 	@Override
 	public int Rank() {
 
-		return 4;
+		return 0;
 	}
 
 	@Override
 	public String Color() {
-		return TextFormatting.GOLD.toString();
+		return TextFormatting.GRAY.toString();
 	}
 
 	@Override
 	public int Weight() {
-		return 1000;
+		return 10000;
 	}
 
 	@Override
 	public int AffixChance() {
-		return 75;
+		return 5;
 	}
 
 	@Override
 	public MinMax SecondaryStatsAmount() {
-		return new MinMax(2, 4);
+		return new MinMax(0, 1);
 	}
 
 	@Override
 	public MinMax PrimaryStatsPercents() {
-		return new MinMax(15, 90);
+		return new MinMax(3, 60);
 	}
+
 }

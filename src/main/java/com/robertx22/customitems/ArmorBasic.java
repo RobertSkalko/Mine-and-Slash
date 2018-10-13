@@ -22,6 +22,17 @@ class ArmorBasic extends ItemArmor {
 
 	}
 
+	/*
+	 * @Override
+	 * 
+	 * @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, @Nullable
+	 * World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+	 * 
+	 * tooltip.clear(); // doesnt clear everything
+	 * 
+	 * }
+	 * 
+	 */
 	public ArmorBasic(ArmorMaterial mat, int renderIndexIn, EntityEquipmentSlot slot) {
 
 		super(mat, renderIndexIn, slot);
