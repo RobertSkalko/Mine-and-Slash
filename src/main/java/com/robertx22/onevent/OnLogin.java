@@ -1,10 +1,13 @@
 package com.robertx22.onevent;
 
 import com.robertx22.capability.EntityData;
+import com.robertx22.customitems.MyItems;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saving.Saving;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
@@ -31,19 +34,14 @@ public class OnLogin {
 			System.out.println("Welcome!");
 		}
 
-		/*
-		 *
-		 * NBTTagCompound nbt = GeneralUtils.getdefaultEntityNBT();
-		 * nbt.setBoolean(Tags.ENTITY_INFO, true);
-		 * 
-		 * player.addItemStackToInventory(GearCreator.createGear(1, 0, Tags.WEAPON));
-		 * player.addItemStackToInventory(new ItemStack(Blocks.ANVIL));
-		 * 
-		 * data.setNBT(nbt);
-		 * 
-		 * 
-		 * }
-		 */
+		GearItemData gear = new GearItemData();
+
+		ItemStack stack = new ItemStack(MyItems.epic_boots);
+
+		Saving.SaveToItem(stack, gear);
+
+		player.addItemStackToInventory(stack);
+
 	}
 
 }

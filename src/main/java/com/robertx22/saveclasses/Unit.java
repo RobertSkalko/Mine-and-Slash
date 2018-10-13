@@ -10,6 +10,7 @@ import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Health;
+import com.robertx22.enums.EntityTypes;
 import com.robertx22.saving.Saving;
 import com.robertx22.stats.Stat;
 
@@ -26,12 +27,24 @@ public class Unit implements Serializable {
 
 	}
 
-	public int Experience;
-	public int Level;
+	public static Unit Mob() {
+
+		Unit unit = new Unit();
+
+		unit.entityType = EntityTypes.Mob;
+
+		return unit;
+	}
+
+	public EntityTypes entityType = EntityTypes.Player;
+	public int rarity = 0;
+
+	public int experience = 0;
+	public int level = 0;
 
 	public int GetExpRequiredForLevelUp() {
 
-		return Level * 1000;
+		return level * 1000;
 
 	}
 
@@ -39,12 +52,12 @@ public class Unit implements Serializable {
 
 		EntityPlayer clientPlayer = Minecraft.getMinecraft().player;
 
-		float percentXPFilled = (float) Experience / (float) GetExpRequiredForLevelUp();
+		float percentXPFilled = (float) experience / (float) GetExpRequiredForLevelUp();
 
-		clientPlayer.experienceLevel = Level;
+		clientPlayer.experienceLevel = level;
 		clientPlayer.experience = percentXPFilled;
 
-		player.experienceLevel = Level;
+		player.experienceLevel = level;
 		player.experience = percentXPFilled;
 	}
 
@@ -79,7 +92,7 @@ public class Unit implements Serializable {
 			if (gear != null) {
 				gearitems.add(gear);
 
-				System.out.println("Gearitemfound" + gear.toString());
+				// System.out.println("Gearitemfound" + gear.toString());
 			}
 
 		}
@@ -123,7 +136,7 @@ public class Unit implements Serializable {
 
 	public void GiveExp(EntityPlayer player, int i) {
 
-		Experience += i;
+		experience += i;
 
 		CheckIfLevelUp();
 
@@ -131,15 +144,15 @@ public class Unit implements Serializable {
 
 	private void CheckIfLevelUp() {
 
-		if (Experience >= GetExpRequiredForLevelUp()) {
-			Experience = 0;
+		if (experience >= GetExpRequiredForLevelUp()) {
+			experience = 0;
 			LevelUp();
 		}
 
 	}
 
 	private void LevelUp() {
-		Level++;
+		level++;
 
 	}
 

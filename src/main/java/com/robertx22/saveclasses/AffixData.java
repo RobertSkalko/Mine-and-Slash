@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.database.lists.Affixes;
-import com.robertx22.enums.SuffixOrPrefix;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.IStatsContainer;
 import com.robertx22.stats.StatMod;
@@ -18,17 +17,15 @@ public class AffixData implements IStatsContainer, Serializable {
 
 	}
 
-	public AffixData(String affixname, List<Integer> percents, SuffixOrPrefix type) {
+	public AffixData(String affixname, List<Integer> percents) {
 		super();
 		Base = affixname;
 		Percents = percents;
-		// Type = type;
 	}
 
+	public boolean SetRerollNumbers = false;
+	public boolean SetRerollFully = false;
 	public List<Integer> Percents = new ArrayList<Integer>();
-
-	// public SuffixOrPrefix Type;
-
 	public String Base;
 
 	public BaseAffix BaseClass() {

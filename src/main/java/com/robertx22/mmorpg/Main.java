@@ -12,6 +12,7 @@ import com.robertx22.capability.EntityData.IData;
 import com.robertx22.capability.EntityData.Storage;
 import com.robertx22.commands.GiveGear;
 import com.robertx22.commands.GiveSocket;
+import com.robertx22.crafting.SuffixReroll;
 import com.robertx22.customitems.MyItems;
 import com.robertx22.customitems.NewItemCreator;
 import com.robertx22.onevent.OnLogin;
@@ -44,10 +45,12 @@ import baubles.common.CommonProxy;
 import baubles.common.Config;
 import baubles.common.event.CommandBaubles;
 import baubles.common.network.PacketHandler;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -58,8 +61,10 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, guiFactory = "baubles.client.gui.BaublesGuiFactory", dependencies = "required-after:forge@[14.21.0.2348,);")
 public class Main {
@@ -109,6 +114,7 @@ public class Main {
 
 		CapabilityManager.INSTANCE.register(IData.class, new Storage(), DefaultImpl.class);
 
+		MinecraftForge.EVENT_BUS.register(new Main());
 		MinecraftForge.EVENT_BUS.register(new EntityData());
 		MinecraftForge.EVENT_BUS.register(new EntityData.EventHandler());
 		MinecraftForge.EVENT_BUS.register(new OnMobDeathDrops());
@@ -156,6 +162,13 @@ public class Main {
 		Config.save();
 		// baubles
 
+	}
+
+	@SubscribeEvent
+	public void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+		IForgeRegistry<IRecipe> r = event.getRegistry();
+		r.register(new SuffixReroll());
+		System.out.println("Registering recipes");
 	}
 
 	@EventHandler

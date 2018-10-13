@@ -36,11 +36,11 @@ public class OnMobSpawn {
 
 		NBTTagCompound nbt = new NBTTagCompound();
 
-		Saving.Save(nbt, new Unit());
+		Saving.Save(nbt, Unit.Mob());
 
 		data.setNBT(nbt);
 
-		System.out.println("Saved unit to mob");
+		// System.out.println("Saved unit to mob");
 
 		/*
 		 * 

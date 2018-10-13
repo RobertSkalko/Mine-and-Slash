@@ -3,13 +3,24 @@ package com.robertx22.customitems;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.utilityclasses.Utils;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 class ArmorBasic extends ItemArmor {
 
 	private ItemArmor.ArmorMaterial mat;
 	private EntityEquipmentSlot slot;
+
+	// to reroll suffixes and other crafting stuff
+	@Override
+	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
+
+		System.out.println("Oncreated works!!!!!!!!!!!!!!!");
+
+	}
 
 	public ArmorBasic(ArmorMaterial mat, int renderIndexIn, EntityEquipmentSlot slot) {
 
