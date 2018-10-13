@@ -18,7 +18,7 @@ class ArmorBasic extends ItemArmor {
 	@Override
 	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
 
-		System.out.println("Oncreated works!!!!!!!!!!!!!!!");
+		// System.out.println("Oncreated works!!!!!!!!!!!!!!!");
 
 	}
 

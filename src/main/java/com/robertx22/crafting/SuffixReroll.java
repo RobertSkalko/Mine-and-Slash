@@ -1,6 +1,5 @@
 package com.robertx22.crafting;
 
-import com.robertx22.customitems.MyItems;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saving.Saving;
@@ -11,7 +10,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class SuffixReroll implements IRecipe {
+public class SuffixReroll implements IRecipe, IRecipeOutput {
 
 	public boolean AnyItemIsGearItem(InventoryCrafting inv) {
 
@@ -19,6 +18,8 @@ public class SuffixReroll implements IRecipe {
 			ItemStack stack = inv.getStackInSlot(i);
 
 			if (Saving.Load(stack.getTagCompound(), GearItemData.class) != null) {
+				gearitem = stack;
+				output = gearitem;
 				return true;
 			}
 
@@ -26,6 +27,8 @@ public class SuffixReroll implements IRecipe {
 
 		return false;
 	}
+
+	ItemStack gearitem = null;
 
 	@Override
 	public IRecipe setRegistryName(ResourceLocation name) {
@@ -49,16 +52,13 @@ public class SuffixReroll implements IRecipe {
 		return AnyItemIsGearItem(inv);
 	}
 
-	ItemStack output = new ItemStack(MyItems.epic_chestplate);
+	ItemStack output = null;
 
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv) {
 
-		if (AnyItemIsGearItem(inv)) {
-			return getRecipeOutput();
-		}
+		return GetFinalOutput();
 
-		return null;
 	}
 
 	@Override
@@ -68,6 +68,12 @@ public class SuffixReroll implements IRecipe {
 
 	@Override
 	public ItemStack getRecipeOutput() {
+
+		return GetFinalOutput();
+	}
+
+	@Override
+	public ItemStack OutputStack() {
 		return output;
 	}
 
