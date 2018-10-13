@@ -29,7 +29,7 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
 
 			StatMod mod = base.StatMods().get(i);
 
-			list.add(new StatModData(mod.GUID(), mod.Type(), percents.get(i)));
+			list.add(StatModData.Load(mod, percents.get(i)));
 		}
 
 		return list;

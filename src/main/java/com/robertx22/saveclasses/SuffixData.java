@@ -42,7 +42,7 @@ public class SuffixData extends AffixData implements Serializable {
 	@Override
 	public void RerollFully(GearItemData gear) {
 
-		List<IWeighted> list = ListUtils.CollectionToList(Suffixes.All.values());
+		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSuffixes());
 		Suffix suffix = (Suffix) WeightedUtils.WeightedRandom(list);
 
 		baseAffix = suffix.Name();

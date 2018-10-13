@@ -38,27 +38,15 @@ public class GearItemData implements IStatsContainer, Serializable {
 		if (prefix != null) {
 			datas.addAll(prefix.GetAllStats());
 		}
+
+		if (primaryStats != null) {
+			datas.addAll(primaryStats.GetAllStats());
+		}
+		if (secondaryStats != null) {
+			datas.addAll(secondaryStats.GetAllStats());
+		}
+
 		return datas;
-	}
-
-	public void ReRollPrefixFully() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void ReRollPrefixNumbers() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void ReRollSuffixNumbers() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void ReRollSuffixFully() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

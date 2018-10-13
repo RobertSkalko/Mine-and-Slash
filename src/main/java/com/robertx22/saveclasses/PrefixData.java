@@ -41,7 +41,7 @@ public class PrefixData extends AffixData implements Serializable {
 	@Override
 	public void RerollFully(GearItemData gear) {
 
-		List<IWeighted> list = ListUtils.CollectionToList(Prefixes.All.values());
+		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
 		Prefix prefix = (Prefix) WeightedUtils.WeightedRandom(list);
 
 		baseAffix = prefix.Name();

@@ -8,8 +8,8 @@ import com.robertx22.saveclasses.StatModData;
 
 public abstract class StatGroupData implements IStatsContainer, IRerollable {
 
-	public StatGroupData(List<StatModData> Mods) {
-		this.Mods = Mods;
+	public StatGroupData() {
+
 	}
 
 	public List<StatModData> Mods;
@@ -18,5 +18,8 @@ public abstract class StatGroupData implements IStatsContainer, IRerollable {
 	public List<StatModData> GetAllStats() {
 		return Mods;
 	}
+
+	public boolean setRerollNumbers = false;
+	public boolean setRerollFully = false;
 
 }
