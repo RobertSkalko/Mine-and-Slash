@@ -31,7 +31,7 @@ public class Common extends ItemRarity {
 
 	@Override
 	public int Weight() {
-		return 10000;
+		return 15000;
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 		text += name;
 
 		if (suffix != null) {
-			text += suffix.BaseAffix().Name() + " ";
+			text += " " + suffix.BaseAffix().Name() + " ";
 		}
 
 		return text;
@@ -103,6 +103,13 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 			}
 
 		}
+
+		// if (event.getToolTip().get(event.getToolTip().size() - 1).equals("")) {
+		// event.getToolTip().remove(event.getToolTip().size() - 1);
+		// }
+
+		ItemRarity rarity = GetRarity();
+		event.getToolTip().add(rarity.Color() + "Rarity: " + rarity.Name());
 
 	}
 

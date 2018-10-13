@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import com.robertx22.database.stats.types.Armor;
 import com.robertx22.database.stats.types.CriticalDamage;
@@ -37,6 +38,8 @@ public class Unit implements Serializable {
 		return unit;
 	}
 
+	public String GUID = UUID.randomUUID().toString();
+
 	public EntityTypes entityType = EntityTypes.Player;
 	public int rarity = 0;
 
@@ -47,6 +50,23 @@ public class Unit implements Serializable {
 
 		return level * 1000;
 
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (obj instanceof Unit) {
+			return ((Unit) obj).GUID == this.GUID;
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return GUID.hashCode();
 	}
 
 	public void updateClientExpGUI(EntityPlayer player) {

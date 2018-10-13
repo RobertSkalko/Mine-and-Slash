@@ -16,6 +16,7 @@ public class DamageEffect extends EffectData
 	private static String DmgSourceName = "Custom Damage";
 	public Elements Element;
 	public int ArmorPene;
+	public int ElementalPene;
 
 	@Override
 	public void Activate() {
@@ -50,6 +51,16 @@ public class DamageEffect extends EffectData
 	public void SetArmorPenetration(int val) {
 		this.ArmorPene = val;
 
+	}
+
+	@Override
+	public void SetElementalPenetration(int val) {
+		this.ElementalPene = val;
+	}
+
+	@Override
+	public int GetArmorPenetration() {
+		return this.ArmorPene;
 	}
 
 }

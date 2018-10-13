@@ -27,7 +27,7 @@ public class Uncommon extends ItemRarity {
 
 	@Override
 	public int Weight() {
-		return 7500;
+		return 10000;
 	}
 
 	@Override
