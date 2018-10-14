@@ -1,9 +1,19 @@
 package com.robertx22.database.stats.types.elementals.resist;
 
 import com.robertx22.enums.Elements;
-import com.robertx22.stats.Stat;
+import com.robertx22.stats.UsableStat;
 
-public class WaterResist extends Stat {
+public class WaterResist extends UsableStat {
+	@Override
+	public float MaximumPercent() {
+		return 0.75F;
+	}
+
+	@Override
+	public int AverageStat() {
+		return 35;
+	}
+
 	public WaterResist() {
 	}
 

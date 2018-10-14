@@ -12,13 +12,13 @@ public abstract class UsableStat extends Stat {
 	 */
 	public abstract int AverageStat();
 
-	public int GetUsableValue(int Level, int value) {
+	public float GetUsableValue(int Level, int value) {
 
 		int AvgStat = 50;
 
 		float number = value / (Level * AvgStat);
 
-		int finalval = (int) (MaximumPercent() * number / (number + 25));
+		float finalval = (MaximumPercent() * number / (number + 25));
 
 		System.out.println("from " + GetActualVal() + "to usable value " + finalval);
 

@@ -7,6 +7,7 @@ import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
+import com.robertx22.stats.UsableStat;
 
 public class ArmorEffect implements IStatEffect {
 
@@ -16,9 +17,9 @@ public class ArmorEffect implements IStatEffect {
 	}
 
 	@Override
-	public EffectData TryModifyEffect(EffectData Effect) {
+	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
-		if (Effect instanceof IArmorReducable) {
+		if (Effect instanceof IArmorReducable && Effect.GetTarget() == source) {
 
 			int pene = 0;
 
@@ -29,15 +30,17 @@ public class ArmorEffect implements IStatEffect {
 
 			Unit target = Effect.GetTarget();
 
-			Stat armor = target.Stats.get(Armor.class);
+			UsableStat armor = (UsableStat) target.Stats.get(Armor.class);
 
-			int EffectiveArmor = armor.GetUsableValue(target.level, armor.GetActualVal()) - pene;
+			float EffectiveArmor = armor.GetUsableValue(target.level, armor.GetActualVal() - pene);
 
 			if (EffectiveArmor < 0) {
 				EffectiveArmor = 0;
 			}
 
 			Effect.Number -= EffectiveArmor * Effect.Number;
+
+			System.out.println("Reducing dmg by armor: " + EffectiveArmor);
 
 		}
 

@@ -1,21 +1,20 @@
 package com.robertx22.database.stats.types;
 
 import com.robertx22.enums.Elements;
-import com.robertx22.stats.UsableStat;
+import com.robertx22.stats.Stat;
 
-public class Armor extends UsableStat {
-
-	public Armor() {
+public class ArmorPenetration extends Stat {
+	public ArmorPenetration() {
 	}
 
 	@Override
 	public String Name() {
-		return "Armor";
+		return "Armor Penetration";
 	}
 
 	@Override
 	public boolean ScalesToLevel() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -25,17 +24,7 @@ public class Armor extends UsableStat {
 
 	@Override
 	public boolean IsPercent() {
-		return true;
-	}
-
-	@Override
-	public float MaximumPercent() {
-		return 0.75F;
-	}
-
-	@Override
-	public int AverageStat() {
-		return 50;
+		return false;
 	}
 
 }
