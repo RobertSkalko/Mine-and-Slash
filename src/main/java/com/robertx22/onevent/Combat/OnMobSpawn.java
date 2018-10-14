@@ -36,7 +36,7 @@ public class OnMobSpawn {
 
 		NBTTagCompound nbt = new NBTTagCompound();
 
-		Saving.Save(nbt, Unit.Mob());
+		Saving.Save(nbt, Unit.Mob(mob));
 
 		data.setNBT(nbt);
 

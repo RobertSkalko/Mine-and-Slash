@@ -29,7 +29,7 @@ public class OnLogin {
 		EntityData.IData data = player.getCapability(EntityData.Data, null);
 
 		if (Saving.Load(data.getNBT(), Unit.class) == null) {
-			data.setNBT(Saving.Save(null, new Unit()));
+			data.setNBT(Saving.Save(null, new Unit(player)));
 			System.out.println("Welcome!");
 		}
 

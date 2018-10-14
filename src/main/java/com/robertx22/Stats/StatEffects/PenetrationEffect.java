@@ -19,7 +19,7 @@ public class PenetrationEffect implements IStatEffect {
 
 		if (Effect instanceof IPenetrable && Effect.GetSource() == source) {
 			IPenetrable ipene = (IPenetrable) Effect;
-			ipene.SetArmorPenetration(Effect.GetSource().Stats.get(ArmorPenetration.class).GetActualVal());
+			ipene.SetArmorPenetration((int) Effect.GetSource().Stats.get(ArmorPenetration.class).GetValue(source));
 		}
 
 		return Effect;

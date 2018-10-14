@@ -35,11 +35,11 @@ public class OnPlayerAttack {
 
 		EntityLivingBase player = (EntityLivingBase) event.getSource().getTrueSource();
 
-		Unit unit = new Unit();
+		Unit unit = new Unit(player);
 
-		unit.RecalculateStats(player);
+		unit.RecalculateStats();
 
-		System.out.println("player hp is :" + unit.Stats.get(Health.class).GetActualVal());
+		System.out.println("player hp is :" + unit.Stats.get(Health.class).GetValue(unit));
 
 		/*
 		 * 

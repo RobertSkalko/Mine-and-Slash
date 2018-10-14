@@ -25,13 +25,15 @@ public class Unit implements Serializable {
 
 	private static final long serialVersionUID = -6658683548383891230L;
 
-	public Unit() {
-
+	public Unit(EntityLivingBase en) {
+		this.entity = en;
 	}
 
-	public static Unit Mob() {
+	public EntityLivingBase entity;
 
-		Unit unit = new Unit();
+	public static Unit Mob(EntityLivingBase en) {
+
+		Unit unit = new Unit(en);
 
 		unit.entityType = EntityTypes.Mob;
 
@@ -96,7 +98,7 @@ public class Unit implements Serializable {
 
 	transient public boolean StatsDirty = true;
 
-	public List<GearItemData> GetEquips(EntityLivingBase entity) {
+	public List<GearItemData> GetEquips() {
 
 		List<ItemStack> list = new ArrayList<ItemStack>();
 
@@ -132,9 +134,9 @@ public class Unit implements Serializable {
 		}
 	}
 
-	private void AddAllGearStats(EntityLivingBase entity) {
+	private void AddAllGearStats() {
 
-		List<GearItemData> gears = GetEquips(entity);
+		List<GearItemData> gears = GetEquips();
 
 		for (GearItemData gear : gears) {
 
@@ -150,11 +152,11 @@ public class Unit implements Serializable {
 		}
 	}
 
-	public void RecalculateStats(EntityLivingBase entity) {
+	public void RecalculateStats() {
 
 		ClearStats();
 
-		AddAllGearStats(entity);
+		AddAllGearStats();
 
 		// StatsDirty = false;
 	}

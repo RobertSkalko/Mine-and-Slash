@@ -6,8 +6,6 @@ import com.robertx22.enums.Elements;
 import com.robertx22.enums.StatTypes;
 import com.robertx22.saveclasses.Unit;
 
-import net.minecraft.entity.EntityLivingBase;
-
 public abstract class Stat {
 
 	public int StatMinimum = 0;
@@ -41,9 +39,9 @@ public abstract class Stat {
 		}
 	}
 
-	public int GetActualVal() {
+	private int CalcVal() {
 
-		double finalValue = 0;
+		float finalValue = 0;
 
 		finalValue += Flat + StatMinimum;
 
@@ -51,16 +49,18 @@ public abstract class Stat {
 
 		finalValue *= 1 + Multi / 100;
 
+		this.Value = finalValue;
+
 		return (int) finalValue;
 
 	}
 
-	public Double Value = (double) 0;
+	public float Value;
 
-	public Double GetValue(Unit Source, EntityLivingBase entity) {
+	public float GetValue(Unit Source) {
 
 		if (Source.StatsDirty) {
-			Source.RecalculateStats(entity);
+			Source.RecalculateStats();
 		}
 
 		return Value;
