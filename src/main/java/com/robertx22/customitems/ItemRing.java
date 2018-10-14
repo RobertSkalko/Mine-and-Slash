@@ -1,36 +1,37 @@
 package com.robertx22.customitems;
 
+import com.robertx22.mmorpg.Ref;
+
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class ItemRing extends Item implements IBauble {
-	// @GameRegistry.ObjectHolder("baubles:ring")
-	public static final Item RING = new ItemRing();
+	@GameRegistry.ObjectHolder(Ref.MODID + ":ring")
+	public static final Item RING = null;
 
 	public ItemRing() {
 		super();
 		this.setMaxStackSize(1);
-		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		this.setCreativeTab(CreativeTabs.TOOLS);
 	}
@@ -38,13 +39,25 @@ public class ItemRing extends Item implements IBauble {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register((new ItemRing()).setUnlocalizedName("Ring").setRegistryName("ring"));
+
+		// ).setUnlocalizedName("Ring").setRegistryName("ring")
+
+		// System.out.println("registering ring " + new ItemRing().getRegistryName());
 	}
 
-	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
-		if (this.isInCreativeTab(tab)) {
-			list.add(new ItemStack(this, 1, 0));
-		}
+	@SubscribeEvent
+	public static void onModelRegistry(ModelRegistryEvent event) {
+		registerRender(RING);
+	}
+
+	private static void registerRender(Item item) {
+		ModelLoader.setCustomModelResourceLocation(item, 0,
+				new ModelResourceLocation(item.getRegistryName(), "inventory"));
+
+		ModelResourceLocation modelResourceLocation = new ModelResourceLocation(item.getRegistryName(), "inventory");
+
+		ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
+
 	}
 
 	@Override
@@ -68,23 +81,6 @@ public class ItemRing extends Item implements IBauble {
 				}
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-	}
-
-	@Override
-	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
-			player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, 0, true, true));
-		}
-	}
-
-	@Override
-	public boolean hasEffect(ItemStack par1ItemStack) {
-		return true;
-	}
-
-	@Override
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
-		return EnumRarity.RARE;
 	}
 
 	@Override

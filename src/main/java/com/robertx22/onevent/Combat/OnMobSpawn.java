@@ -7,14 +7,13 @@ import com.robertx22.saving.Saving;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OnMobSpawn {
 
 	@SubscribeEvent
-	public void onMobSpawn(LivingSpawnEvent.CheckSpawn event) {
+	public void onMobSpawn(LivingSpawnEvent.CheckSpawn event) throws Exception {
 
 		if (Minecraft.getMinecraft().player == null) {
 			return;
@@ -32,13 +31,7 @@ public class OnMobSpawn {
 
 		EntityLiving mob = (EntityLiving) event.getEntityLiving();
 
-		EntityData.IData data = mob.getCapability(EntityData.Data, null);
-
-		NBTTagCompound nbt = new NBTTagCompound();
-
-		Saving.Save(nbt, Unit.Mob(mob));
-
-		data.setNBT(nbt);
+		Saving.Save(mob, Unit.Mob(mob));
 
 		// System.out.println("Saved unit to mob");
 

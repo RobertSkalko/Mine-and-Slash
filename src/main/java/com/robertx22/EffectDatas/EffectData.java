@@ -29,7 +29,7 @@ public abstract class EffectData {
 
 	public abstract void Activate();
 
-	public EffectData TryApplyEffects() {
+	public EffectData TryApplyEffects() throws Exception {
 		EffectData Data = this;
 
 		List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();

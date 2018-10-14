@@ -64,7 +64,7 @@ public class Ring extends GearItemSlot {
 
 	@Override
 	public int Weight() {
-		return 1000;
+		return 100550;
 	}
 
 }

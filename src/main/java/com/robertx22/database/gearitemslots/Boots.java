@@ -64,7 +64,7 @@ public class Boots extends GearItemSlot {
 
 	@Override
 	public int Weight() {
-		return 1000;
+		return 1555000;
 	}
 
 }

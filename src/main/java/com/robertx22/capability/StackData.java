@@ -1,6 +1,5 @@
 package com.robertx22.capability;
 
-import com.robertx22.capability.StackData.DefaultImpl;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.entity.Entity;
@@ -22,7 +21,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
 @Mod.EventBusSubscriber
-public class EntityData {
+public class StackData {
 
 	@CapabilityInject(IData.class)
 	public static final Capability<IData> Data = null;
@@ -38,12 +37,12 @@ public class EntityData {
 	@Mod.EventBusSubscriber
 	public static class EventHandler {
 		@SubscribeEvent
-		public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
+		public static void onEntityConstruct(AttachCapabilitiesEvent<ItemStack> event) {
 
-			if (event.getObject() instanceof EntityPlayer || event.getObject() instanceof EntityMob || event.getObject() instanceof EntityLivingBase) {
+			if (event.getObject() instanceof ItemStack) {
 				
 			
-				event.addCapability(new ResourceLocation(Ref.MODID ,"EntityData"),
+				event.addCapability(new ResourceLocation(Ref.MODID ,"StackData"),
 						new ICapabilitySerializable<NBTTagCompound>() {
 							IData inst = new DefaultImpl();
 

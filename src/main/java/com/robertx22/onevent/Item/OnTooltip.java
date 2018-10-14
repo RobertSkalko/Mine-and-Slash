@@ -17,7 +17,7 @@ public class OnTooltip {
 	NBTTagCompound socketNBT;
 
 	@SubscribeEvent
-	public void onTooltip(ItemTooltipEvent event) {
+	public void onTooltip(ItemTooltipEvent event) throws Exception {
 
 		if (event.getEntityPlayer() != null && event.getEntityPlayer().world != null
 				&& !event.getEntityPlayer().world.isRemote) {
@@ -33,7 +33,7 @@ public class OnTooltip {
 			return;
 		}
 
-		GearItemData data = Saving.Load(item.getTagCompound(), GearItemData.class);
+		GearItemData data = Saving.Load(item, GearItemData.class);
 
 		if (data != null) {
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.robertx22.enums.Elements;
 import com.robertx22.enums.StatTypes;
+import com.robertx22.saveclasses.StatModData;
 import com.robertx22.saveclasses.Unit;
 
 public abstract class Stat {
@@ -28,18 +29,18 @@ public abstract class Stat {
 		Multi = 0;
 	}
 
-	public void Add(int num, StatTypes type) {
+	public void Add(StatModData mod) {
 
-		if (type == StatTypes.Flat) {
-			Flat += num;
-		} else if (type == StatTypes.Percent) {
-			Percent += num;
-		} else if (type == StatTypes.Multi) {
-			Multi += num;
+		if (mod.type == StatTypes.Flat) {
+			Flat += mod.GetActualVal();
+		} else if (mod.type == StatTypes.Percent) {
+			Percent += mod.GetActualVal();
+		} else if (mod.type == StatTypes.Multi) {
+			Multi += mod.GetActualVal();
 		}
 	}
 
-	private int CalcVal() {
+	public int CalcVal() {
 
 		float finalValue = 0;
 
@@ -65,6 +66,10 @@ public abstract class Stat {
 
 		return Value;
 
+	}
+
+	public int GetInt(Unit Source) {
+		return (int) GetValue(Source);
 	}
 
 	public ArrayList<IStatEffect> Effects;

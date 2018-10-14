@@ -37,14 +37,14 @@ public class SuffixReroll implements IRecipe, IRecipeOutput {
 
 		if (gear != null) {
 
-			GearItemData gearitem = Saving.Load(gear.getTagCompound(), GearItemData.class);
+			GearItemData gearitem = Saving.Load(gear, GearItemData.class);
 
 			if (gearitem.suffix != null) {
 				gearitem.suffix.setRerollFully = true;
 			} else {
 				return false;
 			}
-			Saving.SaveToItem(gear, gearitem);
+			Saving.Save(gear, gearitem);
 
 			this.output = gear;
 		}

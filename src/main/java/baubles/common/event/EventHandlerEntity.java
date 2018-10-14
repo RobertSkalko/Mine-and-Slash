@@ -39,26 +39,26 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class EventHandlerEntity {
 
-	private HashMap<UUID,ItemStack[]> baublesSync = new HashMap<UUID,ItemStack[]>();
+	private HashMap<UUID, ItemStack[]> baublesSync = new HashMap<UUID, ItemStack[]>();
 
 	@SubscribeEvent
-	public void cloneCapabilitiesEvent(PlayerEvent.Clone event)
-	{
+	public void cloneCapabilitiesEvent(PlayerEvent.Clone event) {
 		try {
 			BaublesContainer bco = (BaublesContainer) BaublesApi.getBaublesHandler(event.getOriginal());
 			NBTTagCompound nbt = bco.serializeNBT();
 			BaublesContainer bcn = (BaublesContainer) BaublesApi.getBaublesHandler(event.getEntityPlayer());
 			bcn.deserializeNBT(nbt);
 		} catch (Exception e) {
-			Main.log.error("Could not clone player ["+event.getOriginal().getName()+"] baubles when changing dimensions");
+			Main.log.error(
+					"Could not clone player [" + event.getOriginal().getName() + "] baubles when changing dimensions");
 		}
-		
+
 	}
 
 	@SubscribeEvent
 	public void attachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
 		if (event.getObject() instanceof EntityPlayer) {
-			event.addCapability(new ResourceLocation(Ref.MODID,"container"),
+			event.addCapability(new ResourceLocation(Ref.MODID, "container"),
 					new BaublesContainerProvider(new BaublesContainer()));
 		}
 	}
@@ -81,8 +81,7 @@ public class EventHandlerEntity {
 	}
 
 	@SubscribeEvent
-	public void onPlayerLoggedOut(PlayerLoggedOutEvent event)
-	{
+	public void onPlayerLoggedOut(PlayerLoggedOutEvent event) {
 		baublesSync.remove(event.player.getUniqueID());
 	}
 
@@ -122,13 +121,15 @@ public class EventHandlerEntity {
 		for (int i = 0; i < baubles.getSlots(); i++) {
 			ItemStack stack = baubles.getStackInSlot(i);
 			IBauble bauble = stack.getCapability(BaublesCapabilities.CAPABILITY_ITEM_BAUBLE, null);
-			if (baubles.isChanged(i) || bauble != null && bauble.willAutoSync(stack, player) && !ItemStack.areItemStacksEqual(stack, items[i])) {
+			if (baubles.isChanged(i) || bauble != null && bauble.willAutoSync(stack, player)
+					&& !ItemStack.areItemStacksEqual(stack, items[i])) {
 				if (receivers == null) {
-					receivers = new HashSet<>(((WorldServer) player.world).getEntityTracker().getTrackingPlayers(player));
+					receivers = new HashSet<>(
+							((WorldServer) player.world).getEntityTracker().getTrackingPlayers(player));
 					receivers.add(player);
 				}
 				syncSlot(player, i, stack, receivers);
-				baubles.setChanged(i,false);
+				baubles.setChanged(i, false);
 				items[i] = stack == null ? ItemStack.EMPTY : stack.copy();
 			}
 		}
@@ -141,7 +142,8 @@ public class EventHandlerEntity {
 		}
 	}
 
-	private void syncSlot(EntityPlayer player, int slot, ItemStack stack, Collection<? extends EntityPlayer> receivers) {
+	private void syncSlot(EntityPlayer player, int slot, ItemStack stack,
+			Collection<? extends EntityPlayer> receivers) {
 		PacketSync pkt = new PacketSync(player, slot, stack);
 		for (EntityPlayer receiver : receivers) {
 			PacketHandler.INSTANCE.sendTo(pkt, (EntityPlayerMP) receiver);
@@ -150,19 +152,20 @@ public class EventHandlerEntity {
 
 	@SubscribeEvent
 	public void playerDeath(PlayerDropsEvent event) {
-		if (event.getEntity() instanceof EntityPlayer
-				&& !event.getEntity().world.isRemote
-				&& !event.getEntity().world.getGameRules().getBoolean("keepInventory")) {
-			dropItemsAt(event.getEntityPlayer(),event.getDrops(),event.getEntityPlayer());
-		}
+		/*
+		 * if (event.getEntity() instanceof EntityPlayer &&
+		 * !event.getEntity().world.isRemote &&
+		 * !event.getEntity().world.getGameRules().getBoolean("keepInventory")) {
+		 * dropItemsAt(event.getEntityPlayer(),event.getDrops(),event.getEntityPlayer())
+		 * ; }
+		 */
 	}
 
 	public void dropItemsAt(EntityPlayer player, List<EntityItem> drops, Entity e) {
 		IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
 		for (int i = 0; i < baubles.getSlots(); ++i) {
 			if (baubles.getStackInSlot(i) != null && !baubles.getStackInSlot(i).isEmpty()) {
-				EntityItem ei = new EntityItem(e.world,
-						e.posX, e.posY + e.getEyeHeight(), e.posZ,
+				EntityItem ei = new EntityItem(e.world, e.posX, e.posY + e.getEyeHeight(), e.posZ,
 						baubles.getStackInSlot(i).copy());
 				ei.setPickupDelay(40);
 				float f1 = e.world.rand.nextFloat() * 0.5F;

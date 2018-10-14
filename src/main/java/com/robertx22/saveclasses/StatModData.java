@@ -52,7 +52,7 @@ public class StatModData implements Serializable, ITooltipString {
 		return StatMods.All.get(baseModName);
 	}
 
-	public int GetActualVal(int Level) {
+	public int GetActualVal() {
 
 		StatMod mod = GetBaseMod();
 
@@ -61,7 +61,7 @@ public class StatModData implements Serializable, ITooltipString {
 		int val = mod.GetValueByPercent(percent);
 
 		if (stat.ScalesToLevel()) {
-			val *= Level;
+			val *= level;
 		}
 
 		return val;
@@ -76,7 +76,7 @@ public class StatModData implements Serializable, ITooltipString {
 
 	public String NameAndValueText() {
 
-		int val = this.GetActualVal(level);
+		int val = this.GetActualVal();
 
 		String minusplus = val > 0 ? "+" : "";
 

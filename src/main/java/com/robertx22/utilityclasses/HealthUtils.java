@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 
 public class HealthUtils {
 
-	public static float DamageToMinecraftHealth(int dmg, EntityLivingBase entity) {
+	public static float DamageToMinecraftHealth(int dmg, EntityLivingBase entity) throws Exception {
 
 		Unit unit = Saving.Load(entity, Unit.class);
 

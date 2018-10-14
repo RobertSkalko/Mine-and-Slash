@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import com.robertx22.database.stats.types.Armor;
 import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
@@ -16,6 +18,8 @@ import com.robertx22.enums.EntityTypes;
 import com.robertx22.saving.Saving;
 import com.robertx22.stats.Stat;
 
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +33,7 @@ public class Unit implements Serializable {
 		this.entity = en;
 	}
 
-	public EntityLivingBase entity;
+	transient public EntityLivingBase entity;
 
 	public static Unit Mob(EntityLivingBase en) {
 
@@ -39,6 +43,8 @@ public class Unit implements Serializable {
 
 		return unit;
 	}
+
+	public HashMap<String, StatModData> BaseStats = new HashMap<String, StatModData>();
 
 	public String GUID = UUID.randomUUID().toString();
 
@@ -102,18 +108,28 @@ public class Unit implements Serializable {
 
 		List<ItemStack> list = new ArrayList<ItemStack>();
 
-		for (ItemStack stack : entity.getHeldEquipment()) {
+		for (ItemStack stack : entity.getArmorInventoryList()) {
 			if (stack != null) {
 				list.add(stack);
 			}
 		}
 		list.add(entity.getHeldItemMainhand());
 
+		IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer) entity);
+
+		for (int i = 0; i < baubles.getSlots(); i++) {
+			ItemStack stack = baubles.getStackInSlot(i);
+			if (stack != null) {
+				list.add(stack);
+			}
+
+		}
+
 		List<GearItemData> gearitems = new ArrayList<GearItemData>();
 
 		for (ItemStack stack : list) {
 
-			GearItemData gear = Saving.Load(stack.getTagCompound(), GearItemData.class);
+			GearItemData gear = Saving.Load(stack, GearItemData.class);
 
 			if (gear != null) {
 				gearitems.add(gear);
@@ -144,9 +160,7 @@ public class Unit implements Serializable {
 
 			for (StatModData data : datas) {
 
-				int val = data.GetActualVal(gear.level);
-
-				Stats.get(data.GetBaseMod().GetBaseStat().getClass()).Add(val, data.type);
+				Stats.get(data.GetBaseMod().GetBaseStat().getClass()).Add(data);
 
 			}
 		}
@@ -154,11 +168,40 @@ public class Unit implements Serializable {
 
 	public void RecalculateStats() {
 
+		StopWatch watch = new StopWatch();
+		watch.start();
+
 		ClearStats();
 
-		AddAllGearStats();
+		if (entity instanceof EntityPlayer) {
+			AddAllGearStats();
+		}
+
+		AddAllBaseStats();
+
+		CalcStats();
+
+		System.out.println(Stats.values().toString());
+
+		watch.stop();
+		System.out.println("Recalc stats takes " + watch.getTime());
 
 		// StatsDirty = false;
+	}
+
+	private void AddAllBaseStats() {
+
+		for (java.util.Map.Entry<String, StatModData> entry : BaseStats.entrySet()) {
+
+			this.Stats.get(entry.getValue().GetBaseMod().GetBaseStat()).Add(entry.getValue());
+
+		}
+
+	}
+
+	private void CalcStats() {
+
+		Stats.values().forEach((Stat stat) -> stat.CalcVal());
 	}
 
 	public void GiveExp(EntityPlayer player, int i) {

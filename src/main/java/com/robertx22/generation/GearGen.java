@@ -47,7 +47,7 @@ public class GearGen {
 
 		}
 
-		Saving.SaveToItem(stack, data);
+		Saving.Save(stack, data);
 
 		stack.setStackDisplayName(data.GetDisplayName());
 

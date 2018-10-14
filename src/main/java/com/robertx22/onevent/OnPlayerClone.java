@@ -26,7 +26,7 @@ public class OnPlayerClone {
 
 			data.setNBT(oldData.getNBT());
 
-			Unit unit = Saving.Load(data.getNBT(), Unit.class);
+			Unit unit = Saving.Load(player, Unit.class);
 
 			unit.updateClientExpGUI(player);
 

@@ -15,7 +15,6 @@ public class ItemGenRarityTest {
 
 	int amount = 1000;
 
-	// @Test
 	public void GenManyItems() {
 
 		StopWatch watch = new StopWatch();
@@ -27,7 +26,7 @@ public class ItemGenRarityTest {
 
 		for (int i = 0; i < amount; i++) {
 
-			GearItemData data = Saving.Load(GearGen.Create(schema).getTagCompound(), GearItemData.class);
+			GearItemData data = Saving.Load(GearGen.Create(schema), GearItemData.class);
 
 			if (RarityandNumber.containsKey(data.Rarity)) {
 				RarityandNumber.put(data.Rarity, RarityandNumber.get(data.Rarity) + 1);
