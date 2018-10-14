@@ -28,7 +28,7 @@ public class GearGen {
 
 		ItemRarity rarity = RarityGen.Random(0);
 
-		System.out.println("rarity:" + rarity.Rank());
+		// System.out.println("rarity:" + rarity.Rank());
 
 		ItemStack stack = gearslot.GetItemForRarity(rarity.Rank());
 		GearItemData data = new GearItemData();
