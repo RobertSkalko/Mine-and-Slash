@@ -55,7 +55,7 @@ public class Saving {
 		if (str == null)
 			return null;
 
-		System.out.println(str);
+		// System.out.println(str);
 
 		Object object = gson.fromJson(str, type);
 

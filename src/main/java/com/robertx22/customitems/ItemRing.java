@@ -1,6 +1,4 @@
-package baubles.common.items;
-
-import com.robertx22.mmorpg.Ref;
+package com.robertx22.customitems;
 
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
@@ -23,16 +21,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-public class ItemRing extends Item implements IBauble
-{
-	@GameRegistry.ObjectHolder(Ref.MODID + ":ring")
-	public static final Item RING = null;
+public class ItemRing extends Item implements IBauble {
+	// @GameRegistry.ObjectHolder("baubles:ring")
+	public static final Item RING = new ItemRing();
 
-	public ItemRing()
-	{
+	public ItemRing() {
 		super();
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
@@ -59,12 +54,13 @@ public class ItemRing extends Item implements IBauble
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if(!world.isRemote) { 
+		if (!world.isRemote) {
 			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-			for(int i = 0; i < baubles.getSlots(); i++) 
-				if((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty()) && baubles.isItemValidForSlot(i, player.getHeldItem(hand), player)) {
+			for (int i = 0; i < baubles.getSlots(); i++)
+				if ((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty())
+						&& baubles.isItemValidForSlot(i, player.getHeldItem(hand), player)) {
 					baubles.setStackInSlot(i, player.getHeldItem(hand).copy());
-					if(!player.capabilities.isCreativeMode){
+					if (!player.capabilities.isCreativeMode) {
 						player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
 					}
 					onEquipped(player.getHeldItem(hand), player);
@@ -76,8 +72,8 @@ public class ItemRing extends Item implements IBauble
 
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-		if (itemstack.getItemDamage()==0 && player.ticksExisted%39==0) {
-			player.addPotionEffect(new PotionEffect(MobEffects.HASTE,40,0,true,true));
+		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
+			player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, 0, true, true));
 		}
 	}
 
@@ -92,8 +88,7 @@ public class ItemRing extends Item implements IBauble
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack)
-	{
+	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		return super.getUnlocalizedName() + "." + par1ItemStack.getItemDamage();
 	}
 

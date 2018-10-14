@@ -1,6 +1,7 @@
 package com.robertx22.effectdatas;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import com.robertx22.saveclasses.Unit;
@@ -36,14 +37,10 @@ public abstract class EffectData {
 		Effects = AddEffects(Effects, GetTarget());
 		Effects = AddEffects(Effects, GetSource());
 
-		List<EffectUnitStat> sorted = SortList(Effects);
+		Effects.sort((Comparator<EffectUnitStat>) new EffectUnitStat());
 
-		for (EffectUnitStat item : sorted) {
-
-			for (IStatEffect stateffect : item.effects.GetEffects()) {
-				stateffect.TryModifyEffect(Data, item.source, item.stat);
-			}
-
+		for (EffectUnitStat item : Effects) {
+			item.effect.TryModifyEffect(Data, item.source, item.stat);
 		}
 
 		return Data;
@@ -53,29 +50,15 @@ public abstract class EffectData {
 		if (unit != null) {
 			for (Stat stat : unit.Stats.values()) {
 				if (stat instanceof IStatEffects) {
-					effects.add(new EffectUnitStat((IStatEffects) stat, unit, stat));
+					for (IStatEffect effect : ((IStatEffects) stat).GetEffects()) {
+						effects.add(new EffectUnitStat(effect, unit, stat));
+					}
+
 				}
 
 			}
 		}
 		return effects;
-	}
-
-	private static List<EffectUnitStat> SortList(List<EffectUnitStat> effects) {
-		List<EffectUnitStat> sorted = new ArrayList<EffectUnitStat>();
-
-		while (effects.size() != sorted.size()) {
-			for (int i = 0; i < 100; i++) {
-				for (int x = 0; x < effects.size(); x++) {
-					for (IStatEffect effect : effects.get(x).effects.GetEffects()) {
-						if ((int) effect.GetPriority() == i) {
-							sorted.add(effects.get(x));
-						}
-					}
-				}
-			}
-		}
-		return sorted;
 	}
 
 }

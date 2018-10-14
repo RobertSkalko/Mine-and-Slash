@@ -37,7 +37,6 @@ minecraft {
 dependencies {
 
 	compile 'com.google.code.gson:gson:2.8.5'
-	compile 'org.reflections'
 	
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..

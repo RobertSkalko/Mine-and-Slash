@@ -1,5 +1,6 @@
 package com.robertx22.database.gearitemslots;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import com.robertx22.gearitem.Suffix;
 import com.robertx22.stats.StatMod;
 
 import net.minecraft.item.Item;
-import scala.actors.threadpool.Arrays;
 
 public class Pants extends GearItemSlot {
 

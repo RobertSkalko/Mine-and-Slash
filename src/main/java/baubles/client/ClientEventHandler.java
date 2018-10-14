@@ -1,9 +1,10 @@
 package baubles.client;
 
+import com.robertx22.customitems.ItemRing;
+
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import baubles.api.cap.BaublesCapabilities;
-import baubles.common.items.ItemRing;
 import baubles.common.network.PacketHandler;
 import baubles.common.network.PacketOpenBaublesInventory;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

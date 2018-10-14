@@ -13,6 +13,7 @@ import com.robertx22.capability.EntityData.Storage;
 import com.robertx22.commands.GiveGear;
 import com.robertx22.commands.GiveSocket;
 import com.robertx22.crafting.SuffixReroll;
+import com.robertx22.customitems.ItemRing;
 import com.robertx22.customitems.MyItems;
 import com.robertx22.customitems.NewItemCreator;
 import com.robertx22.onevent.OnLogin;
@@ -113,6 +114,8 @@ public class Main {
 		modMeta.description = Ref.DESC;
 
 		CapabilityManager.INSTANCE.register(IData.class, new Storage(), DefaultImpl.class);
+
+		MinecraftForge.EVENT_BUS.register(new ItemRing());
 
 		MinecraftForge.EVENT_BUS.register(new Main());
 		MinecraftForge.EVENT_BUS.register(new EntityData());

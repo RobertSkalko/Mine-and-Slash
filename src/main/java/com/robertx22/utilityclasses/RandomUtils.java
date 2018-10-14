@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomUtils {
 
-	static Random ran = new Random();
+	private static Random ran = new Random();
 
 	public static int RandomRange(int min, int max) {
 
