@@ -25,10 +25,11 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList 
 
 	}
 
-	public SuffixData(String affixname, List<Integer> percents) {
+	public SuffixData(GearItemData gear, String affixname, List<Integer> percents) {
 		super();
 		this.baseAffix = affixname;
 		this.percents = percents;
+		this.level = gear.level;
 	}
 
 	@Override
@@ -44,6 +45,8 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList 
 
 	@Override
 	public void RerollFully(GearItemData gear) {
+
+		this.level = gear.level;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSuffixes());
 		Suffix suffix = (Suffix) WeightedUtils.WeightedRandom(list);

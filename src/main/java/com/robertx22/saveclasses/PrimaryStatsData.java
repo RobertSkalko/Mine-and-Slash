@@ -30,6 +30,8 @@ public class PrimaryStatsData extends StatGroupData implements Serializable, ITo
 	@Override
 	public void RerollFully(GearItemData gear) {
 
+		this.level = gear.level;
+
 		this.Mods = new ArrayList<StatModData>();
 
 		for (StatMod mod : gear.GetBaseGearType().PrimaryStats()) {

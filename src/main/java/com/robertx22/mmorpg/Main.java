@@ -34,7 +34,7 @@ import com.robertx22.onevent.loot.OnMobDeathGetExp;
 import com.robertx22.onevent.ontick.OnTickRegen;
 import com.robertx22.onevent.ontick.OnTickRenderItemNames;
 import com.robertx22.oregen.OreGen;
-import com.robertx22.testing.ItemGenRarityTest;
+import com.robertx22.testing.TestManager;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
@@ -194,7 +194,7 @@ public class Main {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 
-		new ItemGenRarityTest().GenManyItems();
+		TestManager.RunAllTests();
 	}
 
 }

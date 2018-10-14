@@ -34,6 +34,8 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 	@Override
 	public void RerollFully(GearItemData gear) {
 
+		this.level = gear.level;
+
 		this.Mods = new ArrayList<StatModData>();
 
 		int Stats = RandomUtils.RandomRange(1, 3);
@@ -41,19 +43,14 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 		List<IWeighted> possibleStats = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSecondaryStats());
 
 		while (Stats > 0) {
-
 			StatMod mod = (StatMod) WeightedUtils.WeightedRandom(possibleStats);
-
 			this.Mods.add(StatModData.NewRandom(mod, level));
-
 			Stats--;
 
 		}
 
 		for (StatMod mod : gear.GetBaseGearType().PossibleSecondaryStats()) {
-
 			StatModData moddata = StatModData.NewRandom(mod, level);
-
 			this.Mods.add(moddata);
 
 		}

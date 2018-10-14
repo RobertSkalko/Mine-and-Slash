@@ -25,10 +25,11 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList 
 
 	}
 
-	public PrefixData(String affixname, List<Integer> percents) {
+	public PrefixData(GearItemData gear, String affixname, List<Integer> percents) {
 		super();
 		this.baseAffix = affixname;
 		this.percents = percents;
+		this.level = gear.level;
 	}
 
 	@Override
@@ -43,6 +44,8 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList 
 
 	@Override
 	public void RerollFully(GearItemData gear) {
+
+		this.level = gear.level;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
 		Prefix prefix = (Prefix) WeightedUtils.WeightedRandom(list);

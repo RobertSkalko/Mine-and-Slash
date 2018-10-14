@@ -78,7 +78,7 @@ public class StatModData implements Serializable, ITooltipString {
 
 		int val = this.GetActualVal(level);
 
-		String minusplus = val > 0 ? "+" : "-";
+		String minusplus = val > 0 ? "+" : "";
 
 		return NameText() + minusplus + val;
 	}

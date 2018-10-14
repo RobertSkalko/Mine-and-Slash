@@ -2,6 +2,7 @@ package com.robertx22.onevent;
 
 import com.robertx22.capability.EntityData;
 import com.robertx22.generation.GearGen;
+import com.robertx22.generation.GearGenSchema;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saving.Saving;
 
@@ -33,7 +34,7 @@ public class OnLogin {
 		}
 
 		for (int i = 0; i < 20; i++) {
-			player.addItemStackToInventory(GearGen.Random());
+			player.addItemStackToInventory(GearGen.Create(new GearGenSchema(1)));
 		}
 
 	}

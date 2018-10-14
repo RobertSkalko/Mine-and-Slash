@@ -1,21 +1,21 @@
-package com.robertx22.testing;
+package com.robertx22.testing.tests;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang3.time.StopWatch;
-import org.junit.jupiter.api.Test;
 
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.generation.GearGen;
+import com.robertx22.generation.GearGenSchema;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saving.Saving;
 
 public class ItemGenRarityTest {
 
-	int amount = 10000;
+	int amount = 1000;
 
-	@Test
+	// @Test
 	public void GenManyItems() {
 
 		StopWatch watch = new StopWatch();
@@ -23,9 +23,11 @@ public class ItemGenRarityTest {
 
 		HashMap<Integer, Integer> RarityandNumber = new HashMap<Integer, Integer>();
 
+		GearGenSchema schema = new GearGenSchema(1);
+
 		for (int i = 0; i < amount; i++) {
 
-			GearItemData data = Saving.Load(GearGen.Random().getTagCompound(), GearItemData.class);
+			GearItemData data = Saving.Load(GearGen.Create(schema).getTagCompound(), GearItemData.class);
 
 			if (RarityandNumber.containsKey(data.Rarity)) {
 				RarityandNumber.put(data.Rarity, RarityandNumber.get(data.Rarity) + 1);
@@ -38,8 +40,9 @@ public class ItemGenRarityTest {
 		watch.stop();
 
 		for (Entry<Integer, Integer> entry : RarityandNumber.entrySet()) {
+			float percent = (float) entry.getValue() / (float) amount * 100;
 			System.out.println("Rarity: " + Rarities.Items.get(entry.getKey()).Name() + " has this many items: "
-					+ entry.getValue());
+					+ entry.getValue() + " , percent of total: " + Float.toString(percent));
 		}
 		System.out.println("It took " + watch.getTime() + " miliseconds for " + amount
 				+ " items to generate, in other words it took this many miliseconds for one item: "
