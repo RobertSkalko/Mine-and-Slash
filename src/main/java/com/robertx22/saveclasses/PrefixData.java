@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.crafting.IRerollable;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.ITooltipList;
@@ -17,7 +18,7 @@ import com.robertx22.utilityclasses.WeightedUtils;
 
 import net.minecraft.util.text.TextFormatting;
 
-public class PrefixData extends AffixData implements Serializable, ITooltipList {
+public class PrefixData extends AffixData implements Serializable, ITooltipList, IRerollable {
 
 	private static final long serialVersionUID = -110285627065158395L;
 
@@ -46,6 +47,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList 
 	public void RerollFully(GearItemData gear) {
 
 		this.level = gear.level;
+		this.setRerollFully = false;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
 		Prefix prefix = (Prefix) WeightedUtils.WeightedRandom(list);
@@ -59,6 +61,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList 
 	@Override
 	public void RerollNumbers(GearItemData gear) {
 
+		this.setRerollNumbers = false;
 		percents = new ArrayList<Integer>();
 
 		for (StatMod mod : BaseAffix().StatMods()) {

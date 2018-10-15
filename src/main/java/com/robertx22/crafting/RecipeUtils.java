@@ -13,7 +13,8 @@ public class RecipeUtils {
 		for (int i = 0; i < inv.getSizeInventory(); i++) {
 			ItemStack stack = inv.getStackInSlot(i);
 
-			if (Saving.Load(stack, GearItemData.class) != null) {
+			GearItemData data = Saving.Load(stack, GearItemData.class);
+			if (data != null) {
 				return stack;
 			}
 

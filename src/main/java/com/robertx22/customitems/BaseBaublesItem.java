@@ -1,8 +1,6 @@
 package com.robertx22.customitems;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saving.Saving;
 import com.robertx22.utilityclasses.ModelUtils;
 
 import baubles.api.BaubleType;
@@ -26,47 +24,24 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
-public class ItemRing extends Item implements IBauble {
-	@GameRegistry.ObjectHolder(Ref.MODID + ":ring")
-	public static final Item RING = null;
+public abstract class BaseBaublesItem  extends Item implements IBauble {
+	
+	//@GameRegistry.ObjectHolder(Ref.MODID + ":"  + test)
+	//public static final Item RING = null;
 
-	public ItemRing() {
-		// super();
+	public abstract String Name();	
+	public abstract Item GetCommon();
+	
+	
+	
+	public BaseBaublesItem() {
 		this.setMaxStackSize(1);
 		this.setMaxDamage(0);
 		this.setCreativeTab(CreativeTabs.TOOLS);
-
+		this.setUnlocalizedName(Name());
+		this.setRegistryName(Name().toLowerCase());
 	}
 
-	@Override
-	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-
-		if (!worldIn.isRemote) {
-			System.out.println("oncreated");
-			GearItemData data = Saving.Load(stack, GearItemData.class);
-			if (data != null) {
-				System.out.println("data isnt null");
-
-				data.TryRerollComponents();
-				Saving.Save(stack, data);
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register((new ItemRing()).setUnlocalizedName("Ring").setRegistryName("ring"));
-	}
-
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		ModelUtils.registerRender(RING);
-	}
-
-	@Override
-	public BaubleType getBaubleType(ItemStack itemstack) {
-		return BaubleType.RING;
-	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
@@ -86,11 +61,7 @@ public class ItemRing extends Item implements IBauble {
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
 
-	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
-		return super.getUnlocalizedName() + "." + par1ItemStack.getItemDamage();
-	}
-
+	
 	@Override
 	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
 		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 1.9f);
@@ -100,4 +71,5 @@ public class ItemRing extends Item implements IBauble {
 	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
 		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 2f);
 	}
+
 }

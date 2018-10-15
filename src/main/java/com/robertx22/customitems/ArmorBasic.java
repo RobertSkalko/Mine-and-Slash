@@ -1,6 +1,8 @@
 package com.robertx22.customitems;
 
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saving.Saving;
 import com.robertx22.utilityclasses.Utils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,11 +16,17 @@ class ArmorBasic extends ItemArmor {
 	private ItemArmor.ArmorMaterial mat;
 	private EntityEquipmentSlot slot;
 
-	// to reroll suffixes and other crafting stuff
 	@Override
 	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
 
-		// System.out.println("Oncreated works!!!!!!!!!!!!!!!");
+		System.out.println("oncreated");
+		GearItemData data = Saving.Load(stack, GearItemData.class);
+		if (data != null) {
+			System.out.println("data isnt null");
+
+			data.TryRerollComponents();
+			Saving.Save(stack, data);
+		}
 
 	}
 

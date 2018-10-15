@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.crafting.IRerollable;
 import com.robertx22.database.lists.GearTypes;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.gearitem.GearItemSlot;
@@ -110,6 +111,36 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 		ItemRarity rarity = GetRarity();
 		event.getToolTip().add(rarity.Color() + "Rarity: " + rarity.Name());
+
+	}
+
+	private List<IRerollable> GetAllRerollable() {
+		List<IRerollable> list = new ArrayList<IRerollable>();
+		IfNotNullAdd(secondaryStats, list);
+		IfNotNullAdd(primaryStats, list);
+		IfNotNullAdd(prefix, list);
+		IfNotNullAdd(suffix, list);
+		return list;
+	}
+
+	private <T> void IfNotNullAdd(T obj, List<T> list) {
+		if (obj != null) {
+			list.add(obj);
+		}
+	}
+
+	public void TryRerollComponents() {
+
+		System.out.println("Rerolling comps");
+
+		for (IRerollable rerollable : GetAllRerollable()) {
+			if (rerollable.IfRerollFully()) {
+				rerollable.RerollFully(this);
+			}
+			if (rerollable.IfRerollNumbers()) {
+				rerollable.RerollNumbers(this);
+			}
+		}
 
 	}
 

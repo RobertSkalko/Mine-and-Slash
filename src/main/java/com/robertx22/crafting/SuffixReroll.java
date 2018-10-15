@@ -41,6 +41,7 @@ public class SuffixReroll implements IRecipe, IRecipeOutput {
 
 			if (gearitem.suffix != null) {
 				gearitem.suffix.setRerollFully = true;
+				System.out.println("set reroll ");
 			} else {
 				return false;
 			}

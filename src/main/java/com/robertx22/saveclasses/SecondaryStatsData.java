@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.crafting.IRerollable;
 import com.robertx22.gearitem.ITooltipList;
 import com.robertx22.generation.StatGen;
 import com.robertx22.interfaces.IWeighted;
@@ -13,7 +14,7 @@ import com.robertx22.utilityclasses.ListUtils;
 import com.robertx22.utilityclasses.RandomUtils;
 import com.robertx22.utilityclasses.WeightedUtils;
 
-public class SecondaryStatsData extends StatGroupData implements Serializable, ITooltipList {
+public class SecondaryStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
 
 	private static final long serialVersionUID = 6149243047165372987L;
 
@@ -33,6 +34,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 	@Override
 	public void RerollFully(GearItemData gear) {
+		this.setRerollFully = false;
 
 		this.level = gear.level;
 
@@ -58,6 +60,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 	@Override
 	public void RerollNumbers(GearItemData gear) {
+		this.setRerollNumbers = false;
 
 		for (StatModData data : this.Mods) {
 			data.percent = StatGen.GenPercent();

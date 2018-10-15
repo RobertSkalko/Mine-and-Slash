@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.crafting.IRerollable;
 import com.robertx22.database.lists.Suffixes;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.ITooltipList;
@@ -17,7 +18,7 @@ import com.robertx22.utilityclasses.WeightedUtils;
 
 import net.minecraft.util.text.TextFormatting;
 
-public class SuffixData extends AffixData implements Serializable, ITooltipList {
+public class SuffixData extends AffixData implements Serializable, ITooltipList, IRerollable {
 
 	private static final long serialVersionUID = 8802998468539898482L;
 
@@ -46,6 +47,8 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList 
 	@Override
 	public void RerollFully(GearItemData gear) {
 
+		this.setRerollFully = false;
+
 		this.level = gear.level;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSuffixes());
@@ -59,6 +62,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList 
 
 	@Override
 	public void RerollNumbers(GearItemData gear) {
+		this.setRerollNumbers = false;
 
 		percents = new ArrayList<Integer>();
 
