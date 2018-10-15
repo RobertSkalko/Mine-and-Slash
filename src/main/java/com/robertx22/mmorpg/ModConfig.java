@@ -26,8 +26,8 @@ public class ModConfig {
 		@Config.Comment("Set to 1 if you only want to pickup rare sockets, 2 if only epic sockets etc")
 		public int PICKUP_ONLY_RARITIES_SOCKETS = 0;
 
-		@Config.Comment("Blocks EXP GAIN, so you can grind better gear")
-		public boolean BLOCK_EXP_GAIN = false;
+		// @Config.Comment("Blocks EXP GAIN, so you can grind better gear")
+		// public boolean BLOCK_EXP_GAIN = false;
 
 		@Config.Comment("Disables showing item names on the ground")
 		public boolean DISABLE_ITEM_NAME_RENDER = false;

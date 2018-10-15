@@ -1,7 +1,7 @@
 {
-    "parent": "builtin/generated",
+    "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/ring"
+        "layer0": "mmorpg:items/ring4"
     },
     "display": {
         "thirdperson": {

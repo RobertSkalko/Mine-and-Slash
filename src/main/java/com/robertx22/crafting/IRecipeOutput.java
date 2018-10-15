@@ -1,6 +1,5 @@
 package com.robertx22.crafting;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public interface IRecipeOutput {
@@ -9,7 +8,7 @@ public interface IRecipeOutput {
 
 	public default ItemStack GetFinalOutput() {
 
-		return OutputStack() != null ? OutputStack().copy() : new ItemStack(Items.AIR);
+		return OutputStack() != null ? OutputStack().copy() : ItemStack.EMPTY;
 	}
 
 }
