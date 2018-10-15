@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.MyItems;
+import com.robertx22.customitems.armor.ItemChest;
 import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.Prefix;
 import com.robertx22.gearitem.Suffix;
@@ -41,12 +41,12 @@ public class Chest extends GearItemSlot {
 
 	@Override
 	public Item DefaultItem() {
-		return MyItems.magic_chestplate;
+		return ItemChest.Items.get(0);
 	}
 
 	@Override
 	public HashMap<Integer, Item> ItemsForRarities() {
-		return null;
+		return ItemChest.Items;
 	}
 
 	@Override

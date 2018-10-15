@@ -1,10 +1,9 @@
-package com.robertx22.customitems;
+package com.robertx22.customitems.baubles;
 
 import java.util.HashMap;
 
 import com.robertx22.baubles.api.BaubleType;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.gearitem.ItemRarity;
 import com.robertx22.utilityclasses.ModelUtils;
 
 import net.minecraft.item.Item;
@@ -16,32 +15,22 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
 public class ItemRing extends BaseBaublesItem {
+	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-	public static HashMap<Integer, Item> Rings = new HashMap<Integer, Item>();
-
-	public ItemRing(int i) {
-		super(i);
+	public ItemRing(int i, HashMap<Integer, Item> map) {
+		super(i, map);
 
 	}
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-
-		for (ItemRarity rarity : Rarities.Items) {
-			Rings.put(rarity.Rank(), new ItemRing(rarity.Rank()));
-		}
-
-		for (Item item : Rings.values()) {
-			event.getRegistry().register(item);
-		}
+		Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemRing(x.Rank(), Items)));
+		Items.values().forEach((x) -> event.getRegistry().register(x));
 	}
 
 	@SubscribeEvent
 	public static void onModelRegistry(ModelRegistryEvent event) {
-		for (Item item : Rings.values()) {
-			ModelUtils.registerRender(item);
-		}
-
+		Items.values().forEach((x) -> ModelUtils.registerRender(x));
 	}
 
 	@Override

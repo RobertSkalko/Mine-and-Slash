@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.ItemRing;
+import com.robertx22.customitems.baubles.ItemRing;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.database.lists.Suffixes;
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
@@ -46,12 +46,12 @@ public class Ring extends GearItemSlot {
 
 	@Override
 	public Item DefaultItem() {
-		return ItemRing.Rings.get(0);
+		return ItemRing.Items.get(0);
 	}
 
 	@Override
 	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemRing.Rings;
+		return ItemRing.Items;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.robertx22.customitems;
+package com.robertx22.customitems.blocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

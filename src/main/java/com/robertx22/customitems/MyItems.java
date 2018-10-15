@@ -18,31 +18,6 @@ public class MyItems {
 	public static Item legendary_socket;
 	public static Item mythical_socket;
 
-	public static Item magic_helmet;
-	public static Item magic_chestplate;
-	public static Item magic_boots;
-	public static Item magic_leggins;
-
-	public static Item rare_helmet;
-	public static Item rare_chestplate;
-	public static Item rare_boots;
-	public static Item rare_leggins;
-
-	public static Item epic_helmet;
-	public static Item epic_chestplate;
-	public static Item epic_boots;
-	public static Item epic_leggins;
-
-	public static Item legendary_helmet;
-	public static Item legendary_chestplate;
-	public static Item legendary_boots;
-	public static Item legendary_leggins;
-
-	public static Item mythical_helmet;
-	public static Item mythical_chestplate;
-	public static Item mythical_boots;
-	public static Item mythical_leggins;
-
 	public static Item magic_sword;
 	public static Item rare_sword;
 	public static Item epic_sword;

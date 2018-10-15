@@ -1,24 +1,26 @@
 package com.robertx22.customitems;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.robertx22.customitems.blocks.BlockOre;
+import com.robertx22.mmorpg.Ref;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import com.robertx22.mmorpg.Ref;
-import com.robertx22.utilityclasses.Utils;
 
 public class NewItemCreator {
 
@@ -41,21 +43,6 @@ public class NewItemCreator {
 	static ItemSword.ToolMaterial EPIC_TOOL_MAT = EnumHelper.addToolMaterial("epic", 0, 900, 1F, 1F, 1);
 	static ItemSword.ToolMaterial LEGENDARY_TOOL_MAT = EnumHelper.addToolMaterial("legendary", 0, 1500, 1F, 1F, 1);
 	static ItemSword.ToolMaterial MYTHICAL_TOOL_MAT = EnumHelper.addToolMaterial("mythical", 0, 2500, 1F, 1F, 1);
-
-	static ItemArmor.ArmorMaterial MAGIC_MAT = EnumHelper.addArmorMaterial("magic", Utils.setLocation("magic"), 20,
-			nums, 0, null, 0);
-
-	static ItemArmor.ArmorMaterial RARE_MAT = EnumHelper.addArmorMaterial("rare", Utils.setLocation("rare"), 20, nums,
-			0, null, 0);
-
-	static ItemArmor.ArmorMaterial EPIC_MAT = EnumHelper.addArmorMaterial("epic", Utils.setLocation("epic"), 20, nums,
-			0, null, 0);
-
-	static ItemArmor.ArmorMaterial LEGENDARY_MAT = EnumHelper.addArmorMaterial("legendary",
-			Utils.setLocation("legendary"), 20, nums, 0, null, 0);
-
-	static ItemArmor.ArmorMaterial MYTHICAL_MAT = EnumHelper.addArmorMaterial("mythical", Utils.setLocation("mythical"),
-			20, nums, 0, null, 0);
 
 	public static void createCustomItems() {
 		createCustomItemsAndAddToClass();
@@ -86,31 +73,6 @@ public class NewItemCreator {
 		MyItems.epic_sword = new SwordBasic(EPIC_TOOL_MAT);
 		MyItems.legendary_sword = new SwordBasic(LEGENDARY_TOOL_MAT);
 		MyItems.mythical_sword = new SwordBasic(MYTHICAL_TOOL_MAT);
-
-		MyItems.magic_helmet = new ArmorBasic(MAGIC_MAT, 0, EntityEquipmentSlot.HEAD);
-		MyItems.magic_chestplate = new ArmorBasic(MAGIC_MAT, 0, EntityEquipmentSlot.CHEST);
-		MyItems.magic_boots = new ArmorBasic(MAGIC_MAT, 0, EntityEquipmentSlot.FEET);
-		MyItems.magic_leggins = new ArmorBasic(MAGIC_MAT, 0, EntityEquipmentSlot.LEGS);
-
-		MyItems.rare_helmet = new ArmorBasic(RARE_MAT, 0, EntityEquipmentSlot.HEAD);
-		MyItems.rare_chestplate = new ArmorBasic(RARE_MAT, 0, EntityEquipmentSlot.CHEST);
-		MyItems.rare_boots = new ArmorBasic(RARE_MAT, 0, EntityEquipmentSlot.FEET);
-		MyItems.rare_leggins = new ArmorBasic(RARE_MAT, 0, EntityEquipmentSlot.LEGS);
-
-		MyItems.epic_helmet = new ArmorBasic(EPIC_MAT, 0, EntityEquipmentSlot.HEAD);
-		MyItems.epic_chestplate = new ArmorBasic(EPIC_MAT, 0, EntityEquipmentSlot.CHEST);
-		MyItems.epic_boots = new ArmorBasic(EPIC_MAT, 0, EntityEquipmentSlot.FEET);
-		MyItems.epic_leggins = new ArmorBasic(EPIC_MAT, 0, EntityEquipmentSlot.LEGS);
-
-		MyItems.legendary_helmet = new ArmorBasic(LEGENDARY_MAT, 0, EntityEquipmentSlot.HEAD);
-		MyItems.legendary_chestplate = new ArmorBasic(LEGENDARY_MAT, 0, EntityEquipmentSlot.CHEST);
-		MyItems.legendary_boots = new ArmorBasic(LEGENDARY_MAT, 0, EntityEquipmentSlot.FEET);
-		MyItems.legendary_leggins = new ArmorBasic(LEGENDARY_MAT, 0, EntityEquipmentSlot.LEGS);
-
-		MyItems.mythical_helmet = new ArmorBasic(MYTHICAL_MAT, 0, EntityEquipmentSlot.HEAD);
-		MyItems.mythical_chestplate = new ArmorBasic(MYTHICAL_MAT, 0, EntityEquipmentSlot.CHEST);
-		MyItems.mythical_boots = new ArmorBasic(MYTHICAL_MAT, 0, EntityEquipmentSlot.FEET);
-		MyItems.mythical_leggins = new ArmorBasic(MYTHICAL_MAT, 0, EntityEquipmentSlot.LEGS);
 
 		MyItems.magic_ore_block = new BlockOre("magic_ore_block", Material.ROCK, MyItems.magic_ore, 1);
 
@@ -157,31 +119,6 @@ public class NewItemCreator {
 		myCustomItems.add(MyItems.epic_socket);
 		myCustomItems.add(MyItems.legendary_socket);
 		myCustomItems.add(MyItems.mythical_socket);
-
-		myCustomItems.add((MyItems.magic_helmet));
-		myCustomItems.add((MyItems.magic_chestplate));
-		myCustomItems.add((MyItems.magic_boots));
-		myCustomItems.add((MyItems.magic_leggins));
-
-		myCustomItems.add((MyItems.rare_helmet));
-		myCustomItems.add((MyItems.rare_chestplate));
-		myCustomItems.add((MyItems.rare_boots));
-		myCustomItems.add((MyItems.rare_leggins));
-
-		myCustomItems.add((MyItems.epic_helmet));
-		myCustomItems.add((MyItems.epic_chestplate));
-		myCustomItems.add((MyItems.epic_boots));
-		myCustomItems.add((MyItems.epic_leggins));
-
-		myCustomItems.add((MyItems.legendary_helmet));
-		myCustomItems.add((MyItems.legendary_chestplate));
-		myCustomItems.add((MyItems.legendary_boots));
-		myCustomItems.add((MyItems.legendary_leggins));
-
-		myCustomItems.add((MyItems.mythical_helmet));
-		myCustomItems.add((MyItems.mythical_chestplate));
-		myCustomItems.add((MyItems.mythical_boots));
-		myCustomItems.add((MyItems.mythical_leggins));
 
 		myCustomItems.add((MyItems.magic_sword));
 		myCustomItems.add((MyItems.rare_sword));

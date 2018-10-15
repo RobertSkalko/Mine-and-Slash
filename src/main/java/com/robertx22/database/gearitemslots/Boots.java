@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.MyItems;
+import com.robertx22.customitems.armor.ItemBoots;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.database.lists.Suffixes;
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
@@ -46,20 +46,12 @@ public class Boots extends GearItemSlot {
 
 	@Override
 	public Item DefaultItem() {
-		return MyItems.magic_boots;
+		return ItemBoots.Items.get(0);
 	}
-
-	private HashMap<Integer, Item> perRarity = new HashMap<Integer, Item>() {
-		{
-			{
-				put(0, MyItems.magic_boots);
-			}
-		}
-	};
 
 	@Override
 	public HashMap<Integer, Item> ItemsForRarities() {
-		return perRarity;
+		return ItemBoots.Items;
 	}
 
 	@Override

@@ -1,9 +1,11 @@
-package com.robertx22.customitems;
+package com.robertx22.customitems.baubles;
+
+import java.util.HashMap;
 
 import com.robertx22.baubles.api.BaublesApi;
 import com.robertx22.baubles.api.IBauble;
 import com.robertx22.baubles.api.cap.IBaublesItemHandler;
-import com.robertx22.utilityclasses.OnItemCreatedUtils;
+import com.robertx22.customitems.BaseCustomItem;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,27 +19,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
-public abstract class BaseBaublesItem extends Item implements IBauble {
+public abstract class BaseBaublesItem extends BaseCustomItem implements IBauble {
 
-	public abstract String Name();
+	public BaseBaublesItem(int rarity, HashMap<Integer, Item> map) {
 
-	public BaseBaublesItem(int rarity) {
-		this.setMaxStackSize(1);
-		this.setMaxDamage(0);
-		this.setCreativeTab(NewItemCreator.MyModTab);
-		this.setUnlocalizedName(Name().toLowerCase() + rarity);
-		this.setRegistryName(Name().toLowerCase() + rarity);
-
-		// System.out.println("created " + Name().toLowerCase() + rarity);
-
-		ItemRing.Rings.put(rarity, this);
-	}
-
-	@Override
-	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-
-		OnItemCreatedUtils.TryReroll(stack, worldIn);
-
+		super(rarity, map);
 	}
 
 	@Override
