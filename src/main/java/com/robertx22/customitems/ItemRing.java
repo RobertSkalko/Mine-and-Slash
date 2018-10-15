@@ -1,9 +1,8 @@
 package com.robertx22.customitems;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saving.Saving;
 import com.robertx22.utilityclasses.ModelUtils;
+import com.robertx22.utilityclasses.OnItemCreatedUtils;
 
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
@@ -31,7 +30,6 @@ public class ItemRing extends Item implements IBauble {
 	public static final Item RING = null;
 
 	public ItemRing() {
-		// super();
 		this.setMaxStackSize(1);
 		this.setMaxDamage(0);
 		this.setCreativeTab(CreativeTabs.TOOLS);
@@ -41,16 +39,8 @@ public class ItemRing extends Item implements IBauble {
 	@Override
 	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
 
-		if (!worldIn.isRemote) {
-			System.out.println("oncreated");
-			GearItemData data = Saving.Load(stack, GearItemData.class);
-			if (data != null) {
-				System.out.println("data isnt null");
+		OnItemCreatedUtils.TryReroll(stack, worldIn);
 
-				data.TryRerollComponents();
-				Saving.Save(stack, data);
-			}
-		}
 	}
 
 	@SubscribeEvent

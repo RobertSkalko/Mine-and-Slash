@@ -4,10 +4,13 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+// DOESNT WORK FOR SOME REASON, IT WORKED BEFORE 
 @Config(modid = Ref.MODID)
 @Config.LangKey("mmorpg.config.title")
+@EventBusSubscriber
 public class ModConfig {
 
 	public static OptionsContainer Options = new OptionsContainer();
@@ -74,6 +77,7 @@ public class ModConfig {
 		public static void onConfigChanged(ConfigChangedEvent event) {
 			if (event.getModID().equals(Ref.MODID)) {
 				ConfigManager.sync(Ref.MODID, Config.Type.INSTANCE);
+				System.out.println("config works");
 			}
 		}
 

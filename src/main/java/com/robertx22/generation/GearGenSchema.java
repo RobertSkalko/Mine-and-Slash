@@ -32,6 +32,7 @@ public class GearGenSchema {
 	public void SetSpecificRarity(int i) {
 
 		rarity = i;
+		RandomRarity = false;
 
 		try {
 			Rarities.Items.get(i);
@@ -44,6 +45,7 @@ public class GearGenSchema {
 	public void SetSpecificType(String i) {
 
 		gearType = i;
+		RandomGearType = false;
 
 		try {
 			GearTypes.All.get(i);

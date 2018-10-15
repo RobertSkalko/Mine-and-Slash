@@ -33,24 +33,27 @@ public class SuffixReroll implements IRecipe, IRecipeOutput {
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 
-		ItemStack gear = RecipeUtils.AnyItemIsGearItem(inv);
+		if (!worldIn.isRemote) {
 
-		if (gear != null) {
+			ItemStack gear = RecipeUtils.AnyItemIsGearItem(inv);
 
-			GearItemData gearitem = Saving.Load(gear, GearItemData.class);
+			if (gear != null) {
 
-			if (gearitem.suffix != null) {
-				gearitem.suffix.setRerollFully = true;
-				System.out.println("set reroll ");
-			} else {
-				return false;
+				GearItemData gearitem = Saving.Load(gear, GearItemData.class);
+
+				if (gearitem.suffix != null) {
+					gearitem.suffix.setRerollFully = true;
+				} else {
+					return false;
+				}
+				Saving.Save(gear, gearitem);
+
+				this.output = gear;
 			}
-			Saving.Save(gear, gearitem);
 
-			this.output = gear;
+			return gear != null;
 		}
-
-		return gear != null;
+		return false;
 	}
 
 	@Override

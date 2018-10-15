@@ -1,8 +1,7 @@
 package com.robertx22.customitems;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saving.Saving;
+import com.robertx22.utilityclasses.OnItemCreatedUtils;
 import com.robertx22.utilityclasses.Utils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,28 +18,10 @@ class ArmorBasic extends ItemArmor {
 	@Override
 	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
 
-		System.out.println("oncreated");
-		GearItemData data = Saving.Load(stack, GearItemData.class);
-		if (data != null) {
-			System.out.println("data isnt null");
-
-			data.TryRerollComponents();
-			Saving.Save(stack, data);
-		}
+		OnItemCreatedUtils.TryReroll(stack, worldIn);
 
 	}
 
-	/*
-	 * @Override
-	 * 
-	 * @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, @Nullable
-	 * World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-	 * 
-	 * tooltip.clear(); // doesnt clear everything
-	 * 
-	 * }
-	 * 
-	 */
 	public ArmorBasic(ArmorMaterial mat, int renderIndexIn, EntityEquipmentSlot slot) {
 
 		super(mat, renderIndexIn, slot);

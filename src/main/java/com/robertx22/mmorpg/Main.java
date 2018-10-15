@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.robertx22.capability.EntityData;
 import com.robertx22.commands.GiveGear;
-import com.robertx22.commands.GiveSocket;
 import com.robertx22.crafting.SuffixReroll;
 import com.robertx22.customitems.MyItems;
 import com.robertx22.customitems.NewItemCreator;
@@ -85,7 +84,6 @@ public class Main {
 	@EventHandler
 	public void start(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GiveGear());
-		event.registerServerCommand(new GiveSocket());
 
 	}
 
@@ -116,7 +114,6 @@ public class Main {
 
 		MinecraftForge.EVENT_BUS.register(new Main());
 		MinecraftForge.EVENT_BUS.register(new OnMobDeathDrops());
-		MinecraftForge.EVENT_BUS.register(new ModConfig());
 		MinecraftForge.EVENT_BUS.register(new OnTooltip());
 		MinecraftForge.EVENT_BUS.register(new OnLogin());
 		MinecraftForge.EVENT_BUS.register(new OnPlayerAttack());
