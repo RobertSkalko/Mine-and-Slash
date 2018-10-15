@@ -1,6 +1,6 @@
 package com.robertx22.customitems.blocks;
 
-import com.robertx22.customitems.NewItemCreator;
+import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

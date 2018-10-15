@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/ring4"
+        "layer0": "mmorpg:items/boots2"
     }
 }

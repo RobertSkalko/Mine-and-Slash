@@ -3,6 +3,7 @@ package com.robertx22.customitems.baubles;
 import java.util.HashMap;
 
 import com.robertx22.baubles.api.BaubleType;
+import com.robertx22.customitems.bases.BaseBaublesItem;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.utilityclasses.ModelUtils;
 

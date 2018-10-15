@@ -1,6 +1,6 @@
 package com.robertx22.utilityclasses;
 
-import com.robertx22.customitems.MyItems;
+import com.robertx22.customitems.oldreplacesoon.MyItems;
 
 import net.minecraft.item.Item;
 

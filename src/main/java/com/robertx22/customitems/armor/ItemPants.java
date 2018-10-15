@@ -2,7 +2,7 @@ package com.robertx22.customitems.armor;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.BaseArmorItem;
+import com.robertx22.customitems.bases.BaseArmorItem;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.utilityclasses.ModelUtils;
 
