@@ -1,13 +1,11 @@
 package com.robertx22.capability;
 
-import com.robertx22.capability.StackData.DefaultImpl;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

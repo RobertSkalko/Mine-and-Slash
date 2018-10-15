@@ -46,13 +46,13 @@ public class Ring extends GearItemSlot {
 
 	@Override
 	public Item DefaultItem() {
-		return new ItemRing();
+		return ItemRing.RING;
 	}
 
 	private HashMap<Integer, Item> perRarity = new HashMap<Integer, Item>() {
 		{
 			{
-				put(0, new ItemRing());
+				put(0, ItemRing.RING);
 			}
 		}
 	};
