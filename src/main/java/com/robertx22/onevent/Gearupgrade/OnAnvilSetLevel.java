@@ -1,8 +1,8 @@
 package com.robertx22.onevent.gearupgrade;
 
 import com.robertx22.capability.EntityData;
+import com.robertx22.datasaving.Saving;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.saving.Saving;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
@@ -19,7 +19,7 @@ public class OnAnvilSetLevel {
 
 			EntityData.IData data = player.getCapability(EntityData.Data, null);
 
-			Unit unit = Saving.Load(player, Unit.class);
+			Unit unit = Saving.Load(player);
 
 			unit.updateClientExpGUI(player);
 

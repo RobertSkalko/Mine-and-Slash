@@ -1,6 +1,6 @@
 package com.robertx22.database.stats.types;
 
-import com.robertx22.enums.Elements;
+import com.robertx22.enumclasses.Elements;
 import com.robertx22.stats.UsableStat;
 
 public class Armor extends UsableStat {

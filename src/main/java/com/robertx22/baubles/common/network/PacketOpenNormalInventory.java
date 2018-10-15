@@ -1,4 +1,4 @@
-package baubles.common.network;
+package com.robertx22.baubles.common.network;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.IThreadListener;

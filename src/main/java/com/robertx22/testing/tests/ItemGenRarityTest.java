@@ -6,10 +6,10 @@ import java.util.Map.Entry;
 import org.apache.commons.lang3.time.StopWatch;
 
 import com.robertx22.database.lists.Rarities;
+import com.robertx22.datasaving.Saving;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.GearGenSchema;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saving.Saving;
 
 public class ItemGenRarityTest {
 
@@ -26,7 +26,7 @@ public class ItemGenRarityTest {
 
 		for (int i = 0; i < amount; i++) {
 
-			GearItemData data = Saving.Load(GearGen.Create(schema), GearItemData.class);
+			GearItemData data = Saving.Load(GearGen.Create(schema));
 
 			if (RarityandNumber.containsKey(data.Rarity)) {
 				RarityandNumber.put(data.Rarity, RarityandNumber.get(data.Rarity) + 1);

@@ -1,4 +1,4 @@
-package baubles.common.event;
+package com.robertx22.baubles.common.event;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import com.robertx22.baubles.api.BaublesApi;
+import com.robertx22.baubles.api.IBauble;
+import com.robertx22.baubles.api.cap.BaublesCapabilities;
+import com.robertx22.baubles.api.cap.BaublesContainer;
+import com.robertx22.baubles.api.cap.BaublesContainerProvider;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
+import com.robertx22.baubles.common.network.PacketHandler;
+import com.robertx22.baubles.common.network.PacketSync;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 
-import baubles.api.BaublesApi;
-import baubles.api.IBauble;
-import baubles.api.cap.BaublesCapabilities;
-import baubles.api.cap.BaublesContainer;
-import baubles.api.cap.BaublesContainerProvider;
-import baubles.api.cap.IBaublesItemHandler;
-import baubles.common.network.PacketHandler;
-import baubles.common.network.PacketSync;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;

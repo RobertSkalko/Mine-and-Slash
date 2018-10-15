@@ -8,18 +8,18 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.time.StopWatch;
 
+import com.robertx22.baubles.api.BaublesApi;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
 import com.robertx22.database.stats.types.Armor;
 import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Health;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
-import com.robertx22.enums.EntityTypes;
-import com.robertx22.saving.Saving;
+import com.robertx22.datasaving.Saving;
+import com.robertx22.enumclasses.EntityTypes;
 import com.robertx22.stats.Stat;
 
-import baubles.api.BaublesApi;
-import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -129,7 +129,7 @@ public class Unit implements Serializable {
 
 		for (ItemStack stack : list) {
 
-			GearItemData gear = Saving.Load(stack, GearItemData.class);
+			GearItemData gear = Saving.Load(stack);
 
 			if (gear != null) {
 				gearitems.add(gear);

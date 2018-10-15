@@ -1,9 +1,10 @@
-package baubles.client.gui;
+package com.robertx22.baubles.client.gui;
 
 import java.io.IOException;
 
-import baubles.client.ClientProxy;
-import baubles.common.container.ContainerPlayerExpanded;
+import com.robertx22.baubles.client.ClientProxy;
+import com.robertx22.baubles.common.container.ContainerPlayerExpanded;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.gui.inventory.GuiInventory;

@@ -5,7 +5,7 @@ import com.robertx22.effectdatas.interfaces.IDamageEffect;
 import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
-import com.robertx22.enums.Elements;
+import com.robertx22.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;

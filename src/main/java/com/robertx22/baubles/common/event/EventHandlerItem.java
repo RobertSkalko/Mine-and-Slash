@@ -1,4 +1,4 @@
-package baubles.common.event;
+package com.robertx22.baubles.common.event;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -12,10 +12,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.robertx22.baubles.api.IBauble;
+import com.robertx22.baubles.api.cap.BaublesCapabilities;
 import com.robertx22.mmorpg.Ref;
-
-import baubles.api.IBauble;
-import baubles.api.cap.BaublesCapabilities;
 
 public class EventHandlerItem
 {

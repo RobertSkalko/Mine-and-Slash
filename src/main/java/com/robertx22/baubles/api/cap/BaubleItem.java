@@ -1,7 +1,8 @@
-package baubles.api.cap;
+package com.robertx22.baubles.api.cap;
 
-import baubles.api.BaubleType;
-import baubles.api.IBauble;
+import com.robertx22.baubles.api.BaubleType;
+import com.robertx22.baubles.api.IBauble;
+
 import net.minecraft.item.ItemStack;
 
 public class BaubleItem implements IBauble

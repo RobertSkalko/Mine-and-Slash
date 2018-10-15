@@ -1,8 +1,9 @@
-package baubles.common.container;
+package com.robertx22.baubles.common.container;
 
-import baubles.api.IBauble;
-import baubles.api.cap.BaublesCapabilities;
-import baubles.api.cap.IBaublesItemHandler;
+import com.robertx22.baubles.api.IBauble;
+import com.robertx22.baubles.api.cap.BaublesCapabilities;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;

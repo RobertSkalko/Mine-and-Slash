@@ -1,4 +1,4 @@
-package baubles.api;
+package com.robertx22.baubles.api;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;

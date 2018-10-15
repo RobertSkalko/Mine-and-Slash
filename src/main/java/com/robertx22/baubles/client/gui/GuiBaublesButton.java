@@ -1,10 +1,11 @@
-package baubles.client.gui;
+package com.robertx22.baubles.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import baubles.common.network.PacketHandler;
-import baubles.common.network.PacketOpenBaublesInventory;
-import baubles.common.network.PacketOpenNormalInventory;
+import com.robertx22.baubles.common.network.PacketHandler;
+import com.robertx22.baubles.common.network.PacketOpenBaublesInventory;
+import com.robertx22.baubles.common.network.PacketOpenNormalInventory;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;

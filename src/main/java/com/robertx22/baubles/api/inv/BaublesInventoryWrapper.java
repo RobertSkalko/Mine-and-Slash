@@ -1,6 +1,7 @@
-package baubles.api.inv;
+package com.robertx22.baubles.api.inv;
 
-import baubles.api.cap.IBaublesItemHandler;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

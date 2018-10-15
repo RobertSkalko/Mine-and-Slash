@@ -1,4 +1,4 @@
-package baubles.common.network;
+package com.robertx22.baubles.common.network;
 
 import net.minecraft.util.IThreadListener;
 import net.minecraft.world.WorldServer;

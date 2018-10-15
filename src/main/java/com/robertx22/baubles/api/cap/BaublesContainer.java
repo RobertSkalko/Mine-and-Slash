@@ -1,6 +1,7 @@
-package baubles.api.cap;
+package com.robertx22.baubles.api.cap;
 
-import baubles.api.IBauble;
+import com.robertx22.baubles.api.IBauble;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;

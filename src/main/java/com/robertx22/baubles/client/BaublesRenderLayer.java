@@ -8,17 +8,18 @@
  *
  * File Created @ [Aug 27, 2014, 8:55:00 PM (GMT)]
  */
-package baubles.client;
+package com.robertx22.baubles.client;
 
 import javax.annotation.Nonnull;
 
 import org.lwjgl.opengl.GL11;
 
-import baubles.api.BaublesApi;
-import baubles.api.cap.IBaublesItemHandler;
-import baubles.api.render.IRenderBauble;
-import baubles.api.render.IRenderBauble.RenderType;
-import baubles.common.Config;
+import com.robertx22.baubles.api.BaublesApi;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
+import com.robertx22.baubles.api.render.IRenderBauble;
+import com.robertx22.baubles.api.render.IRenderBauble.RenderType;
+import com.robertx22.baubles.common.Config;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.player.EntityPlayer;

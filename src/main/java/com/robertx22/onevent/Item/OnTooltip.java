@@ -1,7 +1,7 @@
 package com.robertx22.onevent.Item;
 
+import com.robertx22.datasaving.Saving;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saving.Saving;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -14,10 +14,11 @@ public class OnTooltip {
 	@SubscribeEvent
 	public static void onTooltip(ItemTooltipEvent event) throws Exception {
 
-		if (event.getEntityPlayer() != null && event.getEntityPlayer().world != null
-				&& !event.getEntityPlayer().world.isRemote) {
+		if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null
+				|| !event.getEntityPlayer().world.isRemote) {
 			return;
 		}
+
 		ItemStack item;
 
 		item = event.getItemStack();
@@ -29,7 +30,7 @@ public class OnTooltip {
 			return;
 		}
 
-		GearItemData data = Saving.Load(item, GearItemData.class);
+		GearItemData data = Saving.Load(item);
 
 		if (data != null) {
 

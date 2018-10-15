@@ -1,8 +1,7 @@
 package com.robertx22.onevent.gearupgrade;
 
 import com.robertx22.customitems.MyItems;
-import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saving.Saving;
+import com.robertx22.datasaving.Saving;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,7 +34,7 @@ public class OnAnvilRepair {
 
 		item.setItemDamage(item.getItemDamage() - repaired);
 
-		if (Saving.Load(event.getLeft(), GearItemData.class) != null) {
+		if (Saving.Load(event.getLeft()) != null) {
 
 			event.setOutput(item);
 

@@ -3,7 +3,7 @@ package com.robertx22.saveclasses;
 import java.io.Serializable;
 
 import com.robertx22.database.lists.StatMods;
-import com.robertx22.enums.StatTypes;
+import com.robertx22.enumclasses.StatTypes;
 import com.robertx22.gearitem.ITooltipString;
 import com.robertx22.generation.StatGen;
 import com.robertx22.stats.Stat;

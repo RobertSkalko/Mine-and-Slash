@@ -6,29 +6,26 @@ import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.robertx22.baubles.api.BaubleType;
+import com.robertx22.baubles.api.IBauble;
+import com.robertx22.baubles.api.cap.BaubleItem;
+import com.robertx22.baubles.api.cap.BaublesCapabilities;
+import com.robertx22.baubles.api.cap.BaublesCapabilities.CapabilityBaubles;
+import com.robertx22.baubles.api.cap.BaublesContainer;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
+import com.robertx22.baubles.common.CommonProxy;
+import com.robertx22.baubles.common.Config;
+import com.robertx22.baubles.common.event.CommandBaubles;
+import com.robertx22.baubles.common.network.PacketHandler;
 import com.robertx22.capability.EntityData;
 import com.robertx22.commands.GiveGear;
-import com.robertx22.crafting.SuffixReroll;
 import com.robertx22.customitems.MyItems;
 import com.robertx22.customitems.NewItemCreator;
 import com.robertx22.oregen.OreGen;
 
-import baubles.api.BaubleType;
-import baubles.api.IBauble;
-import baubles.api.cap.BaubleItem;
-import baubles.api.cap.BaublesCapabilities;
-import baubles.api.cap.BaublesCapabilities.CapabilityBaubles;
-import baubles.api.cap.BaublesContainer;
-import baubles.api.cap.IBaublesItemHandler;
-import baubles.common.CommonProxy;
-import baubles.common.Config;
-import baubles.common.event.CommandBaubles;
-import baubles.common.network.PacketHandler;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -39,16 +36,14 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber
-@Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, guiFactory = "baubles.client.gui.BaublesGuiFactory", dependencies = "required-after:forge@[14.21.0.2348,);")
+@Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, guiFactory = "com.robertx22.baubles.client.gui.BaublesGuiFactory", dependencies = "required-after:forge@[14.21.0.2348,);")
 public class Main {
 
-	@SidedProxy(clientSide = "baubles.client.ClientProxy", serverSide = "baubles.common.CommonProxy")
+	@SidedProxy(clientSide = "com.robertx22.baubles.client.ClientProxy", serverSide = "com.robertx22.baubles.common.CommonProxy")
 	public static CommonProxy proxy;
 
 	@Instance(value = Ref.MODID)
@@ -121,13 +116,6 @@ public class Main {
 		Config.save();
 		// baubles
 
-	}
-
-	@SubscribeEvent
-	public void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-		IForgeRegistry<IRecipe> r = event.getRegistry();
-		r.register(new SuffixReroll());
-		System.out.println("Registering recipes");
 	}
 
 	@EventHandler

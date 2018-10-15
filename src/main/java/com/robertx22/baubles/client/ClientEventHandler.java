@@ -1,18 +1,9 @@
-package baubles.client;
+package com.robertx22.baubles.client;
 
-import com.robertx22.customitems.ItemRing;
+import com.robertx22.baubles.common.network.PacketHandler;
+import com.robertx22.baubles.common.network.PacketOpenBaublesInventory;
 
-import baubles.api.BaubleType;
-import baubles.api.IBauble;
-import baubles.api.cap.BaublesCapabilities;
-import baubles.common.network.PacketHandler;
-import baubles.common.network.PacketOpenBaublesInventory;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;

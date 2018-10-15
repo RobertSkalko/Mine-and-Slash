@@ -1,15 +1,20 @@
 package com.robertx22.crafting;
 
+import com.robertx22.datasaving.Saving;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saving.Saving;
 
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
+@Mod.EventBusSubscriber
 public class SuffixReroll implements IRecipe, IRecipeOutput {
 
 	ItemStack output = null;
@@ -30,30 +35,34 @@ public class SuffixReroll implements IRecipe, IRecipeOutput {
 		return this.getRegistryType();
 	}
 
+	@SubscribeEvent
+	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+		IForgeRegistry<IRecipe> r = event.getRegistry();
+		r.register(new SuffixReroll());
+		System.out.println("Registering SuffixReroll");
+	}
+
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 
-		if (!worldIn.isRemote) {
+		ItemStack gear = RecipeUtils.AnyItemIsGearItem(inv);
 
-			ItemStack gear = RecipeUtils.AnyItemIsGearItem(inv);
+		if (gear != null) {
 
-			if (gear != null) {
+			GearItemData gearitem = Saving.Load(gear);
 
-				GearItemData gearitem = Saving.Load(gear, GearItemData.class);
-
-				if (gearitem.suffix != null) {
-					gearitem.suffix.setRerollFully = true;
-				} else {
-					return false;
-				}
-				Saving.Save(gear, gearitem);
-
-				this.output = gear;
+			if (gearitem.suffix != null) {
+				gearitem.suffix.setRerollFully = true;
+			} else {
+				return false;
 			}
+			Saving.Save(gear, gearitem);
 
-			return gear != null;
+			this.output = gear;
 		}
-		return false;
+
+		return gear != null;
+
 	}
 
 	@Override

@@ -1,15 +1,11 @@
 package com.robertx22.customitems;
 
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.gearitem.ItemRarity;
 import com.robertx22.utilityclasses.RegisterUtils;
 
-import baubles.api.IBauble;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @EventBusSubscriber
 public abstract class BaseRarityItem  extends Item {

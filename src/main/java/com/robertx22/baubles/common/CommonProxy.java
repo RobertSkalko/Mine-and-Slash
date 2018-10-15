@@ -1,11 +1,11 @@
 
-package baubles.common;
+package com.robertx22.baubles.common;
 
+import com.robertx22.baubles.common.container.ContainerPlayerExpanded;
+import com.robertx22.baubles.common.event.EventHandlerEntity;
+import com.robertx22.baubles.common.event.EventHandlerItem;
 import com.robertx22.mmorpg.Main;
 
-import baubles.common.container.ContainerPlayerExpanded;
-import baubles.common.event.EventHandlerEntity;
-import baubles.common.event.EventHandlerItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;

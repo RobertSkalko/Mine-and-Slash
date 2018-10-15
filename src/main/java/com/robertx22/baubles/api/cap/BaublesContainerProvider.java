@@ -1,4 +1,4 @@
-package baubles.api.cap;
+package com.robertx22.baubles.api.cap;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

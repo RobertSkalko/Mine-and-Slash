@@ -1,13 +1,14 @@
-package baubles.common.event;
+package com.robertx22.baubles.common.event;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import baubles.api.BaubleType;
-import baubles.api.BaublesApi;
-import baubles.api.IBauble;
-import baubles.api.cap.BaublesCapabilities;
-import baubles.api.cap.IBaublesItemHandler;
+import com.robertx22.baubles.api.BaubleType;
+import com.robertx22.baubles.api.BaublesApi;
+import com.robertx22.baubles.api.IBauble;
+import com.robertx22.baubles.api.cap.BaublesCapabilities;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

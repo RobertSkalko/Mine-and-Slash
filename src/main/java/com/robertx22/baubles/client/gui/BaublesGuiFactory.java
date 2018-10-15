@@ -1,11 +1,11 @@
-package baubles.client.gui;
+package com.robertx22.baubles.client.gui;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.baubles.common.Config;
 import com.robertx22.mmorpg.Ref;
 
-import baubles.common.Config;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;

@@ -1,13 +1,13 @@
 package com.robertx22.customitems;
 
+import com.robertx22.baubles.api.BaubleType;
+import com.robertx22.baubles.api.BaublesApi;
+import com.robertx22.baubles.api.IBauble;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.utilityclasses.ModelUtils;
 import com.robertx22.utilityclasses.OnItemCreatedUtils;
 
-import baubles.api.BaubleType;
-import baubles.api.BaublesApi;
-import baubles.api.IBauble;
-import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

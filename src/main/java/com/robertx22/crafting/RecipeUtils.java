@@ -1,7 +1,7 @@
 package com.robertx22.crafting;
 
+import com.robertx22.datasaving.Saving;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saving.Saving;
 
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ public class RecipeUtils {
 		for (int i = 0; i < inv.getSizeInventory(); i++) {
 			ItemStack stack = inv.getStackInSlot(i);
 
-			GearItemData data = Saving.Load(stack, GearItemData.class);
+			GearItemData data = Saving.Load(stack);
 			if (data != null) {
 				return stack;
 			}

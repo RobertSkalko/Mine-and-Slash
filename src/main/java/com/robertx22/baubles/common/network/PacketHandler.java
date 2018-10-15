@@ -1,4 +1,4 @@
-package baubles.common.network;
+package com.robertx22.baubles.common.network;
 
 import com.robertx22.mmorpg.Ref;
 

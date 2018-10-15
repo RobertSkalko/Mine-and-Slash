@@ -1,4 +1,4 @@
-package com.robertx22.enums;
+package com.robertx22.enumclasses;
 
 public enum SuffixOrPrefix {
 	Prefix, Suffix,

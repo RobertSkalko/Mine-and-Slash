@@ -1,12 +1,9 @@
 package com.robertx22.customitems;
 
-import com.robertx22.mmorpg.Ref;
-import com.robertx22.utilityclasses.ModelUtils;
+import com.robertx22.baubles.api.BaublesApi;
+import com.robertx22.baubles.api.IBauble;
+import com.robertx22.baubles.api.cap.IBaublesItemHandler;
 
-import baubles.api.BaubleType;
-import baubles.api.BaublesApi;
-import baubles.api.IBauble;
-import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,11 +14,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
 public abstract class BaseBaublesItem  extends Item implements IBauble {

@@ -1,14 +1,14 @@
 
-package baubles.client;
+package com.robertx22.baubles.client;
 
 import java.util.Map;
 import org.lwjgl.input.Keyboard;
 
+import com.robertx22.baubles.client.gui.GuiEvents;
+import com.robertx22.baubles.client.gui.GuiPlayerExpanded;
+import com.robertx22.baubles.common.CommonProxy;
 import com.robertx22.mmorpg.Main;
 
-import baubles.client.gui.GuiEvents;
-import baubles.client.gui.GuiPlayerExpanded;
-import baubles.common.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.entity.RenderPlayer;

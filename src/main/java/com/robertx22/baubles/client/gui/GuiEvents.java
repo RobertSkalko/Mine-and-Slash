@@ -1,4 +1,4 @@
-package baubles.client.gui;
+package com.robertx22.baubles.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiInventory;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import com.robertx22.datasaving.Saving;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.saving.Saving;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
@@ -20,11 +20,11 @@ public abstract class EffectData {
 
 	public Unit GetSource() {
 
-		return Saving.Load(Source, Unit.class);
+		return Saving.Load(Source);
 	}
 
 	public Unit GetTarget() {
-		return Saving.Load(Target, Unit.class);
+		return Saving.Load(Target);
 	}
 
 	public abstract void Activate();
