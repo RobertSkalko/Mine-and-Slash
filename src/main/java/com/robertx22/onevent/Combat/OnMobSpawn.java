@@ -8,12 +8,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class OnMobSpawn {
 
 	@SubscribeEvent
-	public void onMobSpawn(LivingSpawnEvent.CheckSpawn event) throws Exception {
+	public static void onMobSpawn(LivingSpawnEvent.CheckSpawn event) throws Exception {
 
 		if (Minecraft.getMinecraft().player == null) {
 			return;

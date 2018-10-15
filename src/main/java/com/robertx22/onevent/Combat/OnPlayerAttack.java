@@ -6,12 +6,14 @@ import com.robertx22.saveclasses.Unit;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class OnPlayerAttack {
 
 	@SubscribeEvent
-	public void onPlayerAttack(LivingDamageEvent event) {
+	public static void onPlayerAttack(LivingDamageEvent event) {
 
 		if (event.isCanceled()) {
 			return;

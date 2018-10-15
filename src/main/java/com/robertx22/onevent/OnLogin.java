@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 public class OnLogin {
 
 	@SubscribeEvent
-	public void onLogin(PlayerLoggedInEvent event) {
+	public static void onLogin(PlayerLoggedInEvent event) {
 
 		if (event.player.world.isRemote) {
 			return;

@@ -7,12 +7,14 @@ import com.robertx22.saving.Saving;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class OnPlayerClone {
 
 	@SubscribeEvent
-	public void onPlayerClone(PlayerEvent.Clone event) {
+	public static void onPlayerClone(PlayerEvent.Clone event) {
 
 		if (!event.getEntityPlayer().world.isRemote) {
 

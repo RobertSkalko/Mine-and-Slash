@@ -3,12 +3,14 @@ package com.robertx22.onevent.Item;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class OnPickup {
 
 	@SubscribeEvent
-	public void pickupItem(EntityItemPickupEvent event) {
+	public static void pickupItem(EntityItemPickupEvent event) {
 
 		ItemStack item = event.getItem().getItem();
 

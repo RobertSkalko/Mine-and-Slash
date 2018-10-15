@@ -1,21 +1,22 @@
 package com.robertx22.onevent.combat;
 
+import java.util.Random;
+
+import com.robertx22.capability.EntityData;
+import com.robertx22.mmorpg.ModConfig;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.Random;
-
-import com.robertx22.capability.EntityData;
-import com.robertx22.constants.Tags;
-import com.robertx22.mmorpg.ModConfig;
-
+@Mod.EventBusSubscriber
 public class OnMobAttack {
 
 	@SubscribeEvent
-	public void onMobAttack(LivingDamageEvent event) {
+	public static void onMobAttack(LivingDamageEvent event) {
 
 		if (event.isCanceled()) {
 			return;
@@ -48,10 +49,6 @@ public class OnMobAttack {
 		}
 
 		Random ran = new Random();
-
-		int mobDMG = mob.getCapability(EntityData.Data, null).getNBT().getInteger(Tags.DAMAGE);
-
-		int DMG = mobDMG / 2 + (ran.nextInt(mobDMG + 2) + 2) / 2;
 
 		/*
 		 * Hashtable<String, Integer> stats = PlayerData.getStats(player);

@@ -1,17 +1,20 @@
 package com.robertx22.onevent.gearupgrade;
 
 import com.robertx22.customitems.MyItems;
-import com.robertx22.utilityclasses.ItemUtils;
+import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saving.Saving;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class OnAnvilRepair {
 
 	@SubscribeEvent
-	public void OnAnvilDoRepair(AnvilUpdateEvent event) {
+	public static void OnAnvilDoRepair(AnvilUpdateEvent event) {
 
 		Item mat = event.getRight().getItem();
 		ItemStack item = event.getLeft().copy();
@@ -32,7 +35,7 @@ public class OnAnvilRepair {
 
 		item.setItemDamage(item.getItemDamage() - repaired);
 
-		if (ItemUtils.isGear(event.getLeft())) {
+		if (Saving.Load(event.getLeft(), GearItemData.class) != null) {
 
 			event.setOutput(item);
 

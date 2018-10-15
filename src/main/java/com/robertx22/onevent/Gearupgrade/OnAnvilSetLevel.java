@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class OnAnvilSetLevel {
 
 	@SubscribeEvent
-	public void setLevelBack(AnvilRepairEvent event) throws Exception {
+	public static void setLevelBack(AnvilRepairEvent event) throws Exception {
 
 		if (!event.getEntityLiving().world.isRemote) {
 

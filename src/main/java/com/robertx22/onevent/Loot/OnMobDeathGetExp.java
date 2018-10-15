@@ -7,12 +7,14 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class OnMobDeathGetExp {
 
 	@SubscribeEvent
-	public void mobOnDeathgetExp(LivingDeathEvent event) {
+	public static void mobOnDeathgetExp(LivingDeathEvent event) {
 
 		if (event.getEntityLiving().world.isRemote) {
 			return;

@@ -2,8 +2,10 @@ package com.robertx22.onevent.combat;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class OnMobsAttackEachOther {
 
 	@SubscribeEvent

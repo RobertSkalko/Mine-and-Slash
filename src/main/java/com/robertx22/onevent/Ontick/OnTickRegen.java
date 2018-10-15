@@ -1,17 +1,19 @@
 package com.robertx22.onevent.ontick;
 
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
+@Mod.EventBusSubscriber
 public class OnTickRegen {
 
-	int tick = 0;
+	static int tick = 0;
 
-	int time = 150;
+	static int time = 150;
 
 	@SubscribeEvent
-	public void onTickRegen(TickEvent.PlayerTickEvent event) {
+	public static void onTickRegen(TickEvent.PlayerTickEvent event) {
 
 		if (event.phase == Phase.END && event.side.isServer()) {
 

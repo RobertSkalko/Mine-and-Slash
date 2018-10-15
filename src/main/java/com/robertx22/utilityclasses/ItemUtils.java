@@ -1,21 +1,10 @@
 package com.robertx22.utilityclasses;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import com.robertx22.constants.Tags;
 import com.robertx22.customitems.MyItems;
 
-public class ItemUtils {
+import net.minecraft.item.Item;
 
-	public static boolean isGear(ItemStack item) {
-		if (item.hasTagCompound()) {
-			return item.getTagCompound().getBoolean(Tags.IS_GEAR);
-		} else {
-			return false;
-		}
-	}
+public class ItemUtils {
 
 	public static boolean isPowder(Item item) {
 
@@ -45,25 +34,6 @@ public class ItemUtils {
 		}
 		return false;
 
-	}
-
-	public static ItemStack upgradeItem(ItemStack item) {
-
-		NBTTagCompound nbt = item.getTagCompound();
-
-		int upgradeNumber = nbt.getInteger(Tags.UPGRADE_NUMBER) + 1;
-
-		nbt.setInteger(Tags.UPGRADE_NUMBER, upgradeNumber);
-
-		item.setTagCompound(nbt);
-
-		incrementAllScalingStatsByPercent(item, 10);
-
-		return item;
-	}
-
-	public static ItemStack incrementAllScalingStatsByPercent(ItemStack item, int percent) {
-		return item;
 	}
 
 }

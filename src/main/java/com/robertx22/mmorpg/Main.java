@@ -11,23 +11,6 @@ import com.robertx22.commands.GiveGear;
 import com.robertx22.crafting.SuffixReroll;
 import com.robertx22.customitems.MyItems;
 import com.robertx22.customitems.NewItemCreator;
-import com.robertx22.onevent.OnLogin;
-import com.robertx22.onevent.OnPlayerClone;
-import com.robertx22.onevent.Item.OnPickup;
-import com.robertx22.onevent.Item.OnTooltip;
-import com.robertx22.onevent.combat.OnBurnStop;
-import com.robertx22.onevent.combat.OnMobAttack;
-import com.robertx22.onevent.combat.OnMobSpawn;
-import com.robertx22.onevent.combat.OnMobsAttackEachOther;
-import com.robertx22.onevent.combat.OnPlayerAttack;
-import com.robertx22.onevent.gearupgrade.OnAnvilRepair;
-import com.robertx22.onevent.gearupgrade.OnAnvilSetLevel;
-import com.robertx22.onevent.gearupgrade.OnAnvilSocket;
-import com.robertx22.onevent.gearupgrade.OnAnvilUpgrade;
-import com.robertx22.onevent.loot.OnMobDeathDrops;
-import com.robertx22.onevent.loot.OnMobDeathGetExp;
-import com.robertx22.onevent.ontick.OnTickRegen;
-import com.robertx22.onevent.ontick.OnTickRenderItemNames;
 import com.robertx22.oregen.OreGen;
 
 import baubles.api.BaubleType;
@@ -44,7 +27,6 @@ import baubles.common.network.PacketHandler;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -62,6 +44,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
+@Mod.EventBusSubscriber
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, guiFactory = "baubles.client.gui.BaublesGuiFactory", dependencies = "required-after:forge@[14.21.0.2348,);")
 public class Main {
 
@@ -111,25 +94,6 @@ public class Main {
 
 		CapabilityManager.INSTANCE.register(EntityData.IData.class, new EntityData.Storage(),
 				EntityData.DefaultImpl.class);
-
-		MinecraftForge.EVENT_BUS.register(new Main());
-		MinecraftForge.EVENT_BUS.register(new OnMobDeathDrops());
-		MinecraftForge.EVENT_BUS.register(new OnTooltip());
-		MinecraftForge.EVENT_BUS.register(new OnLogin());
-		MinecraftForge.EVENT_BUS.register(new OnPlayerAttack());
-		MinecraftForge.EVENT_BUS.register(new OnPlayerClone());
-		MinecraftForge.EVENT_BUS.register(new OnMobSpawn());
-		MinecraftForge.EVENT_BUS.register(new OnMobAttack());
-		MinecraftForge.EVENT_BUS.register(new OnTickRegen());
-		MinecraftForge.EVENT_BUS.register(new OnBurnStop());
-		MinecraftForge.EVENT_BUS.register(new OnMobDeathGetExp());
-		MinecraftForge.EVENT_BUS.register(new OnMobsAttackEachOther());
-		MinecraftForge.EVENT_BUS.register(new OnAnvilSocket());
-		MinecraftForge.EVENT_BUS.register(new OnAnvilUpgrade());
-		MinecraftForge.EVENT_BUS.register(new OnAnvilSetLevel());
-		MinecraftForge.EVENT_BUS.register(new OnPickup());
-		MinecraftForge.EVENT_BUS.register(new OnTickRenderItemNames());
-		MinecraftForge.EVENT_BUS.register(new OnAnvilRepair());
 
 		NewItemCreator.createCustomItems();
 
