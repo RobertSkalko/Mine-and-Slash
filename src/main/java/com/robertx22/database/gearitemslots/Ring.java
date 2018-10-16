@@ -59,4 +59,9 @@ public class Ring extends GearItemSlot {
 		return 1000;
 	}
 
+	@Override
+	public List<StatMod> ChaosStats() {
+		return Arrays.asList(new ArmorFlat());
+	}
+
 }

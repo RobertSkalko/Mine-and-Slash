@@ -5,7 +5,10 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.oldreplacesoon.ItemBasic;
+import com.robertx22.datasaving.Saving;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.ChaosStatsData;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.utilityclasses.ModelUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -21,7 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-class ItemChaosOrb extends ItemBasic implements ICurrencyItemEffect {
+public class ItemChaosOrb extends ItemBasic implements ICurrencyItemEffect {
 
 	private static final String name = Ref.MODID + ":chaos_orb";
 
@@ -50,13 +53,33 @@ class ItemChaosOrb extends ItemBasic implements ICurrencyItemEffect {
 		stack.setStackDisplayName("Chaos Orb");
 
 		tooltip.add("Substance of pure Chaos.");
-		tooltip.add("The result can be Good, or Horrible!");
+		tooltip.add("The result can be Good.. or Horrible!");
 
 	}
 
 	@Override
 	public void ModifyItem(ItemStack stack) {
 
+		GearItemData gear = Saving.Load(stack);
+
+		gear.chaosStats = new ChaosStatsData();
+
+		gear.chaosStats.setRerollFully = true;
+
+		Saving.Save(stack, gear);
+
+	}
+
+	@Override
+	public boolean CanItemBeModified(ItemStack stack) {
+
+		GearItemData gear = Saving.Load(stack);
+
+		if (gear.chaosStats == null) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

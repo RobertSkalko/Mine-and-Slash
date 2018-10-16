@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-class ItemMajorAddStat extends ItemBasic implements ICurrencyItemEffect {
+public class ItemMajorAddStat extends ItemBasic implements ICurrencyItemEffect {
 
 	private static final String name = Ref.MODID + ":item_major_add_stat";
 
@@ -58,4 +58,9 @@ class ItemMajorAddStat extends ItemBasic implements ICurrencyItemEffect {
 
 	}
 
+	@Override
+	public boolean CanItemBeModified(ItemStack stack) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

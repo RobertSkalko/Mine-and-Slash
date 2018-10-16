@@ -31,6 +31,8 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	public SuffixData suffix;
 	public PrefixData prefix;
 
+	public ChaosStatsData chaosStats;
+
 	public GearItemSlot GetBaseGearType() {
 
 		return GearTypes.All.get(gearTypeName);
@@ -75,6 +77,9 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 		if (secondaryStats != null) {
 			datas.addAll(secondaryStats.GetAllStats());
 		}
+		if (chaosStats != null) {
+			datas.addAll(chaosStats.GetAllStats());
+		}
 
 		return datas;
 	}
@@ -94,6 +99,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 		list.add(secondaryStats);
 		list.add(prefix);
 		list.add(suffix);
+		list.add(chaosStats);
 
 		for (ITooltipList part : list) {
 
@@ -116,6 +122,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 		IfNotNullAdd(primaryStats, list);
 		IfNotNullAdd(prefix, list);
 		IfNotNullAdd(suffix, list);
+		IfNotNullAdd(chaosStats, list);
 		return list;
 	}
 

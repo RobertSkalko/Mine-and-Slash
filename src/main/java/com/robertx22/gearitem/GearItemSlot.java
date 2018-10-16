@@ -21,6 +21,8 @@ public abstract class GearItemSlot implements IWeighted {
 
 	public abstract List<StatMod> PossibleSecondaryStats();
 
+	public abstract List<StatMod> ChaosStats();
+
 	public abstract Item DefaultItem();
 
 	public abstract HashMap<Integer, Item> ItemsForRarities();

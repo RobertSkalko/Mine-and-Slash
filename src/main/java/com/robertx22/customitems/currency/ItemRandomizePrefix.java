@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-class ItemRandomizePrefix extends ItemBasic implements ICurrencyItemEffect {
+public class ItemRandomizePrefix extends ItemBasic implements ICurrencyItemEffect {
 
 	private static final String name = Ref.MODID + ":randomize_prefix";
 
@@ -58,4 +58,9 @@ class ItemRandomizePrefix extends ItemBasic implements ICurrencyItemEffect {
 
 	}
 
+	@Override
+	public boolean CanItemBeModified(ItemStack stack) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

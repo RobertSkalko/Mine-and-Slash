@@ -1,5 +1,6 @@
 package com.robertx22.crafting;
 
+import com.robertx22.customitems.currency.ItemChaosOrb;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.inventory.InventoryCrafting;
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber
-public class SuffixReroll implements IRecipe, IRecipeOutput {
+public class RecipeChaosOrb implements IRecipe, IRecipeOutput {
 
 	ItemStack output = null;
 
@@ -24,7 +25,7 @@ public class SuffixReroll implements IRecipe, IRecipeOutput {
 
 	@Override
 	public ResourceLocation getRegistryName() {
-		return new ResourceLocation(Ref.MODID + ":SuffixReroll");
+		return new ResourceLocation(Ref.MODID + ":chaos_orb");
 
 	}
 
@@ -36,29 +37,28 @@ public class SuffixReroll implements IRecipe, IRecipeOutput {
 	@SubscribeEvent
 	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 		IForgeRegistry<IRecipe> r = event.getRegistry();
-		r.register(new SuffixReroll());
-		System.out.println("Registering SuffixReroll");
+		r.register(new RecipeChaosOrb());
 	}
 
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 
-		return false;
+		ItemStack gear = RecipeUtils.FirstItemIsGear(inv);
+		ItemStack currency = RecipeUtils.SecondItemIs(inv, new ItemChaosOrb());
 
-		/*
-		 * ItemStack gear = RecipeUtils.AnyItemIsGearItem(inv);
-		 * 
-		 * if (gear != null) {
-		 * 
-		 * GearItemData gearitem = Saving.Load(gear);
-		 * 
-		 * if (gearitem.suffix != null) { gearitem.suffix.setRerollFully = true; } else
-		 * { return false; } Saving.Save(gear, gearitem);
-		 * 
-		 * this.output = gear; }
-		 * 
-		 * return gear != null;
-		 */
+		if (gear != null && currency != null) {
+
+			ItemChaosOrb orb = new ItemChaosOrb();
+
+			if (orb.CanItemBeModified(gear)) {
+				orb.ModifyItem(gear);
+				this.output = gear;
+				return true;
+			}
+
+		}
+
+		return false;
 
 	}
 

@@ -9,6 +9,27 @@ import net.minecraft.item.ItemStack;
 
 public class RecipeUtils {
 
+	public static ItemStack FirstItemIsGear(InventoryCrafting inv) {
+
+		ItemStack stack = inv.getStackInSlot(0);
+		GearItemData data = Saving.Load(stack);
+		if (data != null) {
+			return stack;
+		}
+
+		return null;
+	}
+
+	public static ItemStack SecondItemIs(InventoryCrafting inv, Item item) {
+
+		ItemStack stack = inv.getStackInSlot(1);
+		if (stack.getItem().getRegistryName().equals(item.getRegistryName())) {
+			return stack;
+		}
+
+		return null;
+	}
+
 	public static ItemStack AnyItemIsGearItem(InventoryCrafting inv) {
 
 		for (int i = 0; i < inv.getSizeInventory(); i++) {

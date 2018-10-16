@@ -59,4 +59,10 @@ public class Boots extends GearItemSlot {
 		return 1000;
 	}
 
+	@Override
+	public List<StatMod> ChaosStats() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
