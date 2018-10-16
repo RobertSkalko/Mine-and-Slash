@@ -1,19 +1,19 @@
-package com.robertx22.database.stats.mods.flat;
+package com.robertx22.database.stats.mods.flat.elemental;
 
-import com.robertx22.database.stats.types.Armor;
+import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
 import com.robertx22.enumclasses.StatTypes;
 import com.robertx22.interfaces.IWeighted;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 
-public class ArmorFlat extends StatMod {
+public class ThunderDamageFlat extends StatMod {
 
-	public ArmorFlat() {
+	public ThunderDamageFlat() {
 	}
 
 	@Override
 	public String GUID() {
-		return "ArmorFlat";
+		return "ThunderDamageFlat";
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class ArmorFlat extends StatMod {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new Armor();
+		return new ThunderDamage();
 	}
 
 	@Override

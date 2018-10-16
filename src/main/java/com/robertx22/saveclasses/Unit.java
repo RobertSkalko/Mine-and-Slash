@@ -10,12 +10,16 @@ import org.apache.commons.lang3.time.StopWatch;
 
 import com.robertx22.baubles.api.BaublesApi;
 import com.robertx22.baubles.api.cap.IBaublesItemHandler;
+import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.stats.types.Armor;
 import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Health;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
+import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
+import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
+import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
 import com.robertx22.datasaving.Saving;
 import com.robertx22.enumclasses.EntityTypes;
 import com.robertx22.stats.Stat;
@@ -97,6 +101,9 @@ public class Unit implements Serializable {
 			put(new CriticalHit().Name(), new CriticalHit());
 			put(new CriticalDamage().Name(), new CriticalDamage());
 			put(new FireDamage().Name(), new FireDamage());
+			put(new WaterDamage().Name(), new WaterDamage());
+			put(new ThunderDamage().Name(), new ThunderDamage());
+			put(new NatureDamage().Name(), new NatureDamage());
 
 		}
 
@@ -113,7 +120,10 @@ public class Unit implements Serializable {
 				list.add(stack);
 			}
 		}
-		list.add(entity.getHeldItemMainhand());
+		ItemStack weapon = entity.getHeldItemMainhand();
+		if (weapon.getItem() instanceof IWeapon) {
+			list.add(weapon);
+		}
 
 		IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer) entity);
 

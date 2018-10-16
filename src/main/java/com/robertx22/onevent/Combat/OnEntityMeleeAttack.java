@@ -46,7 +46,7 @@ public class OnEntityMeleeAttack {
 				}
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 
 		}
 

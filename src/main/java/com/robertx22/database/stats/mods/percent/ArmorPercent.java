@@ -1,25 +1,24 @@
-package com.robertx22.database.stats.mods.flat;
+package com.robertx22.database.stats.mods.percent;
 
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
+import com.robertx22.database.stats.types.Armor;
 import com.robertx22.enumclasses.StatTypes;
 import com.robertx22.interfaces.IWeighted;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 
-public class FireDamageFlat extends StatMod {
+public class ArmorPercent extends StatMod {
 
-	public FireDamageFlat() {
+	public ArmorPercent() {
 	}
 
 	@Override
 	public String GUID() {
-		return "FireDamageFlat";
+		return "ArmorPercent";
 	}
 
 	@Override
 	public int Min() {
 		return 2;
-
 	}
 
 	@Override
@@ -29,16 +28,17 @@ public class FireDamageFlat extends StatMod {
 
 	@Override
 	public StatTypes Type() {
-		return StatTypes.Flat;
+		return StatTypes.Percent;
 	}
 
 	@Override
 	public Stat GetBaseStat() {
-		return new FireDamage();
+		return new Armor();
 	}
 
 	@Override
 	public int Weight() {
 		return IWeighted.NormalWeight;
 	}
+
 }

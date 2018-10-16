@@ -1,6 +1,8 @@
 package com.robertx22.database.lists;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.robertx22.database.suffixes.OfCriticalHits;
 import com.robertx22.database.suffixes.OfVitality;
@@ -16,4 +18,21 @@ public class Suffixes {
 		}
 	};
 
+	public static List<Suffix> Weapon = new ArrayList<Suffix>() {
+		{
+			{
+				add(new OfCriticalHits());
+
+			}
+		}
+	};
+
+	public static List<Suffix> Armor = new ArrayList<Suffix>() {
+		{
+			{
+				add(new OfVitality());
+
+			}
+		}
+	};
 }

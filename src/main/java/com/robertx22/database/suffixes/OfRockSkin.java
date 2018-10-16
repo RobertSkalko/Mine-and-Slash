@@ -1,28 +1,28 @@
-package com.robertx22.database.prefixes;
+package com.robertx22.database.suffixes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.database.stats.mods.flat.elemental.FireDamageFlat;
-import com.robertx22.gearitem.Prefix;
+import com.robertx22.database.stats.mods.percent.ArmorPercent;
+import com.robertx22.gearitem.Suffix;
 import com.robertx22.interfaces.IWeighted;
 import com.robertx22.stats.StatMod;
 
-public class Flaming extends Prefix {
+public class OfRockSkin extends Suffix {
 
-	public Flaming() {
+	public OfRockSkin() {
 	}
 
 	@Override
 	public String Name() {
-		return "Flaming";
+		return "Of Rock Skin";
 	}
 
 	@Override
 	public List<StatMod> StatMods() {
 
 		List<StatMod> mods = new ArrayList<StatMod>();
-		mods.add(new FireDamageFlat());
+		mods.add(new ArmorPercent());
 
 		return mods;
 

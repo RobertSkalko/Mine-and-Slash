@@ -3,6 +3,7 @@ package com.robertx22.customitems.weapons;
 import java.util.HashMap;
 
 import com.robertx22.customitems.bases.BaseSwordItem;
+import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.utilityclasses.ModelUtils;
 
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
-public class ItemSword extends BaseSwordItem {
+public class ItemSword extends BaseSwordItem implements IWeapon {
 	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
 	public ItemSword(int rarity, HashMap<Integer, Item> map) {

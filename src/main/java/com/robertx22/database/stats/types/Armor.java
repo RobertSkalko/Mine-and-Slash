@@ -31,7 +31,7 @@ public class Armor extends UsableStat implements IStatEffects {
 
 	@Override
 	public boolean IsPercent() {
-		return true;
+		return false;
 	}
 
 	@Override
