@@ -1,6 +1,5 @@
 package com.robertx22.stats.StatEffects;
 
-import com.robertx22.database.stats.types.ArmorPenetration;
 import com.robertx22.effectdatas.EffectData;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.saveclasses.Unit;
@@ -17,9 +16,9 @@ public class PenetrationEffect implements IStatEffect {
 	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
-		if (Effect instanceof IPenetrable && Effect.GetSource() == source) {
+		if (Effect instanceof IPenetrable && Effect.GetSource().equals(source)) {
 			IPenetrable ipene = (IPenetrable) Effect;
-			ipene.SetArmorPenetration((int) Effect.GetSource().Stats().get(ArmorPenetration.class).GetValue(source));
+			ipene.SetArmorPenetration((int) stat.Value);
 		}
 
 		return Effect;

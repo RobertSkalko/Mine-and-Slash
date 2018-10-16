@@ -23,15 +23,20 @@ public abstract class EffectData {
 		if (sourceunit != null) {
 			sourceunit.RecalculateStats();
 			Saving.Save(source, sourceunit);
+			sourceUnit = sourceunit;
 		}
 
-		Unit targeteunit = Saving.Load(target);
-		if (targeteunit != null) {
-			targeteunit.RecalculateStats();
-			Saving.Save(target, targeteunit);
+		Unit targetunit = Saving.Load(target);
+		if (targetunit != null) {
+			targetunit.RecalculateStats();
+			Saving.Save(target, targetunit);
+			targetUnit = targetunit;
 		}
 
 	}
+
+	public Unit sourceUnit;
+	public Unit targetUnit;
 
 	public EntityLivingBase Source;
 	public EntityLivingBase Target;
@@ -40,11 +45,11 @@ public abstract class EffectData {
 
 	public Unit GetSource() {
 
-		return Saving.Load(Source);
+		return sourceUnit;
 	}
 
 	public Unit GetTarget() {
-		return Saving.Load(Target);
+		return targetUnit;
 	}
 
 	public void Activate() {

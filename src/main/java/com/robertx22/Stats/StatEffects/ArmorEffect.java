@@ -1,6 +1,5 @@
 package com.robertx22.stats.StatEffects;
 
-import com.robertx22.database.stats.types.Armor;
 import com.robertx22.effectdatas.EffectData;
 import com.robertx22.effectdatas.interfaces.IArmorReducable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
@@ -19,7 +18,7 @@ public class ArmorEffect implements IStatEffect {
 	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
-		if (Effect instanceof IArmorReducable && Effect.GetTarget() == source) {
+		if (Effect instanceof IArmorReducable && Effect.GetTarget().equals(source)) {
 
 			int pene = 0;
 
@@ -30,9 +29,9 @@ public class ArmorEffect implements IStatEffect {
 
 			Unit target = Effect.GetTarget();
 
-			UsableStat armor = (UsableStat) target.Stats().get(Armor.class);
+			UsableStat armor = (UsableStat) stat;
 
-			float EffectiveArmor = armor.GetUsableValue(source, target.level, (int) (armor.Value - pene));
+			float EffectiveArmor = armor.GetUsableValue(target.level, (int) (armor.Value - pene));
 
 			if (EffectiveArmor < 0) {
 				EffectiveArmor = 0;

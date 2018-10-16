@@ -10,13 +10,13 @@ public class CriticalDamageEffect implements IStatEffect {
 
 	@Override
 	public int GetPriority() {
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
-		if (Effect instanceof ICrittable && Effect.GetSource() == source) {
+		if (Effect instanceof ICrittable && Effect.GetSource().equals(source)) {
 
 			ICrittable icrit = (ICrittable) Effect;
 

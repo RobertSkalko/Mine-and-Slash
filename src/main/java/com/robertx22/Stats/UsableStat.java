@@ -1,7 +1,5 @@
 package com.robertx22.stats;
 
-import com.robertx22.saveclasses.Unit;
-
 public abstract class UsableStat extends Stat {
 
 	public UsableStat() {
@@ -18,7 +16,7 @@ public abstract class UsableStat extends Stat {
 	 */
 	public abstract int AverageStat();
 
-	public float GetUsableValue(Unit Source, int Level, int value) {
+	public float GetUsableValue(int Level, int value) {
 
 		int AvgStat = 50;
 
@@ -26,7 +24,7 @@ public abstract class UsableStat extends Stat {
 
 		float finalval = (MaximumPercent() * number / (number + 25));
 
-		System.out.println("from " + this.GetValue(Source) + "to usable value " + finalval);
+		System.out.println("from " + this.Value + "to usable value " + finalval);
 
 		return finalval;
 
