@@ -2,7 +2,7 @@ package com.robertx22.customitems.oldreplacesoon;
 
 import net.minecraft.item.Item;
 
-class ItemBasic extends Item {
+public class ItemBasic extends Item {
 
 	public ItemBasic(String name) {
 		setUnlocalizedName(name);
