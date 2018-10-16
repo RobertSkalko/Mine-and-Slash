@@ -30,9 +30,9 @@ public class ArmorEffect implements IStatEffect {
 
 			Unit target = Effect.GetTarget();
 
-			UsableStat armor = (UsableStat) target.Stats.get(Armor.class);
+			UsableStat armor = (UsableStat) target.Stats().get(Armor.class);
 
-			float EffectiveArmor = armor.GetUsableValue(source, target.level, (int) (armor.GetValue(source) - pene));
+			float EffectiveArmor = armor.GetUsableValue(source, target.level, (int) (armor.Value - pene));
 
 			if (EffectiveArmor < 0) {
 				EffectiveArmor = 0;

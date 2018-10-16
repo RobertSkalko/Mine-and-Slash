@@ -15,7 +15,6 @@ import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Health;
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
 import com.robertx22.datasaving.Saving;
 import com.robertx22.enumclasses.EntityTypes;
 import com.robertx22.stats.Stat;
@@ -38,13 +37,12 @@ public class Unit implements Serializable {
 	public static Unit Mob(EntityLivingBase en) {
 
 		Unit unit = new Unit(en);
-
 		unit.entityType = EntityTypes.Mob;
+
+		unit.Stats.get("Health").BaseFlat = (int) en.getMaxHealth();
 
 		return unit;
 	}
-
-	public HashMap<String, StatModData> BaseStats = new HashMap<String, StatModData>();
 
 	public String GUID = UUID.randomUUID().toString();
 
@@ -90,17 +88,23 @@ public class Unit implements Serializable {
 		player.experience = percentXPFilled;
 	}
 
-	transient public HashMap<Class, Stat> Stats = new HashMap<Class, Stat>() {
+	public HashMap<String, Stat> Stats = new HashMap<String, Stat>() {
 		{
-			put(Health.class, new Health());
-			put(Damage.class, new Damage());
-			put(Armor.class, new Armor());
-			put(CriticalHit.class, new CriticalHit());
-			put(CriticalDamage.class, new CriticalDamage());
-			put(FireDamage.class, new FireDamage());
+			put("Health", new Health());
+			put("Damage", new Damage());
+			put("Armor", new Armor());
+			put("Critical Hit", new CriticalHit());
+			put("Critical Damage", new CriticalDamage());
+			// put(FireDamage.class, new FireDamage());
 
 		}
+
 	};
+
+	public HashMap<String, Stat> Stats() {
+
+		return Stats;
+	}
 
 	transient public boolean StatsDirty = true;
 
@@ -138,14 +142,14 @@ public class Unit implements Serializable {
 
 		}
 
-		System.out.println("Gearitemsfound" + gearitems.size());
+		// System.out.println("Gearitemsfound" + gearitems.size());
 
 		return gearitems;
 
 	}
 
 	private void ClearStats() {
-		for (Stat stat : Stats.values()) {
+		for (Stat stat : Stats().values()) {
 			stat.Clear();
 		}
 	}
@@ -160,7 +164,7 @@ public class Unit implements Serializable {
 
 			for (StatModData data : datas) {
 
-				Stats.get(data.GetBaseMod().GetBaseStat().getClass()).Add(data);
+				Stats().get(data.GetBaseMod().GetBaseStat().getClass()).Add(data);
 
 			}
 		}
@@ -177,31 +181,17 @@ public class Unit implements Serializable {
 			AddAllGearStats();
 		}
 
-		AddAllBaseStats();
-
 		CalcStats();
 
-		System.out.println(Stats.values().toString());
-
 		watch.stop();
-		System.out.println("Recalc stats takes " + watch.getTime());
+		// System.out.println("Recalc stats takes " + watch.getTime());
 
 		// StatsDirty = false;
 	}
 
-	private void AddAllBaseStats() {
-
-		for (java.util.Map.Entry<String, StatModData> entry : BaseStats.entrySet()) {
-
-			this.Stats.get(entry.getValue().GetBaseMod().GetBaseStat()).Add(entry.getValue());
-
-		}
-
-	}
-
 	private void CalcStats() {
 
-		Stats.values().forEach((Stat stat) -> stat.CalcVal());
+		Stats().values().forEach((Stat stat) -> stat.CalcVal(this));
 	}
 
 	public void GiveExp(EntityPlayer player, int i) {

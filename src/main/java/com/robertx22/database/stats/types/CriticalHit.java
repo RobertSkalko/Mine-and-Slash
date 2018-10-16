@@ -1,9 +1,20 @@
 package com.robertx22.database.stats.types;
 
-import com.robertx22.enumclasses.Elements;
-import com.robertx22.stats.Stat;
+import java.util.Arrays;
+import java.util.List;
 
-public class CriticalHit extends Stat {
+import com.robertx22.enumclasses.Elements;
+import com.robertx22.stats.IStatEffect;
+import com.robertx22.stats.IStatEffects;
+import com.robertx22.stats.Stat;
+import com.robertx22.stats.StatEffects.CriticalHitEffect;
+
+public class CriticalHit extends Stat implements IStatEffects {
+	@Override
+	public List<IStatEffect> GetEffects() {
+		return Arrays.asList(new CriticalHitEffect());
+	}
+
 	public CriticalHit() {
 	}
 

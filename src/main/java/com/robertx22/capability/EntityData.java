@@ -3,9 +3,8 @@ package com.robertx22.capability;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -17,7 +16,6 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 
 @Mod.EventBusSubscriber
 public class EntityData {
@@ -38,10 +36,9 @@ public class EntityData {
 		@SubscribeEvent
 		public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
-			if (event.getObject() instanceof EntityPlayer || event.getObject() instanceof EntityMob || event.getObject() instanceof EntityLivingBase) {
-				
-			
-				event.addCapability(new ResourceLocation(Ref.MODID ,"EntityData"),
+			if (event.getObject() instanceof EntityLivingBase || event.getObject() instanceof EntityLiving) {
+
+				event.addCapability(new ResourceLocation(Ref.MODID, "EntityData"),
 						new ICapabilitySerializable<NBTTagCompound>() {
 							IData inst = new DefaultImpl();
 
@@ -102,4 +99,3 @@ public class EntityData {
 	}
 
 }
-

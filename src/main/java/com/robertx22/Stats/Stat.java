@@ -9,6 +9,9 @@ import com.robertx22.saveclasses.Unit;
 
 public abstract class Stat {
 
+	public Stat() {
+	}
+
 	public int StatMinimum = 0;
 
 	public abstract boolean IsPercent();
@@ -18,6 +21,8 @@ public abstract class Stat {
 	public abstract boolean ScalesToLevel();
 
 	public abstract Elements Element();
+
+	public int BaseFlat = 0;
 
 	public int Flat = 0;
 	public int Percent = 0;
@@ -40,11 +45,15 @@ public abstract class Stat {
 		}
 	}
 
-	public int CalcVal() {
+	public int CalcVal(Unit Source) {
 
 		float finalValue = 0;
 
-		finalValue += Flat + StatMinimum;
+		if (ScalesToLevel()) {
+			finalValue += StatMinimum * Source.level + BaseFlat * Source.level;
+		}
+
+		finalValue += Flat + StatMinimum + BaseFlat;
 
 		finalValue *= 1 + Percent / 100;
 

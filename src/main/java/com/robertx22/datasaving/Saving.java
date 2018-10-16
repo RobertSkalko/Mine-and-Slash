@@ -1,30 +1,36 @@
 package com.robertx22.datasaving;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.robertx22.capability.EntityData;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.stats.Stat;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Saving {
 
 	private static final Class<? extends Unit> UnitClass = Unit.class;
-	private static final Class<? extends GearItemData> GearClass = GearItemData.class; 
+	private static final Class<? extends GearItemData> GearClass = GearItemData.class;
 
 	private static String DataLocation = "PathOfMinecraftData";
 	private static String StackData = "ItemStackData";
-	private static Gson gson = new Gson();
+
+	private static GsonBuilder gsonBilder = new GsonBuilder().registerTypeAdapter(Stat.class,
+			new InterfaceAdapter<Stat>());
+
+	private static Gson gson = gsonBilder.create();
 
 	@SuppressWarnings("unchecked")
-	public static <T> T Load(EntityLivingBase stack) {
+	public static <T> T Load(Entity entity) {
 
-		if (stack.hasCapability(EntityData.Data, null)) {
+		if (entity.hasCapability(EntityData.Data, null)) {
 			try {
-				return (T) gson.fromJson(stack.getCapability(EntityData.Data, null).getNBT().getString(DataLocation),
+				return (T) gson.fromJson(entity.getCapability(EntityData.Data, null).getNBT().getString(DataLocation),
 						UnitClass);
 			} catch (JsonSyntaxException e) {
 
@@ -39,12 +45,12 @@ public class Saving {
 
 	}
 
-	public static <T> void Save(EntityLivingBase stack, Object obj) {
+	public static <T> void Save(Entity entity, Object obj) {
 
-		if (stack.hasCapability(EntityData.Data, null)) {
+		if (entity.hasCapability(EntityData.Data, null)) {
 
 			try {
-				stack.getCapability(EntityData.Data, null).getNBT().setString(DataLocation, gson.toJson(obj));
+				entity.getCapability(EntityData.Data, null).getNBT().setString(DataLocation, gson.toJson(obj));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

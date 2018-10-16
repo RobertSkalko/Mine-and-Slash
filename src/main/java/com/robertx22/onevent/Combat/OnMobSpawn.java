@@ -6,7 +6,7 @@ import com.robertx22.saveclasses.Unit;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -15,17 +15,16 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class OnMobSpawn {
 
 	@SubscribeEvent
-	public static void onMobSpawn(LivingSpawnEvent.CheckSpawn event) throws Exception {
+	public static void onMobSpawn(LivingSpawnEvent.CheckSpawn event) {
 
 		if (Minecraft.getMinecraft().player == null) {
 			return;
 		}
-		if (!(event.getEntityLiving() instanceof EntityMob)) {
+		if (event.getEntityLiving() instanceof EntityPlayer) {
 			return;
 		}
 		if (event.getEntityLiving().world.isRemote) {
 			return;
-
 		}
 		if (!event.getEntityLiving().hasCapability(EntityData.Data, null)) {
 			return;

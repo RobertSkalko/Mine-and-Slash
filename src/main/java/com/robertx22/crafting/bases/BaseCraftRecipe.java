@@ -20,11 +20,13 @@ public abstract class BaseCraftRecipe implements IRecipe, IRecipeOutput {
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 
+		if (RecipeUtils.SecondItemIs(inv, CraftingItem()) == null
+				|| RecipeUtils.AreAllOtherSlotsEmpty(inv, Arrays.asList(0, 1))) {
+			return false;
+		}
 		ItemStack gear = RecipeUtils.FirstItemIsGear(inv);
-		ItemStack currency = RecipeUtils.SecondItemIs(inv, CraftingItem());
-		boolean otherslotsempty = RecipeUtils.AreAllOtherSlotsEmpty(inv, Arrays.asList(0, 1));
 
-		if (gear != null && currency != null && otherslotsempty) {
+		if (gear != null) {
 
 			ICurrencyItemEffect orb = (ICurrencyItemEffect) CraftingItem();
 

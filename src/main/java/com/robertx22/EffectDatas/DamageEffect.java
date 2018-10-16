@@ -1,29 +1,45 @@
 package com.robertx22.effectdatas;
 
 import com.robertx22.effectdatas.interfaces.IArmorReducable;
+import com.robertx22.effectdatas.interfaces.ICrittable;
 import com.robertx22.effectdatas.interfaces.IDamageEffect;
 import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.enumclasses.Elements;
+import com.robertx22.mmorpg.Ref;
+import com.robertx22.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 
 public class DamageEffect extends EffectData
-		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable {
+		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
 
-	private static String DmgSourceName = "Custom Damage";
+	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
+		super(source, target);
+
+		this.Number = dmg;
+
+	}
+
+	public static String DmgSourceName = Ref.MODID + "_Custom_Damage";
 	public Elements Element;
 	public int ArmorPene;
 	public int ElementalPene;
 
 	@Override
-	public void Activate() {
+	protected void activate() {
 
 		DamageSource dmgsource = new DamageSource(DmgSourceName);
+		dmgsource.setDamageBypassesArmor();
+		// dmgsource.setDamageIsAbsolute();
 
-		Target.attackEntityFrom(dmgsource, 1); // todo
+		float dmg = HealthUtils.DamageToMinecraftHealth(Number, Target);
+
+		Target.attackEntityFrom(dmgsource, dmg);
+
+		System.out.println("dealt dmg :" + dmg);
 
 	}
 
@@ -61,6 +77,19 @@ public class DamageEffect extends EffectData
 	@Override
 	public int GetArmorPenetration() {
 		return this.ArmorPene;
+	}
+
+	public boolean crit = false;
+
+	@Override
+	public void SetCrit(boolean bool) {
+		crit = bool;
+
+	}
+
+	@Override
+	public boolean GetCrit() {
+		return crit;
 	}
 
 }

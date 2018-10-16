@@ -4,7 +4,9 @@ import com.robertx22.enumclasses.Elements;
 import com.robertx22.stats.Stat;
 
 public class Damage extends Stat {
+
 	public Damage() {
+		this.StatMinimum = 5;
 	}
 
 	@Override

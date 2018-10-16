@@ -13,10 +13,30 @@ import com.robertx22.stats.Stat;
 import net.minecraft.entity.EntityLivingBase;
 
 public abstract class EffectData {
+
+	public EffectData(EntityLivingBase source, EntityLivingBase target) {
+
+		this.Source = source;
+		this.Target = target;
+
+		Unit sourceunit = Saving.Load(source);
+		if (sourceunit != null) {
+			sourceunit.RecalculateStats();
+			Saving.Save(source, sourceunit);
+		}
+
+		Unit targeteunit = Saving.Load(target);
+		if (targeteunit != null) {
+			targeteunit.RecalculateStats();
+			Saving.Save(target, targeteunit);
+		}
+
+	}
+
 	public EntityLivingBase Source;
 	public EntityLivingBase Target;
 
-	public int Number;
+	public int Number = 0;
 
 	public Unit GetSource() {
 
@@ -27,9 +47,18 @@ public abstract class EffectData {
 		return Saving.Load(Target);
 	}
 
-	public abstract void Activate();
+	public void Activate() {
 
-	public EffectData TryApplyEffects() throws Exception {
+		if (Source == null || Target == null)
+			return;
+
+		TryApplyEffects();
+		activate();
+	}
+
+	protected abstract void activate();
+
+	private EffectData TryApplyEffects() {
 		EffectData Data = this;
 
 		List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
@@ -48,7 +77,7 @@ public abstract class EffectData {
 
 	private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit) {
 		if (unit != null) {
-			for (Stat stat : unit.Stats.values()) {
+			for (Stat stat : unit.Stats().values()) {
 				if (stat instanceof IStatEffects) {
 					for (IStatEffect effect : ((IStatEffects) stat).GetEffects()) {
 						effects.add(new EffectUnitStat(effect, unit, stat));
