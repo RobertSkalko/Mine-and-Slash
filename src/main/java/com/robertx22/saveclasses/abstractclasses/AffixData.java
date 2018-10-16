@@ -3,7 +3,7 @@ package com.robertx22.saveclasses.abstractclasses;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.crafting.IRerollable;
+import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.IStatsContainer;
 import com.robertx22.saveclasses.StatModData;

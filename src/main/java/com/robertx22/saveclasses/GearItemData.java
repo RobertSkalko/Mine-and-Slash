@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.crafting.IRerollable;
+import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.database.lists.GearTypes;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.gearitem.GearItemSlot;

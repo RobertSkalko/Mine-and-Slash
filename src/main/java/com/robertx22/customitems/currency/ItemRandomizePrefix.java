@@ -5,7 +5,9 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.oldreplacesoon.ItemBasic;
+import com.robertx22.datasaving.Saving;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.utilityclasses.ModelUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -55,12 +57,22 @@ public class ItemRandomizePrefix extends ItemBasic implements ICurrencyItemEffec
 
 	@Override
 	public void ModifyItem(ItemStack stack) {
+		GearItemData gear = Saving.Load(stack);
+		gear.prefix.setRerollFully = true;
+		Saving.Save(stack, gear);
 
 	}
 
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
-		// TODO Auto-generated method stub
-		return true;
+
+		GearItemData gear = Saving.Load(stack);
+
+		if (gear.prefix != null) {
+			return true;
+		}
+
+		return false;
 	}
+
 }

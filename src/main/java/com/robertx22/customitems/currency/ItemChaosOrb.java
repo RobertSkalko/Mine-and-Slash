@@ -61,11 +61,8 @@ public class ItemChaosOrb extends ItemBasic implements ICurrencyItemEffect {
 	public void ModifyItem(ItemStack stack) {
 
 		GearItemData gear = Saving.Load(stack);
-
 		gear.chaosStats = new ChaosStatsData();
-
 		gear.chaosStats.setRerollFully = true;
-
 		Saving.Save(stack, gear);
 
 	}

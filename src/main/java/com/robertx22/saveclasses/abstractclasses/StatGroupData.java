@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses.abstractclasses;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.gearitem.IStatsContainer;
@@ -11,7 +12,7 @@ public abstract class StatGroupData implements IStatsContainer {
 
 	}
 
-	public List<StatModData> Mods;
+	public List<StatModData> Mods = new ArrayList<StatModData>();
 
 	@Override
 	public List<StatModData> GetAllStats() {

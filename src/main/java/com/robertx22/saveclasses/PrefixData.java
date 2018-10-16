@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.crafting.IRerollable;
+import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.ITooltipList;

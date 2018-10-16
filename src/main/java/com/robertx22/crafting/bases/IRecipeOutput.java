@@ -1,4 +1,4 @@
-package com.robertx22.crafting;
+package com.robertx22.crafting.bases;
 
 import net.minecraft.item.ItemStack;
 

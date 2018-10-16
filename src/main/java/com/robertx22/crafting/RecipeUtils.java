@@ -22,8 +22,9 @@ public class RecipeUtils {
 
 	public static ItemStack SecondItemIs(InventoryCrafting inv, Item item) {
 
+		// count == 1 is a a baindaid fix for the duplication glitch of chaos orbs
 		ItemStack stack = inv.getStackInSlot(1);
-		if (stack.getItem().getRegistryName().equals(item.getRegistryName())) {
+		if (stack.getItem().getRegistryName().equals(item.getRegistryName()) && stack.getCount() == 1) {
 			return stack;
 		}
 
