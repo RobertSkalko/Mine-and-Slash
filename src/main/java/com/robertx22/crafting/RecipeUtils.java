@@ -1,5 +1,7 @@
 package com.robertx22.crafting;
 
+import java.util.List;
+
 import com.robertx22.datasaving.Saving;
 import com.robertx22.saveclasses.GearItemData;
 
@@ -18,6 +20,22 @@ public class RecipeUtils {
 		}
 
 		return null;
+	}
+
+	public static boolean AreAllOtherSlotsEmpty(InventoryCrafting inv, List<Integer> slots) {
+
+		for (int i = 0; i < inv.getSizeInventory(); i++) {
+
+			if (slots.contains(i))
+				continue;
+
+			if (inv.getStackInSlot(i) != ItemStack.EMPTY) {
+				return false;
+			}
+
+		}
+		return true;
+
 	}
 
 	public static ItemStack SecondItemIs(InventoryCrafting inv, Item item) {

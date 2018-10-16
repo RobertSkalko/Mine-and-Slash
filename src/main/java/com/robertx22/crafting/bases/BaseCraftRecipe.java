@@ -1,5 +1,7 @@
 package com.robertx22.crafting.bases;
 
+import java.util.Arrays;
+
 import com.robertx22.crafting.RecipeUtils;
 import com.robertx22.customitems.currency.ICurrencyItemEffect;
 
@@ -20,14 +22,17 @@ public abstract class BaseCraftRecipe implements IRecipe, IRecipeOutput {
 
 		ItemStack gear = RecipeUtils.FirstItemIsGear(inv);
 		ItemStack currency = RecipeUtils.SecondItemIs(inv, CraftingItem());
+		boolean otherslotsempty = RecipeUtils.AreAllOtherSlotsEmpty(inv, Arrays.asList(0, 1));
 
-		if (gear != null && currency != null) {
+		if (gear != null && currency != null && otherslotsempty) {
 
 			ICurrencyItemEffect orb = (ICurrencyItemEffect) CraftingItem();
 
-			if (orb.CanItemBeModified(gear)) {
-				orb.ModifyItem(gear);
-				this.output = gear;
+			ItemStack copy = gear.copy();
+
+			if (orb.CanItemBeModified(copy)) {
+				orb.ModifyItem(copy);
+				this.output = copy;
 				return true;
 			}
 
