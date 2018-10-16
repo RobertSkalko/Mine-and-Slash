@@ -36,9 +36,11 @@ public class OnEntityMeleeAttack {
 
 					Unit unit = Saving.Load(source);
 					if (unit != null) {
-						int num = (int) unit.Stats().get("Damage").Value;
+						int num = (int) unit.Stats.get("Damage").Value;
 						DamageEffect dmg = new DamageEffect(source, target, num);
 						dmg.Activate();
+
+						event.setCanceled(true);
 					}
 
 				}

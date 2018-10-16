@@ -2,13 +2,13 @@ package com.robertx22.datasaving;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 import com.robertx22.capability.EntityData;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.Stat;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -30,9 +30,14 @@ public class Saving {
 
 		if (entity.hasCapability(EntityData.Data, null)) {
 			try {
-				return (T) gson.fromJson(entity.getCapability(EntityData.Data, null).getNBT().getString(DataLocation),
+				Unit unit = gson.fromJson(entity.getCapability(EntityData.Data, null).getNBT().getString(DataLocation),
 						UnitClass);
-			} catch (JsonSyntaxException e) {
+				if (entity instanceof EntityLivingBase) {
+					unit.entity = (EntityLivingBase) entity;
+				}
+
+				return (T) unit;
+			} catch (Exception e) {
 
 				e.printStackTrace();
 			}

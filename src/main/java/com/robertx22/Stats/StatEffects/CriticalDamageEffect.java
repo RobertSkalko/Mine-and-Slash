@@ -21,14 +21,12 @@ public class CriticalDamageEffect implements IStatEffect {
 			ICrittable icrit = (ICrittable) Effect;
 
 			if (icrit.GetCrit()) {
-
 				float multi = 1 + stat.Value / 100;
-
 				Effect.Number *= multi;
 
-			}
+				System.out.println("dmg increased by crit");
 
-			System.out.println("dmg increased by crit");
+			}
 
 		}
 

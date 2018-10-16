@@ -49,11 +49,13 @@ public abstract class Stat {
 
 		float finalValue = 0;
 
+		finalValue += StatMinimum + BaseFlat;
+
 		if (ScalesToLevel()) {
-			finalValue += StatMinimum * Source.level + BaseFlat * Source.level;
+			finalValue *= Source.level;
 		}
 
-		finalValue += Flat + StatMinimum + BaseFlat;
+		finalValue += Flat;
 
 		finalValue *= 1 + Percent / 100;
 

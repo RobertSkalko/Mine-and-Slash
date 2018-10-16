@@ -15,6 +15,7 @@ import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Health;
+import com.robertx22.database.stats.types.elementals.damage.FireDamage;
 import com.robertx22.datasaving.Saving;
 import com.robertx22.enumclasses.EntityTypes;
 import com.robertx22.stats.Stat;
@@ -50,7 +51,7 @@ public class Unit implements Serializable {
 	public int rarity = 0;
 
 	public int experience = 0;
-	public int level = 0;
+	public int level = 1;
 
 	public int GetExpRequiredForLevelUp() {
 
@@ -90,21 +91,16 @@ public class Unit implements Serializable {
 
 	public HashMap<String, Stat> Stats = new HashMap<String, Stat>() {
 		{
-			put("Health", new Health());
-			put("Damage", new Damage());
-			put("Armor", new Armor());
-			put("Critical Hit", new CriticalHit());
-			put("Critical Damage", new CriticalDamage());
-			// put(FireDamage.class, new FireDamage());
+			put(new Health().Name(), new Health());
+			put(new Damage().Name(), new Damage());
+			put(new Armor().Name(), new Armor());
+			put(new CriticalHit().Name(), new CriticalHit());
+			put(new CriticalDamage().Name(), new CriticalDamage());
+			put(new FireDamage().Name(), new FireDamage());
 
 		}
 
 	};
-
-	public HashMap<String, Stat> Stats() {
-
-		return Stats;
-	}
 
 	transient public boolean StatsDirty = true;
 
@@ -149,7 +145,7 @@ public class Unit implements Serializable {
 	}
 
 	private void ClearStats() {
-		for (Stat stat : Stats().values()) {
+		for (Stat stat : Stats.values()) {
 			stat.Clear();
 		}
 	}
@@ -164,8 +160,14 @@ public class Unit implements Serializable {
 
 			for (StatModData data : datas) {
 
-				Stats().get(data.GetBaseMod().GetBaseStat().getClass()).Add(data);
+				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
 
+				if (stat == null) {
+					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+				} else {
+					stat.Add(data);
+
+				}
 			}
 		}
 	}
@@ -184,14 +186,16 @@ public class Unit implements Serializable {
 		CalcStats();
 
 		watch.stop();
-		// System.out.println("Recalc stats takes " + watch.getTime());
+		// System.out.println(Stats().toString());
+
+		System.out.println(Stats.get("Critical Hit").GetValue(this));
 
 		// StatsDirty = false;
 	}
 
 	private void CalcStats() {
 
-		Stats().values().forEach((Stat stat) -> stat.CalcVal(this));
+		Stats.values().forEach((Stat stat) -> stat.CalcVal(this));
 	}
 
 	public void GiveExp(EntityPlayer player, int i) {

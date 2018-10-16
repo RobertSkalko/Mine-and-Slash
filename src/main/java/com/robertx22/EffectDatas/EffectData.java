@@ -82,7 +82,7 @@ public abstract class EffectData {
 
 	private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit) {
 		if (unit != null) {
-			for (Stat stat : unit.Stats().values()) {
+			for (Stat stat : unit.Stats.values()) {
 				if (stat instanceof IStatEffects) {
 					for (IStatEffect effect : ((IStatEffects) stat).GetEffects()) {
 						effects.add(new EffectUnitStat(effect, unit, stat));

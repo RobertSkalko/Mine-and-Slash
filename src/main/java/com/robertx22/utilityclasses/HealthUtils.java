@@ -1,5 +1,6 @@
 package com.robertx22.utilityclasses;
 
+import com.robertx22.database.stats.types.Health;
 import com.robertx22.datasaving.Saving;
 import com.robertx22.saveclasses.Unit;
 
@@ -12,7 +13,7 @@ public class HealthUtils {
 		try {
 			Unit unit = Saving.Load(entity);
 
-			float maxhp = unit.Stats().get("Health").Value;
+			float maxhp = unit.Stats.get(new Health().Name()).Value;
 			float maxMChp = entity.getMaxHealth();
 
 			return (float) (maxMChp / maxhp * dmg);
