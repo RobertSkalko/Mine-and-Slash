@@ -2,7 +2,7 @@ package com.robertx22.utilityclasses;
 
 import java.util.List;
 
-import com.robertx22.interfaces.IWeighted;
+import com.robertx22.classes.IWeighted;
 
 public class WeightedUtils {
 

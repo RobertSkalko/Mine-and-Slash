@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.classes.IWeighted;
 import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.ITooltipList;
 import com.robertx22.gearitem.Prefix;
 import com.robertx22.generation.StatGen;
-import com.robertx22.interfaces.IWeighted;
 import com.robertx22.saveclasses.abstractclasses.AffixData;
 import com.robertx22.stats.StatMod;
 import com.robertx22.utilityclasses.ListUtils;

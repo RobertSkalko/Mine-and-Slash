@@ -1,4 +1,4 @@
-package com.robertx22.interfaces;
+package com.robertx22.classes;
 
 public interface IWeighted {
 

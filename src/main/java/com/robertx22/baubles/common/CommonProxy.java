@@ -21,7 +21,8 @@ public class CommonProxy implements IGuiHandler {
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		switch (ID) {
-			case Main.GUI: return new ContainerPlayerExpanded(player.inventory, !world.isRemote, player);
+		case Main.GUI:
+			return new ContainerPlayerExpanded(player.inventory, !world.isRemote, player);
 		}
 		return null;
 	}
@@ -35,5 +36,9 @@ public class CommonProxy implements IGuiHandler {
 		MinecraftForge.EVENT_BUS.register(new EventHandlerItem());
 	}
 
-	public void init() { }
+	public void registerRenderers() {
+	}
+
+	public void init() {
+	}
 }

@@ -2,6 +2,7 @@
 package com.robertx22.baubles.client;
 
 import java.util.Map;
+
 import org.lwjgl.input.Keyboard;
 
 import com.robertx22.baubles.client.gui.GuiEvents;
@@ -21,7 +22,8 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class ClientProxy extends CommonProxy {
 
-	public static final KeyBinding KEY_BAUBLES = new KeyBinding("keybind.baublesinventory", Keyboard.KEY_B, "key.categories.inventory");
+	public static final KeyBinding KEY_BAUBLES = new KeyBinding("keybind.baublesinventory", Keyboard.KEY_B,
+			"key.categories.inventory");
 
 	@Override
 	public void registerEventHandlers() {
@@ -37,7 +39,8 @@ public class ClientProxy extends CommonProxy {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if (world instanceof WorldClient) {
 			switch (ID) {
-				case Main.GUI: return new GuiPlayerExpanded(player);
+			case Main.GUI:
+				return new GuiPlayerExpanded(player);
 			}
 		}
 		return null;
@@ -46,6 +49,13 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public World getClientWorld() {
 		return FMLClientHandler.instance().getClient().world;
+	}
+
+	@Override
+	public void registerRenderers() {
+
+		// RenderingRegistry.registerEntityRenderingHandler(EntityFireBolt.class, new
+		// RenderFireball(null, 1));
 	}
 
 	@Override

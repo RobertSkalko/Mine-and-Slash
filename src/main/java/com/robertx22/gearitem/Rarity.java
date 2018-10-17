@@ -1,6 +1,6 @@
 package com.robertx22.gearitem;
 
-import com.robertx22.interfaces.IWeighted;
+import com.robertx22.classes.IWeighted;
 
 public abstract class Rarity implements IWeighted {
 

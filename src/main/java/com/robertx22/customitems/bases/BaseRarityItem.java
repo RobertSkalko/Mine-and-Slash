@@ -10,10 +10,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public abstract class BaseCustomItem extends Item {
+public abstract class BaseRarityItem extends Item {
 	public abstract String Name();
 
-	public BaseCustomItem(int rarity, HashMap<Integer, Item> map) {
+	public BaseRarityItem(int rarity, HashMap<Integer, Item> map) {
 		this.setMaxStackSize(1);
 		this.setMaxDamage(0);
 		this.setCreativeTab(NewItemCreator.MyModTab);

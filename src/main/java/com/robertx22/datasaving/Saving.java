@@ -82,7 +82,6 @@ public class Saving {
 				}
 
 				String str = nbt.getString(StackData);
-				// System.out.println(type.toString());
 				obj = (T) gson.fromJson(str, GearClass);
 
 			} catch (Exception e) {
@@ -96,9 +95,7 @@ public class Saving {
 	}
 
 	public static <T> void Save(ItemStack stack, Object obj) {
-
 		try {
-
 			NBTTagCompound nbt = null;
 			if (stack.getTagCompound() == null) {
 				nbt = new NBTTagCompound();
@@ -107,9 +104,7 @@ public class Saving {
 			}
 
 			String json = gson.toJson(obj);
-
 			nbt.setString(StackData, json);
-
 			stack.setTagCompound(nbt);
 
 		} catch (Exception e) {
@@ -117,4 +112,34 @@ public class Saving {
 		}
 
 	}
+
+	@SuppressWarnings("unchecked")
+	public static <T> T Load(ItemStack stack, Class<?> theclass) {
+
+		if (stack.hasTagCompound() && stack.getTagCompound().hasKey(StackData)) {
+
+			T obj = null;
+
+			try {
+
+				NBTTagCompound nbt = null;
+				if (stack.getTagCompound() == null) {
+					nbt = new NBTTagCompound();
+				} else {
+					nbt = stack.getTagCompound();
+				}
+
+				String str = nbt.getString(StackData);
+				obj = (T) gson.fromJson(str, theclass);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return obj;
+		} else {
+			return null;
+		}
+	}
+
 }

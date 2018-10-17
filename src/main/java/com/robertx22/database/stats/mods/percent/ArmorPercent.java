@@ -1,8 +1,8 @@
 package com.robertx22.database.stats.mods.percent;
 
+import com.robertx22.classes.IWeighted;
 import com.robertx22.database.stats.types.Armor;
 import com.robertx22.enumclasses.StatTypes;
-import com.robertx22.interfaces.IWeighted;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 

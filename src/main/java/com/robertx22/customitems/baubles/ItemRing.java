@@ -5,16 +5,10 @@ import java.util.HashMap;
 import com.robertx22.baubles.api.BaubleType;
 import com.robertx22.customitems.bases.BaseBaublesItem;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.spells.projectile.FireBolt;
 import com.robertx22.utilityclasses.ModelUtils;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -50,10 +44,12 @@ public class ItemRing extends BaseBaublesItem {
 		return "Ring";
 	}
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		new FireBolt().cast(worldIn, playerIn, handIn, 50);
-
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
-	}
+	/*
+	 * @Override public ActionResult<ItemStack> onItemRightClick(World worldIn,
+	 * EntityPlayer playerIn, EnumHand handIn) { new FrostBolt().cast(worldIn,
+	 * playerIn, handIn, 50);
+	 * 
+	 * return new ActionResult<ItemStack>(EnumActionResult.PASS,
+	 * playerIn.getHeldItem(handIn)); }
+	 */
 }

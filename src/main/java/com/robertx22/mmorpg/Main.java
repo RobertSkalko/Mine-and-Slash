@@ -81,6 +81,8 @@ public class Main {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws IOException {
 
+		new CommonProxy().registerRenderers();
+
 		// GenJsonFiles.Gen();
 
 		ModMetadata modMeta = event.getModMetadata();
