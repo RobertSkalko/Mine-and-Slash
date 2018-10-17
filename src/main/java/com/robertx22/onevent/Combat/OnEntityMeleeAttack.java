@@ -4,6 +4,7 @@ import com.robertx22.capability.EntityData;
 import com.robertx22.datasaving.Saving;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.spells.bases.IDamageSource;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -17,6 +18,11 @@ public class OnEntityMeleeAttack {
 	public static void onEntityMeleeAttack(LivingAttackEvent event) {
 
 		try {
+
+			if (event.getSource() instanceof IDamageSource) {
+
+				System.out.println("IT WORKS!!!!!");
+			}
 
 			if (event.getSource().isExplosion()) {
 				return;
