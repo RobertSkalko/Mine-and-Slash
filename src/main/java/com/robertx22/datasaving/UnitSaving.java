@@ -15,7 +15,7 @@ public class UnitSaving {
 		return Saving.Load(entity, EntityData.Data, DataLocation, UnitClass);
 	}
 
-	public static <T> void Save(Entity entity, Object obj) {
+	public static <T> void Save(Entity entity, Unit obj) {
 		Saving.Save(entity, obj, EntityData.Data, DataLocation);
 	}
 }

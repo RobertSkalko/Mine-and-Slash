@@ -3,7 +3,7 @@ package com.robertx22.crafting;
 import java.util.List;
 
 import com.robertx22.datasaving.GearSaving;
-import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.GearItemData;
 
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;

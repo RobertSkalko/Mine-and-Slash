@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.robertx22.enumclasses.Elements;
 import com.robertx22.enumclasses.StatTypes;
-import com.robertx22.saveclasses.StatModData;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.saveclasses.gearitem.StatModData;
 
 import net.minecraft.entity.EntityLivingBase;
 

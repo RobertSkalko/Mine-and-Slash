@@ -8,6 +8,7 @@ import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.enumclasses.Elements;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -31,7 +32,7 @@ public class DamageEffect extends EffectData
 	@Override
 	protected void activate() {
 
-		DamageSource dmgsource = new DamageSource(DmgSourceName);
+		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName);
 		dmgsource.setDamageBypassesArmor();
 		// dmgsource.setDamageIsAbsolute();
 

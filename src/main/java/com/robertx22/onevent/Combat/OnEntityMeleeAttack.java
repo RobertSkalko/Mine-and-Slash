@@ -4,7 +4,7 @@ import com.robertx22.capability.EntityData;
 import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.spells.bases.IDamageSource;
+import com.robertx22.spells.bases.MyDamageSource;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -19,11 +19,6 @@ public class OnEntityMeleeAttack {
 
 		try {
 
-			if (event.getSource() instanceof IDamageSource) {
-
-				System.out.println("IT WORKS!!!!!");
-			}
-
 			if (event.getSource().isExplosion()) {
 				return;
 			}
@@ -31,7 +26,7 @@ public class OnEntityMeleeAttack {
 				return;
 			}
 
-			if (event.getSource().getDamageType().equals(DamageEffect.DmgSourceName)) {
+			if (event.getSource() instanceof MyDamageSource) {
 				// System.out.println("Dmg source works correctly!");
 			} else {
 

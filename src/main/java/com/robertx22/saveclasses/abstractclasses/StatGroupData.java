@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.gearitem.IStatsContainer;
-import com.robertx22.saveclasses.StatModData;
+import com.robertx22.saveclasses.gearitem.StatModData;
 
 public abstract class StatGroupData implements IStatsContainer {
 

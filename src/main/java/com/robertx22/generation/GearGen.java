@@ -3,11 +3,11 @@ package com.robertx22.generation;
 import com.robertx22.datasaving.GearSaving;
 import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.ItemRarity;
-import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.PrefixData;
-import com.robertx22.saveclasses.PrimaryStatsData;
-import com.robertx22.saveclasses.SecondaryStatsData;
-import com.robertx22.saveclasses.SuffixData;
+import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.saveclasses.gearitem.PrefixData;
+import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
+import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
+import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.utilityclasses.RandomUtils;
 
 import net.minecraft.item.ItemStack;

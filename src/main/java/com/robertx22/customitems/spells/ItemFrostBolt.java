@@ -3,7 +3,7 @@ package com.robertx22.customitems.spells;
 import com.robertx22.customitems.bases.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.spells.projectile.FrostBolt;
+import com.robertx22.spells.frostbolt.SpellFrostBolt;
 import com.robertx22.utilityclasses.ModelUtils;
 
 import net.minecraft.item.Item;
@@ -31,7 +31,7 @@ public class ItemFrostBolt extends BaseSpellItem {
 
 	@Override
 	public BaseSpell Spell() {
-		return new FrostBolt();
+		return new SpellFrostBolt();
 	}
 
 	@SubscribeEvent

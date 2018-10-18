@@ -9,7 +9,7 @@ import com.robertx22.database.lists.Rarities;
 import com.robertx22.datasaving.GearSaving;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.GearGenSchema;
-import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.GearItemData;
 
 public class ItemGenRarityTest {
 

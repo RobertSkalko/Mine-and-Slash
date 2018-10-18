@@ -16,9 +16,14 @@ public class PenetrationEffect implements IStatEffect {
 	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
-		if (Effect instanceof IPenetrable && Effect.GetSource().equals(source)) {
-			IPenetrable ipene = (IPenetrable) Effect;
-			ipene.SetArmorPenetration((int) stat.Value);
+		try {
+			if (Effect instanceof IPenetrable && Effect.GetSource().equals(source)) {
+				IPenetrable ipene = (IPenetrable) Effect;
+				ipene.SetArmorPenetration((int) stat.Value);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return Effect;

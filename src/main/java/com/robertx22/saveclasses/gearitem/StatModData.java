@@ -1,4 +1,4 @@
-package com.robertx22.saveclasses;
+package com.robertx22.saveclasses.gearitem;
 
 import java.io.Serializable;
 

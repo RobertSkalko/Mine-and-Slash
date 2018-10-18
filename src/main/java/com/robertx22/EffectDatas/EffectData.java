@@ -19,18 +19,22 @@ public abstract class EffectData {
 		this.Source = source;
 		this.Target = target;
 
-		Unit sourceunit = UnitSaving.Load(source);
-		if (sourceunit != null) {
-			sourceunit.RecalculateStats(source);
-			UnitSaving.Save(source, sourceunit);
-			sourceUnit = sourceunit;
-		}
+		try {
+			Unit sourceunit = UnitSaving.Load(source);
+			if (sourceunit != null) {
+				sourceunit.RecalculateStats(source);
+				UnitSaving.Save(source, sourceunit);
+				sourceUnit = sourceunit;
+			}
 
-		Unit targetunit = UnitSaving.Load(target);
-		if (targetunit != null) {
-			targetunit.RecalculateStats(target);
-			UnitSaving.Save(target, targetunit);
-			targetUnit = targetunit;
+			Unit targetunit = UnitSaving.Load(target);
+			if (targetunit != null) {
+				targetunit.RecalculateStats(target);
+				UnitSaving.Save(target, targetunit);
+				targetUnit = targetunit;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -57,19 +61,20 @@ public abstract class EffectData {
 		if (Source == null || Target == null)
 			return;
 
-		TryApplyEffects();
+		TryApplyEffects(this.GetSource());
+		TryApplyEffects(this.GetTarget());
+
 		activate();
 	}
 
 	protected abstract void activate();
 
-	private EffectData TryApplyEffects() {
+	private EffectData TryApplyEffects(Unit unit) {
 		EffectData Data = this;
 
 		List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
 
-		Effects = AddEffects(Effects, GetTarget());
-		Effects = AddEffects(Effects, GetSource());
+		Effects = AddEffects(Effects, unit);
 
 		Effects.sort((Comparator<EffectUnitStat>) new EffectUnitStat());
 

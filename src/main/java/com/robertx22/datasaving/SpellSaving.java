@@ -39,7 +39,7 @@ public class SpellSaving {
 		}
 	}
 
-	public static <T> void Save(ItemStack stack, Object obj) {
+	public static <T> void Save(ItemStack stack, SpellItemData obj) {
 		try {
 			NBTTagCompound nbt = null;
 			if (stack.getTagCompound() == null) {

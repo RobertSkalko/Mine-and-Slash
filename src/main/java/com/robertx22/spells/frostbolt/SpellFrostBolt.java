@@ -1,11 +1,8 @@
-package com.robertx22.spells.projectile;
+package com.robertx22.spells.frostbolt;
 
-import com.robertx22.datasaving.DamageSaving;
-import com.robertx22.datasaving.UnitSaving;
+import com.robertx22.saveclasses.DamageData;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.spells.bases.projectile.EntityFrostBolt;
 import com.robertx22.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,9 +11,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class FrostBolt extends BaseSpell {
+public class SpellFrostBolt extends BaseSpell {
 
-	public FrostBolt() {
+	public SpellFrostBolt() {
 		super();
 	}
 
@@ -30,11 +27,9 @@ public class FrostBolt extends BaseSpell {
 			frostbolt.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
 			frostbolt.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
-			Unit unit = UnitSaving.Load(caster);
+			frostbolt.SetData(new DamageData(caster, new EffectFrostBolt()));
 
 			world.spawnEntity(frostbolt);
-
-			DamageSaving.Save(frostbolt, unit);
 
 		}
 

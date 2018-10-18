@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.robertx22.customitems.oldreplacesoon.ItemBasic;
 import com.robertx22.datasaving.GearSaving;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.utilityclasses.ModelUtils;
 
 import net.minecraft.client.util.ITooltipFlag;

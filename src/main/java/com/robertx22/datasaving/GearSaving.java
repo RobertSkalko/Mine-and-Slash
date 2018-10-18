@@ -1,7 +1,7 @@
 package com.robertx22.datasaving;
 
 import com.robertx22.datasaving.bases.Gson;
-import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.GearItemData;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -40,7 +40,7 @@ public class GearSaving {
 		}
 	}
 
-	public static <T> void Save(ItemStack stack, Object obj) {
+	public static <T> void Save(ItemStack stack, GearItemData obj) {
 		try {
 			NBTTagCompound nbt = null;
 			if (stack.getTagCompound() == null) {

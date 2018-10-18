@@ -1,7 +1,7 @@
 package com.robertx22.utilityclasses;
 
 import com.robertx22.datasaving.GearSaving;
-import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.GearItemData;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

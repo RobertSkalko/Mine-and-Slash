@@ -17,15 +17,19 @@ public class CriticalHitEffect implements IStatEffect {
 	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
-		if (Effect instanceof ICrittable && Effect.GetSource().equals(source)) {
+		try {
+			if (Effect instanceof ICrittable && Effect.GetSource().equals(source)) {
 
-			ICrittable icrit = (ICrittable) Effect;
+				ICrittable icrit = (ICrittable) Effect;
 
-			if (RandomUtils.roll(stat.Value)) {
-				icrit.SetCrit(true);
-				System.out.println("It's a crit");
+				if (RandomUtils.roll(stat.Value)) {
+					icrit.SetCrit(true);
+					System.out.println("It's a crit");
+				}
+
 			}
-
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return Effect;

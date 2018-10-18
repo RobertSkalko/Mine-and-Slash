@@ -1,39 +1,51 @@
-package com.robertx22.spells.bases.projectile;
+package com.robertx22.spells.frostbolt;
 
-import com.robertx22.datasaving.DamageSaving;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.saveclasses.DamageData;
 import com.robertx22.spells.bases.IDamageSource;
-import com.robertx22.spells.bases.MyDamageSource;
+import com.robertx22.spells.bases.IEntityDamageSource;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityFrostBolt extends EntitySnowball implements IDamageSource {
+public class EntityFrostBolt extends EntitySnowball implements IDamageSource, IEntityDamageSource {
 	public EntityFrostBolt(World par1World) {
 		super(par1World);
 	}
 
+	DamageData data = null;
+
 	@Override
 	protected void onImpact(RayTraceResult result) {
-		if (result.entityHit != null) {
+		if (result.entityHit != null && result.entityHit instanceof EntityLivingBase) {
 
-			Unit source = DamageSaving.Load(this);
+			if (data != null) {
 
-			if (source != null) {
+				System.out.println("interface TO PROJECTILE WORKS!");
 
-				System.out.println("CAPABILITY TO PROJECTILE WORKS!");
+				data.effect.Activate(data.caster, (EntityLivingBase) result.entityHit);
+
+			} else {
+				System.out.println("doesnt work!");
+
 			}
-
-			MyDamageSource dmg = new MyDamageSource("test");
-
-			result.entityHit.attackEntityFrom(dmg, 5);
-
 		}
 
 		if (!this.world.isRemote) {
 			this.world.setEntityState(this, (byte) 3);
 			this.setDead();
 		}
+	}
+
+	@Override
+	public void SetData(DamageData data) {
+		this.data = data;
+
+	}
+
+	@Override
+	public DamageData GetData() {
+		return data;
 	}
 }

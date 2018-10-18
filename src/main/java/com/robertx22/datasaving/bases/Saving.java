@@ -12,7 +12,7 @@ public class Saving {
 	public static <T, Interface extends ICommonData> T Load(ICapabilitySerializable<NBTTagCompound> entity,
 			Capability<Interface> capability, String path, Class<?> theclass) {
 
-		if (entity.hasCapability(capability, null)) {
+		if (entity != null && entity.hasCapability(capability, null)) {
 			try {
 
 				return (T) Gson.instance.fromJson(
@@ -33,7 +33,7 @@ public class Saving {
 	public static <T, Interface extends ICommonData> void Save(ICapabilitySerializable<NBTTagCompound> entity,
 			Object obj, Capability<Interface> capability, String path) {
 
-		if (entity.hasCapability(capability, null)) {
+		if (entity != null && entity.hasCapability(capability, null)) {
 
 			try {
 

@@ -22,6 +22,8 @@ import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
 import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
 import com.robertx22.datasaving.GearSaving;
 import com.robertx22.enumclasses.EntityTypes;
+import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.Stat;
 
 import net.minecraft.client.Minecraft;

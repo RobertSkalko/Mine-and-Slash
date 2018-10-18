@@ -2,7 +2,7 @@ package com.robertx22.gearitem;
 
 import java.util.List;
 
-import com.robertx22.saveclasses.StatModData;
+import com.robertx22.saveclasses.gearitem.StatModData;
 
 public interface IStatsContainer {
 

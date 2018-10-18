@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.IStatsContainer;
-import com.robertx22.saveclasses.StatModData;
+import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.StatMod;
 
 public abstract class AffixData implements IStatsContainer, IRerollable {
