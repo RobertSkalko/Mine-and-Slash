@@ -8,7 +8,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.datasaving.GearSaving;
 import com.robertx22.generation.GearGen;
-import com.robertx22.generation.GearGenSchema;
+import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.gearitem.GearItemData;
 
 public class ItemGenRarityTest {
@@ -22,7 +22,7 @@ public class ItemGenRarityTest {
 
 		HashMap<Integer, Integer> RarityandNumber = new HashMap<Integer, Integer>();
 
-		GearGenSchema schema = new GearGenSchema(1);
+		GearBlueprint schema = new GearBlueprint(1);
 
 		for (int i = 0; i < amount; i++) {
 

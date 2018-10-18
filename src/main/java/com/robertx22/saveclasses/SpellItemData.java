@@ -8,17 +8,21 @@ import com.robertx22.utilityclasses.RandomUtils;
 
 public class SpellItemData implements Serializable {
 
+	public SpellItemData() {
+
+	}
+
 	private static final long serialVersionUID = -8509997736940652748L;
 
-	public int level;
+	public int level = 1;
 	public String spellGUID;
 	public int rarity;
-	public int untilCooldownOver;
+	public int untilCooldownOver = 0;
 
-	public int manaCostPercent;
-	public int scalingEffectPercent;
-	public int baseEffectPercent;
-	public int cooldownPercent;
+	public int manaCostPercent = 100;
+	public int scalingEffectPercent = 100;
+	public int baseEffectPercent = 100;
+	public int cooldownPercent = 100;
 
 	public int GetManaCost() {
 		return GetSpell().ManaCost() * manaCostPercent / 100;

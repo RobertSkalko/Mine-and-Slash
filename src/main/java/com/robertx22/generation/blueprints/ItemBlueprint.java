@@ -1,19 +1,13 @@
-package com.robertx22.generation;
+package com.robertx22.generation.blueprints;
 
-import java.util.List;
-
-import com.robertx22.classes.IWeighted;
-import com.robertx22.database.lists.GearTypes;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.ItemRarity;
-import com.robertx22.utilityclasses.ListUtils;
+import com.robertx22.generation.RarityGen;
 import com.robertx22.utilityclasses.RandomUtils;
-import com.robertx22.utilityclasses.WeightedUtils;
 
-public class GearGenSchema {
+public class ItemBlueprint {
 
-	public GearGenSchema(int level) {
+	public ItemBlueprint(int level) {
 		this.level = level;
 	}
 
@@ -21,10 +15,6 @@ public class GearGenSchema {
 
 	public int rarity;
 	public boolean RandomRarity = true;
-
-	public String gearType;
-	public boolean RandomGearType = true;
-
 	public int level;
 	public boolean LevelRange = true;
 	public int LevelVariance = 5;
@@ -42,19 +32,6 @@ public class GearGenSchema {
 
 	}
 
-	public void SetSpecificType(String i) {
-
-		gearType = i;
-		RandomGearType = false;
-
-		try {
-			GearTypes.All.get(i);
-		} catch (IndexOutOfBoundsException e) {
-			e.printStackTrace();
-		}
-
-	}
-
 	public ItemRarity GetRarity() {
 
 		if (RandomRarity) {
@@ -62,20 +39,6 @@ public class GearGenSchema {
 
 		} else {
 			return Rarities.Items.get(rarity);
-		}
-
-	}
-
-	public GearItemSlot GetGearType() {
-
-		if (RandomGearType) {
-			List<IWeighted> slots = ListUtils.CollectionToList(GearTypes.All.values());
-
-			return (GearItemSlot) WeightedUtils.WeightedRandom(slots);
-
-		} else {
-
-			return GearTypes.All.get(gearType);
 		}
 
 	}

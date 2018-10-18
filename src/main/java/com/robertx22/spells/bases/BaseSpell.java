@@ -5,6 +5,7 @@ import com.robertx22.enumclasses.Elements;
 import com.robertx22.saveclasses.SpellItemData;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
@@ -25,6 +26,8 @@ public abstract class BaseSpell implements IWeighted {
 	public abstract Elements Element();
 
 	public boolean ScalesWithLevel = true;
+
+	public abstract Item SpellItem();
 
 	public BaseSpell() {
 

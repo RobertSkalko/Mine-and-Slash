@@ -20,6 +20,7 @@ import com.robertx22.baubles.common.event.CommandBaubles;
 import com.robertx22.baubles.common.network.PacketHandler;
 import com.robertx22.capability.EntityData;
 import com.robertx22.commands.GiveGear;
+import com.robertx22.commands.GiveSpell;
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
 import com.robertx22.oregen.OreGen;
@@ -63,6 +64,7 @@ public class Main {
 	@EventHandler
 	public void start(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GiveGear());
+		event.registerServerCommand(new GiveSpell());
 
 	}
 

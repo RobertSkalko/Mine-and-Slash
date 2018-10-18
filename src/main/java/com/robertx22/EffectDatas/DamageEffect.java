@@ -12,7 +12,6 @@ import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.DamageSource;
 
 public class DamageEffect extends EffectData
 		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
@@ -34,7 +33,6 @@ public class DamageEffect extends EffectData
 
 		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName);
 		dmgsource.setDamageBypassesArmor();
-		// dmgsource.setDamageIsAbsolute();
 
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number, Target);
 
