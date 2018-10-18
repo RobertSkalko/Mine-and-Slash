@@ -1,8 +1,10 @@
 package com.robertx22.spells.projectile;
 
+import com.robertx22.datasaving.DamageSaving;
+import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.spells.bases.projectile.EntityFrostBolt;
 import com.robertx22.utilityclasses.SoundUtils;
 
@@ -26,15 +28,14 @@ public class FrostBolt extends BaseSpell {
 		if (!world.isRemote) {
 			EntityFrostBolt frostbolt = new EntityFrostBolt(world);
 			frostbolt.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
-
 			frostbolt.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
-			MyDamageSource dmg = new MyDamageSource("test");
-
-			// caster.attackEntityFrom(dmg, 1);
-			// fireball.getCapability(capability, facing)
+			Unit unit = UnitSaving.Load(caster);
 
 			world.spawnEntity(frostbolt);
+
+			DamageSaving.Save(frostbolt, unit);
+
 		}
 
 		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_BLAZE_SHOOT, 1, 1);

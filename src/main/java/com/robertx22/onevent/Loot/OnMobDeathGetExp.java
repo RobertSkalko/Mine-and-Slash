@@ -1,6 +1,7 @@
 package com.robertx22.onevent.loot;
 
 import com.robertx22.capability.EntityData;
+import com.robertx22.capability.EntityData.IEntityData;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
@@ -35,7 +36,7 @@ public class OnMobDeathGetExp {
 
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 
-			EntityData.IData mobdata = mob.getCapability(EntityData.Data, null);
+			EntityData.IEntityData mobdata = (IEntityData) mob.getCapability(EntityData.Data, null);
 
 			NBTTagCompound mobnbt = mobdata.getNBT();
 

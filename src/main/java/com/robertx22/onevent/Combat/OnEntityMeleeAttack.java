@@ -1,7 +1,7 @@
 package com.robertx22.onevent.combat;
 
 import com.robertx22.capability.EntityData;
-import com.robertx22.datasaving.Saving;
+import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.IDamageSource;
@@ -40,7 +40,7 @@ public class OnEntityMeleeAttack {
 
 				if (target.hasCapability(EntityData.Data, null) && source.hasCapability(EntityData.Data, null)) {
 
-					Unit unit = Saving.Load(source);
+					Unit unit = UnitSaving.Load(source);
 					if (unit != null) {
 						int num = (int) unit.Stats.get("Damage").Value;
 						DamageEffect dmg = new DamageEffect(source, target, num);

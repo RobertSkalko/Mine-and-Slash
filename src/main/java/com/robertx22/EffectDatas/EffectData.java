@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import com.robertx22.datasaving.Saving;
+import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
@@ -19,17 +19,17 @@ public abstract class EffectData {
 		this.Source = source;
 		this.Target = target;
 
-		Unit sourceunit = Saving.Load(source);
+		Unit sourceunit = UnitSaving.Load(source);
 		if (sourceunit != null) {
-			sourceunit.RecalculateStats();
-			Saving.Save(source, sourceunit);
+			sourceunit.RecalculateStats(source);
+			UnitSaving.Save(source, sourceunit);
 			sourceUnit = sourceunit;
 		}
 
-		Unit targetunit = Saving.Load(target);
+		Unit targetunit = UnitSaving.Load(target);
 		if (targetunit != null) {
-			targetunit.RecalculateStats();
-			Saving.Save(target, targetunit);
+			targetunit.RecalculateStats(target);
+			UnitSaving.Save(target, targetunit);
 			targetUnit = targetunit;
 		}
 

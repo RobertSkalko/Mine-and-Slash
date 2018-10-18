@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.oldreplacesoon.ItemBasic;
-import com.robertx22.datasaving.Saving;
+import com.robertx22.datasaving.GearSaving;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.ChaosStatsData;
 import com.robertx22.saveclasses.GearItemData;
@@ -60,17 +60,17 @@ public class ItemChaosOrb extends ItemBasic implements ICurrencyItemEffect {
 	@Override
 	public void ModifyItem(ItemStack stack) {
 
-		GearItemData gear = Saving.Load(stack);
+		GearItemData gear = GearSaving.Load(stack);
 		gear.chaosStats = new ChaosStatsData();
 		gear.chaosStats.setRerollFully = true;
-		Saving.Save(stack, gear);
+		GearSaving.Save(stack, gear);
 
 	}
 
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
 
-		GearItemData gear = Saving.Load(stack);
+		GearItemData gear = GearSaving.Load(stack);
 
 		if (gear.chaosStats == null) {
 			return true;

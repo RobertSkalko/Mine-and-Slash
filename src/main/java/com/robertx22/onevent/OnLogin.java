@@ -1,7 +1,7 @@
 package com.robertx22.onevent;
 
 import com.robertx22.capability.EntityData;
-import com.robertx22.datasaving.Saving;
+import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.saveclasses.Unit;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,8 +26,8 @@ public class OnLogin {
 			return;
 		}
 
-		if (Saving.Load(player) == null) {
-			Saving.Save(player, new Unit(player));
+		if (UnitSaving.Load(player) == null) {
+			UnitSaving.Save(player, new Unit());
 			System.out.println("Welcome!");
 		}
 

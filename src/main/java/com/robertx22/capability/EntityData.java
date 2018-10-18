@@ -20,14 +20,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class EntityData {
 
-	@CapabilityInject(IData.class)
-	public static final Capability<IData> Data = null;
+	@CapabilityInject(IEntityData.class)
+	public static final Capability<ICommonData> Data = null;
 
-	public interface IData {
-
-		NBTTagCompound getNBT();
-
-		void setNBT(NBTTagCompound value);
+	public interface IEntityData extends ICommonData {
 
 	}
 
@@ -40,7 +36,7 @@ public class EntityData {
 
 				event.addCapability(new ResourceLocation(Ref.MODID, "EntityData"),
 						new ICapabilitySerializable<NBTTagCompound>() {
-							IData inst = new DefaultImpl();
+							IEntityData inst = new DefaultImpl();
 
 							@Override
 							public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -68,22 +64,22 @@ public class EntityData {
 
 	}
 
-	public static class Storage implements IStorage<IData> {
+	public static class Storage implements IStorage<IEntityData> {
 		@Override
-		public NBTBase writeNBT(Capability<IData> capability, IData instance, EnumFacing side) {
+		public NBTBase writeNBT(Capability<IEntityData> capability, IEntityData instance, EnumFacing side) {
 
 			return instance.getNBT();
 		}
 
 		@Override
-		public void readNBT(Capability<IData> capability, IData instance, EnumFacing side, NBTBase nbt) {
+		public void readNBT(Capability<IEntityData> capability, IEntityData instance, EnumFacing side, NBTBase nbt) {
 
 			instance.setNBT((NBTTagCompound) nbt);
 
 		}
 	}
 
-	public static class DefaultImpl implements IData {
+	public static class DefaultImpl implements IEntityData {
 		private NBTTagCompound nbt = new NBTTagCompound();
 
 		@Override

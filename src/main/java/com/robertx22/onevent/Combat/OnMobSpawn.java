@@ -1,7 +1,7 @@
 package com.robertx22.onevent.combat;
 
 import com.robertx22.capability.EntityData;
-import com.robertx22.datasaving.Saving;
+import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.saveclasses.Unit;
 
 import net.minecraft.client.Minecraft;
@@ -32,7 +32,7 @@ public class OnMobSpawn {
 
 		EntityLiving mob = (EntityLiving) event.getEntityLiving();
 
-		Saving.Save(mob, Unit.Mob(mob));
+		UnitSaving.Save(mob, Unit.Mob(mob));
 
 		// System.out.println("Saved unit to mob");
 

@@ -1,7 +1,7 @@
 package com.robertx22.customitems.bases;
 
 import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
-import com.robertx22.datasaving.Saving;
+import com.robertx22.datasaving.SpellSaving;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 
@@ -33,7 +33,7 @@ public abstract class BaseSpellItem extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
-		SpellItemData data = Saving.Load(playerIn.getHeldItem(handIn), SpellItemData.class);
+		SpellItemData data = SpellSaving.Load(playerIn.getHeldItem(handIn));
 
 		if (Spell().CanCast(playerIn, data)) {
 			Spell().cast(worldIn, playerIn, handIn, 5, data);

@@ -20,7 +20,7 @@ import com.robertx22.database.stats.types.elementals.damage.FireDamage;
 import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
 import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
 import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
-import com.robertx22.datasaving.Saving;
+import com.robertx22.datasaving.GearSaving;
 import com.robertx22.enumclasses.EntityTypes;
 import com.robertx22.stats.Stat;
 
@@ -33,15 +33,15 @@ public class Unit implements Serializable {
 
 	private static final long serialVersionUID = -6658683548383891230L;
 
-	public Unit(EntityLivingBase en) {
-		this.entity = en;
+	public Unit() {
+
 	}
 
-	transient public EntityLivingBase entity;
+	// transient public EntityLivingBase entity;
 
 	public static Unit Mob(EntityLivingBase en) {
 
-		Unit unit = new Unit(en);
+		Unit unit = new Unit();
 		unit.entityType = EntityTypes.Mob;
 
 		unit.Stats.get("Health").BaseFlat = (int) en.getMaxHealth();
@@ -111,7 +111,7 @@ public class Unit implements Serializable {
 
 	transient public boolean StatsDirty = true;
 
-	public List<GearItemData> GetEquips() {
+	public List<GearItemData> GetEquips(EntityLivingBase entity) {
 
 		List<ItemStack> list = new ArrayList<ItemStack>();
 
@@ -139,7 +139,7 @@ public class Unit implements Serializable {
 
 		for (ItemStack stack : list) {
 
-			GearItemData gear = Saving.Load(stack);
+			GearItemData gear = GearSaving.Load(stack);
 
 			if (gear != null) {
 				gearitems.add(gear);
@@ -160,9 +160,9 @@ public class Unit implements Serializable {
 		}
 	}
 
-	private void AddAllGearStats() {
+	private void AddAllGearStats(EntityLivingBase entity) {
 
-		List<GearItemData> gears = GetEquips();
+		List<GearItemData> gears = GetEquips(entity);
 
 		for (GearItemData gear : gears) {
 
@@ -182,7 +182,7 @@ public class Unit implements Serializable {
 		}
 	}
 
-	public void RecalculateStats() {
+	public void RecalculateStats(EntityLivingBase entity) {
 
 		StopWatch watch = new StopWatch();
 		watch.start();
@@ -190,7 +190,7 @@ public class Unit implements Serializable {
 		ClearStats();
 
 		if (entity instanceof EntityPlayer) {
-			AddAllGearStats();
+			AddAllGearStats(entity);
 		}
 
 		CalcStats();
@@ -198,7 +198,7 @@ public class Unit implements Serializable {
 		watch.stop();
 		// System.out.println(Stats().toString());
 
-		System.out.println(Stats.get("Critical Hit").GetValue(this));
+		// System.out.println(Stats.get("Critical Hit").GetValue(this, entity));
 
 		// StatsDirty = false;
 	}

@@ -19,14 +19,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class DamageSourceData {
 
-	@CapabilityInject(IData.class)
-	public static final Capability<IData> Data = null;
+	@CapabilityInject(IDamageSourceData.class)
+	public static final Capability<ICommonData> Data = null;
 
-	public interface IData {
-
-		NBTTagCompound getNBT();
-
-		void setNBT(NBTTagCompound value);
+	public interface IDamageSourceData extends ICommonData {
 
 	}
 
@@ -37,9 +33,9 @@ public class DamageSourceData {
 
 			if (event.getObject() instanceof IDamageSource) {
 
-				event.addCapability(new ResourceLocation(Ref.MODID, "EntityData"),
+				event.addCapability(new ResourceLocation(Ref.MODID, "DamageSourceData"),
 						new ICapabilitySerializable<NBTTagCompound>() {
-							IData inst = new DefaultImpl();
+							IDamageSourceData inst = new DefaultImpl();
 
 							@Override
 							public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -67,22 +63,23 @@ public class DamageSourceData {
 
 	}
 
-	public static class Storage implements IStorage<IData> {
+	public static class Storage implements IStorage<IDamageSourceData> {
 		@Override
-		public NBTBase writeNBT(Capability<IData> capability, IData instance, EnumFacing side) {
+		public NBTBase writeNBT(Capability<IDamageSourceData> capability, IDamageSourceData instance, EnumFacing side) {
 
 			return instance.getNBT();
 		}
 
 		@Override
-		public void readNBT(Capability<IData> capability, IData instance, EnumFacing side, NBTBase nbt) {
+		public void readNBT(Capability<IDamageSourceData> capability, IDamageSourceData instance, EnumFacing side,
+				NBTBase nbt) {
 
 			instance.setNBT((NBTTagCompound) nbt);
 
 		}
 	}
 
-	public static class DefaultImpl implements IData {
+	public static class DefaultImpl implements IDamageSourceData {
 		private NBTTagCompound nbt = new NBTTagCompound();
 
 		@Override

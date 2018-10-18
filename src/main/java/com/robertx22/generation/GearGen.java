@@ -1,6 +1,6 @@
 package com.robertx22.generation;
 
-import com.robertx22.datasaving.Saving;
+import com.robertx22.datasaving.GearSaving;
 import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.ItemRarity;
 import com.robertx22.saveclasses.GearItemData;
@@ -47,7 +47,7 @@ public class GearGen {
 
 		}
 
-		Saving.Save(stack, data);
+		GearSaving.Save(stack, data);
 
 		stack.setStackDisplayName(data.GetDisplayName());
 

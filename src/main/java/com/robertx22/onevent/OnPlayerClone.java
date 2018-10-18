@@ -1,8 +1,8 @@
 package com.robertx22.onevent;
 
 import com.robertx22.capability.EntityData;
-import com.robertx22.capability.EntityData.IData;
-import com.robertx22.datasaving.Saving;
+import com.robertx22.capability.EntityData.IEntityData;
+import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.saveclasses.Unit;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,17 +18,15 @@ public class OnPlayerClone {
 
 		if (!event.getEntityPlayer().world.isRemote) {
 
-			// event.getEntityPlayer().sendMessage(new TextComponentString("clone"));
-
 			EntityPlayer player = event.getEntityPlayer();
 
-			IData data = player.getCapability(EntityData.Data, null);
+			EntityData.IEntityData data = (IEntityData) player.getCapability(EntityData.Data, null);
 
-			IData oldData = event.getOriginal().getCapability(EntityData.Data, null);
+			EntityData.IEntityData oldData = (IEntityData) event.getOriginal().getCapability(EntityData.Data, null);
 
 			data.setNBT(oldData.getNBT());
 
-			Unit unit = Saving.Load(player);
+			Unit unit = UnitSaving.Load(player);
 
 			unit.updateClientExpGUI(player);
 
