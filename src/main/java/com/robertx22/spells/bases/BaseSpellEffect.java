@@ -10,6 +10,6 @@ public abstract class BaseSpellEffect {
 
 	}
 
-	public abstract void Activate(EntityLivingBase caster, EntityLivingBase target);
+	public abstract void Activate(DamageData dmgdata, EntityLivingBase target);
 
 }

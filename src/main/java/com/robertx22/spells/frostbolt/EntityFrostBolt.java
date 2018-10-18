@@ -1,6 +1,6 @@
 package com.robertx22.spells.frostbolt;
 
-import com.robertx22.saveclasses.DamageData;
+import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.IDamageSource;
 import com.robertx22.spells.bases.IEntityDamageSource;
 
@@ -24,7 +24,7 @@ public class EntityFrostBolt extends EntitySnowball implements IDamageSource, IE
 
 				System.out.println("interface TO PROJECTILE WORKS!");
 
-				data.effect.Activate(data.caster, (EntityLivingBase) result.entityHit);
+				data.effect.Activate(data, (EntityLivingBase) result.entityHit);
 
 			} else {
 				System.out.println("doesnt work!");

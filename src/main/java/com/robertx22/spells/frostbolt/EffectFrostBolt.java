@@ -3,6 +3,7 @@ package com.robertx22.spells.frostbolt;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.enumclasses.Elements;
 import com.robertx22.spells.bases.BaseSpellEffect;
+import com.robertx22.spells.bases.DamageData;
 
 import net.minecraft.entity.EntityLivingBase;
 
@@ -19,9 +20,11 @@ public class EffectFrostBolt extends BaseSpellEffect {
 	}
 
 	@Override
-	public void Activate(EntityLivingBase caster, EntityLivingBase target) {
+	public void Activate(DamageData dmgdata, EntityLivingBase target) {
 
-		DamageEffect dmg = new DamageEffect(caster, target, 10);
+		DamageEffect dmg = new DamageEffect(dmgdata.caster, target, dmgdata.spellItem.GetDamage(dmgdata.casterUnit));
+
+		System.out.println("Dmg is " + dmg.Number);
 		dmg.Element = Elements.Water;
 
 		// dmg.Number = 10;

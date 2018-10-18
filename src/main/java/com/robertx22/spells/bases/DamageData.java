@@ -1,0 +1,25 @@
+package com.robertx22.spells.bases;
+
+import com.robertx22.datasaving.UnitSaving;
+import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.saveclasses.Unit;
+
+import net.minecraft.entity.EntityLivingBase;
+
+public class DamageData {
+
+	public DamageData(EntityLivingBase entity, BaseSpellEffect e, SpellItemData spellItem) {
+		this.effect = e;
+		this.caster = entity;
+		this.spellItem = spellItem;
+
+		this.casterUnit = UnitSaving.Load(entity);
+
+	}
+
+	public Unit casterUnit;
+	public BaseSpellEffect effect;
+	public EntityLivingBase caster;
+	public SpellItemData spellItem;
+
+}

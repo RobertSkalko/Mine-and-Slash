@@ -1,8 +1,11 @@
 package com.robertx22.spells.frostbolt;
 
-import com.robertx22.saveclasses.DamageData;
+import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
+import com.robertx22.enumclasses.Elements;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
+import com.robertx22.spells.bases.DamageData;
+import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +30,7 @@ public class SpellFrostBolt extends BaseSpell {
 			frostbolt.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
 			frostbolt.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
-			frostbolt.SetData(new DamageData(caster, new EffectFrostBolt()));
+			frostbolt.SetData(new DamageData(caster, new EffectFrostBolt(), data));
 
 			world.spawnEntity(frostbolt);
 
@@ -46,6 +49,31 @@ public class SpellFrostBolt extends BaseSpell {
 	@Override
 	public int Weight() {
 		return this.NormalWeight;
+	}
+
+	@Override
+	public int ManaCost() {
+		return 10;
+	}
+
+	@Override
+	public int Cooldown() {
+		return 10;
+	}
+
+	@Override
+	public int BaseDamage() {
+		return 2;
+	}
+
+	@Override
+	public EffectCalculation ScalingDamage() {
+		return new EffectCalculation(new WaterDamage().Name(), 0.5F);
+	}
+
+	@Override
+	public Elements Element() {
+		return Elements.Water;
 	}
 
 }

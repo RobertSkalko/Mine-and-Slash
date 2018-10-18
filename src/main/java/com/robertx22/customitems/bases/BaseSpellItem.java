@@ -35,8 +35,10 @@ public abstract class BaseSpellItem extends Item {
 
 		SpellItemData data = SpellSaving.Load(playerIn.getHeldItem(handIn));
 
-		if (Spell().CanCast(playerIn, data)) {
-			Spell().cast(worldIn, playerIn, handIn, 5, data);
+		if (data != null) {
+			if (Spell().CanCast(playerIn, data)) {
+				Spell().cast(worldIn, playerIn, handIn, 5, data);
+			}
 		}
 
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));

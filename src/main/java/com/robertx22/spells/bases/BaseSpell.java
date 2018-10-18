@@ -1,6 +1,7 @@
 package com.robertx22.spells.bases;
 
 import com.robertx22.classes.IWeighted;
+import com.robertx22.enumclasses.Elements;
 import com.robertx22.saveclasses.SpellItemData;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,20 @@ import net.minecraft.world.World;
 public abstract class BaseSpell implements IWeighted {
 
 	public abstract String Name();
+
+	public abstract int ManaCost();
+
+	public abstract int Cooldown();
+
+	public abstract int BaseDamage();
+
+	public abstract EffectCalculation ScalingDamage();
+
+	public int DamageVariance = 50;
+
+	public abstract Elements Element();
+
+	public boolean ScalesWithLevel = true;
 
 	public BaseSpell() {
 
