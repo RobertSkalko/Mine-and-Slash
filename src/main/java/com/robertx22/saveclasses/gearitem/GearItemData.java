@@ -31,7 +31,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	public SuffixData suffix;
 	public PrefixData prefix;
 
-	public ChaosStatsData chaosStats;
+	public ChaosStatsData chaosStats = null;
 
 	public GearItemSlot GetBaseGearType() {
 

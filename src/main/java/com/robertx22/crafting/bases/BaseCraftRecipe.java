@@ -21,7 +21,7 @@ public abstract class BaseCraftRecipe implements IRecipe, IRecipeOutput {
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 
 		if (RecipeUtils.SecondItemIs(inv, CraftingItem()) == null
-				|| RecipeUtils.AreAllOtherSlotsEmpty(inv, Arrays.asList(0, 1))) {
+				|| !RecipeUtils.AreAllOtherSlotsEmpty(inv, Arrays.asList(0, 1))) {
 			return false;
 		}
 		ItemStack gear = RecipeUtils.FirstItemIsGear(inv);

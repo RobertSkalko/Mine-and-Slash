@@ -14,6 +14,8 @@ public class GenJsonFiles {
 
 	public static void Gen() throws IOException {
 
+		List<String> rarityNames = Arrays.asList("boots", "helmet", "chest", "pants", "ring", "sword");
+
 		List<String> names = Arrays.asList("boots", "helmet", "chest", "pants", "ring", "sword");
 
 		List<String> list = Files.readAllLines(Paths.get("C:\\Users\\User\\Desktop\\jsonfile.json"));
@@ -23,7 +25,7 @@ public class GenJsonFiles {
 			json += str + "\n";
 		}
 
-		for (String name : names) {
+		for (String name : rarityNames) {
 
 			for (ItemRarity rarity : Rarities.Items) {
 

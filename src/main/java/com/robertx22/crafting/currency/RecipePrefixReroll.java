@@ -21,7 +21,7 @@ public class RecipePrefixReroll extends BaseCraftRecipe {
 
 	@Override
 	public ResourceLocation getRegistryName() {
-		return new ResourceLocation(Ref.MODID + ":prefix_reroll");
+		return new ResourceLocation(Ref.MODID + ":recipe_prefix_reroll");
 
 	}
 

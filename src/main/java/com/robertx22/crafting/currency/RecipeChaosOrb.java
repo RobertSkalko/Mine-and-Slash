@@ -21,7 +21,7 @@ public class RecipeChaosOrb extends BaseCraftRecipe {
 
 	@Override
 	public ResourceLocation getRegistryName() {
-		return new ResourceLocation(Ref.MODID + ":chaos_orb");
+		return new ResourceLocation(Ref.MODID + ":recipe_chaos_orb");
 
 	}
 

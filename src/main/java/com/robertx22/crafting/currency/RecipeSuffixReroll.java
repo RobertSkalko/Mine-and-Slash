@@ -21,7 +21,7 @@ public class RecipeSuffixReroll extends BaseCraftRecipe {
 
 	@Override
 	public ResourceLocation getRegistryName() {
-		return new ResourceLocation(Ref.MODID + ":suffix_reroll");
+		return new ResourceLocation(Ref.MODID + ":recipe_suffix_reroll");
 
 	}
 
