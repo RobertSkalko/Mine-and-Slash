@@ -3,8 +3,8 @@ package com.robertx22.customitems.bases;
 import java.util.HashMap;
 
 import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
-import com.robertx22.utilityclasses.OnItemCreatedUtils;
-import com.robertx22.utilityclasses.Utils;
+import com.robertx22.uncommon.utilityclasses.OnItemCreatedUtils;
+import com.robertx22.uncommon.utilityclasses.Utils;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;

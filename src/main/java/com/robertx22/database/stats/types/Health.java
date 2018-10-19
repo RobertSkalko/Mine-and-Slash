@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.types;
 
-import com.robertx22.enumclasses.Elements;
 import com.robertx22.stats.FillableStat;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Health extends FillableStat {
 	public Health() {

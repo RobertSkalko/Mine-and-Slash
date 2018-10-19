@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import com.robertx22.customitems.bases.BaseArmorItem;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.utilityclasses.ModelUtils;
+import com.robertx22.uncommon.utilityclasses.ModelUtils;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;

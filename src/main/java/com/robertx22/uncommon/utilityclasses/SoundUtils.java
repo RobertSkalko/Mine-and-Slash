@@ -1,4 +1,4 @@
-package com.robertx22.utilityclasses;
+package com.robertx22.uncommon.utilityclasses;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundCategory;

@@ -1,10 +1,10 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.capability.EntityData;
-import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;

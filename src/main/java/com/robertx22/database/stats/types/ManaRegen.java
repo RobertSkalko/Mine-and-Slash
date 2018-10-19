@@ -1,15 +1,17 @@
-package com.robertx22.database.stats.types.elementals.pene;
+package com.robertx22.database.stats.types;
 
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class NaturePene extends Stat {
-	public NaturePene() {
+public class ManaRegen extends Stat {
+
+	public ManaRegen() {
+		this.StatMinimum = 5;
 	}
 
 	@Override
 	public String Name() {
-		return "Nature Penetration";
+		return "Mana Regen";
 	}
 
 	@Override
@@ -19,7 +21,7 @@ public class NaturePene extends Stat {
 
 	@Override
 	public Elements Element() {
-		return Elements.Nature;
+		return null;
 	}
 
 	@Override

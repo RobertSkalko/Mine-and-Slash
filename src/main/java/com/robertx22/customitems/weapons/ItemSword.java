@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.robertx22.customitems.bases.BaseSwordItem;
 import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.utilityclasses.ModelUtils;
+import com.robertx22.uncommon.utilityclasses.ModelUtils;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;

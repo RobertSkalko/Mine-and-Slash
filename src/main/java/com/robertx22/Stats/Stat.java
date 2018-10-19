@@ -2,10 +2,10 @@ package com.robertx22.stats;
 
 import java.util.ArrayList;
 
-import com.robertx22.enumclasses.Elements;
-import com.robertx22.enumclasses.StatTypes;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.enumclasses.StatTypes;
 
 import net.minecraft.entity.EntityLivingBase;
 

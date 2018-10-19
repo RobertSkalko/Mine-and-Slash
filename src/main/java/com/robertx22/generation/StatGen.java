@@ -1,6 +1,6 @@
 package com.robertx22.generation;
 
-import com.robertx22.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class StatGen {
 

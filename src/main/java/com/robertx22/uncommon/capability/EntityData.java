@@ -1,4 +1,4 @@
-package com.robertx22.capability;
+package com.robertx22.uncommon.capability;
 
 import com.robertx22.mmorpg.Ref;
 

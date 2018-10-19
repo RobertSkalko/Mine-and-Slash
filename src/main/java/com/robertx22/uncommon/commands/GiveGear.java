@@ -1,4 +1,4 @@
-package com.robertx22.commands;
+package com.robertx22.uncommon.commands;
 
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;

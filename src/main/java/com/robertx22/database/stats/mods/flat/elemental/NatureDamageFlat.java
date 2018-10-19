@@ -1,10 +1,10 @@
 package com.robertx22.database.stats.mods.flat.elemental;
 
-import com.robertx22.classes.IWeighted;
 import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
-import com.robertx22.enumclasses.StatTypes;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.enumclasses.StatTypes;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public class NatureDamageFlat extends StatMod {
 

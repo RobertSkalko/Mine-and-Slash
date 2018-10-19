@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.classes.IWeighted;
 import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.gearitem.ITooltipList;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.abstractclasses.StatGroupData;
 import com.robertx22.stats.StatMod;
-import com.robertx22.utilityclasses.ListUtils;
-import com.robertx22.utilityclasses.RandomUtils;
-import com.robertx22.utilityclasses.WeightedUtils;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.WeightedUtils;
 
 public class SecondaryStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
 

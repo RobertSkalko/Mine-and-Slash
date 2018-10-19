@@ -1,4 +1,4 @@
-package com.robertx22.oregen;
+package com.robertx22.uncommon.oregen;
 
 import com.google.common.base.Predicate;
 import net.minecraft.block.Block;

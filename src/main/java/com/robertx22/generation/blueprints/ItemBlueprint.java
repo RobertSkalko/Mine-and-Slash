@@ -1,9 +1,9 @@
 package com.robertx22.generation.blueprints;
 
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.gearitem.ItemRarity;
+import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.generation.RarityGen;
-import com.robertx22.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class ItemBlueprint {
 

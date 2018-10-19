@@ -5,7 +5,7 @@ import com.robertx22.effectdatas.interfaces.ICrittable;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
-import com.robertx22.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class CriticalHitEffect implements IStatEffect {
 

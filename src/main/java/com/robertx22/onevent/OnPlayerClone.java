@@ -1,9 +1,9 @@
 package com.robertx22.onevent;
 
-import com.robertx22.capability.EntityData;
-import com.robertx22.capability.EntityData.IEntityData;
-import com.robertx22.datasaving.UnitSaving;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.IEntityData;
+import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;

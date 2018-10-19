@@ -1,4 +1,4 @@
-package com.robertx22.utilityclasses;
+package com.robertx22.uncommon.utilityclasses;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

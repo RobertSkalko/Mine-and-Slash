@@ -1,4 +1,4 @@
-package com.robertx22.testing.tests;
+package com.robertx22.uncommon.testing.tests;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -6,10 +6,10 @@ import java.util.Map.Entry;
 import org.apache.commons.lang3.time.StopWatch;
 
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.datasaving.GearSaving;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.uncommon.datasaving.GearSaving;
 
 public class ItemGenRarityTest {
 

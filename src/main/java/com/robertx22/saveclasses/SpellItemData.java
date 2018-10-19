@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.robertx22.database.lists.Spells;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.utilityclasses.RandomUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class SpellItemData implements Serializable {
 

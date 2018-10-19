@@ -1,6 +1,6 @@
 package com.robertx22.database.rarities.mobs;
 
-import com.robertx22.classes.MobRarity;
+import com.robertx22.database.rarities.MobRarity;
 
 import net.minecraft.util.text.TextFormatting;
 

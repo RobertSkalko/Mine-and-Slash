@@ -1,16 +1,16 @@
-package com.robertx22.spells.frostbolt;
+package com.robertx22.spells.projectile;
 
 import com.robertx22.customitems.spells.ItemFrostBolt;
 import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
 import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.enumclasses.Elements;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.IEntityDamageSource;
-import com.robertx22.utilityclasses.SoundUtils;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

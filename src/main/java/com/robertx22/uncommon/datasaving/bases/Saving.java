@@ -1,8 +1,8 @@
-package com.robertx22.datasaving.bases;
+package com.robertx22.uncommon.datasaving.bases;
 
 import javax.annotation.Nonnull;
 
-import com.robertx22.capability.ICommonData;
+import com.robertx22.uncommon.capability.ICommonData;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.capabilities.Capability;

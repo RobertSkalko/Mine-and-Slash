@@ -1,7 +1,7 @@
 package com.robertx22.onevent.loot;
 
-import com.robertx22.capability.EntityData;
-import com.robertx22.capability.EntityData.IEntityData;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.IEntityData;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;

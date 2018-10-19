@@ -3,8 +3,8 @@ package com.robertx22.customitems.spells;
 import com.robertx22.customitems.bases.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.spells.frostbolt.SpellFrostBolt;
-import com.robertx22.utilityclasses.ModelUtils;
+import com.robertx22.spells.projectile.SpellFrostBolt;
+import com.robertx22.uncommon.utilityclasses.ModelUtils;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;

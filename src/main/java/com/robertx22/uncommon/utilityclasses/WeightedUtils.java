@@ -1,8 +1,6 @@
-package com.robertx22.utilityclasses;
+package com.robertx22.uncommon.utilityclasses;
 
 import java.util.List;
-
-import com.robertx22.classes.IWeighted;
 
 public class WeightedUtils {
 

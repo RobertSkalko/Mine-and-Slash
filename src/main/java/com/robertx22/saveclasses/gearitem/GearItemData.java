@@ -7,11 +7,11 @@ import java.util.List;
 import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.database.lists.GearTypes;
 import com.robertx22.database.lists.Rarities;
+import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.IStatsContainer;
 import com.robertx22.gearitem.ITooltip;
 import com.robertx22.gearitem.ITooltipList;
-import com.robertx22.gearitem.ItemRarity;
 
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;

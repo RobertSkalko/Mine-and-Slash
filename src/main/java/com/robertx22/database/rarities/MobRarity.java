@@ -1,4 +1,4 @@
-package com.robertx22.classes;
+package com.robertx22.database.rarities;
 
 import com.robertx22.gearitem.Rarity;
 

@@ -1,4 +1,4 @@
-package com.robertx22.utilityclasses;
+package com.robertx22.uncommon.utilityclasses;
 
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 

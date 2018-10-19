@@ -18,12 +18,12 @@ import com.robertx22.baubles.common.CommonProxy;
 import com.robertx22.baubles.common.Config;
 import com.robertx22.baubles.common.event.CommandBaubles;
 import com.robertx22.baubles.common.network.PacketHandler;
-import com.robertx22.capability.EntityData;
-import com.robertx22.commands.GiveGear;
-import com.robertx22.commands.GiveSpell;
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
-import com.robertx22.oregen.OreGen;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.commands.GiveGear;
+import com.robertx22.uncommon.commands.GiveSpell;
+import com.robertx22.uncommon.oregen.OreGen;
 
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;

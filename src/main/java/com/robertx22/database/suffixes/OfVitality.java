@@ -3,10 +3,10 @@ package com.robertx22.database.suffixes;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.classes.IWeighted;
 import com.robertx22.database.stats.mods.flat.HealthFlat;
 import com.robertx22.gearitem.Suffix;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public class OfVitality extends Suffix {
 

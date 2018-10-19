@@ -1,4 +1,4 @@
-package com.robertx22.datasaving.bases;
+package com.robertx22.uncommon.datasaving.bases;
 
 import java.lang.reflect.Type;
 

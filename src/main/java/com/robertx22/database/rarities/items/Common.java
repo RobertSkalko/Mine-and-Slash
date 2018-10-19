@@ -1,7 +1,7 @@
 package com.robertx22.database.rarities.items;
 
-import com.robertx22.classes.MinMax;
-import com.robertx22.gearitem.ItemRarity;
+import com.robertx22.database.MinMax;
+import com.robertx22.database.rarities.ItemRarity;
 
 import net.minecraft.util.text.TextFormatting;
 

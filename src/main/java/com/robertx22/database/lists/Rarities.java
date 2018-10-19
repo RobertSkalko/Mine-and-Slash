@@ -3,7 +3,8 @@ package com.robertx22.database.lists;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.classes.MobRarity;
+import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.rarities.items.Common;
 import com.robertx22.database.rarities.items.Epic;
 import com.robertx22.database.rarities.items.Legendary;
@@ -16,7 +17,6 @@ import com.robertx22.database.rarities.mobs.Elite;
 import com.robertx22.database.rarities.mobs.Normal;
 import com.robertx22.database.rarities.mobs.Veteran;
 import com.robertx22.database.rarities.mobs.WorldBoss;
-import com.robertx22.gearitem.ItemRarity;
 
 public class Rarities {
 

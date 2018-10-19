@@ -1,4 +1,4 @@
-package com.robertx22.uncommon.commands;
+package com.robertx22.uncommon.commands.copy;
 
 import com.robertx22.generation.ItemSpellGen;
 import com.robertx22.generation.blueprints.SpellBlueprint;

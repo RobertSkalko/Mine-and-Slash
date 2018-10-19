@@ -7,10 +7,10 @@ import javax.annotation.Nullable;
 
 import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.datasaving.SpellSaving;
-import com.robertx22.gearitem.ItemRarity;
+import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
+import com.robertx22.uncommon.datasaving.SpellSaving;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;

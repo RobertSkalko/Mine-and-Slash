@@ -6,10 +6,10 @@ import com.robertx22.effectdatas.interfaces.IDamageEffect;
 import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
-import com.robertx22.enumclasses.Elements;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.utilityclasses.HealthUtils;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 

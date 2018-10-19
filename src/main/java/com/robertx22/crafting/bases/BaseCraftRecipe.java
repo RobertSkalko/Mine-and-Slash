@@ -20,10 +20,14 @@ public abstract class BaseCraftRecipe implements IRecipe, IRecipeOutput {
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 
-		if (RecipeUtils.SecondItemIs(inv, CraftingItem()) == null
-				|| !RecipeUtils.AreAllOtherSlotsEmpty(inv, Arrays.asList(0, 1))) {
+		if (RecipeUtils.SecondItemIs(inv, CraftingItem()) == null) {
 			return false;
 		}
+
+		if (RecipeUtils.AreAllOtherSlotsEmpty(inv, Arrays.asList(0, 1)) == false) {
+			return false;
+		}
+
 		ItemStack gear = RecipeUtils.FirstItemIsGear(inv);
 
 		if (gear != null) {

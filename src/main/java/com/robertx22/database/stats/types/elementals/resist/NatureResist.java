@@ -1,7 +1,7 @@
 package com.robertx22.database.stats.types.elementals.resist;
 
-import com.robertx22.enumclasses.Elements;
 import com.robertx22.stats.UsableStat;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 public class NatureResist extends UsableStat {
 	@Override

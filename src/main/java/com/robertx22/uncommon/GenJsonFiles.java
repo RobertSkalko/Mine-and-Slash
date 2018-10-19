@@ -1,4 +1,4 @@
-package com.robertx22;
+package com.robertx22.uncommon;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.gearitem.ItemRarity;
+import com.robertx22.database.rarities.ItemRarity;
 
 public class GenJsonFiles {
 

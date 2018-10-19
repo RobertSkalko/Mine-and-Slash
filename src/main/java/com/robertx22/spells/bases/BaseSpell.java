@@ -1,8 +1,8 @@
 package com.robertx22.spells.bases;
 
-import com.robertx22.classes.IWeighted;
-import com.robertx22.enumclasses.Elements;
 import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
