@@ -7,17 +7,6 @@ import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.robertx22.baubles.api.BaubleType;
-import com.robertx22.baubles.api.IBauble;
-import com.robertx22.baubles.api.cap.BaubleItem;
-import com.robertx22.baubles.api.cap.BaublesCapabilities;
-import com.robertx22.baubles.api.cap.BaublesCapabilities.CapabilityBaubles;
-import com.robertx22.baubles.api.cap.BaublesContainer;
-import com.robertx22.baubles.api.cap.IBaublesItemHandler;
-import com.robertx22.baubles.common.CommonProxy;
-import com.robertx22.baubles.common.Config;
-import com.robertx22.baubles.common.event.CommandBaubles;
-import com.robertx22.baubles.common.network.PacketHandler;
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
 import com.robertx22.uncommon.capability.EntityData;
@@ -32,21 +21,16 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-@Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, guiFactory = "com.robertx22.baubles.client.gui.BaublesGuiFactory", dependencies = "required-after:forge@[14.21.0.2348,);")
+@Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, dependencies = "required-after:baubles;")
 public class Main {
-
-	@SidedProxy(clientSide = "com.robertx22.baubles.client.ClientProxy", serverSide = "com.robertx22.baubles.common.CommonProxy")
-	public static CommonProxy proxy;
 
 	@Instance(value = Ref.MODID)
 	public static Main instance;
@@ -58,7 +42,7 @@ public class Main {
 
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
-		event.registerServerCommand(new CommandBaubles());
+
 	}
 
 	@EventHandler
@@ -101,36 +85,10 @@ public class Main {
 		// Baubles stuff
 		modDir = event.getModConfigurationDirectory();
 
-		try {
-			Config.initialize(event.getSuggestedConfigurationFile());
-		} catch (Exception e) {
-			log.error("BAUBLES has a problem loading it's configuration");
-		} finally {
-			if (Config.config != null)
-				Config.save();
-		}
-
-		CapabilityManager.INSTANCE.register(IBaublesItemHandler.class, new CapabilityBaubles<IBaublesItemHandler>(),
-				BaublesContainer.class);
-
-		CapabilityManager.INSTANCE.register(IBauble.class, new BaublesCapabilities.CapabilityItemBaubleStorage(),
-				() -> new BaubleItem(BaubleType.TRINKET));
-
-		proxy.registerEventHandlers();
-		PacketHandler.init();
-
-		Config.save();
-		// baubles
-
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-
-		// baubles
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
-		proxy.init();
-		//
 
 		GameRegistry.registerWorldGenerator(new OreGen(MyItems.magic_ore_block, 7, 10, 50, 7), 0);
 		GameRegistry.registerWorldGenerator(new OreGen(MyItems.rare_ore_block, 6, 10, 40, 5), 0);

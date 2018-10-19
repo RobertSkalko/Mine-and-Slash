@@ -2,10 +2,9 @@ package com.robertx22.customitems.bases;
 
 import java.util.HashMap;
 
-import com.robertx22.baubles.api.BaublesApi;
-import com.robertx22.baubles.api.IBauble;
-import com.robertx22.baubles.api.cap.IBaublesItemHandler;
-
+import baubles.api.BaublesApi;
+import baubles.api.IBauble;
+import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

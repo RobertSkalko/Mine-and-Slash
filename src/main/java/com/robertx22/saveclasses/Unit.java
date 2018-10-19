@@ -8,8 +8,6 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.time.StopWatch;
 
-import com.robertx22.baubles.api.BaublesApi;
-import com.robertx22.baubles.api.cap.IBaublesItemHandler;
 import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.stats.types.Armor;
 import com.robertx22.database.stats.types.CriticalDamage;
@@ -36,6 +34,8 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.enumclasses.EntityTypes;
 
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
