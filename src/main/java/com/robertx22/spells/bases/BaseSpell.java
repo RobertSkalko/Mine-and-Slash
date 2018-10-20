@@ -11,6 +11,8 @@ import net.minecraft.world.World;
 
 public abstract class BaseSpell implements IWeighted {
 
+	public abstract String GUID();
+
 	public abstract String Name();
 
 	public abstract int ManaCost();

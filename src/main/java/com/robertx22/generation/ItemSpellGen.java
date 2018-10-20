@@ -22,7 +22,7 @@ public class ItemSpellGen {
 		ItemRarity rarity = (ItemRarity) WeightedUtils.WeightedRandom(ListUtils.CollectionToList(Rarities.Items));
 
 		data.rarity = rarity.Rank();
-		data.spellGUID = spell.Name();
+		data.spellGUID = spell.GUID();
 
 		SpellSaving.Save(stack, data);
 
@@ -38,7 +38,7 @@ public class ItemSpellGen {
 		ItemRarity rarity = blueprint.GetRarity();
 
 		data.rarity = rarity.Rank();
-		data.spellGUID = spell.Name();
+		data.spellGUID = spell.GUID();
 
 		SpellSaving.Save(stack, data);
 

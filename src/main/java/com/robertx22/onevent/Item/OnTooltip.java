@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class OnTooltip {
 
 	@SubscribeEvent
-	public static void onTooltip(ItemTooltipEvent event) throws Exception {
+	public static void onTooltip(ItemTooltipEvent event) {
 
 		if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null
 				|| !event.getEntityPlayer().world.isRemote) {

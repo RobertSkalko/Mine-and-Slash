@@ -4,21 +4,19 @@ import com.robertx22.customitems.spells.ItemFrostBolt;
 import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.spells.EntityElementalArrow;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.bases.IEntityDamageSource;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -34,12 +32,13 @@ public class SpellFrostBolt extends BaseSpell {
 		Vec3d look = caster.getLookVec();
 
 		if (!world.isRemote) {
-			EntityFrostBolt frostbolt = new EntityFrostBolt(world);
+			EntityElementalArrow frostbolt = new EntityElementalArrow(world);
 			frostbolt.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
 			frostbolt.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
-			frostbolt.SetData(new DamageData(caster, new EffectFrostBolt(), data));
+			// frostbolt.SetData(new DamageData(caster, new EffectFrostBolt(), data));
 
+			// frostbolt.setPotionEffect(new ItemStack(Items.POTIONITEM));
 			world.spawnEntity(frostbolt);
 
 		}
@@ -89,47 +88,6 @@ public class SpellFrostBolt extends BaseSpell {
 		return ItemFrostBolt.ITEM;
 	}
 
-	public class EntityFrostBolt extends EntitySnowball implements IEntityDamageSource {
-		public EntityFrostBolt(World par1World) {
-			super(par1World);
-		}
-
-		DamageData data = null;
-
-		@Override
-		protected void onImpact(RayTraceResult result) {
-			if (result.entityHit != null && result.entityHit instanceof EntityLivingBase) {
-
-				if (data != null) {
-
-					System.out.println("interface TO PROJECTILE WORKS!");
-
-					data.effect.Activate(data, (EntityLivingBase) result.entityHit);
-
-				} else {
-					System.out.println("doesnt work!");
-
-				}
-			}
-
-			if (!this.world.isRemote) {
-				this.world.setEntityState(this, (byte) 3);
-				this.setDead();
-			}
-		}
-
-		@Override
-		public void SetData(DamageData data) {
-			this.data = data;
-
-		}
-
-		@Override
-		public DamageData GetData() {
-			return data;
-		}
-	}
-
 	public class EffectFrostBolt extends BaseSpellEffect {
 
 		public EffectFrostBolt() {
@@ -151,12 +109,15 @@ public class SpellFrostBolt extends BaseSpell {
 			System.out.println("Dmg is " + dmg.Number);
 			dmg.Element = Elements.Water;
 
-			// dmg.Number = 10;
-			dmg.SetCrit(true);
-
 			dmg.Activate();
 
 		}
+
+	}
+
+	@Override
+	public String GUID() {
+		return "FrostBolt";
 	}
 
 }

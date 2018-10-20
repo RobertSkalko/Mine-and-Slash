@@ -44,12 +44,4 @@ public class ItemRing extends BaseBaublesItem {
 		return "Ring";
 	}
 
-	/*
-	 * @Override public ActionResult<ItemStack> onItemRightClick(World worldIn,
-	 * EntityPlayer playerIn, EnumHand handIn) { new FrostBolt().cast(worldIn,
-	 * playerIn, handIn, 50);
-	 * 
-	 * return new ActionResult<ItemStack>(EnumActionResult.PASS,
-	 * playerIn.getHeldItem(handIn)); }
-	 */
 }
