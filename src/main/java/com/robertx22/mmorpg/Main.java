@@ -5,20 +5,17 @@ import java.util.Arrays;
 
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
-import com.robertx22.spells.EntityElementalArrow;
+import com.robertx22.spells.EntityElementalBolt;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.commands.GiveGear;
 import com.robertx22.uncommon.commands.GiveSpell;
 import com.robertx22.uncommon.oregen.OreGen;
+import com.robertx22.uncommon.utilityclasses.EntityRegisterUtils;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.init.Items;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -28,7 +25,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
@@ -65,14 +61,7 @@ public class Main {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws IOException {
 
-		int id = 0;
-
-		EntityRegistry.registerModEntity(new ResourceLocation("items/currency/chaos_orb.png"),
-				EntityElementalArrow.class, "EntityElementalArrow", ++id, Main.instance, 64, 10, true);
-
-		RenderingRegistry.registerEntityRenderingHandler(EntityElementalArrow.class,
-				renderManager -> new RenderSnowball<>(renderManager, Items.SLIME_BALL,
-						Minecraft.getMinecraft().getRenderItem()));
+		EntityRegisterUtils.Register(Items.SPAWN_EGG, EntityElementalBolt.class);
 
 		// GenJsonFiles.Gen();
 		CapabilityManager.INSTANCE.register(EntityData.IEntityData.class, new EntityData.Storage(),

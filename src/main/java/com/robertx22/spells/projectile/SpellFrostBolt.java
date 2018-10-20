@@ -4,7 +4,7 @@ import com.robertx22.customitems.spells.ItemFrostBolt;
 import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.spells.EntityElementalArrow;
+import com.robertx22.spells.EntityElementalBolt;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
@@ -32,7 +32,7 @@ public class SpellFrostBolt extends BaseSpell {
 		Vec3d look = caster.getLookVec();
 
 		if (!world.isRemote) {
-			EntityElementalArrow frostbolt = new EntityElementalArrow(world);
+			EntityElementalBolt frostbolt = new EntityElementalBolt(world);
 			frostbolt.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
 			frostbolt.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
