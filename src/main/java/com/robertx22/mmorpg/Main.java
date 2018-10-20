@@ -5,7 +5,8 @@ import java.util.Arrays;
 
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
-import com.robertx22.spells.EntityElementalBolt;
+import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
+import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.commands.GiveGear;
 import com.robertx22.uncommon.commands.GiveSpell;
@@ -61,7 +62,8 @@ public class Main {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws IOException {
 
-		EntityRegisterUtils.Register(Items.SPAWN_EGG, EntityElementalBolt.class);
+		EntityRegisterUtils.Register(Items.SNOWBALL, EntityFrostBolt.class);
+		EntityRegisterUtils.Register(Items.MAGMA_CREAM, EntityFireBolt.class);
 
 		// GenJsonFiles.Gen();
 		CapabilityManager.INSTANCE.register(EntityData.IEntityData.class, new EntityData.Storage(),

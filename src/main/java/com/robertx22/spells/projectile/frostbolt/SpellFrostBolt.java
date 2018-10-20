@@ -1,18 +1,14 @@
-package com.robertx22.spells.projectile;
+package com.robertx22.spells.projectile.frostbolt;
 
 import com.robertx22.customitems.spells.ItemFrostBolt;
 import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
-import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.spells.EntityElementalBolt;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -32,18 +28,16 @@ public class SpellFrostBolt extends BaseSpell {
 		Vec3d look = caster.getLookVec();
 
 		if (!world.isRemote) {
-			EntityElementalBolt frostbolt = new EntityElementalBolt(world);
-			frostbolt.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
-			frostbolt.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
+			EntityFrostBolt projectile = new EntityFrostBolt(world);
+			projectile.SetReady(new EffectFrostBolt(), new DamageData(caster, data));
+			projectile.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
+			projectile.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
-			// frostbolt.SetData(new DamageData(caster, new EffectFrostBolt(), data));
-
-			// frostbolt.setPotionEffect(new ItemStack(Items.POTIONITEM));
-			world.spawnEntity(frostbolt);
+			world.spawnEntity(projectile);
 
 		}
 
-		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_BLAZE_SHOOT, 1, 1);
+		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
 		caster.swingArm(hand);
 		return true;
 	}
@@ -86,33 +80,6 @@ public class SpellFrostBolt extends BaseSpell {
 	@Override
 	public Item SpellItem() {
 		return ItemFrostBolt.ITEM;
-	}
-
-	public class EffectFrostBolt extends BaseSpellEffect {
-
-		public EffectFrostBolt() {
-			super();
-
-		}
-
-		@Override
-		public String Name() {
-			return "Frost Bolt Damage";
-		}
-
-		@Override
-		public void Activate(DamageData dmgdata, EntityLivingBase target) {
-
-			DamageEffect dmg = new DamageEffect(dmgdata.caster, target,
-					dmgdata.spellItem.GetDamage(dmgdata.casterUnit));
-
-			System.out.println("Dmg is " + dmg.Number);
-			dmg.Element = Elements.Water;
-
-			dmg.Activate();
-
-		}
-
 	}
 
 	@Override

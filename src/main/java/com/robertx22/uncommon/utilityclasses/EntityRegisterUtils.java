@@ -17,8 +17,8 @@ public class EntityRegisterUtils {
 
 	public static void Register(Item item, Class<? extends Entity> theclass) {
 
-		EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + theclass.toString()), theclass,
-				theclass.toString(), ++id, Main.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + theclass.getName()), theclass,
+				theclass.getName(), ++id, Main.instance, 64, 10, true);
 
 		RenderingRegistry.registerEntityRenderingHandler(theclass,
 				renderManager -> new RenderSnowball<>(renderManager, item, Minecraft.getMinecraft().getRenderItem()));
