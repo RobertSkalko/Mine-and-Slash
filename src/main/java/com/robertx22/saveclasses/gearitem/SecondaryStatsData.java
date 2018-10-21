@@ -12,7 +12,6 @@ import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.uncommon.utilityclasses.WeightedUtils;
 
 public class SecondaryStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
 
@@ -45,7 +44,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 		List<IWeighted> possibleStats = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSecondaryStats());
 
 		while (Stats > 0) {
-			StatMod mod = (StatMod) WeightedUtils.WeightedRandom(possibleStats);
+			StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
 			this.Mods.add(StatModData.NewRandom(mod, level));
 			Stats--;
 

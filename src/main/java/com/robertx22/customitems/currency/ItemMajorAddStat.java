@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.robertx22.customitems.oldreplacesoon.ItemBasic;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.uncommon.utilityclasses.ModelUtils;
+import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -41,7 +41,7 @@ public class ItemMajorAddStat extends ItemBasic implements ICurrencyItemEffect {
 
 	@SubscribeEvent
 	public static void onModelRegistry(ModelRegistryEvent event) {
-		ModelUtils.registerRender(ITEM);
+		RegisterUtils.registerRender(ITEM);
 	}
 
 	@SideOnly(Side.CLIENT)

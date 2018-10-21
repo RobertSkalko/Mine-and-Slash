@@ -1,6 +1,10 @@
 package com.robertx22.uncommon.utilityclasses;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Random;
+
+import com.robertx22.database.lists.Spells;
 
 public class RandomUtils {
 
@@ -40,42 +44,37 @@ public class RandomUtils {
 		return false;
 	}
 
-	public static boolean roll(double chance) {
+	public static IWeighted WeightedRandom(List<IWeighted> lootTable) {
 
-		Random ran = new Random();
+		double value = Total(lootTable) * Math.random();
+		double weight = 0;
 
-		double ranNum = ran.nextDouble() * 100;
-
-		if (chance > ranNum) {
-			return true;
+		for (IWeighted item : lootTable) {
+			weight += item.Weight();
+			if (value < weight)
+				return item;
 		}
 
-		return false;
+		return null;
+
 	}
 
-	public static int rollWhile(int chance, int min, int max) {
+	private static int Total(List<IWeighted> list) {
 
-		// 0 = Magic, 1 = rare, ... epic, legendary, mythical
+		int total = 0;
 
-		boolean rolling = true;
-
-		while (rolling) {
-
-			if (min >= max) {
-				rolling = false;
-				break;
-			}
-
-			if (roll(chance)) {
-				min++;
-			} else {
-				rolling = false;
-				break;
-			}
-
+		for (IWeighted w : list) {
+			total += w.Weight();
 		}
+		return total;
 
-		return min;
+	}
+
+	public static IWeighted WeightedRandom(Collection<IWeighted> lootTable) {
+		List<IWeighted> slots = ListUtils.CollectionToList(Spells.All.values());
+
+		return WeightedRandom(slots);
+
 	}
 
 }

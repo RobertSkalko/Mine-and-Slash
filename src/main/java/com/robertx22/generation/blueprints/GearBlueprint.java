@@ -6,7 +6,7 @@ import com.robertx22.database.lists.GearTypes;
 import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
-import com.robertx22.uncommon.utilityclasses.WeightedUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class GearBlueprint extends ItemBlueprint {
 
@@ -35,7 +35,7 @@ public class GearBlueprint extends ItemBlueprint {
 		if (RandomGearType) {
 			List<IWeighted> slots = ListUtils.CollectionToList(GearTypes.All.values());
 
-			return (GearItemSlot) WeightedUtils.WeightedRandom(slots);
+			return (GearItemSlot) RandomUtils.WeightedRandom(slots);
 
 		} else {
 

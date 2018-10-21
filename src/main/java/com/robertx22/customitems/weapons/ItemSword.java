@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.robertx22.customitems.bases.BaseSwordItem;
 import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.uncommon.utilityclasses.ModelUtils;
+import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -30,7 +30,7 @@ public class ItemSword extends BaseSwordItem implements IWeapon {
 
 	@SubscribeEvent
 	public static void onModelRegistry(ModelRegistryEvent event) {
-		Items.values().forEach((x) -> ModelUtils.registerRender(x));
+		Items.values().forEach((x) -> RegisterUtils.registerRender(x));
 	}
 
 	@Override

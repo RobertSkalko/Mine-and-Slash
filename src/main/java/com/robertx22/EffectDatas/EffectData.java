@@ -20,18 +20,20 @@ public abstract class EffectData {
 		this.Target = target;
 
 		try {
+			Unit targetunit = UnitSaving.Load(target);
 			Unit sourceunit = UnitSaving.Load(source);
-			if (sourceunit != null) {
+
+			if (sourceunit != null && targetunit != null) {
 				sourceunit.RecalculateStats(source);
 				UnitSaving.Save(source, sourceunit);
 				sourceUnit = sourceunit;
-			}
 
-			Unit targetunit = UnitSaving.Load(target);
-			if (targetunit != null) {
 				targetunit.RecalculateStats(target);
 				UnitSaving.Save(target, targetunit);
 				targetUnit = targetunit;
+			} else {
+				this.canceled = true;
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,6 +41,7 @@ public abstract class EffectData {
 
 	}
 
+	public boolean canceled = false;
 	public Unit sourceUnit;
 	public Unit targetUnit;
 
@@ -58,7 +61,7 @@ public abstract class EffectData {
 
 	public void Activate() {
 
-		if (Source == null || Target == null)
+		if (Source == null || Target == null || canceled == true)
 			return;
 
 		TryApplyEffects(this.GetSource());
@@ -70,6 +73,11 @@ public abstract class EffectData {
 	protected abstract void activate();
 
 	private EffectData TryApplyEffects(Unit unit) {
+
+		if (this.canceled) {
+			return this;
+		}
+
 		EffectData Data = this;
 
 		List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();

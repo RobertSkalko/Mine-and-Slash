@@ -12,7 +12,6 @@ public class DamageData {
 		// this.effect = e;
 		this.caster = entity;
 		this.spellItem = spellItem;
-
 		this.casterUnit = UnitSaving.Load(entity);
 
 	}

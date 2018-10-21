@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import com.robertx22.customitems.bases.BaseArmorItem;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.uncommon.utilityclasses.ModelUtils;
+import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -35,7 +35,7 @@ public class ItemPants extends BaseArmorItem {
 
 	@SubscribeEvent
 	public static void onModelRegistry(ModelRegistryEvent event) {
-		Items.values().forEach((x) -> ModelUtils.registerRender(x));
+		Items.values().forEach((x) -> RegisterUtils.registerRender(x));
 	}
 
 }

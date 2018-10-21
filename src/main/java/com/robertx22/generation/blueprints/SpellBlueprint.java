@@ -7,7 +7,7 @@ import com.robertx22.database.lists.Spells;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
-import com.robertx22.uncommon.utilityclasses.WeightedUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class SpellBlueprint extends ItemBlueprint {
 
@@ -36,7 +36,7 @@ public class SpellBlueprint extends ItemBlueprint {
 		if (RandomSpell) {
 			List<IWeighted> slots = ListUtils.CollectionToList(Spells.All.values());
 
-			return (BaseSpell) WeightedUtils.WeightedRandom(slots);
+			return (BaseSpell) RandomUtils.WeightedRandom(slots);
 
 		} else {
 

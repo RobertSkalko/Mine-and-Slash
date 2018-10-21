@@ -14,7 +14,7 @@ import com.robertx22.saveclasses.abstractclasses.AffixData;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
-import com.robertx22.uncommon.utilityclasses.WeightedUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.util.text.TextFormatting;
 
@@ -50,7 +50,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 		this.setRerollFully = false;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
-		Prefix prefix = (Prefix) WeightedUtils.WeightedRandom(list);
+		Prefix prefix = (Prefix) RandomUtils.WeightedRandom(list);
 
 		baseAffix = prefix.Name();
 

@@ -8,7 +8,7 @@ import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.datasaving.SpellSaving;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
-import com.robertx22.uncommon.utilityclasses.WeightedUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.item.ItemStack;
 
@@ -16,10 +16,10 @@ public class ItemSpellGen {
 
 	public static ItemStack Random() {
 
-		BaseSpell spell = (BaseSpell) WeightedUtils.WeightedRandom(ListUtils.CollectionToList(Spells.All.values()));
+		BaseSpell spell = (BaseSpell) RandomUtils.WeightedRandom(ListUtils.CollectionToList(Spells.All.values()));
 		ItemStack stack = new ItemStack(spell.SpellItem());
 		SpellItemData data = new SpellItemData();
-		ItemRarity rarity = (ItemRarity) WeightedUtils.WeightedRandom(ListUtils.CollectionToList(Rarities.Items));
+		ItemRarity rarity = (ItemRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(Rarities.Items));
 
 		data.rarity = rarity.Rank();
 		data.spellGUID = spell.GUID();

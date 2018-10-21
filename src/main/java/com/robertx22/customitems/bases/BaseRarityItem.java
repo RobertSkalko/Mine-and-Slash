@@ -2,7 +2,7 @@ package com.robertx22.customitems.bases;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.oldreplacesoon.NewItemCreator;
+import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import com.robertx22.uncommon.utilityclasses.OnItemCreatedUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +16,7 @@ public abstract class BaseRarityItem extends Item {
 	public BaseRarityItem(int rarity, HashMap<Integer, Item> map) {
 		this.setMaxStackSize(1);
 		this.setMaxDamage(0);
-		this.setCreativeTab(NewItemCreator.MyModTab);
+		this.setCreativeTab(NewBlocks.MyModTab);
 		this.setUnlocalizedName(Name().toLowerCase() + rarity);
 		this.setRegistryName(Name().toLowerCase() + rarity);
 

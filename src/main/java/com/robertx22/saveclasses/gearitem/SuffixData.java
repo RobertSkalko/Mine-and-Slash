@@ -14,7 +14,7 @@ import com.robertx22.saveclasses.abstractclasses.AffixData;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
-import com.robertx22.uncommon.utilityclasses.WeightedUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.util.text.TextFormatting;
 
@@ -52,7 +52,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 		this.level = gear.level;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSuffixes());
-		Suffix suffix = (Suffix) WeightedUtils.WeightedRandom(list);
+		Suffix suffix = (Suffix) RandomUtils.WeightedRandom(list);
 
 		baseAffix = suffix.Name();
 

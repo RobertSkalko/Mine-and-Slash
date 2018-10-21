@@ -12,12 +12,6 @@ public class MyItems {
 	public static Item legendary_powder;
 	public static Item mythical_powder;
 
-	public static Item magic_socket;
-	public static Item rare_socket;
-	public static Item epic_socket;
-	public static Item legendary_socket;
-	public static Item mythical_socket;
-
 	public static Item magic_ore;
 	public static Item rare_ore;
 	public static Item epic_ore;

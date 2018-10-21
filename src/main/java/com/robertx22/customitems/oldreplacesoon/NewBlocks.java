@@ -20,7 +20,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class NewItemCreator {
+public class NewBlocks {
 
 	public static List<Item> myCustomItems = new ArrayList<>();
 	public static List<Block> myCustomBlocks = new ArrayList<>();
@@ -51,12 +51,6 @@ public class NewItemCreator {
 		MyItems.epic_ore = new ItemBasic("epic_ore");
 		MyItems.legendary_ore = new ItemBasic("legendary_ore");
 		MyItems.mythical_ore = new ItemBasic("mythical_ore");
-
-		MyItems.magic_socket = new ItemBasic("magic_socket").setMaxStackSize(1);
-		MyItems.rare_socket = new ItemBasic("rare_socket").setMaxStackSize(1);
-		MyItems.epic_socket = new ItemBasic("epic_socket").setMaxStackSize(1);
-		MyItems.legendary_socket = new ItemBasic("legendary_socket").setMaxStackSize(1);
-		MyItems.mythical_socket = new ItemBasic("mythical_socket").setMaxStackSize(1);
 
 		MyItems.magic_ore_block = new BlockOre("magic_ore_block", Material.ROCK, MyItems.magic_ore, 1);
 
@@ -97,12 +91,6 @@ public class NewItemCreator {
 		myCustomItems.add(MyItems.epic_ore);
 		myCustomItems.add(MyItems.legendary_ore);
 		myCustomItems.add(MyItems.mythical_ore);
-
-		myCustomItems.add(MyItems.magic_socket);
-		myCustomItems.add(MyItems.rare_socket);
-		myCustomItems.add(MyItems.epic_socket);
-		myCustomItems.add(MyItems.legendary_socket);
-		myCustomItems.add(MyItems.mythical_socket);
 
 		myCustomBlocks.add(MyItems.magic_ore_block);
 		myCustomItems.add(MyItems.magic_ore_block_item);

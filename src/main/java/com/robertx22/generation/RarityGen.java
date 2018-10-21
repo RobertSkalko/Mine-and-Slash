@@ -6,7 +6,7 @@ import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
-import com.robertx22.uncommon.utilityclasses.WeightedUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class RarityGen {
 
@@ -14,7 +14,7 @@ public class RarityGen {
 
 		List<IWeighted> rarities = ListUtils.CollectionToList(Rarities.Items);
 
-		ItemRarity rarity = (ItemRarity) WeightedUtils.WeightedRandom(rarities);
+		ItemRarity rarity = (ItemRarity) RandomUtils.WeightedRandom(rarities);
 
 		return rarity;
 

@@ -10,7 +10,4 @@ public class GeneralUtils {
 		return vanillaHP / (float) (actualHP);
 	}
 
-	public static void log(Object s) {
-		System.out.println((s));
-	}
 }

@@ -9,7 +9,7 @@ public class ItemBasic extends Item {
 		setRegistryName(name);
 		setMaxDamage(0);
 		maxStackSize = 64;
-		setCreativeTab(NewItemCreator.MyModTab);
+		setCreativeTab(NewBlocks.MyModTab);
 	}
 
 }
