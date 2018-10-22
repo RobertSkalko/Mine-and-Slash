@@ -10,6 +10,27 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 public class Saving {
 
+	public static String ToString(Object obj) {
+		return Gson.instance.toJson(obj);
+
+	}
+
+	@Nonnull
+	@SuppressWarnings("unchecked")
+	public static <T, Interface extends ICommonData> T Load(String str, Class<?> theclass) {
+
+		try {
+
+			return (T) Gson.instance.fromJson(str, theclass);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+
 	@Nonnull
 	@SuppressWarnings("unchecked")
 	public static <T, Interface extends ICommonData> T Load(ICapabilitySerializable<NBTTagCompound> entity,

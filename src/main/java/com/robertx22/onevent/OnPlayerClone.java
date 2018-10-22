@@ -19,15 +19,10 @@ public class OnPlayerClone {
 		if (!event.getEntityPlayer().world.isRemote) {
 
 			EntityPlayer player = event.getEntityPlayer();
-
 			EntityData.IEntityData data = (IEntityData) player.getCapability(EntityData.Data, null);
-
 			EntityData.IEntityData oldData = (IEntityData) event.getOriginal().getCapability(EntityData.Data, null);
-
 			data.setNBT(oldData.getNBT());
-
 			Unit unit = UnitSaving.Load(player);
-
 			unit.updateClientExpGUI(player);
 
 		}

@@ -1,10 +1,12 @@
 package com.robertx22.mmorpg;
 
-import java.io.IOException;
 import java.util.Arrays;
 
+import com.robertx22.ManaGUI;
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewBlocks;
+import com.robertx22.network.Network;
+import com.robertx22.network.StringPackage;
 import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
 import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
@@ -15,9 +17,11 @@ import com.robertx22.uncommon.commands.GiveSpell;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -29,6 +33,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, dependencies = "required-after:baubles;")
@@ -62,7 +67,15 @@ public class Main {
 	}
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) throws IOException {
+	public void preInit(FMLPreInitializationEvent event) {
+
+		MinecraftForge.EVENT_BUS.register(new StringPackage());
+		MinecraftForge.EVENT_BUS.register(new StringPackage.Handler());
+
+		Network.INSTANCE.registerMessage(StringPackage.Handler.class, StringPackage.class, 1, Side.CLIENT);
+
+		// Network.INSTANCE.registerMessage(StringPackage.Handler.class,
+		// StringPackage.class, 1, Side.CLIENT);
 
 		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostBolt.class);
 		RegisterUtils.RegisterModEntity(Items.MAGMA_CREAM, EntityFireBolt.class);
@@ -97,6 +110,8 @@ public class Main {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+
+		MinecraftForge.EVENT_BUS.register(new ManaGUI(Minecraft.getMinecraft()));
 
 	}
 
