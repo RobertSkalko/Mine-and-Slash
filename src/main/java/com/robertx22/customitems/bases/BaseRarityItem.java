@@ -26,7 +26,7 @@ public abstract class BaseRarityItem extends Item {
 	@Override
 	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
 
-		OnItemCreatedUtils.TryReroll(stack, worldIn);
+		OnItemCreatedUtils.TryReroll(playerIn, stack, worldIn);
 	}
 
 }

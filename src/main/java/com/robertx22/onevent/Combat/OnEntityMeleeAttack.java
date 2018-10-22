@@ -14,6 +14,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class OnEntityMeleeAttack {
 
+	// i think ill replace health compltely and just cancel all damage events and
+	// just set hp display or somehting
 	@SubscribeEvent
 	public static void onEntityMeleeAttack(LivingAttackEvent event) {
 

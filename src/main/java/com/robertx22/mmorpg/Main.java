@@ -5,8 +5,10 @@ import java.util.Arrays;
 
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewBlocks;
+import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
 import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
+import com.robertx22.spells.projectile.thunderbolt.EntityThunderBolt;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.commands.GiveGear;
 import com.robertx22.uncommon.commands.GiveSpell;
@@ -64,6 +66,8 @@ public class Main {
 
 		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostBolt.class);
 		RegisterUtils.RegisterModEntity(Items.MAGMA_CREAM, EntityFireBolt.class);
+		RegisterUtils.RegisterModEntity(Items.SLIME_BALL, EntityAcidBolt.class);
+		RegisterUtils.RegisterModEntity(Items.GLOWSTONE_DUST, EntityThunderBolt.class);
 
 		// GenJsonFiles.Gen();
 		CapabilityManager.INSTANCE.register(EntityData.IEntityData.class, new EntityData.Storage(),

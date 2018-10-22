@@ -6,7 +6,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class ManaRegen extends Stat {
 
 	public ManaRegen() {
-		this.StatMinimum = 5;
+		this.StatMinimum = 1;
 	}
 
 	@Override

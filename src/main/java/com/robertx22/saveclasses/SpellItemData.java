@@ -32,7 +32,7 @@ public class SpellItemData implements Serializable {
 
 		BaseSpell spell = GetSpell();
 
-		int basedmg = spell.BaseDamage() * baseEffectPercent / 100;
+		int basedmg = spell.BaseDamage() * baseEffectPercent / 100 * level;
 		int scalingdmg = spell.ScalingDamage().GetValue(unit) * scalingEffectPercent / 100;
 
 		int total = basedmg + scalingdmg;

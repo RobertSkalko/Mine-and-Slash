@@ -12,7 +12,10 @@ import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.IStatsContainer;
 import com.robertx22.gearitem.ITooltip;
 import com.robertx22.gearitem.ITooltipList;
+import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
@@ -132,15 +135,22 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 		}
 	}
 
-	public void TryRerollComponents() {
+	public void TryRerollComponents(EntityPlayer player) {
 
+		boolean rerolled = false;
 		for (IRerollable rerollable : GetAllRerollable()) {
 			if (rerollable.IfRerollFully()) {
 				rerollable.RerollFully(this);
+				rerolled = true;
 			}
 			if (rerollable.IfRerollNumbers()) {
 				rerollable.RerollNumbers(this);
+				rerolled = true;
 			}
+		}
+
+		if (rerolled) {
+			SoundUtils.playSoundAtPlayer(player, SoundEvents.BLOCK_ANVIL_USE, 1, 1);
 		}
 
 	}

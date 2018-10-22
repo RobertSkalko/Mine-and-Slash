@@ -1,12 +1,15 @@
 package com.robertx22.spells.bases;
 
 import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 public abstract class BaseSpell implements IWeighted {
@@ -39,7 +42,22 @@ public abstract class BaseSpell implements IWeighted {
 
 	public boolean CanCast(EntityPlayer caster, SpellItemData data) {
 
-		return true; // TODO ADD MANA
+		if (!caster.world.isRemote) {
+			Unit unit = UnitSaving.Load(caster);
+
+			if (unit.mana().GetCurrentValue() >= ManaCost()) {
+
+				caster.sendMessage(new TextComponentString("Spent " + ManaCost() + " mana."));
+
+				unit.SpendMana(ManaCost());
+				UnitSaving.Save(caster, unit);
+				return true;
+			}
+
+			caster.sendMessage(new TextComponentString("You don't have enough mana!"));
+
+		}
+		return false;
 
 	}
 

@@ -58,6 +58,8 @@ public class Unit implements Serializable {
 
 		unit.Stats.get("Health").BaseFlat = (int) en.getMaxHealth();
 
+		unit.vanillaHP = (int) en.getMaxHealth();
+
 		return unit;
 	}
 
@@ -68,6 +70,8 @@ public class Unit implements Serializable {
 
 	public int experience = 0;
 	public int level = 1;
+
+	public int vanillaHP;
 
 	public int GetExpRequiredForLevelUp() {
 
@@ -133,6 +137,31 @@ public class Unit implements Serializable {
 		}
 
 	};
+
+	public Health health() {
+		return (Health) Stats.get(new Health().Name());
+	}
+
+	public Mana mana() {
+		return (Mana) Stats.get(new Mana().Name());
+	}
+
+	public void SpendMana(int i) {
+		mana().Decrease(i);
+
+	}
+
+	public void TakeDamage(int i) {
+		health().Decrease(i);
+	}
+
+	public void RestoreMana(int i) {
+		mana().Increase(i);
+	}
+
+	public void RestoreHealth(int i) {
+		health().Increase(i);
+	}
 
 	transient public boolean StatsDirty = true;
 

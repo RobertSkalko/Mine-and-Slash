@@ -7,6 +7,7 @@ import com.robertx22.uncommon.datasaving.UnitSaving;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -15,12 +16,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class OnMobSpawn {
 
 	@SubscribeEvent
+	public static void damn(LivingHealEvent event) {
+
+	}
+
+	@SubscribeEvent
 	public static void onMobSpawn(LivingSpawnEvent.CheckSpawn event) {
 
 		if (Minecraft.getMinecraft().player == null) {
-			return;
-		}
-		if (event.getEntityLiving() instanceof EntityPlayer) {
 			return;
 		}
 		if (event.getEntityLiving().world.isRemote) {
@@ -30,9 +33,14 @@ public class OnMobSpawn {
 			return;
 		}
 
-		EntityLiving mob = (EntityLiving) event.getEntityLiving();
+		if (!(event.getEntityLiving() instanceof EntityPlayer)) {
+			EntityLiving mob = (EntityLiving) event.getEntityLiving();
+			Unit unit = Unit.Mob(mob);
+			UnitSaving.Save(mob, unit);
 
-		UnitSaving.Save(mob, Unit.Mob(mob));
+		}
+
+		event.getEntityLiving().setHealth(5000);
 
 		// System.out.println("Saved unit to mob");
 
