@@ -33,7 +33,25 @@ public abstract class BaseSwordItem extends ItemSword {
 	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
 
 		OnItemCreatedUtils.TryReroll(playerIn, stack, worldIn);
-
 	}
 
+	/*
+	 * int energyCost = 3;
+	 * 
+	 * @Override public boolean hitEntity(ItemStack stack, EntityLivingBase target,
+	 * EntityLivingBase attacker) {
+	 * 
+	 * if (attacker instanceof EntityPlayer) { Unit unit =
+	 * UnitSaving.Load(attacker); if (unit.energy().GetCurrentValue() < energyCost)
+	 * { ((EntityPlayer) attacker) .sendMessage(new
+	 * TextComponentString(TextFormatting.RED + "Not Enough Energy."));
+	 * 
+	 * return false; } else { unit.SpendEnergy(energyCost);
+	 * UnitSaving.Save(attacker, unit); }
+	 * 
+	 * }
+	 * 
+	 * stack.damageItem(1, attacker); return true; }
+	 * 
+	 */
 }

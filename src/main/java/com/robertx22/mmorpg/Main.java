@@ -2,7 +2,7 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
-import com.robertx22.ManaGUI;
+import com.robertx22.BarsGUI;
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import com.robertx22.network.Network;
@@ -111,7 +111,7 @@ public class Main {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 
-		MinecraftForge.EVENT_BUS.register(new ManaGUI(Minecraft.getMinecraft()));
+		MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getMinecraft()));
 
 	}
 

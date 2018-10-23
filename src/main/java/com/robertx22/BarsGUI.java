@@ -12,12 +12,12 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ManaGUI extends Gui {
+public class BarsGUI extends Gui {
 	private Minecraft mc;
 	private final ResourceLocation manatexturepath = new ResourceLocation("mmorpg", "textures/gui/mana_bar.png");
 	private final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar.png");
 
-	public ManaGUI(Minecraft mc) {
+	public BarsGUI(Minecraft mc) {
 		super();
 		// We need this to invoke the render engine.
 		this.mc = mc;
@@ -52,7 +52,7 @@ public class ManaGUI extends Gui {
 		// energy
 		this.mc.getTextureManager().bindTexture(energytexturepath);
 		drawTexturedModalRect(xPos, yPos2, 0, 0, 107, 11);
-		int energybarwidth = (int) (((float) unit.mana().GetCurrentValue() / unit.mana().Value * 100));
+		int energybarwidth = (int) (((float) unit.energy().GetCurrentValue() / unit.energy().Value * 100));
 		drawTexturedModalRect(xPos + 3, yPos2 + 3, 0, 11, energybarwidth, 5);
 		//
 

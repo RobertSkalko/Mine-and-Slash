@@ -50,11 +50,6 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 		}
 
-		for (StatMod mod : gear.GetBaseGearType().PossibleSecondaryStats()) {
-			StatModData moddata = StatModData.NewRandom(mod, level);
-			this.Mods.add(moddata);
-
-		}
 	}
 
 	@Override

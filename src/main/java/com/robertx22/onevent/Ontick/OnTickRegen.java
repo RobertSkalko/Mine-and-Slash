@@ -1,5 +1,6 @@
 package com.robertx22.onevent.ontick;
 
+import com.robertx22.database.stats.types.EnergyRegen;
 import com.robertx22.database.stats.types.ManaRegen;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
@@ -8,7 +9,6 @@ import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.datasaving.bases.Saving;
 
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -19,7 +19,9 @@ public class OnTickRegen {
 
 	static int tick = 0;
 
-	static int time = 100;
+	static int syncTick = 0;
+
+	static int time = 80;
 
 	@SubscribeEvent
 	public static void onTickRegen(TickEvent.PlayerTickEvent event) {
@@ -28,23 +30,30 @@ public class OnTickRegen {
 
 			tick++;
 
+			syncTick++;
+
+			if (syncTick > 10) {
+				Unit unit = UnitSaving.Load(event.player);
+				StringPackage packet = new StringPackage(Saving.ToString(unit));
+				Network.INSTANCE.sendTo(packet, (EntityPlayerMP) event.player);
+
+				syncTick = 0;
+			}
+
 			if (tick > time) {
 
 				Unit unit = UnitSaving.Load(event.player);
 				unit.RecalculateStats(event.player);
 
 				int manarestored = (int) unit.Stats.get(new ManaRegen().Name()).Value;
-				unit.RestoreMana((int) unit.Stats.get(new ManaRegen().Name()).Value);
+				unit.RestoreMana(manarestored);
 
-				event.player.sendMessage(new TextComponentString("Regenerating " + manarestored + " Mana"));
-
-				StringPackage packet = new StringPackage(Saving.ToString(unit));
-
-				Network.INSTANCE.sendTo(packet, (EntityPlayerMP) event.player);
-
-				tick = 0;
+				int energyrestored = (int) unit.Stats.get(new EnergyRegen().Name()).Value;
+				unit.RestoreEnergy(energyrestored);
 
 				UnitSaving.Save(event.player, unit);
+
+				tick = 0;
 
 			}
 

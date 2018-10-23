@@ -13,6 +13,8 @@ import com.robertx22.database.stats.types.Armor;
 import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
+import com.robertx22.database.stats.types.Energy;
+import com.robertx22.database.stats.types.EnergyRegen;
 import com.robertx22.database.stats.types.Health;
 import com.robertx22.database.stats.types.Mana;
 import com.robertx22.database.stats.types.ManaRegen;
@@ -114,10 +116,9 @@ public class Unit implements Serializable {
 			put(new Health().Name(), new Health());
 			put(new Damage().Name(), new Damage());
 			put(new Armor().Name(), new Armor());
+
 			put(new CriticalHit().Name(), new CriticalHit());
 			put(new CriticalDamage().Name(), new CriticalDamage());
-			put(new Mana().Name(), new Mana());
-			put(new ManaRegen().Name(), new ManaRegen());
 
 			put(new FireDamage().Name(), new FireDamage());
 			put(new WaterDamage().Name(), new WaterDamage());
@@ -134,10 +135,17 @@ public class Unit implements Serializable {
 			put(new WaterPene().Name(), new WaterPene());
 			put(new ThunderPene().Name(), new ThunderPene());
 
+			put(new Energy().Name(), new Energy());
+			put(new EnergyRegen().Name(), new EnergyRegen());
+
+			put(new Mana().Name(), new Mana());
+			put(new ManaRegen().Name(), new ManaRegen());
+
 		}
 
 	};
 
+	// Stat shortcuts
 	public Health health() {
 		return (Health) Stats.get(new Health().Name());
 	}
@@ -146,9 +154,16 @@ public class Unit implements Serializable {
 		return (Mana) Stats.get(new Mana().Name());
 	}
 
+	public Energy energy() {
+		return (Energy) Stats.get(new Energy().Name());
+	}
+
 	public void SpendMana(int i) {
 		mana().Decrease(i);
+	}
 
+	public void SpendEnergy(int i) {
+		energy().Decrease(i);
 	}
 
 	public void TakeDamage(int i) {
@@ -159,9 +174,14 @@ public class Unit implements Serializable {
 		mana().Increase(i);
 	}
 
+	public void RestoreEnergy(int i) {
+		energy().Increase(i);
+	}
+
 	public void RestoreHealth(int i) {
 		health().Increase(i);
 	}
+	// Stat shortcuts
 
 	transient public boolean StatsDirty = true;
 
@@ -201,8 +221,6 @@ public class Unit implements Serializable {
 			}
 
 		}
-
-		// System.out.println("Gearitemsfound" + gearitems.size());
 
 		return gearitems;
 

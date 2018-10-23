@@ -6,6 +6,8 @@ import com.robertx22.database.stats.types.Armor;
 import com.robertx22.database.stats.types.CriticalDamage;
 import com.robertx22.database.stats.types.CriticalHit;
 import com.robertx22.database.stats.types.Damage;
+import com.robertx22.database.stats.types.Energy;
+import com.robertx22.database.stats.types.EnergyRegen;
 import com.robertx22.database.stats.types.Health;
 import com.robertx22.database.stats.types.Mana;
 import com.robertx22.database.stats.types.ManaRegen;
@@ -32,8 +34,12 @@ public class Stats {
 				put(new CriticalDamage().Name(), new CriticalDamage());
 				put(new CriticalHit().Name(), new CriticalHit());
 				put(new Damage().Name(), new Damage());
+
 				put(new Mana().Name(), new Mana());
 				put(new ManaRegen().Name(), new ManaRegen());
+
+				put(new Energy().Name(), new Energy());
+				put(new EnergyRegen().Name(), new EnergyRegen());
 
 				put(new FireDamage().Name(), new FireDamage());
 				put(new WaterDamage().Name(), new WaterDamage());
