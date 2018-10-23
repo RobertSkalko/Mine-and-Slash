@@ -26,6 +26,9 @@ public class OnEntityMeleeAttack {
 
 		try {
 
+			if (event.getEntityLiving() == null || event.getSource().getTrueSource() == null) {
+				return;
+			}
 			if (event.getSource().isExplosion()) {
 				return;
 			}
@@ -50,14 +53,12 @@ public class OnEntityMeleeAttack {
 								((EntityPlayer) source).sendMessage(
 										new TextComponentString(TextFormatting.RED + "Not Enough Energy."));
 
-								event.setCanceled(true);
 							} else {
 								unit.SpendEnergy(energyCost);
 								UnitSaving.Save(source, unit);
 								int num = (int) unit.Stats.get("Damage").Value;
 								DamageEffect dmg = new DamageEffect(source, target, num);
 								dmg.Activate();
-								event.setCanceled(true);
 							}
 
 						} else {
@@ -65,7 +66,6 @@ public class OnEntityMeleeAttack {
 							int num = (int) unit.Stats.get("Damage").Value;
 							DamageEffect dmg = new DamageEffect(source, target, num);
 							dmg.Activate();
-							event.setCanceled(true);
 						}
 					}
 

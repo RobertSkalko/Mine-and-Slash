@@ -16,6 +16,7 @@ import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Energy;
 import com.robertx22.database.stats.types.EnergyRegen;
 import com.robertx22.database.stats.types.Health;
+import com.robertx22.database.stats.types.HealthRegen;
 import com.robertx22.database.stats.types.Mana;
 import com.robertx22.database.stats.types.ManaRegen;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
@@ -34,6 +35,7 @@ import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.enumclasses.EntityTypes;
 
 import baubles.api.BaublesApi;
@@ -53,10 +55,14 @@ public class Unit implements Serializable {
 
 	// transient public EntityLivingBase entity;
 
-	public static Unit Mob(EntityLivingBase en) {
+	public static Unit Mob(EntityLivingBase en, EntityPlayer player) {
 
 		Unit unit = new Unit();
 		unit.entityType = EntityTypes.Mob;
+
+		Unit playerUnit = UnitSaving.Load(player);
+
+		unit.level = playerUnit.level;
 
 		unit.Stats.get("Health").BaseFlat = (int) en.getMaxHealth();
 
@@ -114,6 +120,8 @@ public class Unit implements Serializable {
 	public HashMap<String, Stat> Stats = new HashMap<String, Stat>() {
 		{
 			put(new Health().Name(), new Health());
+			put(new HealthRegen().Name(), new HealthRegen());
+
 			put(new Damage().Name(), new Damage());
 			put(new Armor().Name(), new Armor());
 
@@ -180,6 +188,7 @@ public class Unit implements Serializable {
 
 	public void RestoreHealth(int i) {
 		health().Increase(i);
+
 	}
 	// Stat shortcuts
 

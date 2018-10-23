@@ -7,11 +7,15 @@ import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.spells.bases.MyDamageSource;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 
 public class DamageEffect extends EffectData
 		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
@@ -31,14 +35,72 @@ public class DamageEffect extends EffectData
 	@Override
 	protected void activate() {
 
-		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName);
-		dmgsource.setDamageBypassesArmor();
+		// MyDamageSource dmgsource = new MyDamageSource(DmgSourceName);
+		// dmgsource.setDamageBypassesArmor();
 
-		float dmg = HealthUtils.DamageToMinecraftHealth(Number, Target);
+		this.targetUnit.health().Decrease(this.Number);
 
-		Target.attackEntityFrom(dmgsource, dmg);
+		UnitSaving.Save(this.Target, this.targetUnit);
 
-		System.out.println("dealt dmg :" + dmg);
+		this.Target.setHealth(HealthUtils.UnitHPtoMcHP(this.Target));
+
+		// float dmg = HealthUtils.DamageToMinecraftHealth(Number, Target);
+
+		// Target.attackEntityFrom(dmgsource, dmg);
+
+		LogCombat();
+
+	}
+
+	private void LogCombat() {
+
+		if (this.Source instanceof EntityPlayer) {
+
+			String s = "Dealt " + LogDamage() + " to " + this.Target.getName() + " " + LogCurrentHP(this.targetUnit);
+			this.Source.sendMessage(new TextComponentString(s));
+
+		}
+
+		if (this.Target instanceof EntityPlayer) {
+
+			String s = "Took " + LogDamage() + " from " + this.Source.getName() + " " + LogCurrentHP(this.targetUnit);
+			this.Target.sendMessage(new TextComponentString(s));
+
+		}
+
+	}
+
+	private String LogCurrentHP(Unit unit) {
+
+		String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health().GetCurrentValue() + "/"
+				+ (int) unit.health().Value + "]";
+
+		return str;
+
+	}
+
+	private String LogDamage() {
+
+		String str = Number + " DMG ";
+
+		if (Element == null || Element.equals(Elements.None)) {
+			str = TextFormatting.GRAY + str;
+		} else {
+			if (Element.equals(Elements.Fire)) {
+				str = TextFormatting.RED + str;
+			}
+			if (Element.equals(Elements.Water)) {
+				str = TextFormatting.BLUE + str;
+			}
+			if (Element.equals(Elements.Thunder)) {
+				str = TextFormatting.YELLOW + str;
+			}
+			if (Element.equals(Elements.Nature)) {
+				str = TextFormatting.GREEN + str;
+			}
+		}
+
+		return str;
 
 	}
 

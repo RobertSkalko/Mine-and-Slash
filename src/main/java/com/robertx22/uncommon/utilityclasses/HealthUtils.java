@@ -23,4 +23,19 @@ public class HealthUtils {
 
 	}
 
+	public static float UnitHPtoMcHP(EntityLivingBase entity) {
+
+		try {
+			Unit unit = UnitSaving.Load(entity);
+
+			float currentHP = unit.health().GetCurrentValue();
+			float maxMcHP = entity.getMaxHealth();
+
+			return (float) maxMcHP * currentHP / unit.health().Value;
+		} catch (Exception e) {
+		}
+		return 0;
+
+	}
+
 }

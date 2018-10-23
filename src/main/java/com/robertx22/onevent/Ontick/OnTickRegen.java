@@ -1,6 +1,7 @@
 package com.robertx22.onevent.ontick;
 
 import com.robertx22.database.stats.types.EnergyRegen;
+import com.robertx22.database.stats.types.HealthRegen;
 import com.robertx22.database.stats.types.ManaRegen;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
@@ -42,19 +43,25 @@ public class OnTickRegen {
 
 			if (tick > time) {
 
-				Unit unit = UnitSaving.Load(event.player);
-				unit.RecalculateStats(event.player);
+				if (event.player.isEntityAlive()) {
+					Unit unit = UnitSaving.Load(event.player);
+					unit.RecalculateStats(event.player);
 
-				int manarestored = (int) unit.Stats.get(new ManaRegen().Name()).Value;
-				unit.RestoreMana(manarestored);
+					int manarestored = (int) unit.Stats.get(new ManaRegen().Name()).Value;
+					unit.RestoreMana(manarestored);
 
-				int energyrestored = (int) unit.Stats.get(new EnergyRegen().Name()).Value;
-				unit.RestoreEnergy(energyrestored);
+					int energyrestored = (int) unit.Stats.get(new EnergyRegen().Name()).Value;
+					unit.RestoreEnergy(energyrestored);
 
-				UnitSaving.Save(event.player, unit);
+					int healthrestored = (int) unit.Stats.get(new HealthRegen().Name()).Value;
+					unit.RestoreHealth(healthrestored);
 
-				tick = 0;
+					UnitSaving.Save(event.player, unit);
 
+					// event.player.setHealth(HealthUtils.UnitHPtoMcHP(event.player));
+
+					tick = 0;
+				}
 			}
 
 		}

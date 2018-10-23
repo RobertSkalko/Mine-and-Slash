@@ -9,6 +9,7 @@ import com.robertx22.database.stats.types.Damage;
 import com.robertx22.database.stats.types.Energy;
 import com.robertx22.database.stats.types.EnergyRegen;
 import com.robertx22.database.stats.types.Health;
+import com.robertx22.database.stats.types.HealthRegen;
 import com.robertx22.database.stats.types.Mana;
 import com.robertx22.database.stats.types.ManaRegen;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
@@ -30,6 +31,8 @@ public class Stats {
 		{
 			{
 				put(new Health().Name(), new Health());
+				put(new HealthRegen().Name(), new HealthRegen());
+
 				put(new Armor().Name(), new Armor());
 				put(new CriticalDamage().Name(), new CriticalDamage());
 				put(new CriticalHit().Name(), new CriticalHit());

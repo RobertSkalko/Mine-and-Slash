@@ -33,6 +33,9 @@ public class BarsGUI extends Gui {
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onRenderExperienceBar(RenderGameOverlayEvent event) {
 
+		if (event.getType().equals(ElementType.HEALTH)) {
+			event.setCanceled(true);
+		}
 		if (event.isCancelable() || event.getType() != ElementType.EXPERIENCE) {
 			return;
 		}

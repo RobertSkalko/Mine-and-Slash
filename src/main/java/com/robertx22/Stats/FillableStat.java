@@ -3,7 +3,7 @@ package com.robertx22.stats;
 public abstract class FillableStat extends Stat {
 
 	public FillableStat() {
-
+		this.CurrentValue = (int) this.Value;
 	}
 
 	private int CurrentValue;
