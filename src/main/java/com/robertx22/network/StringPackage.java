@@ -41,14 +41,14 @@ public class StringPackage implements IMessage {
 		@Override
 		public IMessage onMessage(StringPackage message, MessageContext ctx) {
 
-			System.out.println("message works");
+			// System.out.println("message works");
 
 			Unit unit = Saving.Load(message.toSend, Unit.class);
 
 			final EntityPlayer player = Minecraft.getMinecraft().player;
 
 			UnitSaving.Save(player, unit);
-			System.out.println("task works");
+			// System.out.println("task works");
 
 			return null;
 		}
