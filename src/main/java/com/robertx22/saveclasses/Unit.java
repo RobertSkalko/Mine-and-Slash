@@ -117,9 +117,6 @@ public class Unit implements Serializable {
 	public void SpendEnergy(int i) {
 		energy().Decrease(i);
 	}
-	/*
-	 * public void TakeDamage(int i) { health().Decrease(i); }
-	 */
 
 	public void RestoreMana(int i) {
 		mana().Increase(i);
@@ -128,11 +125,6 @@ public class Unit implements Serializable {
 	public void RestoreEnergy(int i) {
 		energy().Increase(i);
 	}
-
-	/*
-	 * public void RestoreHealth(int i) { health().Increase(i); }
-	 */
-	// Stat shortcuts
 
 	transient public boolean StatsDirty = true;
 
@@ -177,7 +169,7 @@ public class Unit implements Serializable {
 
 	}
 
-	private void ClearStats() {
+	protected void ClearStats() {
 		for (Stat stat : Stats.values()) {
 			stat.Clear();
 		}
@@ -188,13 +180,9 @@ public class Unit implements Serializable {
 		List<GearItemData> gears = GetEquips(entity);
 
 		for (GearItemData gear : gears) {
-
 			List<StatModData> datas = gear.GetAllStats();
-
 			for (StatModData data : datas) {
-
 				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
-
 				if (stat == null) {
 					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
 				} else {
@@ -223,7 +211,7 @@ public class Unit implements Serializable {
 		// StatsDirty = false;
 	}
 
-	private void CalcStats() {
+	protected void CalcStats() {
 
 		Stats.values().forEach((Stat stat) -> stat.CalcVal(this));
 	}

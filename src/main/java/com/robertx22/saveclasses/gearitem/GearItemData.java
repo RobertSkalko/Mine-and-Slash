@@ -62,26 +62,38 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	}
 
+	private List<IStatsContainer> GetAllStatContainers() {
+
+		List<IStatsContainer> containers = new ArrayList<IStatsContainer>();
+
+		if (suffix != null) {
+			containers.add(suffix);
+		}
+		if (prefix != null) {
+			containers.add(prefix);
+		}
+
+		if (primaryStats != null) {
+			containers.add(primaryStats);
+		}
+		if (secondaryStats != null) {
+			containers.add(secondaryStats);
+		}
+		if (chaosStats != null) {
+			containers.add(chaosStats);
+		}
+
+		return containers;
+
+	}
+
 	@Override
 	public List<StatModData> GetAllStats() {
 
 		List<StatModData> datas = new ArrayList<StatModData>();
 
-		if (suffix != null) {
-			datas.addAll(suffix.GetAllStats());
-		}
-		if (prefix != null) {
-			datas.addAll(prefix.GetAllStats());
-		}
-
-		if (primaryStats != null) {
-			datas.addAll(primaryStats.GetAllStats());
-		}
-		if (secondaryStats != null) {
-			datas.addAll(secondaryStats.GetAllStats());
-		}
-		if (chaosStats != null) {
-			datas.addAll(chaosStats.GetAllStats());
+		for (IStatsContainer con : GetAllStatContainers()) {
+			datas.addAll(con.GetAllStats());
 		}
 
 		return datas;
