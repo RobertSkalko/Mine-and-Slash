@@ -38,9 +38,12 @@ public class ArmorEffect implements IStatEffect {
 					EffectiveArmor = 0;
 				}
 
+				float old = Effect.Number;
+
 				Effect.Number -= EffectiveArmor * Effect.Number;
 
-				System.out.println("Reducing dmg by armor: " + EffectiveArmor);
+				System.out.println("Reducing dmg by armor from: " + old + " to " + Effect.Number + "(" + EffectiveArmor
+						+ ") armor");
 
 			}
 		} catch (Exception e) {

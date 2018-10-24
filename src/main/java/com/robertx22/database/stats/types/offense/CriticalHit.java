@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.types;
+package com.robertx22.database.stats.types.offense;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,21 +6,21 @@ import java.util.List;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatEffects.CriticalDamageEffect;
+import com.robertx22.stats.StatEffects.CriticalHitEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class CriticalDamage extends Stat implements IStatEffects {
+public class CriticalHit extends Stat implements IStatEffects {
 	@Override
 	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new CriticalDamageEffect());
+		return Arrays.asList(new CriticalHitEffect());
 	}
 
-	public CriticalDamage() {
+	public CriticalHit() {
 	}
 
 	@Override
 	public String Name() {
-		return "Critical Damage";
+		return "Critical Hit";
 	}
 
 	@Override

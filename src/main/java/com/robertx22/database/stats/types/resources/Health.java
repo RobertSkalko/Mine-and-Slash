@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.types;
+package com.robertx22.database.stats.types.resources;
 
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.Stat;

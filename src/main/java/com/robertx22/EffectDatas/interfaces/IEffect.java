@@ -8,6 +8,6 @@ public interface IEffect {
 
 	public abstract EntityLivingBase Target();
 
-	public abstract int Number();
+	public abstract float Number();
 
 }

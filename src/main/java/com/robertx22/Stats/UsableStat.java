@@ -20,9 +20,9 @@ public abstract class UsableStat extends Stat {
 
 		int AvgStat = 50;
 
-		float number = value / (Level * AvgStat);
+		float number = (float) value / ((float) Level * (float) AvgStat);
 
-		float finalval = (MaximumPercent() * number / (number + 25));
+		float finalval = (float) (MaximumPercent() * (float) number / ((float) number + (float) 15));
 
 		System.out.println("from " + this.Value + "to usable value " + finalval);
 

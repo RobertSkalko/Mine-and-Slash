@@ -1,22 +1,22 @@
-package com.robertx22.database.stats.types;
+package com.robertx22.database.stats.types.resources;
 
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class Damage extends Stat {
+public class EnergyRegen extends Stat {
 
-	public Damage() {
-		this.StatMinimum = 1;
+	public EnergyRegen() {
+		this.StatMinimum = 5;
 	}
 
 	@Override
 	public String Name() {
-		return "Damage";
+		return "Energy Regen";
 	}
 
 	@Override
 	public boolean ScalesToLevel() {
-		return true;
+		return false;
 	}
 
 	@Override

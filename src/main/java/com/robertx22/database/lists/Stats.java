@@ -2,16 +2,7 @@ package com.robertx22.database.lists;
 
 import java.util.HashMap;
 
-import com.robertx22.database.stats.types.Armor;
-import com.robertx22.database.stats.types.CriticalDamage;
-import com.robertx22.database.stats.types.CriticalHit;
-import com.robertx22.database.stats.types.Damage;
-import com.robertx22.database.stats.types.Energy;
-import com.robertx22.database.stats.types.EnergyRegen;
-import com.robertx22.database.stats.types.Health;
-import com.robertx22.database.stats.types.HealthRegen;
-import com.robertx22.database.stats.types.Mana;
-import com.robertx22.database.stats.types.ManaRegen;
+import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
 import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
 import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
@@ -24,6 +15,17 @@ import com.robertx22.database.stats.types.elementals.resist.FireResist;
 import com.robertx22.database.stats.types.elementals.resist.NatureResist;
 import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
 import com.robertx22.database.stats.types.elementals.resist.WaterResist;
+import com.robertx22.database.stats.types.offense.CriticalDamage;
+import com.robertx22.database.stats.types.offense.CriticalHit;
+import com.robertx22.database.stats.types.offense.Damage;
+import com.robertx22.database.stats.types.offense.LifeOnHit;
+import com.robertx22.database.stats.types.offense.Lifesteal;
+import com.robertx22.database.stats.types.resources.Energy;
+import com.robertx22.database.stats.types.resources.EnergyRegen;
+import com.robertx22.database.stats.types.resources.Health;
+import com.robertx22.database.stats.types.resources.HealthRegen;
+import com.robertx22.database.stats.types.resources.Mana;
+import com.robertx22.database.stats.types.resources.ManaRegen;
 import com.robertx22.stats.Stat;
 
 public class Stats {
@@ -58,6 +60,9 @@ public class Stats {
 				put(new NaturePene().Name(), new NaturePene());
 				put(new WaterPene().Name(), new WaterPene());
 				put(new ThunderPene().Name(), new ThunderPene());
+
+				put(new Lifesteal().Name(), new Lifesteal());
+				put(new LifeOnHit().Name(), new LifeOnHit());
 
 			}
 		}

@@ -1,17 +1,17 @@
-package com.robertx22.database.stats.types;
+package com.robertx22.database.stats.types.resources;
 
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class HealthRegen extends Stat {
+public class ManaRegen extends Stat {
 
-	public HealthRegen() {
+	public ManaRegen() {
 		this.StatMinimum = 1;
 	}
 
 	@Override
 	public String Name() {
-		return "Health Regen";
+		return "Mana Regen";
 	}
 
 	@Override

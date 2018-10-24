@@ -1,7 +1,7 @@
 package com.robertx22.onevent.ontick;
 
-import com.robertx22.database.stats.types.EnergyRegen;
-import com.robertx22.database.stats.types.ManaRegen;
+import com.robertx22.database.stats.types.resources.EnergyRegen;
+import com.robertx22.database.stats.types.resources.ManaRegen;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
 import com.robertx22.saveclasses.Unit;

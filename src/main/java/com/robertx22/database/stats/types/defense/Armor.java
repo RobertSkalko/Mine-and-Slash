@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.types;
+package com.robertx22.database.stats.types.defense;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Armor extends UsableStat implements IStatEffects {
 
 	@Override
 	public boolean ScalesToLevel() {
-		return false;
+		return true;
 	}
 
 	@Override

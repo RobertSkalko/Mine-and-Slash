@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.types.elementals.pene;
+package com.robertx22.database.stats.types.offense;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,37 +6,36 @@ import java.util.List;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatEffects.ElementalPeneEffect;
+import com.robertx22.stats.StatEffects.LifestealEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class WaterPene extends Stat implements IStatEffects {
-
+public class Lifesteal extends Stat implements IStatEffects {
 	@Override
 	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new ElementalPeneEffect());
+		return Arrays.asList(new LifestealEffect());
 	}
 
-	public WaterPene() {
+	public Lifesteal() {
 	}
 
 	@Override
 	public String Name() {
-		return "Water Penetration";
+		return "Lifesteal";
 	}
 
 	@Override
 	public boolean ScalesToLevel() {
-		return true;
+		return false;
 	}
 
 	@Override
 	public Elements Element() {
-		return Elements.Water;
+		return null;
 	}
 
 	@Override
 	public boolean IsPercent() {
-		return false;
+		return true;
 	}
 
 }

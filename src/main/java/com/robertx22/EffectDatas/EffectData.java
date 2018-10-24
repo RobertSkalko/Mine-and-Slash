@@ -41,6 +41,12 @@ public abstract class EffectData {
 
 	}
 
+	public EffectTypes Type = EffectTypes.NORMAL;
+
+	public enum EffectTypes {
+		NORMAL, SPELL, BASIC_ATTACK,
+	}
+
 	public boolean canceled = false;
 	public Unit sourceUnit;
 	public Unit targetUnit;
@@ -48,7 +54,7 @@ public abstract class EffectData {
 	public EntityLivingBase Source;
 	public EntityLivingBase Target;
 
-	public int Number = 0;
+	public float Number = 0;
 
 	public Unit GetSource() {
 
@@ -87,7 +93,9 @@ public abstract class EffectData {
 		Effects.sort((Comparator<EffectUnitStat>) new EffectUnitStat());
 
 		for (EffectUnitStat item : Effects) {
-			item.effect.TryModifyEffect(Data, item.source, item.stat);
+			if (item.stat.Value > 0) { // no need to try modify if entity doesn't even have the stat!
+				item.effect.TryModifyEffect(Data, item.source, item.stat);
+			}
 		}
 
 		return Data;

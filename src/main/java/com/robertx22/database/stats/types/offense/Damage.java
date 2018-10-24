@@ -1,16 +1,17 @@
-package com.robertx22.database.stats.types;
+package com.robertx22.database.stats.types.offense;
 
-import com.robertx22.stats.FillableStat;
+import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class Mana extends FillableStat {
-	public Mana() {
-		this.StatMinimum = 50;
+public class Damage extends Stat {
+
+	public Damage() {
+		this.StatMinimum = 1;
 	}
 
 	@Override
 	public String Name() {
-		return "Mana";
+		return "Damage";
 	}
 
 	@Override

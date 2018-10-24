@@ -1,17 +1,16 @@
-package com.robertx22.database.stats.types;
+package com.robertx22.database.stats.types.resources;
 
-import com.robertx22.stats.Stat;
+import com.robertx22.stats.FillableStat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class EnergyRegen extends Stat {
-
-	public EnergyRegen() {
-		this.StatMinimum = 5;
+public class Energy extends FillableStat {
+	public Energy() {
+		this.StatMinimum = 100;
 	}
 
 	@Override
 	public String Name() {
-		return "Energy Regen";
+		return "Energy";
 	}
 
 	@Override
@@ -28,5 +27,4 @@ public class EnergyRegen extends Stat {
 	public boolean IsPercent() {
 		return false;
 	}
-
 }

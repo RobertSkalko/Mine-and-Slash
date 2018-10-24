@@ -114,7 +114,7 @@ public class DamageEffect extends EffectData
 	}
 
 	@Override
-	public int Number() {
+	public float Number() {
 		return Number;
 	}
 
@@ -150,6 +150,11 @@ public class DamageEffect extends EffectData
 	@Override
 	public boolean GetCrit() {
 		return crit;
+	}
+
+	@Override
+	public int GetElementalPenetration() {
+		return this.ElementalPene;
 	}
 
 }
