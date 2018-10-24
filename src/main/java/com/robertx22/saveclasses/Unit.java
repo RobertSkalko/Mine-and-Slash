@@ -31,6 +31,7 @@ import com.robertx22.database.stats.types.elementals.resist.FireResist;
 import com.robertx22.database.stats.types.elementals.resist.NatureResist;
 import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
 import com.robertx22.database.stats.types.elementals.resist.WaterResist;
+import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.Stat;
@@ -40,7 +41,6 @@ import com.robertx22.uncommon.enumclasses.EntityTypes;
 
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -104,17 +104,10 @@ public class Unit implements Serializable {
 		return GUID.hashCode();
 	}
 
-	public void updateClientExpGUI(EntityPlayer player) {
-
-		EntityPlayer clientPlayer = Minecraft.getMinecraft().player;
-
-		float percentXPFilled = (float) experience / (float) GetExpRequiredForLevelUp();
-
-		clientPlayer.experienceLevel = level;
-		clientPlayer.experience = percentXPFilled;
-
-		player.experienceLevel = level;
-		player.experience = percentXPFilled;
+	public void BasicAttack(EntityLivingBase source, EntityLivingBase target, Unit unitsource) {
+		int num = (int) unitsource.Stats.get("Damage").Value;
+		DamageEffect dmg = new DamageEffect(source, target, num);
+		dmg.Activate();
 	}
 
 	public HashMap<String, Stat> Stats = new HashMap<String, Stat>() {
@@ -173,10 +166,9 @@ public class Unit implements Serializable {
 	public void SpendEnergy(int i) {
 		energy().Decrease(i);
 	}
-
-	public void TakeDamage(int i) {
-		health().Decrease(i);
-	}
+	/*
+	 * public void TakeDamage(int i) { health().Decrease(i); }
+	 */
 
 	public void RestoreMana(int i) {
 		mana().Increase(i);
@@ -186,10 +178,9 @@ public class Unit implements Serializable {
 		energy().Increase(i);
 	}
 
-	public void RestoreHealth(int i) {
-		health().Increase(i);
-
-	}
+	/*
+	 * public void RestoreHealth(int i) { health().Increase(i); }
+	 */
 	// Stat shortcuts
 
 	transient public boolean StatsDirty = true;

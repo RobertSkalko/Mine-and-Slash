@@ -48,7 +48,6 @@ public class OnMobSpawn {
 				if (check == null) {
 					Unit unit = Unit.Mob(entity, player);
 					unit.RecalculateStats(entity);
-					unit.health().Increase((int) unit.health().Value);
 					UnitSaving.Save(entity, unit);
 				}
 
@@ -64,7 +63,7 @@ public class OnMobSpawn {
 
 			entity.setHealth(entity.getMaxHealth());
 
-			System.out.println("hp" + entity.getMaxHealth());
+			// System.out.println("hp" + entity.getMaxHealth());
 		} else {
 			event.setCanceled(true);
 

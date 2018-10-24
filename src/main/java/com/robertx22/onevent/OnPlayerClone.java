@@ -23,7 +23,6 @@ public class OnPlayerClone {
 			EntityData.IEntityData oldData = (IEntityData) event.getOriginal().getCapability(EntityData.Data, null);
 			data.setNBT(oldData.getNBT());
 			Unit unit = UnitSaving.Load(player);
-			unit.updateClientExpGUI(player);
 
 		}
 

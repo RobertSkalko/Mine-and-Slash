@@ -6,7 +6,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class EnergyRegen extends Stat {
 
 	public EnergyRegen() {
-		this.StatMinimum = 1;
+		this.StatMinimum = 5;
 	}
 
 	@Override

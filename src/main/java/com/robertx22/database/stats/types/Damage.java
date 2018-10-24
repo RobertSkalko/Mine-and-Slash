@@ -6,7 +6,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 public class Damage extends Stat {
 
 	public Damage() {
-		this.StatMinimum = 5;
+		this.StatMinimum = 1;
 	}
 
 	@Override

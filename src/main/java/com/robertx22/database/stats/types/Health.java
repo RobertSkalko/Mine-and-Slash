@@ -1,9 +1,12 @@
 package com.robertx22.database.stats.types;
 
-import com.robertx22.stats.FillableStat;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class Health extends FillableStat {
+import net.minecraft.entity.EntityLivingBase;
+
+public class Health extends Stat {
 	public Health() {
 		this.StatMinimum = 20;
 	}
@@ -27,4 +30,13 @@ public class Health extends FillableStat {
 	public boolean IsPercent() {
 		return false;
 	}
+
+	public int CurrentValue(EntityLivingBase entity, Unit unit) {
+
+		float mult = entity.getHealth() / entity.getMaxHealth();
+
+		return (int) (mult * unit.health().Value);
+
+	}
+
 }

@@ -8,6 +8,7 @@ import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
@@ -35,18 +36,14 @@ public class DamageEffect extends EffectData
 	@Override
 	protected void activate() {
 
-		// MyDamageSource dmgsource = new MyDamageSource(DmgSourceName);
-		// dmgsource.setDamageBypassesArmor();
-
-		this.targetUnit.health().Decrease(this.Number);
+		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName);
+		dmgsource.setDamageBypassesArmor();
 
 		UnitSaving.Save(this.Target, this.targetUnit);
 
-		this.Target.setHealth(HealthUtils.UnitHPtoMcHP(this.Target));
+		float dmg = HealthUtils.DamageToMinecraftHealth(Number, Target);
 
-		// float dmg = HealthUtils.DamageToMinecraftHealth(Number, Target);
-
-		// Target.attackEntityFrom(dmgsource, dmg);
+		Target.attackEntityFrom(dmgsource, dmg);
 
 		LogCombat();
 
@@ -56,23 +53,25 @@ public class DamageEffect extends EffectData
 
 		if (this.Source instanceof EntityPlayer) {
 
-			String s = "Dealt " + LogDamage() + " to " + this.Target.getName() + " " + LogCurrentHP(this.targetUnit);
+			String s = "Dealt " + LogDamage() + " to " + this.Target.getName() + " "
+					+ LogCurrentHP(this.Target, this.targetUnit);
 			this.Source.sendMessage(new TextComponentString(s));
 
 		}
 
 		if (this.Target instanceof EntityPlayer) {
 
-			String s = "Took " + LogDamage() + " from " + this.Source.getName() + " " + LogCurrentHP(this.targetUnit);
+			String s = "Took " + LogDamage() + " from " + this.Source.getName() + " "
+					+ LogCurrentHP(this.Target, this.targetUnit);
 			this.Target.sendMessage(new TextComponentString(s));
 
 		}
 
 	}
 
-	private String LogCurrentHP(Unit unit) {
+	private String LogCurrentHP(EntityLivingBase entity, Unit unit) {
 
-		String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health().GetCurrentValue() + "/"
+		String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health().CurrentValue(entity, unit) + "/"
 				+ (int) unit.health().Value + "]";
 
 		return str;
