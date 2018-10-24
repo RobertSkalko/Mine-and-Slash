@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.robertx22.customitems.baubles.ItemRing;
+import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.database.lists.Suffixes;
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.database.stats.mods.flat.HealthFlat;
-import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.Prefix;
 import com.robertx22.gearitem.Suffix;
 import com.robertx22.stats.StatMod;
@@ -57,11 +57,6 @@ public class Ring extends GearItemSlot {
 	@Override
 	public int Weight() {
 		return 1000;
-	}
-
-	@Override
-	public List<StatMod> ChaosStats() {
-		return Arrays.asList(new ArmorFlat());
 	}
 
 }

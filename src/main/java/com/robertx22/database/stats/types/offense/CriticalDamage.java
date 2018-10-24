@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatEffects.CriticalDamageEffect;
+import com.robertx22.stats.StatEffects.offense.CriticalDamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class CriticalDamage extends Stat implements IStatEffects {
@@ -16,6 +16,7 @@ public class CriticalDamage extends Stat implements IStatEffects {
 	}
 
 	public CriticalDamage() {
+		this.BaseFlat = 20;
 	}
 
 	@Override

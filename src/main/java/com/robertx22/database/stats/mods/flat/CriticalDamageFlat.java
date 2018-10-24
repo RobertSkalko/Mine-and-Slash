@@ -9,6 +9,7 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 public class CriticalDamageFlat extends StatMod {
 
 	public CriticalDamageFlat() {
+
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package com.robertx22.database.lists;
 import java.util.HashMap;
 
 import com.robertx22.database.stats.types.defense.Armor;
+import com.robertx22.database.stats.types.defense.Dodge;
+import com.robertx22.database.stats.types.defense.SpellDodge;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
 import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
 import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
@@ -26,26 +28,31 @@ import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.database.stats.types.resources.ManaRegen;
+import com.robertx22.database.stats.types.traits.Golem;
 import com.robertx22.stats.Stat;
 
 public class Stats {
 	public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
 		{
 			{
+
+				// Resources
 				put(new Health().Name(), new Health());
 				put(new HealthRegen().Name(), new HealthRegen());
-
-				put(new Armor().Name(), new Armor());
-				put(new CriticalDamage().Name(), new CriticalDamage());
-				put(new CriticalHit().Name(), new CriticalHit());
-				put(new Damage().Name(), new Damage());
 
 				put(new Mana().Name(), new Mana());
 				put(new ManaRegen().Name(), new ManaRegen());
 
 				put(new Energy().Name(), new Energy());
 				put(new EnergyRegen().Name(), new EnergyRegen());
+				// Resources
 
+				put(new Armor().Name(), new Armor());
+				put(new CriticalDamage().Name(), new CriticalDamage());
+				put(new CriticalHit().Name(), new CriticalHit());
+				put(new Damage().Name(), new Damage());
+
+				// Elemental
 				put(new FireDamage().Name(), new FireDamage());
 				put(new WaterDamage().Name(), new WaterDamage());
 				put(new ThunderDamage().Name(), new ThunderDamage());
@@ -60,9 +67,17 @@ public class Stats {
 				put(new NaturePene().Name(), new NaturePene());
 				put(new WaterPene().Name(), new WaterPene());
 				put(new ThunderPene().Name(), new ThunderPene());
+				// Elemental
 
 				put(new Lifesteal().Name(), new Lifesteal());
 				put(new LifeOnHit().Name(), new LifeOnHit());
+
+				put(new Dodge().Name(), new Dodge());
+				put(new SpellDodge().Name(), new SpellDodge());
+
+				// traits
+				put(new Golem().Name(), new Golem());
+				// traits
 
 			}
 		}

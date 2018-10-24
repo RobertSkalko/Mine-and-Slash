@@ -1,12 +1,11 @@
 package com.robertx22.database.suffixes;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.stats.mods.flat.CriticalHitFlat;
 import com.robertx22.gearitem.Suffix;
 import com.robertx22.stats.StatMod;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public class OfCriticalHits extends Suffix {
 
@@ -21,16 +20,8 @@ public class OfCriticalHits extends Suffix {
 	@Override
 	public List<StatMod> StatMods() {
 
-		List<StatMod> mods = new ArrayList<StatMod>();
-		mods.add(new CriticalHitFlat());
+		return Arrays.asList(new CriticalHitFlat());
 
-		return mods;
-
-	}
-
-	@Override
-	public int Weight() {
-		return IWeighted.NormalWeight;
 	}
 
 }

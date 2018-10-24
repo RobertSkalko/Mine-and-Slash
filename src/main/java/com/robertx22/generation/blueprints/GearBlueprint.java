@@ -2,8 +2,8 @@ package com.robertx22.generation.blueprints;
 
 import java.util.List;
 
+import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.GearTypes;
-import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;

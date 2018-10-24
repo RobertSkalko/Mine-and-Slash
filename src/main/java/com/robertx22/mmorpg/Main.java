@@ -15,6 +15,7 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.commands.GiveGear;
 import com.robertx22.uncommon.commands.GiveSpell;
 import com.robertx22.uncommon.oregen.OreGen;
+import com.robertx22.uncommon.testing.TestManager;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.Minecraft;
@@ -99,6 +100,8 @@ public class Main {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+
+		TestManager.RunAllTests();
 
 		GameRegistry.registerWorldGenerator(new OreGen(MyItems.magic_ore_block, 7, 10, 50, 7), 0);
 		GameRegistry.registerWorldGenerator(new OreGen(MyItems.rare_ore_block, 6, 10, 40, 5), 0);

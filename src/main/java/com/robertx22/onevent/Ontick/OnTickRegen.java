@@ -1,12 +1,14 @@
 package com.robertx22.onevent.ontick;
 
 import com.robertx22.database.stats.types.resources.EnergyRegen;
+import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.ManaRegen;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.datasaving.bases.Saving;
+import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.Mod;
@@ -52,9 +54,8 @@ public class OnTickRegen {
 					int energyrestored = (int) unit.Stats.get(new EnergyRegen().Name()).Value;
 					unit.RestoreEnergy(energyrestored);
 
-					// int healthrestored = (int) unit.Stats.get(new HealthRegen().Name()).Value;
-					// event.player.heal(HealthUtils.DamageToMinecraftHealth(healthrestored,
-					// event.player));
+					int healthrestored = (int) unit.Stats.get(new HealthRegen().Name()).Value;
+					event.player.heal(HealthUtils.DamageToMinecraftHealth(healthrestored, event.player));
 
 					UnitSaving.Save(event.player, unit);
 

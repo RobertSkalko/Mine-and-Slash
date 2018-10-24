@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.robertx22.database.prefixes.Flaming;
+import com.robertx22.database.prefixes.Hardened;
 import com.robertx22.gearitem.Prefix;
 
 public class Prefixes {
@@ -12,6 +13,7 @@ public class Prefixes {
 		{
 			{
 				put(new Flaming().Name(), new Flaming());
+				put(new Hardened().Name(), new Hardened());
 
 			}
 		}
@@ -29,7 +31,7 @@ public class Prefixes {
 	public static List<Prefix> Armor = new ArrayList<Prefix>() {
 		{
 			{
-				// add(new OfVitality());
+				add(new Hardened());
 
 			}
 		}

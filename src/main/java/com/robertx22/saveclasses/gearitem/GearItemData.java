@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.crafting.bases.IRerollable;
+import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.GearTypes;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.gearitem.GearItemSlot;
 import com.robertx22.gearitem.IStatsContainer;
 import com.robertx22.gearitem.ITooltip;
 import com.robertx22.gearitem.ITooltipList;

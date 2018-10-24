@@ -7,6 +7,7 @@ import com.robertx22.gearitem.ITooltipString;
 import com.robertx22.generation.StatGen;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
+import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
 import net.minecraft.util.text.TextFormatting;
@@ -74,6 +75,12 @@ public class StatModData implements Serializable, ITooltipString {
 		return TextFormatting.RED + " * " + basestat.Name() + ": ";
 	}
 
+	public String TraitText() {
+		StatMod mod = GetBaseMod();
+		Stat basestat = mod.GetBaseStat();
+		return TextFormatting.GREEN + " * " + basestat.Name();
+	}
+
 	public String NameAndValueText() {
 
 		int val = this.GetActualVal();
@@ -89,18 +96,26 @@ public class StatModData implements Serializable, ITooltipString {
 
 		Stat basestat = mod.GetBaseStat();
 
-		String text = NameAndValueText();
+		String text = "";
 
-		if (mod.Type() == StatTypes.Flat) {
+		if (!(basestat instanceof Trait)) {
 
-			if (basestat.IsPercent()) {
+			text = NameAndValueText();
+
+			if (mod.Type() == StatTypes.Flat) {
+
+				if (basestat.IsPercent()) {
+					text += "%";
+				}
+
+			} else if (mod.Type() == StatTypes.Percent) {
 				text += "%";
+			} else {
+				text += "% Multi";
 			}
-
-		} else if (mod.Type() == StatTypes.Percent) {
-			text += "%";
 		} else {
-			text += "% Multi";
+
+			text = TraitText();
 		}
 
 		return text;

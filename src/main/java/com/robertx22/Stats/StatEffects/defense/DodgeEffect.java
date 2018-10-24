@@ -1,37 +1,41 @@
-package com.robertx22.stats.StatEffects;
+package com.robertx22.stats.StatEffects.defense;
 
+import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData;
-import com.robertx22.effectdatas.interfaces.ICrittable;
+import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
-public class CriticalHitEffect implements IStatEffect {
+public class DodgeEffect implements IStatEffect {
 
 	@Override
 	public int GetPriority() {
-		return 0;
+		return 30;
 	}
 
 	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
 		try {
-			if (Effect instanceof ICrittable && Effect.GetSource().equals(source)) {
-
-				ICrittable icrit = (ICrittable) Effect;
+			if (Effect instanceof DamageEffect && Effect.GetTarget().equals(source)
+					&& Effect.Type.equals(EffectTypes.BASIC_ATTACK)) {
 
 				if (RandomUtils.roll(stat.Value)) {
-					icrit.SetCrit(true);
-					System.out.println("It's a crit");
+					Effect.Number = 0;
+					Effect.canceled = true;
 				}
 
+				System.out.println("Attack Dodged!");
+
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return Effect;
 	}
+
 }

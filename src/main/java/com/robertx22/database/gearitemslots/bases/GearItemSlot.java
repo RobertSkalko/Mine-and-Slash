@@ -1,8 +1,12 @@
-package com.robertx22.gearitem;
+package com.robertx22.database.gearitemslots.bases;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import com.robertx22.database.stats.mods.traits.GolemFlat;
+import com.robertx22.gearitem.Prefix;
+import com.robertx22.gearitem.Suffix;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
@@ -21,13 +25,13 @@ public abstract class GearItemSlot implements IWeighted {
 
 	public abstract List<StatMod> PossibleSecondaryStats();
 
-	public abstract List<StatMod> ChaosStats();
-
 	public abstract Item DefaultItem();
 
 	public abstract HashMap<Integer, Item> ItemsForRarities();
 
-	public abstract int Weight();
+	public int Weight() {
+		return 1000;
+	}
 
 	public ItemStack GetItemForRarity(int rarityNum) {
 
@@ -37,6 +41,10 @@ public abstract class GearItemSlot implements IWeighted {
 
 		return new ItemStack(DefaultItem());
 
+	}
+
+	public List<StatMod> ChaosStats() {
+		return Arrays.asList(new GolemFlat());
 	}
 
 }

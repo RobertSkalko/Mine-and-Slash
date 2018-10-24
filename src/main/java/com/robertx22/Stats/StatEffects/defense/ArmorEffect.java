@@ -1,4 +1,4 @@
-package com.robertx22.stats.StatEffects;
+package com.robertx22.stats.StatEffects.defense;
 
 import com.robertx22.effectdatas.EffectData;
 import com.robertx22.effectdatas.interfaces.IArmorReducable;

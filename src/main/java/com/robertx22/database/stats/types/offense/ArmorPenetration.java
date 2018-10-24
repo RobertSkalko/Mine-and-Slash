@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatEffects.PenetrationEffect;
+import com.robertx22.stats.StatEffects.offense.PenetrationEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ArmorPenetration extends Stat implements IStatEffects {

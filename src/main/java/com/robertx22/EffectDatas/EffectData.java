@@ -73,7 +73,14 @@ public abstract class EffectData {
 		TryApplyEffects(this.GetSource());
 		TryApplyEffects(this.GetTarget());
 
-		activate();
+		if (this.canceled != true) {
+
+			UnitSaving.Save(Source, sourceUnit);
+			UnitSaving.Save(Target, targetUnit);
+
+			activate();
+
+		}
 	}
 
 	protected abstract void activate();

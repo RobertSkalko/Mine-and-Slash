@@ -1,0 +1,41 @@
+package com.robertx22.stats.StatEffects.defense;
+
+import com.robertx22.effectdatas.DamageEffect;
+import com.robertx22.effectdatas.EffectData;
+import com.robertx22.effectdatas.EffectData.EffectTypes;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.stats.IStatEffect;
+import com.robertx22.stats.Stat;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
+
+public class SpellDodgeEffect implements IStatEffect {
+
+	@Override
+	public int GetPriority() {
+		return 30;
+	}
+
+	@Override
+	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
+
+		try {
+			if (Effect instanceof DamageEffect && Effect.GetTarget().equals(source)
+					&& Effect.Type.equals(EffectTypes.SPELL)) {
+
+				if (RandomUtils.roll(stat.Value)) {
+					Effect.Number = 0;
+					Effect.canceled = true;
+				}
+
+				System.out.println("Spell Dodged!");
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return Effect;
+	}
+
+}

@@ -12,6 +12,11 @@ public abstract class BaseAffix implements IWeighted {
 
 	public abstract String Name();
 
+	@Override
+	public int Weight() {
+		return IWeighted.NormalWeight;
+	}
+
 	public abstract List<StatMod> StatMods();
 
 }

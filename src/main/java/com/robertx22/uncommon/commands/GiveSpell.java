@@ -33,7 +33,7 @@ public class GiveSpell extends CommandBase {
 		if (rarity > -1) {
 			schema.SetSpecificRarity(rarity);
 		}
-		if (type != "null") {
+		if (!type.equals("random")) {
 			schema.SetSpecificType(type);
 		}
 		EntityPlayer player = (EntityPlayer) sender;

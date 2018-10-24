@@ -1,16 +1,17 @@
-package com.robertx22.stats.StatEffects;
+package com.robertx22.stats.StatEffects.offense;
 
 import com.robertx22.effectdatas.EffectData;
 import com.robertx22.effectdatas.interfaces.ICrittable;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
-public class CriticalDamageEffect implements IStatEffect {
+public class CriticalHitEffect implements IStatEffect {
 
 	@Override
 	public int GetPriority() {
-		return 1;
+		return 0;
 	}
 
 	@Override
@@ -21,12 +22,9 @@ public class CriticalDamageEffect implements IStatEffect {
 
 				ICrittable icrit = (ICrittable) Effect;
 
-				if (icrit.GetCrit()) {
-					float multi = 1 + stat.Value / 100;
-					Effect.Number *= multi;
-
-					System.out.println("dmg increased by crit");
-
+				if (RandomUtils.roll(stat.Value)) {
+					icrit.SetCrit(true);
+					System.out.println("It's a crit");
 				}
 
 			}

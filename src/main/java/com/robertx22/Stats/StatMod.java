@@ -7,6 +7,11 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public abstract class StatMod implements IWeighted {
 
+	@Override
+	public int Weight() {
+		return IWeighted.NormalWeight;
+	}
+
 	private static Random ran = new Random();
 
 	public abstract Stat GetBaseStat();
