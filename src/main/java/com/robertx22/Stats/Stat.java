@@ -26,9 +26,9 @@ public abstract class Stat {
 
 	public int BaseFlat = 0;
 
-	public int Flat = 0;
-	public int Percent = 0;
-	public int Multi = 0;
+	public float Flat = 0;
+	public float Percent = 0;
+	public float Multi = 0;
 
 	public void Clear() {
 		Flat = 0;

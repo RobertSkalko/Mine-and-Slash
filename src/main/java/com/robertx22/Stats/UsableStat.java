@@ -24,7 +24,7 @@ public abstract class UsableStat extends Stat {
 
 		float finalval = (float) (MaximumPercent() * (float) number / ((float) number + (float) 15));
 
-		System.out.println("from " + this.Value + "to usable value " + finalval);
+		// System.out.println("from " + this.Value + "to usable value " + finalval);
 
 		return finalval;
 

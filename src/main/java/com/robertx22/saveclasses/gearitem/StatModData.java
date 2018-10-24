@@ -61,7 +61,7 @@ public class StatModData implements Serializable, ITooltipString {
 
 		int val = mod.GetValueByPercent(percent);
 
-		if (stat.ScalesToLevel()) {
+		if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
 			val *= level;
 		}
 

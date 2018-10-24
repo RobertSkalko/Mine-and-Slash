@@ -9,6 +9,9 @@ import com.robertx22.gearitem.ITooltipList;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.abstractclasses.StatGroupData;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class PrimaryStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
 
@@ -36,13 +39,13 @@ public class PrimaryStatsData extends StatGroupData implements Serializable, ITo
 
 		this.Mods = new ArrayList<StatModData>();
 
-		for (StatMod mod : gear.GetBaseGearType().PrimaryStats()) {
+		List<IWeighted> possibleStats = ListUtils.CollectionToList(gear.GetBaseGearType().PrimaryStats());
 
-			StatModData moddata = StatModData.NewRandom(mod, gear.level);
+		StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
 
-			this.Mods.add(moddata);
+		StatModData moddata = StatModData.NewRandom(mod, gear.level);
 
-		}
+		this.Mods.add(moddata);
 
 	}
 

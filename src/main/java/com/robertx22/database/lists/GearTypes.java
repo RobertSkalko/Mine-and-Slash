@@ -3,8 +3,10 @@ package com.robertx22.database.lists;
 import java.util.HashMap;
 
 import com.robertx22.database.gearitemslots.Boots;
+import com.robertx22.database.gearitemslots.Bracelet;
 import com.robertx22.database.gearitemslots.Chest;
 import com.robertx22.database.gearitemslots.Helmet;
+import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.Sword;
@@ -20,6 +22,9 @@ public class GearTypes {
 				put(new Chest().Name(), new Chest());
 				put(new Ring().Name(), new Ring());
 				put(new Sword().Name(), new Sword());
+				put(new Necklace().Name(), new Necklace());
+				put(new Bracelet().Name(), new Bracelet());
+
 			}
 		}
 	};

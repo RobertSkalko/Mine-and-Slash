@@ -17,7 +17,7 @@ public class GolemEffect implements IStatEffect {
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
 		try {
-			if (Effect instanceof DamageEffect && Effect.GetSource().equals(source)) {
+			if (Effect instanceof DamageEffect && Effect.GetTarget().equals(source)) {
 
 				Effect.Number /= 1.1F;
 

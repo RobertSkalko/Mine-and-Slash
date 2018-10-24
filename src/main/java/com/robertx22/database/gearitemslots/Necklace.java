@@ -5,24 +5,25 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.baubles.ItemRing;
+import com.robertx22.customitems.baubles.ItemNecklace;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.database.lists.Suffixes;
-import com.robertx22.database.stats.mods.flat.ArmorFlat;
-import com.robertx22.database.stats.mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
+import com.robertx22.database.stats.mods.flat.elemental.resist.FireResistFlat;
+import com.robertx22.database.stats.mods.flat.elemental.resist.NatureResistFlat;
+import com.robertx22.database.stats.mods.flat.elemental.resist.ThunderResistFlat;
+import com.robertx22.database.stats.mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.gearitem.Prefix;
 import com.robertx22.gearitem.Suffix;
 import com.robertx22.stats.StatMod;
 
 import net.minecraft.item.Item;
 
-public class Ring extends GearItemSlot {
+public class Necklace extends GearItemSlot {
 
 	@Override
 	public String Name() {
-		return "Ring";
+		return "Necklace";
 	}
 
 	@Override
@@ -37,22 +38,24 @@ public class Ring extends GearItemSlot {
 
 	@Override
 	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new EnergyRegenFlat(), new ManaRegenFlat());
+		return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(),
+				new NatureResistFlat());
 	}
 
 	@Override
 	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new ArmorFlat());
+		return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(),
+				new NatureResistFlat());
 	}
 
 	@Override
 	public Item DefaultItem() {
-		return ItemRing.Items.get(0);
+		return ItemNecklace.Items.get(0);
 	}
 
 	@Override
 	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemRing.Items;
+		return ItemNecklace.Items;
 	}
 
 }
