@@ -1,10 +1,11 @@
 package com.robertx22.database.gearitemslots.bases;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.database.stats.mods.traits.GolemFlat;
+import com.robertx22.database.lists.StatMods;
+import com.robertx22.database.stats.mods.BaseTraitMod;
 import com.robertx22.gearitem.Prefix;
 import com.robertx22.gearitem.Suffix;
 import com.robertx22.stats.StatMod;
@@ -44,7 +45,16 @@ public abstract class GearItemSlot implements IWeighted {
 	}
 
 	public List<StatMod> ChaosStats() {
-		return Arrays.asList(new GolemFlat());
+
+		List<StatMod> list = new ArrayList<StatMod>();
+
+		for (StatMod mod : StatMods.All.values()) {
+			if (mod instanceof BaseTraitMod) {
+				list.add(mod);
+			}
+		}
+
+		return list;
 	}
 
 }

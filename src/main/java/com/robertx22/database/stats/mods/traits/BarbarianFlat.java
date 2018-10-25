@@ -1,22 +1,22 @@
 package com.robertx22.database.stats.mods.traits;
 
 import com.robertx22.database.stats.mods.BaseTraitMod;
-import com.robertx22.database.stats.types.traits.Golem;
+import com.robertx22.database.stats.types.traits.bad_and_good.Barbarian;
 import com.robertx22.stats.Stat;
 
-public class GolemFlat extends BaseTraitMod {
+public class BarbarianFlat extends BaseTraitMod {
 
-	public GolemFlat() {
+	public BarbarianFlat() {
 	}
 
 	@Override
 	public String GUID() {
-		return "GolemFlat";
+		return "Barbarian";
 	}
 
 	@Override
 	public Stat GetBaseStat() {
-		return new Golem();
+		return new Barbarian();
 	}
 
 }

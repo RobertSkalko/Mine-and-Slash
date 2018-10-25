@@ -8,6 +8,8 @@ import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.gearitem.ITooltipList;
 import com.robertx22.saveclasses.abstractclasses.StatGroupData;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.util.text.TextFormatting;
 
@@ -58,13 +60,12 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 		this.Mods = new ArrayList<StatModData>();
 
-		for (StatMod mod : gear.GetBaseGearType().ChaosStats()) {
+		StatMod mod = (StatMod) RandomUtils
+				.WeightedRandom(ListUtils.CollectionToList(gear.GetBaseGearType().ChaosStats()));
 
-			StatModData moddata = StatModData.NewRandom(gear, mod, gear.level);
+		StatModData moddata = StatModData.NewRandom(gear, mod, gear.level);
 
-			this.Mods.add(moddata);
-
-		}
+		this.Mods.add(moddata);
 
 	}
 

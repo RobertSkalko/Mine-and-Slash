@@ -29,7 +29,17 @@ import com.robertx22.database.stats.mods.percent.elemental.FireDamagePercent;
 import com.robertx22.database.stats.mods.percent.elemental.NatureDamagePercent;
 import com.robertx22.database.stats.mods.percent.elemental.ThunderDamagePercent;
 import com.robertx22.database.stats.mods.percent.elemental.WaterDamagePercent;
+import com.robertx22.database.stats.mods.traits.BarbarianFlat;
+import com.robertx22.database.stats.mods.traits.ClumsyScholarFlat;
+import com.robertx22.database.stats.mods.traits.CrippledFlat;
+import com.robertx22.database.stats.mods.traits.DiseasedFlat;
+import com.robertx22.database.stats.mods.traits.EarthAtronachFlat;
+import com.robertx22.database.stats.mods.traits.ElementalFlat;
+import com.robertx22.database.stats.mods.traits.FireAtronachFlat;
+import com.robertx22.database.stats.mods.traits.FrostAtronachFlat;
 import com.robertx22.database.stats.mods.traits.GolemFlat;
+import com.robertx22.database.stats.mods.traits.LuckyFlat;
+import com.robertx22.database.stats.mods.traits.ThunderAtronachFlat;
 import com.robertx22.stats.StatMod;
 
 public class StatMods {
@@ -74,6 +84,17 @@ public class StatMods {
 
 				// Traits
 				put(new GolemFlat().GUID(), new GolemFlat());
+				put(new ElementalFlat().GUID(), new ElementalFlat());
+				put(new ClumsyScholarFlat().GUID(), new ClumsyScholarFlat());
+				put(new DiseasedFlat().GUID(), new DiseasedFlat());
+				put(new CrippledFlat().GUID(), new CrippledFlat());
+				put(new BarbarianFlat().GUID(), new BarbarianFlat());
+				put(new EarthAtronachFlat().GUID(), new EarthAtronachFlat());
+				put(new FireAtronachFlat().GUID(), new FireAtronachFlat());
+				put(new FrostAtronachFlat().GUID(), new FrostAtronachFlat());
+				put(new ThunderAtronachFlat().GUID(), new ThunderAtronachFlat());
+				put(new LuckyFlat().GUID(), new LuckyFlat());
+
 				// Traits
 
 				put(new LifestealFlat().GUID(), new LifestealFlat());

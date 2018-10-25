@@ -19,16 +19,23 @@ import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
 import com.robertx22.database.stats.types.elementals.resist.WaterResist;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
-import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.offense.LifeOnHit;
 import com.robertx22.database.stats.types.offense.Lifesteal;
+import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.database.stats.types.resources.ManaRegen;
+import com.robertx22.database.stats.types.traits.Elemental;
 import com.robertx22.database.stats.types.traits.Golem;
+import com.robertx22.database.stats.types.traits.Lucky;
+import com.robertx22.database.stats.types.traits.Stealthy;
+import com.robertx22.database.stats.types.traits.bad_and_good.Barbarian;
+import com.robertx22.database.stats.types.traits.bad_and_good.ClumsyScholar;
+import com.robertx22.database.stats.types.traits.bad_ones.Crippled;
+import com.robertx22.database.stats.types.traits.bad_ones.Diseased;
 import com.robertx22.stats.Stat;
 
 public class Stats {
@@ -37,46 +44,54 @@ public class Stats {
 			{
 
 				// Resources
-				put(new Health().Name(), new Health());
-				put(new HealthRegen().Name(), new HealthRegen());
+				put(Health.GUID, new Health());
+				put(HealthRegen.GUID, new HealthRegen());
 
-				put(new Mana().Name(), new Mana());
-				put(new ManaRegen().Name(), new ManaRegen());
+				put(Mana.GUID, new Mana());
+				put(ManaRegen.GUID, new ManaRegen());
 
-				put(new Energy().Name(), new Energy());
-				put(new EnergyRegen().Name(), new EnergyRegen());
+				put(Energy.GUID, new Energy());
+				put(EnergyRegen.GUID, new EnergyRegen());
 				// Resources
 
-				put(new Armor().Name(), new Armor());
-				put(new CriticalDamage().Name(), new CriticalDamage());
-				put(new CriticalHit().Name(), new CriticalHit());
-				put(new PhysicalDamage().Name(), new PhysicalDamage());
+				put(Armor.GUID, new Armor());
+				put(CriticalDamage.GUID, new CriticalDamage());
+				put(CriticalHit.GUID, new CriticalHit());
+				put(PhysicalDamage.GUID, new PhysicalDamage());
 
 				// Elemental
-				put(new FireDamage().Name(), new FireDamage());
-				put(new WaterDamage().Name(), new WaterDamage());
-				put(new ThunderDamage().Name(), new ThunderDamage());
-				put(new NatureDamage().Name(), new NatureDamage());
+				put(FireDamage.GUID, new FireDamage());
+				put(WaterDamage.GUID, new WaterDamage());
+				put(ThunderDamage.GUID, new ThunderDamage());
+				put(NatureDamage.GUID, new NatureDamage());
 
-				put(new FireResist().Name(), new FireResist());
-				put(new NatureResist().Name(), new NatureResist());
-				put(new WaterResist().Name(), new WaterResist());
-				put(new ThunderResist().Name(), new ThunderResist());
+				put(FireResist.GUID, new FireResist());
+				put(NatureResist.GUID, new NatureResist());
+				put(WaterResist.GUID, new WaterResist());
+				put(ThunderResist.GUID, new ThunderResist());
 
-				put(new FirePene().Name(), new FirePene());
-				put(new NaturePene().Name(), new NaturePene());
-				put(new WaterPene().Name(), new WaterPene());
-				put(new ThunderPene().Name(), new ThunderPene());
+				put(FirePene.GUID, new FirePene());
+				put(NaturePene.GUID, new NaturePene());
+				put(WaterPene.GUID, new WaterPene());
+				put(ThunderPene.GUID, new ThunderPene());
 				// Elemental
 
-				put(new Lifesteal().Name(), new Lifesteal());
-				put(new LifeOnHit().Name(), new LifeOnHit());
+				put(Lifesteal.GUID, new Lifesteal());
+				put(LifeOnHit.GUID, new LifeOnHit());
 
-				put(new Dodge().Name(), new Dodge());
-				put(new SpellDodge().Name(), new SpellDodge());
+				put(Dodge.GUID, new Dodge());
+				put(SpellDodge.GUID, new SpellDodge());
 
 				// traits
-				put(new Golem().Name(), new Golem());
+				put(Golem.GUID, new Golem());
+				put(Elemental.GUID, new Elemental());
+				put(Lucky.GUID, new Lucky());
+				put(Barbarian.GUID, new Barbarian());
+				put(Stealthy.GUID, new Stealthy());
+				put(ClumsyScholar.GUID, new ClumsyScholar());
+				put(Crippled.GUID, new Crippled());
+				put(Diseased.GUID, new Diseased());
+
 				// traits
 
 			}

@@ -1,22 +1,22 @@
 package com.robertx22.database.stats.mods.traits;
 
 import com.robertx22.database.stats.mods.BaseTraitMod;
-import com.robertx22.database.stats.types.traits.Golem;
+import com.robertx22.database.stats.types.traits.atronachs.FrostAtronach;
 import com.robertx22.stats.Stat;
 
-public class GolemFlat extends BaseTraitMod {
+public class FrostAtronachFlat extends BaseTraitMod {
 
-	public GolemFlat() {
+	public FrostAtronachFlat() {
 	}
 
 	@Override
 	public String GUID() {
-		return "GolemFlat";
+		return "FrostAtronachFlat";
 	}
 
 	@Override
 	public Stat GetBaseStat() {
-		return new Golem();
+		return new FrostAtronach();
 	}
 
 }
