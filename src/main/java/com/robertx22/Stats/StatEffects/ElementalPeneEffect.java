@@ -15,10 +15,15 @@ public class ElementalPeneEffect implements IStatEffect {
 	}
 
 	@Override
+	public EffectSides Side() {
+		return EffectSides.Source;
+	}
+
+	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
 		try {
-			if (Effect instanceof IElementalPenetrable && Effect.GetSource().equals(source)) {
+			if (Effect instanceof IElementalPenetrable) {
 				IElementalEffect ele = (IElementalEffect) Effect;
 
 				if (ele.GetElement().equals(stat.Element())) {

@@ -16,10 +16,15 @@ public class ArmorEffect implements IStatEffect {
 	}
 
 	@Override
+	public EffectSides Side() {
+		return EffectSides.Target;
+	}
+
+	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
 		try {
-			if (Effect instanceof IArmorReducable && Effect.GetTarget().equals(source)) {
+			if (Effect instanceof IArmorReducable) {
 
 				int pene = 0;
 

@@ -17,10 +17,15 @@ public class ElementalResistEffect implements IStatEffect {
 	}
 
 	@Override
+	public EffectSides Side() {
+		return EffectSides.Target;
+	}
+
+	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
 		try {
-			if (Effect instanceof IElementalResistable && Effect.GetTarget().equals(source)) {
+			if (Effect instanceof IElementalResistable) {
 
 				IElementalEffect ele = (IElementalEffect) Effect;
 

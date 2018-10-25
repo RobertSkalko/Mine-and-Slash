@@ -15,10 +15,15 @@ public class CriticalHitEffect implements IStatEffect {
 	}
 
 	@Override
+	public EffectSides Side() {
+		return EffectSides.Source;
+	}
+
+	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
 		try {
-			if (Effect instanceof ICrittable && Effect.GetSource().equals(source)) {
+			if (Effect instanceof ICrittable) {
 
 				ICrittable icrit = (ICrittable) Effect;
 

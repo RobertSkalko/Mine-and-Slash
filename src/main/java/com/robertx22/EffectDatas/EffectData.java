@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
+import com.robertx22.stats.IStatEffect.EffectSides;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -100,12 +101,26 @@ public abstract class EffectData {
 		Effects.sort((Comparator<EffectUnitStat>) new EffectUnitStat());
 
 		for (EffectUnitStat item : Effects) {
-			if (item.stat.Value > 0) { // no need to try modify if entity doesn't even have the stat!
-				item.effect.TryModifyEffect(Data, item.source, item.stat);
+			if (item.stat.Value > 0) {
+
+				if (AffectsThisUnit(item.effect, Data, item.source)) {
+					item.effect.TryModifyEffect(Data, item.source, item.stat);
+				}
+
 			}
 		}
 
 		return Data;
+	}
+
+	public boolean AffectsThisUnit(IStatEffect effect, EffectData data, Unit source) {
+
+		if (effect.Side().equals(EffectSides.Target)) {
+			return source.equals(data.targetUnit);
+
+		} else {
+			return source.equals(data.sourceUnit);
+		}
 	}
 
 	private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit) {

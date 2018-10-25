@@ -2,7 +2,6 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
-import com.robertx22.BarsGUI;
 import com.robertx22.customitems.oldreplacesoon.MyItems;
 import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import com.robertx22.network.Network;
@@ -11,6 +10,7 @@ import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
 import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
 import com.robertx22.spells.projectile.thunderbolt.EntityThunderBolt;
+import com.robertx22.uncommon.BarsGUI;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.commands.GiveGear;
 import com.robertx22.uncommon.commands.GiveSpell;

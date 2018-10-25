@@ -16,11 +16,15 @@ public class DodgeEffect implements IStatEffect {
 	}
 
 	@Override
+	public EffectSides Side() {
+		return EffectSides.Target;
+	}
+
+	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
 		try {
-			if (Effect instanceof DamageEffect && Effect.GetTarget().equals(source)
-					&& Effect.Type.equals(EffectTypes.BASIC_ATTACK)) {
+			if (Effect instanceof DamageEffect && Effect.Type.equals(EffectTypes.BASIC_ATTACK)) {
 
 				if (RandomUtils.roll(stat.Value)) {
 					Effect.Number = 0;

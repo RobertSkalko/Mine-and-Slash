@@ -5,6 +5,12 @@ import com.robertx22.saveclasses.Unit;
 
 public interface IStatEffect {
 
+	public enum EffectSides {
+		Source, Target
+	}
+
+	public abstract EffectSides Side();
+
 	public abstract int GetPriority();
 
 	public abstract EffectData TryModifyEffect(EffectData Effect, Unit Source, Stat stat);

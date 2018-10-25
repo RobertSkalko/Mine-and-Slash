@@ -16,11 +16,15 @@ public class LifestealEffect implements IStatEffect {
 	}
 
 	@Override
+	public EffectSides Side() {
+		return EffectSides.Source;
+	}
+
+	@Override
 	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
 
 		try {
-			if (Effect instanceof DamageEffect && Effect.GetSource().equals(source)
-					&& Effect.Type.equals(EffectTypes.BASIC_ATTACK)) {
+			if (Effect instanceof DamageEffect && Effect.Type.equals(EffectTypes.BASIC_ATTACK)) {
 
 				int healed = (int) (stat.Value * Effect.Number);
 
