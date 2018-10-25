@@ -1,38 +1,23 @@
 package com.robertx22.database.stats.types.traits;
 
-import java.util.Arrays;
-import java.util.List;
-
-import com.robertx22.stats.IStatEffect;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Trait;
-import com.robertx22.stats.StatEffects.traits.GolemEffect;
-import com.robertx22.uncommon.enumclasses.Elements;
 
-public class Golem extends Trait {
+public class Golem extends Trait implements IAffectsOtherStats {
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new GolemEffect());
-	}
-
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+	public static String GUID = "Golem";
 
 	@Override
 	public String Name() {
-		return "Golem";
+		return GUID;
 	}
 
 	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+	public void TryAffectOtherStats(Unit unit) {
 
-	@Override
-	public Elements Element() {
-		return null;
+		unit.health().Multi += 10;
+
 	}
 
 }

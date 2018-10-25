@@ -10,6 +10,8 @@ import com.robertx22.stats.StatEffects.LifestealEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Lifesteal extends Stat implements IStatEffects {
+	public static String GUID = "Lifesteal";
+
 	@Override
 	public List<IStatEffect> GetEffects() {
 		return Arrays.asList(new LifestealEffect());
@@ -20,7 +22,7 @@ public class Lifesteal extends Stat implements IStatEffects {
 
 	@Override
 	public String Name() {
-		return "Lifesteal";
+		return GUID;
 	}
 
 	@Override

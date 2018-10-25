@@ -60,7 +60,7 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 		for (StatMod mod : gear.GetBaseGearType().ChaosStats()) {
 
-			StatModData moddata = StatModData.NewRandom(mod, gear.level);
+			StatModData moddata = StatModData.NewRandom(gear, mod, gear.level);
 
 			this.Mods.add(moddata);
 

@@ -7,13 +7,15 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityLivingBase;
 
 public class Health extends Stat {
+	public static String GUID = "Health";
+
 	public Health() {
 		this.StatMinimum = 20;
 	}
 
 	@Override
 	public String Name() {
-		return "Health";
+		return GUID;
 	}
 
 	@Override

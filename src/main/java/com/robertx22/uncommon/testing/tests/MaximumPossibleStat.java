@@ -17,9 +17,7 @@ import com.robertx22.uncommon.testing.TestUnit;
 
 public class MaximumPossibleStat {
 
-	int amount = 15000;
-
-	HashMap<String, GearItemData> TypeAndGear = new HashMap<String, GearItemData>();
+	int amount = 75000;
 
 	List<GearItemData> items;
 
@@ -45,6 +43,8 @@ public class MaximumPossibleStat {
 			if (stat instanceof Trait) {
 				continue;
 			}
+
+			HashMap<String, GearItemData> TypeAndGear = new HashMap<String, GearItemData>();
 
 			for (GearItemData item : items) {
 

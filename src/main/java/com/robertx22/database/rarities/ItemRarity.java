@@ -8,5 +8,5 @@ public abstract class ItemRarity extends Rarity {
 
 	public abstract MinMax SecondaryStatsAmount();
 
-	public abstract MinMax PrimaryStatsPercents();
+	public abstract MinMax StatPercents();
 }

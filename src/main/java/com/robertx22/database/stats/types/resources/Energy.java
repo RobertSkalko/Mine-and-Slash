@@ -4,13 +4,15 @@ import com.robertx22.stats.FillableStat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Energy extends FillableStat {
+	public static String GUID = "Energy";
+
 	public Energy() {
 		this.StatMinimum = 100;
 	}
 
 	@Override
 	public String Name() {
-		return "Energy";
+		return GUID;
 	}
 
 	@Override

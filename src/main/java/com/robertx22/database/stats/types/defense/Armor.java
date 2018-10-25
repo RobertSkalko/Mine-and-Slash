@@ -11,12 +11,14 @@ import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Armor extends UsableStat implements IStatEffects {
 
+	public static String GUID = "Armor";
+
 	public Armor() {
 	}
 
 	@Override
 	public String Name() {
-		return "Armor";
+		return GUID;
 	}
 
 	@Override

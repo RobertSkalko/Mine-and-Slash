@@ -19,7 +19,7 @@ import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
 import com.robertx22.database.stats.types.elementals.resist.WaterResist;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
-import com.robertx22.database.stats.types.offense.Damage;
+import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.offense.LifeOnHit;
 import com.robertx22.database.stats.types.offense.Lifesteal;
 import com.robertx22.database.stats.types.resources.Energy;
@@ -50,7 +50,7 @@ public class Stats {
 				put(new Armor().Name(), new Armor());
 				put(new CriticalDamage().Name(), new CriticalDamage());
 				put(new CriticalHit().Name(), new CriticalHit());
-				put(new Damage().Name(), new Damage());
+				put(new PhysicalDamage().Name(), new PhysicalDamage());
 
 				// Elemental
 				put(new FireDamage().Name(), new FireDamage());

@@ -10,6 +10,7 @@ import com.robertx22.stats.StatEffects.defense.DodgeEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Dodge extends Stat implements IStatEffects {
+	public static String GUID = "Dodge";
 
 	@Override
 	public List<IStatEffect> GetEffects() {
@@ -21,7 +22,7 @@ public class Dodge extends Stat implements IStatEffects {
 
 	@Override
 	public String Name() {
-		return "Dodge";
+		return GUID;
 	}
 
 	@Override

@@ -4,12 +4,14 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class NatureDamage extends Stat {
+	public static String GUID = "Nature Damage";
+
 	public NatureDamage() {
 	}
 
 	@Override
 	public String Name() {
-		return "Nature Damage";
+		return GUID;
 	}
 
 	@Override

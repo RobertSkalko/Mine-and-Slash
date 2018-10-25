@@ -4,6 +4,7 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class HealthRegen extends Stat {
+	public static String GUID = "Health Regen";
 
 	public HealthRegen() {
 		this.StatMinimum = 1;
@@ -11,7 +12,7 @@ public class HealthRegen extends Stat {
 
 	@Override
 	public String Name() {
-		return "Health Regen";
+		return GUID;
 	}
 
 	@Override

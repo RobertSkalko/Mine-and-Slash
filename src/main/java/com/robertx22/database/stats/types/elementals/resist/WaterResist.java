@@ -10,6 +10,7 @@ import com.robertx22.stats.StatEffects.ElementalResistEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class WaterResist extends UsableStat implements IStatEffects {
+	public static String GUID = "Water Resist";
 
 	@Override
 	public List<IStatEffect> GetEffects() {
@@ -31,7 +32,7 @@ public class WaterResist extends UsableStat implements IStatEffects {
 
 	@Override
 	public String Name() {
-		return "Water Resist";
+		return GUID;
 	}
 
 	@Override

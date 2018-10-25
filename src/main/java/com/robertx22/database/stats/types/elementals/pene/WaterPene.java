@@ -10,6 +10,7 @@ import com.robertx22.stats.StatEffects.ElementalPeneEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class WaterPene extends Stat implements IStatEffects {
+	public static String GUID = "Water Penetration";
 
 	@Override
 	public List<IStatEffect> GetEffects() {
@@ -21,7 +22,7 @@ public class WaterPene extends Stat implements IStatEffects {
 
 	@Override
 	public String Name() {
-		return "Water Penetration";
+		return GUID;
 	}
 
 	@Override

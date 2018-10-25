@@ -10,6 +10,7 @@ import com.robertx22.stats.StatEffects.ElementalResistEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class NatureResist extends UsableStat implements IStatEffects {
+	public static String GUID = "Nature Resist";
 
 	@Override
 	public List<IStatEffect> GetEffects() {
@@ -31,7 +32,7 @@ public class NatureResist extends UsableStat implements IStatEffects {
 
 	@Override
 	public String Name() {
-		return "Nature Resist";
+		return GUID;
 	}
 
 	@Override

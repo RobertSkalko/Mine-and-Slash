@@ -43,7 +43,7 @@ public class Mythical extends ItemRarity {
 	}
 
 	@Override
-	public MinMax PrimaryStatsPercents() {
+	public MinMax StatPercents() {
 		return new MinMax(35, 100);
 	}
 }

@@ -10,6 +10,8 @@ import com.robertx22.stats.StatEffects.offense.CriticalHitEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class CriticalHit extends Stat implements IStatEffects {
+	public static String GUID = "Critical Hit";
+
 	@Override
 	public List<IStatEffect> GetEffects() {
 		return Arrays.asList(new CriticalHitEffect());
@@ -20,7 +22,7 @@ public class CriticalHit extends Stat implements IStatEffects {
 
 	@Override
 	public String Name() {
-		return "Critical Hit";
+		return GUID;
 	}
 
 	@Override

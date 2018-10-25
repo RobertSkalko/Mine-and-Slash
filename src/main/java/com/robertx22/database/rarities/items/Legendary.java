@@ -42,7 +42,7 @@ public class Legendary extends ItemRarity {
 	}
 
 	@Override
-	public MinMax PrimaryStatsPercents() {
+	public MinMax StatPercents() {
 		return new MinMax(15, 90);
 	}
 }

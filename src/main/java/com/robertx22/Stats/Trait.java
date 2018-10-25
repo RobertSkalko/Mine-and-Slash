@@ -1,8 +1,24 @@
 package com.robertx22.stats;
 
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.enumclasses.Elements;
 
-public abstract class Trait extends Stat implements IStatEffects {
+public abstract class Trait extends Stat {
+
+	@Override
+	public boolean ScalesToLevel() {
+		return false;
+	}
+
+	@Override
+	public Elements Element() {
+		return null;
+	}
+
+	@Override
+	public boolean IsPercent() {
+		return false;
+	}
 
 	@Override
 	public int CalcVal(Unit Source) {

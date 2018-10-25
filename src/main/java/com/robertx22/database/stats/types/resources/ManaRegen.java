@@ -4,6 +4,7 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ManaRegen extends Stat {
+	public static String GUID = "Mana Regen";
 
 	public ManaRegen() {
 		this.StatMinimum = 1;
@@ -11,7 +12,7 @@ public class ManaRegen extends Stat {
 
 	@Override
 	public String Name() {
-		return "Mana Regen";
+		return GUID;
 	}
 
 	@Override

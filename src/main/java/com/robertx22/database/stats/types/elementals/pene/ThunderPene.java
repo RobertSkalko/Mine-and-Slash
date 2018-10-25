@@ -11,6 +11,8 @@ import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ThunderPene extends Stat implements IStatEffects {
 
+	public static String GUID = "Thunder Penetration";
+
 	@Override
 	public List<IStatEffect> GetEffects() {
 		return Arrays.asList(new ElementalPeneEffect());
@@ -21,7 +23,7 @@ public class ThunderPene extends Stat implements IStatEffects {
 
 	@Override
 	public String Name() {
-		return "Thunder Penetration";
+		return GUID;
 	}
 
 	@Override

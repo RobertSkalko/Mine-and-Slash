@@ -15,7 +15,9 @@ import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Stat;
+import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.enumclasses.EntityTypes;
@@ -206,9 +208,27 @@ public class Unit implements Serializable {
 
 		CalcStats();
 
+		CalcTraits();
+
+		CalcStats();
+
 		watch.stop();
 
 		// StatsDirty = false;
+	}
+
+	protected void CalcTraits() {
+		for (Stat stat : Stats.values()) {
+
+			if (stat instanceof Trait && stat instanceof IAffectsOtherStats) {
+				if (stat.Value > 0) {
+					IAffectsOtherStats affects = (IAffectsOtherStats) stat;
+					affects.TryAffectOtherStats(this);
+
+				}
+			}
+		}
+
 	}
 
 	protected void CalcStats() {

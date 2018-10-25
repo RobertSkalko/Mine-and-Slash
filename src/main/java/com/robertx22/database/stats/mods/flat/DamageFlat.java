@@ -1,6 +1,6 @@
 package com.robertx22.database.stats.mods.flat;
 
-import com.robertx22.database.stats.types.offense.Damage;
+import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
@@ -33,7 +33,7 @@ public class DamageFlat extends StatMod {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new Damage();
+		return new PhysicalDamage();
 	}
 
 	@Override

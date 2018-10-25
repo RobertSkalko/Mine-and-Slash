@@ -45,7 +45,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 		while (Stats > 0) {
 			StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
-			this.Mods.add(StatModData.NewRandom(mod, level));
+			this.Mods.add(StatModData.NewRandom(gear, mod, level));
 			Stats--;
 
 		}
@@ -57,7 +57,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 		this.setRerollNumbers = false;
 
 		for (StatModData data : this.Mods) {
-			data.percent = StatGen.GenPercent();
+			data.percent = StatGen.GenPercent(gear.GetRarity());
 		}
 
 	}

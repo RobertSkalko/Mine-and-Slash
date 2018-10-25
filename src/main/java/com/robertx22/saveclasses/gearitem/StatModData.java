@@ -20,13 +20,13 @@ public class StatModData implements Serializable, ITooltipString {
 
 	}
 
-	public static StatModData NewRandom(StatMod mod, int level) {
+	public static StatModData NewRandom(GearItemData gear, StatMod mod, int level) {
 
 		StatModData data = new StatModData();
 
 		data.baseModName = mod.GUID();
 		data.type = mod.Type();
-		data.percent = StatGen.GenPercent();
+		data.percent = StatGen.GenPercent(gear.GetRarity());
 		data.level = level;
 
 		return data;

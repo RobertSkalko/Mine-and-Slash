@@ -10,6 +10,7 @@ import com.robertx22.stats.StatEffects.defense.SpellDodgeEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class SpellDodge extends Stat implements IStatEffects {
+	public static String GUID = "Spell Dodge";
 
 	@Override
 	public List<IStatEffect> GetEffects() {
@@ -21,7 +22,7 @@ public class SpellDodge extends Stat implements IStatEffects {
 
 	@Override
 	public String Name() {
-		return "Spell Dodge";
+		return GUID;
 	}
 
 	@Override

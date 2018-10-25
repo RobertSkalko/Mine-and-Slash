@@ -4,6 +4,7 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class EnergyRegen extends Stat {
+	public static String GUID = "Energy Regen";
 
 	public EnergyRegen() {
 		this.StatMinimum = 5;
@@ -11,7 +12,7 @@ public class EnergyRegen extends Stat {
 
 	@Override
 	public String Name() {
-		return "Energy Regen";
+		return GUID;
 	}
 
 	@Override

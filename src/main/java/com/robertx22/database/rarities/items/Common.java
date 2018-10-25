@@ -45,7 +45,7 @@ public class Common extends ItemRarity {
 	}
 
 	@Override
-	public MinMax PrimaryStatsPercents() {
+	public MinMax StatPercents() {
 		return new MinMax(3, 60);
 	}
 

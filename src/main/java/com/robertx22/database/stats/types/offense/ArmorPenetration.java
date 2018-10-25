@@ -10,12 +10,14 @@ import com.robertx22.stats.StatEffects.offense.PenetrationEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ArmorPenetration extends Stat implements IStatEffects {
+	public static String GUID = "Armor Penetration";
+
 	public ArmorPenetration() {
 	}
 
 	@Override
 	public String Name() {
-		return "Armor Penetration";
+		return GUID;
 	}
 
 	@Override

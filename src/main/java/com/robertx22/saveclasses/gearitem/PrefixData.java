@@ -65,7 +65,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 		percents = new ArrayList<Integer>();
 
 		for (StatMod mod : BaseAffix().StatMods()) {
-			percents.add(StatGen.GenPercent());
+			percents.add(StatGen.GenPercent(gear.GetRarity()));
 		}
 
 	}

@@ -3,15 +3,16 @@ package com.robertx22.database.stats.types.offense;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class Damage extends Stat {
+public class PhysicalDamage extends Stat {
+	public static String GUID = "Physical Damage";
 
-	public Damage() {
+	public PhysicalDamage() {
 		this.StatMinimum = 1;
 	}
 
 	@Override
 	public String Name() {
-		return "Damage";
+		return GUID;
 	}
 
 	@Override

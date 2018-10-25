@@ -7,8 +7,6 @@ import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-import net.minecraft.entity.EntityLivingBase;
-
 public abstract class Stat {
 
 	public Stat() {
@@ -71,19 +69,15 @@ public abstract class Stat {
 
 	public float Value;
 
-	public float GetValue(Unit Source, EntityLivingBase entity) {
-
-		if (Source.StatsDirty) {
-			Source.RecalculateStats(entity);
-		}
-
-		return Value;
-
-	}
-
-	public int GetInt(Unit Source, EntityLivingBase entity) {
-		return (int) GetValue(Source, entity);
-	}
+	/*
+	 * public float GetCalculatedValue(Unit Source, EntityLivingBase entity) {
+	 * 
+	 * if (Source.StatsDirty) { Source.RecalculateStats(entity); }
+	 * 
+	 * return Value;
+	 * 
+	 * }
+	 */
 
 	public ArrayList<IStatEffect> Effects;
 
