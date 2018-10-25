@@ -9,10 +9,25 @@ import java.util.UUID;
 import org.apache.commons.lang3.time.StopWatch;
 
 import com.robertx22.customitems.bases.IWeapon;
+import com.robertx22.database.lists.Rarities;
+import com.robertx22.database.rarities.MobRarity;
+import com.robertx22.database.stats.types.defense.Armor;
+import com.robertx22.database.stats.types.elementals.damage.FireDamage;
+import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
+import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
+import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
+import com.robertx22.database.stats.types.elementals.resist.FireResist;
+import com.robertx22.database.stats.types.elementals.resist.NatureResist;
+import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
+import com.robertx22.database.stats.types.elementals.resist.WaterResist;
+import com.robertx22.database.stats.types.offense.CriticalDamage;
+import com.robertx22.database.stats.types.offense.CriticalHit;
+import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.effectdatas.DamageEffect;
+import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.IAffectsOtherStats;
@@ -20,7 +35,8 @@ import com.robertx22.stats.Stat;
 import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.datasaving.UnitSaving;
-import com.robertx22.uncommon.enumclasses.EntityTypes;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
@@ -31,6 +47,7 @@ import net.minecraft.item.ItemStack;
 public class Unit implements Serializable {
 
 	private static final long serialVersionUID = -6658683548383891230L;
+	public int level = 1;
 
 	public Unit() {
 
@@ -40,39 +57,7 @@ public class Unit implements Serializable {
 
 	}
 
-	// transient public EntityLivingBase entity;
-
-	public static Unit Mob(EntityLivingBase en, EntityPlayer player) {
-
-		Unit unit = new Unit();
-		unit.entityType = EntityTypes.Mob;
-
-		Unit playerUnit = UnitSaving.Load(player);
-
-		unit.level = playerUnit.level;
-
-		unit.Stats.get("Health").BaseFlat = (int) en.getMaxHealth();
-
-		unit.vanillaHP = (int) en.getMaxHealth();
-
-		return unit;
-	}
-
 	public String GUID = UUID.randomUUID().toString();
-
-	public EntityTypes entityType = EntityTypes.Player;
-	public int rarity = 0;
-
-	public int experience = 0;
-	public int level = 1;
-
-	public int vanillaHP;
-
-	public int GetExpRequiredForLevelUp() {
-
-		return level * 1000;
-
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -92,8 +77,9 @@ public class Unit implements Serializable {
 	}
 
 	public void BasicAttack(EntityLivingBase source, EntityLivingBase target, Unit unitsource) {
-		int num = (int) unitsource.Stats.get("Damage").Value;
+		int num = (int) unitsource.Stats.get(PhysicalDamage.GUID).Value;
 		DamageEffect dmg = new DamageEffect(source, target, num);
+		dmg.Type = EffectTypes.BASIC_ATTACK;
 		dmg.Activate();
 	}
 
@@ -197,24 +183,23 @@ public class Unit implements Serializable {
 
 	public void RecalculateStats(EntityLivingBase entity) {
 
-		StopWatch watch = new StopWatch();
-		watch.start();
-
-		ClearStats();
-
 		if (entity instanceof EntityPlayer) {
+			StopWatch watch = new StopWatch();
+			watch.start();
+			ClearStats();
 			AddAllGearStats(entity);
+			CalcStats();
+			CalcTraits();
+			CalcStats();
+			watch.stop();
+
+		} else {
+			ClearStats();
+			AddMobcStats();
+			SetMobStrengthMultiplier();
+			CalcStats();
 		}
 
-		CalcStats();
-
-		CalcTraits();
-
-		CalcStats();
-
-		watch.stop();
-
-		// StatsDirty = false;
 	}
 
 	protected void CalcTraits() {
@@ -234,6 +219,73 @@ public class Unit implements Serializable {
 	protected void CalcStats() {
 
 		Stats.values().forEach((Stat stat) -> stat.CalcVal(this));
+	}
+
+	public int vanillaHP;
+	public int rarity = 0;
+
+	public static Unit Mob(EntityLivingBase en, EntityPlayer player) {
+
+		Unit playerUnit = UnitSaving.Load(player);
+		Unit mob = new Unit();
+
+		mob.level = playerUnit.level;
+		mob.Stats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
+		mob.rarity = ((MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(Rarities.Mobs))).Rank();
+		mob.vanillaHP = (int) en.getMaxHealth();
+
+		mob.SetName(en);
+
+		return mob;
+
+	}
+
+	private void SetName(EntityLivingBase entity) {
+
+//entity.setCustomNameTag(GetRarity().Color() + GetRarity().Name() + " " + entity.getName());
+		// entity.setAlwaysRenderNameTag(true);
+	}
+
+	private MobRarity GetRarity() {
+		return Rarities.Mobs.get(rarity);
+	}
+
+	private void AddMobcStats() {
+
+		this.Stats.get(Health.GUID).Flat += 10 * level;
+		this.Stats.get(Armor.GUID).Flat += 10 * level;
+		this.Stats.get(CriticalHit.GUID).Flat += 5;
+		this.Stats.get(CriticalDamage.GUID).Flat += 20;
+
+		this.Stats.get(WaterResist.GUID).Flat += 10 * level;
+		this.Stats.get(FireResist.GUID).Flat += 10 * level;
+		this.Stats.get(ThunderResist.GUID).Flat += 10 * level;
+		this.Stats.get(NatureResist.GUID).Flat += 10 * level;
+
+		this.Stats.get(WaterDamage.GUID).Flat += 10 * level;
+		this.Stats.get(FireDamage.GUID).Flat += 10 * level;
+		this.Stats.get(ThunderDamage.GUID).Flat += 10 * level;
+		this.Stats.get(NatureDamage.GUID).Flat += 10 * level;
+
+		this.Stats.get(PhysicalDamage.GUID).Flat += 2 * level;
+
+	}
+
+	private void SetMobStrengthMultiplier() {
+		float totalMulti = this.vanillaHP / 10 + GetRarity().StatMultiplier();
+
+		for (Stat stat : Stats.values()) {
+			stat.Flat *= totalMulti;
+		}
+
+	}
+
+	public int experience = 0;
+
+	public int GetExpRequiredForLevelUp() {
+
+		return level * 1000;
+
 	}
 
 	public void GiveExp(EntityPlayer player, int i) {

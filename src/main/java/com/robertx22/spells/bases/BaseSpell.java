@@ -38,6 +38,10 @@ public abstract class BaseSpell implements IWeighted {
 
 	}
 
+	public int Weight() {
+		return this.NormalWeight;
+	}
+
 	public abstract boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data);
 
 	public boolean CanCast(EntityPlayer caster, SpellItemData data) {

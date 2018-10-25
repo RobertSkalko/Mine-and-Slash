@@ -26,7 +26,7 @@ public class LifestealEffect implements IStatEffect {
 		try {
 			if (Effect instanceof DamageEffect && Effect.Type.equals(EffectTypes.BASIC_ATTACK)) {
 
-				int healed = (int) (stat.Value * Effect.Number);
+				int healed = (int) ((float) stat.Value * Effect.Number / 100);
 
 				System.out.println("Lifesteal stole " + healed);
 

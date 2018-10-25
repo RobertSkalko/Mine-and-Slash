@@ -29,7 +29,7 @@ public class DamageEffect extends EffectData
 	}
 
 	public static String DmgSourceName = Ref.MODID + "_Custom_Damage";
-	public Elements Element;
+	public Elements Element = Elements.None;
 	public int ArmorPene;
 	public int ElementalPene;
 

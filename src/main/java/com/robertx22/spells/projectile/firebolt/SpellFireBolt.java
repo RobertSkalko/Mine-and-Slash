@@ -3,9 +3,9 @@ package com.robertx22.spells.projectile.firebolt;
 import com.robertx22.customitems.spells.ItemFireBolt;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
+import com.robertx22.spells.projectile.BaseBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
@@ -16,7 +16,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class SpellFireBolt extends BaseSpell {
+public class SpellFireBolt extends BaseBolt {
 
 	public SpellFireBolt() {
 		super();
@@ -42,26 +42,6 @@ public class SpellFireBolt extends BaseSpell {
 	@Override
 	public String Name() {
 		return "Fire_Bolt";
-	}
-
-	@Override
-	public int Weight() {
-		return this.NormalWeight;
-	}
-
-	@Override
-	public int ManaCost() {
-		return 10;
-	}
-
-	@Override
-	public int Cooldown() {
-		return 10;
-	}
-
-	@Override
-	public int BaseDamage() {
-		return 2;
 	}
 
 	@Override

@@ -32,6 +32,8 @@ public class BarsGUI extends Gui {
 
 	int ticks = 0;
 
+	Unit unit;
+
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onRenderExperienceBar(RenderGameOverlayEvent event) {
 
@@ -42,7 +44,12 @@ public class BarsGUI extends Gui {
 			return;
 		}
 
-		Unit unit = UnitSaving.Load((EntityPlayer) mc.player);
+		ticks++;
+
+		if (ticks > 25) {
+			unit = UnitSaving.Load((EntityPlayer) mc.player);
+			ticks = 0;
+		}
 
 		if (unit == null) {
 			return;

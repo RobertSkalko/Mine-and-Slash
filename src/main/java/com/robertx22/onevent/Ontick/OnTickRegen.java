@@ -34,7 +34,7 @@ public class OnTickRegen {
 
 			syncTick++;
 
-			if (syncTick > 10) {
+			if (syncTick > 15) {
 				Unit unit = UnitSaving.Load(event.player);
 				StringPackage packet = new StringPackage(Saving.ToString(unit));
 				Network.INSTANCE.sendTo(packet, (EntityPlayerMP) event.player);
