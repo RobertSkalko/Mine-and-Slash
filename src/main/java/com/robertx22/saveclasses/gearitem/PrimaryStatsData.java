@@ -32,10 +32,13 @@ public class PrimaryStatsData extends StatGroupData implements Serializable, ITo
 	}
 
 	@Override
+	public void SetRerollNumbers(boolean bool) {
+		this.setRerollNumbers = bool;
+	}
+
+	@Override
 	public void RerollFully(GearItemData gear) {
 		this.setRerollFully = false;
-
-		this.level = gear.level;
 
 		this.Mods = new ArrayList<StatModData>();
 
@@ -43,7 +46,7 @@ public class PrimaryStatsData extends StatGroupData implements Serializable, ITo
 
 		StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
 
-		StatModData moddata = StatModData.NewRandom(gear, mod, gear.level);
+		StatModData moddata = StatModData.NewRandom(gear, mod);
 
 		this.Mods.add(moddata);
 
@@ -60,15 +63,15 @@ public class PrimaryStatsData extends StatGroupData implements Serializable, ITo
 	}
 
 	@Override
-	public List<String> GetTooltipString() {
+	public List<String> GetTooltipString(GearItemData gear) {
 
 		List<String> list = new ArrayList<String>();
 
 		list.add("Primary Stats: ");
 
-		for (StatModData data : this.GetAllStats()) {
+		for (StatModData data : this.GetAllStats(gear)) {
 
-			list.add(data.GetTooltipString());
+			list.add(data.GetTooltipString(gear));
 		}
 
 		return list;

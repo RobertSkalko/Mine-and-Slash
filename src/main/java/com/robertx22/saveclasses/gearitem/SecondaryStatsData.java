@@ -32,10 +32,16 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 	}
 
 	@Override
+	public void SetRerollNumbers(boolean bool) {
+		this.setRerollNumbers = bool;
+	}
+
+	public boolean AddedStat = false;
+	public boolean AddStat = false;
+
+	@Override
 	public void RerollFully(GearItemData gear) {
 		this.setRerollFully = false;
-
-		this.level = gear.level;
 
 		this.Mods = new ArrayList<StatModData>();
 
@@ -45,11 +51,21 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 		while (Stats > 0) {
 			StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
-			this.Mods.add(StatModData.NewRandom(gear, mod, level));
+			this.Mods.add(StatModData.NewRandom(gear, mod));
 			Stats--;
 
 		}
 
+	}
+
+	public void AddStat(GearItemData gear) {
+		StatMod mod = (StatMod) RandomUtils
+				.WeightedRandom(ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSecondaryStats()));
+
+		gear.secondaryStats.Mods.add(StatModData.NewRandom(gear, mod));
+
+		this.AddedStat = true;
+		this.AddStat = false;
 	}
 
 	@Override
@@ -63,15 +79,15 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 	}
 
 	@Override
-	public List<String> GetTooltipString() {
+	public List<String> GetTooltipString(GearItemData gear) {
 
 		List<String> list = new ArrayList<String>();
 
 		list.add("Secondary Stats: ");
 
-		for (StatModData data : this.GetAllStats()) {
+		for (StatModData data : this.GetAllStats(gear)) {
 
-			list.add(data.GetTooltipString());
+			list.add(data.GetTooltipString(gear));
 		}
 
 		return list;

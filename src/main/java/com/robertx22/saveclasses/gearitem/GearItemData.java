@@ -62,7 +62,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	}
 
-	private List<IStatsContainer> GetAllStatContainers() {
+	public List<IStatsContainer> GetAllStatContainers() {
 
 		List<IStatsContainer> containers = new ArrayList<IStatsContainer>();
 
@@ -88,12 +88,12 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	}
 
 	@Override
-	public List<StatModData> GetAllStats() {
+	public List<StatModData> GetAllStats(GearItemData gear) {
 
 		List<StatModData> datas = new ArrayList<StatModData>();
 
 		for (IStatsContainer con : GetAllStatContainers()) {
-			datas.addAll(con.GetAllStats());
+			datas.addAll(con.GetAllStats(this));
 		}
 
 		return datas;
@@ -119,7 +119,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 		for (ITooltipList part : list) {
 
 			if (part != null) {
-				event.getToolTip().addAll(part.GetTooltipString());
+				event.getToolTip().addAll(part.GetTooltipString(this));
 				event.getToolTip().add("");
 
 			}
@@ -131,7 +131,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	}
 
-	private List<IRerollable> GetAllRerollable() {
+	public List<IRerollable> GetAllRerollable() {
 		List<IRerollable> list = new ArrayList<IRerollable>();
 		IfNotNullAdd(secondaryStats, list);
 		IfNotNullAdd(primaryStats, list);
@@ -159,10 +159,9 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 				rerollable.RerollNumbers(this);
 				rerolled = true;
 			}
-		}
-
-		if (rerolled) {
-			SoundUtils.playSoundAtPlayer(player, SoundEvents.BLOCK_ANVIL_USE, 1, 1);
+			if (rerolled) {
+				SoundUtils.playSoundAtPlayer(player, SoundEvents.BLOCK_ANVIL_USE, 1, 1);
+			}
 		}
 
 	}

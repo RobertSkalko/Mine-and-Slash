@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.oldreplacesoon.ItemBasic;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
@@ -23,7 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemRandomizeSuffix extends ItemBasic implements ICurrencyItemEffect {
+public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEffect {
 
 	private static final String name = Ref.MODID + ":randomize_suffix";
 

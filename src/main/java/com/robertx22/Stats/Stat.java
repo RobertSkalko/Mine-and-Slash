@@ -3,6 +3,7 @@ package com.robertx22.stats;
 import java.util.ArrayList;
 
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
@@ -34,14 +35,14 @@ public abstract class Stat {
 		Multi = 0;
 	}
 
-	public void Add(StatModData mod) {
+	public void Add(StatModData mod, GearItemData gear) {
 
 		if (mod.type == StatTypes.Flat) {
-			Flat += mod.GetActualVal();
+			Flat += mod.GetActualVal(gear);
 		} else if (mod.type == StatTypes.Percent) {
-			Percent += mod.GetActualVal();
+			Percent += mod.GetActualVal(gear);
 		} else if (mod.type == StatTypes.Multi) {
-			Multi += mod.GetActualVal();
+			Multi += mod.GetActualVal(gear);
 		}
 	}
 

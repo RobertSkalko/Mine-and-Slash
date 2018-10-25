@@ -20,14 +20,13 @@ public class StatModData implements Serializable, ITooltipString {
 
 	}
 
-	public static StatModData NewRandom(GearItemData gear, StatMod mod, int level) {
+	public static StatModData NewRandom(GearItemData gear, StatMod mod) {
 
 		StatModData data = new StatModData();
 
 		data.baseModName = mod.GUID();
 		data.type = mod.Type();
 		data.percent = StatGen.GenPercent(gear.GetRarity());
-		data.level = level;
 
 		return data;
 	}
@@ -39,12 +38,10 @@ public class StatModData implements Serializable, ITooltipString {
 		data.baseModName = mod.GUID();
 		data.type = mod.Type();
 		data.percent = percent;
-		data.level = level;
 
 		return data;
 	}
 
-	public int level;
 	public StatTypes type;
 	public int percent;
 	public String baseModName;
@@ -53,7 +50,7 @@ public class StatModData implements Serializable, ITooltipString {
 		return StatMods.All.get(baseModName);
 	}
 
-	public int GetActualVal() {
+	public int GetActualVal(GearItemData gear) {
 
 		StatMod mod = GetBaseMod();
 
@@ -62,7 +59,7 @@ public class StatModData implements Serializable, ITooltipString {
 		int val = mod.GetValueByPercent(percent);
 
 		if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
-			val *= level;
+			val *= gear.level;
 		}
 
 		return val;
@@ -81,9 +78,9 @@ public class StatModData implements Serializable, ITooltipString {
 		return TextFormatting.GREEN + " * " + basestat.Name();
 	}
 
-	public String NameAndValueText() {
+	public String NameAndValueText(GearItemData gear) {
 
-		int val = this.GetActualVal();
+		int val = this.GetActualVal(gear);
 
 		String minusplus = val > 0 ? "+" : "";
 
@@ -91,7 +88,7 @@ public class StatModData implements Serializable, ITooltipString {
 	}
 
 	@Override
-	public String GetTooltipString() {
+	public String GetTooltipString(GearItemData gear) {
 		StatMod mod = GetBaseMod();
 
 		Stat basestat = mod.GetBaseStat();
@@ -100,7 +97,7 @@ public class StatModData implements Serializable, ITooltipString {
 
 		if (!(basestat instanceof Trait)) {
 
-			text = NameAndValueText();
+			text = NameAndValueText(gear);
 
 			if (mod.Type() == StatTypes.Flat) {
 

@@ -12,4 +12,6 @@ public interface IRerollable {
 
 	public abstract void RerollNumbers(GearItemData gear);
 
+	public abstract void SetRerollNumbers(boolean bool);
+
 }

@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.oldreplacesoon.ItemBasic;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -21,14 +22,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemMajorAddStat extends ItemBasic implements ICurrencyItemEffect {
+public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":item_major_add_stat";
+	private static final String name = Ref.MODID + ":add_secondary_stat";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":item_major_add_stat")
+	@GameRegistry.ObjectHolder(Ref.MODID + ":add_secondary_stat")
 	public static final Item ITEM = null;
 
-	public ItemMajorAddStat() {
+	public ItemAddSecondaryStat() {
 
 		super(name);
 
@@ -36,7 +37,7 @@ public class ItemMajorAddStat extends ItemBasic implements ICurrencyItemEffect {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemMajorAddStat());
+		event.getRegistry().register(new ItemAddSecondaryStat());
 	}
 
 	@SubscribeEvent
@@ -49,18 +50,27 @@ public class ItemMajorAddStat extends ItemBasic implements ICurrencyItemEffect {
 
 		stack.setStackDisplayName("Crystal Of Legend");
 
-		tooltip.add("This material can be used to add an enhancement to a strong item.");
+		tooltip.add("This material can be used to add an enhancement to an item.");
 
 	}
 
 	@Override
 	public void ModifyItem(ItemStack stack) {
 
+		GearItemData gear = GearSaving.Load(stack);
+		gear.secondaryStats.AddStat = true;
+		GearSaving.Save(stack, gear);
+
 	}
 
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
-		// TODO Auto-generated method stub
-		return true;
+		GearItemData gear = GearSaving.Load(stack);
+
+		if (gear.secondaryStats.AddedStat == false) {
+			return true;
+		}
+
+		return false;
 	}
 }

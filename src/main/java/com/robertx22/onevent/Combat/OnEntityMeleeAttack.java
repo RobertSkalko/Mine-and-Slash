@@ -2,7 +2,6 @@ package com.robertx22.onevent.combat;
 
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -42,17 +41,15 @@ public class OnEntityMeleeAttack {
 				EntityLivingBase source = (EntityLivingBase) event.getSource().getTrueSource();
 				EntityLivingBase target = event.getEntityLiving();
 
-				if (!target.hasCapability(EntityData.Data, null) || !source.hasCapability(EntityData.Data, null)) {
-
-					return;
-				}
-
+				Unit targetUnit = UnitSaving.Load(target);
 				Unit unit = UnitSaving.Load(source);
-				if (unit != null) {
+
+				if (unit != null && targetUnit != null) {
 
 					event.setAmount(0);
 
 					if (source instanceof EntityPlayer) {
+
 						if (unit.energy().GetCurrentValue() < energyCost) {
 							event.setCanceled(true);
 							NoEnergyMessage(source);
@@ -68,6 +65,7 @@ public class OnEntityMeleeAttack {
 					} else {
 						unit.BasicAttack(source, target, unit);
 					}
+
 				}
 
 			}

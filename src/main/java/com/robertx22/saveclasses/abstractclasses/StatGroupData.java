@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.gearitem.IStatsContainer;
+import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 
 public abstract class StatGroupData implements IStatsContainer {
@@ -15,11 +16,9 @@ public abstract class StatGroupData implements IStatsContainer {
 	public List<StatModData> Mods = new ArrayList<StatModData>();
 
 	@Override
-	public List<StatModData> GetAllStats() {
+	public List<StatModData> GetAllStats(GearItemData gear) {
 		return Mods;
 	}
-
-	public int level;
 
 	public boolean setRerollNumbers = false;
 	public boolean setRerollFully = false;

@@ -20,6 +20,8 @@ public class BarsGUI extends Gui {
 	private final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg",
 			"textures/gui/experience_bar.png");
 
+	public static boolean Updated = true;
+
 	public BarsGUI(Minecraft mc) {
 		super();
 		// We need this to invoke the render engine.
@@ -30,7 +32,7 @@ public class BarsGUI extends Gui {
 
 	int yPos = 2;
 
-	int ticks = 0;
+//	int ticks = 0;
 
 	Unit unit;
 
@@ -44,11 +46,9 @@ public class BarsGUI extends Gui {
 			return;
 		}
 
-		ticks++;
-
-		if (ticks > 25) {
+		if (Updated) {
 			unit = UnitSaving.Load((EntityPlayer) mc.player);
-			ticks = 0;
+			Updated = false;
 		}
 
 		if (unit == null) {

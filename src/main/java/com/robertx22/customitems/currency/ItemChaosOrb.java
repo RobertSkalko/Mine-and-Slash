@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.oldreplacesoon.ItemBasic;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.saveclasses.gearitem.GearItemData;
@@ -24,7 +23,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemChaosOrb extends ItemBasic implements ICurrencyItemEffect {
+public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 
 	private static final String name = Ref.MODID + ":chaos_orb";
 

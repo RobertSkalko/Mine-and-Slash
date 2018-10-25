@@ -26,15 +26,15 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 	}
 
 	@Override
-	public List<String> GetTooltipString() {
+	public List<String> GetTooltipString(GearItemData gear) {
 
 		List<String> list = new ArrayList<String>();
 
 		list.add(TextFormatting.RED + "Chaos Stats: ");
 
-		for (StatModData data : this.GetAllStats()) {
+		for (StatModData data : this.GetAllStats(gear)) {
 
-			list.add(data.GetTooltipString());
+			list.add(data.GetTooltipString(gear));
 		}
 
 		return list;
@@ -56,14 +56,12 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 		this.setRerollFully = false;
 
-		this.level = gear.level;
-
 		this.Mods = new ArrayList<StatModData>();
 
 		StatMod mod = (StatMod) RandomUtils
 				.WeightedRandom(ListUtils.CollectionToList(gear.GetBaseGearType().ChaosStats()));
 
-		StatModData moddata = StatModData.NewRandom(gear, mod, gear.level);
+		StatModData moddata = StatModData.NewRandom(gear, mod);
 
 		this.Mods.add(moddata);
 
@@ -71,6 +69,12 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 	@Override
 	public void RerollNumbers(GearItemData gear) {
+
+	}
+
+	@Override
+	public void SetRerollNumbers(boolean bool) {
+		// TODO Auto-generated method stub
 
 	}
 

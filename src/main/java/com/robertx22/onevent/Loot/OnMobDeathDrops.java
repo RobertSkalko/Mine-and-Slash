@@ -1,8 +1,10 @@
 package com.robertx22.onevent.loot;
 
-import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.loot.LootDropsGenerator;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.datasaving.UnitSaving;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -18,27 +20,20 @@ public class OnMobDeathDrops {
 		if (event.getEntityLiving().world.isRemote) {
 			return;
 		}
-		if (event.getEntityLiving() instanceof EntityPlayer) {
-			return;
-		}
 
-		if (event.getEntity() instanceof EntityMob) {
+		if (event.getEntity() instanceof EntityMob && event.getSource().getTrueSource() instanceof EntityPlayer) {
 
-			Entity mob = event.getEntity();
+			try {
+				EntityLivingBase mobEntity = event.getEntityLiving();
 
-			if (mob.hasCapability(EntityData.Data, null)) {
+				Unit mob = UnitSaving.Load(mobEntity);
+				Unit player = UnitSaving.Load(event.getSource().getTrueSource());
 
-				/*
-				 * List<ItemStack> items = createDropTable(mob, lvl, rarity);
-				 * 
-				 * for (ItemStack item : items) {
-				 * 
-				 * mob.entityDropItem(item, 0);
-				 * 
-				 * }
-				 * 
-				 */
+				LootDropsGenerator.Generate(mob, player, mobEntity);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+
 		}
 	}
 

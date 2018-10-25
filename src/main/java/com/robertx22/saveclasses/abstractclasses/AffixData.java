@@ -6,6 +6,7 @@ import java.util.List;
 import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.gearitem.BaseAffix;
 import com.robertx22.gearitem.IStatsContainer;
+import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.StatMod;
 
@@ -15,12 +16,11 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
 	public boolean setRerollFully = false;
 	public List<Integer> percents = new ArrayList<Integer>();
 	public String baseAffix;
-	public int level;
 
 	public abstract BaseAffix BaseAffix();
 
 	@Override
-	public List<StatModData> GetAllStats() {
+	public List<StatModData> GetAllStats(GearItemData gear) {
 
 		BaseAffix base = BaseAffix();
 
@@ -30,7 +30,7 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
 
 			StatMod mod = base.StatMods().get(i);
 
-			list.add(StatModData.Load(mod, percents.get(i), level));
+			list.add(StatModData.Load(mod, percents.get(i), gear.level));
 		}
 
 		return list;

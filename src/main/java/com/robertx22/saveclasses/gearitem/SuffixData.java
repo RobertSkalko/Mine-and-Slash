@@ -30,12 +30,16 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 		super();
 		this.baseAffix = affixname;
 		this.percents = percents;
-		this.level = gear.level;
 	}
 
 	@Override
 	public boolean IfRerollFully() {
 		return this.setRerollFully;
+	}
+
+	@Override
+	public void SetRerollNumbers(boolean bool) {
+		this.setRerollNumbers = bool;
 	}
 
 	@Override
@@ -48,8 +52,6 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 	public void RerollFully(GearItemData gear) {
 
 		this.setRerollFully = false;
-
-		this.level = gear.level;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSuffixes());
 		Suffix suffix = (Suffix) RandomUtils.WeightedRandom(list);
@@ -78,7 +80,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 	}
 
 	@Override
-	public List<String> GetTooltipString() {
+	public List<String> GetTooltipString(GearItemData gear) {
 
 		BaseAffix affix = BaseAffix();
 
@@ -86,9 +88,9 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
 		list.add(TextFormatting.LIGHT_PURPLE + "Suffix: " + affix.Name());
 
-		for (StatModData data : this.GetAllStats()) {
+		for (StatModData data : this.GetAllStats(gear)) {
 
-			list.add(data.GetTooltipString());
+			list.add(data.GetTooltipString(gear));
 		}
 
 		return list;

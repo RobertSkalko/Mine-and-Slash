@@ -22,14 +22,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEffect {
+public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":randomize_prefix";
+	private static final String name = Ref.MODID + ":level_item";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":randomize_prefix")
+	@GameRegistry.ObjectHolder(Ref.MODID + ":level_item")
 	public static final Item ITEM = null;
 
-	public ItemRandomizePrefix() {
+	public ItemLevelUpGear() {
 
 		super(name);
 
@@ -37,7 +37,7 @@ public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEf
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemRandomizePrefix());
+		event.getRegistry().register(new ItemLevelUpGear());
 	}
 
 	@SubscribeEvent
@@ -48,30 +48,24 @@ public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEf
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		stack.setStackDisplayName("Orb Of Ever-Changing Prefix");
+		stack.setStackDisplayName("Crystal Of Ascension");
 
-		tooltip.add("Fully randomizes the Prefix of an Item.");
+		tooltip.add("Extremely rare crystal,");
+		tooltip.add("Used to increase the level of an item.");
 
 	}
 
 	@Override
 	public void ModifyItem(ItemStack stack) {
 		GearItemData gear = GearSaving.Load(stack);
-		gear.prefix.setRerollFully = true;
+		gear.level++;
 		GearSaving.Save(stack, gear);
-
 	}
 
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
-
 		GearItemData gear = GearSaving.Load(stack);
 
-		if (gear.prefix != null) {
-			return true;
-		}
-
-		return false;
+		return gear != null;
 	}
-
 }

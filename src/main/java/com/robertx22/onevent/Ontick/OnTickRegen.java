@@ -6,6 +6,7 @@ import com.robertx22.database.stats.types.resources.ManaRegen;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.BarsGUI;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.datasaving.bases.Saving;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
@@ -23,7 +24,7 @@ public class OnTickRegen {
 
 	static int syncTick = 0;
 
-	static int time = 80;
+	static int time = 100;
 
 	@SubscribeEvent
 	public static void onTickRegen(TickEvent.PlayerTickEvent event) {
@@ -34,11 +35,11 @@ public class OnTickRegen {
 
 			syncTick++;
 
-			if (syncTick > 15) {
+			if (syncTick > 20) {
 				Unit unit = UnitSaving.Load(event.player);
 				StringPackage packet = new StringPackage(Saving.ToString(unit));
 				Network.INSTANCE.sendTo(packet, (EntityPlayerMP) event.player);
-
+				BarsGUI.Updated = true;
 				syncTick = 0;
 			}
 

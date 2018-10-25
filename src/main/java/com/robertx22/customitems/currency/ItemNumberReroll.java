@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.oldreplacesoon.ItemBasic;
+import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -21,14 +23,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemMinorAddStat extends ItemBasic implements ICurrencyItemEffect {
+public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":item_minor_add_stat";
+	private static final String name = Ref.MODID + ":number_reroll";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":item_minor_add_stat")
+	@GameRegistry.ObjectHolder(Ref.MODID + ":number_reroll")
 	public static final Item ITEM = null;
 
-	public ItemMinorAddStat() {
+	public ItemNumberReroll() {
 
 		super(name);
 
@@ -36,7 +38,7 @@ public class ItemMinorAddStat extends ItemBasic implements ICurrencyItemEffect {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemMinorAddStat());
+		event.getRegistry().register(new ItemNumberReroll());
 	}
 
 	@SubscribeEvent
@@ -47,20 +49,28 @@ public class ItemMinorAddStat extends ItemBasic implements ICurrencyItemEffect {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		stack.setStackDisplayName("Adamant Of The Future");
+		stack.setStackDisplayName("Orb Of Blessing");
 
-		tooltip.add("This material can be used to add an enhancement to a weak item.");
+		tooltip.add("Use on an item to re-roll stat numbers");
 
 	}
 
 	@Override
 	public void ModifyItem(ItemStack stack) {
 
+		GearItemData gear = GearSaving.Load(stack);
+
+		for (IRerollable rel : gear.GetAllRerollable()) {
+			rel.SetRerollNumbers(true);
+		}
+		GearSaving.Save(stack, gear);
+
 	}
 
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
-		// TODO Auto-generated method stub
-		return true;
+		GearItemData gear = GearSaving.Load(stack);
+
+		return gear != null;
 	}
 }
