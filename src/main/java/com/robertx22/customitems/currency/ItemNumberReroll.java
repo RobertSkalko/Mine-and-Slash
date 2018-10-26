@@ -61,9 +61,9 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 		GearItemData gear = GearSaving.Load(stack);
 
 		for (IRerollable rel : gear.GetAllRerollable()) {
-			rel.SetRerollNumbers(true);
+			rel.RerollNumbers(gear);
 		}
-		GearSaving.Save(stack, gear);
+		gear.HideInfoForCrafting(stack);
 
 	}
 

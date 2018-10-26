@@ -33,8 +33,9 @@ public class OnTooltip {
 		GearItemData data = GearSaving.Load(item);
 
 		if (data != null) {
-
-			data.BuildTooltip(event);
+			if (!data.HideInfo) {
+				data.BuildTooltip(event);
+			}
 
 		}
 

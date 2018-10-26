@@ -1,7 +1,5 @@
 package com.robertx22.onevent.Item;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -12,15 +10,13 @@ public class OnPickup {
 	@SubscribeEvent
 	public static void pickupItem(EntityItemPickupEvent event) {
 
-		ItemStack item = event.getItem().getItem();
-
-		if (!(event.getEntityLiving() instanceof EntityPlayer)) {
-			return;
-		}
-		if (!item.hasTagCompound()) {
-			return;
-		}
-
+		/*
+		 * ItemStack item = event.getItem().getItem();
+		 * 
+		 * if (!(event.getEntityLiving() instanceof EntityPlayer)) { return; } if
+		 * (!item.hasTagCompound()) { return; }
+		 * 
+		 */
 		/*
 		 * if (ItemUtils.isGear(item) &&
 		 * item.getTagCompound().getInteger(Tags.RARITY_NUMBER) <

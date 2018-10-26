@@ -1,7 +1,8 @@
-package com.robertx22.uncommon.utilityclasses;
+package com.robertx22.crafting;
 
 import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -12,18 +13,11 @@ public class OnItemCreatedUtils {
 
 	public static void TryReroll(EntityPlayer player, ItemStack stack, World worldIn) {
 		if (!worldIn.isRemote) {
+
 			GearItemData data = GearSaving.Load(stack);
-			if (data != null) {
-				data.TryRerollComponents(player);
 
-				if (data.secondaryStats.AddStat && !data.secondaryStats.AddedStat) {
-					data.secondaryStats.AddStat(data);
-
-					SoundUtils.playSoundAtPlayer(player, SoundEvents.BLOCK_ANVIL_USE, 1, 1);
-				}
-
-				GearSaving.Save(stack, data);
-
+			if (data.ShowInfoAfterCrafting(stack)) {
+				SoundUtils.playSoundAtPlayer(player, SoundEvents.BLOCK_ANVIL_USE, 1, 1);
 			}
 
 		}

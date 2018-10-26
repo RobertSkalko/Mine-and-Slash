@@ -57,8 +57,8 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 	@Override
 	public void ModifyItem(ItemStack stack) {
 		GearItemData gear = GearSaving.Load(stack);
-		gear.suffix.setRerollFully = true;
-		GearSaving.Save(stack, gear);
+		gear.suffix.RerollFully(gear);
+		gear.HideInfoForCrafting(stack);
 
 	}
 

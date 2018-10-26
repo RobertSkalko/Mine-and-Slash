@@ -12,10 +12,12 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.gearitem.IStatsContainer;
 import com.robertx22.gearitem.ITooltip;
 import com.robertx22.gearitem.ITooltipList;
+import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
@@ -35,6 +37,29 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	public PrefixData prefix;
 
 	public ChaosStatsData chaosStats = null;
+
+	/**
+	 * For random crafting to exist, random results must be hidden
+	 */
+	public boolean HideInfo = false;
+
+	public void HideInfoForCrafting(ItemStack stack) {
+		HideInfo = true;
+		GearSaving.Save(stack, this);
+	}
+
+	public boolean ShowInfoAfterCrafting(ItemStack stack) {
+		if (HideInfo) {
+			HideInfo = false;
+			GearSaving.Save(stack, this);
+			return true;
+
+		} else {
+			GearSaving.Save(stack, this);
+			return false;
+		}
+
+	}
 
 	public GearItemSlot GetBaseGearType() {
 

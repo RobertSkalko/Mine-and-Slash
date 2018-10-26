@@ -58,8 +58,8 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
 	public void ModifyItem(ItemStack stack) {
 
 		GearItemData gear = GearSaving.Load(stack);
-		gear.secondaryStats.AddStat = true;
-		GearSaving.Save(stack, gear);
+		gear.secondaryStats.AddStat(gear);
+		gear.HideInfoForCrafting(stack);
 
 	}
 
