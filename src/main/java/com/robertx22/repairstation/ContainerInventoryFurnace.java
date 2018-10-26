@@ -45,7 +45,7 @@ public class ContainerInventoryFurnace extends Container {
 	private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
 	private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
 
-	public final int FUEL_SLOTS_COUNT = 4;
+	public final int FUEL_SLOTS_COUNT = 1;
 	public final int INPUT_SLOTS_COUNT = 5;
 	public final int OUTPUT_SLOTS_COUNT = 5;
 	public final int FURNACE_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
@@ -88,7 +88,7 @@ public class ContainerInventoryFurnace extends Container {
 			}
 		}
 
-		final int FUEL_SLOTS_XPOS = 53;
+		final int FUEL_SLOTS_XPOS = 80; // 53; // TODO
 		final int FUEL_SLOTS_YPOS = 96;
 		// Add the tile fuel slots
 		for (int x = 0; x < FUEL_SLOTS_COUNT; x++) {

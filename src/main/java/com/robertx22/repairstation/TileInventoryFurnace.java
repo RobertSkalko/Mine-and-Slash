@@ -13,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagIntArray;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -27,6 +26,9 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.EnumSkyBlock;
 
 public class TileInventoryFurnace extends TileEntity implements IInventory, ITickable {
+
+	private int FuelRemaining = 0;
+	private int MaximumFuel = 5000;
 
 	// returns the smelting result for the given stack. Returns null if the given
 	// stack can not be smelted
@@ -44,7 +46,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 
 	// Create and initialize the itemStacks variable that will store store the
 	// itemStacks
-	public static final int FUEL_SLOTS_COUNT = 4;
+	public static final int FUEL_SLOTS_COUNT = 1;
 	public static final int INPUT_SLOTS_COUNT = 5;
 	public static final int OUTPUT_SLOTS_COUNT = 5;
 	public static final int TOTAL_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
@@ -53,15 +55,13 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 	public static final int FIRST_INPUT_SLOT = FIRST_FUEL_SLOT + FUEL_SLOTS_COUNT;
 	public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
 
-	private int FuelRemaining = 0;
-	private int MaximumFuel = 3000;
 	/** The number of burn ticks remaining on the current piece of fuel */
 	// private int[] burnTimeRemaining = new int[FUEL_SLOTS_COUNT];
 	/**
 	 * The initial fuel value of the currently burning fuel (in ticks of burn
 	 * duration)
 	 */
-	private int[] burnTimeInitialValue = new int[FUEL_SLOTS_COUNT];
+	// private int[] burnTimeInitialValue = new int[FUEL_SLOTS_COUNT];
 
 	/** The number of ticks the current item has been cooking */
 	private short cookTime;
@@ -85,7 +85,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 	 * @return fraction remaining, between 0 - 1
 	 */
 	public double fractionOfFuelRemaining(int fuelSlot) {
-		if (burnTimeInitialValue[fuelSlot] <= 0)
+		if (this.FuelRemaining <= 0)
 			return 0;
 		double fraction = FuelRemaining / (double) MaximumFuel;
 		return MathHelper.clamp(fraction, 0.0, 1.0);
@@ -100,7 +100,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 	public int secondsOfFuelRemaining(int fuelSlot) {
 		if (FuelRemaining <= 0)
 			return 0;
-		return FuelRemaining / 20; // 20 ticks per second
+		return FuelRemaining; // 20 ticks per second
 	}
 
 	/**
@@ -458,7 +458,6 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 		parentNBTTagCompound.setShort("CookTime", cookTime);
 
 		parentNBTTagCompound.setInteger("fuel", this.FuelRemaining);
-		parentNBTTagCompound.setTag("burnTimeInitial", new NBTTagIntArray(burnTimeInitialValue));
 		return parentNBTTagCompound;
 	}
 
@@ -483,7 +482,6 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 		cookTime = nbtTagCompound.getShort("CookTime");
 
 		this.FuelRemaining = nbtTagCompound.getInteger("fuel");
-		burnTimeInitialValue = Arrays.copyOf(nbtTagCompound.getIntArray("burnTimeInitial"), FUEL_SLOTS_COUNT);
 		cachedNumberOfBurningSlots = -1;
 	}
 
@@ -575,10 +573,9 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 		if (id >= FIRST_BURN_TIME_REMAINING_FIELD_ID && id < FIRST_BURN_TIME_REMAINING_FIELD_ID + FUEL_SLOTS_COUNT) {
 			return this.FuelRemaining;
 		}
-		if (id >= FIRST_BURN_TIME_INITIAL_FIELD_ID && id < FIRST_BURN_TIME_INITIAL_FIELD_ID + FUEL_SLOTS_COUNT) {
-			return burnTimeInitialValue[id - FIRST_BURN_TIME_INITIAL_FIELD_ID];
-		}
-		System.err.println("Invalid field ID in TileInventorySmelting.getField:" + id);
+
+		// System.err.println("Invalid field ID in TileInventorySmelting.getField:" +
+		// id);
 		return 0;
 	}
 
@@ -589,10 +586,9 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 		} else if (id >= FIRST_BURN_TIME_REMAINING_FIELD_ID
 				&& id < FIRST_BURN_TIME_REMAINING_FIELD_ID + FUEL_SLOTS_COUNT) {
 			this.FuelRemaining = value;
-		} else if (id >= FIRST_BURN_TIME_INITIAL_FIELD_ID && id < FIRST_BURN_TIME_INITIAL_FIELD_ID + FUEL_SLOTS_COUNT) {
-			burnTimeInitialValue[id - FIRST_BURN_TIME_INITIAL_FIELD_ID] = value;
 		} else {
-			System.err.println("Invalid field ID in TileInventorySmelting.setField:" + id);
+			// System.err.println("Invalid field ID in TileInventorySmelting.setField:" +
+			// id);
 		}
 	}
 

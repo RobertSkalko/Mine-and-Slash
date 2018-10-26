@@ -38,7 +38,7 @@ public class GuiInventoryFurnace extends GuiContainer {
 	final int COOK_BAR_WIDTH = 80;
 	final int COOK_BAR_HEIGHT = 17;
 
-	final int FLAME_XPOS = 54;
+	final int FLAME_XPOS = 81;// 54;
 	final int FLAME_YPOS = 80;
 	final int FLAME_ICON_U = 176; // texture position of flame icon
 	final int FLAME_ICON_V = 0;
@@ -93,8 +93,8 @@ public class GuiInventoryFurnace extends GuiContainer {
 		for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
 			if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT,
 					mouseX, mouseY)) {
-				hoveringText.add("Fuel Time:");
-				hoveringText.add(tileEntity.secondsOfFuelRemaining(i) + "s");
+				// hoveringText.add("Fuel Time:");
+				hoveringText.add("Fuel Left: " + tileEntity.secondsOfFuelRemaining(i));
 			}
 		}
 		// If hoveringText is not empty draw the hovering text

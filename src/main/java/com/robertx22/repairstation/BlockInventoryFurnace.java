@@ -83,35 +83,6 @@ public class BlockInventoryFurnace extends BlockContainer {
 			InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
 		}
 
-//		if (inventory != null){
-//			// For each slot in the inventory
-//			for (int i = 0; i < inventory.getSizeInventory(); i++){
-//				// If the slot is not empty
-//				if (inventory.getStackInSlot(i) != null)
-//				{
-//					// Create a new entity item with the item stack in the slot
-//					EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
-//
-//					// Apply some random motion to the item
-//					float multiplier = 0.1f;
-//					float motionX = worldIn.rand.nextFloat() - 0.5f;
-//					float motionY = worldIn.rand.nextFloat() - 0.5f;
-//					float motionZ = worldIn.rand.nextFloat() - 0.5f;
-//
-//					item.motionX = motionX * multiplier;
-//					item.motionY = motionY * multiplier;
-//					item.motionZ = motionZ * multiplier;
-//
-//					// Spawn the item in the world
-//					worldIn.spawnEntityInWorld(item);
-//				}
-//			}
-//
-//			// Clear the inventory so nothing else (such as another mod) can do anything with the items
-//			inventory.clear();
-//		}
-
-		// Super MUST be called last because it removes the tile entity
 		super.breakBlock(worldIn, pos, state);
 	}
 
