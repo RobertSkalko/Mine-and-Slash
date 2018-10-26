@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
+import com.robertx22.repairstation.StartupCommon;
 import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
 import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
@@ -69,6 +70,8 @@ public class Main {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ItemOre.Register();
+
+		StartupCommon.preInitCommon();
 
 		MinecraftForge.EVENT_BUS.register(new StringPackage());
 		MinecraftForge.EVENT_BUS.register(new StringPackage.Handler());

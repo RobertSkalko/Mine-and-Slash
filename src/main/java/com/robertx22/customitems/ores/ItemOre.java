@@ -1,6 +1,8 @@
 package com.robertx22.customitems.ores;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import com.robertx22.customitems.blocks.BlockOre;
 import com.robertx22.customitems.currency.CurrencyItem;
@@ -25,17 +27,28 @@ public class ItemOre extends Item {
 	public static HashMap<Integer, ItemBlock> ItemBlocks = new HashMap<Integer, ItemBlock>();
 	public static HashMap<Integer, Block> Blocks = new HashMap<Integer, Block>();
 
-	public ItemOre(String name) {
+	int rarity;
+
+	public List<Integer> RepairValues = Arrays.asList(10, 25, 50, 100, 250, 500);
+
+	public int GetFuelValue() {
+
+		return RepairValues.get(rarity);
+
+	}
+
+	public ItemOre(String name, int rarity) {
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setMaxDamage(0);
 		maxStackSize = 64;
 		setCreativeTab(CurrencyItem.CurrencyTab);
+		this.rarity = rarity;
 
 	}
 
 	public static void Register() {
-		Rarities.Items.forEach((x) -> ItemOres.put(x.Rank(), new ItemOre(Ref.MODID + ":ore" + x.Rank())));
+		Rarities.Items.forEach((x) -> ItemOres.put(x.Rank(), new ItemOre(Ref.MODID + ":ore" + x.Rank(), x.Rank())));
 
 		for (int i = 0; i < ItemOres.size(); i++) {
 			BlockOre block = new BlockOre("ore_block" + i, Material.ROCK, ItemOres.get(i), 1);
