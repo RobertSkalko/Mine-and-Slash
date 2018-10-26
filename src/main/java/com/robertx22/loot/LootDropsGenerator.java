@@ -23,12 +23,18 @@ public class LootDropsGenerator {
 
 	public static void Generate(Unit mob, Unit player, EntityLivingBase mobEntity) {
 
+		float playerFindItemsChance = 0;
+
+		if (player != null) {
+
+		}
+
 		List<ItemStack> items = new ArrayList<ItemStack>();
 
 		MobRarity rarity = Rarities.Mobs.get(mob.rarity);
 
-		float FinalGearChance = ApplyMobLootMulti(GearChance, mob);
-		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob);
+		float FinalGearChance = ApplyMobLootMulti(GearChance, mob, playerFindItemsChance);
+		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob, playerFindItemsChance);
 
 		int GearDrops = WhileRoll(FinalGearChance);
 		int CurrencyDrops = WhileRoll(FinalCurrencyChance);
@@ -36,7 +42,7 @@ public class LootDropsGenerator {
 		GearBlueprint gearPrint = new GearBlueprint(mob.level);
 
 		for (int i = 0; i < GearDrops; i++) {
-			items.add(GearGen.Create(gearPrint));
+			items.add(RandomDamagedGear(GearGen.Create(gearPrint)));
 		}
 
 		for (int i = 0; i < CurrencyDrops; i++) {
@@ -52,8 +58,17 @@ public class LootDropsGenerator {
 
 	}
 
-	private static float ApplyMobLootMulti(float chance, Unit mob) {
-		return chance * Rarities.Mobs.get(mob.rarity).LootMultiplier() + (mob.vanillaHP / 15);
+	private static ItemStack RandomDamagedGear(ItemStack stack) {
+		if (stack.getMaxDamage() > 0) {
+			float damage = (float) RandomUtils.RandomRange(70, 95) / (float) 100;
+			stack.setItemDamage((int) (damage * stack.getMaxDamage()));
+		}
+
+		return stack;
+	}
+
+	private static float ApplyMobLootMulti(float chance, Unit mob, float playerFind) {
+		return chance * Rarities.Mobs.get(mob.rarity).LootMultiplier() + (mob.vanillaHP / 15) * (1 + playerFind);
 	}
 
 	private static int WhileRoll(float chance) {

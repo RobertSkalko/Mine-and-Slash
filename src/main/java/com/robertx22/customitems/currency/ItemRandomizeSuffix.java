@@ -12,6 +12,7 @@ import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -48,7 +49,7 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		stack.setStackDisplayName("Orb Of Ever-Changing Suffix");
+		stack.setStackDisplayName(TextFormatting.GREEN + "Orb Of Ever-Changing Suffix");
 
 		tooltip.add("Fully randomizes the Suffix of an Item.");
 

@@ -13,6 +13,7 @@ import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -49,7 +50,7 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		stack.setStackDisplayName("Chaos Orb");
+		stack.setStackDisplayName(TextFormatting.RED + "Chaos Orb");
 
 		tooltip.add("Substance of pure Chaos.");
 		tooltip.add("The result can be Good.. or Horrible!");

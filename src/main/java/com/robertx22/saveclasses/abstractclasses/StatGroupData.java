@@ -20,7 +20,4 @@ public abstract class StatGroupData implements IStatsContainer {
 		return Mods;
 	}
 
-	public boolean setRerollNumbers = false;
-	public boolean setRerollFully = false;
-
 }

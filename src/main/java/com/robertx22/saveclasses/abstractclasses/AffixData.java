@@ -12,8 +12,6 @@ import com.robertx22.stats.StatMod;
 
 public abstract class AffixData implements IStatsContainer, IRerollable {
 
-	public boolean setRerollNumbers = false;
-	public boolean setRerollFully = false;
 	public List<Integer> percents = new ArrayList<Integer>();
 	public String baseAffix;
 

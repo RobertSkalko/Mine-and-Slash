@@ -21,10 +21,6 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 	}
 
-	public boolean IfCreate() {
-		return this.setRerollFully;
-	}
-
 	@Override
 	public List<String> GetTooltipString(GearItemData gear) {
 
@@ -42,19 +38,7 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 	}
 
 	@Override
-	public boolean IfRerollFully() {
-		return this.setRerollFully;
-	}
-
-	@Override
-	public boolean IfRerollNumbers() {
-		return false;
-	}
-
-	@Override
 	public void RerollFully(GearItemData gear) {
-
-		this.setRerollFully = false;
 
 		this.Mods = new ArrayList<StatModData>();
 
@@ -69,12 +53,6 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 	@Override
 	public void RerollNumbers(GearItemData gear) {
-
-	}
-
-	@Override
-	public void SetRerollNumbers(boolean bool) {
-		// TODO Auto-generated method stub
 
 	}
 

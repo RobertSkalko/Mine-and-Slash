@@ -22,23 +22,7 @@ public class PrimaryStatsData extends StatGroupData implements Serializable, ITo
 	}
 
 	@Override
-	public boolean IfRerollFully() {
-		return this.setRerollFully;
-	}
-
-	@Override
-	public boolean IfRerollNumbers() {
-		return this.setRerollNumbers;
-	}
-
-	@Override
-	public void SetRerollNumbers(boolean bool) {
-		this.setRerollNumbers = bool;
-	}
-
-	@Override
 	public void RerollFully(GearItemData gear) {
-		this.setRerollFully = false;
 
 		this.Mods = new ArrayList<StatModData>();
 
@@ -54,7 +38,6 @@ public class PrimaryStatsData extends StatGroupData implements Serializable, ITo
 
 	@Override
 	public void RerollNumbers(GearItemData gear) {
-		this.setRerollNumbers = false;
 
 		for (StatModData data : this.Mods) {
 			data.percent = StatGen.GenPercent(gear.GetRarity());

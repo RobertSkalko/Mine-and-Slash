@@ -34,24 +34,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 	}
 
 	@Override
-	public boolean IfRerollFully() {
-		return this.setRerollFully;
-	}
-
-	@Override
-	public boolean IfRerollNumbers() {
-		return this.setRerollNumbers;
-	}
-
-	@Override
-	public void SetRerollNumbers(boolean bool) {
-		this.setRerollNumbers = bool;
-	}
-
-	@Override
 	public void RerollFully(GearItemData gear) {
-
-		this.setRerollFully = false;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
 		Prefix prefix = (Prefix) RandomUtils.WeightedRandom(list);
@@ -65,7 +48,6 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 	@Override
 	public void RerollNumbers(GearItemData gear) {
 
-		this.setRerollNumbers = false;
 		percents = new ArrayList<Integer>();
 
 		for (StatMod mod : BaseAffix().StatMods()) {

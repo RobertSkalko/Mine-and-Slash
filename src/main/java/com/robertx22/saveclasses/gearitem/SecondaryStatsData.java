@@ -21,27 +21,10 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 	}
 
-	@Override
-	public boolean IfRerollFully() {
-		return this.setRerollFully;
-	}
-
-	@Override
-	public boolean IfRerollNumbers() {
-		return this.setRerollNumbers;
-	}
-
-	@Override
-	public void SetRerollNumbers(boolean bool) {
-		this.setRerollNumbers = bool;
-	}
-
 	public boolean AddedStat = false;
-	public boolean AddStat = false;
 
 	@Override
 	public void RerollFully(GearItemData gear) {
-		this.setRerollFully = false;
 
 		this.Mods = new ArrayList<StatModData>();
 
@@ -65,12 +48,11 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 		gear.secondaryStats.Mods.add(StatModData.NewRandom(gear, mod));
 
 		this.AddedStat = true;
-		this.AddStat = false;
+
 	}
 
 	@Override
 	public void RerollNumbers(GearItemData gear) {
-		this.setRerollNumbers = false;
 
 		for (StatModData data : this.Mods) {
 			data.percent = StatGen.GenPercent(gear.GetRarity());

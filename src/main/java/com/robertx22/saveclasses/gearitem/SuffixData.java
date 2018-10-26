@@ -33,25 +33,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 	}
 
 	@Override
-	public boolean IfRerollFully() {
-		return this.setRerollFully;
-	}
-
-	@Override
-	public void SetRerollNumbers(boolean bool) {
-		this.setRerollNumbers = bool;
-	}
-
-	@Override
-	public boolean IfRerollNumbers() {
-
-		return this.setRerollNumbers;
-	}
-
-	@Override
 	public void RerollFully(GearItemData gear) {
-
-		this.setRerollFully = false;
 
 		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSuffixes());
 		Suffix suffix = (Suffix) RandomUtils.WeightedRandom(list);
@@ -64,7 +46,6 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
 	@Override
 	public void RerollNumbers(GearItemData gear) {
-		this.setRerollNumbers = false;
 
 		percents = new ArrayList<Integer>();
 
