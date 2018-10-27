@@ -1,6 +1,7 @@
 package com.robertx22.repairstation;
 
 import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -37,9 +38,8 @@ public class StartupCommon {
 		// | stationary_water + water |
 		// +--------------------+----------------------+
 		//
-		blockInventoryAdvanced = new BlockInventoryFurnace()
-				.setUnlocalizedName("mbe31_block_inventory_furnace_unlocalised_name");
-		blockInventoryAdvanced.setRegistryName("mbe31_block_inventory_furnace_registry_name");
+		blockInventoryAdvanced = new BlockInventoryFurnace().setUnlocalizedName("repair_station");
+		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":repair_station0_registry");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
 
 		// We also need to create and register an ItemBlock for this block otherwise it
@@ -50,7 +50,7 @@ public class StartupCommon {
 
 		// Each of your tile entities needs to be registered with a name that is unique
 		// to your mod.
-		GameRegistry.registerTileEntity(TileInventoryFurnace.class, "mbe31_block_inventory_furnace_tile_entity");
+		GameRegistry.registerTileEntity(TileInventoryFurnace.class, Ref.MODID + ":repair_station0_entity");
 
 		// You need to register a GUIHandler for the container. However there can be
 		// only one handler per mod, so for the purposes

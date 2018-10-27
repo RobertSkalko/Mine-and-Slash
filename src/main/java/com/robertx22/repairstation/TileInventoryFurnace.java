@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import javax.annotation.Nullable;
 
+import com.robertx22.customitems.ItemCapacitor;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
@@ -11,6 +12,7 @@ import com.robertx22.uncommon.datasaving.GearSaving;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -27,6 +29,8 @@ import net.minecraft.world.EnumSkyBlock;
 
 public class TileInventoryFurnace extends TileEntity implements IInventory, ITickable {
 
+	// public abstract float FuelCostMultiplier();
+
 	private int FuelRemaining = 0;
 	private int MaximumFuel = 5000;
 
@@ -40,7 +44,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 			return copy;
 		}
 		return ItemStack.EMPTY;
-		// TODO THIS!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ it seems to work!!!
+
 	}
 	// IMPORTANT STUFF ABOVE
 
@@ -49,11 +53,12 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 	public static final int FUEL_SLOTS_COUNT = 1;
 	public static final int INPUT_SLOTS_COUNT = 5;
 	public static final int OUTPUT_SLOTS_COUNT = 5;
-	public static final int TOTAL_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
+	public static final int TOTAL_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
 
 	public static final int FIRST_FUEL_SLOT = 0;
 	public static final int FIRST_INPUT_SLOT = FIRST_FUEL_SLOT + FUEL_SLOTS_COUNT;
 	public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
+	public static final int FIRST_CAPACITOR_SLOT = FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
 
 	/** The number of burn ticks remaining on the current piece of fuel */
 	// private int[] burnTimeRemaining = new int[FUEL_SLOTS_COUNT];
@@ -242,6 +247,20 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 		ItemStack result = ItemStack.EMPTY; // EMPTY_ITEM
 
 		int fuelNeeded = 0;
+		float fuelMulti = 1F;
+
+		// TODO
+
+		if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
+
+			Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
+
+			if (item instanceof ItemCapacitor) {
+				fuelMulti = ((ItemCapacitor) item).GetFuelMultiplier();
+				System.out.println("it works!");
+			}
+
+		}
 
 		// finds the first input slot which is smeltable and whose result fits into an
 		// output slot (stacking if possible)
@@ -250,7 +269,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 
 				fuelNeeded += itemStacks[inputSlot].getItemDamage();
 
-				if (fuelNeeded < this.FuelRemaining) {
+				if (fuelNeeded * fuelMulti < this.FuelRemaining) {
 					result = getSmeltingResultForItem(itemStacks[inputSlot]);
 
 				} else {
@@ -305,7 +324,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 			itemStacks[firstSuitableOutputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
 		}
 
-		FuelRemaining -= fuelNeeded; // TODO
+		FuelRemaining -= fuelNeeded * fuelMulti; // TODO
 
 		markDirty();
 		return true;
@@ -534,7 +553,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 	// GUI
 	@Override
 	public String getName() {
-		return "container.mbe31_inventory_furnace.name";
+		return "repair.station";
 	}
 
 	@Override

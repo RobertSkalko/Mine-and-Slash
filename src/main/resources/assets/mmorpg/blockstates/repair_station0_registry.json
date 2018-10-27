@@ -1,0 +1,9 @@
+{
+    "variants": {
+           "burning_sides_count=0": { "model": "mmorpg:repair_station0_model0"},
+           "burning_sides_count=1": { "model": "mmorpg:repair_station0_model1"},
+           "burning_sides_count=2": { "model": "mmorpg:repair_station0_model2"},
+           "burning_sides_count=3": { "model": "mmorpg:repair_station0_model3"},
+           "burning_sides_count=4": { "model": "mmorpg:repair_station0_model4"}
+    }
+}

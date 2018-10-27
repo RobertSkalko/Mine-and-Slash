@@ -45,10 +45,10 @@ public class ContainerInventoryFurnace extends Container {
 	private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
 	private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
 
-	public final int FUEL_SLOTS_COUNT = 1;
+	public final int FUEL_SLOTS_COUNT = TileInventoryFurnace.FUEL_SLOTS_COUNT;
 	public final int INPUT_SLOTS_COUNT = 5;
 	public final int OUTPUT_SLOTS_COUNT = 5;
-	public final int FURNACE_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
+	public final int FURNACE_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
 
 	// slot index is the unique index for all slots in this container i.e. 0 - 35
 	// for invPlayer then 36 - 49 for tileInventoryFurnace
@@ -56,12 +56,14 @@ public class ContainerInventoryFurnace extends Container {
 	private final int FIRST_FUEL_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 	private final int FIRST_INPUT_SLOT_INDEX = FIRST_FUEL_SLOT_INDEX + FUEL_SLOTS_COUNT;
 	private final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
+	private final int FIRST_CAPACITOR_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOTS_COUNT;
 
 	// slot number is the slot number within each component; i.e. invPlayer slots 0
 	// - 35, and tileInventoryFurnace slots 0 - 14
 	private final int FIRST_FUEL_SLOT_NUMBER = 0;
 	private final int FIRST_INPUT_SLOT_NUMBER = FIRST_FUEL_SLOT_NUMBER + FUEL_SLOTS_COUNT;
 	private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
+	private final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
 	public ContainerInventoryFurnace(InventoryPlayer invPlayer, TileInventoryFurnace tileInventoryFurnace) {
 		this.tileInventoryFurnace = tileInventoryFurnace;
@@ -114,6 +116,15 @@ public class ContainerInventoryFurnace extends Container {
 			addSlotToContainer(new SlotOutput(tileInventoryFurnace, slotNumber, OUTPUT_SLOTS_XPOS,
 					OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
 		}
+
+		final int CAPACITOR_SLOTS_XPOS = 80; // 53; // TODO
+		final int CAPACITOR_SLOTS_YPOS = 24; // Add the tile capacitor slot
+		for (int x = 0; x < 1; x++) {
+			int slotNumber = x + FIRST_CAPACITOR_SLOT_NUMBER;
+			addSlotToContainer(new Slot(tileInventoryFurnace, slotNumber, CAPACITOR_SLOTS_XPOS + SLOT_X_SPACING * x,
+					CAPACITOR_SLOTS_YPOS));
+		}
+
 	}
 
 	// Checks each tick to make sure the player is still able to access the
