@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CSC",
+    "SAS",
+    "CSC"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:diamond_block"
+    }, 
+	"A": {
+      "item": "minecraft:emerald_block"
+    },
+    "S": 
+      {
+        "item": "mmorpg:capacitor2"        
+      }
+  },
+  "result": {
+    "item": "mmorpg:capacitor3"
+  }
+}

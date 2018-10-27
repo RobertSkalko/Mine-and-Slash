@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CBC",
+    "SAS",
+    "CBC"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:gold_block"
+    }, 
+	"C": {
+      "item": "minecraft:iron_block"
+    }, 
+	"A": {
+      "item": "minecraft:emerald_block"
+    },
+    "S": 
+      {
+        "item": "mmorpg:capacitor0"        
+      }
+  },
+  "result": {
+    "item": "mmorpg:capacitor1"
+  }
+}
