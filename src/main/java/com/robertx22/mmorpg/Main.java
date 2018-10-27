@@ -2,10 +2,10 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
+import com.robertx22.advanced_blocks.repair_station.StartupCommon;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
-import com.robertx22.repairstation.StartupCommon;
 import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
 import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
