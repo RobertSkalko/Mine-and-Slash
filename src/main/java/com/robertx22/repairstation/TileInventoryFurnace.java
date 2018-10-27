@@ -257,7 +257,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 
 			if (item instanceof ItemCapacitor) {
 				fuelMulti = ((ItemCapacitor) item).GetFuelMultiplier();
-				System.out.println("it works!");
+				// System.out.println("it works!");
 			}
 
 		}
