@@ -1,16 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CSC",
+    "ASA",
     "SAS",
-    "CSC"
+    "ASA"
   ],
   "key": {  
-	"C": {
-      "item": "minecraft:diamond_block"
-    }, 
 	"A": {
-      "item": "minecraft:nether_star"
+      "item": "minecraft:lapis_block"
     },
     "S": 
       {

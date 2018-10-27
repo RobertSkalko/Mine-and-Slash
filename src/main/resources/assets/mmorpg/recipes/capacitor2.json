@@ -1,19 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CBC",
+    "ASA",
     "SAS",
-    "CBC"
+    "ASA"
   ],
-  "key": {
-    "B": {
-      "item": "minecraft:gold_block"
-    }, 
-	"C": {
-      "item": "minecraft:diamond_block"
-    }, 
+  "key": {  
 	"A": {
-      "item": "minecraft:emerald_block"
+      "item": "minecraft:gold_block"
     },
     "S": 
       {

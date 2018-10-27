@@ -1,20 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ASA",
+    "CSC",
     "SAS",
-    "ASA"
+    "CSC"
   ],
   "key": {  
+	"C": {
+      "item": "minecraft:iron_block"
+    }, 
 	"A": {
       "item": "minecraft:diamond_block"
     },
     "S": 
       {
-        "item": "mmorpg:capacitor2"        
+        "item": "minecraft:gold_block"        
       }
   },
   "result": {
-    "item": "mmorpg:capacitor3"
+    "item": "mmorpg:repair_station0_registry"
   }
 }
