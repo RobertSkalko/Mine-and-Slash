@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * postInitCommon postInitClientOnly See MinecraftByExample class for more
  * information
  */
-public class StartupCommon {
+public class StartupRepair {
 	public static Block blockInventoryAdvanced; // this holds the unique instance of your block
 	public static ItemBlock itemBlockInventoryAdvanced; // this holds the unique instance of the ItemBlock corresponding
 														// to your block
@@ -44,7 +44,7 @@ public class StartupCommon {
 		// | stationary_water + water |
 		// +--------------------+----------------------+
 		//
-		blockInventoryAdvanced = new BlockInventoryFurnace().setUnlocalizedName("Repair Station");
+		blockInventoryAdvanced = new BlockInventoryRepair().setUnlocalizedName("Repair Station");
 		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":repair_station");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
 
@@ -56,7 +56,7 @@ public class StartupCommon {
 
 		// Each of your tile entities needs to be registered with a name that is unique
 		// to your mod.
-		GameRegistry.registerTileEntity(TileInventoryFurnace.class, Ref.MODID + ":repair_station_entity");
+		GameRegistry.registerTileEntity(TileInventoryRepair.class, Ref.MODID + ":repair_station_entity");
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
 		GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GuiHandler.getGuiID());
@@ -74,7 +74,7 @@ public class StartupCommon {
 		ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation(Ref.MODID + ":repair_station",
 				"inventory");
 		final int DEFAULT_ITEM_SUBTYPE = 0;
-		ModelLoader.setCustomModelResourceLocation(StartupCommon.itemBlockInventoryAdvanced, DEFAULT_ITEM_SUBTYPE,
+		ModelLoader.setCustomModelResourceLocation(StartupRepair.itemBlockInventoryAdvanced, DEFAULT_ITEM_SUBTYPE,
 				itemModelResourceLocation);
 	}
 

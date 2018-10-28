@@ -11,6 +11,7 @@ import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.block.Block;
@@ -30,7 +31,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemOre extends Item {
+public class ItemOre extends Item implements IWeighted {
 	public static HashMap<Integer, Item> ItemOres = new HashMap<Integer, Item>();
 	public static HashMap<Integer, ItemBlock> ItemBlocks = new HashMap<Integer, ItemBlock>();
 	public static HashMap<Integer, Block> Blocks = new HashMap<Integer, Block>();
@@ -43,6 +44,11 @@ public class ItemOre extends Item {
 
 		return RepairValues.get(rarity);
 
+	}
+
+	@Override
+	public int Weight() {
+		return Rarities.Items.get(rarity).Weight();
 	}
 
 	public ItemOre(String name, int rarity) {

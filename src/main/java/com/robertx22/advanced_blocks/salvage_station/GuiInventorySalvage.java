@@ -1,4 +1,4 @@
-package com.robertx22.advanced_blocks.repair_station;
+package com.robertx22.advanced_blocks.salvage_station;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -16,20 +16,20 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiInventoryFurnace extends GuiContainer {
+public class GuiInventorySalvage extends GuiContainer {
 
 	// This is the resource location for the background image
-	private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");
-	private TileInventoryFurnace tileEntity;
+	private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/salvage_station.png");
+	private TileInventorySalvage tileEntity;
 
-	public GuiInventoryFurnace(InventoryPlayer invPlayer, TileInventoryFurnace tileInventoryFurnace) {
-		super(new ContainerInventoryFurnace(invPlayer, tileInventoryFurnace));
+	public GuiInventorySalvage(InventoryPlayer invPlayer, TileInventorySalvage tileInventorySalvage) {
+		super(new ContainerInventorySalvage(invPlayer, tileInventorySalvage));
 
 		// Set the width and height of the gui
 		xSize = 176;
 		ySize = 207;
 
-		this.tileEntity = tileInventoryFurnace;
+		this.tileEntity = tileInventorySalvage;
 	}
 
 	// some [x,y] coordinates of graphical elements
@@ -39,14 +39,6 @@ public class GuiInventoryFurnace extends GuiContainer {
 	final int COOK_BAR_ICON_V = 207;
 	final int COOK_BAR_WIDTH = 80;
 	final int COOK_BAR_HEIGHT = 17;
-
-	final int FLAME_XPOS = 81;// 54;
-	final int FLAME_YPOS = 80;
-	final int FLAME_ICON_U = 176; // texture position of flame icon
-	final int FLAME_ICON_V = 0;
-	final int FLAME_WIDTH = 14;
-	final int FLAME_HEIGHT = 14;
-	final int FLAME_X_SPACING = 18;
 
 	Slot hoveredSlot = null;
 
@@ -76,16 +68,6 @@ public class GuiInventoryFurnace extends GuiContainer {
 		drawTexturedModalRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V,
 				(int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
-		// draw the fuel remaining bar for each fuel slot flame
-		for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
-			double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
-			int yOffset = (int) ((1.0 - burnRemaining) * FLAME_HEIGHT);
-			drawTexturedModalRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS + yOffset,
-					FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
-		}
-
-		// renderHoveredToolTip(x, y);
-
 	}
 
 	@Override
@@ -107,23 +89,10 @@ public class GuiInventoryFurnace extends GuiContainer {
 			hoveringText.add(cookPercentage + "%");
 		}
 
-		// If the mouse is over one of the burn time indicator add the burn time
-		// indicator hovering text
-		for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
-			if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT,
-					mouseX, mouseY)) {
-				// hoveringText.add("Fuel Time:");
-				hoveringText.add("Fuel Left: " + tileEntity.secondsOfFuelRemaining(i));
-			}
-		}
 		// If hoveringText is not empty draw the hovering text
 		if (!hoveringText.isEmpty()) {
 			drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, fontRenderer);
 		}
-//		// You must re bind the texture and reset the colour if you still need to use it after drawing a string
-//		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
-//		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
 	}
 
 	// Returns true if the given x,y coordinates are within the given rectangle

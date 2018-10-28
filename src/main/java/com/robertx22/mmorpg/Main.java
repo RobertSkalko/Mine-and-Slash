@@ -2,7 +2,8 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
-import com.robertx22.advanced_blocks.repair_station.StartupCommon;
+import com.robertx22.advanced_blocks.repair_station.StartupRepair;
+import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
@@ -71,7 +72,8 @@ public class Main {
 	public void preInit(FMLPreInitializationEvent event) {
 		ItemOre.Register();
 
-		StartupCommon.preInitCommon();
+		StartupRepair.preInitCommon();
+		StartupSalvage.preInitCommon();
 
 		MinecraftForge.EVENT_BUS.register(new StringPackage());
 		MinecraftForge.EVENT_BUS.register(new StringPackage.Handler());

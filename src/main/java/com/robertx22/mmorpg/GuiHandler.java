@@ -1,8 +1,11 @@
 package com.robertx22.mmorpg;
 
-import com.robertx22.advanced_blocks.repair_station.ContainerInventoryFurnace;
-import com.robertx22.advanced_blocks.repair_station.GuiInventoryFurnace;
-import com.robertx22.advanced_blocks.repair_station.TileInventoryFurnace;
+import com.robertx22.advanced_blocks.repair_station.ContainerInventoryRepair;
+import com.robertx22.advanced_blocks.repair_station.GuiInventoryRepair;
+import com.robertx22.advanced_blocks.repair_station.TileInventoryRepair;
+import com.robertx22.advanced_blocks.salvage_station.ContainerInventorySalvage;
+import com.robertx22.advanced_blocks.salvage_station.GuiInventorySalvage;
+import com.robertx22.advanced_blocks.salvage_station.TileInventorySalvage;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -34,9 +37,14 @@ public class GuiHandler implements IGuiHandler {
 
 		BlockPos xyz = new BlockPos(x, y, z);
 		TileEntity tileEntity = world.getTileEntity(xyz);
-		if (tileEntity instanceof TileInventoryFurnace) {
-			TileInventoryFurnace tileInventoryFurnace = (TileInventoryFurnace) tileEntity;
-			return new ContainerInventoryFurnace(player.inventory, tileInventoryFurnace);
+		if (tileEntity instanceof TileInventoryRepair) {
+			TileInventoryRepair tileInventory = (TileInventoryRepair) tileEntity;
+			return new ContainerInventoryRepair(player.inventory, tileInventory);
+		}
+
+		if (tileEntity instanceof TileInventorySalvage) {
+			TileInventorySalvage tileInventory = (TileInventorySalvage) tileEntity;
+			return new ContainerInventorySalvage(player.inventory, tileInventory);
 		}
 		return null;
 	}
@@ -50,10 +58,15 @@ public class GuiHandler implements IGuiHandler {
 
 		BlockPos xyz = new BlockPos(x, y, z);
 		TileEntity tileEntity = world.getTileEntity(xyz);
-		if (tileEntity instanceof TileInventoryFurnace) {
-			TileInventoryFurnace tileInventoryFurnace = (TileInventoryFurnace) tileEntity;
-			return new GuiInventoryFurnace(player.inventory, tileInventoryFurnace);
+		if (tileEntity instanceof TileInventoryRepair) {
+			TileInventoryRepair tileInventory = (TileInventoryRepair) tileEntity;
+			return new GuiInventoryRepair(player.inventory, tileInventory);
 		}
+		if (tileEntity instanceof TileInventorySalvage) {
+			TileInventorySalvage tileInventory = (TileInventorySalvage) tileEntity;
+			return new GuiInventorySalvage(player.inventory, tileInventory);
+		}
+
 		return null;
 	}
 

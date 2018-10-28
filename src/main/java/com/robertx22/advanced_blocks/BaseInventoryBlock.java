@@ -1,6 +1,5 @@
-package com.robertx22.advanced_blocks.repair_station;
+package com.robertx22.advanced_blocks;
 
-import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import com.robertx22.mmorpg.GuiHandler;
 import com.robertx22.mmorpg.Main;
 
@@ -20,34 +19,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-/**
- * User: brandon3055 Date: 06/01/2015
- *
- * BlockInventoryAdvanced is an advanced furnace with 5 input, 4 output and 4
- * fuel slots that smelts at twice the speed of a regular furnace. The block
- * itself doesn't do much more then any regular block except create a tile
- * entity when placed, open a gui when right clicked and drop tne inventory's
- * contents when harvested. Everything else is handled by the tile entity.
- *
- * The block model will change appearance depending on how many fuel slots are
- * burning. The amount of "block light" produced by the furnace will also
- * depending on how many fuel slots are burning.
- *
- * //Note that in 1.10.*, extending BlockContainer can cause rendering problems
- * if you don't extend getRenderType() // If you don't want to extend
- * BlockContainer, make sure to add the tile entity manually, // using
- * hasTileEntity() and createTileEntity(). See BlockContainer for a couple of
- * other important methods you may // need to implement.
- */
-public class BlockInventoryFurnace extends BlockContainer {
-	public BlockInventoryFurnace() {
-		super(Material.ROCK);
-		this.setCreativeTab(NewBlocks.MyModTab);
-	}
+public abstract class BaseInventoryBlock extends BlockContainer {
+	protected BaseInventoryBlock(Material materialIn) {
+		super(materialIn);
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileInventoryFurnace();
 	}
 
 	@Override

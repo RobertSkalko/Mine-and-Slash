@@ -25,7 +25,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
-public class TileInventoryFurnace extends TileEntity implements IInventory, ITickable {
+public class TileInventoryRepair extends TileEntity implements IInventory, ITickable {
 
 	// public abstract float FuelCostMultiplier();
 
@@ -65,7 +65,7 @@ public class TileInventoryFurnace extends TileEntity implements IInventory, ITic
 
 	private ItemStack[] itemStacks;
 
-	public TileInventoryFurnace() {
+	public TileInventoryRepair() {
 		itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 		clear();
 	}
