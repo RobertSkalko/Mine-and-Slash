@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.datasaving;
 
-import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.bases.Gson;
 
 import net.minecraft.item.ItemStack;

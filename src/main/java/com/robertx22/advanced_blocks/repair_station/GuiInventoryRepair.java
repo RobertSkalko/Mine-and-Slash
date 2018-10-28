@@ -10,7 +10,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -48,11 +47,6 @@ public class GuiInventoryRepair extends GuiContainer {
 	final int FLAME_HEIGHT = 14;
 	final int FLAME_X_SPACING = 18;
 
-	Slot hoveredSlot = null;
-
-	int x;
-	int y;
-
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		super.renderHoveredToolTip(mouseX, mouseY);
@@ -60,9 +54,6 @@ public class GuiInventoryRepair extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
-
-		this.x = x;
-		this.y = y;
 
 		// Bind the image texture
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);

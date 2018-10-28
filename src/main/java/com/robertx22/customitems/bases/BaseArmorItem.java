@@ -2,16 +2,12 @@ package com.robertx22.customitems.bases;
 
 import java.util.HashMap;
 
-import com.robertx22.crafting.OnItemCreatedUtils;
 import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import com.robertx22.uncommon.utilityclasses.Utils;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class BaseArmorItem extends ItemArmor {
@@ -47,13 +43,6 @@ public abstract class BaseArmorItem extends ItemArmor {
 		this.setRegistryName(Name().toLowerCase() + rarity);
 
 		map.put(rarity, this);
-	}
-
-	@Override
-	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-
-		OnItemCreatedUtils.TryReroll(playerIn, stack, worldIn);
-
 	}
 
 	private static ItemArmor.ArmorMaterial GetMat(int rarity) {

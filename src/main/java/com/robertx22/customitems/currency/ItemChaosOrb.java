@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
-import com.robertx22.saveclasses.gearitem.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -63,7 +63,7 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 		GearItemData gear = GearSaving.Load(stack);
 		gear.chaosStats = new ChaosStatsData();
 		gear.chaosStats.RerollFully(gear);
-		gear.HideInfoForCrafting(stack);
+		GearSaving.Save(stack, gear);
 
 	}
 

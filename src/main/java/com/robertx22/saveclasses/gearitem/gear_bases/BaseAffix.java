@@ -1,4 +1,4 @@
-package com.robertx22.gearitem;
+package com.robertx22.saveclasses.gearitem.gear_bases;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -64,7 +64,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 		for (IRerollable rel : gear.GetAllRerollable()) {
 			rel.RerollNumbers(gear);
 		}
-		gear.HideInfoForCrafting(stack);
+		GearSaving.Save(stack, gear);
 
 	}
 

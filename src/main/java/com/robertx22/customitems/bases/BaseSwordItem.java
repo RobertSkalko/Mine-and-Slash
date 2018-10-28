@@ -2,14 +2,10 @@ package com.robertx22.customitems.bases;
 
 import java.util.HashMap;
 
-import com.robertx22.crafting.OnItemCreatedUtils;
 import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class BaseSwordItem extends ItemSword {
@@ -27,12 +23,6 @@ public abstract class BaseSwordItem extends ItemSword {
 		this.setRegistryName(Name().toLowerCase() + rarity);
 
 		map.put(rarity, this);
-	}
-
-	@Override
-	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-
-		OnItemCreatedUtils.TryReroll(playerIn, stack, worldIn);
 	}
 
 	/*

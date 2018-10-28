@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.robertx22.database.suffixes.OfCriticalHits;
 import com.robertx22.database.suffixes.OfVitality;
-import com.robertx22.gearitem.Suffix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 
 public class Suffixes {
 	public static HashMap<String, Suffix> All = new HashMap<String, Suffix>() {

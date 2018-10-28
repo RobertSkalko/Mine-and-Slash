@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -59,8 +59,7 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 	public void ModifyItem(ItemStack stack) {
 		GearItemData gear = GearSaving.Load(stack);
 		gear.suffix.RerollFully(gear);
-		gear.HideInfoForCrafting(stack);
-
+		GearSaving.Save(stack, gear);
 	}
 
 	@Override

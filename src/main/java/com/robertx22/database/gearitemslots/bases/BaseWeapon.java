@@ -10,8 +10,8 @@ import com.robertx22.database.stats.mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.mods.flat.DamageFlat;
 import com.robertx22.database.stats.mods.flat.LifeOnHitFlat;
 import com.robertx22.database.stats.mods.flat.LifestealFlat;
-import com.robertx22.gearitem.Prefix;
-import com.robertx22.gearitem.Suffix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 import com.robertx22.stats.StatMod;
 
 public abstract class BaseWeapon extends GearItemSlot {

@@ -4,28 +4,25 @@ import java.util.Arrays;
 
 import javax.annotation.Nullable;
 
+import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.misc.ItemCapacitor;
 import com.robertx22.customitems.ores.ItemOre;
-import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
-public class TileInventoryRepair extends TileEntity implements IInventory, ITickable {
+public class TileInventoryRepair extends BaseTile {
 
 	// public abstract float FuelCostMultiplier();
 
@@ -62,8 +59,6 @@ public class TileInventoryRepair extends TileEntity implements IInventory, ITick
 	private short cookTime;
 	/** The number of ticks required to cook an item */
 	private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
-
-	private ItemStack[] itemStacks;
 
 	public TileInventoryRepair() {
 		itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
@@ -300,97 +295,6 @@ public class TileInventoryRepair extends TileEntity implements IInventory, ITick
 		return (short) MathHelper.clamp(burntime, 0, Short.MAX_VALUE);
 	}
 
-	// Gets the number of slots in the inventory
-	@Override
-	public int getSizeInventory() {
-		return itemStacks.length;
-	}
-
-	// returns true if all of the slots in the inventory are empty
-	@Override
-	public boolean isEmpty() {
-		for (ItemStack itemstack : itemStacks) {
-			if (!itemstack.isEmpty()) { // isEmpty()
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	// Gets the stack in the given slot
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return itemStacks[i];
-	}
-
-	/**
-	 * Removes some of the units from itemstack in the given slot, and returns as a
-	 * separate itemstack
-	 * 
-	 * @param slotIndex the slot number to remove the items from
-	 * @param count     the number of units to remove
-	 * @return a new itemstack containing the units removed from the slot
-	 */
-	@Override
-	public ItemStack decrStackSize(int slotIndex, int count) {
-		ItemStack itemStackInSlot = getStackInSlot(slotIndex);
-		if (itemStackInSlot.isEmpty())
-			return ItemStack.EMPTY; // isEmpty(), EMPTY_ITEM
-
-		ItemStack itemStackRemoved;
-		if (itemStackInSlot.getCount() <= count) { // getStackSize
-			itemStackRemoved = itemStackInSlot;
-			setInventorySlotContents(slotIndex, ItemStack.EMPTY); // EMPTY_ITEM
-		} else {
-			itemStackRemoved = itemStackInSlot.splitStack(count);
-			if (itemStackInSlot.getCount() == 0) { // getStackSize
-				setInventorySlotContents(slotIndex, ItemStack.EMPTY); // EMPTY_ITEM
-			}
-		}
-		markDirty();
-		return itemStackRemoved;
-	}
-
-	// overwrites the stack in the given slotIndex with the given stack
-	@Override
-	public void setInventorySlotContents(int slotIndex, ItemStack itemstack) {
-		itemStacks[slotIndex] = itemstack;
-		if (!itemstack.isEmpty() && itemstack.getCount() > getInventoryStackLimit()) { // isEmpty(); getStackSize()
-			itemstack.setCount(getInventoryStackLimit()); // setStackSize()
-		}
-		markDirty();
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
-
-	@Override
-	public boolean isUsableByPlayer(EntityPlayer player) {
-		if (this.world.getTileEntity(this.pos) != this)
-			return false;
-		final double X_CENTRE_OFFSET = 0.5;
-		final double Y_CENTRE_OFFSET = 0.5;
-		final double Z_CENTRE_OFFSET = 0.5;
-		final double MAXIMUM_DISTANCE_SQ = 8.0 * 8.0;
-		return player.getDistanceSq(pos.getX() + X_CENTRE_OFFSET, pos.getY() + Y_CENTRE_OFFSET,
-				pos.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
-	}
-
-	static public boolean isItemValidForFuelSlot(ItemStack itemStack) {
-		return true;
-	}
-
-	static public boolean isItemValidForInputSlot(ItemStack itemStack) {
-		return true;
-	}
-
-	static public boolean isItemValidForOutputSlot(ItemStack itemStack) {
-		return false;
-	}
-
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound parentNBTTagCompound) {
 		super.writeToNBT(parentNBTTagCompound); // The super call is required to save and load the tiles location
@@ -477,17 +381,11 @@ public class TileInventoryRepair extends TileEntity implements IInventory, ITick
 	}
 	// ------------------------
 
-	// set all slots to empty
-	@Override
-	public void clear() {
-		Arrays.fill(itemStacks, ItemStack.EMPTY); // EMPTY_ITEM
-	}
-
 	// will add a key for this container to the lang file so we can name it in the
 	// GUI
 	@Override
 	public String getName() {
-		return "repair.station";
+		return "Repair Station";
 	}
 
 	@Override
@@ -548,41 +446,6 @@ public class TileInventoryRepair extends TileEntity implements IInventory, ITick
 	@Override
 	public int getFieldCount() {
 		return NUMBER_OF_FIELDS;
-	}
-
-	// -----------------------------------------------------------------------------------------------------------
-	// The following methods are not needed for this example but are part of
-	// IInventory so they must be implemented
-
-	// Unused unless your container specifically uses it.
-	// Return true if the given stack is allowed to go in the given slot
-	@Override
-	public boolean isItemValidForSlot(int slotIndex, ItemStack itemstack) {
-		return false;
-	}
-
-	/**
-	 * This method removes the entire contents of the given slot and returns it.
-	 * Used by containers such as crafting tables which return any items in their
-	 * slots when you close the GUI
-	 * 
-	 * @param slotIndex
-	 * @return
-	 */
-	@Override
-	public ItemStack removeStackFromSlot(int slotIndex) {
-		ItemStack itemStack = getStackInSlot(slotIndex);
-		if (!itemStack.isEmpty())
-			setInventorySlotContents(slotIndex, ItemStack.EMPTY); // isEmpty(); EMPTY_ITEM
-		return itemStack;
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player) {
-	}
-
-	@Override
-	public void closeInventory(EntityPlayer player) {
 	}
 
 }

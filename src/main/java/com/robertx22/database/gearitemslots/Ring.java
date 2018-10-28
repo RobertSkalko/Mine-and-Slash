@@ -12,8 +12,8 @@ import com.robertx22.database.lists.Suffixes;
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
-import com.robertx22.gearitem.Prefix;
-import com.robertx22.gearitem.Suffix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 import com.robertx22.stats.StatMod;
 
 import net.minecraft.item.Item;

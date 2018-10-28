@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.robertx22.database.prefixes.Flaming;
 import com.robertx22.database.prefixes.Hardened;
-import com.robertx22.gearitem.Prefix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 
 public class Prefixes {
 	public static HashMap<String, Prefix> All = new HashMap<String, Prefix>() {

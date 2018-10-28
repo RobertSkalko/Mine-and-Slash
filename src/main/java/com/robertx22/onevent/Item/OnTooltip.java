@@ -1,6 +1,6 @@
 package com.robertx22.onevent.Item;
 
-import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 
 import net.minecraft.item.ItemStack;
@@ -33,9 +33,8 @@ public class OnTooltip {
 		GearItemData data = GearSaving.Load(item);
 
 		if (data != null) {
-			if (!data.HideInfo) {
-				data.BuildTooltip(event);
-			}
+
+			data.BuildTooltip(event);
 
 		}
 

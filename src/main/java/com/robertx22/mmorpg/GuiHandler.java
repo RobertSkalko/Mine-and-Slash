@@ -1,5 +1,8 @@
 package com.robertx22.mmorpg;
 
+import com.robertx22.advanced_blocks.item_modify_station.ContainerInventoryModify;
+import com.robertx22.advanced_blocks.item_modify_station.GuiInventoryModify;
+import com.robertx22.advanced_blocks.item_modify_station.TileInventoryModify;
 import com.robertx22.advanced_blocks.repair_station.ContainerInventoryRepair;
 import com.robertx22.advanced_blocks.repair_station.GuiInventoryRepair;
 import com.robertx22.advanced_blocks.repair_station.TileInventoryRepair;
@@ -46,6 +49,12 @@ public class GuiHandler implements IGuiHandler {
 			TileInventorySalvage tileInventory = (TileInventorySalvage) tileEntity;
 			return new ContainerInventorySalvage(player.inventory, tileInventory);
 		}
+
+		if (tileEntity instanceof TileInventoryModify) {
+			TileInventoryModify tileInventory = (TileInventoryModify) tileEntity;
+			return new ContainerInventoryModify(player.inventory, tileInventory);
+		}
+
 		return null;
 	}
 
@@ -65,6 +74,10 @@ public class GuiHandler implements IGuiHandler {
 		if (tileEntity instanceof TileInventorySalvage) {
 			TileInventorySalvage tileInventory = (TileInventorySalvage) tileEntity;
 			return new GuiInventorySalvage(player.inventory, tileInventory);
+		}
+		if (tileEntity instanceof TileInventoryModify) {
+			TileInventoryModify tileInventory = (TileInventoryModify) tileEntity;
+			return new GuiInventoryModify(player.inventory, tileInventory);
 		}
 
 		return null;

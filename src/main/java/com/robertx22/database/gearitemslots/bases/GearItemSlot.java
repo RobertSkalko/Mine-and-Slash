@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.robertx22.database.lists.StatMods;
 import com.robertx22.database.stats.mods.BaseTraitMod;
-import com.robertx22.gearitem.Prefix;
-import com.robertx22.gearitem.Suffix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 

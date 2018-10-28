@@ -2,13 +2,9 @@ package com.robertx22.customitems.bases;
 
 import java.util.HashMap;
 
-import com.robertx22.crafting.OnItemCreatedUtils;
 import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public abstract class BaseRarityItem extends Item {
 	public abstract String Name();
@@ -21,12 +17,6 @@ public abstract class BaseRarityItem extends Item {
 		this.setRegistryName(Name().toLowerCase() + rarity);
 
 		map.put(rarity, this);
-	}
-
-	@Override
-	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-
-		OnItemCreatedUtils.TryReroll(playerIn, stack, worldIn);
 	}
 
 }

@@ -1,12 +1,8 @@
 {
-    "parent": "block/cube",
+    "parent": "mmorpg:block/anvil_base",
     "textures": {
-        "down": "blocks/furnace_top",
-        "up": "blocks/furnace_top",
-        "east": "blocks/furnace_side",
-        "west": "blocks/furnace_side",
-        "north": "blocks/furnace_side",
-        "south": "blocks/furnace_side",
-        "particle": "blocks/furnace_top"
+        "particle": "blocks/anvil_base",
+        "body": "mmorpg:blocks/repair_base",
+        "top": "mmorpg:blocks/repair_top"
     }
 }

@@ -2,6 +2,7 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
+import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
@@ -74,6 +75,7 @@ public class Main {
 
 		StartupRepair.preInitCommon();
 		StartupSalvage.preInitCommon();
+		StartupModify.preInitCommon();
 
 		MinecraftForge.EVENT_BUS.register(new StringPackage());
 		MinecraftForge.EVENT_BUS.register(new StringPackage.Handler());

@@ -8,8 +8,8 @@ import com.robertx22.database.lists.Prefixes;
 import com.robertx22.database.lists.Suffixes;
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.database.stats.mods.flat.HealthFlat;
-import com.robertx22.gearitem.Prefix;
-import com.robertx22.gearitem.Suffix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
+import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 import com.robertx22.stats.StatMod;
 
 public abstract class BaseArmor extends GearItemSlot {

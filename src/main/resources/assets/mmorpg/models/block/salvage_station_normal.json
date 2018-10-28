@@ -1,0 +1,8 @@
+{
+    "parent": "mmorpg:block/anvil_base",
+    "textures": {
+        "particle": "blocks/anvil_base",
+        "body": "mmorpg:blocks/salvage_base",
+        "top": "mmorpg:blocks/salvage_top"
+    }
+}

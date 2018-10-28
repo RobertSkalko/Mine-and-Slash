@@ -8,7 +8,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
-import com.robertx22.saveclasses.gearitem.GearItemData;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 
 public class ItemGenRarityTest {

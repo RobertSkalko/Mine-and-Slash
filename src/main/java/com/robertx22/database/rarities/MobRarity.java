@@ -1,6 +1,6 @@
 package com.robertx22.database.rarities;
 
-import com.robertx22.gearitem.Rarity;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 
 public abstract class MobRarity extends Rarity {
 	
