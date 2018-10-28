@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -47,8 +48,45 @@ public class GuiInventoryFurnace extends GuiContainer {
 	final int FLAME_HEIGHT = 14;
 	final int FLAME_X_SPACING = 18;
 
+	Slot hoveredSlot = null;
+
+	@Override
+	protected void renderHoveredToolTip(int x, int y) {
+		if (this.hoveredSlot != null && this.hoveredSlot.getHasStack()) {
+			this.renderToolTip(this.hoveredSlot.getStack(), x, y);
+		}
+	}
+
+	private Slot getSlotAtPosition(int x, int y) {
+		for (int i = 0; i < this.inventorySlots.inventorySlots.size(); ++i) {
+			Slot slot = this.inventorySlots.inventorySlots.get(i);
+
+			if (this.isMouseOverSlot(slot, x, y) && slot.isEnabled()) {
+				return slot;
+			}
+		}
+
+		return null;
+	}
+
+	private boolean isMouseOverSlot(Slot slotIn, int mouseX, int mouseY) {
+		return this.isPointInRegion(slotIn.xPos, slotIn.yPos, 16, 16, mouseX, mouseY);
+	}
+
+	int x;
+	int y;
+
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
+	}
+
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
+
+		this.x = x;
+		this.y = y;
+
 		// Bind the image texture
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 		// Draw the image
@@ -68,11 +106,16 @@ public class GuiInventoryFurnace extends GuiContainer {
 			drawTexturedModalRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS + yOffset,
 					FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
 		}
+
+		// renderHoveredToolTip(x, y);
+
 	}
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+
+		hoveredSlot = getSlotAtPosition(mouseX, mouseY);
 
 		final int LABEL_XPOS = 5;
 		final int LABEL_YPOS = 5;

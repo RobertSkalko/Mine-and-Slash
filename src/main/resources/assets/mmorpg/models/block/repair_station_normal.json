@@ -3,10 +3,10 @@
     "textures": {
         "down": "blocks/furnace_top",
         "up": "blocks/furnace_top",
-        "east": "blocks/furnace_front_off",
-        "west": "blocks/furnace_front_off",
-        "north": "blocks/furnace_front_off",
-        "south": "blocks/furnace_front_off",
+        "east": "blocks/furnace_side",
+        "west": "blocks/furnace_side",
+        "north": "blocks/furnace_side",
+        "south": "blocks/furnace_side",
         "particle": "blocks/furnace_top"
     }
 }
