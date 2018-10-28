@@ -120,11 +120,12 @@ public class ContainerInventorySalvage extends Container {
 		// Check if the slot clicked is one of the vanilla container slots
 		if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX
 				&& sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-			if (!TileInventorySalvage.getSmeltingResultForItem(sourceStack).isEmpty()) { // isEmptyItem
-				if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT,
-						false)) {
-					return ItemStack.EMPTY; // EMPTY_ITEM;
-				}
+			// if (!TileInventorySalvage.getSmeltingResultForItem(sourceStack).isEmpty()) {
+			// // isEmptyItem
+			if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT,
+					false)) {
+				return ItemStack.EMPTY; // EMPTY_ITEM;
+				// }
 			} else {
 				return ItemStack.EMPTY; // this is the thing that gave me problems.. without this it crashes without an
 			} // error message

@@ -7,13 +7,13 @@
   ],
   "key": {  
 	"C": {
-      "item": "minecraft:iron_block"
+      "item": "minecraft:gold_block"
     }, 
 	"A": {
-      "item": "minecraft:coal_block"
+      "item": "minecraft:tnt"
     }
   },
   "result": {
-    "item": "mmorpg:repair_station"
+    "item": "mmorpg:salvage_station"
   }
 }

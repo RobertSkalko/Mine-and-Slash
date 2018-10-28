@@ -5,11 +5,14 @@ import java.util.Arrays;
 import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
+import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -22,20 +25,32 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileInventorySalvage extends BaseTile {
 
-	static ItemStack result = ItemStack.EMPTY;
+	ItemStack result = ItemStack.EMPTY;
 
-	public static ItemStack getSmeltingResultForItem(ItemStack stack) {
-		GearItemData gear = GearSaving.Load(stack);
+	float OrbChance = 0.5F;
+
+	public ItemStack getSmeltingResultForItem(ItemStack st) {
+		GearItemData gear = GearSaving.Load(st);
 		if (gear != null) {
+			ItemStack stack = ItemStack.EMPTY;
 
-			int amount = RandomUtils.RandomRange(1, 3);
+			if (RandomUtils.roll(OrbChance * gear.Rarity)) {
 
-			ItemOre ore = (ItemOre) ItemOre.ItemOres.get(gear.Rarity);
-			ItemStack oreStack = new ItemStack(ore);
-			oreStack.setCount(amount);
+				Item item = (Item) RandomUtils.WeightedRandom(ListUtils.CollectionToList(CurrencyItem.ITEMS));
 
+				stack = new ItemStack(item);
+
+			} else {
+
+				int amount = RandomUtils.RandomRange(1, 3);
+
+				ItemOre ore = (ItemOre) ItemOre.ItemOres.get(gear.Rarity);
+				stack = new ItemStack(ore);
+				stack.setCount(amount);
+
+			}
 			if (result.isEmpty()) {
-				result = oreStack;
+				result = stack;
 
 			}
 
@@ -83,23 +98,25 @@ public class TileInventorySalvage extends BaseTile {
 	@Override
 	public void update() {
 
-		ticks++;
-		if (ticks > 25) {
-			ticks = 0;
-			if (canSmelt()) {
+		if (!this.world.isRemote) {
+			ticks++;
+			if (ticks > 10) {
+				ticks = 0;
+				if (canSmelt()) {
 
-				cookTime += 20;
+					cookTime += 150;
 
-				if (cookTime < 0)
-					cookTime = 0;
+					if (cookTime < 0)
+						cookTime = 0;
 
-				// If cookTime has reached maxCookTime smelt the item and reset cookTime
-				if (cookTime >= COOK_TIME_FOR_COMPLETION) {
-					smeltItem();
+					// If cookTime has reached maxCookTime smelt the item and reset cookTime
+					if (cookTime >= COOK_TIME_FOR_COMPLETION) {
+						smeltItem();
+						cookTime = 0;
+					}
+				} else {
 					cookTime = 0;
 				}
-			} else {
-				cookTime = 0;
 			}
 		}
 
@@ -153,7 +170,7 @@ public class TileInventorySalvage extends BaseTile {
 		for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
 			if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-				getSmeltingResultForItem(itemStacks[inputSlot]);
+				result = getSmeltingResultForItem(itemStacks[inputSlot]);
 
 				if (!result.isEmpty()) { // isEmpty()
 					// find the first suitable output slot- either empty, or with identical item

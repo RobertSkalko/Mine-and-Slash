@@ -105,28 +105,29 @@ public class TileInventoryRepair extends BaseTile {
 
 	@Override
 	public void update() {
-		int numberOfFuelBurning = burnFuel();
 
-		ticks++;
-		if (ticks > 25) {
-			ticks = 0;
-			if (canSmelt()) {
+		if (!this.world.isRemote) {
+			int numberOfFuelBurning = burnFuel();
+			ticks++;
+			if (ticks > 25) {
+				ticks = 0;
+				if (canSmelt()) {
 
-				cookTime += 20;
+					cookTime += 20;
 
-				if (cookTime < 0)
-					cookTime = 0;
+					if (cookTime < 0)
+						cookTime = 0;
 
-				// If cookTime has reached maxCookTime smelt the item and reset cookTime
-				if (cookTime >= COOK_TIME_FOR_COMPLETION) {
-					smeltItem();
+					// If cookTime has reached maxCookTime smelt the item and reset cookTime
+					if (cookTime >= COOK_TIME_FOR_COMPLETION) {
+						smeltItem();
+						cookTime = 0;
+					}
+				} else {
 					cookTime = 0;
 				}
-			} else {
-				cookTime = 0;
 			}
 		}
-
 	}
 
 	/**

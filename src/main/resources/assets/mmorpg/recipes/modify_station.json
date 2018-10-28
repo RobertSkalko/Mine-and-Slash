@@ -7,13 +7,13 @@
   ],
   "key": {  
 	"C": {
-      "item": "minecraft:iron_block"
+      "item": "minecraft:diamond_block"
     }, 
 	"A": {
-      "item": "minecraft:coal_block"
-    }
+      "item": "minecraft:crafting_table"
+    } 
   },
   "result": {
-    "item": "mmorpg:repair_station"
+    "item": "mmorpg:modify_station"
   }
 }
