@@ -50,35 +50,12 @@ public class GuiInventoryFurnace extends GuiContainer {
 
 	Slot hoveredSlot = null;
 
-	@Override
-	protected void renderHoveredToolTip(int x, int y) {
-		if (this.hoveredSlot != null && this.hoveredSlot.getHasStack()) {
-			this.renderToolTip(this.hoveredSlot.getStack(), x, y);
-		}
-	}
-
-	private Slot getSlotAtPosition(int x, int y) {
-		for (int i = 0; i < this.inventorySlots.inventorySlots.size(); ++i) {
-			Slot slot = this.inventorySlots.inventorySlots.get(i);
-
-			if (this.isMouseOverSlot(slot, x, y) && slot.isEnabled()) {
-				return slot;
-			}
-		}
-
-		return null;
-	}
-
-	private boolean isMouseOverSlot(Slot slotIn, int mouseX, int mouseY) {
-		return this.isPointInRegion(slotIn.xPos, slotIn.yPos, 16, 16, mouseX, mouseY);
-	}
-
 	int x;
 	int y;
 
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		this.renderHoveredToolTip(mouseX, mouseY);
+		super.renderHoveredToolTip(mouseX, mouseY);
 	}
 
 	@Override
@@ -114,8 +91,6 @@ public class GuiInventoryFurnace extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-
-		hoveredSlot = getSlotAtPosition(mouseX, mouseY);
 
 		final int LABEL_XPOS = 5;
 		final int LABEL_YPOS = 5;
