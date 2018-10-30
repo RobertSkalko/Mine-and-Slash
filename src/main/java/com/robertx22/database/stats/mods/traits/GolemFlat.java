@@ -1,9 +1,11 @@
 package com.robertx22.database.stats.mods.traits;
 
+import com.robertx22.database.StatModAnot;
 import com.robertx22.database.stats.mods.BaseTraitMod;
 import com.robertx22.database.stats.types.traits.Golem;
 import com.robertx22.stats.Stat;
 
+@StatModAnot
 public class GolemFlat extends BaseTraitMod {
 
 	public GolemFlat() {

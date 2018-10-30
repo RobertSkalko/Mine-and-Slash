@@ -1,10 +1,12 @@
 package com.robertx22.database.stats.mods.percent.elemental;
 
+import com.robertx22.database.StatModAnot;
 import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
+@StatModAnot
 public class ThunderDamagePercent extends StatMod {
 
 	public ThunderDamagePercent() {

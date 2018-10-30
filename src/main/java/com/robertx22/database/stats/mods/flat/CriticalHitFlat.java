@@ -1,11 +1,13 @@
 package com.robertx22.database.stats.mods.flat;
 
+import com.robertx22.database.StatModAnot;
 import com.robertx22.database.stats.types.offense.CriticalHit;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
+@StatModAnot
 public class CriticalHitFlat extends StatMod {
 
 	public CriticalHitFlat() {

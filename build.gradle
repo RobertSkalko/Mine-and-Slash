@@ -2,12 +2,10 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
-		maven { url = "https://mvnrepository.com/artifact/org.reflections/reflections"}
     }
     dependencies {
-		classpath 'com.google.code.gson:gson:2.8.5'  
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'		
-		
+		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'	
+		classpath 'com.google.code.gson:gson:2.8.5'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'

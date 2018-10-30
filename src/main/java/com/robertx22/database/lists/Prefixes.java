@@ -4,16 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.database.prefixes.Energetic;
-import com.robertx22.database.prefixes.Evasive;
-import com.robertx22.database.prefixes.Flaming;
-import com.robertx22.database.prefixes.Frosty;
-import com.robertx22.database.prefixes.HardHitting;
-import com.robertx22.database.prefixes.Hardened;
-import com.robertx22.database.prefixes.HeavenlySkin;
-import com.robertx22.database.prefixes.LifeStealing;
-import com.robertx22.database.prefixes.Thorny;
-import com.robertx22.database.prefixes.Thundering;
+import com.robertx22.database.prefixes.defense.Evasive;
+import com.robertx22.database.prefixes.defense.Hardened;
+import com.robertx22.database.prefixes.defense.HeavenlySkin;
+import com.robertx22.database.prefixes.offense.FlameImbued;
+import com.robertx22.database.prefixes.offense.Flaming;
+import com.robertx22.database.prefixes.offense.FrostImbued;
+import com.robertx22.database.prefixes.offense.Frosty;
+import com.robertx22.database.prefixes.offense.HardHitting;
+import com.robertx22.database.prefixes.offense.LightningImbued;
+import com.robertx22.database.prefixes.offense.PoisonImbued;
+import com.robertx22.database.prefixes.offense.Thorny;
+import com.robertx22.database.prefixes.offense.Thundering;
+import com.robertx22.database.prefixes.resource.Energetic;
+import com.robertx22.database.prefixes.resource.LifeStealing;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 
 public class Prefixes {
@@ -48,6 +52,11 @@ public class Prefixes {
 		{
 			{
 				add(new Energetic());
+
+				add(new PoisonImbued());
+				add(new FlameImbued());
+				add(new FrostImbued());
+				add(new LightningImbued());
 
 			}
 		}

@@ -10,6 +10,10 @@ import com.robertx22.database.stats.mods.flat.DodgeFlat;
 import com.robertx22.database.stats.mods.flat.HealthFlat;
 import com.robertx22.database.stats.mods.flat.LifeOnHitFlat;
 import com.robertx22.database.stats.mods.flat.LifestealFlat;
+import com.robertx22.database.stats.mods.flat.elemental.bonus.BonusFireDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.bonus.BonusNatureDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.bonus.BonusThunderDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.bonus.BonusWaterDamageFlat;
 import com.robertx22.database.stats.mods.flat.elemental.dmg.FireDamageFlat;
 import com.robertx22.database.stats.mods.flat.elemental.dmg.NatureDamageFlat;
 import com.robertx22.database.stats.mods.flat.elemental.dmg.ThunderDamageFlat;
@@ -51,17 +55,16 @@ public class StatMods {
 
 	private static HashMap<String, StatMod> mods = null;
 
-	public static HashMap<String, StatMod> All() {
-		return All;
+	public static <C> HashMap<String, StatMod> All() {
 
+		return All;
 		/*
-		 * if (mods == null) { mods = GetAll(StatMod.class); }
-		 * 
-		 * return mods;
+		 * if (mods == null) { mods = Database.All(StatMod.class,
+		 * StatModAnot.class.getCanonicalName(), mods); } return mods;
 		 */
 	}
 
-	public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
+	private static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
 		{
 			{
 				put(new ArmorFlat().GUID(), new ArmorFlat());
@@ -106,6 +109,13 @@ public class StatMods {
 
 				put(new ArmorPercent().GUID(), new ArmorPercent());
 				put(new DodgeFlat().GUID(), new DodgeFlat());
+
+				// bonus dmg
+				put(new BonusWaterDamageFlat().GUID(), new BonusWaterDamageFlat());
+				put(new BonusFireDamageFlat().GUID(), new BonusFireDamageFlat());
+				put(new BonusThunderDamageFlat().GUID(), new BonusThunderDamageFlat());
+				put(new BonusNatureDamageFlat().GUID(), new BonusNatureDamageFlat());
+				// bonus dmg
 
 				// Traits
 				put(new GolemFlat().GUID(), new GolemFlat());

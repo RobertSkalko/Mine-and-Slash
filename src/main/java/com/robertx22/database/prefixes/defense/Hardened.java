@@ -1,26 +1,27 @@
-package com.robertx22.database.prefixes;
+package com.robertx22.database.prefixes.defense;
 
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.stats.mods.percent.elemental.WaterDamagePercent;
+import com.robertx22.database.stats.mods.percent.ArmorPercent;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.stats.StatMod;
 
-public class Frosty extends Prefix {
+public class Hardened extends Prefix {
 
-	public Frosty() {
+	public Hardened() {
 	}
 
 	@Override
 	public String Name() {
-		return "Frosty";
+		return "Hardened";
 	}
 
 	@Override
 	public List<StatMod> StatMods() {
 
-		return Arrays.asList(new WaterDamagePercent());
+		return Arrays.asList(new ArmorPercent());
+
 	}
 
 }

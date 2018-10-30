@@ -45,7 +45,7 @@ public abstract class EffectData {
 	public EffectTypes Type = EffectTypes.NORMAL;
 
 	public enum EffectTypes {
-		NORMAL, SPELL, BASIC_ATTACK,
+		NORMAL, SPELL, BASIC_ATTACK, BONUS_ATTACK
 	}
 
 	public boolean canceled = false;

@@ -36,7 +36,7 @@ public class ItemBracelet extends BaseBaublesItem {
 
 	@Override
 	public BaubleType getBaubleType(ItemStack itemstack) {
-		return BaubleType.CHARM;
+		return BaubleType.BELT;
 	}
 
 	@Override

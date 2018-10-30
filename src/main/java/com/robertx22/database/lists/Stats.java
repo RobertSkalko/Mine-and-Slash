@@ -22,6 +22,10 @@ import com.robertx22.database.stats.types.offense.CriticalHit;
 import com.robertx22.database.stats.types.offense.LifeOnHit;
 import com.robertx22.database.stats.types.offense.Lifesteal;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
+import com.robertx22.database.stats.types.offense.bonus.BonusFireDamage;
+import com.robertx22.database.stats.types.offense.bonus.BonusNatureDamage;
+import com.robertx22.database.stats.types.offense.bonus.BonusThunderDamage;
+import com.robertx22.database.stats.types.offense.bonus.BonusWaterDamage;
 import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.Health;
@@ -100,6 +104,11 @@ public class Stats {
 				put(FrostAtronach.GUID, new FrostAtronach());
 				put(FireAtronach.GUID, new FireAtronach());
 				put(ThunderAtronach.GUID, new ThunderAtronach());
+
+				put(BonusFireDamage.GUID, new BonusFireDamage());
+				put(BonusWaterDamage.GUID, new BonusWaterDamage());
+				put(BonusThunderDamage.GUID, new BonusThunderDamage());
+				put(BonusNatureDamage.GUID, new BonusNatureDamage());
 
 				// traits
 

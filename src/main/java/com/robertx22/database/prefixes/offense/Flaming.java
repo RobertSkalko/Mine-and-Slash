@@ -1,4 +1,4 @@
-package com.robertx22.database.prefixes;
+package com.robertx22.database.prefixes.offense;
 
 import java.util.Arrays;
 import java.util.List;

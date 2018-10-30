@@ -18,8 +18,8 @@ import net.minecraft.item.ItemStack;
 
 public class LootDropsGenerator {
 
-	private static float GearChance = 550F;
-	private static float CurrencyChance = 585.5F;
+	private static float GearChance = 1F;
+	private static float CurrencyChance = 0.2F;
 
 	public static void Generate(Unit mob, Unit player, EntityLivingBase mobEntity) {
 
@@ -68,7 +68,7 @@ public class LootDropsGenerator {
 	}
 
 	private static float ApplyMobLootMulti(float chance, Unit mob, float playerFind) {
-		return chance * Rarities.Mobs.get(mob.rarity).LootMultiplier() + (mob.vanillaHP / 15) * (1 + playerFind);
+		return chance * Rarities.Mobs.get(mob.rarity).LootMultiplier() * (1 + mob.vanillaHP / 15) * (1 + playerFind);
 	}
 
 	private static int WhileRoll(float chance) {
