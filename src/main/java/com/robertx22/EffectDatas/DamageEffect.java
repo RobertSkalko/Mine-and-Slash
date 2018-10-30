@@ -80,7 +80,7 @@ public class DamageEffect extends EffectData
 
 	private String LogDamage() {
 
-		String str = Number + " DMG ";
+		String str = String.format("%.1f", Number) + " DMG ";
 
 		if (Element == null || Element.equals(Elements.None)) {
 			str = TextFormatting.GRAY + str;

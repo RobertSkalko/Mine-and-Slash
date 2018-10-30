@@ -2,7 +2,10 @@ package com.robertx22.onevent;
 
 import java.util.UUID;
 
+import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.database.lists.Stats;
+import com.robertx22.generation.GearGen;
+import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.Stat;
@@ -20,6 +23,43 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 @Mod.EventBusSubscriber
 public class OnLogin {
 
+	private static void GiveStarterItems(EntityPlayer player) {
+
+		GearBlueprint print = new GearBlueprint(1);
+		print.SetSpecificType(new Sword().Name());
+		print.LevelRange = false;
+		print.SetSpecificRarity(0);
+
+		player.inventory.addItemStackToInventory(GearGen.Create(print));
+	}
+
+	private static void SetVanillaHealth(EntityPlayer player) {
+
+		if (player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH)
+				.getModifier(UUID.fromString("0bee127e-d6e1-11e8-9f8b-f2801f1b9fd1")) == null) {
+
+			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH)
+					.applyModifier(new AttributeModifier(UUID.fromString("0bee127e-d6e1-11e8-9f8b-f2801f1b9fd1"),
+							Ref.MODID + ":hpmod", Integer.MAX_VALUE/* entity.getMaxHealth() * 100 */, 2));
+
+			player.setHealth(player.getMaxHealth());
+		}
+
+	}
+
+	private static void CheckForNewStats(EntityPlayer player) {
+		Unit unit = UnitSaving.Load(player);
+
+		for (Stat stat : Stats.All.values()) {
+			if (!unit.Stats.containsKey(stat.Name())) {
+				unit.Stats.put(stat.Name(), stat);
+				player.sendMessage(
+						new TextComponentString("New Stat: '" + stat.Name() + "' has been added to the game!"));
+			}
+		}
+		UnitSaving.Save(player, unit);
+	}
+
 	@SubscribeEvent
 	public static void onLogin(PlayerLoggedInEvent event) {
 
@@ -32,37 +72,17 @@ public class OnLogin {
 		if (player.hasCapability(EntityData.Data, null)) {
 
 			if (UnitSaving.Load(player) == null) {
-
 				UnitSaving.Save(player, new Unit());
-
+				GiveStarterItems(player);
 			} else {
 
-				Unit unit = UnitSaving.Load(player);
-
-				for (Stat stat : Stats.All.values()) {
-					if (!unit.Stats.containsKey(stat.Name())) {
-						unit.Stats.put(stat.Name(), stat);
-						player.sendMessage(
-								new TextComponentString("New Stat: '" + stat.Name() + "' has been added to the game!"));
-					}
-				}
-
-				EntityPlayer entity = event.player;
-
-				if (entity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH)
-						.getModifier(UUID.fromString("0bee127e-d6e1-11e8-9f8b-f2801f1b9fd1")) == null) {
-
-					entity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH)
-							.applyModifier(new AttributeModifier(
-									UUID.fromString("0bee127e-d6e1-11e8-9f8b-f2801f1b9fd1"), Ref.MODID + ":hpmod",
-									Integer.MAX_VALUE/* entity.getMaxHealth() * 100 */, 2));
-				}
-
-				entity.setHealth(entity.getMaxHealth());
-
-				UnitSaving.Save(player, unit);
+				CheckForNewStats(player);
+				SetVanillaHealth(player);
 
 			}
+		} else {
+			player.sendMessage(
+					new TextComponentString("Error, player has no capability!" + Ref.MODID + " mod is broken!"));
 		}
 
 	}

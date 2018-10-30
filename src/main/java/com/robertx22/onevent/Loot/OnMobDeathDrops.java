@@ -1,5 +1,6 @@
 package com.robertx22.onevent.loot;
 
+import com.robertx22.database.lists.Rarities;
 import com.robertx22.loot.LootDropsGenerator;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -30,11 +31,23 @@ public class OnMobDeathDrops {
 				Unit player = UnitSaving.Load(event.getSource().getTrueSource());
 
 				LootDropsGenerator.Generate(mob, player, mobEntity);
+
+				GiveExp((EntityLivingBase) event.getSource().getTrueSource(), player, mob);
+
+				UnitSaving.Save(event.getSource().getTrueSource(), player);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
 		}
+	}
+
+	private static void GiveExp(EntityLivingBase playeren, Unit player, Unit mob) {
+
+		int exp = (int) (3 + mob.level * Rarities.Mobs.get(mob.rarity).LootMultiplier());
+
+		player.GiveExp((EntityPlayer) playeren, exp);
+
 	}
 
 }

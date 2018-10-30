@@ -46,6 +46,10 @@ public class OnEntityMeleeAttack {
 				Unit targetUnit = UnitSaving.Load(target);
 				Unit unit = UnitSaving.Load(source);
 
+				if (unit == null || targetUnit == null) {
+					return;
+				}
+
 				unit.RecalculateStats(source);
 				targetUnit.RecalculateStats(target);
 

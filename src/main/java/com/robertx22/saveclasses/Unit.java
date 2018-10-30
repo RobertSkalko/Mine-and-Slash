@@ -59,6 +59,9 @@ public class Unit implements Serializable {
 				}
 			}
 		}
+		this.health().BaseFlat += 20;
+		this.Stats.get(PhysicalDamage.GUID).BaseFlat += 2;
+
 	}
 
 	public String GUID = UUID.randomUUID().toString();
@@ -288,7 +291,9 @@ public class Unit implements Serializable {
 
 	public int GetExpRequiredForLevelUp() {
 
-		return level * 1000;
+		int tens = level / 10;
+
+		return level * 1000 + (tens * 5000);
 
 	}
 
@@ -296,22 +301,17 @@ public class Unit implements Serializable {
 
 		experience += i;
 
-		CheckIfLevelUp();
-
 	}
 
-	private void CheckIfLevelUp() {
+	public boolean CheckIfCanLevelUp() {
 
-		if (experience >= GetExpRequiredForLevelUp()) {
-			experience = 0;
-			LevelUp();
-		}
+		return experience >= GetExpRequiredForLevelUp();
 
 	}
 
 	private void LevelUp() {
 		level++;
-
+		experience = 0;
 	}
 
 }
