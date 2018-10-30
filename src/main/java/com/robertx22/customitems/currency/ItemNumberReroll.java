@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 

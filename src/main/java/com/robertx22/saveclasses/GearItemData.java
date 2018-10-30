@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.GearTypes;
 import com.robertx22.database.lists.Rarities;
@@ -15,6 +14,7 @@ import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
+import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;

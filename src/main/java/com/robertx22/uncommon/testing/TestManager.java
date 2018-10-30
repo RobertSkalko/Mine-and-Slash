@@ -5,7 +5,7 @@ import com.robertx22.uncommon.testing.tests.MaximumPossibleStat;
 
 public class TestManager {
 
-	private static boolean RunTests = false;
+	private static boolean RunTests = true;
 
 	public static void RunAllTests() {
 

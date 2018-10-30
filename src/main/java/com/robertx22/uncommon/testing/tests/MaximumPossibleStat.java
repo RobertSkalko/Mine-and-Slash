@@ -17,7 +17,7 @@ import com.robertx22.uncommon.testing.TestUnit;
 
 public class MaximumPossibleStat {
 
-	int amount = 75000;
+	int amount = 9500;
 
 	List<GearItemData> items;
 

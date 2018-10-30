@@ -32,6 +32,10 @@ import com.robertx22.database.stats.types.traits.Elemental;
 import com.robertx22.database.stats.types.traits.Golem;
 import com.robertx22.database.stats.types.traits.Lucky;
 import com.robertx22.database.stats.types.traits.Stealthy;
+import com.robertx22.database.stats.types.traits.atronachs.EarthAtronach;
+import com.robertx22.database.stats.types.traits.atronachs.FireAtronach;
+import com.robertx22.database.stats.types.traits.atronachs.FrostAtronach;
+import com.robertx22.database.stats.types.traits.atronachs.ThunderAtronach;
 import com.robertx22.database.stats.types.traits.bad_and_good.Barbarian;
 import com.robertx22.database.stats.types.traits.bad_and_good.ClumsyScholar;
 import com.robertx22.database.stats.types.traits.bad_ones.Crippled;
@@ -91,6 +95,11 @@ public class Stats {
 				put(ClumsyScholar.GUID, new ClumsyScholar());
 				put(Crippled.GUID, new Crippled());
 				put(Diseased.GUID, new Diseased());
+
+				put(EarthAtronach.GUID, new EarthAtronach());
+				put(FrostAtronach.GUID, new FrostAtronach());
+				put(FireAtronach.GUID, new FireAtronach());
+				put(ThunderAtronach.GUID, new ThunderAtronach());
 
 				// traits
 

@@ -3,10 +3,10 @@ package com.robertx22.saveclasses.abstractclasses;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.BaseAffix;
+import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.stats.StatMod;
 

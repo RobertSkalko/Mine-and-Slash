@@ -48,7 +48,7 @@ public class StatModData implements Serializable, ITooltipString {
 	public String baseModName;
 
 	public StatMod GetBaseMod() {
-		return StatMods.All.get(baseModName);
+		return StatMods.All().get(baseModName);
 	}
 
 	public int GetActualVal(GearItemData gear) {

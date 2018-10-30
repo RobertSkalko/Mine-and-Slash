@@ -1,4 +1,4 @@
-package com.robertx22.crafting.bases;
+package com.robertx22.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.saveclasses.GearItemData;
 

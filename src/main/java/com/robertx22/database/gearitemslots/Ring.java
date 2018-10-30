@@ -27,12 +27,12 @@ public class Ring extends GearItemSlot {
 
 	@Override
 	public List<Suffix> PossibleSuffixes() {
-		return new ArrayList<Suffix>(Suffixes.All.values());
+		return new ArrayList<Suffix>(Suffixes.Jewerly);
 	}
 
 	@Override
 	public List<Prefix> PossiblePrefixes() {
-		return new ArrayList<Prefix>(Prefixes.All.values());
+		return new ArrayList<Prefix>(Prefixes.Jewerly);
 	}
 
 	@Override

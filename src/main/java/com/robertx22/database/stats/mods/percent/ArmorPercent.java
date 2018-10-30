@@ -4,7 +4,6 @@ import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public class ArmorPercent extends StatMod {
 
@@ -34,11 +33,6 @@ public class ArmorPercent extends StatMod {
 	@Override
 	public Stat GetBaseStat() {
 		return new Armor();
-	}
-
-	@Override
-	public int Weight() {
-		return IWeighted.NormalWeight;
 	}
 
 }

@@ -6,6 +6,7 @@ import com.robertx22.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.database.stats.mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stats.mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.mods.flat.DamageFlat;
+import com.robertx22.database.stats.mods.flat.DodgeFlat;
 import com.robertx22.database.stats.mods.flat.HealthFlat;
 import com.robertx22.database.stats.mods.flat.LifeOnHitFlat;
 import com.robertx22.database.stats.mods.flat.LifestealFlat;
@@ -25,6 +26,10 @@ import com.robertx22.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.mods.percent.ArmorPercent;
+import com.robertx22.database.stats.mods.percent.EnergyRegenPercent;
+import com.robertx22.database.stats.mods.percent.HealthPercent;
+import com.robertx22.database.stats.mods.percent.LifestealPercent;
+import com.robertx22.database.stats.mods.percent.ManaRegenPercent;
 import com.robertx22.database.stats.mods.percent.elemental.FireDamagePercent;
 import com.robertx22.database.stats.mods.percent.elemental.NatureDamagePercent;
 import com.robertx22.database.stats.mods.percent.elemental.ThunderDamagePercent;
@@ -43,6 +48,19 @@ import com.robertx22.database.stats.mods.traits.ThunderAtronachFlat;
 import com.robertx22.stats.StatMod;
 
 public class StatMods {
+
+	private static HashMap<String, StatMod> mods = null;
+
+	public static HashMap<String, StatMod> All() {
+		return All;
+
+		/*
+		 * if (mods == null) { mods = GetAll(StatMod.class); }
+		 * 
+		 * return mods;
+		 */
+	}
+
 	public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
 		{
 			{
@@ -53,10 +71,17 @@ public class StatMods {
 
 				// Resources
 				put(new HealthFlat().GUID(), new HealthFlat());
+				put(new HealthPercent().GUID(), new HealthPercent());
 				put(new HealthRegenFlat().GUID(), new HealthRegenFlat());
 				put(new ManaRegenFlat().GUID(), new ManaRegenFlat());
 				put(new EnergyRegenFlat().GUID(), new EnergyRegenFlat());
+				put(new EnergyRegenPercent().GUID(), new EnergyRegenPercent());
+				put(new ManaRegenPercent().GUID(), new ManaRegenPercent());
+
 				// Resources
+				put(new LifestealFlat().GUID(), new LifestealFlat());
+				put(new LifestealPercent().GUID(), new LifestealPercent());
+				put(new LifeOnHitFlat().GUID(), new LifeOnHitFlat());
 
 				// Elements
 				put(new FireDamageFlat().GUID(), new FireDamageFlat());
@@ -77,10 +102,10 @@ public class StatMods {
 				put(new FireDamagePercent().GUID(), new FireDamagePercent());
 				put(new WaterDamagePercent().GUID(), new WaterDamagePercent());
 				put(new ThunderDamagePercent().GUID(), new ThunderDamagePercent());
-				put(new NatureDamagePercent().GUID(), new NatureDamagePercent());
-				// Elements
+				put(new NatureDamagePercent().GUID(), new NatureDamagePercent()); // Elements
 
 				put(new ArmorPercent().GUID(), new ArmorPercent());
+				put(new DodgeFlat().GUID(), new DodgeFlat());
 
 				// Traits
 				put(new GolemFlat().GUID(), new GolemFlat());
@@ -97,10 +122,8 @@ public class StatMods {
 
 				// Traits
 
-				put(new LifestealFlat().GUID(), new LifestealFlat());
-				put(new LifeOnHitFlat().GUID(), new LifeOnHitFlat());
-
 			}
 		}
 	};
+
 }

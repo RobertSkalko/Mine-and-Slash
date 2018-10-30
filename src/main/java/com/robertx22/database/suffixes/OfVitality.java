@@ -3,7 +3,7 @@ package com.robertx22.database.suffixes;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.stats.mods.flat.HealthFlat;
+import com.robertx22.database.stats.mods.percent.HealthPercent;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 import com.robertx22.stats.StatMod;
 
@@ -20,7 +20,7 @@ public class OfVitality extends Suffix {
 	@Override
 	public List<StatMod> StatMods() {
 
-		return Arrays.asList(new HealthFlat());
+		return Arrays.asList(new HealthPercent());
 
 	}
 

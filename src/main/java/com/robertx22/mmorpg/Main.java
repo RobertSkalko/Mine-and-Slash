@@ -1,17 +1,22 @@
 package com.robertx22.mmorpg;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.database.StatModAnot;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
 import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
 import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
 import com.robertx22.spells.projectile.thunderbolt.EntityThunderBolt;
+import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.BarsGUI;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.commands.GiveGear;
@@ -30,6 +35,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
+import net.minecraftforge.fml.common.discovery.ASMDataTable;
+import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -69,9 +76,26 @@ public class Main {
 
 	}
 
+	public static ASMDataTable ASMData = null;
+
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event)
+			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		ItemOre.Register();
+
+		ASMData = event.getAsmData();
+
+		Set<ASMData> test = ASMData.getAll(StatModAnot.class.getCanonicalName());
+
+		List<StatMod> mods = new ArrayList<StatMod>();
+
+		for (ASMData d : test) {
+			Class obj = Class.forName(d.getClassName());
+			if (obj.isAssignableFrom(StatMod.class) || StatMod.class.isAssignableFrom(obj)) {
+				mods.add((StatMod) obj.newInstance());
+			}
+
+		}
 
 		StartupRepair.preInitCommon();
 		StartupSalvage.preInitCommon();

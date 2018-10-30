@@ -94,7 +94,7 @@ public class TileInventoryModify extends BaseTile {
 		if (!this.world.isRemote) {
 
 			ticks++;
-			if (ticks > 25) {
+			if (ticks > 15) {
 				ticks = 0;
 				if (canSmelt()) {
 

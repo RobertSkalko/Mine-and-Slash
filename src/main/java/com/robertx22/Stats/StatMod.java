@@ -2,14 +2,15 @@ package com.robertx22.stats;
 
 import java.util.Random;
 
+import com.robertx22.database.IGUID;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
-public abstract class StatMod implements IWeighted {
+public abstract class StatMod implements IWeighted, IGUID {
 
 	@Override
 	public int Weight() {
-		return IWeighted.VeryRareWeight;
+		return IWeighted.NormalWeight;
 	}
 
 	private static Random ran = new Random();

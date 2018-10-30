@@ -1,11 +1,13 @@
 package com.robertx22.onevent.combat;
 
+import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -15,7 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class OnEntityMeleeAttack {
 
-	static int energyCost = 3;
+	// static int energyCost = 3;
 
 	// i think ill replace health compltely and just cancel all damage events and
 	// just set hp display or somehting
@@ -35,7 +37,7 @@ public class OnEntityMeleeAttack {
 			}
 
 			if (event.getSource() instanceof MyDamageSource) {
-				// System.out.println("Dmg source works correctly!");
+				System.out.println("Dmg source works correctly!");
 			} else {
 
 				EntityLivingBase source = (EntityLivingBase) event.getSource().getTrueSource();
@@ -44,28 +46,37 @@ public class OnEntityMeleeAttack {
 				Unit targetUnit = UnitSaving.Load(target);
 				Unit unit = UnitSaving.Load(source);
 
-				if (unit != null && targetUnit != null) {
+				unit.RecalculateStats(source);
+				targetUnit.RecalculateStats(target);
 
-					event.setAmount(0);
+				if (source instanceof EntityPlayer) {
+					ItemStack weapon = source.getHeldItemMainhand();
 
-					if (source instanceof EntityPlayer) {
+					if (weapon != null && !weapon.isEmpty() && weapon.getItem() instanceof IWeapon) {
 
-						if (unit.energy().GetCurrentValue() < energyCost) {
-							event.setCanceled(true);
-							NoEnergyMessage(source);
+						IWeapon iWep = (IWeapon) weapon.getItem();
 
-						} else {
-							unit.SpendEnergy(energyCost);
-							UnitSaving.Save(source, unit);
+						int energyCost = iWep.GetEnergyCost();
 
-							unit.BasicAttack(source, target, unit);
+						if (unit != null && targetUnit != null) {
 
+							event.setAmount(0);
+
+							if (unit.energy().GetCurrentValue() < energyCost) {
+								event.setCanceled(true);
+								NoEnergyMessage(source);
+
+							} else {
+								unit.SpendEnergy(energyCost);
+								UnitSaving.Save(source, unit);
+
+								unit.BasicAttack(source, target, unit);
+
+							}
 						}
-
-					} else {
-						unit.BasicAttack(source, target, unit);
 					}
-
+				} else {
+					unit.BasicAttack(source, target, unit);
 				}
 
 			}

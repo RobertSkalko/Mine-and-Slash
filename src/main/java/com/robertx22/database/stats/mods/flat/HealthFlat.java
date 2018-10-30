@@ -4,7 +4,6 @@ import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public class HealthFlat extends StatMod {
 
@@ -36,8 +35,4 @@ public class HealthFlat extends StatMod {
 		return new Health();
 	}
 
-	@Override
-	public int Weight() {
-		return IWeighted.NormalWeight;
-	}
 }

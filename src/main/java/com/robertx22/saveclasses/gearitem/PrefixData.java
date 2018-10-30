@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.crafting.bases.IRerollable;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.abstractclasses.AffixData;
 import com.robertx22.saveclasses.gearitem.gear_bases.BaseAffix;
+import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.stats.StatMod;
@@ -59,7 +59,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 
 	@Override
 	public BaseAffix BaseAffix() {
-		return Prefixes.All.get(baseAffix);
+		return Prefixes.All().get(baseAffix);
 	}
 
 	@Override

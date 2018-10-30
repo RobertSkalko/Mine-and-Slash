@@ -52,8 +52,13 @@ public class Unit implements Serializable {
 
 		if (Stats == null) {
 			Stats = com.robertx22.database.lists.Stats.All;
+		} else {
+			for (Stat stat : com.robertx22.database.lists.Stats.All.values()) {
+				if (!Stats.containsKey(stat.Name())) {
+					Stats.put(stat.Name(), stat);
+				}
+			}
 		}
-
 	}
 
 	public String GUID = UUID.randomUUID().toString();

@@ -15,6 +15,7 @@ public class TestUnit extends Unit {
 		for (GearItemData gear : gears) {
 			List<StatModData> datas = gear.GetAllStats(gear);
 			for (StatModData data : datas) {
+				// System.out.println(data.baseModName);
 				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
 				if (stat == null) {
 					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());

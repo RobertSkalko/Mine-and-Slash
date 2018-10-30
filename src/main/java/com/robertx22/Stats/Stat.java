@@ -2,15 +2,21 @@ package com.robertx22.stats;
 
 import java.util.ArrayList;
 
+import com.robertx22.database.IGUID;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public abstract class Stat {
+public abstract class Stat implements IGUID {
 
 	public Stat() {
+	}
+
+	@Override
+	public String GUID() {
+		return Name();
 	}
 
 	public int StatMinimum = 0;

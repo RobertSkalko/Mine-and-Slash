@@ -32,12 +32,12 @@ public class Necklace extends GearItemSlot {
 
 	@Override
 	public List<Suffix> PossibleSuffixes() {
-		return new ArrayList<Suffix>(Suffixes.All.values());
+		return new ArrayList<Suffix>(Suffixes.All().values());
 	}
 
 	@Override
 	public List<Prefix> PossiblePrefixes() {
-		return new ArrayList<Prefix>(Prefixes.All.values());
+		return new ArrayList<Prefix>(Prefixes.All().values());
 	}
 
 	@Override
