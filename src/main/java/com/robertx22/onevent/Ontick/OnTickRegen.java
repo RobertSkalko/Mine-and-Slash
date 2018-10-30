@@ -9,7 +9,6 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.BarsGUI;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.datasaving.bases.Saving;
-import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.Mod;
@@ -56,8 +55,7 @@ public class OnTickRegen {
 					unit.RestoreEnergy(energyrestored);
 
 					int healthrestored = (int) unit.Stats.get(new HealthRegen().Name()).Value;
-					event.player.heal(HealthUtils.DamageToMinecraftHealth(healthrestored, event.player));
-
+					unit.Heal(event.player, healthrestored);
 					UnitSaving.Save(event.player, unit);
 
 					tick = 0;

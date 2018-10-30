@@ -7,6 +7,7 @@ import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.onevent.OnDisplayDamage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -37,13 +38,16 @@ public class DamageEffect extends EffectData
 	protected void activate() {
 
 		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName);
-		dmgsource.setDamageBypassesArmor();
 
 		UnitSaving.Save(this.Target, this.targetUnit);
 
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number, Target);
 
-		Target.attackEntityFrom(dmgsource, dmg);
+		OnDisplayDamage.displayParticle(Target, (int) Number);
+
+		// Target.getLastAttackedEntityTime()
+		Target.attackEntityFrom(dmgsource, dmg); // this seems to have a cooldown
+		// Target.setHealth(Target.getHealth() - dmg);
 
 		LogCombat();
 

@@ -28,12 +28,14 @@ import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
+import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -52,6 +54,9 @@ public class Unit implements Serializable {
 
 		if (Stats == null) {
 			Stats = com.robertx22.database.lists.Stats.All;
+			// this.health().BaseFlat += 20;
+			// this.Stats.get(PhysicalDamage.GUID).BaseFlat += 2;
+
 		} else {
 			for (Stat stat : com.robertx22.database.lists.Stats.All.values()) {
 				if (!Stats.containsKey(stat.Name())) {
@@ -59,8 +64,6 @@ public class Unit implements Serializable {
 				}
 			}
 		}
-		this.health().BaseFlat += 20;
-		this.Stats.get(PhysicalDamage.GUID).BaseFlat += 2;
 
 	}
 
@@ -312,6 +315,10 @@ public class Unit implements Serializable {
 	private void LevelUp() {
 		level++;
 		experience = 0;
+	}
+
+	public void Heal(EntityLivingBase entity, int healthrestored) {
+		entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored * OnHealDecrease.HEAL_DECREASE, entity));
 	}
 
 }

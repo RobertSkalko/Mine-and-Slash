@@ -1,4 +1,4 @@
-package com.robertx22.onevent;
+package com.robertx22.onevent.player;
 
 import java.util.UUID;
 
@@ -77,7 +77,7 @@ public class OnLogin {
 			} else {
 
 				CheckForNewStats(player);
-				SetVanillaHealth(player);
+				// SetVanillaHealth(player);
 
 			}
 		} else {

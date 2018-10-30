@@ -1,4 +1,4 @@
-package com.robertx22.onevent;
+package com.robertx22.onevent.player;
 
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;

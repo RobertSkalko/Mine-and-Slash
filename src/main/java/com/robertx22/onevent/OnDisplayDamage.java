@@ -5,13 +5,14 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.damage_indicator.DamageParticle;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
@@ -24,7 +25,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class Event {
+public class OnDisplayDamage {
+
 	@SubscribeEvent
 	public static void displayDamage(LivingUpdateEvent event) {
 		displayDamageDealt(event.getEntityLiving());
@@ -35,24 +37,26 @@ public class Event {
 
 	public static void displayDamageDealt(EntityLivingBase entity) {
 
-		if (!entity.world.isRemote) {
+		if (entity.world.isRemote || entity == null) {
 			return;
 		}
 
-		int currentHealth = (int) Math.ceil(entity.getHealth());
+		Unit unit = UnitSaving.Load(entity);
 
-		if (entity.getEntityData().hasKey("health")) {
-			int entityHealth = ((NBTTagInt) entity.getEntityData().getTag("health")).getInt();
+		if (unit != null) {
+
+			int currentHealth = unit.health().CurrentValue(entity, unit);
+			int entityHealth = (int) unit.health().Value;
 
 			if (entityHealth != currentHealth) {
-				displayParticle(entity, entityHealth - currentHealth);
+				// displayParticle(entity, entityHealth - currentHealth);
 			}
 		}
 
-		entity.getEntityData().setTag("health", new NBTTagInt(currentHealth));
+		// entity.getEntityData().setTag("health", new NBTTagInt(currentHealth));
 	}
 
-	private static void displayParticle(Entity entity, int damage) {
+	public static void displayParticle(Entity entity, int damage) {
 		if (damage == 0) {
 			return;
 		}
@@ -64,13 +68,6 @@ public class Event {
 				entity.posZ, motionX, motionY, motionZ);
 		Minecraft.getMinecraft().effectRenderer.addEffect(damageIndicator);
 	}
-
-	/*
-	 * public void setEntityInCrosshairs() { RayTraceResult r = getMouseOver(1.0f);
-	 * if (r != null && RayTraceResult.Type.ENTITY.equals(r.typeOfHit)) { if
-	 * (r.entityHit instanceof EntityLivingBase) {
-	 * entityStatusGUI.setEntity((EntityLivingBase) r.entityHit); } } }
-	 */
 
 	@Nullable
 	@SideOnly(Side.CLIENT)

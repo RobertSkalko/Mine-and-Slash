@@ -6,6 +6,10 @@ public class MyDamageSource extends DamageSource {
 
 	public MyDamageSource(String damageTypeIn) {
 		super(damageTypeIn);
+		this.setDamageBypassesArmor();
+		this.setDamageIsAbsolute();
+		this.setMagicDamage();
+
 	}
 
 }
