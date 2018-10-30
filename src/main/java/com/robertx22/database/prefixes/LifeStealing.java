@@ -14,7 +14,7 @@ public class LifeStealing extends Prefix {
 
 	@Override
 	public String Name() {
-		return "LifeStealing";
+		return "Life Stealing";
 	}
 
 	@Override
