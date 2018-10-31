@@ -1,6 +1,8 @@
 package com.robertx22.spells.bases;
 
+import com.robertx22.database.lists.Stats;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.stats.Stat;
 
 public class EffectCalculation {
 
@@ -11,6 +13,10 @@ public class EffectCalculation {
 		super();
 		Stat = stat;
 		Multi = multi;
+	}
+
+	public Stat GetStat() {
+		return Stats.All.get(Stat);
 	}
 
 	public int GetValue(Unit unit) {

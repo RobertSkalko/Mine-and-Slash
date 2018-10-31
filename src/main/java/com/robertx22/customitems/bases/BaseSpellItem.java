@@ -46,17 +46,28 @@ public abstract class BaseSpellItem extends Item {
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 		SpellItemData data = SpellSaving.Load(stack);
+		ItemRarity rarity = Rarities.Items.get(data.rarity);
+
+		stack.setStackDisplayName(rarity.Color() + rarity.Name() + " " + data.GetSpell().Name());
 
 		if (data != null) {
 
 			tooltip.clear();
 
-			tooltip.add(Spell().Name());
+			tooltip.add(Rarities.Items.get(data.rarity).Color() + Spell().Name());
 			tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
+			tooltip.add("");
+
+			tooltip.add(TextFormatting.GREEN + "Stats:");
+			tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc()));
+			tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc()));
+			tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc()));
 
 			tooltip.add("");
 
-			ItemRarity rarity = Rarities.Items.get(data.rarity);
+			tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data));
+
+			tooltip.add("");
 			tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
 		}
 	}

@@ -25,7 +25,8 @@ public abstract class EntityElementalBolt extends EntityThrowable {
 
 	@Override
 	protected void onImpact(RayTraceResult result) {
-		if (result.entityHit != null && result.entityHit instanceof EntityLivingBase) {
+		if (result.entityHit != null && result.entityHit instanceof EntityLivingBase && effect != null
+				&& data != null) {
 
 			if (!world.isRemote) {
 				effect.Activate(data, (EntityLivingBase) result.entityHit);

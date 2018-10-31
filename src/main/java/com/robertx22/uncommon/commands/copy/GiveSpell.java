@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.commands.copy;
 
-import com.robertx22.generation.ItemSpellGen;
+import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 
 import net.minecraft.command.CommandBase;
@@ -39,7 +39,7 @@ public class GiveSpell extends CommandBase {
 		EntityPlayer player = (EntityPlayer) sender;
 
 		for (int i = 0; i < amount; i++) {
-			player.addItemStackToInventory(ItemSpellGen.Create(schema));
+			player.addItemStackToInventory(SpellItemGen.Create(schema));
 		}
 	}
 }

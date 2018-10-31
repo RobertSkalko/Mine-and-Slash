@@ -44,7 +44,7 @@ public class SpellFrostBolt extends BaseBolt {
 
 	@Override
 	public String Name() {
-		return "Frost_Bolt";
+		return "Frost Bolt";
 	}
 
 	@Override

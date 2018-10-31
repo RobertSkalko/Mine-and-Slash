@@ -41,12 +41,12 @@ public class DamageEffect extends EffectData
 
 		UnitSaving.Save(this.Target, this.targetUnit);
 
-		float dmg = HealthUtils.DamageToMinecraftHealth(Number, Target);
+		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 
 		OnDisplayDamage.displayParticle(Target, (int) Number);
 
-		// Target.getLastAttackedEntityTime()
-		Target.attackEntityFrom(dmgsource, dmg); // this seems to have a cooldown
+		Target.attackEntityFrom(dmgsource, dmg);
+
 		// Target.setHealth(Target.getHealth() - dmg);
 
 		LogCombat();
@@ -54,6 +54,10 @@ public class DamageEffect extends EffectData
 	}
 
 	private void LogCombat() {
+
+		if (this.Type.equals(EffectTypes.BONUS_ATTACK)) { // don't spam chat with bonus damaages
+			return;
+		}
 
 		if (this.Source instanceof EntityPlayer) {
 
@@ -84,7 +88,18 @@ public class DamageEffect extends EffectData
 
 	private String LogDamage() {
 
-		String str = String.format("%.1f", Number) + " DMG ";
+		String num = "";
+		if (Number > 1000) {
+			int thousands = (int) (Number / 1000);
+
+			int leftover = (int) ((Number - thousands * 1000) / 100);
+
+			num = thousands + "." + leftover + "k";
+		} else {
+			num = String.format("%.2f", Number);
+		}
+
+		String str = num + " DMG ";
 
 		if (Element == null || Element.equals(Elements.None)) {
 			str = TextFormatting.GRAY + str;

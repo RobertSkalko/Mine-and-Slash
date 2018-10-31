@@ -38,6 +38,8 @@ public abstract class BaseSpell implements IWeighted {
 
 	}
 
+	public abstract String GetDescription(SpellItemData data);
+
 	public int Weight() {
 		return this.NormalWeight;
 	}
@@ -49,11 +51,9 @@ public abstract class BaseSpell implements IWeighted {
 		if (!caster.world.isRemote) {
 			Unit unit = UnitSaving.Load(caster);
 
-			if (unit.mana().GetCurrentValue() >= ManaCost()) {
+			if (unit.mana().GetCurrentValue() >= data.GetManaCost()) {
 
-				caster.sendMessage(new TextComponentString("Spent " + ManaCost() + " mana."));
-
-				unit.SpendMana(ManaCost());
+				unit.SpendMana(data.GetManaCost());
 				UnitSaving.Save(caster, unit);
 				return true;
 			}
