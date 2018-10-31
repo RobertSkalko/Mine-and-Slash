@@ -1,9 +1,9 @@
-package com.robertx22.customitems.spells;
+package com.robertx22.customitems.spells.projectile;
 
 import com.robertx22.customitems.bases.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.spells.projectile.acidbolt.SpellAcidBolt;
+import com.robertx22.spells.projectile.frostbolt.SpellFrostBolt;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.item.Item;
@@ -14,29 +14,29 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
-public class ItemAcidBolt extends BaseSpellItem {
+public class ItemFrostBolt extends BaseSpellItem {
 
-	public ItemAcidBolt() {
+	public ItemFrostBolt() {
 		super();
 	}
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":spell_acidbolt")
+	@GameRegistry.ObjectHolder(Ref.MODID + ":spell_frostbolt")
 	public static final Item ITEM = null;
 
 	@Override
 	public String Name() {
-		return "Acid Bolt";
+		return "Frost Bolt";
 
 	}
 
 	@Override
 	public BaseSpell Spell() {
-		return new SpellAcidBolt();
+		return new SpellFrostBolt();
 	}
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemAcidBolt());
+		event.getRegistry().register(new ItemFrostBolt());
 	}
 
 	@SubscribeEvent
@@ -46,7 +46,7 @@ public class ItemAcidBolt extends BaseSpellItem {
 
 	@Override
 	public String GUID() {
-		return Ref.MODID + ":spell_acidbolt";
+		return Ref.MODID + ":spell_frostbolt";
 	}
 
 }

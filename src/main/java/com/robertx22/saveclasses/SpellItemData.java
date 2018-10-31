@@ -37,27 +37,27 @@ public class SpellItemData implements Serializable {
 	}
 
 	public int GetBaseValue() {
-		return 1 + GetSpell().BaseDamage() * level * baseEffectPercent / 100;
+		return 1 + GetSpell().BaseValue() * level * baseEffectPercent / 100;
 	}
 
 	public float GetScalingValue() {
-		return (GetSpell().ScalingDamage().Multi * scalingEffectPercent / 100);
+		return (GetSpell().ScalingValue().Multi * scalingEffectPercent / 100);
 	}
 
 	private int MinScaling() {
-		return (int) (GetSpell().ScalingDamage().Multi * Rarities.Items.get(rarity).StatPercents().Min);
+		return (int) (GetSpell().ScalingValue().Multi * Rarities.Items.get(rarity).StatPercents().Min);
 	}
 
 	private int MaxScaling() {
-		return (int) (GetSpell().ScalingDamage().Multi * Rarities.Items.get(rarity).StatPercents().Max);
+		return (int) (GetSpell().ScalingValue().Multi * Rarities.Items.get(rarity).StatPercents().Max);
 	}
 
 	private int MinBase() {
-		return (int) (GetSpell().BaseDamage() * Rarities.Items.get(rarity).StatPercents().Min / 100);
+		return (int) (GetSpell().BaseValue() * Rarities.Items.get(rarity).StatPercents().Min / 100);
 	}
 
 	private int MaxBase() {
-		return (int) (GetSpell().BaseDamage() * Rarities.Items.get(rarity).StatPercents().Max / 100);
+		return (int) (GetSpell().BaseValue() * Rarities.Items.get(rarity).StatPercents().Max / 100);
 	}
 
 	private int MinMana() {
@@ -70,7 +70,7 @@ public class SpellItemData implements Serializable {
 
 	public String GetScalingDesc() {
 
-		return "Scales with: " + GetSpell().ScalingDamage().GetStat().Name() + " by : "
+		return "Scales with: " + GetSpell().ScalingValue().GetStat().Name() + " by : "
 				+ (int) (GetScalingValue() * 100) + "%" + " (" + MinScaling() + "-" + MaxScaling() + ")";
 
 	}
@@ -91,8 +91,8 @@ public class SpellItemData implements Serializable {
 
 		BaseSpell spell = GetSpell();
 
-		int basedmg = spell.BaseDamage() * baseEffectPercent / 100 * level;
-		int scalingdmg = spell.ScalingDamage().GetValue(unit) * scalingEffectPercent / 100;
+		int basedmg = spell.BaseValue() * baseEffectPercent / 100 * level;
+		int scalingdmg = spell.ScalingValue().GetValue(unit) * scalingEffectPercent / 100;
 
 		int total = basedmg + scalingdmg;
 

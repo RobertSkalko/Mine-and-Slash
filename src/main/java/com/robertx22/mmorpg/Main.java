@@ -8,6 +8,7 @@ import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
+import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
 import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
 import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
@@ -89,6 +90,7 @@ public class Main {
 		Network.INSTANCE.registerMessage(StringPackage.Handler.class, StringPackage.class, 1, Side.CLIENT);
 
 		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostBolt.class);
+		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostExplosion.class);
 		RegisterUtils.RegisterModEntity(Items.MAGMA_CREAM, EntityFireBolt.class);
 		RegisterUtils.RegisterModEntity(Items.SLIME_BALL, EntityAcidBolt.class);
 		RegisterUtils.RegisterModEntity(Items.GLOWSTONE_DUST, EntityThunderBolt.class);

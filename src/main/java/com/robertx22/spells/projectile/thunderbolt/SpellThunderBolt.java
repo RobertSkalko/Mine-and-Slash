@@ -1,6 +1,6 @@
 package com.robertx22.spells.projectile.thunderbolt;
 
-import com.robertx22.customitems.spells.ItemThunderBolt;
+import com.robertx22.customitems.spells.projectile.ItemThunderBolt;
 import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
@@ -48,7 +48,7 @@ public class SpellThunderBolt extends BaseBolt {
 	}
 
 	@Override
-	public EffectCalculation ScalingDamage() {
+	public EffectCalculation ScalingValue() {
 		return new EffectCalculation(new ThunderDamage().Name(), 0.5F);
 	}
 

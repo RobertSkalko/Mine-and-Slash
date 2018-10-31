@@ -1,4 +1,4 @@
-package com.robertx22.customitems.spells;
+package com.robertx22.customitems.spells.projectile;
 
 import com.robertx22.customitems.bases.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;

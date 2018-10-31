@@ -20,11 +20,11 @@ public abstract class BaseSpell implements IWeighted {
 
 	public abstract int ManaCost();
 
-	public abstract int Cooldown();
+	// public abstract int Cooldown();
 
-	public abstract int BaseDamage();
+	public abstract int BaseValue();
 
-	public abstract EffectCalculation ScalingDamage();
+	public abstract EffectCalculation ScalingValue();
 
 	public int DamageVariance = 50;
 
@@ -48,19 +48,20 @@ public abstract class BaseSpell implements IWeighted {
 
 	public boolean CanCast(EntityPlayer caster, SpellItemData data) {
 
-		if (!caster.world.isRemote) {
-			Unit unit = UnitSaving.Load(caster);
+		Unit unit = UnitSaving.Load(caster);
 
+		if (unit != null) {
 			if (unit.mana().GetCurrentValue() >= data.GetManaCost()) {
-
-				unit.SpendMana(data.GetManaCost());
-				UnitSaving.Save(caster, unit);
+				if (!caster.world.isRemote) {
+					unit.SpendMana(data.GetManaCost());
+					UnitSaving.Save(caster, unit);
+				}
 				return true;
+
 			}
-
-			caster.sendMessage(new TextComponentString("You don't have enough mana!"));
-
 		}
+		caster.sendMessage(new TextComponentString("You don't have enough mana!"));
+
 		return false;
 
 	}

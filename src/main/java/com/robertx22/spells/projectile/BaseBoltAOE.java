@@ -3,21 +3,21 @@ package com.robertx22.spells.projectile;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 
-public abstract class BaseBolt extends BaseSpell {
+public abstract class BaseBoltAOE extends BaseSpell {
 
 	@Override
 	public int ManaCost() {
-		return 10;
+		return 25;
 	}
 
 	@Override
 	public int BaseValue() {
-		return 2;
+		return 1;
 	}
 
 	@Override
 	public String GetDescription(SpellItemData data) {
-		return "Casts a Single Target elemental projectile";
+		return "Casts an elemental projectile that does AOE dmg on hit.";
 
 	}
 

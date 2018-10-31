@@ -1,11 +1,11 @@
-package com.robertx22.spells.projectile.firebolt;
+package com.robertx22.spells.aoe_projectile.FrostExplosion;
 
-import com.robertx22.customitems.spells.projectile.ItemFireBolt;
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
+import com.robertx22.customitems.spells.aoe_projectile.ItemFrostExplosion;
+import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.projectile.BaseBolt;
+import com.robertx22.spells.projectile.BaseBoltAOE;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
@@ -16,9 +16,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class SpellFireBolt extends BaseBolt {
+public class SpellFrostExplosion extends BaseBoltAOE {
 
-	public SpellFireBolt() {
+	public SpellFrostExplosion() {
 		super();
 	}
 
@@ -28,40 +28,44 @@ public class SpellFireBolt extends BaseBolt {
 		Vec3d look = caster.getLookVec();
 
 		if (!world.isRemote) {
-			EntityFireBolt projectile = new EntityFireBolt(world);
-			projectile.SetReady(new EffectFireBolt(), new DamageData(caster, data));
+			EntityFrostExplosion projectile = new EntityFrostExplosion(world);
+			projectile.ignoreEntity = caster;
+			projectile.SetReady(new EffectFrostExplosion(), new DamageData(caster, data));
 			projectile.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
 			projectile.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
+
 			world.spawnEntity(projectile);
+
 		}
-		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_BLAZE_SHOOT, 1, 1);
+
+		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
 		caster.swingArm(hand);
 		return true;
 	}
 
 	@Override
 	public String Name() {
-		return "Fire Bolt";
+		return "Frost Explosion";
 	}
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new FireDamage().Name(), 0.5F);
+		return new EffectCalculation(new WaterDamage().Name(), 0.25F);
 	}
 
 	@Override
 	public Elements Element() {
-		return Elements.Fire;
+		return Elements.Water;
 	}
 
 	@Override
 	public Item SpellItem() {
-		return ItemFireBolt.ITEM;
+		return ItemFrostExplosion.ITEM;
 	}
 
 	@Override
 	public String GUID() {
-		return "FireBolt";
+		return "FrostExplosion";
 	}
 
 }

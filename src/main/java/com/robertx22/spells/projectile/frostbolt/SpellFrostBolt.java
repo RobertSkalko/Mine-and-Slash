@@ -1,6 +1,6 @@
 package com.robertx22.spells.projectile.frostbolt;
 
-import com.robertx22.customitems.spells.ItemFrostBolt;
+import com.robertx22.customitems.spells.projectile.ItemFrostBolt;
 import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
@@ -48,7 +48,7 @@ public class SpellFrostBolt extends BaseBolt {
 	}
 
 	@Override
-	public EffectCalculation ScalingDamage() {
+	public EffectCalculation ScalingValue() {
 		return new EffectCalculation(new WaterDamage().Name(), 0.5F);
 	}
 
