@@ -10,6 +10,7 @@ import org.apache.commons.lang3.time.StopWatch;
 
 import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
+import com.robertx22.database.lists.StatusEffects;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
@@ -26,8 +27,7 @@ import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.Mana;
-import com.robertx22.database.status.effects.BaseStatusEffect;
-import com.robertx22.database.status.effects.HealthSE;
+import com.robertx22.database.status.effects.bases.BaseStatusEffect;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.onevent.combat.OnHealDecrease;
@@ -69,7 +69,7 @@ public class Unit implements Serializable {
 
 	}
 
-	public HashMap<String, StatusEffectData> StatusEffects = new HashMap<String, StatusEffectData>();
+	public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
 	public String GUID = UUID.randomUUID().toString();
 
 	@Override
@@ -219,7 +219,7 @@ public class Unit implements Serializable {
 
 	protected void AddStatusEffectStats() {
 
-		for (StatusEffectData status : this.StatusEffects.values()) {
+		for (StatusEffectData status : this.statusEffects.values()) {
 			List<StatModData> datas = status.GetAllStats(this.level);
 			for (StatModData data : datas) {
 				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
@@ -267,12 +267,37 @@ public class Unit implements Serializable {
 		mob.vanillaHP = (int) en.getMaxHealth();
 		mob.uid = en.getUniqueID();
 
-		// test
-		BaseStatusEffect effect = new HealthSE();
-		mob.StatusEffects.put(effect.GUID(), new StatusEffectData(effect));
+		mob.AddRandomMobStatusEffects();
 
 		return mob;
 
+	}
+
+	private void AddRandomMobStatusEffects() {
+
+		int max = this.GetRarity().MaxMobEffects();
+
+		if (max > 0) {
+			if (this.GetRarity().MaxMobEffects() > StatusEffects.All.values().size()) {
+				System.out.println("ERROR! Can't have more unique effects than there are effects!");
+				max = StatusEffects.All.values().size() - 1;
+			}
+
+			int amount = RandomUtils.RandomRange(0, max);
+
+			while (amount > 0) {
+
+				BaseStatusEffect effect = null;
+
+				while (effect == null || this.statusEffects.containsKey(effect.GUID())) {
+					effect = (BaseStatusEffect) RandomUtils
+							.WeightedRandom(ListUtils.CollectionToList(StatusEffects.All.values()));
+				}
+				amount--;
+				this.statusEffects.put(effect.GUID(), new StatusEffectData(effect));
+
+			}
+		}
 	}
 
 	public UUID uid;

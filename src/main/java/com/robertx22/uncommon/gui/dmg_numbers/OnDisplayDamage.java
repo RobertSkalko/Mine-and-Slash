@@ -1,12 +1,10 @@
-package com.robertx22.onevent;
+package com.robertx22.uncommon.gui.dmg_numbers;
 
 import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
-import com.robertx22.uncommon.gui.DamageParticle;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -18,45 +16,15 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@EventBusSubscriber
 public class OnDisplayDamage {
-
-	@SubscribeEvent
-	public static void displayDamage(LivingUpdateEvent event) {
-		displayDamageDealt(event.getEntityLiving());
-	}
 
 	private Minecraft mc = Minecraft.getMinecraft();
 	private Entity pointedEntity;
 
-	public static void displayDamageDealt(EntityLivingBase entity) {
-
-		if (entity.world.isRemote || entity == null) {
-			return;
-		}
-
-		Unit unit = UnitSaving.Load(entity);
-
-		if (unit != null) {
-
-			int currentHealth = unit.health().CurrentValue(entity, unit);
-			int entityHealth = (int) unit.health().Value;
-
-			if (entityHealth != currentHealth) {
-				// displayParticle(entity, entityHealth - currentHealth);
-			}
-		}
-
-		// entity.getEntityData().setTag("health", new NBTTagInt(currentHealth));
-	}
-
-	public static void displayParticle(Entity entity, int damage) {
+	public static void displayParticle(Entity entity, int damage, Elements element) {
 		if (damage == 0) {
 			return;
 		}
@@ -64,7 +32,7 @@ public class OnDisplayDamage {
 		double motionX = world.rand.nextGaussian() * 0.02;
 		double motionY = 0.5f;
 		double motionZ = world.rand.nextGaussian() * 0.02;
-		Particle damageIndicator = new DamageParticle(damage, world, entity.posX, entity.posY + entity.height,
+		Particle damageIndicator = new DamageParticle(element, damage, world, entity.posX, entity.posY + entity.height,
 				entity.posZ, motionX, motionY, motionZ);
 		Minecraft.getMinecraft().effectRenderer.addEffect(damageIndicator);
 	}

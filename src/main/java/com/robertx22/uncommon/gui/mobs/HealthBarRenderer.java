@@ -40,11 +40,12 @@ public class HealthBarRenderer {
 
 	HashMap<UUID, Unit> UnitMap = new HashMap<UUID, Unit>();
 
+	Minecraft mc = Minecraft.getMinecraft();
+
 	List<EntityLivingBase> renderedEntities = new ArrayList();
 
 	@SubscribeEvent
 	public void onRenderWorldLast(RenderWorldLastEvent event) {
-		Minecraft mc = Minecraft.getMinecraft();
 
 		if ((!Minecraft.isGuiEnabled()))
 			return;
@@ -105,8 +106,6 @@ public class HealthBarRenderer {
 			entity = (EntityLivingBase) entity.getRidingEntity();
 			ridingStack.push(entity);
 		}
-
-		Minecraft mc = Minecraft.getMinecraft();
 
 		float pastTranslate = 0F;
 		while (!ridingStack.isEmpty()) {
@@ -258,7 +257,7 @@ public class HealthBarRenderer {
 				GlStateManager.translate(size / (s * s1) * 2 - 16, 0F, 0F);
 				mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
-				for (StatusEffectData data : unit.StatusEffects.values()) {
+				for (StatusEffectData data : unit.statusEffects.values()) {
 					HealthBarUtils.renderIcon(off, 0, new ItemStack(data.GetEffect().ItemModel()), 16, 16);
 					off -= 16;
 				}

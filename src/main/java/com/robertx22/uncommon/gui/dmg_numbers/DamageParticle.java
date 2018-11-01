@@ -1,6 +1,9 @@
-package com.robertx22.uncommon.gui;
+package com.robertx22.uncommon.gui.dmg_numbers;
 
 import org.lwjgl.opengl.GL11;
+
+import com.robertx22.effectdatas.DamageEffect;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -16,19 +19,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class DamageParticle extends Particle {
 
-	protected static final float GRAVITY = 0.1F;
+	protected static final float GRAVITY = 0.15F;
 	protected static final float SIZE = 3.0F;
 	protected static final int LIFESPAN = 12;
-	protected static final double BOUNCE_STRENGTH = 1.5F;
+	protected static final double BOUNCE_STRENGTH = 1.3F;
 
 	protected String text;
 	protected boolean shouldOnTop = true;
 	protected boolean grow = true;
-	protected float scale = 1.0F;
+	protected float scale = 0.7F;
 	private int damage;
 
-	public DamageParticle(int damage, World world, double parX, double parY, double parZ, double parMotionX,
-			double parMotionY, double parMotionZ) {
+	Elements element;
+
+	public DamageParticle(Elements element, int damage, World world, double parX, double parY, double parZ,
+			double parMotionX, double parMotionY, double parMotionZ) {
 		super(world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
 		particleTextureJitterX = 0.0F;
 		particleTextureJitterY = 0.0F;
@@ -36,11 +41,13 @@ public class DamageParticle extends Particle {
 		particleScale = SIZE;
 		particleMaxAge = LIFESPAN;
 		this.damage = damage;
-		this.text = Integer.toString(Math.abs(damage));
+		this.text = DamageEffect.FormatDamageNumber((int) damage);
+
+		this.element = element;
 	}
 
-	protected DamageParticle(World worldIn, double posXIn, double posYIn, double posZIn) {
-		this(0, worldIn, posXIn, posYIn, posZIn, 0, 0, 0);
+	protected DamageParticle(Elements element, World worldIn, double posXIn, double posYIn, double posZIn) {
+		this(element, 0, worldIn, posXIn, posYIn, posZIn, 0, 0, 0);
 	}
 
 	@Override
@@ -80,10 +87,7 @@ public class DamageParticle extends Particle {
 		GL11.glEnable(3008);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-		int color = 0;
-		if (damage < 0) {
-			color = 1;
-		}
+		int color = this.ChooseColor(element);
 
 		final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 		fontRenderer.drawStringWithShadow(this.text,
@@ -102,6 +106,23 @@ public class DamageParticle extends Particle {
 		} else {
 			this.particleScale *= 0.96F;
 		}
+	}
+
+	private int ChooseColor(Elements element) {
+
+		if (element.equals(Elements.Water)) {
+			return 296935;
+		}
+		if (element.equals(Elements.Fire)) {
+			return 9777215;
+		}
+		if (element.equals(Elements.Thunder)) {
+			return -100;
+		}
+		if (element.equals(Elements.Nature)) {
+			return 444444;
+		}
+		return -1;
 	}
 
 	public int getFXLayer() {

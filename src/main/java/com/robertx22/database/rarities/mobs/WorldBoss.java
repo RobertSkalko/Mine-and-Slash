@@ -4,25 +4,25 @@ import com.robertx22.database.rarities.MobRarity;
 
 import net.minecraft.util.text.TextFormatting;
 
-public class WorldBoss extends MobRarity{
+public class WorldBoss extends MobRarity {
 
 	@Override
-	public float StatMultiplier() {	
+	public float StatMultiplier() {
 		return 15;
 	}
 
 	@Override
-	public String Name() {		
+	public String Name() {
 		return "World Boss";
 	}
 
 	@Override
-	public int Rank() {		
+	public int Rank() {
 		return 5;
 	}
 
 	@Override
-	public String Color() {		
+	public String Color() {
 		return TextFormatting.LIGHT_PURPLE.toString();
 	}
 
@@ -30,9 +30,14 @@ public class WorldBoss extends MobRarity{
 	public int Weight() {
 		return 250;
 	}
-	
+
 	@Override
 	public float LootMultiplier() {
 		return 7.5F;
+	}
+
+	@Override
+	public int MaxMobEffects() {
+		return 3;
 	}
 }

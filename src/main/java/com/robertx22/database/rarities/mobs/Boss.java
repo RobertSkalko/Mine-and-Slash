@@ -4,25 +4,25 @@ import com.robertx22.database.rarities.MobRarity;
 
 import net.minecraft.util.text.TextFormatting;
 
-public class Boss extends MobRarity{
+public class Boss extends MobRarity {
 
 	@Override
-	public float StatMultiplier() {	
+	public float StatMultiplier() {
 		return 5;
 	}
 
 	@Override
-	public String Name() {		
+	public String Name() {
 		return "Boss";
 	}
 
 	@Override
-	public int Rank() {		
+	public int Rank() {
 		return 4;
 	}
 
 	@Override
-	public String Color() {		
+	public String Color() {
 		return TextFormatting.GOLD.toString();
 	}
 
@@ -30,10 +30,15 @@ public class Boss extends MobRarity{
 	public int Weight() {
 		return 1000;
 	}
-	
+
 	@Override
 	public float LootMultiplier() {
 		return 3.5F;
+	}
+
+	@Override
+	public int MaxMobEffects() {
+		return 2;
 	}
 
 }

@@ -30,8 +30,6 @@ public class BarsGUI extends Gui {
 	int xPos = 2;
 	int yPos = 2;
 
-//	int ticks = 0;
-
 	Unit unit;
 
 	@SubscribeEvent(priority = EventPriority.NORMAL)

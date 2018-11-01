@@ -7,11 +7,11 @@ import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.onevent.OnDisplayDamage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -43,7 +43,7 @@ public class DamageEffect extends EffectData
 
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 
-		OnDisplayDamage.displayParticle(Target, (int) Number);
+		OnDisplayDamage.displayParticle(Target, (int) Number, this.Element);
 
 		Target.attackEntityFrom(dmgsource, dmg);
 
@@ -86,7 +86,7 @@ public class DamageEffect extends EffectData
 
 	}
 
-	private String LogDamage() {
+	public static String FormatDamageNumber(int Number) {
 
 		String num = "";
 		if (Number > 1000) {
@@ -98,6 +98,13 @@ public class DamageEffect extends EffectData
 		} else {
 			num = String.format("%.2f", Number);
 		}
+
+		return num;
+	}
+
+	private String LogDamage() {
+
+		String num = FormatDamageNumber((int) Number);
 
 		String str = num + " DMG ";
 

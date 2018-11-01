@@ -6,26 +6,17 @@ import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
-import com.robertx22.network.EntityPackage;
-import com.robertx22.network.Network;
-import com.robertx22.network.PlayerPackage;
-import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
-import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
-import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
-import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
-import com.robertx22.spells.projectile.thunderbolt.EntityThunderBolt;
+import com.robertx22.mmorpg.registers.CommandRegisters;
+import com.robertx22.mmorpg.registers.EntityRegisters;
+import com.robertx22.mmorpg.registers.NetworkRegisters;
 import com.robertx22.uncommon.capability.EntityData;
-import com.robertx22.uncommon.commands.GiveGear;
-import com.robertx22.uncommon.commands.GiveSpell;
 import com.robertx22.uncommon.gui.BarsGUI;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Items;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,14 +25,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
-import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, dependencies = "required-after:baubles;")
@@ -57,8 +46,7 @@ public class Main {
 
 	@EventHandler
 	public void start(FMLServerStartingEvent event) {
-		event.registerServerCommand(new GiveGear());
-		event.registerServerCommand(new GiveSpell());
+		CommandRegisters.Register(event);
 
 	}
 
@@ -70,18 +58,11 @@ public class Main {
 		world.getGameRules().setOrCreateGameRule("keepInventory", "true");
 		world.getGameRules().setOrCreateGameRule("naturalRegeneration", "false");
 
-		// TestManager.RunAllTests();
-
 	}
 
-	public static ASMDataTable ASMData = null;
-
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public void preInit(FMLPreInitializationEvent event) {
 		ItemOre.Register();
-
-		ASMData = event.getAsmData();
 
 		StartupRepair.preInitCommon();
 		StartupSalvage.preInitCommon();
@@ -92,20 +73,8 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
 		//
 
-		MinecraftForge.EVENT_BUS.register(new PlayerPackage());
-		MinecraftForge.EVENT_BUS.register(new PlayerPackage.Handler());
-
-		MinecraftForge.EVENT_BUS.register(new EntityPackage());
-		MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
-
-		Network.INSTANCE.registerMessage(PlayerPackage.Handler.class, PlayerPackage.class, 1, Side.CLIENT);
-		Network.INSTANCE.registerMessage(EntityPackage.Handler.class, EntityPackage.class, 1, Side.CLIENT);
-
-		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostBolt.class);
-		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostExplosion.class);
-		RegisterUtils.RegisterModEntity(Items.MAGMA_CREAM, EntityFireBolt.class);
-		RegisterUtils.RegisterModEntity(Items.SLIME_BALL, EntityAcidBolt.class);
-		RegisterUtils.RegisterModEntity(Items.GLOWSTONE_DUST, EntityThunderBolt.class);
+		NetworkRegisters.Register();
+		EntityRegisters.Register();
 
 		CapabilityManager.INSTANCE.register(EntityData.IEntityData.class, new EntityData.Storage(),
 				EntityData.DefaultImpl.class);
