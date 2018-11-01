@@ -53,11 +53,11 @@ public class SpellItemData implements Serializable {
 	}
 
 	private int MinBase() {
-		return (int) (GetSpell().BaseValue() * Rarities.Items.get(rarity).StatPercents().Min / 100);
+		return (int) (1 + GetSpell().BaseValue() * Rarities.Items.get(rarity).StatPercents().Min / 100);
 	}
 
 	private int MaxBase() {
-		return (int) (GetSpell().BaseValue() * Rarities.Items.get(rarity).StatPercents().Max / 100);
+		return (int) (1 + GetSpell().BaseValue() * Rarities.Items.get(rarity).StatPercents().Max / 100);
 	}
 
 	private int MinMana() {
@@ -70,8 +70,8 @@ public class SpellItemData implements Serializable {
 
 	public String GetScalingDesc() {
 
-		return "Scales with: " + GetSpell().ScalingValue().GetStat().Name() + " by : "
-				+ (int) (GetScalingValue() * 100) + "%" + " (" + MinScaling() + "-" + MaxScaling() + ")";
+		return "Scales with: " + GetSpell().ScalingValue().GetStat().Name() + " by : " + (int) (GetScalingValue() * 100)
+				+ "%" + " (" + MinScaling() + "-" + MaxScaling() + ")";
 
 	}
 

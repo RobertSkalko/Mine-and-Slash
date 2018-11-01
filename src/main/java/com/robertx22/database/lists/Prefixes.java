@@ -25,10 +25,6 @@ public class Prefixes {
 	public static List<Prefix> Weapon = new ArrayList<Prefix>() {
 		{
 			{
-				add(new Flaming());
-				add(new Frosty());
-				add(new Thorny());
-				add(new Thundering());
 
 				add(new HardHitting());
 				add(new LifeStealing());
@@ -40,6 +36,11 @@ public class Prefixes {
 	public static List<Prefix> Armor = new ArrayList<Prefix>() {
 		{
 			{
+				add(new Flaming());
+				add(new Frosty());
+				add(new Thorny());
+				add(new Thundering());
+
 				add(new Hardened());
 				add(new Evasive());
 				add(new HeavenlySkin());

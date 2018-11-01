@@ -43,7 +43,7 @@ public class Armor extends UsableStat implements IStatEffects {
 
 	@Override
 	public int AverageStat() {
-		return 50;
+		return 10;
 	}
 
 	@Override

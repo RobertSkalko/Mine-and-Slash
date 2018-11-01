@@ -6,9 +6,9 @@ import com.robertx22.database.stats.types.resources.ManaRegen;
 import com.robertx22.network.Network;
 import com.robertx22.network.StringPackage;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.BarsGUI;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.datasaving.bases.Saving;
+import com.robertx22.uncommon.gui.BarsGUI;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.Mod;

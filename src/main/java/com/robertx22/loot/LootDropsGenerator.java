@@ -7,7 +7,9 @@ import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.generation.GearGen;
+import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -18,8 +20,9 @@ import net.minecraft.item.ItemStack;
 
 public class LootDropsGenerator {
 
-	private static float GearChance = 1F;
-	private static float CurrencyChance = 0.2F;
+	private static float GearChance = 7.5F;
+	private static float CurrencyChance = 1F;
+	private static float SpellChance = 2.5F;
 
 	public static void Generate(Unit mob, Unit player, EntityLivingBase mobEntity) {
 
@@ -35,14 +38,21 @@ public class LootDropsGenerator {
 
 		float FinalGearChance = ApplyMobLootMulti(GearChance, mob, playerFindItemsChance);
 		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob, playerFindItemsChance);
+		float FinalSpellChance = ApplyMobLootMulti(SpellChance, mob, playerFindItemsChance);
 
 		int GearDrops = WhileRoll(FinalGearChance);
 		int CurrencyDrops = WhileRoll(FinalCurrencyChance);
+		int SpellDrops = WhileRoll(FinalSpellChance);
 
 		GearBlueprint gearPrint = new GearBlueprint(mob.level);
 
+		SpellBlueprint spellPrint = new SpellBlueprint(mob.level);
+
 		for (int i = 0; i < GearDrops; i++) {
 			items.add(RandomDamagedGear(GearGen.Create(gearPrint)));
+		}
+		for (int i = 0; i < SpellDrops; i++) {
+			items.add(SpellItemGen.Create(spellPrint));
 		}
 
 		for (int i = 0; i < CurrencyDrops; i++) {
@@ -60,7 +70,7 @@ public class LootDropsGenerator {
 
 	private static ItemStack RandomDamagedGear(ItemStack stack) {
 		if (stack.getMaxDamage() > 0) {
-			float damage = (float) RandomUtils.RandomRange(70, 95) / (float) 100;
+			float damage = (float) RandomUtils.RandomRange(75, 95) / (float) 100;
 			stack.setItemDamage((int) (damage * stack.getMaxDamage()));
 		}
 

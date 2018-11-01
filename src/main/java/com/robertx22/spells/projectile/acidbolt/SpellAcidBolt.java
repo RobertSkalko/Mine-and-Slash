@@ -6,7 +6,6 @@ import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.projectile.BaseBolt;
-import com.robertx22.spells.projectile.firebolt.EffectFireBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
@@ -14,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class SpellAcidBolt extends BaseBolt {
@@ -26,14 +24,10 @@ public class SpellAcidBolt extends BaseBolt {
 	@Override
 	public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
 
-		Vec3d look = caster.getLookVec();
-
 		if (!world.isRemote) {
 			EntityAcidBolt projectile = new EntityAcidBolt(world);
-			projectile.SetReady(new EffectFireBolt(), new DamageData(caster, data));
-			projectile.setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
-			projectile.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
-			world.spawnEntity(projectile);
+			projectile.SpawnAndShoot(new EffectAcidBolt(), new DamageData(caster, data), caster);
+
 		}
 		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SPLASH_POTION_THROW, 1, 1);
 		caster.swingArm(hand);

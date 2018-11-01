@@ -7,9 +7,6 @@ import com.robertx22.database.stats.mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stats.mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.mods.flat.DamageFlat;
 import com.robertx22.database.stats.mods.flat.DodgeFlat;
-import com.robertx22.database.stats.mods.flat.HealthFlat;
-import com.robertx22.database.stats.mods.flat.LifeOnHitFlat;
-import com.robertx22.database.stats.mods.flat.LifestealFlat;
 import com.robertx22.database.stats.mods.flat.elemental.bonus.BonusFireDamageFlat;
 import com.robertx22.database.stats.mods.flat.elemental.bonus.BonusNatureDamageFlat;
 import com.robertx22.database.stats.mods.flat.elemental.bonus.BonusThunderDamageFlat;
@@ -27,7 +24,11 @@ import com.robertx22.database.stats.mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.database.stats.mods.flat.resources.HealthRegenFlat;
+import com.robertx22.database.stats.mods.flat.resources.LifeOnHitFlat;
+import com.robertx22.database.stats.mods.flat.resources.LifestealFlat;
+import com.robertx22.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.mods.percent.ArmorPercent;
 import com.robertx22.database.stats.mods.percent.EnergyRegenPercent;
@@ -81,10 +82,11 @@ public class StatMods {
 				put(new EnergyRegenPercent().GUID(), new EnergyRegenPercent());
 				put(new ManaRegenPercent().GUID(), new ManaRegenPercent());
 
-				// Resources
 				put(new LifestealFlat().GUID(), new LifestealFlat());
 				put(new LifestealPercent().GUID(), new LifestealPercent());
 				put(new LifeOnHitFlat().GUID(), new LifeOnHitFlat());
+				put(new ManaFlat().GUID(), new ManaFlat());
+				// Resources
 
 				// Elements
 				put(new FireDamageFlat().GUID(), new FireDamageFlat());

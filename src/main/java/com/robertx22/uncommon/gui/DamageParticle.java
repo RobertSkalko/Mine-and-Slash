@@ -1,4 +1,4 @@
-package com.robertx22.damage_indicator;
+package com.robertx22.uncommon.gui;
 
 import org.lwjgl.opengl.GL11;
 

@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.damage_indicator.DamageParticle;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.gui.DamageParticle;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;

@@ -1,4 +1,4 @@
-package com.robertx22.uncommon;
+package com.robertx22.uncommon.gui;
 
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -24,12 +24,10 @@ public class BarsGUI extends Gui {
 
 	public BarsGUI(Minecraft mc) {
 		super();
-		// We need this to invoke the render engine.
 		this.mc = mc;
 	}
 
 	int xPos = 2;
-
 	int yPos = 2;
 
 //	int ticks = 0;

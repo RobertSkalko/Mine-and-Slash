@@ -11,24 +11,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
 public class OnEntityMeleeAttack {
-
-	@SubscribeEvent
-	public static void osdsdnEntityMeleeAttack(LivingHurtEvent event) {
-		if (event.getEntityLiving().world.isRemote) {
-			return;
-		}
-		if (event.getSource().isExplosion()) {
-			event.setAmount(event.getAmount() / 5);
-			return;
-		}
-	}
-
+	/**
+	 * On attack, cancel and spawn the real attack with my damage source, mobs don't
+	 * use energy but players do
+	 * 
+	 * @param event
+	 */
 	@SubscribeEvent
 	public static void onEntityMeleeAttack(LivingAttackEvent event) {
 		if (event.getEntityLiving().world.isRemote) {
@@ -36,7 +29,7 @@ public class OnEntityMeleeAttack {
 		}
 
 		if (event.getSource() instanceof MyDamageSource) {
-			System.out.println("Dmg source works correctly!");
+			// System.out.println("attack works correctly!");
 			return;
 		}
 

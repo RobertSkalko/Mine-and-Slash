@@ -9,8 +9,8 @@ import com.robertx22.customitems.baubles.ItemRing;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.database.lists.Suffixes;
-import com.robertx22.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
@@ -42,7 +42,7 @@ public class Ring extends GearItemSlot {
 
 	@Override
 	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new ArmorFlat());
+		return Arrays.asList(new ManaFlat());
 	}
 
 	@Override

@@ -1,30 +1,31 @@
-package com.robertx22.database.stats.mods.flat;
+package com.robertx22.database.stats.mods.flat.resources;
 
 import com.robertx22.database.StatModAnot;
-import com.robertx22.database.stats.types.resources.Health;
+import com.robertx22.database.stats.types.offense.LifeOnHit;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 @StatModAnot
-public class HealthFlat extends StatMod {
+public class LifeOnHitFlat extends StatMod {
 
-	public HealthFlat() {
+	public LifeOnHitFlat() {
 	}
 
 	@Override
 	public String GUID() {
-		return "HealthFlat";
+		return "LifeOnHitFlat";
 	}
 
 	@Override
 	public int Min() {
-		return 5;
+		return 1;
 	}
 
 	@Override
 	public int Max() {
-		return 15;
+		return 4;
 	}
 
 	@Override
@@ -34,7 +35,11 @@ public class HealthFlat extends StatMod {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new Health();
+		return new LifeOnHit();
 	}
 
+	@Override
+	public int Weight() {
+		return IWeighted.NormalWeight;
+	}
 }

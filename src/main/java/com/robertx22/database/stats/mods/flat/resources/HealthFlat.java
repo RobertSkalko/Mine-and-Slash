@@ -1,31 +1,30 @@
-package com.robertx22.database.stats.mods.flat;
+package com.robertx22.database.stats.mods.flat.resources;
 
 import com.robertx22.database.StatModAnot;
-import com.robertx22.database.stats.types.offense.Lifesteal;
+import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 @StatModAnot
-public class LifestealFlat extends StatMod {
+public class HealthFlat extends StatMod {
 
-	public LifestealFlat() {
+	public HealthFlat() {
 	}
 
 	@Override
 	public String GUID() {
-		return "LifestealFlat";
+		return "HealthFlat";
 	}
 
 	@Override
 	public int Min() {
-		return 1;
+		return 5;
 	}
 
 	@Override
 	public int Max() {
-		return 5;
+		return 15;
 	}
 
 	@Override
@@ -35,12 +34,7 @@ public class LifestealFlat extends StatMod {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new Lifesteal();
-	}
-
-	@Override
-	public int Weight() {
-		return IWeighted.NormalWeight;
+		return new Health();
 	}
 
 }

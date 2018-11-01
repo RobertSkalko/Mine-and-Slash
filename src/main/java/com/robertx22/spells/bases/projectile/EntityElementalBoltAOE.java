@@ -69,7 +69,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 			world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS,
 					0.1F, 0.5F, true);
 
-			for (int i = 0; i < 300; i++) {
+			for (int i = 0; i < 200; i++) {
 				SpawnRedstone(element(), this, radius);
 			}
 		} else {
