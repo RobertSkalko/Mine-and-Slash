@@ -7,6 +7,8 @@ import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,6 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class OnMobDeathDrops {
 
+	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public static void mobOnDeathDrop(LivingDeathEvent event) {
 
@@ -22,24 +25,33 @@ public class OnMobDeathDrops {
 			return;
 		}
 
-		if (event.getEntity() instanceof EntityMob && event.getSource().getTrueSource() instanceof EntityPlayer) {
+		try {
 
-			try {
-				EntityLivingBase mobEntity = event.getEntityLiving();
+			EntityLivingBase entity = event.getEntityLiving();
 
-				Unit mob = UnitSaving.Load(mobEntity);
-				Unit player = UnitSaving.Load(event.getSource().getTrueSource());
+			if (!(entity instanceof EntityPlayer)) {
+				if (entity instanceof IMob || entity instanceof EntityMob) {
 
-				LootDropsGenerator.Generate(mob, player, mobEntity);
+					if (entity instanceof EntitySlime && ((EntitySlime) entity).isSmallSlime()) {
+						return;
+					}
 
-				GiveExp((EntityLivingBase) event.getSource().getTrueSource(), player, mob);
+					Unit victim = UnitSaving.Load(entity);
+					Unit killer = UnitSaving.Load(event.getSource().getTrueSource());
 
-				UnitSaving.Save(event.getSource().getTrueSource(), player);
-			} catch (Exception e) {
-				e.printStackTrace();
+					LootDropsGenerator.Generate(victim, killer, entity);
+
+					if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+						GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);
+						UnitSaving.Save(event.getSource().getTrueSource(), killer);
+					}
+				}
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 	}
 
 	private static void GiveExp(EntityLivingBase playeren, Unit player, Unit mob) {

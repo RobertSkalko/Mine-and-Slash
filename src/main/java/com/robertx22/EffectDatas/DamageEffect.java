@@ -37,7 +37,7 @@ public class DamageEffect extends EffectData
 	@Override
 	protected void activate() {
 
-		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName);
+		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source);
 
 		UnitSaving.Save(this.Target, this.targetUnit);
 

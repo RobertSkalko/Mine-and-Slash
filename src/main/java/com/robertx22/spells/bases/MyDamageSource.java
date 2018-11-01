@@ -1,11 +1,12 @@
 package com.robertx22.spells.bases;
 
-import net.minecraft.util.DamageSource;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.EntityDamageSource;
 
-public class MyDamageSource extends DamageSource {
+public class MyDamageSource extends EntityDamageSource {
 
-	public MyDamageSource(String damageTypeIn) {
-		super(damageTypeIn);
+	public MyDamageSource(String damageTypeIn, Entity source) {
+		super(damageTypeIn, source);
 		this.setDamageBypassesArmor();
 		this.setDamageIsAbsolute();
 		this.setMagicDamage();

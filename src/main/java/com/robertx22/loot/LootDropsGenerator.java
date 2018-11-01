@@ -15,6 +15,7 @@ import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -31,14 +32,13 @@ public class LootDropsGenerator {
 		if (player != null) {
 
 		}
-
 		List<ItemStack> items = new ArrayList<ItemStack>();
 
 		MobRarity rarity = Rarities.Mobs.get(mob.rarity);
 
-		float FinalGearChance = ApplyMobLootMulti(GearChance, mob, playerFindItemsChance);
-		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob, playerFindItemsChance);
-		float FinalSpellChance = ApplyMobLootMulti(SpellChance, mob, playerFindItemsChance);
+		float FinalGearChance = ApplyMobLootMulti(GearChance, mob, mobEntity, playerFindItemsChance);
+		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob, mobEntity, playerFindItemsChance);
+		float FinalSpellChance = ApplyMobLootMulti(SpellChance, mob, mobEntity, playerFindItemsChance);
 
 		int GearDrops = WhileRoll(FinalGearChance);
 		int CurrencyDrops = WhileRoll(FinalCurrencyChance);
@@ -77,8 +77,16 @@ public class LootDropsGenerator {
 		return stack;
 	}
 
-	private static float ApplyMobLootMulti(float chance, Unit mob, float playerFind) {
-		return chance * Rarities.Mobs.get(mob.rarity).LootMultiplier() * (1 + mob.vanillaHP / 15) * (1 + playerFind);
+	private static float ApplyMobLootMulti(float chance, Unit mob, EntityLivingBase entity, float playerFind) {
+
+		float finalChance = chance * Rarities.Mobs.get(mob.rarity).LootMultiplier() * (1 + mob.vanillaHP / 15)
+				* (1 + playerFind);
+
+		if (entity instanceof EntitySlime) {
+			finalChance /= 15;
+		}
+
+		return finalChance;
 	}
 
 	private static int WhileRoll(float chance) {
