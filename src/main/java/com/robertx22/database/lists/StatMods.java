@@ -39,6 +39,7 @@ import com.robertx22.database.stats.mods.percent.elemental.FireDamagePercent;
 import com.robertx22.database.stats.mods.percent.elemental.NatureDamagePercent;
 import com.robertx22.database.stats.mods.percent.elemental.ThunderDamagePercent;
 import com.robertx22.database.stats.mods.percent.elemental.WaterDamagePercent;
+import com.robertx22.database.stats.mods.traits.ArmoredFlat;
 import com.robertx22.database.stats.mods.traits.BarbarianFlat;
 import com.robertx22.database.stats.mods.traits.ClumsyScholarFlat;
 import com.robertx22.database.stats.mods.traits.CrippledFlat;
@@ -131,6 +132,7 @@ public class StatMods {
 				put(new FrostAtronachFlat().GUID(), new FrostAtronachFlat());
 				put(new ThunderAtronachFlat().GUID(), new ThunderAtronachFlat());
 				put(new LuckyFlat().GUID(), new LuckyFlat());
+				put(new ArmoredFlat().GUID(), new ArmoredFlat());
 
 				// Traits
 

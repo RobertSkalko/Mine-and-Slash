@@ -29,8 +29,15 @@ public class OnEntityMeleeAttack {
 		}
 
 		if (event.getSource() instanceof MyDamageSource) {
-			// System.out.println("attack works correctly!");
+
 			return;
+		}
+
+		if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
+			EntityLivingBase defender = event.getEntityLiving();
+			EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
+
+			defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX, attacker.posZ - defender.posZ);
 		}
 
 		try {

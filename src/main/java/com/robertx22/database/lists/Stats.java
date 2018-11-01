@@ -32,6 +32,7 @@ import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.database.stats.types.resources.ManaRegen;
+import com.robertx22.database.stats.types.traits.Armored;
 import com.robertx22.database.stats.types.traits.Elemental;
 import com.robertx22.database.stats.types.traits.Golem;
 import com.robertx22.database.stats.types.traits.Lucky;
@@ -99,6 +100,7 @@ public class Stats {
 				put(ClumsyScholar.GUID, new ClumsyScholar());
 				put(Crippled.GUID, new Crippled());
 				put(Diseased.GUID, new Diseased());
+				put(Armored.GUID, new Armored());
 
 				put(EarthAtronach.GUID, new EarthAtronach());
 				put(FrostAtronach.GUID, new FrostAtronach());

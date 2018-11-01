@@ -23,6 +23,6 @@ public class CrippledFlat extends BaseTraitMod {
 
 	@Override
 	public int Weight() {
-		return 10500;
+		return 7500;
 	}
 }

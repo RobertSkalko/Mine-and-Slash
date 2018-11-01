@@ -1,4 +1,4 @@
-package com.robertx22.database.suffixes;
+package com.robertx22.database.suffixes.resource;
 
 import java.util.Arrays;
 import java.util.List;

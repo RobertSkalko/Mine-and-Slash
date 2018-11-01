@@ -17,8 +17,6 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
-import net.minecraft.util.text.TextFormatting;
-
 public class PrefixData extends AffixData implements Serializable, ITooltipList, IRerollable {
 
 	private static final long serialVersionUID = -110285627065158395L;
@@ -69,7 +67,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 
 		List<String> list = new ArrayList<String>();
 
-		list.add(TextFormatting.LIGHT_PURPLE + "Prefix: " + affix.Name());
+		list.add("Prefix: " + affix.Name());
 
 		for (StatModData data : this.GetAllStats(gear)) {
 

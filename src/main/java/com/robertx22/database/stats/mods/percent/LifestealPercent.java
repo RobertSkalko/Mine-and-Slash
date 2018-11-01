@@ -19,12 +19,12 @@ public class LifestealPercent extends StatMod {
 
 	@Override
 	public int Min() {
-		return 2;
+		return 10;
 	}
 
 	@Override
 	public int Max() {
-		return 6;
+		return 25;
 	}
 
 	@Override
