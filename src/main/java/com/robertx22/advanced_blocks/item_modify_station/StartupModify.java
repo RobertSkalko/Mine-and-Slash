@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -28,22 +29,7 @@ public class StartupModify {
 	public static ItemBlock itemBlockInventoryAdvanced; // this holds the unique instance of the ItemBlock corresponding
 														// to your block
 
-	public static void preInitCommon() {
-		// each instance of your block should have two names:
-		// 1) a registry name that is used to uniquely identify this block. Should be
-		// unique within your mod. use lower case.
-		// 2) an 'unlocalised name' that is used to retrieve the text name of your block
-		// in the player's language. For example-
-		// the unlocalised name might be "water", which is printed on the user's screen
-		// as "Wasser" in German or
-		// "aqua" in Italian.
-		//
-		// Multiple blocks can have the same unlocalised name - for example
-		// +----RegistryName----+---UnlocalisedName----+
-		// | flowing_water + water |
-		// | stationary_water + water |
-		// +--------------------+----------------------+
-		//
+	public static void preInitCommon(FMLPreInitializationEvent event) {
 		blockInventoryAdvanced = new BlockInventoryModify().setUnlocalizedName("Modify Station");
 		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":modify_station");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
@@ -61,7 +47,9 @@ public class StartupModify {
 		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
 		GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GuiHandler.getGuiID());
 
-		preInitClientOnly();
+		if (event.getSide().equals(Side.CLIENT)) {
+			preInitClientOnly();
+		}
 	}
 
 	@SideOnly(Side.CLIENT)

@@ -31,6 +31,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, dependencies = "required-after:baubles;")
@@ -64,17 +65,16 @@ public class Main {
 	public void preInit(FMLPreInitializationEvent event) {
 		ItemOre.Register();
 
-		StartupRepair.preInitCommon();
-		StartupSalvage.preInitCommon();
-		StartupModify.preInitCommon();
+		StartupRepair.preInitCommon(event);
+		StartupSalvage.preInitCommon(event);
+		StartupModify.preInitCommon(event);
 
-		// hp bar render
-		MinecraftForge.EVENT_BUS.register(new ToggleKeyBind());
-		MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
-		//
-
-		NetworkRegisters.Register();
-		EntityRegisters.Register();
+		if (event.getSide().equals(Side.CLIENT)) {
+			MinecraftForge.EVENT_BUS.register(new ToggleKeyBind());
+			MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
+			EntityRegisters.Register();
+			NetworkRegisters.Register();
+		}
 
 		CapabilityManager.INSTANCE.register(EntityData.IEntityData.class, new EntityData.Storage(),
 				EntityData.DefaultImpl.class);
@@ -105,9 +105,9 @@ public class Main {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-
-		MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getMinecraft()));
-
+		if (event.getSide().equals(Side.CLIENT)) {
+			MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getMinecraft()));
+		}
 	}
 
 }

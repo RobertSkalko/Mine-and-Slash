@@ -96,7 +96,7 @@ public class DamageEffect extends EffectData
 
 			num = thousands + "." + leftover + "k";
 		} else {
-			num = String.format("%.2f", Number);
+			num = Number + "";
 		}
 
 		return num;

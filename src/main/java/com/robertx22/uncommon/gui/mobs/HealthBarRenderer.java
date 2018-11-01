@@ -35,7 +35,10 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
 
+@SideOnly(Side.CLIENT)
 public class HealthBarRenderer {
 
 	HashMap<UUID, Unit> UnitMap = new HashMap<UUID, Unit>();

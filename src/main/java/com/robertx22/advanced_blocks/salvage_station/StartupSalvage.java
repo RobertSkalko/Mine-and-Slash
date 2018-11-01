@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -20,7 +21,7 @@ public class StartupSalvage {
 	public static ItemBlock itemBlockInventoryAdvanced; // this holds the unique instance of the ItemBlock corresponding
 														// to your block
 
-	public static void preInitCommon() {
+	public static void preInitCommon(FMLPreInitializationEvent event) {
 		blockInventoryAdvanced = new BlockInventorySalvage().setUnlocalizedName("Salvage Station");
 		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":salvage_station");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
@@ -38,7 +39,9 @@ public class StartupSalvage {
 		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
 		GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GuiHandler.getGuiID());
 
-		preInitClientOnly();
+		if (event.getSide().equals(Side.CLIENT)) {
+			preInitClientOnly();
+		}
 	}
 
 	// inventory item

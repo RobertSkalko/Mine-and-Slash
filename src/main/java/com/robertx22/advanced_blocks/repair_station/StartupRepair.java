@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -28,7 +29,7 @@ public class StartupRepair {
 	public static ItemBlock itemBlockInventoryAdvanced; // this holds the unique instance of the ItemBlock corresponding
 														// to your block
 
-	public static void preInitCommon() {
+	public static void preInitCommon(FMLPreInitializationEvent event) {
 		// each instance of your block should have two names:
 		// 1) a registry name that is used to uniquely identify this block. Should be
 		// unique within your mod. use lower case.
@@ -61,7 +62,9 @@ public class StartupRepair {
 		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
 		GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GuiHandler.getGuiID());
 
-		preInitClientOnly();
+		if (event.getSide().equals(Side.CLIENT)) {
+			preInitClientOnly();
+		}
 	}
 
 	@SideOnly(Side.CLIENT)

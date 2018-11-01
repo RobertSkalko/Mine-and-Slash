@@ -4,7 +4,6 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,9 +23,6 @@ public class OnMobSpawn {
 
 		EntityLivingBase entity = (EntityLivingBase) event.getEntity();
 
-		if (Minecraft.getMinecraft().player == null) {
-			return;
-		}
 		if (entity.world.isRemote) {
 			return;
 		}
