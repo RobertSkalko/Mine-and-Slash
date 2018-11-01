@@ -19,7 +19,7 @@ public class UnitSaving {
 
 	private static final Class<? extends Unit> UnitClass = Unit.class;
 
-	private static String DataLocation = "PathOfMinecraftData";
+	public static String DataLocation = "PathOfMinecraftData";
 	private static String BackupDataLocation = "PathOfMinecraftBackupData";
 
 	public static <T> T Load(Entity entity) {

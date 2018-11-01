@@ -32,6 +32,10 @@ public class LootDropsGenerator {
 		if (player != null) {
 
 		}
+		if (mob == null || mobEntity == null) {
+			return;
+		}
+
 		List<ItemStack> items = new ArrayList<ItemStack>();
 
 		MobRarity rarity = Rarities.Mobs.get(mob.rarity);

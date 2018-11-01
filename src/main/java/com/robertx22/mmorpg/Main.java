@@ -6,8 +6,9 @@ import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.network.EntityPackage;
 import com.robertx22.network.Network;
-import com.robertx22.network.StringPackage;
+import com.robertx22.network.PlayerPackage;
 import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
 import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
@@ -17,6 +18,8 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.commands.GiveGear;
 import com.robertx22.uncommon.commands.GiveSpell;
 import com.robertx22.uncommon.gui.BarsGUI;
+import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
+import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
@@ -84,10 +87,19 @@ public class Main {
 		StartupSalvage.preInitCommon();
 		StartupModify.preInitCommon();
 
-		MinecraftForge.EVENT_BUS.register(new StringPackage());
-		MinecraftForge.EVENT_BUS.register(new StringPackage.Handler());
+		// hp bar render
+		MinecraftForge.EVENT_BUS.register(new ToggleKeyBind());
+		MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
+		//
 
-		Network.INSTANCE.registerMessage(StringPackage.Handler.class, StringPackage.class, 1, Side.CLIENT);
+		MinecraftForge.EVENT_BUS.register(new PlayerPackage());
+		MinecraftForge.EVENT_BUS.register(new PlayerPackage.Handler());
+
+		MinecraftForge.EVENT_BUS.register(new EntityPackage());
+		MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
+
+		Network.INSTANCE.registerMessage(PlayerPackage.Handler.class, PlayerPackage.class, 1, Side.CLIENT);
+		Network.INSTANCE.registerMessage(EntityPackage.Handler.class, EntityPackage.class, 1, Side.CLIENT);
 
 		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostBolt.class);
 		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostExplosion.class);

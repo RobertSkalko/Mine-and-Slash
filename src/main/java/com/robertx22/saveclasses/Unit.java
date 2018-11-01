@@ -44,6 +44,7 @@ import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 public class Unit implements Serializable {
 
@@ -54,8 +55,6 @@ public class Unit implements Serializable {
 
 		if (Stats == null) {
 			Stats = com.robertx22.database.lists.Stats.All;
-			// this.health().BaseFlat += 20;
-			// this.Stats.get(PhysicalDamage.GUID).BaseFlat += 2;
 
 		} else {
 			for (Stat stat : com.robertx22.database.lists.Stats.All.values()) {
@@ -243,17 +242,18 @@ public class Unit implements Serializable {
 		mob.Stats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
 		mob.rarity = ((MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(Rarities.Mobs))).Rank();
 		mob.vanillaHP = (int) en.getMaxHealth();
-
-		mob.SetName(en);
+		mob.uid = en.getUniqueID();
 
 		return mob;
 
 	}
 
-	private void SetName(EntityLivingBase entity) {
+	public UUID uid;
 
-//entity.setCustomNameTag(GetRarity().Color() + GetRarity().Name() + " " + entity.getName());
-		// entity.setAlwaysRenderNameTag(true);
+	public String GetName(EntityLivingBase entity) {
+		return TextFormatting.YELLOW + "[Lv:" + this.level + "] " + GetRarity().Color() + GetRarity().Name() + " "
+				+ entity.getName();
+
 	}
 
 	private MobRarity GetRarity() {

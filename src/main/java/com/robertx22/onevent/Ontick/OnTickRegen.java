@@ -3,13 +3,17 @@ package com.robertx22.onevent.ontick;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.ManaRegen;
+import com.robertx22.network.EntityPackage;
 import com.robertx22.network.Network;
-import com.robertx22.network.StringPackage;
+import com.robertx22.network.PlayerPackage;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.datasaving.bases.Saving;
 import com.robertx22.uncommon.gui.BarsGUI;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -21,7 +25,8 @@ public class OnTickRegen {
 
 	static int tick = 0;
 
-	static int syncTick = 0;
+	static int playerSyncTick = 0;
+	static int mobsSyncTick = 0;
 
 	static int time = 100;
 
@@ -32,14 +37,36 @@ public class OnTickRegen {
 
 			tick++;
 
-			syncTick++;
+			playerSyncTick++;
+			mobsSyncTick++;
 
-			if (syncTick > 20) {
+			if (mobsSyncTick > 100) {
+				try {
+					for (Entity en : event.player.world.loadedEntityList) {
+						if (en instanceof EntityLivingBase) {
+
+							String json = en.getCapability(EntityData.Data, null).getNBT()
+									.getString(UnitSaving.DataLocation);
+
+							if (json != null && !json.isEmpty()) {
+								EntityPackage mobpacket = new EntityPackage(json);
+								Network.INSTANCE.sendTo(mobpacket, (EntityPlayerMP) event.player);
+							}
+
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (playerSyncTick > 20) {
 				Unit unit = UnitSaving.Load(event.player);
-				StringPackage packet = new StringPackage(Saving.ToString(unit));
+				PlayerPackage packet = new PlayerPackage(Saving.ToString(unit));
 				Network.INSTANCE.sendTo(packet, (EntityPlayerMP) event.player);
+
 				BarsGUI.Updated = true;
-				syncTick = 0;
+				playerSyncTick = 0;
 			}
 
 			if (tick > time) {
