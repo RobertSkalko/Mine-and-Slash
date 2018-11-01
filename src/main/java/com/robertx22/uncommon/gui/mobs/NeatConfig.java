@@ -18,8 +18,6 @@ public class NeatConfig {
 	public static int plateSize = 25;
 	public static int plateSizeBoss = 50;
 	public static boolean showAttributes = true;
-	public static boolean showArmor = true;
-	public static boolean groupArmor = true;
 	public static boolean colorByType = false;
 	public static int hpTextHeight = 14;
 	public static boolean showMaxHP = true;
@@ -27,7 +25,7 @@ public class NeatConfig {
 	public static boolean showPercentage = true;
 	public static boolean showOnPlayers = true;
 	public static boolean showOnBosses = true;
-	public static boolean showOnlyFocused = false;
+	public static boolean showOnlyFocused = true;
 	public static boolean enableDebugInfo = true;
 
 	public static List<String> blacklist;

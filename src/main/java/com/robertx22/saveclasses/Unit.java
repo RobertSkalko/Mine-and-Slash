@@ -26,9 +26,12 @@ import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.Mana;
+import com.robertx22.database.status.effects.BaseStatusEffect;
+import com.robertx22.database.status.effects.HealthSE;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.onevent.combat.OnHealDecrease;
+import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Stat;
@@ -66,6 +69,7 @@ public class Unit implements Serializable {
 
 	}
 
+	public HashMap<String, StatusEffectData> StatusEffects = new HashMap<String, StatusEffectData>();
 	public String GUID = UUID.randomUUID().toString();
 
 	@Override
@@ -177,13 +181,13 @@ public class Unit implements Serializable {
 		List<GearItemData> gears = GetEquips(entity);
 
 		for (GearItemData gear : gears) {
-			List<StatModData> datas = gear.GetAllStats(gear);
+			List<StatModData> datas = gear.GetAllStats(gear.level);
 			for (StatModData data : datas) {
 				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
 				if (stat == null) {
 					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
 				} else {
-					stat.Add(data, gear);
+					stat.Add(data, gear.level);
 
 				}
 			}
@@ -197,6 +201,7 @@ public class Unit implements Serializable {
 			watch.start();
 			ClearStats();
 			AddAllGearStats(entity);
+			AddStatusEffectStats();
 			CalcStats();
 			CalcTraits();
 			CalcStats();
@@ -206,7 +211,25 @@ public class Unit implements Serializable {
 			ClearStats();
 			AddMobcStats();
 			SetMobStrengthMultiplier();
+			AddStatusEffectStats();
 			CalcStats();
+		}
+
+	}
+
+	protected void AddStatusEffectStats() {
+
+		for (StatusEffectData status : this.StatusEffects.values()) {
+			List<StatModData> datas = status.GetAllStats(this.level);
+			for (StatModData data : datas) {
+				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
+				if (stat == null) {
+					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+				} else {
+					stat.Add(data, level);
+
+				}
+			}
 		}
 
 	}
@@ -243,6 +266,10 @@ public class Unit implements Serializable {
 		mob.rarity = ((MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(Rarities.Mobs))).Rank();
 		mob.vanillaHP = (int) en.getMaxHealth();
 		mob.uid = en.getUniqueID();
+
+		// test
+		BaseStatusEffect effect = new HealthSE();
+		mob.StatusEffects.put(effect.GUID(), new StatusEffectData(effect));
 
 		return mob;
 

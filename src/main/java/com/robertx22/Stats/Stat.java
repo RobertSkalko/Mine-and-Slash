@@ -3,7 +3,6 @@ package com.robertx22.stats;
 import java.util.ArrayList;
 
 import com.robertx22.database.IGUID;
-import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -41,14 +40,14 @@ public abstract class Stat implements IGUID {
 		Multi = 0;
 	}
 
-	public void Add(StatModData mod, GearItemData gear) {
+	public void Add(StatModData mod, int level) {
 
 		if (mod.type == StatTypes.Flat) {
-			Flat += mod.GetActualVal(gear);
+			Flat += mod.GetActualVal(level);
 		} else if (mod.type == StatTypes.Percent) {
-			Percent += mod.GetActualVal(gear);
+			Percent += mod.GetActualVal(level);
 		} else if (mod.type == StatTypes.Multi) {
-			Multi += mod.GetActualVal(gear);
+			Multi += mod.GetActualVal(level);
 		}
 	}
 

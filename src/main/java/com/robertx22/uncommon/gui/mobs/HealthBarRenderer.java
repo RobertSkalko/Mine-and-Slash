@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.lwjgl.opengl.GL11;
 
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
@@ -28,7 +29,6 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
@@ -258,12 +258,10 @@ public class HealthBarRenderer {
 				GlStateManager.translate(size / (s * s1) * 2 - 16, 0F, 0F);
 				mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
-				// HealthBarUtils.renderIcon(off, 0, new ItemStack(Items.REDSTONE), 16, 16);
-				// off -= 16;
-
-				HealthBarUtils.renderIcon(off, 0, new ItemStack(Items.BOAT), 16, 16);
-				off -= 16;
-				;
+				for (StatusEffectData data : unit.StatusEffects.values()) {
+					HealthBarUtils.renderIcon(off, 0, new ItemStack(data.GetEffect().ItemModel()), 16, 16);
+					off -= 16;
+				}
 
 				GlStateManager.popMatrix();
 

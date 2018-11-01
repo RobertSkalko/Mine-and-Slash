@@ -27,7 +27,7 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 		list.add("Chaos Stats: ");
 
-		for (StatModData data : this.GetAllStats(gear)) {
+		for (StatModData data : this.GetAllStats(gear.level)) {
 
 			list.add(data.GetTooltipString(gear));
 		}

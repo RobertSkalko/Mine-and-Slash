@@ -13,14 +13,14 @@ public class TestUnit extends Unit {
 		this.ClearStats();
 
 		for (GearItemData gear : gears) {
-			List<StatModData> datas = gear.GetAllStats(gear);
+			List<StatModData> datas = gear.GetAllStats(gear.level);
 			for (StatModData data : datas) {
 				// System.out.println(data.baseModName);
 				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
 				if (stat == null) {
 					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
 				} else {
-					stat.Add(data, gear);
+					stat.Add(data, gear.level);
 
 				}
 			}

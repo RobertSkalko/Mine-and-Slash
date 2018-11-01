@@ -91,12 +91,12 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	}
 
 	@Override
-	public List<StatModData> GetAllStats(GearItemData gear) {
+	public List<StatModData> GetAllStats(int level) {
 
 		List<StatModData> datas = new ArrayList<StatModData>();
 
 		for (IStatsContainer con : GetAllStatContainers()) {
-			datas.addAll(con.GetAllStats(this));
+			datas.addAll(con.GetAllStats(this.level));
 		}
 
 		return datas;

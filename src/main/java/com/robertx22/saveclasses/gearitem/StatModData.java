@@ -32,6 +32,17 @@ public class StatModData implements Serializable, ITooltipString {
 		return data;
 	}
 
+	public static StatModData NewStatusEffect(int percent, StatMod mod) {
+
+		StatModData data = new StatModData();
+
+		data.baseModName = mod.GUID();
+		data.type = mod.Type();
+		data.percent = percent;
+
+		return data;
+	}
+
 	public static StatModData Load(StatMod mod, int percent, int level) {
 
 		StatModData data = new StatModData();
@@ -51,7 +62,7 @@ public class StatModData implements Serializable, ITooltipString {
 		return StatMods.All().get(baseModName);
 	}
 
-	public int GetActualVal(GearItemData gear) {
+	public int GetActualVal(int level) {
 
 		StatMod mod = GetBaseMod();
 
@@ -60,7 +71,7 @@ public class StatModData implements Serializable, ITooltipString {
 		int val = mod.GetValueByPercent(percent);
 
 		if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
-			val *= gear.level;
+			val *= level;
 		}
 
 		return val;
@@ -81,7 +92,7 @@ public class StatModData implements Serializable, ITooltipString {
 
 	public String NameAndValueText(GearItemData gear) {
 
-		int val = this.GetActualVal(gear);
+		int val = this.GetActualVal(gear.level);
 
 		String minusplus = val > 0 ? "+" : "";
 
