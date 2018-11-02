@@ -2,6 +2,7 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
+import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
@@ -56,6 +57,7 @@ public class Main {
 		StartupRepair.preInitCommon(event);
 		StartupSalvage.preInitCommon(event);
 		StartupModify.preInitCommon(event);
+		StartupGearFactory.preInitCommon(event);
 
 		MinecraftForge.EVENT_BUS.register(new PlayerPackage());
 		MinecraftForge.EVENT_BUS.register(new EntityPackage());

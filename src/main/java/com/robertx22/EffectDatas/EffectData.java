@@ -25,8 +25,8 @@ public abstract class EffectData {
 			sourceUnit = UnitSaving.Load(source);
 
 			if (sourceUnit != null && targetUnit != null) {
-				sourceUnit.ReloadStats(source);
-				targetUnit.ReloadStats(target);
+				sourceUnit.ReloadStatsAndSave(source);
+				targetUnit.ReloadStatsAndSave(target);
 
 			} else {
 				this.canceled = true;

@@ -1,7 +1,9 @@
 package com.robertx22.onevent.player;
 
-import java.util.UUID;
-
+import com.robertx22.database.gearitemslots.Boots;
+import com.robertx22.database.gearitemslots.Chest;
+import com.robertx22.database.gearitemslots.Helmet;
+import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.database.lists.Stats;
 import com.robertx22.generation.GearGen;
@@ -12,8 +14,6 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.Mod;
@@ -31,19 +31,14 @@ public class OnLogin {
 		print.SetSpecificRarity(0);
 
 		player.inventory.addItemStackToInventory(GearGen.Create(print));
-	}
-
-	private static void SetVanillaHealth(EntityPlayer player) {
-
-		if (player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH)
-				.getModifier(UUID.fromString("0bee127e-d6e1-11e8-9f8b-f2801f1b9fd1")) == null) {
-
-			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH)
-					.applyModifier(new AttributeModifier(UUID.fromString("0bee127e-d6e1-11e8-9f8b-f2801f1b9fd1"),
-							Ref.MODID + ":hpmod", Integer.MAX_VALUE/* entity.getMaxHealth() * 100 */, 2));
-
-			player.setHealth(player.getMaxHealth());
-		}
+		print.SetSpecificType(new Boots().Name());
+		player.inventory.addItemStackToInventory(GearGen.Create(print));
+		print.SetSpecificType(new Chest().Name());
+		player.inventory.addItemStackToInventory(GearGen.Create(print));
+		print.SetSpecificType(new Helmet().Name());
+		player.inventory.addItemStackToInventory(GearGen.Create(print));
+		print.SetSpecificType(new Pants().Name());
+		player.inventory.addItemStackToInventory(GearGen.Create(print));
 
 	}
 
@@ -52,12 +47,14 @@ public class OnLogin {
 
 		for (Stat stat : Stats.All.values()) {
 			if (!unit.Stats.containsKey(stat.Name())) {
-				unit.Stats.put(stat.Name(), stat);
 				player.sendMessage(
 						new TextComponentString("New Stat: '" + stat.Name() + "' has been added to the game!"));
 			}
+			unit.Stats.put(stat.Name(), stat);
 		}
-		UnitSaving.Save(player, unit);
+
+		unit.ReloadStatsAndSave(player);
+
 	}
 
 	@SubscribeEvent
@@ -75,9 +72,7 @@ public class OnLogin {
 				UnitSaving.Save(player, new Unit());
 				GiveStarterItems(player);
 			} else {
-
 				CheckForNewStats(player);
-				// SetVanillaHealth(player);
 
 			}
 		} else {

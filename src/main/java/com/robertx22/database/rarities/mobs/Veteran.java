@@ -8,7 +8,7 @@ public class Veteran extends MobRarity {
 
 	@Override
 	public float StatMultiplier() {
-		return 1.5F;
+		return 1.4F;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Veteran extends MobRarity {
 
 	@Override
 	public float LootMultiplier() {
-		return 1.5F;
+		return 1.75F;
 	}
 
 	@Override

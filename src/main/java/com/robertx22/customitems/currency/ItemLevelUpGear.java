@@ -25,9 +25,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":level_item";
+	private static final String name = Ref.MODID + ":item_levelup";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":level_item")
+	@GameRegistry.ObjectHolder(Ref.MODID + ":item_levelup")
 	public static final Item ITEM = null;
 
 	public ItemLevelUpGear() {

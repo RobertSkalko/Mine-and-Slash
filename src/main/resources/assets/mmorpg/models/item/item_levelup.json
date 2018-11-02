@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/currency/level_item"
+        "layer0": "mmorpg:items/currency/item_levelup"
     }
 }

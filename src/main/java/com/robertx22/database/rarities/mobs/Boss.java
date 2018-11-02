@@ -33,7 +33,7 @@ public class Boss extends MobRarity {
 
 	@Override
 	public float LootMultiplier() {
-		return 3.5F;
+		return 4F;
 	}
 
 	@Override

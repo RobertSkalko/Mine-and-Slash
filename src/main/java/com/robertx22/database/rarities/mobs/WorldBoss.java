@@ -8,7 +8,7 @@ public class WorldBoss extends MobRarity {
 
 	@Override
 	public float StatMultiplier() {
-		return 15;
+		return 10;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class WorldBoss extends MobRarity {
 
 	@Override
 	public float LootMultiplier() {
-		return 7.5F;
+		return 8F;
 	}
 
 	@Override

@@ -20,12 +20,12 @@ public class DamageFlat extends StatMod {
 
 	@Override
 	public int Min() {
-		return 1;
+		return 3;
 	}
 
 	@Override
 	public int Max() {
-		return 5;
+		return 8;
 	}
 
 	@Override

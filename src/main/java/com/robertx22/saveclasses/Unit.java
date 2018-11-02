@@ -64,7 +64,7 @@ public class Unit implements Serializable {
 
 	}
 
-	public void ReloadStats(EntityLivingBase entity) {
+	public void ReloadStatsAndSave(EntityLivingBase entity) {
 
 		if (entity instanceof EntityPlayer) {
 			this.RecalculateStats(entity);
@@ -281,12 +281,11 @@ public class Unit implements Serializable {
 	public int vanillaHP;
 	public int rarity = 0;
 
-	public static Unit Mob(EntityLivingBase en, EntityPlayer player) {
+	public static Unit Mob(EntityLivingBase en, int level) {
 
-		Unit playerUnit = UnitSaving.Load(player);
 		Unit mob = new Unit();
 
-		mob.level = playerUnit.level;
+		mob.level = level;
 		mob.Stats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
 		mob.rarity = ((MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(Rarities.Mobs))).Rank();
 		mob.vanillaHP = (int) en.getMaxHealth();
@@ -360,7 +359,7 @@ public class Unit implements Serializable {
 	}
 
 	private void SetMobStrengthMultiplier() {
-		float totalMulti = this.vanillaHP / 10 + GetRarity().StatMultiplier();
+		float totalMulti = /* 1 + this.vanillaHP / 20 + */ GetRarity().StatMultiplier();
 
 		for (Stat stat : Stats.values()) {
 			stat.Flat *= totalMulti;

@@ -8,7 +8,7 @@ public class Normal extends MobRarity {
 
 	@Override
 	public float StatMultiplier() {
-		return 1;
+		return 0.5F;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Normal extends MobRarity {
 
 	@Override
 	public float LootMultiplier() {
-		return 1;
+		return 0.7F;
 	}
 
 	@Override

@@ -31,20 +31,17 @@ public class OnMobSpawn {
 			return;
 		}
 
-		EntityPlayer player = GetNearestPlayer(entity);
+		int level = GetMobLevelByDistanceFromSpawn(entity);
 
-		if (player != null) {
-			Unit check = UnitSaving.Load(entity);
+		Unit check = UnitSaving.Load(entity);
 
-			if (!(entity instanceof EntityPlayer)) {
-				if (check == null) {
-					Unit unit = Unit.Mob(entity, player);
-					unit.Save(entity);
-				}
-
-				EntityUpdate.syncEntityToClient(entity);
-
+		if (!(entity instanceof EntityPlayer)) {
+			if (check == null) {
+				Unit unit = Unit.Mob(entity, level);
+				unit.Save(entity);
 			}
+
+			EntityUpdate.syncEntityToClient(entity);
 
 		} else {
 			event.setCanceled(true);
@@ -52,13 +49,14 @@ public class OnMobSpawn {
 
 	}
 
-	public static EntityPlayer GetNearestPlayer(Entity entity) {
+	public static int GetMobLevelByDistanceFromSpawn(Entity entity) {
 
-		if (entity == null || entity.world == null) {
-			return null;
-		}
+		double distance = entity.world.getSpawnPoint().distanceSq(entity.posX, entity.posY, entity.posZ);
+		int lvl = (int) (1 + (distance / 5000));
 
-		return entity.world.getClosestPlayerToEntity(entity, 50000);
+		// System.out.println(distance + " lvl: " + lvl);
+
+		return lvl;
 
 	}
 

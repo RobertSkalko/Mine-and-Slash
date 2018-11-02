@@ -1,75 +1,94 @@
-package com.robertx22.advanced_blocks.salvage_station;
+package com.robertx22.advanced_blocks.gear_factory_station;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
-import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.generation.GearGen;
+import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
-public class TileInventorySalvage extends BaseTile {
+public class TileGearFactory extends BaseTile {
 
-	ItemStack result = ItemStack.EMPTY;
-
-	float OrbChance = 0.5F;
-
-	public ItemStack getSmeltingResultForItem(ItemStack st) {
-		GearItemData gear = GearSaving.Load(st);
-		if (gear != null) {
-			ItemStack stack = ItemStack.EMPTY;
-
-			if (RandomUtils.roll(OrbChance * (gear.Rarity + 1))) {
-
-				Item item = (Item) RandomUtils.WeightedRandom(ListUtils.CollectionToList(CurrencyItem.ITEMS));
-
-				stack = new ItemStack(item);
-
-			} else {
-
-				int amount = RandomUtils.RandomRange(1, 3);
-
-				ItemOre ore = (ItemOre) ItemOre.ItemOres.get(gear.Rarity);
-				stack = new ItemStack(ore);
-				stack.setCount(amount);
+	public static HashMap<Item, Integer> All = new HashMap<Item, Integer>() {
+		{
+			{
+				put(Items.DIAMOND, 500);
+				put(Items.GOLD_INGOT, 250);
+				put(Items.IRON_INGOT, 50);
+				put(Items.EMERALD, 400);
 
 			}
-			if (result.isEmpty()) {
-				result = stack;
+		}
+	};
 
-			}
+	private int points = 0;
+	private int pointsNeeded = 2000;
 
+	public static int GetFuelGain(ItemStack stack) {
+		Item item = stack.getItem();
+
+		if (All.containsKey(item)) {
+			return All.get(item);
 		} else {
-			result = ItemStack.EMPTY;
+			return 0;
 		}
 
-		return result;
 	}
 
+	public ItemStack getSmeltingResultForItem(ItemStack stack) {
+		Item item = stack.getItem();
+
+		if (points > pointsNeeded) {
+
+			GearItemData gear = GearSaving.Load(stack);
+
+			if (gear != null) {
+
+				GearBlueprint print = new GearBlueprint(gear.level);
+
+				if (RandomUtils.roll(50)) {
+					print.SetSpecificType(gear.gearTypeName);
+				}
+
+				return GearGen.Create(print);
+
+			}
+
+		}
+
+		return ItemStack.EMPTY;
+
+	}
 	// IMPORTANT STUFF ABOVE
 
 	// Create and initialize the itemStacks variable that will store store the
 	// itemStacks
+	public static final int FUEL_SLOTS_COUNT = 1;
 	public static final int INPUT_SLOTS_COUNT = 5;
 	public static final int OUTPUT_SLOTS_COUNT = 5;
-	public static final int TOTAL_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
+	public static final int TOTAL_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
 
-	public static final int FIRST_INPUT_SLOT = 0;
+	public static final int FIRST_FUEL_SLOT = 0;
+	public static final int FIRST_INPUT_SLOT = FIRST_FUEL_SLOT + FUEL_SLOTS_COUNT;
 	public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
 	public static final int FIRST_CAPACITOR_SLOT = FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
 
@@ -78,9 +97,35 @@ public class TileInventorySalvage extends BaseTile {
 	/** The number of ticks required to cook an item */
 	private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
-	public TileInventorySalvage() {
+	public TileGearFactory() {
 		itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 		clear();
+	}
+
+	/**
+	 * Returns the amount of fuel remaining on the currently burning item in the
+	 * given fuel slot.
+	 * 
+	 * @fuelSlot the number of the fuel slot (0..3)
+	 * @return fraction remaining, between 0 - 1
+	 */
+	public double fractionOfFuelRemaining(int fuelSlot) {
+		if (this.points <= 0)
+			return 0;
+		double fraction = points / (double) pointsNeeded;
+		return MathHelper.clamp(fraction, 0.0, 1.0);
+	}
+
+	/**
+	 * return the remaining burn time of the fuel in the given slot
+	 * 
+	 * @param fuelSlot the number of the fuel slot (0..3)
+	 * @return seconds remaining
+	 */
+	public int secondsOfFuelRemaining(int fuelSlot) {
+		if (points <= 0)
+			return 0;
+		return points; // 20 ticks per second
 	}
 
 	/**
@@ -99,12 +144,13 @@ public class TileInventorySalvage extends BaseTile {
 	public void update() {
 
 		if (!this.world.isRemote) {
+			int numberOfFuelBurning = burnFuel();
 			ticks++;
-			if (ticks > 10) {
+			if (ticks > 25) {
 				ticks = 0;
 				if (canSmelt()) {
 
-					cookTime += 150;
+					cookTime += 20;
 
 					if (cookTime < 0)
 						cookTime = 0;
@@ -119,7 +165,55 @@ public class TileInventorySalvage extends BaseTile {
 				}
 			}
 		}
+	}
 
+	/**
+	 * for each fuel slot: decreases the burn time, checks if burnTimeRemaining = 0
+	 * and tries to consume a new piece of fuel if one is available
+	 * 
+	 * @return the number of fuel slots which are burning
+	 */
+	private int burnFuel() {
+		int burningCount = 0;
+		boolean inventoryChanged = false;
+		// Iterate over all the fuel slots
+		for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
+			int fuelSlotNumber = i + FIRST_INPUT_SLOT;
+
+			if (this.points < this.pointsNeeded) {
+				if (!itemStacks[fuelSlotNumber].isEmpty() && itemStacks[fuelSlotNumber].getItem() instanceof ItemOre) { // isEmpty()
+					// If the stack in this slot is not null and is fuel, set burnTimeRemaining &
+					// burnTimeInitialValue to the
+					// item's burn time and decrease the stack size
+
+					int fuel = GetFuelGain(itemStacks[fuelSlotNumber]);
+
+					if (fuel > 0) {
+						this.points += fuel;
+
+					} else {
+						return 0;
+					}
+
+					itemStacks[fuelSlotNumber].shrink(1); // decreaseStackSize()
+					++burningCount;
+					inventoryChanged = true;
+					// If the stack size now equals 0 set the slot contents to the items container
+					// item. This is for fuel
+					// items such as lava buckets so that the bucket is not consumed. If the item
+					// dose not have
+					// a container item getContainerItem returns null which sets the slot contents
+					// to null
+					if (itemStacks[fuelSlotNumber].getCount() == 0) { // getStackSize()
+						itemStacks[fuelSlotNumber] = itemStacks[fuelSlotNumber].getItem()
+								.getContainerItem(itemStacks[fuelSlotNumber]);
+					}
+				}
+			}
+		}
+		if (inventoryChanged)
+			markDirty();
+		return burningCount;
 	}
 
 	/**
@@ -151,26 +245,19 @@ public class TileInventorySalvage extends BaseTile {
 	private boolean smeltItem(boolean performSmelt) {
 		Integer firstSuitableInputSlot = null;
 		Integer firstSuitableOutputSlot = null;
-
-		// TODO
-
-		/*
-		 * if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
-		 * 
-		 * Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
-		 * 
-		 * if (item instanceof ItemCapacitor) { fuelMulti = ((ItemCapacitor)
-		 * item).GetFuelMultiplier(); // System.out.println("it works!"); }
-		 * 
-		 * }
-		 */
+		ItemStack result = ItemStack.EMPTY; // EMPTY_ITEM
 
 		// finds the first input slot which is smeltable and whose result fits into an
 		// output slot (stacking if possible)
 		for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
 			if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-				result = getSmeltingResultForItem(itemStacks[inputSlot]);
+				if (pointsNeeded < this.points) {
+					result = getSmeltingResultForItem(itemStacks[this.FIRST_CAPACITOR_SLOT]);
+
+				} else {
+					result = ItemStack.EMPTY;
+				}
 
 				if (!result.isEmpty()) { // isEmpty()
 					// find the first suitable output slot- either empty, or with identical item
@@ -215,15 +302,22 @@ public class TileInventorySalvage extends BaseTile {
 		}
 		if (itemStacks[firstSuitableOutputSlot].isEmpty()) { // isEmpty()
 			itemStacks[firstSuitableOutputSlot] = result.copy(); // Use deep .copy() to avoid altering the recipe
-			this.result = ItemStack.EMPTY;
-
 		} else {
 			int newStackSize = itemStacks[firstSuitableOutputSlot].getCount() + result.getCount();
 			itemStacks[firstSuitableOutputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
 		}
 
+		points -= pointsNeeded;
+
 		markDirty();
 		return true;
+	}
+
+	// returns the number of ticks the given item will burn. Returns 0 if the given
+	// item is not a valid fuel
+	public static short getItemBurnTime(ItemStack stack) {
+		int burntime = TileEntityFurnace.getItemBurnTime(stack); // just use the vanilla values
+		return (short) MathHelper.clamp(burntime, 0, Short.MAX_VALUE);
 	}
 
 	@Override
@@ -246,6 +340,7 @@ public class TileInventorySalvage extends BaseTile {
 		// Save everything else
 		parentNBTTagCompound.setShort("CookTime", cookTime);
 
+		parentNBTTagCompound.setInteger("fuel", this.points);
 		return parentNBTTagCompound;
 	}
 
@@ -269,6 +364,7 @@ public class TileInventorySalvage extends BaseTile {
 		// the correct number of elements
 		cookTime = nbtTagCompound.getShort("CookTime");
 
+		this.points = nbtTagCompound.getInteger("fuel");
 	}
 
 //	// When the world loads from disk, the server needs to send the TileEntity information to the client
@@ -314,7 +410,7 @@ public class TileInventorySalvage extends BaseTile {
 	// GUI
 	@Override
 	public String getName() {
-		return "Salvage Station";
+		return "Repair Station";
 	}
 
 	@Override
@@ -330,14 +426,29 @@ public class TileInventorySalvage extends BaseTile {
 				: new TextComponentTranslation(this.getName());
 	}
 
+	// Fields are used to send non-inventory information from the server to
+	// interested clients
+	// The container code caches the fields and sends the client any fields which
+	// have changed.
+	// The field ID is limited to byte, and the field value is limited to short. (if
+	// you use more than this, they get cast down
+	// in the network packets)
+	// If you need more than this, or shorts are too small, use a custom packet in
+	// your container instead.
+
 	private static final byte COOK_FIELD_ID = 0;
 	private static final byte FIRST_BURN_TIME_REMAINING_FIELD_ID = 1;
-	private static final byte NUMBER_OF_FIELDS = 1;
+	private static final byte FIRST_BURN_TIME_INITIAL_FIELD_ID = FIRST_BURN_TIME_REMAINING_FIELD_ID
+			+ (byte) FUEL_SLOTS_COUNT;
+	private static final byte NUMBER_OF_FIELDS = FIRST_BURN_TIME_INITIAL_FIELD_ID + (byte) FUEL_SLOTS_COUNT;
 
 	@Override
 	public int getField(int id) {
 		if (id == COOK_FIELD_ID)
 			return cookTime;
+		if (id >= FIRST_BURN_TIME_REMAINING_FIELD_ID && id < FIRST_BURN_TIME_REMAINING_FIELD_ID + FUEL_SLOTS_COUNT) {
+			return this.points;
+		}
 
 		// System.err.println("Invalid field ID in TileInventorySmelting.getField:" +
 		// id);
@@ -348,6 +459,9 @@ public class TileInventorySalvage extends BaseTile {
 	public void setField(int id, int value) {
 		if (id == COOK_FIELD_ID) {
 			cookTime = (short) value;
+		} else if (id >= FIRST_BURN_TIME_REMAINING_FIELD_ID
+				&& id < FIRST_BURN_TIME_REMAINING_FIELD_ID + FUEL_SLOTS_COUNT) {
+			this.points = value;
 		} else {
 			// System.err.println("Invalid field ID in TileInventorySmelting.setField:" +
 			// id);

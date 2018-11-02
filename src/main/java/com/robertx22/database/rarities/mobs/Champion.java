@@ -33,7 +33,7 @@ public class Champion extends MobRarity {
 
 	@Override
 	public float LootMultiplier() {
-		return 2F;
+		return 2.2F;
 	}
 
 	@Override

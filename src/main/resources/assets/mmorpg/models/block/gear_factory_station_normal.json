@@ -1,0 +1,8 @@
+{
+    "parent": "mmorpg:block/anvil_base",
+    "textures": {
+        "particle": "blocks/anvil_base",
+        "body": "mmorpg:blocks/gear_factory_base",
+        "top": "mmorpg:blocks/gear_factory_top"
+    }
+}

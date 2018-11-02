@@ -33,7 +33,7 @@ public class Elite extends MobRarity {
 
 	@Override
 	public float LootMultiplier() {
-		return 1.2F;
+		return 1.5F;
 	}
 
 	@Override

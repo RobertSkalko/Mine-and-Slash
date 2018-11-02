@@ -62,7 +62,7 @@ public class OnEntityMeleeAttack {
 				return;
 			}
 
-			unit.ReloadStats(source);
+			unit.ReloadStatsAndSave(source);
 
 			if (source instanceof EntityPlayer) {
 				ItemStack weapon = source.getHeldItemMainhand();

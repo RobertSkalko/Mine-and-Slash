@@ -1,5 +1,8 @@
 package com.robertx22.mmorpg.gui;
 
+import com.robertx22.advanced_blocks.gear_factory_station.ContainerGearFactory;
+import com.robertx22.advanced_blocks.gear_factory_station.GuiGearFactory;
+import com.robertx22.advanced_blocks.gear_factory_station.TileGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.ContainerInventoryModify;
 import com.robertx22.advanced_blocks.item_modify_station.GuiInventoryModify;
 import com.robertx22.advanced_blocks.item_modify_station.TileInventoryModify;
@@ -55,6 +58,11 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerInventoryModify(player.inventory, tileInventory);
 		}
 
+		if (tileEntity instanceof TileGearFactory) {
+			TileGearFactory tileInventory = (TileGearFactory) tileEntity;
+			return new ContainerGearFactory(player.inventory, tileInventory);
+		}
+
 		return null;
 	}
 
@@ -78,6 +86,10 @@ public class GuiHandler implements IGuiHandler {
 		if (tileEntity instanceof TileInventoryModify) {
 			TileInventoryModify tileInventory = (TileInventoryModify) tileEntity;
 			return new GuiInventoryModify(player.inventory, tileInventory);
+		}
+		if (tileEntity instanceof TileGearFactory) {
+			TileGearFactory tileInventory = (TileGearFactory) tileEntity;
+			return new GuiGearFactory(player.inventory, tileInventory);
 		}
 
 		return null;

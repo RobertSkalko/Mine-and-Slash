@@ -1,5 +1,8 @@
 package com.robertx22.network;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.robertx22.mmorpg.Main;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -48,8 +51,8 @@ public class EntityPackage implements IMessage {
 				Unit unit = Saving.Load(message.toSend, Unit.class);
 
 				if (unit != null && unit.uid != null) {
-					for (Entity en : player.world.loadedEntityList) {
-
+					List<Entity> entities = new ArrayList<Entity>(player.world.loadedEntityList);
+					for (Entity en : entities) {
 						if (en.getUniqueID().equals(unit.uid)) {
 							UnitSaving.Save(en, unit);
 						}

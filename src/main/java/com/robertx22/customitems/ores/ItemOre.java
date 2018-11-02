@@ -70,7 +70,6 @@ public class ItemOre extends Item implements IWeighted {
 
 			tooltip.add("Precious Ore used to repair gear.");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
