@@ -2,8 +2,9 @@ package com.robertx22.mmorpg.proxy;
 
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.registers.EntityRegisters;
-import com.robertx22.network.EntityPackageHandler;
-import com.robertx22.network.PlayerPackageHandler;
+import com.robertx22.network.DamageNumberPackage;
+import com.robertx22.network.EntityPackage;
+import com.robertx22.network.PlayerPackage;
 import com.robertx22.uncommon.gui.BarsGUI;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
@@ -29,8 +30,9 @@ public class ClientProxy implements IProxy {
 		MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
 		EntityRegisters.Register();
 
-		MinecraftForge.EVENT_BUS.register(new PlayerPackageHandler());
-		MinecraftForge.EVENT_BUS.register(new EntityPackageHandler());
+		MinecraftForge.EVENT_BUS.register(new PlayerPackage.Handler());
+		MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
+		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
 	}
 
 	@Override

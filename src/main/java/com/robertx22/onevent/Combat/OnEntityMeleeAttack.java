@@ -45,9 +45,6 @@ public class OnEntityMeleeAttack {
 			if (event.getEntityLiving() == null || event.getSource().getTrueSource() == null) {
 				return;
 			}
-			if (event.getEntityLiving().world.isRemote) {
-				return;
-			}
 
 			EntityLivingBase source = (EntityLivingBase) event.getSource().getTrueSource();
 			EntityLivingBase target = event.getEntityLiving();

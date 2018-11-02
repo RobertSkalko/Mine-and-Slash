@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.saveclasses.DamageNumberData;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -21,19 +21,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class OnDisplayDamage {
 
-	private Minecraft mc = Minecraft.getMinecraft();
+	private static Minecraft mc = Minecraft.getMinecraft();
 	private Entity pointedEntity;
 
-	public static void displayParticle(Entity entity, int damage, Elements element) {
-		if (damage == 0) {
+	public static void displayParticle(DamageNumberData data) {
+		if (data.number == 0) {
 			return;
 		}
-		World world = entity.world;
+		World world = mc.player.world;
 		double motionX = world.rand.nextGaussian() * 0.02;
 		double motionY = 0.5f;
 		double motionZ = world.rand.nextGaussian() * 0.02;
-		Particle damageIndicator = new DamageParticle(element, damage, world, entity.posX, entity.posY + entity.height,
-				entity.posZ, motionX, motionY, motionZ);
+		Particle damageIndicator = new DamageParticle(data.element, data.number, world, data.x, data.y + data.height,
+				data.z, motionX, motionY, motionZ);
 		Minecraft.getMinecraft().effectRenderer.addEffect(damageIndicator);
 	}
 

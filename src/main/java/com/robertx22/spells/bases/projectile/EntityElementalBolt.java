@@ -29,9 +29,7 @@ public abstract class EntityElementalBolt extends EntityThrowable {
 		if (result.entityHit != null && result.entityHit instanceof EntityLivingBase && effect != null
 				&& data != null) {
 
-			if (!world.isRemote) {
-				effect.Activate(data, (EntityLivingBase) result.entityHit);
-			}
+			effect.Activate(data, (EntityLivingBase) result.entityHit);
 
 		}
 

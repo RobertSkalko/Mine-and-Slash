@@ -3,8 +3,8 @@ package com.robertx22.onevent.ontick;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.ManaRegen;
+import com.robertx22.mmorpg.Main;
 import com.robertx22.network.EntityPackage;
-import com.robertx22.network.Network;
 import com.robertx22.network.PlayerPackage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
@@ -50,7 +50,7 @@ public class OnTickRegen {
 
 							if (json != null && !json.isEmpty()) {
 								EntityPackage mobpacket = new EntityPackage(json);
-								Network.INSTANCE.sendTo(mobpacket, (EntityPlayerMP) event.player);
+								Main.Network.sendTo(mobpacket, (EntityPlayerMP) event.player);
 							}
 
 						}
@@ -67,7 +67,7 @@ public class OnTickRegen {
 
 				if (json != null && !json.isEmpty()) {
 					PlayerPackage playerpacket = new PlayerPackage(json);
-					Network.INSTANCE.sendTo(playerpacket, (EntityPlayerMP) event.player);
+					Main.Network.sendTo(playerpacket, (EntityPlayerMP) event.player);
 
 				}
 

@@ -6,18 +6,22 @@ import com.robertx22.effectdatas.interfaces.IDamageEffect;
 import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
+import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.network.DamageNumberPackage;
+import com.robertx22.saveclasses.DamageNumberData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.datasaving.bases.Saving;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class DamageEffect extends EffectData
 		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
@@ -37,21 +41,17 @@ public class DamageEffect extends EffectData
 	@Override
 	protected void activate() {
 
-		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source);
-
+		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
 		UnitSaving.Save(this.Target, this.targetUnit);
-
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
-
-		if (Source.world.isRemote) {
-			OnDisplayDamage.displayParticle(Target, (int) Number, this.Element);
-		}
-
 		Target.attackEntityFrom(dmgsource, dmg);
-
-		// Target.setHealth(Target.getHealth() - dmg);
-
 		LogCombat();
+
+		NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX, Target.posY,
+				Target.posZ, 32);
+
+		Main.Network.sendToAllAround(new DamageNumberPackage(Saving.ToString(new DamageNumberData(dmgsource, Target))),
+				point);
 
 	}
 

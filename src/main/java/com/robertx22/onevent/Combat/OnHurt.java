@@ -17,17 +17,18 @@ public class OnHurt {
 	 */
 	@SubscribeEvent
 	public static void OnLivingHurt(LivingHurtEvent event) {
-		if (event.getEntityLiving().world.isRemote) {
+
+		if (event.getSource() instanceof MyDamageSource) {
+
 			return;
 		}
-		if (event.getSource() instanceof MyDamageSource) {
-			// System.out.println("hurt works correctly!");
-			return;
-		} else if (event.getSource().isExplosion()) {
+
+		if (event.getSource().isExplosion()) {
 			event.setAmount(event.getAmount() / 5);
 			return;
 		} else {
 			event.setAmount(event.getAmount() / 20);
 		}
+
 	}
 }

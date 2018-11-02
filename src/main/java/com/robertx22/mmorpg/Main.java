@@ -9,11 +9,9 @@ import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.NetworkRegisters;
+import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
-import com.robertx22.network.EntityPackageHandler;
-import com.robertx22.network.Network;
 import com.robertx22.network.PlayerPackage;
-import com.robertx22.network.PlayerPackageHandler;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
@@ -32,6 +30,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -45,6 +45,8 @@ public class Main {
 	@Instance(value = Ref.MODID)
 	public static Main instance;
 
+	public static final SimpleNetworkWrapper Network = NetworkRegistry.INSTANCE.newSimpleChannel(Ref.MODID);
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 
@@ -57,9 +59,11 @@ public class Main {
 
 		MinecraftForge.EVENT_BUS.register(new PlayerPackage());
 		MinecraftForge.EVENT_BUS.register(new EntityPackage());
+		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage());
 
-		Network.INSTANCE.registerMessage(PlayerPackageHandler.class, PlayerPackage.class, 0, Side.CLIENT);
-		Network.INSTANCE.registerMessage(EntityPackageHandler.class, EntityPackage.class, 1, Side.CLIENT);
+		Network.registerMessage(PlayerPackage.Handler.class, PlayerPackage.class, 0, Side.CLIENT);
+		Network.registerMessage(EntityPackage.Handler.class, EntityPackage.class, 1, Side.CLIENT);
+		Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2, Side.CLIENT);
 
 		NetworkRegisters.Register();
 

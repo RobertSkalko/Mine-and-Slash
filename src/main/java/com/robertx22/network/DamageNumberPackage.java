@@ -1,26 +1,24 @@
 package com.robertx22.network;
 
-import com.robertx22.mmorpg.Main;
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.saveclasses.DamageNumberData;
 import com.robertx22.uncommon.datasaving.bases.Saving;
+import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PlayerPackage implements IMessage {
+public class DamageNumberPackage implements IMessage {
 
 	public String toSend;
 
-	public PlayerPackage() {
+	public DamageNumberPackage() {
 
 	}
 
-	public PlayerPackage(String str) {
+	public DamageNumberPackage(String str) {
 		this.toSend = str;
 	}
 
@@ -36,17 +34,17 @@ public class PlayerPackage implements IMessage {
 
 	}
 
-	public static class Handler implements IMessageHandler<PlayerPackage, IMessage> {
+	public static class Handler implements IMessageHandler<DamageNumberPackage, IMessage> {
 
 		@Override
-		public IMessage onMessage(PlayerPackage message, MessageContext ctx) {
+		public IMessage onMessage(DamageNumberPackage message, MessageContext ctx) {
 
 			try {
+				// final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
-				final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+				DamageNumberData data = Saving.Load(message.toSend, DamageNumberData.class);
 
-				Unit unit = Saving.Load(message.toSend, Unit.class);
-				UnitSaving.Save(player, unit);
+				OnDisplayDamage.displayParticle(data);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -54,6 +52,6 @@ public class PlayerPackage implements IMessage {
 
 			return null;
 		}
-
 	}
+
 }

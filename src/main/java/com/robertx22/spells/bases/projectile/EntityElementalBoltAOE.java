@@ -72,7 +72,6 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 			for (int i = 0; i < 200; i++) {
 				SpawnRedstone(element(), this, radius);
 			}
-		} else {
 
 			if (effect != null && data != null) {
 
@@ -85,14 +84,9 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
 				if (entities != null) {
 					for (EntityLivingBase entity : entities) {
-						if (!world.isRemote) {
-							effect.Activate(data, entity);
-						} else {
-
-						}
+						effect.Activate(data, entity);
 					}
 				}
-
 			}
 		}
 		if (!this.world.isRemote) {
