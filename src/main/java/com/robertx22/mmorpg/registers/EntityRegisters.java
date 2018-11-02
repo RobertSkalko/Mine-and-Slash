@@ -1,6 +1,9 @@
 package com.robertx22.mmorpg.registers;
 
+import com.robertx22.spells.aoe_projectile.AcidExplosion.EntityAcidExplosion;
+import com.robertx22.spells.aoe_projectile.FlameExplosion.EntityFlameExplosion;
 import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
+import com.robertx22.spells.aoe_projectile.LightningExplosion.EntityLightningExplosion;
 import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
 import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
 import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
@@ -14,9 +17,14 @@ public class EntityRegisters {
 	public static void Register() {
 
 		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostBolt.class);
-		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostExplosion.class);
 		RegisterUtils.RegisterModEntity(Items.MAGMA_CREAM, EntityFireBolt.class);
 		RegisterUtils.RegisterModEntity(Items.SLIME_BALL, EntityAcidBolt.class);
 		RegisterUtils.RegisterModEntity(Items.GLOWSTONE_DUST, EntityThunderBolt.class);
+
+		RegisterUtils.RegisterModEntity(Items.SNOWBALL, EntityFrostExplosion.class);
+		RegisterUtils.RegisterModEntity(Items.MAGMA_CREAM, EntityFlameExplosion.class);
+		RegisterUtils.RegisterModEntity(Items.SLIME_BALL, EntityAcidExplosion.class);
+		RegisterUtils.RegisterModEntity(Items.GLOWSTONE_DUST, EntityLightningExplosion.class);
+
 	}
 }

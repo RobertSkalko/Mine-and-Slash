@@ -6,9 +6,10 @@ import java.util.HashMap;
 import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
-import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.generation.GearGen;
+import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -41,7 +42,9 @@ public class TileGearFactory extends BaseTile {
 	};
 
 	private int points = 0;
-	private int pointsNeeded = 2000;
+	private final int pointsNeeded = 2000;
+	private final int spellChance = 15;
+	private final int maxFuel = 25000;
 
 	public static int GetFuelGain(ItemStack stack) {
 		Item item = stack.getItem();
@@ -63,13 +66,18 @@ public class TileGearFactory extends BaseTile {
 
 			if (gear != null) {
 
-				GearBlueprint print = new GearBlueprint(gear.level);
+				if (RandomUtils.roll(spellChance)) {
+					SpellBlueprint spellprint = new SpellBlueprint(gear.level);
+					return SpellItemGen.Create(spellprint);
+				} else {
+					GearBlueprint print = new GearBlueprint(gear.level);
 
-				if (RandomUtils.roll(50)) {
-					print.SetSpecificType(gear.gearTypeName);
+					if (RandomUtils.roll(50)) {
+						print.SetSpecificType(gear.gearTypeName);
+					}
+
+					return GearGen.Create(print);
 				}
-
-				return GearGen.Create(print);
 
 			}
 
@@ -180,8 +188,8 @@ public class TileGearFactory extends BaseTile {
 		for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
 			int fuelSlotNumber = i + FIRST_INPUT_SLOT;
 
-			if (this.points < this.pointsNeeded) {
-				if (!itemStacks[fuelSlotNumber].isEmpty() && itemStacks[fuelSlotNumber].getItem() instanceof ItemOre) { // isEmpty()
+			if (this.points < this.maxFuel) {
+				if (!itemStacks[fuelSlotNumber].isEmpty()) { // isEmpty()
 					// If the stack in this slot is not null and is fuel, set burnTimeRemaining &
 					// burnTimeInitialValue to the
 					// item's burn time and decrease the stack size
@@ -250,43 +258,42 @@ public class TileGearFactory extends BaseTile {
 		// finds the first input slot which is smeltable and whose result fits into an
 		// output slot (stacking if possible)
 		for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
-			if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
+			// if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-				if (pointsNeeded < this.points) {
-					result = getSmeltingResultForItem(itemStacks[this.FIRST_CAPACITOR_SLOT]);
+			if (pointsNeeded < this.points) {
+				result = getSmeltingResultForItem(itemStacks[this.FIRST_CAPACITOR_SLOT]);
 
-				} else {
-					result = ItemStack.EMPTY;
-				}
+			} else {
+				result = ItemStack.EMPTY;
+			}
 
-				if (!result.isEmpty()) { // isEmpty()
-					// find the first suitable output slot- either empty, or with identical item
-					// that has enough space
-					for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT
-							+ OUTPUT_SLOTS_COUNT; outputSlot++) {
-						ItemStack outputStack = itemStacks[outputSlot];
-						if (outputStack.isEmpty()) { // isEmpty()
+			if (!result.isEmpty()) { // isEmpty()
+				// find the first suitable output slot- either empty, or with identical item
+				// that has enough space
+				for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT
+						+ OUTPUT_SLOTS_COUNT; outputSlot++) {
+					ItemStack outputStack = itemStacks[outputSlot];
+					if (outputStack.isEmpty()) { // isEmpty()
+						firstSuitableInputSlot = inputSlot;
+						firstSuitableOutputSlot = outputSlot;
+						break;
+					}
+
+					if (outputStack.getItem() == result.getItem()
+							&& (!outputStack.getHasSubtypes() || outputStack.getMetadata() == outputStack.getMetadata())
+							&& ItemStack.areItemStackTagsEqual(outputStack, result)) {
+						int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
+						if (combinedSize <= getInventoryStackLimit()
+								&& combinedSize <= itemStacks[outputSlot].getMaxStackSize()) {
 							firstSuitableInputSlot = inputSlot;
 							firstSuitableOutputSlot = outputSlot;
 							break;
 						}
-
-						if (outputStack.getItem() == result.getItem()
-								&& (!outputStack.getHasSubtypes()
-										|| outputStack.getMetadata() == outputStack.getMetadata())
-								&& ItemStack.areItemStackTagsEqual(outputStack, result)) {
-							int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
-							if (combinedSize <= getInventoryStackLimit()
-									&& combinedSize <= itemStacks[outputSlot].getMaxStackSize()) {
-								firstSuitableInputSlot = inputSlot;
-								firstSuitableOutputSlot = outputSlot;
-								break;
-							}
-						}
 					}
-					if (firstSuitableInputSlot != null)
-						break;
 				}
+				if (firstSuitableInputSlot != null)
+					break;
+
 			}
 		}
 

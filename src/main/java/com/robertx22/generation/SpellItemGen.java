@@ -27,6 +27,8 @@ public class SpellItemGen {
 		data.manaCostPercent = RandomUtils.RandomRange(SpellItemData.MIN_MANA_COST_PERCENT,
 				SpellItemData.MAX_MANA_COST_PERCENT);
 
+		stack.setStackDisplayName(rarity.Color() + rarity.Name() + " " + data.GetSpell().Name());
+
 		SpellSaving.Save(stack, data);
 
 		return stack;

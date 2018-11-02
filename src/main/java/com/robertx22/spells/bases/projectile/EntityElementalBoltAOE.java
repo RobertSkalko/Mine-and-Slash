@@ -21,7 +21,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
 	}
 
-	int radius = 4;
+	int radius = 3;
 
 	public abstract Elements element();
 
@@ -69,26 +69,26 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 			world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS,
 					0.1F, 0.5F, true);
 
-			for (int i = 0; i < 200; i++) {
+			for (int i = 0; i < 100; i++) {
 				SpawnRedstone(element(), this, radius);
 			}
+		}
+		if (effect != null && data != null) {
 
-			if (effect != null && data != null) {
+			double x = result.hitVec.x;
+			double y = result.hitVec.y;
+			double z = result.hitVec.z;
 
-				double x = result.hitVec.x;
-				double y = result.hitVec.y;
-				double z = result.hitVec.z;
+			List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class,
+					new AxisAlignedBB(x - radius, y - radius, z - radius, x + radius, y + radius, z + radius));
 
-				List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class,
-						new AxisAlignedBB(x - radius, y - radius, z - radius, x + radius, y + radius, z + radius));
-
-				if (entities != null) {
-					for (EntityLivingBase entity : entities) {
-						effect.Activate(data, entity);
-					}
+			if (entities != null) {
+				for (EntityLivingBase entity : entities) {
+					effect.Activate(data, entity);
 				}
 			}
 		}
+
 		if (!this.world.isRemote) {
 			this.world.setEntityState(this, (byte) 3);
 			this.setDead();

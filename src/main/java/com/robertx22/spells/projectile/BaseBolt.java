@@ -12,7 +12,7 @@ public abstract class BaseBolt extends BaseSpell {
 
 	@Override
 	public int BaseValue() {
-		return 2;
+		return 3;
 	}
 
 	@Override

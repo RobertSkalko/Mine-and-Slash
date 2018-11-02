@@ -2,7 +2,10 @@ package com.robertx22.database.lists;
 
 import java.util.HashMap;
 
+import com.robertx22.spells.aoe_projectile.AcidExplosion.SpellAcidExplosion;
+import com.robertx22.spells.aoe_projectile.FlameExplosion.SpellFlameExplosion;
 import com.robertx22.spells.aoe_projectile.FrostExplosion.SpellFrostExplosion;
+import com.robertx22.spells.aoe_projectile.LightningExplosion.SpellLightningExplosion;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.projectile.acidbolt.SpellAcidBolt;
 import com.robertx22.spells.projectile.firebolt.SpellFireBolt;
@@ -20,6 +23,9 @@ public class Spells {
 				put(new SpellThunderBolt().GUID(), new SpellThunderBolt());
 
 				put(new SpellFrostExplosion().GUID(), new SpellFrostExplosion());
+				put(new SpellFlameExplosion().GUID(), new SpellFlameExplosion());
+				put(new SpellLightningExplosion().GUID(), new SpellLightningExplosion());
+				put(new SpellAcidExplosion().GUID(), new SpellAcidExplosion());
 
 				put(new SpellInstantHeal().GUID(), new SpellInstantHeal());
 

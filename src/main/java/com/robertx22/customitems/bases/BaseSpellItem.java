@@ -51,8 +51,6 @@ public abstract class BaseSpellItem extends Item {
 
 			ItemRarity rarity = Rarities.Items.get(data.rarity);
 
-			stack.setStackDisplayName(rarity.Color() + rarity.Name() + " " + data.GetSpell().Name());
-
 			tooltip.clear();
 
 			tooltip.add(Rarities.Items.get(data.rarity).Color() + Spell().Name());
