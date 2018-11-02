@@ -47,6 +47,7 @@ import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
 public class Unit implements Serializable {
@@ -205,14 +206,21 @@ public class Unit implements Serializable {
 		List<GearItemData> gears = GetEquips(entity);
 
 		for (GearItemData gear : gears) {
-			List<StatModData> datas = gear.GetAllStats(gear.level);
-			for (StatModData data : datas) {
-				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
-				if (stat == null) {
-					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
-				} else {
-					stat.Add(data, gear.level);
+			if (gear.level > this.level) {
+				entity.sendMessage(
+						new TextComponentString(gear.GetDisplayName() + " is too high level for you, no stats added!"));
+			} else {
 
+				List<StatModData> datas = gear.GetAllStats(gear.level);
+				for (StatModData data : datas) {
+					Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
+					if (stat == null) {
+						System.out
+								.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+					} else {
+						stat.Add(data, gear.level);
+
+					}
 				}
 			}
 		}
@@ -224,6 +232,7 @@ public class Unit implements Serializable {
 			StopWatch watch = new StopWatch();
 			watch.start();
 			ClearStats();
+			AddPlayerBaseStats();
 			AddAllGearStats(entity);
 			AddStatusEffectStats();
 			CalcStats();
@@ -239,6 +248,13 @@ public class Unit implements Serializable {
 			CalcStats();
 
 		}
+
+	}
+
+	private void AddPlayerBaseStats() {
+
+		Stats.get(Health.GUID).Flat += 10;
+		Stats.get(PhysicalDamage.GUID).Flat += 2;
 
 	}
 

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
+import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
@@ -29,13 +30,21 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileGearFactory extends BaseTile {
 
-	public static HashMap<Item, Integer> All = new HashMap<Item, Integer>() {
+	public static HashMap<Item, Integer> MaterialValues = new HashMap<Item, Integer>() {
 		{
 			{
 				put(Items.DIAMOND, 500);
 				put(Items.GOLD_INGOT, 250);
 				put(Items.IRON_INGOT, 50);
 				put(Items.EMERALD, 400);
+				put(Items.REDSTONE, 4);
+
+				put(ItemOre.ItemOres.get(0), 50);
+				put(ItemOre.ItemOres.get(1), 100);
+				put(ItemOre.ItemOres.get(2), 150);
+				put(ItemOre.ItemOres.get(3), 250);
+				put(ItemOre.ItemOres.get(4), 500);
+				put(ItemOre.ItemOres.get(5), 1000);
 
 			}
 		}
@@ -49,8 +58,10 @@ public class TileGearFactory extends BaseTile {
 	public static int GetFuelGain(ItemStack stack) {
 		Item item = stack.getItem();
 
-		if (All.containsKey(item)) {
-			return All.get(item);
+		ItemOre.ItemOres.get(0);
+
+		if (MaterialValues.containsKey(item)) {
+			return MaterialValues.get(item);
 		} else {
 			return 0;
 		}
@@ -417,7 +428,7 @@ public class TileGearFactory extends BaseTile {
 	// GUI
 	@Override
 	public String getName() {
-		return "Repair Station";
+		return "Gear Factory Station";
 	}
 
 	@Override

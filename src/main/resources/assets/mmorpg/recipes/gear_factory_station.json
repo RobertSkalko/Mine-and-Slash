@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CAC",
+    "CCC"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:iron_block"
+    }, 
+	"A": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "result": {
+    "item": "mmorpg:gear_factory_station"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CAC",
+    "CCC"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:diamond"
+    }, 
+	"A": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "result": {
+    "item": "mmorpg:player_levelup"
+  }
+}

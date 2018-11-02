@@ -24,36 +24,44 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class ItemPlayerLevelUp extends Item {
 
+	@GameRegistry.ObjectHolder(Ref.MODID + ":player_levelup")
+	public static final Item ITEM = null;
+
 	public ItemPlayerLevelUp() {
 		this.setMaxDamage(0);
 		this.setCreativeTab(CurrencyItem.CurrencyTab);
-		this.setUnlocalizedName("player_levelup");
+		this.setUnlocalizedName("Player Level Up Token");
 		this.setRegistryName(Ref.MODID + ":player_levelup");
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
-		Unit unit = UnitSaving.Load(playerIn);
+		try {
+			Unit unit = UnitSaving.Load(playerIn);
 
-		if (unit.experience > unit.GetExpRequiredForLevelUp()) {
-			unit.level++;
+			if (unit.experience > unit.GetExpRequiredForLevelUp()) {
+				unit.level++;
 
-			playerIn.sendMessage(
-					new TextComponentString(TextFormatting.GREEN + "You have Leveled up! Current lvl: " + unit.level));
+				playerIn.sendMessage(new TextComponentString(
+						TextFormatting.GREEN + "You have Leveled up! Current lvl: " + unit.level));
 
-			UnitSaving.Save(playerIn, unit);
-		} else {
+				UnitSaving.Save(playerIn, unit);
+			} else {
 
-			playerIn.sendMessage(
-					new TextComponentString(TextFormatting.RED + "You don't have enough experience to Level Up."));
+				playerIn.sendMessage(
+						new TextComponentString(TextFormatting.RED + "You don't have enough experience to Level Up."));
 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
@@ -66,7 +74,7 @@ public class ItemPlayerLevelUp extends Item {
 
 	@SubscribeEvent
 	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(new ItemPlayerLevelUp());
+		RegisterUtils.registerRender(ITEM);
 	}
 
 	@Override
