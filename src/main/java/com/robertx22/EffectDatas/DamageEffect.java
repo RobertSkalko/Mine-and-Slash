@@ -7,12 +7,12 @@ import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
 import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.saveclasses.DamageNumberData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.datasaving.bases.Saving;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
@@ -42,16 +42,21 @@ public class DamageEffect extends EffectData
 	protected void activate() {
 
 		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
-		UnitSaving.Save(this.Target, this.targetUnit);
+		// this.targetUnit.Save(this.Target);
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 		Target.attackEntityFrom(dmgsource, dmg);
-		LogCombat();
 
-		NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX, Target.posY,
-				Target.posZ, 32);
+		if (ModConfig.GUI.RENDER_CHAT_COMBAT_LOG) {
+			LogCombat();
+		}
 
-		Main.Network.sendToAllAround(new DamageNumberPackage(Saving.ToString(new DamageNumberData(dmgsource, Target))),
-				point);
+		if (ModConfig.GUI.RENDER_FLOATING_DAMAGE) {
+			NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX,
+					Target.posY, Target.posZ, 32);
+
+			Main.Network.sendToAllAround(
+					new DamageNumberPackage(Saving.ToString(new DamageNumberData(dmgsource, Target))), point);
+		}
 
 	}
 

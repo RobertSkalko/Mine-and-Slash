@@ -7,66 +7,26 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-// DOESNT WORK FOR SOME REASON, IT WORKED BEFORE 
 @Config(modid = Ref.MODID)
 @Config.LangKey("mmorpg.config.title")
 @EventBusSubscriber
 public class ModConfig {
 
-	public static OptionsContainer Options = new OptionsContainer();
-	public static CheatsContainer Cheats = new CheatsContainer();
+	public static GUIContainer GUI = new GUIContainer();
 
-	public static class OptionsContainer {
+	public static class GUIContainer {
 
-		@Config.RangeInt(min = 0, max = 4)
-		@Config.Comment("Set to 1 if you only want to pickup rare gear, 2 if only epic items etc")
-		public int PICKUP_ONLY_RARITIES_GEAR = 0;
+		@Config.Name("Render Chat Combat Log")
+		@Config.Comment("Show/Disable Chat Damage Numbers")
+		public boolean RENDER_CHAT_COMBAT_LOG = false;
 
-		@Config.RangeInt(min = 0, max = 4)
-		@Config.Comment("Set to 1 if you only want to pickup rare sockets, 2 if only epic sockets etc")
-		public int PICKUP_ONLY_RARITIES_SOCKETS = 0;
+		@Config.Name("Render Floating Damage Numbers")
+		@Config.Comment("Show/Disable Floating Damage Numbers when you attack mobs")
+		public boolean RENDER_FLOATING_DAMAGE = true;
 
-		// @Config.Comment("Blocks EXP GAIN, so you can grind better gear")
-		// public boolean BLOCK_EXP_GAIN = false;
-
-		@Config.Comment("Disables showing item names on the ground")
-		public boolean DISABLE_ITEM_NAME_RENDER = false;
-
-		@Config.Comment("Disables showing powder item names on the ground")
-		public boolean HIDE_POWDER_NAME_RENDER = false;
-
-		@Config.RangeInt(min = 0, max = 4)
-		@Config.Comment("Set to 1 if you only want to render names of rare sockets, 2 if only epic sockets etc")
-		public int RENDER_ONLY_RARITIES_SOCKETS = 0;
-
-		@Config.RangeInt(min = 0, max = 4)
-		@Config.Comment("Set to 1 if you only want to render names of rare gear, 2 if only epic gear etc")
-		public int RENDER_ONLY_RARITIES_GEAR = 0;
-	}
-
-	public static class CheatsContainer {
-
-		@Config.RangeDouble(min = 0.3, max = 10)
-		@Config.Comment("Increase or decrease Difficulty, 1 is normal, 2 is double, 0.5 is halved")
-		public float DIFFICULTY = 1F;
-
-		@Config.RangeDouble(min = 0.1, max = 20)
-		@Config.Comment("Increase or decrease GEAR drop rates, 1 is normal, 2 is double, 0.5 is halved")
-		public float DROP_RATES = 1F;
-
-		@Config.RangeDouble(min = 0.1, max = 3)
-		@Config.Comment("Increase or decrease EXPERIENCE rates, 1 is normal, 2 is double, 0.5 is halved")
-		public float EXP_RATES = 1F;
-
-		@Config.RangeDouble(min = 0.1, max = 3)
-		@Config.Comment("Increase or decrease CURRENCY drop rates, 1 is normal, 2 is double, 0.5 is halved")
-		public float CURRENCY_RATES = 1F;
-
-		@Config.Comment("Kill anything in 1 shot, mobs deal 0 damage, for testing purposes")
-		public boolean GOD_MODE = false;
-
-		@Config.Comment("Enables commands, this is meant for testing and not for normal gameplay")
-		public boolean CHEAT_MODE = false;
+		@Config.Name("Render Mob Health Bar")
+		@Config.Comment("Show/Disable mob health barsd")
+		public boolean RENDER_MOB_HEALTH_GUI = true;
 
 	}
 

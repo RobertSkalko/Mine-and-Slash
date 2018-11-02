@@ -21,17 +21,13 @@ public abstract class EffectData {
 		this.Target = target;
 
 		try {
-			Unit targetunit = UnitSaving.Load(target);
-			Unit sourceunit = UnitSaving.Load(source);
+			targetUnit = UnitSaving.Load(target);
+			sourceUnit = UnitSaving.Load(source);
 
-			if (sourceunit != null && targetunit != null) {
-				sourceunit.RecalculateStats(source);
-				UnitSaving.Save(source, sourceunit);
-				sourceUnit = sourceunit;
+			if (sourceUnit != null && targetUnit != null) {
+				sourceUnit.ReloadStats(source);
+				targetUnit.ReloadStats(target);
 
-				targetunit.RecalculateStats(target);
-				UnitSaving.Save(target, targetunit);
-				targetUnit = targetunit;
 			} else {
 				this.canceled = true;
 

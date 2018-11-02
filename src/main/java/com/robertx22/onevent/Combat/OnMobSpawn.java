@@ -38,8 +38,7 @@ public class OnMobSpawn {
 			if (!(entity instanceof EntityPlayer)) {
 				if (check == null) {
 					Unit unit = Unit.Mob(entity, player);
-					unit.RecalculateStats(entity);
-					UnitSaving.Save(entity, unit);
+					unit.Save(entity);
 				}
 
 			}

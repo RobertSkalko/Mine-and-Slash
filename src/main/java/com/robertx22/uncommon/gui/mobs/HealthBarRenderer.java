@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.lwjgl.opengl.GL11;
 
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -35,8 +36,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class HealthBarRenderer {
@@ -50,7 +51,7 @@ public class HealthBarRenderer {
 	@SubscribeEvent
 	public void onRenderWorldLast(RenderWorldLastEvent event) {
 
-		if ((!Minecraft.isGuiEnabled()))
+		if ((!Minecraft.isGuiEnabled() || !ModConfig.GUI.RENDER_MOB_HEALTH_GUI))
 			return;
 
 		if (UnitMap.size() > 1000) {
@@ -97,8 +98,9 @@ public class HealthBarRenderer {
 			unit = UnitMap.get(entity.getUniqueID());
 		} else {
 			unit = UnitSaving.Load(entity);
-			UnitMap.put(entity.getUniqueID(), unit);
-
+			if (unit != null) {
+				UnitMap.put(entity.getUniqueID(), unit);
+			}
 		}
 		if (unit == null) {
 			return;

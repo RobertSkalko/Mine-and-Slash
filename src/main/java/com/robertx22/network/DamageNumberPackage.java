@@ -40,7 +40,6 @@ public class DamageNumberPackage implements IMessage {
 		public IMessage onMessage(DamageNumberPackage message, MessageContext ctx) {
 
 			try {
-				// final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
 				DamageNumberData data = Saving.Load(message.toSend, DamageNumberData.class);
 

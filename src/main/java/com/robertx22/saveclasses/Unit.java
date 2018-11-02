@@ -51,6 +51,30 @@ import net.minecraft.util.text.TextFormatting;
 
 public class Unit implements Serializable {
 
+	public void Save(EntityLivingBase entity) {
+
+		if (entity instanceof EntityPlayer) {
+			UnitSaving.Save(entity, this);
+		} else {
+			if (this.InitialMobSave == false) {
+				this.InitialMobSave = true;
+				UnitSaving.Save(entity, this);
+			}
+		}
+
+	}
+
+	public void ReloadStats(EntityLivingBase entity) {
+
+		if (entity instanceof EntityPlayer) {
+			this.RecalculateStats(entity);
+			UnitSaving.Save(entity, this);
+		}
+
+	}
+
+	public boolean InitialMobSave = false;
+
 	private static final long serialVersionUID = -6658683548383891230L;
 	public int level = 1;
 
@@ -213,6 +237,7 @@ public class Unit implements Serializable {
 			SetMobStrengthMultiplier();
 			AddStatusEffectStats();
 			CalcStats();
+
 		}
 
 	}
@@ -268,6 +293,7 @@ public class Unit implements Serializable {
 		mob.uid = en.getUniqueID();
 
 		mob.AddRandomMobStatusEffects();
+		mob.RecalculateStats(en);
 
 		return mob;
 
