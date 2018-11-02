@@ -37,7 +37,7 @@ public class OnTickRegen {
 	static final int TicksToUpdateAllMobs = 200;
 	static final int TicksToRegen = 100;
 
-	static int radius = 25;
+	static int radius = 50;
 
 	static HashMap<UUID, EntityUpdate> Map = new HashMap<UUID, EntityUpdate>();
 

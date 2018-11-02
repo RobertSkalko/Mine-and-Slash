@@ -9,6 +9,7 @@ import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class EntityUpdate {
 	public EntityUpdate(EntityPlayerMP player, List<EntityLivingBase> entities) {
@@ -36,6 +37,28 @@ public class EntityUpdate {
 				Main.Network.sendTo(mobpacket, (EntityPlayerMP) player);
 				current++;
 			}
+		}
+
+	}
+
+	public static boolean IsEntityCloseTo(EntityLivingBase first, EntityLivingBase second) {
+
+		double distance = first.getDistance(second);
+
+		return distance < 200;
+
+	}
+
+	public static void syncEntityToClient(EntityLivingBase entity) {
+
+		String json = entity.getCapability(EntityData.Data, null).getNBT().getString(UnitSaving.DataLocation);
+
+		if (json != null && !json.isEmpty()) {
+			EntityPackage mobpacket = new EntityPackage(json);
+
+			Main.Network.sendToAllAround(mobpacket,
+					new TargetPoint(entity.dimension, entity.posX, entity.posY, entity.posZ, 150));
+
 		}
 
 	}

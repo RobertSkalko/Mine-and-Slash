@@ -1,5 +1,6 @@
 package com.robertx22.onevent.combat;
 
+import com.robertx22.onevent.ontick.EntityUpdate;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -40,6 +41,8 @@ public class OnMobSpawn {
 					Unit unit = Unit.Mob(entity, player);
 					unit.Save(entity);
 				}
+
+				EntityUpdate.syncEntityToClient(entity);
 
 			}
 
