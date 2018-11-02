@@ -9,7 +9,6 @@ import com.robertx22.network.PlayerPackage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
-import com.robertx22.uncommon.gui.BarsGUI;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -70,7 +69,6 @@ public class OnTickRegen {
 					PlayerPackage playerpacket = new PlayerPackage(json);
 					Network.INSTANCE.sendTo(playerpacket, (EntityPlayerMP) event.player);
 
-					BarsGUI.Updated = true;
 				}
 
 				playerSyncTick = 0;

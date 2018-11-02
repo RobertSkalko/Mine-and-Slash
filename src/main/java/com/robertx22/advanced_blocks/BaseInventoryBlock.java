@@ -1,7 +1,7 @@
 package com.robertx22.advanced_blocks;
 
-import com.robertx22.mmorpg.GuiHandler;
 import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.gui.GuiHandler;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

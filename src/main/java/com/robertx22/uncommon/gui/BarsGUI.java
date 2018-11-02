@@ -20,8 +20,6 @@ public class BarsGUI extends Gui {
 	private final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg",
 			"textures/gui/experience_bar.png");
 
-	public static boolean Updated = true;
-
 	public BarsGUI(Minecraft mc) {
 		super();
 		this.mc = mc;
@@ -31,6 +29,7 @@ public class BarsGUI extends Gui {
 	int yPos = 2;
 
 	Unit unit;
+	int ticks = 0;
 
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onRenderExperienceBar(RenderGameOverlayEvent event) {
@@ -42,9 +41,11 @@ public class BarsGUI extends Gui {
 			return;
 		}
 
-		if (Updated) {
+		ticks++;
+
+		if (ticks > 40) {
 			unit = UnitSaving.Load((EntityPlayer) mc.player);
-			Updated = false;
+
 		}
 
 		if (unit == null) {

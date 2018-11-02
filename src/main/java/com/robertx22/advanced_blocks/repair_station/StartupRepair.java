@@ -1,9 +1,9 @@
 package com.robertx22.advanced_blocks.repair_station;
 
-import com.robertx22.mmorpg.GuiHandler;
-import com.robertx22.mmorpg.GuiHandlerRegistry;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.gui.GuiHandler;
+import com.robertx22.mmorpg.gui.GuiHandlerRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -30,21 +30,6 @@ public class StartupRepair {
 														// to your block
 
 	public static void preInitCommon(FMLPreInitializationEvent event) {
-		// each instance of your block should have two names:
-		// 1) a registry name that is used to uniquely identify this block. Should be
-		// unique within your mod. use lower case.
-		// 2) an 'unlocalised name' that is used to retrieve the text name of your block
-		// in the player's language. For example-
-		// the unlocalised name might be "water", which is printed on the user's screen
-		// as "Wasser" in German or
-		// "aqua" in Italian.
-		//
-		// Multiple blocks can have the same unlocalised name - for example
-		// +----RegistryName----+---UnlocalisedName----+
-		// | flowing_water + water |
-		// | stationary_water + water |
-		// +--------------------+----------------------+
-		//
 		blockInventoryAdvanced = new BlockInventoryRepair().setUnlocalizedName("Repair Station");
 		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":repair_station");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);

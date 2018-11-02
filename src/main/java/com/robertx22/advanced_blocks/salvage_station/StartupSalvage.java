@@ -1,9 +1,9 @@
 package com.robertx22.advanced_blocks.salvage_station;
 
-import com.robertx22.mmorpg.GuiHandler;
-import com.robertx22.mmorpg.GuiHandlerRegistry;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.gui.GuiHandler;
+import com.robertx22.mmorpg.gui.GuiHandlerRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

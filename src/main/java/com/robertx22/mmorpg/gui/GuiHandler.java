@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg;
+package com.robertx22.mmorpg.gui;
 
 import com.robertx22.advanced_blocks.item_modify_station.ContainerInventoryModify;
 import com.robertx22.advanced_blocks.item_modify_station.GuiInventoryModify;

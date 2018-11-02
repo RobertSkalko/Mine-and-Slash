@@ -43,7 +43,9 @@ public class DamageEffect extends EffectData
 
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 
-		OnDisplayDamage.displayParticle(Target, (int) Number, this.Element);
+		if (Source.world.isRemote) {
+			OnDisplayDamage.displayParticle(Target, (int) Number, this.Element);
+		}
 
 		Target.attackEntityFrom(dmgsource, dmg);
 

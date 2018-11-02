@@ -1,4 +1,4 @@
-package com.robertx22.mmorpg;
+package com.robertx22.mmorpg.gui;
 
 import java.util.HashMap;
 
