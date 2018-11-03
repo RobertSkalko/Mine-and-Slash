@@ -387,6 +387,10 @@ public class Unit implements Serializable {
 
 		int tens = level / 10;
 
+		if (level < 5) {
+			return 250 * level;
+		}
+
 		return level * 1000 + (tens * 5000);
 
 	}
@@ -403,7 +407,7 @@ public class Unit implements Serializable {
 
 	}
 
-	private void LevelUp() {
+	public void LevelUp() {
 		level++;
 		experience = 0;
 	}

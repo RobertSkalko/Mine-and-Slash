@@ -51,7 +51,7 @@ public class TileGearFactory extends BaseTile {
 	};
 
 	private int points = 0;
-	private final int pointsNeeded = 2000;
+	private final int pointsNeeded = 2500;
 	private final int spellChance = 15;
 	private final int maxFuel = 25000;
 
@@ -316,6 +316,7 @@ public class TileGearFactory extends BaseTile {
 
 		// alter input and output
 		itemStacks[firstSuitableInputSlot].shrink(1); // decreaseStackSize()
+		itemStacks[this.FIRST_CAPACITOR_SLOT] = ItemStack.EMPTY;
 		if (itemStacks[firstSuitableInputSlot].getCount() <= 0) {
 			itemStacks[firstSuitableInputSlot] = ItemStack.EMPTY; // getStackSize(), EmptyItem
 		}

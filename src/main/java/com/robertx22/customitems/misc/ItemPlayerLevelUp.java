@@ -44,26 +44,36 @@ public class ItemPlayerLevelUp extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
-		try {
-			Unit unit = UnitSaving.Load(playerIn);
+		if (!worldIn.isRemote) {
+			try {
+				Unit unit = UnitSaving.Load(playerIn);
 
-			if (unit.experience > unit.GetExpRequiredForLevelUp()) {
-				unit.level++;
+				if (unit.CheckIfCanLevelUp()) {
 
-				playerIn.sendMessage(new TextComponentString(
-						TextFormatting.GREEN + "You have Leveled up! Current lvl: " + unit.level));
+					unit.LevelUp();
 
-				UnitSaving.Save(playerIn, unit);
-			} else {
+					playerIn.sendMessage(new TextComponentString(
+							TextFormatting.GREEN + "You have Leveled up! Current lvl: " + unit.level));
 
-				playerIn.sendMessage(
-						new TextComponentString(TextFormatting.RED + "You don't have enough experience to Level Up."));
+					UnitSaving.Save(playerIn, unit);
 
+					ItemStack stack = playerIn.getHeldItemMainhand();
+
+					if (stack.getCount() < 2) {
+						stack = ItemStack.EMPTY;
+					} else {
+						stack.setCount(stack.getCount() - 1);
+					}
+				} else {
+
+					playerIn.sendMessage(new TextComponentString(
+							TextFormatting.RED + "You don't have enough experience to Level Up."));
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 	}
 

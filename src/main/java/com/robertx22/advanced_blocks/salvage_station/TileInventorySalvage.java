@@ -8,7 +8,9 @@ import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.SpellSaving;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -31,7 +33,25 @@ public class TileInventorySalvage extends BaseTile {
 
 	public ItemStack getSmeltingResultForItem(ItemStack st) {
 		GearItemData gear = GearSaving.Load(st);
+		SpellItemData spell = SpellSaving.Load(st);
+
+		int rarity = 0;
+		int level = 0;
+
+		boolean can = false;
+
+		if (spell != null) {
+			rarity = spell.rarity;
+			level = spell.level;
+			can = true;
+		}
 		if (gear != null) {
+			rarity = gear.Rarity;
+			level = gear.level;
+			can = true;
+		}
+
+		if (can) {
 			ItemStack stack = ItemStack.EMPTY;
 
 			if (RandomUtils.roll(OrbChance * (gear.Rarity + 1))) {

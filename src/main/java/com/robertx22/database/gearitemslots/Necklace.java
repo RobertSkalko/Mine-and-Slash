@@ -17,6 +17,7 @@ import com.robertx22.database.stats.mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.WaterResistFlat;
+import com.robertx22.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 import com.robertx22.stats.StatMod;
@@ -49,7 +50,7 @@ public class Necklace extends GearItemSlot {
 	@Override
 	public List<StatMod> PossibleSecondaryStats() {
 		return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(),
-				new NatureResistFlat());
+				new NatureResistFlat(), new HealthRegenFlat());
 	}
 
 	@Override

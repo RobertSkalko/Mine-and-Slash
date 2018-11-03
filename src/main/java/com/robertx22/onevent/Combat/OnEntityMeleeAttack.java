@@ -85,7 +85,7 @@ public class OnEntityMeleeAttack {
 						} else {
 							unit.SpendEnergy(energyCost);
 							UnitSaving.Save(source, unit);
-
+							weapon.setItemDamage(weapon.getItemDamage() + 1);
 							unit.BasicAttack(source, target, unit);
 
 						}
