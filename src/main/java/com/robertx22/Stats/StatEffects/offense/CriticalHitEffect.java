@@ -29,7 +29,7 @@ public class CriticalHitEffect implements IStatEffect {
 
 				if (RandomUtils.roll(stat.Value)) {
 					icrit.SetCrit(true);
-					System.out.println("It's a crit");
+					// System.out.println("It's a crit");
 				}
 
 			}

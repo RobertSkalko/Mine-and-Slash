@@ -28,7 +28,7 @@ public class LifeOnHitEffect implements IStatEffect {
 
 				int healed = (int) stat.Value;
 
-				System.out.println("Life on hit gave " + healed);
+//				System.out.println("Life on hit gave " + healed);
 
 				Effect.Source.heal(HealthUtils.DamageToMinecraftHealth(healed, Effect.Source));
 

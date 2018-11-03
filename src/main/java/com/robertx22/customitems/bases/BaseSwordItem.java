@@ -17,7 +17,7 @@ public abstract class BaseSwordItem extends ItemSword {
 	public BaseSwordItem(int rarity, HashMap<Integer, Item> map) {
 		super(Mat);
 		this.setMaxStackSize(1);
-		this.setMaxDamage(1000);
+		this.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
 		this.setCreativeTab(NewBlocks.MyModTab);
 		this.setUnlocalizedName(Name().toLowerCase() + rarity);
 		this.setRegistryName(Name().toLowerCase() + rarity);

@@ -12,6 +12,8 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class BaseArmorItem extends ItemArmor {
 
+	public static int MAX_GEAR_DURABILITY = 750;
+
 	static int[] nums = new int[] { 3, 3, 3, 3 };
 
 	static ItemArmor.ArmorMaterial COMMON_MAT = EnumHelper.addArmorMaterial("common", Utils.setLocation("common"), 20,
@@ -37,7 +39,7 @@ public abstract class BaseArmorItem extends ItemArmor {
 	public BaseArmorItem(int rarity, HashMap<Integer, Item> map, EntityEquipmentSlot slot) {
 		super(GetMat(rarity), 0, slot);
 		this.setMaxStackSize(1);
-		this.setMaxDamage(1000);
+		this.setMaxDamage(MAX_GEAR_DURABILITY);
 		this.setCreativeTab(NewBlocks.MyModTab);
 		this.setUnlocalizedName(Name().toLowerCase() + rarity);
 		this.setRegistryName(Name().toLowerCase() + rarity);

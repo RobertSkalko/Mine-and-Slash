@@ -29,9 +29,8 @@ public class SpellDodgeEffect implements IStatEffect {
 				if (RandomUtils.roll(stat.Value)) {
 					Effect.Number = 0;
 					Effect.canceled = true;
+					// System.out.println("Spell Dodged!");
 				}
-
-				System.out.println("Spell Dodged!");
 
 			}
 

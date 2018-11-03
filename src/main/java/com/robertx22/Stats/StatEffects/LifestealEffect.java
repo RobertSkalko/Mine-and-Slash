@@ -28,7 +28,7 @@ public class LifestealEffect implements IStatEffect {
 
 				float healed = ((float) stat.Value * Effect.Number / 100);
 
-				System.out.println("Lifesteal stole " + healed);
+				// System.out.println("Lifesteal stole " + healed);
 
 				Effect.Source.heal(HealthUtils.DamageToMinecraftHealth(healed, Effect.Source));
 

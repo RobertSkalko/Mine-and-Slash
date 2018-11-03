@@ -17,7 +17,7 @@ public class ItemBlueprint {
 	public boolean RandomRarity = true;
 	public int level;
 	public boolean LevelRange = true;
-	public int LevelVariance = 5;
+	public int LevelVariance = 3;
 
 	public void SetSpecificRarity(int i) {
 

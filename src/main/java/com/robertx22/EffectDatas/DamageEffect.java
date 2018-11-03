@@ -42,7 +42,7 @@ public class DamageEffect extends EffectData
 	protected void activate() {
 
 		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
-		// this.targetUnit.Save(this.Target);
+
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 		Target.attackEntityFrom(dmgsource, dmg);
 

@@ -40,7 +40,7 @@ public class ItemBow extends BaseBow implements IWeapon {
 
 	@Override
 	public int GetEnergyCost() {
-		return 8;
+		return 9;
 	}
 
 }

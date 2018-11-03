@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.lang3.time.StopWatch;
-
 import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.lists.StatusEffects;
@@ -229,8 +227,8 @@ public class Unit implements Serializable {
 	public void RecalculateStats(EntityLivingBase entity) {
 
 		if (entity instanceof EntityPlayer) {
-			StopWatch watch = new StopWatch();
-			watch.start();
+			// StopWatch watch = new StopWatch();
+			// watch.start();
 			ClearStats();
 			AddPlayerBaseStats();
 			AddAllGearStats(entity);
@@ -238,7 +236,7 @@ public class Unit implements Serializable {
 			CalcStats();
 			CalcTraits();
 			CalcStats();
-			watch.stop();
+			// watch.stop();
 
 		} else {
 			ClearStats();

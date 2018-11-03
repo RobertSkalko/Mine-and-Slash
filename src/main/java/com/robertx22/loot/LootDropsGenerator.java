@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
@@ -21,9 +20,9 @@ import net.minecraft.item.ItemStack;
 
 public class LootDropsGenerator {
 
-	private static float GearChance = 7.5F;
-	private static float CurrencyChance = 1F;
-	private static float SpellChance = 2.5F;
+	private static float GearChance = 10F;
+	private static float CurrencyChance = 2F;
+	private static float SpellChance = 3F;
 
 	public static void Generate(Unit mob, Unit player, EntityLivingBase mobEntity) {
 
@@ -38,7 +37,7 @@ public class LootDropsGenerator {
 
 		List<ItemStack> items = new ArrayList<ItemStack>();
 
-		MobRarity rarity = Rarities.Mobs.get(mob.rarity);
+		// MobRarity rarity = Rarities.Mobs.get(mob.rarity);
 
 		float FinalGearChance = ApplyMobLootMulti(GearChance, mob, mobEntity, playerFindItemsChance);
 		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob, mobEntity, playerFindItemsChance);

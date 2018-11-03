@@ -30,7 +30,7 @@ public class BonusBasicDamageEffect implements IStatEffect {
 				bonus.Type = EffectTypes.BONUS_ATTACK;
 				bonus.Element = stat.Element();
 				bonus.Activate();
-				System.out.println("Added bonus " + stat.Element() + " dmg :" + dmg);
+				// System.out.println("Added bonus " + stat.Element() + " dmg :" + dmg);
 
 			}
 

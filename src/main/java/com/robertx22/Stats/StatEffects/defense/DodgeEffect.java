@@ -29,7 +29,7 @@ public class DodgeEffect implements IStatEffect {
 				if (RandomUtils.roll(stat.Value)) {
 					Effect.Number = 0;
 					Effect.canceled = true;
-					System.out.println("Attack Dodged!");
+					// System.out.println("Attack Dodged!");
 				}
 
 			}

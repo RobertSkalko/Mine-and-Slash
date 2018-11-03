@@ -79,10 +79,11 @@ public class TileGearFactory extends BaseTile {
 
 				if (RandomUtils.roll(spellChance)) {
 					SpellBlueprint spellprint = new SpellBlueprint(gear.level);
+					spellprint.LevelRange = false;
 					return SpellItemGen.Create(spellprint);
 				} else {
 					GearBlueprint print = new GearBlueprint(gear.level);
-
+					print.LevelRange = false;
 					if (RandomUtils.roll(50)) {
 						print.SetSpecificType(gear.gearTypeName);
 					}
