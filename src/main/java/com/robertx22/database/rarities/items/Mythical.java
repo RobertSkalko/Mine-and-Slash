@@ -29,7 +29,7 @@ public class Mythical extends ItemRarity {
 
 	@Override
 	public int Weight() {
-		return 200;
+		return 300;
 	}
 
 	@Override

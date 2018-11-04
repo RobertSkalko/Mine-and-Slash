@@ -57,13 +57,6 @@ public class ItemPlayerLevelUp extends Item {
 
 					UnitSaving.Save(playerIn, unit);
 
-					ItemStack stack = playerIn.getHeldItemMainhand();
-
-					if (stack.getCount() < 2) {
-						stack = ItemStack.EMPTY;
-					} else {
-						stack.setCount(stack.getCount() - 1);
-					}
 				} else {
 
 					playerIn.sendMessage(new TextComponentString(
@@ -74,7 +67,16 @@ public class ItemPlayerLevelUp extends Item {
 				e.printStackTrace();
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+	}
+
+	private ItemStack EmptyOrDecrease(ItemStack stack) {
+		if (stack.getCount() < 2) {
+			stack = ItemStack.EMPTY;
+		} else {
+			stack.setCount(stack.getCount() - 1);
+		}
+		return stack;
 	}
 
 	@SubscribeEvent

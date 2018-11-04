@@ -39,9 +39,8 @@ public class OnMobDeathDrops {
 					Unit victim = UnitSaving.Load(entity);
 					Unit killer = UnitSaving.Load(event.getSource().getTrueSource());
 
-					LootDropsGenerator.Generate(victim, killer, entity);
-
 					if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+						LootDropsGenerator.Generate(victim, killer, entity);
 						GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);
 						UnitSaving.Save(event.getSource().getTrueSource(), killer);
 					}
@@ -56,7 +55,7 @@ public class OnMobDeathDrops {
 
 	private static void GiveExp(EntityLivingBase playeren, Unit player, Unit mob) {
 
-		int exp = (int) (3 + mob.level * Rarities.Mobs.get(mob.rarity).LootMultiplier());
+		int exp = (int) (3 + mob.level * Rarities.Mobs.get(mob.rarity).ExpOnKill());
 
 		player.GiveExp((EntityPlayer) playeren, exp);
 

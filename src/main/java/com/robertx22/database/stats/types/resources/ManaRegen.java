@@ -17,7 +17,7 @@ public class ManaRegen extends Stat {
 
 	@Override
 	public boolean ScalesToLevel() {
-		return true;
+		return false;
 	}
 
 	@Override

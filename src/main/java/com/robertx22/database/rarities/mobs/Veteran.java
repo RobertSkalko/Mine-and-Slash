@@ -40,4 +40,10 @@ public class Veteran extends MobRarity {
 	public int MaxMobEffects() {
 		return 2;
 	}
+
+	@Override
+	public float ExpOnKill() {
+		return 10;
+	}
+
 }

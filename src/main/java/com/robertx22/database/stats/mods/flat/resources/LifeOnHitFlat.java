@@ -25,7 +25,7 @@ public class LifeOnHitFlat extends StatMod {
 
 	@Override
 	public int Max() {
-		return 4;
+		return 3;
 	}
 
 	@Override

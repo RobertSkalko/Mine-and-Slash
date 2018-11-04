@@ -41,4 +41,9 @@ public class Normal extends MobRarity {
 		return 0;
 	}
 
+	@Override
+	public float ExpOnKill() {
+		return 3;
+	}
+
 }

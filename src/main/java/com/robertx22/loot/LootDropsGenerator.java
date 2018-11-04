@@ -20,9 +20,9 @@ import net.minecraft.item.ItemStack;
 
 public class LootDropsGenerator {
 
-	private static float GearChance = 10F;
-	private static float CurrencyChance = 2F;
-	private static float SpellChance = 3F;
+	private static float GearChance = 7.5F;
+	private static float CurrencyChance = 1.8F;
+	private static float SpellChance = 2.5F;
 
 	public static void Generate(Unit mob, Unit player, EntityLivingBase mobEntity) {
 
@@ -42,6 +42,10 @@ public class LootDropsGenerator {
 		float FinalGearChance = ApplyMobLootMulti(GearChance, mob, mobEntity, playerFindItemsChance);
 		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob, mobEntity, playerFindItemsChance);
 		float FinalSpellChance = ApplyMobLootMulti(SpellChance, mob, mobEntity, playerFindItemsChance);
+
+		FinalGearChance = ApplyLevelDistancePunishment(mob, player, FinalGearChance);
+		FinalCurrencyChance = ApplyLevelDistancePunishment(mob, player, FinalCurrencyChance);
+		FinalSpellChance = ApplyLevelDistancePunishment(mob, player, FinalSpellChance);
 
 		int GearDrops = WhileRoll(FinalGearChance);
 		int CurrencyDrops = WhileRoll(FinalCurrencyChance);
@@ -68,6 +72,23 @@ public class LootDropsGenerator {
 				mobEntity.entityDropItem(items.get(i), 1F);
 			}
 		}
+
+	}
+
+	static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 4;
+
+	// prevents lvl 50 players farming lvl 1 mobs
+	private static float ApplyLevelDistancePunishment(Unit mob, Unit player, float chance) {
+
+		if (player.level > mob.level + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
+
+			float levelDiff = mob.level / player.level;
+
+			return chance * levelDiff;
+
+		}
+
+		return chance;
 
 	}
 

@@ -40,4 +40,10 @@ public class WorldBoss extends MobRarity {
 	public int MaxMobEffects() {
 		return 3;
 	}
+
+	@Override
+	public float ExpOnKill() {
+		return 50;
+	}
+
 }

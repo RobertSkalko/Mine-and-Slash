@@ -40,7 +40,7 @@ public class ItemSword extends BaseSwordItem implements IWeapon {
 
 	@Override
 	public int GetEnergyCost() {
-		return 7;
+		return 5;
 	}
 
 }

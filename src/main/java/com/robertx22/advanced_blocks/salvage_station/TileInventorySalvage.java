@@ -27,8 +27,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileInventorySalvage extends BaseTile {
 
-	ItemStack result = ItemStack.EMPTY;
-
 	float OrbChance = 0.5F;
 
 	public ItemStack getSmeltingResultForItem(ItemStack st) {
@@ -54,7 +52,7 @@ public class TileInventorySalvage extends BaseTile {
 		if (can) {
 			ItemStack stack = ItemStack.EMPTY;
 
-			if (RandomUtils.roll(OrbChance * (gear.Rarity + 1))) {
+			if (RandomUtils.roll(OrbChance * (rarity + 1))) {
 
 				Item item = (Item) RandomUtils.WeightedRandom(ListUtils.CollectionToList(CurrencyItem.ITEMS));
 
@@ -64,21 +62,21 @@ public class TileInventorySalvage extends BaseTile {
 
 				int amount = RandomUtils.RandomRange(1, 3);
 
-				ItemOre ore = (ItemOre) ItemOre.ItemOres.get(gear.Rarity);
+				ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
 				stack = new ItemStack(ore);
 				stack.setCount(amount);
 
 			}
-			if (result.isEmpty()) {
-				result = stack;
-
+			if (stack != null) {
+				return stack;
+			} else {
+				return ItemStack.EMPTY;
 			}
 
 		} else {
-			result = ItemStack.EMPTY;
+			return ItemStack.EMPTY;
 		}
 
-		return result;
 	}
 
 	// IMPORTANT STUFF ABOVE
@@ -124,7 +122,7 @@ public class TileInventorySalvage extends BaseTile {
 				ticks = 0;
 				if (canSmelt()) {
 
-					cookTime += 150;
+					cookTime += 20;
 
 					if (cookTime < 0)
 						cookTime = 0;
@@ -158,6 +156,8 @@ public class TileInventorySalvage extends BaseTile {
 	private void smeltItem() {
 		smeltItem(true);
 	}
+
+	ItemStack result = ItemStack.EMPTY;
 
 	/**
 	 * checks that there is an item to be smelted in one of the input slots and that
@@ -235,7 +235,7 @@ public class TileInventorySalvage extends BaseTile {
 		}
 		if (itemStacks[firstSuitableOutputSlot].isEmpty()) { // isEmpty()
 			itemStacks[firstSuitableOutputSlot] = result.copy(); // Use deep .copy() to avoid altering the recipe
-			this.result = ItemStack.EMPTY;
+			result = ItemStack.EMPTY;
 
 		} else {
 			int newStackSize = itemStacks[firstSuitableOutputSlot].getCount() + result.getCount();

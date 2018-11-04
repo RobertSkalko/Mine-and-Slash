@@ -12,7 +12,7 @@ public abstract class BaseBoltAOE extends BaseSpell {
 
 	@Override
 	public int BaseValue() {
-		return 4;
+		return 3;
 	}
 
 	@Override

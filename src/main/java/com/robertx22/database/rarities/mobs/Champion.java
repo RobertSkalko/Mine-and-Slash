@@ -40,4 +40,10 @@ public class Champion extends MobRarity {
 	public int MaxMobEffects() {
 		return 1;
 	}
+
+	@Override
+	public float ExpOnKill() {
+		return 15;
+	}
+
 }

@@ -10,4 +10,6 @@ public abstract class MobRarity extends Rarity {
 
 	public abstract float LootMultiplier();
 
+	public abstract float ExpOnKill();
+
 }

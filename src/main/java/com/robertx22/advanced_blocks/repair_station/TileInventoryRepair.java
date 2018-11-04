@@ -109,7 +109,7 @@ public class TileInventoryRepair extends BaseTile {
 		if (!this.world.isRemote) {
 			int numberOfFuelBurning = burnFuel();
 			ticks++;
-			if (ticks > 25) {
+			if (ticks > 20) {
 				ticks = 0;
 				if (canSmelt()) {
 

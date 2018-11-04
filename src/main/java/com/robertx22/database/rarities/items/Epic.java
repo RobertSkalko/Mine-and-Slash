@@ -28,7 +28,7 @@ public class Epic extends ItemRarity {
 
 	@Override
 	public int Weight() {
-		return 2500;
+		return 3000;
 	}
 
 	@Override

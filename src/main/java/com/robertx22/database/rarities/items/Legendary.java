@@ -28,7 +28,7 @@ public class Legendary extends ItemRarity {
 
 	@Override
 	public int Weight() {
-		return 1000;
+		return 1250;
 	}
 
 	@Override

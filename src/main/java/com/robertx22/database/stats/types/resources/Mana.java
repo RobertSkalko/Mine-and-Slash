@@ -17,7 +17,7 @@ public class Mana extends FillableStat {
 
 	@Override
 	public boolean ScalesToLevel() {
-		return true;
+		return false;
 	}
 
 	@Override

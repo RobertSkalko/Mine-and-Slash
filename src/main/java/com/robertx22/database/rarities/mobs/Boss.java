@@ -41,4 +41,9 @@ public class Boss extends MobRarity {
 		return 2;
 	}
 
+	@Override
+	public float ExpOnKill() {
+		return 25;
+	}
+
 }
