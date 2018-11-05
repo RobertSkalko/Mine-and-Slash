@@ -3,7 +3,7 @@
   "pattern": [
     "CCC",
     "CAC",
-    "CCC"
+    "BBB"
   ],
   "key": {  
 	"C": {
@@ -11,6 +11,9 @@
     }, 
 	"A": {
       "item": "minecraft:chest"
+    }, 
+	"B": {
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

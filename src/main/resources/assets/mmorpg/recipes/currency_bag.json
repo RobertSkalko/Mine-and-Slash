@@ -3,17 +3,20 @@
   "pattern": [
     "CCC",
     "CAC",
-    "CCC"
+    "BBB"
   ],
   "key": {  
 	"C": {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:iron_ingot"
     }, 
 	"A": {
       "item": "minecraft:chest"
+    }, 
+	"B": {
+      "item": "minecraft:diamond"
     }
   },
   "result": {
-    "item": "mmorpg:loot_bag"
+    "item": "mmorpg:currency_bag"
   }
 }

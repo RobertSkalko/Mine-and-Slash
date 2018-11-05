@@ -50,12 +50,14 @@ public class DamageEffect extends EffectData
 			LogCombat();
 		}
 
-		if (ModConfig.GUI.RENDER_FLOATING_DAMAGE) {
+		if (ModConfig.GUI.RENDER_FLOATING_DAMAGE && (int) Number > 0) {
 			NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX,
 					Target.posY, Target.posZ, 32);
 
 			Main.Network.sendToAllAround(
-					new DamageNumberPackage(Saving.ToString(new DamageNumberData(dmgsource, Target))), point);
+					new DamageNumberPackage(
+							Saving.ToString(new DamageNumberData(FormatDamageNumber(this), this.Element, Target))),
+					point);
 		}
 
 	}
@@ -93,7 +95,7 @@ public class DamageEffect extends EffectData
 
 	}
 
-	public static String FormatDamageNumber(int Number) {
+	public static String FormatNumber(int Number) {
 
 		String num = "";
 		if (Number > 1000) {
@@ -109,9 +111,20 @@ public class DamageEffect extends EffectData
 		return num;
 	}
 
+	public static String FormatDamageNumber(DamageEffect data) {
+		String num = FormatNumber((int) data.Number);
+
+		if (data.crit) {
+			num += "!";
+
+		}
+
+		return num;
+	}
+
 	private String LogDamage() {
 
-		String num = FormatDamageNumber((int) Number);
+		String num = FormatDamageNumber(this);
 
 		String str = num + " DMG ";
 

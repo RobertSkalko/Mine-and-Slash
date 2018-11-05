@@ -2,7 +2,6 @@ package com.robertx22.uncommon.gui.dmg_numbers;
 
 import org.lwjgl.opengl.GL11;
 
-import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.client.Minecraft;
@@ -28,11 +27,10 @@ public class DamageParticle extends Particle {
 	protected boolean shouldOnTop = true;
 	protected boolean grow = true;
 	protected float scale = 0.7F;
-	private int damage;
 
 	Elements element;
 
-	public DamageParticle(Elements element, int damage, World world, double parX, double parY, double parZ,
+	public DamageParticle(Elements element, String str, World world, double parX, double parY, double parZ,
 			double parMotionX, double parMotionY, double parMotionZ) {
 		super(world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
 		particleTextureJitterX = 0.0F;
@@ -40,14 +38,13 @@ public class DamageParticle extends Particle {
 		particleGravity = GRAVITY;
 		particleScale = SIZE;
 		particleMaxAge = LIFESPAN;
-		this.damage = damage;
-		this.text = DamageEffect.FormatDamageNumber((int) damage);
+		this.text = str;
 
 		this.element = element;
 	}
 
 	protected DamageParticle(Elements element, World worldIn, double posXIn, double posYIn, double posZIn) {
-		this(element, 0, worldIn, posXIn, posYIn, posZIn, 0, 0, 0);
+		this(element, "", worldIn, posXIn, posYIn, posZIn, 0, 0, 0);
 	}
 
 	@Override
