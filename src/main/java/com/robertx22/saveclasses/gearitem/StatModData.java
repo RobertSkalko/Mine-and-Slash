@@ -130,7 +130,7 @@ public class StatModData implements Serializable, ITooltipString {
 			if (GuiScreen.isShiftKeyDown()) {
 
 				Trait trait = (Trait) basestat;
-				text += " " + trait.Description();
+				text += ": " + TextFormatting.GRAY + trait.Description();
 
 			}
 		}

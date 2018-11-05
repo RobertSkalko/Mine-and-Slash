@@ -42,9 +42,8 @@ public class OnTooltip {
 
 		}
 
-		if (GuiScreen.isShiftKeyDown()) {
+		if (!GuiScreen.isShiftKeyDown() && data.chaosStats != null) {
 
-		} else {
 			event.getToolTip().add("Press shift for more info");
 		}
 
