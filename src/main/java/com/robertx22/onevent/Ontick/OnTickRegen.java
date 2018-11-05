@@ -32,7 +32,7 @@ public class OnTickRegen {
 	static int mobsListSyncTick = 0;
 	static int mobsSyncTick = 0;
 
-	static final int TicksToUpdatePlayer = 25;
+	static final int TicksToUpdatePlayer = 20;
 	static final int TicksToUpdateMobList = 120;
 	static final int TicksToUpdateAllMobs = 200;
 	static final int TicksToRegen = 100;

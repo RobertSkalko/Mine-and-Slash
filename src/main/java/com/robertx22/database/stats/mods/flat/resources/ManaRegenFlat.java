@@ -19,12 +19,12 @@ public class ManaRegenFlat extends StatMod {
 
 	@Override
 	public int Min() {
-		return 1;
+		return 2;
 	}
 
 	@Override
 	public int Max() {
-		return 3;
+		return 4;
 	}
 
 	@Override

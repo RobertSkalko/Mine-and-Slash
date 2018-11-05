@@ -27,7 +27,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileInventorySalvage extends BaseTile {
 
-	float OrbChance = 0.5F;
+	float OrbChance = 1F;
 
 	public ItemStack getSmeltingResultForItem(ItemStack st) {
 		GearItemData gear = GearSaving.Load(st);

@@ -1,10 +1,14 @@
 package com.robertx22.uncommon.gui;
 
+import java.awt.Color;
+
+import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -23,6 +27,7 @@ public class BarsGUI extends Gui {
 	public BarsGUI(Minecraft mc) {
 		super();
 		this.mc = mc;
+
 	}
 
 	int xPos = 2;
@@ -43,7 +48,7 @@ public class BarsGUI extends Gui {
 
 		ticks++;
 
-		if (ticks > 40) {
+		if (ticks > 15) {
 			unit = UnitSaving.Load((EntityPlayer) mc.player);
 
 		}
@@ -61,11 +66,24 @@ public class BarsGUI extends Gui {
 
 	}
 
+	int TEXTURE_WIDTH = 107;
+	int TEXTURE_HEIGHT = 11;
+
 	private void DrawBar(ResourceLocation res, float current, float max) {
+
+		GlStateManager.color(1F, 1F, 1F, 1F);
+
 		this.mc.getTextureManager().bindTexture(res);
-		drawTexturedModalRect(xPos, yPos, 0, 0, 107, 11);
+		drawTexturedModalRect(xPos, yPos, 0, 0, TEXTURE_WIDTH, 11);
 		int barwidth = (int) (((float) current / max * 100));
-		drawTexturedModalRect(xPos + 3, yPos + 3, 0, 11, barwidth, 5);
+		drawTexturedModalRect(xPos + 3, yPos + 3, 0, TEXTURE_HEIGHT, barwidth, 5);
+
+		String now = DamageEffect.FormatNumber((int) current);
+		String maximum = DamageEffect.FormatNumber((int) max);
+		String str = now + "/" + maximum;
+
+		mc.fontRenderer.drawStringWithShadow(str, xPos + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2,
+				yPos + 2, Color.LIGHT_GRAY.getRGB());
 
 		yPos += 12;
 	}

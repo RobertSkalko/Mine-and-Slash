@@ -33,7 +33,7 @@ public class Epic extends ItemRarity {
 
 	@Override
 	public int AffixChance() {
-		return 50;
+		return 60;
 	}
 
 	@Override

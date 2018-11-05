@@ -6,7 +6,6 @@ import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
-import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 public class LifeOnHitEffect implements IStatEffect {
 
@@ -30,7 +29,7 @@ public class LifeOnHitEffect implements IStatEffect {
 
 //				System.out.println("Life on hit gave " + healed);
 
-				Effect.Source.heal(HealthUtils.DamageToMinecraftHealth(healed, Effect.Source));
+				source.Heal(Effect.Source, healed);
 
 			}
 		} catch (Exception e) {

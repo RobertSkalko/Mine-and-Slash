@@ -6,7 +6,6 @@ import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
-import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 public class LifestealEffect implements IStatEffect {
 
@@ -29,8 +28,7 @@ public class LifestealEffect implements IStatEffect {
 				float healed = ((float) stat.Value * Effect.Number / 100);
 
 				// System.out.println("Lifesteal stole " + healed);
-
-				Effect.Source.heal(HealthUtils.DamageToMinecraftHealth(healed, Effect.Source));
+				source.Heal(Effect.Source, (int) healed);
 
 			}
 		} catch (Exception e) {

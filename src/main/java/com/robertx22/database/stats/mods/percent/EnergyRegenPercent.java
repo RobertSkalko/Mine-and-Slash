@@ -19,7 +19,7 @@ public class EnergyRegenPercent extends StatMod {
 
 	@Override
 	public int Min() {
-		return 5;
+		return 7;
 	}
 
 	@Override

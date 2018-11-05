@@ -33,7 +33,7 @@ public class Legendary extends ItemRarity {
 
 	@Override
 	public int AffixChance() {
-		return 75;
+		return 80;
 	}
 
 	@Override

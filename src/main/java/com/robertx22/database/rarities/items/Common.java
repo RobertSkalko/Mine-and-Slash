@@ -36,7 +36,7 @@ public class Common extends ItemRarity {
 
 	@Override
 	public int AffixChance() {
-		return 5;
+		return 10;
 	}
 
 	@Override

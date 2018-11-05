@@ -32,7 +32,7 @@ public class Uncommon extends ItemRarity {
 
 	@Override
 	public int AffixChance() {
-		return 10;
+		return 15;
 	}
 
 	@Override

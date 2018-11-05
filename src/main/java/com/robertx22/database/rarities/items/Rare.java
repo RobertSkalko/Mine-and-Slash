@@ -33,7 +33,7 @@ public class Rare extends ItemRarity {
 
 	@Override
 	public int AffixChance() {
-		return 20;
+		return 25;
 	}
 
 	@Override
