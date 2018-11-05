@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CAC",
+    "CCC"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:iron_ingot"
+    }, 
+	"A": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "item": "mmorpg:loot_bag"
+  }
+}

@@ -1,17 +1,3 @@
-## POWDERS
-item.magic_powder.name=Magic Powder
-item.rare_powder.name=Rare Powder
-item.epic_powder.name=Epic Powder
-item.legendary_powder.name=Legendary Powder
-item.mythical_powder.name=Mythical Powder
-
-## SOCKETS
-item.magic_socket.name=Magic Socket
-item.rare_socket.name=Rare Socket
-item.epic_socket.name=Epic Socket
-item.legendary_socket.name=Legendary Socket
-item.mythical_socket.name=Mythical Socket
-
 ## ORES
 item.magic_ore.name=Magic Ore
 item.rare_ore.name=Rare Ore
@@ -29,4 +15,5 @@ tile.mmorpg:epic_ore_block.name=Epic Ore
 tile.mmorpg:legendary_ore_block.name=Legendary Ore
 tile.mmorpg:mythical_ore_block.name=Mythical Ore
 
-
+item.loot_bag.name="Loot Bag"
+item.currency_bag.name="Currency Bag"

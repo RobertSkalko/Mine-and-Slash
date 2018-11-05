@@ -10,7 +10,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class BaseSwordItem extends ItemSword {
 
-	static ItemSword.ToolMaterial Mat = EnumHelper.addToolMaterial("swordmat", 0, 900, 1F, 1F, 1);
+	static ItemSword.ToolMaterial Mat = EnumHelper.addToolMaterial("swordmat", 0, 900, 1F, 1F, 10);
 
 	public abstract String Name();
 

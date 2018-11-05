@@ -33,13 +33,6 @@ public class OnEntityMeleeAttack {
 			return;
 		}
 
-		if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
-			EntityLivingBase defender = event.getEntityLiving();
-			EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
-
-			defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX, attacker.posZ - defender.posZ);
-		}
-
 		try {
 
 			if (event.getEntityLiving() == null || event.getSource().getTrueSource() == null) {
@@ -88,11 +81,24 @@ public class OnEntityMeleeAttack {
 							weapon.setItemDamage(weapon.getItemDamage() + 1);
 							unit.BasicAttack(source, target, unit);
 
+							if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
+								EntityLivingBase defender = event.getEntityLiving();
+								EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
+								defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX,
+										attacker.posZ - defender.posZ);
+							}
+
 						}
 					}
 				}
 			} else {
 				unit.BasicAttack(source, target, unit);
+
+				if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
+					EntityLivingBase defender = event.getEntityLiving();
+					EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
+					defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX, attacker.posZ - defender.posZ);
+				}
 			}
 
 		} catch (Exception e) {

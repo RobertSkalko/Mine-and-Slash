@@ -12,8 +12,17 @@ import com.robertx22.advanced_blocks.repair_station.TileInventoryRepair;
 import com.robertx22.advanced_blocks.salvage_station.ContainerInventorySalvage;
 import com.robertx22.advanced_blocks.salvage_station.GuiInventorySalvage;
 import com.robertx22.advanced_blocks.salvage_station.TileInventorySalvage;
+import com.robertx22.customitems.currency_bag.ContainerCurrencyBag;
+import com.robertx22.customitems.currency_bag.GuiCurrencyBag;
+import com.robertx22.customitems.currency_bag.InventoryCurrencyBag;
+import com.robertx22.customitems.currency_bag.ItemCurrencyBag;
+import com.robertx22.customitems.loot_bag.ContainerLootBag;
+import com.robertx22.customitems.loot_bag.GuiLootBag;
+import com.robertx22.customitems.loot_bag.InventoryLootBag;
+import com.robertx22.customitems.loot_bag.ItemLootBag;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -27,19 +36,18 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
  * per mod.
  */
 public class GuiHandler implements IGuiHandler {
-	private static final int GUIID_MBE_31 = 31;
+	private static final int GUI_MMORPG = 750;
 
 	public static int getGuiID() {
-		return GUIID_MBE_31;
+		return GUI_MMORPG;
 	}
 
 	// Gets the server side element for the given gui id this should return a
 	// container
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		if (ID != getGuiID()) {
-			System.err.println("Invalid ID: expected " + getGuiID() + ", received " + ID);
-		}
+
+		ItemStack stack = player.getHeldItemMainhand();
 
 		BlockPos xyz = new BlockPos(x, y, z);
 		TileEntity tileEntity = world.getTileEntity(xyz);
@@ -62,16 +70,25 @@ public class GuiHandler implements IGuiHandler {
 			TileGearFactory tileInventory = (TileGearFactory) tileEntity;
 			return new ContainerGearFactory(player.inventory, tileInventory);
 		}
+		if (stack != null && !stack.isEmpty()) {
+			if (ID == ItemCurrencyBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemCurrencyBag)
+					return new ContainerCurrencyBag(player.inventory, new InventoryCurrencyBag(stack));
+			}
+			if (ID == ItemLootBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemLootBag)
+					return new ContainerLootBag(player.inventory, new InventoryLootBag(stack));
+			}
 
+		}
 		return null;
 	}
 
 	// Gets the client side element for the given gui id this should return a gui
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		if (ID != getGuiID()) {
-			System.err.println("Invalid ID: expected " + getGuiID() + ", received " + ID);
-		}
+
+		ItemStack stack = player.getHeldItemMainhand();
 
 		BlockPos xyz = new BlockPos(x, y, z);
 		TileEntity tileEntity = world.getTileEntity(xyz);
@@ -90,6 +107,19 @@ public class GuiHandler implements IGuiHandler {
 		if (tileEntity instanceof TileGearFactory) {
 			TileGearFactory tileInventory = (TileGearFactory) tileEntity;
 			return new GuiGearFactory(player.inventory, tileInventory);
+		}
+		if (stack != null && !stack.isEmpty()) {
+			if (ID == ItemCurrencyBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemCurrencyBag) {
+					return new GuiCurrencyBag(player.inventory, new InventoryCurrencyBag(stack));
+				}
+			}
+			if (ID == ItemLootBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemLootBag) {
+					return new GuiLootBag(player.inventory, new InventoryLootBag(stack));
+				}
+			}
+
 		}
 
 		return null;
