@@ -34,17 +34,17 @@ public class OnTooltip {
 			return;
 		}
 
-		GearItemData data = GearSaving.Load(item);
+		if (GuiScreen.isCtrlKeyDown() == false) {
+			GearItemData data = GearSaving.Load(item);
 
-		if (data != null) {
+			if (data != null) {
+				data.BuildTooltip(event);
 
-			data.BuildTooltip(event);
+				if (GuiScreen.isShiftKeyDown() == false && data.chaosStats != null) {
 
-		}
-
-		if (!GuiScreen.isShiftKeyDown() && data.chaosStats != null) {
-
-			event.getToolTip().add("Press shift for more info");
+					event.getToolTip().add("Press shift for more info");
+				}
+			}
 		}
 
 	}
