@@ -65,6 +65,7 @@ public class ItemLootBag extends Item {
 		setMaxStackSize(1);
 		this.setRegistryName(Ref.MODID + ":loot_bag");
 		this.setCreativeTab(NewBlocks.MyModTab);
+		this.setUnlocalizedName("loot_bag");
 	}
 
 	@SubscribeEvent

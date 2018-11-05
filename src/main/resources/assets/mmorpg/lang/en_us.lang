@@ -15,5 +15,5 @@ tile.mmorpg:epic_ore_block.name=Epic Ore
 tile.mmorpg:legendary_ore_block.name=Legendary Ore
 tile.mmorpg:mythical_ore_block.name=Mythical Ore
 
-item.loot_bag.name="Loot Bag"
-item.currency_bag.name="Currency Bag"
+item.loot_bag.name=Loot Bag
+item.currency_bag.name=Currency Bag
