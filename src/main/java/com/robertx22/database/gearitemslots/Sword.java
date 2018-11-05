@@ -24,4 +24,9 @@ public class Sword extends BaseWeapon {
 		return ItemSword.Items;
 	}
 
+	@Override
+	public int Weight() {
+		return 1500;
+	}
+
 }

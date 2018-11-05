@@ -21,4 +21,8 @@ public class ThunderAtronach extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "Thunder Damage +15% multi";
+	}
 }

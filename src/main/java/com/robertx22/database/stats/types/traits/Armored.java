@@ -19,4 +19,8 @@ public class Armored extends Trait implements IAffectsOtherStats {
 		unit.Stats.get(Armor.GUID).Multi += 15;
 	}
 
+	@Override
+	public String Description() {
+		return "Armor + 15% multi";
+	}
 }

@@ -21,4 +21,9 @@ public class Lucky extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "+ 10% critical hit multi";
+	}
+
 }

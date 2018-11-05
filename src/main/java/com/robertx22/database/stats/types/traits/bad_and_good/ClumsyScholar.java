@@ -22,4 +22,8 @@ public class ClumsyScholar extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "Mana +20% multi, Armor -10% multi";
+	}
 }

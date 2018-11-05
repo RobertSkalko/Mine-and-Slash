@@ -52,9 +52,7 @@ public class OnMobSpawn {
 	public static int GetMobLevelByDistanceFromSpawn(Entity entity) {
 
 		double distance = entity.world.getSpawnPoint().distanceSq(entity.posX, entity.posY, entity.posZ);
-		int lvl = (int) (1 + (distance / 5000));
-
-		// System.out.println(distance + " lvl: " + lvl);
+		int lvl = (int) (1 + (distance / 12500));
 
 		return lvl;
 

@@ -11,6 +11,7 @@ import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.TextFormatting;
 
 public class StatModData implements Serializable, ITooltipString {
@@ -125,6 +126,13 @@ public class StatModData implements Serializable, ITooltipString {
 		} else {
 
 			text = TraitText();
+
+			if (GuiScreen.isShiftKeyDown()) {
+
+				Trait trait = (Trait) basestat;
+				text += " " + trait.Description();
+
+			}
 		}
 
 		return text;

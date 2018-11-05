@@ -21,4 +21,8 @@ public class FireAtronach extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "Fire Damage +15% multi";
+	}
 }

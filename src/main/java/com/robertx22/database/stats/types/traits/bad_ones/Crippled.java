@@ -22,4 +22,8 @@ public class Crippled extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "Health -10% multi, damage -5% multi";
+	}
 }

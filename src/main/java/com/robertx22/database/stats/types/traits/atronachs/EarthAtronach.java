@@ -21,4 +21,8 @@ public class EarthAtronach extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "Nature Damage +15% multi";
+	}
 }

@@ -21,4 +21,8 @@ public class FrostAtronach extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "Water Damage +15% multi";
+	}
 }

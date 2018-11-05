@@ -17,12 +17,12 @@ public class ManaFlat extends StatMod {
 
 	@Override
 	public int Min() {
-		return 5;
+		return 10;
 	}
 
 	@Override
 	public int Max() {
-		return 15;
+		return 25;
 	}
 
 	@Override

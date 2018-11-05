@@ -7,6 +7,10 @@ import java.util.List;
 import com.robertx22.database.prefixes.defense.Evasive;
 import com.robertx22.database.prefixes.defense.Hardened;
 import com.robertx22.database.prefixes.defense.HeavenlySkin;
+import com.robertx22.database.prefixes.misc.ThirstOfAcid;
+import com.robertx22.database.prefixes.misc.ThirstOfFlame;
+import com.robertx22.database.prefixes.misc.ThirstOfFrost;
+import com.robertx22.database.prefixes.misc.ThirstOfLightning;
 import com.robertx22.database.prefixes.offense.FlameImbued;
 import com.robertx22.database.prefixes.offense.Flaming;
 import com.robertx22.database.prefixes.offense.FrostImbued;
@@ -25,6 +29,11 @@ public class Prefixes {
 	public static List<Prefix> Weapon = new ArrayList<Prefix>() {
 		{
 			{
+
+				add(new ThirstOfAcid());
+				add(new ThirstOfFrost());
+				add(new ThirstOfFlame());
+				add(new ThirstOfLightning());
 
 				add(new HardHitting());
 				add(new LifeStealing());

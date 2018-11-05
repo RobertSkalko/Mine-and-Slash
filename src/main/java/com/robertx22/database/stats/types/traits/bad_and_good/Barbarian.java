@@ -22,4 +22,8 @@ public class Barbarian extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "Damage +15% multi, Mana -15% multi";
+	}
 }

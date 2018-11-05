@@ -9,6 +9,10 @@ import com.robertx22.customitems.baubles.ItemRing;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.database.lists.Suffixes;
+import com.robertx22.database.stats.mods.flat.elemental.dmg.FireDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.dmg.NatureDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.dmg.ThunderDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.dmg.WaterDamageFlat;
 import com.robertx22.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
@@ -37,12 +41,13 @@ public class Ring extends GearItemSlot {
 
 	@Override
 	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new EnergyRegenFlat(), new ManaRegenFlat());
+		return Arrays.asList(new FireDamageFlat(), new ThunderDamageFlat(), new WaterDamageFlat(),
+				new NatureDamageFlat());
 	}
 
 	@Override
 	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new ManaFlat());
+		return Arrays.asList(new EnergyRegenFlat(), new ManaRegenFlat(), new ManaFlat());
 	}
 
 	@Override
@@ -53,6 +58,11 @@ public class Ring extends GearItemSlot {
 	@Override
 	public HashMap<Integer, Item> ItemsForRarities() {
 		return ItemRing.Items;
+	}
+
+	@Override
+	public int Weight() {
+		return 1500;
 	}
 
 }

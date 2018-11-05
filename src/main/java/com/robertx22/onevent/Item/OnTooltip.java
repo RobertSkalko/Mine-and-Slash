@@ -3,6 +3,7 @@ package com.robertx22.onevent.Item;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -39,6 +40,12 @@ public class OnTooltip {
 
 			data.BuildTooltip(event);
 
+		}
+
+		if (GuiScreen.isShiftKeyDown()) {
+
+		} else {
+			event.getToolTip().add("Press shift for more info");
 		}
 
 	}

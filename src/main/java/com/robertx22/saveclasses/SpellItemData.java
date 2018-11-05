@@ -28,12 +28,7 @@ public class SpellItemData implements Serializable {
 	public int baseEffectPercent = 100;
 
 	public int GetManaCost() {
-		return ManaCostCalc(this.GetSpell().ManaCost()) * this.manaCostPercent / 100;
-	}
-
-	private int ManaCostCalc(int i) {
-
-		return i + (i * level / 4);
+		return this.GetSpell().ManaCost() * this.manaCostPercent / 100;
 	}
 
 	public int GetBaseValue() {
@@ -53,19 +48,19 @@ public class SpellItemData implements Serializable {
 	}
 
 	private int MinBase() {
-		return (int) (1 + GetSpell().BaseValue() * Rarities.Items.get(rarity).StatPercents().Min / 100);
+		return (int) (1 + GetSpell().BaseValue() * level * Rarities.Items.get(rarity).StatPercents().Min / 100);
 	}
 
 	private int MaxBase() {
-		return (int) (1 + GetSpell().BaseValue() * Rarities.Items.get(rarity).StatPercents().Max / 100);
+		return (int) (1 + GetSpell().BaseValue() * level * Rarities.Items.get(rarity).StatPercents().Max / 100);
 	}
 
 	private int MinMana() {
-		return ManaCostCalc(this.GetSpell().ManaCost()) * MIN_MANA_COST_PERCENT / 100;
+		return this.GetSpell().ManaCost() * MIN_MANA_COST_PERCENT / 100;
 	}
 
 	private int MaxMana() {
-		return ManaCostCalc(this.GetSpell().ManaCost()) * MAX_MANA_COST_PERCENT / 100;
+		return this.GetSpell().ManaCost() * MAX_MANA_COST_PERCENT / 100;
 	}
 
 	public String GetScalingDesc() {

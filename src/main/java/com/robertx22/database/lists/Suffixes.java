@@ -41,6 +41,7 @@ public class Suffixes {
 	public static List<Suffix> Jewerly = new ArrayList<Suffix>() {
 		{
 			{
+				add(new OfVitality());
 				add(new OfManaRegen());
 				add(new OfTheSage());
 

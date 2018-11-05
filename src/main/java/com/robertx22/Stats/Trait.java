@@ -5,6 +5,8 @@ import com.robertx22.uncommon.enumclasses.Elements;
 
 public abstract class Trait extends Stat {
 
+	public abstract String Description();
+
 	@Override
 	public boolean ScalesToLevel() {
 		return false;

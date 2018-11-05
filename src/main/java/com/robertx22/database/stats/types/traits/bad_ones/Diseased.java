@@ -21,4 +21,8 @@ public class Diseased extends Trait implements IAffectsOtherStats {
 
 	}
 
+	@Override
+	public String Description() {
+		return "Health Regen -20% multi";
+	}
 }
