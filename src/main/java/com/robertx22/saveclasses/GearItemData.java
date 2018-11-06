@@ -39,6 +39,10 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	public ChaosStatsData chaosStats = null;
 
+	// crafting limits
+	public int timesLeveledUp = 0;
+	//
+
 	public GearItemSlot GetBaseGearType() {
 
 		return GearTypes.All.get(gearTypeName);

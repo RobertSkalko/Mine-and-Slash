@@ -32,17 +32,17 @@ public class SpellInstantHeal extends BaseSpell {
 
 	@Override
 	public int ManaCost() {
-		return 25;
+		return 20;
 	}
 
 	@Override
 	public int BaseValue() {
-		return 3;
+		return 5;
 	}
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(Health.GUID, 0.25F);
+		return new EffectCalculation(Health.GUID, 0.3F);
 
 	}
 

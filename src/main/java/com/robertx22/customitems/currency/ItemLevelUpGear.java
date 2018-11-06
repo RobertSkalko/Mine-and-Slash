@@ -53,6 +53,8 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
 
 		tooltip.add("Extremely rare crystal,");
 		tooltip.add("Used to increase the level of an item.");
+		tooltip.add("Beware, a single item can't be leveled up more than");
+		tooltip.add(MAXIMUM_LEVEL_UPS + " times!");
 
 	}
 
@@ -60,13 +62,16 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
 	public void ModifyItem(ItemStack stack) {
 		GearItemData gear = GearSaving.Load(stack);
 		gear.level++;
+		gear.timesLeveledUp++;
 		GearSaving.Save(stack, gear);
 	}
+
+	public static final int MAXIMUM_LEVEL_UPS = 10;
 
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
 		GearItemData gear = GearSaving.Load(stack);
 
-		return gear != null;
+		return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS;
 	}
 }

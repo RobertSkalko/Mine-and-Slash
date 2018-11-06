@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public abstract class BaseSpell implements IWeighted {
@@ -51,6 +52,14 @@ public abstract class BaseSpell implements IWeighted {
 		Unit unit = UnitSaving.Load(caster);
 
 		if (unit != null) {
+
+			if (data.level > unit.level) {
+				caster.sendMessage(new TextComponentString(
+						TextFormatting.RED + "You aren't high enough level to cast this spell!"));
+
+				return false;
+			}
+
 			if (unit.mana().GetCurrentValue() >= data.GetManaCost()) {
 				if (!caster.world.isRemote) {
 					unit.SpendMana(data.GetManaCost());
@@ -58,9 +67,11 @@ public abstract class BaseSpell implements IWeighted {
 				}
 				return true;
 
+			} else {
+				caster.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have enough mana!"));
+
 			}
 		}
-		caster.sendMessage(new TextComponentString("You don't have enough mana!"));
 
 		return false;
 

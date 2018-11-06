@@ -10,7 +10,7 @@ public abstract class BaseBonusDamageFlat extends StatMod {
 
 	@Override
 	public int Min() {
-		return 2;
+		return 3;
 	}
 
 	@Override

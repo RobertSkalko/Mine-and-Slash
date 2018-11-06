@@ -57,6 +57,9 @@ public class ItemPlayerLevelUp extends Item {
 
 					UnitSaving.Save(playerIn, unit);
 
+					return new ActionResult<ItemStack>(EnumActionResult.PASS,
+							EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+
 				} else {
 
 					playerIn.sendMessage(new TextComponentString(
@@ -67,7 +70,7 @@ public class ItemPlayerLevelUp extends Item {
 				e.printStackTrace();
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 	}
 
 	private ItemStack EmptyOrDecrease(ItemStack stack) {
