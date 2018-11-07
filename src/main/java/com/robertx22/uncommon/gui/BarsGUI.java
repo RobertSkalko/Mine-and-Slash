@@ -59,17 +59,17 @@ public class BarsGUI extends Gui {
 
 		yPos = 2;
 
-		DrawBar(healthtexturepath, unit.health().CurrentValue(mc.player, unit), unit.health().Value);
-		DrawBar(manatexturepath, unit.mana().GetCurrentValue(), unit.mana().Value);
-		DrawBar(energytexturepath, unit.energy().GetCurrentValue(), unit.energy().Value);
-		DrawBar(experiencetexturepath, unit.experience, unit.GetExpRequiredForLevelUp());
+		DrawBar(unit, healthtexturepath, unit.health().CurrentValue(mc.player, unit), unit.health().Value, false);
+		DrawBar(unit, manatexturepath, unit.mana().GetCurrentValue(), unit.mana().Value, false);
+		DrawBar(unit, energytexturepath, unit.energy().GetCurrentValue(), unit.energy().Value, false);
+		DrawBar(unit, experiencetexturepath, unit.experience, unit.GetExpRequiredForLevelUp(), true);
 
 	}
 
 	int TEXTURE_WIDTH = 107;
 	int TEXTURE_HEIGHT = 11;
 
-	private void DrawBar(ResourceLocation res, float current, float max) {
+	private void DrawBar(Unit unit, ResourceLocation res, float current, float max, boolean isExp) {
 
 		GlStateManager.color(1F, 1F, 1F, 1F);
 
@@ -80,7 +80,13 @@ public class BarsGUI extends Gui {
 
 		String now = DamageEffect.FormatNumber((int) current);
 		String maximum = DamageEffect.FormatNumber((int) max);
-		String str = now + "/" + maximum;
+		String str = "";
+
+		if (!isExp) {
+			str = now + "/" + maximum;
+		} else {
+			str = "Lvl:" + unit.level + " " + now + "/" + maximum;
+		}
 
 		mc.fontRenderer.drawStringWithShadow(str, xPos + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2,
 				yPos + 2, Color.LIGHT_GRAY.getRGB());

@@ -1,7 +1,7 @@
 [
 {
   "modid": "mmorpg",
-  "name": "Mine and Slash",
+  "name": "Mine and Slash Reloaded",
   "description": "Diablo like mod for minecraft",
   "version": "${version}",
   "mcversion": "${mcversion}",
@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["robertx22"],
   "credits": "Vazkii (Neat - Mob health bars)",
-  "logoFile": "",
+  "logoFile": "logo",
   "screenshots": [],
   "dependencies": []
 }

@@ -1,62 +1,51 @@
--------------------------------------------
-Source installation information for modders
--------------------------------------------
-This code follows the Minecraft Forge installation methodology. It will apply
-some small patches to the vanilla MCP source code, giving you and it access 
-to some of the data and functions you need to build a successful mod.
+This mod completely changes the combat and gear progression of minecraft, for better or worse, depending on your preferences, so i'll lay it out nice and clear what this mod does so you can make sure you want it or not.
 
-Note also that the patches are built against "unrenamed" MCP source code (aka
-srgnames) - this means that you will not be able to read them directly against
-normal code.
 
-Source pack installation information:
+First, the intent. The intent is to make Loot (mob drops) the primary way to obtain gear and to provide satisfying highly randomized loot drops and an in-depth player stat system that allows you to specialize and min max your character.
 
-Standalone source installation
-==============================
 
-See the Forge Documentation online for more detailed instructions:
-http://mcforge.readthedocs.io/en/latest/gettingstarted/
+Secondary intent is to provide long term progression.
 
-Step 1: Open your command-line and browse to the folder where you extracted the zip file.
 
-Step 2: Once you have a command window up in the folder that the downloaded material was placed, type:
 
-Windows: "gradlew setupDecompWorkspace"
-Linux/Mac OS: "./gradlew setupDecompWorkspace"
+Now, how does this mod do this?
 
-Step 3: After all that finished, you're left with a choice.
-For eclipse, run "gradlew eclipse" (./gradlew eclipse if you are on Mac/Linux)
 
-If you prefer to use IntelliJ, steps are a little different.
-1. Open IDEA, and import project.
-2. Select your build.gradle file and have it import.
-3. Once it's finished you must close IntelliJ and run the following command:
+- All living things are given levels. The level is determined by distance from spawn. This means if you want to explore further, you'll want to level up so you can beat the tougher mobs!
 
-"gradlew genIntellijRuns" (./gradlew genIntellijRuns if you are on Mac/Linux)
+- Minecraft doesn't allow more than 1000 something health so this mod stores the health value, this means mods that show mob health aren't useful, that's why i remodeled vazkii's Neat (health bar) mod to show actual health values and some useful mob traits (like a mob that does bonus lightning damage).
 
-Step 4: The final step is to open Eclipse and switch your workspace to /eclipse/ (if you use IDEA, it should automatically start on your project)
+- Adding to that, this mod completely overrides most health and damage mechanics. This means if you get health from other sources besides this mod, it will be for nothing. Same with damage and armor. Only weapons and armors from this mod provide useful benefits. Though some vanilla things are still useful, like fire resistance enhacements.
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can run "gradlew --refresh-dependencies" to refresh the local cache. "gradlew clean" to reset everything {this does not affect your code} and then start the processs again.
+- To get any loot from my mod, you must deal the finishing blow to the mob, this is because i don't think a level 50 player slaughtering lvl 1 mobs should be rewarded.
 
-Should it still not work, 
-Refer to #ForgeGradle on EsperNet for more information about the gradle environment.
+- Mobs recieve waaaay less enviromental damage, this is to prevent lvl 1 players cheezing lvl 50 mobs. It's still possible but you probably don't want to do it, after all level 50 gear is not usable until you're level 50
 
-Tip:
-If you do not care about seeing Minecraft's source code you can replace "setupDecompWorkspace" with one of the following:
-"setupDevWorkspace": Will patch, deobfuscate, and gather required assets to run minecraft, but will not generate human readable source code.
-"setupCIWorkspace": Same as Dev but will not download any assets. This is useful in build servers as it is the fastest because it does the least work.
+- Player attacks require energy, spells require mana. Learn to kite mobs and not waste mana.
 
-Tip:
-When using Decomp workspace, the Minecraft source code is NOT added to your workspace in a editable way. Minecraft is treated like a normal Library. Sources are there for documentation and research purposes and usually can be accessed under the 'referenced libraries' section of your IDE.
+- Players need to craft a player level up token to level up (and gain a full exp bar)
 
-Forge source installation
-=========================
-MinecraftForge ships with this code and installs it as part of the forge
-installation process, no further action is required on your part.
 
-LexManos' Install Video
-=======================
-https://www.youtube.com/watch?v=8VEdtQLuLO0&feature=youtu.be
+Now let's get on to features, if you're here, you probably are fine with the drawbacks and want to play it!
 
-For more details update more often refer to the Forge Forums:
-http://www.minecraftforge.net/forum/index.php/topic,14048.0.html
+
+- Hugely complicated gear system, all gears have primary stats and secondary stats, some have prefixes and suffixes! Primary stats give the most important things, like basic attack damage, elemental damage or health. Secondary stats, suffixes and prefixes usually multiply those primary stats or give new ones.
+
+- Currently 8 gear slots (feet, legs, chest, head, 2 rings, necklace, bracelet) - supported by baubles mod
+
+- Many many stats, you have health, mana, energy, hp regen, mana regen, energy regen, fire damage, bonus water damage, critical hit, critical damage, lifesteal, life on hit, dodge.. Then you have traits, stats that you can only use 1 of, like Frost Atronach that multiplies all your frost damage by 15% or Lucky that multiplies your crit chance and so on.
+
+- Spells! Fire bolts, Thunder Explosions, Instant heals.. You have a way to fight back against those op mobs!
+
+- In depth crafting system, kinda like Path of Exile, you have nearly 10 rare items that can be used to modify your gear. Anything from re-rolling a suffix or leveling the item. You are able to beat the randomness with smart usage of crafting items.
+
+
+And blocks which i call stations!
+
+- Salvage station, throw gear or spells (from my mod) in this, this block destroys them and gives you resources and sometimes even rare currency!
+
+- Repair station, the only way to repair the gear items, use my mod's ores to fuel the station.
+
+- Modify station, combine a piece of gear with a currency item in this block and it will change the item.
+
+- Gear crafting station, sacrifice a piece of gear and some fuel (my mod's ores) to create a new piece of gear. This is a resource sink that allows rich players to pour resources into trying to get better gear. 

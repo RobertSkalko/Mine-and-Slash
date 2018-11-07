@@ -76,7 +76,7 @@ public class ContainerInventoryModify extends Container {
 		addSlotToContainer(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER, INPUT_SLOTS_XPOS,
 				INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
-		addSlotToContainer(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER + 1, 70,
+		addSlotToContainer(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER + 1, 72,
 				INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
 
 		final int OUTPUT_SLOTS_XPOS = 134;

@@ -1,15 +1,21 @@
 package com.robertx22.onevent.player;
 
 import com.robertx22.database.gearitemslots.Boots;
+import com.robertx22.database.gearitemslots.Bracelet;
 import com.robertx22.database.gearitemslots.Chest;
 import com.robertx22.database.gearitemslots.Helmet;
+import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Pants;
+import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.database.lists.Stats;
 import com.robertx22.generation.GearGen;
+import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.spells.projectile.firebolt.SpellFireBolt;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -39,6 +45,22 @@ public class OnLogin {
 		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 		print.SetSpecificType(new Pants().Name());
 		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+
+		print.SetSpecificType(new Ring().Name());
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+		print.SetSpecificType(new Ring().Name());
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+		print.SetSpecificType(new Necklace().Name());
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+		print.SetSpecificType(new Bracelet().Name());
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+
+		SpellBlueprint spell = new SpellBlueprint(1);
+		spell.SetSpecificType(new SpellFireBolt().GUID());
+		spell.LevelRange = false;
+		spell.SetSpecificRarity(0);
+
+		player.inventory.addItemStackToInventory(SpellItemGen.Create(spell));
 
 	}
 
