@@ -41,7 +41,7 @@ public class GiveGear extends CommandBase {
 		EntityPlayer player = (EntityPlayer) sender;
 
 		for (int i = 0; i < amount; i++) {
-			player.addItemStackToInventory(GearGen.Create(schema));
+			player.addItemStackToInventory(GearGen.CreateStack(schema));
 		}
 		// } else {
 		// sender.sendMessage(new TextComponentString("You have to enable Cheats in mod

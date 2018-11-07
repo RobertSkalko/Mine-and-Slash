@@ -20,6 +20,9 @@ import com.robertx22.database.rarities.mobs.WorldBoss;
 
 public class Rarities {
 
+	public static final int MAXIMUM_ITEM_RARITY = 5;
+	public static final int MAXIMUM_Mob_RARITY = 5;
+
 	public static List<ItemRarity> Items = Arrays.asList(new Common(), new Uncommon(), new Rare(), new Epic(),
 			new Legendary(), new Mythical());
 

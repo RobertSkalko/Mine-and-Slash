@@ -22,6 +22,6 @@ public class ThirstOfFrost extends Prefix {
 
 	@Override
 	public int Weight() {
-		return this.UncommonWeight;
+		return this.RareWeight;
 	}
 }

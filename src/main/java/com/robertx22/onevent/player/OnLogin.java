@@ -30,15 +30,15 @@ public class OnLogin {
 		print.LevelRange = false;
 		print.SetSpecificRarity(0);
 
-		player.inventory.addItemStackToInventory(GearGen.Create(print));
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 		print.SetSpecificType(new Boots().Name());
-		player.inventory.addItemStackToInventory(GearGen.Create(print));
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 		print.SetSpecificType(new Chest().Name());
-		player.inventory.addItemStackToInventory(GearGen.Create(print));
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 		print.SetSpecificType(new Helmet().Name());
-		player.inventory.addItemStackToInventory(GearGen.Create(print));
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 		print.SetSpecificType(new Pants().Name());
-		player.inventory.addItemStackToInventory(GearGen.Create(print));
+		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 
 	}
 

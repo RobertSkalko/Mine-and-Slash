@@ -19,6 +19,9 @@ public class ItemBlueprint {
 	public boolean LevelRange = true;
 	public int LevelVariance = 3;
 
+	public int minRarity = -1;
+	public int minLevel = 1;
+
 	public void SetSpecificRarity(int i) {
 
 		rarity = i;
@@ -35,8 +38,18 @@ public class ItemBlueprint {
 	public ItemRarity GetRarity() {
 
 		if (RandomRarity) {
-			return Rarities.Items.get(RarityGen.Random(0).Rank());
 
+			if (minRarity > -1) {
+				ItemRarity rar = Rarities.Items.get(RarityGen.Random(0).Rank());
+
+				while (rar.Rank() < minRarity) {
+					rar = Rarities.Items.get(RarityGen.Random(0).Rank());
+				}
+				return rar;
+
+			} else {
+				return Rarities.Items.get(RarityGen.Random(0).Rank());
+			}
 		} else {
 			return Rarities.Items.get(rarity);
 		}
@@ -48,8 +61,8 @@ public class ItemBlueprint {
 		if (LevelRange) {
 			int lvl = RandomUtils.RandomRange(level - LevelVariance, level + LevelVariance);
 
-			if (lvl < 1) {
-				lvl = 1;
+			if (lvl < this.minLevel) {
+				lvl = this.minLevel;
 			}
 
 			return lvl;

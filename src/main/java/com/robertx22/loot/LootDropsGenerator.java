@@ -56,7 +56,7 @@ public class LootDropsGenerator {
 		SpellBlueprint spellPrint = new SpellBlueprint(mob.level);
 
 		for (int i = 0; i < GearDrops; i++) {
-			items.add(RandomDamagedGear(GearGen.Create(gearPrint)));
+			items.add(RandomDamagedGear(GearGen.CreateStack(gearPrint)));
 		}
 		for (int i = 0; i < SpellDrops; i++) {
 			items.add(SpellItemGen.Create(spellPrint));

@@ -88,7 +88,7 @@ public class TileGearFactory extends BaseTile {
 						print.SetSpecificType(gear.gearTypeName);
 					}
 
-					return GearGen.Create(print);
+					return GearGen.CreateStack(print);
 				}
 
 			}

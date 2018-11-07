@@ -30,7 +30,7 @@ public class OfElementResist extends Suffix {
 
 	@Override
 	public int Weight() {
-		return this.RareWeight;
+		return this.EpicWeight;
 	}
 
 }

@@ -54,10 +54,12 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 
 		tooltip.add("Use on an item to re-roll stat numbers");
 
+		this.TooltipQuote(tooltip, "Hopefully works better than the last time.");
+
 	}
 
 	@Override
-	public void ModifyItem(ItemStack stack) {
+	public ItemStack ModifyItem(ItemStack stack) {
 
 		GearItemData gear = GearSaving.Load(stack);
 
@@ -66,6 +68,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 		}
 		GearSaving.Save(stack, gear);
 
+		return stack;
 	}
 
 	@Override

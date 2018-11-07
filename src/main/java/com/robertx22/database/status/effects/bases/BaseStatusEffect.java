@@ -17,6 +17,6 @@ public abstract class BaseStatusEffect implements IWeighted {
 
 	@Override
 	public int Weight() {
-		return this.NormalWeight;
+		return this.UncommonWeight;
 	}
 }

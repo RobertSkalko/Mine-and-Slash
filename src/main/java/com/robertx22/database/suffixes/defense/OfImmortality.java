@@ -27,6 +27,6 @@ public class OfImmortality extends Suffix {
 
 	@Override
 	public int Weight() {
-		return this.RareWeight;
+		return this.EpicWeight;
 	}
 }

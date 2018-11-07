@@ -40,6 +40,6 @@ public class LifeOnHitFlat extends StatMod {
 
 	@Override
 	public int Weight() {
-		return IWeighted.NormalWeight;
+		return IWeighted.UncommonWeight;
 	}
 }

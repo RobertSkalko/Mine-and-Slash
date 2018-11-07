@@ -25,7 +25,7 @@ public class OfCriticalUnity extends Suffix {
 
 	@Override
 	public int Weight() {
-		return this.RareWeight;
+		return this.EpicWeight;
 	}
 
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.robertx22.generation.GearGen;
+import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
@@ -23,14 +25,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEffect {
+public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":randomize_suffix";
+	private static final String name = Ref.MODID + ":orb_of_transmutation";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":randomize_suffix")
+	@GameRegistry.ObjectHolder(Ref.MODID + ":orb_of_transmutation")
 	public static final Item ITEM = null;
 
-	public ItemRandomizeSuffix() {
+	public ItemOrbOfTransmutation() {
 
 		super(name);
 
@@ -38,7 +40,7 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemRandomizeSuffix());
+		event.getRegistry().register(new ItemOrbOfTransmutation());
 	}
 
 	@SubscribeEvent
@@ -49,21 +51,29 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		stack.setStackDisplayName(TextFormatting.GREEN + "Orb Of Ever-Changing Suffix");
+		stack.setStackDisplayName(TextFormatting.BLUE + "Orb of Transmutation");
 
-		tooltip.add("Fully randomizes the Suffix of an Item.");
+		tooltip.add("Transforms a common item into a higher rarity.");
+		tooltip.add("Beware, it is a complete transformation, consider the");
+		tooltip.add("old item to be destroyed and replaced with a new one.");
 
-		this.TooltipQuote(tooltip, "There is always a better choice");
-
+		this.TooltipQuote(tooltip, "Turn trash into treasure!");
 	}
 
 	@Override
 	public ItemStack ModifyItem(ItemStack stack) {
-		GearItemData gear = GearSaving.Load(stack);
-		gear.suffix.RerollFully(gear);
-		GearSaving.Save(stack, gear);
 
-		return stack;
+		GearItemData gear = GearSaving.Load(stack);
+
+		GearBlueprint gearPrint = new GearBlueprint(gear.level);
+		gearPrint.SetSpecificType(gear.gearTypeName);
+		gearPrint.minRarity = 1;
+		gearPrint.LevelRange = false;
+
+		GearItemData newgear = GearGen.CreateData(gearPrint);
+		gear.WriteOverDataThatShouldStay(newgear);
+
+		return GearGen.CreateStack(newgear);
 	}
 
 	@Override
@@ -71,10 +81,11 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 
 		GearItemData gear = GearSaving.Load(stack);
 
-		if (gear.suffix != null) {
+		if (gear != null && gear.Rarity == 0) {
 			return true;
 		}
 
 		return false;
 	}
+
 }

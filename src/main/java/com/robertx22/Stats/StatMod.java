@@ -10,7 +10,7 @@ public abstract class StatMod implements IWeighted, IGUID {
 
 	@Override
 	public int Weight() {
-		return IWeighted.NormalWeight;
+		return IWeighted.UncommonWeight;
 	}
 
 	private static Random ran = new Random();

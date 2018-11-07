@@ -49,17 +49,19 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 		stack.setStackDisplayName("Crystal Of Legend");
-
-		tooltip.add("This material can be used to add an enhancement to an item.");
+		tooltip.add("This material can be used to add another secondary stat to an item.");
+		this.TooltipQuote(tooltip, "More power is always good, right?");
 
 	}
 
 	@Override
-	public void ModifyItem(ItemStack stack) {
+	public ItemStack ModifyItem(ItemStack stack) {
 
 		GearItemData gear = GearSaving.Load(stack);
 		gear.secondaryStats.AddStat(gear);
 		GearSaving.Save(stack, gear);
+
+		return stack;
 	}
 
 	@Override

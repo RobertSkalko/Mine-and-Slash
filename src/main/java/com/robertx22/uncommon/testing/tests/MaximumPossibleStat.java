@@ -34,7 +34,7 @@ public class MaximumPossibleStat {
 		items = new ArrayList<GearItemData>();
 
 		for (int i = 0; i < amount; i++) {
-			items.add(GearSaving.Load(GearGen.Create(schema)));
+			items.add(GearSaving.Load(GearGen.CreateStack(schema)));
 
 		}
 

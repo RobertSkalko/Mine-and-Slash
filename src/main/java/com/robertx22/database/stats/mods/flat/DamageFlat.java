@@ -40,7 +40,7 @@ public class DamageFlat extends StatMod {
 
 	@Override
 	public int Weight() {
-		return IWeighted.NormalWeight;
+		return IWeighted.UncommonWeight;
 	}
 
 }

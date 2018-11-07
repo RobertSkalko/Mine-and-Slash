@@ -52,19 +52,22 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 
 		stack.setStackDisplayName(TextFormatting.RED + "Chaos Orb");
 
-		tooltip.add("Substance of pure Chaos.");
+		tooltip.add("Adds a chaos stat to an item.");
 		tooltip.add("The result can be Good.. or Horrible!");
+
+		this.TooltipQuote(tooltip, "Do not gamble what you are not willing to lose.");
 
 	}
 
 	@Override
-	public void ModifyItem(ItemStack stack) {
+	public ItemStack ModifyItem(ItemStack stack) {
 
 		GearItemData gear = GearSaving.Load(stack);
 		gear.chaosStats = new ChaosStatsData();
 		gear.chaosStats.RerollFully(gear);
 		GearSaving.Save(stack, gear);
 
+		return stack;
 	}
 
 	@Override

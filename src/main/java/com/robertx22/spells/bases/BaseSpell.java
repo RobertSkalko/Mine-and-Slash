@@ -42,7 +42,7 @@ public abstract class BaseSpell implements IWeighted {
 	public abstract String GetDescription(SpellItemData data);
 
 	public int Weight() {
-		return this.NormalWeight;
+		return this.UncommonWeight;
 	}
 
 	public abstract boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data);

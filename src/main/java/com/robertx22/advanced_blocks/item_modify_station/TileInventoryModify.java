@@ -37,7 +37,7 @@ public class TileInventoryModify extends BaseTile {
 
 			if (effect.CanItemBeModified(gearStack)) {
 				ItemStack copy = gearStack.copy();
-				effect.ModifyItem(copy);
+				copy = effect.ModifyItem(copy);
 				return copy;
 			} else {
 				return ItemStack.EMPTY;

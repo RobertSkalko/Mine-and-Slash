@@ -40,7 +40,7 @@ public class LifestealFlat extends StatMod {
 
 	@Override
 	public int Weight() {
-		return IWeighted.NormalWeight;
+		return IWeighted.UncommonWeight;
 	}
 
 }

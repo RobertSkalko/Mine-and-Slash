@@ -27,7 +27,7 @@ public class HeavenlySkin extends Prefix {
 
 	@Override
 	public int Weight() {
-		return this.RareWeight;
+		return this.EpicWeight;
 	}
 
 }

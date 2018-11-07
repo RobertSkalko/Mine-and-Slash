@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.robertx22.database.lists.Rarities;
+import com.robertx22.generation.GearGen;
+import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
@@ -23,14 +26,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEffect {
+public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":randomize_suffix";
+	private static final String name = Ref.MODID + ":stone_of_hope";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":randomize_suffix")
+	@GameRegistry.ObjectHolder(Ref.MODID + ":stone_of_hope")
 	public static final Item ITEM = null;
 
-	public ItemRandomizeSuffix() {
+	public ItemStoneOfHope() {
 
 		super(name);
 
@@ -38,7 +41,7 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemRandomizeSuffix());
+		event.getRegistry().register(new ItemStoneOfHope());
 	}
 
 	@SubscribeEvent
@@ -49,21 +52,28 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		stack.setStackDisplayName(TextFormatting.GREEN + "Orb Of Ever-Changing Suffix");
+		stack.setStackDisplayName(TextFormatting.GOLD + "Stone of Hope");
 
-		tooltip.add("Fully randomizes the Suffix of an Item.");
+		tooltip.add("Transforms any rarity item into a higher rarity");
 
-		this.TooltipQuote(tooltip, "There is always a better choice");
-
+		this.TooltipQuote(tooltip, "When there is hope, there is a way.");
 	}
 
 	@Override
 	public ItemStack ModifyItem(ItemStack stack) {
-		GearItemData gear = GearSaving.Load(stack);
-		gear.suffix.RerollFully(gear);
-		GearSaving.Save(stack, gear);
 
-		return stack;
+		GearItemData gear = GearSaving.Load(stack);
+
+		GearBlueprint gearPrint = new GearBlueprint(gear.level);
+		gearPrint.SetSpecificType(gear.gearTypeName);
+		gearPrint.minRarity = gear.Rarity + 1;
+		gearPrint.LevelRange = false;
+
+		GearItemData newgear = GearGen.CreateData(gearPrint);
+		gear.WriteOverDataThatShouldStay(newgear);
+
+		return GearGen.CreateStack(newgear);
+
 	}
 
 	@Override
@@ -71,10 +81,16 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 
 		GearItemData gear = GearSaving.Load(stack);
 
-		if (gear.suffix != null) {
+		if (gear != null && gear.Rarity < Rarities.MAXIMUM_ITEM_RARITY) {
 			return true;
 		}
 
 		return false;
 	}
+
+	@Override
+	public int Weight() {
+		return this.LegendaryWeight;
+	}
+
 }

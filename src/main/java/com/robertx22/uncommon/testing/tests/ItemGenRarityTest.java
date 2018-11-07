@@ -26,7 +26,7 @@ public class ItemGenRarityTest {
 
 		for (int i = 0; i < amount; i++) {
 
-			GearItemData data = GearSaving.Load(GearGen.Create(schema));
+			GearItemData data = GearSaving.Load(GearGen.CreateStack(schema));
 
 			if (RarityandNumber.containsKey(data.Rarity)) {
 				RarityandNumber.put(data.Rarity, RarityandNumber.get(data.Rarity) + 1);

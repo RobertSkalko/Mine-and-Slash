@@ -1,6 +1,7 @@
 package com.robertx22.generation;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.lists.GearTypes;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
@@ -15,13 +16,11 @@ import net.minecraft.item.ItemStack;
 
 public class GearGen {
 
-	public static ItemStack Create(GearBlueprint schema) {
-
+	public static GearItemData CreateData(GearBlueprint schema) {
 		GearItemSlot gearslot = schema.GetGearType();
 
 		ItemRarity rarity = schema.GetRarity();
 
-		ItemStack stack = gearslot.GetItemForRarity(rarity.Rank());
 		GearItemData data = new GearItemData();
 
 		data.level = schema.GetLevel();
@@ -47,6 +46,27 @@ public class GearGen {
 			data.prefix.RerollFully(data);
 
 		}
+
+		return data;
+	}
+
+	public static ItemStack CreateStack(GearBlueprint schema) {
+
+		GearItemData data = CreateData(schema);
+
+		ItemStack stack = GearTypes.All.get(data.gearTypeName).GetItemForRarity(data.GetRarity().Rank());
+
+		GearSaving.Save(stack, data);
+
+		stack.setStackDisplayName(data.GetDisplayName());
+
+		return stack;
+
+	}
+
+	public static ItemStack CreateStack(GearItemData data) {
+
+		ItemStack stack = GearTypes.All.get(data.gearTypeName).GetItemForRarity(data.GetRarity().Rank());
 
 		GearSaving.Save(stack, data);
 

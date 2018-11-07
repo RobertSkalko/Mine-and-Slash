@@ -53,13 +53,17 @@ public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEf
 
 		tooltip.add("Fully randomizes the Prefix of an Item.");
 
+		this.TooltipQuote(tooltip, "There is always a better choice");
+
 	}
 
 	@Override
-	public void ModifyItem(ItemStack stack) {
+	public ItemStack ModifyItem(ItemStack stack) {
 		GearItemData gear = GearSaving.Load(stack);
 		gear.prefix.RerollFully(gear);
 		GearSaving.Save(stack, gear);
+
+		return stack;
 	}
 
 	@Override

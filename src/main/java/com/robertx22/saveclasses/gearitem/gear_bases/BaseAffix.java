@@ -20,7 +20,7 @@ public abstract class BaseAffix implements IWeighted, IGUID {
 
 	@Override
 	public int Weight() {
-		return IWeighted.NormalWeight;
+		return IWeighted.UncommonWeight;
 	}
 
 	public abstract List<StatMod> StatMods();

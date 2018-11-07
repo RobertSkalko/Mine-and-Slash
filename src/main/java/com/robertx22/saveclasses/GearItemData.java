@@ -43,6 +43,12 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	public int timesLeveledUp = 0;
 	//
 
+	public void WriteOverDataThatShouldStay(GearItemData newdata) {
+
+		newdata.timesLeveledUp = this.timesLeveledUp;
+
+	}
+
 	public GearItemSlot GetBaseGearType() {
 
 		return GearTypes.All.get(gearTypeName);
