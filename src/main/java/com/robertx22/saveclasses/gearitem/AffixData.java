@@ -1,9 +1,8 @@
-package com.robertx22.saveclasses.abstractclasses;
+package com.robertx22.saveclasses.gearitem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.BaseAffix;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
@@ -27,7 +26,7 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
 
 			StatMod mod = base.StatMods().get(i);
 
-			list.add(StatModData.Load(mod, percents.get(i), level));
+			list.add(StatModData.Load(mod, percents.get(i)));
 		}
 
 		return list;

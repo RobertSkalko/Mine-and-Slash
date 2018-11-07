@@ -7,7 +7,6 @@ import java.util.List;
 import com.robertx22.database.lists.Suffixes;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.abstractclasses.AffixData;
 import com.robertx22.saveclasses.gearitem.gear_bases.BaseAffix;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;

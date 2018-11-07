@@ -2,6 +2,7 @@ package com.robertx22.saveclasses.gearitem;
 
 import java.io.Serializable;
 
+import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.lists.StatMods;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.GearItemData;
@@ -44,7 +45,7 @@ public class StatModData implements Serializable, ITooltipString {
 		return data;
 	}
 
-	public static StatModData Load(StatMod mod, int percent, int level) {
+	public static StatModData Load(StatMod mod, int percent) {
 
 		StatModData data = new StatModData();
 
@@ -123,6 +124,18 @@ public class StatModData implements Serializable, ITooltipString {
 			} else {
 				text += "% Multi";
 			}
+
+			if (GuiScreen.isShiftKeyDown()) {
+
+				StatModData min = StatModData.Load(this.GetBaseMod(),
+						Rarities.Items.get(gear.Rarity).StatPercents().Min);
+				StatModData max = StatModData.Load(this.GetBaseMod(),
+						Rarities.Items.get(gear.Rarity).StatPercents().Max);
+
+				text += TextFormatting.BLUE + " (" + min.GetActualVal(gear.level) + " - " + max.GetActualVal(gear.level)
+						+ ")";
+			}
+
 		} else {
 
 			text = TraitText();

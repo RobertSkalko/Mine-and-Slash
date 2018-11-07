@@ -40,7 +40,7 @@ public class OnTooltip {
 			if (data != null) {
 				data.BuildTooltip(event);
 
-				if (GuiScreen.isShiftKeyDown() == false && data.chaosStats != null) {
+				if (GuiScreen.isShiftKeyDown() == false) {
 
 					event.getToolTip().add("Press shift for more info");
 				}
