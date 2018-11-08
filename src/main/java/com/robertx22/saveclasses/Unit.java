@@ -301,7 +301,7 @@ public class Unit implements Serializable {
 
 		mob.level = level;
 		mob.Stats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
-		mob.rarity = ((MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(Rarities.Mobs))).Rank();
+		mob.rarity = RandomUtils.RandomWithMinRarity(en).Rank();
 		mob.vanillaHP = (int) en.getMaxHealth();
 		mob.uid = en.getUniqueID();
 

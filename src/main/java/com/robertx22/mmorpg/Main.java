@@ -17,8 +17,6 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
 
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
@@ -118,11 +116,6 @@ public class Main {
 
 	@EventHandler
 	public static void onWorldLoad(FMLServerStartedEvent event) {
-		WorldServer world = DimensionManager.getWorld(0); // default world
-
-		world.getGameRules().setOrCreateGameRule("mobGriefing", "false");
-		world.getGameRules().setOrCreateGameRule("keepInventory", "true");
-		world.getGameRules().setOrCreateGameRule("naturalRegeneration", "false");
 
 	}
 }
