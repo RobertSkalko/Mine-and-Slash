@@ -3,6 +3,7 @@ package com.robertx22.database.lists;
 import java.util.HashMap;
 
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.database.stats.mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stats.mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stats.mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.mods.flat.DamageFlat;
@@ -70,6 +71,7 @@ public class StatMods {
 		{
 			{
 				put(new ArmorFlat().GUID(), new ArmorFlat());
+				put(new ArmorPeneFlat().GUID(), new ArmorPeneFlat());
 				put(new CriticalHitFlat().GUID(), new CriticalHitFlat());
 				put(new CriticalDamageFlat().GUID(), new CriticalDamageFlat());
 				put(new DamageFlat().GUID(), new DamageFlat());
