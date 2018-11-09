@@ -397,8 +397,14 @@ public class Unit implements Serializable {
 
 	public void GiveExp(EntityPlayer player, int i) {
 
-		experience += i;
+		if (!CheckIfCanLevelUp()) {
+			experience += i;
 
+			if (CheckIfCanLevelUp()) {
+				player.sendMessage(new TextComponentString(
+						TextFormatting.YELLOW + "Exp bar full, craft a level up token and use it to level up."));
+			}
+		}
 	}
 
 	public boolean CheckIfCanLevelUp() {

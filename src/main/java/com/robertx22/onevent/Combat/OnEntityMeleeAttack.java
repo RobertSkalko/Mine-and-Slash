@@ -42,10 +42,10 @@ public class OnEntityMeleeAttack {
 			EntityLivingBase source = (EntityLivingBase) event.getSource().getTrueSource();
 			EntityLivingBase target = event.getEntityLiving();
 
-			if (target.hurtResistantTime > 0) {
+			// this seems to copy vanilla attack speed
+			if ((float) target.hurtResistantTime > (float) target.maxHurtResistantTime / 2.0F) {
 				event.setCanceled(true);
 				return;
-
 			}
 
 			Unit targetUnit = UnitSaving.Load(target);

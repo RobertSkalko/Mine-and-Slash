@@ -17,6 +17,7 @@ import com.robertx22.database.stats.types.elementals.resist.FireResist;
 import com.robertx22.database.stats.types.elementals.resist.NatureResist;
 import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
 import com.robertx22.database.stats.types.elementals.resist.WaterResist;
+import com.robertx22.database.stats.types.offense.ArmorPenetration;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
 import com.robertx22.database.stats.types.offense.LifeOnHit;
@@ -64,6 +65,7 @@ public class Stats {
 				// Resources
 
 				put(Armor.GUID, new Armor());
+				put(ArmorPenetration.GUID, new ArmorPenetration());
 				put(CriticalDamage.GUID, new CriticalDamage());
 				put(CriticalHit.GUID, new CriticalHit());
 				put(PhysicalDamage.GUID, new PhysicalDamage());
