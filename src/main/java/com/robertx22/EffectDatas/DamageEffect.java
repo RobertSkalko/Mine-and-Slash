@@ -44,6 +44,7 @@ public class DamageEffect extends EffectData
 		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
 
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
+		Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
 		Target.attackEntityFrom(dmgsource, dmg);
 
 		if (ModConfig.GUI.RENDER_CHAT_COMBAT_LOG) {

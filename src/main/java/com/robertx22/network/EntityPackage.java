@@ -50,7 +50,7 @@ public class EntityPackage implements IMessage {
 				final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 				Unit unit = Saving.Load(message.toSend, Unit.class);
 
-				if (unit != null && unit.uid != null) {
+				if (unit != null && unit.uid != null && player.world != null && player.world.loadedEntityList != null) {
 					List<Entity> entities = new ArrayList<Entity>(player.world.loadedEntityList);
 					for (Entity en : entities) {
 						if (en.getUniqueID().equals(unit.uid)) {
