@@ -44,4 +44,10 @@ public class Uncommon extends ItemRarity {
 	public MinMax StatPercents() {
 		return new MinMax(5, 65);
 	}
+
+	@Override
+	public int SetChance() {
+		return 15;
+	}
+
 }

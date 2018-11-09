@@ -7,8 +7,6 @@ import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import net.minecraft.item.Item;
 
 public abstract class BaseBow extends net.minecraft.item.ItemBow {
-	// static net.minecraft.item.ItemBow.ToolMaterial Mat =
-	// EnumHelper.addToolMaterial("swordmat", 0, 900, 1F, 1F, 1);
 
 	public abstract String Name();
 

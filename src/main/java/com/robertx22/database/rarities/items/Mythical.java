@@ -46,4 +46,10 @@ public class Mythical extends ItemRarity {
 	public MinMax StatPercents() {
 		return new MinMax(35, 100);
 	}
+
+	@Override
+	public int SetChance() {
+		return 75;
+	}
+
 }

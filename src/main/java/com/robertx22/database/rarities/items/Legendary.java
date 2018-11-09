@@ -45,4 +45,10 @@ public class Legendary extends ItemRarity {
 	public MinMax StatPercents() {
 		return new MinMax(15, 90);
 	}
+
+	@Override
+	public int SetChance() {
+		return 50;
+	}
+
 }

@@ -1,15 +1,22 @@
 package com.robertx22.generation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.GearTypes;
+import com.robertx22.database.lists.Sets;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
+import com.robertx22.saveclasses.gearitem.SetData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
+import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.item.ItemStack;
@@ -45,6 +52,24 @@ public class GearGen {
 			data.prefix = new PrefixData();
 			data.prefix.RerollFully(data);
 
+		}
+
+		if (RandomUtils.roll(rarity.SetChance())) {
+
+			List<Set> possibleSets = new ArrayList();
+
+			for (Set set : Sets.All.values()) {
+				if (set.CanBePlacedOnItemSlot(data.gearTypeName)) {
+					possibleSets.add(set);
+				}
+			}
+
+			if (possibleSets.size() > 0) {
+				Set set = (Set) RandomUtils.WeightedRandom(ListUtils.CollectionToList(possibleSets));
+
+				data.set = new SetData();
+				data.set.baseSet = set.GUID();
+			}
 		}
 
 		return data;

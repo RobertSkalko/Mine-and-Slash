@@ -3,6 +3,7 @@ package com.robertx22.saveclasses;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.GearTypes;
@@ -12,13 +13,16 @@ import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
+import com.robertx22.saveclasses.gearitem.SetData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.stats.StatMod;
 
+import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
@@ -36,6 +40,8 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	public SuffixData suffix;
 	public PrefixData prefix;
+
+	public SetData set;
 
 	public ChaosStatsData chaosStats = null;
 
@@ -113,7 +119,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	}
 
 	@Override
-	public void BuildTooltip(ItemTooltipEvent event) {
+	public void BuildTooltip(ItemTooltipEvent event, Unit unit) {
 
 		event.getToolTip().clear();
 
@@ -139,9 +145,40 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 		}
 
+		this.BuildSetTooltip(event, unit);
+
 		ItemRarity rarity = GetRarity();
 		event.getToolTip().add(rarity.Color() + "Rarity: " + rarity.Name());
 
+	}
+
+	private void BuildSetTooltip(ItemTooltipEvent event, Unit unit) {
+
+		if (this.set != null) {
+			event.getToolTip().add(TextFormatting.GREEN + "[Set]: " + TextFormatting.GRAY + set.GetSet().Name());
+
+			for (Entry<Integer, StatMod> entry : set.GetSet().AllMods().entrySet()) {
+
+				boolean has = false;
+
+				TextFormatting color = null;
+				if (unit.WornSets.containsKey(set.baseSet) && unit.WornSets.get(set.baseSet) >= entry.getKey()) {
+					color = TextFormatting.GREEN;
+					has = true;
+				} else {
+					color = TextFormatting.DARK_GREEN;
+				}
+
+				String stat = StringUtils.stripControlCodes(StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
+						.GetTooltipString(unit.level, this, false));
+
+				String str = color + "" + entry.getKey() + " set" + ": " + TextFormatting.DARK_GREEN + stat;
+
+				event.getToolTip().add(str);
+
+			}
+			event.getToolTip().add("");
+		}
 	}
 
 	public List<IRerollable> GetAllRerollable() {

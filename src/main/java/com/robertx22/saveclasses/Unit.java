@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
+import com.robertx22.database.lists.Sets;
 import com.robertx22.database.lists.StatusEffects;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.types.defense.Armor;
@@ -31,8 +33,10 @@ import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Stat;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -49,6 +53,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
 public class Unit implements Serializable {
+
+	public HashMap<String, Integer> WornSets = new HashMap<String, Integer>();
 
 	public void Save(EntityLivingBase entity) {
 
@@ -199,6 +205,49 @@ public class Unit implements Serializable {
 		}
 	}
 
+	private void CountWornSets(EntityLivingBase entity) {
+
+		this.WornSets = new HashMap<String, Integer>();
+
+		List<GearItemData> gears = GetEquips(entity);
+
+		for (GearItemData gear : gears) {
+			if (gear.set != null) {
+				String set = gear.set.baseSet;
+
+				if (gear.set != null) {
+					if (this.WornSets.containsKey(set)) {
+						this.WornSets.put(set, this.WornSets.get(set) + 1);
+					} else {
+						this.WornSets.put(set, 1);
+					}
+				}
+			}
+
+		}
+
+	}
+
+	private void AddAllSetStats() {
+
+		for (Entry<String, Integer> entry : this.WornSets.entrySet()) {
+
+			Set set = Sets.All.get(entry.getKey());
+
+			for (StatMod mod : set.GetObtainedMods(this)) {
+
+				StatModData data = StatModData.Load(mod, set.StatPercent);
+
+				String name = mod.GetBaseStat().Name();
+				if (this.Stats.containsKey(name)) {
+					this.Stats.get(name).Add(data, this.level);
+				}
+			}
+
+		}
+
+	}
+
 	private void AddAllGearStats(EntityLivingBase entity) {
 
 		List<GearItemData> gears = GetEquips(entity);
@@ -229,10 +278,12 @@ public class Unit implements Serializable {
 		if (entity instanceof EntityPlayer) {
 			// StopWatch watch = new StopWatch();
 			// watch.start();
+			CountWornSets(entity);
 			ClearStats();
 			AddPlayerBaseStats();
 			AddAllGearStats(entity);
 			AddStatusEffectStats();
+			AddAllSetStats();
 			CalcStats();
 			CalcTraits();
 			CalcStats();

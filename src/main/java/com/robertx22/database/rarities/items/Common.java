@@ -49,4 +49,9 @@ public class Common extends ItemRarity {
 		return new MinMax(3, 60);
 	}
 
+	@Override
+	public int SetChance() {
+		return 5;
+	}
+
 }

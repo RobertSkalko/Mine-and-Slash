@@ -69,7 +69,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
 		for (StatModData data : this.GetAllStats(gear.level)) {
 
-			list.add(data.GetTooltipString(gear));
+			list.add(data.GetTooltipString(gear.level, gear, true));
 		}
 
 		return list;

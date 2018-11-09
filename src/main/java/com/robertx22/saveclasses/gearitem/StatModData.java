@@ -61,7 +61,7 @@ public class StatModData implements Serializable, ITooltipString {
 	public String baseModName;
 
 	public StatMod GetBaseMod() {
-		return StatMods.All().get(baseModName);
+		return StatMods.All.get(baseModName);
 	}
 
 	public int GetActualVal(int level) {
@@ -80,10 +80,23 @@ public class StatModData implements Serializable, ITooltipString {
 
 	}
 
-	public String NameText() {
+	public static String STAT_PREFIX = " * ";
+
+	public String NameText(boolean IsSet) {
 		StatMod mod = GetBaseMod();
 		Stat basestat = mod.GetBaseStat();
-		return TextFormatting.RED + " * " + basestat.Name() + ": ";
+
+		String str = basestat.Name();
+
+		if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
+			str += " Percent";
+		}
+
+		if (IsSet) {
+			return TextFormatting.RED + STAT_PREFIX + str + ": ";
+		} else {
+			return TextFormatting.RED + str + ": ";
+		}
 	}
 
 	public String TraitText() {
@@ -92,17 +105,17 @@ public class StatModData implements Serializable, ITooltipString {
 		return TextFormatting.GREEN + " * " + basestat.Name();
 	}
 
-	public String NameAndValueText(GearItemData gear) {
+	public String NameAndValueText(GearItemData gear, boolean IsSet) {
 
 		int val = this.GetActualVal(gear.level);
 
 		String minusplus = val > 0 ? "+" : "";
 
-		return NameText() + minusplus + val;
+		return NameText(IsSet) + minusplus + val;
 	}
 
 	@Override
-	public String GetTooltipString(GearItemData gear) {
+	public String GetTooltipString(int level, GearItemData gear, boolean IsNotSet) {
 		StatMod mod = GetBaseMod();
 
 		Stat basestat = mod.GetBaseStat();
@@ -111,7 +124,7 @@ public class StatModData implements Serializable, ITooltipString {
 
 		if (!(basestat instanceof Trait)) {
 
-			text = NameAndValueText(gear);
+			text = NameAndValueText(gear, IsNotSet);
 
 			if (mod.Type() == StatTypes.Flat) {
 
@@ -125,7 +138,7 @@ public class StatModData implements Serializable, ITooltipString {
 				text += "% Multi";
 			}
 
-			if (GuiScreen.isShiftKeyDown()) {
+			if (GuiScreen.isShiftKeyDown() && IsNotSet) {
 
 				StatModData min = StatModData.Load(this.GetBaseMod(),
 						Rarities.Items.get(gear.Rarity).StatPercents().Min);

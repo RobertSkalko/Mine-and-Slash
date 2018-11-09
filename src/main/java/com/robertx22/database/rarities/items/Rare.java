@@ -45,4 +45,10 @@ public class Rare extends ItemRarity {
 	public MinMax StatPercents() {
 		return new MinMax(15, 70);
 	}
+
+	@Override
+	public int SetChance() {
+		return 20;
+	}
+
 }

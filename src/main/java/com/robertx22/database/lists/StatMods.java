@@ -32,6 +32,7 @@ import com.robertx22.database.stats.mods.flat.resources.LifestealFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.mods.percent.ArmorPercent;
+import com.robertx22.database.stats.mods.percent.CriticalHitPercent;
 import com.robertx22.database.stats.mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stats.mods.percent.HealthPercent;
 import com.robertx22.database.stats.mods.percent.LifestealPercent;
@@ -56,18 +57,7 @@ import com.robertx22.stats.StatMod;
 
 public class StatMods {
 
-	private static HashMap<String, StatMod> mods = null;
-
-	public static <C> HashMap<String, StatMod> All() {
-
-		return All;
-		/*
-		 * if (mods == null) { mods = Database.All(StatMod.class,
-		 * StatModAnot.class.getCanonicalName(), mods); } return mods;
-		 */
-	}
-
-	private static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
+	public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
 		{
 			{
 				put(new ArmorFlat().GUID(), new ArmorFlat());
@@ -75,6 +65,7 @@ public class StatMods {
 				put(new CriticalHitFlat().GUID(), new CriticalHitFlat());
 				put(new CriticalDamageFlat().GUID(), new CriticalDamageFlat());
 				put(new DamageFlat().GUID(), new DamageFlat());
+				put(new CriticalHitPercent().GUID(), new CriticalHitPercent());
 
 				// Resources
 				put(new HealthFlat().GUID(), new HealthFlat());

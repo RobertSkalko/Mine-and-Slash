@@ -4,6 +4,6 @@ import com.robertx22.saveclasses.GearItemData;
 
 public interface ITooltipString {
 
-	public abstract String GetTooltipString(GearItemData gear);
+	public abstract String GetTooltipString(int level, GearItemData gear, boolean addPrefix);
 
 }

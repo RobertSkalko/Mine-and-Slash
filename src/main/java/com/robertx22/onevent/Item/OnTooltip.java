@@ -1,7 +1,9 @@
 package com.robertx22.onevent.Item;
 
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
@@ -37,8 +39,10 @@ public class OnTooltip {
 		if (GuiScreen.isCtrlKeyDown() == false) {
 			GearItemData data = GearSaving.Load(item);
 
-			if (data != null) {
-				data.BuildTooltip(event);
+			Unit unit = UnitSaving.Load(event.getEntityPlayer());
+
+			if (data != null && unit != null) {
+				data.BuildTooltip(event, unit);
 
 				if (GuiScreen.isShiftKeyDown() == false) {
 

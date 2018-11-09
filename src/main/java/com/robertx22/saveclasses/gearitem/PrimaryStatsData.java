@@ -54,7 +54,7 @@ public class PrimaryStatsData extends StatGroupData implements Serializable, ITo
 
 		for (StatModData data : this.GetAllStats(gear.level)) {
 
-			list.add(data.GetTooltipString(gear));
+			list.add(data.GetTooltipString(gear.level, gear, true));
 		}
 
 		return list;

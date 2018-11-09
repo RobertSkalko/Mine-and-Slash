@@ -45,4 +45,10 @@ public class Epic extends ItemRarity {
 	public MinMax StatPercents() {
 		return new MinMax(20, 75);
 	}
+
+	@Override
+	public int SetChance() {
+		return 30;
+	}
+
 }

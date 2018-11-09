@@ -48,7 +48,7 @@ public abstract class GearItemSlot implements IWeighted {
 
 		List<StatMod> list = new ArrayList<StatMod>();
 
-		for (StatMod mod : StatMods.All().values()) {
+		for (StatMod mod : StatMods.All.values()) {
 			if (mod instanceof BaseTraitMod) {
 				list.add(mod);
 			}
