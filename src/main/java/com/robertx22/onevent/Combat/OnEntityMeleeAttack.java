@@ -34,7 +34,6 @@ public class OnEntityMeleeAttack {
 		}
 
 		try {
-
 			if (event.getEntityLiving() == null || event.getSource().getTrueSource() == null) {
 				return;
 			}
@@ -69,17 +68,16 @@ public class OnEntityMeleeAttack {
 					if (unit != null && targetUnit != null) {
 
 						event.setCanceled(true);
-						// event.setAmount(0);
 
 						if (unit.energy().GetCurrentValue() < energyCost) {
-							// event.setCanceled(true);
+
 							NoEnergyMessage(source);
 
 						} else {
 							unit.SpendEnergy(energyCost);
 							UnitSaving.Save(source, unit);
 							weapon.setItemDamage(weapon.getItemDamage() + 1);
-							unit.BasicAttack(source, target, unit);
+							iWep.Attack(source, target, unit);
 
 							if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
 								EntityLivingBase defender = event.getEntityLiving();

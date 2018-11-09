@@ -5,8 +5,13 @@ import java.util.HashMap;
 import com.robertx22.customitems.bases.BaseSwordItem;
 import com.robertx22.customitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
+import com.robertx22.database.stats.types.offense.PhysicalDamage;
+import com.robertx22.effectdatas.DamageEffect;
+import com.robertx22.effectdatas.EffectData.EffectTypes;
+import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -40,7 +45,18 @@ public class ItemSword extends BaseSwordItem implements IWeapon {
 
 	@Override
 	public int GetEnergyCost() {
-		return 5;
+		return 4;
+	}
+
+	@Override
+	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource) {
+
+		int num = (int) unitsource.Stats.get(PhysicalDamage.GUID).Value;
+		DamageEffect dmg = new DamageEffect(source, target, num);
+		dmg.Type = EffectTypes.BASIC_ATTACK;
+		dmg.Activate();
+
+		return true;
 	}
 
 }
