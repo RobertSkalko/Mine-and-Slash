@@ -44,9 +44,11 @@ public class TileInventorySalvage extends BaseTile {
 			can = true;
 		}
 		if (gear != null) {
-			rarity = gear.Rarity;
-			level = gear.level;
-			can = true;
+			if (gear.isSalvagable) {
+				rarity = gear.Rarity;
+				level = gear.level;
+				can = true;
+			}
 		}
 
 		if (can) {

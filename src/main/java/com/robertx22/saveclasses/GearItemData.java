@@ -45,6 +45,8 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 	public ChaosStatsData chaosStats = null;
 
+	public boolean isSalvagable = true;
+
 	// crafting limits
 	public int timesLeveledUp = 0;
 	//
@@ -149,6 +151,10 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 
 		ItemRarity rarity = GetRarity();
 		event.getToolTip().add(rarity.Color() + "Rarity: " + rarity.Name());
+
+		if (!this.isSalvagable) {
+			event.getToolTip().add(TextFormatting.RED + "Unsalvagable");
+		}
 
 	}
 
