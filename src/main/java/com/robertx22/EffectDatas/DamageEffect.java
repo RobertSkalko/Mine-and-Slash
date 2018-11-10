@@ -53,11 +53,11 @@ public class DamageEffect extends EffectData
 		Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
 		Target.attackEntityFrom(dmgsource, dmg);
 
-		if (ModConfig.GUI.RENDER_CHAT_COMBAT_LOG) {
+		if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
 			LogCombat();
 		}
 
-		if (ModConfig.GUI.RENDER_FLOATING_DAMAGE && (int) Number > 0) {
+		if (ModConfig.Client.RENDER_FLOATING_DAMAGE && (int) Number > 0) {
 			NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX,
 					Target.posY, Target.posZ, 32);
 

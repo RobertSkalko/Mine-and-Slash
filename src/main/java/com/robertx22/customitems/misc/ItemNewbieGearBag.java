@@ -107,11 +107,11 @@ public class ItemNewbieGearBag extends Item {
 
 		stack.setStackDisplayName(TextFormatting.YELLOW + "Newbie Gear Bag");
 
-		tooltip.add("If you died and lost your newbie gear, use this");
-		tooltip.add("to create more level 1 gear.");
-		tooltip.add("At least 1 sword item is guaranteed.");
-		tooltip.add("Do note, these items can't be salvaged!");
+		tooltip.add("Creates a pack of level one gear.");
 		tooltip.add(TextFormatting.BLUE + "Right click to use");
+		tooltip.add("");
+		tooltip.add(TextFormatting.GREEN + "'Three Furnaces below, five iron wills above,");
+		tooltip.add(TextFormatting.GREEN + "seed in the middle, materialize hope!'");
 
 	}
 

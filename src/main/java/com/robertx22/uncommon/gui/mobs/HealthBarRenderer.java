@@ -51,7 +51,7 @@ public class HealthBarRenderer {
 	@SubscribeEvent
 	public void onRenderWorldLast(RenderWorldLastEvent event) {
 
-		if ((!Minecraft.isGuiEnabled() || !ModConfig.GUI.RENDER_MOB_HEALTH_GUI))
+		if ((!Minecraft.isGuiEnabled() || !ModConfig.Client.RENDER_MOB_HEALTH_GUI))
 			return;
 
 		if (UnitMap.size() > 1000) {

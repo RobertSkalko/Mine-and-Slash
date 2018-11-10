@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @EventBusSubscriber
 public class ModConfig {
 
-	public static GUIContainer GUI = new GUIContainer();
+	public static GUIContainer Client = new GUIContainer();
 
 	public static class GUIContainer {
 
@@ -27,6 +27,10 @@ public class ModConfig {
 		@Config.Name("Render Mob Health Bar")
 		@Config.Comment("Show/Disable mob health barsd")
 		public boolean RENDER_MOB_HEALTH_GUI = true;
+
+		@Config.Name("Announce world boss spawn")
+		@Config.Comment("plays a dragon sound when world boss spawns")
+		public boolean ANNOUNCE_WORLD_BOSS_SPAWN = true;
 
 	}
 

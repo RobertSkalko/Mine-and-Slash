@@ -1,6 +1,6 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.database.rarities.mobs.WorldBoss;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.onevent.ontick.EntityUpdate;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
@@ -9,7 +9,8 @@ import com.robertx22.uncommon.datasaving.UnitSaving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -43,7 +44,7 @@ public class OnMobSpawn {
 				Unit unit = Unit.Mob(entity, level);
 				unit.Save(entity);
 
-				if (unit.rarity == 5) {
+				if (unit.rarity == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
 					AnnounceWorldBossSpawn(entity, unit);
 				}
 
@@ -59,9 +60,11 @@ public class OnMobSpawn {
 	private static void AnnounceWorldBossSpawn(EntityLivingBase entity, Unit unit) {
 
 		for (EntityPlayer player : entity.world.playerEntities) {
-			if (player.getDistance(entity) < 300) {
-				player.sendMessage(new TextComponentString(
-						new WorldBoss().Color() + "A World Boss has appeared.. somewhere nearby!"));
+			if (player.getDistance(entity) < 200) {
+
+				player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL,
+						SoundCategory.AMBIENT, 0.5F, 1);
+
 			}
 
 		}

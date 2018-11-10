@@ -119,7 +119,7 @@ public class Unit implements Serializable {
 		return GUID.hashCode();
 	}
 
-	public static final float MAXIMUM_EVENT_DMG_MULTI = 10;
+	public static final float MAXIMUM_EVENT_DMG_MULTI = 30;
 
 	public void MobBasicAttack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, float event_damage) {
 
@@ -427,7 +427,7 @@ public class Unit implements Serializable {
 		this.Stats.get(ThunderDamage.GUID).Flat += 10 * level;
 		this.Stats.get(NatureDamage.GUID).Flat += 10 * level;
 
-		this.Stats.get(PhysicalDamage.GUID).Flat += 0.5F * level;
+		this.Stats.get(PhysicalDamage.GUID).Flat += 0.4F * level;
 
 	}
 
