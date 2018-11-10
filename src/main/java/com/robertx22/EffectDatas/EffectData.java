@@ -38,6 +38,21 @@ public abstract class EffectData {
 
 	}
 
+	public EffectData(EntityLivingBase source, EntityLivingBase target, Unit sourceUnit, Unit targetUnit) {
+
+		this.Source = source;
+		this.Target = target;
+
+		if (sourceUnit != null && targetUnit != null) {
+			this.sourceUnit = sourceUnit;
+			this.targetUnit = targetUnit;
+
+		} else {
+			this.canceled = true;
+		}
+
+	}
+
 	public EffectTypes Type = EffectTypes.NORMAL;
 
 	public enum EffectTypes {
@@ -64,7 +79,7 @@ public abstract class EffectData {
 
 	public void Activate() {
 
-		if (Source == null || Target == null || canceled == true)
+		if (Source == null || Target == null || canceled == true || sourceUnit == null || targetUnit == null)
 			return;
 
 		TryApplyEffects(this.GetSource());

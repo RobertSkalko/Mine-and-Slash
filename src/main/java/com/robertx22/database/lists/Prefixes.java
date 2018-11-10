@@ -72,20 +72,26 @@ public class Prefixes {
 		}
 	};
 
+	private static HashMap<String, Prefix> all = null;
+
 	public static HashMap<String, Prefix> All() {
 
-		List<Prefix> all = new ArrayList<Prefix>();
-		all.addAll(Weapon);
-		all.addAll(Armor);
-		all.addAll(Jewerly);
+		if (all == null) {
 
-		HashMap<String, Prefix> map = new HashMap<String, Prefix>();
+			List<Prefix> list = new ArrayList<Prefix>();
+			list.addAll(Weapon);
+			list.addAll(Armor);
+			list.addAll(Jewerly);
 
-		for (Prefix s : all) {
-			map.put(s.Name(), s);
+			HashMap<String, Prefix> map = new HashMap<String, Prefix>();
+
+			for (Prefix s : list) {
+				map.put(s.Name(), s);
+			}
+			all = map;
 		}
 
-		return map;
+		return all;
 	}
 
 }

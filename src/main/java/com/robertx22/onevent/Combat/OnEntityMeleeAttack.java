@@ -24,6 +24,7 @@ public class OnEntityMeleeAttack {
 	 */
 	@SubscribeEvent
 	public static void onEntityMeleeAttack(LivingAttackEvent event) {
+
 		if (event.getEntityLiving().world.isRemote) {
 			return;
 		}
@@ -54,9 +55,11 @@ public class OnEntityMeleeAttack {
 				return;
 			}
 
+			targetUnit.ReloadStatsAndSave(target);
 			unit.ReloadStatsAndSave(source);
 
 			if (source instanceof EntityPlayer) {
+
 				ItemStack weapon = source.getHeldItemMainhand();
 
 				if (weapon != null && !weapon.isEmpty() && weapon.getItem() instanceof IWeapon) {
@@ -65,31 +68,30 @@ public class OnEntityMeleeAttack {
 
 					int energyCost = iWep.GetEnergyCost();
 
-					if (unit != null && targetUnit != null) {
+					event.setCanceled(true);
 
-						event.setCanceled(true);
+					if (unit.energy().GetCurrentValue() < energyCost) {
 
-						if (unit.energy().GetCurrentValue() < energyCost) {
+						NoEnergyMessage(source);
 
-							NoEnergyMessage(source);
+					} else {
+						unit.SpendEnergy(energyCost);
+						UnitSaving.Save(source, unit);
+						weapon.setItemDamage(weapon.getItemDamage() + 1);
+						iWep.Attack(source, target, unit, targetUnit);
 
-						} else {
-							unit.SpendEnergy(energyCost);
-							UnitSaving.Save(source, unit);
-							weapon.setItemDamage(weapon.getItemDamage() + 1);
-							iWep.Attack(source, target, unit);
-
-							if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
-								EntityLivingBase defender = event.getEntityLiving();
-								EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
-								defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX,
-										attacker.posZ - defender.posZ);
-							}
-
+						if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
+							EntityLivingBase defender = event.getEntityLiving();
+							EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
+							defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX,
+									attacker.posZ - defender.posZ);
 						}
+
 					}
+
 				}
 			} else {
+
 				unit.BasicAttack(source, target, unit);
 
 				if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
@@ -103,6 +105,7 @@ public class OnEntityMeleeAttack {
 			e.printStackTrace();
 
 		}
+
 	}
 
 	private static void NoEnergyMessage(EntityLivingBase entity) {

@@ -33,6 +33,12 @@ public class DamageEffect extends EffectData
 
 	}
 
+	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, Unit sourceUnit, Unit targetUnit) {
+		super(source, target, sourceUnit, targetUnit);
+
+		this.Number = dmg;
+	}
+
 	public static String DmgSourceName = Ref.MODID + "_Custom_Damage";
 	public Elements Element = Elements.None;
 	public int ArmorPene;

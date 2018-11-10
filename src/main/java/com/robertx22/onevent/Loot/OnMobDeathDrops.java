@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 @Mod.EventBusSubscriber
 public class OnMobDeathDrops {
 
-	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public static void mobOnDeathDrop(LivingDeathEvent event) {
 
@@ -73,7 +72,7 @@ public class OnMobDeathDrops {
 
 	private static int GiveExp(EntityLivingBase playeren, Unit player, Unit mob) {
 
-		int exp = (int) (3 + mob.level * Rarities.Mobs.get(mob.rarity).ExpOnKill());
+		int exp = (int) (mob.level * Rarities.Mobs.get(mob.rarity).ExpOnKill());
 
 		player.GiveExp((EntityPlayer) playeren, exp);
 

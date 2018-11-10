@@ -55,7 +55,7 @@ public class ItemHammer extends BaseSwordItem implements IWeapon {
 	float radius = 1.5F;
 
 	@Override
-	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource) {
+	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, Unit targetUnit) {
 
 		List<EntityLivingBase> entities = new ArrayList<EntityLivingBase>();
 
@@ -69,7 +69,7 @@ public class ItemHammer extends BaseSwordItem implements IWeapon {
 
 		for (EntityLivingBase entity : entities) {
 			int num = (int) unitsource.Stats.get(PhysicalDamage.GUID).Value;
-			DamageEffect dmg = new DamageEffect(source, entity, num);
+			DamageEffect dmg = new DamageEffect(source, entity, num, unitsource, targetUnit);
 			dmg.Type = EffectTypes.BASIC_ATTACK;
 			dmg.Activate();
 		}

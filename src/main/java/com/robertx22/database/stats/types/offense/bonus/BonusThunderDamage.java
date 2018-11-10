@@ -1,5 +1,7 @@
 package com.robertx22.database.stats.types.offense.bonus;
 
+import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
+import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class BonusThunderDamage extends BaseBonusDamage {
@@ -19,4 +21,8 @@ public class BonusThunderDamage extends BaseBonusDamage {
 		return Elements.Thunder;
 	}
 
+	@Override
+	public Stat StatThatGiveDamage() {
+		return new ThunderDamage();
+	}
 }

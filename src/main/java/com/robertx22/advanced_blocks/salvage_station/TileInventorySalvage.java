@@ -69,13 +69,10 @@ public class TileInventorySalvage extends BaseTile {
 			}
 			if (stack != null) {
 				return stack;
-			} else {
-				return ItemStack.EMPTY;
 			}
 
-		} else {
-			return ItemStack.EMPTY;
 		}
+		return ItemStack.EMPTY;
 
 	}
 

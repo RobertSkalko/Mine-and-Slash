@@ -25,9 +25,6 @@ public class OnHurt {
 
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			if (event.getSource().isExplosion()) {
-				event.setAmount(event.getAmount() / 3);
-				return;
-			} else {
 				event.setAmount(event.getAmount() / 2);
 				return;
 			}

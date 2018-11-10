@@ -49,20 +49,25 @@ public class Suffixes {
 		}
 	};
 
+	private static HashMap<String, Suffix> all = null;
+
 	public static HashMap<String, Suffix> All() {
 
-		List<Suffix> all = new ArrayList<Suffix>();
-		all.addAll(Weapon);
-		all.addAll(Armor);
-		all.addAll(Jewerly);
+		if (all == null) {
 
-		HashMap<String, Suffix> map = new HashMap<String, Suffix>();
+			List<Suffix> list = new ArrayList<Suffix>();
+			list.addAll(Weapon);
+			list.addAll(Armor);
+			list.addAll(Jewerly);
 
-		for (Suffix s : all) {
-			map.put(s.Name(), s);
+			HashMap<String, Suffix> map = new HashMap<String, Suffix>();
+
+			for (Suffix s : list) {
+				map.put(s.Name(), s);
+			}
+			all = map;
 		}
-
-		return map;
+		return all;
 	}
 
 }

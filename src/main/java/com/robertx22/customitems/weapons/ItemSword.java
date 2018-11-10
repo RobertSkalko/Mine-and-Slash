@@ -49,10 +49,10 @@ public class ItemSword extends BaseSwordItem implements IWeapon {
 	}
 
 	@Override
-	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource) {
+	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, Unit targetUnit) {
 
 		int num = (int) unitsource.Stats.get(PhysicalDamage.GUID).Value;
-		DamageEffect dmg = new DamageEffect(source, target, num);
+		DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit);
 		dmg.Type = EffectTypes.BASIC_ATTACK;
 		dmg.Activate();
 

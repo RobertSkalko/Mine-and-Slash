@@ -14,7 +14,6 @@ public class MyDamageSource extends EntityDamageSource {
 		super(damageTypeIn, source);
 		this.setDamageBypassesArmor();
 		this.setDamageIsAbsolute();
-		this.setMagicDamage();
 		this.element = element;
 		realDamage = dmg;
 

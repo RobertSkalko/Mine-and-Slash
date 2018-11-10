@@ -27,24 +27,24 @@ public class OnMobSpawn {
 		if (entity.world.isRemote) {
 			return;
 		}
+
 		if (!entity.hasCapability(EntityData.Data, null)) {
 			return;
 		}
 
-		int level = GetMobLevelByDistanceFromSpawn(entity);
-
-		Unit check = UnitSaving.Load(entity);
-
 		if (!(entity instanceof EntityPlayer)) {
+			int level = GetMobLevelByDistanceFromSpawn(entity);
+			Unit check = UnitSaving.Load(entity);
+
 			if (check == null) {
 				Unit unit = Unit.Mob(entity, level);
 				unit.Save(entity);
+
+				if (unit != null) {
+					EntityUpdate.syncEntityToClient(entity);
+				}
 			}
 
-			EntityUpdate.syncEntityToClient(entity);
-
-		} else {
-			event.setCanceled(true);
 		}
 
 	}

@@ -7,5 +7,5 @@ import net.minecraft.entity.EntityLivingBase;
 public interface IWeapon {
 	public int GetEnergyCost();
 
-	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource);
+	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, Unit targetUnit);
 }

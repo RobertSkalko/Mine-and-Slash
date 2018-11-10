@@ -47,8 +47,6 @@ public class ElementalResistEffect implements IStatEffect {
 						EffectiveArmor = 0;
 					}
 
-					float old = Effect.Number;
-
 					Effect.Number -= EffectiveArmor * Effect.Number;
 
 //					System.out.println("Reducing dmg by resist from: " + old + " to " + Effect.Number + "("

@@ -45,7 +45,7 @@ public class EntityUpdate {
 
 		double distance = first.getDistance(second);
 
-		return distance < 200;
+		return distance < 175;
 
 	}
 

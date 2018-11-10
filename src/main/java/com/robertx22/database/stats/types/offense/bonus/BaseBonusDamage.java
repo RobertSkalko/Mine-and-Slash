@@ -25,4 +25,6 @@ public abstract class BaseBonusDamage extends Stat implements IStatEffects {
 		return true;
 	}
 
+	public abstract Stat StatThatGiveDamage();
+
 }

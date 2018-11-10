@@ -82,7 +82,6 @@ public class ContainerInventoryModify extends Container {
 		final int OUTPUT_SLOTS_XPOS = 134;
 		final int OUTPUT_SLOTS_YPOS = 24;
 
-		int slotNumber = FIRST_OUTPUT_SLOT_NUMBER;
 		addSlotToContainer(new SlotOutput(tileInventory, FIRST_OUTPUT_SLOT_NUMBER, OUTPUT_SLOTS_XPOS,
 				OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
@@ -93,11 +92,6 @@ public class ContainerInventoryModify extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return tileInventory.isUsableByPlayer(player);
-	}
-
-	private boolean IsCustomContainer(int index) {
-
-		return index > VANILLA_FIRST_SLOT_INDEX + this.VANILLA_SLOT_COUNT;
 	}
 
 	// shift click logic

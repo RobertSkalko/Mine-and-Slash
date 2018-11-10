@@ -67,6 +67,10 @@ public abstract class Stat implements IGUID {
 
 		finalValue *= 1 + Multi / 100;
 
+		if (finalValue < 0) {
+			finalValue = 0;
+		}
+
 		this.Value = finalValue;
 
 		return (int) finalValue;
@@ -74,16 +78,6 @@ public abstract class Stat implements IGUID {
 	}
 
 	public float Value;
-
-	/*
-	 * public float GetCalculatedValue(Unit Source, EntityLivingBase entity) {
-	 * 
-	 * if (Source.StatsDirty) { Source.RecalculateStats(entity); }
-	 * 
-	 * return Value;
-	 * 
-	 * }
-	 */
 
 	public ArrayList<IStatEffect> Effects;
 
