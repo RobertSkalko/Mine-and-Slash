@@ -20,6 +20,7 @@ import com.robertx22.database.prefixes.offense.LightningImbued;
 import com.robertx22.database.prefixes.offense.PoisonImbued;
 import com.robertx22.database.prefixes.offense.Thorny;
 import com.robertx22.database.prefixes.offense.Thundering;
+import com.robertx22.database.prefixes.offense.Tough;
 import com.robertx22.database.prefixes.resource.Energetic;
 import com.robertx22.database.prefixes.resource.LifeStealing;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
@@ -62,6 +63,7 @@ public class Prefixes {
 		{
 			{
 				add(new Energetic());
+				add(new Tough());
 
 				add(new PoisonImbued());
 				add(new FlameImbued());

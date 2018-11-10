@@ -33,6 +33,7 @@ import com.robertx22.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stats.mods.percent.ArmorPercent;
 import com.robertx22.database.stats.mods.percent.CriticalHitPercent;
+import com.robertx22.database.stats.mods.percent.DamagePercent;
 import com.robertx22.database.stats.mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stats.mods.percent.HealthPercent;
 import com.robertx22.database.stats.mods.percent.LifestealPercent;
@@ -66,6 +67,7 @@ public class StatMods {
 				put(new CriticalDamageFlat().GUID(), new CriticalDamageFlat());
 				put(new DamageFlat().GUID(), new DamageFlat());
 				put(new CriticalHitPercent().GUID(), new CriticalHitPercent());
+				put(new DamagePercent().GUID(), new DamagePercent());
 
 				// Resources
 				put(new HealthFlat().GUID(), new HealthFlat());

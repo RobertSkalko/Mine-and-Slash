@@ -12,6 +12,16 @@ public class WorldBoss extends MobRarity {
 	}
 
 	@Override
+	public float DamageMultiplier() {
+		return 5;
+	}
+
+	@Override
+	public float HealthMultiplier() {
+		return 14;
+	}
+
+	@Override
 	public String Name() {
 		return "World Boss";
 	}

@@ -65,6 +65,7 @@ public class Unit implements Serializable {
 				this.InitialMobSave = true;
 				UnitSaving.Save(entity, this);
 			}
+
 		}
 
 	}
@@ -118,8 +119,15 @@ public class Unit implements Serializable {
 		return GUID.hashCode();
 	}
 
-	public void BasicAttack(EntityLivingBase source, EntityLivingBase target, Unit unitsource) {
-		int num = (int) unitsource.Stats.get(PhysicalDamage.GUID).Value;
+	public static final float MAXIMUM_EVENT_DMG_MULTI = 10;
+
+	public void MobBasicAttack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, float event_damage) {
+
+		if (event_damage > MAXIMUM_EVENT_DMG_MULTI) {
+			event_damage = MAXIMUM_EVENT_DMG_MULTI;
+		}
+
+		int num = (int) (unitsource.Stats.get(PhysicalDamage.GUID).Value * event_damage);
 		DamageEffect dmg = new DamageEffect(source, target, num);
 		dmg.Type = EffectTypes.BASIC_ATTACK;
 		dmg.Activate();
@@ -419,15 +427,24 @@ public class Unit implements Serializable {
 		this.Stats.get(ThunderDamage.GUID).Flat += 10 * level;
 		this.Stats.get(NatureDamage.GUID).Flat += 10 * level;
 
-		this.Stats.get(PhysicalDamage.GUID).Flat += 2 * level;
+		this.Stats.get(PhysicalDamage.GUID).Flat += 0.5F * level;
 
 	}
 
 	private void SetMobStrengthMultiplier() {
-		float totalMulti = /* 1 + this.vanillaHP / 20 + */ GetRarity().StatMultiplier();
+
+		float stat_multi = GetRarity().StatMultiplier();
+		float hpmulti = GetRarity().HealthMultiplier();
+		float damagemulti = GetRarity().DamageMultiplier();
 
 		for (Stat stat : Stats.values()) {
-			stat.Flat *= totalMulti;
+			if (stat instanceof PhysicalDamage) {
+				stat.Flat *= damagemulti;
+			} else if (stat instanceof Health) {
+				stat.Flat *= hpmulti;
+			} else {
+				stat.Flat *= stat_multi;
+			}
 		}
 
 	}

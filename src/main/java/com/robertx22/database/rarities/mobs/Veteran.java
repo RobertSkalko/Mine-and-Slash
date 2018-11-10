@@ -12,6 +12,16 @@ public class Veteran extends MobRarity {
 	}
 
 	@Override
+	public float DamageMultiplier() {
+		return 1.3F;
+	}
+
+	@Override
+	public float HealthMultiplier() {
+		return 1.5F;
+	}
+
+	@Override
 	public String Name() {
 		return "Veteran";
 	}

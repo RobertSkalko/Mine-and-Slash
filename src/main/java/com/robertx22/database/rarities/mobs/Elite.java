@@ -12,6 +12,16 @@ public class Elite extends MobRarity {
 	}
 
 	@Override
+	public float DamageMultiplier() {
+		return 1.25F;
+	}
+
+	@Override
+	public float HealthMultiplier() {
+		return 1.35F;
+	}
+
+	@Override
 	public String Name() {
 		return "Elite";
 	}

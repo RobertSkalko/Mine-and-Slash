@@ -12,6 +12,16 @@ public class Normal extends MobRarity {
 	}
 
 	@Override
+	public float DamageMultiplier() {
+		return 0.4F;
+	}
+
+	@Override
+	public float HealthMultiplier() {
+		return 0.55F;
+	}
+
+	@Override
 	public String Name() {
 		return "Normal";
 	}

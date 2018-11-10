@@ -1,28 +1,28 @@
 package com.robertx22.database.stats.mods.percent;
 
-import com.robertx22.database.stats.types.resources.EnergyRegen;
+import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public class EnergyRegenPercent extends StatMod {
+public class DamagePercent extends StatMod {
 
-	public EnergyRegenPercent() {
+	public DamagePercent() {
 	}
 
 	@Override
 	public String GUID() {
-		return "EnergyRegenPercent";
+		return "DamagePercent";
 	}
 
 	@Override
 	public int Min() {
-		return 7;
+		return 1;
 	}
 
 	@Override
 	public int Max() {
-		return 20;
+		return 5;
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class EnergyRegenPercent extends StatMod {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new EnergyRegen();
+		return new PhysicalDamage();
 	}
 
 }

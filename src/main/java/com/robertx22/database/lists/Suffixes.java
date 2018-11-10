@@ -8,6 +8,7 @@ import com.robertx22.database.suffixes.defense.OfElementResist;
 import com.robertx22.database.suffixes.defense.OfImmortality;
 import com.robertx22.database.suffixes.defense.OfRockSkin;
 import com.robertx22.database.suffixes.defense.OfVitality;
+import com.robertx22.database.suffixes.offense.OfCriticalDamage;
 import com.robertx22.database.suffixes.offense.OfCriticalHits;
 import com.robertx22.database.suffixes.offense.OfCriticalUnity;
 import com.robertx22.database.suffixes.resource.OfManaRegen;
@@ -20,6 +21,7 @@ public class Suffixes {
 		{
 			{
 				add(new OfCriticalHits());
+				add(new OfCriticalDamage());
 				add(new OfCriticalUnity());
 
 			}

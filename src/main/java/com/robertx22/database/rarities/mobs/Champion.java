@@ -8,7 +8,17 @@ public class Champion extends MobRarity {
 
 	@Override
 	public float StatMultiplier() {
-		return 2;
+		return 2F;
+	}
+
+	@Override
+	public float DamageMultiplier() {
+		return 1.75F;
+	}
+
+	@Override
+	public float HealthMultiplier() {
+		return 2.2F;
 	}
 
 	@Override
