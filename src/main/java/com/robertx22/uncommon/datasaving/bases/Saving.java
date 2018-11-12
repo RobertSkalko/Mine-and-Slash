@@ -58,13 +58,15 @@ public class Saving {
 	public static <T, Interface extends ICommonData> void Save(ICapabilitySerializable<NBTTagCompound> entity,
 			Object obj, Capability<Interface> capability, String path) {
 
-		if (entity != null && entity.hasCapability(capability, null)) {
+		if (entity != null && entity.hasCapability(capability, null) && obj != null) {
 
 			try {
 
 				Interface datacapa = (Interface) entity.getCapability(capability, null);
 
-				datacapa.getNBT().setString(path, Gson.instance.toJson(obj));
+				String json = Gson.instance.toJson(obj);
+
+				datacapa.getNBT().setString(path, json);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

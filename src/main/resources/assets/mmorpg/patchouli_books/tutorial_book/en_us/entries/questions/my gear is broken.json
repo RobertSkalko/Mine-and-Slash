@@ -1,0 +1,14 @@
+{
+	"name": "My Gear is almost broke!",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "Don't panic. Go to stations in the tutorial book and craft a Gear Repair Station Put some fuels and repair the gear. To get more ores, craft a Salvage Station too."
+		}
+		
+	]
+}

@@ -22,7 +22,7 @@ public class StartupSalvage {
 														// to your block
 
 	public static void preInitCommon(FMLPreInitializationEvent event) {
-		blockInventoryAdvanced = new BlockInventorySalvage().setUnlocalizedName("Salvage Station");
+		blockInventoryAdvanced = new BlockInventorySalvage().setUnlocalizedName(Ref.MODID + ":salvage_station");
 		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":salvage_station");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
 

@@ -1,0 +1,14 @@
+{
+	"name": "Mana",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "Mana is used to cast spells. It doesn't scale with level but you can increase it with stats"
+		}
+		
+	]
+}

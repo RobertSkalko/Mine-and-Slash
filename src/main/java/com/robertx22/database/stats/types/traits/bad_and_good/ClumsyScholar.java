@@ -17,8 +17,8 @@ public class ClumsyScholar extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.mana().Multi += 20;
-		unit.Stats.get(Armor.GUID).Multi -= 10;
+		unit.manaData().Multi += 20;
+		unit.MyStats.get(Armor.GUID).Multi -= 10;
 
 	}
 

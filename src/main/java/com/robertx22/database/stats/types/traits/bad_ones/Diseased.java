@@ -17,7 +17,7 @@ public class Diseased extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.Stats.get(HealthRegen.GUID).Multi -= 20;
+		unit.MyStats.get(HealthRegen.GUID).Multi -= 20;
 
 	}
 

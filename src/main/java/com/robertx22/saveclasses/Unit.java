@@ -79,6 +79,14 @@ public class Unit implements Serializable {
 
 	}
 
+	public void ReloadStatsAndDontSave(EntityLivingBase entity) {
+
+		if (entity instanceof EntityPlayer) {
+			this.RecalculateStats(entity);
+		}
+
+	}
+
 	public boolean InitialMobSave = false;
 
 	private static final long serialVersionUID = -6658683548383891230L;
@@ -86,13 +94,17 @@ public class Unit implements Serializable {
 
 	public Unit() {
 
-		if (Stats == null) {
-			Stats = com.robertx22.database.lists.Stats.All;
+		if (MyStats == null) {
+			MyStats = new HashMap<String, StatData>();
+
+			for (Stat stat : com.robertx22.database.lists.Stats.All.values()) {
+				MyStats.put(stat.GUID(), new StatData(stat));
+			}
 
 		} else {
 			for (Stat stat : com.robertx22.database.lists.Stats.All.values()) {
-				if (!Stats.containsKey(stat.Name())) {
-					Stats.put(stat.Name(), stat);
+				if (!MyStats.containsKey(stat.Name())) {
+					MyStats.put(stat.GUID(), new StatData(stat));
 				}
 			}
 		}
@@ -127,41 +139,55 @@ public class Unit implements Serializable {
 			event_damage = MAXIMUM_EVENT_DMG_MULTI;
 		}
 
-		int num = (int) (unitsource.Stats.get(PhysicalDamage.GUID).Value * event_damage);
+		int num = (int) (unitsource.MyStats.get(PhysicalDamage.GUID).Value * event_damage);
 		DamageEffect dmg = new DamageEffect(source, target, num);
 		dmg.Type = EffectTypes.BASIC_ATTACK;
 		dmg.Activate();
 	}
 
-	public HashMap<String, Stat> Stats = null;
+	// new stat data format, don't ever rename this to "Stats" Or compatibility
+	// problems with last version will arrive
+	public HashMap<String, StatData> MyStats = null;
 
 	// Stat shortcuts
 	public Health health() {
-		return (Health) Stats.get(new Health().Name());
+		return (Health) MyStats.get(new Health().Name()).GetStat();
 	}
 
 	public Mana mana() {
-		return (Mana) Stats.get(new Mana().Name());
+		return (Mana) MyStats.get(new Mana().Name()).GetStat();
 	}
 
 	public Energy energy() {
-		return (Energy) Stats.get(new Energy().Name());
+		return (Energy) MyStats.get(new Energy().Name()).GetStat();
+	}
+
+	public StatData healthData() {
+		return MyStats.get(new Health().Name());
+	}
+
+	public StatData manaData() {
+		return MyStats.get(new Mana().Name());
+	}
+
+	public StatData energyData() {
+		return MyStats.get(new Energy().Name());
 	}
 
 	public void SpendMana(int i) {
-		mana().Decrease(i);
+		manaData().Decrease(i);
 	}
 
 	public void SpendEnergy(int i) {
-		energy().Decrease(i);
+		energyData().Decrease(i);
 	}
 
 	public void RestoreMana(int i) {
-		mana().Increase(i);
+		manaData().Increase(i);
 	}
 
 	public void RestoreEnergy(int i) {
-		energy().Increase(i);
+		energyData().Increase(i);
 	}
 
 	transient public boolean StatsDirty = true;
@@ -208,7 +234,7 @@ public class Unit implements Serializable {
 	}
 
 	protected void ClearStats() {
-		for (Stat stat : Stats.values()) {
+		for (StatData stat : MyStats.values()) {
 			stat.Clear();
 		}
 	}
@@ -247,8 +273,8 @@ public class Unit implements Serializable {
 				StatModData data = StatModData.Load(mod, set.StatPercent);
 
 				String name = mod.GetBaseStat().Name();
-				if (this.Stats.containsKey(name)) {
-					this.Stats.get(name).Add(data, this.level);
+				if (this.MyStats.containsKey(name)) {
+					this.MyStats.get(name).Add(data, this.level);
 				}
 			}
 
@@ -268,7 +294,7 @@ public class Unit implements Serializable {
 
 				List<StatModData> datas = gear.GetAllStats(gear.level);
 				for (StatModData data : datas) {
-					Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
+					StatData stat = MyStats.get(data.GetBaseMod().GetBaseStat().Name());
 					if (stat == null) {
 						System.out
 								.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
@@ -310,8 +336,8 @@ public class Unit implements Serializable {
 
 	private void AddPlayerBaseStats() {
 
-		Stats.get(Health.GUID).Flat += 10;
-		Stats.get(PhysicalDamage.GUID).Flat += 2;
+		MyStats.get(Health.GUID).Flat += 10;
+		MyStats.get(PhysicalDamage.GUID).Flat += 2;
 
 	}
 
@@ -320,7 +346,7 @@ public class Unit implements Serializable {
 		for (StatusEffectData status : this.statusEffects.values()) {
 			List<StatModData> datas = status.GetAllStats(this.level);
 			for (StatModData data : datas) {
-				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
+				StatData stat = MyStats.get(data.GetBaseMod().GetBaseStat().Name());
 				if (stat == null) {
 					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
 				} else {
@@ -333,9 +359,9 @@ public class Unit implements Serializable {
 	}
 
 	protected void CalcTraits() {
-		for (Stat stat : Stats.values()) {
+		for (StatData stat : MyStats.values()) {
 
-			if (stat instanceof Trait && stat instanceof IAffectsOtherStats) {
+			if (stat.GetStat() instanceof Trait && stat instanceof IAffectsOtherStats) {
 				if (stat.Value > 0) {
 					IAffectsOtherStats affects = (IAffectsOtherStats) stat;
 					affects.TryAffectOtherStats(this);
@@ -348,7 +374,7 @@ public class Unit implements Serializable {
 
 	protected void CalcStats() {
 
-		Stats.values().forEach((Stat stat) -> stat.CalcVal(this));
+		MyStats.values().forEach((StatData stat) -> stat.GetStat().CalcVal(stat, this));
 	}
 
 	public int vanillaHP;
@@ -359,7 +385,7 @@ public class Unit implements Serializable {
 		Unit mob = new Unit();
 
 		mob.level = level;
-		mob.Stats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
+		mob.MyStats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
 		mob.rarity = RandomUtils.RandomWithMinRarity(en).Rank();
 		mob.vanillaHP = (int) en.getMaxHealth();
 		mob.uid = en.getUniqueID();
@@ -412,22 +438,22 @@ public class Unit implements Serializable {
 
 	private void AddMobcStats() {
 
-		this.Stats.get(Health.GUID).Flat += 10 * level;
-		this.Stats.get(Armor.GUID).Flat += 10 * level;
-		this.Stats.get(CriticalHit.GUID).Flat += 5;
-		this.Stats.get(CriticalDamage.GUID).Flat += 20;
+		this.MyStats.get(Health.GUID).Flat += 10 * level;
+		this.MyStats.get(Armor.GUID).Flat += 10 * level;
+		this.MyStats.get(CriticalHit.GUID).Flat += 5;
+		this.MyStats.get(CriticalDamage.GUID).Flat += 20;
 
-		this.Stats.get(WaterResist.GUID).Flat += 10 * level;
-		this.Stats.get(FireResist.GUID).Flat += 10 * level;
-		this.Stats.get(ThunderResist.GUID).Flat += 10 * level;
-		this.Stats.get(NatureResist.GUID).Flat += 10 * level;
+		this.MyStats.get(WaterResist.GUID).Flat += 10 * level;
+		this.MyStats.get(FireResist.GUID).Flat += 10 * level;
+		this.MyStats.get(ThunderResist.GUID).Flat += 10 * level;
+		this.MyStats.get(NatureResist.GUID).Flat += 10 * level;
 
-		this.Stats.get(WaterDamage.GUID).Flat += 10 * level;
-		this.Stats.get(FireDamage.GUID).Flat += 10 * level;
-		this.Stats.get(ThunderDamage.GUID).Flat += 10 * level;
-		this.Stats.get(NatureDamage.GUID).Flat += 10 * level;
+		this.MyStats.get(WaterDamage.GUID).Flat += 10 * level;
+		this.MyStats.get(FireDamage.GUID).Flat += 10 * level;
+		this.MyStats.get(ThunderDamage.GUID).Flat += 10 * level;
+		this.MyStats.get(NatureDamage.GUID).Flat += 10 * level;
 
-		this.Stats.get(PhysicalDamage.GUID).Flat += 0.4F * level;
+		this.MyStats.get(PhysicalDamage.GUID).Flat += 0.4F * level;
 
 	}
 
@@ -437,10 +463,10 @@ public class Unit implements Serializable {
 		float hpmulti = GetRarity().HealthMultiplier();
 		float damagemulti = GetRarity().DamageMultiplier();
 
-		for (Stat stat : Stats.values()) {
-			if (stat instanceof PhysicalDamage) {
+		for (StatData stat : MyStats.values()) {
+			if (stat.GetStat() instanceof PhysicalDamage) {
 				stat.Flat *= damagemulti;
-			} else if (stat instanceof Health) {
+			} else if (stat.GetStat() instanceof Health) {
 				stat.Flat *= hpmulti;
 			} else {
 				stat.Flat *= stat_multi;

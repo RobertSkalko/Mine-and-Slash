@@ -38,8 +38,8 @@ public class ItemNewbieGearBag extends Item {
 	public ItemNewbieGearBag() {
 		this.setMaxDamage(0);
 		this.setCreativeTab(CurrencyItem.CurrencyTab);
-		this.setUnlocalizedName("Newbie Gear Bag");
-		this.setRegistryName(Ref.MODID + ":newbie_gear_bag");
+
+		RegisterUtils.RegisterItemName(this, "newbie_gear_bag");
 	}
 
 	public static int ITEMS_AMOUNT = 6;
@@ -104,8 +104,6 @@ public class ItemNewbieGearBag extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		stack.setStackDisplayName(TextFormatting.YELLOW + "Newbie Gear Bag");
 
 		tooltip.add("Creates a pack of level one gear.");
 		tooltip.add(TextFormatting.BLUE + "Right click to use");

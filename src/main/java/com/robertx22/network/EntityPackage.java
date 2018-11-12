@@ -55,6 +55,7 @@ public class EntityPackage implements IMessage {
 					for (Entity en : entities) {
 						if (en.getUniqueID().equals(unit.uid)) {
 							UnitSaving.Save(en, unit);
+							break;
 						}
 
 					}

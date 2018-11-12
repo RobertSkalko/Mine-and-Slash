@@ -14,7 +14,6 @@ import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -27,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":orb_of_transmutation";
+	private static final String name = "orb_of_transmutation";
 
 	@GameRegistry.ObjectHolder(Ref.MODID + ":orb_of_transmutation")
 	public static final Item ITEM = null;
@@ -50,8 +49,6 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		stack.setStackDisplayName(TextFormatting.BLUE + "Orb of Transmutation");
 
 		tooltip.add("Transforms a common item into a higher rarity.");
 		tooltip.add("Beware, it is a complete transformation, consider the");

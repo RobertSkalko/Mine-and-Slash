@@ -51,7 +51,7 @@ public class ItemBow extends BaseBow implements IWeapon {
 	@Override
 	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, Unit targetUnit) {
 
-		int num = (int) unitsource.Stats.get(PhysicalDamage.GUID).Value;
+		int num = (int) unitsource.MyStats.get(PhysicalDamage.GUID).Value;
 		DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit);
 		dmg.Type = EffectTypes.BASIC_ATTACK;
 		dmg.Activate();

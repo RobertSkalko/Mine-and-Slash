@@ -30,11 +30,13 @@ public class OnHurt {
 			}
 
 		} else {
-			if (event.getSource().isExplosion()) {
-				event.setAmount(event.getAmount() / 5);
-				return;
-			} else {
-				event.setAmount(event.getAmount() / 20);
+			if (!(event.getSource().getTrueSource() instanceof EntityPlayer)) {
+				if (event.getSource().isExplosion()) {
+					event.setAmount(event.getAmount() / 5);
+					return;
+				} else {
+					event.setAmount(event.getAmount() / 20);
+				}
 			}
 		}
 

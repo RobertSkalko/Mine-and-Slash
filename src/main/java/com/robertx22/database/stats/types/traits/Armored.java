@@ -16,7 +16,7 @@ public class Armored extends Trait implements IAffectsOtherStats {
 
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
-		unit.Stats.get(Armor.GUID).Multi += 15;
+		unit.MyStats.get(Armor.GUID).Multi += 15;
 	}
 
 	@Override

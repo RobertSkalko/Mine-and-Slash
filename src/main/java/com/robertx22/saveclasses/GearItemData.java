@@ -46,7 +46,6 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	public ChaosStatsData chaosStats = null;
 
 	public boolean isSalvagable = true;
-
 	// crafting limits
 	public int timesLeveledUp = 0;
 	//
@@ -54,6 +53,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 	public void WriteOverDataThatShouldStay(GearItemData newdata) {
 
 		newdata.timesLeveledUp = this.timesLeveledUp;
+		newdata.isSalvagable = this.isSalvagable;
 
 	}
 

@@ -17,7 +17,7 @@ public class Lucky extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.Stats.get(CriticalHit.GUID).Multi += 10;
+		unit.MyStats.get(CriticalHit.GUID).Multi += 10;
 
 	}
 

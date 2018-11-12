@@ -1,0 +1,21 @@
+{
+	"name": "Gear Modify Station",
+	"icon": "mmorpg:modify_station",
+	"category": "stations",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:modify_station"
+        },
+		
+			{
+			"type": "text",
+			"text": "Put gear on the left and a crafting item at the middle. The item will them be changed according to the crafting item!"
+		}
+		
+	]
+}

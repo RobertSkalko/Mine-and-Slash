@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CCC",
-    "CAC",
+    "BBB",
+    "BAB",
     "CCC"
   ],
   "key": {  
@@ -10,8 +10,13 @@
       "item": "minecraft:iron_block"
     }, 
 	"A": {
-      "item": "minecraft:coal_block"
+      "item": "minecraft:coal",
+	  "data": 0
+    },	
+	"B": {
+      "item": "minecraft:iron_ingot"
     }
+	
   },
   "result": {
     "item": "mmorpg:repair_station"

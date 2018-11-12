@@ -37,8 +37,8 @@ public class ItemPlayerLevelUp extends Item {
 	public ItemPlayerLevelUp() {
 		this.setMaxDamage(0);
 		this.setCreativeTab(CurrencyItem.CurrencyTab);
-		this.setUnlocalizedName("Player Level Up Token");
-		this.setRegistryName(Ref.MODID + ":player_levelup");
+
+		RegisterUtils.RegisterItemName(this, "player_levelup");
 	}
 
 	@Override
@@ -95,8 +95,6 @@ public class ItemPlayerLevelUp extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		stack.setStackDisplayName(TextFormatting.YELLOW + "Player Levelup Token");
 
 		tooltip.add("If your experience bar is full, use this item");
 		tooltip.add("to levelup!");

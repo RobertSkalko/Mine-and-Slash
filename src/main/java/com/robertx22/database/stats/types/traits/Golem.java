@@ -16,7 +16,7 @@ public class Golem extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.health().Multi += 10;
+		unit.healthData().Multi += 10;
 
 	}
 

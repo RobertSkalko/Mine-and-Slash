@@ -17,7 +17,7 @@ public class Stealthy extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.Stats.get(Dodge.GUID).Multi += 10;
+		unit.MyStats.get(Dodge.GUID).Multi += 10;
 
 	}
 

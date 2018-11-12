@@ -1,11 +1,13 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "http://files.minecraftforge.net/maven" }			
     }
     dependencies {
 		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'	
-		classpath 'com.google.code.gson:gson:2.8.5'
+		classpath 'com.google.code.gson:gson:2.8.5'				
+		
+   
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -37,8 +39,9 @@ minecraft {
 dependencies {
 
 	compile files("libs/Baubles-1.12-1.5.2.jar")
-	compile 'com.google.code.gson:gson:2.8.5'			 
-   
+	compile 'com.google.code.gson:gson:2.8.5'		
+	
+  
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
@@ -81,3 +84,15 @@ processResources {
     }
 }
 
+repositories {
+
+    maven { url 'https://maven.blamejared.com' }
+	
+	
+}
+
+dependencies {
+
+    compile "vazkii.patchouli:Patchouli:1.0-7.9"
+  
+}

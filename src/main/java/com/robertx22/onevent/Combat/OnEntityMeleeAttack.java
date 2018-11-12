@@ -70,7 +70,7 @@ public class OnEntityMeleeAttack {
 
 					event.setCanceled(true);
 
-					if (unit.energy().GetCurrentValue() < energyCost) {
+					if (unit.energyData().CurrentValue < energyCost) {
 
 						NoEnergyMessage(source);
 

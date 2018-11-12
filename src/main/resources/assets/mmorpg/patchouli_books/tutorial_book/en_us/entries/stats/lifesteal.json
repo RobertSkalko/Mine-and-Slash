@@ -1,0 +1,14 @@
+{
+	"name": "Lifesteal",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "Whenever you basic attack, a % of the damage is given to you as health"
+		}
+		
+	]
+}

@@ -68,7 +68,7 @@ public class ItemHammer extends BaseSwordItem implements IWeapon {
 		}
 
 		for (EntityLivingBase entity : entities) {
-			int num = (int) unitsource.Stats.get(PhysicalDamage.GUID).Value;
+			int num = (int) unitsource.MyStats.get(PhysicalDamage.GUID).Value;
 			DamageEffect dmg = new DamageEffect(source, entity, num, unitsource, targetUnit);
 			dmg.Type = EffectTypes.BASIC_ATTACK;
 			dmg.Activate();

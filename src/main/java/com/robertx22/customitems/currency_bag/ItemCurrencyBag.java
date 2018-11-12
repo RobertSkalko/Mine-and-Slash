@@ -61,9 +61,8 @@ public class ItemCurrencyBag extends Item {
 
 	public ItemCurrencyBag() {
 		setMaxStackSize(1);
-		this.setRegistryName(Ref.MODID + ":currency_bag");
 		this.setCreativeTab(NewBlocks.MyModTab);
-		this.setUnlocalizedName("currency_bag");
+		RegisterUtils.RegisterItemName(this, "currency_bag");
 	}
 
 	@SubscribeEvent

@@ -4,6 +4,7 @@ import com.robertx22.effectdatas.EffectData;
 import com.robertx22.effectdatas.interfaces.IElementalEffect;
 import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
+import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
@@ -22,7 +23,7 @@ public class ElementalResistEffect implements IStatEffect {
 	}
 
 	@Override
-	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
+	public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
 		try {
 			if (Effect instanceof IElementalResistable) {
@@ -41,7 +42,7 @@ public class ElementalResistEffect implements IStatEffect {
 
 					UsableStat resist = (UsableStat) stat;
 
-					float EffectiveArmor = resist.GetUsableValue(target.level, (int) (resist.Value - pene));
+					float EffectiveArmor = resist.GetUsableValue(target.level, (int) (data.Value - pene));
 
 					if (EffectiveArmor < 0) {
 						EffectiveArmor = 0;

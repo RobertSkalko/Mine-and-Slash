@@ -21,7 +21,7 @@ public class EffectCalculation {
 
 	public int GetValue(Unit unit) {
 
-		return (int) (unit.Stats.get(Stat).Value * Multi);
+		return (int) (unit.MyStats.get(Stat).Value * Multi);
 
 	}
 

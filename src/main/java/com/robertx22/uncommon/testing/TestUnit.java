@@ -3,6 +3,7 @@ package com.robertx22.uncommon.testing;
 import java.util.List;
 
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.Stat;
@@ -16,7 +17,7 @@ public class TestUnit extends Unit {
 			List<StatModData> datas = gear.GetAllStats(gear.level);
 			for (StatModData data : datas) {
 				// System.out.println(data.baseModName);
-				Stat stat = Stats.get(data.GetBaseMod().GetBaseStat().Name());
+				StatData stat = MyStats.get(data.GetBaseMod().GetBaseStat().Name());
 				if (stat == null) {
 					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
 				} else {
@@ -28,7 +29,7 @@ public class TestUnit extends Unit {
 
 		this.CalcStats();
 
-		return (int) Stats.get(thestat.Name()).Value;
+		return (int) MyStats.get(thestat.Name()).Value;
 
 	}
 

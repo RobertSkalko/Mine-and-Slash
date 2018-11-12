@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":add_secondary_stat";
+	private static final String name = "add_secondary_stat";
 
 	@GameRegistry.ObjectHolder(Ref.MODID + ":add_secondary_stat")
 	public static final Item ITEM = null;
@@ -48,7 +48,6 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		stack.setStackDisplayName("Crystal Of Legend");
 		tooltip.add("This material can be used to add another secondary stat to an item.");
 		this.TooltipQuote(tooltip, "More power is always good, right?");
 

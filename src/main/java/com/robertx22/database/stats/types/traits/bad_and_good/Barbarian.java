@@ -17,8 +17,8 @@ public class Barbarian extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.mana().Multi -= 15;
-		unit.Stats.get(PhysicalDamage.GUID).Multi += 15;
+		unit.manaData().Multi -= 15;
+		unit.MyStats.get(PhysicalDamage.GUID).Multi += 15;
 
 	}
 

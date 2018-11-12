@@ -21,7 +21,7 @@ public class StartupGearFactory {
 	public static ItemBlock itemBlockInventoryAdvanced;
 
 	public static void preInitCommon(FMLPreInitializationEvent event) {
-		blockInventoryAdvanced = new BlockGearFactory().setUnlocalizedName("Gear Factory Station");
+		blockInventoryAdvanced = new BlockGearFactory().setUnlocalizedName(Ref.MODID + ":gear_factory_station");
 		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":gear_factory_station");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
 

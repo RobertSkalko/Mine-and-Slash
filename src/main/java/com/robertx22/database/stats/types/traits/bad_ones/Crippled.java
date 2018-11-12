@@ -17,8 +17,8 @@ public class Crippled extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.health().Multi -= 10;
-		unit.Stats.get(PhysicalDamage.GUID).Multi -= 5;
+		unit.healthData().Multi -= 10;
+		unit.MyStats.get(PhysicalDamage.GUID).Multi -= 5;
 
 	}
 

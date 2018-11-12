@@ -1,0 +1,20 @@
+{
+	"name": "Player Level Up Token",
+	"icon": "mmorpg:player_levelup",
+	"category": "craftables",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [	
+			{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:player_levelup"
+        },
+		
+			{
+			"type": "text",
+			"text": "When you have a full exp bar, craft this and right click to level up!"
+		}		 
+		
+	]
+}

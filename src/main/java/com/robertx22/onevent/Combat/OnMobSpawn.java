@@ -8,6 +8,8 @@ import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
@@ -36,23 +38,24 @@ public class OnMobSpawn {
 		}
 
 		if (!(entity instanceof EntityPlayer)) {
+			if (entity instanceof IMob || entity instanceof EntityMob) {
 
-			Unit check = UnitSaving.Load(entity);
+				Unit check = UnitSaving.Load(entity);
 
-			if (check == null) {
-				int level = GetMobLevelByDistanceFromSpawn(entity);
-				Unit unit = Unit.Mob(entity, level);
-				unit.Save(entity);
+				if (check == null) {
+					int level = GetMobLevelByDistanceFromSpawn(entity);
+					Unit unit = Unit.Mob(entity, level);
+					unit.Save(entity);
 
-				if (unit.rarity == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
-					AnnounceWorldBossSpawn(entity, unit);
-				}
+					if (unit.rarity == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
+						AnnounceWorldBossSpawn(entity, unit);
+					}
 
-				if (unit != null) {
-					EntityUpdate.syncEntityToClient(entity);
+					if (unit != null) {
+						EntityUpdate.syncEntityToClient(entity);
+					}
 				}
 			}
-
 		}
 
 	}
@@ -60,7 +63,7 @@ public class OnMobSpawn {
 	private static void AnnounceWorldBossSpawn(EntityLivingBase entity, Unit unit) {
 
 		for (EntityPlayer player : entity.world.playerEntities) {
-			if (player.getDistance(entity) < 200) {
+			if (player.getDistance(entity) < 150) {
 
 				player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL,
 						SoundCategory.AMBIENT, 0.5F, 1);
@@ -74,7 +77,14 @@ public class OnMobSpawn {
 	public static int GetMobLevelByDistanceFromSpawn(Entity entity) {
 
 		double distance = entity.world.getSpawnPoint().distanceSq(entity.posX, entity.posY, entity.posZ);
-		int lvl = (int) (1 + (distance / 12500));
+
+		int lvl = 1;
+
+		if (distance < 25000) {
+			lvl = 1;
+		} else {
+			lvl = (int) (1 + (distance / 12500));
+		}
 
 		return lvl;
 

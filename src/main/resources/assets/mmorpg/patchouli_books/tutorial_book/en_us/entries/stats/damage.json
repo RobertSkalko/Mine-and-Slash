@@ -1,0 +1,14 @@
+{
+	"name": "Damage",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "Damage is Physical Damage, or how much you do with your weapon"
+		}
+		
+	]
+}

@@ -44,10 +44,12 @@ public class UnitSaving {
 	}
 
 	public static <T> void Save(Entity entity, Unit obj) {
-		Saving.Save(entity, obj, EntityData.Data, DataLocation);
+		if (obj != null) {
+			Saving.Save(entity, obj, EntityData.Data, DataLocation);
 
-		if (entity instanceof EntityPlayer && obj != null) {
-			Saving.Save(entity, obj, EntityData.Data, BackupDataLocation);
+			if (entity instanceof EntityPlayer) {
+				Saving.Save(entity, obj, EntityData.Data, BackupDataLocation);
+			}
 		}
 
 	}

@@ -25,12 +25,16 @@ public class ModConfig {
 		public boolean RENDER_FLOATING_DAMAGE = true;
 
 		@Config.Name("Render Mob Health Bar")
-		@Config.Comment("Show/Disable mob health barsd")
+		@Config.Comment("Show/Disable mob health bars")
 		public boolean RENDER_MOB_HEALTH_GUI = true;
 
 		@Config.Name("Announce world boss spawn")
 		@Config.Comment("plays a dragon sound when world boss spawns")
-		public boolean ANNOUNCE_WORLD_BOSS_SPAWN = true;
+		public boolean ANNOUNCE_WORLD_BOSS_SPAWN = false;
+
+		@Config.Name("Player Gui Overlay Type")
+		@Config.Comment("Choose different Gui styles for hp mana etc overlay")
+		public Player_GUIs PLAYER_GUI_TYPE = Player_GUIs.Bottom_Middle_Corners;
 
 	}
 

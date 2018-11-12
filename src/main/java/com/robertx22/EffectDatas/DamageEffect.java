@@ -96,7 +96,7 @@ public class DamageEffect extends EffectData
 	private String LogCurrentHP(EntityLivingBase entity, Unit unit) {
 
 		String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health().CurrentValue(entity, unit) + "/"
-				+ (int) unit.health().Value + "]";
+				+ (int) unit.healthData().Value + "]";
 
 		return str;
 

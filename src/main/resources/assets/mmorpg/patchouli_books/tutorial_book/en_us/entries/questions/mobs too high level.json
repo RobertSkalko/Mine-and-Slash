@@ -1,0 +1,14 @@
+{
+	"name": "Mobs are too high level!",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "You are too far from spawn, as you go further, mobs spawn with higher and higher levels. There is no limit. Setup a camp and grind out some levels, then you can more easily advance and explore!"
+		}
+		
+	]
+}

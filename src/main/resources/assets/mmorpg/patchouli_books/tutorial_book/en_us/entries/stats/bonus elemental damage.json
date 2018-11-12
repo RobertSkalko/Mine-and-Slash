@@ -1,0 +1,14 @@
+{
+	"name": "Bonus Elemental Damage",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "Adds a percent of your [Element] damage to your basic attacks. This is an endgame build, it's hard to get all the correct pieces of elemental gear and affixes but the rewards are well worth it. Pros can even make their basic attacks do more elemental damage than physical!"
+		}
+		
+	]
+}

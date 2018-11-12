@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffect.EffectSides;
 import com.robertx22.stats.IStatEffects;
-import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -25,8 +25,8 @@ public abstract class EffectData {
 			sourceUnit = UnitSaving.Load(source);
 
 			if (sourceUnit != null && targetUnit != null) {
-				sourceUnit.ReloadStatsAndSave(source);
-				targetUnit.ReloadStatsAndSave(target);
+				sourceUnit.ReloadStatsAndDontSave(source);
+				targetUnit.ReloadStatsAndDontSave(target);
 
 			} else {
 				this.canceled = true;
@@ -87,8 +87,8 @@ public abstract class EffectData {
 
 		if (this.canceled != true) {
 
-			UnitSaving.Save(Source, sourceUnit);
-			UnitSaving.Save(Target, targetUnit);
+			sourceUnit.Save(Source);
+			targetUnit.Save(Target);
 
 			activate();
 
@@ -115,7 +115,7 @@ public abstract class EffectData {
 			if (item.stat.Value > 0) {
 
 				if (AffectsThisUnit(item.effect, Data, item.source)) {
-					item.effect.TryModifyEffect(Data, item.source, item.stat);
+					item.effect.TryModifyEffect(Data, item.source, item.stat, item.stat.GetStat());
 				}
 
 			}
@@ -136,9 +136,9 @@ public abstract class EffectData {
 
 	private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit) {
 		if (unit != null) {
-			for (Stat stat : unit.Stats.values()) {
-				if (stat instanceof IStatEffects) {
-					for (IStatEffect effect : ((IStatEffects) stat).GetEffects()) {
+			for (StatData stat : unit.MyStats.values()) {
+				if (stat.GetStat() instanceof IStatEffects) {
+					for (IStatEffect effect : ((IStatEffects) stat.GetStat()).GetEffects()) {
 						effects.add(new EffectUnitStat(effect, unit, stat));
 					}
 

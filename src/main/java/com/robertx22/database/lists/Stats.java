@@ -20,8 +20,6 @@ import com.robertx22.database.stats.types.elementals.resist.WaterResist;
 import com.robertx22.database.stats.types.offense.ArmorPenetration;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
-import com.robertx22.database.stats.types.offense.LifeOnHit;
-import com.robertx22.database.stats.types.offense.Lifesteal;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.offense.bonus.BonusFireDamage;
 import com.robertx22.database.stats.types.offense.bonus.BonusNatureDamage;
@@ -31,7 +29,10 @@ import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.HealthRegen;
+import com.robertx22.database.stats.types.resources.LifeOnHit;
+import com.robertx22.database.stats.types.resources.Lifesteal;
 import com.robertx22.database.stats.types.resources.Mana;
+import com.robertx22.database.stats.types.resources.ManaOnHit;
 import com.robertx22.database.stats.types.resources.ManaRegen;
 import com.robertx22.database.stats.types.traits.Armored;
 import com.robertx22.database.stats.types.traits.Elemental;
@@ -62,6 +63,8 @@ public class Stats {
 
 				put(Energy.GUID, new Energy());
 				put(EnergyRegen.GUID, new EnergyRegen());
+
+				put(ManaOnHit.GUID, new ManaOnHit());
 				// Resources
 
 				put(Armor.GUID, new Armor());

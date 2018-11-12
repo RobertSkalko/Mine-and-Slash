@@ -17,7 +17,7 @@ public class FrostAtronach extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.Stats.get(WaterDamage.GUID).Multi += 15;
+		unit.MyStats.get(WaterDamage.GUID).Multi += 15;
 
 	}
 

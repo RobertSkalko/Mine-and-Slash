@@ -1,0 +1,6 @@
+{
+	"name": "Stats",
+	"description": "In depth description of all stats. For reference there are 3 types of stats. Flat, Percent and Multiplier. It goes like this, Percent adds onto Flat, and Multi adds after the percent.",
+	"icon": "minecraft:textures/items/diamond_sword.png",
+	"sortnum": 5
+}

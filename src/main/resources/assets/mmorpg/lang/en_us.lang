@@ -1,19 +1,49 @@
 ## ORES
-item.magic_ore.name=Magic Ore
-item.rare_ore.name=Rare Ore
-item.epic_ore.name=Epic Ore
-item.legendary_ore.name=Legendary Ore
-item.mythical_ore.name=Mythical Ore
+item.mmorpg:ore0.name=Common Ore
+item.mmorpg:ore1.name=Uncommon Ore
+item.mmorpg:ore2.name=Rare Ore
+item.mmorpg:ore3.name=Epic Ore
+item.mmorpg:ore4.name=Legendary Ore
+item.mmorpg:ore5.name=Mythical Ore
+
+tile.mmorpg:ore_block0.name=Common Ore Block
+tile.mmorpg:ore_block1.name=Uncommon Ore Block
+tile.mmorpg:ore_block2.name=Rare Ore Block
+tile.mmorpg:ore_block3.name=Epic Ore Block
+tile.mmorpg:ore_block4.name=Legendary Ore Block
+tile.mmorpg:ore_block5.name=Mythical Ore Block
 
 ## CREATIVE TAB
 itemGroup.Mine and Slash=Mine and Slash
 
-## ORES
-tile.mmorpg:magic_ore_block.name=Magic Ore
-tile.mmorpg:rare_ore_block.name=Rare Ore
-tile.mmorpg:epic_ore_block.name=Epic Ore
-tile.mmorpg:legendary_ore_block.name=Legendary Ore
-tile.mmorpg:mythical_ore_block.name=Mythical Ore
+# STATIONS
+tile.mmorpg:modify_station.name=Gear Modify Station
+tile.mmorpg:repair_station.name=Gear Repair Station
+tile.mmorpg:gear_factory_station.name=Gear Craft Station
+tile.mmorpg:salvage_station.name=Gear Salvage Station
 
-item.loot_bag.name=Loot Bag
-item.currency_bag.name=Currency Bag
+# MISC ITEMS
+item.mmorpg:player_levelup.name=Player Level Up Token
+item.mmorpg:loot_bag.name=Gear Loot Bag
+item.mmorpg:currency_bag.name=Currency Bag
+item.mmorpg:newbie_gear_bag.name=Newbie Gear Bag
+item.mmorpg:tutorial_book.name=Mine and Slash Tutorial
+
+# REPAIR CAPACITORS
+item.mmorpg:capacitor0.name=Common Capacitor
+item.mmorpg:capacitor1.name=Uncommon Capacitor
+item.mmorpg:capacitor2.name=Rare Capacitor
+item.mmorpg:capacitor3.name=Epic Capacitor
+item.mmorpg:capacitor4.name=Legendary Capacitor
+item.mmorpg:capacitor5.name=Mythical Capacitor
+
+# CURRENCIES
+item.mmorpg:add_secondary_stat.name=§cCrystal Of Legend
+item.mmorpg:chaos_orb.name=§cChaos Orb
+item.mmorpg:item_levelup.name=§cCrystal Of Ascension
+item.mmorpg:number_reroll.name=§cOrb Of Blessing
+item.mmorpg:orb_of_transmutation.name=§cOrb Of Transmutation
+item.mmorpg:randomize_prefix.name=§cOrb Of Ever-Changing Prefix
+item.mmorpg:randomize_suffix.name=§cOrb Of Ever-Changing Suffix
+item.mmorpg:stone_of_hope.name=§cStone Of Hope
+

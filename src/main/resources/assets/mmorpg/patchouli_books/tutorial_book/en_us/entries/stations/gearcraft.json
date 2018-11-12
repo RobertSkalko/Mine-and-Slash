@@ -1,0 +1,21 @@
+{
+	"name": "Gear Craft Station",
+	"icon": "mmorpg:gear_factory_station",
+	"category": "stations",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:gear_factory_station"
+        },
+		
+			{
+			"type": "text",
+			"text": "Fuel the station with ores or rare crafting materials and sacrifice a piece of gear (even common will do!).$(br)The resulting piece of gear is a random piece but it has a high chance to be the same type as the sacrificed piece of gear. $(br)So if you are lacking a certain piece, collect commons and sacrifice them! $(br)Fuels include: Common, Uncommon, Rare, Epic, Legenday and Mythic ores, plus vanilla items like Diamonds, Gold Ingots etc. "
+		}
+		
+	]
+}

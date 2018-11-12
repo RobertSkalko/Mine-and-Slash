@@ -48,7 +48,7 @@ public class OnTickRegen {
 		for (Entity en : player.world.getEntitiesWithinAABBExcludingEntity(player,
 				new AxisAlignedBB(player.posX - radius, player.posY - radius, player.posZ - radius,
 						player.posX + radius, player.posY + radius, player.posZ + radius))) {
-			if (en instanceof EntityLivingBase) {
+			if (en.hasCapability(EntityData.Data, null)) {
 				entities.add((EntityLivingBase) en);
 			}
 		}
@@ -109,13 +109,13 @@ public class OnTickRegen {
 					Unit unit = UnitSaving.Load(player);
 					unit.RecalculateStats(player);
 
-					int manarestored = (int) unit.Stats.get(new ManaRegen().Name()).Value;
+					int manarestored = (int) unit.MyStats.get(new ManaRegen().Name()).Value;
 					unit.RestoreMana(manarestored);
 
-					int energyrestored = (int) unit.Stats.get(new EnergyRegen().Name()).Value;
+					int energyrestored = (int) unit.MyStats.get(new EnergyRegen().Name()).Value;
 					unit.RestoreEnergy(energyrestored);
 
-					int healthrestored = (int) unit.Stats.get(new HealthRegen().Name()).Value;
+					int healthrestored = (int) unit.MyStats.get(new HealthRegen().Name()).Value;
 					unit.Heal(player, healthrestored);
 
 					UnitSaving.Save(player, unit);

@@ -13,7 +13,6 @@ import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -26,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":chaos_orb";
+	private static final String name = "chaos_orb";
 
 	@GameRegistry.ObjectHolder(Ref.MODID + ":chaos_orb")
 	public static final Item ITEM = null;
@@ -49,8 +48,6 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		stack.setStackDisplayName(TextFormatting.RED + "Chaos Orb");
 
 		tooltip.add("Adds a chaos stat to an item.");
 		tooltip.add("The result can be Good.. or Horrible!");

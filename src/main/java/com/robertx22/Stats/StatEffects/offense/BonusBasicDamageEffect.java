@@ -4,6 +4,7 @@ import com.robertx22.database.stats.types.offense.bonus.BaseBonusDamage;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
+import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
@@ -21,7 +22,7 @@ public class BonusBasicDamageEffect implements IStatEffect {
 	}
 
 	@Override
-	public EffectData TryModifyEffect(EffectData Effect, Unit source, Stat stat) {
+	public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
 		try {
 			if (Effect instanceof DamageEffect && Effect.Type.equals(EffectTypes.BASIC_ATTACK)
@@ -29,8 +30,8 @@ public class BonusBasicDamageEffect implements IStatEffect {
 
 				BaseBonusDamage basebonus = (BaseBonusDamage) stat;
 
-				float percent = stat.Value;
-				float derivedvalue = (float) source.Stats.get(basebonus.StatThatGiveDamage().GUID()).Value;
+				float percent = data.Value;
+				float derivedvalue = (float) source.MyStats.get(basebonus.StatThatGiveDamage().GUID()).Value;
 
 				int dmg = (int) (percent * derivedvalue / 100);
 				if (dmg > 0) {

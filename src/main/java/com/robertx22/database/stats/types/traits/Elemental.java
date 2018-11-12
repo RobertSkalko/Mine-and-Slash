@@ -20,10 +20,10 @@ public class Elemental extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.Stats.get(FireDamage.GUID).Multi += 5;
-		unit.Stats.get(WaterDamage.GUID).Multi += 5;
-		unit.Stats.get(ThunderDamage.GUID).Multi += 5;
-		unit.Stats.get(NatureDamage.GUID).Multi += 5;
+		unit.MyStats.get(FireDamage.GUID).Multi += 5;
+		unit.MyStats.get(WaterDamage.GUID).Multi += 5;
+		unit.MyStats.get(ThunderDamage.GUID).Multi += 5;
+		unit.MyStats.get(NatureDamage.GUID).Multi += 5;
 
 	}
 

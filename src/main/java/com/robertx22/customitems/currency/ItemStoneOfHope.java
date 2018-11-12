@@ -15,7 +15,6 @@ import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -28,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = Ref.MODID + ":stone_of_hope";
+	private static final String name = "stone_of_hope";
 
 	@GameRegistry.ObjectHolder(Ref.MODID + ":stone_of_hope")
 	public static final Item ITEM = null;
@@ -51,8 +50,6 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		stack.setStackDisplayName(TextFormatting.GOLD + "Stone of Hope");
 
 		tooltip.add("Transforms any rarity item into a higher rarity");
 

@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.types.offense;
+package com.robertx22.database.stats.types.resources;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,18 +6,18 @@ import java.util.List;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatEffects.LifestealEffect;
+import com.robertx22.stats.StatEffects.ManaOnHitEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class Lifesteal extends Stat implements IStatEffects {
-	public static String GUID = "Lifesteal";
+public class ManaOnHit extends Stat implements IStatEffects {
+	public static String GUID = "Mana On Hit";
 
 	@Override
 	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new LifestealEffect());
+		return Arrays.asList(new ManaOnHitEffect());
 	}
 
-	public Lifesteal() {
+	public ManaOnHit() {
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class Lifesteal extends Stat implements IStatEffects {
 
 	@Override
 	public boolean IsPercent() {
-		return true;
+		return false;
 	}
 
 }

@@ -8,8 +8,6 @@ import javax.annotation.Nullable;
 
 import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -33,8 +31,8 @@ public class ItemCapacitor extends Item {
 
 		this.setMaxDamage(0);
 		this.setCreativeTab(CurrencyItem.CurrencyTab);
-		this.setUnlocalizedName("capacitor" + rarity);
-		this.setRegistryName(Ref.MODID + ":capacitor" + rarity);
+
+		RegisterUtils.RegisterItemName(this, "capacitor" + rarity);
 	}
 
 	int rarity;
@@ -50,15 +48,10 @@ public class ItemCapacitor extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		try {
-			ItemRarity rar = Rarities.Items.get(this.rarity);
-			stack.setStackDisplayName(rar.Color() + rar.Name() + " Capacitor");
 
-			tooltip.add("Put inside a Repair Stationn to");
-			tooltip.add("decrease fuel consumption by " + this.GetFuelMultiplier() + "x");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		tooltip.add("Put inside a Repair Stationn to");
+		tooltip.add("decrease fuel consumption by " + this.GetFuelMultiplier() + "x");
+
 	}
 
 	@SubscribeEvent

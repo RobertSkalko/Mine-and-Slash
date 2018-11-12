@@ -27,16 +27,22 @@ public class EntityUpdate {
 
 	public void update() {
 
-		if (!isFinished()) {
+		try {
+			if (!isFinished()) {
 
-			String json = entities.get(current).getCapability(EntityData.Data, null).getNBT()
-					.getString(UnitSaving.DataLocation);
+				String json = entities.get(current++).getCapability(EntityData.Data, null).getNBT()
+						.getString(UnitSaving.DataLocation);
 
-			if (json != null && !json.isEmpty()) {
-				EntityPackage mobpacket = new EntityPackage(json);
-				Main.Network.sendTo(mobpacket, (EntityPlayerMP) player);
-				current++;
+				if (json != null && !json.isEmpty()) {
+					EntityPackage mobpacket = new EntityPackage(json);
+					Main.Network.sendTo(mobpacket, (EntityPlayerMP) player);
+
+				}
+
 			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
 		}
 
 	}

@@ -17,7 +17,7 @@ public class FireAtronach extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.Stats.get(FireDamage.GUID).Multi += 15;
+		unit.MyStats.get(FireDamage.GUID).Multi += 15;
 
 	}
 

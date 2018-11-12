@@ -17,7 +17,7 @@ public class EarthAtronach extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.Stats.get(NatureDamage.GUID).Multi += 15;
+		unit.MyStats.get(NatureDamage.GUID).Multi += 15;
 
 	}
 

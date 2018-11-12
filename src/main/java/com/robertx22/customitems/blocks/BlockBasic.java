@@ -13,7 +13,7 @@ public class BlockBasic extends Block {
 
 		setCreativeTab(NewBlocks.MyModTab);
 		this.setHardness(2F);
-		this.setHarvestLevel("pickaxe", 3);
+		this.setHarvestLevel("pickaxe", 2);
 		this.setResistance(15);
 		this.setRegistryName(name);
 		this.setUnlocalizedName(this.getRegistryName().toString());

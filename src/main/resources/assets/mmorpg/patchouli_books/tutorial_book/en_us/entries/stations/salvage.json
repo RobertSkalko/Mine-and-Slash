@@ -1,0 +1,21 @@
+{
+	"name": "Gear Salvage Station",
+	"icon": "mmorpg:salvage_station",
+	"category": "stations",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:salvage_station"
+        },
+		
+			{
+			"type": "text",
+			"text": "Put trash gear inside, recieve ores in return. Sometimes you can recieve rare crafting materials instead!"
+		}
+		
+	]
+}

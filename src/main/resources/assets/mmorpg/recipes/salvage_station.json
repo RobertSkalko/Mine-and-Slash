@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CCC",
-    "CAC",
+    "BBB",
+    "BAB",
     "CCC"
   ],
   "key": {  
@@ -11,6 +11,9 @@
     }, 
 	"A": {
       "item": "minecraft:tnt"
+    }, 
+	"B": {
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

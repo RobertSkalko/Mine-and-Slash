@@ -17,7 +17,7 @@ public class ThunderAtronach extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.Stats.get(ThunderDamage.GUID).Multi += 15;
+		unit.MyStats.get(ThunderDamage.GUID).Multi += 15;
 
 	}
 

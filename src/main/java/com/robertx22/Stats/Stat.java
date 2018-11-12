@@ -3,10 +3,9 @@ package com.robertx22.stats;
 import java.util.ArrayList;
 
 import com.robertx22.database.IGUID;
+import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public abstract class Stat implements IGUID {
 
@@ -30,54 +29,31 @@ public abstract class Stat implements IGUID {
 
 	public int BaseFlat = 0;
 
-	public float Flat = 0;
-	public float Percent = 0;
-	public float Multi = 0;
-
-	public void Clear() {
-		Flat = 0;
-		Percent = 0;
-		Multi = 0;
-	}
-
-	public void Add(StatModData mod, int level) {
-
-		if (mod.type == StatTypes.Flat) {
-			Flat += mod.GetActualVal(level);
-		} else if (mod.type == StatTypes.Percent) {
-			Percent += mod.GetActualVal(level);
-		} else if (mod.type == StatTypes.Multi) {
-			Multi += mod.GetActualVal(level);
-		}
-	}
-
-	public int CalcVal(Unit Source) {
+	public int CalcVal(StatData data, Unit Source) {
 
 		float finalValue = 0;
 
-		finalValue += StatMinimum + BaseFlat;
+		finalValue += StatMinimum + data.BaseFlat;
 
 		if (ScalesToLevel()) {
 			finalValue *= Source.level;
 		}
 
-		finalValue += Flat;
+		finalValue += data.Flat;
 
-		finalValue *= 1 + Percent / 100;
+		finalValue *= 1 + data.Percent / 100;
 
-		finalValue *= 1 + Multi / 100;
+		finalValue *= 1 + data.Multi / 100;
 
 		if (finalValue < 0) {
 			finalValue = 0;
 		}
 
-		this.Value = finalValue;
+		data.Value = finalValue;
 
 		return (int) finalValue;
 
 	}
-
-	public float Value;
 
 	public ArrayList<IStatEffect> Effects;
 

@@ -1,4 +1,4 @@
-package com.robertx22.database.stats.types.offense;
+package com.robertx22.database.stats.types.resources;
 
 import java.util.Arrays;
 import java.util.List;
