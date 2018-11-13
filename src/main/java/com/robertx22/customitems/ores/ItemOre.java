@@ -37,7 +37,7 @@ public class ItemOre extends Item implements IWeighted {
 
 	int rarity;
 
-	public List<Integer> RepairValues = Arrays.asList(10, 25, 50, 100, 250, 500);
+	public List<Integer> RepairValues = Arrays.asList(20, 30, 75, 125, 300, 600);
 
 	public int GetFuelValue() {
 

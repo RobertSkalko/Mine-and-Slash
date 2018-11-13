@@ -132,7 +132,7 @@ public class TileGearFactory extends BaseTile {
 	public double fractionOfFuelRemaining(int fuelSlot) {
 		if (this.points <= 0)
 			return 0;
-		double fraction = points / (double) pointsNeeded;
+		double fraction = points / (double) maxFuel;
 		return MathHelper.clamp(fraction, 0.0, 1.0);
 	}
 
@@ -197,8 +197,8 @@ public class TileGearFactory extends BaseTile {
 		int burningCount = 0;
 		boolean inventoryChanged = false;
 		// Iterate over all the fuel slots
-		for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
-			int fuelSlotNumber = i + FIRST_INPUT_SLOT;
+		for (int i = 0; i < FUEL_SLOTS_COUNT; i++) {
+			int fuelSlotNumber = i + FIRST_FUEL_SLOT;
 
 			if (this.points < this.maxFuel) {
 				if (!itemStacks[fuelSlotNumber].isEmpty()) { // isEmpty()
@@ -270,42 +270,44 @@ public class TileGearFactory extends BaseTile {
 		// finds the first input slot which is smeltable and whose result fits into an
 		// output slot (stacking if possible)
 		for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
-			// if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
+			if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-			if (pointsNeeded < this.points) {
-				result = getSmeltingResultForItem(itemStacks[this.FIRST_CAPACITOR_SLOT]);
+				if (pointsNeeded < this.points) {
+					result = getSmeltingResultForItem(itemStacks[inputSlot]);
 
-			} else {
-				result = ItemStack.EMPTY;
-			}
+				} else {
+					result = ItemStack.EMPTY;
+				}
 
-			if (!result.isEmpty()) { // isEmpty()
-				// find the first suitable output slot- either empty, or with identical item
-				// that has enough space
-				for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT
-						+ OUTPUT_SLOTS_COUNT; outputSlot++) {
-					ItemStack outputStack = itemStacks[outputSlot];
-					if (outputStack.isEmpty()) { // isEmpty()
-						firstSuitableInputSlot = inputSlot;
-						firstSuitableOutputSlot = outputSlot;
-						break;
-					}
-
-					if (outputStack.getItem() == result.getItem()
-							&& (!outputStack.getHasSubtypes() || outputStack.getMetadata() == outputStack.getMetadata())
-							&& ItemStack.areItemStackTagsEqual(outputStack, result)) {
-						int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
-						if (combinedSize <= getInventoryStackLimit()
-								&& combinedSize <= itemStacks[outputSlot].getMaxStackSize()) {
+				if (!result.isEmpty()) { // isEmpty()
+					// find the first suitable output slot- either empty, or with identical item
+					// that has enough space
+					for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT
+							+ OUTPUT_SLOTS_COUNT; outputSlot++) {
+						ItemStack outputStack = itemStacks[outputSlot];
+						if (outputStack.isEmpty()) { // isEmpty()
 							firstSuitableInputSlot = inputSlot;
 							firstSuitableOutputSlot = outputSlot;
 							break;
 						}
-					}
-				}
-				if (firstSuitableInputSlot != null)
-					break;
 
+						if (outputStack.getItem() == result.getItem()
+								&& (!outputStack.getHasSubtypes()
+										|| outputStack.getMetadata() == outputStack.getMetadata())
+								&& ItemStack.areItemStackTagsEqual(outputStack, result)) {
+							int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
+							if (combinedSize <= getInventoryStackLimit()
+									&& combinedSize <= itemStacks[outputSlot].getMaxStackSize()) {
+								firstSuitableInputSlot = inputSlot;
+								firstSuitableOutputSlot = outputSlot;
+								break;
+							}
+						}
+					}
+					if (firstSuitableInputSlot != null)
+						break;
+
+				}
 			}
 		}
 
@@ -331,6 +333,7 @@ public class TileGearFactory extends BaseTile {
 
 		markDirty();
 		return true;
+
 	}
 
 	// returns the number of ticks the given item will burn. Returns 0 if the given

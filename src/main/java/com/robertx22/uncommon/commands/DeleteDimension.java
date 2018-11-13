@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.dimensions.WorldFileUtils;
 
 import net.minecraft.command.CommandBase;
@@ -35,9 +34,10 @@ public class DeleteDimension extends CommandBase {
 
 		int id = Integer.valueOf(args[0]);
 		EntityPlayer player = (EntityPlayer) sender;
+
 		if (DimensionManager.isDimensionRegistered(id)) {
 
-			// DimensionManager.unloadWorld(id);
+			DimensionManager.unloadWorld(id);
 
 			World world = DimensionManager.getWorld(id);
 
@@ -55,8 +55,6 @@ public class DeleteDimension extends CommandBase {
 			}
 
 		}
-
-		player.changeDimension(id, new MyTeleporter(player.getPosition()));
 
 	}
 }

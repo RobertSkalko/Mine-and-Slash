@@ -1,10 +1,12 @@
 package com.robertx22.uncommon.gui.player_stats;
 
-import java.awt.Color;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
+import com.rabbit.gui.component.list.ScrollableDisplayList;
+import com.rabbit.gui.component.list.entries.ListEntry;
+import com.rabbit.gui.component.list.entries.StringEntry;
+import com.rabbit.gui.show.Show;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.Trait;
@@ -13,9 +15,8 @@ import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 
-public class StatsGui extends GuiScreen {
+public class StatsGui extends Show {
 
 	private GuiButton mButtonClose;
 
@@ -27,35 +28,43 @@ public class StatsGui extends GuiScreen {
 	}
 
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
-		this.drawDefaultBackground();
-		displayStats();
-		super.drawScreen(mouseX, mouseY, partialTicks);
-
-	}
-
-	@Override
-	public void initGui() {
+	public void setup() {
+		super.setup();
 
 		mc = Minecraft.getMinecraft();
 
 		if (mc != null && mc.player != null) {
-			super.initGui();
 
 			unit = UnitSaving.Load(mc.player);
 
-			this.buttonList.add(mButtonClose = new GuiButton(0, this.width / 2 - 100,
-					this.height - (this.height / 4) + 10, "Close"));
 		}
+
 	}
 
-	private void displayStats() {
+	ScrollableDisplayList scroll = null;
 
-		if (unit != null) {
+	boolean setup = false;
 
-			int x = mc.currentScreen.width / 2;
-			int y = 0;
+	@Override
+	public void onDraw(int mouseX, int mouseY, float partialTicks) {
+
+		super.onDraw(mouseX, mouseY, partialTicks);
+
+		scroll = displayStats();
+
+		if (scroll != null && setup == false) {
+			scroll.setup();
+			setup = true;
+			this.registerComponent(scroll);
+		}
+
+	}
+
+	private ScrollableDisplayList displayStats() {
+
+		if (unit != null && mc.currentScreen != null) {
+
+			List<ListEntry> list = new ArrayList();
 
 			for (StatData data : unit.MyStats.values()) {
 				String str = this.DisplayStat(data);
@@ -63,39 +72,36 @@ public class StatsGui extends GuiScreen {
 				if (data.GetStat() instanceof UsableStat) {
 					UsableStat usable = (UsableStat) data.GetStat();
 
-					str += " (" + usable.GetUsableValue(unit.level, (int) data.Value) + "%)";
+					str += " (" + String.format("%.1f", usable.GetUsableValue(unit.level, (int) data.Value)) + "%)";
 
 				}
 
 				if (data.GetStat() instanceof Trait) {
 				} else {
 
-					GL11.glColor4f(1, 1, 1, 1);
-					mc.fontRenderer.drawString(str, x - mc.fontRenderer.getStringWidth(str) / 2, y,
-							Color.BLACK.getRGB());
+					StringEntry entry = new StringEntry(str);
 
-					y += mc.fontRenderer.FONT_HEIGHT;
+					list.add(entry);
 
 				}
 			}
+
+			int width = this.width / 2;
+			int height = this.height - this.height / 5;
+
+			ScrollableDisplayList scroll = new ScrollableDisplayList(this.width / 4, this.height / 10, width, height,
+					15, list);
+
+			return scroll;
 		}
+		return null;
+
 	}
 
 	private String DisplayStat(StatData data) {
 
-		return data.GetStat().Name() + " " + data.Value;
+		return data.GetStat().Name() + " " + String.format("%.1f", data.Value);
 
 	}
 
-	@Override
-	protected void actionPerformed(GuiButton button) throws IOException {
-		if (button == mButtonClose) {
-			mc.player.closeScreen();
-		}
-	}
-
-	@Override
-	public boolean doesGuiPauseGame() {
-		return true;
-	}
 }

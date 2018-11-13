@@ -77,7 +77,8 @@ public class OnEntityMeleeAttack {
 					} else {
 						unit.SpendEnergy(energyCost);
 						UnitSaving.Save(source, unit);
-						weapon.setItemDamage(weapon.getItemDamage() + 1);
+						weapon.damageItem(1, source); // items were infinite before this line, should be fixed now
+
 						iWep.Attack(source, target, unit, targetUnit);
 
 						if (event.getSource().getTrueSource() instanceof EntityLivingBase) {

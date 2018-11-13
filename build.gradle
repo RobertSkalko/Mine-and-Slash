@@ -96,3 +96,21 @@ dependencies {
     compile "vazkii.patchouli:Patchouli:1.0-7.9"
   
 }
+
+repositories {
+    jcenter()
+		
+	maven { 
+		name = "jitpack"
+		url "https://jitpack.io" 
+	}
+}
+
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+dependencies {
+    shade 'net.objecthunter:exp4j:0.4.5'
+}

@@ -2,6 +2,7 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
+import com.rabbit.gui.RabbitGui;
 import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
@@ -81,7 +82,7 @@ public class Main {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-
+		RabbitGui.proxy.init();
 		proxy.init(event);
 
 		TestManager.RunAllTests();
@@ -100,7 +101,7 @@ public class Main {
 	public void postInit(FMLPostInitializationEvent event) {
 
 		proxy.postInit(event);
-
+		RabbitGui.proxy.postInit();
 	}
 
 	@EventHandler
