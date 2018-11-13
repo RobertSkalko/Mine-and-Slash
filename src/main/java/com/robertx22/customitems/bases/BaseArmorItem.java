@@ -3,7 +3,7 @@ package com.robertx22.customitems.bases;
 import java.util.HashMap;
 
 import com.robertx22.customitems.oldreplacesoon.NewBlocks;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Utils;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -44,7 +44,7 @@ public abstract class BaseArmorItem extends ItemArmor {
 		this.setMaxStackSize(1);
 		this.setMaxDamage(MAX_GEAR_DURABILITY);
 		this.setCreativeTab(NewBlocks.MyModTab);
-		RegisterUtils.RegisterItemName(this, Name().toLowerCase() + rarity);
+		RegisterItemUtils.RegisterItemName(this, Name().toLowerCase() + rarity);
 
 		map.put(rarity, this);
 	}

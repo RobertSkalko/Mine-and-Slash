@@ -10,6 +10,7 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.gui.GuiHandler;
 import com.robertx22.mmorpg.gui.GuiHandlerRegistry;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.entity.Entity;
@@ -62,7 +63,7 @@ public class ItemCurrencyBag extends Item {
 	public ItemCurrencyBag() {
 		setMaxStackSize(1);
 		this.setCreativeTab(NewBlocks.MyModTab);
-		RegisterUtils.RegisterItemName(this, "currency_bag");
+		RegisterItemUtils.RegisterItemName(this, "currency_bag");
 	}
 
 	@SubscribeEvent

@@ -31,11 +31,17 @@ public class TileInventoryRepair extends BaseTile {
 
 	// returns the smelting result for the given stack. Returns null if the given
 	// stack can not be smelted
-	public static ItemStack getSmeltingResultForItem(ItemStack stack) {
+	public ItemStack getSmeltingResultForItem(ItemStack stack) {
 		GearItemData gear = GearSaving.Load(stack);
 		if (gear != null) {
 			ItemStack copy = stack.copy();
-			copy.setItemDamage(0);
+			int dmg = copy.getItemDamage() - FuelRemaining;
+
+			if (dmg < 0) {
+				dmg = 0;
+			}
+			copy.setItemDamage(dmg);
+
 			return copy;
 		}
 		return ItemStack.EMPTY;
@@ -201,6 +207,10 @@ public class TileInventoryRepair extends BaseTile {
 	 * @return false if no items can be smelted, true otherwise
 	 */
 	private boolean smeltItem(boolean performSmelt) {
+		if (this.FuelRemaining < 1) {
+			return false;
+		}
+
 		Integer firstSuitableInputSlot = null;
 		Integer firstSuitableOutputSlot = null;
 		ItemStack result = ItemStack.EMPTY; // EMPTY_ITEM
@@ -226,9 +236,13 @@ public class TileInventoryRepair extends BaseTile {
 		for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
 			if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-				fuelNeeded += itemStacks[inputSlot].getItemDamage();
+				fuelNeeded = itemStacks[inputSlot].getItemDamage();
 
-				if (fuelNeeded * fuelMulti < this.FuelRemaining) {
+				if (fuelNeeded > this.FuelRemaining) {
+					fuelNeeded = this.FuelRemaining;
+				}
+
+				if (fuelNeeded * fuelMulti <= this.FuelRemaining) {
 					result = getSmeltingResultForItem(itemStacks[inputSlot]);
 
 				} else {

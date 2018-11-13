@@ -8,6 +8,7 @@ import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -38,7 +39,7 @@ public class ItemPlayerLevelUp extends Item {
 		this.setMaxDamage(0);
 		this.setCreativeTab(CurrencyItem.CurrencyTab);
 
-		RegisterUtils.RegisterItemName(this, "player_levelup");
+		RegisterItemUtils.RegisterItemName(this, "player_levelup");
 	}
 
 	@Override
@@ -50,16 +51,18 @@ public class ItemPlayerLevelUp extends Item {
 
 				if (unit.CheckIfCanLevelUp()) {
 
-					unit.LevelUp();
+					if (unit.LevelUp()) {
 
-					playerIn.sendMessage(new TextComponentString(
-							TextFormatting.GREEN + "You have Leveled up! Current lvl: " + unit.level));
+						playerIn.sendMessage(new TextComponentString(
+								TextFormatting.GREEN + "You have Leveled up! Current lvl: " + unit.level));
 
-					UnitSaving.Save(playerIn, unit);
+						UnitSaving.Save(playerIn, unit);
 
-					return new ActionResult<ItemStack>(EnumActionResult.PASS,
-							EmptyOrDecrease(playerIn.getHeldItem(handIn)));
-
+						return new ActionResult<ItemStack>(EnumActionResult.PASS,
+								EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+					} else {
+						playerIn.sendMessage(new TextComponentString(TextFormatting.RED + "Can't level up"));
+					}
 				} else {
 
 					playerIn.sendMessage(new TextComponentString(

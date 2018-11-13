@@ -150,7 +150,7 @@ public class ContainerInventoryRepair extends Container {
 			// This is a vanilla container slot so merge the stack into one of the furnace
 			// slots
 			// If the stack is smeltable try to merge merge the stack into the input slots
-			if (!TileInventoryRepair.getSmeltingResultForItem(sourceStack).isEmpty()) { // isEmptyItem
+			if (!new TileInventoryRepair().getSmeltingResultForItem(sourceStack).isEmpty()) { // isEmptyItem
 				if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT,
 						false)) {
 					return ItemStack.EMPTY; // EMPTY_ITEM;

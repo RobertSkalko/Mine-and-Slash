@@ -1,5 +1,6 @@
 package com.robertx22.mmorpg.proxy;
 
+import com.robertx22.mmorpg.Keybinds;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.registers.EntityRegisters;
 import com.robertx22.network.DamageNumberPackage;
@@ -39,6 +40,8 @@ public class ClientProxy implements IProxy {
 	public void init(FMLInitializationEvent event) {
 		// DEBUG
 		System.out.println("on Client side");
+
+		Keybinds.register();
 
 	}
 

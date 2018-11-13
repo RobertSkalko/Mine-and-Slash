@@ -1,0 +1,14 @@
+{
+	"name": "What do these ores do?",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "They are a resource used by my mod. You can use them to repair items in a Gear Repair Station as fuel, or fuel the Gear Craft Station to create new gear. Maybe they have other uses too sometimes in the future!"
+		}
+		
+	]
+}

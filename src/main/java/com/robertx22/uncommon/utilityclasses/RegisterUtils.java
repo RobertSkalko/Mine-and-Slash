@@ -37,10 +37,4 @@ public class RegisterUtils {
 
 	}
 
-	public static void RegisterItemName(Item item, String name) {
-		if (item.getRegistryName() == null) {
-			item.setRegistryName(name);
-			item.setUnlocalizedName(Ref.MODID + ":" + name);
-		}
-	}
 }

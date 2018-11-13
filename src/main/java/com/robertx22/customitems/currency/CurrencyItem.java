@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -29,7 +29,7 @@ public class CurrencyItem extends Item implements IWeighted {
 		setMaxDamage(0);
 		maxStackSize = 64;
 		setCreativeTab(CurrencyTab);
-		RegisterUtils.RegisterItemName(this, name);
+		RegisterItemUtils.RegisterItemName(this, name);
 
 		ITEMS.add(this);
 

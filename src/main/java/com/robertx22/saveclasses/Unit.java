@@ -507,9 +507,15 @@ public class Unit implements Serializable {
 
 	}
 
-	public void LevelUp() {
-		level++;
-		experience = 0;
+	public boolean LevelUp() {
+
+		if (true) {
+
+			level++;
+			experience = 0;
+			return true;
+		}
+		return false;
 	}
 
 	public void Heal(EntityLivingBase entity, int healthrestored) {

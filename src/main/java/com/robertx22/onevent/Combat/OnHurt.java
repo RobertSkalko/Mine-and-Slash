@@ -2,6 +2,8 @@ package com.robertx22.onevent.combat;
 
 import com.robertx22.spells.bases.MyDamageSource;
 
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,14 +32,25 @@ public class OnHurt {
 			}
 
 		} else {
-			if (!(event.getSource().getTrueSource() instanceof EntityPlayer)) {
-				if (event.getSource().isExplosion()) {
-					event.setAmount(event.getAmount() / 5);
-					return;
+
+			// mobs take much less damage from any source other than my mods. This is
+			// required or else there's no point in getting legendary weapons if a diamond
+			// sword more damage
+			if (event.getEntityLiving() instanceof IMob || event.getEntityLiving() instanceof EntityMob) {
+
+				if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+					event.setAmount(event.getAmount() / 30);
 				} else {
-					event.setAmount(event.getAmount() / 20);
+					if (event.getSource().isExplosion()) {
+						event.setAmount(event.getAmount() / 5);
+						return;
+					} else {
+						event.setAmount(event.getAmount() / 25);
+					}
 				}
+
 			}
+
 		}
 
 	}

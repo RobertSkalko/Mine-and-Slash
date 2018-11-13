@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.database.lists.Rarities;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -32,7 +33,7 @@ public class ItemCapacitor extends Item {
 		this.setMaxDamage(0);
 		this.setCreativeTab(CurrencyItem.CurrencyTab);
 
-		RegisterUtils.RegisterItemName(this, "capacitor" + rarity);
+		RegisterItemUtils.RegisterItemName(this, "capacitor" + rarity);
 	}
 
 	int rarity;

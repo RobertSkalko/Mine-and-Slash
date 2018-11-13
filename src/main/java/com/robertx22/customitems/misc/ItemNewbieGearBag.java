@@ -10,6 +10,7 @@ import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -39,7 +40,7 @@ public class ItemNewbieGearBag extends Item {
 		this.setMaxDamage(0);
 		this.setCreativeTab(CurrencyItem.CurrencyTab);
 
-		RegisterUtils.RegisterItemName(this, "newbie_gear_bag");
+		RegisterItemUtils.RegisterItemName(this, "newbie_gear_bag");
 	}
 
 	public static int ITEMS_AMOUNT = 6;

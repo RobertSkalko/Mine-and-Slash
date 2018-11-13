@@ -12,6 +12,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.datasaving.SpellSaving;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.entity.Entity;
@@ -64,7 +65,7 @@ public class ItemLootBag extends Item {
 	public ItemLootBag() {
 		setMaxStackSize(1);
 		this.setCreativeTab(NewBlocks.MyModTab);
-		RegisterUtils.RegisterItemName(this, "loot_bag");
+		RegisterItemUtils.RegisterItemName(this, "loot_bag");
 
 	}
 
