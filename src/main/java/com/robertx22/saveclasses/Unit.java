@@ -30,6 +30,7 @@ import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.database.status.effects.bases.BaseStatusEffect;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.gearitem.StatModData;
@@ -90,7 +91,24 @@ public class Unit implements Serializable {
 	public boolean InitialMobSave = false;
 
 	private static final long serialVersionUID = -6658683548383891230L;
-	public int level = 1;
+	private int level = 1;
+
+	public int GetLevel() {
+		return level;
+	}
+
+	public void SetLevel(int lvl) {
+
+		if (lvl < 1) {
+			lvl = 1;
+
+		}
+		if (lvl > ModConfig.Server.MAXIMUM_LEVEL) {
+			lvl = ModConfig.Server.MAXIMUM_LEVEL;
+		}
+
+		this.level = lvl;
+	}
 
 	public Unit() {
 
@@ -384,7 +402,7 @@ public class Unit implements Serializable {
 
 		Unit mob = new Unit();
 
-		mob.level = level;
+		mob.SetLevel(level);
 		mob.MyStats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
 		mob.rarity = RandomUtils.RandomWithMinRarity(en).Rank();
 		mob.vanillaHP = (int) en.getMaxHealth();
@@ -489,16 +507,27 @@ public class Unit implements Serializable {
 
 	}
 
-	public void GiveExp(EntityPlayer player, int i) {
+	public int GiveExp(EntityPlayer player, int i) {
 
 		if (!CheckIfCanLevelUp()) {
+
+			i *= ModConfig.Server.EXPERIENCE_MULTIPLIER;
+
 			experience += i;
+
+			if (experience > this.GetExpRequiredForLevelUp()) {
+				experience = this.GetExpRequiredForLevelUp();
+			}
 
 			if (CheckIfCanLevelUp()) {
 				player.sendMessage(new TextComponentString(
 						TextFormatting.YELLOW + "Exp bar full, craft a level up token and use it to level up."));
 			}
+
+			return i;
 		}
+
+		return 0;
 	}
 
 	public boolean CheckIfCanLevelUp() {
@@ -507,12 +536,27 @@ public class Unit implements Serializable {
 
 	}
 
-	public boolean LevelUp() {
+	private boolean CheckLevelCap() {
+		return level + 1 <= ModConfig.Server.MAXIMUM_LEVEL;
+	}
 
-		if (true) {
+	public boolean LevelUp(EntityPlayer player) {
 
-			level++;
+		if (!CheckIfCanLevelUp()) {
+			player.sendMessage(
+					new TextComponentString(TextFormatting.RED + "You don't have enough experience to Level Up."));
+		} else if (!CheckLevelCap()) {
+			player.sendMessage(new TextComponentString(TextFormatting.RED + "You have already reached maximum level."));
+		}
+
+		if (CheckIfCanLevelUp() && CheckLevelCap()) {
+
+			this.SetLevel(level + 1);
 			experience = 0;
+
+			player.sendMessage(
+					new TextComponentString(TextFormatting.GREEN + "You have Leveled up! Current lvl: " + GetLevel()));
+
 			return true;
 		}
 		return false;

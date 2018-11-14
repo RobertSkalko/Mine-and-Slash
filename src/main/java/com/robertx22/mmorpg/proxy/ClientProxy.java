@@ -6,9 +6,9 @@ import com.robertx22.mmorpg.registers.EntityRegisters;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
 import com.robertx22.network.PlayerPackage;
-import com.robertx22.uncommon.gui.BarsGUI;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
+import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

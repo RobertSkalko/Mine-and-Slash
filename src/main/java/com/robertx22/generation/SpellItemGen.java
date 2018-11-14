@@ -22,8 +22,10 @@ public class SpellItemGen {
 		data.spellGUID = spell.GUID();
 
 		data.level = blueprint.GetLevel();
-		data.baseEffectPercent = Random(rarity);
-		data.scalingEffectPercent = Random(rarity);
+		data.baseEffectPercent = RandomUtils.RandomRange(rarity.SpellBasePercents().Min,
+				rarity.SpellBasePercents().Max);
+		data.scalingEffectPercent = RandomUtils.RandomRange(rarity.SpellScalingPercents().Min,
+				rarity.SpellScalingPercents().Max);
 		data.manaCostPercent = RandomUtils.RandomRange(SpellItemData.MIN_MANA_COST_PERCENT,
 				SpellItemData.MAX_MANA_COST_PERCENT);
 
@@ -35,9 +37,4 @@ public class SpellItemGen {
 
 	}
 
-	private static int Random(ItemRarity rarity) {
-
-		return RandomUtils.RandomRange(rarity.StatPercents().Min, rarity.StatPercents().Max);
-
-	}
 }

@@ -50,4 +50,13 @@ public class Uncommon extends ItemRarity {
 		return 15;
 	}
 
+	@Override
+	public MinMax SpellBasePercents() {
+		return new MinMax(35, 60);
+	}
+
+	@Override
+	public MinMax SpellScalingPercents() {
+		return new MinMax(35, 60);
+	}
 }

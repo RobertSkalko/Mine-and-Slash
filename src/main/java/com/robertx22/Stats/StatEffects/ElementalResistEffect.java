@@ -42,7 +42,7 @@ public class ElementalResistEffect implements IStatEffect {
 
 					UsableStat resist = (UsableStat) stat;
 
-					float EffectiveArmor = resist.GetUsableValue(target.level, (int) (data.Value - pene));
+					float EffectiveArmor = resist.GetUsableValue(target.GetLevel(), (int) (data.Value - pene));
 
 					if (EffectiveArmor < 0) {
 						EffectiveArmor = 0;

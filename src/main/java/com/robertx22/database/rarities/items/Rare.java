@@ -51,4 +51,14 @@ public class Rare extends ItemRarity {
 		return 20;
 	}
 
+	@Override
+	public MinMax SpellBasePercents() {
+		return new MinMax(45, 70);
+	}
+
+	@Override
+	public MinMax SpellScalingPercents() {
+		return new MinMax(45, 70);
+	}
+
 }

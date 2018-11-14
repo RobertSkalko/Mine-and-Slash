@@ -44,7 +44,7 @@ public class TopLeftOverlay extends BasePlayerOverlay {
 		if (!isExp) {
 			str = now + "/" + maximum;
 		} else {
-			str = "Lvl:" + unit.level + " " + now + "/" + maximum;
+			str = "Lvl:" + unit.GetLevel() + " " + now + "/" + maximum;
 		}
 
 		mc.fontRenderer.drawStringWithShadow(str, xPos + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2,

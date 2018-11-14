@@ -54,4 +54,14 @@ public class Common extends ItemRarity {
 		return 5;
 	}
 
+	@Override
+	public MinMax SpellBasePercents() {
+		return new MinMax(25, 50);
+	}
+
+	@Override
+	public MinMax SpellScalingPercents() {
+		return new MinMax(25, 50);
+	}
+
 }

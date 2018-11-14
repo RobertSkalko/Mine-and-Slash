@@ -81,7 +81,7 @@ public class BottomMiddleOverlay extends BasePlayerOverlay {
 
 		now = DamageEffect.FormatNumber((int) unit.experience);
 		maximum = DamageEffect.FormatNumber((int) unit.GetExpRequiredForLevelUp());
-		str = "Lvl:" + unit.level + " " + now + "/" + maximum;
+		str = "Lvl:" + unit.GetLevel() + " " + now + "/" + maximum;
 
 		mc.fontRenderer.drawStringWithShadow(str, x + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2,
 				y + 2, Color.LIGHT_GRAY.getRGB());

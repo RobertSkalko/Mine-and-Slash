@@ -80,10 +80,10 @@ public class OnMobSpawn {
 
 		int lvl = 1;
 
-		if (distance < 25000) {
+		if (distance < ModConfig.Server.MOB_LEVEL_ONE_AREA) {
 			lvl = 1;
 		} else {
-			lvl = (int) (1 + (distance / 12500));
+			lvl = (int) (1 + (distance / ModConfig.Server.MOB_LEVEL_PER_DISTANCE));
 		}
 
 		return lvl;

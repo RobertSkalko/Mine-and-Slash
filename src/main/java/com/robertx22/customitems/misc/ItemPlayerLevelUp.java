@@ -18,8 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -49,24 +47,12 @@ public class ItemPlayerLevelUp extends Item {
 			try {
 				Unit unit = UnitSaving.Load(playerIn);
 
-				if (unit.CheckIfCanLevelUp()) {
+				if (unit.LevelUp(playerIn)) {
 
-					if (unit.LevelUp()) {
+					UnitSaving.Save(playerIn, unit);
 
-						playerIn.sendMessage(new TextComponentString(
-								TextFormatting.GREEN + "You have Leveled up! Current lvl: " + unit.level));
-
-						UnitSaving.Save(playerIn, unit);
-
-						return new ActionResult<ItemStack>(EnumActionResult.PASS,
-								EmptyOrDecrease(playerIn.getHeldItem(handIn)));
-					} else {
-						playerIn.sendMessage(new TextComponentString(TextFormatting.RED + "Can't level up"));
-					}
-				} else {
-
-					playerIn.sendMessage(new TextComponentString(
-							TextFormatting.RED + "You don't have enough experience to Level Up."));
+					return new ActionResult<ItemStack>(EnumActionResult.PASS,
+							EmptyOrDecrease(playerIn.getHeldItem(handIn)));
 
 				}
 			} catch (Exception e) {

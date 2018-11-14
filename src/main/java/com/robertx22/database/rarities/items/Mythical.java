@@ -52,4 +52,13 @@ public class Mythical extends ItemRarity {
 		return 75;
 	}
 
+	@Override
+	public MinMax SpellBasePercents() {
+		return new MinMax(75, 100);
+	}
+
+	@Override
+	public MinMax SpellScalingPercents() {
+		return new MinMax(75, 100);
+	}
 }

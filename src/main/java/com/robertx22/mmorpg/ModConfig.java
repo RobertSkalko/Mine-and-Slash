@@ -14,6 +14,8 @@ public class ModConfig {
 
 	public static GUIContainer Client = new GUIContainer();
 
+	public static ServerContainer Server = new ServerContainer();
+
 	public static class GUIContainer {
 
 		@Config.Name("Render Chat Combat Log")
@@ -38,6 +40,26 @@ public class ModConfig {
 
 	}
 
+	public static class ServerContainer {
+
+		@Config.Name("Mob Level Per Distance")
+		@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
+		public int MOB_LEVEL_PER_DISTANCE = 12500;
+
+		@Config.Name("Mob Level One Area")
+		@Config.Comment("How big you want level 1 mob area to be. Bigger value means bigger area")
+		public int MOB_LEVEL_ONE_AREA = 25000;
+
+		@Config.Name("Level Cap")
+		@Config.Comment("Select maximum level")
+		public int MAXIMUM_LEVEL = 100;
+
+		@Config.Name("Exp multiplier")
+		@Config.Comment("Want to level faster or slower? 1 is normal, 0.5 half speed, 2 double")
+		public float EXPERIENCE_MULTIPLIER = 1F;
+
+	}
+
 	@Mod.EventBusSubscriber
 	private static class EventHandler {
 
@@ -45,7 +67,7 @@ public class ModConfig {
 		public static void onConfigChanged(ConfigChangedEvent event) {
 			if (event.getModID().equals(Ref.MODID)) {
 				ConfigManager.sync(Ref.MODID, Config.Type.INSTANCE);
-				System.out.println("config works");
+				System.out.println("Syncing Config");
 			}
 		}
 

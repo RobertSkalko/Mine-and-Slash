@@ -72,9 +72,9 @@ public class OnMobDeathDrops {
 
 	private static int GiveExp(EntityLivingBase playeren, Unit player, Unit mob) {
 
-		int exp = (int) (mob.level * Rarities.Mobs.get(mob.rarity).ExpOnKill());
+		int exp = (int) (mob.GetLevel() * Rarities.Mobs.get(mob.rarity).ExpOnKill());
 
-		player.GiveExp((EntityPlayer) playeren, exp);
+		exp = player.GiveExp((EntityPlayer) playeren, exp);
 
 		return exp;
 

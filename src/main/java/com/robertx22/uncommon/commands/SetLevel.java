@@ -30,7 +30,7 @@ public class SetLevel extends CommandBase {
 
 		Unit unit = UnitSaving.Load(player);
 
-		unit.level = lvl;
+		unit.SetLevel(lvl);
 
 		UnitSaving.Save(player, unit);
 

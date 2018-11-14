@@ -51,4 +51,14 @@ public class Epic extends ItemRarity {
 		return 30;
 	}
 
+	@Override
+	public MinMax SpellBasePercents() {
+		return new MinMax(55, 80);
+	}
+
+	@Override
+	public MinMax SpellScalingPercents() {
+		return new MinMax(55, 80);
+	}
+
 }

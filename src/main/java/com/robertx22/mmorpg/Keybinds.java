@@ -12,7 +12,7 @@ public class Keybinds {
 	public static void register()
 
 	{
-		Player_Stats = new KeyBinding("Opens a Gui that shows your rpg stats", Keyboard.KEY_P, "key.mmorpg");
+		Player_Stats = new KeyBinding("Opens a Gui that shows your rpg stats", Keyboard.KEY_P, "Mine and Slash");
 
 		ClientRegistry.registerKeyBinding(Player_Stats);
 	}

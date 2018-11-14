@@ -51,9 +51,9 @@ public class LootDropsGenerator {
 		int CurrencyDrops = WhileRoll(FinalCurrencyChance);
 		int SpellDrops = WhileRoll(FinalSpellChance);
 
-		GearBlueprint gearPrint = new GearBlueprint(mob.level);
+		GearBlueprint gearPrint = new GearBlueprint(mob.GetLevel());
 
-		SpellBlueprint spellPrint = new SpellBlueprint(mob.level);
+		SpellBlueprint spellPrint = new SpellBlueprint(mob.GetLevel());
 
 		for (int i = 0; i < GearDrops; i++) {
 			items.add(RandomDamagedGear(GearGen.CreateStack(gearPrint)));
@@ -80,9 +80,9 @@ public class LootDropsGenerator {
 	// prevents lvl 50 players farming lvl 1 mobs
 	private static float ApplyLevelDistancePunishment(Unit mob, Unit player, float chance) {
 
-		if (player.level > mob.level + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
+		if (player.GetLevel() > mob.GetLevel() + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
 
-			float levelDiff = mob.level / player.level;
+			float levelDiff = mob.GetLevel() / player.GetLevel();
 
 			return chance * levelDiff;
 

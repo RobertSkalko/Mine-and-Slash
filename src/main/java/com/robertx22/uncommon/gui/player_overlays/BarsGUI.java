@@ -1,12 +1,9 @@
-package com.robertx22.uncommon.gui;
+package com.robertx22.uncommon.gui.player_overlays;
 
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Player_GUIs;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
-import com.robertx22.uncommon.gui.player_overlays.BottomMiddleCornersOverlay;
-import com.robertx22.uncommon.gui.player_overlays.BottomMiddleOverlay;
-import com.robertx22.uncommon.gui.player_overlays.TopLeftOverlay;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

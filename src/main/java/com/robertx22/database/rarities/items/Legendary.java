@@ -51,4 +51,14 @@ public class Legendary extends ItemRarity {
 		return 50;
 	}
 
+	@Override
+	public MinMax SpellBasePercents() {
+		return new MinMax(65, 90);
+	}
+
+	@Override
+	public MinMax SpellScalingPercents() {
+		return new MinMax(65, 90);
+	}
+
 }
