@@ -7,7 +7,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.blocks.BlockOre;
-import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.database.lists.CreativeTabList;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
@@ -54,7 +54,7 @@ public class ItemOre extends Item implements IWeighted {
 		RegisterItemUtils.RegisterItemName(this, name);
 		setMaxDamage(0);
 		maxStackSize = 64;
-		setCreativeTab(CurrencyItem.CurrencyTab);
+		setCreativeTab(CreativeTabList.CurrencyTab);
 		this.rarity = rarity;
 
 	}

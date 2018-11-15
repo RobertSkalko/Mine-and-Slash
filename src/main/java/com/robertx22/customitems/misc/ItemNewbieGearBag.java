@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.customitems.BaseItem;
 import com.robertx22.database.gearitemslots.Sword;
+import com.robertx22.database.lists.CreativeTabList;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.mmorpg.Ref;
@@ -31,14 +32,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemNewbieGearBag extends Item {
+public class ItemNewbieGearBag extends BaseItem {
 
 	@GameRegistry.ObjectHolder(Ref.MODID + ":newbie_gear_bag")
 	public static final Item ITEM = null;
 
 	public ItemNewbieGearBag() {
 		this.setMaxDamage(0);
-		this.setCreativeTab(CurrencyItem.CurrencyTab);
+		this.setCreativeTab(CreativeTabList.CurrencyTab);
 
 		RegisterItemUtils.RegisterItemName(this, "newbie_gear_bag");
 	}
@@ -81,15 +82,6 @@ public class ItemNewbieGearBag extends Item {
 			}
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
-	}
-
-	private ItemStack EmptyOrDecrease(ItemStack stack) {
-		if (stack.getCount() < 2) {
-			stack = ItemStack.EMPTY;
-		} else {
-			stack.setCount(stack.getCount() - 1);
-		}
-		return stack;
 	}
 
 	@SubscribeEvent

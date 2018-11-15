@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.baubles.ItemRing;
+import com.robertx22.customitems.gearitems.baubles.ItemRing;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.lists.Prefixes;
 import com.robertx22.database.lists.Suffixes;

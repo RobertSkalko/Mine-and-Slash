@@ -2,7 +2,7 @@ package com.robertx22.database.gearitemslots;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.weapons.ItemBow;
+import com.robertx22.customitems.gearitems.weapons.ItemBow;
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
 
 import net.minecraft.item.Item;

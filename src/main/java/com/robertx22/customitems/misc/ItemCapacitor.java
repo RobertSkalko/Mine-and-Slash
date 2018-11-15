@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.database.lists.CreativeTabList;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
@@ -31,7 +31,7 @@ public class ItemCapacitor extends Item {
 		this.rarity = rarity;
 
 		this.setMaxDamage(0);
-		this.setCreativeTab(CurrencyItem.CurrencyTab);
+		this.setCreativeTab(CreativeTabList.CurrencyTab);
 
 		RegisterItemUtils.RegisterItemName(this, "capacitor" + rarity);
 	}

@@ -1,6 +1,6 @@
 package com.robertx22.customitems.blocks;
 
-import com.robertx22.customitems.oldreplacesoon.NewBlocks;
+import com.robertx22.database.lists.CreativeTabList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,7 +11,7 @@ public class BlockBasic extends Block {
 
 		super(material);
 
-		setCreativeTab(NewBlocks.MyModTab);
+		setCreativeTab(CreativeTabList.MyModTab);
 		this.setHardness(2F);
 		this.setHarvestLevel("pickaxe", 2);
 		this.setResistance(15);

@@ -1,8 +1,8 @@
-package com.robertx22.customitems.baubles;
+package com.robertx22.customitems.gearitems.baubles;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.bases.BaseBaublesItem;
+import com.robertx22.customitems.gearitems.bases.BaseBaublesItem;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 

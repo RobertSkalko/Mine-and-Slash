@@ -1,9 +1,9 @@
-package com.robertx22.customitems.weapons;
+package com.robertx22.customitems.gearitems.weapons;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.bases.BaseBow;
-import com.robertx22.customitems.bases.IWeapon;
+import com.robertx22.customitems.gearitems.bases.BaseBow;
+import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.effectdatas.DamageEffect;

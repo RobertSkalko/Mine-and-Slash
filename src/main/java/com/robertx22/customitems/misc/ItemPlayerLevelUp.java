@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.customitems.BaseItem;
+import com.robertx22.database.lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -28,14 +29,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemPlayerLevelUp extends Item {
+public class ItemPlayerLevelUp extends BaseItem {
 
 	@GameRegistry.ObjectHolder(Ref.MODID + ":player_levelup")
 	public static final Item ITEM = null;
 
 	public ItemPlayerLevelUp() {
 		this.setMaxDamage(0);
-		this.setCreativeTab(CurrencyItem.CurrencyTab);
+		this.setCreativeTab(CreativeTabList.CurrencyTab);
 
 		RegisterItemUtils.RegisterItemName(this, "player_levelup");
 	}
@@ -60,15 +61,6 @@ public class ItemPlayerLevelUp extends Item {
 			}
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
-	}
-
-	private ItemStack EmptyOrDecrease(ItemStack stack) {
-		if (stack.getCount() < 2) {
-			stack = ItemStack.EMPTY;
-		} else {
-			stack.setCount(stack.getCount() - 1);
-		}
-		return stack;
 	}
 
 	@SubscribeEvent

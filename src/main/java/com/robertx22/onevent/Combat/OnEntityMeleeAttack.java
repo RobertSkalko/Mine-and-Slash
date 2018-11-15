@@ -1,6 +1,6 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.customitems.bases.IWeapon;
+import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.datasaving.UnitSaving;

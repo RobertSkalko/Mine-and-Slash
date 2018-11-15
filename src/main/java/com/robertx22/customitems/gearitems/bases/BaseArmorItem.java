@@ -1,8 +1,7 @@
-package com.robertx22.customitems.bases;
+package com.robertx22.customitems.gearitems.bases;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Utils;
 
@@ -43,7 +42,6 @@ public abstract class BaseArmorItem extends ItemArmor {
 		super(GetMat(rarity), 0, slot);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(MAX_GEAR_DURABILITY);
-		this.setCreativeTab(NewBlocks.MyModTab);
 		RegisterItemUtils.RegisterItemName(this, Name().toLowerCase() + rarity);
 
 		map.put(rarity, this);

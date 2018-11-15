@@ -1,4 +1,4 @@
-package com.robertx22.customitems.bases;
+package com.robertx22.customitems.gearitems.bases;
 
 import java.util.HashMap;
 

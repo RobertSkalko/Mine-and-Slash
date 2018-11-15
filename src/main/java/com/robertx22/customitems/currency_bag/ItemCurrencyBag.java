@@ -4,8 +4,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.currency.CurrencyItem;
-import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.database.lists.CreativeTabList;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.gui.GuiHandler;
@@ -62,7 +62,7 @@ public class ItemCurrencyBag extends Item {
 
 	public ItemCurrencyBag() {
 		setMaxStackSize(1);
-		this.setCreativeTab(NewBlocks.MyModTab);
+		this.setCreativeTab(CreativeTabList.MyModTab);
 		RegisterItemUtils.RegisterItemName(this, "currency_bag");
 	}
 

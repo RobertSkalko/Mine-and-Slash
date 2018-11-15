@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import com.robertx22.customitems.bases.IWeapon;
+import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.lists.Sets;
 import com.robertx22.database.lists.StatusEffects;

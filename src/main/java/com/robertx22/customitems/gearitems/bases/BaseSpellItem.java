@@ -1,11 +1,10 @@
-package com.robertx22.customitems.bases;
+package com.robertx22.customitems.gearitems.bases;
 
 import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.oldreplacesoon.NewBlocks;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.saveclasses.SpellItemData;
@@ -35,7 +34,6 @@ public abstract class BaseSpellItem extends Item {
 	public BaseSpellItem() {
 		this.setMaxStackSize(1);
 		this.setMaxDamage(0);
-		this.setCreativeTab(NewBlocks.MyModTab);
 		this.setUnlocalizedName(Name());
 		this.setRegistryName(GUID().toLowerCase());
 
