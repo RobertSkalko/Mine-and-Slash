@@ -10,9 +10,9 @@ import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
-import com.robertx22.mmorpg.registers.NetworkRegisters;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
+import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerPackage;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.oregen.OreGen;
@@ -63,12 +63,12 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(new PlayerPackage());
 		MinecraftForge.EVENT_BUS.register(new EntityPackage());
 		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage());
+		MinecraftForge.EVENT_BUS.register(new ParticlePackage());
 
 		Network.registerMessage(PlayerPackage.Handler.class, PlayerPackage.class, 0, Side.CLIENT);
 		Network.registerMessage(EntityPackage.Handler.class, EntityPackage.class, 1, Side.CLIENT);
 		Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2, Side.CLIENT);
-
-		NetworkRegisters.Register();
+		Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Side.CLIENT);
 
 		CapabilityManager.INSTANCE.register(EntityData.IEntityData.class, new EntityData.Storage(),
 				EntityData.DefaultImpl.class);

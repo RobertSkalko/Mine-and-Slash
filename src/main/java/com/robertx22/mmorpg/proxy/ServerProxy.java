@@ -68,4 +68,5 @@ public class ServerProxy implements IProxy {
 				Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
 
 	}
+
 }

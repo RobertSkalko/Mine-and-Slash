@@ -67,7 +67,7 @@ public abstract class EntityElementalBolt extends EntityThrowable {
 
 		SetReady(effect, data);
 		setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
-		shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1F, 1.0F);
+		shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
 
 		world.spawnEntity(this);
 	}

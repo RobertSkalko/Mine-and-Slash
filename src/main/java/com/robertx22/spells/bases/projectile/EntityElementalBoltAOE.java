@@ -3,12 +3,13 @@ package com.robertx22.spells.bases.projectile;
 import java.util.HashMap;
 import java.util.List;
 
+import com.robertx22.database.particle_gens.AoeProjectileParticleGen;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
@@ -21,7 +22,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
 	}
 
-	int radius = 3;
+	public static int radius = 3;
 
 	public abstract Elements element();
 
@@ -49,16 +50,11 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
 	}
 
-	private void SpawnRedstone(Elements element, Entity entity, int radius) {
+	private void SpawnRedstone(Elements element, Entity entity, int radius, int x, int y, int z) {
 
-		int x = Color.BY_ELEMENT.get(element).x;
-		int y = Color.BY_ELEMENT.get(element).y;
-		int z = Color.BY_ELEMENT.get(element).z;
+		ParticleUtils.spawnParticleGenerator(entity, new AoeProjectileParticleGen().Name(), this.posX, this.posY,
+				this.posZ, x, y, z);
 
-		entity.world.spawnParticle(EnumParticleTypes.REDSTONE,
-				this.posX + (this.rand.nextDouble() * 4 - 2) * radius / 2,
-				this.posY + (this.rand.nextDouble() * 3 - 2) * radius / 2,
-				this.posZ + (this.rand.nextDouble() * 4 - 2) * radius / 2, x, y, z);
 	}
 
 	@Override
@@ -69,9 +65,13 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 			world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS,
 					0.1F, 0.5F, true);
 
-			for (int i = 0; i < 100; i++) {
-				SpawnRedstone(element(), this, radius);
-			}
+		} else {
+			int x = Color.BY_ELEMENT.get(element()).x;
+			int y = Color.BY_ELEMENT.get(element()).y;
+			int z = Color.BY_ELEMENT.get(element()).z;
+
+			SpawnRedstone(element(), this, radius, x, y, z);
+
 		}
 		if (effect != null && data != null) {
 

@@ -5,6 +5,7 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
+import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerPackage;
 import com.robertx22.spells.aoe_projectile.AcidExplosion.EntityAcidExplosion;
 import com.robertx22.spells.aoe_projectile.FlameExplosion.EntityFlameExplosion;
@@ -48,6 +49,8 @@ public class ClientProxy implements IProxy {
 		MinecraftForge.EVENT_BUS.register(new PlayerPackage.Handler());
 		MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
 		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
+		MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
+
 	}
 
 	@Override
@@ -100,4 +103,5 @@ public class ClientProxy implements IProxy {
 				renderManager -> new RenderSnowball<>(renderManager, item, Minecraft.getMinecraft().getRenderItem()));
 
 	}
+
 }
