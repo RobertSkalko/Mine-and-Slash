@@ -53,4 +53,7 @@ public interface IProxy {
 	 * @return the player entity from context
 	 */
 	EntityPlayer getPlayerEntityFromContext(MessageContext parContext);
+
+	void RegisterEntityRenders();
+
 }

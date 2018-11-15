@@ -58,6 +58,10 @@ public class ModConfig {
 		@Config.Comment("Want to level faster or slower? 1 is normal, 0.5 half speed, 2 double")
 		public float EXPERIENCE_MULTIPLIER = 1F;
 
+		@Config.Name("Level Ups Cost Tokens")
+		@Config.Comment("If false, player levels up automatically, if true, you need to craft a token and use it")
+		public boolean LEVEL_UPS_COST_TOKEN = true;
+
 	}
 
 	@Mod.EventBusSubscriber

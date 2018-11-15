@@ -509,25 +509,31 @@ public class Unit implements Serializable {
 
 	public int GiveExp(EntityPlayer player, int i) {
 
-		if (!CheckIfCanLevelUp()) {
+		i *= ModConfig.Server.EXPERIENCE_MULTIPLIER;
 
-			i *= ModConfig.Server.EXPERIENCE_MULTIPLIER;
+		experience += i;
 
-			experience += i;
+		if (experience > this.GetExpRequiredForLevelUp()) {
 
-			if (experience > this.GetExpRequiredForLevelUp()) {
-				experience = this.GetExpRequiredForLevelUp();
-			}
+			experience = this.GetExpRequiredForLevelUp();
 
-			if (CheckIfCanLevelUp()) {
-				player.sendMessage(new TextComponentString(
-						TextFormatting.YELLOW + "Exp bar full, craft a level up token and use it to level up."));
+			if (ModConfig.Server.LEVEL_UPS_COST_TOKEN == false) {
+
+				if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
+					this.LevelUp(player);
+				}
 			}
 
 			return i;
 		}
 
-		return 0;
+		if (CheckIfCanLevelUp()) {
+			player.sendMessage(new TextComponentString(
+					TextFormatting.YELLOW + "Exp bar full, craft a level up token and use it to level up."));
+		}
+
+		return i;
+
 	}
 
 	public boolean CheckIfCanLevelUp() {

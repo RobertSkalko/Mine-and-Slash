@@ -2,22 +2,37 @@ package com.robertx22.mmorpg.proxy;
 
 import com.robertx22.mmorpg.Keybinds;
 import com.robertx22.mmorpg.Main;
-import com.robertx22.mmorpg.registers.EntityRegisters;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
 import com.robertx22.network.PlayerPackage;
+import com.robertx22.spells.aoe_projectile.AcidExplosion.EntityAcidExplosion;
+import com.robertx22.spells.aoe_projectile.FlameExplosion.EntityFlameExplosion;
+import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
+import com.robertx22.spells.aoe_projectile.LightningExplosion.EntityLightningExplosion;
+import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
+import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
+import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
+import com.robertx22.spells.projectile.thunderbolt.EntityThunderBolt;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ClientProxy implements IProxy {
 	// functionality
@@ -29,7 +44,6 @@ public class ClientProxy implements IProxy {
 
 		MinecraftForge.EVENT_BUS.register(new ToggleKeyBind());
 		MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
-		EntityRegisters.Register();
 
 		MinecraftForge.EVENT_BUS.register(new PlayerPackage.Handler());
 		MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
@@ -61,5 +75,29 @@ public class ClientProxy implements IProxy {
 	@Override
 	public void serverStarting(FMLServerStartingEvent event) {
 		// This will never get called on client side
+	}
+
+	@Override
+	public void RegisterEntityRenders() {
+		RegisterModEntityClient(Items.SNOWBALL, EntityFrostBolt.class, 0);
+		RegisterModEntityClient(Items.MAGMA_CREAM, EntityFireBolt.class, 1);
+		RegisterModEntityClient(Items.SLIME_BALL, EntityAcidBolt.class, 2);
+		RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityThunderBolt.class, 3);
+
+		RegisterModEntityClient(Items.SNOWBALL, EntityFrostExplosion.class, 4);
+		RegisterModEntityClient(Items.MAGMA_CREAM, EntityFlameExplosion.class, 5);
+		RegisterModEntityClient(Items.SLIME_BALL, EntityAcidExplosion.class, 6);
+		RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityLightningExplosion.class, 7);
+
+	}
+
+	private static void RegisterModEntityClient(Item item, Class<? extends Entity> theclass, int id) {
+
+		EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
+				Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
+
+		RenderingRegistry.registerEntityRenderingHandler(theclass,
+				renderManager -> new RenderSnowball<>(renderManager, item, Minecraft.getMinecraft().getRenderItem()));
+
 	}
 }

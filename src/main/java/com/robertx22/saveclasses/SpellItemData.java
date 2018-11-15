@@ -40,19 +40,19 @@ public class SpellItemData implements Serializable {
 	}
 
 	private int MinScaling() {
-		return (int) (GetSpell().ScalingValue().Multi * Rarities.Items.get(rarity).StatPercents().Min);
+		return (int) (GetSpell().ScalingValue().Multi * Rarities.Items.get(rarity).SpellScalingPercents().Min);
 	}
 
 	private int MaxScaling() {
-		return (int) (GetSpell().ScalingValue().Multi * Rarities.Items.get(rarity).StatPercents().Max);
+		return (int) (GetSpell().ScalingValue().Multi * Rarities.Items.get(rarity).SpellScalingPercents().Max);
 	}
 
 	private int MinBase() {
-		return (int) (1 + GetSpell().BaseValue() * level * Rarities.Items.get(rarity).StatPercents().Min / 100);
+		return (int) (1 + GetSpell().BaseValue() * level * Rarities.Items.get(rarity).SpellBasePercents().Min / 100);
 	}
 
 	private int MaxBase() {
-		return (int) (1 + GetSpell().BaseValue() * level * Rarities.Items.get(rarity).StatPercents().Max / 100);
+		return (int) (1 + GetSpell().BaseValue() * level * Rarities.Items.get(rarity).SpellBasePercents().Max / 100);
 	}
 
 	private int MinMana() {

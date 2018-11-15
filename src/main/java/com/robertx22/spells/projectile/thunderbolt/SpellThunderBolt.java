@@ -28,8 +28,6 @@ public class SpellThunderBolt extends BaseBolt {
 			EntityThunderBolt projectile = new EntityThunderBolt(world);
 			projectile.SpawnAndShoot(new EffectThunderBolt(), new DamageData(caster, data), caster);
 
-			world.spawnEntity(projectile);
-
 		}
 
 		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_LIGHTNING_IMPACT, 1, 1);

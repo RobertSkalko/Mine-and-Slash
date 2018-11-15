@@ -40,6 +40,26 @@ public abstract class EntityElementalBolt extends EntityThrowable {
 
 	}
 
+	@Override
+	public void onUpdate() {
+
+		super.onUpdate();
+
+		if (world.isRemote) {
+			for (int i = 0; i < 4; i++) {
+				/*
+				 * world.spawnParticle(EnumParticleTypes.FLAME, this.posX + rand.nextFloat() *
+				 * 0.2 - 0.1, this.posY + this.height / 2 + rand.nextFloat() * 0.2 - 0.1,
+				 * this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
+				 */
+			}
+		}
+
+		if (this.ticksExisted > 8) {
+			this.setDead();
+		}
+	}
+
 	public void SpawnAndShoot(BaseSpellEffect effect, DamageData data, EntityLivingBase caster) {
 
 		this.ignoreEntity = caster;
@@ -47,7 +67,7 @@ public abstract class EntityElementalBolt extends EntityThrowable {
 
 		SetReady(effect, data);
 		setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
-		shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
+		shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1F, 1.0F);
 
 		world.spawnEntity(this);
 	}

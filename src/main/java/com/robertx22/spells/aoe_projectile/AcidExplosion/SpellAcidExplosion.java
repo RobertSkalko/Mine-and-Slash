@@ -25,6 +25,7 @@ public class SpellAcidExplosion extends BaseBoltAOE {
 	public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
 
 		if (!world.isRemote) {
+
 			EntityAcidExplosion projectile = new EntityAcidExplosion(world);
 			projectile.SpawnAndShoot(new EffectAcidExplosion(), new DamageData(caster, data), caster);
 

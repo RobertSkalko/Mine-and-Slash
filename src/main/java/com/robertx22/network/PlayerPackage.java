@@ -46,8 +46,10 @@ public class PlayerPackage implements IMessage {
 				final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
 				Unit unit = Saving.Load(message.toSend, Unit.class);
-				UnitSaving.Save(player, unit);
 
+				if (unit != null) {
+					UnitSaving.Save(player, unit);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

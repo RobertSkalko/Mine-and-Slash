@@ -52,6 +52,8 @@ public class Main {
 
 		proxy.preInit(event);
 
+		proxy.RegisterEntityRenders();
+
 		ItemOre.Register();
 		StartupRepair.preInitCommon(event);
 		StartupSalvage.preInitCommon(event);

@@ -68,25 +68,17 @@ public class OnEntityMeleeAttack {
 
 					int energyCost = iWep.GetEnergyCost();
 
-					event.setCanceled(true);
-
 					if (unit.energyData().CurrentValue < energyCost) {
-
 						NoEnergyMessage(source);
+						event.setCanceled(true);
 
 					} else {
 						unit.SpendEnergy(energyCost);
 						UnitSaving.Save(source, unit);
-						weapon.damageItem(1, source); // items were infinite before this line, should be fixed now
+						// weapon.damageItem(1, source); // items were infinite before this line, should
+						// be fixed now
 
 						iWep.Attack(source, target, unit, targetUnit);
-
-						if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
-							EntityLivingBase defender = event.getEntityLiving();
-							EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
-							defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX,
-									attacker.posZ - defender.posZ);
-						}
 
 					}
 

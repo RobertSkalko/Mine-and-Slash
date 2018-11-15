@@ -1,0 +1,22 @@
+{
+	"name": "Loot Bag",
+	"icon": "mmorpg:loot_bag",
+	"category": "craftables",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:loot_bag"
+        },
+		
+			{
+			"type": "text",
+			"text": "Automatically picks up my mod's Gear Items. Less inventory Clutter!"
+		}
+		 
+		
+	]
+}
