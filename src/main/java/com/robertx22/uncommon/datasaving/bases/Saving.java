@@ -2,7 +2,7 @@ package com.robertx22.uncommon.datasaving.bases;
 
 import javax.annotation.Nonnull;
 
-import com.robertx22.uncommon.capability.ICommonData;
+import com.robertx22.uncommon.capability.EntityData.IEntityData;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.capabilities.Capability;
@@ -17,7 +17,7 @@ public class Saving {
 
 	@Nonnull
 	@SuppressWarnings("unchecked")
-	public static <T, Interface extends ICommonData> T Load(String str, Class<?> theclass) {
+	public static <T, Interface extends IEntityData> T Load(String str, Class<?> theclass) {
 
 		try {
 
@@ -33,7 +33,7 @@ public class Saving {
 
 	@Nonnull
 	@SuppressWarnings("unchecked")
-	public static <T, Interface extends ICommonData> T Load(ICapabilitySerializable<NBTTagCompound> entity,
+	public static <T, Interface extends IEntityData> T Load(ICapabilitySerializable<NBTTagCompound> entity,
 			Capability<Interface> capability, String path, Class<?> theclass) {
 
 		if (entity != null && entity.hasCapability(capability, null)) {
@@ -55,7 +55,7 @@ public class Saving {
 	}
 
 	@Nonnull
-	public static <T, Interface extends ICommonData> void Save(ICapabilitySerializable<NBTTagCompound> entity,
+	public static <T, Interface extends IEntityData> void Save(ICapabilitySerializable<NBTTagCompound> entity,
 			Object obj, Capability<Interface> capability, String path) {
 
 		if (entity != null && entity.hasCapability(capability, null) && obj != null) {

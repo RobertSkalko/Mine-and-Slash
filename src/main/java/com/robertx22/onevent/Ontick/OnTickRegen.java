@@ -16,6 +16,7 @@ import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.Mod;
@@ -26,11 +27,6 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber
 public class OnTickRegen {
-
-	static int regenTicks = 0;
-	static int playerSyncTick = 0;
-	static int mobsListSyncTick = 0;
-	static int mobsSyncTick = 0;
 
 	static final int TicksToUpdatePlayer = 20;
 	static final int TicksToUpdateMobList = 120;
@@ -57,7 +53,7 @@ public class OnTickRegen {
 
 	}
 
-	private static void UpdateMobs(EntityPlayerMP player) {
+	private static void UpdateMobs(EntityPlayerMP player, PlayerTickData syncData) {
 
 		EntityUpdate data = Map.get(player.getUniqueID());
 
@@ -68,73 +64,97 @@ public class OnTickRegen {
 
 		if (data != null && !data.isFinished()) {
 			float count = (float) data.current / (float) data.entities.size();
-			float ticks = (float) mobsSyncTick / (float) TicksToUpdateAllMobs;
+			float ticks = (float) syncData.mobsSyncTick / (float) TicksToUpdateAllMobs;
 
 			if (ticks > count || data.current == 0) {
 				data.update();
 			}
 		} else {
-			mobsSyncTick = 0;
+			syncData.mobsSyncTick = 0;
 		}
 
 	}
 
+	static class PlayerTickData {
+		public int regenTicks = 0;
+		public int playerSyncTick = 0;
+		public int mobsListSyncTick = 0;
+		public int mobsSyncTick = 0;
+
+	}
+
+	public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap();
+
 	@SubscribeEvent
-	public static void onTickRegen(TickEvent.PlayerTickEvent event) {
+	public static void onTickRegen(TickEvent.WorldTickEvent event) {
 
 		if (event.phase == Phase.END && event.side.equals(Side.SERVER)) {
 
-			EntityPlayerMP player = (EntityPlayerMP) event.player;
+			for (EntityPlayer pl : event.world.playerEntities) {
 
-			regenTicks++;
-			mobsSyncTick++;
-			playerSyncTick++;
-			mobsListSyncTick++;
+				EntityPlayerMP player = (EntityPlayerMP) pl;
 
-			UpdateMobs(player);
+				PlayerTickData data = null;
 
-			if (mobsListSyncTick > TicksToUpdateMobList) {
-				mobsListSyncTick = 0;
-				try {
-					UpdateEntityList(player);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			if (regenTicks > TicksToRegen) {
-
-				if (player.isEntityAlive()) {
-					Unit unit = UnitSaving.Load(player);
-					unit.RecalculateStats(player);
-
-					int manarestored = (int) unit.MyStats.get(new ManaRegen().Name()).Value;
-					unit.RestoreMana(manarestored);
-
-					int energyrestored = (int) unit.MyStats.get(new EnergyRegen().Name()).Value;
-					unit.RestoreEnergy(energyrestored);
-
-					int healthrestored = (int) unit.MyStats.get(new HealthRegen().Name()).Value;
-					unit.Heal(player, healthrestored);
-
-					UnitSaving.Save(player, unit);
-
-					regenTicks = 0;
-				}
-			}
-
-			if (playerSyncTick > TicksToUpdatePlayer) {
-				playerSyncTick = 0;
-
-				String json = player.getCapability(EntityData.Data, null).getNBT().getString(UnitSaving.DataLocation);
-
-				if (json != null && !json.isEmpty()) {
-					PlayerPackage playerpacket = new PlayerPackage(json);
-					Main.Network.sendTo(playerpacket, (EntityPlayerMP) player);
-
+				if (PlayerTickDatas.containsKey(player.getUniqueID())) {
+					data = PlayerTickDatas.get(player.getUniqueID());
+				} else {
+					data = new PlayerTickData();
 				}
 
+				data.regenTicks++;
+				data.mobsSyncTick++;
+				data.playerSyncTick++;
+				data.mobsListSyncTick++;
+
+				UpdateMobs(player, data);
+
+				if (data.mobsListSyncTick > TicksToUpdateMobList) {
+					data.mobsListSyncTick = 0;
+					try {
+						UpdateEntityList(player);
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+
+				if (data.regenTicks > TicksToRegen) {
+
+					if (player.isEntityAlive()) {
+						Unit unit = UnitSaving.Load(player);
+						unit.RecalculateStats(player);
+
+						int manarestored = (int) unit.MyStats.get(new ManaRegen().Name()).Value;
+						unit.RestoreMana(manarestored);
+
+						int energyrestored = (int) unit.MyStats.get(new EnergyRegen().Name()).Value;
+						unit.RestoreEnergy(energyrestored);
+
+						int healthrestored = (int) unit.MyStats.get(new HealthRegen().Name()).Value;
+						unit.Heal(player, healthrestored);
+
+						UnitSaving.Save(player, unit);
+
+						data.regenTicks = 0;
+					}
+				}
+
+				if (data.playerSyncTick > TicksToUpdatePlayer) {
+					data.playerSyncTick = 0;
+
+					String json = player.getCapability(EntityData.Data, null).getNBT()
+							.getString(UnitSaving.DataLocation);
+
+					if (json != null && !json.isEmpty()) {
+						PlayerPackage playerpacket = new PlayerPackage(json);
+						Main.Network.sendTo(playerpacket, (EntityPlayerMP) player);
+
+					}
+				}
+				if (data != null) {
+					PlayerTickDatas.put(player.getUniqueID(), data);
+				}
 			}
 
 		}

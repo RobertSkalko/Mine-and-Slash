@@ -21,10 +21,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class EntityData {
 
 	@CapabilityInject(IEntityData.class)
-	public static final Capability<ICommonData> Data = null;
+	public static final Capability<IEntityData> Data = null;
 
-	public interface IEntityData extends ICommonData {
+	public interface IEntityData {
+		NBTTagCompound getNBT();
 
+		void setNBT(NBTTagCompound value);
 	}
 
 	@Mod.EventBusSubscriber

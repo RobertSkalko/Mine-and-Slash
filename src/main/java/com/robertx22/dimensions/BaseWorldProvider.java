@@ -1,6 +1,5 @@
 package com.robertx22.dimensions;
 
-import java.util.Random;
 import java.util.UUID;
 
 import net.minecraft.world.DimensionType;
@@ -26,12 +25,10 @@ public class BaseWorldProvider extends WorldProvider {
 		return worldname;
 	}
 
-	public static Random ran = new Random();
-
 	@Override
 	public IChunkGenerator createChunkGenerator() {
 
-		return new ChunkGeneratorOverworld(world, this.ran.nextLong(), true, "");
+		return new ChunkGeneratorOverworld(world, world.rand.nextLong(), true, "");
 
 	}
 }

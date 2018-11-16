@@ -47,8 +47,8 @@ public abstract class EntityElementalBolt extends EntityThrowable {
 
 		super.onUpdate();
 
-		if (world.isRemote) {
-			for (int i = 0; i < 4; i++) {
+		if (!world.isRemote) {
+			for (int i = 0; i < 10; i++) {
 
 				ParticleUtils.spawnParticle(this, EnumParticleTypes.CRIT_MAGIC.getParticleName(),
 						this.posX + rand.nextFloat() * 0.2 - 0.1,
