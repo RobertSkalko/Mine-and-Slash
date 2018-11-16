@@ -2,7 +2,6 @@ package com.robertx22.spells.bases.projectile;
 
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
-import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -47,11 +46,10 @@ public abstract class EntityElementalBolt extends EntityThrowable {
 
 		super.onUpdate();
 
-		if (!world.isRemote) {
-			for (int i = 0; i < 10; i++) {
+		if (world.isRemote) {
+			for (int i = 0; i < 20; i++) {
 
-				ParticleUtils.spawnParticle(this, EnumParticleTypes.CRIT_MAGIC.getParticleName(),
-						this.posX + rand.nextFloat() * 0.2 - 0.1,
+				this.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX + rand.nextFloat() * 0.2 - 0.1,
 						this.posY + this.height / 2 + rand.nextFloat() * 0.2 - 0.1,
 						this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
 

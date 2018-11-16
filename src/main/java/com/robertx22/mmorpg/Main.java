@@ -14,7 +14,9 @@ import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerPackage;
+import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
 
@@ -64,14 +66,19 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(new EntityPackage());
 		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage());
 		MinecraftForge.EVENT_BUS.register(new ParticlePackage());
+		MinecraftForge.EVENT_BUS.register(new WorldPackage());
 
 		Network.registerMessage(PlayerPackage.Handler.class, PlayerPackage.class, 0, Side.CLIENT);
 		Network.registerMessage(EntityPackage.Handler.class, EntityPackage.class, 1, Side.CLIENT);
 		Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2, Side.CLIENT);
 		Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Side.CLIENT);
+		Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Side.CLIENT);
 
 		CapabilityManager.INSTANCE.register(EntityData.IEntityData.class, new EntityData.Storage(),
 				EntityData.DefaultImpl.class);
+
+		CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),
+				WorldData.DefaultImpl.class);
 
 		ModMetadata modMeta = event.getModMetadata();
 		modMeta.name = Ref.NAME;
@@ -104,15 +111,13 @@ public class Main {
 
 		proxy.postInit(event);
 		RabbitGui.proxy.postInit();
-	}
-
-	@EventHandler
-	public void serverLoad(FMLServerStartingEvent event) {
 
 	}
 
 	@EventHandler
 	public void start(FMLServerStartingEvent event) {
+		proxy.serverStarting(event);
+
 		CommandRegisters.Register(event);
 
 	}

@@ -7,6 +7,7 @@ import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.PlayerPackage;
+import com.robertx22.network.WorldPackage;
 import com.robertx22.spells.aoe_projectile.AcidExplosion.EntityAcidExplosion;
 import com.robertx22.spells.aoe_projectile.FlameExplosion.EntityFlameExplosion;
 import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
@@ -50,6 +51,7 @@ public class ClientProxy implements IProxy {
 		MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
 		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
 		MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
+		MinecraftForge.EVENT_BUS.register(new WorldPackage.Handler());
 
 	}
 
@@ -78,6 +80,7 @@ public class ClientProxy implements IProxy {
 	@Override
 	public void serverStarting(FMLServerStartingEvent event) {
 		// This will never get called on client side
+
 	}
 
 	@Override

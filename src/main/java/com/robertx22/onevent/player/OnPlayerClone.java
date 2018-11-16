@@ -1,9 +1,7 @@
 package com.robertx22.onevent.player;
 
-import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.IEntityData;
-import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -22,7 +20,6 @@ public class OnPlayerClone {
 			EntityData.IEntityData data = (IEntityData) player.getCapability(EntityData.Data, null);
 			EntityData.IEntityData oldData = (IEntityData) event.getOriginal().getCapability(EntityData.Data, null);
 			data.setNBT(oldData.getNBT());
-			Unit unit = UnitSaving.Load(player);
 
 		}
 

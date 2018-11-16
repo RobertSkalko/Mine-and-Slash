@@ -26,6 +26,10 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 public class ServerProxy implements IProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
+
+		// DEBUG
+		System.out.println("on Server side");
+
 	}
 
 	@Override
@@ -35,6 +39,7 @@ public class ServerProxy implements IProxy {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
+
 	}
 
 	@Override

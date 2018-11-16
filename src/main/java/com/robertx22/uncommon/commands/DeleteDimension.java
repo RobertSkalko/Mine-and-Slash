@@ -1,10 +1,9 @@
 package com.robertx22.uncommon.commands;
 
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
-
-import com.robertx22.dimensions.WorldFileUtils;
+import com.robertx22.mmorpg.Main;
+import com.robertx22.network.WorldPackage;
+import com.robertx22.uncommon.capability.WorldData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -37,21 +36,15 @@ public class DeleteDimension extends CommandBase {
 
 		if (DimensionManager.isDimensionRegistered(id)) {
 
-			DimensionManager.unloadWorld(id);
-
 			World world = DimensionManager.getWorld(id);
 
-			world.loadedEntityList.clear();
+			IWorldData data = world.getCapability(WorldData.Data, null);
 
-			world = null;
+			if (data != null) {
+				data.setForDelete(true);
+				data.setID(id);
 
-			try {
-				FileUtils.forceDelete(WorldFileUtils.getWorldDirectory(DimensionManager.getWorld(id)));
-
-				DimensionManager.unregisterDimension(id);
-			} catch (IOException e) {
-
-				e.printStackTrace();
+				Main.Network.sendToAll(new WorldPackage(data.getNBT()));
 			}
 
 		}
