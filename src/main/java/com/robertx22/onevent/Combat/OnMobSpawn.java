@@ -4,6 +4,8 @@ import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.onevent.ontick.EntityUpdate;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.WorldData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.Entity;
@@ -39,23 +41,36 @@ public class OnMobSpawn {
 
 		if (!(entity instanceof EntityPlayer)) {
 			if (entity instanceof IMob || entity instanceof EntityMob) {
+				if (event.getWorld().hasCapability(WorldData.Data, null)) {
 
-				Unit check = UnitSaving.Load(entity);
+					Unit check = UnitSaving.Load(entity);
 
-				if (check == null) {
-					int level = GetMobLevelByDistanceFromSpawn(entity);
-					Unit unit = Unit.Mob(entity, level);
-					unit.Save(entity);
+					if (check == null) {
+						IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
+						int level = GetMobLevel(data, entity);
+						Unit unit = Unit.Mob(entity, level, data);
+						unit.Save(entity);
 
-					if (unit.rarity == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
-						AnnounceWorldBossSpawn(entity, unit);
-					}
+						if (unit.rarity == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
+							AnnounceWorldBossSpawn(entity, unit);
+						}
 
-					if (unit != null) {
-						EntityUpdate.syncEntityToClient(entity);
+						if (unit != null) {
+							EntityUpdate.syncEntityToClient(entity);
+						}
 					}
 				}
 			}
+		}
+
+	}
+
+	private static int GetMobLevel(IWorldData data, EntityLivingBase entity) {
+
+		if (data != null && data.isMapWorld()) {
+			return data.getLevel();
+		} else {
+			return GetMobLevelByDistanceFromSpawn(entity);
 		}
 
 	}

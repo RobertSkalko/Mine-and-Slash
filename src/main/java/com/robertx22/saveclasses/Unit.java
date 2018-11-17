@@ -39,6 +39,7 @@ import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.GearSaving;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
@@ -103,8 +104,23 @@ public class Unit implements Serializable {
 			lvl = 1;
 
 		}
-		if (lvl > ModConfig.Server.MAXIMUM_LEVEL) {
-			lvl = ModConfig.Server.MAXIMUM_LEVEL;
+		if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+			lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+		}
+
+		this.level = lvl;
+	}
+
+	public void SetMobLevel(IWorldData data, int lvl) {
+
+		if (lvl < 1) {
+			lvl = 1;
+
+		}
+		if (data != null && !data.isMapWorld()) {
+			if (lvl > ModConfig.Server.MAXIMUM_NORMAL_WORLD_MOB_LEVEL) {
+				lvl = ModConfig.Server.MAXIMUM_NORMAL_WORLD_MOB_LEVEL;
+			}
 		}
 
 		this.level = lvl;
@@ -398,15 +414,17 @@ public class Unit implements Serializable {
 	public int vanillaHP;
 	public int rarity = 0;
 
-	public static Unit Mob(EntityLivingBase en, int level) {
+	public static Unit Mob(EntityLivingBase en, int level, IWorldData data) {
 
 		Unit mob = new Unit();
 
-		mob.SetLevel(level);
+		mob.SetMobLevel(data, level);
 		mob.MyStats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
 		mob.rarity = RandomUtils.RandomWithMinRarity(en).Rank();
 		mob.vanillaHP = (int) en.getMaxHealth();
 		mob.uid = en.getUniqueID();
+
+		/// data.get TODO
 
 		mob.AddRandomMobStatusEffects();
 		mob.RecalculateStats(en);
@@ -543,7 +561,7 @@ public class Unit implements Serializable {
 	}
 
 	private boolean CheckLevelCap() {
-		return level + 1 <= ModConfig.Server.MAXIMUM_LEVEL;
+		return level + 1 <= ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
 	}
 
 	public boolean LevelUp(EntityPlayer player) {

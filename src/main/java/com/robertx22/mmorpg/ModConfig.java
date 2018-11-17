@@ -50,9 +50,13 @@ public class ModConfig {
 		@Config.Comment("How big you want level 1 mob area to be. Bigger value means bigger area")
 		public int MOB_LEVEL_ONE_AREA = 25000;
 
-		@Config.Name("Level Cap")
+		@Config.Name("Player Level Cap")
 		@Config.Comment("Select maximum level")
-		public int MAXIMUM_LEVEL = 100;
+		public int MAXIMUM_PLAYER_LEVEL = 100;
+
+		@Config.Name("Normal Worlds Mob Level Cap")
+		@Config.Comment("Select maximum level for mobs in normal worlds like vanilla surface, nether, end. This doesn't affect max level for map worlds from my mod!")
+		public int MAXIMUM_NORMAL_WORLD_MOB_LEVEL = 25;
 
 		@Config.Name("Exp multiplier")
 		@Config.Comment("Want to level faster or slower? 1 is normal, 0.5 half speed, 2 double")

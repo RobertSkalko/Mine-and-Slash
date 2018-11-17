@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.saveclasses.DamageNumberData;
+import com.robertx22.network.DamageNumberPackage;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -24,7 +24,7 @@ public class OnDisplayDamage {
 	private static Minecraft mc = Minecraft.getMinecraft();
 	private Entity pointedEntity;
 
-	public static void displayParticle(DamageNumberData data) {
+	public static void displayParticle(DamageNumberPackage data) {
 
 		World world = mc.player.world;
 		double motionX = world.rand.nextGaussian() * 0.02;

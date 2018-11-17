@@ -5,10 +5,8 @@ import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.loot.LootDropsGenerator;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.DamageNumberPackage;
-import com.robertx22.saveclasses.DamageNumberData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
-import com.robertx22.uncommon.datasaving.bases.Saving;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -53,10 +51,8 @@ public class OnMobDeathDrops {
 						NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(entity.dimension,
 								entity.posX, entity.posY, entity.posZ, 32);
 
-						Main.Network.sendToAllAround(
-								new DamageNumberPackage(Saving.ToString(new DamageNumberData(
-										"+" + DamageEffect.FormatNumber(exp) + " Exp!", Elements.Nature, entity))),
-								point);
+						Main.Network.sendToAllAround(new DamageNumberPackage(entity, Elements.Nature,
+								"+" + DamageEffect.FormatNumber(exp) + " Exp!"), point);
 					}
 
 				}

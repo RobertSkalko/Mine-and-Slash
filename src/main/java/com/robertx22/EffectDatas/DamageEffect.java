@@ -13,10 +13,8 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
-import com.robertx22.saveclasses.DamageNumberData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.datasaving.bases.Saving;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
@@ -73,9 +71,7 @@ public class DamageEffect extends EffectData
 			NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX,
 					Target.posY, Target.posZ, 32);
 
-			Main.Network.sendToAllAround(
-					new DamageNumberPackage(
-							Saving.ToString(new DamageNumberData(FormatDamageNumber(this), this.Element, Target))),
+			Main.Network.sendToAllAround(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
 					point);
 		}
 

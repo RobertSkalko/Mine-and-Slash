@@ -1,6 +1,11 @@
 package com.robertx22.uncommon.capability;
 
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.datasaving.bases.Gson;
+import com.robertx22.uncommon.datasaving.bases.Saving;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTBase;
@@ -39,6 +44,10 @@ public class WorldData {
 
 		int getID();
 
+		void setTier(int tier);
+
+		int getTier();
+
 		void setLevel(int lvl);
 
 		int getLevel();
@@ -47,9 +56,17 @@ public class WorldData {
 
 		String getOwner();
 
-		void init(EntityPlayer player);
+		void init(EntityPlayer player, MapItemData map);
 
 		void delete(EntityPlayer player);
+
+		void setMap(MapItemData map);
+
+		MapItemData getMap();
+
+		void setInit();
+
+		boolean isInit();
 
 	}
 
@@ -108,6 +125,9 @@ public class WorldData {
 	static final String ID = "id";
 	static final String LEVEL = "level";
 	static final String OWNER = "owner";
+	static final String TIER = "tier";
+	static final String MAP_OBJECT = "mapObject";
+	static final String IS_INIT = "isInit";
 
 	public static class DefaultImpl implements IWorldData {
 		private NBTTagCompound nbt = new NBTTagCompound();
@@ -194,11 +214,47 @@ public class WorldData {
 		}
 
 		@Override
-		public void init(EntityPlayer player) {
+		public void init(EntityPlayer player, MapItemData map) {
+
+			Unit unit = UnitSaving.Load(player);
 
 			this.setOwner(player);
 			this.setAsMapWorld(true);
+			this.setLevel(unit.GetLevel());
+			this.setTier(map.tier);
+			this.setMap(map);
 
+		}
+
+		@Override
+		public void setTier(int tier) {
+			nbt.setInteger(TIER, tier);
+
+		}
+
+		@Override
+		public int getTier() {
+			return nbt.getInteger(TIER);
+		}
+
+		@Override
+		public void setMap(MapItemData map) {
+			nbt.setString(MAP_OBJECT, Gson.instance.toJson(map));
+		}
+
+		@Override
+		public MapItemData getMap() {
+			return Saving.Load(nbt.getString(MAP_OBJECT), MapItemData.class);
+		}
+
+		@Override
+		public void setInit() {
+			nbt.setBoolean(IS_INIT, true);
+		}
+
+		@Override
+		public boolean isInit() {
+			return nbt.getBoolean(IS_INIT);
 		}
 
 	}
