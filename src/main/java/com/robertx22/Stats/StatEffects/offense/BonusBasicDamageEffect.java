@@ -34,11 +34,14 @@ public class BonusBasicDamageEffect implements IStatEffect {
 				float derivedvalue = (float) source.MyStats.get(basebonus.StatThatGiveDamage().GUID()).Value;
 
 				int dmg = (int) (percent * derivedvalue / 100);
-				if (dmg > 0) {
-					DamageEffect bonus = new DamageEffect(Effect.Source, Effect.Target, dmg);
-					bonus.Type = EffectTypes.BONUS_ATTACK;
-					bonus.Element = stat.Element();
-					bonus.Activate();
+
+				DamageEffect dmgeffect = (DamageEffect) Effect;
+
+				if (dmgeffect.BonusElementDamageMap.containsKey(stat.Element())) {
+					dmgeffect.BonusElementDamageMap.put(stat.Element(),
+							dmgeffect.BonusElementDamageMap.get(stat.Element()) + dmg);
+				} else {
+					dmgeffect.BonusElementDamageMap.put(stat.Element(), dmg);
 				}
 
 			}

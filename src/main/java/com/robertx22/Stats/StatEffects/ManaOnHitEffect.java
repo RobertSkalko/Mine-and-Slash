@@ -28,9 +28,8 @@ public class ManaOnHitEffect implements IStatEffect {
 
 				int mana_restored = (int) data.Value;
 
-//				System.out.println("Life on hit gave " + healed);
-
-				Effect.sourceUnit.RestoreMana(mana_restored);
+				DamageEffect dmgeffect = (DamageEffect) Effect;
+				dmgeffect.manaRestored += mana_restored;
 
 			}
 		} catch (Exception e) {

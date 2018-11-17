@@ -28,9 +28,8 @@ public class LifeOnHitEffect implements IStatEffect {
 
 				int healed = (int) data.Value;
 
-//				System.out.println("Life on hit gave " + healed);
-
-				source.Heal(Effect.Source, healed);
+				DamageEffect dmgeffect = (DamageEffect) Effect;
+				dmgeffect.healthHealed += healed;
 
 			}
 		} catch (Exception e) {

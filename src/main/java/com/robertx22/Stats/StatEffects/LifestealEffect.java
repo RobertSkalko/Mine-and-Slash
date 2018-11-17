@@ -28,8 +28,8 @@ public class LifestealEffect implements IStatEffect {
 
 				float healed = ((float) data.Value * Effect.Number / 100);
 
-				// System.out.println("Lifesteal stole " + healed);
-				source.Heal(Effect.Source, (int) healed);
+				DamageEffect dmgeffect = (DamageEffect) Effect;
+				dmgeffect.healthHealed += healed;
 
 			}
 		} catch (Exception e) {

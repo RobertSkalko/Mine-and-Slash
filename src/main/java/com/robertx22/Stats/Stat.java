@@ -17,6 +17,8 @@ public abstract class Stat implements IGUID {
 		return Name();
 	}
 
+	public int MaximumPercent = 0;
+
 	public int StatMinimum = 0;
 
 	public abstract boolean IsPercent();
@@ -47,6 +49,10 @@ public abstract class Stat implements IGUID {
 
 		if (finalValue < 0) {
 			finalValue = 0;
+		}
+
+		if (this.IsPercent() && MaximumPercent > 0 && finalValue > MaximumPercent) {
+			finalValue = MaximumPercent;
 		}
 
 		data.Value = finalValue;

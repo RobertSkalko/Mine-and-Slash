@@ -2,6 +2,7 @@ package com.robertx22.uncommon.capability;
 
 import com.robertx22.mmorpg.Ref;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -37,6 +38,18 @@ public class WorldData {
 		void setID(int id);
 
 		int getID();
+
+		void setLevel(int lvl);
+
+		int getLevel();
+
+		void setOwner(EntityPlayer player);
+
+		String getOwner();
+
+		void init(EntityPlayer player);
+
+		void delete(EntityPlayer player);
 
 	}
 
@@ -93,6 +106,8 @@ public class WorldData {
 	static final String SET_FOR_DELETE = "setForDelete";
 	static final String IS_MAP_WORLD = "isMap";
 	static final String ID = "id";
+	static final String LEVEL = "level";
+	static final String OWNER = "owner";
 
 	public static class DefaultImpl implements IWorldData {
 		private NBTTagCompound nbt = new NBTTagCompound();
@@ -127,8 +142,6 @@ public class WorldData {
 		@Override
 		public boolean isSetForDelete() {
 
-			boolean test = nbt.hasKey(SET_FOR_DELETE);
-
 			return nbt.getBoolean(SET_FOR_DELETE);
 		}
 
@@ -141,6 +154,51 @@ public class WorldData {
 		@Override
 		public int getID() {
 			return nbt.getInteger(ID);
+		}
+
+		@Override
+		public void setLevel(int lvl) {
+			nbt.setInteger(LEVEL, lvl);
+
+		}
+
+		@Override
+		public int getLevel() {
+			return nbt.getInteger(LEVEL);
+		}
+
+		@Override
+		public void setOwner(EntityPlayer player) {
+			nbt.setString(OWNER, player.getUniqueID().toString());
+
+		}
+
+		@Override
+		public String getOwner() {
+			return nbt.getString(OWNER);
+		}
+
+		@Override
+		public void delete(EntityPlayer player) {
+
+			if (this.isMapWorld()) {
+				if (player.getUniqueID().toString().equals(this.getOwner())) {
+
+					this.setForDelete(true);
+				}
+
+				else {
+
+				}
+			}
+		}
+
+		@Override
+		public void init(EntityPlayer player) {
+
+			this.setOwner(player);
+			this.setAsMapWorld(true);
+
 		}
 
 	}

@@ -2,6 +2,7 @@ package com.robertx22.database.lists;
 
 import java.util.HashMap;
 
+import com.robertx22.database.map_mods.HealthMap;
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.database.stats.mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stats.mods.flat.CriticalDamageFlat;
@@ -132,6 +133,12 @@ public class StatMods {
 				put(new ArmoredFlat().GUID(), new ArmoredFlat());
 
 				// Traits
+
+				// Map mods
+
+				put(new HealthMap().GUID(), new HealthMap());
+
+				// Map mods
 
 			}
 		}

@@ -1,5 +1,8 @@
 package com.robertx22.effectdatas;
 
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 import com.robertx22.effectdatas.interfaces.IArmorReducable;
 import com.robertx22.effectdatas.interfaces.ICrittable;
 import com.robertx22.effectdatas.interfaces.IDamageEffect;
@@ -39,10 +42,15 @@ public class DamageEffect extends EffectData
 		this.Number = dmg;
 	}
 
+	public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
+
 	public static String DmgSourceName = Ref.MODID + "_Custom_Damage";
 	public Elements Element = Elements.None;
 	public int ArmorPene;
 	public int ElementalPene;
+
+	public float healthHealed;
+	public float manaRestored;
 
 	@Override
 	protected void activate() {
@@ -52,6 +60,10 @@ public class DamageEffect extends EffectData
 		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 		Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
 		Target.attackEntityFrom(dmgsource, dmg);
+
+		addBonusElementDamage();
+		Heal();
+		RestoreMana();
 
 		if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
 			LogCombat();
@@ -67,6 +79,31 @@ public class DamageEffect extends EffectData
 					point);
 		}
 
+	}
+
+	private void RestoreMana() {
+		int restored = (int) manaRestored;
+		if (restored > 0) {
+			sourceUnit.RestoreMana(restored);
+		}
+	}
+
+	private void Heal() {
+		int healed = (int) healthHealed;
+		if (healed > 0) {
+			sourceUnit.Heal(Source, healed);
+		}
+	}
+
+	private void addBonusElementDamage() {
+		for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
+			if (entry.getValue() > 0) {
+				DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue());
+				bonus.Type = EffectTypes.BONUS_ATTACK;
+				bonus.Element = entry.getKey();
+				bonus.Activate();
+			}
+		}
 	}
 
 	private void LogCombat() {

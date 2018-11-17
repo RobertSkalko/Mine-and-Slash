@@ -1,12 +1,10 @@
 package com.robertx22.database.stats.mods.flat.resources;
 
-import com.robertx22.database.StatModAnot;
 import com.robertx22.database.stats.types.resources.ManaRegen;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-@StatModAnot
 public class ManaRegenFlat extends StatMod {
 
 	public ManaRegenFlat() {
