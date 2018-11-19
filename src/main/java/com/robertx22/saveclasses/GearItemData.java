@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -22,31 +21,44 @@ import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
 
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
-public class GearItemData implements IStatsContainer, Serializable, ITooltip {
+@Storable
+public class GearItemData implements IStatsContainer, ITooltip {
 
-	private static final long serialVersionUID = -8327205425334275976L;
-
+	@Store
 	public int Rarity;
+	@Store
 	public String gearTypeName;
+	@Store
 	public String name = "Error no name";
+	@Store
 	public int level;
 
+	@Store
 	public PrimaryStatsData primaryStats;
+	@Store
 	public SecondaryStatsData secondaryStats;
 
+	@Store
 	public SuffixData suffix;
+	@Store
 	public PrefixData prefix;
 
+	@Store
 	public SetData set;
 
+	@Store
 	public ChaosStatsData chaosStats = null;
 
+	@Store
 	public boolean isSalvagable = true;
 	// crafting limits
+	@Store
 	public int timesLeveledUp = 0;
 	//
 
@@ -176,7 +188,7 @@ public class GearItemData implements IStatsContainer, Serializable, ITooltip {
 				}
 
 				String stat = StringUtils.stripControlCodes(StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
-						.GetTooltipString(unit.GetLevel(), this, false));
+						.GetTooltipString(unit.level, this, false));
 
 				String str = color + "" + entry.getKey() + " set" + ": " + TextFormatting.DARK_GREEN + stat;
 

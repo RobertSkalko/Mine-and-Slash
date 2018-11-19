@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
-public abstract class BaseBaublesItem extends BaseRarityItem implements IBauble {
+public abstract class BaseBaublesItem extends BaseRarityItem implements IBauble, IGearItem {
 
 	public BaseBaublesItem(int rarity, HashMap<Integer, Item> map) {
 

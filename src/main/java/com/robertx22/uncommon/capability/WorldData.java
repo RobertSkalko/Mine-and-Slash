@@ -2,16 +2,16 @@ package com.robertx22.uncommon.capability;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
-import com.robertx22.uncommon.datasaving.bases.Gson;
-import com.robertx22.uncommon.datasaving.bases.Saving;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 
+import info.loenwind.autosave.Reader;
+import info.loenwind.autosave.Writer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
@@ -132,37 +132,70 @@ public class WorldData {
 	public static class DefaultImpl implements IWorldData {
 		private NBTTagCompound nbt = new NBTTagCompound();
 
+		MapItemData mapdata = new MapItemData();
+		int tier = 0;
+		int level = 0;
+		boolean isMap = false;
+		boolean setForDelete = false;
+		int worldID;
+		String owner = "";
+		boolean isInit = false;
+
 		@Override
 		public NBTTagCompound getNBT() {
+			nbt.setInteger(TIER, tier);
+			nbt.setInteger(LEVEL, level);
+			nbt.setBoolean(IS_MAP_WORLD, isMap);
+			nbt.setBoolean(SET_FOR_DELETE, setForDelete);
+			nbt.setString(OWNER, owner);
+			nbt.setBoolean(IS_INIT, isInit);
+
+			if (mapdata != null) {
+				NBTTagCompound mapnbt = new NBTTagCompound();
+				Writer.write(mapnbt, mapdata);
+				nbt.setTag(MAP_OBJECT, mapnbt);
+			}
+
 			return nbt;
+
 		}
 
 		@Override
 		public void setNBT(NBTTagCompound value) {
 			this.nbt = value;
+			tier = nbt.getInteger(TIER);
+			level = nbt.getInteger(LEVEL);
+			isMap = nbt.getBoolean(IS_MAP_WORLD);
+			setForDelete = nbt.getBoolean(SET_FOR_DELETE);
+			owner = nbt.getString(OWNER);
+			isInit = nbt.getBoolean(IS_INIT);
+
+			NBTTagCompound nbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
+			if (nbt != null) {
+				Reader.read(((NBTTagCompound) nbt).getCompoundTag(MAP_OBJECT), mapdata);
+			}
 
 		}
 
 		@Override
 		public void setAsMapWorld(boolean bool) {
-			nbt.setBoolean(IS_MAP_WORLD, bool);
+			isMap = bool;
 		}
 
 		@Override
 		public boolean isMapWorld() {
-			return nbt.getBoolean(IS_MAP_WORLD);
+			return isMap;
 		}
 
 		@Override
 		public void setForDelete(boolean bool) {
-			nbt.setBoolean(SET_FOR_DELETE, bool);
+			this.setForDelete = bool;
 
 		}
 
 		@Override
 		public boolean isSetForDelete() {
-
-			return nbt.getBoolean(SET_FOR_DELETE);
+			return setForDelete;
 		}
 
 		@Override
@@ -178,37 +211,35 @@ public class WorldData {
 
 		@Override
 		public void setLevel(int lvl) {
-			nbt.setInteger(LEVEL, lvl);
-
+			this.level = lvl;
 		}
 
 		@Override
 		public int getLevel() {
-			return nbt.getInteger(LEVEL);
+			return level;
 		}
 
 		@Override
 		public void setOwner(EntityPlayer player) {
-			nbt.setString(OWNER, player.getUniqueID().toString());
+			this.owner = player.getUniqueID().toString();
 
 		}
 
 		@Override
 		public String getOwner() {
-			return nbt.getString(OWNER);
+			return owner;
 		}
 
 		@Override
 		public void delete(EntityPlayer player) {
 
 			if (this.isMapWorld()) {
+
 				if (player.getUniqueID().toString().equals(this.getOwner())) {
-
 					this.setForDelete(true);
-				}
+				} else {
 
-				else {
-
+					player.sendMessage(new TextComponentString("You can't delete this world"));
 				}
 			}
 		}
@@ -216,11 +247,11 @@ public class WorldData {
 		@Override
 		public void init(EntityPlayer player, MapItemData map) {
 
-			Unit unit = UnitSaving.Load(player);
+			UnitData data = player.getCapability(EntityData.Data, null);
 
 			this.setOwner(player);
 			this.setAsMapWorld(true);
-			this.setLevel(unit.GetLevel());
+			this.setLevel(data.getLevel());
 			this.setTier(map.tier);
 			this.setMap(map);
 
@@ -228,33 +259,33 @@ public class WorldData {
 
 		@Override
 		public void setTier(int tier) {
-			nbt.setInteger(TIER, tier);
+			this.tier = tier;
 
 		}
 
 		@Override
 		public int getTier() {
-			return nbt.getInteger(TIER);
+			return tier;
 		}
 
 		@Override
 		public void setMap(MapItemData map) {
-			nbt.setString(MAP_OBJECT, Gson.instance.toJson(map));
+			this.mapdata = map;
 		}
 
 		@Override
 		public MapItemData getMap() {
-			return Saving.Load(nbt.getString(MAP_OBJECT), MapItemData.class);
+			return mapdata;
 		}
 
 		@Override
 		public void setInit() {
-			nbt.setBoolean(IS_INIT, true);
+			this.isInit = true;
 		}
 
 		@Override
 		public boolean isInit() {
-			return nbt.getBoolean(IS_INIT);
+			return isInit;
 		}
 
 	}

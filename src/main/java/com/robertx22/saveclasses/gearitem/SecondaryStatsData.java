@@ -13,6 +13,9 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
+import info.loenwind.autosave.annotations.Storable;
+
+@Storable
 public class SecondaryStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
 
 	private static final long serialVersionUID = 6149243047165372987L;

@@ -2,7 +2,7 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
-import com.rabbit.gui.RabbitGui;
+import com.libraries.rabbit.gui.RabbitGui;
 import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
@@ -13,7 +13,7 @@ import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
 import com.robertx22.network.ParticlePackage;
-import com.robertx22.network.PlayerPackage;
+import com.robertx22.network.UnitPackage;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.WorldData;
@@ -62,19 +62,19 @@ public class Main {
 		StartupModify.preInitCommon(event);
 		StartupGearFactory.preInitCommon(event);
 
-		MinecraftForge.EVENT_BUS.register(new PlayerPackage());
+		MinecraftForge.EVENT_BUS.register(new UnitPackage());
 		MinecraftForge.EVENT_BUS.register(new EntityPackage());
 		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage());
 		MinecraftForge.EVENT_BUS.register(new ParticlePackage());
 		MinecraftForge.EVENT_BUS.register(new WorldPackage());
 
-		Network.registerMessage(PlayerPackage.Handler.class, PlayerPackage.class, 0, Side.CLIENT);
+		Network.registerMessage(UnitPackage.Handler.class, UnitPackage.class, 0, Side.CLIENT);
 		Network.registerMessage(EntityPackage.Handler.class, EntityPackage.class, 1, Side.CLIENT);
 		Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2, Side.CLIENT);
 		Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Side.CLIENT);
 		Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Side.CLIENT);
 
-		CapabilityManager.INSTANCE.register(EntityData.IEntityData.class, new EntityData.Storage(),
+		CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(),
 				EntityData.DefaultImpl.class);
 
 		CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),

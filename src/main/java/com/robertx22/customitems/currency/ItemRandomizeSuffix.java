@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -56,9 +56,9 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 
 	@Override
 	public ItemStack ModifyItem(ItemStack stack) {
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 		gear.suffix.RerollFully(gear);
-		GearSaving.Save(stack, gear);
+		Gear.Save(stack, gear);
 
 		return stack;
 	}
@@ -66,7 +66,7 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
 
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 
 		if (gear.suffix != null) {
 			return true;

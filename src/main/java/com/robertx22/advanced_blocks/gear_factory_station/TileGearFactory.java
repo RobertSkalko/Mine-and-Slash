@@ -12,7 +12,7 @@ import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.init.Items;
@@ -73,7 +73,7 @@ public class TileGearFactory extends BaseTile {
 
 		if (points > pointsNeeded) {
 
-			GearItemData gear = GearSaving.Load(stack);
+			GearItemData gear = Gear.Load(stack);
 
 			if (gear != null) {
 

@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,7 +29,7 @@ public class TileInventoryModify extends BaseTile {
 		if (gearStack == null || gearStack.isEmpty() || craftStack == null || craftStack.isEmpty()) {
 			return ItemStack.EMPTY;
 		}
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 
 		if (gear != null && craftStack.getItem() instanceof ICurrencyItemEffect) {
 

@@ -9,8 +9,8 @@ import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.uncommon.datasaving.GearSaving;
-import com.robertx22.uncommon.datasaving.SpellSaving;
+import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -30,8 +30,8 @@ public class TileInventorySalvage extends BaseTile {
 	float OrbChance = 1F;
 
 	public ItemStack getSmeltingResultForItem(ItemStack st) {
-		GearItemData gear = GearSaving.Load(st);
-		SpellItemData spell = SpellSaving.Load(st);
+		GearItemData gear = Gear.Load(st);
+		SpellItemData spell = Spell.Load(st);
 
 		int rarity = 0;
 		int level = 0;

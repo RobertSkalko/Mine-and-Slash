@@ -4,6 +4,7 @@ import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.onevent.ontick.EntityUpdate;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
@@ -44,6 +45,7 @@ public class OnMobSpawn {
 				if (event.getWorld().hasCapability(WorldData.Data, null)) {
 
 					Unit check = UnitSaving.Load(entity);
+					UnitData endata = entity.getCapability(EntityData.Data, null);
 
 					if (check == null) {
 						IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
@@ -51,7 +53,7 @@ public class OnMobSpawn {
 						Unit unit = Unit.Mob(entity, level, data);
 						unit.Save(entity);
 
-						if (unit.rarity == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
+						if (endata.getRarity() == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
 							AnnounceWorldBossSpawn(entity, unit);
 						}
 

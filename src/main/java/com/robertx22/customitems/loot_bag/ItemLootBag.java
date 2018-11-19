@@ -10,8 +10,8 @@ import com.robertx22.mmorpg.gui.GuiHandler;
 import com.robertx22.mmorpg.gui.GuiHandlerRegistry;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.uncommon.datasaving.GearSaving;
-import com.robertx22.uncommon.datasaving.SpellSaving;
+import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -133,14 +133,14 @@ public class ItemLootBag extends Item {
 
 	public static boolean IsValidItem(ItemStack stack) {
 
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 
 		if (gear != null) {
 			return true;
 
 		}
 
-		SpellItemData spell = SpellSaving.Load(stack);
+		SpellItemData spell = Spell.Load(stack);
 
 		if (spell != null) {
 			return true;

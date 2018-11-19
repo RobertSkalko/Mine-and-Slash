@@ -9,7 +9,7 @@ import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.uncommon.datasaving.SpellSaving;
+import com.robertx22.uncommon.datasaving.Spell;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +43,7 @@ public abstract class BaseSpellItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		SpellItemData data = SpellSaving.Load(stack);
+		SpellItemData data = Spell.Load(stack);
 
 		if (data != null) {
 
@@ -74,7 +74,7 @@ public abstract class BaseSpellItem extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
 		try {
-			SpellItemData data = SpellSaving.Load(playerIn.getHeldItem(handIn));
+			SpellItemData data = Spell.Load(playerIn.getHeldItem(handIn));
 
 			if (data != null) {
 

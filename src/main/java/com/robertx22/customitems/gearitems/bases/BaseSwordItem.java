@@ -13,7 +13,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.util.EnumHelper;
 
-public abstract class BaseSwordItem extends ItemTool {
+public abstract class BaseSwordItem extends ItemTool implements IGearItem {
 
 	static ItemSword.ToolMaterial Mat = EnumHelper.addToolMaterial("swordmat", 0, 900, 1F, 1F, 10);
 

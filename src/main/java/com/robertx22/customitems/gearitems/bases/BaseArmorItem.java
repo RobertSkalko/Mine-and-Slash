@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
 
-public abstract class BaseArmorItem extends ItemArmor {
+public abstract class BaseArmorItem extends ItemArmor implements IGearItem {
 
 	public static int MAX_GEAR_DURABILITY = 750;
 

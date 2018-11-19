@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -58,19 +58,19 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 	@Override
 	public ItemStack ModifyItem(ItemStack stack) {
 
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 
 		for (IRerollable rel : gear.GetAllRerollable()) {
 			rel.RerollNumbers(gear);
 		}
-		GearSaving.Save(stack, gear);
+		Gear.Save(stack, gear);
 
 		return stack;
 	}
 
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 
 		return gear != null;
 	}

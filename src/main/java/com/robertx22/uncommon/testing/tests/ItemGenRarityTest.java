@@ -9,7 +9,7 @@ import com.robertx22.database.lists.Rarities;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 
 public class ItemGenRarityTest {
 
@@ -26,7 +26,7 @@ public class ItemGenRarityTest {
 
 		for (int i = 0; i < amount; i++) {
 
-			GearItemData data = GearSaving.Load(GearGen.CreateStack(schema));
+			GearItemData data = Gear.Load(GearGen.CreateStack(schema));
 
 			if (RarityandNumber.containsKey(data.Rarity)) {
 				RarityandNumber.put(data.Rarity, RarityandNumber.get(data.Rarity) + 1);

@@ -1,6 +1,7 @@
 package com.robertx22.uncommon.gui.player_overlays;
 
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -19,5 +20,6 @@ public abstract class BasePlayerOverlay {
 	public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg",
 			"textures/gui/experience_bar.png");
 
-	public abstract void Draw(Gui gui, Minecraft mc, EntityLivingBase entity, RenderGameOverlayEvent event, Unit unit);
+	public abstract void Draw(Gui gui, Minecraft mc, EntityLivingBase entity, RenderGameOverlayEvent event, Unit unit,
+			UnitData level);
 }

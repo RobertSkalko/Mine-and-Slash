@@ -92,8 +92,10 @@ public class OnLogin {
 
 			if (player.hasCapability(EntityData.Data, null)) {
 
-				if (UnitSaving.Load(player) == null) {
-					UnitSaving.Save(player, new Unit());
+				Unit unit = UnitSaving.Load(player);
+
+				if (unit == null) {
+					UnitSaving.Save(player, new Unit(player));
 					GiveStarterItems(player);
 				} else {
 					CheckForNewStats(player);

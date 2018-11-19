@@ -2,15 +2,16 @@ package com.robertx22.network;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.robertx22.mmorpg.Main;
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
-import com.robertx22.uncommon.datasaving.bases.Saving;
+import com.robertx22.uncommon.capability.EntityData;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -18,25 +19,28 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class EntityPackage implements IMessage {
 
-	public String toSend;
+	public String uuid;
+	public NBTTagCompound nbt;
 
 	public EntityPackage() {
 
 	}
 
-	public EntityPackage(String str) {
-		this.toSend = str;
+	public EntityPackage(EntityLivingBase entity) {
+		this.uuid = entity.getUniqueID().toString();
+		this.nbt = entity.getCapability(EntityData.Data, null).getNBT();
 	}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		toSend = ByteBufUtils.readUTF8String(buf);
-
+		nbt = ByteBufUtils.readTag(buf);
+		uuid = nbt.getString("uuid");
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeUTF8String(buf, toSend);
+		nbt.setString("uuid", uuid);
+		ByteBufUtils.writeTag(buf, nbt);
 
 	}
 
@@ -48,13 +52,12 @@ public class EntityPackage implements IMessage {
 			try {
 
 				final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
-				Unit unit = Saving.Load(message.toSend, Unit.class);
 
-				if (unit != null && unit.uid != null && player.world != null && player.world.loadedEntityList != null) {
+				if (player.world != null && player.world.loadedEntityList != null) {
 					List<Entity> entities = new ArrayList<Entity>(player.world.loadedEntityList);
 					for (Entity en : entities) {
-						if (en.getUniqueID().equals(unit.uid)) {
-							UnitSaving.Save(en, unit);
+						if (en.getUniqueID().equals(UUID.fromString(message.uuid))) {
+							en.getCapability(EntityData.Data, null).setNBT(message.nbt);
 							break;
 						}
 

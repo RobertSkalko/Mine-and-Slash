@@ -30,7 +30,6 @@ import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.database.status.effects.bases.BaseStatusEffect;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
-import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.gearitem.StatModData;
@@ -39,8 +38,10 @@ import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
@@ -48,15 +49,31 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 
+@Storable
 public class Unit implements Serializable {
 
+	@Store
+	public HashMap<String, StatData> MyStats = null;
+
+	@Store
 	public HashMap<String, Integer> WornSets = new HashMap<String, Integer>();
+
+	@Store
+	public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
+
+	@Store
+	public String GUID = UUID.randomUUID().toString();
+
+	public Unit() {
+		InitStats();
+	}
 
 	public void Save(EntityLivingBase entity) {
 
@@ -92,42 +109,37 @@ public class Unit implements Serializable {
 	public boolean InitialMobSave = false;
 
 	private static final long serialVersionUID = -6658683548383891230L;
-	private int level = 1;
 
-	public int GetLevel() {
+	public int GetLevel(EntityLivingBase entity) {
+		if (level < 0) {
+			level = entity.getCapability(EntityData.Data, null).getLevel();
+		}
 		return level;
+
 	}
 
-	public void SetLevel(int lvl) {
-
-		if (lvl < 1) {
-			lvl = 1;
-
+	public int GetExp(EntityLivingBase entity) {
+		if (experience < 0) {
+			experience = entity.getCapability(EntityData.Data, null).getExp();
 		}
-		if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-			lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
-		}
-
-		this.level = lvl;
+		return experience;
 	}
 
-	public void SetMobLevel(IWorldData data, int lvl) {
+	public int level = -1;
+	public int experience = -1;
 
-		if (lvl < 1) {
-			lvl = 1;
+	public Unit(EntityLivingBase entity) {
 
-		}
-		if (data != null && !data.isMapWorld()) {
-			if (lvl > ModConfig.Server.MAXIMUM_NORMAL_WORLD_MOB_LEVEL) {
-				lvl = ModConfig.Server.MAXIMUM_NORMAL_WORLD_MOB_LEVEL;
-			}
-		}
+		UnitData data = entity.getCapability(EntityData.Data, null);
 
-		this.level = lvl;
+		this.level = data.getLevel();
+		this.experience = data.getExp();
+
+		InitStats();
+
 	}
 
-	public Unit() {
-
+	private void InitStats() {
 		if (MyStats == null) {
 			MyStats = new HashMap<String, StatData>();
 
@@ -142,11 +154,7 @@ public class Unit implements Serializable {
 				}
 			}
 		}
-
 	}
-
-	public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
-	public String GUID = UUID.randomUUID().toString();
 
 	@Override
 	public boolean equals(Object obj) {
@@ -181,7 +189,6 @@ public class Unit implements Serializable {
 
 	// new stat data format, don't ever rename this to "Stats" Or compatibility
 	// problems with last version will arrive
-	public HashMap<String, StatData> MyStats = null;
 
 	// Stat shortcuts
 	public Health health() {
@@ -254,7 +261,7 @@ public class Unit implements Serializable {
 
 		for (ItemStack stack : list) {
 
-			GearItemData gear = GearSaving.Load(stack);
+			GearItemData gear = Gear.Load(stack);
 
 			if (gear != null) {
 				gearitems.add(gear);
@@ -343,6 +350,8 @@ public class Unit implements Serializable {
 
 	public void RecalculateStats(EntityLivingBase entity) {
 
+		UnitData data = entity.getCapability(EntityData.Data, null);
+
 		if (entity instanceof EntityPlayer) {
 			// StopWatch watch = new StopWatch();
 			// watch.start();
@@ -359,8 +368,8 @@ public class Unit implements Serializable {
 
 		} else {
 			ClearStats();
-			AddMobcStats();
-			SetMobStrengthMultiplier();
+			AddMobcStats(data.getLevel());
+			SetMobStrengthMultiplier(Rarities.Mobs.get(data.getRarity()));
 			AddStatusEffectStats();
 			CalcStats();
 
@@ -394,7 +403,6 @@ public class Unit implements Serializable {
 
 	protected void CalcTraits() {
 		for (StatData stat : MyStats.values()) {
-
 			if (stat.GetStat() instanceof Trait && stat instanceof IAffectsOtherStats) {
 				if (stat.Value > 0) {
 					IAffectsOtherStats affects = (IAffectsOtherStats) stat;
@@ -411,34 +419,32 @@ public class Unit implements Serializable {
 		MyStats.values().forEach((StatData stat) -> stat.GetStat().CalcVal(stat, this));
 	}
 
-	public int vanillaHP;
-	public int rarity = 0;
+	public static Unit Mob(EntityLivingBase entity, int level, IWorldData data) {
 
-	public static Unit Mob(EntityLivingBase en, int level, IWorldData data) {
+		Unit mob = new Unit(entity);
 
-		Unit mob = new Unit();
+		UnitData endata = entity.getCapability(EntityData.Data, null);
 
-		mob.SetMobLevel(data, level);
-		mob.MyStats.get(Health.GUID).BaseFlat = (int) en.getMaxHealth();
-		mob.rarity = RandomUtils.RandomWithMinRarity(en).Rank();
-		mob.vanillaHP = (int) en.getMaxHealth();
-		mob.uid = en.getUniqueID();
+		endata.SetMobLevel(data, level);
+		endata.setName(entity);
+		endata.setRarity(RandomUtils.RandomWithMinRarity(entity).Rank());
 
-		/// data.get TODO
+		mob.MyStats.get(Health.GUID).BaseFlat = (int) entity.getMaxHealth();
+		mob.uid = entity.getUniqueID();
 
-		mob.AddRandomMobStatusEffects();
-		mob.RecalculateStats(en);
+		mob.AddRandomMobStatusEffects(entity);
+		mob.RecalculateStats(entity);
 
 		return mob;
 
 	}
 
-	private void AddRandomMobStatusEffects() {
+	private void AddRandomMobStatusEffects(EntityLivingBase entity) {
 
-		int max = this.GetRarity().MaxMobEffects();
+		int max = this.GetRarity(entity).MaxMobEffects();
 
 		if (max > 0) {
-			if (this.GetRarity().MaxMobEffects() > StatusEffects.All.values().size()) {
+			if (this.GetRarity(entity).MaxMobEffects() > StatusEffects.All.values().size()) {
 				System.out.println("ERROR! Can't have more unique effects than there are effects!");
 				max = StatusEffects.All.values().size() - 1;
 			}
@@ -462,17 +468,11 @@ public class Unit implements Serializable {
 
 	public UUID uid;
 
-	public String GetName(EntityLivingBase entity) {
-		return TextFormatting.YELLOW + "[Lv:" + this.level + "] " + GetRarity().Color() + GetRarity().Name() + " "
-				+ entity.getName();
-
+	private MobRarity GetRarity(EntityLivingBase entity) {
+		return Rarities.Mobs.get(entity.getCapability(EntityData.Data, null).getRarity());
 	}
 
-	private MobRarity GetRarity() {
-		return Rarities.Mobs.get(rarity);
-	}
-
-	private void AddMobcStats() {
+	private void AddMobcStats(int level) {
 
 		this.MyStats.get(Health.GUID).Flat += 10 * level;
 		this.MyStats.get(Armor.GUID).Flat += 10 * level;
@@ -493,11 +493,11 @@ public class Unit implements Serializable {
 
 	}
 
-	private void SetMobStrengthMultiplier() {
+	private void SetMobStrengthMultiplier(MobRarity rarity) {
 
-		float stat_multi = GetRarity().StatMultiplier();
-		float hpmulti = GetRarity().HealthMultiplier();
-		float damagemulti = GetRarity().DamageMultiplier();
+		float stat_multi = rarity.StatMultiplier();
+		float hpmulti = rarity.HealthMultiplier();
+		float damagemulti = rarity.DamageMultiplier();
 
 		for (StatData stat : MyStats.values()) {
 			if (stat.GetStat() instanceof PhysicalDamage) {
@@ -509,81 +509,6 @@ public class Unit implements Serializable {
 			}
 		}
 
-	}
-
-	public int experience = 0;
-
-	public int GetExpRequiredForLevelUp() {
-
-		int tens = level / 10;
-
-		if (level < 5) {
-			return 250 * level;
-		}
-
-		return level * 1000 + (tens * 5000);
-
-	}
-
-	public int GiveExp(EntityPlayer player, int i) {
-
-		i *= ModConfig.Server.EXPERIENCE_MULTIPLIER;
-
-		experience += i;
-
-		if (experience > this.GetExpRequiredForLevelUp()) {
-
-			experience = this.GetExpRequiredForLevelUp();
-
-			if (ModConfig.Server.LEVEL_UPS_COST_TOKEN == false) {
-
-				if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
-					this.LevelUp(player);
-				}
-			}
-
-			return i;
-		}
-
-		if (CheckIfCanLevelUp()) {
-			player.sendMessage(new TextComponentString(
-					TextFormatting.YELLOW + "Exp bar full, craft a level up token and use it to level up."));
-		}
-
-		return i;
-
-	}
-
-	public boolean CheckIfCanLevelUp() {
-
-		return experience >= GetExpRequiredForLevelUp();
-
-	}
-
-	private boolean CheckLevelCap() {
-		return level + 1 <= ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
-	}
-
-	public boolean LevelUp(EntityPlayer player) {
-
-		if (!CheckIfCanLevelUp()) {
-			player.sendMessage(
-					new TextComponentString(TextFormatting.RED + "You don't have enough experience to Level Up."));
-		} else if (!CheckLevelCap()) {
-			player.sendMessage(new TextComponentString(TextFormatting.RED + "You have already reached maximum level."));
-		}
-
-		if (CheckIfCanLevelUp() && CheckLevelCap()) {
-
-			this.SetLevel(level + 1);
-			experience = 0;
-
-			player.sendMessage(
-					new TextComponentString(TextFormatting.GREEN + "You have Leveled up! Current lvl: " + GetLevel()));
-
-			return true;
-		}
-		return false;
 	}
 
 	public void Heal(EntityLivingBase entity, int healthrestored) {

@@ -8,9 +8,16 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.stats.StatMod;
 
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
+
+@Storable
 public abstract class AffixData implements IStatsContainer, IRerollable {
 
+	@Store
 	public List<Integer> percents = new ArrayList<Integer>();
+
+	@Store
 	public String baseAffix;
 
 	public abstract BaseAffix BaseAffix();

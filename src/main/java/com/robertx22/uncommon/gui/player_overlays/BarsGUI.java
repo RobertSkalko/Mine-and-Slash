@@ -3,6 +3,8 @@ package com.robertx22.uncommon.gui.player_overlays;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Player_GUIs;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
@@ -27,6 +29,7 @@ public class BarsGUI extends Gui {
 	}
 
 	Unit unit;
+	UnitData data;
 	int ticks = 0;
 
 	@SubscribeEvent(priority = EventPriority.NORMAL)
@@ -44,21 +47,26 @@ public class BarsGUI extends Gui {
 		if (ticks > 12) {
 			Unit newUnit = UnitSaving.Load((EntityPlayer) mc.player);
 
+			UnitData newData = mc.player.getCapability(EntityData.Data, null);
+
 			if (newUnit != null) {
 				unit = newUnit;
 			}
+			if (newData != null) {
+				data = newData;
+			}
 		}
 
-		if (unit == null) {
+		if (unit == null || data == null) {
 			return;
 		}
 
 		if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Top_Left)) {
-			topleft.Draw(this, mc, mc.player, event, unit);
+			topleft.Draw(this, mc, mc.player, event, unit, data);
 		} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle)) {
-			bottomMiddle.Draw(this, mc, mc.player, event, unit);
+			bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
 		} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle_Corners)) {
-			bottomMiddleCorners.Draw(this, mc, mc.player, event, unit);
+			bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
 		}
 
 	}

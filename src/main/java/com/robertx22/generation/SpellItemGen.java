@@ -4,7 +4,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
-import com.robertx22.uncommon.datasaving.SpellSaving;
+import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.item.ItemStack;
@@ -31,7 +31,7 @@ public class SpellItemGen {
 
 		stack.setStackDisplayName(rarity.Color() + rarity.Name() + " " + data.GetSpell().Name());
 
-		SpellSaving.Save(stack, data);
+		Spell.Save(stack, data);
 
 		return stack;
 

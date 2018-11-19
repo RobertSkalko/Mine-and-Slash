@@ -38,7 +38,7 @@ public abstract class Stat implements IGUID {
 		finalValue += StatMinimum + data.BaseFlat;
 
 		if (ScalesToLevel()) {
-			finalValue *= Source.GetLevel();
+			finalValue *= Source.level;
 		}
 
 		finalValue += data.Flat;

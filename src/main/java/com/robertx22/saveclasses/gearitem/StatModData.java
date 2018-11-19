@@ -12,9 +12,12 @@ import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.TextFormatting;
 
+@Storable
 public class StatModData implements Serializable, ITooltipString {
 
 	private static final long serialVersionUID = -274938432076951259L;
@@ -56,8 +59,13 @@ public class StatModData implements Serializable, ITooltipString {
 		return data;
 	}
 
+	@Store
 	public StatTypes type;
+
+	@Store
 	public int percent;
+
+	@Store
 	public String baseModName;
 
 	public StatMod GetBaseMod() {

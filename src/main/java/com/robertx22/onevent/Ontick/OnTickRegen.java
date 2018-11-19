@@ -8,10 +8,9 @@ import java.util.UUID;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.ManaRegen;
-import com.robertx22.mmorpg.Main;
-import com.robertx22.network.PlayerPackage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.Entity;
@@ -46,6 +45,8 @@ public class OnTickRegen {
 			for (EntityPlayer pl : event.world.playerEntities) {
 
 				EntityPlayerMP player = (EntityPlayerMP) pl;
+
+				UnitData unit_capa = player.getCapability(EntityData.Data, null);
 
 				PlayerTickData data = null;
 
@@ -96,14 +97,8 @@ public class OnTickRegen {
 				if (data.playerSyncTick > TicksToUpdatePlayer) {
 					data.playerSyncTick = 0;
 
-					String json = player.getCapability(EntityData.Data, null).getNBT()
-							.getString(UnitSaving.DataLocation);
+					unit_capa.syncToClient(player);
 
-					if (json != null && !json.isEmpty()) {
-						PlayerPackage playerpacket = new PlayerPackage(json);
-						Main.Network.sendTo(playerpacket, (EntityPlayerMP) player);
-
-					}
 				}
 				if (data != null) {
 					PlayerTickDatas.put(player.getUniqueID(), data);

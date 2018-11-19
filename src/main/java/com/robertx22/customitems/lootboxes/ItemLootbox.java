@@ -159,12 +159,7 @@ public class ItemLootbox extends BaseItem {
 
 				if (unit != null) {
 
-					// SoundUtils.playSoundAtPlayer(playerIn, SoundEvents.ENTITY_FIREWORK_LAUNCH,
-					// 100, 0);
-					// SoundUtils.playSoundAtPlayer(playerIn, SoundEvents.ENTITY_FIREWORK_TWINKLE,
-					// 100, 0);
-
-					int lvl = unit.GetLevel();
+					int lvl = unit.GetExp(playerIn);
 
 					GiveItems(playerIn, lvl);
 

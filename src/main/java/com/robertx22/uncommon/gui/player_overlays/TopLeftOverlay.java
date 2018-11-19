@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -17,19 +18,20 @@ public class TopLeftOverlay extends BasePlayerOverlay {
 	int yPos = 2;
 
 	@Override
-	public void Draw(Gui gui, Minecraft mc, EntityLivingBase entity, RenderGameOverlayEvent event, Unit unit) {
+	public void Draw(Gui gui, Minecraft mc, EntityLivingBase entity, RenderGameOverlayEvent event, Unit unit,
+			UnitData data) {
 		yPos = 2;
 
 		DrawBar(mc, gui, unit, healthtexturepath, unit.health().CurrentValue(mc.player, unit), unit.healthData().Value,
-				false);
-		DrawBar(mc, gui, unit, manatexturepath, unit.manaData().CurrentValue, unit.manaData().Value, false);
-		DrawBar(mc, gui, unit, energytexturepath, unit.energyData().CurrentValue, unit.energyData().Value, false);
-		DrawBar(mc, gui, unit, experiencetexturepath, unit.experience, unit.GetExpRequiredForLevelUp(), true);
+				false, data);
+		DrawBar(mc, gui, unit, manatexturepath, unit.manaData().CurrentValue, unit.manaData().Value, false, data);
+		DrawBar(mc, gui, unit, energytexturepath, unit.energyData().CurrentValue, unit.energyData().Value, false, data);
+		DrawBar(mc, gui, unit, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), true, data);
 
 	}
 
 	private void DrawBar(Minecraft mc, Gui gui, Unit unit, ResourceLocation res, float current, float max,
-			boolean isExp) {
+			boolean isExp, UnitData data) {
 
 		GlStateManager.color(1F, 1F, 1F, 1F);
 		mc.getTextureManager().bindTexture(res);
@@ -44,7 +46,7 @@ public class TopLeftOverlay extends BasePlayerOverlay {
 		if (!isExp) {
 			str = now + "/" + maximum;
 		} else {
-			str = "Lvl:" + unit.GetLevel() + " " + now + "/" + maximum;
+			str = "Lvl:" + data.getLevel() + " " + now + "/" + maximum;
 		}
 
 		mc.fontRenderer.drawStringWithShadow(str, xPos + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2,

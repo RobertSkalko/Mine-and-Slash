@@ -1,6 +1,5 @@
 package com.robertx22.saveclasses.gearitem;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +12,10 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
-public class PrimaryStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
+import info.loenwind.autosave.annotations.Storable;
 
-	private static final long serialVersionUID = 1632623308971840392L;
+@Storable
+public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRerollable {
 
 	public PrimaryStatsData() {
 

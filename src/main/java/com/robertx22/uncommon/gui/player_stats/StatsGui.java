@@ -3,10 +3,10 @@ package com.robertx22.uncommon.gui.player_stats;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rabbit.gui.component.list.ScrollableDisplayList;
-import com.rabbit.gui.component.list.entries.ListEntry;
-import com.rabbit.gui.component.list.entries.StringEntry;
-import com.rabbit.gui.show.Show;
+import com.libraries.rabbit.gui.component.list.ScrollableDisplayList;
+import com.libraries.rabbit.gui.component.list.entries.ListEntry;
+import com.libraries.rabbit.gui.component.list.entries.StringEntry;
+import com.libraries.rabbit.gui.show.Show;
 import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.database.stats.types.defense.Dodge;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
@@ -199,7 +199,7 @@ public class StatsGui extends Show {
 		if (data.GetStat() instanceof UsableStat) {
 			UsableStat usable = (UsableStat) data.GetStat();
 
-			return str + " (" + String.format("%.1f", usable.GetUsableValue(unit.GetLevel(), (int) data.Value)) + "%)";
+			return str + " (" + String.format("%.1f", usable.GetUsableValue(unit.level, (int) data.Value)) + "%)";
 
 		}
 

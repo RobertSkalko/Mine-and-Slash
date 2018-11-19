@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.EntityPackage;
-import com.robertx22.uncommon.capability.EntityData;
-import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -30,14 +28,8 @@ public class EntityUpdate {
 		try {
 			if (!isFinished()) {
 
-				String json = entities.get(current++).getCapability(EntityData.Data, null).getNBT()
-						.getString(UnitSaving.DataLocation);
-
-				if (json != null && !json.isEmpty()) {
-					EntityPackage mobpacket = new EntityPackage(json);
-					Main.Network.sendTo(mobpacket, (EntityPlayerMP) player);
-
-				}
+				EntityPackage mobpacket = new EntityPackage(entities.get(current++));
+				Main.Network.sendTo(mobpacket, (EntityPlayerMP) player);
 
 			}
 		} catch (Exception e) {
@@ -57,15 +49,10 @@ public class EntityUpdate {
 
 	public static void syncEntityToClient(EntityLivingBase entity) {
 
-		String json = entity.getCapability(EntityData.Data, null).getNBT().getString(UnitSaving.DataLocation);
+		EntityPackage mobpacket = new EntityPackage(entity);
 
-		if (json != null && !json.isEmpty()) {
-			EntityPackage mobpacket = new EntityPackage(json);
-
-			Main.Network.sendToAllAround(mobpacket,
-					new TargetPoint(entity.dimension, entity.posX, entity.posY, entity.posZ, 150));
-
-		}
+		Main.Network.sendToAllAround(mobpacket,
+				new TargetPoint(entity.dimension, entity.posX, entity.posY, entity.posZ, 150));
 
 	}
 

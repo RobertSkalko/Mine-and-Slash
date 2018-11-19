@@ -53,7 +53,7 @@ public abstract class BaseSpell implements IWeighted {
 
 		if (unit != null) {
 
-			if (data.level > unit.GetLevel()) {
+			if (data.level > unit.level) {
 				caster.sendMessage(new TextComponentString(
 						TextFormatting.RED + "You aren't high enough level to cast this spell!"));
 

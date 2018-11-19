@@ -1,7 +1,6 @@
 package com.robertx22.uncommon.commands;
 
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.capability.EntityData;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -28,11 +27,7 @@ public class SetLevel extends CommandBase {
 
 		EntityPlayer player = (EntityPlayer) sender;
 
-		Unit unit = UnitSaving.Load(player);
-
-		unit.SetLevel(lvl);
-
-		UnitSaving.Save(player, unit);
+		player.getCapability(EntityData.Data, null).setLevel(lvl);
 
 	}
 }

@@ -1,8 +1,9 @@
 package com.robertx22.onevent.Item;
 
+import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.gui.GuiScreen;
@@ -25,32 +26,34 @@ public class OnTooltip {
 			return;
 		}
 
-		ItemStack item;
+		ItemStack stack;
 
-		item = event.getItemStack();
+		stack = event.getItemStack();
 
-		if (item == null) {
+		if (stack == null) {
 			return;
 		}
-		if (!item.hasTagCompound()) {
+		if (!stack.hasTagCompound()) {
 			return;
 		}
 
 		if (GuiScreen.isCtrlKeyDown() == false) {
-			GearItemData data = GearSaving.Load(item);
+			if (stack.getItem() instanceof IGearItem) {
 
-			Unit unit = UnitSaving.Load(event.getEntityPlayer());
+				Unit unit = UnitSaving.Load(event.getEntityPlayer());
+				GearItemData gear = Gear.Load(stack);
 
-			if (data != null && unit != null) {
-				data.BuildTooltip(event, unit);
+				if (unit != null && gear != null) {
 
-				if (GuiScreen.isShiftKeyDown() == false) {
+					gear.BuildTooltip(event, unit);
 
-					event.getToolTip().add("Press shift for more info");
+					if (GuiScreen.isShiftKeyDown() == false) {
+
+						event.getToolTip().add("Press shift for more info");
+					}
 				}
 			}
 		}
-
 	}
 
 }

@@ -2,6 +2,10 @@ package com.robertx22.saveclasses.mapitem;
 
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
 
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
+
+@Storable
 public class MapAffixData {
 
 	public MapAffixData() {
@@ -13,7 +17,12 @@ public class MapAffixData {
 		this.percent = percent;
 	}
 
+	@Store
 	public String GUID;
+
+	@Store
 	public int percent;
+
+	@Store
 	public AffectedEntities affectedEntities;
 }

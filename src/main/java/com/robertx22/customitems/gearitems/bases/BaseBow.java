@@ -6,7 +6,7 @@ import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 
 import net.minecraft.item.Item;
 
-public abstract class BaseBow extends net.minecraft.item.ItemBow {
+public abstract class BaseBow extends net.minecraft.item.ItemBow implements IGearItem {
 
 	public abstract String Name();
 

@@ -5,8 +5,8 @@ import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.loot.LootDropsGenerator;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.DamageNumberPackage;
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -40,13 +40,13 @@ public class OnMobDeathDrops {
 						return;
 					}
 
-					Unit victim = UnitSaving.Load(entity);
-					Unit killer = UnitSaving.Load(event.getSource().getTrueSource());
+					UnitData victim = entity.getCapability(EntityData.Data, null);
+					UnitData killer = event.getSource().getTrueSource().getCapability(EntityData.Data, null);
 
 					if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+
 						LootDropsGenerator.Generate(victim, killer, entity);
 						int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);
-						UnitSaving.Save(event.getSource().getTrueSource(), killer);
 
 						NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(entity.dimension,
 								entity.posX, entity.posY, entity.posZ, 32);
@@ -66,11 +66,11 @@ public class OnMobDeathDrops {
 
 	}
 
-	private static int GiveExp(EntityLivingBase playeren, Unit player, Unit mob) {
+	private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob) {
 
-		int exp = (int) (mob.GetLevel() * Rarities.Mobs.get(mob.rarity).ExpOnKill());
+		int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill());
 
-		exp = player.GiveExp((EntityPlayer) playeren, exp);
+		exp = player.GiveExp((EntityPlayer) entity, exp);
 
 		return exp;
 

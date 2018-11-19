@@ -9,7 +9,7 @@ import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -59,7 +59,7 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
 	@Override
 	public ItemStack ModifyItem(ItemStack stack) {
 
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 
 		GearBlueprint gearPrint = new GearBlueprint(gear.level);
 		gearPrint.SetSpecificType(gear.gearTypeName);
@@ -76,7 +76,7 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
 	@Override
 	public boolean CanItemBeModified(ItemStack stack) {
 
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 
 		if (gear != null && gear.Rarity < Rarities.MAXIMUM_ITEM_RARITY) {
 			return true;

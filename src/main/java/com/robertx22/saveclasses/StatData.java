@@ -5,6 +5,10 @@ import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
+
+@Storable
 public class StatData {
 
 	public StatData() {
@@ -19,15 +23,25 @@ public class StatData {
 		return Stats.All.get(Name);
 	}
 
+	@Store
 	public String Name;
 
+	@Store
 	public int BaseFlat = 0;
 
+	@Store
 	public float Flat = 0;
+
+	@Store
 	public float Percent = 0;
+
+	@Store
 	public float Multi = 0;
 
+	@Store
 	public float Value;
+
+	@Store
 	public float CurrentValue;
 
 	public void Clear() {

@@ -7,8 +7,7 @@ import javax.annotation.Nullable;
 import com.robertx22.customitems.BaseItem;
 import com.robertx22.database.lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -46,11 +45,8 @@ public class ItemPlayerLevelUp extends BaseItem {
 
 		if (!worldIn.isRemote) {
 			try {
-				Unit unit = UnitSaving.Load(playerIn);
 
-				if (unit.LevelUp(playerIn)) {
-
-					UnitSaving.Save(playerIn, unit);
+				if (playerIn.getCapability(EntityData.Data, null).LevelUp(playerIn)) {
 
 					return new ActionResult<ItemStack>(EnumActionResult.PASS,
 							EmptyOrDecrease(playerIn.getHeldItem(handIn)));

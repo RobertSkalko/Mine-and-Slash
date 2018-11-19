@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.gui.player_stats;
 
-import com.rabbit.gui.RabbitGui;
+import com.libraries.rabbit.gui.RabbitGui;
 import com.robertx22.mmorpg.Keybinds;
 
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;

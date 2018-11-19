@@ -16,6 +16,9 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
+import info.loenwind.autosave.annotations.Storable;
+
+@Storable
 public class PrefixData extends AffixData implements Serializable, ITooltipList, IRerollable {
 
 	private static final long serialVersionUID = -110285627065158395L;

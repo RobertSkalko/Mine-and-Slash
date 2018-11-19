@@ -13,6 +13,8 @@ import org.lwjgl.opengl.GL11;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
@@ -43,6 +45,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class HealthBarRenderer {
 
 	HashMap<UUID, Unit> UnitMap = new HashMap<UUID, Unit>();
+	HashMap<UUID, UnitData> DataMap = new HashMap<UUID, UnitData>();
 
 	Minecraft mc = Minecraft.getMinecraft();
 
@@ -94,15 +97,19 @@ public class HealthBarRenderer {
 
 		// UNIT LOADING
 		Unit unit = null;
+		UnitData data = null;
 		if (UnitMap.containsKey(entity.getUniqueID())) {
 			unit = UnitMap.get(entity.getUniqueID());
+			data = DataMap.get(entity.getUniqueID());
 		} else {
 			unit = UnitSaving.Load(entity);
 			if (unit != null) {
 				UnitMap.put(entity.getUniqueID(), unit);
+				DataMap.put(entity.getUniqueID(), entity.getCapability(EntityData.Data, null));
+
 			}
 		}
-		if (unit == null) {
+		if (unit == null || data == null) {
 			return;
 		}
 		// UNIT LOADING
@@ -165,7 +172,7 @@ public class HealthBarRenderer {
 				int g = 255;
 				int b = 0;
 
-				if (unit.rarity > 4) {
+				if (data.getRarity() > 4) {
 					size = NeatConfig.plateSizeBoss;
 					r = 128;
 					g = 0;
@@ -184,7 +191,7 @@ public class HealthBarRenderer {
 				GlStateManager.translate(0F, pastTranslate, 0F);
 
 				float s = 0.5F;
-				String name = I18n.format(unit.GetName(entity));
+				String name = I18n.format(data.getName());
 				if (entity instanceof EntityLiving && ((EntityLiving) entity).hasCustomName())
 					name = TextFormatting.ITALIC + ((EntityLiving) entity).getCustomNameTag();
 				else if (entity instanceof EntityVillager)
@@ -262,8 +269,8 @@ public class HealthBarRenderer {
 				GlStateManager.translate(size / (s * s1) * 2 - 16, 0F, 0F);
 				mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
-				for (StatusEffectData data : unit.statusEffects.values()) {
-					HealthBarUtils.renderIcon(off, 0, new ItemStack(data.GetEffect().ItemModel()), 16, 16);
+				for (StatusEffectData statusdata : unit.statusEffects.values()) {
+					HealthBarUtils.renderIcon(off, 0, new ItemStack(statusdata.GetEffect().ItemModel()), 16, 16);
 					off -= 16;
 				}
 

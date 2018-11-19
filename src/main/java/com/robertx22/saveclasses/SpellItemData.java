@@ -7,6 +7,10 @@ import com.robertx22.database.lists.Spells;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
+
+@Storable
 public class SpellItemData implements Serializable {
 
 	public SpellItemData() {
@@ -18,13 +22,19 @@ public class SpellItemData implements Serializable {
 
 	private static final long serialVersionUID = -8509997736940652748L;
 
+	@Store
 	public int level = 1;
+	@Store
 	public String spellGUID;
+	@Store
 	public int rarity;
+	@Store
 	public int untilCooldownOver = 0;
-
+	@Store
 	public int manaCostPercent = 100;
+	@Store
 	public int scalingEffectPercent = 100;
+	@Store
 	public int baseEffectPercent = 100;
 
 	public int GetManaCost() {

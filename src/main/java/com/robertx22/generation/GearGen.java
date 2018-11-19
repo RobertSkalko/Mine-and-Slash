@@ -9,7 +9,7 @@ import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.item.ItemStack;
@@ -58,7 +58,7 @@ public class GearGen {
 
 		ItemStack stack = GearTypes.All.get(data.gearTypeName).GetItemForRarity(data.GetRarity().Rank());
 
-		GearSaving.Save(stack, data);
+		Gear.Save(stack, data);
 
 		stack.setStackDisplayName(data.GetDisplayName());
 
@@ -70,7 +70,7 @@ public class GearGen {
 
 		ItemStack stack = GearTypes.All.get(data.gearTypeName).GetItemForRarity(data.GetRarity().Rank());
 
-		GearSaving.Save(stack, data);
+		Gear.Save(stack, data);
 
 		stack.setStackDisplayName(data.GetDisplayName());
 

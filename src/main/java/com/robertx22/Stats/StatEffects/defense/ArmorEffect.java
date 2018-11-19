@@ -38,7 +38,7 @@ public class ArmorEffect implements IStatEffect {
 
 				UsableStat armor = (UsableStat) stat;
 
-				float EffectiveArmor = armor.GetUsableValue(target.GetLevel(), (int) (data.Value - pene));
+				float EffectiveArmor = armor.GetUsableValue(target.level, (int) (data.Value - pene));
 
 				if (EffectiveArmor < 0) {
 					EffectiveArmor = 0;
@@ -47,10 +47,6 @@ public class ArmorEffect implements IStatEffect {
 				float old = Effect.Number;
 
 				Effect.Number -= EffectiveArmor * Effect.Number;
-
-				// System.out.println("Reducing dmg by armor from: " + old + " to " +
-				// Effect.Number + "(" + EffectiveArmor
-				// + ") armor");
 
 			}
 		} catch (Exception e) {

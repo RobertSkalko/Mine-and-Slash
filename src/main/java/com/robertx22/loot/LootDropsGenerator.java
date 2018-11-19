@@ -9,7 +9,7 @@ import com.robertx22.generation.GearGen;
 import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -24,7 +24,7 @@ public class LootDropsGenerator {
 	private static float CurrencyChance = 1.8F;
 	private static float SpellChance = 2.5F;
 
-	public static void Generate(Unit mob, Unit player, EntityLivingBase mobEntity) {
+	public static void Generate(UnitData mob, UnitData player, EntityLivingBase mobEntity) {
 
 		float playerFindItemsChance = 0;
 
@@ -51,9 +51,9 @@ public class LootDropsGenerator {
 		int CurrencyDrops = WhileRoll(FinalCurrencyChance);
 		int SpellDrops = WhileRoll(FinalSpellChance);
 
-		GearBlueprint gearPrint = new GearBlueprint(mob.GetLevel());
+		GearBlueprint gearPrint = new GearBlueprint(mob.getLevel());
 
-		SpellBlueprint spellPrint = new SpellBlueprint(mob.GetLevel());
+		SpellBlueprint spellPrint = new SpellBlueprint(mob.getLevel());
 
 		for (int i = 0; i < GearDrops; i++) {
 			items.add(RandomDamagedGear(GearGen.CreateStack(gearPrint)));
@@ -78,11 +78,11 @@ public class LootDropsGenerator {
 	static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 4;
 
 	// prevents lvl 50 players farming lvl 1 mobs
-	private static float ApplyLevelDistancePunishment(Unit mob, Unit player, float chance) {
+	private static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
 
-		if (player.GetLevel() > mob.GetLevel() + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
+		if (player.getLevel() > mob.getLevel() + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
 
-			float levelDiff = mob.GetLevel() / player.GetLevel();
+			float levelDiff = mob.getLevel() / player.getLevel();
 
 			return chance * levelDiff;
 
@@ -101,10 +101,10 @@ public class LootDropsGenerator {
 		return stack;
 	}
 
-	private static float ApplyMobLootMulti(float chance, Unit mob, EntityLivingBase entity, float playerFind) {
+	private static float ApplyMobLootMulti(float chance, UnitData mob, EntityLivingBase entity, float playerFind) {
 
-		float finalChance = chance * Rarities.Mobs.get(mob.rarity).LootMultiplier() * (1 + mob.vanillaHP / 15)
-				* (1 + playerFind);
+		float finalChance = chance * Rarities.Mobs.get(mob.getRarity()).LootMultiplier()
+				* (1 + entity.getMaxHealth() / 15) * (1 + playerFind);
 
 		if (entity instanceof EntitySlime) {
 			finalChance /= 15;

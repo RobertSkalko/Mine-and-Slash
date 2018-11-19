@@ -8,8 +8,13 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.StatMod;
 
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
+
+@Storable
 public class SetData {
 
+	@Store
 	public String baseSet;
 
 	public Set GetSet() {

@@ -8,7 +8,7 @@ import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.misc.ItemCapacitor;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.datasaving.GearSaving;
+import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,7 +32,7 @@ public class TileInventoryRepair extends BaseTile {
 	// returns the smelting result for the given stack. Returns null if the given
 	// stack can not be smelted
 	public ItemStack getSmeltingResultForItem(ItemStack stack) {
-		GearItemData gear = GearSaving.Load(stack);
+		GearItemData gear = Gear.Load(stack);
 		if (gear != null) {
 			ItemStack copy = stack.copy();
 			int dmg = copy.getItemDamage() - FuelRemaining;
