@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.robertx22.database.IGUID;
 import com.robertx22.saveclasses.StatData;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public abstract class Stat implements IGUID {
@@ -31,14 +31,14 @@ public abstract class Stat implements IGUID {
 
 	public int BaseFlat = 0;
 
-	public int CalcVal(StatData data, Unit Source) {
+	public int CalcVal(StatData data, UnitData Source) {
 
 		float finalValue = 0;
 
 		finalValue += StatMinimum + data.BaseFlat;
 
 		if (ScalesToLevel()) {
-			finalValue *= Source.level;
+			finalValue *= Source.getLevel();
 		}
 
 		finalValue += data.Flat;

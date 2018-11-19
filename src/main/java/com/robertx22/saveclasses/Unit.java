@@ -125,15 +125,10 @@ public class Unit implements Serializable {
 		return experience;
 	}
 
-	public int level = -1;
-	public int experience = -1;
+	private int level = -1;
+	private int experience = -1;
 
 	public Unit(EntityLivingBase entity) {
-
-		UnitData data = entity.getCapability(EntityData.Data, null);
-
-		this.level = data.getLevel();
-		this.experience = data.getExp();
 
 		InitStats();
 
@@ -303,7 +298,7 @@ public class Unit implements Serializable {
 
 	}
 
-	private void AddAllSetStats() {
+	private void AddAllSetStats(EntityLivingBase entity) {
 
 		for (Entry<String, Integer> entry : this.WornSets.entrySet()) {
 
@@ -315,7 +310,7 @@ public class Unit implements Serializable {
 
 				String name = mod.GetBaseStat().Name();
 				if (this.MyStats.containsKey(name)) {
-					this.MyStats.get(name).Add(data, this.level);
+					this.MyStats.get(name).Add(data, this.GetLevel(entity));
 				}
 			}
 
@@ -328,7 +323,7 @@ public class Unit implements Serializable {
 		List<GearItemData> gears = GetEquips(entity);
 
 		for (GearItemData gear : gears) {
-			if (gear.level > this.level) {
+			if (gear.level > this.GetLevel(entity)) {
 				entity.sendMessage(
 						new TextComponentString(gear.GetDisplayName() + " is too high level for you, no stats added!"));
 			} else {
@@ -360,10 +355,10 @@ public class Unit implements Serializable {
 			AddPlayerBaseStats();
 			AddAllGearStats(entity);
 			AddStatusEffectStats();
-			AddAllSetStats();
-			CalcStats();
+			AddAllSetStats(entity);
+			CalcStats(entity);
 			CalcTraits();
-			CalcStats();
+			CalcStats(entity);
 			// watch.stop();
 
 		} else {
@@ -371,7 +366,7 @@ public class Unit implements Serializable {
 			AddMobcStats(data.getLevel());
 			SetMobStrengthMultiplier(Rarities.Mobs.get(data.getRarity()));
 			AddStatusEffectStats();
-			CalcStats();
+			CalcStats(entity);
 
 		}
 
@@ -414,9 +409,10 @@ public class Unit implements Serializable {
 
 	}
 
-	protected void CalcStats() {
+	protected void CalcStats(EntityLivingBase entity) {
 
-		MyStats.values().forEach((StatData stat) -> stat.GetStat().CalcVal(stat, this));
+		MyStats.values()
+				.forEach((StatData stat) -> stat.GetStat().CalcVal(stat, entity.getCapability(EntityData.Data, null)));
 	}
 
 	public static Unit Mob(EntityLivingBase entity, int level, IWorldData data) {

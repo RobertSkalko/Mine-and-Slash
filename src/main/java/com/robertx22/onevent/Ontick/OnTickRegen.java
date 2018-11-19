@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber
 public class OnTickRegen {
 
-	static final int TicksToUpdatePlayer = 20;
+	static final int TicksToUpdatePlayer = 15;
 	static final int TicksToUpdateMobList = 120;
 	static final int TicksToUpdateAllMobs = 200;
 	static final int TicksToRegen = 100;
@@ -88,8 +88,7 @@ public class OnTickRegen {
 						int healthrestored = (int) unit.MyStats.get(new HealthRegen().Name()).Value;
 						unit.Heal(player, healthrestored);
 
-						UnitSaving.Save(player, unit);
-
+						unit_capa.setUnit(unit, player);
 						data.regenTicks = 0;
 					}
 				}

@@ -44,9 +44,8 @@ public class BarsGUI extends Gui {
 
 		ticks++;
 
-		if (ticks > 12) {
+		if (ticks > 10) {
 			Unit newUnit = UnitSaving.Load((EntityPlayer) mc.player);
-
 			UnitData newData = mc.player.getCapability(EntityData.Data, null);
 
 			if (newUnit != null) {

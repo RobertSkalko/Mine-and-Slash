@@ -8,16 +8,13 @@ import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.Sword;
-import com.robertx22.database.lists.Stats;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.projectile.firebolt.SpellFireBolt;
-import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
@@ -65,21 +62,6 @@ public class OnLogin {
 
 	}
 
-	private static void CheckForNewStats(EntityPlayer player) {
-		Unit unit = UnitSaving.Load(player);
-
-		for (Stat stat : Stats.All.values()) {
-			if (!unit.MyStats.containsKey(stat.Name())) {
-				player.sendMessage(
-						new TextComponentString("New Stat: '" + stat.Name() + "' has been added to the game!"));
-			}
-			unit.MyStats.put(stat.Name(), new StatData(stat));
-		}
-
-		unit.ReloadStatsAndSave(player);
-
-	}
-
 	@SubscribeEvent
 	public static void onLogin(PlayerLoggedInEvent event) {
 
@@ -98,9 +80,11 @@ public class OnLogin {
 					UnitSaving.Save(player, new Unit(player));
 					GiveStarterItems(player);
 				} else {
-					CheckForNewStats(player);
-
+					unit.ReloadStatsAndSave(player);
 				}
+
+				player.getCapability(EntityData.Data, null).syncToClient(player);
+
 			} else {
 				player.sendMessage(
 						new TextComponentString("Error, player has no capability!" + Ref.MODID + " mod is broken!"));

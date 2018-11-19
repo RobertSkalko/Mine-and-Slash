@@ -1,7 +1,7 @@
 package com.robertx22.stats;
 
 import com.robertx22.saveclasses.StatData;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public abstract class Trait extends Stat {
@@ -24,7 +24,7 @@ public abstract class Trait extends Stat {
 	}
 
 	@Override
-	public int CalcVal(StatData data, Unit Source) {
+	public int CalcVal(StatData data, UnitData Source) {
 
 		if (data.Flat > 0) {
 			data.Value = 1;

@@ -39,6 +39,8 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.Trait;
 import com.robertx22.stats.UsableStat;
+import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
@@ -50,6 +52,7 @@ public class StatsGui extends Show {
 	private GuiButton mButtonClose;
 
 	Unit unit;
+	UnitData data;
 	Minecraft mc;
 
 	public StatsGui() {
@@ -65,6 +68,7 @@ public class StatsGui extends Show {
 		if (mc != null && mc.player != null) {
 
 			unit = UnitSaving.Load(mc.player);
+			data = mc.player.getCapability(EntityData.Data, null);
 
 		}
 
@@ -199,7 +203,8 @@ public class StatsGui extends Show {
 		if (data.GetStat() instanceof UsableStat) {
 			UsableStat usable = (UsableStat) data.GetStat();
 
-			return str + " (" + String.format("%.1f", usable.GetUsableValue(unit.level, (int) data.Value)) + "%)";
+			return str + " (" + String.format("%.1f", usable.GetUsableValue(this.data.getLevel(), (int) data.Value))
+					+ "%)";
 
 		}
 

@@ -49,30 +49,30 @@ public abstract class BaseSpell implements IWeighted {
 
 	public boolean CanCast(EntityPlayer caster, SpellItemData data) {
 
-		Unit unit = UnitSaving.Load(caster);
+		if (!caster.world.isRemote) {
+			Unit unit = UnitSaving.Load(caster);
 
-		if (unit != null) {
+			if (unit != null) {
 
-			if (data.level > unit.level) {
-				caster.sendMessage(new TextComponentString(
-						TextFormatting.RED + "You aren't high enough level to cast this spell!"));
+				if (data.level > unit.GetLevel(caster)) {
+					caster.sendMessage(new TextComponentString(
+							TextFormatting.RED + "You aren't high enough level to cast this spell!"));
 
-				return false;
-			}
+					return false;
+				}
 
-			if (unit.manaData().CurrentValue >= data.GetManaCost()) {
-				if (!caster.world.isRemote) {
+				if (unit.manaData().CurrentValue >= data.GetManaCost()) {
 					unit.SpendMana(data.GetManaCost());
 					UnitSaving.Save(caster, unit);
+
+					return true;
+
+				} else {
+					caster.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have enough mana!"));
+
 				}
-				return true;
-
-			} else {
-				caster.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have enough mana!"));
-
 			}
 		}
-
 		return false;
 
 	}

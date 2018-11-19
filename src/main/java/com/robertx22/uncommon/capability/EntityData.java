@@ -46,7 +46,6 @@ public class EntityData {
 	private static final String NAME = "name";
 	private static final String MOB_SAVED_ONCE = "mob_saved_once";
 	private static final String UNIT_OBJECT = "unit_object";
-	private static final String TAG_WORN_SETS = "tag_worn_sets";
 
 	public interface UnitData extends ICommonCapability {
 
@@ -72,7 +71,7 @@ public class EntityData {
 
 		Unit getUnit();
 
-		void setUnit(Unit unit);
+		void setUnit(Unit unit, EntityLivingBase entity);
 
 		void setRarity(int rarity);
 
@@ -89,6 +88,8 @@ public class EntityData {
 		void setMobSavedOnce();
 
 		boolean isMobSavedOnce();
+
+		void HandleCloneEvent(UnitData old);
 
 	}
 
@@ -315,10 +316,10 @@ public class EntityData {
 
 		@Override
 		public void syncToClient(EntityPlayer player) {
-
-			UnitPackage packet = new UnitPackage(this.getNBT());
-			Main.Network.sendTo(packet, (EntityPlayerMP) player);
-
+			if (unit != null) {
+				UnitPackage packet = new UnitPackage(this.getNBT());
+				Main.Network.sendTo(packet, (EntityPlayerMP) player);
+			}
 		}
 
 		@Override
@@ -328,7 +329,7 @@ public class EntityData {
 		}
 
 		@Override
-		public void setUnit(Unit unit) {
+		public void setUnit(Unit unit, EntityLivingBase entity) {
 			this.unit = unit;
 
 		}
@@ -382,6 +383,11 @@ public class EntityData {
 		@Override
 		public boolean isMobSavedOnce() {
 			return mobSavedOnce;
+		}
+
+		@Override
+		public void HandleCloneEvent(UnitData old) {
+			this.nbt = old.getNBT();
 		}
 
 	}

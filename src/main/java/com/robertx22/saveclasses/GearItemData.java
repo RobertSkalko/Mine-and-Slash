@@ -20,6 +20,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -133,7 +134,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 	}
 
 	@Override
-	public void BuildTooltip(ItemTooltipEvent event, Unit unit) {
+	public void BuildTooltip(ItemTooltipEvent event, Unit unit, UnitData data) {
 
 		event.getToolTip().clear();
 
@@ -159,7 +160,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 
 		}
 
-		this.BuildSetTooltip(event, unit);
+		this.BuildSetTooltip(event, unit, data);
 
 		ItemRarity rarity = GetRarity();
 		event.getToolTip().add(rarity.Color() + "Rarity: " + rarity.Name());
@@ -170,7 +171,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 
 	}
 
-	private void BuildSetTooltip(ItemTooltipEvent event, Unit unit) {
+	private void BuildSetTooltip(ItemTooltipEvent event, Unit unit, UnitData data) {
 
 		if (this.set != null) {
 			event.getToolTip().add(TextFormatting.GREEN + "[Set]: " + TextFormatting.GRAY + set.GetSet().Name());
@@ -188,7 +189,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 				}
 
 				String stat = StringUtils.stripControlCodes(StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
-						.GetTooltipString(unit.level, this, false));
+						.GetTooltipString(data.getLevel(), this, false));
 
 				String str = color + "" + entry.getKey() + " set" + ": " + TextFormatting.DARK_GREEN + stat;
 

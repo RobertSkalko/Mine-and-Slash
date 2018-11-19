@@ -3,6 +3,7 @@ package com.robertx22.onevent.Item;
 import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
@@ -45,7 +46,7 @@ public class OnTooltip {
 
 				if (unit != null && gear != null) {
 
-					gear.BuildTooltip(event, unit);
+					gear.BuildTooltip(event, unit, event.getEntityPlayer().getCapability(EntityData.Data, null));
 
 					if (GuiScreen.isShiftKeyDown() == false) {
 
