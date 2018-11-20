@@ -30,6 +30,27 @@ public class MapItemData {
 	@Store
 	public String worldGeneratorName;
 
+	public int getBonusLootAmount() {
+
+		return (int) (getTotalPercents() * 0.4F);
+
+	}
+
+	public int getBonusLootRarity() {
+
+		return (int) (getTotalPercents() * 0.7F);
+
+	}
+
+	private int getTotalPercents() {
+
+		int total = 0;
+		for (MapAffixData affix : affixes) {
+			total += affix.percent;
+		}
+		return total;
+	}
+
 	public List<MapAffixData> getAllAffixesThatAffect(AffectedEntities affected) {
 
 		return (List<MapAffixData>) affixes.stream().filter(x -> x.affectedEntities.equals(affected));

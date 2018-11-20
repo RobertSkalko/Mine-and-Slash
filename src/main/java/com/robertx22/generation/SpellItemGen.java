@@ -1,5 +1,6 @@
 package com.robertx22.generation;
 
+import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.SpellItemData;
@@ -16,7 +17,7 @@ public class SpellItemGen {
 		BaseSpell spell = blueprint.GetSpell();
 		ItemStack stack = new ItemStack(spell.SpellItem());
 		SpellItemData data = new SpellItemData();
-		ItemRarity rarity = blueprint.GetRarity();
+		ItemRarity rarity = Rarities.Items.get(blueprint.GetRarity());
 
 		data.rarity = rarity.Rank();
 		data.spellGUID = spell.GUID();

@@ -1,12 +1,13 @@
-package com.robertx22.database.map_affixes;
+package com.robertx22.database.map_affixes.beneficial;
 
 import java.util.Arrays;
 import java.util.List;
 
+import com.robertx22.database.map_affixes.BeneficialMapAffix;
 import com.robertx22.database.map_mods.HealthMap;
 import com.robertx22.saveclasses.gearitem.StatModData;
 
-public class BonusHealth extends BaseMapAffix {
+public class BonusHealth extends BeneficialMapAffix {
 
 	@Override
 	public String Name() {

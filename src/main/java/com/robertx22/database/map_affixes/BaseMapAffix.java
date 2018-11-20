@@ -19,4 +19,6 @@ public abstract class BaseMapAffix implements IWeighted {
 	public int Weight() {
 		return this.UncommonWeight;
 	}
+
+	public abstract boolean isBeneficial();
 }

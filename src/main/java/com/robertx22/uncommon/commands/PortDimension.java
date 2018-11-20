@@ -26,7 +26,6 @@ public class PortDimension extends CommandBase {
 
 	public static DimensionType testDimensionType;
 
-//DimensionManager.unloadWorld(id);
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
@@ -38,11 +37,10 @@ public class PortDimension extends CommandBase {
 			DimensionManager.registerDimension(id, testDimensionType);
 			DimensionManager.initDimension(id);
 
-			// player.setPortal(player.getPosition());
-
 		}
 
 		player.changeDimension(id, new MyTeleporter(player.getPosition()));
 
 	}
+
 }

@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.commands;
 
-import com.robertx22.generation.GearGen;
-import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.MapGen;
+import com.robertx22.generation.blueprints.MapBlueprint;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -9,16 +9,16 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
-public class GiveGear extends CommandBase {
+public class GiveMap extends CommandBase {
 
 	@Override
 	public String getName() {
-		return "givegear";
+		return "givemap";
 	}
 
 	@Override
 	public String getUsage(ICommandSender sender) {
-		return "/givegear (lvl), (rarity 0-4), (type: ARMOR, WEAPON etc), (amount)";
+		return "/givmap (lvl), (rarity 0-4),  (amount)";
 	}
 
 	@Override
@@ -26,20 +26,17 @@ public class GiveGear extends CommandBase {
 
 		int lvl = Integer.valueOf(args[0]);
 		int rarity = Integer.valueOf(args[1]);
-		String type = args[2];
 		int amount = Integer.valueOf(args[3]);
 
-		GearBlueprint schema = new GearBlueprint(lvl);
+		MapBlueprint blueprint = new MapBlueprint(lvl);
 		if (rarity > -1) {
-			schema.SetSpecificRarity(rarity);
+			blueprint.SetSpecificRarity(rarity);
 		}
-		if (!type.equals("random")) {
-			schema.SetSpecificType(type);
-		}
+
 		EntityPlayer player = (EntityPlayer) sender;
 
 		for (int i = 0; i < amount; i++) {
-			player.addItemStackToInventory(GearGen.CreateStack(schema));
+			player.addItemStackToInventory(MapGen.Create(blueprint));
 		}
 
 	}

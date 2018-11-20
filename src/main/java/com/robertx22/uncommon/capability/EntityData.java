@@ -231,9 +231,9 @@ public class EntityData {
 
 			i *= ModConfig.Server.EXPERIENCE_MULTIPLIER;
 
-			setExp(i);
+			setExp(exp + i);
 
-			if (getExp() > this.GetExpRequiredForLevelUp()) {
+			if (exp > this.GetExpRequiredForLevelUp()) {
 
 				setExp(this.GetExpRequiredForLevelUp());
 

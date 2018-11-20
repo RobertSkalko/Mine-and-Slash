@@ -7,8 +7,6 @@ import net.minecraft.util.text.TextFormatting;
 
 public class Common extends ItemRarity {
 
-	private static Common common = new Common();
-
 	public Common() {
 	}
 

@@ -47,25 +47,42 @@ public class ItemMap extends BaseRarityItem {
 			tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
 			tooltip.add("");
 
-			tooltip.add(TextFormatting.GREEN + "Mob Affixes::");
-
-			for (MapAffixData affix : data.getAllAffixesThatAffect(AffectedEntities.Mobs)) {
-				
-				tooltip.add(" * "
-						+ (TextFormatting.YELLOW + affix.affectedEntities.toString() + " " + affix.getAffix().Name()));
-				
-				for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
-					
-					tooltip.add(" * "
-							+ (TextFormatting.RED + statmod.GetTooltipString(data.level, false));
-				
-				}
-				
-			}
+			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
+			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Players);
+			addAffixTypeToTooltip(data, tooltip, AffectedEntities.All);
 
 			tooltip.add("");
 
+			tooltip.add(TextFormatting.BLUE + "World Type: " + data.worldGeneratorName);
+
+			tooltip.add("");
 			tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
+		}
+	}
+
+	private void addAffixTypeToTooltip(MapItemData data, List<String> tooltip, AffectedEntities affected) {
+
+		List<MapAffixData> affixes = data.getAllAffixesThatAffect(affected);
+
+		if (affixes.size() == 0) {
+			return;
+		}
+
+		tooltip.add(TextFormatting.GREEN + affected.name() + " Affixes::");
+
+		for (MapAffixData affix : affixes) {
+
+			tooltip.add(" - " + (TextFormatting.YELLOW + affix.getAffix().Name()));
+
+			for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
+
+				String statstring = statmod.GetTooltipString(Rarities.Maps.get(data.rarity).StatPercents(), data.level,
+						false);
+
+				tooltip.add(" * " + TextFormatting.RED + statstring);
+
+			}
+
 		}
 	}
 

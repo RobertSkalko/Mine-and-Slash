@@ -35,7 +35,7 @@ public class ItemBlueprint {
 
 	}
 
-	public ItemRarity GetRarity() {
+	public int GetRarity() {
 
 		if (RandomRarity) {
 
@@ -45,13 +45,13 @@ public class ItemBlueprint {
 				while (rar.Rank() < minRarity) {
 					rar = Rarities.Items.get(RarityGen.Random(0).Rank());
 				}
-				return rar;
+				return rar.Rank();
 
 			} else {
-				return Rarities.Items.get(RarityGen.Random(0).Rank());
+				return RarityGen.Random(0).Rank();
 			}
 		} else {
-			return Rarities.Items.get(rarity);
+			return rarity;
 		}
 
 	}

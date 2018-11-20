@@ -36,6 +36,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import prospector.traverse.RegisterBiomes;
 
 @Mod.EventBusSubscriber
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, dependencies = "required-after:baubles;required-after:patchouli ")
@@ -96,6 +97,8 @@ public class Main {
 		proxy.init(event);
 
 		TestManager.RunAllTests();
+
+		RegisterBiomes.initBiomeManagerAndDictionary();
 
 		int chance = 6;
 		int amount = 7;
