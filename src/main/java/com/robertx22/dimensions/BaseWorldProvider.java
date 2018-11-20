@@ -12,8 +12,12 @@ public class BaseWorldProvider extends WorldProviderSurface {
 
 	String worldname;
 
+	BiomeProvider biome_provider;
+
 	public BaseWorldProvider() {
 		this.worldname = UUID.randomUUID().toString();
+
+		biome_provider = new BiomeProviderEP(world);
 	}
 
 	@Override
@@ -28,7 +32,7 @@ public class BaseWorldProvider extends WorldProviderSurface {
 
 	@Override
 	public BiomeProvider getBiomeProvider() {
-		return new BiomeProviderEP(world);
+		return biome_provider;
 	}
 
 	@Override

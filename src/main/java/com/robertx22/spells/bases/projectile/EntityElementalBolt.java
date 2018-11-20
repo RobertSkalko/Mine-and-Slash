@@ -56,7 +56,7 @@ public abstract class EntityElementalBolt extends EntityThrowable {
 			}
 		}
 
-		if (this.ticksExisted > 8) {
+		if (this.ticksExisted > 20) {
 			this.setDead();
 		}
 	}
