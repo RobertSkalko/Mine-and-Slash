@@ -35,10 +35,10 @@ public class StatData {
 	public float Multi = 0;
 
 	@Store
-	public float Value;
+	public float Value = 0;
 
 	@Store
-	public float CurrentValue;
+	public float CurrentValue = 0;
 
 	public void Clear() {
 		Flat = 0;

@@ -189,7 +189,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 				}
 
 				String stat = StringUtils.stripControlCodes(StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
-						.GetTooltipString(data.getLevel(), this, false));
+						.GetTooltipString(this.GetRarity().StatPercents(), data.getLevel(), false));
 
 				String str = color + "" + entry.getKey() + " set" + ": " + TextFormatting.DARK_GREEN + stat;
 

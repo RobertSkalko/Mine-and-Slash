@@ -72,7 +72,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 		for (StatModData data : this.GetAllStats(gear.level)) {
 
-			list.add(data.GetTooltipString(gear.level, gear, true));
+			list.add(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
 		}
 
 		return list;

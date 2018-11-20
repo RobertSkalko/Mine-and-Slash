@@ -5,7 +5,7 @@ import java.util.List;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
-public abstract class BaseMapEffect implements IWeighted {
+public abstract class BaseMapAffix implements IWeighted {
 
 	public abstract String Name();
 

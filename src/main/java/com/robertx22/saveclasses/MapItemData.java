@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.saveclasses.mapitem.MapAffixData;
+import com.robertx22.uncommon.enumclasses.AffectedEntities;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 @Storable
 public class MapItemData {
+
+	@Store
+	public String name;
 
 	@Store
 	public int level;
@@ -21,23 +25,14 @@ public class MapItemData {
 	public int rarity;
 
 	@Store
-	public List<MapAffixData> playerAffixes = new ArrayList<MapAffixData>();
+	public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
 
 	@Store
-	public List<MapAffixData> mobAffixes = new ArrayList<MapAffixData>();
+	public String worldGeneratorName;
 
-	@Store
-	public List<MapAffixData> playerAndMobAffixes = new ArrayList<MapAffixData>();
+	public List<MapAffixData> getAllAffixesThatAffect(AffectedEntities affected) {
 
-	public List<MapAffixData> getAllAffixes() {
-
-		List<MapAffixData> all = new ArrayList<MapAffixData>();
-
-		all.addAll(mobAffixes);
-		all.addAll(playerAffixes);
-		all.addAll(playerAndMobAffixes);
-
-		return all;
+		return (List<MapAffixData>) affixes.stream().filter(x -> x.affectedEntities.equals(affected));
 
 	}
 

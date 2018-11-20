@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.database.map_mods.HealthMap;
 import com.robertx22.saveclasses.gearitem.StatModData;
 
-public class BonusHealth extends BaseMapEffect {
+public class BonusHealth extends BaseMapAffix {
 
 	@Override
 	public String Name() {

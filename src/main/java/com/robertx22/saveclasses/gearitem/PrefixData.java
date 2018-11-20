@@ -73,7 +73,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 
 		for (StatModData data : this.GetAllStats(gear.level)) {
 
-			list.add(data.GetTooltipString(gear.level, gear, true));
+			list.add(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
 		}
 
 		return list;

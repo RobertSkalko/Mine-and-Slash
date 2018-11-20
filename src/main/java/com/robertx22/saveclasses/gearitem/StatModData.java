@@ -1,8 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
-import java.io.Serializable;
-
-import com.robertx22.database.lists.Rarities;
+import com.robertx22.database.MinMax;
 import com.robertx22.database.lists.StatMods;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.GearItemData;
@@ -18,9 +16,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.TextFormatting;
 
 @Storable
-public class StatModData implements Serializable, ITooltipString {
-
-	private static final long serialVersionUID = -274938432076951259L;
+public class StatModData implements ITooltipString {
 
 	public StatModData() {
 
@@ -113,9 +109,9 @@ public class StatModData implements Serializable, ITooltipString {
 		return TextFormatting.GREEN + " * " + basestat.Name();
 	}
 
-	public String NameAndValueText(GearItemData gear, boolean IsSet) {
+	public String NameAndValueText(int level, boolean IsSet) {
 
-		int val = this.GetActualVal(gear.level);
+		int val = this.GetActualVal(level);
 
 		String minusplus = val > 0 ? "+" : "";
 
@@ -123,7 +119,7 @@ public class StatModData implements Serializable, ITooltipString {
 	}
 
 	@Override
-	public String GetTooltipString(int level, GearItemData gear, boolean IsNotSet) {
+	public String GetTooltipString(MinMax minmax, int level, boolean IsNotSet) {
 		StatMod mod = GetBaseMod();
 
 		Stat basestat = mod.GetBaseStat();
@@ -132,7 +128,7 @@ public class StatModData implements Serializable, ITooltipString {
 
 		if (!(basestat instanceof Trait)) {
 
-			text = NameAndValueText(gear, IsNotSet);
+			text = NameAndValueText(level, IsNotSet);
 
 			if (mod.Type() == StatTypes.Flat) {
 
@@ -148,13 +144,10 @@ public class StatModData implements Serializable, ITooltipString {
 
 			if (GuiScreen.isShiftKeyDown() && IsNotSet) {
 
-				StatModData min = StatModData.Load(this.GetBaseMod(),
-						Rarities.Items.get(gear.Rarity).StatPercents().Min);
-				StatModData max = StatModData.Load(this.GetBaseMod(),
-						Rarities.Items.get(gear.Rarity).StatPercents().Max);
+				StatModData min = StatModData.Load(this.GetBaseMod(), minmax.Min);
+				StatModData max = StatModData.Load(this.GetBaseMod(), minmax.Max);
 
-				text += TextFormatting.BLUE + " (" + min.GetActualVal(gear.level) + " - " + max.GetActualVal(gear.level)
-						+ ")";
+				text += TextFormatting.BLUE + " (" + min.GetActualVal(level) + " - " + max.GetActualVal(level) + ")";
 			}
 
 		} else {

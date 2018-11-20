@@ -62,12 +62,16 @@ public class BarsGUI extends Gui {
 			return;
 		}
 
-		if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Top_Left)) {
-			topleft.Draw(this, mc, mc.player, event, unit, data);
-		} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle)) {
-			bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
-		} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle_Corners)) {
-			bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
+		try {
+			if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Top_Left)) {
+				topleft.Draw(this, mc, mc.player, event, unit, data);
+			} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle)) {
+				bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
+			} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle_Corners)) {
+				bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

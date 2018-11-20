@@ -1,5 +1,7 @@
 package com.robertx22.saveclasses.mapitem;
 
+import com.robertx22.database.lists.MapAffixes;
+import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
 
 import info.loenwind.autosave.annotations.Storable;
@@ -25,4 +27,10 @@ public class MapAffixData {
 
 	@Store
 	public AffectedEntities affectedEntities;
+
+	public BaseMapAffix getAffix() {
+
+		return MapAffixes.All.get(GUID);
+	}
+
 }
