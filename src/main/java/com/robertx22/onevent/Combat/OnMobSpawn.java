@@ -51,7 +51,7 @@ public class OnMobSpawn {
 						IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
 						int level = GetMobLevel(data, entity);
 						Unit unit = Unit.Mob(entity, level, data);
-						unit.Save(entity);
+						endata.setUnit(unit, entity);
 
 						if (endata.getRarity() == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
 							AnnounceWorldBossSpawn(entity, unit);

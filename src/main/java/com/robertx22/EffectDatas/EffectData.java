@@ -9,7 +9,8 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffect.EffectSides;
 import com.robertx22.stats.IStatEffects;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
 
@@ -20,13 +21,16 @@ public abstract class EffectData {
 		this.Source = source;
 		this.Target = target;
 
+		this.targetData = Load.Unit(target);
+		this.sourceData = Load.Unit(source);
+
 		try {
-			targetUnit = UnitSaving.Load(target);
-			sourceUnit = UnitSaving.Load(source);
+			targetUnit = targetData.getUnit();
+			sourceUnit = sourceData.getUnit();
 
 			if (sourceUnit != null && targetUnit != null) {
-				sourceUnit.ReloadStatsAndDontSave(source);
-				targetUnit.ReloadStatsAndDontSave(target);
+				sourceData.recalculateStats(source);
+				targetData.recalculateStats(target);
 
 			} else {
 				this.canceled = true;
@@ -38,14 +42,17 @@ public abstract class EffectData {
 
 	}
 
-	public EffectData(EntityLivingBase source, EntityLivingBase target, Unit sourceUnit, Unit targetUnit) {
+	public EffectData(EntityLivingBase source, EntityLivingBase target, UnitData sourceData, UnitData targetData) {
 
 		this.Source = source;
 		this.Target = target;
 
-		if (sourceUnit != null && targetUnit != null) {
-			this.sourceUnit = sourceUnit;
-			this.targetUnit = targetUnit;
+		if (sourceData != null && targetData != null) {
+			this.sourceData = sourceData;
+			this.targetData = targetData;
+
+			this.sourceUnit = sourceData.getUnit();
+			this.targetUnit = targetData.getUnit();
 
 		} else {
 			this.canceled = true;
@@ -58,6 +65,9 @@ public abstract class EffectData {
 	public enum EffectTypes {
 		NORMAL, SPELL, BASIC_ATTACK, BONUS_ATTACK
 	}
+
+	public UnitData sourceData;
+	public UnitData targetData;
 
 	public boolean canceled = false;
 	public Unit sourceUnit;
@@ -79,7 +89,8 @@ public abstract class EffectData {
 
 	public void Activate() {
 
-		if (Source == null || Target == null || canceled == true || sourceUnit == null || targetUnit == null)
+		if (Source == null || Target == null || canceled == true || sourceUnit == null || targetUnit == null
+				|| sourceData == null || targetData == null)
 			return;
 
 		TryApplyEffects(this.GetSource());
@@ -87,8 +98,8 @@ public abstract class EffectData {
 
 		if (this.canceled != true) {
 
-			sourceUnit.Save(Source);
-			targetUnit.Save(Target);
+			sourceData.setUnit(sourceUnit, Source);
+			targetData.setUnit(targetUnit, Target);
 
 			activate();
 

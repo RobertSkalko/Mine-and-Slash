@@ -8,7 +8,7 @@ import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -49,9 +49,9 @@ public class ItemSword extends BaseSwordItem implements IWeapon {
 	}
 
 	@Override
-	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, Unit targetUnit) {
+	public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
 
-		int num = (int) unitsource.MyStats.get(PhysicalDamage.GUID).Value;
+		int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
 		DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit);
 		dmg.Type = EffectTypes.BASIC_ATTACK;
 		dmg.Activate();

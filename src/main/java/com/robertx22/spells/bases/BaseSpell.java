@@ -1,8 +1,8 @@
 package com.robertx22.spells.bases;
 
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
@@ -50,20 +50,21 @@ public abstract class BaseSpell implements IWeighted {
 	public boolean CanCast(EntityPlayer caster, SpellItemData data) {
 
 		if (!caster.world.isRemote) {
-			Unit unit = UnitSaving.Load(caster);
+
+			UnitData unit = Load.Unit(caster);
 
 			if (unit != null) {
 
-				if (data.level > unit.GetLevel(caster)) {
+				if (data.level > unit.getLevel()) {
 					caster.sendMessage(new TextComponentString(
 							TextFormatting.RED + "You aren't high enough level to cast this spell!"));
 
 					return false;
 				}
 
-				if (unit.manaData().CurrentValue >= data.GetManaCost()) {
-					unit.SpendMana(data.GetManaCost());
-					UnitSaving.Save(caster, unit);
+				if (unit.getUnit().manaData().CurrentValue >= data.GetManaCost()) {
+					unit.getUnit().SpendMana(data.GetManaCost());
+					// UnitSaving.Save(caster, unit);
 
 					return true;
 

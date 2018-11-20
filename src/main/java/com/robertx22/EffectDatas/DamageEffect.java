@@ -15,6 +15,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
@@ -34,8 +35,9 @@ public class DamageEffect extends EffectData
 
 	}
 
-	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, Unit sourceUnit, Unit targetUnit) {
-		super(source, target, sourceUnit, targetUnit);
+	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, UnitData sourceData,
+			UnitData targetData) {
+		super(source, target, sourceData, targetData);
 
 		this.Number = dmg;
 	}

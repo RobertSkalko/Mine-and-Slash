@@ -1,63 +1,34 @@
 package com.robertx22.saveclasses;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
 import java.util.UUID;
 
-import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.database.lists.Rarities;
-import com.robertx22.database.lists.Sets;
-import com.robertx22.database.lists.StatusEffects;
-import com.robertx22.database.rarities.MobRarity;
-import com.robertx22.database.stats.types.defense.Armor;
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
-import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
-import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
-import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
-import com.robertx22.database.stats.types.elementals.resist.FireResist;
-import com.robertx22.database.stats.types.elementals.resist.NatureResist;
-import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
-import com.robertx22.database.stats.types.elementals.resist.WaterResist;
-import com.robertx22.database.stats.types.offense.CriticalDamage;
-import com.robertx22.database.stats.types.offense.CriticalHit;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.Mana;
-import com.robertx22.database.status.effects.bases.BaseStatusEffect;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.saveclasses.effects.StatusEffectData;
-import com.robertx22.saveclasses.gearitem.StatModData;
-import com.robertx22.saveclasses.gearitem.gear_bases.Set;
-import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatMod;
-import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
-import com.robertx22.uncommon.datasaving.Gear;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.capability.bases.CommonStatUtils;
+import com.robertx22.uncommon.capability.bases.MobStatUtils;
+import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
-import baubles.api.BaublesApi;
-import baubles.api.cap.IBaublesItemHandler;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextComponentString;
 
 @Storable
-public class Unit implements Serializable {
+public class Unit {
 
 	@Store
 	public HashMap<String, StatData> MyStats = null;
@@ -74,59 +45,6 @@ public class Unit implements Serializable {
 	public Unit() {
 		InitStats();
 	}
-
-	public void Save(EntityLivingBase entity) {
-
-		if (entity instanceof EntityPlayer) {
-			UnitSaving.Save(entity, this);
-		} else {
-			if (this.InitialMobSave == false) {
-				this.InitialMobSave = true;
-				UnitSaving.Save(entity, this);
-			}
-
-		}
-
-	}
-
-	public void ReloadStatsAndSave(EntityLivingBase entity) {
-
-		if (entity instanceof EntityPlayer) {
-			this.RecalculateStats(entity);
-			UnitSaving.Save(entity, this);
-		}
-
-	}
-
-	public void ReloadStatsAndDontSave(EntityLivingBase entity) {
-
-		if (entity instanceof EntityPlayer) {
-			this.RecalculateStats(entity);
-		}
-
-	}
-
-	public boolean InitialMobSave = false;
-
-	private static final long serialVersionUID = -6658683548383891230L;
-
-	public int GetLevel(EntityLivingBase entity) {
-		if (level < 0) {
-			level = entity.getCapability(EntityData.Data, null).getLevel();
-		}
-		return level;
-
-	}
-
-	public int GetExp(EntityLivingBase entity) {
-		if (experience < 0) {
-			experience = entity.getCapability(EntityData.Data, null).getExp();
-		}
-		return experience;
-	}
-
-	private int level = -1;
-	private int experience = -1;
 
 	public Unit(EntityLivingBase entity) {
 
@@ -226,195 +144,6 @@ public class Unit implements Serializable {
 		energyData().Increase(i);
 	}
 
-	transient public boolean StatsDirty = true;
-
-	public List<GearItemData> GetEquips(EntityLivingBase entity) {
-
-		List<ItemStack> list = new ArrayList<ItemStack>();
-
-		for (ItemStack stack : entity.getArmorInventoryList()) {
-			if (stack != null) {
-				list.add(stack);
-			}
-		}
-		ItemStack weapon = entity.getHeldItemMainhand();
-		if (weapon.getItem() instanceof IWeapon) {
-			list.add(weapon);
-		}
-
-		IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer) entity);
-
-		for (int i = 0; i < baubles.getSlots(); i++) {
-			ItemStack stack = baubles.getStackInSlot(i);
-			if (stack != null) {
-				list.add(stack);
-			}
-
-		}
-
-		List<GearItemData> gearitems = new ArrayList<GearItemData>();
-
-		for (ItemStack stack : list) {
-
-			GearItemData gear = Gear.Load(stack);
-
-			if (gear != null) {
-				gearitems.add(gear);
-
-			}
-
-		}
-
-		return gearitems;
-
-	}
-
-	protected void ClearStats() {
-		for (StatData stat : MyStats.values()) {
-			stat.Clear();
-		}
-	}
-
-	private void CountWornSets(EntityLivingBase entity) {
-
-		this.WornSets = new HashMap<String, Integer>();
-
-		List<GearItemData> gears = GetEquips(entity);
-
-		for (GearItemData gear : gears) {
-			if (gear.set != null) {
-				String set = gear.set.baseSet;
-
-				if (gear.set != null) {
-					if (this.WornSets.containsKey(set)) {
-						this.WornSets.put(set, this.WornSets.get(set) + 1);
-					} else {
-						this.WornSets.put(set, 1);
-					}
-				}
-			}
-
-		}
-
-	}
-
-	private void AddAllSetStats(EntityLivingBase entity) {
-
-		for (Entry<String, Integer> entry : this.WornSets.entrySet()) {
-
-			Set set = Sets.All.get(entry.getKey());
-
-			for (StatMod mod : set.GetObtainedMods(this)) {
-
-				StatModData data = StatModData.Load(mod, set.StatPercent);
-
-				String name = mod.GetBaseStat().Name();
-				if (this.MyStats.containsKey(name)) {
-					this.MyStats.get(name).Add(data, this.GetLevel(entity));
-				}
-			}
-
-		}
-
-	}
-
-	private void AddAllGearStats(EntityLivingBase entity) {
-
-		List<GearItemData> gears = GetEquips(entity);
-
-		for (GearItemData gear : gears) {
-			if (gear.level > this.GetLevel(entity)) {
-				entity.sendMessage(
-						new TextComponentString(gear.GetDisplayName() + " is too high level for you, no stats added!"));
-			} else {
-
-				List<StatModData> datas = gear.GetAllStats(gear.level);
-				for (StatModData data : datas) {
-					StatData stat = MyStats.get(data.GetBaseMod().GetBaseStat().Name());
-					if (stat == null) {
-						System.out
-								.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
-					} else {
-						stat.Add(data, gear.level);
-
-					}
-				}
-			}
-		}
-	}
-
-	public void RecalculateStats(EntityLivingBase entity) {
-
-		UnitData data = entity.getCapability(EntityData.Data, null);
-
-		if (entity instanceof EntityPlayer) {
-			// StopWatch watch = new StopWatch();
-			// watch.start();
-			CountWornSets(entity);
-			ClearStats();
-			AddPlayerBaseStats();
-			AddAllGearStats(entity);
-			AddStatusEffectStats();
-			AddAllSetStats(entity);
-			CalcStats(entity);
-			CalcTraits();
-			CalcStats(entity);
-			// watch.stop();
-
-		} else {
-			ClearStats();
-			AddMobcStats(data.getLevel());
-			SetMobStrengthMultiplier(Rarities.Mobs.get(data.getRarity()));
-			AddStatusEffectStats();
-			CalcStats(entity);
-
-		}
-
-	}
-
-	private void AddPlayerBaseStats() {
-
-		MyStats.get(Health.GUID).Flat += 10;
-		MyStats.get(PhysicalDamage.GUID).Flat += 2;
-
-	}
-
-	protected void AddStatusEffectStats() {
-
-		for (StatusEffectData status : this.statusEffects.values()) {
-			List<StatModData> datas = status.GetAllStats(this.level);
-			for (StatModData data : datas) {
-				StatData stat = MyStats.get(data.GetBaseMod().GetBaseStat().Name());
-				if (stat == null) {
-					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
-				} else {
-					stat.Add(data, level);
-
-				}
-			}
-		}
-
-	}
-
-	protected void CalcTraits() {
-		for (StatData stat : MyStats.values()) {
-			if (stat.GetStat() instanceof Trait && stat instanceof IAffectsOtherStats) {
-				if (stat.Value > 0) {
-					IAffectsOtherStats affects = (IAffectsOtherStats) stat;
-					affects.TryAffectOtherStats(this);
-
-				}
-			}
-		}
-
-	}
-
-	protected void CalcStats(EntityLivingBase entity) {
-
-		MyStats.values()
-				.forEach((StatData stat) -> stat.GetStat().CalcVal(stat, entity.getCapability(EntityData.Data, null)));
-	}
-
 	public static Unit Mob(EntityLivingBase entity, int level, IWorldData data) {
 
 		Unit mob = new Unit(entity);
@@ -428,84 +157,55 @@ public class Unit implements Serializable {
 		mob.MyStats.get(Health.GUID).BaseFlat = (int) entity.getMaxHealth();
 		mob.uid = entity.getUniqueID();
 
-		mob.AddRandomMobStatusEffects(entity);
-		mob.RecalculateStats(entity);
+		MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
+		mob.RecalculateStats(entity, endata.getLevel());
 
 		return mob;
 
 	}
 
-	private void AddRandomMobStatusEffects(EntityLivingBase entity) {
-
-		int max = this.GetRarity(entity).MaxMobEffects();
-
-		if (max > 0) {
-			if (this.GetRarity(entity).MaxMobEffects() > StatusEffects.All.values().size()) {
-				System.out.println("ERROR! Can't have more unique effects than there are effects!");
-				max = StatusEffects.All.values().size() - 1;
-			}
-
-			int amount = RandomUtils.RandomRange(0, max);
-
-			while (amount > 0) {
-
-				BaseStatusEffect effect = null;
-
-				while (effect == null || this.statusEffects.containsKey(effect.GUID())) {
-					effect = (BaseStatusEffect) RandomUtils
-							.WeightedRandom(ListUtils.CollectionToList(StatusEffects.All.values()));
-				}
-				amount--;
-				this.statusEffects.put(effect.GUID(), new StatusEffectData(effect));
-
-			}
+	protected void ClearStats() {
+		for (StatData stat : MyStats.values()) {
+			stat.Clear();
 		}
+	}
+
+	protected void CalcStats(EntityLivingBase entity) {
+
+		MyStats.values()
+				.forEach((StatData stat) -> stat.GetStat().CalcVal(stat, entity.getCapability(EntityData.Data, null)));
+	}
+
+	public void RecalculateStats(EntityLivingBase entity, int level) {
+
+		UnitData data = entity.getCapability(EntityData.Data, null);
+
+		if (entity instanceof EntityPlayer) {
+			// StopWatch watch = new StopWatch();
+			// watch.start();
+			ClearStats();
+			PlayerStatUtils.CountWornSets(entity, this);
+			PlayerStatUtils.AddPlayerBaseStats(this);
+			PlayerStatUtils.AddAllGearStats(entity, this, level);
+			CommonStatUtils.AddStatusEffectStats(this, level);
+			PlayerStatUtils.AddAllSetStats(entity, this, level);
+			CalcStats(entity);
+			PlayerStatUtils.CalcTraits(this);
+			CalcStats(entity);
+			// watch.stop();
+
+		} else {
+			ClearStats();
+			MobStatUtils.AddMobcStats(this, data.getLevel());
+			MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
+			CommonStatUtils.AddStatusEffectStats(this, level);
+			CalcStats(entity);
+
+		}
+
 	}
 
 	public UUID uid;
-
-	private MobRarity GetRarity(EntityLivingBase entity) {
-		return Rarities.Mobs.get(entity.getCapability(EntityData.Data, null).getRarity());
-	}
-
-	private void AddMobcStats(int level) {
-
-		this.MyStats.get(Health.GUID).Flat += 10 * level;
-		this.MyStats.get(Armor.GUID).Flat += 10 * level;
-		this.MyStats.get(CriticalHit.GUID).Flat += 5;
-		this.MyStats.get(CriticalDamage.GUID).Flat += 20;
-
-		this.MyStats.get(WaterResist.GUID).Flat += 10 * level;
-		this.MyStats.get(FireResist.GUID).Flat += 10 * level;
-		this.MyStats.get(ThunderResist.GUID).Flat += 10 * level;
-		this.MyStats.get(NatureResist.GUID).Flat += 10 * level;
-
-		this.MyStats.get(WaterDamage.GUID).Flat += 10 * level;
-		this.MyStats.get(FireDamage.GUID).Flat += 10 * level;
-		this.MyStats.get(ThunderDamage.GUID).Flat += 10 * level;
-		this.MyStats.get(NatureDamage.GUID).Flat += 10 * level;
-
-		this.MyStats.get(PhysicalDamage.GUID).Flat += 0.4F * level;
-
-	}
-
-	private void SetMobStrengthMultiplier(MobRarity rarity) {
-
-		float stat_multi = rarity.StatMultiplier();
-		float hpmulti = rarity.HealthMultiplier();
-		float damagemulti = rarity.DamageMultiplier();
-
-		for (StatData stat : MyStats.values()) {
-			if (stat.GetStat() instanceof PhysicalDamage) {
-				stat.Flat *= damagemulti;
-			} else if (stat.GetStat() instanceof Health) {
-				stat.Flat *= hpmulti;
-			} else {
-				stat.Flat *= stat_multi;
-			}
-		}
-
-	}
 
 	public void Heal(EntityLivingBase entity, int healthrestored) {
 		entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored * OnHealDecrease.HEAL_DECREASE, entity));

@@ -85,11 +85,9 @@ public class EntityData {
 
 		String getName();
 
-		void setMobSavedOnce();
-
-		boolean isMobSavedOnce();
-
 		void HandleCloneEvent(UnitData old);
+
+		void recalculateStats(EntityLivingBase entity);
 
 	}
 
@@ -330,8 +328,15 @@ public class EntityData {
 
 		@Override
 		public void setUnit(Unit unit, EntityLivingBase entity) {
-			this.unit = unit;
 
+			if (entity instanceof EntityPlayer) {
+				this.unit = unit;
+			} else {
+				if (this.mobSavedOnce == false) {
+					this.mobSavedOnce = true;
+					this.unit = unit;
+				}
+			}
 		}
 
 		@Override
@@ -376,18 +381,15 @@ public class EntityData {
 		}
 
 		@Override
-		public void setMobSavedOnce() {
-			mobSavedOnce = true;
-		}
-
-		@Override
-		public boolean isMobSavedOnce() {
-			return mobSavedOnce;
-		}
-
-		@Override
 		public void HandleCloneEvent(UnitData old) {
-			this.nbt = old.getNBT();
+			this.setNBT(old.getNBT());
+		}
+
+		@Override
+		public void recalculateStats(EntityLivingBase entity) {
+			if (entity instanceof EntityPlayer) {
+				unit.RecalculateStats(entity, level);
+			}
 		}
 
 	}

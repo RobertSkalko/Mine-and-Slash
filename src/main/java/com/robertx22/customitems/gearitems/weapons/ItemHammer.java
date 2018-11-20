@@ -10,7 +10,7 @@ import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.entity.Entity;
@@ -55,7 +55,7 @@ public class ItemHammer extends BaseSwordItem implements IWeapon {
 	float radius = 1.5F;
 
 	@Override
-	public boolean Attack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, Unit targetUnit) {
+	public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
 
 		List<EntityLivingBase> entities = new ArrayList<EntityLivingBase>();
 
@@ -68,7 +68,7 @@ public class ItemHammer extends BaseSwordItem implements IWeapon {
 		}
 
 		for (EntityLivingBase entity : entities) {
-			int num = (int) unitsource.MyStats.get(PhysicalDamage.GUID).Value;
+			int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
 			DamageEffect dmg = new DamageEffect(source, entity, num, unitsource, targetUnit);
 			dmg.Type = EffectTypes.BASIC_ATTACK;
 			dmg.Activate();

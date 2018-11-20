@@ -13,8 +13,8 @@ import com.robertx22.generation.GearGen;
 import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
-import com.robertx22.saveclasses.Unit;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.LootBoxSizes;
 import com.robertx22.uncommon.enumclasses.LootTypes;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
@@ -155,11 +155,11 @@ public class ItemLootbox extends BaseItem {
 
 		if (!worldIn.isRemote) {
 			try {
-				Unit unit = UnitSaving.Load(playerIn);
+				UnitData data = Load.Unit(playerIn);
 
-				if (unit != null) {
+				if (data != null) {
 
-					int lvl = unit.GetExp(playerIn);
+					int lvl = data.getLevel();
 
 					GiveItems(playerIn, lvl);
 

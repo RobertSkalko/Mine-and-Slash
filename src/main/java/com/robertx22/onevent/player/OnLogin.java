@@ -16,6 +16,8 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.projectile.firebolt.SpellFireBolt;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -75,12 +77,13 @@ public class OnLogin {
 			if (player.hasCapability(EntityData.Data, null)) {
 
 				Unit unit = UnitSaving.Load(player);
+				UnitData data = Load.Unit(player);
 
 				if (unit == null) {
 					UnitSaving.Save(player, new Unit(player));
 					GiveStarterItems(player);
 				} else {
-					unit.ReloadStatsAndSave(player);
+					data.recalculateStats(player);
 				}
 
 				player.getCapability(EntityData.Data, null).syncToClient(player);

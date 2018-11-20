@@ -77,7 +77,7 @@ public class OnTickRegen {
 
 					if (player.isEntityAlive()) {
 						Unit unit = UnitSaving.Load(player);
-						unit.RecalculateStats(player);
+						unit.RecalculateStats(player, unit_capa.getLevel());
 
 						int manarestored = (int) unit.MyStats.get(new ManaRegen().Name()).Value;
 						unit.RestoreMana(manarestored);

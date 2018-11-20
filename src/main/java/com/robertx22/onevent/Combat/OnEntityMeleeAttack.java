@@ -1,9 +1,9 @@
 package com.robertx22.onevent.combat;
 
 import com.robertx22.customitems.gearitems.bases.IWeapon;
-import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,15 +48,15 @@ public class OnEntityMeleeAttack {
 				return;
 			}
 
-			Unit targetUnit = UnitSaving.Load(target);
-			Unit unit = UnitSaving.Load(source);
+			UnitData targetData = Load.Unit(target);
+			UnitData sourceData = Load.Unit(source);
 
-			if (unit == null || targetUnit == null) {
+			if (sourceData == null || targetData == null) {
 				return;
 			}
 
-			targetUnit.ReloadStatsAndSave(target);
-			unit.ReloadStatsAndSave(source);
+			targetData.recalculateStats(target);
+			sourceData.recalculateStats(source);
 
 			if (source instanceof EntityPlayer) {
 
@@ -68,24 +68,24 @@ public class OnEntityMeleeAttack {
 
 					int energyCost = iWep.GetEnergyCost();
 
-					if (unit.energyData().CurrentValue < energyCost) {
+					if (sourceData.getUnit().energyData().CurrentValue < energyCost) {
 						NoEnergyMessage(source);
 						event.setCanceled(true);
 
 					} else {
-						unit.SpendEnergy(energyCost);
-						UnitSaving.Save(source, unit);
+						sourceData.getUnit().SpendEnergy(energyCost);
+						// UnitSaving.Save(source, unit);
 						// weapon.damageItem(1, source); // items were infinite before this line, should
 						// be fixed now
 
-						iWep.Attack(source, target, unit, targetUnit);
+						iWep.Attack(source, target, sourceData, targetData);
 
 					}
 
 				}
 			} else { // if its a mob
 
-				unit.MobBasicAttack(source, target, unit, event.getAmount());
+				sourceData.getUnit().MobBasicAttack(source, target, sourceData.getUnit(), event.getAmount());
 
 				if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
 					EntityLivingBase defender = event.getEntityLiving();

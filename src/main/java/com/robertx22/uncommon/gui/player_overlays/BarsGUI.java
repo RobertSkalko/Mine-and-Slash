@@ -5,11 +5,9 @@ import com.robertx22.mmorpg.Player_GUIs;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -45,8 +43,12 @@ public class BarsGUI extends Gui {
 		ticks++;
 
 		if (ticks > 10) {
-			Unit newUnit = UnitSaving.Load((EntityPlayer) mc.player);
 			UnitData newData = mc.player.getCapability(EntityData.Data, null);
+
+			Unit newUnit = null;
+			if (newData != null) {
+				newUnit = newData.getUnit();
+			}
 
 			if (newUnit != null) {
 				unit = newUnit;

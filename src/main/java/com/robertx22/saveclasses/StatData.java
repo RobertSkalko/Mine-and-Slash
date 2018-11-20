@@ -26,16 +26,12 @@ public class StatData {
 	@Store
 	public String Name;
 
-	@Store
 	public int BaseFlat = 0;
 
-	@Store
 	public float Flat = 0;
 
-	@Store
 	public float Percent = 0;
 
-	@Store
 	public float Multi = 0;
 
 	@Store

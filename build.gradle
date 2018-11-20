@@ -94,3 +94,21 @@ repositories {
 dependencies {
     compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.8"
 }
+
+
+configurations {
+        // configuration that holds jars to embed inside the jar
+    embed
+	compile.extendsFrom(embed)
+	
+}
+dependencies {
+    // This dependency and its transitive deps will be embedded
+    embed "info.loenwind.autosave:AutoSave:1.12.2-1.0.8"
+	
+}
+
+jar {
+    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
