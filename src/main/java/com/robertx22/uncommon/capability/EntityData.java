@@ -281,7 +281,7 @@ public class EntityData {
 
 			if (CheckIfCanLevelUp() && CheckLevelCap()) {
 
-				this.setLevel(getLevel() + 1);
+				this.setLevel(level + 1);
 				setExp(0);
 
 				player.sendMessage(new TextComponentString(

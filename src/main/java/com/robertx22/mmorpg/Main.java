@@ -2,12 +2,14 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
+import com.libraries.prospector.traverse.RegisterBiomes;
 import com.libraries.rabbit.gui.RabbitGui;
 import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.dimensions.blocks.TilePortalBlock;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.network.DamageNumberPackage;
@@ -36,7 +38,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import prospector.traverse.RegisterBiomes;
 
 @Mod.EventBusSubscriber
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, dependencies = "required-after:baubles;required-after:patchouli ")
@@ -52,6 +53,8 @@ public class Main {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+
+		GameRegistry.registerTileEntity(TilePortalBlock.class, Ref.MODID + ":tile_portal_block");
 
 		proxy.preInit(event);
 

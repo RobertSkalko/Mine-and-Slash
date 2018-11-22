@@ -44,8 +44,9 @@ public class UnitPackage implements IMessage {
 
 				final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
-				player.getCapability(EntityData.Data, null).setNBT(message.nbt);
-
+				if (player.hasCapability(EntityData.Data, null)) {
+					player.getCapability(EntityData.Data, null).setNBT(message.nbt);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

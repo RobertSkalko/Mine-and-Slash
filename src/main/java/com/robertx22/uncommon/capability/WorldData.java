@@ -32,23 +32,15 @@ public class WorldData {
 
 		void setNBT(NBTTagCompound value);
 
-		void setAsMapWorld(boolean bool);
-
 		boolean isMapWorld();
 
 		void setForDelete(boolean bool);
 
 		boolean isSetForDelete();
 
-		void setID(int id);
-
-		int getID();
-
-		void setTier(int tier);
+		int getWorldID();
 
 		int getTier();
-
-		void setLevel(int lvl);
 
 		int getLevel();
 
@@ -56,18 +48,21 @@ public class WorldData {
 
 		String getOwner();
 
-		void init(EntityPlayer player, MapItemData map);
+		void init(EntityPlayer player, MapItemData map, int dimensionId);
 
 		void delete(EntityPlayer player);
 
-		void setMap(MapItemData map);
-
 		MapItemData getMap();
-
-		void setInit();
 
 		boolean isInit();
 
+		boolean didntSetBackPortal();
+
+		void setBackPortal();
+
+		String getSaveName();
+
+		void setSaveName(String name);
 	}
 
 	@Mod.EventBusSubscriber
@@ -122,12 +117,15 @@ public class WorldData {
 
 	static final String SET_FOR_DELETE = "setForDelete";
 	static final String IS_MAP_WORLD = "isMap";
-	static final String ID = "id";
 	static final String LEVEL = "level";
 	static final String OWNER = "owner";
 	static final String TIER = "tier";
 	static final String MAP_OBJECT = "mapObject";
 	static final String IS_INIT = "isInit";
+	static final String ORIGINAL_DIM = "original_dimension";
+	static final String MAP_DIM = "map_dimension";
+	static final String DIDNT_SET_BACK_PORTAL = "didntSetBackPortal";
+	static final String SAVE_NAME = "save_name";
 
 	public static class DefaultImpl implements IWorldData {
 		private NBTTagCompound nbt = new NBTTagCompound();
@@ -137,9 +135,12 @@ public class WorldData {
 		int level = 0;
 		boolean isMap = false;
 		boolean setForDelete = false;
-		int worldID;
 		String owner = "";
 		boolean isInit = false;
+		int originalDimension;
+		int mapDimension;
+		boolean didntSetBackPortal = true;
+		String saveName = "";
 
 		@Override
 		public NBTTagCompound getNBT() {
@@ -149,6 +150,10 @@ public class WorldData {
 			nbt.setBoolean(SET_FOR_DELETE, setForDelete);
 			nbt.setString(OWNER, owner);
 			nbt.setBoolean(IS_INIT, isInit);
+			nbt.setInteger(ORIGINAL_DIM, originalDimension);
+			nbt.setInteger(MAP_DIM, mapDimension);
+			nbt.setBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
+			nbt.setString(SAVE_NAME, saveName);
 
 			if (mapdata != null) {
 				NBTTagCompound mapnbt = new NBTTagCompound();
@@ -169,17 +174,16 @@ public class WorldData {
 			setForDelete = nbt.getBoolean(SET_FOR_DELETE);
 			owner = nbt.getString(OWNER);
 			isInit = nbt.getBoolean(IS_INIT);
+			this.originalDimension = nbt.getInteger(ORIGINAL_DIM);
+			this.mapDimension = nbt.getInteger(MAP_DIM);
+			this.didntSetBackPortal = nbt.getBoolean(DIDNT_SET_BACK_PORTAL);
+			this.saveName = nbt.getString(SAVE_NAME);
 
 			NBTTagCompound nbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
 			if (nbt != null) {
 				Reader.read(((NBTTagCompound) nbt).getCompoundTag(MAP_OBJECT), mapdata);
 			}
 
-		}
-
-		@Override
-		public void setAsMapWorld(boolean bool) {
-			isMap = bool;
 		}
 
 		@Override
@@ -199,19 +203,8 @@ public class WorldData {
 		}
 
 		@Override
-		public void setID(int id) {
-			nbt.setInteger(ID, id);
-
-		}
-
-		@Override
-		public int getID() {
-			return nbt.getInteger(ID);
-		}
-
-		@Override
-		public void setLevel(int lvl) {
-			this.level = lvl;
+		public int getWorldID() {
+			return this.mapDimension;
 		}
 
 		@Override
@@ -245,21 +238,19 @@ public class WorldData {
 		}
 
 		@Override
-		public void init(EntityPlayer player, MapItemData map) {
+		public void init(EntityPlayer player, MapItemData map, int dimensionId) {
 
 			UnitData data = player.getCapability(EntityData.Data, null);
 
 			this.setOwner(player);
-			this.setAsMapWorld(true);
-			this.setLevel(data.getLevel());
-			this.setTier(map.tier);
-			this.setMap(map);
+			this.isInit = true;
+			this.isMap = true;
+			this.level = data.getLevel();
+			this.tier = map.tier;
+			this.mapdata = map;
 
-		}
-
-		@Override
-		public void setTier(int tier) {
-			this.tier = tier;
+			this.originalDimension = player.dimension;
+			this.mapDimension = dimensionId;
 
 		}
 
@@ -269,23 +260,33 @@ public class WorldData {
 		}
 
 		@Override
-		public void setMap(MapItemData map) {
-			this.mapdata = map;
-		}
-
-		@Override
 		public MapItemData getMap() {
 			return mapdata;
 		}
 
 		@Override
-		public void setInit() {
-			this.isInit = true;
+		public boolean isInit() {
+			return isInit;
 		}
 
 		@Override
-		public boolean isInit() {
-			return isInit;
+		public boolean didntSetBackPortal() {
+			return this.didntSetBackPortal;
+		}
+
+		@Override
+		public void setBackPortal() {
+			this.didntSetBackPortal = false;
+		}
+
+		@Override
+		public String getSaveName() {
+			return saveName;
+		}
+
+		@Override
+		public void setSaveName(String name) {
+			this.saveName = name;
 		}
 
 	}

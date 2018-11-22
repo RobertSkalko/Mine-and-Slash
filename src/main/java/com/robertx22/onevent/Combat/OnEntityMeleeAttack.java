@@ -30,7 +30,6 @@ public class OnEntityMeleeAttack {
 		}
 
 		if (event.getSource() instanceof MyDamageSource) {
-
 			return;
 		}
 
@@ -74,9 +73,6 @@ public class OnEntityMeleeAttack {
 
 					} else {
 						sourceData.getUnit().SpendEnergy(energyCost);
-						// UnitSaving.Save(source, unit);
-						// weapon.damageItem(1, source); // items were infinite before this line, should
-						// be fixed now
 
 						iWep.Attack(source, target, sourceData, targetData);
 

@@ -1,7 +1,5 @@
 package com.robertx22.uncommon.commands;
 
-import com.robertx22.mmorpg.Main;
-import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
@@ -40,11 +38,10 @@ public class DeleteDimension extends CommandBase {
 
 			IWorldData data = world.getCapability(WorldData.Data, null);
 
-			if (data != null) {
+			if (data != null && data.isMapWorld()) {
 				data.setForDelete(true);
-				data.setID(id);
 
-				Main.Network.sendToAll(new WorldPackage(data.getNBT()));
+				// Main.Network.sendToAll(new WorldPackage(data.getNBT()));
 			}
 
 		}

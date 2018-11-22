@@ -42,8 +42,10 @@ public class BarsGUI extends Gui {
 
 		ticks++;
 
-		if (ticks > 10) {
+		if (ticks > 13) {
 			UnitData newData = mc.player.getCapability(EntityData.Data, null);
+
+			ticks = 0;
 
 			Unit newUnit = null;
 			if (newData != null) {
@@ -58,7 +60,7 @@ public class BarsGUI extends Gui {
 			}
 		}
 
-		if (unit == null || data == null) {
+		if (unit == null || data == null || mc == null || mc.player == null) {
 			return;
 		}
 
@@ -71,7 +73,7 @@ public class BarsGUI extends Gui {
 				bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 
 	}
