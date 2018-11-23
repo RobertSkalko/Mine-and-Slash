@@ -1,25 +1,33 @@
-package com.robertx22.dimensions;
+package com.robertx22.dimensions.world_providers;
+
+import com.robertx22.dimensions.IWP;
 
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.gen.ChunkGeneratorOverworld;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.DimensionManager;
 
-public class BaseWorldProvider extends WorldProvider {
+public abstract class BaseWorldProvider extends WorldProviderSurface implements IWP {
 
 	public BaseWorldProvider() {
 
 	}
 
-	private BiomeProvider biomeP = new BiomeProviderEP(world);
-
 	@Override
 	public DimensionType getDimensionType() {
-		return DimensionType.OVERWORLD;
+		DimensionType type = null;
+
+		try {
+			type = DimensionManager.getProviderType(this.getDimension());
+		} catch (IllegalArgumentException e) {
+		}
+
+		return type != null ? type : super.getDimensionType();
 	}
 
 	/**
+	 * 
 	 * Do not override this.
 	 * 
 	 * Returns true on clients (to allow rendering of sky etc, maybe even clouds).
@@ -38,12 +46,7 @@ public class BaseWorldProvider extends WorldProvider {
 
 	@Override
 	public String getSaveFolder() {
-		return "Map_World" + world.provider.getDimension();
-	}
-
-	@Override
-	public BiomeProvider getBiomeProvider() {
-		return biomeP;
+		return "MineAndSlash_MapWorld" + world.provider.getDimension();
 	}
 
 	@Override

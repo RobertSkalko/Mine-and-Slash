@@ -1,13 +1,13 @@
-package com.robertx22.dimensions;
+package com.robertx22.dimensions.biome_providers;
 
 import com.libraries.prospector.traverse.RegisterBiomes;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeProviderSingle;
 
-public class BiomeProviderEP extends BiomeProviderSingle {
+public class BiomeProviderCliffs extends BiomeProviderSingle {
 
-	public BiomeProviderEP(World world) {
+	public BiomeProviderCliffs(World world) {
 		super(RegisterBiomes.biomeCliffs);
 
 	}

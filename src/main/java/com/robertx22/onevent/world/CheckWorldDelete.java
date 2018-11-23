@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 
 import com.robertx22.dimensions.WorldFileUtils;
+import com.robertx22.uncommon.capability.MapDatas;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
@@ -18,12 +19,31 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class CheckWorldDelete {
 
+	static boolean registeredDims = false;
+
+	@SubscribeEvent
+	public static void onWorldLoad(WorldEvent.Load event) {
+
+		if (registeredDims == false) {
+			MapDatas data = (MapDatas) event.getWorld().getMapStorage().getOrLoadData(MapDatas.class,
+					MapDatas.LOCATION);
+
+			if (data == null) {
+				event.getWorld().getMapStorage().setData(MapDatas.LOCATION, new MapDatas(MapDatas.LOCATION));
+			}
+			if (data != null) {
+				data.registerDimensions();
+				registeredDims = true;
+			}
+		}
+
+	}
+
 	@SubscribeEvent
 	public static void onWorldUnload(WorldEvent.Unload event) {
 
-		if (false) {
-			deleteIfSet(event.getWorld());
-		}
+		deleteIfSet(event.getWorld());
+
 	}
 
 	private static void deleteIfSet(World world) {

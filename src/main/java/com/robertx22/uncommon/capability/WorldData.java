@@ -63,6 +63,7 @@ public class WorldData {
 		String getSaveName();
 
 		void setSaveName(String name);
+
 	}
 
 	@Mod.EventBusSubscriber
@@ -179,9 +180,9 @@ public class WorldData {
 			this.didntSetBackPortal = nbt.getBoolean(DIDNT_SET_BACK_PORTAL);
 			this.saveName = nbt.getString(SAVE_NAME);
 
-			NBTTagCompound nbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
-			if (nbt != null) {
-				Reader.read(((NBTTagCompound) nbt).getCompoundTag(MAP_OBJECT), mapdata);
+			NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
+			if (mapnbt != null) {
+				Reader.read(mapnbt, mapdata);
 			}
 
 		}

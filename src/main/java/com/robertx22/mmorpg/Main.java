@@ -10,6 +10,7 @@ import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.blocks.TilePortalBlock;
+import com.robertx22.dimensions.world_providers.CliffWP;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.network.DamageNumberPackage;
@@ -22,6 +23,7 @@ import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
 
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
@@ -51,8 +53,12 @@ public class Main {
 
 	public static final SimpleNetworkWrapper Network = NetworkRegistry.INSTANCE.newSimpleChannel(Ref.MODID);
 
+	public static DimensionType dimtype;
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+
+		dimtype = DimensionType.register(Ref.MODID, "map_world", 624, CliffWP.class, false);
 
 		GameRegistry.registerTileEntity(TilePortalBlock.class, Ref.MODID + ":tile_portal_block");
 
@@ -96,6 +102,7 @@ public class Main {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+
 		RabbitGui.proxy.init();
 		proxy.init(event);
 

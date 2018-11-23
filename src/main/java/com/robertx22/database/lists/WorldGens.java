@@ -2,13 +2,15 @@ package com.robertx22.database.lists;
 
 import java.util.HashMap;
 
-import com.robertx22.database.world_gens.BaseWorldGen;
+import com.robertx22.dimensions.world_providers.CliffWP;
+
+import net.minecraft.world.WorldProvider;
 
 public class WorldGens {
-	public static HashMap<String, BaseWorldGen> All = new HashMap<String, BaseWorldGen>() {
+	public static HashMap<String, WorldProvider> All = new HashMap<String, WorldProvider>() {
 		{
 			{
-				// put(new SpellFrostBolt().GUID(), new SpellFrostBolt());
+				put(new CliffWP().GUID(), new CliffWP());
 
 			}
 		}
