@@ -1,11 +1,16 @@
 package com.robertx22.generation;
 
 import com.robertx22.customitems.misc.ItemMap;
+import com.robertx22.database.lists.MapAffixes;
 import com.robertx22.database.lists.Rarities;
+import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.generation.blueprints.MapBlueprint;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import net.minecraft.item.ItemStack;
 
@@ -22,12 +27,32 @@ public class MapGen {
 
 		data.level = blueprint.GetLevel();
 
+		data = genAffixes(data, rarity);
+
 		stack.setStackDisplayName(rarity.Color() + rarity.Name() + " " + data.name);
 
 		Map.Save(stack, data);
 
 		return stack;
 
+	}
+
+	private static MapItemData genAffixes(MapItemData map, MapRarity rarity) {
+
+		int amount = RandomUtils.RandomRange(rarity.AffixAmount().Min, rarity.AffixAmount().Max);
+
+		for (int i = 0; i < amount; i++) {
+
+			BaseMapAffix affix = (BaseMapAffix) RandomUtils
+					.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All.values()));
+
+			int percent = RandomUtils.RandomRange(rarity.StatPercents().Min, rarity.StatPercents().Max);
+
+			map.affixes.add(new MapAffixData(affix, percent));
+
+		}
+
+		return map;
 	}
 
 }

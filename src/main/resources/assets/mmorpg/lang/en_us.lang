@@ -28,6 +28,7 @@ item.mmorpg:loot_bag.name=Gear Loot Bag
 item.mmorpg:currency_bag.name=Currency Bag
 item.mmorpg:newbie_gear_bag.name=Newbie Gear Bag
 item.mmorpg:tutorial_book.name=Mine and Slash Tutorial
+item.mmorpg:map_back_portal.name=Map Leave Pearl
 
 # REPAIR CAPACITORS
 item.mmorpg:capacitor0.name=Common Capacitor

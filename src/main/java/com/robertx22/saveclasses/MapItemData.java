@@ -22,16 +22,16 @@ import net.minecraftforge.common.DimensionManager;
 public class MapItemData {
 
 	@Store
-	public String name;
+	public String name = "Map";
 
 	@Store
-	public int level;
+	public int level = 1;
 
 	@Store
-	public int tier;
+	public int tier = 0;
 
 	@Store
-	public int rarity;
+	public int rarity = 0;
 
 	@Store
 	public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
@@ -62,8 +62,14 @@ public class MapItemData {
 
 	public List<MapAffixData> getAllAffixesThatAffect(AffectedEntities affected) {
 
-		return (List<MapAffixData>) affixes.stream().filter(x -> x.affectedEntities.equals(affected));
+		List<MapAffixData> list = new ArrayList<>();
 
+		for (MapAffixData data : affixes) {
+			if (data.affectedEntities.equals(affected)) {
+				list.add(data);
+			}
+		}
+		return list;
 	}
 
 	public int createDimension(EntityPlayer player) {

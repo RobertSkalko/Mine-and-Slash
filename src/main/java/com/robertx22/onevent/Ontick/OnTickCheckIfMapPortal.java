@@ -33,7 +33,7 @@ public class OnTickCheckIfMapPortal {
 			ticks.put(id, 1);
 		}
 
-		if (ticks.get(id) > 3000) {
+		if (ticks.get(id) > 500) {
 
 			ticks.put(id, 0);
 

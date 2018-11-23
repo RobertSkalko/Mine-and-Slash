@@ -89,6 +89,10 @@ public class EntityData {
 
 		void recalculateStats(EntityLivingBase entity);
 
+		void forceRecalculateStats(EntityLivingBase entity);
+
+		void forceSetUnit(Unit unit);
+
 	}
 
 	@Mod.EventBusSubscriber
@@ -390,6 +394,16 @@ public class EntityData {
 			if (entity instanceof EntityPlayer) {
 				unit.RecalculateStats(entity, level);
 			}
+		}
+
+		@Override
+		public void forceRecalculateStats(EntityLivingBase entity) {
+			unit.RecalculateStats(entity, level);
+		}
+
+		@Override
+		public void forceSetUnit(Unit unit) {
+			this.unit = unit;
 		}
 
 	}

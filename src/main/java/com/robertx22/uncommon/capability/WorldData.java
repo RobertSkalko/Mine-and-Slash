@@ -6,6 +6,7 @@ import java.util.List;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.saveclasses.MapWorldData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 import info.loenwind.autosave.Reader;
@@ -73,6 +74,10 @@ public class WorldData {
 
 		void teleportPlayerBack(EntityPlayer player);
 
+		MapWorldData getWorldData();
+
+		void setWorldData(MapWorldData data);
+
 	}
 
 	@Mod.EventBusSubscriber
@@ -137,12 +142,14 @@ public class WorldData {
 	static final String DIDNT_SET_BACK_PORTAL = "didntSetBackPortal";
 	static final String SAVE_NAME = "save_name";
 	static final String POS_OBJ = "POS_OBJ";
+	static final String MAP_WORLD_OBJ = "MAP_WORLD_OBJ";
 
 	public static class DefaultImpl implements IWorldData {
 		private NBTTagCompound nbt = new NBTTagCompound();
 
 		long pos;
 		MapItemData mapdata = new MapItemData();
+		MapWorldData mapworlddata = new MapWorldData();
 		int tier = 0;
 		int level = 0;
 		boolean isMap = false;
@@ -168,9 +175,14 @@ public class WorldData {
 			nbt.setString(SAVE_NAME, saveName);
 
 			if (mapdata != null) {
-				NBTTagCompound mapnbt = new NBTTagCompound();
-				Writer.write(mapnbt, mapdata);
-				nbt.setTag(MAP_OBJECT, mapnbt);
+				NBTTagCompound tag = new NBTTagCompound();
+				Writer.write(tag, mapdata);
+				nbt.setTag(MAP_OBJECT, tag);
+			}
+			if (mapworlddata != null) {
+				NBTTagCompound tag = new NBTTagCompound();
+				Writer.write(tag, mapworlddata);
+				nbt.setTag(MAP_WORLD_OBJ, tag);
 			}
 
 			nbt.setLong(POS_OBJ, pos);
@@ -196,6 +208,11 @@ public class WorldData {
 			NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
 			if (mapnbt != null) {
 				Reader.read(mapnbt, mapdata);
+			}
+
+			NBTTagCompound mapworldnbt = (NBTTagCompound) this.nbt.getTag(MAP_WORLD_OBJ);
+			if (mapworldnbt != null) {
+				Reader.read(mapworldnbt, mapworlddata);
 			}
 
 			this.pos = nbt.getLong(POS_OBJ);
@@ -259,7 +276,7 @@ public class WorldData {
 				this.setOwner(player);
 				this.isInit = true;
 				this.isMap = true;
-				this.level = data.getLevel();
+				this.level = map.level;
 				this.tier = map.tier;
 				this.mapdata = map;
 
@@ -343,6 +360,16 @@ public class WorldData {
 			}
 			player.changeDimension(this.originalDimension, new MyTeleporter(player, this.originalDimension));
 
+		}
+
+		@Override
+		public MapWorldData getWorldData() {
+			return this.mapworlddata;
+		}
+
+		@Override
+		public void setWorldData(MapWorldData data) {
+			this.mapworlddata = data;
 		}
 
 	}

@@ -5,6 +5,9 @@ import java.util.Random;
 import com.robertx22.database.lists.CreativeTabList;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.saveclasses.MapWorldData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
@@ -19,6 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -64,23 +68,49 @@ public class MyPortalBlock extends BlockPortal implements ITileEntityProvider {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-		if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+		try {
+			if (world.isRemote == false && entity instanceof EntityPlayer) {
+				if (!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss()) {
 
-			if (entityIn instanceof EntityPlayer) {
-				TileEntity en = worldIn.getTileEntity(pos);
+					TileEntity en = world.getTileEntity(pos);
 
-				if (en instanceof TilePortalBlock) {
-					TilePortalBlock portal = (TilePortalBlock) en;
+					if (en instanceof TilePortalBlock) {
+						TilePortalBlock portal = (TilePortalBlock) en;
 
-					// prevents infinite teleport loop xD
-					if (portal.id != entityIn.dimension) {
-						entityIn.sendMessage(new TextComponentString("dimension id is " + portal.id));
-						entityIn.changeDimension(portal.id, new MyTeleporter((EntityPlayer) entityIn, portal.id));
+						// prevents infinite teleport loop xD makes sure you dont teleport to the same
+						// dimension, forever
+						if (portal.id != entity.dimension) {
+
+							DimensionManager.initDimension(portal.id);
+
+							IWorldData data = Load.World(DimensionManager.getWorld(portal.id));
+
+							MapWorldData worlddata = data.getWorldData();
+
+							if (worlddata.joinedPlayerIDs.size() < 5
+									|| worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString())) {
+
+								if (worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString()) == false) {
+									worlddata.joinedPlayerIDs.add(entity.getUniqueID().toString());
+									data.setWorldData(worlddata);
+								}
+
+								entity.sendMessage(new TextComponentString(
+										"You are traveling to a Map World of dimension Id: " + portal.id));
+
+								entity.changeDimension(portal.id, new MyTeleporter((EntityPlayer) entity, portal.id));
+							}
+							entity.sendMessage(
+									new TextComponentString("Maximum Player Count for this Map has been reached."));
+
+						}
+
 					}
 				}
 			}
-
+		} catch (Exception e) {
+			// e.printStackTrace();
 		}
 	}
 

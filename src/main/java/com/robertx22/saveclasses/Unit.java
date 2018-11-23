@@ -12,6 +12,7 @@ import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.saveclasses.effects.StatusEffectData;
+import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -38,6 +39,9 @@ public class Unit {
 
 	@Store
 	public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
+
+	@Store
+	public HashMap<String, MapAffixData> mapAffixes = new HashMap<String, MapAffixData>();
 
 	@Store
 	public String GUID = UUID.randomUUID().toString();
@@ -158,7 +162,7 @@ public class Unit {
 		mob.uid = entity.getUniqueID();
 
 		MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
-		mob.RecalculateStats(entity, endata.getLevel());
+		// mob.RecalculateStats(entity, endata.getLevel());
 
 		return mob;
 
@@ -189,6 +193,7 @@ public class Unit {
 			PlayerStatUtils.AddAllGearStats(entity, this, level);
 			CommonStatUtils.AddStatusEffectStats(this, level);
 			PlayerStatUtils.AddAllSetStats(entity, this, level);
+			CommonStatUtils.AddMapAffixStats(this, level);
 			CalcStats(entity);
 			PlayerStatUtils.CalcTraits(this);
 			CalcStats(entity);
@@ -199,6 +204,7 @@ public class Unit {
 			MobStatUtils.AddMobcStats(this, data.getLevel());
 			MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
 			CommonStatUtils.AddStatusEffectStats(this, level);
+			CommonStatUtils.AddMapAffixStats(this, level);
 			CalcStats(entity);
 
 		}
