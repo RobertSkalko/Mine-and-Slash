@@ -19,6 +19,7 @@ import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.UnitPackage;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.MapDatas;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
@@ -131,6 +132,13 @@ public class Main {
 	@EventHandler
 	public void start(FMLServerStartingEvent event) {
 		proxy.serverStarting(event);
+
+		MapDatas data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class,
+				MapDatas.LOCATION);
+
+		if (data == null) {
+			event.getServer().worlds[0].getMapStorage().setData(MapDatas.LOCATION, new MapDatas(MapDatas.LOCATION));
+		}
 
 		CommandRegisters.Register(event);
 

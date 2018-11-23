@@ -38,7 +38,7 @@ public class OnTickRegen {
 	public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap();
 
 	@SubscribeEvent
-	public static void onTickRegen(TickEvent.WorldTickEvent event) {
+	public static void onTickRegen(TickEvent.PlayerTickEvent.WorldTickEvent event) {
 
 		if (event.phase == Phase.END && event.side.equals(Side.SERVER)) {
 

@@ -1,5 +1,9 @@
 package com.robertx22.uncommon.capability;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -11,6 +15,7 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -34,8 +39,6 @@ public class WorldData {
 
 		boolean isMapWorld();
 
-		void setForDelete(boolean bool);
-
 		boolean isSetForDelete();
 
 		int getWorldID();
@@ -50,7 +53,7 @@ public class WorldData {
 
 		void init(EntityPlayer player, MapItemData map, int dimensionId);
 
-		void delete(EntityPlayer player);
+		void delete(EntityPlayer player, World mapworld);
 
 		MapItemData getMap();
 
@@ -63,6 +66,12 @@ public class WorldData {
 		String getSaveName();
 
 		void setSaveName(String name);
+
+		BlockPos getMapDevicePos();
+
+		int getOriginalDimension();
+
+		void teleportPlayerBack(EntityPlayer player);
 
 	}
 
@@ -127,10 +136,12 @@ public class WorldData {
 	static final String MAP_DIM = "map_dimension";
 	static final String DIDNT_SET_BACK_PORTAL = "didntSetBackPortal";
 	static final String SAVE_NAME = "save_name";
+	static final String POS_OBJ = "POS_OBJ";
 
 	public static class DefaultImpl implements IWorldData {
 		private NBTTagCompound nbt = new NBTTagCompound();
 
+		long pos;
 		MapItemData mapdata = new MapItemData();
 		int tier = 0;
 		int level = 0;
@@ -162,6 +173,8 @@ public class WorldData {
 				nbt.setTag(MAP_OBJECT, mapnbt);
 			}
 
+			nbt.setLong(POS_OBJ, pos);
+
 			return nbt;
 
 		}
@@ -185,17 +198,13 @@ public class WorldData {
 				Reader.read(mapnbt, mapdata);
 			}
 
+			this.pos = nbt.getLong(POS_OBJ);
+
 		}
 
 		@Override
 		public boolean isMapWorld() {
 			return isMap;
-		}
-
-		@Override
-		public void setForDelete(boolean bool) {
-			this.setForDelete = bool;
-
 		}
 
 		@Override
@@ -225,12 +234,14 @@ public class WorldData {
 		}
 
 		@Override
-		public void delete(EntityPlayer player) {
+		public void delete(EntityPlayer player, World mapworld) {
 
 			if (this.isMapWorld()) {
 
 				if (player.getUniqueID().toString().equals(this.getOwner())) {
-					this.setForDelete(true);
+					this.setForDelete = true;
+
+					this.transferPlayersBack(mapworld);
 				} else {
 
 					player.sendMessage(new TextComponentString("You can't delete this world"));
@@ -241,17 +252,24 @@ public class WorldData {
 		@Override
 		public void init(EntityPlayer player, MapItemData map, int dimensionId) {
 
-			UnitData data = player.getCapability(EntityData.Data, null);
+			if (player.inventory.getFirstEmptyStack() > -1) {
 
-			this.setOwner(player);
-			this.isInit = true;
-			this.isMap = true;
-			this.level = data.getLevel();
-			this.tier = map.tier;
-			this.mapdata = map;
+				UnitData data = player.getCapability(EntityData.Data, null);
 
-			this.originalDimension = player.dimension;
-			this.mapDimension = dimensionId;
+				this.setOwner(player);
+				this.isInit = true;
+				this.isMap = true;
+				this.level = data.getLevel();
+				this.tier = map.tier;
+				this.mapdata = map;
+
+				this.originalDimension = player.dimension;
+				this.mapDimension = dimensionId;
+
+				this.pos = player.getPosition().toLong();
+			} else {
+				player.sendMessage(new TextComponentString("You need a free inventory slot to enter a map"));
+			}
 
 		}
 
@@ -288,6 +306,43 @@ public class WorldData {
 		@Override
 		public void setSaveName(String name) {
 			this.saveName = name;
+		}
+
+		@Override
+		public BlockPos getMapDevicePos() {
+			return BlockPos.fromLong(pos);
+		}
+
+		@Override
+		public int getOriginalDimension() {
+			return this.originalDimension;
+		}
+
+		private void transferPlayersBack(World world) {
+
+			if (world.playerEntities != null) {
+
+				List<EntityPlayer> players = new ArrayList<EntityPlayer>(world.playerEntities);
+
+				for (EntityPlayer player : players) {
+
+					teleportPlayerBack(player);
+				}
+			}
+
+		}
+
+		@Override
+		public void teleportPlayerBack(EntityPlayer player) {
+
+			if (getMapDevicePos() != null) {
+
+				int x = getMapDevicePos().getX() - 4;
+
+				player.setPosition(x, getMapDevicePos().getY(), getMapDevicePos().getZ());
+			}
+			player.changeDimension(this.originalDimension, new MyTeleporter(player, this.originalDimension));
+
 		}
 
 	}

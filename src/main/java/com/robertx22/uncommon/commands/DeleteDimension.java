@@ -31,20 +31,24 @@ public class DeleteDimension extends CommandBase {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-		int id = Integer.valueOf(args[0]);
-		EntityPlayer player = (EntityPlayer) sender;
+		try {
+			int id = Integer.valueOf(args[0]);
+			EntityPlayer player = (EntityPlayer) sender;
 
-		if (DimensionManager.isDimensionRegistered(id)) {
+			if (DimensionManager.isDimensionRegistered(id)) {
 
-			World world = DimensionManager.getWorld(id);
+				World world = DimensionManager.getWorld(id);
 
-			IWorldData data = world.getCapability(WorldData.Data, null);
+				IWorldData data = world.getCapability(WorldData.Data, null);
 
-			if (data != null && data.isMapWorld()) {
-				data.setForDelete(true);
-				Main.Network.sendToAll(new WorldPackage(data.getNBT()));
+				if (data != null && data.isMapWorld()) {
+					data.delete(player, world);
+					Main.Network.sendToAll(new WorldPackage(data.getNBT()));
+				}
+
 			}
-
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

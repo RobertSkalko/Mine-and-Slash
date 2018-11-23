@@ -49,6 +49,15 @@ public class MapDatas extends WorldSavedData {
 
 	}
 
+	public void delete(int id) {
+		this.list.dimDatas.remove(id);
+		this.setDirty(true);
+
+		if (!DimensionManager.isDimensionRegistered(id)) {
+			DimensionManager.unregisterDimension(id);
+		}
+	}
+
 	private void reg(DimensionData data) {
 		DimensionType type = data.getDimensionType();
 
