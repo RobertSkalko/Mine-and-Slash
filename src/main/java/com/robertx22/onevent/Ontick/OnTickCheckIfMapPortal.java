@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+// makes sure players always have a portal to get back from a map
 @Mod.EventBusSubscriber
 public class OnTickCheckIfMapPortal {
 

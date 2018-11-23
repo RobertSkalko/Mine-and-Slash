@@ -18,7 +18,7 @@ public class GiveGear extends CommandBase {
 
 	@Override
 	public String getUsage(ICommandSender sender) {
-		return "/givegear (lvl), (rarity 0-4), (type: ARMOR, WEAPON etc), (amount)";
+		return "/givegear (lvl), (rarity 0-4), (type: Sword, Necklace etc), (amount)";
 	}
 
 	@Override
