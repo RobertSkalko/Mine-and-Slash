@@ -1,5 +1,6 @@
 package com.robertx22.customitems.misc;
 
+import com.robertx22.database.lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -34,6 +35,7 @@ public class ItemMapBackPortal extends Item {
 		RegisterItemUtils.RegisterItemName(this, "map_back_portal");
 		this.setMaxStackSize(1);
 		this.setMaxDamage(0);
+		this.setCreativeTab(CreativeTabList.MyModTab);
 
 	}
 

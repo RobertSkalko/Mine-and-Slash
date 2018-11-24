@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.commands;
 
-import com.robertx22.dimensions.blocks.MyPortalBlock;
-import com.robertx22.dimensions.blocks.TilePortalBlock;
+import com.robertx22.dimensions.blocks.MapPortalBlock;
+import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.generation.MapGen;
 import com.robertx22.generation.blueprints.MapBlueprint;
 import com.robertx22.uncommon.datasaving.Map;
@@ -38,8 +38,8 @@ public class PortDimension extends CommandBase {
 		pos = pos.north(3);
 
 		// portla to new dim
-		player.world.setBlockState(pos, new MyPortalBlock().getDefaultState(), 2);
-		TilePortalBlock portal = new TilePortalBlock(id);
+		player.world.setBlockState(pos, new MapPortalBlock().getDefaultState(), 2);
+		TileMapPortal portal = new TileMapPortal(id);
 		player.world.setTileEntity(pos, portal);
 
 	}

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=z": { "model": "mmorpg:portal_ew" },
+        "axis=x": { "model": "mmorpg:portal_ns" }
+    }
+}

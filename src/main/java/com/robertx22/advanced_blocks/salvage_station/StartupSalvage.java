@@ -17,20 +17,20 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class StartupSalvage {
-	public static Block blockInventoryAdvanced; // this holds the unique instance of your block
-	public static ItemBlock itemBlockInventoryAdvanced; // this holds the unique instance of the ItemBlock corresponding
+	public static Block block; // this holds the unique instance of your block
+	public static ItemBlock itemblock; // this holds the unique instance of the ItemBlock corresponding
 														// to your block
 
 	public static void preInitCommon(FMLPreInitializationEvent event) {
-		blockInventoryAdvanced = new BlockInventorySalvage().setUnlocalizedName(Ref.MODID + ":salvage_station");
-		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":salvage_station");
-		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
+		block = new BlockInventorySalvage().setUnlocalizedName(Ref.MODID + ":salvage_station");
+		block.setRegistryName(Ref.MODID + ":salvage_station");
+		ForgeRegistries.BLOCKS.register(block);
 
 		// We also need to create and register an ItemBlock for this block otherwise it
 		// won't appear in the inventory
-		itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced);
-		itemBlockInventoryAdvanced.setRegistryName(blockInventoryAdvanced.getRegistryName());
-		ForgeRegistries.ITEMS.register(itemBlockInventoryAdvanced);
+		itemblock = new ItemBlock(block);
+		itemblock.setRegistryName(block.getRegistryName());
+		ForgeRegistries.ITEMS.register(itemblock);
 
 		// Each of your tile entities needs to be registered with a name that is unique
 		// to your mod.
@@ -50,7 +50,7 @@ public class StartupSalvage {
 		ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation(Ref.MODID + ":salvage_station",
 				"inventory");
 		final int DEFAULT_ITEM_SUBTYPE = 0;
-		ModelLoader.setCustomModelResourceLocation(itemBlockInventoryAdvanced, DEFAULT_ITEM_SUBTYPE,
+		ModelLoader.setCustomModelResourceLocation(itemblock, DEFAULT_ITEM_SUBTYPE,
 				itemModelResourceLocation);
 	}
 

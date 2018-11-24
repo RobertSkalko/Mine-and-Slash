@@ -8,8 +8,8 @@ import javax.annotation.Nullable;
 import com.robertx22.customitems.gearitems.bases.BaseRarityItem;
 import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.dimensions.blocks.MyPortalBlock;
-import com.robertx22.dimensions.blocks.TilePortalBlock;
+import com.robertx22.dimensions.blocks.MapPortalBlock;
+import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
@@ -106,12 +106,14 @@ public class ItemMap extends BaseRarityItem {
 					int id = data.createDimension(player);
 
 					BlockPos pos = player.getPosition();
-					pos = pos.north(3);
+
+					pos = pos.south(3);
 
 					// portla to new dim
-					player.world.setBlockState(pos, new MyPortalBlock().getDefaultState(), 2);
-					TilePortalBlock portal = new TilePortalBlock(id);
+					player.world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
+					TileMapPortal portal = new TileMapPortal(id);
 					player.world.setTileEntity(pos, portal);
+					// player.world.markChunkDirty(pos, portal);
 
 					return new ActionResult<ItemStack>(EnumActionResult.PASS, ItemStack.EMPTY);
 				}

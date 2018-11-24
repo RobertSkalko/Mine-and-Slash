@@ -1,5 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
+import com.robertx22.dimensions.blocks.RenderTileMapPortal;
+import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
@@ -28,6 +30,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -52,6 +55,8 @@ public class ClientProxy implements IProxy {
 		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
 		MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
 		MinecraftForge.EVENT_BUS.register(new WorldPackage.Handler());
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileMapPortal.class, new RenderTileMapPortal());
 
 	}
 
