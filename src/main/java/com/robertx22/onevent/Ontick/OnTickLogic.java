@@ -9,7 +9,6 @@ import com.robertx22.customitems.misc.ItemMapBackPortal;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.ManaRegen;
-import com.robertx22.mmorpg.Main;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -22,11 +21,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber
 public class OnTickLogic {
@@ -45,9 +44,10 @@ public class OnTickLogic {
 	@SubscribeEvent
 	public static void onTickLogic(TickEvent.ServerTickEvent event) {
 
-		if (event.phase == Phase.END && event.side.equals(Side.SERVER)) {
+		if (event.phase == Phase.END && event.side.isServer()) {
 
-			for (EntityPlayerMP player : Main.server.getPlayerList().getPlayers()) {
+			for (EntityPlayerMP player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList()
+					.getPlayers()) {
 
 				UnitData unit_capa = player.getCapability(EntityData.Data, null);
 

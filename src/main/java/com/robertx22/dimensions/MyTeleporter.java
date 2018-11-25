@@ -9,8 +9,8 @@ import net.minecraftforge.common.util.ITeleporter;
 public class MyTeleporter implements ITeleporter {
 	private final BlockPos targetPos;
 
-	public MyTeleporter(EntityPlayer player, int dimension) {
-		this.targetPos = player.getPosition();
+	public MyTeleporter(BlockPos pos, EntityPlayer player, int dimension) {
+		this.targetPos = pos;
 	}
 
 	@Override

@@ -44,12 +44,6 @@ public class MapPortalBlock extends BlockEndPortal {
 	}
 
 	@Override
-	@Deprecated // Forge: New State sensitive version.
-	public boolean hasTileEntity() {
-		return true;
-	}
-
-	@Override
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
 		try {
 			if (world.isRemote == false && entity instanceof EntityPlayer) {
@@ -64,7 +58,7 @@ public class MapPortalBlock extends BlockEndPortal {
 						// dimension, forever
 						if (portal.id != entity.dimension) {
 
-							DimensionManager.initDimension(portal.id);
+							// DimensionManager.initDimension(portal.id);
 
 							IWorldData data = Load.World(DimensionManager.getWorld(portal.id));
 
@@ -81,12 +75,14 @@ public class MapPortalBlock extends BlockEndPortal {
 								entity.sendMessage(new TextComponentString(
 										"You are traveling to a Map World of dimension Id: " + portal.id));
 
-								entity.changeDimension(portal.id, new MyTeleporter((EntityPlayer) entity, portal.id));
+								World w = DimensionManager.getWorld(portal.id);
 
-								/*
-								 * BlockPos p = DimensionManager.getWorld(portal.id).getSpawnPoint();
-								 * entity.setPosition(p.getX(), p.getY(), p.getZ());
-								 */
+								BlockPos pos1 = w.getSpawnPoint();
+								BlockPos pos2 = w.provider.getRandomizedSpawnPoint();
+
+								entity.changeDimension(portal.id,
+										new MyTeleporter(pos2, (EntityPlayer) entity, portal.id));
+
 							}
 
 							if (worlddata.joinedPlayerIDs.size() > 5) {

@@ -16,6 +16,7 @@ import com.robertx22.uncommon.enumclasses.AffectedEntities;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
 @Storable
@@ -78,11 +79,15 @@ public class MapItemData {
 
 		DimensionManager.registerDimension(id, Main.dimtype);
 		DimensionManager.initDimension(id);
+		World world = DimensionManager.getWorld(id);
 
 		DimensionData dimData = getDimData(id);
 
-		IWorldData data = DimensionManager.getWorld(id).getCapability(WorldData.Data, null);
+		IWorldData data = world.getCapability(WorldData.Data, null);
 		data.init(player, this, id);
+
+		// IWorldData data2 =
+		// DimensionManager.getWorld(id).getCapability(WorldData.Data, null);
 
 		MapDatas mapdatas = (MapDatas) DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
 				MapDatas.getLoc());

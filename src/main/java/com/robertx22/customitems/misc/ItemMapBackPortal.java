@@ -114,6 +114,10 @@ public class ItemMapBackPortal extends Item {
 
 						return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 
+					} else {
+						player.sendMessage(new TextComponentString(
+								"You are not inside a map world, if this is false, contact the developer please."));
+
 					}
 
 				}

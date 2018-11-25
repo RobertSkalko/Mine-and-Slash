@@ -1,18 +1,14 @@
 package com.robertx22.uncommon.commands;
 
-import com.robertx22.dimensions.blocks.MapPortalBlock;
-import com.robertx22.dimensions.blocks.TileMapPortal;
-import com.robertx22.generation.MapGen;
-import com.robertx22.generation.blueprints.MapBlueprint;
-import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.dimensions.MyTeleporter;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.DimensionManager;
 
 public class PortDimension extends CommandBase {
 
@@ -30,17 +26,13 @@ public class PortDimension extends CommandBase {
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
 		EntityPlayer player = (EntityPlayer) sender;
+		int id = Integer.valueOf(args[0]);
 
-		ItemStack testmap = MapGen.Create(new MapBlueprint(1));
-		int id = Map.Load(testmap).createDimension(player);
-
-		BlockPos pos = player.getPosition();
-		pos = pos.north(3);
-
-		// portla to new dim
-		player.world.setBlockState(pos, new MapPortalBlock().getDefaultState(), 2);
-		TileMapPortal portal = new TileMapPortal(id);
-		player.world.setTileEntity(pos, portal);
+		if (DimensionManager.isDimensionRegistered(id)) {
+			player.changeDimension(id, new MyTeleporter(DimensionManager.getWorld(id).getSpawnPoint(), player, id));
+		} else {
+			player.sendMessage(new TextComponentString("No such dimennsion"));
+		}
 
 	}
 

@@ -24,7 +24,6 @@ import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,8 +50,6 @@ public class Main {
 
 	@SidedProxy(clientSide = "com.robertx22.mmorpg.proxy.ClientProxy", serverSide = "com.robertx22.mmorpg.proxy.ServerProxy")
 	public static IProxy proxy;
-
-	public static MinecraftServer server;
 
 	@Instance(value = Ref.MODID)
 	public static Main instance;
@@ -136,7 +133,6 @@ public class Main {
 
 	@EventHandler
 	public void start(FMLServerStartingEvent event) {
-		this.server = event.getServer();
 
 		registerDims(event);
 

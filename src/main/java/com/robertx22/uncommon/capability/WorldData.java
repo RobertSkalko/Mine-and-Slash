@@ -7,7 +7,6 @@ import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.MapWorldData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
@@ -147,7 +146,7 @@ public class WorldData {
 	public static class DefaultImpl implements IWorldData {
 		private NBTTagCompound nbt = new NBTTagCompound();
 
-		long pos;
+		long mapDevicePos;
 		MapItemData mapdata = new MapItemData();
 		MapWorldData mapworlddata = new MapWorldData();
 		int tier = 0;
@@ -185,7 +184,7 @@ public class WorldData {
 				nbt.setTag(MAP_WORLD_OBJ, tag);
 			}
 
-			nbt.setLong(POS_OBJ, pos);
+			nbt.setLong(POS_OBJ, mapDevicePos);
 
 			return nbt;
 
@@ -215,7 +214,7 @@ public class WorldData {
 				Reader.read(mapworldnbt, mapworlddata);
 			}
 
-			this.pos = nbt.getLong(POS_OBJ);
+			this.mapDevicePos = nbt.getLong(POS_OBJ);
 
 		}
 
@@ -269,20 +268,21 @@ public class WorldData {
 		@Override
 		public void init(EntityPlayer player, MapItemData map, int dimensionId) {
 
-			UnitData data = player.getCapability(EntityData.Data, null);
+			if (this.isInit == false) {
+				// UnitData data = player.getCapability(EntityData.Data, null);
 
-			this.setOwner(player);
-			this.isInit = true;
-			this.isMap = true;
-			this.level = map.level;
-			this.tier = map.tier;
-			this.mapdata = map;
+				this.setOwner(player);
+				this.isMap = true;
+				this.level = map.level;
+				this.tier = map.tier;
+				this.mapdata = map;
+				this.originalDimension = player.dimension;
+				this.mapDimension = dimensionId;
+				this.mapDevicePos = player.getPosition().toLong();
 
-			this.originalDimension = player.dimension;
-			this.mapDimension = dimensionId;
+				this.isInit = true;
 
-			this.pos = player.getPosition().toLong();
-
+			}
 		}
 
 		@Override
@@ -322,7 +322,7 @@ public class WorldData {
 
 		@Override
 		public BlockPos getMapDevicePos() {
-			return BlockPos.fromLong(pos);
+			return BlockPos.fromLong(mapDevicePos).south(3);
 		}
 
 		@Override
@@ -353,7 +353,8 @@ public class WorldData {
 
 				player.setPosition(x, getMapDevicePos().getY(), getMapDevicePos().getZ());
 			}
-			player.changeDimension(this.originalDimension, new MyTeleporter(player, this.originalDimension));
+			player.changeDimension(this.originalDimension,
+					new MyTeleporter(this.getMapDevicePos(), player, this.originalDimension));
 
 		}
 
