@@ -54,44 +54,49 @@ public class MapPortalBlock extends BlockEndPortal {
 					if (en instanceof TileMapPortal) {
 						TileMapPortal portal = (TileMapPortal) en;
 
-						// prevents infinite teleport loop xD makes sure you dont teleport to the same
-						// dimension, forever
-						if (portal.id != entity.dimension) {
+						portal.ontick();
 
-							// DimensionManager.initDimension(portal.id);
+						if (portal.readyToTeleport()) {
 
-							IWorldData data = Load.World(DimensionManager.getWorld(portal.id));
+							// prevents infinite teleport loop xD makes sure you dont teleport to the same
+							// dimension, forever
+							if (portal.id != entity.dimension) {
 
-							MapWorldData worlddata = data.getWorldData();
+								// DimensionManager.initDimension(portal.id);
 
-							if (worlddata.joinedPlayerIDs.size() < 5
-									|| worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString())) {
+								IWorldData data = Load.World(DimensionManager.getWorld(portal.id));
 
-								if (worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString()) == false) {
-									worlddata.joinedPlayerIDs.add(entity.getUniqueID().toString());
-									data.setWorldData(worlddata);
+								MapWorldData worlddata = data.getWorldData();
+
+								if (worlddata.joinedPlayerIDs.size() < 5
+										|| worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString())) {
+
+									if (worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString()) == false) {
+										worlddata.joinedPlayerIDs.add(entity.getUniqueID().toString());
+										data.setWorldData(worlddata);
+									}
+
+									entity.sendMessage(new TextComponentString(
+											"You are traveling to a Map World of dimension Id: " + portal.id));
+
+									World w = DimensionManager.getWorld(portal.id);
+
+									BlockPos pos1 = w.getSpawnPoint();
+									BlockPos pos2 = w.provider.getRandomizedSpawnPoint();
+
+									entity.changeDimension(portal.id,
+											new MyTeleporter(pos2, (EntityPlayer) entity, portal.id));
+
 								}
 
-								entity.sendMessage(new TextComponentString(
-										"You are traveling to a Map World of dimension Id: " + portal.id));
+								if (worlddata.joinedPlayerIDs.size() > 5) {
+									entity.sendMessage(new TextComponentString(
+											"Maximum Player Count for this Map has been reached."));
 
-								World w = DimensionManager.getWorld(portal.id);
-
-								BlockPos pos1 = w.getSpawnPoint();
-								BlockPos pos2 = w.provider.getRandomizedSpawnPoint();
-
-								entity.changeDimension(portal.id,
-										new MyTeleporter(pos2, (EntityPlayer) entity, portal.id));
-
+								}
 							}
 
-							if (worlddata.joinedPlayerIDs.size() > 5) {
-								entity.sendMessage(
-										new TextComponentString("Maximum Player Count for this Map has been reached."));
-
-							}
 						}
-
 					}
 				}
 			}

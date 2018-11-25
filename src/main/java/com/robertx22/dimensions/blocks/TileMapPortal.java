@@ -18,6 +18,22 @@ public class TileMapPortal extends TileEntity {
 
 	}
 
+	int ticks = 0;
+
+	public void ontick() {
+		ticks++;
+	}
+
+	public boolean readyToTeleport() {
+
+		if (ticks > 80) {
+			ticks = 0;
+			return true;
+		}
+		return false;
+
+	}
+
 	@SideOnly(Side.CLIENT)
 	public boolean shouldRenderFace(EnumFacing face) {
 		return face == EnumFacing.UP;
@@ -28,6 +44,7 @@ public class TileMapPortal extends TileEntity {
 		super.readFromNBT(nbt);
 
 		id = nbt.getInteger("dim_Id");
+		ticks = nbt.getInteger("ticks");
 	}
 
 	@Override
@@ -35,6 +52,7 @@ public class TileMapPortal extends TileEntity {
 		super.writeToNBT(nbt); // The super call is required to save and load the tile loc
 
 		nbt.setInteger("dim_Id", id);
+		nbt.setInteger("ticks", ticks);
 
 		return nbt;
 	}
