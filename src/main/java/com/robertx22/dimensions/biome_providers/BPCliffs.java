@@ -5,10 +5,10 @@ import com.libraries.prospector.traverse.RegisterBiomes;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeProviderSingle;
 
-public class BiomeProviderCliffs extends BiomeProviderSingle {
+public class BPCliffs extends BiomeProviderSingle {
 
-	public BiomeProviderCliffs(World world) {
-		super(RegisterBiomes.biomeCliffs);
+	public BPCliffs(World world) {
+		super(RegisterBiomes.CLIFFS);
 
 	}
 

@@ -1,10 +1,5 @@
-package com.robertx22.dimensions.world_providers;
+package com.robertx22.dimensions;
 
-import javax.annotation.Nullable;
-
-import com.robertx22.dimensions.IWP;
-
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.gen.ChunkGeneratorOverworld;
@@ -13,11 +8,14 @@ import net.minecraftforge.common.DimensionManager;
 
 public abstract class BaseWorldProvider extends WorldProviderSurface implements IWP {
 
-	public BaseWorldProvider() {
+	public BaseWorldProvider(boolean nothing) {
 
 	}
 
-	BlockPos spawn = null;
+	@Override
+	public int Weight() {
+		return this.UncommonWeight;
+	}
 
 	@Override
 	public DimensionType getDimensionType() {
@@ -47,32 +45,6 @@ public abstract class BaseWorldProvider extends WorldProviderSurface implements 
 	@Override
 	public boolean canRespawnHere() {
 		return false;
-	}
-
-	@Override
-	@Nullable
-	public BlockPos getSpawnCoordinate() {
-		return findSpawn();
-	}
-
-	private BlockPos findSpawn() {
-
-		if (world == null) {
-			return null;
-		}
-
-		BlockPos spawn = world.getTopSolidOrLiquidBlock(new BlockPos(0, 0, 0));
-
-		world.setSpawnPoint(spawn);
-
-		return spawn;
-
-	}
-
-	@Override
-	public BlockPos getSpawnPoint() {
-		return findSpawn();
-
 	}
 
 	@Override

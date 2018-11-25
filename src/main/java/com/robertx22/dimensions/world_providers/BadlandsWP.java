@@ -1,17 +1,17 @@
 package com.robertx22.dimensions.world_providers;
 
 import com.robertx22.dimensions.BaseWorldProvider;
-import com.robertx22.dimensions.biome_providers.BPCliffs;
+import com.robertx22.dimensions.biome_providers.BPBadlands;
 
 import net.minecraft.world.biome.BiomeProvider;
 
-public class CliffWP extends BaseWorldProvider {
+public class BadlandsWP extends BaseWorldProvider {
 
-	private BiomeProvider biomeP = new BPCliffs(world);
-
-	public CliffWP() {
+	public BadlandsWP() {
 		super(true);
 	}
+
+	private BiomeProvider biomeP = new BPBadlands(world);
 
 	@Override
 	public BiomeProvider getBiomeProvider() {
@@ -20,7 +20,7 @@ public class CliffWP extends BaseWorldProvider {
 
 	@Override
 	public String GUID() {
-		return "CliffWP0";
+		return "BadlandsWP0";
 	}
 
 }

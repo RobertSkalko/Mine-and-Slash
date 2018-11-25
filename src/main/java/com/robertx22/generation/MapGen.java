@@ -3,8 +3,10 @@ package com.robertx22.generation;
 import com.robertx22.customitems.misc.ItemMap;
 import com.robertx22.database.lists.MapAffixes;
 import com.robertx22.database.lists.Rarities;
+import com.robertx22.database.lists.WorldProviders;
 import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.rarities.MapRarity;
+import com.robertx22.dimensions.IWP;
 import com.robertx22.generation.blueprints.MapBlueprint;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
@@ -23,7 +25,9 @@ public class MapGen {
 
 		data.rarity = rarity.Rank();
 
-		data.worldGeneratorName = "";
+		IWP iwp = ((IWP) RandomUtils.WeightedRandom(ListUtils.CollectionToList(WorldProviders.All.values())));
+
+		data.worldGeneratorName = iwp.GUID();
 
 		data.level = blueprint.GetLevel();
 

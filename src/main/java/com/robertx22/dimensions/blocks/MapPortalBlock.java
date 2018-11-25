@@ -17,8 +17,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -62,7 +64,8 @@ public class MapPortalBlock extends BlockEndPortal {
 							// dimension, forever
 							if (portal.id != entity.dimension) {
 
-								// DimensionManager.initDimension(portal.id);
+								WorldServer worldserver = FMLCommonHandler.instance().getMinecraftServerInstance()
+										.getWorld(portal.id); // loads the world apparently
 
 								IWorldData data = Load.World(DimensionManager.getWorld(portal.id));
 
@@ -101,7 +104,7 @@ public class MapPortalBlock extends BlockEndPortal {
 				}
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 

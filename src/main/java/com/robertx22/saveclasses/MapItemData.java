@@ -3,9 +3,7 @@ package com.robertx22.saveclasses;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.dimensions.IWP;
-import com.robertx22.dimensions.world_providers.CliffWP;
-import com.robertx22.mmorpg.Main;
+import com.robertx22.database.lists.WorldProviders;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.MapDatas;
@@ -77,17 +75,14 @@ public class MapItemData {
 
 		int id = findFreeDimensionId();
 
-		DimensionManager.registerDimension(id, Main.dimtype);
+		DimensionData dimData = getDimData(id, this.worldGeneratorName);
+
+		DimensionManager.registerDimension(id, dimData.getDimensionType());
 		DimensionManager.initDimension(id);
 		World world = DimensionManager.getWorld(id);
 
-		DimensionData dimData = getDimData(id);
-
 		IWorldData data = world.getCapability(WorldData.Data, null);
 		data.init(player, this, id);
-
-		// IWorldData data2 =
-		// DimensionManager.getWorld(id).getCapability(WorldData.Data, null);
 
 		MapDatas mapdatas = (MapDatas) DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
 				MapDatas.getLoc());
@@ -98,9 +93,9 @@ public class MapItemData {
 
 	}
 
-	private DimensionData getDimData(int id) {
+	private DimensionData getDimData(int id, String worldgen) {
 
-		DimensionData data = new DimensionData(Ref.MODID + "_dim", "_map", id, (IWP) new CliffWP());
+		DimensionData data = new DimensionData(Ref.MODID + "_dim", "_map", id, WorldProviders.All.get(worldgen));
 
 		return data;
 	}

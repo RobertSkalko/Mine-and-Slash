@@ -1,11 +1,12 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.database.lists.WorldGens;
+import com.robertx22.database.lists.WorldProviders;
 import com.robertx22.dimensions.IWP;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.WorldProvider;
 
 @Storable
 public class DimensionData {
@@ -34,7 +35,8 @@ public class DimensionData {
 	public DimensionType getDimensionType() {
 
 		try {
-			return DimensionType.register(Name, suffix, ID, WorldGens.All.get(theclass).getClass(), false);
+			return DimensionType.register(Name, suffix, ID,
+					(Class<? extends WorldProvider>) WorldProviders.All.get(theclass).getClass(), false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

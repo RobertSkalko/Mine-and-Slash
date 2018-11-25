@@ -2,7 +2,6 @@ package com.robertx22.mmorpg;
 
 import java.util.Arrays;
 
-import com.libraries.prospector.traverse.RegisterBiomes;
 import com.libraries.rabbit.gui.RabbitGui;
 import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
@@ -10,7 +9,6 @@ import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.blocks.TileMapPortal;
-import com.robertx22.dimensions.world_providers.CliffWP;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.network.DamageNumberPackage;
@@ -25,7 +23,6 @@ import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
@@ -56,12 +53,8 @@ public class Main {
 
 	public static final SimpleNetworkWrapper Network = NetworkRegistry.INSTANCE.newSimpleChannel(Ref.MODID);
 
-	public static DimensionType dimtype;
-
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-
-		dimtype = DimensionType.register(Ref.MODID, "map_world", 624, CliffWP.class, false);
 
 		GameRegistry.registerTileEntity(TileMapPortal.class, new ResourceLocation(Ref.MODID, "map_portal_tile"));
 
@@ -111,7 +104,7 @@ public class Main {
 
 		TestManager.RunAllTests();
 
-		RegisterBiomes.initBiomeManagerAndDictionary();
+		// RegisterBiomes.initBiomeManagerAndDictionary();
 
 		int chance = 6;
 		int amount = 7;
