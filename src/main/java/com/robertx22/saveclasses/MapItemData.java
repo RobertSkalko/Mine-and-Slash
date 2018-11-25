@@ -85,7 +85,7 @@ public class MapItemData {
 		data.init(player, this, id);
 
 		MapDatas mapdatas = (MapDatas) DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
-				MapDatas.LOCATION);
+				MapDatas.getLoc());
 
 		mapdatas.register(dimData);
 

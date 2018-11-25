@@ -5,18 +5,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import com.robertx22.customitems.misc.ItemMapBackPortal;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.ManaRegen;
+import com.robertx22.mmorpg.Main;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -25,12 +29,13 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber
-public class OnTickRegen {
+public class OnTickLogic {
 
 	static final int TicksToUpdatePlayer = 15;
 	static final int TicksToUpdateMobList = 120;
 	static final int TicksToUpdateAllMobs = 200;
 	static final int TicksToRegen = 100;
+	static final int TicksToGiveMapPortal = 200;
 
 	static int radius = 50;
 
@@ -38,13 +43,11 @@ public class OnTickRegen {
 	public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap();
 
 	@SubscribeEvent
-	public static void onTickRegen(TickEvent.PlayerTickEvent.WorldTickEvent event) {
+	public static void onTickLogic(TickEvent.ServerTickEvent event) {
 
 		if (event.phase == Phase.END && event.side.equals(Side.SERVER)) {
 
-			for (EntityPlayer pl : event.world.playerEntities) {
-
-				EntityPlayerMP player = (EntityPlayerMP) pl;
+			for (EntityPlayerMP player : Main.server.getPlayerList().getPlayers()) {
 
 				UnitData unit_capa = player.getCapability(EntityData.Data, null);
 
@@ -56,10 +59,7 @@ public class OnTickRegen {
 					data = new PlayerTickData();
 				}
 
-				data.regenTicks++;
-				data.mobsSyncTick++;
-				data.playerSyncTick++;
-				data.mobsListSyncTick++;
+				data.increment();
 
 				UpdateMobs(player, data);
 
@@ -90,6 +90,20 @@ public class OnTickRegen {
 
 						unit_capa.setUnit(unit, player);
 						data.regenTicks = 0;
+					}
+				}
+
+				if (data.mapPortalTicks > TicksToGiveMapPortal) {
+					data.mapPortalTicks = 0;
+
+					IWorldData mapdata = Load.World(player.world);
+
+					if (mapdata.isMapWorld()) {
+						ItemStack portalitem = new ItemStack(ItemMapBackPortal.ITEM);
+						if (!player.inventory.hasItemStack(portalitem)) {
+							player.inventory.addItemStackToInventory(portalitem);
+
+						}
 					}
 				}
 
@@ -151,6 +165,15 @@ public class OnTickRegen {
 		public int playerSyncTick = 0;
 		public int mobsListSyncTick = 0;
 		public int mobsSyncTick = 0;
+		public int mapPortalTicks = 0;
+
+		public void increment() {
+			regenTicks++;
+			mobsSyncTick++;
+			playerSyncTick++;
+			mobsListSyncTick++;
+			mapPortalTicks++;
+		}
 
 	}
 

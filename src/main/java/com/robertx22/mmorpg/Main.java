@@ -24,6 +24,7 @@ import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,6 +39,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -49,6 +51,8 @@ public class Main {
 
 	@SidedProxy(clientSide = "com.robertx22.mmorpg.proxy.ClientProxy", serverSide = "com.robertx22.mmorpg.proxy.ServerProxy")
 	public static IProxy proxy;
+
+	public static MinecraftServer server;
 
 	@Instance(value = Ref.MODID)
 	public static Main instance;
@@ -132,17 +136,32 @@ public class Main {
 
 	@EventHandler
 	public void start(FMLServerStartingEvent event) {
+		this.server = event.getServer();
+
+		registerDims(event);
+
 		proxy.serverStarting(event);
-
-		MapDatas data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class,
-				MapDatas.LOCATION);
-
-		if (data == null) {
-			event.getServer().worlds[0].getMapStorage().setData(MapDatas.LOCATION, new MapDatas(MapDatas.LOCATION));
-		}
 
 		CommandRegisters.Register(event);
 
+	}
+
+	@EventHandler
+	public void stop(FMLServerStoppedEvent event) {
+		MapDatas.unregisterDimensions(); // every save game has it's own dimensions, otherwise when you switch saves you
+											// also get dimensions from your last save, which isn't nice
+	}
+
+	private void registerDims(FMLServerStartingEvent event) {
+
+		String name = MapDatas.getLoc();
+		MapDatas data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class, name);
+		if (data == null) {
+			event.getServer().worlds[0].getMapStorage().setData(name, new MapDatas(name));
+			data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class, name);
+		}
+
+		data.registerDimensions();
 	}
 
 	@EventHandler

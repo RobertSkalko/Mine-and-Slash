@@ -30,7 +30,7 @@ public class CheckWorldDelete {
 
 			if (data != null && data.isSetForDelete()) {
 
-				MapDatas mapdata = (MapDatas) world.getMapStorage().getOrLoadData(MapDatas.class, MapDatas.LOCATION);
+				MapDatas mapdata = (MapDatas) world.getMapStorage().getOrLoadData(MapDatas.class, MapDatas.getLoc());
 
 				if (mapdata != null) {
 

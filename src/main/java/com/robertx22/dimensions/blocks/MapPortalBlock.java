@@ -82,10 +82,17 @@ public class MapPortalBlock extends BlockEndPortal {
 										"You are traveling to a Map World of dimension Id: " + portal.id));
 
 								entity.changeDimension(portal.id, new MyTeleporter((EntityPlayer) entity, portal.id));
+
+								/*
+								 * BlockPos p = DimensionManager.getWorld(portal.id).getSpawnPoint();
+								 * entity.setPosition(p.getX(), p.getY(), p.getZ());
+								 */
 							}
+
 							if (worlddata.joinedPlayerIDs.size() > 5) {
 								entity.sendMessage(
 										new TextComponentString("Maximum Player Count for this Map has been reached."));
+
 							}
 						}
 

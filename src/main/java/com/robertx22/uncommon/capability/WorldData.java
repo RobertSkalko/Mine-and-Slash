@@ -269,24 +269,19 @@ public class WorldData {
 		@Override
 		public void init(EntityPlayer player, MapItemData map, int dimensionId) {
 
-			if (player.inventory.getFirstEmptyStack() > -1) {
+			UnitData data = player.getCapability(EntityData.Data, null);
 
-				UnitData data = player.getCapability(EntityData.Data, null);
+			this.setOwner(player);
+			this.isInit = true;
+			this.isMap = true;
+			this.level = map.level;
+			this.tier = map.tier;
+			this.mapdata = map;
 
-				this.setOwner(player);
-				this.isInit = true;
-				this.isMap = true;
-				this.level = map.level;
-				this.tier = map.tier;
-				this.mapdata = map;
+			this.originalDimension = player.dimension;
+			this.mapDimension = dimensionId;
 
-				this.originalDimension = player.dimension;
-				this.mapDimension = dimensionId;
-
-				this.pos = player.getPosition().toLong();
-			} else {
-				player.sendMessage(new TextComponentString("You need a free inventory slot to enter a map"));
-			}
+			this.pos = player.getPosition().toLong();
 
 		}
 
