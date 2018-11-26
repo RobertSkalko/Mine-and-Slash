@@ -10,6 +10,7 @@ import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -18,15 +19,13 @@ import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class LootDropsGenerator {
+public class LootUtils {
 
-	private static float GearChance = 7.5F;
-	private static float CurrencyChance = 1.8F;
-	private static float SpellChance = 2.5F;
+	public static float GearChance = 7.5F;
+	public static float CurrencyChance = 1.8F;
+	public static float SpellChance = 2.5F;
 
-	public static void Generate(UnitData mob, UnitData player, EntityLivingBase mobEntity) {
-
-		float playerFindItemsChance = 0;
+	public static void Generate(UnitData mob, UnitData player, EntityLivingBase mobEntity, IWorldData world) {
 
 		if (player != null) {
 
@@ -37,11 +36,9 @@ public class LootDropsGenerator {
 
 		List<ItemStack> items = new ArrayList<ItemStack>();
 
-		// MobRarity rarity = Rarities.Mobs.get(mob.rarity);
-
-		float FinalGearChance = ApplyMobLootMulti(GearChance, mob, mobEntity, playerFindItemsChance);
-		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob, mobEntity, playerFindItemsChance);
-		float FinalSpellChance = ApplyMobLootMulti(SpellChance, mob, mobEntity, playerFindItemsChance);
+		float FinalGearChance = ApplyMobLootMulti(GearChance, mob, mobEntity, world);
+		float FinalCurrencyChance = ApplyMobLootMulti(CurrencyChance, mob, mobEntity, world);
+		float FinalSpellChance = ApplyMobLootMulti(SpellChance, mob, mobEntity, world);
 
 		FinalGearChance = ApplyLevelDistancePunishment(mob, player, FinalGearChance);
 		FinalCurrencyChance = ApplyLevelDistancePunishment(mob, player, FinalCurrencyChance);
@@ -78,11 +75,15 @@ public class LootDropsGenerator {
 	static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 4;
 
 	// prevents lvl 50 players farming lvl 1 mobs
-	private static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
+	public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
 
 		if (player.getLevel() > mob.getLevel() + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
 
 			float levelDiff = mob.getLevel() / player.getLevel();
+
+			if (levelDiff < 0.2F) {
+				levelDiff = 0.2F;
+			}
 
 			return chance * levelDiff;
 
@@ -92,7 +93,7 @@ public class LootDropsGenerator {
 
 	}
 
-	private static ItemStack RandomDamagedGear(ItemStack stack) {
+	public static ItemStack RandomDamagedGear(ItemStack stack) {
 		if (stack.getMaxDamage() > 0) {
 			float damage = (float) RandomUtils.RandomRange(75, 95) / (float) 100;
 			stack.setItemDamage((int) (damage * stack.getMaxDamage()));
@@ -101,19 +102,27 @@ public class LootDropsGenerator {
 		return stack;
 	}
 
-	private static float ApplyMobLootMulti(float chance, UnitData mob, EntityLivingBase entity, float playerFind) {
+	public static float ApplyMobLootMulti(float chance, UnitData mob, EntityLivingBase entity, IWorldData world) {
 
-		float finalChance = chance * Rarities.Mobs.get(mob.getRarity()).LootMultiplier()
-				* (1 + entity.getMaxHealth() / 15) * (1 + playerFind);
+		float first = chance;
 
+		float after_rarity = first * Rarities.Mobs.get(mob.getRarity()).LootMultiplier();
+
+		float after_mob_health = after_rarity * (1 + entity.getMaxHealth() / 20);
+
+		float after_world = after_mob_health;
+
+		if (world.isMapWorld()) {
+			after_world = after_mob_health * 1 + world.getMap().getBonusLootAmount() / 100;
+		}
 		if (entity instanceof EntitySlime) {
-			finalChance /= 15;
+			after_world /= 15;
 		}
 
-		return finalChance;
+		return after_world;
 	}
 
-	private static int WhileRoll(float chance) {
+	public static int WhileRoll(float chance) {
 		int amount = 0;
 
 		while (chance > 0) {

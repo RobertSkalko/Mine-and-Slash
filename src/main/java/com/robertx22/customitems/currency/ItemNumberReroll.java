@@ -74,4 +74,9 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 
 		return gear != null;
 	}
+
+	@Override
+	public int Tier() {
+		return 0;
+	}
 }

@@ -74,4 +74,9 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
 
 		return false;
 	}
+
+	@Override
+	public int Tier() {
+		return 0;
+	}
 }

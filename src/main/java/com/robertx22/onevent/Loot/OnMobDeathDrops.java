@@ -2,11 +2,14 @@ package com.robertx22.onevent.loot;
 
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.loot.LootDropsGenerator;
+import com.robertx22.loot.LootUtils;
+import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -45,7 +48,11 @@ public class OnMobDeathDrops {
 
 					if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 
-						LootDropsGenerator.Generate(victim, killer, entity);
+						IWorldData world = Load.World(entity.world);
+
+						LootUtils.Generate(victim, killer, entity, world);
+						MasterLootGen.genAndDrop(victim, killer, world, entity);
+
 						int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);
 
 						NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(entity.dimension,

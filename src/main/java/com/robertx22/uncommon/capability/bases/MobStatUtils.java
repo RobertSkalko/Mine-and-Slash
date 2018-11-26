@@ -50,7 +50,8 @@ public class MobStatUtils {
 	public static void AddMobTierStats(Unit unit, int tier) {
 		for (StatData data : unit.MyStats.values()) {
 			if (data.GetStat().IsPercent() == false) {
-				unit.MyStats.get(data.Name).Flat = IncByPercent(data.Flat, tier);
+				float newval = IncByPercent(data.Flat, tier);
+				unit.MyStats.get(data.Name).Flat = newval;
 			}
 		}
 	}

@@ -90,4 +90,9 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
 		return this.LegendaryWeight;
 	}
 
+	@Override
+	public int Tier() {
+		return 2;
+	}
+
 }

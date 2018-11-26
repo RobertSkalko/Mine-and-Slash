@@ -4,15 +4,16 @@ import java.util.HashSet;
 import java.util.List;
 
 import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.uncommon.utilityclasses.ITiered;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.text.TextFormatting;
 
-public class CurrencyItem extends Item implements IWeighted {
+public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
 
-	public static HashSet<Item> ITEMS = new HashSet<Item>();
+	public static HashSet<CurrencyItem> ITEMS = new HashSet<CurrencyItem>();
 
 	public CurrencyItem(String name) {
 		setMaxDamage(0);

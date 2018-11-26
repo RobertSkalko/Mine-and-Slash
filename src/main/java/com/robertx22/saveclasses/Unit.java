@@ -75,7 +75,7 @@ public class Unit {
 				}
 			}
 			// removes stats that were deleted or renamed
-			HashMap<String, StatData> stats = MyStats;
+			HashMap<String, StatData> stats = new HashMap<String, StatData>(MyStats);
 			for (Entry<String, StatData> entry : stats.entrySet()) {
 				if (!Stats.All.containsKey(entry.getKey())) {
 					MyStats.remove(entry.getKey());

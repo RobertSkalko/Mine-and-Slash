@@ -22,7 +22,7 @@ import net.minecraftforge.common.DimensionManager;
 public class MapItemData {
 
 	@Store
-	public String name = "Map";
+	public String name = "Adventure Map";
 
 	@Store
 	public int level = 1;

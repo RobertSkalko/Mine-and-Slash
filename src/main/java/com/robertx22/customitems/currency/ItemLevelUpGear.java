@@ -79,4 +79,9 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
 
 		return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS;
 	}
+
+	@Override
+	public int Tier() {
+		return 5;
+	}
 }

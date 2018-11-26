@@ -10,7 +10,6 @@ public abstract class BaseRarityItem extends Item {
 	public BaseRarityItem(int rarity, HashMap<Integer, Item> map) {
 		this.setMaxStackSize(1);
 		this.setMaxDamage(0);
-		// this.setCreativeTab(CreativeTabList.MyModTab);
 		this.setUnlocalizedName(Name().toLowerCase() + rarity);
 		this.setRegistryName(Name().toLowerCase() + rarity);
 

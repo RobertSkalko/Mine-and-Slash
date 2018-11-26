@@ -79,4 +79,9 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 		return false;
 	}
 
+	@Override
+	public int Tier() {
+		return 7;
+	}
+
 }

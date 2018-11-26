@@ -9,6 +9,10 @@ import com.libraries.rabbit.gui.component.list.entries.StringEntry;
 import com.libraries.rabbit.gui.show.Show;
 import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.database.stats.types.defense.Dodge;
+import com.robertx22.database.stats.types.elementals.all_damage.AllFireDamage;
+import com.robertx22.database.stats.types.elementals.all_damage.AllNatureDamage;
+import com.robertx22.database.stats.types.elementals.all_damage.AllThunderDamage;
+import com.robertx22.database.stats.types.elementals.all_damage.AllWaterDamage;
 import com.robertx22.database.stats.types.elementals.attack_damage.AttackFireDamage;
 import com.robertx22.database.stats.types.elementals.attack_damage.AttackNatureDamage;
 import com.robertx22.database.stats.types.elementals.attack_damage.AttackThunderDamage;
@@ -144,6 +148,13 @@ public class PlayerStatsGui extends Show {
 			ShowStat(this.GetStatString(unit.MyStats.get(AttackWaterDamage.GUID), stats), list);
 			ShowStat(this.GetStatString(unit.MyStats.get(AttackThunderDamage.GUID), stats), list);
 			ShowStat(this.GetStatString(unit.MyStats.get(AttackNatureDamage.GUID), stats), list);
+
+			ShowStat(TextFormatting.RED + "Bonus to All Elemental Damage:", list);
+
+			ShowStat(this.GetStatString(unit.MyStats.get(AllFireDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(AllWaterDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(AllThunderDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(AllNatureDamage.GUID), stats), list);
 
 			ShowStat(TextFormatting.RED + "Spell to Attack Conversion Damage:", list);
 

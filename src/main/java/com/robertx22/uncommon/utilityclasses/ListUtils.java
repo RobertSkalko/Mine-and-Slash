@@ -18,4 +18,17 @@ public class ListUtils {
 
 	}
 
+	public static <T> List<T> SameTierOrLess(Collection<ITiered> coll, int tier) {
+
+		List<T> list = new ArrayList<T>();
+		for (ITiered tiered : coll) {
+			if (tiered.Tier() <= tier) {
+				list.add((T) tiered);
+			}
+		}
+
+		return list;
+
+	}
+
 }

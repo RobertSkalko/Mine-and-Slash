@@ -75,4 +75,9 @@ public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEf
 		return false;
 	}
 
+	@Override
+	public int Tier() {
+		return 0;
+	}
+
 }

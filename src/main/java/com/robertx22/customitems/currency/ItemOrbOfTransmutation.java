@@ -85,4 +85,9 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
 		return false;
 	}
 
+	@Override
+	public int Tier() {
+		return 0;
+	}
+
 }

@@ -64,8 +64,6 @@ public class ItemMap extends BaseRarityItem {
 			tooltip.add(Rarities.Items.get(data.rarity).Color() + data.name);
 			tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
 			tooltip.add("");
-			tooltip.add(TextFormatting.GOLD + "Tier: " + data.tier);
-			tooltip.add("");
 
 			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
 			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Players);
@@ -78,6 +76,9 @@ public class ItemMap extends BaseRarityItem {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+			tooltip.add("");
+			tooltip.add(TextFormatting.GOLD + "Tier: " + data.tier);
 
 			tooltip.add("");
 			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Amount: " + data.getBonusLootAmount() + "%");

@@ -26,8 +26,8 @@ public class GiveMap extends CommandBase {
 
 		int lvl = Integer.valueOf(args[0]);
 		int rarity = Integer.valueOf(args[1]);
-		int amount = Integer.valueOf(args[2]);
-		int tier = Integer.valueOf(args[3]);
+		int tier = Integer.valueOf(args[2]);
+		int amount = Integer.valueOf(args[3]);
 
 		MapBlueprint blueprint = new MapBlueprint(lvl);
 		if (rarity > -1) {
