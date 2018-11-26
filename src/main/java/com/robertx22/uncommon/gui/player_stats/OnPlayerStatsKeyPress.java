@@ -11,15 +11,11 @@ import net.minecraftforge.fml.relauncher.Side;
 @EventBusSubscriber(Side.CLIENT)
 public class OnPlayerStatsKeyPress {
 
-	public static PlayerStatsGui player_stats_gui = new PlayerStatsGui();
-
 	@SubscribeEvent
 	public static void onKeyInput(KeyInputEvent event) {
 
 		if (Keybinds.Player_Stats.isPressed()) {
-
 			RabbitGui.proxy.display(new PlayerStatsGui());
-
 		}
 	}
 }

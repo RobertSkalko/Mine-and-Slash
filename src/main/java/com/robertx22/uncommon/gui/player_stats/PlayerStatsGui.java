@@ -84,14 +84,18 @@ public class PlayerStatsGui extends Show {
 
 		super.onDraw(mouseX, mouseY, partialTicks);
 
-		scroll = displayStats();
+		try {
+			scroll = displayStats();
 
-		if (scroll != null && setup == false) {
-			scroll.setup();
-			setup = true;
-			scroll.setVisibleBackground(true);
+			if (scroll != null && setup == false) {
+				scroll.setup();
+				setup = true;
+				scroll.setVisibleBackground(true);
 
-			this.registerComponent(scroll);
+				this.registerComponent(scroll);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -141,7 +145,7 @@ public class PlayerStatsGui extends Show {
 			ShowStat(this.GetStatString(unit.MyStats.get(AttackThunderDamage.GUID), stats), list);
 			ShowStat(this.GetStatString(unit.MyStats.get(AttackNatureDamage.GUID), stats), list);
 
-			ShowStat(TextFormatting.RED + "Bonus Element Damage:", list);
+			ShowStat(TextFormatting.RED + "Spell to Attack Conversion Damage:", list);
 
 			ShowStat(this.GetStatString(unit.MyStats.get(BonusFireDamage.GUID), stats), list);
 			ShowStat(this.GetStatString(unit.MyStats.get(BonusWaterDamage.GUID), stats), list);

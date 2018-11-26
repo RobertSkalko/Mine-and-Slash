@@ -18,6 +18,7 @@ public class MapStatsGui extends Show {
 
 	MapItemData map;
 	Minecraft mc;
+	IWorldData world;
 
 	public MapStatsGui() {
 
@@ -35,6 +36,7 @@ public class MapStatsGui extends Show {
 
 			if (data != null) {
 				map = data.getMap();
+				world = data;
 			}
 
 		}
@@ -64,14 +66,17 @@ public class MapStatsGui extends Show {
 
 	private ScrollableDisplayList displayStats() {
 
-		if (map != null && mc.currentScreen != null) {
+		if (map != null && mc.currentScreen != null && world != null) {
 
 			List<ListEntry> list = new ArrayList<ListEntry>();
 
-			for (String str : ItemMap.showTooltip(map)) {
-				StringToListEntry(str, list);
+			if (world.isMapWorld()) {
+				for (String str : ItemMap.showTooltip(map)) {
+					StringToListEntry(str, list);
+				}
+			} else {
+				StringToListEntry("This is not a map world", list);
 			}
-
 			int width = this.width / 2;
 			int height = this.height - this.height / 5;
 

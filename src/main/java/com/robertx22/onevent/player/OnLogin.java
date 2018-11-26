@@ -83,6 +83,7 @@ public class OnLogin {
 					UnitSaving.Save(player, new Unit(player));
 					GiveStarterItems(player);
 				} else {
+					data.getUnit().InitStats();
 					data.recalculateStats(player);
 				}
 

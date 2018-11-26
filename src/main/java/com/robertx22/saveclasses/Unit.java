@@ -1,6 +1,7 @@
 package com.robertx22.saveclasses;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
@@ -8,6 +9,7 @@ import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.db_lists.Stats;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.onevent.combat.OnHealDecrease;
@@ -56,20 +58,30 @@ public class Unit {
 
 	}
 
-	private void InitStats() {
+	public void InitStats() {
 		if (MyStats == null) {
 			MyStats = new HashMap<String, StatData>();
 
+			// adds all stats
 			for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
 				MyStats.put(stat.GUID(), new StatData(stat));
 			}
 
 		} else {
+			// adds new stats
 			for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
 				if (!MyStats.containsKey(stat.Name())) {
 					MyStats.put(stat.GUID(), new StatData(stat));
 				}
 			}
+			// removes stats that were deleted or renamed
+			HashMap<String, StatData> stats = MyStats;
+			for (Entry<String, StatData> entry : stats.entrySet()) {
+				if (!Stats.All.containsKey(entry.getKey())) {
+					MyStats.remove(entry.getKey());
+				}
+			}
+
 		}
 	}
 

@@ -63,14 +63,15 @@ public class Stats {
 				// Resources
 				put(Health.GUID, new Health());
 				put(HealthRegen.GUID, new HealthRegen());
+				put(Lifesteal.GUID, new Lifesteal());
+				put(LifeOnHit.GUID, new LifeOnHit());
 
 				put(Mana.GUID, new Mana());
 				put(ManaRegen.GUID, new ManaRegen());
+				put(ManaOnHit.GUID, new ManaOnHit());
 
 				put(Energy.GUID, new Energy());
 				put(EnergyRegen.GUID, new EnergyRegen());
-
-				put(ManaOnHit.GUID, new ManaOnHit());
 				// Resources
 
 				put(Armor.GUID, new Armor());
@@ -100,9 +101,6 @@ public class Stats {
 				put(WaterPene.GUID, new WaterPene());
 				put(ThunderPene.GUID, new ThunderPene());
 				// Elemental
-
-				put(Lifesteal.GUID, new Lifesteal());
-				put(LifeOnHit.GUID, new LifeOnHit());
 
 				put(Dodge.GUID, new Dodge());
 				put(SpellDodge.GUID, new SpellDodge());
