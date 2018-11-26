@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.database.rarities.items.Unique;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
@@ -15,21 +16,29 @@ import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
 import com.robertx22.saveclasses.gearitem.SetData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
+import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.unique_items.bases.BaseUniqueItem;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.item.Item;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 @Storable
 public class GearItemData implements IStatsContainer, ITooltip {
+
+	@Store
+	public boolean isUnique = false;
+	@Store
+	public String uniqueGUID;
 
 	@Store
 	public int Rarity;
@@ -40,21 +49,22 @@ public class GearItemData implements IStatsContainer, ITooltip {
 	@Store
 	public int level;
 
+	// Stats
+	@Store
+	public UniqueStatsData uniqueStats;
 	@Store
 	public PrimaryStatsData primaryStats;
 	@Store
 	public SecondaryStatsData secondaryStats;
-
 	@Store
 	public SuffixData suffix;
 	@Store
 	public PrefixData prefix;
-
 	@Store
 	public SetData set;
-
 	@Store
-	public ChaosStatsData chaosStats = null;
+	public ChaosStatsData chaosStats;
+	// Stats
 
 	@Store
 	public boolean isSalvagable = true;
@@ -62,6 +72,17 @@ public class GearItemData implements IStatsContainer, ITooltip {
 	@Store
 	public int timesLeveledUp = 0;
 	//
+
+	public Item getItem() {
+
+		if (isUnique) {
+			return BaseUniqueItem.ITEMS.get(this.uniqueGUID);
+
+		} else {
+			return GearTypes.All.get(gearTypeName).GetItemForRarity(GetRarity().Rank());
+		}
+
+	}
 
 	public void WriteOverDataThatShouldStay(GearItemData newdata) {
 
@@ -76,22 +97,32 @@ public class GearItemData implements IStatsContainer, ITooltip {
 	}
 
 	public ItemRarity GetRarity() {
-		return Rarities.Items.get(Rarity);
+
+		if (isUnique) {
+			return new Unique();
+		} else {
+			return Rarities.Items.get(Rarity);
+		}
 	}
 
 	public String GetDisplayName() {
 
 		String text = GetRarity().Color();
 
-		if (prefix != null) {
-			text += prefix.BaseAffix().Name() + " ";
-		}
-		text += name;
+		if (isUnique) {
+			text += ((BaseUniqueItem) this.getItem()).name();
 
-		if (suffix != null) {
-			text += " " + suffix.BaseAffix().Name() + " ";
-		}
+		} else {
 
+			if (prefix != null) {
+				text += prefix.BaseAffix().Name() + " ";
+			}
+			text += name;
+
+			if (suffix != null) {
+				text += " " + suffix.BaseAffix().Name() + " ";
+			}
+		}
 		return text;
 
 	}
@@ -105,6 +136,10 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		}
 		if (prefix != null) {
 			containers.add(prefix);
+		}
+
+		if (uniqueStats != null) {
+			containers.add(uniqueStats);
 		}
 
 		if (primaryStats != null) {
@@ -144,6 +179,10 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		event.getToolTip().add("");
 
 		List<ITooltipList> list = new ArrayList<ITooltipList>();
+
+		if (isUnique) {
+			list.add(uniqueStats);
+		}
 		list.add(primaryStats);
 		list.add(secondaryStats);
 		list.add(prefix);
@@ -207,6 +246,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		IfNotNullAdd(prefix, list);
 		IfNotNullAdd(suffix, list);
 		IfNotNullAdd(chaosStats, list);
+		IfNotNullAdd(uniqueStats, list);
 		return list;
 	}
 

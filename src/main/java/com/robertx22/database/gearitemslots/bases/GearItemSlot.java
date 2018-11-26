@@ -34,13 +34,23 @@ public abstract class GearItemSlot implements IWeighted {
 		return 1000;
 	}
 
-	public ItemStack GetItemForRarity(int rarityNum) {
+	public ItemStack GetStackForRarity(int rarityNum) {
 
 		if (ItemsForRarities().containsKey(rarityNum)) {
 			return new ItemStack(ItemsForRarities().get(rarityNum));
 		}
 
 		return new ItemStack(DefaultItem());
+
+	}
+
+	public Item GetItemForRarity(int rarityNum) {
+
+		if (ItemsForRarities().containsKey(rarityNum)) {
+			return ItemsForRarities().get(rarityNum);
+		}
+
+		return DefaultItem();
 
 	}
 

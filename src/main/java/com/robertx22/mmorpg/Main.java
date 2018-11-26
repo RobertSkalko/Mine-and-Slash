@@ -21,6 +21,7 @@ import com.robertx22.uncommon.capability.MapDatas;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
+import com.robertx22.unique_items.UniqueItemRegister;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,6 +56,8 @@ public class Main {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+
+		UniqueItemRegister.registerAll();
 
 		GameRegistry.registerTileEntity(TileMapPortal.class, new ResourceLocation(Ref.MODID, "map_portal_tile"));
 

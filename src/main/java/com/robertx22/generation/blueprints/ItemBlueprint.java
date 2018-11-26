@@ -33,12 +33,6 @@ public class ItemBlueprint {
 		rarity = i;
 		RandomRarity = false;
 
-		try {
-			Rarities.Items.get(i);
-		} catch (IndexOutOfBoundsException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public int GetRarity() {

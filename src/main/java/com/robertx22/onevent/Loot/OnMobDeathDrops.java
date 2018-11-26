@@ -2,7 +2,6 @@ package com.robertx22.onevent.loot;
 
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.loot.LootUtils;
 import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.DamageNumberPackage;
@@ -50,7 +49,6 @@ public class OnMobDeathDrops {
 
 						IWorldData world = Load.World(entity.world);
 
-						LootUtils.Generate(victim, killer, entity, world);
 						MasterLootGen.genAndDrop(victim, killer, world, entity);
 
 						int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);

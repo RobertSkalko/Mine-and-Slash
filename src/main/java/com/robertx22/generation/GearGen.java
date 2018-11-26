@@ -2,7 +2,6 @@ package com.robertx22.generation;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
@@ -57,7 +56,7 @@ public class GearGen {
 
 		GearItemData data = CreateData(schema);
 
-		ItemStack stack = GearTypes.All.get(data.gearTypeName).GetItemForRarity(data.GetRarity().Rank());
+		ItemStack stack = new ItemStack(data.getItem());
 
 		Gear.Save(stack, data);
 
@@ -69,7 +68,7 @@ public class GearGen {
 
 	public static ItemStack CreateStack(GearItemData data) {
 
-		ItemStack stack = GearTypes.All.get(data.gearTypeName).GetItemForRarity(data.GetRarity().Rank());
+		ItemStack stack = new ItemStack(data.getItem());
 
 		Gear.Save(stack, data);
 

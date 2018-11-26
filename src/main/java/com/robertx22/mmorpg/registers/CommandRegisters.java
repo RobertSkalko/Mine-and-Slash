@@ -4,6 +4,7 @@ import com.robertx22.uncommon.commands.DeleteDimension;
 import com.robertx22.uncommon.commands.GiveGear;
 import com.robertx22.uncommon.commands.GiveMap;
 import com.robertx22.uncommon.commands.GiveSpell;
+import com.robertx22.uncommon.commands.GiveUnique;
 import com.robertx22.uncommon.commands.PortDimension;
 import com.robertx22.uncommon.commands.SetLevel;
 
@@ -17,6 +18,7 @@ public class CommandRegisters {
 		event.registerServerCommand(new DeleteDimension());
 		event.registerServerCommand(new SetLevel());
 		event.registerServerCommand(new GiveMap());
+		event.registerServerCommand(new GiveUnique());
 
 	}
 }
