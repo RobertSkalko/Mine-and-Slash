@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.lists.GearTypes;
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.GearTypes;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;

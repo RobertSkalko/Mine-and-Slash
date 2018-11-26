@@ -1,6 +1,6 @@
 package com.robertx22.customitems.misc;
 
-import com.robertx22.database.lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;

@@ -3,7 +3,7 @@ package com.robertx22.saveclasses.gearitem;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.database.lists.Sets;
+import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.StatMod;

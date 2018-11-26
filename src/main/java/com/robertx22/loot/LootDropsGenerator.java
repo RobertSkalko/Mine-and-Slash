@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.customitems.currency.CurrencyItem;
-import com.robertx22.database.lists.Rarities;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;

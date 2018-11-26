@@ -2,8 +2,8 @@ package com.robertx22.generation.blueprints;
 
 import java.util.List;
 
-import com.robertx22.database.lists.GearTypes;
-import com.robertx22.database.lists.Spells;
+import com.robertx22.db_lists.GearTypes;
+import com.robertx22.db_lists.Spells;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;

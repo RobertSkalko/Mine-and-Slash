@@ -1,6 +1,6 @@
 package com.robertx22.onevent.loot;
 
-import com.robertx22.database.lists.Rarities;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.loot.LootDropsGenerator;
 import com.robertx22.mmorpg.Main;

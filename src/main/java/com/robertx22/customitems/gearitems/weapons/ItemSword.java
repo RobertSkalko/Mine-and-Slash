@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 import com.robertx22.customitems.gearitems.bases.BaseSwordItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.capability.EntityData.UnitData;

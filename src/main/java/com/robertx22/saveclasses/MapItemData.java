@@ -3,7 +3,7 @@ package com.robertx22.saveclasses;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.database.lists.WorldProviders;
+import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.MapDatas;

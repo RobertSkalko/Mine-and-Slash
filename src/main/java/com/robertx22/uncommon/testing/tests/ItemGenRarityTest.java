@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang3.time.StopWatch;
 
-import com.robertx22.database.lists.Rarities;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;

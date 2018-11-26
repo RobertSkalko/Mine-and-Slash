@@ -1,9 +1,9 @@
 package com.robertx22.generation;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.lists.GearTypes;
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.GearTypes;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;

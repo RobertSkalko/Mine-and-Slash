@@ -3,7 +3,7 @@ package com.robertx22.customitems.currency;
 import java.util.HashSet;
 import java.util.List;
 
-import com.robertx22.database.lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 

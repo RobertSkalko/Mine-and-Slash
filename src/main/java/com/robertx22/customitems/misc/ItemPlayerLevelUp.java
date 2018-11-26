@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.BaseItem;
-import com.robertx22.database.lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;

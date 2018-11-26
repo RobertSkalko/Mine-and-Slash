@@ -1,6 +1,6 @@
 package com.robertx22.customitems.oldreplacesoon;
 
-import com.robertx22.database.lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 
 import net.minecraft.item.Item;

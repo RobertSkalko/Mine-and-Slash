@@ -6,8 +6,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.gearitems.bases.BaseRarityItem;
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.dimensions.blocks.MapPortalBlock;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.saveclasses.MapItemData;

@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.datasaving.Spell;

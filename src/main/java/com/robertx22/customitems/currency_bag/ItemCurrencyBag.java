@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 
 import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.customitems.ores.ItemOre;
-import com.robertx22.database.lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.gui.GuiHandler;

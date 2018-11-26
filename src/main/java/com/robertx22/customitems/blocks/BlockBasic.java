@@ -1,6 +1,6 @@
 package com.robertx22.customitems.blocks;
 
-import com.robertx22.database.lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

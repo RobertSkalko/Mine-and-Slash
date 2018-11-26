@@ -3,7 +3,7 @@ package com.robertx22.customitems.gearitems.armor;
 import java.util.HashMap;
 
 import com.robertx22.customitems.gearitems.bases.BaseArmorItem;
-import com.robertx22.database.lists.Rarities;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.inventory.EntityEquipmentSlot;

@@ -7,8 +7,6 @@ import java.util.List;
 
 import com.robertx22.customitems.gearitems.baubles.ItemBracelet;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.lists.Prefixes;
-import com.robertx22.database.lists.Suffixes;
 import com.robertx22.database.stats.mods.flat.elemental.dmg.FireDamageFlat;
 import com.robertx22.database.stats.mods.flat.elemental.dmg.NatureDamageFlat;
 import com.robertx22.database.stats.mods.flat.elemental.dmg.ThunderDamageFlat;
@@ -17,6 +15,8 @@ import com.robertx22.database.stats.mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.WaterResistFlat;
+import com.robertx22.db_lists.Prefixes;
+import com.robertx22.db_lists.Suffixes;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 import com.robertx22.stats.StatMod;

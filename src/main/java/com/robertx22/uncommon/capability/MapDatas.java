@@ -65,6 +65,13 @@ public class MapDatas extends WorldSavedData {
 		this.list.dimDatas.remove(id);
 		this.setDirty(true);
 
+		for (int i = 0; i < dimensionIds.size(); i++) {
+			if (dimensionIds.get(i) == id) {
+				dimensionIds.remove(i);
+				break;
+			}
+		}
+
 		if (!DimensionManager.isDimensionRegistered(id)) {
 			DimensionManager.unregisterDimension(id);
 		}

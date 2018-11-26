@@ -7,8 +7,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.Rarities;
 
 public class GenJsonFiles {
 

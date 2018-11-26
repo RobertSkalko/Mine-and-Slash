@@ -1,6 +1,5 @@
 package com.robertx22.uncommon.capability.bases;
 
-import com.robertx22.database.lists.StatusEffects;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.database.stats.types.elementals.damage.FireDamage;
@@ -16,6 +15,7 @@ import com.robertx22.database.stats.types.offense.CriticalHit;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.status.effects.bases.BaseStatusEffect;
+import com.robertx22.db_lists.StatusEffects;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;

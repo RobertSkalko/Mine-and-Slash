@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import com.robertx22.database.lists.Rarities;
-import com.robertx22.database.lists.Spells;
 import com.robertx22.database.rarities.MobRarity;
+import com.robertx22.db_lists.Rarities;
+import com.robertx22.db_lists.Spells;
 
 import net.minecraft.entity.EntityLivingBase;
 

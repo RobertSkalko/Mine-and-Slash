@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.robertx22.customitems.BaseItem;
 import com.robertx22.database.gearitemslots.Sword;
-import com.robertx22.database.lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.mmorpg.Ref;

@@ -1,8 +1,8 @@
-package com.robertx22.database.lists;
+package com.robertx22.db_lists;
 
 import java.util.HashMap;
 
-import com.robertx22.database.map_mods.HealthMap;
+import com.robertx22.database.map_mods.bonus.BonusHealthMap;
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.database.stats.mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stats.mods.flat.CriticalDamageFlat;
@@ -136,7 +136,7 @@ public class StatMods {
 
 				// Map mods
 
-				put(new HealthMap().GUID(), new HealthMap());
+				put(new BonusHealthMap().GUID(), new BonusHealthMap());
 
 				// Map mods
 

@@ -3,7 +3,7 @@ package com.robertx22.customitems.misc;
 import java.util.HashMap;
 
 import com.robertx22.customitems.gearitems.bases.BaseRarityItem;
-import com.robertx22.database.lists.Rarities;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.item.Item;

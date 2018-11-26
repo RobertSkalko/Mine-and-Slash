@@ -1,6 +1,6 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.database.lists.WorldProviders;
+import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.IWP;
 
 import info.loenwind.autosave.annotations.Storable;

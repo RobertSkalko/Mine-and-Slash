@@ -1,7 +1,7 @@
 package com.robertx22.generation;
 
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.ItemRarity;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;

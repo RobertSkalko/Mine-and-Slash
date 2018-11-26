@@ -1,7 +1,7 @@
 package com.robertx22.network;
 
-import com.robertx22.database.lists.ParticleGens;
 import com.robertx22.database.particle_gens.ParticleGen;
+import com.robertx22.db_lists.ParticleGens;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

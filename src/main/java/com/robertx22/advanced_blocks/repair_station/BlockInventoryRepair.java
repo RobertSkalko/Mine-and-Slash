@@ -1,7 +1,7 @@
 package com.robertx22.advanced_blocks.repair_station;
 
 import com.robertx22.advanced_blocks.BaseInventoryBlock;
-import com.robertx22.database.lists.CreativeTabList;
+import com.robertx22.db_lists.CreativeTabList;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;

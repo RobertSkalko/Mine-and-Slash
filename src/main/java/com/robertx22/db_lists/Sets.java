@@ -1,4 +1,4 @@
-package com.robertx22.database.lists;
+package com.robertx22.db_lists;
 
 import java.util.HashMap;
 

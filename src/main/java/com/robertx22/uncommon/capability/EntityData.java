@@ -2,8 +2,8 @@ package com.robertx22.uncommon.capability;
 
 import java.util.UUID;
 
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.rarities.MobRarity;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;

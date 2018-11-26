@@ -3,8 +3,8 @@ package com.robertx22.saveclasses.effects;
 import java.io.Serializable;
 import java.util.List;
 
-import com.robertx22.database.lists.StatusEffects;
 import com.robertx22.database.status.effects.bases.BaseStatusEffect;
+import com.robertx22.db_lists.StatusEffects;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 

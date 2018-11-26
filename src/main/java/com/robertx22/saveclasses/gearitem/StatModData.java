@@ -1,7 +1,7 @@
 package com.robertx22.saveclasses.gearitem;
 
 import com.robertx22.database.MinMax;
-import com.robertx22.database.lists.StatMods;
+import com.robertx22.db_lists.StatMods;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipString;

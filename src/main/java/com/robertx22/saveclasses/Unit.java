@@ -3,11 +3,11 @@ package com.robertx22.saveclasses;
 import java.util.HashMap;
 import java.util.UUID;
 
-import com.robertx22.database.lists.Rarities;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.Health;
 import com.robertx22.database.stats.types.resources.Mana;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.onevent.combat.OnHealDecrease;
@@ -60,12 +60,12 @@ public class Unit {
 		if (MyStats == null) {
 			MyStats = new HashMap<String, StatData>();
 
-			for (Stat stat : com.robertx22.database.lists.Stats.All.values()) {
+			for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
 				MyStats.put(stat.GUID(), new StatData(stat));
 			}
 
 		} else {
-			for (Stat stat : com.robertx22.database.lists.Stats.All.values()) {
+			for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
 				if (!MyStats.containsKey(stat.Name())) {
 					MyStats.put(stat.GUID(), new StatData(stat));
 				}

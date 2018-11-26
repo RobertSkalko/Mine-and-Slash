@@ -7,8 +7,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.customitems.blocks.BlockOre;
-import com.robertx22.database.lists.CreativeTabList;
-import com.robertx22.database.lists.Rarities;
+import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;

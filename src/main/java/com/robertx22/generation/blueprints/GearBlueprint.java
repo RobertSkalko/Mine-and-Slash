@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.lists.GearTypes;
-import com.robertx22.database.lists.Rarities;
-import com.robertx22.database.lists.Sets;
+import com.robertx22.db_lists.GearTypes;
+import com.robertx22.db_lists.Rarities;
+import com.robertx22.db_lists.Sets;
 import com.robertx22.saveclasses.gearitem.SetData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
