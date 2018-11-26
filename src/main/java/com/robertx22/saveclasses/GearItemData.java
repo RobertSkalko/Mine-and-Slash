@@ -201,6 +201,16 @@ public class GearItemData implements IStatsContainer, ITooltip {
 
 		this.BuildSetTooltip(event, unit, data);
 
+		if (isUnique) {
+
+			BaseUniqueItem unique = this.uniqueStats.getUniqueItem();
+
+			event.getToolTip().add(TextFormatting.GREEN + "'" + unique.description() + "'");
+
+			event.getToolTip().add("");
+
+		}
+
 		ItemRarity rarity = GetRarity();
 		event.getToolTip().add(rarity.Color() + "Rarity: " + rarity.Name());
 

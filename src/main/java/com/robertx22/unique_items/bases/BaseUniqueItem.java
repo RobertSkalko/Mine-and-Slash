@@ -3,14 +3,16 @@ package com.robertx22.unique_items.bases;
 import java.util.HashMap;
 import java.util.List;
 
+import com.robertx22.customitems.gearitems.bases.BaseArmorItem;
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.CreativeTabList;
-import com.robertx22.mmorpg.Ref;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.utilityclasses.ITiered;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
+import baubles.api.IBauble;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -38,9 +40,15 @@ public interface BaseUniqueItem extends IWeighted, ITiered, IGUID {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		for (Item item : ITEMS.values()) {
-			item.setRegistryName(Ref.MODID, ((BaseUniqueItem) item).GUID());
-			item.setUnlocalizedName(Ref.MODID + ":" + ((BaseUniqueItem) item).GUID());
 			item.setCreativeTab(CreativeTabList.UniqueItems);
+			item.setMaxStackSize(1);
+
+			if (item instanceof IBauble) {
+				item.setMaxDamage(0);
+			} else {
+				item.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
+			}
+			RegisterItemUtils.RegisterItemName(item, "uniques/" + ((BaseUniqueItem) item).GUID());
 
 			event.getRegistry().register(item);
 		}

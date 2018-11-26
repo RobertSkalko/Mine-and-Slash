@@ -37,7 +37,7 @@ public class UniqueRingOfDodge extends BaseUniqueRing {
 
 	@Override
 	public String description() {
-		return "";
+		return "Swift as the Wind.";
 	}
 
 	@Override

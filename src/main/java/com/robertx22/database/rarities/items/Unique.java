@@ -24,7 +24,7 @@ public class Unique extends ItemRarity {
 
 	@Override
 	public String Color() {
-		return TextFormatting.GOLD.toString();
+		return TextFormatting.YELLOW.toString();
 	}
 
 	@Override
