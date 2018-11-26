@@ -11,7 +11,18 @@ public class MapBlueprint extends ItemBlueprint {
 
 	}
 
+	private int tier = 0;
+
+	public void setTier(int i) {
+		tier = i;
+	}
+
+	public int getTier() {
+		return tier;
+	}
+
 	@Override
+
 	public int GetRarity() {
 
 		if (RandomRarity) {

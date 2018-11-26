@@ -22,6 +22,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import com.robertx22.uncommon.capability.bases.MobStatUtils;
 import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -167,14 +168,16 @@ public class Unit {
 		UnitData endata = entity.getCapability(EntityData.Data, null);
 
 		endata.SetMobLevel(data, level);
-		endata.setName(entity);
 		endata.setRarity(RandomUtils.RandomWithMinRarity(entity).Rank());
+		endata.setName(entity);
 
 		mob.MyStats.get(Health.GUID).BaseFlat = (int) entity.getMaxHealth();
 		mob.uid = entity.getUniqueID();
 
+		CommonStatUtils.addMapAffixes(data, entity, mob, endata);
 		MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
-		// mob.RecalculateStats(entity, endata.getLevel());
+
+		mob.RecalculateStats(entity, level);
 
 		return mob;
 
@@ -194,11 +197,7 @@ public class Unit {
 
 	public void RecalculateStats(EntityLivingBase entity, int level) {
 
-		UnitData data = entity.getCapability(EntityData.Data, null);
-
 		if (entity instanceof EntityPlayer) {
-			// StopWatch watch = new StopWatch();
-			// watch.start();
 			ClearStats();
 			PlayerStatUtils.CountWornSets(entity, this);
 			PlayerStatUtils.AddPlayerBaseStats(this);
@@ -209,14 +208,22 @@ public class Unit {
 			CalcStats(entity);
 			PlayerStatUtils.CalcTraits(this);
 			CalcStats(entity);
-			// watch.stop();
 
 		} else {
+			IWorldData world = Load.World(entity.world);
+
+			int tier = 0;
+			if (world != null) {
+				tier = world.getTier();
+			}
+			UnitData data = entity.getCapability(EntityData.Data, null);
+
 			ClearStats();
 			MobStatUtils.AddMobcStats(this, data.getLevel());
 			MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
 			CommonStatUtils.AddStatusEffectStats(this, level);
 			CommonStatUtils.AddMapAffixStats(this, level);
+			MobStatUtils.AddMobTierStats(this, level, tier);
 			CalcStats(entity);
 
 		}

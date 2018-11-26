@@ -4,4 +4,6 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public interface IWP extends IWeighted {
 	abstract String GUID();
+
+	abstract String Name();
 }

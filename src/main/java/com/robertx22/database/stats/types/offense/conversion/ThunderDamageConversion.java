@@ -1,13 +1,13 @@
-package com.robertx22.database.stats.types.offense.bonus;
+package com.robertx22.database.stats.types.offense.conversion;
 
 import com.robertx22.database.stats.types.elementals.attack_damage.AttackThunderDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class BonusThunderDamage extends BaseBonusDamage {
-	public static String GUID = "Bonus Thunder DMG";
+public class ThunderDamageConversion extends BaseSpellToBasicDamage {
+	public static String GUID = "Thunder DMG Conversion";
 
-	public BonusThunderDamage() {
+	public ThunderDamageConversion() {
 
 	}
 

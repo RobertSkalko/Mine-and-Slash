@@ -1,6 +1,6 @@
 package com.robertx22.stats.StatEffects.offense;
 
-import com.robertx22.database.stats.types.offense.bonus.BaseBonusDamage;
+import com.robertx22.database.stats.types.offense.conversion.BaseSpellToBasicDamage;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
@@ -9,7 +9,7 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
 
-public class BonusBasicDamageEffect implements IStatEffect {
+public class SpellToBasicDamageEffect implements IStatEffect {
 
 	@Override
 	public int GetPriority() {
@@ -26,9 +26,9 @@ public class BonusBasicDamageEffect implements IStatEffect {
 
 		try {
 			if (Effect instanceof DamageEffect && Effect.Type.equals(EffectTypes.BASIC_ATTACK)
-					&& stat instanceof BaseBonusDamage) {
+					&& stat instanceof BaseSpellToBasicDamage) {
 
-				BaseBonusDamage basebonus = (BaseBonusDamage) stat;
+				BaseSpellToBasicDamage basebonus = (BaseSpellToBasicDamage) stat;
 
 				float percent = data.Value;
 				float derivedvalue = (float) source.MyStats.get(basebonus.StatThatGiveDamage().GUID()).Value;

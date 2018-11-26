@@ -23,4 +23,9 @@ public class BadlandsWP extends BaseWorldProvider {
 		return "BadlandsWP0";
 	}
 
+	@Override
+	public String Name() {
+		return "Badlands";
+	}
+
 }

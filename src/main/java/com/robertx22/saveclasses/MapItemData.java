@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.db_lists.WorldProviders;
+import com.robertx22.dimensions.IWP;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.MapDatas;
@@ -40,13 +41,13 @@ public class MapItemData {
 
 	public int getBonusLootAmount() {
 
-		return (int) (getTotalPercents() * 0.4F);
+		return (int) (getTotalPercents() * 0.3F);
 
 	}
 
 	public int getBonusLootRarity() {
 
-		return (int) (getTotalPercents() * 0.7F);
+		return (int) (getTotalPercents() * 0.5F);
 
 	}
 
@@ -69,6 +70,10 @@ public class MapItemData {
 			}
 		}
 		return list;
+	}
+
+	public IWP getWorldProvider() {
+		return WorldProviders.All.get(this.worldGeneratorName);
 	}
 
 	public int createDimension(EntityPlayer player) {

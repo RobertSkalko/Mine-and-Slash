@@ -1,6 +1,6 @@
 package com.robertx22.database.stats.mods.flat.elemental.bonus;
 
-import com.robertx22.database.stats.types.offense.bonus.BonusWaterDamage;
+import com.robertx22.database.stats.types.offense.conversion.WaterDamageConversion;
 import com.robertx22.stats.Stat;
 
 public class BonusWaterDamageFlat extends BaseBonusDamageFlat {
@@ -11,7 +11,7 @@ public class BonusWaterDamageFlat extends BaseBonusDamageFlat {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new BonusWaterDamage();
+		return new WaterDamageConversion();
 	}
 
 	@Override

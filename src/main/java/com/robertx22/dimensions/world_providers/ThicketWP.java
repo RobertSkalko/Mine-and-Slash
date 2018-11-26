@@ -23,4 +23,9 @@ public class ThicketWP extends BaseWorldProvider {
 		return "ThicketWP0";
 	}
 
+	@Override
+	public String Name() {
+		return "Thicket";
+	}
+
 }

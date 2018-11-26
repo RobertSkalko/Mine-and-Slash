@@ -23,4 +23,9 @@ public class AridHighlandWP extends BaseWorldProvider {
 		return "AridHighlandWP0";
 	}
 
+	@Override
+	public String Name() {
+		return "Arid Highland";
+	}
+
 }

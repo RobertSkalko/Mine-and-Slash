@@ -32,6 +32,8 @@ public class MapGen {
 
 		data.worldGeneratorName = iwp.GUID();
 
+		data.tier = blueprint.getTier();
+
 		data.level = blueprint.GetLevel();
 
 		data = genAffixes(data, rarity);

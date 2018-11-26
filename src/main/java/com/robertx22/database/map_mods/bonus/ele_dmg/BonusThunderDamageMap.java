@@ -1,7 +1,7 @@
 package com.robertx22.database.map_mods.bonus.ele_dmg;
 
 import com.robertx22.database.map_mods.bases.BonusEleDmgBase;
-import com.robertx22.database.stats.types.offense.bonus.BonusThunderDamage;
+import com.robertx22.database.stats.types.offense.conversion.ThunderDamageConversion;
 import com.robertx22.stats.Stat;
 
 public class BonusThunderDamageMap extends BonusEleDmgBase {
@@ -16,7 +16,7 @@ public class BonusThunderDamageMap extends BonusEleDmgBase {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new BonusThunderDamage();
+		return new ThunderDamageConversion();
 	}
 
 }

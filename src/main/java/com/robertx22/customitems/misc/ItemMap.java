@@ -1,6 +1,5 @@
 package com.robertx22.customitems.misc;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,13 +49,12 @@ public class ItemMap extends BaseRarityItem {
 
 		MapItemData data = Map.Load(stack);
 
-		showTooltip(data);
+		showTooltip(data, tooltip);
 
 	}
 
-	public static List<String> showTooltip(MapItemData data) {
+	public static List<String> showTooltip(MapItemData data, List<String> tooltip) {
 
-		List<String> tooltip = new ArrayList();
 		if (data != null) {
 
 			ItemRarity rarity = Rarities.Items.get(data.rarity);
@@ -66,6 +64,8 @@ public class ItemMap extends BaseRarityItem {
 			tooltip.add(Rarities.Items.get(data.rarity).Color() + data.name);
 			tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
 			tooltip.add("");
+			tooltip.add(TextFormatting.GOLD + "Tier: " + data.tier);
+			tooltip.add("");
 
 			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
 			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Players);
@@ -73,11 +73,15 @@ public class ItemMap extends BaseRarityItem {
 
 			tooltip.add("");
 
-			tooltip.add(TextFormatting.BLUE + "World Type: " + data.worldGeneratorName);
+			try {
+				tooltip.add(TextFormatting.BLUE + "World Type: " + data.getWorldProvider().Name());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			tooltip.add("");
-			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Amount: " + data.getBonusLootAmount());
-			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Rarity: " + data.getBonusLootRarity());
+			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Amount: " + data.getBonusLootAmount() + "%");
+			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Rarity: " + data.getBonusLootRarity() + "%");
 
 			tooltip.add("");
 			tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());

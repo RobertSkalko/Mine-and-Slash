@@ -23,4 +23,9 @@ public class CliffWP extends BaseWorldProvider {
 		return "CliffWP0";
 	}
 
+	@Override
+	public String Name() {
+		return "Cliffs";
+	}
+
 }

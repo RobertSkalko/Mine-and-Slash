@@ -29,10 +29,10 @@ import com.robertx22.database.stats.types.offense.ArmorPenetration;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.database.stats.types.offense.bonus.BonusFireDamage;
-import com.robertx22.database.stats.types.offense.bonus.BonusNatureDamage;
-import com.robertx22.database.stats.types.offense.bonus.BonusThunderDamage;
-import com.robertx22.database.stats.types.offense.bonus.BonusWaterDamage;
+import com.robertx22.database.stats.types.offense.conversion.FireDamageConversion;
+import com.robertx22.database.stats.types.offense.conversion.NatureDamageConversion;
+import com.robertx22.database.stats.types.offense.conversion.ThunderDamageConversion;
+import com.robertx22.database.stats.types.offense.conversion.WaterDamageConversion;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.HealthRegen;
 import com.robertx22.database.stats.types.resources.LifeOnHit;
@@ -147,10 +147,10 @@ public class PlayerStatsGui extends Show {
 
 			ShowStat(TextFormatting.RED + "Spell to Attack Conversion Damage:", list);
 
-			ShowStat(this.GetStatString(unit.MyStats.get(BonusFireDamage.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(BonusWaterDamage.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(BonusThunderDamage.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(BonusNatureDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(FireDamageConversion.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(WaterDamageConversion.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(ThunderDamageConversion.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(NatureDamageConversion.GUID), stats), list);
 
 			ShowStat(TextFormatting.BLUE + "Defense:", list);
 

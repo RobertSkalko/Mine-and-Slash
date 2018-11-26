@@ -1,17 +1,14 @@
 package com.robertx22.onevent.combat;
 
-import java.util.HashMap;
-
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.onevent.ontick.EntityUpdate;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import com.robertx22.uncommon.datasaving.UnitSaving;
-import com.robertx22.uncommon.enumclasses.AffectedEntities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -57,10 +54,8 @@ public class OnMobSpawn {
 						if (check == null) {
 							int level = GetMobLevel(data, entity);
 							Unit unit = Unit.Mob(entity, level, data);
-							unit = addMapAffixes(data, entity, unit, endata);
 
 							endata.forceSetUnit(unit);
-							endata.forceRecalculateStats(entity);
 
 							if (endata.getRarity() == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
 								AnnounceWorldBossSpawn(entity, unit);
@@ -75,39 +70,13 @@ public class OnMobSpawn {
 			} else {
 				Unit unit = UnitSaving.Load(entity);
 				UnitData endata = entity.getCapability(EntityData.Data, null);
-				unit = addMapAffixes(data, entity, unit, endata);
-				endata.setUnit(unit, entity);
+				CommonStatUtils.addMapAffixes(data, entity, unit, endata);
 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-	}
-
-	private static Unit addMapAffixes(IWorldData worlddata, EntityLivingBase entity, Unit unit, UnitData endata) {
-		if (worlddata.isMapWorld()) {
-
-			unit.mapAffixes = new HashMap<String, MapAffixData>();
-
-			AffectedEntities affected = null;
-
-			if (entity instanceof EntityPlayer) {
-				affected = AffectedEntities.Players;
-			} else {
-				affected = AffectedEntities.Mobs;
-			}
-
-			for (MapAffixData affix : worlddata.getMap().getAllAffixesThatAffect(affected)) {
-				unit.mapAffixes.put(affix.GUID, affix);
-			}
-
-			for (MapAffixData affix : worlddata.getMap().getAllAffixesThatAffect(AffectedEntities.All)) {
-				unit.mapAffixes.put(affix.GUID, affix);
-			}
-
-		}
-		return unit;
 	}
 
 	private static int GetMobLevel(IWorldData data, EntityLivingBase entity) {

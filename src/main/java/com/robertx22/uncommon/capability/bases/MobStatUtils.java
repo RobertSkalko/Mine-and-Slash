@@ -47,6 +47,23 @@ public class MobStatUtils {
 
 	}
 
+	public static void AddMobTierStats(Unit unit, int level, int tier) {
+
+		for (StatData data : unit.MyStats.values()) {
+
+			float val = IncByPercent(data.Flat, tier);
+
+			unit.MyStats.get(data.Name).Flat = val;
+
+			// System.out.println(val + " to " + unit.MyStats.get(data.Name).Value);
+
+		}
+	}
+
+	private static float IncByPercent(float val, int tier) {
+		return val + (val * tier * 15 / 100);
+	}
+
 	public static void SetMobStrengthMultiplier(Unit unit, MobRarity rarity) {
 
 		float stat_multi = rarity.StatMultiplier();

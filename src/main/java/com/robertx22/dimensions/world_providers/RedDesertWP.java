@@ -23,4 +23,9 @@ public class RedDesertWP extends BaseWorldProvider {
 		return "RedDesertWP0";
 	}
 
+	@Override
+	public String Name() {
+		return "Red Desert";
+	}
+
 }

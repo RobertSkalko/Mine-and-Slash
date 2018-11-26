@@ -26,10 +26,10 @@ import com.robertx22.database.stats.types.offense.ArmorPenetration;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.database.stats.types.offense.bonus.BonusFireDamage;
-import com.robertx22.database.stats.types.offense.bonus.BonusNatureDamage;
-import com.robertx22.database.stats.types.offense.bonus.BonusThunderDamage;
-import com.robertx22.database.stats.types.offense.bonus.BonusWaterDamage;
+import com.robertx22.database.stats.types.offense.conversion.FireDamageConversion;
+import com.robertx22.database.stats.types.offense.conversion.NatureDamageConversion;
+import com.robertx22.database.stats.types.offense.conversion.ThunderDamageConversion;
+import com.robertx22.database.stats.types.offense.conversion.WaterDamageConversion;
 import com.robertx22.database.stats.types.resources.Energy;
 import com.robertx22.database.stats.types.resources.EnergyRegen;
 import com.robertx22.database.stats.types.resources.Health;
@@ -121,10 +121,10 @@ public class Stats {
 				put(FireAtronach.GUID, new FireAtronach());
 				put(ThunderAtronach.GUID, new ThunderAtronach());
 
-				put(BonusFireDamage.GUID, new BonusFireDamage());
-				put(BonusWaterDamage.GUID, new BonusWaterDamage());
-				put(BonusThunderDamage.GUID, new BonusThunderDamage());
-				put(BonusNatureDamage.GUID, new BonusNatureDamage());
+				put(FireDamageConversion.GUID, new FireDamageConversion());
+				put(WaterDamageConversion.GUID, new WaterDamageConversion());
+				put(ThunderDamageConversion.GUID, new ThunderDamageConversion());
+				put(NatureDamageConversion.GUID, new NatureDamageConversion());
 
 				// traits
 

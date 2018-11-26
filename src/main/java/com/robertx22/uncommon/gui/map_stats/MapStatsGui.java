@@ -71,7 +71,7 @@ public class MapStatsGui extends Show {
 			List<ListEntry> list = new ArrayList<ListEntry>();
 
 			if (world.isMapWorld()) {
-				for (String str : ItemMap.showTooltip(map)) {
+				for (String str : ItemMap.showTooltip(map, new ArrayList<String>())) {
 					StringToListEntry(str, list);
 				}
 			} else {

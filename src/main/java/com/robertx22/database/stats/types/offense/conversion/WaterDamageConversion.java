@@ -1,13 +1,13 @@
-package com.robertx22.database.stats.types.offense.bonus;
+package com.robertx22.database.stats.types.offense.conversion;
 
 import com.robertx22.database.stats.types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class BonusWaterDamage extends BaseBonusDamage {
-	public static String GUID = "Bonus Water DMG";
+public class WaterDamageConversion extends BaseSpellToBasicDamage {
+	public static String GUID = "Water DMG Conversion";
 
-	public BonusWaterDamage() {
+	public WaterDamageConversion() {
 
 	}
 
