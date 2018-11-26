@@ -1,7 +1,7 @@
 package com.robertx22.spells.projectile.firebolt;
 
 import com.robertx22.customitems.spells.projectile.ItemFireBolt;
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
@@ -40,7 +40,7 @@ public class SpellFireBolt extends BaseBolt {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new FireDamage().Name(), 0.5F);
+		return new EffectCalculation(new SpellFireDamage().Name(), 0.5F);
 	}
 
 	@Override

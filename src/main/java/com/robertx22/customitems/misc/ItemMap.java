@@ -1,5 +1,6 @@
 package com.robertx22.customitems.misc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +50,13 @@ public class ItemMap extends BaseRarityItem {
 
 		MapItemData data = Map.Load(stack);
 
+		showTooltip(data);
+
+	}
+
+	public static List<String> showTooltip(MapItemData data) {
+
+		List<String> tooltip = new ArrayList();
 		if (data != null) {
 
 			ItemRarity rarity = Rarities.Items.get(data.rarity);
@@ -68,11 +76,18 @@ public class ItemMap extends BaseRarityItem {
 			tooltip.add(TextFormatting.BLUE + "World Type: " + data.worldGeneratorName);
 
 			tooltip.add("");
+			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Amount: " + data.getBonusLootAmount());
+			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Rarity: " + data.getBonusLootRarity());
+
+			tooltip.add("");
 			tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
 		}
+
+		return tooltip;
+
 	}
 
-	private void addAffixTypeToTooltip(MapItemData data, List<String> tooltip, AffectedEntities affected) {
+	private static void addAffixTypeToTooltip(MapItemData data, List<String> tooltip, AffectedEntities affected) {
 
 		List<MapAffixData> affixes = data.getAllAffixesThatAffect(affected);
 
@@ -80,11 +95,9 @@ public class ItemMap extends BaseRarityItem {
 			return;
 		}
 
-		tooltip.add(TextFormatting.GREEN + affected.name() + " Affixes::");
+		tooltip.add(TextFormatting.GREEN + affected.name() + " Affixes:");
 
 		for (MapAffixData affix : affixes) {
-
-			tooltip.add(" - " + (TextFormatting.YELLOW + affix.getAffix().Name()));
 
 			for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
 

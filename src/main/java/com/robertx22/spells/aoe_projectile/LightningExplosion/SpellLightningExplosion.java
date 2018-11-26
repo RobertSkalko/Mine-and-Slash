@@ -1,7 +1,7 @@
 package com.robertx22.spells.aoe_projectile.LightningExplosion;
 
 import com.robertx22.customitems.spells.aoe_projectile.ItemLightningExplosion;
-import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellThunderDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
@@ -42,7 +42,7 @@ public class SpellLightningExplosion extends BaseBoltAOE {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new ThunderDamage().Name(), 0.25F);
+		return new EffectCalculation(new SpellThunderDamage().Name(), 0.25F);
 	}
 
 	@Override

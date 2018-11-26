@@ -1,6 +1,6 @@
 package com.robertx22.database.stats.types.offense.bonus;
 
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
@@ -23,6 +23,6 @@ public class BonusFireDamage extends BaseBonusDamage {
 
 	@Override
 	public Stat StatThatGiveDamage() {
-		return new FireDamage();
+		return new SpellFireDamage();
 	}
 }

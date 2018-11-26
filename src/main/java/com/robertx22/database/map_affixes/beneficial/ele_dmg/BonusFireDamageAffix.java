@@ -7,11 +7,11 @@ import com.robertx22.database.map_affixes.bases.BaseBeneficialEleAffix;
 import com.robertx22.database.map_mods.bonus.ele_dmg.BonusFireDamageMap;
 import com.robertx22.saveclasses.gearitem.StatModData;
 
-public class BonusFireDmgAffix extends BaseBeneficialEleAffix {
+public class BonusFireDamageAffix extends BaseBeneficialEleAffix {
 
 	@Override
 	public String Name() {
-		return "BonusFireDmgAffix";
+		return "BonusFireDamageAffix";
 	}
 
 	@Override

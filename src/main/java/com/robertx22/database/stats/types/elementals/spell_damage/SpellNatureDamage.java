@@ -1,12 +1,12 @@
-package com.robertx22.database.stats.types.elementals.damage;
+package com.robertx22.database.stats.types.elementals.spell_damage;
 
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class ThunderDamage extends Stat {
-	public static String GUID = "Thunder Damage";
+public class SpellNatureDamage extends Stat {
+	public static String GUID = "Spell Nature Damage";
 
-	public ThunderDamage() {
+	public SpellNatureDamage() {
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class ThunderDamage extends Stat {
 
 	@Override
 	public Elements Element() {
-		return Elements.Thunder;
+		return Elements.Nature;
 	}
 
 	@Override

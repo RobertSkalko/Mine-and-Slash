@@ -1,7 +1,7 @@
 package com.robertx22.spells.aoe_projectile.AcidExplosion;
 
 import com.robertx22.customitems.spells.aoe_projectile.ItemAcidExplosion;
-import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
@@ -43,7 +43,7 @@ public class SpellAcidExplosion extends BaseBoltAOE {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new NatureDamage().Name(), 0.25F);
+		return new EffectCalculation(new SpellNatureDamage().Name(), 0.25F);
 	}
 
 	@Override

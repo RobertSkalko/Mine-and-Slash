@@ -1,5 +1,8 @@
 package com.robertx22.generation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.robertx22.customitems.misc.ItemMap;
 import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.rarities.MapRarity;
@@ -45,14 +48,21 @@ public class MapGen {
 
 		int amount = RandomUtils.RandomRange(rarity.AffixAmount().Min, rarity.AffixAmount().Max);
 
+		List<String> affixes = new ArrayList<String>();
+
 		for (int i = 0; i < amount; i++) {
 
 			BaseMapAffix affix = (BaseMapAffix) RandomUtils
 					.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All.values()));
 
+			while (affixes.contains(affix.GUID())) {
+				affix = (BaseMapAffix) RandomUtils.WeightedRandom(ListUtils.CollectionToList(MapAffixes.All.values()));
+			}
+
 			int percent = RandomUtils.RandomRange(rarity.StatPercents().Min, rarity.StatPercents().Max);
 
 			map.affixes.add(new MapAffixData(affix, percent));
+			affixes.add(affix.GUID());
 
 		}
 

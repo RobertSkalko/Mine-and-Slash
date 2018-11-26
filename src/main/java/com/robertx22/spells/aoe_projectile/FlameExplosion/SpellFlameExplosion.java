@@ -1,7 +1,7 @@
 package com.robertx22.spells.aoe_projectile.FlameExplosion;
 
 import com.robertx22.customitems.spells.aoe_projectile.ItemFlameExplosion;
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
@@ -42,7 +42,7 @@ public class SpellFlameExplosion extends BaseBoltAOE {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new FireDamage().Name(), 0.25F);
+		return new EffectCalculation(new SpellFireDamage().Name(), 0.25F);
 	}
 
 	@Override

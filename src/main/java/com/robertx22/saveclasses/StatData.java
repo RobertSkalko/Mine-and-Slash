@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses;
 
+import com.robertx22.database.stats.types.UnknownStat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.Stat;
@@ -20,7 +21,16 @@ public class StatData {
 	}
 
 	public Stat GetStat() {
-		return Stats.All.get(Name);
+		if (Stats.All.containsKey(Name)) {
+			return Stats.All.get(Name);
+		}
+
+		/*
+		 * System.out.println(
+		 * "No such stat, this is probably a legacy item and the stat has been renamed or removed: "
+		 * + Name);
+		 */
+		return Stats.All.get(UnknownStat.GUID);
 	}
 
 	@Store

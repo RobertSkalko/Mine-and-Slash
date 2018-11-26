@@ -1,6 +1,6 @@
 package com.robertx22.database.stats.types.traits.atronachs;
 
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Trait;
@@ -17,7 +17,7 @@ public class FireAtronach extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.MyStats.get(FireDamage.GUID).Multi += 15;
+		unit.MyStats.get(SpellFireDamage.GUID).Multi += 15;
 
 	}
 

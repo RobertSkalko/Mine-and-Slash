@@ -1,6 +1,6 @@
 package com.robertx22.database.stats.mods.percent.elemental;
 
-import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
@@ -32,7 +32,7 @@ public class NatureDamagePercent extends StatMod {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new NatureDamage();
+		return new SpellNatureDamage();
 	}
 
 }

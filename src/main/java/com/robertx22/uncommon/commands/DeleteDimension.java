@@ -43,7 +43,7 @@ public class DeleteDimension extends CommandBase {
 
 				if (data != null && data.isMapWorld()) {
 					data.delete(player, world);
-					Main.Network.sendToAll(new WorldPackage(data.getNBT()));
+					Main.Network.sendToAll(new WorldPackage(data));
 				}
 
 			}

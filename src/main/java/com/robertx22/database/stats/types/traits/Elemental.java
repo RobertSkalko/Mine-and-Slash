@@ -1,9 +1,9 @@
 package com.robertx22.database.stats.types.traits;
 
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
-import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
-import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
-import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellNatureDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellThunderDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Trait;
@@ -20,10 +20,10 @@ public class Elemental extends Trait implements IAffectsOtherStats {
 	@Override
 	public void TryAffectOtherStats(Unit unit) {
 
-		unit.MyStats.get(FireDamage.GUID).Multi += 5;
-		unit.MyStats.get(WaterDamage.GUID).Multi += 5;
-		unit.MyStats.get(ThunderDamage.GUID).Multi += 5;
-		unit.MyStats.get(NatureDamage.GUID).Multi += 5;
+		unit.MyStats.get(SpellFireDamage.GUID).Multi += 5;
+		unit.MyStats.get(SpellWaterDamage.GUID).Multi += 5;
+		unit.MyStats.get(SpellThunderDamage.GUID).Multi += 5;
+		unit.MyStats.get(SpellNatureDamage.GUID).Multi += 5;
 
 	}
 

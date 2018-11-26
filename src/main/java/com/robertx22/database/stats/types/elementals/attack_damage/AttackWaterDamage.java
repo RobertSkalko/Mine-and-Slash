@@ -1,12 +1,12 @@
-package com.robertx22.database.stats.types.elementals.damage;
+package com.robertx22.database.stats.types.elementals.attack_damage;
 
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class WaterDamage extends Stat {
-	public static String GUID = "Water Damage";
+public class AttackWaterDamage extends Stat {
+	public static String GUID = "Attack Water Damage";
 
-	public WaterDamage() {
+	public AttackWaterDamage() {
 	}
 
 	@Override

@@ -7,14 +7,14 @@ import java.util.List;
 
 import com.robertx22.customitems.gearitems.baubles.ItemBracelet;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.stats.mods.flat.elemental.dmg.FireDamageFlat;
-import com.robertx22.database.stats.mods.flat.elemental.dmg.NatureDamageFlat;
-import com.robertx22.database.stats.mods.flat.elemental.dmg.ThunderDamageFlat;
-import com.robertx22.database.stats.mods.flat.elemental.dmg.WaterDamageFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stats.mods.flat.elemental.resist.WaterResistFlat;
+import com.robertx22.database.stats.mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
@@ -42,8 +42,8 @@ public class Bracelet extends GearItemSlot {
 
 	@Override
 	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new FireDamageFlat(), new ThunderDamageFlat(), new WaterDamageFlat(),
-				new NatureDamageFlat());
+		return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(),
+				new SpellNatureDamageFlat());
 	}
 
 	@Override

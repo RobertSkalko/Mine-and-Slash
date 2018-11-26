@@ -1,7 +1,7 @@
 package com.robertx22.spells.projectile.acidbolt;
 
 import com.robertx22.customitems.spells.projectile.ItemAcidBolt;
-import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
@@ -41,7 +41,7 @@ public class SpellAcidBolt extends BaseBolt {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new NatureDamage().Name(), 0.5F);
+		return new EffectCalculation(new SpellNatureDamage().Name(), 0.5F);
 	}
 
 	@Override

@@ -2,14 +2,14 @@ package com.robertx22.uncommon.capability.bases;
 
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stats.types.defense.Armor;
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
-import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
-import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
-import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
 import com.robertx22.database.stats.types.elementals.resist.FireResist;
 import com.robertx22.database.stats.types.elementals.resist.NatureResist;
 import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
 import com.robertx22.database.stats.types.elementals.resist.WaterResist;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellNatureDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellThunderDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
 import com.robertx22.database.stats.types.offense.PhysicalDamage;
@@ -38,10 +38,10 @@ public class MobStatUtils {
 		unit.MyStats.get(ThunderResist.GUID).Flat += 10 * level;
 		unit.MyStats.get(NatureResist.GUID).Flat += 10 * level;
 
-		unit.MyStats.get(WaterDamage.GUID).Flat += 10 * level;
-		unit.MyStats.get(FireDamage.GUID).Flat += 10 * level;
-		unit.MyStats.get(ThunderDamage.GUID).Flat += 10 * level;
-		unit.MyStats.get(NatureDamage.GUID).Flat += 10 * level;
+		unit.MyStats.get(SpellWaterDamage.GUID).Flat += 10 * level;
+		unit.MyStats.get(SpellFireDamage.GUID).Flat += 10 * level;
+		unit.MyStats.get(SpellThunderDamage.GUID).Flat += 10 * level;
+		unit.MyStats.get(SpellNatureDamage.GUID).Flat += 10 * level;
 
 		unit.MyStats.get(PhysicalDamage.GUID).Flat += 0.4F * level;
 

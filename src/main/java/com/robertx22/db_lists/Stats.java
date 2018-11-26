@@ -2,13 +2,14 @@ package com.robertx22.db_lists;
 
 import java.util.HashMap;
 
+import com.robertx22.database.stats.types.UnknownStat;
 import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.database.stats.types.defense.Dodge;
 import com.robertx22.database.stats.types.defense.SpellDodge;
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
-import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
-import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
-import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
+import com.robertx22.database.stats.types.elementals.attack_damage.AttackFireDamage;
+import com.robertx22.database.stats.types.elementals.attack_damage.AttackNatureDamage;
+import com.robertx22.database.stats.types.elementals.attack_damage.AttackThunderDamage;
+import com.robertx22.database.stats.types.elementals.attack_damage.AttackWaterDamage;
 import com.robertx22.database.stats.types.elementals.pene.FirePene;
 import com.robertx22.database.stats.types.elementals.pene.NaturePene;
 import com.robertx22.database.stats.types.elementals.pene.ThunderPene;
@@ -17,6 +18,10 @@ import com.robertx22.database.stats.types.elementals.resist.FireResist;
 import com.robertx22.database.stats.types.elementals.resist.NatureResist;
 import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
 import com.robertx22.database.stats.types.elementals.resist.WaterResist;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellNatureDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellThunderDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.database.stats.types.offense.ArmorPenetration;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
@@ -54,6 +59,7 @@ public class Stats {
 		{
 			{
 
+				put(UnknownStat.GUID, new UnknownStat());
 				// Resources
 				put(Health.GUID, new Health());
 				put(HealthRegen.GUID, new HealthRegen());
@@ -74,10 +80,15 @@ public class Stats {
 				put(PhysicalDamage.GUID, new PhysicalDamage());
 
 				// Elemental
-				put(FireDamage.GUID, new FireDamage());
-				put(WaterDamage.GUID, new WaterDamage());
-				put(ThunderDamage.GUID, new ThunderDamage());
-				put(NatureDamage.GUID, new NatureDamage());
+				put(SpellFireDamage.GUID, new SpellFireDamage());
+				put(SpellWaterDamage.GUID, new SpellWaterDamage());
+				put(SpellThunderDamage.GUID, new SpellThunderDamage());
+				put(SpellNatureDamage.GUID, new SpellNatureDamage());
+
+				put(AttackFireDamage.GUID, new AttackFireDamage());
+				put(AttackWaterDamage.GUID, new AttackWaterDamage());
+				put(AttackThunderDamage.GUID, new AttackThunderDamage());
+				put(AttackNatureDamage.GUID, new AttackNatureDamage());
 
 				put(FireResist.GUID, new FireResist());
 				put(NatureResist.GUID, new NatureResist());

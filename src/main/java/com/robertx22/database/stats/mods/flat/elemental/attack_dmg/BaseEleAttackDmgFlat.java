@@ -1,11 +1,11 @@
-package com.robertx22.database.stats.mods.flat.elemental.dmg;
+package com.robertx22.database.stats.mods.flat.elemental.attack_dmg;
 
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public abstract class BaseEleDmgFlat extends StatMod {
+public abstract class BaseEleAttackDmgFlat extends StatMod {
 
-	public BaseEleDmgFlat() {
+	public BaseEleAttackDmgFlat() {
 	}
 
 	@Override

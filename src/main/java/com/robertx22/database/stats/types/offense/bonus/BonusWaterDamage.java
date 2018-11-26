@@ -1,6 +1,6 @@
 package com.robertx22.database.stats.types.offense.bonus;
 
-import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
@@ -23,6 +23,6 @@ public class BonusWaterDamage extends BaseBonusDamage {
 
 	@Override
 	public Stat StatThatGiveDamage() {
-		return new WaterDamage();
+		return new SpellWaterDamage();
 	}
 }

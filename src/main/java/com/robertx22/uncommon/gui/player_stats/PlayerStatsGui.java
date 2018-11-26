@@ -9,10 +9,10 @@ import com.libraries.rabbit.gui.component.list.entries.StringEntry;
 import com.libraries.rabbit.gui.show.Show;
 import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.database.stats.types.defense.Dodge;
-import com.robertx22.database.stats.types.elementals.damage.FireDamage;
-import com.robertx22.database.stats.types.elementals.damage.NatureDamage;
-import com.robertx22.database.stats.types.elementals.damage.ThunderDamage;
-import com.robertx22.database.stats.types.elementals.damage.WaterDamage;
+import com.robertx22.database.stats.types.elementals.attack_damage.AttackFireDamage;
+import com.robertx22.database.stats.types.elementals.attack_damage.AttackNatureDamage;
+import com.robertx22.database.stats.types.elementals.attack_damage.AttackThunderDamage;
+import com.robertx22.database.stats.types.elementals.attack_damage.AttackWaterDamage;
 import com.robertx22.database.stats.types.elementals.pene.FirePene;
 import com.robertx22.database.stats.types.elementals.pene.NaturePene;
 import com.robertx22.database.stats.types.elementals.pene.ThunderPene;
@@ -21,6 +21,10 @@ import com.robertx22.database.stats.types.elementals.resist.FireResist;
 import com.robertx22.database.stats.types.elementals.resist.NatureResist;
 import com.robertx22.database.stats.types.elementals.resist.ThunderResist;
 import com.robertx22.database.stats.types.elementals.resist.WaterResist;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellNatureDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellThunderDamage;
+import com.robertx22.database.stats.types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.database.stats.types.offense.ArmorPenetration;
 import com.robertx22.database.stats.types.offense.CriticalDamage;
 import com.robertx22.database.stats.types.offense.CriticalHit;
@@ -44,18 +48,15 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.text.TextFormatting;
 
-public class StatsGui extends Show {
-
-	private GuiButton mButtonClose;
+public class PlayerStatsGui extends Show {
 
 	Unit unit;
 	UnitData data;
 	Minecraft mc;
 
-	public StatsGui() {
+	public PlayerStatsGui() {
 
 	}
 
@@ -126,12 +127,19 @@ public class StatsGui extends Show {
 			ShowStat(this.GetStatString(unit.MyStats.get(Lifesteal.GUID), stats), list);
 			ShowStat(this.GetStatString(unit.MyStats.get(LifeOnHit.GUID), stats), list);
 
-			ShowStat(TextFormatting.RED + "Elemental Damage:", list);
+			ShowStat(TextFormatting.RED + "Elemental Spell Damage:", list);
 
-			ShowStat(this.GetStatString(unit.MyStats.get(FireDamage.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(WaterDamage.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(ThunderDamage.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(NatureDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(SpellFireDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(SpellWaterDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(SpellThunderDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(SpellNatureDamage.GUID), stats), list);
+
+			ShowStat(TextFormatting.RED + "Elemental Attack Damage:", list);
+
+			ShowStat(this.GetStatString(unit.MyStats.get(AttackFireDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(AttackWaterDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(AttackThunderDamage.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(AttackNatureDamage.GUID), stats), list);
 
 			ShowStat(TextFormatting.RED + "Bonus Element Damage:", list);
 

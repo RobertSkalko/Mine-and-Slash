@@ -25,27 +25,17 @@ public class OnHurt {
 			return;
 		}
 
-		if (event.getEntityLiving() instanceof EntityPlayer) {
+		// mobs take much less damage from any source other than my mods. This is
+		// required or else there's no point in getting legendary weapons if a diamond
+		// sword more damage
+		if (event.getEntityLiving() instanceof IMob || event.getEntityLiving() instanceof EntityMob
+				|| event.getEntityLiving() instanceof EntityPlayer) {
+
 			if (event.getSource().isExplosion()) {
-				event.setAmount(event.getAmount() / 2);
+				event.setAmount(event.getAmount() / 5);
 				return;
-			}
-
-		} else {
-
-			// mobs take much less damage from any source other than my mods. This is
-			// required or else there's no point in getting legendary weapons if a diamond
-			// sword more damage
-			if (event.getEntityLiving() instanceof IMob || event.getEntityLiving() instanceof EntityMob
-					|| event.getEntityLiving() instanceof EntityPlayer) {
-
-				if (event.getSource().isExplosion()) {
-					event.setAmount(event.getAmount() / 5);
-					return;
-				} else {
-					event.setAmount(event.getAmount() / 30);
-
-				}
+			} else {
+				event.setAmount(event.getAmount() / 30);
 
 			}
 

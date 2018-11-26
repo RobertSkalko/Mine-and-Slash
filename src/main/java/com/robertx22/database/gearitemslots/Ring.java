@@ -7,10 +7,10 @@ import java.util.List;
 
 import com.robertx22.customitems.gearitems.baubles.ItemRing;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.stats.mods.flat.elemental.dmg.FireDamageFlat;
-import com.robertx22.database.stats.mods.flat.elemental.dmg.NatureDamageFlat;
-import com.robertx22.database.stats.mods.flat.elemental.dmg.ThunderDamageFlat;
-import com.robertx22.database.stats.mods.flat.elemental.dmg.WaterDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
+import com.robertx22.database.stats.mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
@@ -41,8 +41,8 @@ public class Ring extends GearItemSlot {
 
 	@Override
 	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new FireDamageFlat(), new ThunderDamageFlat(), new WaterDamageFlat(),
-				new NatureDamageFlat());
+		return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(),
+				new SpellNatureDamageFlat());
 	}
 
 	@Override
