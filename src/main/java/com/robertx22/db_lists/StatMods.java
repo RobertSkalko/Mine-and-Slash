@@ -12,6 +12,8 @@ import com.robertx22.database.map_mods.bonus.ele_res.BonusFireResistMap;
 import com.robertx22.database.map_mods.bonus.ele_res.BonusNatureResistMap;
 import com.robertx22.database.map_mods.bonus.ele_res.BonusThunderResistMap;
 import com.robertx22.database.map_mods.bonus.ele_res.BonusWaterResistMap;
+import com.robertx22.database.map_mods.minus.LessCriticalHitMap;
+import com.robertx22.database.map_mods.minus.LessDodgeMap;
 import com.robertx22.database.map_mods.minus.LessEnergyRegenMap;
 import com.robertx22.database.map_mods.minus.LessHealthMap;
 import com.robertx22.database.map_mods.minus.LessHealthRegenMap;
@@ -19,6 +21,10 @@ import com.robertx22.database.map_mods.minus.LessLifeOnHitMap;
 import com.robertx22.database.map_mods.minus.LessLifestealMap;
 import com.robertx22.database.map_mods.minus.LessManaOnHitMap;
 import com.robertx22.database.map_mods.minus.LessManaRegenMap;
+import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllFireDamageMap;
+import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllNatureDamageMap;
+import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllThunderDamageMap;
+import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllWaterDamageMap;
 import com.robertx22.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.database.stats.mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stats.mods.flat.CriticalDamageFlat;
@@ -164,6 +170,9 @@ public class StatMods {
 				put(new BonusHealthMap().GUID(), new BonusHealthMap());
 				put(new BonusLifestealMap().GUID(), new BonusLifestealMap());
 
+				put(new LessCriticalHitMap().GUID(), new LessCriticalHitMap());
+				put(new LessDodgeMap().GUID(), new LessDodgeMap());
+
 				put(new BonusFireDamageMap().GUID(), new BonusFireDamageMap());
 				put(new BonusNatureDamageMap().GUID(), new BonusNatureDamageMap());
 				put(new BonusThunderDamageMap().GUID(), new BonusThunderDamageMap());
@@ -173,6 +182,11 @@ public class StatMods {
 				put(new BonusNatureResistMap().GUID(), new BonusNatureResistMap());
 				put(new BonusThunderResistMap().GUID(), new BonusThunderResistMap());
 				put(new BonusWaterResistMap().GUID(), new BonusWaterResistMap());
+
+				put(new LessAllFireDamageMap().GUID(), new LessAllFireDamageMap());
+				put(new LessAllNatureDamageMap().GUID(), new LessAllNatureDamageMap());
+				put(new LessAllThunderDamageMap().GUID(), new LessAllThunderDamageMap());
+				put(new LessAllWaterDamageMap().GUID(), new LessAllWaterDamageMap());
 
 				put(new LessEnergyRegenMap().GUID(), new LessEnergyRegenMap());
 				put(new LessManaRegenMap().GUID(), new LessManaRegenMap());

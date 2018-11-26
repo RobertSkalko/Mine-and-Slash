@@ -13,6 +13,8 @@ import com.robertx22.database.map_affixes.beneficial.ele_res.BonusFireResistAffi
 import com.robertx22.database.map_affixes.beneficial.ele_res.BonusNatureResistAffix;
 import com.robertx22.database.map_affixes.beneficial.ele_res.BonusThunderResistAffix;
 import com.robertx22.database.map_affixes.beneficial.ele_res.BonusWaterResistAffix;
+import com.robertx22.database.map_affixes.detrimental.LessCriticalHitAffix;
+import com.robertx22.database.map_affixes.detrimental.LessDodgeAffix;
 import com.robertx22.database.map_affixes.detrimental.LessEnergyRegenAffix;
 import com.robertx22.database.map_affixes.detrimental.LessHealthAffix;
 import com.robertx22.database.map_affixes.detrimental.LessHealthRegenAffix;
@@ -20,6 +22,10 @@ import com.robertx22.database.map_affixes.detrimental.LessLifeOnHitAffix;
 import com.robertx22.database.map_affixes.detrimental.LessLifestealAffix;
 import com.robertx22.database.map_affixes.detrimental.LessManaOnHitAffix;
 import com.robertx22.database.map_affixes.detrimental.LessManaRegenAffix;
+import com.robertx22.database.map_affixes.detrimental.ele.LessAllFireDmgAffix;
+import com.robertx22.database.map_affixes.detrimental.ele.LessAllNatureDmgAffix;
+import com.robertx22.database.map_affixes.detrimental.ele.LessAllThunderDmgAffix;
+import com.robertx22.database.map_affixes.detrimental.ele.LessAllWaterDmgAffix;
 
 public class MapAffixes {
 	public static HashMap<String, BaseMapAffix> All = new HashMap<String, BaseMapAffix>() {
@@ -38,6 +44,14 @@ public class MapAffixes {
 				put(new BonusNatureResistAffix().GUID(), new BonusNatureResistAffix());
 				put(new BonusThunderResistAffix().GUID(), new BonusThunderResistAffix());
 				put(new BonusWaterResistAffix().GUID(), new BonusWaterResistAffix());
+
+				put(new LessAllFireDmgAffix().GUID(), new LessAllFireDmgAffix());
+				put(new LessAllNatureDmgAffix().GUID(), new LessAllNatureDmgAffix());
+				put(new LessAllThunderDmgAffix().GUID(), new LessAllThunderDmgAffix());
+				put(new LessAllWaterDmgAffix().GUID(), new LessAllWaterDmgAffix());
+
+				put(new LessDodgeAffix().GUID(), new LessDodgeAffix());
+				put(new LessCriticalHitAffix().GUID(), new LessCriticalHitAffix());
 
 				put(new LessEnergyRegenAffix().GUID(), new LessEnergyRegenAffix());
 				put(new LessManaRegenAffix().GUID(), new LessManaRegenAffix());

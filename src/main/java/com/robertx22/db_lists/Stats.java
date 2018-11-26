@@ -6,6 +6,10 @@ import com.robertx22.database.stats.types.UnknownStat;
 import com.robertx22.database.stats.types.defense.Armor;
 import com.robertx22.database.stats.types.defense.Dodge;
 import com.robertx22.database.stats.types.defense.SpellDodge;
+import com.robertx22.database.stats.types.elementals.all_damage.AllFireDamage;
+import com.robertx22.database.stats.types.elementals.all_damage.AllNatureDamage;
+import com.robertx22.database.stats.types.elementals.all_damage.AllThunderDamage;
+import com.robertx22.database.stats.types.elementals.all_damage.AllWaterDamage;
 import com.robertx22.database.stats.types.elementals.attack_damage.AttackFireDamage;
 import com.robertx22.database.stats.types.elementals.attack_damage.AttackNatureDamage;
 import com.robertx22.database.stats.types.elementals.attack_damage.AttackThunderDamage;
@@ -90,6 +94,11 @@ public class Stats {
 				put(AttackWaterDamage.GUID, new AttackWaterDamage());
 				put(AttackThunderDamage.GUID, new AttackThunderDamage());
 				put(AttackNatureDamage.GUID, new AttackNatureDamage());
+
+				put(AllFireDamage.GUID, new AllFireDamage());
+				put(AllWaterDamage.GUID, new AllWaterDamage());
+				put(AllThunderDamage.GUID, new AllThunderDamage());
+				put(AllNatureDamage.GUID, new AllNatureDamage());
 
 				put(FireResist.GUID, new FireResist());
 				put(NatureResist.GUID, new NatureResist());

@@ -47,21 +47,16 @@ public class MobStatUtils {
 
 	}
 
-	public static void AddMobTierStats(Unit unit, int level, int tier) {
-
+	public static void AddMobTierStats(Unit unit, int tier) {
 		for (StatData data : unit.MyStats.values()) {
-
-			float val = IncByPercent(data.Flat, tier);
-
-			unit.MyStats.get(data.Name).Flat = val;
-
-			// System.out.println(val + " to " + unit.MyStats.get(data.Name).Value);
-
+			if (data.GetStat().IsPercent() == false) {
+				unit.MyStats.get(data.Name).Flat = IncByPercent(data.Flat, tier);
+			}
 		}
 	}
 
 	private static float IncByPercent(float val, int tier) {
-		return val + (val * tier * 15 / 100);
+		return val + (val * tier * 25 / 100);
 	}
 
 	public static void SetMobStrengthMultiplier(Unit unit, MobRarity rarity) {

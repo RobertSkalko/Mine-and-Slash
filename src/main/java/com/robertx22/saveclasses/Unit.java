@@ -22,7 +22,6 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import com.robertx22.uncommon.capability.bases.MobStatUtils;
 import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
-import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -177,7 +176,7 @@ public class Unit {
 		CommonStatUtils.addMapAffixes(data, entity, mob, endata);
 		MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
 
-		mob.RecalculateStats(entity, level);
+		mob.RecalculateMobStats(entity, level, data);
 
 		return mob;
 
@@ -209,24 +208,25 @@ public class Unit {
 			PlayerStatUtils.CalcTraits(this);
 			CalcStats(entity);
 
-		} else {
-			IWorldData world = Load.World(entity.world);
-
-			int tier = 0;
-			if (world != null) {
-				tier = world.getTier();
-			}
-			UnitData data = entity.getCapability(EntityData.Data, null);
-
-			ClearStats();
-			MobStatUtils.AddMobcStats(this, data.getLevel());
-			MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
-			CommonStatUtils.AddStatusEffectStats(this, level);
-			CommonStatUtils.AddMapAffixStats(this, level);
-			MobStatUtils.AddMobTierStats(this, level, tier);
-			CalcStats(entity);
-
 		}
+
+	}
+
+	public void RecalculateMobStats(EntityLivingBase entity, int level, IWorldData world) {
+
+		int tier = 0;
+		if (world != null) {
+			tier = world.getTier();
+		}
+		UnitData data = entity.getCapability(EntityData.Data, null);
+
+		ClearStats();
+		MobStatUtils.AddMobcStats(this, data.getLevel());
+		MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
+		CommonStatUtils.AddStatusEffectStats(this, level);
+		CommonStatUtils.AddMapAffixStats(this, level);
+		MobStatUtils.AddMobTierStats(this, tier);
+		CalcStats(entity);
 
 	}
 
