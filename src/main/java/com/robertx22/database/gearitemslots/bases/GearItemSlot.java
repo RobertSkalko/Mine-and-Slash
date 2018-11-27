@@ -24,6 +24,10 @@ public abstract class GearItemSlot implements IWeighted {
 
 	public abstract List<StatMod> PrimaryStats();
 
+	public List<StatMod> slotTypeStats() {
+		return new ArrayList<StatMod>();
+	}
+
 	public abstract List<StatMod> PossibleSecondaryStats();
 
 	public abstract Item DefaultItem();

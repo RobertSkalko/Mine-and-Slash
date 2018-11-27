@@ -28,6 +28,8 @@ public class GearGen {
 		data.Rarity = rarity.Rank();
 		data.name = gearslot.Name();
 
+		data.gearTypeStats = blueprint.genGearTypeStats(data);
+
 		data.primaryStats = new PrimaryStatsData();
 		data.primaryStats.RerollFully(data);
 

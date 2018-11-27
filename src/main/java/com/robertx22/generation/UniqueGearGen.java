@@ -41,6 +41,8 @@ public class UniqueGearGen {
 			data.Rarity = rarity.Rank();
 			data.name = gearslot.Name();
 
+			data.gearTypeStats = blueprint.genGearTypeStats(data);
+
 			if (RandomUtils.roll(rarity.AffixChance())) {
 
 				data.suffix = new SuffixData();

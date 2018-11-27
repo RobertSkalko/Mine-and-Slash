@@ -59,11 +59,14 @@ import com.robertx22.database.stats.mods.flat.resources.LifestealFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaRegenFlat;
+import com.robertx22.database.stats.mods.percent.ArmorPenePercent;
 import com.robertx22.database.stats.mods.percent.ArmorPercent;
+import com.robertx22.database.stats.mods.percent.CriticalDamagePercent;
 import com.robertx22.database.stats.mods.percent.CriticalHitPercent;
 import com.robertx22.database.stats.mods.percent.DamagePercent;
 import com.robertx22.database.stats.mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stats.mods.percent.HealthPercent;
+import com.robertx22.database.stats.mods.percent.LifeOnHitPercent;
 import com.robertx22.database.stats.mods.percent.LifestealPercent;
 import com.robertx22.database.stats.mods.percent.ManaRegenPercent;
 import com.robertx22.database.stats.mods.percent.elemental.FireDamagePercent;
@@ -96,6 +99,8 @@ public class StatMods {
 				put(new DamageFlat().GUID(), new DamageFlat());
 				put(new CriticalHitPercent().GUID(), new CriticalHitPercent());
 				put(new DamagePercent().GUID(), new DamagePercent());
+				put(new CriticalDamagePercent().GUID(), new CriticalDamagePercent());
+				put(new ArmorPenePercent().GUID(), new ArmorPenePercent());
 
 				// Resources
 				put(new HealthFlat().GUID(), new HealthFlat());
@@ -109,6 +114,7 @@ public class StatMods {
 				put(new LifestealFlat().GUID(), new LifestealFlat());
 				put(new LifestealPercent().GUID(), new LifestealPercent());
 				put(new LifeOnHitFlat().GUID(), new LifeOnHitFlat());
+				put(new LifeOnHitPercent().GUID(), new LifeOnHitPercent());
 				put(new ManaFlat().GUID(), new ManaFlat());
 				put(new ManaOnHitFlat().GUID(), new ManaOnHitFlat());
 				// Resources

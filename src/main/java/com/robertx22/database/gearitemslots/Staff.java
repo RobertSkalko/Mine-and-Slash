@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
-import com.robertx22.database.stats.mods.flat.CriticalDamageFlat;
-import com.robertx22.database.stats.mods.flat.CriticalHitFlat;
 import com.robertx22.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.stats.StatMod;
 
@@ -18,6 +16,11 @@ public class Staff extends BaseWeapon {
 	@Override
 	public String Name() {
 		return "Staff";
+	}
+
+	@Override
+	public List<StatMod> slotTypeStats() {
+		return Arrays.asList(new ManaOnHitFlat());
 	}
 
 	@Override
@@ -33,11 +36,6 @@ public class Staff extends BaseWeapon {
 	@Override
 	public int Weight() {
 		return 1000;
-	}
-
-	@Override
-	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new ManaOnHitFlat());
 	}
 
 }

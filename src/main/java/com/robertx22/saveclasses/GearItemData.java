@@ -10,6 +10,7 @@ import com.robertx22.database.rarities.items.Unique;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
+import com.robertx22.saveclasses.gearitem.GearTypeStatsData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
@@ -52,6 +53,8 @@ public class GearItemData implements IStatsContainer, ITooltip {
 	// Stats
 	@Store
 	public UniqueStatsData uniqueStats;
+	@Store
+	public GearTypeStatsData gearTypeStats;
 	@Store
 	public PrimaryStatsData primaryStats;
 	@Store
@@ -151,6 +154,9 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		if (chaosStats != null) {
 			containers.add(chaosStats);
 		}
+		if (gearTypeStats != null) {
+			containers.add(gearTypeStats);
+		}
 
 		return containers;
 
@@ -188,6 +194,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		list.add(prefix);
 		list.add(suffix);
 		list.add(chaosStats);
+		list.add(gearTypeStats);
 
 		for (ITooltipList part : list) {
 
@@ -257,6 +264,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		IfNotNullAdd(suffix, list);
 		IfNotNullAdd(chaosStats, list);
 		IfNotNullAdd(uniqueStats, list);
+		IfNotNullAdd(gearTypeStats, list);
 		return list;
 	}
 
