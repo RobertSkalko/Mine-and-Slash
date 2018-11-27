@@ -42,26 +42,26 @@ public class GearItemRegisters {
 			int rank = rarity.Rank();
 
 			// weapons
-			regRarities(new ItemSword(), ItemSword.Items, "sword", rarity.Rank());
-			regRarities(new ItemHammer(), ItemHammer.Items, "hammer", rarity.Rank());
-			regRarities(new ItemAxe(), ItemAxe.Items, "axe", rarity.Rank());
+			regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());
+			regRarities(new ItemHammer(), ItemHammer.Items, "hammer/hammer", rarity.Rank());
+			regRarities(new ItemAxe(), ItemAxe.Items, "axe/axe", rarity.Rank());
 			regRarities(new ItemBow(), ItemBow.Items, "bow/bow", rarity.Rank());
-			regRarities(new ItemStaff(), ItemStaff.Items, "staff", rarity.Rank());
+			regRarities(new ItemStaff(), ItemStaff.Items, "staff/staff", rarity.Rank());
 
 			// baubles
-			regRarities(new ItemNecklace(), ItemNecklace.Items, "necklace", rarity.Rank());
-			regRarities(new ItemBracelet(), ItemBracelet.Items, "bracelet", rarity.Rank());
-			regRarities(new ItemRing(), ItemRing.Items, "ring", rarity.Rank());
-			regRarities(new ItemCharm(), ItemCharm.Items, "charm", rarity.Rank());
+			regRarities(new ItemNecklace(), ItemNecklace.Items, "necklace/necklace", rarity.Rank());
+			regRarities(new ItemBracelet(), ItemBracelet.Items, "bracelet/bracelet", rarity.Rank());
+			regRarities(new ItemRing(), ItemRing.Items, "ring/ring", rarity.Rank());
+			regRarities(new ItemCharm(), ItemCharm.Items, "charm/charm", rarity.Rank());
 
 			// armors
-			regRarities(new ItemBoots(rank), ItemBoots.Items, "boots", rarity.Rank());
-			regRarities(new ItemChest(rank), ItemChest.Items, "chest", rarity.Rank());
-			regRarities(new ItemHelmet(rank), ItemHelmet.Items, "helmet", rarity.Rank());
-			regRarities(new ItemPants(rank), ItemPants.Items, "pants", rarity.Rank());
+			regRarities(new ItemBoots(rank), ItemBoots.Items, "boots/boots", rarity.Rank());
+			regRarities(new ItemChest(rank), ItemChest.Items, "chest/chest", rarity.Rank());
+			regRarities(new ItemHelmet(rank), ItemHelmet.Items, "helmet/helmet", rarity.Rank());
+			regRarities(new ItemPants(rank), ItemPants.Items, "pants/pants", rarity.Rank());
 
 			// misc
-			regRarities(new ItemMap(), ItemMap.Items, "map", rarity.Rank()); // not gearitem but yeah
+			regRarities(new ItemMap(), ItemMap.Items, "map/map", rarity.Rank()); // not gearitem but yeah
 
 		}
 

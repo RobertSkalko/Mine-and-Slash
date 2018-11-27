@@ -48,7 +48,9 @@ public interface IUnique extends IWeighted, ITiered, IGUID {
 			} else {
 				item.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
 			}
-			RegisterItemUtils.RegisterItemName(item, "uniques/" + ((IUnique) item).GUID());
+			IUnique uniq = (IUnique) item;
+
+			RegisterItemUtils.RegisterItemName(item, "uniques/" + uniq.slot().toLowerCase() + "/" + uniq.GUID());
 
 			event.getRegistry().register(item);
 		}
