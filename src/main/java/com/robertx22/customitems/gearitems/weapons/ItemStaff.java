@@ -4,16 +4,14 @@ import java.util.HashMap;
 
 import javax.annotation.Nonnull;
 
-import com.robertx22.customitems.gearitems.bases.BaseSwordItem;
+import com.robertx22.customitems.gearitems.bases.BaseWeaponItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.customitems.gearitems.weapon_mechanics.StaffWeaponMechanic;
-import com.robertx22.db_lists.Rarities;
 import com.robertx22.spells.EntityStaffProjectileNormal;
 import com.robertx22.spells.aoe_projectile.AcidExplosion.EffectAcidExplosion;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,29 +22,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
-public class ItemStaff extends BaseSwordItem implements IWeapon {
+public class ItemStaff extends BaseWeaponItem implements IWeapon {
 	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-	public ItemStaff(int rarity, HashMap<Integer, Item> map) {
-		super(rarity, map);
+	public ItemStaff() {
 
-	}
-
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemStaff(x.Rank(), Items)));
-		Items.values().forEach((x) -> event.getRegistry().register(x));
-	}
-
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		Items.values().forEach((x) -> RegisterUtils.registerRender(x));
 	}
 
 	@Override

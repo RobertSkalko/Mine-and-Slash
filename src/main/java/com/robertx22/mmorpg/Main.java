@@ -11,6 +11,7 @@ import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
+import com.robertx22.mmorpg.registers.GearItemRegisters;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
 import com.robertx22.network.ParticlePackage;
@@ -65,6 +66,8 @@ public class Main {
 		proxy.preInit(event);
 
 		proxy.RegisterEntityRenders();
+
+		GearItemRegisters.register();
 
 		ItemOre.Register();
 		StartupRepair.preInitCommon(event);

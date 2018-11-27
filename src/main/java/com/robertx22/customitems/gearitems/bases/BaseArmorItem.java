@@ -1,12 +1,8 @@
 package com.robertx22.customitems.gearitems.bases;
 
-import java.util.HashMap;
-
-import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.Utils;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -38,13 +34,11 @@ public abstract class BaseArmorItem extends ItemArmor implements IGearItem {
 
 	public abstract String Name();
 
-	public BaseArmorItem(int rarity, HashMap<Integer, Item> map, EntityEquipmentSlot slot) {
+	public BaseArmorItem(int rarity, EntityEquipmentSlot slot) {
 		super(GetMat(rarity), 0, slot);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(MAX_GEAR_DURABILITY);
-		RegisterItemUtils.RegisterItemName(this, Name().toLowerCase() + rarity);
 
-		map.put(rarity, this);
 	}
 
 	private static ItemArmor.ArmorMaterial GetMat(int rarity) {
