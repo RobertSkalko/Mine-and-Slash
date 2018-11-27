@@ -9,7 +9,7 @@ import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stat_mods.percent.LifestealPercent;
-import com.robertx22.database.stat_mods.percent.elemental.FireDamagePercent;
+import com.robertx22.database.stat_mods.percent.spell_ele_dmg.FireDamagePercent;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.StatMod;
 

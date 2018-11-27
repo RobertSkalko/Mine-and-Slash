@@ -9,7 +9,7 @@ import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
-import com.robertx22.database.stat_mods.percent.elemental.ThunderDamagePercent;
+import com.robertx22.database.stat_mods.percent.spell_ele_dmg.ThunderDamagePercent;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.StatMod;
 

@@ -1,18 +1,18 @@
-package com.robertx22.database.stat_mods.percent.elemental;
+package com.robertx22.database.stat_mods.percent.spell_ele_dmg;
 
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
+import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public class ThunderDamagePercent extends StatMod {
+public class FireDamagePercent extends StatMod {
 
-	public ThunderDamagePercent() {
+	public FireDamagePercent() {
 	}
 
 	@Override
 	public String GUID() {
-		return "ThunderDamagePercent";
+		return "FireDamagePercent";
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class ThunderDamagePercent extends StatMod {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new SpellThunderDamage();
+		return new SpellFireDamage();
 	}
 
 }

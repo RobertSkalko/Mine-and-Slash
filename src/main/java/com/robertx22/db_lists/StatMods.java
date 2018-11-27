@@ -69,10 +69,14 @@ import com.robertx22.database.stat_mods.percent.HealthPercent;
 import com.robertx22.database.stat_mods.percent.LifeOnHitPercent;
 import com.robertx22.database.stat_mods.percent.LifestealPercent;
 import com.robertx22.database.stat_mods.percent.ManaRegenPercent;
-import com.robertx22.database.stat_mods.percent.elemental.FireDamagePercent;
-import com.robertx22.database.stat_mods.percent.elemental.NatureDamagePercent;
-import com.robertx22.database.stat_mods.percent.elemental.ThunderDamagePercent;
-import com.robertx22.database.stat_mods.percent.elemental.WaterDamagePercent;
+import com.robertx22.database.stat_mods.percent.pene.FirePenePercent;
+import com.robertx22.database.stat_mods.percent.pene.NaturePenePercent;
+import com.robertx22.database.stat_mods.percent.pene.ThunderPenePercent;
+import com.robertx22.database.stat_mods.percent.pene.WaterPenePercent;
+import com.robertx22.database.stat_mods.percent.spell_ele_dmg.FireDamagePercent;
+import com.robertx22.database.stat_mods.percent.spell_ele_dmg.NatureDamagePercent;
+import com.robertx22.database.stat_mods.percent.spell_ele_dmg.ThunderDamagePercent;
+import com.robertx22.database.stat_mods.percent.spell_ele_dmg.WaterDamagePercent;
 import com.robertx22.database.stat_mods.traits.ArmoredFlat;
 import com.robertx22.database.stat_mods.traits.BarbarianFlat;
 import com.robertx22.database.stat_mods.traits.ClumsyScholarFlat;
@@ -139,6 +143,11 @@ public class StatMods {
 				put(new WaterPeneFlat().GUID(), new WaterPeneFlat());
 				put(new ThunderPeneFlat().GUID(), new ThunderPeneFlat());
 				put(new NaturePeneFlat().GUID(), new NaturePeneFlat());
+
+				put(new FirePenePercent().GUID(), new FirePenePercent());
+				put(new WaterPenePercent().GUID(), new WaterPenePercent());
+				put(new ThunderPenePercent().GUID(), new ThunderPenePercent());
+				put(new NaturePenePercent().GUID(), new NaturePenePercent());
 
 				put(new FireDamagePercent().GUID(), new FireDamagePercent());
 				put(new WaterDamagePercent().GUID(), new WaterDamagePercent());

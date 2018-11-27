@@ -1,14 +1,24 @@
 package com.robertx22.unique_items;
 
-import com.robertx22.unique_items.rings.UniqueRingOfDodge;
-import com.robertx22.unique_items.staffs.UniqueStaffFlameShooter;
+import com.robertx22.unique_items.rings.RingOfDodge;
+import com.robertx22.unique_items.staffs.StaffFire;
+import com.robertx22.unique_items.staffs.StaffNature;
+import com.robertx22.unique_items.staffs.StaffThunder;
+import com.robertx22.unique_items.staffs.StaffWater;
 
 public class UniqueItemRegister {
 
 	public static void registerAll() {
 
-		new UniqueRingOfDodge();
-		new UniqueStaffFlameShooter();
+		// rings
+		new RingOfDodge();
+
+		// staffs
+		new StaffFire();
+		new StaffWater();
+		new StaffThunder();
+		new StaffNature();
+
 	}
 
 }

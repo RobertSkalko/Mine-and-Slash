@@ -5,39 +5,42 @@ import java.util.List;
 
 import com.robertx22.database.gearitemslots.Staff;
 import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
-import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
+import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
+import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
+import com.robertx22.database.stat_mods.percent.pene.ThunderPenePercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueStaff;
 
-public class UniqueStaffFlameShooter extends BaseUniqueStaff {
+public class StaffThunder extends BaseUniqueStaff {
 
-	public UniqueStaffFlameShooter() {
+	public StaffThunder() {
 
 	}
 
 	@Override
 	public int Tier() {
-		return 0;
+		return 5;
 	}
 
 	@Override
 	public String name() {
-		return "Staff of Flames";
+		return "Thunderstorm Staff";
 	}
 
 	@Override
 	public String GUID() {
-		return "uniquestaff_flameshooter0";
+		return "uniquestaffthunder0";
 	}
 
 	@Override
 	public List<StatMod> uniqueStats() {
-		return Arrays.asList(new AttackFireDamageFlat(), new CriticalDamageFlat());
+		return Arrays.asList(new AttackThunderDamageFlat(), new CriticalDamageFlat(), new ThunderPenePercent(),
+				new ManaOnHitFlat());
 	}
 
 	@Override
 	public String description() {
-		return "Leave only ashes behind.";
+		return "Controlled power can brng both energy and destruction.";
 	}
 
 	@Override

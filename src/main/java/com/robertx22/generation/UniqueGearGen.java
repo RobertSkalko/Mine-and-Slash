@@ -67,7 +67,7 @@ public class UniqueGearGen {
 		for (Item item : IUnique.ITEMS.values()) {
 			IUnique baseu = (IUnique) item;
 
-			if (baseu.Tier() <= blueprint.tier) {
+			if (blueprint.tier >= baseu.Tier()) {
 				if (baseu.slot().equals(blueprint.gearType) || blueprint.gearType.equals("random")) {
 					list.add((IWeighted) item);
 				}

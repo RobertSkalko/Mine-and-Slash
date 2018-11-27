@@ -1,4 +1,4 @@
-package com.robertx22.database.stat_mods.percent.elemental;
+package com.robertx22.database.stat_mods.percent.spell_ele_dmg;
 
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.stats.Stat;
