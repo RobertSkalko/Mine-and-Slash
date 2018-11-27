@@ -160,6 +160,14 @@ public class Unit {
 		energyData().Increase(i);
 	}
 
+	public boolean hasEnoughEnergy(int i) {
+		return energyData().CurrentValue >= i;
+	}
+
+	public boolean hasEnoughMana(int i) {
+		return manaData().CurrentValue >= i;
+	}
+
 	public static Unit Mob(EntityLivingBase entity, int level, IWorldData data) {
 
 		Unit mob = new Unit(entity);

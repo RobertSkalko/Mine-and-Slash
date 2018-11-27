@@ -4,30 +4,30 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.gearitems.weapons.ItemStaff;
+import com.robertx22.customitems.gearitems.weapons.ItemAxe;
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.database.stats.mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stats.mods.flat.CriticalHitFlat;
-import com.robertx22.database.stats.mods.flat.resources.ManaOnHitFlat;
+import com.robertx22.database.stats.mods.percent.CriticalHitPercent;
 import com.robertx22.stats.StatMod;
 
 import net.minecraft.item.Item;
 
-public class Staff extends BaseWeapon {
+public class Axe extends BaseWeapon {
 
 	@Override
 	public String Name() {
-		return "Staff";
+		return "Axe";
 	}
 
 	@Override
 	public Item DefaultItem() {
-		return ItemStaff.Items.get(0);
+		return ItemAxe.Items.get(0);
 	}
 
 	@Override
 	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemStaff.Items;
+		return ItemAxe.Items;
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class Staff extends BaseWeapon {
 
 	@Override
 	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new ManaOnHitFlat());
+		return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new CriticalHitPercent());
 	}
 
 }

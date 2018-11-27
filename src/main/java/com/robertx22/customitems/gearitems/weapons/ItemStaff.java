@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import javax.annotation.Nonnull;
 
-import com.robertx22.customitems.gearitems.bases.BaseStaff;
+import com.robertx22.customitems.gearitems.bases.BaseSwordItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.spells.EntityStaffProjectileNormal;
@@ -29,7 +29,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
-public class ItemStaff extends BaseStaff implements IWeapon {
+public class ItemStaff extends BaseSwordItem implements IWeapon {
 	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
 	public ItemStaff(int rarity, HashMap<Integer, Item> map) {
@@ -70,9 +70,9 @@ public class ItemStaff extends BaseStaff implements IWeapon {
 
 				UnitData data = Load.Unit(player);
 
-				if (data.getUnit().energyData().CurrentValue > this.GetEnergyCost()) {
+				if (data.getUnit().hasEnoughEnergy(this.GetEnergyCost())) {
 
-					data.getUnit().energyData().Decrease(this.GetEnergyCost());
+					data.getUnit().SpendEnergy(this.GetEnergyCost());
 
 					EntityStaffProjectileNormal projectile = new EntityStaffProjectileNormal(world, player);
 					projectile.SetReady(player.getHeldItem(hand));

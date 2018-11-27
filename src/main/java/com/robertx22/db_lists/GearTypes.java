@@ -2,6 +2,7 @@ package com.robertx22.db_lists;
 
 import java.util.HashMap;
 
+import com.robertx22.database.gearitemslots.Axe;
 import com.robertx22.database.gearitemslots.Boots;
 import com.robertx22.database.gearitemslots.Bow;
 import com.robertx22.database.gearitemslots.Bracelet;
@@ -32,6 +33,7 @@ public class GearTypes {
 				put(new Charm().Name(), new Charm());
 				put(new Hammer().Name(), new Hammer());
 				put(new Staff().Name(), new Staff());
+				put(new Axe().Name(), new Axe());
 
 			}
 		}
