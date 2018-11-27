@@ -37,6 +37,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -142,6 +143,12 @@ public class Main {
 	public void stop(FMLServerStoppedEvent event) {
 		MapDatas.unregisterDimensions(); // every save game has it's own dimensions, otherwise when you switch saves you
 											// also get dimensions from your last save, which isn't nice
+
+	}
+
+	@EventHandler
+	public void stopping(FMLServerStoppingEvent event) {
+
 	}
 
 	private void registerDims(FMLServerStartingEvent event) {

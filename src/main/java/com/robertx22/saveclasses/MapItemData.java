@@ -25,6 +25,9 @@ public class MapItemData {
 	public String name = "Adventure Map";
 
 	@Store
+	public int minutes = 30; // default
+
+	@Store
 	public int level = 1;
 
 	@Store

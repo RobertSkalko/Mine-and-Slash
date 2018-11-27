@@ -37,8 +37,11 @@ public class CheckWorldDelete {
 					mapdata.delete(world.provider.getDimension());
 
 					if (FileUtils.deleteQuietly(WorldFileUtils.getWorldDirectory(world))) {
-						DimensionManager.unregisterDimension(world.provider.getDimension());
 						System.out.println("Deleting a temporary map world to free up disk space!");
+						if (DimensionManager.isDimensionRegistered(world.provider.getDimension())) {
+							DimensionManager.unregisterDimension(world.provider.getDimension());
+						}
+
 					}
 				}
 			}

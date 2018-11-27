@@ -32,6 +32,8 @@ public class MapGen {
 
 		data.worldGeneratorName = iwp.GUID();
 
+		data.minutes = RandomUtils.RandomRange(15, 60);
+
 		data.tier = blueprint.getTier();
 
 		data.level = blueprint.GetLevel();

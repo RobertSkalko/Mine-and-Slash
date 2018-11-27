@@ -12,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -69,32 +70,52 @@ public class MapPortalBlock extends BlockEndPortal {
 
 								IWorldData data = Load.World(DimensionManager.getWorld(portal.id));
 
-								MapWorldData worlddata = data.getWorldData();
+								if (data == null) {
+									entity.sendMessage(new TextComponentString(
+											"This world doesn't appear to exist, the time probably ran out"));
+									world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
-								if (worlddata.joinedPlayerIDs.size() < 5
-										|| worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString())) {
+								} else if (data.isSetForDelete()) {
+									entity.sendMessage(new TextComponentString(
+											"You can't enter this world, it is closed and is set for deletition"));
+									world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
-									if (worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString()) == false) {
-										worlddata.joinedPlayerIDs.add(entity.getUniqueID().toString());
-										data.setWorldData(worlddata);
+								} else if (data.isMapWorld()) {
+
+									MapWorldData worlddata = data.getWorldData();
+
+									if (worlddata.joinedPlayerIDs.size() < 5
+											|| worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString())) {
+
+										if (worlddata.joinedPlayerIDs
+												.contains(entity.getUniqueID().toString()) == false) {
+											worlddata.joinedPlayerIDs.add(entity.getUniqueID().toString());
+											data.setWorldData(worlddata);
+										}
+
+										entity.sendMessage(new TextComponentString(
+												"You are traveling to a Map World of dimension Id: " + portal.id));
+
+										World w = DimensionManager.getWorld(portal.id);
+
+										BlockPos pos1 = w.getSpawnPoint();
+										BlockPos pos2 = w.provider.getRandomizedSpawnPoint();
+
+										entity.changeDimension(portal.id,
+												new MyTeleporter(pos2, (EntityPlayer) entity, portal.id));
+
 									}
 
+									if (worlddata.joinedPlayerIDs.size() > 5) {
+										entity.sendMessage(new TextComponentString(
+												"Maximum Player Count for this Map has been reached."));
+
+									}
+								} else { // if not mapworld
 									entity.sendMessage(new TextComponentString(
-											"You are traveling to a Map World of dimension Id: " + portal.id));
+											"Not a map world (was probably closed after time ran out, in case that is wrong, contact the mod author). Deleting portal block."));
 
-									World w = DimensionManager.getWorld(portal.id);
-
-									BlockPos pos1 = w.getSpawnPoint();
-									BlockPos pos2 = w.provider.getRandomizedSpawnPoint();
-
-									entity.changeDimension(portal.id,
-											new MyTeleporter(pos2, (EntityPlayer) entity, portal.id));
-
-								}
-
-								if (worlddata.joinedPlayerIDs.size() > 5) {
-									entity.sendMessage(new TextComponentString(
-											"Maximum Player Count for this Map has been reached."));
+									world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
 								}
 							}

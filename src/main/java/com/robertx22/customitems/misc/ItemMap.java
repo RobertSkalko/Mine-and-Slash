@@ -81,6 +81,9 @@ public class ItemMap extends BaseRarityItem {
 			tooltip.add(TextFormatting.GOLD + "Tier: " + data.tier);
 
 			tooltip.add("");
+			tooltip.add(TextFormatting.GREEN + "Minutes: " + data.minutes);
+
+			tooltip.add("");
 			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Amount: " + data.getBonusLootAmount() + "%");
 			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Rarity: " + data.getBonusLootRarity() + "%");
 

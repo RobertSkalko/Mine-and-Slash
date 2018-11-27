@@ -77,6 +77,8 @@ public class WorldData {
 
 		void setWorldData(MapWorldData data);
 
+		void onMinutePassed(World world);
+
 	}
 
 	@Mod.EventBusSubscriber
@@ -142,6 +144,7 @@ public class WorldData {
 	static final String SAVE_NAME = "save_name";
 	static final String POS_OBJ = "POS_OBJ";
 	static final String MAP_WORLD_OBJ = "MAP_WORLD_OBJ";
+	static final String MINUTES_PASSED = "minutes_passed";
 
 	public static class DefaultImpl implements IWorldData {
 		private NBTTagCompound nbt = new NBTTagCompound();
@@ -159,6 +162,7 @@ public class WorldData {
 		int mapDimension;
 		boolean didntSetBackPortal = true;
 		String saveName = "";
+		int minutesPassed;
 
 		@Override
 		public NBTTagCompound getNBT() {
@@ -172,6 +176,7 @@ public class WorldData {
 			nbt.setInteger(MAP_DIM, mapDimension);
 			nbt.setBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
 			nbt.setString(SAVE_NAME, saveName);
+			nbt.setInteger(MINUTES_PASSED, minutesPassed);
 
 			if (mapdata != null) {
 				NBTTagCompound tag = new NBTTagCompound();
@@ -203,6 +208,7 @@ public class WorldData {
 			this.mapDimension = nbt.getInteger(MAP_DIM);
 			this.didntSetBackPortal = nbt.getBoolean(DIDNT_SET_BACK_PORTAL);
 			this.saveName = nbt.getString(SAVE_NAME);
+			this.minutesPassed = nbt.getInteger(MINUTES_PASSED);
 
 			NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
 			if (mapnbt != null) {
@@ -333,11 +339,8 @@ public class WorldData {
 		private void transferPlayersBack(World world) {
 
 			if (world.playerEntities != null) {
-
 				List<EntityPlayer> players = new ArrayList<EntityPlayer>(world.playerEntities);
-
 				for (EntityPlayer player : players) {
-
 					teleportPlayerBack(player);
 				}
 			}
@@ -366,6 +369,51 @@ public class WorldData {
 		@Override
 		public void setWorldData(MapWorldData data) {
 			this.mapworlddata = data;
+		}
+
+		@Override
+		public void onMinutePassed(World world) {
+
+			if (this.isMap) {
+				this.minutesPassed++;
+
+				int minutesLeft = getMinutesLeft();
+
+				if (minutesLeft > 0) {
+					if (minutesLeft < 5 || minutesLeft % 5 == 0) {
+						announceTimeLeft(world);
+					}
+				} else {
+					announceDeletition(world);
+					this.setForDelete = true;
+					this.transferPlayersBack(world);
+				}
+
+			}
+
+		}
+
+		private int getMinutesLeft() {
+			return this.mapdata.minutes - this.minutesPassed;
+
+		}
+
+		private void announceDeletition(World world) {
+			for (EntityPlayer player : world.playerEntities) {
+				player.sendMessage(
+						new TextComponentString("This map world has run out of time, teleporting players back"));
+
+			}
+		}
+
+		private void announceTimeLeft(World world) {
+
+			for (EntityPlayer player : world.playerEntities) {
+				player.sendMessage(
+						new TextComponentString("This map world has " + this.getMinutesLeft() + " minutes left."));
+
+			}
+
 		}
 
 	}

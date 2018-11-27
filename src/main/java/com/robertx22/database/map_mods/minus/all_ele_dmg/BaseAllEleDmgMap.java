@@ -10,12 +10,12 @@ public abstract class BaseAllEleDmgMap extends StatMod {
 
 	@Override
 	public int Min() {
-		return 30;
+		return -30;
 	}
 
 	@Override
 	public int Max() {
-		return 75;
+		return -75;
 	}
 
 	@Override
