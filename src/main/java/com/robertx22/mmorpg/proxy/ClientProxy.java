@@ -10,6 +10,7 @@ import com.robertx22.network.EntityPackage;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.UnitPackage;
 import com.robertx22.network.WorldPackage;
+import com.robertx22.spells.EntityStaffProjectileNormal;
 import com.robertx22.spells.aoe_projectile.AcidExplosion.EntityAcidExplosion;
 import com.robertx22.spells.aoe_projectile.FlameExplosion.EntityFlameExplosion;
 import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
@@ -99,6 +100,7 @@ public class ClientProxy implements IProxy {
 		RegisterModEntityClient(Items.MAGMA_CREAM, EntityFlameExplosion.class, 5);
 		RegisterModEntityClient(Items.SLIME_BALL, EntityAcidExplosion.class, 6);
 		RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityLightningExplosion.class, 7);
+		RegisterModEntityClient(Items.ENDER_PEARL, EntityStaffProjectileNormal.class, 8);
 
 	}
 

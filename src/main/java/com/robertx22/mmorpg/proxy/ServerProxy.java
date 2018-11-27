@@ -2,6 +2,7 @@ package com.robertx22.mmorpg.proxy;
 
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.spells.EntityStaffProjectileNormal;
 import com.robertx22.spells.aoe_projectile.AcidExplosion.EntityAcidExplosion;
 import com.robertx22.spells.aoe_projectile.FlameExplosion.EntityFlameExplosion;
 import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
@@ -64,6 +65,7 @@ public class ServerProxy implements IProxy {
 		RegisterModEntityServer(Items.MAGMA_CREAM, EntityFlameExplosion.class, 5);
 		RegisterModEntityServer(Items.SLIME_BALL, EntityAcidExplosion.class, 6);
 		RegisterModEntityServer(Items.GLOWSTONE_DUST, EntityLightningExplosion.class, 7);
+		RegisterModEntityServer(Items.ENDER_PEARL, EntityStaffProjectileNormal.class, 8);
 
 	}
 

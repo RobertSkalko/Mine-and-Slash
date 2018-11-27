@@ -4,10 +4,7 @@ import java.util.HashMap;
 
 import com.robertx22.customitems.gearitems.bases.BaseSwordItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
-import com.robertx22.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -51,12 +48,7 @@ public class ItemSword extends BaseSwordItem implements IWeapon {
 	@Override
 	public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
 
-		int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
-		DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit);
-		dmg.Type = EffectTypes.BASIC_ATTACK;
-		dmg.Activate();
-
-		return true;
+		return this.defaultAttack(source, target, unitsource, targetUnit);
 	}
 
 }

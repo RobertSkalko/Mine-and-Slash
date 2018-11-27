@@ -35,9 +35,9 @@ public class CommonStatUtils {
 	}
 
 	public static Unit addMapAffixes(IWorldData worlddata, EntityLivingBase entity, Unit unit, UnitData endata) {
-		if (worlddata.isMapWorld()) {
+		unit.mapAffixes = new HashMap<String, MapAffixData>();
 
-			unit.mapAffixes = new HashMap<String, MapAffixData>();
+		if (worlddata.isMapWorld()) {
 
 			AffectedEntities affected = null;
 
@@ -56,6 +56,7 @@ public class CommonStatUtils {
 			}
 
 		}
+
 		return unit;
 	}
 
