@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 import com.robertx22.customitems.gearitems.bases.BaseSwordItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
+import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
+import com.robertx22.customitems.gearitems.weapon_mechanics.SwordWeaponMechanic;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -41,14 +41,7 @@ public class ItemSword extends BaseSwordItem implements IWeapon {
 	}
 
 	@Override
-	public int GetEnergyCost() {
-		return 4;
+	public WeaponMechanic mechanic() {
+		return new SwordWeaponMechanic();
 	}
-
-	@Override
-	public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
-
-		return this.defaultAttack(source, target, unitsource, targetUnit);
-	}
-
 }

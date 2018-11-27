@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import com.robertx22.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.database.stats.types.resources.Energy;
-import com.robertx22.database.stats.types.resources.Health;
-import com.robertx22.database.stats.types.resources.Mana;
+import com.robertx22.database.stat_types.offense.PhysicalDamage;
+import com.robertx22.database.stat_types.resources.Energy;
+import com.robertx22.database.stat_types.resources.Health;
+import com.robertx22.database.stat_types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.effectdatas.DamageEffect;

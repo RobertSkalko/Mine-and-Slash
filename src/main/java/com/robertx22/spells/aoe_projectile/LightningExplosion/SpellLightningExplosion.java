@@ -1,7 +1,7 @@
 package com.robertx22.spells.aoe_projectile.LightningExplosion;
 
 import com.robertx22.customitems.spells.aoe_projectile.ItemLightningExplosion;
-import com.robertx22.database.stats.types.elementals.spell_damage.SpellThunderDamage;
+import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;

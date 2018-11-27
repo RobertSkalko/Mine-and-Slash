@@ -7,12 +7,12 @@ import java.util.List;
 
 import com.robertx22.customitems.gearitems.baubles.ItemCharm;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.stats.mods.flat.ArmorFlat;
-import com.robertx22.database.stats.mods.flat.ArmorPeneFlat;
-import com.robertx22.database.stats.mods.flat.elemental.pene.FirePeneFlat;
-import com.robertx22.database.stats.mods.flat.elemental.pene.NaturePeneFlat;
-import com.robertx22.database.stats.mods.flat.elemental.pene.ThunderPeneFlat;
-import com.robertx22.database.stats.mods.flat.elemental.pene.WaterPeneFlat;
+import com.robertx22.database.stat_mods.flat.ArmorFlat;
+import com.robertx22.database.stat_mods.flat.ArmorPeneFlat;
+import com.robertx22.database.stat_mods.flat.elemental.pene.FirePeneFlat;
+import com.robertx22.database.stat_mods.flat.elemental.pene.NaturePeneFlat;
+import com.robertx22.database.stat_mods.flat.elemental.pene.ThunderPeneFlat;
+import com.robertx22.database.stat_mods.flat.elemental.pene.WaterPeneFlat;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;

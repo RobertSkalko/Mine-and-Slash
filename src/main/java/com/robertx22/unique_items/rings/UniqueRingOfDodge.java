@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.gearitemslots.Ring;
-import com.robertx22.database.stats.mods.flat.DodgeFlat;
-import com.robertx22.database.stats.mods.flat.elemental.resist.NatureResistFlat;
+import com.robertx22.database.stat_mods.flat.DodgeFlat;
+import com.robertx22.database.stat_mods.flat.elemental.resist.NatureResistFlat;
+import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueRing;
 
@@ -32,7 +33,7 @@ public class UniqueRingOfDodge extends BaseUniqueRing {
 
 	@Override
 	public List<StatMod> uniqueStats() {
-		return Arrays.asList(new DodgeFlat(), new NatureResistFlat());
+		return Arrays.asList(new DodgeFlat(), new NatureResistFlat(), new HealthFlat());
 	}
 
 	@Override

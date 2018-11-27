@@ -1,6 +1,6 @@
 package com.robertx22.database.map_mods.bonus;
 
-import com.robertx22.database.stats.types.resources.Lifesteal;
+import com.robertx22.database.stat_types.resources.Lifesteal;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;

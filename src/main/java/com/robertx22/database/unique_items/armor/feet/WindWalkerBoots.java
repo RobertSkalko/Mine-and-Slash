@@ -3,11 +3,11 @@ package com.robertx22.database.unique_items.armor.feet;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.stats.mods.flat.DodgeFlat;
-import com.robertx22.database.stats.mods.flat.resources.HealthFlat;
-import com.robertx22.database.stats.mods.multi.MajorDodgeMulti;
-import com.robertx22.database.stats.mods.multi.ele_minus.MajorMinusFireResistMulti;
-import com.robertx22.database.stats.mods.multi.ele_minus.MajorMinusWaterResistMulti;
+import com.robertx22.database.stat_mods.flat.DodgeFlat;
+import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stat_mods.multi.MajorDodgeMulti;
+import com.robertx22.database.stat_mods.multi.ele_minus.MajorMinusFireResistMulti;
+import com.robertx22.database.stat_mods.multi.ele_minus.MajorMinusWaterResistMulti;
 import com.robertx22.database.unique_items.BaseUniqueItem;
 import com.robertx22.stats.StatMod;
 

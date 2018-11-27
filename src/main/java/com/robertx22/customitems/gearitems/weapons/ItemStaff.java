@@ -6,6 +6,8 @@ import javax.annotation.Nonnull;
 
 import com.robertx22.customitems.gearitems.bases.BaseSwordItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
+import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
+import com.robertx22.customitems.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.spells.EntityStaffProjectileNormal;
 import com.robertx22.spells.aoe_projectile.AcidExplosion.EffectAcidExplosion;
@@ -14,7 +16,6 @@ import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -53,11 +54,6 @@ public class ItemStaff extends BaseSwordItem implements IWeapon {
 		return "Staff";
 	}
 
-	@Override
-	public int GetEnergyCost() {
-		return 6;
-	}
-
 	@Nonnull
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
@@ -70,9 +66,9 @@ public class ItemStaff extends BaseSwordItem implements IWeapon {
 
 				UnitData data = Load.Unit(player);
 
-				if (data.getUnit().hasEnoughEnergy(this.GetEnergyCost())) {
+				if (data.getUnit().hasEnoughEnergy(this.mechanic().GetEnergyCost())) {
 
-					data.getUnit().SpendEnergy(this.GetEnergyCost());
+					data.getUnit().SpendEnergy(this.mechanic().GetEnergyCost());
 
 					EntityStaffProjectileNormal projectile = new EntityStaffProjectileNormal(world, player);
 					projectile.SetReady(player.getHeldItem(hand));
@@ -91,9 +87,7 @@ public class ItemStaff extends BaseSwordItem implements IWeapon {
 	}
 
 	@Override
-	public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
-
-		return this.defaultAttack(source, target, unitsource, targetUnit);
-
+	public WeaponMechanic mechanic() {
+		return new StaffWeaponMechanic();
 	}
 }

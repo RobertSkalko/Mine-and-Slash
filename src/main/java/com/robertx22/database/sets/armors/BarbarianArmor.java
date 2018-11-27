@@ -9,7 +9,7 @@ import com.robertx22.database.gearitemslots.Chest;
 import com.robertx22.database.gearitemslots.Helmet;
 import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.stats.mods.flat.resources.LifestealFlat;
+import com.robertx22.database.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.StatMod;
 

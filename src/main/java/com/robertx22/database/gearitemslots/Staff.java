@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
-import com.robertx22.database.stats.mods.flat.resources.ManaOnHitFlat;
+import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.stats.StatMod;
 
 import net.minecraft.item.Item;
@@ -21,6 +21,7 @@ public class Staff extends BaseWeapon {
 	@Override
 	public List<StatMod> slotTypeStats() {
 		return Arrays.asList(new ManaOnHitFlat());
+
 	}
 
 	@Override

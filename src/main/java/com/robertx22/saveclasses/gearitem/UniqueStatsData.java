@@ -40,7 +40,8 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
 		percents.clear();
 
-		for (StatMod mod : this.getUniqueItem().uniqueStats()) {
+		// wont ever have more than 10 unique stats.
+		for (int i = 0; i < 10; i++) {
 			percents.add(StatGen.GenPercent(gear.GetRarity()));
 		}
 
@@ -68,14 +69,13 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
 	@Override
 	public List<StatModData> GetAllStats(int level) {
+
 		BaseUniqueItem unique = getUniqueItem();
 
 		List<StatModData> list = new ArrayList<StatModData>();
 
 		for (int i = 0; i < unique.uniqueStats().size(); i++) {
-
 			StatMod mod = unique.uniqueStats().get(i);
-
 			list.add(StatModData.Load(mod, percents.get(i)));
 		}
 

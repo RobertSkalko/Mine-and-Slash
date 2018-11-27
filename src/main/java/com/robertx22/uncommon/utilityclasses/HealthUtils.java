@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.utilityclasses;
 
-import com.robertx22.database.stats.types.resources.Health;
+import com.robertx22.database.stat_types.resources.Health;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.datasaving.UnitSaving;
 

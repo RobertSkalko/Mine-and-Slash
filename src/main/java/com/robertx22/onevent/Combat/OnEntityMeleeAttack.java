@@ -1,6 +1,7 @@
 package com.robertx22.onevent.combat;
 
 import com.robertx22.customitems.gearitems.bases.IWeapon;
+import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -63,7 +64,7 @@ public class OnEntityMeleeAttack {
 
 				if (weapon != null && !weapon.isEmpty() && weapon.getItem() instanceof IWeapon) {
 
-					IWeapon iWep = (IWeapon) weapon.getItem();
+					WeaponMechanic iWep = ((IWeapon) weapon.getItem()).mechanic();
 
 					int energyCost = iWep.GetEnergyCost();
 

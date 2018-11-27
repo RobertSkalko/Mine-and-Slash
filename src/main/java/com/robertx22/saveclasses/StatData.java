@@ -1,6 +1,6 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.database.stats.types.UnknownStat;
+import com.robertx22.database.stat_types.UnknownStat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.stats.Stat;

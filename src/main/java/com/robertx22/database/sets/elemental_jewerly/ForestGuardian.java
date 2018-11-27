@@ -8,8 +8,8 @@ import com.robertx22.database.gearitemslots.Bracelet;
 import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.database.stats.mods.percent.HealthPercent;
-import com.robertx22.database.stats.mods.percent.elemental.NatureDamagePercent;
+import com.robertx22.database.stat_mods.percent.HealthPercent;
+import com.robertx22.database.stat_mods.percent.elemental.NatureDamagePercent;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.StatMod;
 

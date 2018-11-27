@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.database.stats.mods.BaseTraitMod;
+import com.robertx22.database.stat_mods.BaseTraitMod;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;

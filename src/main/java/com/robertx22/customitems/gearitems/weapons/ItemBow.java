@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 import com.robertx22.customitems.gearitems.bases.BaseBow;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
+import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
+import com.robertx22.customitems.gearitems.weapon_mechanics.BowWeaponMechanic;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -41,13 +41,7 @@ public class ItemBow extends BaseBow implements IWeapon {
 	}
 
 	@Override
-	public int GetEnergyCost() {
-		return 8;
-	}
-
-	@Override
-	public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
-
-		return this.defaultAttack(source, target, unitsource, targetUnit);
+	public WeaponMechanic mechanic() {
+		return new BowWeaponMechanic();
 	}
 }

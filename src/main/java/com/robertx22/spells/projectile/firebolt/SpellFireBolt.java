@@ -1,7 +1,7 @@
 package com.robertx22.spells.projectile.firebolt;
 
 import com.robertx22.customitems.spells.projectile.ItemFireBolt;
-import com.robertx22.database.stats.types.elementals.spell_damage.SpellFireDamage;
+import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;

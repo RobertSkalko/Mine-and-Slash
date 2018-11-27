@@ -39,7 +39,7 @@ public abstract class EntityStaffProjectile extends EntityThrowable {
 					UnitData sourcedata = Load.Unit(this.thrower);
 					UnitData targetdata = Load.Unit(target);
 
-					staffclass.Attack(this.getThrower(), target, sourcedata, targetdata);
+					staffclass.mechanic().Attack(this.getThrower(), target, sourcedata, targetdata);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
