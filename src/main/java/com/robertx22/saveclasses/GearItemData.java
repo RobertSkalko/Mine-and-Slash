@@ -24,7 +24,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.unique_items.bases.BaseUniqueItem;
+import com.robertx22.unique_items.IUnique;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -79,7 +79,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 	public Item getItem() {
 
 		if (isUnique) {
-			return BaseUniqueItem.ITEMS.get(this.uniqueGUID);
+			return IUnique.ITEMS.get(this.uniqueGUID);
 
 		} else {
 			return GearTypes.All.get(gearTypeName).GetItemForRarity(GetRarity().Rank());
@@ -113,7 +113,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		String text = GetRarity().Color();
 
 		if (isUnique) {
-			text += ((BaseUniqueItem) this.getItem()).name();
+			text += ((IUnique) this.getItem()).name();
 
 		} else {
 
@@ -210,7 +210,7 @@ public class GearItemData implements IStatsContainer, ITooltip {
 
 		if (isUnique) {
 
-			BaseUniqueItem unique = this.uniqueStats.getUniqueItem();
+			IUnique unique = this.uniqueStats.getUniqueItem();
 
 			event.getToolTip().add(TextFormatting.GREEN + "'" + unique.description() + "'");
 

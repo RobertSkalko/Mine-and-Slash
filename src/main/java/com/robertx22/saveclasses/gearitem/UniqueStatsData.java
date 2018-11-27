@@ -9,7 +9,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
-import com.robertx22.unique_items.bases.BaseUniqueItem;
+import com.robertx22.unique_items.IUnique;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -63,14 +63,14 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
 	}
 
-	public BaseUniqueItem getUniqueItem() {
-		return (BaseUniqueItem) BaseUniqueItem.ITEMS.get(this.uniqueGUID);
+	public IUnique getUniqueItem() {
+		return (IUnique) IUnique.ITEMS.get(this.uniqueGUID);
 	}
 
 	@Override
 	public List<StatModData> GetAllStats(int level) {
 
-		BaseUniqueItem unique = getUniqueItem();
+		IUnique unique = getUniqueItem();
 
 		List<StatModData> list = new ArrayList<StatModData>();
 

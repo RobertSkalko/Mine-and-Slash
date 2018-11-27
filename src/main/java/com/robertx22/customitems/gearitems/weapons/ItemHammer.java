@@ -8,9 +8,7 @@ import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.customitems.gearitems.weapon_mechanics.HammerWeaponMechanic;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
 public class ItemHammer extends BaseWeaponItem implements IWeapon {
 	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 

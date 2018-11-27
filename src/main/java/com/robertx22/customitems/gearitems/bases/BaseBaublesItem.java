@@ -1,7 +1,5 @@
 package com.robertx22.customitems.gearitems.bases;
 
-import java.util.HashMap;
-
 import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
@@ -14,14 +12,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
-public abstract class BaseBaublesItem extends BaseRarityItem implements IBauble, IGearItem {
+public abstract class BaseBaublesItem extends Item implements IBauble, IGearItem {
 
-	public BaseBaublesItem(int rarity, HashMap<Integer, Item> map) {
+	public BaseBaublesItem() {
 
-		super(rarity, map);
+		this.setMaxStackSize(1);
+		this.setMaxDamage(0);
+
 	}
 
 	@Override

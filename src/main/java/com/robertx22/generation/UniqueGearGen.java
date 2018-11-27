@@ -14,7 +14,7 @@ import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.unique_items.bases.BaseUniqueItem;
+import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,7 +23,7 @@ public class UniqueGearGen {
 
 	public static GearItemData CreateData(GearBlueprint blueprint) {
 
-		BaseUniqueItem unique = randomUnique(blueprint);
+		IUnique unique = randomUnique(blueprint);
 		GearItemData data = new GearItemData();
 
 		if (unique != null) {
@@ -60,12 +60,12 @@ public class UniqueGearGen {
 		return data;
 	}
 
-	public static BaseUniqueItem randomUnique(GearBlueprint blueprint) {
+	public static IUnique randomUnique(GearBlueprint blueprint) {
 
 		List<IWeighted> list = new ArrayList<IWeighted>();
 
-		for (Item item : BaseUniqueItem.ITEMS.values()) {
-			BaseUniqueItem baseu = (BaseUniqueItem) item;
+		for (Item item : IUnique.ITEMS.values()) {
+			IUnique baseu = (IUnique) item;
 
 			if (baseu.Tier() <= blueprint.tier) {
 				if (baseu.slot().equals(blueprint.gearType) || blueprint.gearType.equals("random")) {
@@ -74,7 +74,7 @@ public class UniqueGearGen {
 			}
 		}
 
-		BaseUniqueItem unique = (BaseUniqueItem) RandomUtils.WeightedRandom(list);
+		IUnique unique = (IUnique) RandomUtils.WeightedRandom(list);
 
 		blueprint.gearType = unique.slot();
 

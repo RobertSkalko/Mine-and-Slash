@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 import com.robertx22.customitems.gearitems.bases.IGearItem;
+import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,7 +13,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.util.EnumHelper;
 
-public abstract class BaseUniqueWeapon extends ItemTool implements IGearItem, BaseUniqueItem {
+public abstract class BaseUniqueWeapon extends ItemTool implements IGearItem, IUnique {
 
 	static ItemSword.ToolMaterial Mat = EnumHelper.addToolMaterial("swordmat", 0, 900, 1F, 1F, 10);
 
@@ -22,7 +23,7 @@ public abstract class BaseUniqueWeapon extends ItemTool implements IGearItem, Ba
 
 	public BaseUniqueWeapon() {
 		super(Mat, EFFECTIVE_ON);
-		BaseUniqueItem.ITEMS.put(GUID(), this);
+		IUnique.ITEMS.put(GUID(), this);
 	}
 
 	@Override

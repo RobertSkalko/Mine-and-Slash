@@ -1,4 +1,4 @@
-package com.robertx22.unique_items.bases;
+package com.robertx22.unique_items;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
-public interface BaseUniqueItem extends IWeighted, ITiered, IGUID {
+public interface IUnique extends IWeighted, ITiered, IGUID {
 
 	public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
 
@@ -48,7 +48,7 @@ public interface BaseUniqueItem extends IWeighted, ITiered, IGUID {
 			} else {
 				item.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
 			}
-			RegisterItemUtils.RegisterItemName(item, "uniques/" + ((BaseUniqueItem) item).GUID());
+			RegisterItemUtils.RegisterItemName(item, "uniques/" + ((IUnique) item).GUID());
 
 			event.getRegistry().register(item);
 		}

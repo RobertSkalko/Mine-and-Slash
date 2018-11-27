@@ -1,6 +1,7 @@
 package com.robertx22.unique_items.bases;
 
 import com.robertx22.customitems.gearitems.bases.IGearItem;
+import com.robertx22.unique_items.IUnique;
 
 import baubles.api.BaublesApi;
 import baubles.api.IBauble;
@@ -15,10 +16,10 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public abstract class BaseUniqueBaublesItem extends Item implements IBauble, IGearItem, BaseUniqueItem {
+public abstract class BaseUniqueBaublesItem extends Item implements IBauble, IGearItem, IUnique {
 
 	public BaseUniqueBaublesItem() {
-		BaseUniqueItem.ITEMS.put(GUID(), this);
+		IUnique.ITEMS.put(GUID(), this);
 	}
 
 	@Override

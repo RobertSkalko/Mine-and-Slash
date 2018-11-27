@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.robertx22.customitems.gearitems.armor.ItemBoots;
+import com.robertx22.customitems.gearitems.armor.ItemChest;
+import com.robertx22.customitems.gearitems.armor.ItemHelmet;
+import com.robertx22.customitems.gearitems.armor.ItemPants;
+import com.robertx22.customitems.gearitems.baubles.ItemBracelet;
+import com.robertx22.customitems.gearitems.baubles.ItemCharm;
+import com.robertx22.customitems.gearitems.baubles.ItemNecklace;
+import com.robertx22.customitems.gearitems.baubles.ItemRing;
 import com.robertx22.customitems.gearitems.weapons.ItemAxe;
 import com.robertx22.customitems.gearitems.weapons.ItemBow;
 import com.robertx22.customitems.gearitems.weapons.ItemHammer;
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
 import com.robertx22.customitems.gearitems.weapons.ItemSword;
+import com.robertx22.customitems.misc.ItemMap;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
@@ -28,11 +37,31 @@ public class GearItemRegisters {
 
 		for (ItemRarity rarity : Rarities.Items) {
 
+			// 1] class 2] rarity hashmap 3] registry name 4] rarity rank
+
+			int rank = rarity.Rank();
+
+			// weapons
 			regRarities(new ItemSword(), ItemSword.Items, "sword", rarity.Rank());
 			regRarities(new ItemHammer(), ItemHammer.Items, "hammer", rarity.Rank());
 			regRarities(new ItemAxe(), ItemAxe.Items, "axe", rarity.Rank());
-			regRarities(new ItemBow(), ItemBow.Items, "bow", rarity.Rank());
+			regRarities(new ItemBow(), ItemBow.Items, "bow/bow", rarity.Rank());
 			regRarities(new ItemStaff(), ItemStaff.Items, "staff", rarity.Rank());
+
+			// baubles
+			regRarities(new ItemNecklace(), ItemNecklace.Items, "necklace", rarity.Rank());
+			regRarities(new ItemBracelet(), ItemBracelet.Items, "bracelet", rarity.Rank());
+			regRarities(new ItemRing(), ItemRing.Items, "ring", rarity.Rank());
+			regRarities(new ItemCharm(), ItemCharm.Items, "charm", rarity.Rank());
+
+			// armors
+			regRarities(new ItemBoots(rank), ItemBoots.Items, "boots", rarity.Rank());
+			regRarities(new ItemChest(rank), ItemChest.Items, "chest", rarity.Rank());
+			regRarities(new ItemHelmet(rank), ItemHelmet.Items, "helmet", rarity.Rank());
+			regRarities(new ItemPants(rank), ItemPants.Items, "pants", rarity.Rank());
+
+			// misc
+			regRarities(new ItemMap(), ItemMap.Items, "map", rarity.Rank()); // not gearitem but yeah
 
 		}
 
