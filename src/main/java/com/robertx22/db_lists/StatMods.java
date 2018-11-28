@@ -63,6 +63,18 @@ import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellFireDamage
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.FireToNatureTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.FireToThunderTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.FireToWaterTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.NatureToFireTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.NatureToThunderTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.NatureToWaterTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.ThunderToFireTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.ThunderToNatureTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.ThunderToWaterTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToFireTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToNatureTransferFlat;
+import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToThunderTransferFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
@@ -241,6 +253,24 @@ public class StatMods {
 		put(new NatureToThunderConvFlat().GUID(), new NatureToThunderConvFlat());
 		put(new NatureToWaterConvFlat().GUID(), new NatureToWaterConvFlat());
 		put(new NatureToFireConvFlat().GUID(), new NatureToFireConvFlat());
+
+		// elemental Transfers
+
+		put(new WaterToThunderTransferFlat().GUID(), new WaterToThunderTransferFlat());
+		put(new WaterToNatureTransferFlat().GUID(), new WaterToNatureTransferFlat());
+		put(new WaterToFireTransferFlat().GUID(), new WaterToFireTransferFlat());
+
+		put(new FireToThunderTransferFlat().GUID(), new FireToThunderTransferFlat());
+		put(new FireToNatureTransferFlat().GUID(), new FireToNatureTransferFlat());
+		put(new FireToWaterTransferFlat().GUID(), new FireToWaterTransferFlat());
+
+		put(new ThunderToWaterTransferFlat().GUID(), new ThunderToWaterTransferFlat());
+		put(new ThunderToNatureTransferFlat().GUID(), new ThunderToNatureTransferFlat());
+		put(new ThunderToFireTransferFlat().GUID(), new ThunderToFireTransferFlat());
+
+		put(new NatureToThunderTransferFlat().GUID(), new NatureToThunderTransferFlat());
+		put(new NatureToWaterTransferFlat().GUID(), new NatureToWaterTransferFlat());
+		put(new NatureToFireTransferFlat().GUID(), new NatureToFireTransferFlat());
 
 		//
 

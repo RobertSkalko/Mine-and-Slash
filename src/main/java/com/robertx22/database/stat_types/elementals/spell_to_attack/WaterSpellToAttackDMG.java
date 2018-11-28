@@ -1,4 +1,4 @@
-package com.robertx22.database.stat_types.offense.spell_to_attack;
+package com.robertx22.database.stat_types.elementals.spell_to_attack;
 
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.stats.Stat;

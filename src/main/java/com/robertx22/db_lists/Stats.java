@@ -38,14 +38,26 @@ import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
+import com.robertx22.database.stat_types.elementals.spell_to_attack.FireSpellToAttackDMG;
+import com.robertx22.database.stat_types.elementals.spell_to_attack.NatureSpellToAttackDMG;
+import com.robertx22.database.stat_types.elementals.spell_to_attack.ThunderSpellToAttackDMG;
+import com.robertx22.database.stat_types.elementals.spell_to_attack.WaterSpellToAttackDMG;
+import com.robertx22.database.stat_types.elementals.transfers.fire_to.FireToNatureTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.fire_to.FireToThunderTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.fire_to.FireToWaterTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.nature_to.NatureToFireTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.nature_to.NatureToThunderTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.nature_to.NatureToWaterTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.thunder_to.ThunderToFireTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.thunder_to.ThunderToNatureTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.thunder_to.ThunderToWaterTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.water_to.WaterToFireTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.water_to.WaterToNatureTransfer;
+import com.robertx22.database.stat_types.elementals.transfers.water_to.WaterToThunderTransfer;
 import com.robertx22.database.stat_types.offense.ArmorPenetration;
 import com.robertx22.database.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stat_types.offense.CriticalHit;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
-import com.robertx22.database.stat_types.offense.spell_to_attack.FireSpellToAttackDMG;
-import com.robertx22.database.stat_types.offense.spell_to_attack.NatureSpellToAttackDMG;
-import com.robertx22.database.stat_types.offense.spell_to_attack.ThunderSpellToAttackDMG;
-import com.robertx22.database.stat_types.offense.spell_to_attack.WaterSpellToAttackDMG;
 import com.robertx22.database.stat_types.resources.Energy;
 import com.robertx22.database.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stat_types.resources.Health;
@@ -151,7 +163,6 @@ public class Stats {
 		// traits
 
 		// elemental conversions
-
 		put(new WaterToThunderConversion().Name(), new WaterToThunderConversion());
 		put(new WaterToNatureConversion().Name(), new WaterToNatureConversion());
 		put(new WaterToFireConversion().Name(), new WaterToFireConversion());
@@ -167,8 +178,25 @@ public class Stats {
 		put(new NatureToThunderConversion().Name(), new NatureToThunderConversion());
 		put(new NatureToWaterConversion().Name(), new NatureToWaterConversion());
 		put(new NatureToFireConversion().Name(), new NatureToFireConversion());
-
 		// elemental conversions
+
+		// elemental Transfers
+		put(new WaterToThunderTransfer().Name(), new WaterToThunderTransfer());
+		put(new WaterToNatureTransfer().Name(), new WaterToNatureTransfer());
+		put(new WaterToFireTransfer().Name(), new WaterToFireTransfer());
+
+		put(new FireToThunderTransfer().Name(), new FireToThunderTransfer());
+		put(new FireToNatureTransfer().Name(), new FireToNatureTransfer());
+		put(new FireToWaterTransfer().Name(), new FireToWaterTransfer());
+
+		put(new ThunderToWaterTransfer().Name(), new ThunderToWaterTransfer());
+		put(new ThunderToNatureTransfer().Name(), new ThunderToNatureTransfer());
+		put(new ThunderToFireTransfer().Name(), new ThunderToFireTransfer());
+
+		put(new NatureToThunderTransfer().Name(), new NatureToThunderTransfer());
+		put(new NatureToWaterTransfer().Name(), new NatureToWaterTransfer());
+		put(new NatureToFireTransfer().Name(), new NatureToFireTransfer());
+		// elemental Transfers
 
 	    }
 	}
