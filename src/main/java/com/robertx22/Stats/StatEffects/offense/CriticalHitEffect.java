@@ -10,34 +10,33 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class CriticalHitEffect implements IStatEffect {
 
-	@Override
-	public int GetPriority() {
-		return 0;
-	}
+    @Override
+    public int GetPriority() {
+	return 0;
+    }
 
-	@Override
-	public EffectSides Side() {
-		return EffectSides.Source;
-	}
+    @Override
+    public EffectSides Side() {
+	return EffectSides.Source;
+    }
 
-	@Override
-	public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    @Override
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
-		try {
-			if (Effect instanceof ICrittable) {
+	try {
+	    if (Effect instanceof ICrittable) {
 
-				ICrittable icrit = (ICrittable) Effect;
+		ICrittable icrit = (ICrittable) Effect;
 
-				if (RandomUtils.roll(data.Value)) {
-					icrit.SetCrit(true);
-					// System.out.println("It's a crit");
-				}
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (RandomUtils.roll(data.Value)) {
+		    icrit.SetCrit(true);
 		}
 
-		return Effect;
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
+
+	return Effect;
+    }
 }

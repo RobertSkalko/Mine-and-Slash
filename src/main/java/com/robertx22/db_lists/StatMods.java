@@ -29,8 +29,8 @@ import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stat_mods.flat.CriticalHitFlat;
-import com.robertx22.database.stat_mods.flat.PhysicalDamageFlat;
 import com.robertx22.database.stat_mods.flat.DodgeFlat;
+import com.robertx22.database.stat_mods.flat.PhysicalDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
@@ -83,6 +83,11 @@ import com.robertx22.database.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
+import com.robertx22.database.stat_mods.flat.weapon_damages.AxeDamageFlat;
+import com.robertx22.database.stat_mods.flat.weapon_damages.BowDamageFlat;
+import com.robertx22.database.stat_mods.flat.weapon_damages.HammerDamageFlat;
+import com.robertx22.database.stat_mods.flat.weapon_damages.StaffDamageFlat;
+import com.robertx22.database.stat_mods.flat.weapon_damages.SwordDamageFlat;
 import com.robertx22.database.stat_mods.percent.ArmorPenePercent;
 import com.robertx22.database.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stat_mods.percent.CriticalDamagePercent;
@@ -129,6 +134,14 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
 	{
 	    {
+
+		// weapon damages
+
+		put(new HammerDamageFlat().GUID(), new HammerDamageFlat());
+		put(new SwordDamageFlat().GUID(), new SwordDamageFlat());
+		put(new BowDamageFlat().GUID(), new BowDamageFlat());
+		put(new AxeDamageFlat().GUID(), new AxeDamageFlat());
+		put(new StaffDamageFlat().GUID(), new StaffDamageFlat());
 
 		// less stats
 

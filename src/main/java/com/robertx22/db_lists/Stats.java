@@ -58,6 +58,11 @@ import com.robertx22.database.stat_types.offense.ArmorPenetration;
 import com.robertx22.database.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stat_types.offense.CriticalHit;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.AxeDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.BowDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.HammerDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.StaffDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.SwordDamage;
 import com.robertx22.database.stat_types.resources.Energy;
 import com.robertx22.database.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stat_types.resources.Health;
@@ -87,6 +92,14 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
 	{
 	    {
+
+		// weapon damages
+
+		put(new HammerDamage().GUID(), new HammerDamage());
+		put(new SwordDamage().GUID(), new SwordDamage());
+		put(new BowDamage().GUID(), new BowDamage());
+		put(new AxeDamage().GUID(), new AxeDamage());
+		put(new StaffDamage().GUID(), new StaffDamage());
 
 		put(UnknownStat.GUID, new UnknownStat());
 		// Resources

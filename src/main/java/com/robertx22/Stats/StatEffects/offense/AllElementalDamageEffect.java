@@ -9,36 +9,36 @@ import com.robertx22.stats.Stat;
 
 public class AllElementalDamageEffect implements IStatEffect {
 
-	@Override
-	public int GetPriority() {
-		return 15;
-	}
+    @Override
+    public int GetPriority() {
+	return 15;
+    }
 
-	@Override
-	public EffectSides Side() {
-		return EffectSides.Source;
-	}
+    @Override
+    public EffectSides Side() {
+	return EffectSides.Source;
+    }
 
-	@Override
-	public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    @Override
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
-		try {
-			if (Effect instanceof DamageEffect) {
+	try {
+	    if (Effect instanceof DamageEffect) {
 
-				DamageEffect dmgeffect = (DamageEffect) Effect;
+		DamageEffect dmgeffect = (DamageEffect) Effect;
 
-				if (dmgeffect.Element.equals(stat.Element())) {
+		if (dmgeffect.Element.equals(stat.Element())) {
 
-					dmgeffect.Number *= data.Value;
+		    dmgeffect.Number *= 1 + data.Value / 100;
 
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+	    }
 
-		return Effect;
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
+
+	return Effect;
+    }
 
 }

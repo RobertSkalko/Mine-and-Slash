@@ -1,17 +1,18 @@
 package com.robertx22.stats.StatEffects.offense;
 
+import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData;
-import com.robertx22.effectdatas.interfaces.ICrittable;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.Stat;
+import com.robertx22.stats.WeaponDamageStat;
 
-public class CriticalDamageEffect implements IStatEffect {
+public class WeaponDamageEffect implements IStatEffect {
 
     @Override
     public int GetPriority() {
-	return 1;
+	return 0;
     }
 
     @Override
@@ -23,21 +24,22 @@ public class CriticalDamageEffect implements IStatEffect {
     public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
 	try {
-	    if (Effect instanceof ICrittable) {
+	    if (Effect instanceof DamageEffect && stat instanceof WeaponDamageStat) {
 
-		ICrittable icrit = (ICrittable) Effect;
+		WeaponDamageStat weapon = (WeaponDamageStat) stat;
 
-		if (icrit.GetCrit()) {
-		    float multi = 1 + data.Value / 100;
-		    Effect.Number *= multi;
+		if (weapon.weaponType().equals(Effect.weaponType)) {
+		    DamageEffect dmgeffect = (DamageEffect) Effect;
+		    dmgeffect.Number *= 1 + data.Value / 100;
 
 		}
-
 	    }
+
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
 
 	return Effect;
     }
+
 }
