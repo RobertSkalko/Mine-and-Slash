@@ -1,6 +1,6 @@
 package com.robertx22.stats.StatEffects.offense;
 
-import com.robertx22.database.stat_types.offense.conversion.BaseSpellToBasicDamage;
+import com.robertx22.database.stat_types.offense.spell_to_attack.BaseSpellToBasicDamage;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData;
 import com.robertx22.effectdatas.EffectData.EffectTypes;

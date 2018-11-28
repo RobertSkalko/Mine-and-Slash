@@ -42,10 +42,10 @@ import com.robertx22.database.stat_types.offense.ArmorPenetration;
 import com.robertx22.database.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stat_types.offense.CriticalHit;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
-import com.robertx22.database.stat_types.offense.conversion.FireDamageConversion;
-import com.robertx22.database.stat_types.offense.conversion.NatureDamageConversion;
-import com.robertx22.database.stat_types.offense.conversion.ThunderDamageConversion;
-import com.robertx22.database.stat_types.offense.conversion.WaterDamageConversion;
+import com.robertx22.database.stat_types.offense.spell_to_attack.FireSpellToAttackDMG;
+import com.robertx22.database.stat_types.offense.spell_to_attack.NatureSpellToAttackDMG;
+import com.robertx22.database.stat_types.offense.spell_to_attack.ThunderSpellToAttackDMG;
+import com.robertx22.database.stat_types.offense.spell_to_attack.WaterSpellToAttackDMG;
 import com.robertx22.database.stat_types.resources.Energy;
 import com.robertx22.database.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stat_types.resources.Health;
@@ -143,10 +143,10 @@ public class Stats {
 		put(FireAtronach.GUID, new FireAtronach());
 		put(ThunderAtronach.GUID, new ThunderAtronach());
 
-		put(FireDamageConversion.GUID, new FireDamageConversion());
-		put(WaterDamageConversion.GUID, new WaterDamageConversion());
-		put(ThunderDamageConversion.GUID, new ThunderDamageConversion());
-		put(NatureDamageConversion.GUID, new NatureDamageConversion());
+		put(FireSpellToAttackDMG.GUID, new FireSpellToAttackDMG());
+		put(WaterSpellToAttackDMG.GUID, new WaterSpellToAttackDMG());
+		put(ThunderSpellToAttackDMG.GUID, new ThunderSpellToAttackDMG());
+		put(NatureSpellToAttackDMG.GUID, new NatureSpellToAttackDMG());
 
 		// traits
 

@@ -1,6 +1,6 @@
 package com.robertx22.database.stat_mods.flat.elemental.bonus;
 
-import com.robertx22.database.stat_types.offense.conversion.FireDamageConversion;
+import com.robertx22.database.stat_types.offense.spell_to_attack.FireSpellToAttackDMG;
 import com.robertx22.stats.Stat;
 
 public class BonusFireDamageFlat extends BaseBonusDamageFlat {
@@ -11,7 +11,7 @@ public class BonusFireDamageFlat extends BaseBonusDamageFlat {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new FireDamageConversion();
+		return new FireSpellToAttackDMG();
 	}
 
 	@Override

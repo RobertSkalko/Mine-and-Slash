@@ -1,6 +1,6 @@
 package com.robertx22.database.stat_mods.flat.elemental.bonus;
 
-import com.robertx22.database.stat_types.offense.conversion.NatureDamageConversion;
+import com.robertx22.database.stat_types.offense.spell_to_attack.NatureSpellToAttackDMG;
 import com.robertx22.stats.Stat;
 
 public class BonusNatureDamageFlat extends BaseBonusDamageFlat {
@@ -11,7 +11,7 @@ public class BonusNatureDamageFlat extends BaseBonusDamageFlat {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new NatureDamageConversion();
+		return new NatureSpellToAttackDMG();
 	}
 
 	@Override

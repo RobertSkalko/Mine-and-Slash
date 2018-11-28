@@ -14,7 +14,7 @@ public class NatureToThunderConversion extends BaseConversionMod {
 
     @Override
     public String Name() {
-	return "NatureToThunderConversion";
+	return "Nature To Thunder Conversion";
     }
 
     @Override

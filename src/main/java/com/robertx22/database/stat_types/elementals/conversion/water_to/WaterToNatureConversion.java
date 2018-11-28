@@ -14,7 +14,7 @@ public class WaterToNatureConversion extends BaseConversionMod {
 
     @Override
     public String Name() {
-	return "WaterToNatureConversion";
+	return "Water To Nature Conversion";
     }
 
     @Override

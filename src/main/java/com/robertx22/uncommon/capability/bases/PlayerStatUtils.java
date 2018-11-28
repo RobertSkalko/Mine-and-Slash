@@ -29,146 +29,146 @@ import net.minecraft.util.text.TextComponentString;
 
 public class PlayerStatUtils {
 
-	public static void AddPlayerBaseStats(Unit unit) {
+    public static void AddPlayerBaseStats(Unit unit) {
 
-		unit.MyStats.get(Health.GUID).Flat += 10;
-		unit.MyStats.get(PhysicalDamage.GUID).Flat += 2;
+	unit.MyStats.get(Health.GUID).Flat += 10;
+	unit.MyStats.get(PhysicalDamage.GUID).Flat += 2;
+
+    }
+
+    public static void CalcTraits(Unit unit) {
+	for (StatData stat : unit.MyStats.values()) {
+	    if (stat.GetStat() instanceof Trait && stat instanceof IAffectsOtherStats) {
+		if (stat.Value > 0) {
+		    IAffectsOtherStats affects = (IAffectsOtherStats) stat;
+		    affects.TryAffectOtherStats(unit);
+
+		}
+	    }
+	}
+
+    }
+
+    public static void CalcStatConversions(Unit unit) {
+	for (StatData stat : unit.MyStats.values()) {
+	    if (stat.GetStat() instanceof IStatConversion) {
+		if (stat.Value > 0) {
+		    IStatConversion affects = (IStatConversion) stat.GetStat();
+		    affects.convertStats(unit, stat);
+
+		}
+	    }
+	}
+
+    }
+
+    public static List<GearItemData> GetEquips(EntityLivingBase entity) {
+
+	List<ItemStack> list = new ArrayList<ItemStack>();
+
+	for (ItemStack stack : entity.getArmorInventoryList()) {
+	    if (stack != null) {
+		list.add(stack);
+	    }
+	}
+	ItemStack weapon = entity.getHeldItemMainhand();
+	if (weapon.getItem() instanceof IWeapon) {
+	    list.add(weapon);
+	}
+
+	IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer) entity);
+
+	for (int i = 0; i < baubles.getSlots(); i++) {
+	    ItemStack stack = baubles.getStackInSlot(i);
+	    if (stack != null) {
+		list.add(stack);
+	    }
 
 	}
 
-	public static void CalcTraits(Unit unit) {
-		for (StatData stat : unit.MyStats.values()) {
-			if (stat.GetStat() instanceof Trait && stat instanceof IAffectsOtherStats) {
-				if (stat.Value > 0) {
-					IAffectsOtherStats affects = (IAffectsOtherStats) stat;
-					affects.TryAffectOtherStats(unit);
+	List<GearItemData> gearitems = new ArrayList<GearItemData>();
 
-				}
-			}
-		}
+	for (ItemStack stack : list) {
 
-	}
+	    GearItemData gear = Gear.Load(stack);
 
-	public static void CalcStatConversions(Unit unit) {
-		for (StatData stat : unit.MyStats.values()) {
-			if (stat instanceof IStatConversion) {
-				if (stat.Value > 0) {
-					IStatConversion affects = (IStatConversion) stat;
-					affects.convertStats(unit, stat);
+	    if (gear != null) {
+		gearitems.add(gear);
 
-				}
-			}
-		}
+	    }
 
 	}
 
-	public static List<GearItemData> GetEquips(EntityLivingBase entity) {
+	return gearitems;
 
-		List<ItemStack> list = new ArrayList<ItemStack>();
+    }
 
-		for (ItemStack stack : entity.getArmorInventoryList()) {
-			if (stack != null) {
-				list.add(stack);
-			}
+    public static void CountWornSets(EntityLivingBase entity, Unit unit) {
+
+	unit.WornSets = new HashMap<String, Integer>();
+
+	List<GearItemData> gears = GetEquips(entity);
+
+	for (GearItemData gear : gears) {
+	    if (gear.set != null) {
+		String set = gear.set.baseSet;
+
+		if (gear.set != null) {
+		    if (unit.WornSets.containsKey(set)) {
+			unit.WornSets.put(set, unit.WornSets.get(set) + 1);
+		    } else {
+			unit.WornSets.put(set, 1);
+		    }
 		}
-		ItemStack weapon = entity.getHeldItemMainhand();
-		if (weapon.getItem() instanceof IWeapon) {
-			list.add(weapon);
-		}
-
-		IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer) entity);
-
-		for (int i = 0; i < baubles.getSlots(); i++) {
-			ItemStack stack = baubles.getStackInSlot(i);
-			if (stack != null) {
-				list.add(stack);
-			}
-
-		}
-
-		List<GearItemData> gearitems = new ArrayList<GearItemData>();
-
-		for (ItemStack stack : list) {
-
-			GearItemData gear = Gear.Load(stack);
-
-			if (gear != null) {
-				gearitems.add(gear);
-
-			}
-
-		}
-
-		return gearitems;
+	    }
 
 	}
 
-	public static void CountWornSets(EntityLivingBase entity, Unit unit) {
+    }
 
-		unit.WornSets = new HashMap<String, Integer>();
+    public static void AddAllSetStats(EntityLivingBase entity, Unit unit, int level) {
 
-		List<GearItemData> gears = GetEquips(entity);
+	for (Entry<String, Integer> entry : unit.WornSets.entrySet()) {
 
-		for (GearItemData gear : gears) {
-			if (gear.set != null) {
-				String set = gear.set.baseSet;
+	    Set set = Sets.All.get(entry.getKey());
 
-				if (gear.set != null) {
-					if (unit.WornSets.containsKey(set)) {
-						unit.WornSets.put(set, unit.WornSets.get(set) + 1);
-					} else {
-						unit.WornSets.put(set, 1);
-					}
-				}
-			}
+	    for (StatMod mod : set.GetObtainedMods(unit)) {
 
+		StatModData data = StatModData.Load(mod, set.StatPercent);
+
+		String name = mod.GetBaseStat().Name();
+		if (unit.MyStats.containsKey(name)) {
+		    unit.MyStats.get(name).Add(data, level);
 		}
+	    }
 
 	}
 
-	public static void AddAllSetStats(EntityLivingBase entity, Unit unit, int level) {
+    }
 
-		for (Entry<String, Integer> entry : unit.WornSets.entrySet()) {
+    public static void AddAllGearStats(EntityLivingBase entity, Unit unit, int level) {
 
-			Set set = Sets.All.get(entry.getKey());
+	List<GearItemData> gears = GetEquips(entity);
 
-			for (StatMod mod : set.GetObtainedMods(unit)) {
+	for (GearItemData gear : gears) {
+	    if (gear.level > level) {
+		entity.sendMessage(
+			new TextComponentString(gear.GetDisplayName() + " is too high level for you, no stats added!"));
+	    } else {
 
-				StatModData data = StatModData.Load(mod, set.StatPercent);
+		List<StatModData> datas = gear.GetAllStats(gear.level);
+		for (StatModData data : datas) {
+		    StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
+		    if (stat == null) {
+			System.out
+				.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+		    } else {
+			stat.Add(data, gear.level);
 
-				String name = mod.GetBaseStat().Name();
-				if (unit.MyStats.containsKey(name)) {
-					unit.MyStats.get(name).Add(data, level);
-				}
-			}
-
+		    }
 		}
-
+	    }
 	}
-
-	public static void AddAllGearStats(EntityLivingBase entity, Unit unit, int level) {
-
-		List<GearItemData> gears = GetEquips(entity);
-
-		for (GearItemData gear : gears) {
-			if (gear.level > level) {
-				entity.sendMessage(
-						new TextComponentString(gear.GetDisplayName() + " is too high level for you, no stats added!"));
-			} else {
-
-				List<StatModData> datas = gear.GetAllStats(gear.level);
-				for (StatModData data : datas) {
-					StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
-					if (stat == null) {
-						System.out
-								.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
-					} else {
-						stat.Add(data, gear.level);
-
-					}
-				}
-			}
-		}
-	}
+    }
 
 }

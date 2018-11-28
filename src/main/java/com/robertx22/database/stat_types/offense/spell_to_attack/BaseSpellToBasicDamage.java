@@ -1,4 +1,4 @@
-package com.robertx22.database.stat_types.offense.conversion;
+package com.robertx22.database.stat_types.offense.spell_to_attack;
 
 import java.util.Arrays;
 import java.util.List;

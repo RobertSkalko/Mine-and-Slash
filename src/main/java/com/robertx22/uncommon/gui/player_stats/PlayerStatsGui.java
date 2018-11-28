@@ -33,10 +33,10 @@ import com.robertx22.database.stat_types.offense.ArmorPenetration;
 import com.robertx22.database.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stat_types.offense.CriticalHit;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
-import com.robertx22.database.stat_types.offense.conversion.FireDamageConversion;
-import com.robertx22.database.stat_types.offense.conversion.NatureDamageConversion;
-import com.robertx22.database.stat_types.offense.conversion.ThunderDamageConversion;
-import com.robertx22.database.stat_types.offense.conversion.WaterDamageConversion;
+import com.robertx22.database.stat_types.offense.spell_to_attack.FireSpellToAttackDMG;
+import com.robertx22.database.stat_types.offense.spell_to_attack.NatureSpellToAttackDMG;
+import com.robertx22.database.stat_types.offense.spell_to_attack.ThunderSpellToAttackDMG;
+import com.robertx22.database.stat_types.offense.spell_to_attack.WaterSpellToAttackDMG;
 import com.robertx22.database.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stat_types.resources.HealthRegen;
 import com.robertx22.database.stat_types.resources.LifeOnHit;
@@ -158,10 +158,10 @@ public class PlayerStatsGui extends Show {
 
 			ShowStat(TextFormatting.RED + "Spell to Attack Conversion Damage:", list);
 
-			ShowStat(this.GetStatString(unit.MyStats.get(FireDamageConversion.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(WaterDamageConversion.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(ThunderDamageConversion.GUID), stats), list);
-			ShowStat(this.GetStatString(unit.MyStats.get(NatureDamageConversion.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(FireSpellToAttackDMG.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(WaterSpellToAttackDMG.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(ThunderSpellToAttackDMG.GUID), stats), list);
+			ShowStat(this.GetStatString(unit.MyStats.get(NatureSpellToAttackDMG.GUID), stats), list);
 
 			ShowStat(TextFormatting.BLUE + "Defense:", list);
 

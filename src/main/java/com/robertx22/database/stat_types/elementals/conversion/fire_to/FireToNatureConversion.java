@@ -14,7 +14,7 @@ public class FireToNatureConversion extends BaseConversionMod {
 
     @Override
     public String Name() {
-	return "FireToNatureConversion";
+	return "Fire To Nature Conversion";
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.robertx22.database.map_mods.bonus.ele_dmg;
 
 import com.robertx22.database.map_mods.bases.BonusEleDmgBase;
-import com.robertx22.database.stat_types.offense.conversion.NatureDamageConversion;
+import com.robertx22.database.stat_types.offense.spell_to_attack.NatureSpellToAttackDMG;
 import com.robertx22.stats.Stat;
 
 public class BonusNatureDamageMap extends BonusEleDmgBase {
@@ -16,7 +16,7 @@ public class BonusNatureDamageMap extends BonusEleDmgBase {
 
 	@Override
 	public Stat GetBaseStat() {
-		return new NatureDamageConversion();
+		return new NatureSpellToAttackDMG();
 	}
 
 }

@@ -14,7 +14,7 @@ public class ThunderToFireConversion extends BaseConversionMod {
 
     @Override
     public String Name() {
-	return "ThunderToFireConversion";
+	return "Thunder To Fire Conversion";
     }
 
     @Override

@@ -14,7 +14,7 @@ public class WaterToFireConversion extends BaseConversionMod {
 
     @Override
     public String Name() {
-	return "WaterToFireConversion";
+	return "Water To Fire Conversion";
     }
 
     @Override
