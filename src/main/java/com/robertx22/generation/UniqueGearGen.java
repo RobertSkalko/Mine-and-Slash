@@ -6,6 +6,7 @@ import java.util.List;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.Unique;
+import com.robertx22.db_lists.GearTypes;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
@@ -28,7 +29,7 @@ public class UniqueGearGen {
 
 		if (unique != null) {
 			ItemRarity rarity = new Unique();
-			GearItemSlot gearslot = blueprint.GetGearType();
+			GearItemSlot gearslot = GearTypes.All.get(unique.slot());
 
 			data.isUnique = true;
 
@@ -68,15 +69,14 @@ public class UniqueGearGen {
 			IUnique baseu = (IUnique) item;
 
 			if (blueprint.tier >= baseu.Tier()) {
-				if (baseu.slot().equals(blueprint.gearType) || blueprint.gearType.equals("random")) {
+				if (baseu.slot().equals(blueprint.gearType) || blueprint.gearType.equals("random")
+						|| blueprint.gearType.equals("")) {
 					list.add((IWeighted) item);
 				}
 			}
 		}
 
 		IUnique unique = (IUnique) RandomUtils.WeightedRandom(list);
-
-		blueprint.gearType = unique.slot();
 
 		return unique;
 

@@ -7,6 +7,7 @@ import com.robertx22.loot.gens.CurrencyLootGen;
 import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.MapLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
+import com.robertx22.loot.gens.UniqueGearLootGen;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
@@ -25,6 +26,7 @@ public class MasterLootGen {
 		items.addAll(new GearLootGen(mob, player, world, victim).generate());
 		items.addAll(new SpellLootGen(mob, player, world, victim).generate());
 		items.addAll(new MapLootGen(mob, player, world, victim).generate());
+		items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
 
 		return items;
 	}
