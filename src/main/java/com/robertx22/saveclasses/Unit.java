@@ -12,6 +12,7 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
+import com.robertx22.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
@@ -112,7 +113,7 @@ public class Unit {
 
 	int num = (int) (unitsource.MyStats.get(PhysicalDamage.GUID).Value * event_damage);
 	DamageEffect dmg = new DamageEffect(source, target, num);
-	dmg.Type = EffectTypes.BASIC_ATTACK;
+	dmg.setEffectType(EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 	dmg.Activate();
     }
 

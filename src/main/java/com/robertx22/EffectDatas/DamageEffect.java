@@ -26,223 +26,223 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class DamageEffect extends EffectData
-		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
+	implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
 
-	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
-		super(source, target);
+    public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
+	super(source, target);
 
-		this.Number = dmg;
+	this.Number = dmg;
+
+    }
+
+    public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, UnitData sourceData,
+	    UnitData targetData) {
+	super(source, target, sourceData, targetData);
+
+	this.Number = dmg;
+    }
+
+    public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
+
+    public static String DmgSourceName = Ref.MODID + "_Custom_Damage";
+    public Elements Element = Elements.None;
+    public int ArmorPene;
+    public int ElementalPene;
+
+    public float healthHealed;
+    public float manaRestored;
+
+    @Override
+    protected void activate() {
+
+	MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
+
+	float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
+	Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
+	Target.attackEntityFrom(dmgsource, dmg);
+
+	addBonusElementDamage();
+	Heal();
+	RestoreMana();
+
+	if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
+	    LogCombat();
+	}
+
+	if (ModConfig.Client.RENDER_FLOATING_DAMAGE && (int) Number > 0) {
+	    NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX,
+		    Target.posY, Target.posZ, 32);
+
+	    Main.Network.sendToAllAround(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
+		    point);
+	}
+
+    }
+
+    private void RestoreMana() {
+	int restored = (int) manaRestored;
+	if (restored > 0) {
+	    sourceUnit.RestoreMana(restored);
+	}
+    }
+
+    private void Heal() {
+	int healed = (int) healthHealed;
+	if (healed > 0) {
+	    sourceUnit.Heal(Source, healed);
+	}
+    }
+
+    private void addBonusElementDamage() {
+	for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
+	    if (entry.getValue() > 0) {
+		DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue());
+		bonus.setEffectType(EffectTypes.BONUS_ATTACK, this.weaponType);
+		bonus.Element = entry.getKey();
+		bonus.Activate();
+	    }
+	}
+    }
+
+    private void LogCombat() {
+
+	if (this.getEffectType().equals(EffectTypes.BONUS_ATTACK)) { // don't spam chat with bonus damaages
+	    return;
+	}
+
+	if (this.Source instanceof EntityPlayer) {
+
+	    String s = "Dealt " + LogDamage() + " to " + this.Target.getName() + " "
+		    + LogCurrentHP(this.Target, this.targetUnit);
+	    this.Source.sendMessage(new TextComponentString(s));
 
 	}
 
-	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, UnitData sourceData,
-			UnitData targetData) {
-		super(source, target, sourceData, targetData);
+	if (this.Target instanceof EntityPlayer) {
 
-		this.Number = dmg;
-	}
-
-	public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
-
-	public static String DmgSourceName = Ref.MODID + "_Custom_Damage";
-	public Elements Element = Elements.None;
-	public int ArmorPene;
-	public int ElementalPene;
-
-	public float healthHealed;
-	public float manaRestored;
-
-	@Override
-	protected void activate() {
-
-		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
-
-		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
-		Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
-		Target.attackEntityFrom(dmgsource, dmg);
-
-		addBonusElementDamage();
-		Heal();
-		RestoreMana();
-
-		if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
-			LogCombat();
-		}
-
-		if (ModConfig.Client.RENDER_FLOATING_DAMAGE && (int) Number > 0) {
-			NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX,
-					Target.posY, Target.posZ, 32);
-
-			Main.Network.sendToAllAround(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
-					point);
-		}
+	    String s = "Took " + LogDamage() + " from " + this.Source.getName() + " "
+		    + LogCurrentHP(this.Target, this.targetUnit);
+	    this.Target.sendMessage(new TextComponentString(s));
 
 	}
 
-	private void RestoreMana() {
-		int restored = (int) manaRestored;
-		if (restored > 0) {
-			sourceUnit.RestoreMana(restored);
-		}
+    }
+
+    private String LogCurrentHP(EntityLivingBase entity, Unit unit) {
+
+	String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health().CurrentValue(entity, unit) + "/"
+		+ (int) unit.healthData().Value + "]";
+
+	return str;
+
+    }
+
+    public static String FormatNumber(int Number) {
+
+	String num = "";
+	if (Number > 1000) {
+	    int thousands = (int) (Number / 1000);
+
+	    int leftover = (int) ((Number - thousands * 1000) / 100);
+
+	    num = thousands + "." + leftover + "k";
+	} else {
+	    num = Number + "";
 	}
 
-	private void Heal() {
-		int healed = (int) healthHealed;
-		if (healed > 0) {
-			sourceUnit.Heal(Source, healed);
-		}
-	}
+	return num;
+    }
 
-	private void addBonusElementDamage() {
-		for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
-			if (entry.getValue() > 0) {
-				DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue());
-				bonus.Type = EffectTypes.BONUS_ATTACK;
-				bonus.Element = entry.getKey();
-				bonus.Activate();
-			}
-		}
-	}
+    public static String FormatDamageNumber(DamageEffect data) {
+	String num = FormatNumber((int) data.Number);
 
-	private void LogCombat() {
-
-		if (this.Type.equals(EffectTypes.BONUS_ATTACK)) { // don't spam chat with bonus damaages
-			return;
-		}
-
-		if (this.Source instanceof EntityPlayer) {
-
-			String s = "Dealt " + LogDamage() + " to " + this.Target.getName() + " "
-					+ LogCurrentHP(this.Target, this.targetUnit);
-			this.Source.sendMessage(new TextComponentString(s));
-
-		}
-
-		if (this.Target instanceof EntityPlayer) {
-
-			String s = "Took " + LogDamage() + " from " + this.Source.getName() + " "
-					+ LogCurrentHP(this.Target, this.targetUnit);
-			this.Target.sendMessage(new TextComponentString(s));
-
-		}
+	if (data.crit) {
+	    num += "!";
 
 	}
 
-	private String LogCurrentHP(EntityLivingBase entity, Unit unit) {
+	return num;
+    }
 
-		String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health().CurrentValue(entity, unit) + "/"
-				+ (int) unit.healthData().Value + "]";
+    private String LogDamage() {
 
-		return str;
+	String num = FormatDamageNumber(this);
 
+	String str = num + " DMG ";
+
+	if (Element == null || Element.equals(Elements.None)) {
+	    str = TextFormatting.GRAY + str;
+	} else {
+	    if (Element.equals(Elements.Fire)) {
+		str = TextFormatting.RED + str;
+	    }
+	    if (Element.equals(Elements.Water)) {
+		str = TextFormatting.BLUE + str;
+	    }
+	    if (Element.equals(Elements.Thunder)) {
+		str = TextFormatting.YELLOW + str;
+	    }
+	    if (Element.equals(Elements.Nature)) {
+		str = TextFormatting.GREEN + str;
+	    }
 	}
 
-	public static String FormatNumber(int Number) {
+	return str;
 
-		String num = "";
-		if (Number > 1000) {
-			int thousands = (int) (Number / 1000);
+    }
 
-			int leftover = (int) ((Number - thousands * 1000) / 100);
+    @Override
+    public EntityLivingBase Source() {
+	return Source;
+    }
 
-			num = thousands + "." + leftover + "k";
-		} else {
-			num = Number + "";
-		}
+    @Override
+    public EntityLivingBase Target() {
+	return Target;
+    }
 
-		return num;
-	}
+    @Override
+    public float Number() {
+	return Number;
+    }
 
-	public static String FormatDamageNumber(DamageEffect data) {
-		String num = FormatNumber((int) data.Number);
+    @Override
+    public Elements GetElement() {
+	return Element;
+    }
 
-		if (data.crit) {
-			num += "!";
+    @Override
+    public void SetArmorPenetration(int val) {
+	this.ArmorPene = val;
 
-		}
+    }
 
-		return num;
-	}
+    @Override
+    public void SetElementalPenetration(int val) {
+	this.ElementalPene = val;
+    }
 
-	private String LogDamage() {
+    @Override
+    public int GetArmorPenetration() {
+	return this.ArmorPene;
+    }
 
-		String num = FormatDamageNumber(this);
+    public boolean crit = false;
 
-		String str = num + " DMG ";
+    @Override
+    public void SetCrit(boolean bool) {
+	crit = bool;
 
-		if (Element == null || Element.equals(Elements.None)) {
-			str = TextFormatting.GRAY + str;
-		} else {
-			if (Element.equals(Elements.Fire)) {
-				str = TextFormatting.RED + str;
-			}
-			if (Element.equals(Elements.Water)) {
-				str = TextFormatting.BLUE + str;
-			}
-			if (Element.equals(Elements.Thunder)) {
-				str = TextFormatting.YELLOW + str;
-			}
-			if (Element.equals(Elements.Nature)) {
-				str = TextFormatting.GREEN + str;
-			}
-		}
+    }
 
-		return str;
+    @Override
+    public boolean GetCrit() {
+	return crit;
+    }
 
-	}
-
-	@Override
-	public EntityLivingBase Source() {
-		return Source;
-	}
-
-	@Override
-	public EntityLivingBase Target() {
-		return Target;
-	}
-
-	@Override
-	public float Number() {
-		return Number;
-	}
-
-	@Override
-	public Elements GetElement() {
-		return Element;
-	}
-
-	@Override
-	public void SetArmorPenetration(int val) {
-		this.ArmorPene = val;
-
-	}
-
-	@Override
-	public void SetElementalPenetration(int val) {
-		this.ElementalPene = val;
-	}
-
-	@Override
-	public int GetArmorPenetration() {
-		return this.ArmorPene;
-	}
-
-	public boolean crit = false;
-
-	@Override
-	public void SetCrit(boolean bool) {
-		crit = bool;
-
-	}
-
-	@Override
-	public boolean GetCrit() {
-		return crit;
-	}
-
-	@Override
-	public int GetElementalPenetration() {
-		return this.ElementalPene;
-	}
+    @Override
+    public int GetElementalPenetration() {
+	return this.ElementalPene;
+    }
 
 }

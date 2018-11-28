@@ -11,35 +11,35 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class SpellDodgeEffect implements IStatEffect {
 
-	@Override
-	public int GetPriority() {
-		return 30;
-	}
+    @Override
+    public int GetPriority() {
+	return 30;
+    }
 
-	@Override
-	public EffectSides Side() {
-		return EffectSides.Target;
-	}
+    @Override
+    public EffectSides Side() {
+	return EffectSides.Target;
+    }
 
-	@Override
-	public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    @Override
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
-		try {
-			if (Effect instanceof DamageEffect && Effect.Type.equals(EffectTypes.SPELL)) {
+	try {
+	    if (Effect instanceof DamageEffect && Effect.getEffectType().equals(EffectTypes.SPELL)) {
 
-				if (RandomUtils.roll(data.Value)) {
-					Effect.Number = 0;
-					Effect.canceled = true;
-					// System.out.println("Spell Dodged!");
-				}
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (RandomUtils.roll(data.Value)) {
+		    Effect.Number = 0;
+		    Effect.canceled = true;
+		    // System.out.println("Spell Dodged!");
 		}
 
-		return Effect;
+	    }
+
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
+
+	return Effect;
+    }
 
 }

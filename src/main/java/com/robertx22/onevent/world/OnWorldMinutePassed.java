@@ -13,32 +13,32 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 @Mod.EventBusSubscriber
 public class OnWorldMinutePassed {
 
-	static final int oneMinute = 1200;
+    static final int oneMinute = 1200; // 1200 1 minute
 
-	static int ticks = 0;
+    static int ticks = 0;
 
-	@SubscribeEvent
-	public static void onMinutePassedUpdateWorldTime(TickEvent.ServerTickEvent event) {
+    @SubscribeEvent
+    public static void onMinutePassedUpdateWorldTime(TickEvent.ServerTickEvent event) {
 
-		if (event.phase == Phase.END && event.side.isServer()) {
+	if (event.phase == Phase.END && event.side.isServer()) {
 
-			ticks++;
+	    ticks++;
 
-			if (ticks > oneMinute) {
+	    if (ticks > oneMinute) {
 
-				ticks = 0;
+		ticks = 0;
 
-				for (WorldServer world : FMLCommonHandler.instance().getMinecraftServerInstance().worlds) {
+		for (WorldServer world : FMLCommonHandler.instance().getMinecraftServerInstance().worlds) {
 
-					IWorldData data = Load.World(world);
+		    IWorldData data = Load.World(world);
 
-					if (data != null) {
-						data.onMinutePassed(world);
-					}
-				}
-			}
+		    if (data != null) {
+			data.onMinutePassed(world);
+		    }
 		}
-
+	    }
 	}
+
+    }
 
 }
