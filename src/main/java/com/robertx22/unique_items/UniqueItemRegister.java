@@ -5,6 +5,7 @@ import com.robertx22.unique_items.necklaces.NecklaceNature;
 import com.robertx22.unique_items.rings.RingFrostFire;
 import com.robertx22.unique_items.rings.RingOfDodge;
 import com.robertx22.unique_items.staffs.StaffFire;
+import com.robertx22.unique_items.staffs.StaffLifesteal;
 import com.robertx22.unique_items.staffs.StaffNature;
 import com.robertx22.unique_items.staffs.StaffThunder;
 import com.robertx22.unique_items.staffs.StaffWater;
@@ -20,7 +21,7 @@ public class UniqueItemRegister {
 		// bracelets
 		new BraceletThunder();
 
-		// necklacews
+		// necklaces
 		new NecklaceNature();
 
 		// staffs
@@ -28,6 +29,7 @@ public class UniqueItemRegister {
 		new StaffWater();
 		new StaffThunder();
 		new StaffNature();
+		new StaffLifesteal();
 
 	}
 
