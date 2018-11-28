@@ -16,6 +16,7 @@ import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.IStatConversion;
+import com.robertx22.stats.IStatTransfer;
 import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -55,6 +56,19 @@ public class PlayerStatUtils {
 		if (stat.Value > 0) {
 		    IStatConversion affects = (IStatConversion) stat.GetStat();
 		    affects.convertStats(unit, stat);
+
+		}
+	    }
+	}
+
+    }
+
+    public static void CalcStatTransferss(Unit unit) {
+	for (StatData stat : unit.MyStats.values()) {
+	    if (stat.GetStat() instanceof IStatTransfer) {
+		if (stat.Value > 0) {
+		    IStatTransfer affects = (IStatTransfer) stat.GetStat();
+		    affects.transferStats(unit, stat);
 
 		}
 	    }

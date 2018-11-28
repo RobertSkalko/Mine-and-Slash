@@ -88,6 +88,7 @@ import com.robertx22.database.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stat_mods.percent.CriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
 import com.robertx22.database.stat_mods.percent.DamagePercent;
+import com.robertx22.database.stat_mods.percent.DodgePercent;
 import com.robertx22.database.stat_mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stat_mods.percent.HealthPercent;
 import com.robertx22.database.stat_mods.percent.LifeOnHitPercent;
@@ -129,6 +130,7 @@ public class StatMods {
 		put(new DamagePercent().GUID(), new DamagePercent());
 		put(new CriticalDamagePercent().GUID(), new CriticalDamagePercent());
 		put(new ArmorPenePercent().GUID(), new ArmorPenePercent());
+		put(new DodgePercent().GUID(), new DodgePercent());
 
 		// Resources
 		put(new HealthFlat().GUID(), new HealthFlat());

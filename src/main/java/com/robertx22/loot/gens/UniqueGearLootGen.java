@@ -10,24 +10,25 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
 public class UniqueGearLootGen extends BaseLootGen {
-	GearBlueprint gearPrint;
+    GearBlueprint gearPrint;
 
-	public UniqueGearLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
-		super(mob, player, world, victim);
-		gearPrint = new GearBlueprint(mob.getLevel());
+    public UniqueGearLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
+	super(mob, player, world, victim);
+	gearPrint = new GearBlueprint(mob.getLevel());
+	gearPrint.tier = this.world_tier;
 
-	}
+    }
 
-	@Override
-	public float BaseChance() {
-		return 55550.5F;
-	}
+    @Override
+    public float BaseChance() {
+	return 0.5F;
+    }
 
-	@Override
-	public ItemStack generateOne() {
+    @Override
+    public ItemStack generateOne() {
 
-		return LootUtils.RandomDamagedGear(UniqueGearGen.CreateStack(gearPrint));
+	return LootUtils.RandomDamagedGear(UniqueGearGen.CreateStack(gearPrint));
 
-	}
+    }
 
 }

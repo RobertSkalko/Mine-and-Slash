@@ -10,9 +10,9 @@ import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellWaterDamag
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueRing;
 
-public class RingFrostFire extends BaseUniqueRing {
+public class RingWaterFire extends BaseUniqueRing {
 
-    public RingFrostFire() {
+    public RingWaterFire() {
 
     }
 

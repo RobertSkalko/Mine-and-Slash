@@ -36,151 +36,150 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class ItemMap extends Item {
-	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		MapItemData data = Map.Load(stack);
+	MapItemData data = Map.Load(stack);
 
-		showTooltip(data, tooltip);
+	showTooltip(data, tooltip);
 
+    }
+
+    public static List<String> showTooltip(MapItemData data, List<String> tooltip) {
+
+	if (data != null) {
+
+	    ItemRarity rarity = Rarities.Items.get(data.rarity);
+
+	    tooltip.clear();
+
+	    tooltip.add(Rarities.Items.get(data.rarity).Color() + data.name);
+	    tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
+	    tooltip.add("");
+
+	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
+	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.Players);
+	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.All);
+
+	    tooltip.add("");
+
+	    try {
+		tooltip.add(TextFormatting.BLUE + "World Type: " + data.getWorldProvider().Name());
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+
+	    tooltip.add("");
+	    tooltip.add(TextFormatting.GOLD + "Tier: " + data.tier);
+
+	    tooltip.add("");
+	    tooltip.add(TextFormatting.GREEN + "Minutes: " + data.minutes);
+
+	    tooltip.add("");
+	    tooltip.add(TextFormatting.YELLOW + "Bonus Loot Amount: " + data.getBonusLootAmount() + "%");
+
+	    tooltip.add("");
+	    tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
 	}
 
-	public static List<String> showTooltip(MapItemData data, List<String> tooltip) {
+	return tooltip;
 
-		if (data != null) {
+    }
 
-			ItemRarity rarity = Rarities.Items.get(data.rarity);
+    private static void addAffixTypeToTooltip(MapItemData data, List<String> tooltip, AffectedEntities affected) {
 
-			tooltip.clear();
+	List<MapAffixData> affixes = data.getAllAffixesThatAffect(affected);
 
-			tooltip.add(Rarities.Items.get(data.rarity).Color() + data.name);
-			tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
-			tooltip.add("");
+	if (affixes.size() == 0) {
+	    return;
+	}
 
-			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
-			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Players);
-			addAffixTypeToTooltip(data, tooltip, AffectedEntities.All);
+	tooltip.add(TextFormatting.GREEN + affected.name() + " Affixes:");
 
-			tooltip.add("");
+	for (MapAffixData affix : affixes) {
 
-			try {
-				tooltip.add(TextFormatting.BLUE + "World Type: " + data.getWorldProvider().Name());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+	    for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
 
-			tooltip.add("");
-			tooltip.add(TextFormatting.GOLD + "Tier: " + data.tier);
+		String statstring = statmod.GetTooltipString(Rarities.Maps.get(data.rarity).StatPercents(), data.level,
+			false);
 
-			tooltip.add("");
-			tooltip.add(TextFormatting.GREEN + "Minutes: " + data.minutes);
+		tooltip.add(" * " + TextFormatting.RED + statstring);
 
-			tooltip.add("");
-			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Amount: " + data.getBonusLootAmount() + "%");
-			tooltip.add(TextFormatting.YELLOW + "Bonus Loot Rarity: " + data.getBonusLootRarity() + "%");
+	    }
 
-			tooltip.add("");
-			tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
+	}
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+
+	if (!world.isRemote) {
+	    try {
+
+		IWorldData currentdata = Load.World(world);
+
+		if (currentdata.isMapWorld()) {
+		    player.sendMessage(new TextComponentString("You cannot create a map inside a map."));
+
+		} else {
+
+		    MapItemData data = Map.Load(player.getHeldItem(hand));
+
+		    if (data != null) {
+
+			int id = data.createDimension(player);
+
+			summonPortal(player, id);
+
+			return new ActionResult<ItemStack>(EnumActionResult.PASS, ItemStack.EMPTY);
+		    }
 		}
-
-		return tooltip;
-
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
 	}
+	return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+    }
 
-	private static void addAffixTypeToTooltip(MapItemData data, List<String> tooltip, AffectedEntities affected) {
+    private void summonPortal(EntityPlayer player, int id) {
 
-		List<MapAffixData> affixes = data.getAllAffixesThatAffect(affected);
+	BlockPos pos = player.getPosition();
 
-		if (affixes.size() == 0) {
-			return;
-		}
+	EnumFacing dir = player.getHorizontalFacing();
 
-		tooltip.add(TextFormatting.GREEN + affected.name() + " Affixes:");
+	pos = pos.offset(dir, 2);
 
-		for (MapAffixData affix : affixes) {
+	World world = player.world;
 
-			for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
+	spawnPortalBlock(world, pos, id);
 
-				String statstring = statmod.GetTooltipString(Rarities.Maps.get(data.rarity).StatPercents(), data.level,
-						false);
+	spawnFrameBlock(world, pos.south());
+	spawnFrameBlock(world, pos.north());
+	spawnFrameBlock(world, pos.east());
+	spawnFrameBlock(world, pos.west());
 
-				tooltip.add(" * " + TextFormatting.RED + statstring);
+	spawnFrameBlock(world, pos.south().east());
+	spawnFrameBlock(world, pos.south().west());
+	spawnFrameBlock(world, pos.north().east());
+	spawnFrameBlock(world, pos.north().west());
 
-			}
+    }
 
-		}
-	}
+    private void spawnPortalBlock(World world, BlockPos pos, int id) {
+	world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
+	TileMapPortal portal = new TileMapPortal(id);
+	world.setTileEntity(pos, portal);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+    private void spawnFrameBlock(World world, BlockPos pos) {
+	world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(), 2);
+    }
 
-		if (!world.isRemote) {
-			try {
+    public ItemMap() {
 
-				IWorldData currentdata = Load.World(world);
-
-				if (currentdata.isMapWorld()) {
-					player.sendMessage(new TextComponentString("You cannot create a map inside a map."));
-
-				} else {
-
-					MapItemData data = Map.Load(player.getHeldItem(hand));
-
-					if (data != null) {
-
-						int id = data.createDimension(player);
-
-						summonPortal(player, id);
-
-						return new ActionResult<ItemStack>(EnumActionResult.PASS, ItemStack.EMPTY);
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
-	}
-
-	private void summonPortal(EntityPlayer player, int id) {
-
-		BlockPos pos = player.getPosition();
-
-		EnumFacing dir = player.getHorizontalFacing();
-
-		pos = pos.offset(dir, 2);
-
-		World world = player.world;
-
-		spawnPortalBlock(world, pos, id);
-
-		spawnFrameBlock(world, pos.south());
-		spawnFrameBlock(world, pos.north());
-		spawnFrameBlock(world, pos.east());
-		spawnFrameBlock(world, pos.west());
-
-		spawnFrameBlock(world, pos.south().east());
-		spawnFrameBlock(world, pos.south().west());
-		spawnFrameBlock(world, pos.north().east());
-		spawnFrameBlock(world, pos.north().west());
-
-	}
-
-	private void spawnPortalBlock(World world, BlockPos pos, int id) {
-		world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
-		TileMapPortal portal = new TileMapPortal(id);
-		world.setTileEntity(pos, portal);
-	}
-
-	private void spawnFrameBlock(World world, BlockPos pos) {
-		world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(), 2);
-	}
-
-	public ItemMap() {
-
-	}
+    }
 
 }

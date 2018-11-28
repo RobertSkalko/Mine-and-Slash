@@ -1,31 +1,30 @@
 package com.robertx22.database.stat_mods.percent;
 
-import com.robertx22.database.stat_types.offense.CriticalHit;
+import com.robertx22.database.stat_types.defense.Dodge;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
 
-public class CriticalHitPercent extends StatMod {
+public class DodgePercent extends StatMod {
 
-    public CriticalHitPercent() {
+    public DodgePercent() {
     }
 
     @Override
     public String GUID() {
-	return "CriticalHitPercent";
+	return "DodgePercent";
 
     }
 
     @Override
     public int Min() {
-	return 2;
+	return 10;
 
     }
 
     @Override
     public int Max() {
-	return 10;
+	return 25;
     }
 
     @Override
@@ -35,12 +34,7 @@ public class CriticalHitPercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-	return new CriticalHit();
-    }
-
-    @Override
-    public int Weight() {
-	return IWeighted.UncommonWeight;
+	return new Dodge();
     }
 
 }

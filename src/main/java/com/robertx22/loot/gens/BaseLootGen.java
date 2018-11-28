@@ -37,7 +37,7 @@ public abstract class BaseLootGen {
 		float chance = BaseChance();
 
 		chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);
-		chance = LootUtils.ApplyMobLootMulti(chance, mob, victim, world);
+		chance = LootUtils.applyLootMultipliers(chance, mob, victim, world);
 
 		amount = LootUtils.WhileRoll(chance);
 

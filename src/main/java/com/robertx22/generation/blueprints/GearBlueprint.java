@@ -17,103 +17,103 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class GearBlueprint extends ItemBlueprint {
 
-	public GearBlueprint(int level) {
-		super(level);
+    public GearBlueprint(int level) {
+	super(level);
+    }
+
+    public String gearType = "";
+    public boolean RandomGearType = true;
+
+    public int tier = 0;
+
+    public void SetSpecificType(String type) {
+
+	gearType = type;
+	RandomGearType = false;
+
+	try {
+	    GearTypes.All.get(type);
+	} catch (IndexOutOfBoundsException e) {
+	    e.printStackTrace();
 	}
 
-	public String gearType;
-	public boolean RandomGearType = true;
+    }
 
-	public int tier = 0;
+    public GearTypeStatsData genGearTypeStats(GearItemData data) {
 
-	public void SetSpecificType(String type) {
+	if (data.GetBaseGearType().slotTypeStats().size() > 0) {
 
-		gearType = type;
-		RandomGearType = false;
+	    GearTypeStatsData stats = new GearTypeStatsData(data.GetBaseGearType().Name());
+	    stats.RerollFully(data);
 
-		try {
-			GearTypes.All.get(type);
-		} catch (IndexOutOfBoundsException e) {
-			e.printStackTrace();
+	    return stats;
+
+	}
+
+	return null;
+
+    }
+
+    public GearItemSlot GetGearType() {
+
+	if (RandomGearType) {
+	    List<IWeighted> slots = ListUtils.CollectionToList(GearTypes.All.values());
+
+	    return (GearItemSlot) RandomUtils.WeightedRandom(slots);
+
+	} else {
+
+	    return GearTypes.All.get(gearType);
+	}
+
+    }
+
+    private boolean isCustomSetChance = false;
+    private float customSetChance = 0;
+
+    public void SetCustomSetChance(float chance) {
+	isCustomSetChance = true;
+	customSetChance = chance;
+    }
+
+    public SetData GenerateSet() {
+
+	SetData setdata = null;
+
+	boolean has = false;
+
+	if (this.isCustomSetChance) {
+
+	    if (RandomUtils.roll(this.customSetChance)) {
+
+		has = true;
+	    }
+
+	} else {
+	    if (RandomUtils.roll(Rarities.Items.get(rarity).SetChance())) {
+		has = true;
+	    }
+	}
+
+	if (has) {
+
+	    List<Set> possibleSets = new ArrayList();
+
+	    for (Set set : Sets.All.values()) {
+		if (set.CanBePlacedOnItemSlot(this.gearType)) {
+		    possibleSets.add(set);
 		}
+	    }
 
+	    if (possibleSets.size() > 0) {
+		Set set = (Set) RandomUtils.WeightedRandom(ListUtils.CollectionToList(possibleSets));
+
+		setdata = new SetData();
+		setdata.baseSet = set.GUID();
+	    }
 	}
 
-	public GearTypeStatsData genGearTypeStats(GearItemData data) {
-
-		if (data.GetBaseGearType().slotTypeStats().size() > 0) {
-
-			GearTypeStatsData stats = new GearTypeStatsData(data.GetBaseGearType().Name());
-			stats.RerollFully(data);
-
-			return stats;
-
-		}
-
-		return null;
-
-	}
-
-	public GearItemSlot GetGearType() {
-
-		if (RandomGearType) {
-			List<IWeighted> slots = ListUtils.CollectionToList(GearTypes.All.values());
-
-			return (GearItemSlot) RandomUtils.WeightedRandom(slots);
-
-		} else {
-
-			return GearTypes.All.get(gearType);
-		}
-
-	}
-
-	private boolean isCustomSetChance = false;
-	private float customSetChance = 0;
-
-	public void SetCustomSetChance(float chance) {
-		isCustomSetChance = true;
-		customSetChance = chance;
-	}
-
-	public SetData GenerateSet() {
-
-		SetData setdata = null;
-
-		boolean has = false;
-
-		if (this.isCustomSetChance) {
-
-			if (RandomUtils.roll(this.customSetChance)) {
-
-				has = true;
-			}
-
-		} else {
-			if (RandomUtils.roll(Rarities.Items.get(rarity).SetChance())) {
-				has = true;
-			}
-		}
-
-		if (has) {
-
-			List<Set> possibleSets = new ArrayList();
-
-			for (Set set : Sets.All.values()) {
-				if (set.CanBePlacedOnItemSlot(this.gearType)) {
-					possibleSets.add(set);
-				}
-			}
-
-			if (possibleSets.size() > 0) {
-				Set set = (Set) RandomUtils.WeightedRandom(ListUtils.CollectionToList(possibleSets));
-
-				setdata = new SetData();
-				setdata.baseSet = set.GUID();
-			}
-		}
-
-		return setdata;
-	}
+	return setdata;
+    }
 
 }

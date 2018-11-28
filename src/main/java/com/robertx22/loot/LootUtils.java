@@ -41,7 +41,7 @@ public class LootUtils {
 		return stack;
 	}
 
-	public static float ApplyMobLootMulti(float chance, UnitData mob, EntityLivingBase entity, IWorldData world) {
+	public static float applyLootMultipliers(float chance, UnitData mob, EntityLivingBase entity, IWorldData world) {
 
 		float first = chance;
 
