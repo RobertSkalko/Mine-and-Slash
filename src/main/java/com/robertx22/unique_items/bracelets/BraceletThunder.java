@@ -8,6 +8,7 @@ import com.robertx22.database.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stat_mods.percent.CriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
+import com.robertx22.database.stat_mods.percent.less.LessLifestealPercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueBracelet;
 
@@ -36,7 +37,7 @@ public class BraceletThunder extends BaseUniqueBracelet {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellThunderDamageFlat(), new CriticalHitPercent(), new CriticalDamagePercent(),
-		new CriticalHitFlat(), new CriticalDamageFlat());
+		new CriticalHitFlat(), new CriticalDamageFlat(), new LessLifestealPercent());
     }
 
     @Override

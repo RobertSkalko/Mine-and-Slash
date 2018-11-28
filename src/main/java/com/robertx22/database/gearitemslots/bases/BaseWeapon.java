@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stat_mods.flat.CriticalHitFlat;
-import com.robertx22.database.stat_mods.flat.DamageFlat;
+import com.robertx22.database.stat_mods.flat.PhysicalDamageFlat;
 import com.robertx22.database.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.database.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.db_lists.Prefixes;
@@ -27,7 +27,7 @@ public abstract class BaseWeapon extends GearItemSlot {
 
 	@Override
 	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new DamageFlat());
+		return Arrays.asList(new PhysicalDamageFlat());
 	}
 
 	@Override

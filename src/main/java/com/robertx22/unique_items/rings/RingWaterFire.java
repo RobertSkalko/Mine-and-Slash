@@ -28,7 +28,7 @@ public class RingWaterFire extends BaseUniqueRing {
 
     @Override
     public String GUID() {
-	return "ringfrostfire0";
+	return "ringwaterfire0";
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.robertx22.database.stat_mods.flat.elemental.transfers.FireToNatureTra
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stat_mods.percent.HealthPercent;
+import com.robertx22.database.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueNecklace;
 
@@ -35,7 +36,7 @@ public class NecklaceNature extends BaseUniqueNecklace {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellNatureDamageFlat(), new HealthFlat(), new HealthRegenFlat(),
-		new FireToNatureTransferFlat(), new HealthPercent());
+		new FireToNatureTransferFlat(), new HealthPercent(), new LessDodgePercent());
     }
 
     @Override

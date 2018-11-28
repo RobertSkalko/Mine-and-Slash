@@ -9,7 +9,7 @@ import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stat_mods.percent.HealthPercent;
-import com.robertx22.database.stat_mods.percent.spell_ele_dmg.NatureDamagePercent;
+import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.StatMod;
 
@@ -27,7 +27,7 @@ public class ForestGuardian extends Set {
 			{
 				{
 					put(2, new HealthPercent());
-					put(3, new NatureDamagePercent());
+					put(3, new SpellNatureDamagePercent());
 
 				}
 			}

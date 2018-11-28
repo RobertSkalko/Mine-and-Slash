@@ -28,7 +28,7 @@ public class RingDodge extends BaseUniqueRing {
 
     @Override
     public String GUID() {
-	return "RingOfSwiftness0";
+	return "ringdodge0";
     }
 
     @Override
