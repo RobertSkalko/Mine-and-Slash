@@ -109,6 +109,7 @@ public class EntityData {
 			    @Override
 			    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 				return capability == Data;
+
 			    }
 
 			    @Override
