@@ -21,7 +21,7 @@ public class UniqueGearLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-	return 0.5F;
+	return 0.15F;
     }
 
     @Override

@@ -15,22 +15,23 @@ import net.minecraft.item.ItemStack;
 
 public class CurrencyLootGen extends BaseLootGen {
 
-	public CurrencyLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
-		super(mob, player, world, victim);
+    public CurrencyLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
+	super(mob, player, world, victim);
 
-	}
+    }
 
-	@Override
-	public float BaseChance() {
-		return 3;
-	}
+    @Override
+    public float BaseChance() {
+	return 3;
 
-	@Override
-	public ItemStack generateOne() {
+    }
 
-		return new ItemStack((Item) RandomUtils
-				.WeightedRandom(ListUtils.SameTierOrLess(new ArrayList<ITiered>(CurrencyItem.ITEMS), this.world_tier)));
+    @Override
+    public ItemStack generateOne() {
 
-	}
+	return new ItemStack((Item) RandomUtils
+		.WeightedRandom(ListUtils.SameTierOrLess(new ArrayList<ITiered>(CurrencyItem.ITEMS), this.world_tier)));
+
+    }
 
 }

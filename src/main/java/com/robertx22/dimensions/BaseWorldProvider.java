@@ -8,53 +8,53 @@ import net.minecraftforge.common.DimensionManager;
 
 public abstract class BaseWorldProvider extends WorldProviderSurface implements IWP {
 
-	public BaseWorldProvider(boolean nothing) {
+    public BaseWorldProvider(boolean nothing) {
 
+    }
+
+    @Override
+    public int Weight() {
+	return this.UncommonWeight;
+    }
+
+    @Override
+    public DimensionType getDimensionType() {
+	DimensionType type = null;
+
+	try {
+	    type = DimensionManager.getProviderType(this.getDimension());
+	} catch (IllegalArgumentException e) {
 	}
 
-	@Override
-	public int Weight() {
-		return this.UncommonWeight;
-	}
+	return type != null ? type : super.getDimensionType();
+    }
 
-	@Override
-	public DimensionType getDimensionType() {
-		DimensionType type = null;
+    /**
+     * 
+     * Do not override this.
+     * 
+     * Returns true on clients (to allow rendering of sky etc, maybe even clouds).
+     * Returns false on servers (to disable Nether Portal mob spawning and sleeping
+     * in beds).
+     */
+    @Override
+    public boolean isSurfaceWorld() {
+	return (this.world == null) ? false : this.world.isRemote;
+    }
 
-		try {
-			type = DimensionManager.getProviderType(this.getDimension());
-		} catch (IllegalArgumentException e) {
-		}
+    @Override
+    public boolean canRespawnHere() {
+	return false;
+    }
 
-		return type != null ? type : super.getDimensionType();
-	}
+    @Override
+    public String getSaveFolder() {
+	return "MineAndSlash_MapWorld" + world.provider.getDimension();
+    }
 
-	/**
-	 * 
-	 * Do not override this.
-	 * 
-	 * Returns true on clients (to allow rendering of sky etc, maybe even clouds).
-	 * Returns false on servers (to disable Nether Portal mob spawning and sleeping
-	 * in beds).
-	 */
-	@Override
-	public boolean isSurfaceWorld() {
-		return (this.world == null) ? false : this.world.isRemote;
-	}
+    @Override
+    public IChunkGenerator createChunkGenerator() {
+	return new ChunkGeneratorOverworld(world, world.rand.nextLong(), true, "");
 
-	@Override
-	public boolean canRespawnHere() {
-		return false;
-	}
-
-	@Override
-	public String getSaveFolder() {
-		return "MineAndSlash_MapWorld" + world.provider.getDimension();
-	}
-
-	@Override
-	public IChunkGenerator createChunkGenerator() {
-		return new ChunkGeneratorOverworld(world, world.rand.nextLong(), true, "");
-
-	}
+    }
 }

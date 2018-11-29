@@ -11,25 +11,25 @@ import net.minecraft.item.ItemStack;
 
 public class GearLootGen extends BaseLootGen {
 
-	GearBlueprint gearPrint;
+    GearBlueprint gearPrint;
 
-	public GearLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
-		super(mob, player, world, victim);
+    public GearLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
+	super(mob, player, world, victim);
 
-		gearPrint = new GearBlueprint(mob.getLevel());
+	gearPrint = new GearBlueprint(mob.getLevel());
 
-	}
+    }
 
-	@Override
-	public float BaseChance() {
-		return 5;
-	}
+    @Override
+    public float BaseChance() {
+	return 7.5F;
+    }
 
-	@Override
-	public ItemStack generateOne() {
-		
-		return LootUtils.RandomDamagedGear(GearGen.CreateStack(gearPrint));
+    @Override
+    public ItemStack generateOne() {
 
-	}
+	return LootUtils.RandomDamagedGear(GearGen.CreateStack(gearPrint));
+
+    }
 
 }

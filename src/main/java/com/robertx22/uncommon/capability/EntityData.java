@@ -241,19 +241,11 @@ public class EntityData {
 
 		setExp(this.GetExpRequiredForLevelUp());
 
-		if (ModConfig.Server.LEVEL_UPS_COST_TOKEN == false) {
-
-		    if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
-			this.LevelUp(player);
-		    }
+		if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
+		    this.LevelUp(player);
 		}
 
 		return i;
-	    }
-
-	    if (CheckIfCanLevelUp()) {
-		player.sendMessage(new TextComponentString(
-			TextFormatting.YELLOW + "Exp bar full, craft a level up token and use it to level up."));
 	    }
 
 	    return i;
@@ -298,7 +290,9 @@ public class EntityData {
 
 	@Override
 	public int getLevel() {
+
 	    return level;
+
 	}
 
 	@Override
