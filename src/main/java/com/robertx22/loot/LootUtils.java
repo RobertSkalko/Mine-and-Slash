@@ -11,78 +11,78 @@ import net.minecraft.item.ItemStack;
 
 public class LootUtils {
 
-	static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 4;
+    static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 4;
 
-	// prevents lvl 50 players farming lvl 1 mobs
-	public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
+    // prevents lvl 50 players farming lvl 1 mobs
+    public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
 
-		if (player.getLevel() > mob.getLevel() + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
+	if (player.getLevel() > mob.getLevel() + LEVEL_DISTANCE_PUNISHMENT_ACTIVATION) {
 
-			float levelDiff = mob.getLevel() / player.getLevel();
+	    float levelDiff = mob.getLevel() / player.getLevel();
 
-			if (levelDiff < 0.2F) {
-				levelDiff = 0.2F;
-			}
+	    if (levelDiff < 0.2F) {
+		levelDiff = 0.2F;
+	    }
 
-			return chance * levelDiff;
-
-		}
-
-		return chance;
+	    return chance * levelDiff;
 
 	}
 
-	public static ItemStack RandomDamagedGear(ItemStack stack) {
-		if (stack.getMaxDamage() > 0) {
-			float damage = (float) RandomUtils.RandomRange(75, 95) / (float) 100;
-			stack.setItemDamage((int) (damage * stack.getMaxDamage()));
-		}
+	return chance;
 
-		return stack;
+    }
+
+    public static ItemStack RandomDamagedGear(ItemStack stack) {
+	if (stack.getMaxDamage() > 0) {
+	    float damage = (float) RandomUtils.RandomRange(75, 95) / (float) 100;
+	    stack.setItemDamage((int) (damage * stack.getMaxDamage()));
 	}
 
-	public static float applyLootMultipliers(float chance, UnitData mob, EntityLivingBase entity, IWorldData world) {
+	return stack;
+    }
 
-		float first = chance;
+    public static float applyLootMultipliers(float chance, UnitData mob, EntityLivingBase entity, IWorldData world) {
 
-		float after_rarity = first * Rarities.Mobs.get(mob.getRarity()).LootMultiplier();
+	float first = chance;
 
-		float after_mob_health = after_rarity * (1 + entity.getMaxHealth() / 20);
+	float after_rarity = first * Rarities.Mobs.get(mob.getRarity()).LootMultiplier();
 
-		float after_world = after_mob_health;
+	float after_mob_health = after_rarity * (1 + entity.getMaxHealth() / 20);
 
-		if (world.isMapWorld()) {
-			after_world = after_mob_health * 1 + world.getMap().getBonusLootAmount() / 100;
-		}
-		if (entity instanceof EntitySlime) {
-			after_world /= 15;
-		}
+	float after_world = after_mob_health;
 
-		return after_world;
+	if (world.isMapWorld()) {
+	    after_world = after_mob_health * 1 + world.getMap().getBonusLootAmount() / 100;
+	}
+	if (entity instanceof EntitySlime) {
+	    after_world /= 15;
 	}
 
-	public static int WhileRoll(float chance) {
-		int amount = 0;
+	return after_world;
+    }
 
-		while (chance > 0) {
+    public static int WhileRoll(float chance) {
+	int amount = 0;
 
-			float maxChance = 70F;
+	while (chance > 0) {
 
-			float currentChance = chance;
+	    float maxChance = 70F;
 
-			if (currentChance > maxChance) {
-				currentChance = maxChance;
-			}
+	    float currentChance = chance;
 
-			chance -= currentChance;
+	    if (currentChance > maxChance) {
+		currentChance = maxChance;
+	    }
 
-			if (RandomUtils.roll(currentChance)) {
-				amount++;
-			}
+	    chance -= currentChance;
 
-		}
-		return amount;
+	    if (RandomUtils.roll(currentChance)) {
+		amount++;
+	    }
 
 	}
+	return amount;
+
+    }
 
 }

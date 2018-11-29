@@ -11,6 +11,10 @@ public abstract class WeaponDamageStat extends Stat implements IStatEffects {
 
     public abstract WeaponTypes weaponType();
 
+    public WeaponDamageStat() {
+	this.hasMinimumAmount = false;
+    }
+
     @Override
     public boolean IsPercent() {
 	return true;

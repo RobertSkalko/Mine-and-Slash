@@ -9,62 +9,66 @@ import com.robertx22.uncommon.enumclasses.Elements;
 
 public abstract class Stat implements IGUID {
 
-	public Stat() {
+    public Stat() {
+    }
+
+    @Override
+    public String GUID() {
+	return Name();
+    }
+
+    public int MaximumPercent = 0;
+
+    public int MinimumAmount = 0;
+
+    public boolean hasMinimumAmount = true;
+
+    public int StatMinimum = 0;
+
+    public abstract boolean IsPercent();
+
+    public abstract String Name();
+
+    public abstract boolean ScalesToLevel();
+
+    public abstract Elements Element();
+
+    public int BaseFlat = 0;
+
+    public int CalcVal(StatData data, UnitData Source) {
+
+	float finalValue = 0;
+
+	finalValue += StatMinimum + data.BaseFlat;
+
+	if (ScalesToLevel()) {
+	    finalValue *= Source.getLevel();
 	}
 
-	@Override
-	public String GUID() {
-		return Name();
+	finalValue += data.Flat;
+
+	finalValue *= 1 + data.Percent / 100;
+
+	finalValue *= 1 + data.Multi / 100;
+
+	if (hasMinimumAmount && finalValue < this.MinimumAmount) {
+	    finalValue = this.MinimumAmount;
 	}
 
-	public int MaximumPercent = 0;
-
-	public int StatMinimum = 0;
-
-	public abstract boolean IsPercent();
-
-	public abstract String Name();
-
-	public abstract boolean ScalesToLevel();
-
-	public abstract Elements Element();
-
-	public int BaseFlat = 0;
-
-	public int CalcVal(StatData data, UnitData Source) {
-
-		float finalValue = 0;
-
-		finalValue += StatMinimum + data.BaseFlat;
-
-		if (ScalesToLevel()) {
-			finalValue *= Source.getLevel();
-		}
-
-		finalValue += data.Flat;
-
-		finalValue *= 1 + data.Percent / 100;
-
-		finalValue *= 1 + data.Multi / 100;
-
-		if (finalValue < 0) {
-			finalValue = 0;
-		}
-
-		if (this.IsPercent() && MaximumPercent > 0 && finalValue > MaximumPercent) {
-			finalValue = MaximumPercent;
-		}
-
-		data.Value = finalValue;
-
-		return (int) finalValue;
-
+	if (this.IsPercent() && MaximumPercent > 0 && finalValue > MaximumPercent) {
+	    finalValue = MaximumPercent;
 	}
 
-	public ArrayList<IStatEffect> Effects;
+	data.Value = finalValue;
 
-	public boolean IsShownOnTooltip() {
-		return true;
-	}
+	return (int) finalValue;
+
+    }
+
+    public ArrayList<IStatEffect> Effects;
+
+    public boolean IsShownOnTooltip() {
+	return true;
+    }
 
 }

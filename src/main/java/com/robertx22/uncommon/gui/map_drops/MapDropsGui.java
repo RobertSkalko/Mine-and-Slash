@@ -1,4 +1,4 @@
-package com.robertx22.uncommon.gui.map_stats;
+package com.robertx22.uncommon.gui.map_drops;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,20 +7,22 @@ import com.libraries.rabbit.gui.component.list.ScrollableDisplayList;
 import com.libraries.rabbit.gui.component.list.entries.ListEntry;
 import com.libraries.rabbit.gui.component.list.entries.StringEntry;
 import com.libraries.rabbit.gui.show.Show;
-import com.robertx22.customitems.misc.ItemMap;
+import com.robertx22.generation.UniqueGearGen;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.TextFormatting;
 
-public class MapStatsGui extends Show {
+public class MapDropsGui extends Show {
 
     MapItemData map;
     Minecraft mc;
     IWorldData world;
 
-    public MapStatsGui() {
+    public MapDropsGui() {
 
     }
 
@@ -71,9 +73,33 @@ public class MapStatsGui extends Show {
 	    List<ListEntry> list = new ArrayList<ListEntry>();
 
 	    if (world.isMapWorld()) {
-		for (String str : ItemMap.showTooltip(map, new ArrayList<String>())) {
-		    StringToListEntry(str, list);
+
+		List<IUnique> uniques = UniqueGearGen.getAllPossibleUniqueDrops(world.getTier(),
+			IUnique.ITEMS.values());
+
+		boolean has = false;
+		List<String> names = new ArrayList<String>();
+
+		for (int i = 0; i < 50; i++) {
+		    names.clear();
+		    has = false;
+
+		    for (IUnique uniq : uniques) {
+			if (uniq.Tier() == i) {
+			    has = true;
+			    names.add(uniq.name());
+			}
+		    }
+		    if (has) {
+			StringToListEntry(TextFormatting.GREEN + "Tier " + i + ":", list);
+		    }
+
+		    for (String name : names) {
+			StringToListEntry(TextFormatting.YELLOW + name, list);
+		    }
+
 		}
+
 	    } else {
 		StringToListEntry("This is not a map world", list);
 	    }
@@ -84,7 +110,6 @@ public class MapStatsGui extends Show {
 		    15, list);
 
 	    return scroll;
-
 	}
 	return null;
 

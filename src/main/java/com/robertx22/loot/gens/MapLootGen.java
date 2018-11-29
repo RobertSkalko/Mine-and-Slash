@@ -9,26 +9,24 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
 public class MapLootGen extends BaseLootGen {
-	MapBlueprint blueprint;
+    MapBlueprint blueprint;
 
-	public MapLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
-		super(mob, player, world, victim);
+    public MapLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
+	super(mob, player, world, victim);
 
-		blueprint = new MapBlueprint(mob.getLevel());
+	blueprint = new MapBlueprint(mob.getLevel(), world.getTier());
 
-		blueprint.setTier(world.getTier());
+    }
 
-	}
+    @Override
+    public float BaseChance() {
+	return 1;
+    }
 
-	@Override
-	public float BaseChance() {
-		return 1;
-	}
+    @Override
+    public ItemStack generateOne() {
 
-	@Override
-	public ItemStack generateOne() {
-
-		return MapGen.Create(blueprint);
-	}
+	return MapGen.Create(blueprint);
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.robertx22.generation;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
@@ -14,6 +15,7 @@ import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.unique_items.IUnique;
 
@@ -22,90 +24,108 @@ import net.minecraft.item.ItemStack;
 
 public class UniqueGearGen {
 
-	public static GearItemData CreateData(GearBlueprint blueprint) {
+    public static GearItemData CreateData(GearBlueprint blueprint) {
 
-		IUnique unique = randomUnique(blueprint);
-		GearItemData data = new GearItemData();
+	IUnique unique = randomUnique(blueprint);
+	GearItemData data = new GearItemData();
 
-		if (unique != null) {
-			ItemRarity rarity = new Unique();
-			GearItemSlot gearslot = GearTypes.All.get(unique.slot());
+	if (unique != null) {
+	    ItemRarity rarity = new Unique();
+	    GearItemSlot gearslot = GearTypes.All.get(unique.slot());
 
-			data.isUnique = true;
+	    data.isUnique = true;
 
-			data.uniqueGUID = unique.GUID();
-			data.uniqueStats = new UniqueStatsData(unique.GUID());
-			data.uniqueStats.RerollFully(data);
+	    data.uniqueGUID = unique.GUID();
+	    data.uniqueStats = new UniqueStatsData(unique.GUID());
+	    data.uniqueStats.RerollFully(data);
 
-			data.level = blueprint.GetLevel();
-			data.gearTypeName = gearslot.Name();
-			data.Rarity = rarity.Rank();
-			data.name = gearslot.Name();
+	    data.level = blueprint.GetLevel();
+	    data.gearTypeName = gearslot.Name();
+	    data.Rarity = rarity.Rank();
+	    data.name = gearslot.Name();
 
-			data.gearTypeStats = blueprint.genGearTypeStats(data);
+	    data.gearTypeStats = blueprint.genGearTypeStats(data);
 
-			if (RandomUtils.roll(rarity.AffixChance())) {
+	    if (RandomUtils.roll(rarity.AffixChance())) {
 
-				data.suffix = new SuffixData();
-				data.suffix.RerollFully(data);
+		data.suffix = new SuffixData();
+		data.suffix.RerollFully(data);
 
-			}
-			if (RandomUtils.roll(rarity.AffixChance())) {
+	    }
+	    if (RandomUtils.roll(rarity.AffixChance())) {
 
-				data.prefix = new PrefixData();
-				data.prefix.RerollFully(data);
+		data.prefix = new PrefixData();
+		data.prefix.RerollFully(data);
 
-			}
-		}
-
-		return data;
+	    }
 	}
 
-	public static IUnique randomUnique(GearBlueprint blueprint) {
+	return data;
+    }
 
-		List<IWeighted> list = new ArrayList<IWeighted>();
+    public static IUnique randomUnique(GearBlueprint blueprint) {
 
-		for (Item item : IUnique.ITEMS.values()) {
-			IUnique baseu = (IUnique) item;
+	List<IWeighted> list = new ArrayList<IWeighted>();
 
-			if (blueprint.tier >= baseu.Tier()) {
-				if (baseu.slot().equals(blueprint.gearType) || blueprint.gearType.equals("random")
-						|| blueprint.gearType.equals("")) {
-					list.add((IWeighted) item);
-				}
-			}
-		}
+	List<IUnique> possible = filterUniquesByType(blueprint.gearType,
+		getAllPossibleUniqueDrops(blueprint.tier, IUnique.ITEMS.values()));
 
-		IUnique unique = (IUnique) RandomUtils.WeightedRandom(list);
+	IUnique unique = (IUnique) RandomUtils.WeightedRandom(ListUtils.CollectionToList(possible));
 
-		return unique;
+	return unique;
 
+    }
+
+    public static List<IUnique> getAllPossibleUniqueDrops(int tier, Collection<Item> coll) {
+	List<IUnique> list = new ArrayList<IUnique>();
+
+	for (Item item : coll) {
+	    IUnique baseu = (IUnique) item;
+
+	    if (tier >= baseu.Tier()) {
+		list.add((IUnique) item);
+	    }
+	}
+	return list;
+    }
+
+    public static List<IUnique> filterUniquesByType(String type, List<IUnique> coll) {
+
+	List<IUnique> list = new ArrayList<IUnique>();
+
+	for (IUnique item : coll) {
+	    if (item.slot().equals(type) || type.equals("random") || type.equals("")) {
+		list.add((IUnique) item);
+	    }
 	}
 
-	public static ItemStack CreateStack(GearBlueprint schema) {
+	return list;
+    }
 
-		GearItemData data = CreateData(schema);
+    public static ItemStack CreateStack(GearBlueprint schema) {
 
-		ItemStack stack = new ItemStack(data.getItem());
+	GearItemData data = CreateData(schema);
 
-		Gear.Save(stack, data);
+	ItemStack stack = new ItemStack(data.getItem());
 
-		stack.setStackDisplayName(data.GetDisplayName());
+	Gear.Save(stack, data);
 
-		return stack;
+	stack.setStackDisplayName(data.GetDisplayName());
 
-	}
+	return stack;
 
-	public static ItemStack CreateStack(GearItemData data) {
+    }
 
-		ItemStack stack = new ItemStack(data.getItem());
+    public static ItemStack CreateStack(GearItemData data) {
 
-		Gear.Save(stack, data);
+	ItemStack stack = new ItemStack(data.getItem());
 
-		stack.setStackDisplayName(data.GetDisplayName());
+	Gear.Save(stack, data);
 
-		return stack;
+	stack.setStackDisplayName(data.GetDisplayName());
 
-	}
+	return stack;
+
+    }
 
 }

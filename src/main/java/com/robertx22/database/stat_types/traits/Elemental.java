@@ -10,25 +10,25 @@ import com.robertx22.stats.Trait;
 
 public class Elemental extends Trait implements IAffectsOtherStats {
 
-	public static String GUID = "Elemental";
+    public static String GUID = "Elemental";
 
-	@Override
-	public String Name() {
-		return GUID;
-	}
+    @Override
+    public String Name() {
+	return GUID;
+    }
 
-	@Override
-	public void TryAffectOtherStats(Unit unit) {
+    @Override
+    public void TryAffectOtherStats(Unit unit) {
 
-		unit.MyStats.get(SpellFireDamage.GUID).Multi += 5;
-		unit.MyStats.get(SpellWaterDamage.GUID).Multi += 5;
-		unit.MyStats.get(SpellThunderDamage.GUID).Multi += 5;
-		unit.MyStats.get(SpellNatureDamage.GUID).Multi += 5;
+	unit.MyStats.get(SpellFireDamage.GUID).Multi += 5;
+	unit.MyStats.get(SpellWaterDamage.GUID).Multi += 5;
+	unit.MyStats.get(SpellThunderDamage.GUID).Multi += 5;
+	unit.MyStats.get(SpellNatureDamage.GUID).Multi += 5;
 
-	}
+    }
 
-	@Override
-	public String Description() {
-		return "All elemental damage +5% multi";
-	}
+    @Override
+    public String Description() {
+	return "All elemental damage +5% multi";
+    }
 }

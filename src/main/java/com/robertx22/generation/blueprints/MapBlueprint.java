@@ -7,8 +7,9 @@ import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class MapBlueprint extends ItemBlueprint {
 
-    public MapBlueprint(int level) {
+    public MapBlueprint(int level, int worldTier) {
 	super(level);
+	this.setTier(worldTier);
 
     }
 
