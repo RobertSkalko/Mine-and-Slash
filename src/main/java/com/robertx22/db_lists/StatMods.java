@@ -25,6 +25,11 @@ import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllFireDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllNatureDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllThunderDamageMap;
 import com.robertx22.database.map_mods.minus.all_ele_dmg.LessAllWaterDamageMap;
+import com.robertx22.database.map_mods.minus.weapon.LessAxeDamageMap;
+import com.robertx22.database.map_mods.minus.weapon.LessBowDamageMap;
+import com.robertx22.database.map_mods.minus.weapon.LessHammerDamageMap;
+import com.robertx22.database.map_mods.minus.weapon.LessStaffDamageMap;
+import com.robertx22.database.map_mods.minus.weapon.LessSwordDamageMap;
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
@@ -150,6 +155,12 @@ public class StatMods {
 		put(new BowDamageFlat().GUID(), new BowDamageFlat());
 		put(new AxeDamageFlat().GUID(), new AxeDamageFlat());
 		put(new StaffDamageFlat().GUID(), new StaffDamageFlat());
+
+		put(new LessHammerDamageMap().GUID(), new LessHammerDamageMap());
+		put(new LessSwordDamageMap().GUID(), new LessSwordDamageMap());
+		put(new LessBowDamageMap().GUID(), new LessBowDamageMap());
+		put(new LessAxeDamageMap().GUID(), new LessAxeDamageMap());
+		put(new LessStaffDamageMap().GUID(), new LessStaffDamageMap());
 
 		// less stats
 		put(new LessCriticalDamagePercent().GUID(), new LessCriticalDamagePercent());

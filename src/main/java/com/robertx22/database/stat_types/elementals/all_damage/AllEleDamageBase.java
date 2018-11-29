@@ -10,22 +10,22 @@ import com.robertx22.stats.StatEffects.offense.AllElementalDamageEffect;
 
 public abstract class AllEleDamageBase extends Stat implements IStatEffects {
 
-	public AllEleDamageBase() {
-	}
+    public AllEleDamageBase() {
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return false;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return true;
-	}
+    @Override
+    public boolean IsPercent() {
+	return true;
+    }
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new AllElementalDamageEffect());
-	}
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new AllElementalDamageEffect());
+    }
 
 }
