@@ -242,10 +242,12 @@ public class EntityData {
 
 		setExp(this.GetExpRequiredForLevelUp());
 
-		if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
-		    this.LevelUp(player);
-		}
+		if (ModConfig.Server.LEVEL_UPS_COST_TOKEN == false) {
 
+		    if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
+			this.LevelUp(player);
+		    }
+		}
 		return i;
 	    }
 

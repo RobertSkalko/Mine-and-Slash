@@ -24,64 +24,65 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = "item_levelup";
+    private static final String name = "item_levelup";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":item_levelup")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":item_levelup")
+    public static final Item ITEM = null;
 
-	public ItemLevelUpGear() {
+    public ItemLevelUpGear() {
 
-		super(name);
+	super(name);
 
-	}
+    }
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemLevelUpGear());
-	}
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemLevelUpGear());
+    }
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
 
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    }
 
-		tooltip.add("Extremely rare crystal,");
-		tooltip.add("Used to increase the level of an item.");
-		tooltip.add("A single item can't be leveled up more than " + MAXIMUM_LEVEL_UPS + " times!");
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		this.TooltipQuote(tooltip, "Who said your sword can't level with you?");
+	tooltip.add("Extremely rare crystal,");
+	tooltip.add("Used to increase the level of an item.");
+	tooltip.add("A single item can't be leveled up more than " + MAXIMUM_LEVEL_UPS + " times!");
 
-	}
+	this.TooltipQuote(tooltip, "Who said your sword can't level with you?");
 
-	@Override
-	public ItemStack ModifyItem(ItemStack stack) {
-		GearItemData gear = Gear.Load(stack);
-		gear.level++;
-		gear.timesLeveledUp++;
-		Gear.Save(stack, gear);
+    }
 
-		return stack;
-	}
+    @Override
+    public ItemStack ModifyItem(ItemStack stack) {
+	GearItemData gear = Gear.Load(stack);
+	gear.level++;
+	gear.timesLeveledUp++;
+	Gear.Save(stack, gear);
 
-	public static final int MAXIMUM_LEVEL_UPS = 10;
+	return stack;
+    }
 
-	@Override
-	public int Weight() {
-		return this.RareWeight;
-	}
+    public static final int MAXIMUM_LEVEL_UPS = 10;
 
-	@Override
-	public boolean CanItemBeModified(ItemStack stack) {
-		GearItemData gear = Gear.Load(stack);
+    @Override
+    public int Weight() {
+	return this.RareWeight;
+    }
 
-		return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS;
-	}
+    @Override
+    public boolean CanItemBeModified(ItemStack stack) {
+	GearItemData gear = Gear.Load(stack);
 
-	@Override
-	public int Tier() {
-		return 5;
-	}
+	return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS;
+    }
+
+    @Override
+    public int Tier() {
+	return 5;
+    }
 }

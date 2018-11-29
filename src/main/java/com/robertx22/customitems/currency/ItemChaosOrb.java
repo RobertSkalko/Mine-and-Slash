@@ -25,63 +25,63 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = "chaos_orb";
+    private static final String name = "chaos_orb";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":chaos_orb")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":chaos_orb")
+    public static final Item ITEM = null;
 
-	public ItemChaosOrb() {
+    public ItemChaosOrb() {
 
-		super(name);
+	super(name);
 
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemChaosOrb());
+    }
+
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
+	tooltip.add("Adds a chaos stat to an item.");
+	tooltip.add("The result can be Good.. or Horrible!");
+
+	this.TooltipQuote(tooltip, "Do not gamble what you are not willing to lose.");
+
+    }
+
+    @Override
+    public ItemStack ModifyItem(ItemStack stack) {
+
+	GearItemData gear = Gear.Load(stack);
+	gear.chaosStats = new ChaosStatsData();
+	gear.chaosStats.RerollFully(gear);
+	Gear.Save(stack, gear);
+
+	return stack;
+    }
+
+    @Override
+    public boolean CanItemBeModified(ItemStack stack) {
+
+	GearItemData gear = Gear.Load(stack);
+
+	if (gear.chaosStats == null) {
+	    return true;
 	}
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemChaosOrb());
-	}
+	return false;
+    }
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		tooltip.add("Adds a chaos stat to an item.");
-		tooltip.add("The result can be Good.. or Horrible!");
-
-		this.TooltipQuote(tooltip, "Do not gamble what you are not willing to lose.");
-
-	}
-
-	@Override
-	public ItemStack ModifyItem(ItemStack stack) {
-
-		GearItemData gear = Gear.Load(stack);
-		gear.chaosStats = new ChaosStatsData();
-		gear.chaosStats.RerollFully(gear);
-		Gear.Save(stack, gear);
-
-		return stack;
-	}
-
-	@Override
-	public boolean CanItemBeModified(ItemStack stack) {
-
-		GearItemData gear = Gear.Load(stack);
-
-		if (gear.chaosStats == null) {
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
-	public int Tier() {
-		return 7;
-	}
+    @Override
+    public int Tier() {
+	return 3;
+    }
 
 }

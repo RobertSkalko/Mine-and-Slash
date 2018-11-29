@@ -47,4 +47,6 @@ item.mmorpg:orb_of_transmutation.name=§cOrb Of Transmutation
 item.mmorpg:randomize_prefix.name=§cOrb Of Ever-Changing Prefix
 item.mmorpg:randomize_suffix.name=§cOrb Of Ever-Changing Suffix
 item.mmorpg:stone_of_hope.name=§cStone Of Hope
+item.mmorpg:add_suffix.name=§cUnearth Suffix
+item.mmorpg:add_prefix.name=§cUnearth Prefix
 

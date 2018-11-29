@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
+import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -23,14 +23,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffect {
+public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect {
 
-    private static final String name = "number_reroll";
+    private static final String name = "add_suffix";
 
-    @GameRegistry.ObjectHolder(Ref.MODID + ":number_reroll")
+    @GameRegistry.ObjectHolder(Ref.MODID + ":add_suffix")
     public static final Item ITEM = null;
 
-    public ItemNumberReroll() {
+    public ItemAddSuffix() {
 
 	super(name);
 
@@ -38,7 +38,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemNumberReroll());
+	event.getRegistry().register(new ItemAddSuffix());
     }
 
     @SubscribeEvent
@@ -49,9 +49,9 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-	tooltip.add("Use on an item to re-roll stat numbers");
+	tooltip.add("Use on an item to add a Suffix");
 
-	this.TooltipQuote(tooltip, "Hopefully works better than the last time.");
+	this.TooltipQuote(tooltip, "And soar to the skies.");
 
     }
 
@@ -60,9 +60,9 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 
 	GearItemData gear = Gear.Load(stack);
 
-	for (IRerollable rel : gear.GetAllRerollable()) {
-	    rel.RerollNumbers(gear);
-	}
+	gear.suffix = new SuffixData();
+	gear.suffix.RerollFully(gear);
+
 	Gear.Save(stack, gear);
 
 	return stack;
@@ -72,11 +72,11 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     public boolean CanItemBeModified(ItemStack stack) {
 	GearItemData gear = Gear.Load(stack);
 
-	return gear != null;
+	return gear != null && gear.suffix == null;
     }
 
     @Override
     public int Tier() {
-	return 0;
+	return 10;
     }
 }
