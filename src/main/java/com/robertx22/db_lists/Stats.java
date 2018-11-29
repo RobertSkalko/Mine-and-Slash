@@ -85,6 +85,10 @@ import com.robertx22.database.stat_types.traits.bad_and_good.Barbarian;
 import com.robertx22.database.stat_types.traits.bad_and_good.ClumsyScholar;
 import com.robertx22.database.stat_types.traits.bad_ones.Crippled;
 import com.robertx22.database.stat_types.traits.bad_ones.Diseased;
+import com.robertx22.database.stat_types.traits.ele_lords.LordOfBlizzardsTrait;
+import com.robertx22.database.stat_types.traits.ele_lords.LordOfEarthquakesTrait;
+import com.robertx22.database.stat_types.traits.ele_lords.LordOfThunderstormsTrait;
+import com.robertx22.database.stat_types.traits.ele_lords.LordOfVolcanoesTrait;
 import com.robertx22.stats.Stat;
 
 public class Stats {
@@ -92,6 +96,12 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
 	{
 	    {
+
+		// lord traits
+		put(new LordOfVolcanoesTrait().GUID(), new LordOfVolcanoesTrait());
+		put(new LordOfBlizzardsTrait().GUID(), new LordOfBlizzardsTrait());
+		put(new LordOfThunderstormsTrait().GUID(), new LordOfThunderstormsTrait());
+		put(new LordOfEarthquakesTrait().GUID(), new LordOfEarthquakesTrait());
 
 		// weapon damages
 

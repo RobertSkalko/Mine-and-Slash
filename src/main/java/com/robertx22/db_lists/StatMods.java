@@ -133,13 +133,17 @@ import com.robertx22.database.stat_mods.traits.BarbarianFlat;
 import com.robertx22.database.stat_mods.traits.ClumsyScholarFlat;
 import com.robertx22.database.stat_mods.traits.CrippledFlat;
 import com.robertx22.database.stat_mods.traits.DiseasedFlat;
-import com.robertx22.database.stat_mods.traits.EarthAtronachFlat;
 import com.robertx22.database.stat_mods.traits.ElementalFlat;
-import com.robertx22.database.stat_mods.traits.FireAtronachFlat;
-import com.robertx22.database.stat_mods.traits.FrostAtronachFlat;
 import com.robertx22.database.stat_mods.traits.GolemFlat;
 import com.robertx22.database.stat_mods.traits.LuckyFlat;
-import com.robertx22.database.stat_mods.traits.ThunderAtronachFlat;
+import com.robertx22.database.stat_mods.traits.atronachs.EarthAtronachFlat;
+import com.robertx22.database.stat_mods.traits.atronachs.FireAtronachFlat;
+import com.robertx22.database.stat_mods.traits.atronachs.FrostAtronachFlat;
+import com.robertx22.database.stat_mods.traits.atronachs.ThunderAtronachFlat;
+import com.robertx22.database.stat_mods.traits.ele_lords.LordOfBlizzardsFlat;
+import com.robertx22.database.stat_mods.traits.ele_lords.LordOfEarthquakesFlat;
+import com.robertx22.database.stat_mods.traits.ele_lords.LordOfThunderstormsFlat;
+import com.robertx22.database.stat_mods.traits.ele_lords.LordOfVolcanoesFlat;
 import com.robertx22.stats.StatMod;
 
 public class StatMods {
@@ -147,6 +151,11 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
 	{
 	    {
+		// lord Flats
+		put(new LordOfVolcanoesFlat().GUID(), new LordOfVolcanoesFlat());
+		put(new LordOfBlizzardsFlat().GUID(), new LordOfBlizzardsFlat());
+		put(new LordOfThunderstormsFlat().GUID(), new LordOfThunderstormsFlat());
+		put(new LordOfEarthquakesFlat().GUID(), new LordOfEarthquakesFlat());
 
 		// weapon damages
 

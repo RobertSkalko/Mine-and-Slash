@@ -6,27 +6,28 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public abstract class BaseTraitMod extends StatMod {
 
-	public BaseTraitMod() {
-	}
+    public BaseTraitMod() {
+    }
 
-	@Override
-	public int Min() {
-		return 1;
-	}
+    @Override
+    public int Min() {
+	return 1;
+    }
 
-	@Override
-	public int Max() {
-		return 1;
-	}
+    @Override
+    public int Max() {
+	return 1;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Flat;
-	}
+    @Override
+    public StatTypes Type() {
+	return StatTypes.Flat;
 
-	@Override
-	public int Weight() {
-		return IWeighted.CommonWeight;
-	}
+    }
+
+    @Override
+    public int Weight() {
+	return IWeighted.CommonWeight;
+    }
 
 }

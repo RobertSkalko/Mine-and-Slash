@@ -12,35 +12,35 @@ import net.minecraft.item.ItemStack;
 
 public abstract class BaseLootGen {
 
-	public abstract float BaseChance();
+    public abstract float BaseChance();
 
-	protected abstract ItemStack generateOne();
+    protected abstract ItemStack generateOne();
 
-	public List<ItemStack> generate() {
+    public List<ItemStack> generate() {
 
-		List<ItemStack> list = new ArrayList<ItemStack>();
-		for (int i = 0; i < amount; i++) {
-			list.add(generateOne());
-		}
-		return list;
+	List<ItemStack> list = new ArrayList<ItemStack>();
+	for (int i = 0; i < amount; i++) {
+	    list.add(generateOne());
 	}
+	return list;
+    }
 
-	public int amount = 0;
-	public IWorldData world;
-	public int world_tier;
+    public int amount = 0;
+    public IWorldData world;
+    public int world_tier;
 
-	public BaseLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
+    public BaseLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
 
-		this.world = world;
-		this.world_tier = world.getTier();
+	this.world = world;
+	this.world_tier = world.getTier();
 
-		float chance = BaseChance();
+	float chance = BaseChance();
 
-		chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);
-		chance = LootUtils.applyLootMultipliers(chance, mob, victim, world);
+	chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);
+	chance = LootUtils.applyLootMultipliers(chance, mob, victim, world);
 
-		amount = LootUtils.WhileRoll(chance);
+	amount = LootUtils.WhileRoll(chance);
 
-	}
+    }
 
 }
