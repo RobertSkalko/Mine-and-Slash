@@ -9,22 +9,22 @@ import net.minecraft.entity.EntityLivingBase;
 
 public class EffectAcidExplosion extends BaseSpellEffect {
 
-	public EffectAcidExplosion() {
-		super();
+    public EffectAcidExplosion() {
+	super();
 
-	}
+    }
 
-	@Override
-	public String Name() {
-		return "Acid Explosion Damage";
-	}
+    @Override
+    public String Name() {
+	return "Acid Explosion Damage";
+    }
 
-	@Override
-	public void Activate(DamageData dmgdata, EntityLivingBase target) {
-		DamageEffect dmg = new DamageEffect(dmgdata.caster, target, dmgdata.spellItem.GetDamage(dmgdata.casterUnit));
-		dmg.Element = Elements.Nature;
-		dmg.Activate();
+    @Override
+    public void Activate(DamageData dmgdata, EntityLivingBase target) {
+	DamageEffect dmg = new DamageEffect(dmgdata.caster, target, dmgdata.spellItem.GetDamage(dmgdata.casterUnit));
+	dmg.Element = Elements.Nature;
+	dmg.Activate();
 
-	}
+    }
 
 }

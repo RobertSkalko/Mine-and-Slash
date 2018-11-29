@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.commands;
 
-import com.robertx22.database.rarities.items.Unique;
+import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.generation.UniqueGearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 
@@ -32,7 +32,7 @@ public class GiveUnique extends CommandBase {
 
 		GearBlueprint blueprint = new GearBlueprint(lvl);
 
-		blueprint.SetSpecificRarity(new Unique().Rank());
+		blueprint.SetSpecificRarity(new UniqueItem().Rank());
 		blueprint.SetSpecificType(type);
 		blueprint.tier = tier;
 

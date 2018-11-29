@@ -15,53 +15,56 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class WorldPackage implements IMessage {
 
-	private NBTTagCompound nbt;
+    private NBTTagCompound nbt;
 
-	public WorldPackage() {
-	}
+    public WorldPackage() {
+    }
 
-	public WorldPackage(IWorldData data) {
-		if (data != null) {
-			this.nbt = data.getNBT();
-		}
+    public WorldPackage(IWorldData data) {
+	if (data != null) {
+	    this.nbt = data.getNBT();
 	}
+    }
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+	NBTTagCompound tag = ByteBufUtils.readTag(buf);
+	nbt = tag;
+
+    }
+
+    @Override
+    public void toBytes(ByteBuf buf) {
+	ByteBufUtils.writeTag(buf, nbt);
+    }
+
+    public static class Handler implements IMessageHandler<WorldPackage, IMessage> {
 
 	@Override
-	public void fromBytes(ByteBuf buf) {
-		NBTTagCompound tag = ByteBufUtils.readTag(buf);
-		nbt = tag;
-	}
+	public IMessage onMessage(final WorldPackage message, MessageContext ctx) {
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeTag(buf, nbt);
-	}
-
-	public static class Handler implements IMessageHandler<WorldPackage, IMessage> {
-
+	    Runnable noteThread = new Runnable() {
 		@Override
-		public IMessage onMessage(final WorldPackage message, MessageContext ctx) {
+		public void run() {
+		    try {
+			final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+			if (player != null) {
+			    World world = player.world;
+			    if (world != null) {
+				world.getCapability(WorldData.Data, null).setNBT(message.nbt);
+			    }
+			}
 
-			Runnable noteThread = new Runnable() {
-				@Override
-				public void run() {
-					try {
-						final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
-
-						World world = player.world;
-
-						world.getCapability(WorldData.Data, null).setNBT(message.nbt);
-
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			};
-			noteThread.run();
-
-			return null;
+		    } catch (Exception e) {
+			e.printStackTrace();
+		    }
 		}
+	    };
+	    noteThread.run();
 
+	    return null;
 	}
+
+    }
 
 }

@@ -2,18 +2,18 @@ package com.robertx22.database.rarities;
 
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 
-public abstract class MobRarity extends Rarity {
+public interface MobRarity extends Rarity {
 
-	public abstract float DamageMultiplier();
+    public float DamageMultiplier();
 
-	public abstract float HealthMultiplier();
+    public float HealthMultiplier();
 
-	public abstract float StatMultiplier();
+    public float StatMultiplier();
 
-	public abstract int MaxMobEffects();
+    public int MaxMobEffects();
 
-	public abstract float LootMultiplier();
+    public float LootMultiplier();
 
-	public abstract float ExpOnKill();
+    public float ExpOnKill();
 
 }

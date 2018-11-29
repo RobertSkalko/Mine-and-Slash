@@ -65,8 +65,9 @@ public class OnMobSpawn {
 		}
 	    } else {
 		UnitData endata = entity.getCapability(EntityData.Data, null);
-		CommonStatUtils.addMapAffixes(data, entity, endata.getUnit(), endata);
-
+		if (endata != null && endata.getUnit() != null) {
+		    CommonStatUtils.addMapAffixes(data, entity, endata.getUnit(), endata);
+		}
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();

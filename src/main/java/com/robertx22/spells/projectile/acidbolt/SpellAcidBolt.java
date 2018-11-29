@@ -17,46 +17,46 @@ import net.minecraft.world.World;
 
 public class SpellAcidBolt extends BaseBolt {
 
-	public SpellAcidBolt() {
-		super();
+    public SpellAcidBolt() {
+	super();
+    }
+
+    @Override
+    public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
+
+	if (!world.isRemote) {
+	    EntityAcidBolt projectile = new EntityAcidBolt(world);
+	    projectile.SpawnAndShoot(new EffectAcidBolt(), new DamageData(caster, data), caster);
+
 	}
+	SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SPLASH_POTION_THROW, 1, 1);
+	caster.swingArm(hand);
+	return true;
+    }
 
-	@Override
-	public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
+    @Override
+    public String Name() {
+	return "Acid Bolt";
+    }
 
-		if (!world.isRemote) {
-			EntityAcidBolt projectile = new EntityAcidBolt(world);
-			projectile.SpawnAndShoot(new EffectAcidBolt(), new DamageData(caster, data), caster);
+    @Override
+    public EffectCalculation ScalingValue() {
+	return new EffectCalculation(new SpellNatureDamage().Name(), 0.5F);
+    }
 
-		}
-		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SPLASH_POTION_THROW, 1, 1);
-		caster.swingArm(hand);
-		return true;
-	}
+    @Override
+    public Elements Element() {
+	return Elements.Nature;
+    }
 
-	@Override
-	public String Name() {
-		return "Acid Bolt";
-	}
+    @Override
+    public Item SpellItem() {
+	return ItemAcidBolt.ITEM;
+    }
 
-	@Override
-	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new SpellNatureDamage().Name(), 0.5F);
-	}
-
-	@Override
-	public Elements Element() {
-		return Elements.Nature;
-	}
-
-	@Override
-	public Item SpellItem() {
-		return ItemAcidBolt.ITEM;
-	}
-
-	@Override
-	public String GUID() {
-		return "AcidBolt";
-	}
+    @Override
+    public String GUID() {
+	return "AcidBolt";
+    }
 
 }

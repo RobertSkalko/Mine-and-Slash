@@ -19,58 +19,58 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class EntityPackage implements IMessage {
 
-	public String uuid;
-	public NBTTagCompound nbt;
+    public String uuid;
+    public NBTTagCompound nbt;
 
-	public EntityPackage() {
+    public EntityPackage() {
 
-	}
+    }
 
-	public EntityPackage(EntityLivingBase entity) {
-		this.uuid = entity.getUniqueID().toString();
-		this.nbt = entity.getCapability(EntityData.Data, null).getNBT();
-	}
+    public EntityPackage(EntityLivingBase entity) {
+	this.uuid = entity.getUniqueID().toString();
+	this.nbt = entity.getCapability(EntityData.Data, null).getNBT();
+    }
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+	nbt = ByteBufUtils.readTag(buf);
+	uuid = nbt.getString("uuid");
+    }
+
+    @Override
+    public void toBytes(ByteBuf buf) {
+	nbt.setString("uuid", uuid);
+	ByteBufUtils.writeTag(buf, nbt);
+
+    }
+
+    public static class Handler implements IMessageHandler<EntityPackage, IMessage> {
 
 	@Override
-	public void fromBytes(ByteBuf buf) {
-		nbt = ByteBufUtils.readTag(buf);
-		uuid = nbt.getString("uuid");
-	}
+	public IMessage onMessage(EntityPackage message, MessageContext ctx) {
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-		nbt.setString("uuid", uuid);
-		ByteBufUtils.writeTag(buf, nbt);
+	    try {
 
-	}
+		final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
-	public static class Handler implements IMessageHandler<EntityPackage, IMessage> {
-
-		@Override
-		public IMessage onMessage(EntityPackage message, MessageContext ctx) {
-
-			try {
-
-				final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
-
-				if (player.world != null && player.world.loadedEntityList != null) {
-					List<Entity> entities = new ArrayList<Entity>(player.world.loadedEntityList);
-					for (Entity en : entities) {
-						if (en.getUniqueID().equals(UUID.fromString(message.uuid))) {
-							en.getCapability(EntityData.Data, null).setNBT(message.nbt);
-							break;
-						}
-
-					}
-
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
+		if (player.world != null && player.world != null && player.world.loadedEntityList != null) {
+		    List<Entity> entities = new ArrayList<Entity>(player.world.loadedEntityList);
+		    for (Entity en : entities) {
+			if (en.getUniqueID().equals(UUID.fromString(message.uuid))) {
+			    en.getCapability(EntityData.Data, null).setNBT(message.nbt);
+			    break;
 			}
 
-			return null;
+		    }
+
 		}
 
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+
+	    return null;
 	}
+
+    }
 }

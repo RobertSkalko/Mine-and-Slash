@@ -1,6 +1,6 @@
 package com.robertx22.customitems.gearitems.bases;
 
-import com.robertx22.database.rarities.items.Unique;
+import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.uncommon.utilityclasses.Utils;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -59,7 +59,7 @@ public abstract class BaseArmorItem extends ItemArmor implements IGearItem {
 	    return LEGENDARY_MAT;
 	} else if (rarity == 5) {
 	    return MYTHICAL_MAT;
-	} else if (rarity == new Unique().Rank()) {
+	} else if (rarity == new UniqueItem().Rank()) {
 	    return UNIQUE_MAT;
 	}
 

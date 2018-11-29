@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.UsableStat;
-import com.robertx22.stats.StatEffects.ElementalResistEffect;
+import com.robertx22.stats.StatEffects.defense.ElementalResistEffect;
 
 public abstract class BaseEleResist extends UsableStat implements IStatEffects {
 

@@ -13,67 +13,67 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class DamageNumberPackage implements IMessage {
 
-	public Elements element;
-	public String string;
-	public double x;
-	public double y;
-	public double z;
-	public float height;
+    public Elements element;
+    public String string;
+    public double x;
+    public double y;
+    public double z;
+    public float height;
 
-	public DamageNumberPackage() {
+    public DamageNumberPackage() {
 
-	}
+    }
 
-	public DamageNumberPackage(EntityLivingBase entity, Elements ele, String str) {
-		this.element = ele;
-		this.string = str;
-		this.x = entity.posX;
-		this.y = entity.posY;
-		this.z = entity.posZ;
-		this.height = entity.height;
+    public DamageNumberPackage(EntityLivingBase entity, Elements ele, String str) {
+	this.element = ele;
+	this.string = str;
+	this.x = entity.posX;
+	this.y = entity.posY;
+	this.z = entity.posZ;
+	this.height = entity.height;
 
-	}
+    }
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+	NBTTagCompound tag = ByteBufUtils.readTag(buf);
+	element = Elements.valueOf(tag.getString("element"));
+	x = tag.getDouble("x");
+	y = tag.getDouble("y");
+	z = tag.getDouble("z");
+	height = tag.getFloat("height");
+	string = tag.getString("string");
+
+    }
+
+    @Override
+    public void toBytes(ByteBuf buf) {
+	NBTTagCompound tag = new NBTTagCompound();
+	tag.setString("element", element.name());
+	tag.setDouble("x", x);
+	tag.setDouble("y", y);
+	tag.setDouble("z", z);
+	tag.setFloat("height", height);
+	tag.setString("string", string);
+	ByteBufUtils.writeTag(buf, tag);
+
+    }
+
+    public static class Handler implements IMessageHandler<DamageNumberPackage, IMessage> {
 
 	@Override
-	public void fromBytes(ByteBuf buf) {
-		NBTTagCompound tag = ByteBufUtils.readTag(buf);
-		element = Elements.valueOf(tag.getString("element"));
-		x = tag.getDouble("x");
-		y = tag.getDouble("y");
-		z = tag.getDouble("z");
-		height = tag.getFloat("height");
-		string = tag.getString("string");
+	public IMessage onMessage(DamageNumberPackage message, MessageContext ctx) {
 
+	    try {
+
+		OnDisplayDamage.displayParticle(message);
+
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+
+	    return null;
 	}
-
-	@Override
-	public void toBytes(ByteBuf buf) {
-		NBTTagCompound tag = new NBTTagCompound();
-		tag.setString("element", element.name());
-		tag.setDouble("x", x);
-		tag.setDouble("y", y);
-		tag.setDouble("z", z);
-		tag.setFloat("height", height);
-		tag.setString("string", string);
-		ByteBufUtils.writeTag(buf, tag);
-
-	}
-
-	public static class Handler implements IMessageHandler<DamageNumberPackage, IMessage> {
-
-		@Override
-		public IMessage onMessage(DamageNumberPackage message, MessageContext ctx) {
-
-			try {
-
-				OnDisplayDamage.displayParticle(message);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			return null;
-		}
-	}
+    }
 
 }

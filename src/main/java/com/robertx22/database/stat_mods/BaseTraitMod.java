@@ -22,7 +22,6 @@ public abstract class BaseTraitMod extends StatMod {
     @Override
     public StatTypes Type() {
 	return StatTypes.Flat;
-
     }
 
     @Override

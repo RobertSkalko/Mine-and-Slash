@@ -13,48 +13,48 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class UnitPackage implements IMessage {
 
-	public UnitPackage() {
+    public UnitPackage() {
 
-	}
+    }
 
-	private NBTTagCompound nbt;
+    private NBTTagCompound nbt;
 
-	public UnitPackage(NBTTagCompound nbt) {
-		this.nbt = nbt;
-	}
+    public UnitPackage(NBTTagCompound nbt) {
+	this.nbt = nbt;
+    }
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+	NBTTagCompound tag = ByteBufUtils.readTag(buf);
+	this.nbt = tag;
+
+    }
+
+    @Override
+    public void toBytes(ByteBuf buf) {
+	ByteBufUtils.writeTag(buf, nbt);
+    }
+
+    public static class Handler implements IMessageHandler<UnitPackage, IMessage> {
 
 	@Override
-	public void fromBytes(ByteBuf buf) {
-		NBTTagCompound tag = ByteBufUtils.readTag(buf);
-		this.nbt = tag;
+	public IMessage onMessage(UnitPackage message, MessageContext ctx) {
 
-	}
+	    try {
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeTag(buf, nbt);
-	}
+		final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
-	public static class Handler implements IMessageHandler<UnitPackage, IMessage> {
-
-		@Override
-		public IMessage onMessage(UnitPackage message, MessageContext ctx) {
-
-			try {
-
-				final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
-
-				if (player != null) {
-					if (player.hasCapability(EntityData.Data, null)) {
-						player.getCapability(EntityData.Data, null).setNBT(message.nbt);
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			return null;
+		if (player != null) {
+		    if (player.hasCapability(EntityData.Data, null)) {
+			player.getCapability(EntityData.Data, null).setNBT(message.nbt);
+		    }
 		}
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
 
+	    return null;
 	}
+
+    }
 }

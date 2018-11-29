@@ -11,49 +11,49 @@ import com.robertx22.stats.UsableStat;
 
 public class ArmorEffect implements IStatEffect {
 
-	@Override
-	public int GetPriority() {
-		return 10;
-	}
+    @Override
+    public int GetPriority() {
+	return 10;
+    }
 
-	@Override
-	public EffectSides Side() {
-		return EffectSides.Target;
-	}
+    @Override
+    public EffectSides Side() {
+	return EffectSides.Target;
+    }
 
-	@Override
-	public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    @Override
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
-		try {
-			if (Effect instanceof IArmorReducable) {
+	try {
+	    if (Effect instanceof IArmorReducable) {
 
-				int pene = 0;
+		int pene = 0;
 
-				if (Effect instanceof IPenetrable) {
-					IPenetrable ipen = (IPenetrable) Effect;
-					pene = ipen.GetArmorPenetration();
-				}
-
-				Unit target = Effect.GetTarget();
-
-				UsableStat armor = (UsableStat) stat;
-
-				float EffectiveArmor = armor.GetUsableValue(Effect.targetData.getLevel(), (int) (data.Value - pene));
-
-				if (EffectiveArmor < 0) {
-					EffectiveArmor = 0;
-				}
-
-				float old = Effect.Number;
-
-				Effect.Number -= EffectiveArmor * Effect.Number;
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (Effect instanceof IPenetrable) {
+		    IPenetrable ipen = (IPenetrable) Effect;
+		    pene = ipen.GetArmorPenetration();
 		}
 
-		return Effect;
+		Unit target = Effect.GetTarget();
+
+		UsableStat armor = (UsableStat) stat;
+
+		float EffectiveArmor = armor.GetUsableValue(Effect.targetData.getLevel(), (int) (data.Value - pene));
+
+		if (EffectiveArmor < 0) {
+		    EffectiveArmor = 0;
+		}
+
+		float old = Effect.Number;
+
+		Effect.Number -= EffectiveArmor * Effect.Number;
+
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
+
+	return Effect;
+    }
 
 }

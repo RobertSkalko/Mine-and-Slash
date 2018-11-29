@@ -10,50 +10,50 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class EntityUpdate {
-	public EntityUpdate(EntityPlayerMP player, List<EntityLivingBase> entities) {
-		this.player = player;
-		this.entities = entities;
+    public EntityUpdate(EntityPlayerMP player, List<EntityLivingBase> entities) {
+	this.player = player;
+	this.entities = entities;
+    }
+
+    public EntityPlayerMP player;
+    public List<EntityLivingBase> entities;
+    public int current = 0;
+
+    public boolean isFinished() {
+	return current >= entities.size();
+    }
+
+    public void update() {
+
+	try {
+	    if (!isFinished()) {
+
+		EntityPackage mobpacket = new EntityPackage(entities.get(current++));
+		Main.Network.sendTo(mobpacket, (EntityPlayerMP) player);
+
+	    }
+	} catch (Exception e) {
+
+	    e.printStackTrace();
 	}
 
-	public EntityPlayerMP player;
-	public List<EntityLivingBase> entities;
-	public int current = 0;
+    }
 
-	public boolean isFinished() {
-		return current >= entities.size();
-	}
+    public static boolean IsEntityCloseTo(EntityLivingBase first, EntityLivingBase second) {
 
-	public void update() {
+	double distance = first.getDistance(second);
 
-		try {
-			if (!isFinished()) {
+	return distance < 150;
 
-				EntityPackage mobpacket = new EntityPackage(entities.get(current++));
-				Main.Network.sendTo(mobpacket, (EntityPlayerMP) player);
+    }
 
-			}
-		} catch (Exception e) {
+    public static void syncEntityToClient(EntityLivingBase entity) {
 
-			e.printStackTrace();
-		}
+	EntityPackage mobpacket = new EntityPackage(entity);
 
-	}
+	Main.Network.sendToAllAround(mobpacket,
+		new TargetPoint(entity.dimension, entity.posX, entity.posY, entity.posZ, 150));
 
-	public static boolean IsEntityCloseTo(EntityLivingBase first, EntityLivingBase second) {
-
-		double distance = first.getDistance(second);
-
-		return distance < 175;
-
-	}
-
-	public static void syncEntityToClient(EntityLivingBase entity) {
-
-		EntityPackage mobpacket = new EntityPackage(entity);
-
-		Main.Network.sendToAllAround(mobpacket,
-				new TargetPoint(entity.dimension, entity.posX, entity.posY, entity.posZ, 150));
-
-	}
+    }
 
 }

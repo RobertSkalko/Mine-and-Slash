@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
-import com.robertx22.database.rarities.items.Unique;
+import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
@@ -30,7 +30,7 @@ public class UniqueGearGen {
 	GearItemData data = new GearItemData();
 
 	if (unique != null) {
-	    ItemRarity rarity = new Unique();
+	    ItemRarity rarity = new UniqueItem();
 	    GearItemSlot gearslot = GearTypes.All.get(unique.slot());
 
 	    data.isUnique = true;
@@ -106,14 +106,16 @@ public class UniqueGearGen {
 
 	GearItemData data = CreateData(schema);
 
-	ItemStack stack = new ItemStack(data.getItem());
+	if (data != null && data.getItem() != null) {
+	    ItemStack stack = new ItemStack(data.getItem());
 
-	Gear.Save(stack, data);
+	    Gear.Save(stack, data);
 
-	stack.setStackDisplayName(data.GetDisplayName());
+	    stack.setStackDisplayName(data.GetDisplayName());
 
-	return stack;
-
+	    return stack;
+	}
+	return ItemStack.EMPTY;
     }
 
     public static ItemStack CreateStack(GearItemData data) {

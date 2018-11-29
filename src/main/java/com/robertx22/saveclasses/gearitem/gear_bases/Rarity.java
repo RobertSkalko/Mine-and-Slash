@@ -2,14 +2,14 @@ package com.robertx22.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
-public abstract class Rarity implements IWeighted {
+public interface Rarity extends IWeighted {
 
-	public abstract String Name();
+    String Name();
 
-	public abstract int Rank();
+    int Rank();
 
-	public abstract String Color();
+    String Color();
 
-	public abstract int Weight();
+    int Weight();
 
 }
