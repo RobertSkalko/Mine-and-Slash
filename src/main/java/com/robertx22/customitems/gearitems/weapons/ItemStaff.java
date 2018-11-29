@@ -57,6 +57,8 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon {
 		    projectile.SetReady(player.getHeldItem(hand));
 		    projectile.SpawnAndShoot(new EffectAcidExplosion(), player);
 
+		    player.getHeldItem(hand).damageItem(1, player);
+
 		    SoundUtils.playSoundAtPlayer(player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
 
 		}

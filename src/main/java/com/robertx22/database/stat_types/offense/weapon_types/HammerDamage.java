@@ -12,7 +12,7 @@ public class HammerDamage extends WeaponDamageStat {
 
     @Override
     public String Name() {
-	return "HammerDamage";
+	return "Hammer Damage";
     }
 
 }

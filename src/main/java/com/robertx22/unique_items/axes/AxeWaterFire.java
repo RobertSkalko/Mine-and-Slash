@@ -7,9 +7,8 @@ import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackFireDama
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackWaterDamageFlat;
 import com.robertx22.database.stat_mods.percent.CriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
-import com.robertx22.database.stat_mods.percent.less.LessLifeOnHitPercent;
-import com.robertx22.database.stat_mods.percent.less.LessLifestealPercent;
-import com.robertx22.database.stat_mods.percent.less.LessManaOnHitPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleManaOnHitPercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueAxe;
 
@@ -37,8 +36,7 @@ public class AxeWaterFire extends BaseUniqueAxe {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackFireDamageFlat(), new AttackWaterDamageFlat(), new CriticalHitPercent(),
-		new CriticalDamagePercent(), new LessLifestealPercent(), new LessLifeOnHitPercent(),
-		new LessManaOnHitPercent());
+		new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
     }
 
     @Override

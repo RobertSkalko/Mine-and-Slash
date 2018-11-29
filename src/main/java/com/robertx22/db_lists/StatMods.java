@@ -107,6 +107,14 @@ import com.robertx22.database.stat_mods.percent.less.LessLifeOnHitPercent;
 import com.robertx22.database.stat_mods.percent.less.LessLifestealPercent;
 import com.robertx22.database.stat_mods.percent.less.LessManaOnHitPercent;
 import com.robertx22.database.stat_mods.percent.less.LessManaRegenPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleCriticalHitPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleDodgePercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleHealthRegenPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleLifestealPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleManaOnHitPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleManaRegenPercent;
 import com.robertx22.database.stat_mods.percent.pene.FirePenePercent;
 import com.robertx22.database.stat_mods.percent.pene.NaturePenePercent;
 import com.robertx22.database.stat_mods.percent.pene.ThunderPenePercent;
@@ -144,7 +152,6 @@ public class StatMods {
 		put(new StaffDamageFlat().GUID(), new StaffDamageFlat());
 
 		// less stats
-
 		put(new LessCriticalDamagePercent().GUID(), new LessCriticalDamagePercent());
 		put(new LessCriticalHitPercent().GUID(), new LessCriticalHitPercent());
 		put(new LessDodgePercent().GUID(), new LessDodgePercent());
@@ -153,8 +160,18 @@ public class StatMods {
 		put(new LessManaOnHitPercent().GUID(), new LessManaOnHitPercent());
 		put(new LessLifestealPercent().GUID(), new LessLifestealPercent());
 		put(new LessLifeOnHitPercent().GUID(), new LessLifeOnHitPercent());
-
 		// less stats
+
+		// cripple stats (much less)
+		put(new CrippleCriticalDamagePercent().GUID(), new CrippleCriticalDamagePercent());
+		put(new CrippleCriticalHitPercent().GUID(), new CrippleCriticalHitPercent());
+		put(new CrippleDodgePercent().GUID(), new CrippleDodgePercent());
+		put(new CrippleHealthRegenPercent().GUID(), new CrippleHealthRegenPercent());
+		put(new CrippleManaRegenPercent().GUID(), new CrippleManaRegenPercent());
+		put(new CrippleManaOnHitPercent().GUID(), new CrippleManaOnHitPercent());
+		put(new CrippleLifestealPercent().GUID(), new CrippleLifestealPercent());
+		put(new CrippleLifeOnHitPercent().GUID(), new CrippleLifeOnHitPercent());
+		// cripple
 
 		put(new ArmorFlat().GUID(), new ArmorFlat());
 		put(new ArmorPeneFlat().GUID(), new ArmorPeneFlat());

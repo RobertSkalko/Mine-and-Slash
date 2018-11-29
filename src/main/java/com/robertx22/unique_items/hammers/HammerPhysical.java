@@ -7,8 +7,8 @@ import com.robertx22.database.stat_mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stat_mods.flat.PhysicalDamageFlat;
 import com.robertx22.database.stat_mods.percent.CriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
-import com.robertx22.database.stat_mods.percent.less.LessLifeOnHitPercent;
 import com.robertx22.database.stat_mods.percent.less.LessManaOnHitPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueHammer;
 
@@ -36,7 +36,7 @@ public class HammerPhysical extends BaseUniqueHammer {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new PhysicalDamageFlat(), new ArmorPeneFlat(), new CriticalHitPercent(),
-		new CriticalDamagePercent(), new LessLifeOnHitPercent(), new LessManaOnHitPercent());
+		new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new LessManaOnHitPercent());
     }
 
     @Override

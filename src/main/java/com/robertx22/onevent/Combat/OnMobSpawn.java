@@ -24,98 +24,94 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class OnMobSpawn {
 
-	@SubscribeEvent
-	public static void onMobSpawn(EntityJoinWorldEvent event) {
+    @SubscribeEvent
+    public static void onMobSpawn(EntityJoinWorldEvent event) {
 
-		if (!(event.getEntity() instanceof EntityLivingBase)) {
-			return;
-		}
+	if (!(event.getEntity() instanceof EntityLivingBase)) {
+	    return;
+	}
 
-		EntityLivingBase entity = (EntityLivingBase) event.getEntity();
+	EntityLivingBase entity = (EntityLivingBase) event.getEntity();
 
-		if (entity.world.isRemote) {
-			return;
-		}
+	if (entity.world.isRemote) {
+	    return;
+	}
 
-		if (!entity.hasCapability(EntityData.Data, null)) {
-			return;
-		}
+	try {
+	    IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
 
-		try {
-			IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
+	    if (!(entity instanceof EntityPlayer)) {
+		if (entity instanceof IMob || entity instanceof EntityMob) {
+		    if (event.getWorld().hasCapability(WorldData.Data, null)) {
 
-			if (!(entity instanceof EntityPlayer)) {
-				if (entity instanceof IMob || entity instanceof EntityMob) {
-					if (event.getWorld().hasCapability(WorldData.Data, null)) {
+			Unit check = UnitSaving.Load(entity);
+			UnitData endata = entity.getCapability(EntityData.Data, null);
 
-						Unit check = UnitSaving.Load(entity);
-						UnitData endata = entity.getCapability(EntityData.Data, null);
+			if (check == null) {
+			    int level = GetMobLevel(data, entity);
+			    Unit unit = Unit.Mob(entity, level, data);
 
-						if (check == null) {
-							int level = GetMobLevel(data, entity);
-							Unit unit = Unit.Mob(entity, level, data);
+			    endata.forceSetUnit(unit);
 
-							endata.forceSetUnit(unit);
+			    if (endata.getRarity() == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
+				AnnounceWorldBossSpawn(entity, unit);
+			    }
 
-							if (endata.getRarity() == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
-								AnnounceWorldBossSpawn(entity, unit);
-							}
-
-							if (unit != null) {
-								EntityUpdate.syncEntityToClient(entity);
-							}
-						}
-					}
-				}
-			} else {
-				UnitData endata = entity.getCapability(EntityData.Data, null);
-				CommonStatUtils.addMapAffixes(data, entity, endata.getUnit(), endata);
-
+			    if (unit != null) {
+				EntityUpdate.syncEntityToClient(entity);
+			    }
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		    }
 		}
+	    } else {
+		UnitData endata = entity.getCapability(EntityData.Data, null);
+		CommonStatUtils.addMapAffixes(data, entity, endata.getUnit(), endata);
+
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+
+    }
+
+    private static int GetMobLevel(IWorldData data, EntityLivingBase entity) {
+
+	if (data != null && data.isMapWorld()) {
+	    return data.getLevel();
+	} else {
+	    return GetMobLevelByDistanceFromSpawn(entity);
+	}
+
+    }
+
+    private static void AnnounceWorldBossSpawn(EntityLivingBase entity, Unit unit) {
+
+	for (EntityPlayer player : entity.world.playerEntities) {
+	    if (player.getDistance(entity) < 150) {
+
+		player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL,
+			SoundCategory.AMBIENT, 0.5F, 1);
+
+	    }
 
 	}
 
-	private static int GetMobLevel(IWorldData data, EntityLivingBase entity) {
+    }
 
-		if (data != null && data.isMapWorld()) {
-			return data.getLevel();
-		} else {
-			return GetMobLevelByDistanceFromSpawn(entity);
-		}
+    public static int GetMobLevelByDistanceFromSpawn(Entity entity) {
 
+	double distance = entity.world.getSpawnPoint().distanceSq(entity.posX, entity.posY, entity.posZ);
+
+	int lvl = 1;
+
+	if (distance < ModConfig.Server.MOB_LEVEL_ONE_AREA) {
+	    lvl = 1;
+	} else {
+	    lvl = (int) (1 + (distance / ModConfig.Server.MOB_LEVEL_PER_DISTANCE));
 	}
 
-	private static void AnnounceWorldBossSpawn(EntityLivingBase entity, Unit unit) {
+	return lvl;
 
-		for (EntityPlayer player : entity.world.playerEntities) {
-			if (player.getDistance(entity) < 150) {
-
-				player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL,
-						SoundCategory.AMBIENT, 0.5F, 1);
-
-			}
-
-		}
-
-	}
-
-	public static int GetMobLevelByDistanceFromSpawn(Entity entity) {
-
-		double distance = entity.world.getSpawnPoint().distanceSq(entity.posX, entity.posY, entity.posZ);
-
-		int lvl = 1;
-
-		if (distance < ModConfig.Server.MOB_LEVEL_ONE_AREA) {
-			lvl = 1;
-		} else {
-			lvl = (int) (1 + (distance / ModConfig.Server.MOB_LEVEL_PER_DISTANCE));
-		}
-
-		return lvl;
-
-	}
+    }
 
 }

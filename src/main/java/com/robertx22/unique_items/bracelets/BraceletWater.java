@@ -7,6 +7,7 @@ import com.robertx22.database.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.FireToWaterTransferFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueBracelet;
 
@@ -34,7 +35,7 @@ public class BraceletWater extends BaseUniqueBracelet {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellWaterDamageFlat(), new FireToWaterTransferFlat(), new EnergyRegenFlat(),
-		new WaterResistFlat());
+		new WaterResistFlat(), new CrippleDodgePercent());
     }
 
     @Override

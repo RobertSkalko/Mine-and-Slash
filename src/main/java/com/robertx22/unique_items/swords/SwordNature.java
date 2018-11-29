@@ -7,7 +7,7 @@ import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackNatureDa
 import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.database.stat_mods.percent.LifestealPercent;
-import com.robertx22.database.stat_mods.percent.less.LessCriticalDamagePercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueSword;
 
@@ -35,7 +35,7 @@ public class SwordNature extends BaseUniqueSword {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackNatureDamageFlat(), new LifestealFlat(), new LifestealPercent(),
-		new HealthRegenFlat(), new LessCriticalDamagePercent());
+		new HealthRegenFlat(), new CrippleCriticalDamagePercent());
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.database.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.database.stat_mods.percent.LifestealPercent;
-import com.robertx22.database.stat_mods.percent.less.LessManaOnHitPercent;
+import com.robertx22.database.stat_mods.percent.much_less.CrippleManaOnHitPercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueStaff;
 
@@ -36,7 +36,7 @@ public class StaffLifesteal extends BaseUniqueStaff {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new PhysicalDamageFlat(), new LifestealPercent(), new LifestealFlat(), new LifeOnHitFlat(),
-		new HealthRegenFlat(), new LessManaOnHitPercent());
+		new HealthRegenFlat(), new CrippleManaOnHitPercent());
     }
 
     @Override

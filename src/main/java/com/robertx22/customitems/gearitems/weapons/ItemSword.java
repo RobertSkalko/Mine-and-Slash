@@ -10,19 +10,19 @@ import com.robertx22.customitems.gearitems.weapon_mechanics.SwordWeaponMechanic;
 import net.minecraft.item.Item;
 
 public class ItemSword extends BaseWeaponItem implements IWeapon {
-	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-	public ItemSword() {
+    public ItemSword() {
 
-	}
+    }
 
-	@Override
-	public String Name() {
-		return "Sword";
-	}
+    @Override
+    public String Name() {
+	return "Sword";
+    }
 
-	@Override
-	public WeaponMechanic mechanic() {
-		return new SwordWeaponMechanic();
-	}
+    @Override
+    public WeaponMechanic mechanic() {
+	return new SwordWeaponMechanic();
+    }
 }

@@ -12,7 +12,7 @@ public class BowDamage extends WeaponDamageStat {
 
     @Override
     public String Name() {
-	return "BowDamage";
+	return "Bow Damage";
     }
 
 }
