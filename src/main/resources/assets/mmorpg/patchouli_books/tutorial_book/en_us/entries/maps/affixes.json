@@ -1,0 +1,18 @@
+{
+	"name": "Map Affixes",
+	"icon": "minecraft:writable_book",
+	"category": "maps",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "All Maps spawn with affixes, they make the map harder. Mobs can get extra damage or players can suffer debuffs. Sometimes even horrible build breaking debuffs! But that's okay, if you think you can't beat it, save it for later!"
+		},
+		{
+			"type": "text",
+			"text": "There are keybinds for checking current map information, what Unique items can drop from the map and even your own player stats. Be sure to use them when in need."
+		}
+		
+	]
+}
