@@ -25,68 +25,68 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BaseSpellItem extends Item {
 
-	public abstract String Name();
+    public abstract String Name();
 
-	public abstract String GUID();
+    public abstract String GUID();
 
-	public abstract BaseSpell Spell();
+    public abstract BaseSpell Spell();
 
-	public BaseSpellItem() {
-		this.setMaxStackSize(1);
-		this.setMaxDamage(0);
-		this.setUnlocalizedName(Name());
-		this.setRegistryName(GUID().toLowerCase());
+    public BaseSpellItem() {
+	this.setMaxStackSize(1);
+	this.setMaxDamage(0);
+	this.setUnlocalizedName(Name());
+	this.setRegistryName(GUID().toLowerCase());
 
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
+	SpellItemData data = Spell.Load(stack);
+
+	if (data != null) {
+
+	    ItemRarity rarity = Rarities.Items.get(data.rarity);
+
+	    tooltip.clear();
+
+	    tooltip.add(Rarities.Items.get(data.rarity).Color() + Spell().Name());
+	    tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
+	    tooltip.add("");
+
+	    tooltip.add(TextFormatting.GREEN + "Stats:");
+	    tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc()));
+	    tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc()));
+	    tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc()));
+
+	    tooltip.add("");
+
+	    tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data));
+
+	    tooltip.add("");
+	    tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
 	}
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    @Nonnull
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
-		SpellItemData data = Spell.Load(stack);
+	try {
+	    SpellItemData data = Spell.Load(playerIn.getHeldItem(handIn));
 
-		if (data != null) {
+	    if (data != null) {
 
-			ItemRarity rarity = Rarities.Items.get(data.rarity);
-
-			tooltip.clear();
-
-			tooltip.add(Rarities.Items.get(data.rarity).Color() + Spell().Name());
-			tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
-			tooltip.add("");
-
-			tooltip.add(TextFormatting.GREEN + "Stats:");
-			tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc()));
-			tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc()));
-			tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc()));
-
-			tooltip.add("");
-
-			tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data));
-
-			tooltip.add("");
-			tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
+		if (Spell().CanCast(playerIn, data)) {
+		    Spell().cast(worldIn, playerIn, handIn, 5, data);
 		}
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
 
-	@Nonnull
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-
-		try {
-			SpellItemData data = Spell.Load(playerIn.getHeldItem(handIn));
-
-			if (data != null) {
-
-				if (Spell().CanCast(playerIn, data)) {
-					Spell().cast(worldIn, playerIn, handIn, 5, data);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
-	}
+	return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+    }
 
 }
