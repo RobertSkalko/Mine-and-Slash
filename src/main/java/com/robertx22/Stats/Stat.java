@@ -37,7 +37,7 @@ public abstract class Stat implements IGUID {
 
     public int CalcVal(StatData data, UnitData Source) {
 
-	float finalValue = 0;
+	float finalValue = 0 + BaseFlat;
 
 	finalValue += StatMinimum + data.BaseFlat;
 

@@ -3,7 +3,7 @@ package com.robertx22.database.status.effects;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.stat_mods.flat.elemental.bonus.FireSpellToAttackDamageFlat;
+import com.robertx22.database.stat_mods.flat.elemental.bonus.FireSpellToAttackFlat;
 import com.robertx22.database.status.effects.bases.BaseMobEleDMG;
 import com.robertx22.saveclasses.gearitem.StatModData;
 
@@ -24,7 +24,7 @@ public class MobFireDMGSE extends BaseMobEleDMG {
 
 	@Override
 	public List<StatModData> Stats() {
-		return Arrays.asList(StatModData.NewStatusEffect(this.percent, new FireSpellToAttackDamageFlat()));
+		return Arrays.asList(StatModData.NewStatusEffect(this.percent, new FireSpellToAttackFlat()));
 	}
 
 }

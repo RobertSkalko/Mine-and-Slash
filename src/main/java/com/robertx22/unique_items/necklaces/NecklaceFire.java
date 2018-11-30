@@ -3,7 +3,7 @@ package com.robertx22.unique_items.necklaces;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.stat_mods.flat.elemental.bonus.FireSpellToAttackDamageFlat;
+import com.robertx22.database.stat_mods.flat.elemental.bonus.FireSpellToAttackFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToFireTransferFlat;
 import com.robertx22.database.stat_mods.flat.less.LessHealthRegenFlat;
@@ -33,7 +33,7 @@ public class NecklaceFire extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-	return Arrays.asList(new SpellFireDamageFlat(), new FireSpellToAttackDamageFlat(),
+	return Arrays.asList(new SpellFireDamageFlat(), new FireSpellToAttackFlat(),
 		new WaterToFireTransferFlat(), new LessHealthRegenFlat());
 
     }

@@ -52,10 +52,14 @@ public class OnEntityMeleeAttack {
 	    UnitData targetData = Load.Unit(target);
 	    UnitData sourceData = Load.Unit(source);
 
+	    if (targetData == null || sourceData == null) {
+		return;
+	    }
+
 	    Unit targetUnit = targetData.getUnit();
 	    Unit sourceUnit = sourceData.getUnit();
 
-	    if (sourceData == null || targetData == null || targetUnit == null || sourceUnit == null) {
+	    if (targetUnit == null || sourceUnit == null) {
 		return;
 	    }
 
@@ -93,8 +97,8 @@ public class OnEntityMeleeAttack {
 		    EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
 		    defender.knockBack(attacker, 0.3F, attacker.posX - defender.posX, attacker.posZ - defender.posZ);
 		}
-	    }
 
+	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
 

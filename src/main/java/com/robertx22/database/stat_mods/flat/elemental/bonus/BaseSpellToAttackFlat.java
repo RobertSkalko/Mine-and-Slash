@@ -3,9 +3,9 @@ package com.robertx22.database.stat_mods.flat.elemental.bonus;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public abstract class BaseSpellToAttackDamageFlat extends StatMod {
+public abstract class BaseSpellToAttackFlat extends StatMod {
 
-	public BaseSpellToAttackDamageFlat() {
+	public BaseSpellToAttackFlat() {
 	}
 
 	@Override

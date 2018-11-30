@@ -6,26 +6,26 @@ import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
-public class CriticalHitPercent extends StatMod {
+public class MajorCriticalHitPercent extends StatMod {
 
-    public CriticalHitPercent() {
+    public MajorCriticalHitPercent() {
     }
 
     @Override
     public String GUID() {
-	return "CriticalHitPercent";
+	return "MajorCriticalHitPercent";
 
     }
 
     @Override
     public int Min() {
-	return 3;
+	return 10;
 
     }
 
     @Override
     public int Max() {
-	return 10;
+	return 25;
     }
 
     @Override

@@ -42,7 +42,7 @@ import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackFireDama
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackWaterDamageFlat;
-import com.robertx22.database.stat_mods.flat.elemental.bonus.FireSpellToAttackDamageFlat;
+import com.robertx22.database.stat_mods.flat.elemental.bonus.FireSpellToAttackFlat;
 import com.robertx22.database.stat_mods.flat.elemental.bonus.NatureSpellToAttackFlat;
 import com.robertx22.database.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
 import com.robertx22.database.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
@@ -107,6 +107,8 @@ import com.robertx22.database.stat_mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stat_mods.percent.HealthPercent;
 import com.robertx22.database.stat_mods.percent.LifeOnHitPercent;
 import com.robertx22.database.stat_mods.percent.LifestealPercent;
+import com.robertx22.database.stat_mods.percent.MajorCriticalDamagePercent;
+import com.robertx22.database.stat_mods.percent.MajorCriticalHitPercent;
 import com.robertx22.database.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.database.stat_mods.percent.less.LessCriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.less.LessCriticalHitPercent;
@@ -199,6 +201,9 @@ public class StatMods {
 		put(new CrippleLifeOnHitPercent().GUID(), new CrippleLifeOnHitPercent());
 		// cripple
 
+		put(new MajorCriticalHitPercent().GUID(), new MajorCriticalHitPercent());
+		put(new MajorCriticalDamagePercent().GUID(), new MajorCriticalDamagePercent());
+
 		put(new MajorDodgeFlat().GUID(), new MajorDodgeFlat());
 		put(new MajorArmorFlat().GUID(), new MajorArmorFlat());
 		put(new ArmorFlat().GUID(), new ArmorFlat());
@@ -266,7 +271,7 @@ public class StatMods {
 
 		// bonus dmg
 		put(new WaterSpellToAttackFlat().GUID(), new WaterSpellToAttackFlat());
-		put(new FireSpellToAttackDamageFlat().GUID(), new FireSpellToAttackDamageFlat());
+		put(new FireSpellToAttackFlat().GUID(), new FireSpellToAttackFlat());
 		put(new ThunderSpellToAttackFlat().GUID(), new ThunderSpellToAttackFlat());
 		put(new NatureSpellToAttackFlat().GUID(), new NatureSpellToAttackFlat());
 		// bonus dmg
