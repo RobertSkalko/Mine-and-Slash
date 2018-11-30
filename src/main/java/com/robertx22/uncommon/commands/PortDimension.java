@@ -12,28 +12,28 @@ import net.minecraftforge.common.DimensionManager;
 
 public class PortDimension extends CommandBase {
 
-	@Override
-	public String getName() {
-		return "port";
+    @Override
+    public String getName() {
+	return "port";
+    }
+
+    @Override
+    public String getUsage(ICommandSender sender) {
+	return "/port number_id";
+    }
+
+    @Override
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+
+	EntityPlayer player = (EntityPlayer) sender;
+	int id = Integer.valueOf(args[0]);
+
+	if (DimensionManager.isDimensionRegistered(id)) {
+	    player.changeDimension(id, new MyTeleporter(DimensionManager.getWorld(id).getSpawnPoint(), player, id));
+	} else {
+	    player.sendMessage(new TextComponentString("No such dimension"));
 	}
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		return "/port number_id";
-	}
-
-	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-
-		EntityPlayer player = (EntityPlayer) sender;
-		int id = Integer.valueOf(args[0]);
-
-		if (DimensionManager.isDimensionRegistered(id)) {
-			player.changeDimension(id, new MyTeleporter(DimensionManager.getWorld(id).getSpawnPoint(), player, id));
-		} else {
-			player.sendMessage(new TextComponentString("No such dimennsion"));
-		}
-
-	}
+    }
 
 }

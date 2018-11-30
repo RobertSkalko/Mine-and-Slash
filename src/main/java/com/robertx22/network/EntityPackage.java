@@ -75,8 +75,7 @@ public class EntityPackage implements IMessage {
 
 	    };
 	    ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-
-	    scheduler.scheduleAtFixedRate(noteThread, 1, 1, TimeUnit.SECONDS);
+	    scheduler.schedule(noteThread, 1, TimeUnit.SECONDS);
 
 	    return null;
 	}

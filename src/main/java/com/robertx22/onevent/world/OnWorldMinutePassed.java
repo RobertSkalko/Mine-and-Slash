@@ -34,6 +34,7 @@ public class OnWorldMinutePassed {
 
 		    if (data != null) {
 			data.onMinutePassed(world);
+
 		    }
 		}
 	    }
