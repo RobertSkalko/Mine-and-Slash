@@ -1,8 +1,6 @@
 package com.robertx22.onevent.ontick;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 import com.robertx22.customitems.misc.ItemMapBackPortal;
@@ -16,13 +14,9 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.datasaving.UnitSaving;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -33,16 +27,13 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 public class OnTickLogic {
 
     static final int TicksToUpdatePlayer = 18;
-    static final int TicksToUpdateMobList = 120;
-    static final int TicksToUpdateAllMobs = 200;
     static final int TicksToRegen = 100;
     static final int TicksToGiveMapPortal = 400;
     static final int TicksToUpdateWorld = 120;
 
     static int radius = 50;
 
-    static HashMap<UUID, EntityUpdate> Map = new HashMap<UUID, EntityUpdate>();
-    public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap();
+    public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
     @SubscribeEvent
     public static void onTickLogic(TickEvent.ServerTickEvent event) {
@@ -51,8 +42,6 @@ public class OnTickLogic {
 
 	    for (EntityPlayerMP player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList()
 		    .getPlayers()) {
-
-		UnitData unit_capa = player.getCapability(EntityData.Data, null);
 
 		PlayerTickData data = null;
 
@@ -64,23 +53,13 @@ public class OnTickLogic {
 
 		data.increment();
 
-		UpdateMobs(player, data);
-
-		if (data.mobsListSyncTick > TicksToUpdateMobList) {
-		    data.mobsListSyncTick = 0;
-		    try {
-			UpdateEntityList(player);
-
-		    } catch (Exception e) {
-			e.printStackTrace();
-		    }
-		}
-
 		if (data.regenTicks > TicksToRegen) {
-
+		    data.regenTicks = 0;
 		    if (player.isEntityAlive()) {
-			Unit unit = UnitSaving.Load(player);
-			unit.RecalculateStats(player, unit_capa.getLevel());
+
+			UnitData unit_capa = player.getCapability(EntityData.Data, null);
+			unit_capa.recalculateStats(player);
+			Unit unit = unit_capa.getUnit();
 
 			int manarestored = (int) unit.MyStats.get(new ManaRegen().Name()).Value;
 			unit.RestoreMana(manarestored);
@@ -92,14 +71,16 @@ public class OnTickLogic {
 			unit.Heal(player, healthrestored);
 
 			unit_capa.setUnit(unit, player);
-			data.regenTicks = 0;
+
 		    }
 		}
 
 		if (data.worldUpdateTicks > TicksToUpdateWorld) {
 		    data.worldUpdateTicks = 0;
 		    IWorldData mapdata = Load.World(player.world);
-		    Main.Network.sendTo(new WorldPackage(mapdata), player);
+		    if (mapdata.isMapWorld()) {
+			Main.Network.sendTo(new WorldPackage(mapdata), player);
+		    }
 
 		}
 
@@ -120,7 +101,7 @@ public class OnTickLogic {
 
 		if (data.playerSyncTick > TicksToUpdatePlayer) {
 		    data.playerSyncTick = 0;
-
+		    UnitData unit_capa = player.getCapability(EntityData.Data, null);
 		    unit_capa.syncToClient(player);
 
 		}
@@ -133,57 +114,15 @@ public class OnTickLogic {
 
     }
 
-    private static void UpdateEntityList(EntityPlayerMP player) {
-
-	List<EntityLivingBase> entities = new ArrayList<EntityLivingBase>();
-
-	for (Entity en : player.world.getEntitiesWithinAABBExcludingEntity(player,
-		new AxisAlignedBB(player.posX - radius, player.posY - radius, player.posZ - radius,
-			player.posX + radius, player.posY + radius, player.posZ + radius))) {
-	    if (en.hasCapability(EntityData.Data, null)) {
-		entities.add((EntityLivingBase) en);
-	    }
-	}
-
-	Map.put(player.getUniqueID(), new EntityUpdate(player, entities));
-
-    }
-
-    private static void UpdateMobs(EntityPlayerMP player, PlayerTickData syncData) {
-
-	EntityUpdate data = Map.get(player.getUniqueID());
-
-	if (data == null) {
-	    UpdateEntityList(player);
-	    data = Map.get(player.getUniqueID());
-	}
-
-	if (data != null && !data.isFinished()) {
-	    float count = (float) data.current / (float) data.entities.size();
-	    float ticks = (float) syncData.mobsSyncTick / (float) TicksToUpdateAllMobs;
-
-	    if (ticks > count || data.current == 0) {
-		data.update();
-	    }
-	} else {
-	    syncData.mobsSyncTick = 0;
-	}
-
-    }
-
     static class PlayerTickData {
 	public int regenTicks = 0;
 	public int playerSyncTick = 0;
-	public int mobsListSyncTick = 0;
-	public int mobsSyncTick = 0;
 	public int mapPortalTicks = 0;
 	public int worldUpdateTicks = 0;
 
 	public void increment() {
 	    regenTicks++;
-	    mobsSyncTick++;
 	    playerSyncTick++;
-	    mobsListSyncTick++;
 	    mapPortalTicks++;
 	    worldUpdateTicks++;
 	}

@@ -1,7 +1,6 @@
 package com.robertx22.onevent.combat;
 
 import com.robertx22.mmorpg.ModConfig;
-import com.robertx22.onevent.ontick.EntityUpdate;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -57,9 +56,6 @@ public class OnMobSpawn {
 				AnnounceWorldBossSpawn(entity, unit);
 			    }
 
-			    if (unit != null) {
-				EntityUpdate.syncEntityToClient(entity);
-			    }
 			}
 		    }
 		}

@@ -28,6 +28,7 @@ import com.robertx22.unique_items.IUnique;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.TextFormatting;
@@ -85,7 +86,11 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		return null;
 	    }
 	} else {
-	    return GearTypes.All.get(gearTypeName).GetItemForRarity(GetRarity().Rank());
+	    if (gearTypeName.isEmpty()) {
+		return Items.AIR;
+	    } else {
+		return GearTypes.All.get(gearTypeName).GetItemForRarity(GetRarity().Rank());
+	    }
 	}
 
     }

@@ -40,21 +40,26 @@ public class UnitPackage implements IMessage {
 	@Override
 	public IMessage onMessage(UnitPackage message, MessageContext ctx) {
 
-	    try {
+	    Runnable noteThread = new Runnable() {
+		@Override
+		public void run() {
+		    try {
+			final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
-		final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
-
-		if (player != null) {
-		    if (player.hasCapability(EntityData.Data, null)) {
-			player.getCapability(EntityData.Data, null).setNBT(message.nbt);
+			if (player != null) {
+			    if (player.hasCapability(EntityData.Data, null)) {
+				player.getCapability(EntityData.Data, null).setNBT(message.nbt);
+			    }
+			}
+		    } catch (Exception e) {
+			e.printStackTrace();
 		    }
 		}
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
+	    };
 
+	    noteThread.run();
 	    return null;
-	}
 
+	}
     }
 }

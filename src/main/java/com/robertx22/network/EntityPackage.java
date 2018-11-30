@@ -1,8 +1,8 @@
 package com.robertx22.network;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import com.robertx22.mmorpg.Main;
 import com.robertx22.uncommon.capability.EntityData;
@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class EntityPackage implements IMessage {
 
-    public String uuid;
+    public int id;
     public NBTTagCompound nbt;
 
     public EntityPackage() {
@@ -27,19 +27,19 @@ public class EntityPackage implements IMessage {
     }
 
     public EntityPackage(EntityLivingBase entity) {
-	this.uuid = entity.getUniqueID().toString();
+	this.id = entity.getEntityId();
 	this.nbt = entity.getCapability(EntityData.Data, null).getNBT();
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
 	nbt = ByteBufUtils.readTag(buf);
-	uuid = nbt.getString("uuid");
+	id = nbt.getInteger("id");
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-	nbt.setString("uuid", uuid);
+	nbt.setInteger("id", id);
 	ByteBufUtils.writeTag(buf, nbt);
 
     }
@@ -49,25 +49,34 @@ public class EntityPackage implements IMessage {
 	@Override
 	public IMessage onMessage(EntityPackage message, MessageContext ctx) {
 
-	    try {
+	    Runnable noteThread = new Runnable() {
+		@Override
+		public void run() {
+		    try {
 
-		final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+			final EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
 
-		if (player.world != null && player.world != null && player.world.loadedEntityList != null) {
-		    List<Entity> entities = new ArrayList<Entity>(player.world.loadedEntityList);
-		    for (Entity en : entities) {
-			if (en.getUniqueID().equals(UUID.fromString(message.uuid))) {
-			    en.getCapability(EntityData.Data, null).setNBT(message.nbt);
-			    break;
+			if (player != null && player.world != null) {
+			    Entity entity = player.world.getEntityByID(message.id);
+
+			    if (entity instanceof EntityLivingBase) {
+				EntityLivingBase en = (EntityLivingBase) entity;
+
+				if (en != null) {
+				    en.getCapability(EntityData.Data, null).setNBT(message.nbt);
+				}
+			    }
 			}
 
+		    } catch (Exception e) {
+			e.printStackTrace();
 		    }
-
 		}
 
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
+	    };
+	    ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+	    scheduler.scheduleAtFixedRate(noteThread, 1, 1, TimeUnit.SECONDS);
 
 	    return null;
 	}
