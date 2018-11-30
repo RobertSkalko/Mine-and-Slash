@@ -20,7 +20,7 @@ public class HelmetWater extends BaseUniqueHelmet {
 
     @Override
     public int Tier() {
-	return 5;
+	return 12;
     }
 
     @Override

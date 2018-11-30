@@ -34,8 +34,6 @@ public class ArmorEffect implements IStatEffect {
 		    pene = ipen.GetArmorPenetration();
 		}
 
-		Unit target = Effect.GetTarget();
-
 		UsableStat armor = (UsableStat) stat;
 
 		float EffectiveArmor = armor.GetUsableValue(Effect.targetData.getLevel(), (int) (data.Value - pene));

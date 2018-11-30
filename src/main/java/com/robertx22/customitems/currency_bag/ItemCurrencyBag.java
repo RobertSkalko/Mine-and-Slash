@@ -53,163 +53,164 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 @EventBusSubscriber
 public class ItemCurrencyBag extends Item {
 
-	public static final int GUI_NUMBER = 356514;
+    public static final int GUI_NUMBER = 356514;
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":currency_bag")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":currency_bag")
+    public static final Item ITEM = null;
 
-	private static final String TAG_ITEMS = "InvItems";
+    private static final String TAG_ITEMS = "InvItems";
 
-	public ItemCurrencyBag() {
-		setMaxStackSize(1);
-		this.setCreativeTab(CreativeTabList.MyModTab);
-		RegisterItemUtils.RegisterItemName(this, "currency_bag");
-	}
+    public ItemCurrencyBag() {
+	setMaxStackSize(1);
+	this.setCreativeTab(CreativeTabList.MyModTab);
+	RegisterItemUtils.RegisterItemName(this, "currency_bag");
+    }
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemCurrencyBag());
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemCurrencyBag());
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
-		GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GUI_NUMBER);
-	}
+	NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
+	GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GUI_NUMBER);
+    }
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
 
-	@Nonnull
+    @Nonnull
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound oldCapNbt) {
+	return new InvProvider();
+    }
+
+    private static class InvProvider implements ICapabilitySerializable<NBTBase> {
+
+	private final IItemHandler inv = new ItemStackHandler(16);
+
 	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound oldCapNbt) {
-		return new InvProvider();
-	}
-
-	private static class InvProvider implements ICapabilitySerializable<NBTBase> {
-
-		private final IItemHandler inv = new ItemStackHandler(16);
-
-		@Override
-		public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-			return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-		}
-
-		@Override
-		public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-			if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv);
-			else
-				return null;
-		}
-
-		@Override
-		public NBTBase serializeNBT() {
-			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null);
-		}
-
-		@Override
-		public void deserializeNBT(NBTBase nbt) {
-			CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt);
-		}
+	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+	    return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 	}
 
 	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-		if (stack.getTagCompound() != null && stack.getTagCompound().hasKey(TAG_ITEMS)) {
-			NBTTagList oldData = stack.getTagCompound().getTagList(TAG_ITEMS, Constants.NBT.TAG_COMPOUND);
-			IItemHandler newInv = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-			CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(newInv, null, oldData);
-
-			stack.getTagCompound().removeTag(TAG_ITEMS);
-
-			if (stack.getTagCompound().getSize() == 0)
-				stack.setTagCompound(null);
-		}
+	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+	    if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv);
+	    else
+		return null;
 	}
 
-	public static boolean IsValidItem(ItemStack stack) {
-
-		return stack.getItem() instanceof CurrencyItem || stack.getItem() instanceof ItemOre;
+	@Override
+	public NBTBase serializeNBT() {
+	    return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null);
 	}
 
-	@SubscribeEvent
-	public static void onPickupItem(EntityItemPickupEvent event) {
-		ItemStack stack = event.getItem().getItem();
-		if (IsValidItem(stack) && stack.getCount() > 0) {
+	@Override
+	public void deserializeNBT(NBTBase nbt) {
+	    CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt);
+	}
+    }
 
-			for (int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
-				if (i == event.getEntityPlayer().inventory.currentItem)
-					continue; // prevent item deletion
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+	if (stack.getTagCompound() != null && stack.getTagCompound().hasKey(TAG_ITEMS)) {
+	    NBTTagList oldData = stack.getTagCompound().getTagList(TAG_ITEMS, Constants.NBT.TAG_COMPOUND);
+	    IItemHandler newInv = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-				ItemStack bag = event.getEntityPlayer().inventory.getStackInSlot(i);
-				if (!bag.isEmpty() && bag.getItem() == ITEM) {
-					IItemHandler bagInv = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+	    CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(newInv, null, oldData);
 
-					for (int x = 0; x < bagInv.getSlots(); x++) {
-						ItemStack result = bagInv.insertItem(x, stack, false);
-						int numPickedUp = stack.getCount() - result.getCount();
+	    stack.getTagCompound().removeTag(TAG_ITEMS);
 
-						event.getItem().setItem(result);
+	    if (stack.getTagCompound().getSize() == 0)
+		stack.setTagCompound(null);
+	}
+    }
 
-						if (numPickedUp > 0) {
-							event.setCanceled(true);
-							if (!event.getItem().isSilent()) {
-								event.getItem().world
-										.playSound(null, event.getEntityPlayer().posX, event.getEntityPlayer().posY,
-												event.getEntityPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP,
-												SoundCategory.PLAYERS, 0.2F,
-												((event.getItem().world.rand.nextFloat()
-														- event.getItem().world.rand.nextFloat()) * 0.7F + 1.0F)
-														* 2.0F);
-							}
-							((EntityPlayerMP) event.getEntityPlayer()).connection.sendPacket(new SPacketCollectItem(
-									event.getItem().getEntityId(), event.getEntityPlayer().getEntityId(), numPickedUp));
-							event.getEntityPlayer().openContainer.detectAndSendChanges();
+    public static boolean IsValidItem(ItemStack stack) {
 
-							return;
-						}
-					}
-				}
+	return stack.getItem() instanceof CurrencyItem || stack.getItem() instanceof ItemOre;
+    }
+
+    @SubscribeEvent
+    public static void onPickupItem(EntityItemPickupEvent event) {
+
+	ItemStack stack = event.getItem().getItem();
+	if (IsValidItem(stack) && stack.getCount() > 0) {
+
+	    for (int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
+		if (i == event.getEntityPlayer().inventory.currentItem)
+		    continue; // prevent item deletion
+
+		ItemStack bag = event.getEntityPlayer().inventory.getStackInSlot(i);
+		if (!bag.isEmpty() && bag.getItem() == ITEM) {
+		    IItemHandler bagInv = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+		    for (int x = 0; x < bagInv.getSlots(); x++) {
+			ItemStack result = bagInv.insertItem(x, stack, false);
+			int numPickedUp = stack.getCount() - result.getCount();
+
+			event.getItem().setItem(result);
+
+			if (numPickedUp > 0) {
+			    event.setCanceled(true);
+			    if (!event.getItem().isSilent()) {
+				event.getItem().world
+					.playSound(null, event.getEntityPlayer().posX, event.getEntityPlayer().posY,
+						event.getEntityPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP,
+						SoundCategory.PLAYERS, 0.2F,
+						((event.getItem().world.rand.nextFloat()
+							- event.getItem().world.rand.nextFloat()) * 0.7F + 1.0F)
+							* 2.0F);
+			    }
+			    ((EntityPlayerMP) event.getEntityPlayer()).connection.sendPacket(new SPacketCollectItem(
+				    event.getItem().getEntityId(), event.getEntityPlayer().getEntityId(), numPickedUp));
+			    event.getEntityPlayer().openContainer.detectAndSendChanges();
+
+			    return;
 			}
+		    }
 		}
+	    }
 	}
+    }
 
-	@Nonnull
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
-		player.openGui(Main.instance, this.GUI_NUMBER, world, hand == EnumHand.OFF_HAND ? 1 : 0, 0, 0);
-		return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-	}
+    @Nonnull
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+	player.openGui(Main.instance, this.GUI_NUMBER, world, hand == EnumHand.OFF_HAND ? 1 : 0, 0, 0);
+	return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+    }
 
-	@Nonnull
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side,
-			float xs, float ys, float zs) {
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile != null) {
-			if (!world.isRemote) {
-				IItemHandler tileInv = null;
-				if (tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side))
-					tileInv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
-				else if (tile instanceof IInventory)
-					tileInv = new InvWrapper((IInventory) tile);
+    @Nonnull
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side,
+	    float xs, float ys, float zs) {
+	TileEntity tile = world.getTileEntity(pos);
+	if (tile != null) {
+	    if (!world.isRemote) {
+		IItemHandler tileInv = null;
+		if (tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side))
+		    tileInv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
+		else if (tile instanceof IInventory)
+		    tileInv = new InvWrapper((IInventory) tile);
 
-				if (tileInv == null)
-					return EnumActionResult.FAIL;
+		if (tileInv == null)
+		    return EnumActionResult.FAIL;
 
-				IItemHandlerModifiable bagInv = (IItemHandlerModifiable) player.getHeldItem(hand)
-						.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+		IItemHandlerModifiable bagInv = (IItemHandlerModifiable) player.getHeldItem(hand)
+			.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-				for (int i = 0; i < bagInv.getSlots(); i++) {
-					ItemStack flower = bagInv.getStackInSlot(i);
-					bagInv.setStackInSlot(i, ItemHandlerHelper.insertItemStacked(tileInv, flower, false));
-				}
-			}
-
-			return EnumActionResult.SUCCESS;
+		for (int i = 0; i < bagInv.getSlots(); i++) {
+		    ItemStack flower = bagInv.getStackInSlot(i);
+		    bagInv.setStackInSlot(i, ItemHandlerHelper.insertItemStacked(tileInv, flower, false));
 		}
-		return EnumActionResult.PASS;
+	    }
+
+	    return EnumActionResult.SUCCESS;
 	}
+	return EnumActionResult.PASS;
+    }
 
 }

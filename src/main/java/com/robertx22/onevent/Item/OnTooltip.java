@@ -19,42 +19,42 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class OnTooltip {
 
-	@SubscribeEvent
-	public static void onTooltip(ItemTooltipEvent event) {
+    @SubscribeEvent
+    public static void onTooltip(ItemTooltipEvent event) {
 
-		if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null
-				|| !event.getEntityPlayer().world.isRemote) {
-			return;
-		}
-
-		ItemStack stack;
-
-		stack = event.getItemStack();
-
-		if (stack == null) {
-			return;
-		}
-		if (!stack.hasTagCompound()) {
-			return;
-		}
-
-		if (GuiScreen.isCtrlKeyDown() == false) {
-			if (stack.getItem() instanceof IGearItem) {
-
-				Unit unit = UnitSaving.Load(event.getEntityPlayer());
-				GearItemData gear = Gear.Load(stack);
-
-				if (unit != null && gear != null) {
-
-					gear.BuildTooltip(event, unit, event.getEntityPlayer().getCapability(EntityData.Data, null));
-
-					if (GuiScreen.isShiftKeyDown() == false) {
-
-						event.getToolTip().add("Press shift for more info");
-					}
-				}
-			}
-		}
+	if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null
+		|| !event.getEntityPlayer().world.isRemote) {
+	    return;
 	}
+
+	ItemStack stack;
+
+	stack = event.getItemStack();
+
+	if (stack == null) {
+	    return;
+	}
+	if (!stack.hasTagCompound()) {
+	    return;
+	}
+
+	if (GuiScreen.isCtrlKeyDown() == false) {
+	    if (stack.getItem() instanceof IGearItem) {
+
+		Unit unit = UnitSaving.Load(event.getEntityPlayer());
+		GearItemData gear = Gear.Load(stack);
+
+		if (unit != null && gear != null) {
+
+		    gear.BuildTooltip(event, unit, event.getEntityPlayer().getCapability(EntityData.Data, null));
+
+		    if (GuiScreen.isShiftKeyDown() == false) {
+
+			event.getToolTip().add("Press shift for more info");
+		    }
+		}
+	    }
+	}
+    }
 
 }

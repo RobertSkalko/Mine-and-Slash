@@ -18,7 +18,7 @@ public class RingCrit extends BaseUniqueRing {
 
     @Override
     public int Tier() {
-	return 5;
+	return 4;
     }
 
     @Override

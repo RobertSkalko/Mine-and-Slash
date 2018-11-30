@@ -13,23 +13,23 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class BaseWeaponItem extends ItemTool implements IGearItem {
 
-	static ItemSword.ToolMaterial Mat = EnumHelper.addToolMaterial("swordmat", 0, 900, 1F, 1F, 10);
+    static ItemSword.ToolMaterial Mat = EnumHelper.addToolMaterial("swordmat", 0, 900, 1F, 1F, 10);
 
-	private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
+    private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
 
-	public abstract String Name();
+    public abstract String Name();
 
-	public BaseWeaponItem() {
-		super(Mat, EFFECTIVE_ON);
-		this.setMaxStackSize(1);
-		this.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
+    public BaseWeaponItem() {
+	super(Mat, EFFECTIVE_ON);
+	this.setMaxStackSize(1);
+	this.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
 
-	}
+    }
 
-	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-		stack.damageItem(1, attacker);
-		return true;
-	}
+    @Override
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
+	stack.damageItem(1, attacker);
+	return true;
+    }
 
 }

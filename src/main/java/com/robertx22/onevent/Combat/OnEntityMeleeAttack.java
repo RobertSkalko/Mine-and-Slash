@@ -76,13 +76,14 @@ public class OnEntityMeleeAttack {
 
 		    int energyCost = iWep.GetEnergyCost();
 
-		    if (sourceData.getUnit().energyData().CurrentValue < energyCost) {
+		    if (sourceData.getUnit().hasEnoughEnergy(energyCost) == false) {
 			NoEnergyMessage(source);
 			event.setCanceled(true);
+			return;
 
 		    } else {
 			sourceData.getUnit().SpendEnergy(energyCost);
-
+			weapon.damageItem(1, source);
 			iWep.Attack(source, target, sourceData, targetData);
 
 		    }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.robertx22.customitems.gearitems.bases.BaseArmorItem;
+import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.stats.StatMod;
@@ -20,47 +21,47 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
-public interface IUnique extends IWeighted, ITiered, IGUID {
+public interface IUnique extends IWeighted, ITiered, IGUID, IGearItem {
 
-	public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
+    public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
 
-	@Override
-	public default int Weight() {
-		return this.UncommonWeight;
+    @Override
+    public default int Weight() {
+	return this.UncommonWeight;
+    }
+
+    String name();
+
+    String description();
+
+    List<StatMod> uniqueStats();
+
+    String slot();
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	for (Item item : ITEMS.values()) {
+	    item.setCreativeTab(CreativeTabList.UniqueItems);
+	    item.setMaxStackSize(1);
+
+	    if (item instanceof IBauble) {
+		item.setMaxDamage(0);
+	    } else {
+		item.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
+	    }
+	    IUnique uniq = (IUnique) item;
+
+	    RegisterItemUtils.RegisterItemName(item, "uniques/" + uniq.slot().toLowerCase() + "/" + uniq.GUID());
+
+	    event.getRegistry().register(item);
 	}
+    }
 
-	String name();
-
-	String description();
-
-	List<StatMod> uniqueStats();
-
-	String slot();
-
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for (Item item : ITEMS.values()) {
-			item.setCreativeTab(CreativeTabList.UniqueItems);
-			item.setMaxStackSize(1);
-
-			if (item instanceof IBauble) {
-				item.setMaxDamage(0);
-			} else {
-				item.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
-			}
-			IUnique uniq = (IUnique) item;
-
-			RegisterItemUtils.RegisterItemName(item, "uniques/" + uniq.slot().toLowerCase() + "/" + uniq.GUID());
-
-			event.getRegistry().register(item);
-		}
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	for (Item item : ITEMS.values()) {
+	    RegisterUtils.registerRender(item);
 	}
-
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		for (Item item : ITEMS.values()) {
-			RegisterUtils.registerRender(item);
-		}
-	}
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.robertx22.unique_items;
 
 import com.robertx22.unique_items.axes.AxeFire;
+import com.robertx22.unique_items.axes.AxeThunder;
 import com.robertx22.unique_items.axes.AxeWaterFire;
 import com.robertx22.unique_items.boots.BootsFire;
 import com.robertx22.unique_items.boots.BootsNature;
@@ -8,7 +9,9 @@ import com.robertx22.unique_items.boots.BootsThunder;
 import com.robertx22.unique_items.boots.BootsWater;
 import com.robertx22.unique_items.bracelets.BraceletThunder;
 import com.robertx22.unique_items.bracelets.BraceletWater;
+import com.robertx22.unique_items.chest.ChestDodge;
 import com.robertx22.unique_items.chest.ChestFire;
+import com.robertx22.unique_items.chest.ChestNature;
 import com.robertx22.unique_items.chest.ChestWater;
 import com.robertx22.unique_items.hammers.HammerPhysical;
 import com.robertx22.unique_items.hammers.HammerThunder;
@@ -47,6 +50,8 @@ public class UniqueItemRegister {
 	// chest
 	new ChestFire();
 	new ChestWater();
+	new ChestDodge();
+	new ChestNature();
 
 	// boots
 	new BootsNature();
@@ -66,6 +71,7 @@ public class UniqueItemRegister {
 	// axes
 	new AxeWaterFire();
 	new AxeFire();
+	new AxeThunder();
 
 	// rings
 	new RingDodge();
