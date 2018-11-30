@@ -7,32 +7,33 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ArmorFlat extends StatMod {
 
-	public ArmorFlat() {
-	}
+    public ArmorFlat() {
+    }
 
-	@Override
-	public String GUID() {
-		return "ArmorFlat";
-	}
+    @Override
+    public String GUID() {
+	return "ArmorFlat";
+    }
 
-	@Override
-	public int Min() {
-		return 3;
-	}
+    @Override
+    public int Min() {
+	return 3;
 
-	@Override
-	public int Max() {
-		return 12;
-	}
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Flat;
-	}
+    @Override
+    public int Max() {
+	return 12;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new Armor();
-	}
+    @Override
+    public StatTypes Type() {
+	return StatTypes.Flat;
+    }
+
+    @Override
+    public Stat GetBaseStat() {
+	return new Armor();
+    }
 
 }

@@ -64,13 +64,19 @@ public class DamageNumberPackage implements IMessage {
 	@Override
 	public IMessage onMessage(DamageNumberPackage message, MessageContext ctx) {
 
-	    try {
+	    Runnable noteThread = new Runnable() {
+		@Override
+		public void run() {
+		    try {
 
-		OnDisplayDamage.displayParticle(message);
+			OnDisplayDamage.displayParticle(message);
 
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
+		    } catch (Exception e) {
+			e.printStackTrace();
+		    }
+		}
+	    };
+	    noteThread.run();
 
 	    return null;
 	}

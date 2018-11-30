@@ -21,6 +21,7 @@ public class ChestFire extends BaseUniqueChest {
     @Override
     public int Tier() {
 	return 6;
+
     }
 
     @Override

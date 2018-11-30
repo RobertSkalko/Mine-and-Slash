@@ -1,38 +1,38 @@
-package com.robertx22.database.map_mods.minus;
+package com.robertx22.database.stat_mods.flat.less;
 
-import com.robertx22.database.stat_types.resources.Health;
+import com.robertx22.database.stat_types.resources.HealthRegen;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
-public class LessHealthMap extends StatMod {
+public class LessHealthRegenFlat extends StatMod {
 
-    public LessHealthMap() {
+    public LessHealthRegenFlat() {
     }
 
     @Override
     public String GUID() {
-	return "LessHealthMap";
+	return "LessHealthRegenFlat";
     }
 
     @Override
     public int Min() {
-	return -10;
+	return -2;
     }
 
     @Override
     public int Max() {
-	return -40;
+	return -5;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Multi;
+	return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new Health();
+	return new HealthRegen();
     }
 
 }

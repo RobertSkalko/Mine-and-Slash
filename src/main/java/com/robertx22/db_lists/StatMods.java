@@ -35,6 +35,8 @@ import com.robertx22.database.stat_mods.flat.ArmorPeneFlat;
 import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stat_mods.flat.DodgeFlat;
+import com.robertx22.database.stat_mods.flat.MajorArmorFlat;
+import com.robertx22.database.stat_mods.flat.MajorDodgeFlat;
 import com.robertx22.database.stat_mods.flat.PhysicalDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
@@ -80,11 +82,13 @@ import com.robertx22.database.stat_mods.flat.elemental.transfers.ThunderToWaterT
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToFireTransferFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToNatureTransferFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToThunderTransferFlat;
+import com.robertx22.database.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.database.stat_mods.flat.resources.LifestealFlat;
+import com.robertx22.database.stat_mods.flat.resources.MajorManaRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
@@ -172,6 +176,8 @@ public class StatMods {
 		put(new LessStaffDamageMap().GUID(), new LessStaffDamageMap());
 
 		// less stats
+
+		put(new LessHealthRegenFlat().GUID(), new LessHealthRegenFlat());
 		put(new LessCriticalDamagePercent().GUID(), new LessCriticalDamagePercent());
 		put(new LessCriticalHitPercent().GUID(), new LessCriticalHitPercent());
 		put(new LessDodgePercent().GUID(), new LessDodgePercent());
@@ -193,6 +199,8 @@ public class StatMods {
 		put(new CrippleLifeOnHitPercent().GUID(), new CrippleLifeOnHitPercent());
 		// cripple
 
+		put(new MajorDodgeFlat().GUID(), new MajorDodgeFlat());
+		put(new MajorArmorFlat().GUID(), new MajorArmorFlat());
 		put(new ArmorFlat().GUID(), new ArmorFlat());
 		put(new ArmorPeneFlat().GUID(), new ArmorPeneFlat());
 		put(new CriticalHitFlat().GUID(), new CriticalHitFlat());
@@ -205,6 +213,7 @@ public class StatMods {
 		put(new DodgePercent().GUID(), new DodgePercent());
 
 		// Resources
+		put(new MajorManaRegenFlat().GUID(), new MajorManaRegenFlat());
 		put(new HealthFlat().GUID(), new HealthFlat());
 		put(new HealthPercent().GUID(), new HealthPercent());
 		put(new HealthRegenFlat().GUID(), new HealthRegenFlat());

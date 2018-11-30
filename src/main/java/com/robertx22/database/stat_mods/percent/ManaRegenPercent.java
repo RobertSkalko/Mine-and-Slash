@@ -7,32 +7,33 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ManaRegenPercent extends StatMod {
 
-	public ManaRegenPercent() {
-	}
+    public ManaRegenPercent() {
+    }
 
-	@Override
-	public String GUID() {
-		return "ManaRegenPercent";
-	}
+    @Override
+    public String GUID() {
+	return "ManaRegenPercent";
+    }
 
-	@Override
-	public int Min() {
-		return 2;
-	}
+    @Override
+    public int Min() {
+	return 2;
+    }
 
-	@Override
-	public int Max() {
-		return 10;
-	}
+    @Override
+    public int Max() {
+	return 10;
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Percent;
-	}
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new ManaRegen();
-	}
+    @Override
+    public StatTypes Type() {
+	return StatTypes.Percent;
+    }
+
+    @Override
+    public Stat GetBaseStat() {
+	return new ManaRegen();
+    }
 
 }

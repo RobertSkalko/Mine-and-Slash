@@ -15,8 +15,9 @@ import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
@@ -100,7 +101,8 @@ public class EntityData {
 	@SubscribeEvent
 	public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
-	    if (event.getObject() instanceof EntityLivingBase || event.getObject() instanceof EntityLiving) {
+	    if (event.getObject() instanceof EntityPlayer || event.getObject() instanceof EntityMob
+		    || event.getObject() instanceof IMob) {
 
 		event.addCapability(new ResourceLocation(Ref.MODID, "EntityData"),
 			new ICapabilitySerializable<NBTTagCompound>() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackNatureDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.pene.NaturePeneFlat;
+import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.database.stat_mods.percent.pene.NaturePenePercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueStaff;
@@ -33,7 +34,8 @@ public class StaffNature extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-	return Arrays.asList(new AttackNatureDamageFlat(), new NaturePeneFlat(), new NaturePenePercent());
+	return Arrays.asList(new AttackNatureDamageFlat(), new NaturePeneFlat(), new NaturePenePercent(),
+		new HealthRegenFlat());
     }
 
     @Override
