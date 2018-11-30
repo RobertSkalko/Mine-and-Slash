@@ -22,6 +22,7 @@ public class OnTrackEntity {
 	if (entity instanceof EntityLivingBase) {
 	    if (entity.isEntityEqual(event.getEntityPlayer()) == false) {
 		if (entity.hasCapability(EntityData.Data, null)) {
+
 		    Main.Network.sendTo(new EntityPackage((EntityLivingBase) entity),
 			    (EntityPlayerMP) event.getEntityPlayer());
 		}

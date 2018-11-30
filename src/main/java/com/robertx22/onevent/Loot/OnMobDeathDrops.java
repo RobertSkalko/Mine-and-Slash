@@ -24,61 +24,62 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 @Mod.EventBusSubscriber
 public class OnMobDeathDrops {
 
-	@SubscribeEvent
-	public static void mobOnDeathDrop(LivingDeathEvent event) {
+    @SubscribeEvent
+    public static void mobOnDeathDrop(LivingDeathEvent event) {
 
-		if (event.getEntityLiving().world.isRemote) {
+	if (event.getEntityLiving().world.isRemote) {
+	    return;
+	}
+
+	try {
+
+	    EntityLivingBase entity = event.getEntityLiving();
+
+	    if (!(entity instanceof EntityPlayer)) {
+		if (entity instanceof IMob || entity instanceof EntityMob) {
+
+		    if (entity instanceof EntitySlime && ((EntitySlime) entity).isSmallSlime()) {
 			return;
+		    }
+
+		    UnitData victim = entity.getCapability(EntityData.Data, null);
+
+		    if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+
+			UnitData killer = event.getSource().getTrueSource().getCapability(EntityData.Data, null);
+
+			IWorldData world = Load.World(entity.world);
+
+			MasterLootGen.genAndDrop(victim, killer, world, entity);
+
+			int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);
+
+			NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(entity.dimension,
+				entity.posX, entity.posY, entity.posZ, 32);
+
+			Main.Network.sendToAllAround(new DamageNumberPackage(entity, Elements.Nature,
+				"+" + DamageEffect.FormatNumber(exp) + " Exp!"), point);
+		    }
+
 		}
+	    }
 
-		try {
+	} catch (
 
-			EntityLivingBase entity = event.getEntityLiving();
-
-			if (!(entity instanceof EntityPlayer)) {
-				if (entity instanceof IMob || entity instanceof EntityMob) {
-
-					if (entity instanceof EntitySlime && ((EntitySlime) entity).isSmallSlime()) {
-						return;
-					}
-
-					UnitData victim = entity.getCapability(EntityData.Data, null);
-					UnitData killer = event.getSource().getTrueSource().getCapability(EntityData.Data, null);
-
-					if (event.getSource().getTrueSource() instanceof EntityPlayer) {
-
-						IWorldData world = Load.World(entity.world);
-
-						MasterLootGen.genAndDrop(victim, killer, world, entity);
-
-						int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);
-
-						NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(entity.dimension,
-								entity.posX, entity.posY, entity.posZ, 32);
-
-						Main.Network.sendToAllAround(new DamageNumberPackage(entity, Elements.Nature,
-								"+" + DamageEffect.FormatNumber(exp) + " Exp!"), point);
-					}
-
-				}
-			}
-
-		} catch (
-
-		Exception e) {
-			e.printStackTrace();
-		}
-
+	Exception e) {
+	    e.printStackTrace();
 	}
 
-	private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob) {
+    }
 
-		int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill());
+    private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob) {
 
-		exp = player.GiveExp((EntityPlayer) entity, exp);
+	int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill());
 
-		return exp;
+	exp = player.GiveExp((EntityPlayer) entity, exp);
 
-	}
+	return exp;
+
+    }
 
 }

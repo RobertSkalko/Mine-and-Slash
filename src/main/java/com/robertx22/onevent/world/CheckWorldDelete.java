@@ -23,6 +23,8 @@ public class CheckWorldDelete {
     @SubscribeEvent
     public static void onWorldUnload(WorldEvent.Unload event) {
 
+	ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
 	Runnable noteThread = new Runnable() {
 	    @Override
 	    public void run() {
@@ -31,6 +33,7 @@ public class CheckWorldDelete {
 		    if (!event.getWorld().isRemote) {
 			deleteIfSet(event.getWorld());
 		    }
+		    scheduler.shutdown();
 
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -38,8 +41,7 @@ public class CheckWorldDelete {
 	    }
 
 	};
-	ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-	scheduler.schedule(noteThread, 3, TimeUnit.SECONDS);
+	scheduler.schedule(noteThread, 8, TimeUnit.SECONDS);
 
     }
 
