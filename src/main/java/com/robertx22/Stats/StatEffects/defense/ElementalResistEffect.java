@@ -38,8 +38,6 @@ public class ElementalResistEffect implements IStatEffect {
 			pene = ipen.GetElementalPenetration();
 		    }
 
-		    Unit target = Effect.GetTarget();
-
 		    UsableStat resist = (UsableStat) stat;
 
 		    float EffectiveArmor = resist.GetUsableValue(Effect.targetData.getLevel(),

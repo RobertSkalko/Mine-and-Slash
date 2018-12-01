@@ -105,6 +105,7 @@ import com.robertx22.database.stat_mods.percent.DamagePercent;
 import com.robertx22.database.stat_mods.percent.DodgePercent;
 import com.robertx22.database.stat_mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stat_mods.percent.HealthPercent;
+import com.robertx22.database.stat_mods.percent.HealthRegenPercent;
 import com.robertx22.database.stat_mods.percent.LifeOnHitPercent;
 import com.robertx22.database.stat_mods.percent.LifestealPercent;
 import com.robertx22.database.stat_mods.percent.MajorCriticalDamagePercent;
@@ -225,6 +226,7 @@ public class StatMods {
 		put(new MajorManaRegenFlat().GUID(), new MajorManaRegenFlat());
 		put(new HealthFlat().GUID(), new HealthFlat());
 		put(new HealthPercent().GUID(), new HealthPercent());
+		put(new HealthRegenPercent().GUID(), new HealthRegenPercent());
 		put(new HealthRegenFlat().GUID(), new HealthRegenFlat());
 		put(new ManaRegenFlat().GUID(), new ManaRegenFlat());
 		put(new EnergyRegenFlat().GUID(), new EnergyRegenFlat());
