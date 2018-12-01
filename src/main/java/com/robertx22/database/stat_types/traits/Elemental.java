@@ -29,6 +29,6 @@ public class Elemental extends Trait implements IAffectsOtherStats {
 
     @Override
     public String Description() {
-	return "All elemental damage +5% multi";
+	return "All Spell elemental damage +5% multi";
     }
 }

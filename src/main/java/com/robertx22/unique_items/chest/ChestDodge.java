@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.MajorDodgeFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stat_mods.flat.weapon_damages.BowDamageFlat;
 import com.robertx22.database.stat_mods.percent.DodgePercent;
 import com.robertx22.database.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.stats.StatMod;
@@ -34,7 +35,8 @@ public class ChestDodge extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-	return Arrays.asList(new HealthFlat(), new MajorDodgeFlat(), new DodgePercent(), new CrippleLifeOnHitPercent());
+	return Arrays.asList(new HealthFlat(), new MajorDodgeFlat(), new DodgePercent(), new BowDamageFlat(),
+		new CrippleLifeOnHitPercent());
     }
 
     @Override

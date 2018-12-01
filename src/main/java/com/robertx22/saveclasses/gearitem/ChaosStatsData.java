@@ -16,45 +16,45 @@ import info.loenwind.autosave.annotations.Storable;
 @Storable
 public class ChaosStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
 
-	private static final long serialVersionUID = -8272316157157669116L;
+    private static final long serialVersionUID = -8272316157157669116L;
 
-	public ChaosStatsData() {
+    public ChaosStatsData() {
 
+    }
+
+    @Override
+    public List<String> GetTooltipString(GearItemData gear) {
+
+	List<String> list = new ArrayList<String>();
+
+	list.add("Chaos Stats: ");
+
+	for (StatModData data : this.GetAllStats(gear.level)) {
+
+	    list.add(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
 	}
 
-	@Override
-	public List<String> GetTooltipString(GearItemData gear) {
+	return list;
 
-		List<String> list = new ArrayList<String>();
+    }
 
-		list.add("Chaos Stats: ");
+    @Override
+    public void RerollFully(GearItemData gear) {
 
-		for (StatModData data : this.GetAllStats(gear.level)) {
+	this.Mods = new ArrayList<StatModData>();
 
-			list.add(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
-		}
+	StatMod mod = (StatMod) RandomUtils
+		.WeightedRandom(ListUtils.CollectionToList(gear.GetBaseGearType().ChaosStats()));
 
-		return list;
+	StatModData moddata = StatModData.NewRandom(gear, mod);
 
-	}
+	this.Mods.add(moddata);
 
-	@Override
-	public void RerollFully(GearItemData gear) {
+    }
 
-		this.Mods = new ArrayList<StatModData>();
+    @Override
+    public void RerollNumbers(GearItemData gear) {
 
-		StatMod mod = (StatMod) RandomUtils
-				.WeightedRandom(ListUtils.CollectionToList(gear.GetBaseGearType().ChaosStats()));
-
-		StatModData moddata = StatModData.NewRandom(gear, mod);
-
-		this.Mods.add(moddata);
-
-	}
-
-	@Override
-	public void RerollNumbers(GearItemData gear) {
-
-	}
+    }
 
 }

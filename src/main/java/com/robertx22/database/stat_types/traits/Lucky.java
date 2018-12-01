@@ -7,23 +7,23 @@ import com.robertx22.stats.Trait;
 
 public class Lucky extends Trait implements IAffectsOtherStats {
 
-	public static String GUID = "Lucky";
+    public static String GUID = "Lucky";
 
-	@Override
-	public String Name() {
-		return GUID;
-	}
+    @Override
+    public String Name() {
+	return GUID;
+    }
 
-	@Override
-	public void TryAffectOtherStats(Unit unit) {
+    @Override
+    public void TryAffectOtherStats(Unit unit) {
 
-		unit.MyStats.get(CriticalHit.GUID).Multi += 10;
+	unit.MyStats.get(CriticalHit.GUID).Multi += 10;
 
-	}
+    }
 
-	@Override
-	public String Description() {
-		return "+ 10% critical hit multi";
-	}
+    @Override
+    public String Description() {
+	return "+ 10% Critical hit multi";
+    }
 
 }

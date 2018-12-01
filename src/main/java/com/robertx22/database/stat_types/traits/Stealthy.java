@@ -23,7 +23,7 @@ public class Stealthy extends Trait implements IAffectsOtherStats {
 
     @Override
     public String Description() {
-	return "+ 10% dodge multi";
+	return "+ 10% Dodge multi";
     }
 
 }

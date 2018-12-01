@@ -19,6 +19,7 @@ import com.robertx22.unique_items.helmet.HelmetMana;
 import com.robertx22.unique_items.helmet.HelmetWater;
 import com.robertx22.unique_items.necklaces.NecklaceFire;
 import com.robertx22.unique_items.necklaces.NecklaceNature;
+import com.robertx22.unique_items.necklaces.NecklaceThunder;
 import com.robertx22.unique_items.necklaces.NecklaceWater;
 import com.robertx22.unique_items.pants.PantsThunder;
 import com.robertx22.unique_items.pants.PantsWater;
@@ -87,6 +88,7 @@ public class UniqueItemRegister {
 	new NecklaceNature();
 	new NecklaceWater();
 	new NecklaceFire();
+	new NecklaceThunder();
 
 	// staffs
 	new StaffFire();

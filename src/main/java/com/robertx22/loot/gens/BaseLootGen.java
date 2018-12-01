@@ -14,6 +14,10 @@ public abstract class BaseLootGen {
 
     public abstract float BaseChance();
 
+    public boolean hasLevelDistancePunishment() {
+	return true;
+    }
+
     protected abstract ItemStack generateOne();
 
     public List<ItemStack> generate() {
@@ -36,7 +40,9 @@ public abstract class BaseLootGen {
 
 	float chance = BaseChance();
 
-	chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);
+	if (hasLevelDistancePunishment()) {
+	    chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);
+	}
 	chance = LootUtils.applyLootMultipliers(chance, mob, victim, world);
 
 	amount = LootUtils.WhileRoll(chance);

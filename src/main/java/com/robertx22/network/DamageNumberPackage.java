@@ -1,5 +1,6 @@
 package com.robertx22.network;
 
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 
@@ -19,6 +20,7 @@ public class DamageNumberPackage implements IMessage {
     public double y;
     public double z;
     public float height;
+    public boolean isExp;
 
     public DamageNumberPackage() {
 
@@ -43,6 +45,7 @@ public class DamageNumberPackage implements IMessage {
 	z = tag.getDouble("z");
 	height = tag.getFloat("height");
 	string = tag.getString("string");
+	isExp = tag.getBoolean("isExp");
 
     }
 
@@ -55,6 +58,7 @@ public class DamageNumberPackage implements IMessage {
 	tag.setDouble("z", z);
 	tag.setFloat("height", height);
 	tag.setString("string", string);
+	tag.setBoolean("isExp", isExp);
 	ByteBufUtils.writeTag(buf, tag);
 
     }
@@ -69,8 +73,12 @@ public class DamageNumberPackage implements IMessage {
 		public void run() {
 		    try {
 
-			OnDisplayDamage.displayParticle(message);
+			if (message.isExp && ModConfig.Client.SHOW_FLOATING_EXP) {
+			    OnDisplayDamage.displayParticle(message);
 
+			} else if (message.isExp == false && ModConfig.Client.RENDER_FLOATING_DAMAGE) {
+			    OnDisplayDamage.displayParticle(message);
+			}
 		    } catch (Exception e) {
 			e.printStackTrace();
 		    }

@@ -7,22 +7,22 @@ import com.robertx22.stats.Trait;
 
 public class EarthAtronach extends Trait implements IAffectsOtherStats {
 
-	public static String GUID = "Earth Atronach";
+    public static String GUID = "Earth Atronach";
 
-	@Override
-	public String Name() {
-		return GUID;
-	}
+    @Override
+    public String Name() {
+	return GUID;
+    }
 
-	@Override
-	public void TryAffectOtherStats(Unit unit) {
+    @Override
+    public void TryAffectOtherStats(Unit unit) {
 
-		unit.MyStats.get(SpellNatureDamage.GUID).Multi += 15;
+	unit.MyStats.get(SpellNatureDamage.GUID).Multi += 15;
 
-	}
+    }
 
-	@Override
-	public String Description() {
-		return "Nature Damage +15% multi";
-	}
+    @Override
+    public String Description() {
+	return "Spell Nature Damage +15% multi";
+    }
 }

@@ -16,10 +16,10 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod.EventBusSubscriber
 public class OnMobDeathDrops {
@@ -54,11 +54,11 @@ public class OnMobDeathDrops {
 
 			int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);
 
-			NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(entity.dimension,
-				entity.posX, entity.posY, entity.posZ, 32);
+			DamageNumberPackage packet = new DamageNumberPackage(entity, Elements.Nature,
+				"+" + DamageEffect.FormatNumber(exp) + " Exp!");
+			packet.isExp = true;
 
-			Main.Network.sendToAllAround(new DamageNumberPackage(entity, Elements.Nature,
-				"+" + DamageEffect.FormatNumber(exp) + " Exp!"), point);
+			Main.Network.sendTo(packet, (EntityPlayerMP) event.getSource().getTrueSource());
 		    }
 
 		}

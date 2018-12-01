@@ -22,6 +22,6 @@ public class Golem extends Trait implements IAffectsOtherStats {
 
     @Override
     public String Description() {
-	return "+ 10% health multi";
+	return "+ 10% Health multi";
     }
 }

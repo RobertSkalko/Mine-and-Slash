@@ -21,9 +21,9 @@ import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class DamageEffect extends EffectData
 	implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
@@ -69,12 +69,10 @@ public class DamageEffect extends EffectData
 	    LogCombat();
 	}
 
-	if (ModConfig.Client.RENDER_FLOATING_DAMAGE && (int) Number > 0) {
-	    NetworkRegistry.TargetPoint point = new NetworkRegistry.TargetPoint(Target.dimension, Target.posX,
-		    Target.posY, Target.posZ, 32);
+	if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
 
-	    Main.Network.sendToAllAround(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
-		    point);
+	    Main.Network.sendTo(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
+		    (EntityPlayerMP) Source);
 	}
 
     }

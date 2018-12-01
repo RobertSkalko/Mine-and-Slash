@@ -34,6 +34,10 @@ public class ModConfig {
 	@Config.Comment("plays a dragon sound when world boss spawns")
 	public boolean ANNOUNCE_WORLD_BOSS_SPAWN = false;
 
+	@Config.Name("Show Floating Exp")
+	@Config.Comment("Shows how much exp you got from a mob kill. Can get annoying when you can't see your damage i assume.")
+	public boolean SHOW_FLOATING_EXP = false;
+
 	@Config.Name("Player Gui Overlay Type")
 	@Config.Comment("Choose different Gui styles for hp mana etc overlay")
 	public Player_GUIs PLAYER_GUI_TYPE = Player_GUIs.Bottom_Middle_Corners;

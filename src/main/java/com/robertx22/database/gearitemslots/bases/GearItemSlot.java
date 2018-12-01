@@ -16,59 +16,59 @@ import net.minecraft.item.ItemStack;
 
 public abstract class GearItemSlot implements IWeighted {
 
-	public abstract String Name();
+    public abstract String Name();
 
-	public abstract List<Suffix> PossibleSuffixes();
+    public abstract List<Suffix> PossibleSuffixes();
 
-	public abstract List<Prefix> PossiblePrefixes();
+    public abstract List<Prefix> PossiblePrefixes();
 
-	public abstract List<StatMod> PrimaryStats();
+    public abstract List<StatMod> PrimaryStats();
 
-	public List<StatMod> slotTypeStats() {
-		return new ArrayList<StatMod>();
+    public List<StatMod> slotTypeStats() {
+	return new ArrayList<StatMod>();
+    }
+
+    public abstract List<StatMod> PossibleSecondaryStats();
+
+    public abstract Item DefaultItem();
+
+    public abstract HashMap<Integer, Item> ItemsForRarities();
+
+    public int Weight() {
+	return 1000;
+    }
+
+    public ItemStack GetStackForRarity(int rarityNum) {
+
+	if (ItemsForRarities().containsKey(rarityNum)) {
+	    return new ItemStack(ItemsForRarities().get(rarityNum));
 	}
 
-	public abstract List<StatMod> PossibleSecondaryStats();
+	return new ItemStack(DefaultItem());
 
-	public abstract Item DefaultItem();
+    }
 
-	public abstract HashMap<Integer, Item> ItemsForRarities();
+    public Item GetItemForRarity(int rarityNum) {
 
-	public int Weight() {
-		return 1000;
+	if (ItemsForRarities().containsKey(rarityNum)) {
+	    return ItemsForRarities().get(rarityNum);
 	}
 
-	public ItemStack GetStackForRarity(int rarityNum) {
+	return DefaultItem();
 
-		if (ItemsForRarities().containsKey(rarityNum)) {
-			return new ItemStack(ItemsForRarities().get(rarityNum));
-		}
+    }
 
-		return new ItemStack(DefaultItem());
+    public List<StatMod> ChaosStats() {
 
+	List<StatMod> list = new ArrayList<StatMod>();
+
+	for (StatMod mod : StatMods.All.values()) {
+	    if (mod instanceof BaseTraitMod) {
+		list.add(mod);
+	    }
 	}
 
-	public Item GetItemForRarity(int rarityNum) {
-
-		if (ItemsForRarities().containsKey(rarityNum)) {
-			return ItemsForRarities().get(rarityNum);
-		}
-
-		return DefaultItem();
-
-	}
-
-	public List<StatMod> ChaosStats() {
-
-		List<StatMod> list = new ArrayList<StatMod>();
-
-		for (StatMod mod : StatMods.All.values()) {
-			if (mod instanceof BaseTraitMod) {
-				list.add(mod);
-			}
-		}
-
-		return list;
-	}
+	return list;
+    }
 
 }
