@@ -11,7 +11,7 @@ public class ManaRegen extends Stat {
 	}
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

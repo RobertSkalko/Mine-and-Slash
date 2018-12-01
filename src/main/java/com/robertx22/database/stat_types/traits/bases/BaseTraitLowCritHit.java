@@ -3,10 +3,10 @@ package com.robertx22.database.stat_types.traits.bases;
 import com.robertx22.database.stat_types.offense.CriticalHit;
 import com.robertx22.saveclasses.Unit;
 
-public abstract class BaseTraitLowCritHit extends TraitWithRequirement {
+public abstract class BaseTraitLowCritHit extends ConditionalTrait {
 
     @Override
-    public boolean requirement(Unit unit) {
+    public boolean condition(Unit unit) {
 
 	return unit.MyStats.get(CriticalHit.GUID).BaseFlat < 10;
 

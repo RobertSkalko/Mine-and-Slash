@@ -89,6 +89,10 @@ import com.robertx22.database.stat_types.traits.ele_lords.LordOfBlizzardsTrait;
 import com.robertx22.database.stat_types.traits.ele_lords.LordOfEarthquakesTrait;
 import com.robertx22.database.stat_types.traits.ele_lords.LordOfThunderstormsTrait;
 import com.robertx22.database.stat_types.traits.ele_lords.LordOfVolcanoesTrait;
+import com.robertx22.database.stat_types.traits.low_crit_hit.LowCritHitAddDodge;
+import com.robertx22.database.stat_types.traits.low_crit_hit.LowCritHitAddHealth;
+import com.robertx22.database.stat_types.traits.low_dodge.LowDodgeAddArmor;
+import com.robertx22.database.stat_types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.stats.Stat;
 
 public class Stats {
@@ -96,6 +100,13 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
 	{
 	    {
+
+		// conditional traits
+
+		put(new LowDodgeAddArmor().GUID(), new LowDodgeAddArmor());
+		put(new LowDodgeAddCritHit().GUID(), new LowDodgeAddCritHit());
+		put(new LowCritHitAddDodge().GUID(), new LowCritHitAddDodge());
+		put(new LowCritHitAddHealth().GUID(), new LowCritHitAddHealth());
 
 		// lord traits
 		put(new LordOfVolcanoesTrait().GUID(), new LordOfVolcanoesTrait());
@@ -186,39 +197,39 @@ public class Stats {
 		// traits
 
 		// elemental conversions
-		put(new WaterToThunderConversion().Name(), new WaterToThunderConversion());
-		put(new WaterToNatureConversion().Name(), new WaterToNatureConversion());
-		put(new WaterToFireConversion().Name(), new WaterToFireConversion());
+		put(new WaterToThunderConversion().Guid(), new WaterToThunderConversion());
+		put(new WaterToNatureConversion().Guid(), new WaterToNatureConversion());
+		put(new WaterToFireConversion().Guid(), new WaterToFireConversion());
 
-		put(new FireToThunderConversion().Name(), new FireToThunderConversion());
-		put(new FireToNatureConversion().Name(), new FireToNatureConversion());
-		put(new FireToWaterConversion().Name(), new FireToWaterConversion());
+		put(new FireToThunderConversion().Guid(), new FireToThunderConversion());
+		put(new FireToNatureConversion().Guid(), new FireToNatureConversion());
+		put(new FireToWaterConversion().Guid(), new FireToWaterConversion());
 
-		put(new ThunderToWaterConversion().Name(), new ThunderToWaterConversion());
-		put(new ThunderToNatureConversion().Name(), new ThunderToNatureConversion());
-		put(new ThunderToFireConversion().Name(), new ThunderToFireConversion());
+		put(new ThunderToWaterConversion().Guid(), new ThunderToWaterConversion());
+		put(new ThunderToNatureConversion().Guid(), new ThunderToNatureConversion());
+		put(new ThunderToFireConversion().Guid(), new ThunderToFireConversion());
 
-		put(new NatureToThunderConversion().Name(), new NatureToThunderConversion());
-		put(new NatureToWaterConversion().Name(), new NatureToWaterConversion());
-		put(new NatureToFireConversion().Name(), new NatureToFireConversion());
+		put(new NatureToThunderConversion().Guid(), new NatureToThunderConversion());
+		put(new NatureToWaterConversion().Guid(), new NatureToWaterConversion());
+		put(new NatureToFireConversion().Guid(), new NatureToFireConversion());
 		// elemental conversions
 
 		// elemental Transfers
-		put(new WaterToThunderTransfer().Name(), new WaterToThunderTransfer());
-		put(new WaterToNatureTransfer().Name(), new WaterToNatureTransfer());
-		put(new WaterToFireTransfer().Name(), new WaterToFireTransfer());
+		put(new WaterToThunderTransfer().Guid(), new WaterToThunderTransfer());
+		put(new WaterToNatureTransfer().Guid(), new WaterToNatureTransfer());
+		put(new WaterToFireTransfer().Guid(), new WaterToFireTransfer());
 
-		put(new FireToThunderTransfer().Name(), new FireToThunderTransfer());
-		put(new FireToNatureTransfer().Name(), new FireToNatureTransfer());
-		put(new FireToWaterTransfer().Name(), new FireToWaterTransfer());
+		put(new FireToThunderTransfer().Guid(), new FireToThunderTransfer());
+		put(new FireToNatureTransfer().Guid(), new FireToNatureTransfer());
+		put(new FireToWaterTransfer().Guid(), new FireToWaterTransfer());
 
-		put(new ThunderToWaterTransfer().Name(), new ThunderToWaterTransfer());
-		put(new ThunderToNatureTransfer().Name(), new ThunderToNatureTransfer());
-		put(new ThunderToFireTransfer().Name(), new ThunderToFireTransfer());
+		put(new ThunderToWaterTransfer().Guid(), new ThunderToWaterTransfer());
+		put(new ThunderToNatureTransfer().Guid(), new ThunderToNatureTransfer());
+		put(new ThunderToFireTransfer().Guid(), new ThunderToFireTransfer());
 
-		put(new NatureToThunderTransfer().Name(), new NatureToThunderTransfer());
-		put(new NatureToWaterTransfer().Name(), new NatureToWaterTransfer());
-		put(new NatureToFireTransfer().Name(), new NatureToFireTransfer());
+		put(new NatureToThunderTransfer().Guid(), new NatureToThunderTransfer());
+		put(new NatureToWaterTransfer().Guid(), new NatureToWaterTransfer());
+		put(new NatureToFireTransfer().Guid(), new NatureToFireTransfer());
 		// elemental Transfers
 
 	    }

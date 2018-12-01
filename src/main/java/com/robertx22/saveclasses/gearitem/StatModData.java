@@ -18,151 +18,151 @@ import net.minecraft.util.text.TextFormatting;
 @Storable
 public class StatModData implements ITooltipString {
 
-	public StatModData() {
+    public StatModData() {
 
+    }
+
+    public static StatModData NewRandom(GearItemData gear, StatMod mod) {
+
+	StatModData data = new StatModData();
+
+	data.baseModName = mod.GUID();
+	data.type = mod.Type();
+	data.percent = StatGen.GenPercent(gear.GetRarity());
+
+	return data;
+    }
+
+    public static StatModData NewStatusEffect(int percent, StatMod mod) {
+
+	StatModData data = new StatModData();
+
+	data.baseModName = mod.GUID();
+	data.type = mod.Type();
+	data.percent = percent;
+
+	return data;
+    }
+
+    public static StatModData Load(StatMod mod, int percent) {
+
+	StatModData data = new StatModData();
+
+	data.baseModName = mod.GUID();
+	data.type = mod.Type();
+	data.percent = percent;
+
+	return data;
+    }
+
+    @Store
+    public StatTypes type;
+
+    @Store
+    public int percent;
+
+    @Store
+    public String baseModName;
+
+    public StatMod GetBaseMod() {
+	return StatMods.All.get(baseModName);
+    }
+
+    public int GetActualVal(int level) {
+
+	StatMod mod = GetBaseMod();
+
+	Stat stat = mod.GetBaseStat();
+
+	int val = mod.GetValueByPercent(percent);
+
+	if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
+	    val *= level;
 	}
 
-	public static StatModData NewRandom(GearItemData gear, StatMod mod) {
+	return val;
 
-		StatModData data = new StatModData();
+    }
 
-		data.baseModName = mod.GUID();
-		data.type = mod.Type();
-		data.percent = StatGen.GenPercent(gear.GetRarity());
+    public static String STAT_PREFIX = " * ";
 
-		return data;
+    public String NameText(boolean IsSet) {
+	StatMod mod = GetBaseMod();
+	Stat basestat = mod.GetBaseStat();
+
+	String str = basestat.Name();
+
+	if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
+	    str += " Percent";
 	}
 
-	public static StatModData NewStatusEffect(int percent, StatMod mod) {
-
-		StatModData data = new StatModData();
-
-		data.baseModName = mod.GUID();
-		data.type = mod.Type();
-		data.percent = percent;
-
-		return data;
+	if (IsSet) {
+	    return TextFormatting.RED + STAT_PREFIX + str + ": ";
+	} else {
+	    return TextFormatting.RED + str + ": ";
 	}
+    }
 
-	public static StatModData Load(StatMod mod, int percent) {
+    public String TraitText() {
+	StatMod mod = GetBaseMod();
+	Stat basestat = mod.GetBaseStat();
+	return TextFormatting.GREEN + " * " + basestat.Name();
+    }
 
-		StatModData data = new StatModData();
+    public String NameAndValueText(int level, boolean IsSet) {
 
-		data.baseModName = mod.GUID();
-		data.type = mod.Type();
-		data.percent = percent;
+	int val = this.GetActualVal(level);
 
-		return data;
-	}
+	String minusplus = val > 0 ? "+" : "";
 
-	@Store
-	public StatTypes type;
+	return NameText(IsSet) + minusplus + val;
+    }
 
-	@Store
-	public int percent;
+    @Override
+    public String GetTooltipString(MinMax minmax, int level, boolean IsNotSet) {
+	StatMod mod = GetBaseMod();
 
-	@Store
-	public String baseModName;
+	Stat basestat = mod.GetBaseStat();
 
-	public StatMod GetBaseMod() {
-		return StatMods.All.get(baseModName);
-	}
+	String text = "";
 
-	public int GetActualVal(int level) {
+	if (!(basestat instanceof Trait)) {
 
-		StatMod mod = GetBaseMod();
+	    text = NameAndValueText(level, IsNotSet);
 
-		Stat stat = mod.GetBaseStat();
+	    if (mod.Type() == StatTypes.Flat) {
 
-		int val = mod.GetValueByPercent(percent);
-
-		if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
-			val *= level;
+		if (basestat.IsPercent()) {
+		    text += "%";
 		}
 
-		return val;
+	    } else if (mod.Type() == StatTypes.Percent) {
+		text += "%";
+	    } else {
+		text += "% Multi";
+	    }
 
+	    if (GuiScreen.isShiftKeyDown() && IsNotSet) {
+
+		StatModData min = StatModData.Load(this.GetBaseMod(), minmax.Min);
+		StatModData max = StatModData.Load(this.GetBaseMod(), minmax.Max);
+
+		text += TextFormatting.BLUE + " (" + min.GetActualVal(level) + " - " + max.GetActualVal(level) + ")";
+	    }
+
+	} else {
+
+	    text = TraitText();
+
+	    if (GuiScreen.isShiftKeyDown()) {
+
+		Trait trait = (Trait) basestat;
+		text += ": " + TextFormatting.GRAY + trait.Description();
+
+	    }
 	}
 
-	public static String STAT_PREFIX = " * ";
-
-	public String NameText(boolean IsSet) {
-		StatMod mod = GetBaseMod();
-		Stat basestat = mod.GetBaseStat();
-
-		String str = basestat.Name();
-
-		if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
-			str += " Percent";
-		}
-
-		if (IsSet) {
-			return TextFormatting.RED + STAT_PREFIX + str + ": ";
-		} else {
-			return TextFormatting.RED + str + ": ";
-		}
-	}
-
-	public String TraitText() {
-		StatMod mod = GetBaseMod();
-		Stat basestat = mod.GetBaseStat();
-		return TextFormatting.GREEN + " * " + basestat.Name();
-	}
-
-	public String NameAndValueText(int level, boolean IsSet) {
-
-		int val = this.GetActualVal(level);
-
-		String minusplus = val > 0 ? "+" : "";
-
-		return NameText(IsSet) + minusplus + val;
-	}
-
-	@Override
-	public String GetTooltipString(MinMax minmax, int level, boolean IsNotSet) {
-		StatMod mod = GetBaseMod();
-
-		Stat basestat = mod.GetBaseStat();
-
-		String text = "";
-
-		if (!(basestat instanceof Trait)) {
-
-			text = NameAndValueText(level, IsNotSet);
-
-			if (mod.Type() == StatTypes.Flat) {
-
-				if (basestat.IsPercent()) {
-					text += "%";
-				}
-
-			} else if (mod.Type() == StatTypes.Percent) {
-				text += "%";
-			} else {
-				text += "% Multi";
-			}
-
-			if (GuiScreen.isShiftKeyDown() && IsNotSet) {
-
-				StatModData min = StatModData.Load(this.GetBaseMod(), minmax.Min);
-				StatModData max = StatModData.Load(this.GetBaseMod(), minmax.Max);
-
-				text += TextFormatting.BLUE + " (" + min.GetActualVal(level) + " - " + max.GetActualVal(level) + ")";
-			}
-
-		} else {
-
-			text = TraitText();
-
-			if (GuiScreen.isShiftKeyDown()) {
-
-				Trait trait = (Trait) basestat;
-				text += ": " + TextFormatting.GRAY + trait.Description();
-
-			}
-		}
-
-		return text;
-	}
+	return text;
+    }
 
 }

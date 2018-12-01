@@ -13,7 +13,7 @@ import com.robertx22.stats.TransferMethod;
 public class FireToThunderTransfer extends BaseTransferMod {
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Fire To Thunder Transfer";
     }
 

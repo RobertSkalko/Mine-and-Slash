@@ -80,7 +80,7 @@ public class SpellItemData implements Serializable {
 
     public String GetScalingDesc() {
 
-	return "Scales with: " + GetSpell().ScalingValue().GetStat().Name() + " by : " + (int) (GetScalingValue() * 100)
+	return "Scales with: " + GetSpell().ScalingValue().GetStat().Guid() + " by : " + (int) (GetScalingValue() * 100)
 		+ "%" + " (" + MinScaling() + "-" + MaxScaling() + ")";
 
     }

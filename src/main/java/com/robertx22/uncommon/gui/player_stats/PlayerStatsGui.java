@@ -217,7 +217,7 @@ public class PlayerStatsGui extends Show {
 			return null;
 		}
 
-		String str = data.GetStat().Name() + " " + String.format("%.1f", data.Value);
+		String str = data.GetStat().Guid() + " " + String.format("%.1f", data.Value);
 
 		if (data.GetStat().IsPercent()) {
 			str += "%";

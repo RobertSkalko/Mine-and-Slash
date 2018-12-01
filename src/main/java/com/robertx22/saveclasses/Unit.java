@@ -72,7 +72,7 @@ public class Unit {
 	} else {
 	    // adds new stats
 	    for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
-		if (!MyStats.containsKey(stat.Name())) {
+		if (!MyStats.containsKey(stat.Guid())) {
 		    MyStats.put(stat.GUID(), new StatData(stat));
 		}
 	    }
@@ -123,27 +123,27 @@ public class Unit {
 
     // Stat shortcuts
     public Health health() {
-	return (Health) MyStats.get(new Health().Name()).GetStat();
+	return (Health) MyStats.get(new Health().Guid()).GetStat();
     }
 
     public Mana mana() {
-	return (Mana) MyStats.get(new Mana().Name()).GetStat();
+	return (Mana) MyStats.get(new Mana().Guid()).GetStat();
     }
 
     public Energy energy() {
-	return (Energy) MyStats.get(new Energy().Name()).GetStat();
+	return (Energy) MyStats.get(new Energy().Guid()).GetStat();
     }
 
     public StatData healthData() {
-	return MyStats.get(new Health().Name());
+	return MyStats.get(new Health().Guid());
     }
 
     public StatData manaData() {
-	return MyStats.get(new Mana().Name());
+	return MyStats.get(new Mana().Guid());
     }
 
     public StatData energyData() {
-	return MyStats.get(new Energy().Name());
+	return MyStats.get(new Energy().Guid());
     }
 
     public void SpendMana(int i) {
@@ -231,11 +231,10 @@ public class Unit {
 	if (world != null) {
 	    tier = world.getTier();
 	}
-	UnitData data = entity.getCapability(EntityData.Data, null);
 
 	ClearStats();
-	MobStatUtils.AddMobcStats(this, data.getLevel());
-	MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
+	MobStatUtils.AddMobcStats(this, endata.getLevel());
+	MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(endata.getRarity()));
 	CommonStatUtils.AddStatusEffectStats(this, level);
 	CommonStatUtils.AddMapAffixStats(this, level);
 	MobStatUtils.AddMobTierStats(this, tier);

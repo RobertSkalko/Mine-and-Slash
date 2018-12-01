@@ -11,7 +11,7 @@ public class StaffDamage extends WeaponDamageStat {
     }
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Staff Damage";
     }
 

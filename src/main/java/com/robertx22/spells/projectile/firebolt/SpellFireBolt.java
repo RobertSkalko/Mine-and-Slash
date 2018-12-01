@@ -40,7 +40,7 @@ public class SpellFireBolt extends BaseBolt {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new SpellFireDamage().Name(), 0.5F);
+		return new EffectCalculation(new SpellFireDamage().Guid(), 0.5F);
 	}
 
 	@Override

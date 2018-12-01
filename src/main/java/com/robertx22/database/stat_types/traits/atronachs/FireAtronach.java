@@ -10,7 +10,7 @@ public class FireAtronach extends Trait implements IAffectsOtherStats {
     public static String GUID = "Fire Atronach";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 

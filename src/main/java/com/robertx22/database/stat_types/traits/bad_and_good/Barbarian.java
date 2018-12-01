@@ -10,7 +10,7 @@ public class Barbarian extends Trait implements IAffectsOtherStats {
     public static String GUID = "Barbarian";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 

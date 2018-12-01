@@ -9,7 +9,7 @@ public class AttackWaterDamage extends BaseElementalAttackDamage {
 	}
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

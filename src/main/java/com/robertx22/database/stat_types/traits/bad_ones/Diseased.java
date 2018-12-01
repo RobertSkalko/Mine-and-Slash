@@ -10,7 +10,7 @@ public class Diseased extends Trait implements IAffectsOtherStats {
 	public static String GUID = "Diseased";
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

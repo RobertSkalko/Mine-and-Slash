@@ -10,7 +10,7 @@ public class Stealthy extends Trait implements IAffectsOtherStats {
     public static String GUID = "Stealthy";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 
@@ -24,6 +24,11 @@ public class Stealthy extends Trait implements IAffectsOtherStats {
     @Override
     public String Description() {
 	return "+ 10% Dodge multi";
+    }
+
+    @Override
+    public String Name() {
+	return "Stealthy";
     }
 
 }

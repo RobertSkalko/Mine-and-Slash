@@ -6,7 +6,7 @@ public class AllNatureDamage extends AllEleDamageBase {
 	public static String GUID = "All Nature Damage";
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

@@ -9,7 +9,7 @@ public class ThunderResist extends BaseEleResist {
 	}
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

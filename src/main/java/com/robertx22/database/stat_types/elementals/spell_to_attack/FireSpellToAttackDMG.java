@@ -12,7 +12,7 @@ public class FireSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 

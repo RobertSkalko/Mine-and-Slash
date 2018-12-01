@@ -13,7 +13,7 @@ import com.robertx22.stats.TransferMethod;
 public class FireToWaterTransfer extends BaseTransferMod {
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Fire To Water Transfer";
     }
 

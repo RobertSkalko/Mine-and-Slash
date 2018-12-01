@@ -6,7 +6,7 @@ public class AllThunderDamage extends AllEleDamageBase {
 	public static String GUID = "All Thunder Damage";
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

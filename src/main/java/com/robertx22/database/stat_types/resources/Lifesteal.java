@@ -21,7 +21,7 @@ public class Lifesteal extends Stat implements IStatEffects {
 	}
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

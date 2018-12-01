@@ -22,9 +22,9 @@ public class CommonStatUtils {
 	for (StatusEffectData status : unit.statusEffects.values()) {
 	    List<StatModData> datas = status.GetAllStats(level);
 	    for (StatModData data : datas) {
-		StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
+		StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
 		if (stat == null) {
-		    System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+		    System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Guid());
 		} else {
 		    stat.Add(data, level);
 
@@ -65,9 +65,9 @@ public class CommonStatUtils {
 	for (MapAffixData status : unit.mapAffixes.values()) {
 	    List<StatModData> datas = status.GetAllStats();
 	    for (StatModData data : datas) {
-		StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
+		StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
 		if (stat == null) {
-		    System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+		    System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Guid());
 		} else {
 		    stat.Add(data, level);
 

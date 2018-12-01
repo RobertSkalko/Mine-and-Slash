@@ -10,7 +10,7 @@ public class Crippled extends Trait implements IAffectsOtherStats {
     public static String GUID = "Crippled";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 

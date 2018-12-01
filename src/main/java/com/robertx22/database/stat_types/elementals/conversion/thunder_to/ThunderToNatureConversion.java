@@ -13,7 +13,7 @@ import com.robertx22.stats.ConversionMethod;
 public class ThunderToNatureConversion extends BaseConversionMod {
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Thunder To Nature Conversion";
     }
 

@@ -42,7 +42,7 @@ public class SpellFrostExplosion extends BaseBoltAOE {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new SpellWaterDamage().Name(), 0.25F);
+		return new EffectCalculation(new SpellWaterDamage().Guid(), 0.25F);
 	}
 
 	@Override

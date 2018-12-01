@@ -12,15 +12,21 @@ import com.robertx22.unique_items.bracelets.BraceletWater;
 import com.robertx22.unique_items.chest.ChestDodge;
 import com.robertx22.unique_items.chest.ChestFire;
 import com.robertx22.unique_items.chest.ChestNature;
+import com.robertx22.unique_items.chest.ChestThunder;
 import com.robertx22.unique_items.chest.ChestWater;
 import com.robertx22.unique_items.hammers.HammerPhysical;
 import com.robertx22.unique_items.hammers.HammerThunder;
+import com.robertx22.unique_items.helmet.HelmetFire;
 import com.robertx22.unique_items.helmet.HelmetMana;
+import com.robertx22.unique_items.helmet.HelmetNature;
+import com.robertx22.unique_items.helmet.HelmetThunder;
 import com.robertx22.unique_items.helmet.HelmetWater;
 import com.robertx22.unique_items.necklaces.NecklaceFire;
 import com.robertx22.unique_items.necklaces.NecklaceNature;
 import com.robertx22.unique_items.necklaces.NecklaceThunder;
 import com.robertx22.unique_items.necklaces.NecklaceWater;
+import com.robertx22.unique_items.pants.PantsFire;
+import com.robertx22.unique_items.pants.PantsNature;
 import com.robertx22.unique_items.pants.PantsThunder;
 import com.robertx22.unique_items.pants.PantsWater;
 import com.robertx22.unique_items.rings.RingCrit;
@@ -43,16 +49,22 @@ public class UniqueItemRegister {
 	// pants
 	new PantsThunder();
 	new PantsWater();
+	new PantsNature();
+	new PantsFire();
 
 	// helmet
 	new HelmetWater();
 	new HelmetMana();
+	new HelmetFire();
+	new HelmetThunder();
+	new HelmetNature();
 
 	// chest
 	new ChestFire();
 	new ChestWater();
 	new ChestDodge();
 	new ChestNature();
+	new ChestThunder();
 
 	// boots
 	new BootsNature();

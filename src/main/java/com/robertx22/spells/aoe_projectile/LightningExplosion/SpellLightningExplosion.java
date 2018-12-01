@@ -42,7 +42,7 @@ public class SpellLightningExplosion extends BaseBoltAOE {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new SpellThunderDamage().Name(), 0.25F);
+		return new EffectCalculation(new SpellThunderDamage().Guid(), 0.25F);
 	}
 
 	@Override

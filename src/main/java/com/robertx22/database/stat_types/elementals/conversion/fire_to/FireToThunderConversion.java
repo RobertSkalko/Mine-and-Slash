@@ -13,7 +13,7 @@ import com.robertx22.stats.ConversionMethod;
 public class FireToThunderConversion extends BaseConversionMod {
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Fire To Thunder Conversion";
     }
 

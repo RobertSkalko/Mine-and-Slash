@@ -43,7 +43,7 @@ public class SpellAcidExplosion extends BaseBoltAOE {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new SpellNatureDamage().Name(), 0.25F);
+		return new EffectCalculation(new SpellNatureDamage().Guid(), 0.25F);
 	}
 
 	@Override

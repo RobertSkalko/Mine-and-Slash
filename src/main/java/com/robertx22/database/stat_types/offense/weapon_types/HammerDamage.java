@@ -11,7 +11,7 @@ public class HammerDamage extends WeaponDamageStat {
     }
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Hammer Damage";
     }
 

@@ -10,7 +10,7 @@ public class EarthAtronach extends Trait implements IAffectsOtherStats {
     public static String GUID = "Earth Atronach";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 

@@ -12,70 +12,70 @@ import info.loenwind.autosave.annotations.Store;
 @Storable
 public class StatData {
 
-	public StatData() {
+    public StatData() {
 
+    }
+
+    public StatData(Stat stat) {
+	this.Name = stat.GUID();
+    }
+
+    public Stat GetStat() {
+	if (Stats.All.containsKey(Name)) {
+	    return Stats.All.get(Name);
 	}
 
-	public StatData(Stat stat) {
-		this.Name = stat.GUID();
+	System.out.println(
+		"No such stat, this is probably a legacy item and the stat has been renamed or removed: " + Name);
+
+	return Stats.All.get(UnknownStat.GUID);
+    }
+
+    @Store
+    public String Name;
+
+    public int BaseFlat = 0;
+
+    public float Flat = 0;
+
+    public float Percent = 0;
+
+    public float Multi = 0;
+
+    @Store
+    public float Value = 0;
+
+    @Store
+    public float CurrentValue = 0;
+
+    public void Clear() {
+	Flat = 0;
+	Percent = 0;
+	Multi = 0;
+    }
+
+    public void Add(StatModData mod, int level) {
+
+	if (mod.type == StatTypes.Flat) {
+	    Flat += mod.GetActualVal(level);
+	} else if (mod.type == StatTypes.Percent) {
+	    Percent += mod.GetActualVal(level);
+	} else if (mod.type == StatTypes.Multi) {
+	    Multi += mod.GetActualVal(level);
 	}
+    }
 
-	public Stat GetStat() {
-		if (Stats.All.containsKey(Name)) {
-			return Stats.All.get(Name);
-		}
-
-		System.out.println(
-				"No such stat, this is probably a legacy item and the stat has been renamed or removed: " + Name);
-
-		return Stats.All.get(UnknownStat.GUID);
+    public void Increase(int i) {
+	CurrentValue += i;
+	if (CurrentValue > Value) {
+	    CurrentValue = (int) Value;
 	}
+    }
 
-	@Store
-	public String Name;
-
-	public int BaseFlat = 0;
-
-	public float Flat = 0;
-
-	public float Percent = 0;
-
-	public float Multi = 0;
-
-	@Store
-	public float Value = 0;
-
-	@Store
-	public float CurrentValue = 0;
-
-	public void Clear() {
-		Flat = 0;
-		Percent = 0;
-		Multi = 0;
+    public void Decrease(int i) {
+	CurrentValue -= i;
+	if (CurrentValue < 0) {
+	    CurrentValue = 0;
 	}
-
-	public void Add(StatModData mod, int level) {
-
-		if (mod.type == StatTypes.Flat) {
-			Flat += mod.GetActualVal(level);
-		} else if (mod.type == StatTypes.Percent) {
-			Percent += mod.GetActualVal(level);
-		} else if (mod.type == StatTypes.Multi) {
-			Multi += mod.GetActualVal(level);
-		}
-	}
-
-	public void Increase(int i) {
-		CurrentValue += i;
-		if (CurrentValue > Value) {
-			CurrentValue = (int) Value;
-		}
-	}
-
-	public void Decrease(int i) {
-		CurrentValue -= i;
-		if (CurrentValue < 0) {
-			CurrentValue = 0;
-		}
-	}
+    }
 }

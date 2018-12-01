@@ -42,7 +42,7 @@ public class SpellFrostBolt extends BaseBolt {
 
 	@Override
 	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new SpellWaterDamage().Name(), 0.5F);
+		return new EffectCalculation(new SpellWaterDamage().Guid(), 0.5F);
 	}
 
 	@Override

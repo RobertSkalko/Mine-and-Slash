@@ -9,7 +9,7 @@ public class LordOfBlizzardsTrait extends Trait implements IAffectsOtherStats {
 
     @Override
     public void TryAffectOtherStats(Unit unit) {
-	unit.MyStats.get(new AllWaterDamage().Name()).Flat += 20;
+	unit.MyStats.get(new AllWaterDamage().Guid()).Flat += 20;
     }
 
     @Override
@@ -18,7 +18,13 @@ public class LordOfBlizzardsTrait extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Lord Of Blizzards";
     }
+
+    @Override
+    public String Name() {
+	return "Lord of Blizzards";
+    }
+
 }

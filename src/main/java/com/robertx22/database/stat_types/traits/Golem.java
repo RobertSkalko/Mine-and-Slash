@@ -9,7 +9,7 @@ public class Golem extends Trait implements IAffectsOtherStats {
     public static String GUID = "Golem";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 
@@ -24,4 +24,10 @@ public class Golem extends Trait implements IAffectsOtherStats {
     public String Description() {
 	return "+ 10% Health multi";
     }
+
+    @Override
+    public String Name() {
+	return "Golem";
+    }
+
 }

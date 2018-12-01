@@ -4,12 +4,12 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.Trait;
 
-public abstract class TraitWithRequirement extends Trait implements IAffectsOtherStats {
+public abstract class ConditionalTrait extends Trait implements IAffectsOtherStats {
 
     @Override
     public void TryAffectOtherStats(Unit unit) {
 
-	if (this.requirement(unit)) {
+	if (this.condition(unit)) {
 	    this.affectStats(unit);
 	}
 
@@ -17,7 +17,7 @@ public abstract class TraitWithRequirement extends Trait implements IAffectsOthe
 
     public abstract void affectStats(Unit unit);
 
-    public abstract boolean requirement(Unit unit);
+    public abstract boolean condition(Unit unit);
 
     public abstract String descPrefix();
 

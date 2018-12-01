@@ -9,7 +9,7 @@ public class FireResist extends BaseEleResist {
 	}
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

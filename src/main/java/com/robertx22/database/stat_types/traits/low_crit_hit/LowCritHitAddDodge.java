@@ -18,8 +18,13 @@ public class LowCritHitAddDodge extends BaseTraitLowCritHit {
     }
 
     @Override
+    public String Guid() {
+	return "LowCritHitAddDodgeFlat";
+    }
+
+    @Override
     public String Name() {
-	return "LowCritHitAddDodge";
+	return "Dodge On Low Crit";
     }
 
 }

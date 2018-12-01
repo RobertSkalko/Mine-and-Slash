@@ -10,7 +10,7 @@ public class SpellThunderDamage extends Stat {
 	}
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

@@ -13,7 +13,7 @@ import com.robertx22.stats.TransferMethod;
 public class NatureToThunderTransfer extends BaseTransferMod {
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Nature To Thunder Transfer";
     }
 

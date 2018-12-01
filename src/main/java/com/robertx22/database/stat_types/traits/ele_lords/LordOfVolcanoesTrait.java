@@ -9,7 +9,7 @@ public class LordOfVolcanoesTrait extends Trait implements IAffectsOtherStats {
 
     @Override
     public void TryAffectOtherStats(Unit unit) {
-	unit.MyStats.get(new AllFireDamage().Name()).Flat += 20;
+	unit.MyStats.get(new AllFireDamage().Guid()).Flat += 20;
     }
 
     @Override
@@ -18,7 +18,13 @@ public class LordOfVolcanoesTrait extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Lord Of Volcanoes";
     }
+
+    @Override
+    public String Name() {
+	return "Lord of Volcanoes";
+    }
+
 }

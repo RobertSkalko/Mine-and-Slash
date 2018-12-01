@@ -13,7 +13,7 @@ public class Elemental extends Trait implements IAffectsOtherStats {
     public static String GUID = "Elemental";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 
@@ -31,4 +31,10 @@ public class Elemental extends Trait implements IAffectsOtherStats {
     public String Description() {
 	return "All Spell elemental damage +5% multi";
     }
+
+    @Override
+    public String Name() {
+	return "Elemental";
+    }
+
 }

@@ -10,7 +10,7 @@ public class Lucky extends Trait implements IAffectsOtherStats {
     public static String GUID = "Lucky";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 
@@ -24,6 +24,11 @@ public class Lucky extends Trait implements IAffectsOtherStats {
     @Override
     public String Description() {
 	return "+ 10% Critical hit multi";
+    }
+
+    @Override
+    public String Name() {
+	return "Lucky";
     }
 
 }

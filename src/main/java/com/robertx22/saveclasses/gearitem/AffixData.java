@@ -14,30 +14,30 @@ import info.loenwind.autosave.annotations.Store;
 @Storable
 public abstract class AffixData implements IStatsContainer, IRerollable {
 
-	@Store
-	public List<Integer> percents = new ArrayList<Integer>();
+    @Store
+    public List<Integer> percents = new ArrayList<Integer>();
 
-	@Store
-	public String baseAffix;
+    @Store
+    public String baseAffix;
 
-	public abstract BaseAffix BaseAffix();
+    public abstract BaseAffix BaseAffix();
 
-	@Override
-	public List<StatModData> GetAllStats(int level) {
+    @Override
+    public List<StatModData> GetAllStats(int level) {
 
-		BaseAffix base = BaseAffix();
+	BaseAffix base = BaseAffix();
 
-		List<StatModData> list = new ArrayList<StatModData>();
+	List<StatModData> list = new ArrayList<StatModData>();
 
-		for (int i = 0; i < base.StatMods().size(); i++) {
+	for (int i = 0; i < base.StatMods().size(); i++) {
 
-			StatMod mod = base.StatMods().get(i);
+	    StatMod mod = base.StatMods().get(i);
 
-			list.add(StatModData.Load(mod, percents.get(i)));
-		}
-
-		return list;
-
+	    list.add(StatModData.Load(mod, percents.get(i)));
 	}
+
+	return list;
+
+    }
 
 }

@@ -12,7 +12,7 @@ public class ThunderSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 

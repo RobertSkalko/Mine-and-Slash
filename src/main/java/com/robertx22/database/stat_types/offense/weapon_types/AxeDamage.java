@@ -11,7 +11,7 @@ public class AxeDamage extends WeaponDamageStat {
     }
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Axe Damage";
     }
 

@@ -10,7 +10,7 @@ public class Armored extends Trait implements IAffectsOtherStats {
     public static String GUID = "Armored";
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 
@@ -23,4 +23,10 @@ public class Armored extends Trait implements IAffectsOtherStats {
     public String Description() {
 	return "Armor + 15% multi";
     }
+
+    @Override
+    public String Name() {
+	return "Armored";
+    }
+
 }

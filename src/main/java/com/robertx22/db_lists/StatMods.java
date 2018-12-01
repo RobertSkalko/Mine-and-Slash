@@ -146,6 +146,10 @@ import com.robertx22.database.stat_mods.traits.atronachs.EarthAtronachFlat;
 import com.robertx22.database.stat_mods.traits.atronachs.FireAtronachFlat;
 import com.robertx22.database.stat_mods.traits.atronachs.FrostAtronachFlat;
 import com.robertx22.database.stat_mods.traits.atronachs.ThunderAtronachFlat;
+import com.robertx22.database.stat_mods.traits.conditionals.low_crit_hit.LowCritAddDodgeFlat;
+import com.robertx22.database.stat_mods.traits.conditionals.low_crit_hit.LowCritAddHealthFlat;
+import com.robertx22.database.stat_mods.traits.conditionals.low_dodge.LowDodgeAddArmorFlat;
+import com.robertx22.database.stat_mods.traits.conditionals.low_dodge.LowDodgeAddCritHitFlat;
 import com.robertx22.database.stat_mods.traits.ele_lords.LordOfBlizzardsFlat;
 import com.robertx22.database.stat_mods.traits.ele_lords.LordOfEarthquakesFlat;
 import com.robertx22.database.stat_mods.traits.ele_lords.LordOfThunderstormsFlat;
@@ -289,6 +293,13 @@ public class StatMods {
 		put(new ThunderAtronachFlat().GUID(), new ThunderAtronachFlat());
 		put(new LuckyFlat().GUID(), new LuckyFlat());
 		put(new ArmoredFlat().GUID(), new ArmoredFlat());
+
+		// conditional traits
+
+		put(new LowDodgeAddArmorFlat().GUID(), new LowDodgeAddArmorFlat());
+		put(new LowDodgeAddCritHitFlat().GUID(), new LowDodgeAddCritHitFlat());
+		put(new LowCritAddDodgeFlat().GUID(), new LowCritAddDodgeFlat());
+		put(new LowCritAddHealthFlat().GUID(), new LowCritAddHealthFlat());
 
 		// Traits
 

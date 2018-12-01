@@ -11,7 +11,7 @@ public class Mana extends FillableStat {
 	}
 
 	@Override
-	public String Name() {
+	public String Guid() {
 		return GUID;
 	}
 

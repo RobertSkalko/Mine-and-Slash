@@ -12,7 +12,7 @@ public class WaterSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return GUID;
     }
 

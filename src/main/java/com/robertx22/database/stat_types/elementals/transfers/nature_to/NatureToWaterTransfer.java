@@ -13,7 +13,7 @@ import com.robertx22.stats.TransferMethod;
 public class NatureToWaterTransfer extends BaseTransferMod {
 
     @Override
-    public String Name() {
+    public String Guid() {
 	return "Nature To Water Transfer";
     }
 

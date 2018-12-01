@@ -150,7 +150,7 @@ public class PlayerStatUtils {
 
 		StatModData data = StatModData.Load(mod, set.StatPercent);
 
-		String name = mod.GetBaseStat().Name();
+		String name = mod.GetBaseStat().Guid();
 		if (unit.MyStats.containsKey(name)) {
 		    unit.MyStats.get(name).Add(data, level);
 		}
@@ -170,10 +170,10 @@ public class PlayerStatUtils {
 
 		List<StatModData> datas = gear.GetAllStats(gear.level);
 		for (StatModData data : datas) {
-		    StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
+		    StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
 		    if (stat == null) {
 			System.out
-				.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+				.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Guid());
 		    } else {
 			stat.Add(data, gear.level);
 

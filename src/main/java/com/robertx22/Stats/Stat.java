@@ -14,7 +14,11 @@ public abstract class Stat implements IGUID {
 
     @Override
     public String GUID() {
-	return Name();
+	return Guid();
+    }
+
+    public String Name() {
+	return Guid();
     }
 
     public int MaximumPercent = 0;
@@ -27,7 +31,7 @@ public abstract class Stat implements IGUID {
 
     public abstract boolean IsPercent();
 
-    public abstract String Name();
+    public abstract String Guid();
 
     public abstract boolean ScalesToLevel();
 
