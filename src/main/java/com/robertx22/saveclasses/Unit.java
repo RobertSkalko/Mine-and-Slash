@@ -1,6 +1,7 @@
 package com.robertx22.saveclasses;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 
@@ -185,7 +186,7 @@ public class Unit {
 	CommonStatUtils.addMapAffixes(data, entity, mob, endata);
 	MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
 
-	mob.RecalculateMobStats(entity, level, data);
+	mob.RecalculateMobStats(entity, endata, level, data);
 
 	return mob;
 
@@ -197,33 +198,34 @@ public class Unit {
 	}
     }
 
-    protected void CalcStats(EntityLivingBase entity) {
+    protected void CalcStats(UnitData data) {
 
-	MyStats.values()
-		.forEach((StatData stat) -> stat.GetStat().CalcVal(stat, entity.getCapability(EntityData.Data, null)));
+	MyStats.values().forEach((StatData stat) -> stat.GetStat().CalcVal(stat, data));
     }
 
-    public void RecalculateStats(EntityLivingBase entity, int level) {
+    public void RecalculateStats(EntityLivingBase entity, UnitData data, int level) {
 
 	if (entity instanceof EntityPlayer) {
+
+	    List<GearItemData> gears = PlayerStatUtils.GetEquips(entity); // slow but required
+
 	    ClearStats();
-	    PlayerStatUtils.CountWornSets(entity, this);
+	    PlayerStatUtils.CountWornSets(entity, gears, this);
 	    PlayerStatUtils.AddPlayerBaseStats(this);
-	    PlayerStatUtils.AddAllGearStats(entity, this, level);
+	    PlayerStatUtils.AddAllGearStats(entity, gears, this, level); // slow, but required
 	    CommonStatUtils.AddStatusEffectStats(this, level);
 	    PlayerStatUtils.AddAllSetStats(entity, this, level);
 	    CommonStatUtils.AddMapAffixStats(this, level);
 	    PlayerStatUtils.CalcStatConversions(this);
 	    PlayerStatUtils.CalcStatTransferss(this);
-	    // CalcStats(entity);
 	    PlayerStatUtils.CalcTraits(this);
-	    CalcStats(entity);
+	    CalcStats(data);
 
 	}
 
     }
 
-    public void RecalculateMobStats(EntityLivingBase entity, int level, IWorldData world) {
+    public void RecalculateMobStats(EntityLivingBase entity, UnitData endata, int level, IWorldData world) {
 
 	int tier = 0;
 	if (world != null) {
@@ -237,7 +239,7 @@ public class Unit {
 	CommonStatUtils.AddStatusEffectStats(this, level);
 	CommonStatUtils.AddMapAffixStats(this, level);
 	MobStatUtils.AddMobTierStats(this, tier);
-	CalcStats(entity);
+	CalcStats(endata);
 
     }
 

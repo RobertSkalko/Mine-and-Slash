@@ -58,6 +58,7 @@ public class OnMobSpawn {
 
 			}
 		    }
+
 		}
 	    } else {
 		UnitData endata = entity.getCapability(EntityData.Data, null);

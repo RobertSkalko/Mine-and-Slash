@@ -119,11 +119,9 @@ public class PlayerStatUtils {
 
     }
 
-    public static void CountWornSets(EntityLivingBase entity, Unit unit) {
+    public static void CountWornSets(EntityLivingBase entity, List<GearItemData> gears, Unit unit) {
 
 	unit.WornSets = new HashMap<String, Integer>();
-
-	List<GearItemData> gears = GetEquips(entity);
 
 	for (GearItemData gear : gears) {
 	    if (gear.set != null) {
@@ -162,9 +160,7 @@ public class PlayerStatUtils {
 
     }
 
-    public static void AddAllGearStats(EntityLivingBase entity, Unit unit, int level) {
-
-	List<GearItemData> gears = GetEquips(entity);
+    public static void AddAllGearStats(EntityLivingBase entity, List<GearItemData> gears, Unit unit, int level) {
 
 	for (GearItemData gear : gears) {
 	    if (gear.level > level) {

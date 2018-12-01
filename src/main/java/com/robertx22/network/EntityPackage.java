@@ -59,13 +59,13 @@ public class EntityPackage implements IMessage {
 			if (player != null && player.world != null) {
 			    Entity entity = player.world.getEntityByID(message.id);
 
-			    if (entity instanceof EntityLivingBase) {
-				EntityLivingBase en = (EntityLivingBase) entity;
+			    EntityLivingBase en = (EntityLivingBase) entity;
 
-				if (en != null) {
-				    en.getCapability(EntityData.Data, null).setNBT(message.nbt);
-				}
+			    if (en != null) {
+				en.getCapability(EntityData.Data, null).setNBT(message.nbt);
+
 			    }
+
 			}
 
 		    } catch (Exception e) {

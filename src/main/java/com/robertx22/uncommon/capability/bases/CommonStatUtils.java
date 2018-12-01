@@ -17,64 +17,64 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class CommonStatUtils {
 
-	public static void AddStatusEffectStats(Unit unit, int level) {
+    public static void AddStatusEffectStats(Unit unit, int level) {
 
-		for (StatusEffectData status : unit.statusEffects.values()) {
-			List<StatModData> datas = status.GetAllStats(level);
-			for (StatModData data : datas) {
-				StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
-				if (stat == null) {
-					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
-				} else {
-					stat.Add(data, level);
+	for (StatusEffectData status : unit.statusEffects.values()) {
+	    List<StatModData> datas = status.GetAllStats(level);
+	    for (StatModData data : datas) {
+		StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
+		if (stat == null) {
+		    System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+		} else {
+		    stat.Add(data, level);
 
-				}
-			}
 		}
+	    }
+	}
+
+    }
+
+    public static Unit addMapAffixes(IWorldData worlddata, EntityLivingBase entity, Unit unit, UnitData endata) {
+	unit.mapAffixes = new HashMap<String, MapAffixData>();
+
+	if (worlddata.isMapWorld()) {
+
+	    AffectedEntities affected = null;
+
+	    if (entity instanceof EntityPlayer) {
+		affected = AffectedEntities.Players;
+	    } else {
+		affected = AffectedEntities.Mobs;
+	    }
+
+	    for (MapAffixData affix : worlddata.getMap().getAllAffixesThatAffect(affected)) {
+		unit.mapAffixes.put(affix.GUID, affix);
+	    }
+
+	    for (MapAffixData affix : worlddata.getMap().getAllAffixesThatAffect(AffectedEntities.All)) {
+		unit.mapAffixes.put(affix.GUID, affix);
+	    }
 
 	}
 
-	public static Unit addMapAffixes(IWorldData worlddata, EntityLivingBase entity, Unit unit, UnitData endata) {
-		unit.mapAffixes = new HashMap<String, MapAffixData>();
+	return unit;
+    }
 
-		if (worlddata.isMapWorld()) {
+    public static void AddMapAffixStats(Unit unit, int level) {
 
-			AffectedEntities affected = null;
-
-			if (entity instanceof EntityPlayer) {
-				affected = AffectedEntities.Players;
-			} else {
-				affected = AffectedEntities.Mobs;
-			}
-
-			for (MapAffixData affix : worlddata.getMap().getAllAffixesThatAffect(affected)) {
-				unit.mapAffixes.put(affix.GUID, affix);
-			}
-
-			for (MapAffixData affix : worlddata.getMap().getAllAffixesThatAffect(AffectedEntities.All)) {
-				unit.mapAffixes.put(affix.GUID, affix);
-			}
+	for (MapAffixData status : unit.mapAffixes.values()) {
+	    List<StatModData> datas = status.GetAllStats();
+	    for (StatModData data : datas) {
+		StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
+		if (stat == null) {
+		    System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
+		} else {
+		    stat.Add(data, level);
 
 		}
-
-		return unit;
+	    }
 	}
 
-	public static void AddMapAffixStats(Unit unit, int level) {
-
-		for (MapAffixData status : unit.mapAffixes.values()) {
-			List<StatModData> datas = status.GetAllStats();
-			for (StatModData data : datas) {
-				StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Name());
-				if (stat == null) {
-					System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Name());
-				} else {
-					stat.Add(data, level);
-
-				}
-			}
-		}
-
-	}
+    }
 
 }

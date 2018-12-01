@@ -391,13 +391,13 @@ public class EntityData {
 	@Override
 	public void recalculateStats(EntityLivingBase entity) {
 	    if (entity instanceof EntityPlayer) {
-		unit.RecalculateStats(entity, level);
+		unit.RecalculateStats(entity, this, level);
 	    }
 	}
 
 	@Override
 	public void forceRecalculateStats(EntityLivingBase entity) {
-	    unit.RecalculateStats(entity, level);
+	    unit.RecalculateStats(entity, this, level);
 	}
 
 	@Override
