@@ -41,7 +41,7 @@ public class CheckWorldDelete {
 	    }
 
 	};
-	scheduler.schedule(noteThread, 8, TimeUnit.SECONDS);
+	scheduler.schedule(noteThread, 20, TimeUnit.SECONDS);
 
     }
 

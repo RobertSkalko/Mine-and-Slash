@@ -33,7 +33,7 @@ public class OnWorldMinutePassed {
 		    IWorldData data = Load.World(world);
 
 		    if (data != null) {
-			data.onMinutePassed(world);
+			data.passMinute(world);
 
 		    }
 		}

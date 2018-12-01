@@ -77,7 +77,9 @@ public class WorldData {
 
 	void setWorldData(MapWorldData data);
 
-	void onMinutePassed(World world);
+	void passMinute(World world);
+
+	void onPlayerDeath(EntityPlayer victim, World world);
 
 	void setDelete(boolean bool);
 
@@ -343,7 +345,9 @@ public class WorldData {
 	    if (world.playerEntities != null) {
 		List<EntityPlayer> players = new ArrayList<EntityPlayer>(world.playerEntities);
 		for (EntityPlayer player : players) {
-		    teleportPlayerBack(player);
+		    if (player.isEntityAlive()) {
+			teleportPlayerBack(player);
+		    }
 		}
 	    }
 
@@ -374,23 +378,34 @@ public class WorldData {
 	}
 
 	@Override
-	public void onMinutePassed(World world) {
+	public void passMinute(World world) {
 
 	    if (this.isMap) {
 		this.minutesPassed++;
 
-		int minutesLeft = getMinutesLeft();
+		onMinutePassAnnounce(world);
 
-		if (minutesLeft > 0) {
-		    if (minutesLeft < 5 || minutesLeft % 5 == 0) {
-			announceTimeLeft(world);
-		    }
-		} else {
-		    announceDeletition(world);
-		    this.setForDelete = true;
-		    this.transferPlayersBack(world);
+		checkDeletition(world);
+	    }
+
+	}
+
+	private void onMinutePassAnnounce(World world) {
+	    int minutesLeft = getMinutesLeft();
+
+	    if (minutesLeft > 0) {
+		if (minutesLeft < 5 || minutesLeft % 5 == 0) {
+		    announceTimeLeft(world);
 		}
+	    }
+	}
 
+	private void checkDeletition(World world) {
+
+	    if (this.getMinutesLeft() < 1) {
+		announceDeletition(world);
+		this.setForDelete = true;
+		this.transferPlayersBack(world);
 	    }
 
 	}
@@ -421,6 +436,24 @@ public class WorldData {
 	@Override
 	public void setDelete(boolean bool) {
 	    this.setForDelete = bool;
+	}
+
+	@Override
+	public void onPlayerDeath(EntityPlayer victim, World world) {
+
+	    int punishment = 5;
+
+	    for (EntityPlayer player : world.playerEntities) {
+		player.sendMessage(new TextComponentString(victim.getDisplayNameString()
+			+ " has died. World time has been lowered by " + punishment + " as a punishment."));
+	    }
+
+	    this.minutesPassed += punishment;
+
+	    announceTimeLeft(world);
+
+	    checkDeletition(world);
+
 	}
 
     }

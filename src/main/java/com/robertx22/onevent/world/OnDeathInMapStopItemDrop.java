@@ -5,6 +5,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,10 +21,18 @@ public class OnDeathInMapStopItemDrop {
 	if (event.getEntityPlayer().world.isRemote == false) {
 
 	    try {
-		IWorldData data = Load.World(event.getEntityPlayer().world);
+		World world = event.getEntityPlayer().world;
+
+		IWorldData data = Load.World(world);
+
 		if (data != null && data.isMapWorld()) {
 		    event.getEntityPlayer().getCapability(PlayerDeathItems.Data, null).saveItems(event.getDrops());
 		}
+
+		data.onPlayerDeath(event.getEntityPlayer(), world); // if this goes first, you need to check if players
+								    // who get teleported out are alive and not teleport
+								    // them. Otherwise all items are lost
+
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
