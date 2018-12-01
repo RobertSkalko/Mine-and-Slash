@@ -20,6 +20,7 @@ import com.robertx22.network.UnitPackage;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.MapDatas;
+import com.robertx22.uncommon.capability.PlayerDeathItems;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
@@ -93,6 +94,9 @@ public class Main {
 
 	CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),
 		WorldData.DefaultImpl.class);
+
+	CapabilityManager.INSTANCE.register(PlayerDeathItems.IPlayerDrops.class, new PlayerDeathItems.Storage(),
+		PlayerDeathItems.DefaultImpl.class);
 
 	ModMetadata modMeta = event.getModMetadata();
 	modMeta.name = Ref.NAME;

@@ -10,17 +10,17 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class OnPlayerClone {
 
-	@SubscribeEvent
-	public static void onPlayerClone(PlayerEvent.Clone event) {
+    @SubscribeEvent
+    public static void onPlayerClone(PlayerEvent.Clone event) {
 
-		if (!event.getEntityPlayer().world.isRemote) {
+	if (!event.getEntityPlayer().world.isRemote) {
 
-			EntityPlayer player = event.getEntityPlayer();
-			player.getCapability(EntityData.Data, null)
-					.HandleCloneEvent(event.getOriginal().getCapability(EntityData.Data, null));
-
-		}
+	    EntityPlayer player = event.getEntityPlayer();
+	    player.getCapability(EntityData.Data, null)
+		    .HandleCloneEvent(event.getOriginal().getCapability(EntityData.Data, null));
 
 	}
+
+    }
 
 }

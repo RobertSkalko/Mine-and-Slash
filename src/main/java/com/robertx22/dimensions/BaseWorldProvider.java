@@ -15,6 +15,7 @@ public abstract class BaseWorldProvider extends WorldProviderSurface implements 
     @Override
     public int Weight() {
 	return this.UncommonWeight;
+
     }
 
     @Override
