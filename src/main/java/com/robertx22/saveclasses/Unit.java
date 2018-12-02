@@ -51,16 +51,24 @@ public class Unit {
     public String GUID = UUID.randomUUID().toString();
 
     public Unit() {
-	InitStats();
-    }
-
-    public Unit(EntityLivingBase entity) {
-
-	InitStats();
 
     }
 
-    public void InitStats() {
+    public void InitMobStats() {
+
+	if (MyStats == null) {
+	    MyStats = new HashMap<String, StatData>();
+	    // adds all stats
+	    for (Stat stat : com.robertx22.db_lists.Stats.All.values()) {
+		MyStats.put(stat.GUID(), new StatData(stat));
+	    }
+
+	}
+
+    }
+
+    public void InitPlayerStats() {
+
 	if (MyStats == null) {
 	    MyStats = new HashMap<String, StatData>();
 
@@ -85,6 +93,7 @@ public class Unit {
 	    }
 
 	}
+
     }
 
     @Override
@@ -117,9 +126,6 @@ public class Unit {
 	dmg.setEffectType(EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 	dmg.Activate();
     }
-
-    // new stat data format, don't ever rename this to "Stats" Or compatibility
-    // problems with last version will arrive
 
     // Stat shortcuts
     public Health health() {
@@ -172,7 +178,8 @@ public class Unit {
 
     public static Unit Mob(EntityLivingBase entity, int level, IWorldData data) {
 
-	Unit mob = new Unit(entity);
+	Unit mob = new Unit();
+	mob.InitMobStats();
 
 	UnitData endata = entity.getCapability(EntityData.Data, null);
 
@@ -181,7 +188,6 @@ public class Unit {
 	endata.setName(entity);
 
 	mob.MyStats.get(Health.GUID).BaseFlat = (int) entity.getMaxHealth();
-	mob.uid = entity.getUniqueID();
 
 	CommonStatUtils.addMapAffixes(data, entity, mob, endata);
 	MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
@@ -209,6 +215,8 @@ public class Unit {
 
 	    List<GearItemData> gears = PlayerStatUtils.GetEquips(entity); // slow but required
 
+	    Unit copy = this.Clone();
+
 	    ClearStats();
 	    PlayerStatUtils.CountWornSets(entity, gears, this);
 	    PlayerStatUtils.AddPlayerBaseStats(this);
@@ -216,11 +224,20 @@ public class Unit {
 	    CommonStatUtils.AddStatusEffectStats(this, level);
 	    PlayerStatUtils.AddAllSetStats(entity, this, level);
 	    CommonStatUtils.AddMapAffixStats(this, level);
-	    PlayerStatUtils.CalcStatConversionsAndTransfers(this);
+	    PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
 	    PlayerStatUtils.CalcTraits(this);
 	    CalcStats(data);
 
 	}
+
+    }
+
+    private Unit Clone() {
+
+	Unit clone = new Unit();
+	clone.MyStats = new HashMap<String, StatData>(this.MyStats);
+
+	return clone;
 
     }
 
@@ -240,8 +257,6 @@ public class Unit {
 	CalcStats(endata);
 
     }
-
-    public UUID uid;
 
     public void Heal(EntityLivingBase entity, int healthrestored) {
 	entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored * OnHealDecrease.HEAL_DECREASE, entity));

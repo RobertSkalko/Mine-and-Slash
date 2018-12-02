@@ -29,74 +29,75 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 @Mod.EventBusSubscriber
 public class OnLogin {
 
-	private static void GiveStarterItems(EntityPlayer player) {
+    private static void GiveStarterItems(EntityPlayer player) {
 
-		GearBlueprint print = new GearBlueprint(1);
-		print.SetSpecificType(new Sword().Name());
-		print.LevelRange = false;
-		print.SetSpecificRarity(0);
+	GearBlueprint print = new GearBlueprint(1);
+	print.SetSpecificType(new Sword().Name());
+	print.LevelRange = false;
+	print.SetSpecificRarity(0);
 
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-		print.SetSpecificType(new Boots().Name());
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-		print.SetSpecificType(new Chest().Name());
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-		print.SetSpecificType(new Helmet().Name());
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-		print.SetSpecificType(new Pants().Name());
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	print.SetSpecificType(new Boots().Name());
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	print.SetSpecificType(new Chest().Name());
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	print.SetSpecificType(new Helmet().Name());
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	print.SetSpecificType(new Pants().Name());
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 
-		print.SetSpecificType(new Ring().Name());
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-		print.SetSpecificType(new Ring().Name());
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-		print.SetSpecificType(new Necklace().Name());
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-		print.SetSpecificType(new Bracelet().Name());
-		player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	print.SetSpecificType(new Ring().Name());
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	print.SetSpecificType(new Ring().Name());
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	print.SetSpecificType(new Necklace().Name());
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
+	print.SetSpecificType(new Bracelet().Name());
+	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 
-		SpellBlueprint spell = new SpellBlueprint(1);
-		spell.SetSpecificType(new SpellFireBolt().GUID());
-		spell.LevelRange = false;
-		spell.SetSpecificRarity(0);
+	SpellBlueprint spell = new SpellBlueprint(1);
+	spell.SetSpecificType(new SpellFireBolt().GUID());
+	spell.LevelRange = false;
+	spell.SetSpecificRarity(0);
 
-		player.inventory.addItemStackToInventory(SpellItemGen.Create(spell));
+	player.inventory.addItemStackToInventory(SpellItemGen.Create(spell));
 
+    }
+
+    @SubscribeEvent
+    public static void onLogin(PlayerLoggedInEvent event) {
+
+	if (event.player.world.isRemote) {
+	    return;
 	}
 
-	@SubscribeEvent
-	public static void onLogin(PlayerLoggedInEvent event) {
+	try {
+	    EntityPlayer player = event.player;
 
-		if (event.player.world.isRemote) {
-			return;
+	    if (player.hasCapability(EntityData.Data, null)) {
+
+		Unit unit = UnitSaving.Load(player);
+		UnitData data = Load.Unit(player);
+
+		if (unit == null) {
+
+		    UnitSaving.Save(player, new Unit());
+		    GiveStarterItems(player);
+		} else {
+		    data.getUnit().InitPlayerStats();
+		    data.recalculateStats(player);
 		}
 
-		try {
-			EntityPlayer player = event.player;
+		player.getCapability(EntityData.Data, null).syncToClient(player);
 
-			if (player.hasCapability(EntityData.Data, null)) {
-
-				Unit unit = UnitSaving.Load(player);
-				UnitData data = Load.Unit(player);
-
-				if (unit == null) {
-					UnitSaving.Save(player, new Unit(player));
-					GiveStarterItems(player);
-				} else {
-					data.getUnit().InitStats();
-					data.recalculateStats(player);
-				}
-
-				player.getCapability(EntityData.Data, null).syncToClient(player);
-
-			} else {
-				player.sendMessage(
-						new TextComponentString("Error, player has no capability!" + Ref.NAME + " mod is broken!"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+	    } else {
+		player.sendMessage(
+			new TextComponentString("Error, player has no capability!" + Ref.NAME + " mod is broken!"));
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
+
+    }
 
 }

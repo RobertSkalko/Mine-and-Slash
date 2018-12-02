@@ -57,10 +57,7 @@ public class PlayerStatUtils {
      * conversions. All changes are based on old copy but applied to the unit that's
      * used
      */
-    public static void CalcStatConversionsAndTransfers(Unit unit) {
-
-	Unit copy = new Unit();
-	copy.MyStats = new HashMap<String, StatData>(unit.MyStats);
+    public static void CalcStatConversionsAndTransfers(Unit copy, Unit unit) {
 
 	for (StatData statdata : copy.MyStats.values()) {
 

@@ -92,6 +92,8 @@ import com.robertx22.database.stat_mods.flat.resources.MajorManaRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
+import com.robertx22.database.stat_mods.flat.resources.conversions.EnergyToManaConvFlat;
+import com.robertx22.database.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
 import com.robertx22.database.stat_mods.flat.weapon_damages.AxeDamageFlat;
 import com.robertx22.database.stat_mods.flat.weapon_damages.BowDamageFlat;
 import com.robertx22.database.stat_mods.flat.weapon_damages.HammerDamageFlat;
@@ -162,6 +164,9 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
 	{
 	    {
+		put(new EnergyToManaConvFlat().GUID(), new EnergyToManaConvFlat());
+		put(new ManaToEnergyConvFlat().GUID(), new ManaToEnergyConvFlat());
+
 		// lord Flats
 		put(new LordOfVolcanoesFlat().GUID(), new LordOfVolcanoesFlat());
 		put(new LordOfBlizzardsFlat().GUID(), new LordOfBlizzardsFlat());

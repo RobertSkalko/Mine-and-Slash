@@ -11,6 +11,7 @@ import com.robertx22.unique_items.bracelets.BraceletThunder;
 import com.robertx22.unique_items.bracelets.BraceletWater;
 import com.robertx22.unique_items.chest.ChestDodge;
 import com.robertx22.unique_items.chest.ChestFire;
+import com.robertx22.unique_items.chest.ChestMana;
 import com.robertx22.unique_items.chest.ChestNature;
 import com.robertx22.unique_items.chest.ChestThunder;
 import com.robertx22.unique_items.chest.ChestWater;
@@ -21,6 +22,7 @@ import com.robertx22.unique_items.helmet.HelmetMana;
 import com.robertx22.unique_items.helmet.HelmetNature;
 import com.robertx22.unique_items.helmet.HelmetThunder;
 import com.robertx22.unique_items.helmet.HelmetWater;
+import com.robertx22.unique_items.necklaces.NecklaceEnergy;
 import com.robertx22.unique_items.necklaces.NecklaceFire;
 import com.robertx22.unique_items.necklaces.NecklaceNature;
 import com.robertx22.unique_items.necklaces.NecklaceThunder;
@@ -65,6 +67,7 @@ public class UniqueItemRegister {
 	new ChestDodge();
 	new ChestNature();
 	new ChestThunder();
+	new ChestMana();
 
 	// boots
 	new BootsNature();
@@ -101,6 +104,7 @@ public class UniqueItemRegister {
 	new NecklaceWater();
 	new NecklaceFire();
 	new NecklaceThunder();
+	new NecklaceEnergy();
 
 	// staffs
 	new StaffFire();
