@@ -1,4 +1,4 @@
-package com.robertx22.customitems.loot_bag;
+package com.robertx22.customitems.bags.loot_bag;
 
 import javax.annotation.Nonnull;
 

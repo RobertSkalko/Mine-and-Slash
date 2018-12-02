@@ -1,8 +1,8 @@
 package com.robertx22.db_lists;
 
+import com.robertx22.customitems.bags.loot_bag.ItemLootBag;
 import com.robertx22.customitems.currency.ItemChaosOrb;
 import com.robertx22.customitems.gearitems.weapons.ItemSword;
-import com.robertx22.customitems.loot_bag.ItemLootBag;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.creativetab.CreativeTabs;

@@ -209,7 +209,7 @@ public class EntityData {
 		return 250 * lvl;
 	    }
 
-	    return lvl * 1000 + (tens * 5000);
+	    return lvl * 750 + (tens * 2500);
 
 	}
 

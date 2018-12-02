@@ -25,6 +25,7 @@ tile.mmorpg:salvage_station.name=Gear Salvage Station
 # MISC ITEMS
 item.mmorpg:player_levelup.name=Player Level Up Token
 item.mmorpg:loot_bag.name=Gear Loot Bag
+item.mmorpg:map_bag.name=Map Bag
 item.mmorpg:currency_bag.name=Currency Bag
 item.mmorpg:newbie_gear_bag.name=Newbie Gear Bag
 item.mmorpg:tutorial_book.name=Mine and Slash Tutorial

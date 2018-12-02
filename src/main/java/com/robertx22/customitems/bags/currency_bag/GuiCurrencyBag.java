@@ -1,4 +1,4 @@
-package com.robertx22.customitems.currency_bag;
+package com.robertx22.customitems.bags.currency_bag;
 
 import com.robertx22.mmorpg.Ref;
 

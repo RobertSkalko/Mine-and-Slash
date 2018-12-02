@@ -1,15 +1,17 @@
-package com.robertx22.customitems.currency_bag;
+package com.robertx22.customitems.bags.loot_bag;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.robertx22.customitems.currency.CurrencyItem;
-import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.gui.GuiHandler;
 import com.robertx22.mmorpg.gui.GuiHandlerRegistry;
+import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -51,24 +53,25 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 @EventBusSubscriber
-public class ItemCurrencyBag extends Item {
+public class ItemLootBag extends Item {
 
-    public static final int GUI_NUMBER = 356514;
+    public static final int GUI_NUMBER = 356515;
 
-    @GameRegistry.ObjectHolder(Ref.MODID + ":currency_bag")
+    @GameRegistry.ObjectHolder(Ref.MODID + ":loot_bag")
     public static final Item ITEM = null;
 
     private static final String TAG_ITEMS = "InvItems";
 
-    public ItemCurrencyBag() {
+    public ItemLootBag() {
 	setMaxStackSize(1);
 	this.setCreativeTab(CreativeTabList.MyModTab);
-	RegisterItemUtils.RegisterItemName(this, "currency_bag");
+	RegisterItemUtils.RegisterItemName(this, "loot_bag");
+
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemCurrencyBag());
+	event.getRegistry().register(new ItemLootBag());
 
 	NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
 	GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GUI_NUMBER);
@@ -87,7 +90,7 @@ public class ItemCurrencyBag extends Item {
 
     private static class InvProvider implements ICapabilitySerializable<NBTBase> {
 
-	private final IItemHandler inv = new ItemStackHandler(16);
+	private final IItemHandler inv = new ItemStackHandler(ContainerLootBag.size);
 
 	@Override
 	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
@@ -130,7 +133,21 @@ public class ItemCurrencyBag extends Item {
 
     public static boolean IsValidItem(ItemStack stack) {
 
-	return stack.getItem() instanceof CurrencyItem || stack.getItem() instanceof ItemOre;
+	GearItemData gear = Gear.Load(stack);
+
+	if (gear != null) {
+	    return true;
+
+	}
+
+	SpellItemData spell = Spell.Load(stack);
+
+	if (spell != null) {
+	    return true;
+
+	}
+
+	return false;
     }
 
     @SubscribeEvent

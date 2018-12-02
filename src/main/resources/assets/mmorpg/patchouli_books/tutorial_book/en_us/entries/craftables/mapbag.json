@@ -1,0 +1,22 @@
+{
+	"name": "Map Bag",
+	"icon": "mmorpg:map_bag",
+	"category": "craftables",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:map_bag"
+        },
+		
+			{
+			"type": "text",
+			"text": "Automatically picks up my mod's Map Items. Less inventory Clutter! Maps are used to create mob hunting dimensions by right clicking them!"
+		}
+		 
+		
+	]
+}
