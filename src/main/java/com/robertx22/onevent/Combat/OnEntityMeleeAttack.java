@@ -34,7 +34,6 @@ public class OnEntityMeleeAttack {
 	if (event.getSource() instanceof MyDamageSource) {
 	    return;
 	}
-
 	try {
 	    if (event.getEntityLiving() == null || event.getSource().getTrueSource() == null) {
 		return;

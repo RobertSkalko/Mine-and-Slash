@@ -2,6 +2,7 @@ package com.robertx22.onevent.loot;
 
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.effectdatas.DamageEffect;
+import com.robertx22.loot.LootUtils;
 import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.network.DamageNumberPackage;
@@ -75,6 +76,8 @@ public class OnMobDeathDrops {
     private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob) {
 
 	int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill());
+
+	exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
 
 	exp = player.GiveExp((EntityPlayer) entity, exp);
 
