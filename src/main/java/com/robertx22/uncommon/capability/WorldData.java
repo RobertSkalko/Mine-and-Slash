@@ -51,7 +51,7 @@ public class WorldData {
 
 	String getOwner();
 
-	void init(EntityPlayer player, MapItemData map, int dimensionId);
+	void init(BlockPos pos, World world, MapItemData map, int dimensionId);
 
 	void delete(EntityPlayer player, World mapworld);
 
@@ -276,19 +276,18 @@ public class WorldData {
 	}
 
 	@Override
-	public void init(EntityPlayer player, MapItemData map, int dimensionId) {
+	public void init(BlockPos pos, World world, MapItemData map, int dimensionId) {
 
 	    if (this.isInit == false) {
 		// UnitData data = player.getCapability(EntityData.Data, null);
 
-		this.setOwner(player);
 		this.isMap = true;
 		this.level = map.level;
 		this.tier = map.tier;
 		this.mapdata = map;
-		this.originalDimension = player.dimension;
+		this.originalDimension = world.provider.getDimension();
 		this.mapDimension = dimensionId;
-		this.mapDevicePos = player.getPosition().toLong();
+		this.mapDevicePos = pos.toLong();
 
 		this.isInit = true;
 

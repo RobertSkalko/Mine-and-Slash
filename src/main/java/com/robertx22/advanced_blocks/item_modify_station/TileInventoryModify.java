@@ -315,7 +315,6 @@ public class TileInventoryModify extends BaseTile {
     }
 
     private static final byte COOK_FIELD_ID = 0;
-    private static final byte FIRST_BURN_TIME_REMAINING_FIELD_ID = 1;
     private static final byte NUMBER_OF_FIELDS = 1;
 
     @Override

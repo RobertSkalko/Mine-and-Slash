@@ -18,16 +18,10 @@ import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -113,46 +107,23 @@ public class ItemMap extends Item {
 	}
     }
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+    public static void createMap(BlockPos pos, World world, MapItemData data) {
+	IWorldData currentdata = Load.World(world);
 
-	if (!world.isRemote) {
-	    try {
+	if (currentdata.isMapWorld()) {
 
-		IWorldData currentdata = Load.World(world);
+	} else {
 
-		if (currentdata.isMapWorld()) {
-		    player.sendMessage(new TextComponentString("You cannot create a map inside a map."));
+	    if (data != null) {
 
-		} else {
+		int id = data.createDimension(world, pos);
 
-		    MapItemData data = Map.Load(player.getHeldItem(hand));
-
-		    if (data != null) {
-
-			int id = data.createDimension(player);
-
-			summonPortal(player, id);
-
-			return new ActionResult<ItemStack>(EnumActionResult.PASS, ItemStack.EMPTY);
-		    }
-		}
-	    } catch (Exception e) {
-		e.printStackTrace();
+		summonPortal(world, pos, id);
 	    }
 	}
-	return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
     }
 
-    private void summonPortal(EntityPlayer player, int id) {
-
-	BlockPos pos = player.getPosition();
-
-	EnumFacing dir = player.getHorizontalFacing();
-
-	pos = pos.offset(dir, 2);
-
-	World world = player.world;
+    private static void summonPortal(World world, BlockPos pos, int id) {
 
 	spawnPortalBlock(world, pos, id);
 
@@ -168,13 +139,13 @@ public class ItemMap extends Item {
 
     }
 
-    private void spawnPortalBlock(World world, BlockPos pos, int id) {
+    private static void spawnPortalBlock(World world, BlockPos pos, int id) {
 	world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
 	TileMapPortal portal = new TileMapPortal(id);
 	world.setTileEntity(pos, portal);
     }
 
-    private void spawnFrameBlock(World world, BlockPos pos) {
+    private static void spawnFrameBlock(World world, BlockPos pos) {
 	world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(), 2);
     }
 

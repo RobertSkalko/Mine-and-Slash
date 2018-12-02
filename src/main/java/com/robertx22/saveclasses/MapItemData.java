@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.IWP;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.MapDatas;
@@ -14,7 +15,7 @@ import com.robertx22.uncommon.enumclasses.AffectedEntities;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
@@ -54,6 +55,32 @@ public class MapItemData {
 
     }
 
+    public boolean increaseLevel(int i) {
+
+	int lvl = level + i;
+
+	if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+	    return false;
+	}
+
+	level = lvl;
+
+	return true;
+    }
+
+    public boolean increaseTier(int i) {
+
+	int tier = this.tier + i;
+
+	if (tier > 20) {
+	    return false;
+	}
+
+	this.tier = tier;
+
+	return true;
+    }
+
     private int getTotalPercents() {
 
 	int total = 0;
@@ -79,7 +106,7 @@ public class MapItemData {
 	return WorldProviders.All.get(this.worldGeneratorName);
     }
 
-    public int createDimension(EntityPlayer player) {
+    public int createDimension(World ogworld, BlockPos pos) {
 
 	int id = findFreeDimensionId();
 
@@ -90,7 +117,7 @@ public class MapItemData {
 	World world = DimensionManager.getWorld(id);
 
 	IWorldData data = world.getCapability(WorldData.Data, null);
-	data.init(player, this, id);
+	data.init(pos, ogworld, this, id);
 
 	MapDatas mapdatas = (MapDatas) DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
 		MapDatas.getLoc());

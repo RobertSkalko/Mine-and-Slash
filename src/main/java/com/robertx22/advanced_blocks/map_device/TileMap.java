@@ -5,6 +5,7 @@ import java.util.Arrays;
 import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
+import com.robertx22.customitems.misc.ItemMap;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.datasaving.Map;
 
@@ -14,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -21,19 +23,19 @@ import net.minecraft.util.text.TextComponentTranslation;
 public class TileMap extends BaseTile {
 
     public ItemStack StartSlot() {
-	return itemStacks[0];
+	return itemStacks[3];
     }
 
     public ItemStack TierSlot() {
-	return itemStacks[1];
+	return itemStacks[0];
     }
 
     public ItemStack LevelSlot() {
-	return itemStacks[2];
+	return itemStacks[1];
     }
 
     public ItemStack MapSlot() {
-	return itemStacks[3];
+	return itemStacks[2];
     }
 
     public TileMap() {
@@ -66,35 +68,31 @@ public class TileMap extends BaseTile {
 	MapItemData tier = Map.Load(this.TierSlot());
 
 	if (map != null) {
-	    System.out.println("map");
-	}
-	if (tier != null) {
-	    System.out.println("tier");
-	}
-	if (level != null) {
-	    System.out.println("level");
-	}
-
-	if (map != null) {
 
 	    if (start != null && start.getItem().equals(Items.WHEAT_SEEDS)) {
 
 		// start map
+		this.MapSlot().shrink(1);
+		this.StartSlot().shrink(1);
+
+		BlockPos pos = this.pos.north(6);
+		ItemMap.createMap(pos, world, map);
 
 	    }
 
 	    else if (level != null) {
 
-		this.LevelSlot().setCount(0);
-
-		// increase levl
+		if (map.increaseLevel(level.rarity + 1)) {
+		    this.LevelSlot().shrink(1);
+		    Map.Save(this.MapSlot(), map);
+		}
 
 	    } else if (tier != null) {
 
-		this.TierSlot().setCount(0);
-
-		// increase levl
-
+		if (map.increaseTier(tier.rarity + 1)) {
+		    this.TierSlot().shrink(1);
+		    Map.Save(this.MapSlot(), map);
+		}
 	    }
 	}
 
@@ -185,7 +183,7 @@ public class TileMap extends BaseTile {
     // GUI
     @Override
     public String getName() {
-	return "Adventure Map Device";
+	return "";
     }
 
     @Override

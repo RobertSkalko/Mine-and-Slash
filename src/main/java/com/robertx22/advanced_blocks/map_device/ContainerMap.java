@@ -3,7 +3,6 @@ package com.robertx22.advanced_blocks.map_device;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -28,13 +27,13 @@ public class ContainerMap extends Container {
     // slot index is the unique index for all slots in this container i.e. 0 - 35
     // for invPlayer then 36 - 49 for tileInventoryFurnace
     private final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private final int TIER_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-    private final int LEVEL_SLOT_INDEX = TIER_SLOT_INDEX + 1;
-    private final int MAP_SLOT_INDEX = LEVEL_SLOT_INDEX + 1;
-    private final int START_SLOT_INDEX = MAP_SLOT_INDEX + 1;
+    private final int TIER_SLOT_INDEX = 0;
+    private final int LEVEL_SLOT_INDEX = 1;
+    private final int MAP_SLOT_INDEX = 2;
+    private final int START_SLOT_INDEX = 3;
 
-    public ContainerMap(InventoryPlayer invPlayer, TileMap tileInventory) {
-	this.tile = tileInventory;
+    public ContainerMap(InventoryPlayer invPlayer, TileMap tile) {
+	this.tile = tile;
 
 	final int SLOT_X_SPACING = 18;
 	final int SLOT_Y_SPACING = 18;
@@ -59,14 +58,21 @@ public class ContainerMap extends Container {
 	}
 
 	// VANILLA END
+	final int TIER_X = 26;
+	final int TIER_Y = 85;
+	addSlotToContainer(new NormalSlot(tile, TIER_SLOT_INDEX, TIER_X, TIER_Y));
 
-	addSlotToContainer(new NormalSlot(tileInventory, TIER_SLOT_INDEX, 1, 1));
+	final int LEVEL_X = 134;
+	final int LEVEL_Y = 85;
+	addSlotToContainer(new NormalSlot(tile, LEVEL_SLOT_INDEX, LEVEL_X, LEVEL_Y));
 
-	addSlotToContainer(new NormalSlot(tileInventory, LEVEL_SLOT_INDEX, 22, 22));
+	final int MAP_X = 81;
+	final int MAP_Y = 28;
+	addSlotToContainer(new NormalSlot(tile, MAP_SLOT_INDEX, MAP_X, MAP_Y));
 
-	addSlotToContainer(new NormalSlot(tileInventory, MAP_SLOT_INDEX, 55, 55));
-
-	addSlotToContainer(new NormalSlot(tileInventory, START_SLOT_INDEX, 88, 88));
+	final int START_X = 80;
+	final int START_Y = 99;
+	addSlotToContainer(new NormalSlot(tile, START_SLOT_INDEX, START_X, START_Y));
 
     }
 
@@ -88,30 +94,6 @@ public class ContainerMap extends Container {
     public void detectAndSendChanges() {
 	super.detectAndSendChanges();
 
-	boolean allFieldsHaveChanged = false;
-	boolean fieldHasChanged[] = new boolean[tile.getFieldCount()];
-	if (cachedFields == null) {
-	    cachedFields = new int[tile.getFieldCount()];
-	    allFieldsHaveChanged = true;
-	}
-	for (int i = 0; i < cachedFields.length; ++i) {
-	    if (allFieldsHaveChanged || cachedFields[i] != tile.getField(i)) {
-		cachedFields[i] = tile.getField(i);
-		fieldHasChanged[i] = true;
-	    }
-	}
-
-	// go through the list of listeners (players using this container) and update
-	// them if necessary
-	for (IContainerListener listener : this.listeners) {
-	    for (int fieldID = 0; fieldID < tile.getFieldCount(); ++fieldID) {
-		if (fieldHasChanged[fieldID]) {
-		    // Note that although sendWindowProperty takes 2 ints on a server these are
-		    // truncated to shorts
-		    listener.sendWindowProperty(this, fieldID, cachedFields[fieldID]);
-		}
-	    }
-	}
     }
 
     // Called when a progress bar update is received from the server. The two values
