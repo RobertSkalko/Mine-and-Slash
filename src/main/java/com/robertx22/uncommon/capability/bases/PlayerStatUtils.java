@@ -52,28 +52,30 @@ public class PlayerStatUtils {
 
     }
 
-    public static void CalcStatConversions(Unit unit) {
-	for (StatData stat : unit.MyStats.values()) {
-	    if (stat.GetStat() instanceof IStatConversion) {
-		if (stat.Value > 0) {
-		    IStatConversion affects = (IStatConversion) stat.GetStat();
-		    affects.convertStats(unit, stat);
+    /**
+     * A unit copy is needed so there's no randomness to stat transfers and
+     * conversions. All changes are based on old copy but applied to the unit that's
+     * used
+     */
+    public static void CalcStatConversionsAndTransfers(Unit unit) {
 
+	Unit copy = new Unit();
+	copy.MyStats = new HashMap<String, StatData>(unit.MyStats);
+
+	for (StatData statdata : copy.MyStats.values()) {
+
+	    Stat stat = statdata.GetStat();
+	    if (statdata.Value > 0) {
+		if (stat instanceof IStatConversion) {
+		    IStatConversion affects = (IStatConversion) stat;
+		    affects.convertStats(copy, unit, statdata);
+		}
+		if (stat instanceof IStatTransfer) {
+		    IStatTransfer affects = (IStatTransfer) stat;
+		    affects.transferStats(copy, unit, statdata);
 		}
 	    }
-	}
 
-    }
-
-    public static void CalcStatTransferss(Unit unit) {
-	for (StatData stat : unit.MyStats.values()) {
-	    if (stat.GetStat() instanceof IStatTransfer) {
-		if (stat.Value > 0) {
-		    IStatTransfer affects = (IStatTransfer) stat.GetStat();
-		    affects.transferStats(unit, stat);
-
-		}
-	    }
 	}
 
     }
@@ -105,12 +107,9 @@ public class PlayerStatUtils {
 	List<GearItemData> gearitems = new ArrayList<GearItemData>();
 
 	for (ItemStack stack : list) {
-
 	    GearItemData gear = Gear.Load(stack);
-
 	    if (gear != null) {
 		gearitems.add(gear);
-
 	    }
 
 	}

@@ -29,11 +29,11 @@ public abstract class BaseConversionMod extends Stat implements IStatConversion 
     }
 
     @Override
-    public void convertStats(Unit unit, StatData data) {
+    public void convertStats(Unit copy, Unit unit, StatData data) {
 
 	for (ConversionMethod stat : this.conversion()) {
 
-	    float val = unit.MyStats.get(stat.converted.Guid()).Flat * data.Value /* percent */ / 100;
+	    float val = copy.MyStats.get(stat.converted.Guid()).Flat * data.Value /* percent */ / 100;
 
 	    unit.MyStats.get(stat.statThatBenefits.Guid()).Flat += val;
 

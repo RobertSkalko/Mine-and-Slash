@@ -31,8 +31,6 @@ public class OnTickLogic {
     static final int TicksToGiveMapPortal = 400;
     static final int TicksToUpdateWorld = 120;
 
-    static int radius = 50;
-
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
     @SubscribeEvent

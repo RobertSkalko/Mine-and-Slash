@@ -7,7 +7,7 @@ import com.robertx22.saveclasses.Unit;
 
 public interface IStatTransfer {
 
-    public abstract void transferStats(Unit unit, StatData data);
+    public abstract void transferStats(Unit unitcopy, Unit unit, StatData data);
 
     public abstract List<TransferMethod> Transfer();
 

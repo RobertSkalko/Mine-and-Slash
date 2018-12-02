@@ -35,6 +35,8 @@ public class PlayerDeathItems {
 
 	void saveItems(List<EntityItem> items);
 
+	void saveItem(ItemStack stack);
+
 	List<ItemStack> getItems();
 
     }
@@ -143,6 +145,11 @@ public class PlayerDeathItems {
 	    item_list.items.clear();
 
 	    return items;
+	}
+
+	@Override
+	public void saveItem(ItemStack stack) {
+	    item_list.items.add(stack);
 	}
 
     }

@@ -7,8 +7,8 @@ import com.robertx22.saveclasses.Unit;
 
 public interface IStatConversion {
 
-	public abstract void convertStats(Unit unit, StatData data);
+    public abstract void convertStats(Unit unitcopy, Unit unit, StatData data);
 
-	public abstract List<ConversionMethod> conversion();
+    public abstract List<ConversionMethod> conversion();
 
 }
