@@ -21,63 +21,64 @@ import info.loenwind.autosave.annotations.Storable;
 @Storable
 public class PrefixData extends AffixData implements Serializable, ITooltipList, IRerollable {
 
-	private static final long serialVersionUID = -110285627065158395L;
+    private static final long serialVersionUID = -110285627065158395L;
 
-	public PrefixData() {
+    public PrefixData() {
 
-	}
+    }
 
-	public PrefixData(GearItemData gear, String affixname, List<Integer> percents) {
-		super();
-		this.baseAffix = affixname;
-		this.percents = percents;
+    public PrefixData(GearItemData gear, String affixname, List<Integer> percents) {
+	super();
+	this.baseAffix = affixname;
+	this.percents = percents;
 
-	}
+    }
 
-	@Override
-	public void RerollFully(GearItemData gear) {
+    @Override
+    public void RerollFully(GearItemData gear) {
 
-		List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
-		Prefix prefix = (Prefix) RandomUtils.WeightedRandom(list);
+	List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
+	Prefix prefix = (Prefix) RandomUtils.WeightedRandom(list);
 
-		baseAffix = prefix.Name();
+	baseAffix = prefix.Name();
 
-		RerollNumbers(gear);
+	RerollNumbers(gear);
 
-	}
+    }
 
-	@Override
-	public void RerollNumbers(GearItemData gear) {
+    @Override
+    public void RerollNumbers(GearItemData gear) {
 
-		percents = new ArrayList<Integer>();
+	percents = new ArrayList<Integer>();
 
-		for (StatMod mod : BaseAffix().StatMods()) {
-			percents.add(StatGen.GenPercent(gear.GetRarity()));
-		}
-
-	}
-
-	@Override
-	public BaseAffix BaseAffix() {
-		return Prefixes.All().get(baseAffix);
-	}
-
-	@Override
-	public List<String> GetTooltipString(GearItemData gear) {
-
-		BaseAffix affix = BaseAffix();
-
-		List<String> list = new ArrayList<String>();
-
-		list.add("Prefix: " + affix.Name());
-
-		for (StatModData data : this.GetAllStats(gear.level)) {
-
-			list.add(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
-		}
-
-		return list;
+	for (StatMod mod : BaseAffix().StatMods()) {
+	    percents.add(StatGen.GenPercent(gear.GetRarity()));
 
 	}
+
+    }
+
+    @Override
+    public BaseAffix BaseAffix() {
+	return Prefixes.All().get(baseAffix);
+    }
+
+    @Override
+    public List<String> GetTooltipString(GearItemData gear) {
+
+	BaseAffix affix = BaseAffix();
+
+	List<String> list = new ArrayList<String>();
+
+	list.add("Prefix: " + affix.Name());
+
+	for (StatModData data : this.GetAllStats(gear.level)) {
+
+	    list.add(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
+	}
+
+	return list;
+
+    }
 
 }

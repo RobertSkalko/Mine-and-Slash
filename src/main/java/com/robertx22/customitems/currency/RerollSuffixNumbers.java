@@ -22,14 +22,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
-public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemEffect {
+public class RerollSuffixNumbers extends CurrencyItem implements ICurrencyItemEffect {
 
-    private static final String name = "add_secondary_stat";
+    private static final String name = "reroll_suffix_numbers";
 
-    @GameRegistry.ObjectHolder(Ref.MODID + ":add_secondary_stat")
+    @GameRegistry.ObjectHolder(Ref.MODID + ":reroll_suffix_numbers")
     public static final Item ITEM = null;
 
-    public ItemAddSecondaryStat() {
+    public RerollSuffixNumbers() {
 
 	super(name);
 
@@ -37,7 +37,7 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemAddSecondaryStat());
+	event.getRegistry().register(new RerollSuffixNumbers());
     }
 
     @SubscribeEvent
@@ -48,8 +48,9 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-	tooltip.add("This material can be used to add another secondary stat to an item.");
-	this.TooltipQuote(tooltip, "More power is always good, right?");
+	tooltip.add("Use on an item to re-roll Suffix Numbers");
+
+	this.TooltipQuote(tooltip, "I command you to change!");
 
     }
 
@@ -58,7 +59,8 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
 
 	GearItemData gear = Gear.Load(stack);
 
-	gear.secondaryStats.AddStat(gear);
+	gear.suffix.RerollNumbers(gear);
+
 	Gear.Save(stack, gear);
 
 	return stack;
@@ -68,15 +70,16 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     public boolean CanItemBeModified(ItemStack stack) {
 	GearItemData gear = Gear.Load(stack);
 
-	if (gear.secondaryStats.AddedStat == false) {
-	    return true;
-	}
-
-	return false;
+	return gear != null && gear.suffix != null;
     }
 
     @Override
     public int Tier() {
-	return 0;
+	return 14;
+    }
+
+    @Override
+    public int Weight() {
+	return this.EpicWeight;
     }
 }
