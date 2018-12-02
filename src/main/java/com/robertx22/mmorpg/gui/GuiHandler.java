@@ -6,6 +6,9 @@ import com.robertx22.advanced_blocks.gear_factory_station.TileGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.ContainerInventoryModify;
 import com.robertx22.advanced_blocks.item_modify_station.GuiInventoryModify;
 import com.robertx22.advanced_blocks.item_modify_station.TileInventoryModify;
+import com.robertx22.advanced_blocks.map_device.ContainerMap;
+import com.robertx22.advanced_blocks.map_device.GuiMap;
+import com.robertx22.advanced_blocks.map_device.TileMap;
 import com.robertx22.advanced_blocks.repair_station.ContainerInventoryRepair;
 import com.robertx22.advanced_blocks.repair_station.GuiInventoryRepair;
 import com.robertx22.advanced_blocks.repair_station.TileInventoryRepair;
@@ -61,19 +64,24 @@ public class GuiHandler implements IGuiHandler {
 	}
 
 	if (tileEntity instanceof TileInventorySalvage) {
-	    TileInventorySalvage tileInventory = (TileInventorySalvage) tileEntity;
-	    return new ContainerInventorySalvage(player.inventory, tileInventory);
+	    TileInventorySalvage tile = (TileInventorySalvage) tileEntity;
+	    return new ContainerInventorySalvage(player.inventory, tile);
 	}
 
 	if (tileEntity instanceof TileInventoryModify) {
-	    TileInventoryModify tileInventory = (TileInventoryModify) tileEntity;
-	    return new ContainerInventoryModify(player.inventory, tileInventory);
+	    TileInventoryModify tile = (TileInventoryModify) tileEntity;
+	    return new ContainerInventoryModify(player.inventory, tile);
 	}
 
 	if (tileEntity instanceof TileGearFactory) {
-	    TileGearFactory tileInventory = (TileGearFactory) tileEntity;
-	    return new ContainerGearFactory(player.inventory, tileInventory);
+	    TileGearFactory tile = (TileGearFactory) tileEntity;
+	    return new ContainerGearFactory(player.inventory, tile);
 	}
+	if (tileEntity instanceof TileMap) {
+	    TileMap tile = (TileMap) tileEntity;
+	    return new ContainerMap(player.inventory, tile);
+	}
+
 	if (stack != null && !stack.isEmpty()) {
 	    if (ID == ItemCurrencyBag.GUI_NUMBER) {
 		if (stack.getItem() instanceof ItemCurrencyBag)
@@ -116,6 +124,11 @@ public class GuiHandler implements IGuiHandler {
 	    TileGearFactory tileInventory = (TileGearFactory) tileEntity;
 	    return new GuiGearFactory(player.inventory, tileInventory);
 	}
+	if (tileEntity instanceof TileMap) {
+	    TileMap tileInventory = (TileMap) tileEntity;
+	    return new GuiMap(player.inventory, tileInventory);
+	}
+
 	if (stack != null && !stack.isEmpty()) {
 	    if (ID == ItemCurrencyBag.GUI_NUMBER) {
 		if (stack.getItem() instanceof ItemCurrencyBag) {

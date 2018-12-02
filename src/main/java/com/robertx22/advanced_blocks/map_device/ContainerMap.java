@@ -1,6 +1,4 @@
-package com.robertx22.advanced_blocks.item_modify_station;
-
-import com.robertx22.advanced_blocks.salvage_station.TileInventorySalvage;
+package com.robertx22.advanced_blocks.map_device;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,10 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ContainerInventoryModify extends Container {
+public class ContainerMap extends Container {
 
     // Stores the tile entity instance for later use
-    private TileInventoryModify tileInventory;
+    private TileMap tile;
 
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
@@ -27,23 +25,16 @@ public class ContainerInventoryModify extends Container {
     private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
     private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
 
-    public final int INPUT_SLOTS_COUNT = 2;
-    public final int OUTPUT_SLOTS_COUNT = 1;
-    public final int MODIFY_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
-
     // slot index is the unique index for all slots in this container i.e. 0 - 35
     // for invPlayer then 36 - 49 for tileInventoryFurnace
     private final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private final int FIRST_INPUT_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-    private final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
+    private final int TIER_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+    private final int LEVEL_SLOT_INDEX = TIER_SLOT_INDEX + 1;
+    private final int MAP_SLOT_INDEX = LEVEL_SLOT_INDEX + 1;
+    private final int START_SLOT_INDEX = MAP_SLOT_INDEX + 1;
 
-    // slot number is the slot number within each component; i.e. invPlayer slots 0
-    // - 35, and tileInventoryFurnace slots 0 - 14
-    private final int FIRST_INPUT_SLOT_NUMBER = 0;
-    private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
-
-    public ContainerInventoryModify(InventoryPlayer invPlayer, TileInventoryModify tileInventory) {
-	this.tileInventory = tileInventory;
+    public ContainerMap(InventoryPlayer invPlayer, TileMap tileInventory) {
+	this.tile = tileInventory;
 
 	final int SLOT_X_SPACING = 18;
 	final int SLOT_Y_SPACING = 18;
@@ -69,21 +60,13 @@ public class ContainerInventoryModify extends Container {
 
 	// VANILLA END
 
-	final int INPUT_SLOTS_XPOS = 26;
-	final int INPUT_SLOTS_YPOS = 24;
-	// Add the tile input slots
+	addSlotToContainer(new NormalSlot(tileInventory, TIER_SLOT_INDEX, 1, 1));
 
-	addSlotToContainer(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER, INPUT_SLOTS_XPOS,
-		INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
+	addSlotToContainer(new NormalSlot(tileInventory, LEVEL_SLOT_INDEX, 22, 22));
 
-	addSlotToContainer(new SlotSmeltableInput(tileInventory, FIRST_INPUT_SLOT_NUMBER + 1, 72,
-		INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
+	addSlotToContainer(new NormalSlot(tileInventory, MAP_SLOT_INDEX, 55, 55));
 
-	final int OUTPUT_SLOTS_XPOS = 134;
-	final int OUTPUT_SLOTS_YPOS = 24;
-
-	addSlotToContainer(new SlotOutput(tileInventory, FIRST_OUTPUT_SLOT_NUMBER, OUTPUT_SLOTS_XPOS,
-		OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
+	addSlotToContainer(new NormalSlot(tileInventory, START_SLOT_INDEX, 88, 88));
 
     }
 
@@ -91,7 +74,7 @@ public class ContainerInventoryModify extends Container {
     // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-	return tileInventory.isUsableByPlayer(player);
+	return tile.isUsableByPlayer(player);
     }
 
     // shift click logic
@@ -106,14 +89,14 @@ public class ContainerInventoryModify extends Container {
 	super.detectAndSendChanges();
 
 	boolean allFieldsHaveChanged = false;
-	boolean fieldHasChanged[] = new boolean[tileInventory.getFieldCount()];
+	boolean fieldHasChanged[] = new boolean[tile.getFieldCount()];
 	if (cachedFields == null) {
-	    cachedFields = new int[tileInventory.getFieldCount()];
+	    cachedFields = new int[tile.getFieldCount()];
 	    allFieldsHaveChanged = true;
 	}
 	for (int i = 0; i < cachedFields.length; ++i) {
-	    if (allFieldsHaveChanged || cachedFields[i] != tileInventory.getField(i)) {
-		cachedFields[i] = tileInventory.getField(i);
+	    if (allFieldsHaveChanged || cachedFields[i] != tile.getField(i)) {
+		cachedFields[i] = tile.getField(i);
 		fieldHasChanged[i] = true;
 	    }
 	}
@@ -121,7 +104,7 @@ public class ContainerInventoryModify extends Container {
 	// go through the list of listeners (players using this container) and update
 	// them if necessary
 	for (IContainerListener listener : this.listeners) {
-	    for (int fieldID = 0; fieldID < tileInventory.getFieldCount(); ++fieldID) {
+	    for (int fieldID = 0; fieldID < tile.getFieldCount(); ++fieldID) {
 		if (fieldHasChanged[fieldID]) {
 		    // Note that although sendWindowProperty takes 2 ints on a server these are
 		    // truncated to shorts
@@ -138,12 +121,12 @@ public class ContainerInventoryModify extends Container {
     @SideOnly(Side.CLIENT)
     @Override
     public void updateProgressBar(int id, int data) {
-	tileInventory.setField(id, data);
+	tile.setField(id, data);
     }
 
     // SlotSmeltableInput is a slot for input items
-    public class SlotSmeltableInput extends Slot {
-	public SlotSmeltableInput(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+    public class NormalSlot extends Slot {
+	public NormalSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
 	    super(inventoryIn, index, xPosition, yPosition);
 	}
 
@@ -151,21 +134,8 @@ public class ContainerInventoryModify extends Container {
 	// item into this slot
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-	    return TileInventorySalvage.isItemValidForInputSlot(stack);
+	    return true;
 	}
     }
 
-    // SlotOutput is a slot that will not accept any items
-    public class SlotOutput extends Slot {
-	public SlotOutput(IInventory inventoryIn, int index, int xPosition, int yPosition) {
-	    super(inventoryIn, index, xPosition, yPosition);
-	}
-
-	// if this function returns false, the player won't be able to insert the given
-	// item into this slot
-	@Override
-	public boolean isItemValid(ItemStack stack) {
-	    return TileInventorySalvage.isItemValidForOutputSlot(stack);
-	}
-    }
 }

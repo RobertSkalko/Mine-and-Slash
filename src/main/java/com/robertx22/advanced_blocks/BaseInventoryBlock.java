@@ -20,60 +20,60 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BaseInventoryBlock extends BlockContainer {
-	protected BaseInventoryBlock(Material materialIn) {
-		super(materialIn);
+    protected BaseInventoryBlock(Material materialIn) {
+	super(materialIn);
 
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+	    EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+	if (worldIn.isRemote)
+	    return true;
+
+	playerIn.openGui(Main.instance, GuiHandler.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+	return true;
+    }
+
+    // This is where you can do something when the block is broken. In this case
+    // drop the inventory's contents
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+	TileEntity tileEntity = worldIn.getTileEntity(pos);
+	if (tileEntity instanceof IInventory) {
+	    InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
 	}
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (worldIn.isRemote)
-			return true;
+	super.breakBlock(worldIn, pos, state);
+    }
 
-		playerIn.openGui(Main.instance, GuiHandler.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
-		return true;
-	}
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+	return this.getDefaultState();
+    }
 
-	// This is where you can do something when the block is broken. In this case
-	// drop the inventory's contents
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		TileEntity tileEntity = worldIn.getTileEntity(pos);
-		if (tileEntity instanceof IInventory) {
-			InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
-		}
+    @Override
+    public int getMetaFromState(IBlockState state) {
+	return 0;
+    }
 
-		super.breakBlock(worldIn, pos, state);
-	}
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+	return BlockRenderLayer.SOLID;
+    }
 
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState();
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState iBlockState) {
+	return false;
+    }
 
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return 0;
-	}
+    @Override
+    public boolean isFullCube(IBlockState iBlockState) {
+	return false;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.SOLID;
-	}
-
-	@Override
-	public boolean isOpaqueCube(IBlockState iBlockState) {
-		return false;
-	}
-
-	@Override
-	public boolean isFullCube(IBlockState iBlockState) {
-		return false;
-	}
-
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState iBlockState) {
-		return EnumBlockRenderType.MODEL;
-	}
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState iBlockState) {
+	return EnumBlockRenderType.MODEL;
+    }
 }

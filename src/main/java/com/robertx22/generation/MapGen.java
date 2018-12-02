@@ -22,6 +22,8 @@ import net.minecraft.item.ItemStack;
 public class MapGen {
     public static ItemStack Create(MapBlueprint blueprint) {
 
+	blueprint.level = blueprint.level + 1; // temp hotfix for too many low level maps
+
 	MapItemData data = new MapItemData();
 	MapRarity rarity = Rarities.Maps.get(blueprint.GetRarity());
 	ItemStack stack = new ItemStack(ItemMap.Items.get(rarity.Rank()));

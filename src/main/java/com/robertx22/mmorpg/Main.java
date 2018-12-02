@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.libraries.rabbit.gui.RabbitGui;
 import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
+import com.robertx22.advanced_blocks.map_device.StartupMap;
 import com.robertx22.advanced_blocks.repair_station.StartupRepair;
 import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
@@ -76,6 +77,7 @@ public class Main {
 	StartupSalvage.preInitCommon(event);
 	StartupModify.preInitCommon(event);
 	StartupGearFactory.preInitCommon(event);
+	StartupMap.preInitCommon(event);
 
 	MinecraftForge.EVENT_BUS.register(new UnitPackage());
 	MinecraftForge.EVENT_BUS.register(new EntityPackage());
