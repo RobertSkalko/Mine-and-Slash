@@ -1,22 +1,18 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.customitems.gearitems.bases.IWeapon;
-import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
-import com.robertx22.uncommon.AttackUtils;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class OnEntityMeleeAttack {
+public class OnMobMeleeAttack {
     /**
      * On attack, cancel and spawn the real attack with my damage source, mobs don't
      * use energy but players do
@@ -24,7 +20,7 @@ public class OnEntityMeleeAttack {
      * @param event
      */
     @SubscribeEvent
-    public static void onEntityMeleeAttack(LivingAttackEvent event) {
+    public static void onMobMeleeAttack(LivingAttackEvent event) {
 
 	if (event.getEntityLiving().world.isRemote) {
 	    return;
@@ -66,27 +62,6 @@ public class OnEntityMeleeAttack {
 
 	    if (source instanceof EntityPlayer) {
 
-		ItemStack weapon = source.getHeldItemMainhand();
-
-		if (weapon != null && !weapon.isEmpty() && weapon.getItem() instanceof IWeapon) {
-
-		    WeaponMechanic iWep = ((IWeapon) weapon.getItem()).mechanic();
-
-		    int energyCost = iWep.GetEnergyCost();
-
-		    if (sourceData.getUnit().hasEnoughEnergy(energyCost) == false) {
-			AttackUtils.NoEnergyMessage(source);
-			event.setCanceled(true);
-			return;
-
-		    } else {
-			sourceData.getUnit().SpendEnergy(energyCost);
-			weapon.damageItem(1, source);
-			iWep.Attack(source, target, sourceData, targetData);
-
-		    }
-
-		}
 	    } else { // if its a mob
 
 		sourceData.getUnit().MobBasicAttack(source, target, sourceData.getUnit(), event.getAmount());

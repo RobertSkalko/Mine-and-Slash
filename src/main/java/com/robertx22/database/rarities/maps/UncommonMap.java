@@ -16,4 +16,8 @@ public class UncommonMap extends BaseUncommon implements MapRarity {
 	return new MinMax(15, 35);
     }
 
+    @Override
+    public int Weight() {
+	return super.Weight() - 1500;
+    }
 }

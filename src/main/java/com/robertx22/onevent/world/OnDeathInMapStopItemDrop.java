@@ -31,11 +31,12 @@ public class OnDeathInMapStopItemDrop {
 		World world = event.getEntityPlayer().world;
 		IWorldData data = Load.World(world);
 
-		if (!player.world.getGameRules().getBoolean("keepInventory") && !player.isSpectator()) {
+		IPlayerDrops capa = event.getEntityPlayer().getCapability(PlayerDeathItems.Data, null);
 
-		    IPlayerDrops capa = event.getEntityPlayer().getCapability(PlayerDeathItems.Data, null);
+		if (data != null && data.isMapWorld()) {
 
-		    if (data != null && data.isMapWorld()) {
+		    if (!player.world.getGameRules().getBoolean("keepInventory") && !player.isSpectator()) {
+
 			capa.saveItems(event.getDrops());
 
 			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);

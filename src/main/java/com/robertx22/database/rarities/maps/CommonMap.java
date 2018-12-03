@@ -16,4 +16,8 @@ public class CommonMap extends BaseCommon implements MapRarity {
 	return new MinMax(10, 25);
     }
 
+    @Override
+    public int Weight() {
+	return super.Weight() - 5000;
+    }
 }

@@ -1,5 +1,6 @@
 package com.robertx22.mmorpg.proxy;
 
+import com.robertx22.customitems.gearitems.MyEntityArrow;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
@@ -24,7 +25,10 @@ import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.client.renderer.entity.RenderSpectralArrow;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -32,6 +36,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -41,77 +46,93 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ClientProxy implements IProxy {
-	// functionality
+    // functionality
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
-		// DEBUG
-		System.out.println("on Client side");
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
+	// DEBUG
+	System.out.println("on Client side");
 
-		MinecraftForge.EVENT_BUS.register(new ToggleKeyBind());
-		MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
+	MinecraftForge.EVENT_BUS.register(new ToggleKeyBind());
+	MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
 
-		MinecraftForge.EVENT_BUS.register(new UnitPackage.Handler());
-		MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
-		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
-		MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
-		MinecraftForge.EVENT_BUS.register(new WorldPackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new UnitPackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new WorldPackage.Handler());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMapPortal.class, new RenderTileMapPortal());
+	ClientRegistry.bindTileEntitySpecialRenderer(TileMapPortal.class, new RenderTileMapPortal());
 
-	}
+    }
 
-	@Override
-	public void init(FMLInitializationEvent event) {
-		// DEBUG
-		System.out.println("on Client side");
+    @Override
+    public void init(FMLInitializationEvent event) {
+	// DEBUG
+	System.out.println("on Client side");
 
-		Keybinds.register();
+	Keybinds.register();
 
-	}
+    }
 
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-		// DEBUG
-		System.out.println("on Client side");
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
+	// DEBUG
+	System.out.println("on Client side");
 
-		MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getMinecraft()));
-	}
+	MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getMinecraft()));
+    }
 
-	@Override
-	public EntityPlayer getPlayerEntityFromContext(MessageContext ctx) {
-		return (ctx.side.isClient() ? Minecraft.getMinecraft().player : Main.proxy.getPlayerEntityFromContext(ctx));
-	}
+    @Override
+    public EntityPlayer getPlayerEntityFromContext(MessageContext ctx) {
+	return (ctx.side.isClient() ? Minecraft.getMinecraft().player : Main.proxy.getPlayerEntityFromContext(ctx));
+    }
 
-	@Override
-	public void serverStarting(FMLServerStartingEvent event) {
-		// This will never get called on client side
+    @Override
+    public void serverStarting(FMLServerStartingEvent event) {
+	// This will never get called on client side
 
-	}
+    }
 
-	@Override
-	public void RegisterEntityRenders() {
-		RegisterModEntityClient(Items.SNOWBALL, EntityFrostBolt.class, 0);
-		RegisterModEntityClient(Items.MAGMA_CREAM, EntityFireBolt.class, 1);
-		RegisterModEntityClient(Items.SLIME_BALL, EntityAcidBolt.class, 2);
-		RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityThunderBolt.class, 3);
+    @Override
+    public void RegisterEntityRenders() {
+	RegisterModEntityClient(Items.SNOWBALL, EntityFrostBolt.class, 0);
+	RegisterModEntityClient(Items.MAGMA_CREAM, EntityFireBolt.class, 1);
+	RegisterModEntityClient(Items.SLIME_BALL, EntityAcidBolt.class, 2);
+	RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityThunderBolt.class, 3);
 
-		RegisterModEntityClient(Items.SNOWBALL, EntityFrostExplosion.class, 4);
-		RegisterModEntityClient(Items.MAGMA_CREAM, EntityFlameExplosion.class, 5);
-		RegisterModEntityClient(Items.SLIME_BALL, EntityAcidExplosion.class, 6);
-		RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityLightningExplosion.class, 7);
-		RegisterModEntityClient(Items.ENDER_PEARL, EntityStaffProjectileNormal.class, 8);
+	RegisterModEntityClient(Items.SNOWBALL, EntityFrostExplosion.class, 4);
+	RegisterModEntityClient(Items.MAGMA_CREAM, EntityFlameExplosion.class, 5);
+	RegisterModEntityClient(Items.SLIME_BALL, EntityAcidExplosion.class, 6);
+	RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityLightningExplosion.class, 7);
+	RegisterModEntityClient(Items.ENDER_PEARL, EntityStaffProjectileNormal.class, 8);
 
-	}
+	regArrow(Items.ARROW, MyEntityArrow.class, 9);
 
-	private static void RegisterModEntityClient(Item item, Class<? extends Entity> theclass, int id) {
+    }
 
-		EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
-				Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
+    private static void regArrow(Item item, Class<? extends Entity> theclass, int id) {
 
-		RenderingRegistry.registerEntityRenderingHandler(theclass,
-				renderManager -> new RenderSnowball<>(renderManager, item, Minecraft.getMinecraft().getRenderItem()));
+	EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
+		Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
 
-	}
+	RenderingRegistry.registerEntityRenderingHandler(theclass, new IRenderFactory() {
+	    @Override
+	    public Render createRenderFor(RenderManager manager) {
+		return new RenderSpectralArrow(manager);
+	    }
+	});
+
+    }
+
+    private static void RegisterModEntityClient(Item item, Class<? extends Entity> theclass, int id) {
+
+	EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
+		Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
+
+	RenderingRegistry.registerEntityRenderingHandler(theclass,
+		renderManager -> new RenderSnowball<>(renderManager, item, Minecraft.getMinecraft().getRenderItem()));
+
+    }
 
 }

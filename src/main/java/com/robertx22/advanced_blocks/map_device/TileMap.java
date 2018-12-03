@@ -10,11 +10,13 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.datasaving.Map;
 
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
@@ -70,6 +72,14 @@ public class TileMap extends BaseTile {
 	if (map != null) {
 
 	    if (start != null && start.getItem().equals(Items.WHEAT_SEEDS)) {
+
+		BlockPos p = this.pos;
+
+		world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN,
+			SoundCategory.BLOCKS, 0.6f, 0);
+
+		world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL,
+			SoundCategory.BLOCKS, 0.4f, 0);
 
 		// start map
 		this.MapSlot().shrink(1);

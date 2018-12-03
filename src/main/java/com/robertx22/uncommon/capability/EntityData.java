@@ -2,6 +2,8 @@ package com.robertx22.uncommon.capability;
 
 import java.util.UUID;
 
+import com.robertx22.customitems.gearitems.bases.IWeapon;
+import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.mmorpg.Main;
@@ -9,8 +11,10 @@ import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.UnitPackage;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.AttackUtils;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.uncommon.datasaving.Load;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
@@ -20,6 +24,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -93,6 +98,10 @@ public class EntityData {
 	void forceRecalculateStats(EntityLivingBase entity);
 
 	void forceSetUnit(Unit unit);
+
+	boolean tryUseWeapon(EntityLivingBase entity, WeaponMechanic iwep, ItemStack weapon);
+
+	void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon);
 
     }
 
@@ -403,6 +412,38 @@ public class EntityData {
 	@Override
 	public void forceSetUnit(Unit unit) {
 	    this.unit = unit;
+	}
+
+	@Override
+	public boolean tryUseWeapon(EntityLivingBase entity, WeaponMechanic iwep, ItemStack weapon) {
+
+	    int energyCost = iwep.GetEnergyCost();
+
+	    if (getUnit().hasEnoughEnergy(energyCost) == false) {
+		AttackUtils.NoEnergyMessage(entity);
+		return false;
+
+	    } else {
+		getUnit().SpendEnergy(energyCost);
+		weapon.damageItem(1, entity);
+		return true;
+
+	    }
+
+	}
+
+	public void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon) {
+
+	    UnitData targetData = Load.Unit(target);
+
+	    if (weapon != null && !weapon.isEmpty() && weapon.getItem() instanceof IWeapon) {
+
+		WeaponMechanic iWep = ((IWeapon) weapon.getItem()).mechanic();
+
+		weapon.damageItem(1, source);
+		iWep.Attack(source, target, this, targetData);
+
+	    }
 	}
 
     }

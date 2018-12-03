@@ -10,20 +10,20 @@ import com.robertx22.customitems.gearitems.weapon_mechanics.AxeWeaponMechanic;
 import net.minecraft.item.Item;
 
 public class ItemAxe extends BaseWeaponItem implements IWeapon {
-	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-	public ItemAxe() {
+    public ItemAxe() {
 
-	}
+    }
 
-	@Override
-	public String Name() {
-		return "Axe";
-	}
+    @Override
+    public String Name() {
+	return "Axe";
+    }
 
-	@Override
-	public WeaponMechanic mechanic() {
-		return new AxeWeaponMechanic();
-	}
+    @Override
+    public WeaponMechanic mechanic() {
+	return new AxeWeaponMechanic();
+    }
 
 }

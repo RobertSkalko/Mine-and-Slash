@@ -148,6 +148,7 @@ public class ItemMap extends Item {
     }
 
     private static void spawnFrameBlock(World world, BlockPos pos) {
+
 	world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(), 2);
     }
 

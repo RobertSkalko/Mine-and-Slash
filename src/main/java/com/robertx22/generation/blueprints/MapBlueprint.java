@@ -44,7 +44,6 @@ public class MapBlueprint extends ItemBlueprint {
     }
 
     @Override
-
     public int GetRarity() {
 
 	if (RandomRarity) {
