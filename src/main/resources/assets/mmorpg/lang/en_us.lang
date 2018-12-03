@@ -21,6 +21,7 @@ tile.mmorpg:modify_station.name=Gear Modify Station
 tile.mmorpg:repair_station.name=Gear Repair Station
 tile.mmorpg:gear_factory_station.name=Gear Craft Station
 tile.mmorpg:salvage_station.name=Gear Salvage Station
+tile.mmorpg:map_device.name=Map Device
 
 # MISC ITEMS
 item.mmorpg:player_levelup.name=Player Level Up Token

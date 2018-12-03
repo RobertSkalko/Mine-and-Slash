@@ -75,8 +75,19 @@ public class TileMap extends BaseTile {
 		this.MapSlot().shrink(1);
 		this.StartSlot().shrink(1);
 
-		BlockPos pos = this.pos.north(6);
-		ItemMap.createMap(pos, world, map);
+		int id = map.createDimension(world, pos);
+
+		BlockPos pos = this.pos.north(4);
+		ItemMap.createMap(id, pos, world, map);
+
+		BlockPos pos1 = this.pos.south(4);
+		ItemMap.createMap(id, pos1, world, map);
+
+		BlockPos pos2 = this.pos.east(4);
+		ItemMap.createMap(id, pos2, world, map);
+
+		BlockPos pos3 = this.pos.west(4);
+		ItemMap.createMap(id, pos3, world, map);
 
 	    }
 

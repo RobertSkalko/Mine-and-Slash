@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BAB",
+    "CCC"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:obsidian"
+    }, 
+	"A": {
+      "item": "minecraft:diamond"
+    }, 
+	"B": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "mmorpg:map_device"
+  }
+}

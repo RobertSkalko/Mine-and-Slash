@@ -77,6 +77,10 @@ public class ItemMap extends Item {
 
 	    tooltip.add("");
 	    tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
+
+	    tooltip.add("");
+	    tooltip.add(TextFormatting.BLUE + "Put in a Map Device to Use");
+
 	}
 
 	return tooltip;
@@ -107,7 +111,7 @@ public class ItemMap extends Item {
 	}
     }
 
-    public static void createMap(BlockPos pos, World world, MapItemData data) {
+    public static void createMap(int id, BlockPos pos, World world, MapItemData data) {
 	IWorldData currentdata = Load.World(world);
 
 	if (currentdata.isMapWorld()) {
@@ -115,8 +119,6 @@ public class ItemMap extends Item {
 	} else {
 
 	    if (data != null) {
-
-		int id = data.createDimension(world, pos);
 
 		summonPortal(world, pos, id);
 	    }

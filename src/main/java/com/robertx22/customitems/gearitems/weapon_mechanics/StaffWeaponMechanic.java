@@ -7,7 +7,7 @@ public class StaffWeaponMechanic extends WeaponMechanic {
 
     @Override
     public int GetEnergyCost() {
-	return 6;
+	return 5;
     }
 
     @Override

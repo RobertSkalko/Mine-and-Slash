@@ -4,14 +4,13 @@ import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
+import com.robertx22.uncommon.AttackUtils;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -76,7 +75,7 @@ public class OnEntityMeleeAttack {
 		    int energyCost = iWep.GetEnergyCost();
 
 		    if (sourceData.getUnit().hasEnoughEnergy(energyCost) == false) {
-			NoEnergyMessage(source);
+			AttackUtils.NoEnergyMessage(source);
 			event.setCanceled(true);
 			return;
 
@@ -105,10 +104,6 @@ public class OnEntityMeleeAttack {
 
 	}
 
-    }
-
-    private static void NoEnergyMessage(EntityLivingBase entity) {
-	entity.sendMessage(new TextComponentString(TextFormatting.RED + "Not Enough Energy."));
     }
 
 }
