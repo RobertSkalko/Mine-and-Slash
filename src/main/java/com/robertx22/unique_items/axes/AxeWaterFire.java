@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackFireDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackWaterDamageFlat;
-import com.robertx22.database.stat_mods.percent.CriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
 import com.robertx22.database.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.database.stat_mods.percent.much_less.CrippleManaOnHitPercent;
@@ -36,7 +35,7 @@ public class AxeWaterFire extends BaseUniqueAxe {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackFireDamageFlat(), new AttackWaterDamageFlat(), new CriticalHitPercent(),
-		new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
+		new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
     }
 
     @Override

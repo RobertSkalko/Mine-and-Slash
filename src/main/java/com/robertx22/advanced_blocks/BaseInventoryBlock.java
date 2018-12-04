@@ -1,5 +1,7 @@
 package com.robertx22.advanced_blocks;
 
+import java.util.Random;
+
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.gui.GuiHandler;
 
@@ -23,6 +25,8 @@ public abstract class BaseInventoryBlock extends BlockContainer {
     protected BaseInventoryBlock(Material materialIn) {
 	super(materialIn);
 
+	this.setHardness(5F);
+
     }
 
     @Override
@@ -33,6 +37,11 @@ public abstract class BaseInventoryBlock extends BlockContainer {
 
 	playerIn.openGui(Main.instance, GuiHandler.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
 	return true;
+    }
+
+    @Override
+    public int quantityDropped(Random random) {
+	return 1;
     }
 
     // This is where you can do something when the block is broken. In this case

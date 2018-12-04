@@ -26,68 +26,68 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = "orb_of_transmutation";
+    private static final String name = "orb_of_transmutation";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":orb_of_transmutation")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":orb_of_transmutation")
+    public static final Item ITEM = null;
 
-	public ItemOrbOfTransmutation() {
+    public ItemOrbOfTransmutation() {
 
-		super(name);
+	super(name);
 
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemOrbOfTransmutation());
+    }
+
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
+	tooltip.add("Transforms a common item into a higher rarity.");
+	tooltip.add("Beware, it is a complete transformation, consider the");
+	tooltip.add("old item to be destroyed and replaced with a new one.");
+
+	this.TooltipQuote(tooltip, "Turn trash into treasure!");
+    }
+
+    @Override
+    public ItemStack ModifyItem(ItemStack stack) {
+
+	GearItemData gear = Gear.Load(stack);
+
+	GearBlueprint gearPrint = new GearBlueprint(gear.level);
+	gearPrint.SetSpecificType(gear.gearTypeName);
+	gearPrint.minRarity = 1;
+	gearPrint.LevelRange = false;
+
+	GearItemData newgear = GearGen.CreateData(gearPrint);
+	gear.WriteOverDataThatShouldStay(newgear);
+
+	return GearGen.CreateStack(newgear);
+    }
+
+    @Override
+    public boolean CanItemBeModified(ItemStack stack) {
+
+	GearItemData gear = Gear.Load(stack);
+
+	if (gear != null && gear.Rarity == 0) {
+	    return true;
 	}
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemOrbOfTransmutation());
-	}
+	return false;
+    }
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		tooltip.add("Transforms a common item into a higher rarity.");
-		tooltip.add("Beware, it is a complete transformation, consider the");
-		tooltip.add("old item to be destroyed and replaced with a new one.");
-
-		this.TooltipQuote(tooltip, "Turn trash into treasure!");
-	}
-
-	@Override
-	public ItemStack ModifyItem(ItemStack stack) {
-
-		GearItemData gear = Gear.Load(stack);
-
-		GearBlueprint gearPrint = new GearBlueprint(gear.level);
-		gearPrint.SetSpecificType(gear.gearTypeName);
-		gearPrint.minRarity = 1;
-		gearPrint.LevelRange = false;
-
-		GearItemData newgear = GearGen.CreateData(gearPrint);
-		gear.WriteOverDataThatShouldStay(newgear);
-
-		return GearGen.CreateStack(newgear);
-	}
-
-	@Override
-	public boolean CanItemBeModified(ItemStack stack) {
-
-		GearItemData gear = Gear.Load(stack);
-
-		if (gear != null && gear.Rarity == 0) {
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
-	public int Tier() {
-		return 0;
-	}
+    @Override
+    public int Tier() {
+	return 0;
+    }
 
 }

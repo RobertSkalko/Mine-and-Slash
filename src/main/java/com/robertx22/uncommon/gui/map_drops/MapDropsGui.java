@@ -7,7 +7,6 @@ import com.libraries.rabbit.gui.component.list.ScrollableDisplayList;
 import com.libraries.rabbit.gui.component.list.entries.ListEntry;
 import com.libraries.rabbit.gui.component.list.entries.StringEntry;
 import com.libraries.rabbit.gui.show.Show;
-import com.robertx22.generation.UniqueGearGen;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -74,8 +73,7 @@ public class MapDropsGui extends Show {
 
 	    if (world.isMapWorld()) {
 
-		List<IUnique> uniques = UniqueGearGen.getAllPossibleUniqueDrops(world.getTier(),
-			IUnique.ITEMS.values());
+		List<IUnique> uniques = IUnique.getAllPossibleUniqueDrops(world.getTier(), IUnique.ITEMS.values());
 
 		boolean has = false;
 		List<String> names = new ArrayList<String>();

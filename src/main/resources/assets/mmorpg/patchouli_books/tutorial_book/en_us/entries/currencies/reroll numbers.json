@@ -1,0 +1,21 @@
+{
+	"name": "Orb of Blessing",
+	"icon": "mmorpg:number_reroll",
+	"category": "currencies",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:number_reroll"
+        },		
+		 {
+            "type": "crafting",
+            "text": "",
+            "recipe": ""
+        }
+		
+	]
+}

@@ -49,9 +49,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon {
 
 		data.recalculateStats(player);
 
-		if (data.getUnit().hasEnoughEnergy(this.mechanic().GetEnergyCost())) {
-
-		    data.getUnit().SpendEnergy(this.mechanic().GetEnergyCost());
+		if (data.tryUseWeapon(player, this.mechanic(), player.getHeldItem(hand))) {
 
 		    EntityStaffProjectileNormal projectile = new EntityStaffProjectileNormal(world, player);
 		    projectile.SetReady(player.getHeldItem(hand));

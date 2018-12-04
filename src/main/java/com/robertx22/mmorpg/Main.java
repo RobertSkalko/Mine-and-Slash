@@ -16,6 +16,7 @@ import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
+import com.robertx22.network.MessagePackage;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.UnitPackage;
 import com.robertx22.network.WorldPackage;
@@ -90,6 +91,7 @@ public class Main {
 	Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2, Side.CLIENT);
 	Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Side.CLIENT);
 	Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Side.CLIENT);
+	Network.registerMessage(MessagePackage.Handler.class, MessagePackage.class, 5, Side.CLIENT);
 
 	CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(),
 		EntityData.DefaultImpl.class);

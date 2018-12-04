@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "ACA",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "mmorpg:ore5"
+    }, 
+	"A": {
+      "item": "mmorpg:orb_of_transmutation"
+    }, 
+	"B": {
+      "item": "mmorpg:chaos_orb"
+    }
+  },
+  "result": {
+    "item": "mmorpg:stone_of_hope"
+  }
+}

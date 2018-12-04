@@ -51,8 +51,10 @@ item.mmorpg:randomize_suffix.name=§cOrb Of Ever-Changing Suffix
 item.mmorpg:stone_of_hope.name=§cStone Of Hope
 item.mmorpg:add_suffix.name=§cUnearth Suffix
 item.mmorpg:add_prefix.name=§cUnearth Prefix
-item.mmorpg:reroll_suffx_numbers.name=§cOrb Of Suffix Blessing
+item.mmorpg:reroll_suffix_numbers.name=§cOrb Of Suffix Blessing
 item.mmorpg:reroll_prefix_numbers.name=§cOrb Of Prefix Blessing
+item.mmorpg:reroll_unique_numbers.name=§cOrb of Unique Blessing
+item.mmorpg:create_new_unique.name=§cGem Of Unique Heaven
 
 
 

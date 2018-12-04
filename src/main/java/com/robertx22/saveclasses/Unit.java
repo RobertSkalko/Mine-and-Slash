@@ -199,6 +199,11 @@ public class Unit {
     }
 
     protected void ClearStats() {
+
+	if (MyStats == null) {
+	    this.InitPlayerStats();
+	}
+
 	for (StatData stat : MyStats.values()) {
 	    stat.Clear();
 	}
@@ -235,7 +240,11 @@ public class Unit {
     private Unit Clone() {
 
 	Unit clone = new Unit();
-	clone.MyStats = new HashMap<String, StatData>(this.MyStats);
+	if (this.MyStats != null) {
+	    clone.MyStats = new HashMap<String, StatData>(this.MyStats);
+	} else {
+	    clone.MyStats = new HashMap<String, StatData>();
+	}
 
 	return clone;
 

@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class BaseWeaponItem extends ItemTool implements IGearItem, IWeapon {
@@ -28,15 +29,29 @@ public abstract class BaseWeaponItem extends ItemTool implements IGearItem, IWea
 
     }
 
+    public static boolean checkDurability(EntityLivingBase attacker, ItemStack stack) {
+
+	if (stack.getItemDamage() > stack.getMaxDamage() - 20) {
+	    attacker.sendMessage(new TextComponentString("Weapon has too low durability to be used."));
+	    return false;
+
+	}
+	return true;
+    }
+
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-	stack.damageItem(1, attacker);
 
-	UnitData sourceUnit = Load.Unit(attacker);
+	if (checkDurability(attacker, stack)) {
 
-	if (sourceUnit.tryUseWeapon(attacker, this.mechanic(), stack)) {
-	    sourceUnit.attackWithWeapon(attacker, target, stack);
-	    return true;
+	    stack.damageItem(1, attacker);
+
+	    UnitData sourceUnit = Load.Unit(attacker);
+
+	    if (sourceUnit.tryUseWeapon(attacker, this.mechanic(), stack)) {
+		sourceUnit.attackWithWeapon(attacker, target, stack);
+		return true;
+	    }
 	}
 
 	return false;

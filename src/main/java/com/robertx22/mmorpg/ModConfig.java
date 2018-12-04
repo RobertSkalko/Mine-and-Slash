@@ -30,6 +30,10 @@ public class ModConfig {
 	@Config.Comment("Show/Disable mob health bars")
 	public boolean RENDER_MOB_HEALTH_GUI = true;
 
+	@Config.Name("Show Low Ene/Mana Warnings")
+	@Config.Comment("Posts them in chat if you can't cast spell or attakc")
+	public boolean SHOW_LOW_ENERGY_MANA_WARNING = false;
+
 	@Config.Name("Announce world boss spawn")
 	@Config.Comment("plays a dragon sound when world boss spawns")
 	public boolean ANNOUNCE_WORLD_BOSS_SPAWN = false;

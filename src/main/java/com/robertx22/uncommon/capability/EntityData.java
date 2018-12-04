@@ -420,6 +420,7 @@ public class EntityData {
 	    int energyCost = iwep.GetEnergyCost();
 
 	    if (getUnit().hasEnoughEnergy(energyCost) == false) {
+
 		AttackUtils.NoEnergyMessage(entity);
 		return false;
 
@@ -440,7 +441,6 @@ public class EntityData {
 
 		WeaponMechanic iWep = ((IWeapon) weapon.getItem()).mechanic();
 
-		weapon.damageItem(1, source);
 		iWep.Attack(source, target, this, targetData);
 
 	    }

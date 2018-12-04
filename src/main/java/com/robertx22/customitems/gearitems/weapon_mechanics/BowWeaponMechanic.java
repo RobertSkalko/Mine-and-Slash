@@ -6,7 +6,7 @@ import com.robertx22.effectdatas.interfaces.WeaponTypes;
 public class BowWeaponMechanic extends WeaponMechanic {
     @Override
     public int GetEnergyCost() {
-	return 8;
+	return 9;
     }
 
     @Override

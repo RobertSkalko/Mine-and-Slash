@@ -27,72 +27,72 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect {
 
-	private static final String name = "stone_of_hope";
+    private static final String name = "stone_of_hope";
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":stone_of_hope")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":stone_of_hope")
+    public static final Item ITEM = null;
 
-	public ItemStoneOfHope() {
+    public ItemStoneOfHope() {
 
-		super(name);
+	super(name);
 
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemStoneOfHope());
+    }
+
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
+	tooltip.add("Transforms any rarity item into a higher rarity");
+
+	this.TooltipQuote(tooltip, "When there is hope, there is a way.");
+    }
+
+    @Override
+    public ItemStack ModifyItem(ItemStack stack) {
+
+	GearItemData gear = Gear.Load(stack);
+
+	GearBlueprint gearPrint = new GearBlueprint(gear.level);
+	gearPrint.SetSpecificType(gear.gearTypeName);
+	gearPrint.minRarity = gear.Rarity + 1;
+	gearPrint.LevelRange = false;
+
+	GearItemData newgear = GearGen.CreateData(gearPrint);
+	gear.WriteOverDataThatShouldStay(newgear);
+
+	return GearGen.CreateStack(newgear);
+
+    }
+
+    @Override
+    public boolean CanItemBeModified(ItemStack stack) {
+
+	GearItemData gear = Gear.Load(stack);
+
+	if (gear != null && gear.Rarity < Rarities.MAXIMUM_ITEM_RARITY) {
+	    return true;
 	}
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemStoneOfHope());
-	}
+	return false;
+    }
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
+    @Override
+    public int Weight() {
+	return this.LegendaryWeight;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		tooltip.add("Transforms any rarity item into a higher rarity");
-
-		this.TooltipQuote(tooltip, "When there is hope, there is a way.");
-	}
-
-	@Override
-	public ItemStack ModifyItem(ItemStack stack) {
-
-		GearItemData gear = Gear.Load(stack);
-
-		GearBlueprint gearPrint = new GearBlueprint(gear.level);
-		gearPrint.SetSpecificType(gear.gearTypeName);
-		gearPrint.minRarity = gear.Rarity + 1;
-		gearPrint.LevelRange = false;
-
-		GearItemData newgear = GearGen.CreateData(gearPrint);
-		gear.WriteOverDataThatShouldStay(newgear);
-
-		return GearGen.CreateStack(newgear);
-
-	}
-
-	@Override
-	public boolean CanItemBeModified(ItemStack stack) {
-
-		GearItemData gear = Gear.Load(stack);
-
-		if (gear != null && gear.Rarity < Rarities.MAXIMUM_ITEM_RARITY) {
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
-	public int Weight() {
-		return this.LegendaryWeight;
-	}
-
-	@Override
-	public int Tier() {
-		return 2;
-	}
+    @Override
+    public int Tier() {
+	return 2;
+    }
 
 }

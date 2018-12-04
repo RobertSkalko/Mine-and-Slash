@@ -1,5 +1,7 @@
 package com.robertx22.spells.bases;
 
+import com.robertx22.mmorpg.Main;
+import com.robertx22.network.MessagePackage;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -7,6 +9,7 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
@@ -69,7 +72,12 @@ public abstract class BaseSpell implements IWeighted {
 		    return true;
 
 		} else {
-		    caster.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have enough mana!"));
+
+		    if (caster instanceof EntityPlayerMP) {
+			Main.Network.sendTo(new MessagePackage(TextFormatting.RED + "Not Enough Mana.",
+				MessagePackage.MessageTypes.NoMana), (EntityPlayerMP) caster);
+
+		    }
 
 		}
 	    }

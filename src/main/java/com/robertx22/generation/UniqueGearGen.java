@@ -1,32 +1,25 @@
 package com.robertx22.generation;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
-import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.blueprints.UniqueBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.uncommon.datasaving.Gear;
-import com.robertx22.uncommon.utilityclasses.IWeighted;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.unique_items.IUnique;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class UniqueGearGen {
 
-    public static GearItemData CreateData(GearBlueprint blueprint) {
+    public static GearItemData CreateData(UniqueBlueprint blueprint) {
 
-	IUnique unique = randomUnique(blueprint);
+	IUnique unique = blueprint.getUnique();
 	GearItemData data = new GearItemData();
 
 	if (unique != null) {
@@ -63,46 +56,7 @@ public class UniqueGearGen {
 	return data;
     }
 
-    public static IUnique randomUnique(GearBlueprint blueprint) {
-
-	List<IWeighted> list = new ArrayList<IWeighted>();
-
-	List<IUnique> possible = filterUniquesByType(blueprint.gearType,
-		getAllPossibleUniqueDrops(blueprint.tier, IUnique.ITEMS.values()));
-
-	IUnique unique = (IUnique) RandomUtils.WeightedRandom(ListUtils.CollectionToList(possible));
-
-	return unique;
-
-    }
-
-    public static List<IUnique> getAllPossibleUniqueDrops(int tier, Collection<Item> coll) {
-	List<IUnique> list = new ArrayList<IUnique>();
-
-	for (Item item : coll) {
-	    IUnique baseu = (IUnique) item;
-
-	    if (tier >= baseu.Tier()) {
-		list.add((IUnique) item);
-	    }
-	}
-	return list;
-    }
-
-    public static List<IUnique> filterUniquesByType(String type, List<IUnique> coll) {
-
-	List<IUnique> list = new ArrayList<IUnique>();
-
-	for (IUnique item : coll) {
-	    if (item.slot().equals(type) || type.equals("random") || type.equals("")) {
-		list.add((IUnique) item);
-	    }
-	}
-
-	return list;
-    }
-
-    public static ItemStack CreateStack(GearBlueprint schema) {
+    public static ItemStack CreateStack(UniqueBlueprint schema) {
 
 	GearItemData data = CreateData(schema);
 

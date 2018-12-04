@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.robertx22.customitems.gearitems.MyEntityArrow;
 import com.robertx22.customitems.gearitems.bases.BaseBow;
+import com.robertx22.customitems.gearitems.bases.BaseWeaponItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.customitems.gearitems.weapon_mechanics.BowWeaponMechanic;
@@ -56,9 +57,9 @@ public class ItemBow extends BaseBow implements IWeapon {
 	if (ret != null)
 	    return ret;
 
-	if (!playerIn.capabilities.isCreativeMode && !flag) {
-	    return flag ? new ActionResult(EnumActionResult.PASS, itemstack)
-		    : new ActionResult(EnumActionResult.FAIL, itemstack);
+	if (BaseWeaponItem.checkDurability(playerIn, itemstack) == false) {
+	    return flag ? new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack)
+		    : new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 	} else {
 	    playerIn.setActiveHand(handIn);
 	    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
@@ -138,7 +139,7 @@ public class ItemBow extends BaseBow implements IWeapon {
      * How long it takes to use or consume an item
      */
     public int getMaxItemUseDuration(ItemStack stack) {
-	return 30000;//// 72000;
+	return 40000;//// 72000;
     }
 
 }

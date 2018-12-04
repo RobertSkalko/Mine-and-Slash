@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
+import com.robertx22.database.stat_mods.flat.DodgeFlat;
 import com.robertx22.database.stat_mods.flat.elemental.attack_dmg.AttackThunderDamageFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stat_mods.percent.pene.ThunderPenePercent;
@@ -34,7 +35,7 @@ public class StaffThunder extends BaseUniqueStaff {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackThunderDamageFlat(), new CriticalDamageFlat(), new ThunderPenePercent(),
-		new ManaOnHitFlat());
+		new DodgeFlat(), new ManaOnHitFlat());
     }
 
     @Override

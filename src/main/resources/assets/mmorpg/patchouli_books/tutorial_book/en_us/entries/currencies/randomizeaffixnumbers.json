@@ -1,0 +1,21 @@
+{
+	"name": "Randomize Affix Numbers",
+	"icon": "mmorpg:reroll_prefix_numbers",
+	"category": "currencies",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:reroll_prefix_numbers"
+        },		
+		 {
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:reroll_suffix_numbers"
+        }
+		
+	]
+}

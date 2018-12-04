@@ -8,6 +8,7 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.network.EntityPackage;
+import com.robertx22.network.MessagePackage;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.UnitPackage;
 import com.robertx22.network.WorldPackage;
@@ -61,6 +62,7 @@ public class ClientProxy implements IProxy {
 	MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
 	MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
 	MinecraftForge.EVENT_BUS.register(new WorldPackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new MessagePackage.Handler());
 
 	ClientRegistry.bindTileEntitySpecialRenderer(TileMapPortal.class, new RenderTileMapPortal());
 
@@ -100,13 +102,11 @@ public class ClientProxy implements IProxy {
 	RegisterModEntityClient(Items.MAGMA_CREAM, EntityFireBolt.class, 1);
 	RegisterModEntityClient(Items.SLIME_BALL, EntityAcidBolt.class, 2);
 	RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityThunderBolt.class, 3);
-
 	RegisterModEntityClient(Items.SNOWBALL, EntityFrostExplosion.class, 4);
 	RegisterModEntityClient(Items.MAGMA_CREAM, EntityFlameExplosion.class, 5);
 	RegisterModEntityClient(Items.SLIME_BALL, EntityAcidExplosion.class, 6);
 	RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityLightningExplosion.class, 7);
 	RegisterModEntityClient(Items.ENDER_PEARL, EntityStaffProjectileNormal.class, 8);
-
 	regArrow(Items.ARROW, MyEntityArrow.class, 9);
 
     }

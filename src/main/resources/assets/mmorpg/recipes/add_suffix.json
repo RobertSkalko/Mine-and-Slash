@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "ACA",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "mmorpg:ore4"
+    }, 
+	"A": {
+      "item": "mmorpg:randomize_suffix"
+    }, 
+	"B": {
+      "item": "minecraft:diamond_block"
+    }
+  },
+  "result": {
+    "item": "mmorpg:add_suffix"
+  }
+}

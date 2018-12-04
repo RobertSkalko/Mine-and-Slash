@@ -79,9 +79,10 @@ public class OnLogin {
 		Unit unit = UnitSaving.Load(player);
 		UnitData data = Load.Unit(player);
 
-		if (unit == null) {
-
-		    UnitSaving.Save(player, new Unit());
+		if (unit == null || data == null) {
+		    Unit newunit = new Unit();
+		    newunit.InitPlayerStats();
+		    UnitSaving.Save(player, newunit);
 		    GiveStarterItems(player);
 		} else {
 		    data.getUnit().InitPlayerStats();

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "ACA",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "mmorpg:ore2"
+    }, 
+	"A": {
+      "item": "mmorpg:add_secondary_stat"
+    }, 
+	"B": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "mmorpg:number_reroll"
+  }
+}

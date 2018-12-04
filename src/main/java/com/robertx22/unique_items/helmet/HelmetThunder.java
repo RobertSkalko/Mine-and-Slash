@@ -3,6 +3,7 @@ package com.robertx22.unique_items.helmet;
 import java.util.Arrays;
 import java.util.List;
 
+import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
@@ -35,7 +36,7 @@ public class HelmetThunder extends BaseUniqueHelmet {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new LowDodgeAddCritHitFlat(), new ThunderSpellToAttackFlat(), new EnergyRegenFlat(),
-		new HealthFlat(), new LessLifeOnHitPercent());
+		new HealthFlat(), new ArmorFlat(), new LessLifeOnHitPercent());
     }
 
     @Override

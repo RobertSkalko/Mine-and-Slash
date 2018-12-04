@@ -24,8 +24,6 @@ public class GearBlueprint extends ItemBlueprint {
     public String gearType = "";
     public boolean RandomGearType = true;
 
-    public int tier = 0;
-
     public void SetSpecificType(String type) {
 
 	gearType = type;

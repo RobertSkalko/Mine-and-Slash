@@ -35,25 +35,22 @@ public class OnDeathInMapStopItemDrop {
 
 		if (data != null && data.isMapWorld()) {
 
-		    if (!player.world.getGameRules().getBoolean("keepInventory") && !player.isSpectator()) {
+		    capa.saveItems(event.getDrops());
 
-			capa.saveItems(event.getDrops());
+		    IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
+		    for (int i = 0; i < baubles.getSlots(); i++) {
 
-			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-			for (int i = 0; i < baubles.getSlots(); i++) {
+			ItemStack stack = baubles.getStackInSlot(i);
 
-			    ItemStack stack = baubles.getStackInSlot(i);
+			if (stack != null && !stack.isEmpty()) {
+			    capa.saveItem(stack.copy());
 
-			    if (stack != null && !stack.isEmpty()) {
-				capa.saveItem(stack.copy());
-
-				stack.setCount(0);
-			    }
+			    stack.setCount(0);
 			}
+
 		    }
-		    data.onPlayerDeath(event.getEntityPlayer(), world); // if this goes first, you need to check if
-									// players
-		} // them. Otherwise all items are lost
+
+		}
 
 	    } catch (Exception e) {
 		e.printStackTrace();
