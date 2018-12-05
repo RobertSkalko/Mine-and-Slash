@@ -1,20 +1,23 @@
 package com.robertx22.database.stat_types.traits.low_dodge;
 
-import com.robertx22.database.stat_types.defense.Armor;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.defense.ArmorMulti;
 import com.robertx22.database.stat_types.traits.bases.BaseTraitLowDodge;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.stats.StatMod;
 
 public class LowDodgeAddArmor extends BaseTraitLowDodge {
 
     @Override
-    public void affectStats(Unit unit) {
-	unit.MyStats.get(Armor.GUID).Multi += 15;
+    public List<StatMod> getStats() {
+	return Arrays.asList(new ArmorMulti());
 
     }
 
     @Override
-    public String descSuffix() {
-	return " Armor +15% Multi";
+    public String Description() {
+	return "";
     }
 
     @Override

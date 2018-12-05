@@ -23,6 +23,15 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileMap extends BaseTile {
+    @Override
+    public boolean isAutomatable() {
+	return false;
+    }
+
+    @Override
+    public boolean isItemValidInput(ItemStack stack) {
+	return false;
+    }
 
     public ItemStack StartSlot() {
 	return itemStacks[3];

@@ -41,7 +41,8 @@ public class LootUtils {
 	return stack;
     }
 
-    public static float applyLootMultipliers(float chance, UnitData mob, EntityLivingBase entity, IWorldData world) {
+    public static float applyLootMultipliers(float chance, UnitData player, UnitData mob, EntityLivingBase entity,
+	    IWorldData world) {
 
 	float first = chance;
 
@@ -58,7 +59,11 @@ public class LootUtils {
 	    after_world /= 15;
 	}
 
-	return after_world;
+	float perkillsbonus = player.getLootBonusPerAffixKills(world.getMap());
+
+	float after_peraffixkill = after_world * (1 + perkillsbonus / 100);
+
+	return after_peraffixkill;
     }
 
     public static int WhileRoll(float chance) {

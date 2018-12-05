@@ -1,8 +1,11 @@
 package com.robertx22.database.stat_types.traits;
 
-import com.robertx22.database.stat_types.offense.CriticalHit;
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.defense.CriticalHitMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class Lucky extends Trait implements IAffectsOtherStats {
@@ -15,20 +18,15 @@ public class Lucky extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
-
-	unit.MyStats.get(CriticalHit.GUID).Multi += 10;
+    public List<StatMod> getStats() {
+	return Arrays.asList(new CriticalHitMulti());
 
     }
 
     @Override
     public String Description() {
-	return "+ 10% Critical hit multi";
-    }
+	return "";
 
-    @Override
-    public String Name() {
-	return "Lucky";
     }
 
 }

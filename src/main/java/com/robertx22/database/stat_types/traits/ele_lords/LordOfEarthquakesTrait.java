@@ -1,20 +1,25 @@
 package com.robertx22.database.stat_types.traits.ele_lords;
 
-import com.robertx22.database.stat_types.elementals.all_damage.AllNatureDamage;
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.elemental.all_damage.AllNatureDamageMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class LordOfEarthquakesTrait extends Trait implements IAffectsOtherStats {
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
-	unit.MyStats.get(new AllNatureDamage().Guid()).Flat += 20;
+    public List<StatMod> getStats() {
+
+	return Arrays.asList(new AllNatureDamageMulti());
+
     }
 
     @Override
     public String Description() {
-	return "All Nature Damage +20%";
+	return "";
     }
 
     @Override

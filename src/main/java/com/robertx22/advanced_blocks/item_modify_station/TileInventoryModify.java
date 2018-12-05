@@ -21,6 +21,16 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileInventoryModify extends BaseTile {
 
+    @Override
+    public boolean isAutomatable() {
+	return false;
+    }
+
+    @Override
+    public boolean isItemValidInput(ItemStack stack) {
+	return true;
+    }
+
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
 
 	ItemStack gearStack = this.GearSlot();

@@ -45,6 +45,9 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon {
 
 	    if (!world.isRemote) {
 
+	    }
+	    if (checkDurability(player, player.getHeldItem(hand))) {
+
 		UnitData data = Load.Unit(player);
 
 		data.recalculateStats(player);
@@ -62,7 +65,9 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon {
 		}
 
 	    }
-	} catch (Exception e) {
+	} catch (
+
+	Exception e) {
 	    e.printStackTrace();
 	}
 

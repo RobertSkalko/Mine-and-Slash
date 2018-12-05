@@ -17,48 +17,48 @@ import info.loenwind.autosave.annotations.Storable;
 @Storable
 public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRerollable {
 
-	public PrimaryStatsData() {
+    public PrimaryStatsData() {
 
+    }
+
+    @Override
+    public void RerollFully(GearItemData gear) {
+
+	this.Mods = new ArrayList<StatModData>();
+
+	List<IWeighted> possibleStats = ListUtils.CollectionToList(gear.GetBaseGearType().PrimaryStats());
+
+	StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
+
+	StatModData moddata = StatModData.NewRandom(gear, mod);
+
+	this.Mods.add(moddata);
+
+    }
+
+    @Override
+    public void RerollNumbers(GearItemData gear) {
+
+	for (StatModData data : this.Mods) {
+	    data.percent = StatGen.GenPercent(gear.GetRarity());
 	}
 
-	@Override
-	public void RerollFully(GearItemData gear) {
+    }
 
-		this.Mods = new ArrayList<StatModData>();
+    @Override
+    public List<String> GetTooltipString(GearItemData gear) {
 
-		List<IWeighted> possibleStats = ListUtils.CollectionToList(gear.GetBaseGearType().PrimaryStats());
+	List<String> list = new ArrayList<String>();
 
-		StatMod mod = (StatMod) RandomUtils.WeightedRandom(possibleStats);
+	list.add("Primary Stats: ");
 
-		StatModData moddata = StatModData.NewRandom(gear, mod);
+	for (StatModData data : this.GetAllStats(gear.level)) {
 
-		this.Mods.add(moddata);
-
+	    list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
 	}
 
-	@Override
-	public void RerollNumbers(GearItemData gear) {
+	return list;
 
-		for (StatModData data : this.Mods) {
-			data.percent = StatGen.GenPercent(gear.GetRarity());
-		}
-
-	}
-
-	@Override
-	public List<String> GetTooltipString(GearItemData gear) {
-
-		List<String> list = new ArrayList<String>();
-
-		list.add("Primary Stats: ");
-
-		for (StatModData data : this.GetAllStats(gear.level)) {
-
-			list.add(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
-		}
-
-		return list;
-
-	}
+    }
 
 }

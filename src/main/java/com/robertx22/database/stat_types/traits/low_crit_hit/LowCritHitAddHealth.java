@@ -1,21 +1,13 @@
 package com.robertx22.database.stat_types.traits.low_crit_hit;
 
-import com.robertx22.database.stat_types.defense.Dodge;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.defense.HealthMulti;
 import com.robertx22.database.stat_types.traits.bases.BaseTraitLowCritHit;
-import com.robertx22.saveclasses.Unit;
+import com.robertx22.stats.StatMod;
 
 public class LowCritHitAddHealth extends BaseTraitLowCritHit {
-
-    @Override
-    public void affectStats(Unit unit) {
-	unit.MyStats.get(Dodge.GUID).Multi += 15;
-
-    }
-
-    @Override
-    public String descSuffix() {
-	return " Health +15% Multi";
-    }
 
     @Override
     public String Guid() {
@@ -25,6 +17,12 @@ public class LowCritHitAddHealth extends BaseTraitLowCritHit {
     @Override
     public String Name() {
 	return "Health On Low Crit";
+    }
+
+    @Override
+    public List<StatMod> getStats() {
+	return Arrays.asList(new HealthMulti());
+
     }
 
 }

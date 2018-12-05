@@ -1,8 +1,11 @@
 package com.robertx22.database.stat_types.traits;
 
-import com.robertx22.database.stat_types.defense.Armor;
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.defense.ArmorMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class Armored extends Trait implements IAffectsOtherStats {
@@ -15,18 +18,14 @@ public class Armored extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
-	unit.MyStats.get(Armor.GUID).Multi += 15;
+    public List<StatMod> getStats() {
+	return Arrays.asList(new ArmorMulti());
+
     }
 
     @Override
     public String Description() {
-	return "Armor + 15% multi";
-    }
-
-    @Override
-    public String Name() {
-	return "Armored";
+	return "";
     }
 
 }

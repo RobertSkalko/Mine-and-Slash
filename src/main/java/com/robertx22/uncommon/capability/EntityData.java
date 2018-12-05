@@ -10,6 +10,8 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.UnitPackage;
+import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.AttackUtils;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -52,6 +54,7 @@ public class EntityData {
     private static final String NAME = "name";
     private static final String MOB_SAVED_ONCE = "mob_saved_once";
     private static final String UNIT_OBJECT = "unit_object";
+    private static final String KILLS_OBJECT = "kils_object";
 
     public interface UnitData extends ICommonCapability {
 
@@ -102,6 +105,10 @@ public class EntityData {
 	boolean tryUseWeapon(EntityLivingBase entity, WeaponMechanic iwep, ItemStack weapon);
 
 	void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon);
+
+	void onMobKill(IWorldData world);
+
+	int getLootBonusPerAffixKills(MapItemData map);
 
     }
 
@@ -164,6 +171,7 @@ public class EntityData {
 	private NBTTagCompound nbt = new NBTTagCompound();
 
 	Unit unit = null;
+	PlayerMapKillsData kills = new PlayerMapKillsData();
 	int level = 1;
 	int exp = 0;
 	int rarity = 0;
@@ -185,6 +193,11 @@ public class EntityData {
 		Writer.write(unitnbt, unit);
 		nbt.setTag(UNIT_OBJECT, unitnbt);
 	    }
+	    if (kills != null) {
+		NBTTagCompound killsnbt = new NBTTagCompound();
+		Writer.write(killsnbt, kills);
+		nbt.setTag(KILLS_OBJECT, killsnbt);
+	    }
 
 	    return nbt;
 
@@ -205,6 +218,13 @@ public class EntityData {
 		unit = new Unit();
 		Reader.read(object_nbt, unit);
 	    }
+
+	    NBTTagCompound kills_nbt = (NBTTagCompound) this.nbt.getTag(KILLS_OBJECT);
+	    if (kills_nbt != null) {
+		kills = new PlayerMapKillsData();
+		Reader.read(kills_nbt, kills);
+	    }
+
 	}
 
 	@Override
@@ -444,6 +464,18 @@ public class EntityData {
 		iWep.Attack(source, target, this, targetData);
 
 	    }
+	}
+
+	@Override
+	public void onMobKill(IWorldData world) {
+	    kills.onKill(world.getMap());
+
+	}
+
+	@Override
+	public int getLootBonusPerAffixKills(MapItemData map) {
+
+	    return kills.getLootMulti(map);
 	}
 
     }

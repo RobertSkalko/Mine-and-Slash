@@ -8,37 +8,37 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public class LifestealFlat extends StatMod {
 
-	public LifestealFlat() {
-	}
+    public LifestealFlat() {
+    }
 
-	@Override
-	public String GUID() {
-		return "LifestealFlat";
-	}
+    @Override
+    public String GUID() {
+	return "LifestealFlat";
+    }
 
-	@Override
-	public int Min() {
-		return 1;
-	}
+    @Override
+    public int Min() {
+	return 2;
+    }
 
-	@Override
-	public int Max() {
-		return 5;
-	}
+    @Override
+    public int Max() {
+	return 6;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Flat;
-	}
+    @Override
+    public StatTypes Type() {
+	return StatTypes.Flat;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new Lifesteal();
-	}
+    @Override
+    public Stat GetBaseStat() {
+	return new Lifesteal();
+    }
 
-	@Override
-	public int Weight() {
-		return IWeighted.UncommonWeight;
-	}
+    @Override
+    public int Weight() {
+	return IWeighted.UncommonWeight;
+    }
 
 }

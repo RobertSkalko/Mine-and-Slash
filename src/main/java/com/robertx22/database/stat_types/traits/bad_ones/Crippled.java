@@ -1,8 +1,12 @@
 package com.robertx22.database.stat_types.traits.bad_ones;
 
-import com.robertx22.database.stat_types.offense.PhysicalDamage;
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.offence.LessPhysicalDamageMulti;
+import com.robertx22.database.stat_mods.multi.resources.LessHealthRegenMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class Crippled extends Trait implements IAffectsOtherStats {
@@ -15,15 +19,15 @@ public class Crippled extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
+    public List<StatMod> getStats() {
 
-	unit.healthData().Multi -= 10;
-	unit.MyStats.get(PhysicalDamage.GUID).Multi -= 5;
+	return Arrays.asList(new LessHealthRegenMulti(), new LessPhysicalDamageMulti());
 
     }
 
     @Override
     public String Description() {
-	return "Health -10% multi, Physical Damage -5% multi";
+	return "";
     }
+
 }

@@ -230,7 +230,7 @@ public class Unit {
 	    PlayerStatUtils.AddAllSetStats(entity, this, level);
 	    CommonStatUtils.AddMapAffixStats(this, level);
 	    PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
-	    PlayerStatUtils.CalcTraits(this);
+	    PlayerStatUtils.CalcTraits(data);
 	    CalcStats(data);
 
 	}

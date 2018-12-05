@@ -2,13 +2,17 @@ package com.robertx22.onevent.Item;
 
 import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.datasaving.Map;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -38,10 +42,14 @@ public class OnTooltip {
 	    return;
 	}
 
+	UnitData unitdata = Load.Unit(event.getEntityPlayer());
+	Unit unit = null;
+	if (unitdata != null) {
+	    unit = unitdata.getUnit();
+	}
 	if (GuiScreen.isCtrlKeyDown() == false) {
 	    if (stack.getItem() instanceof IGearItem) {
 
-		Unit unit = UnitSaving.Load(event.getEntityPlayer());
 		GearItemData gear = Gear.Load(stack);
 
 		if (unit != null && gear != null) {
@@ -53,8 +61,20 @@ public class OnTooltip {
 			event.getToolTip().add("Press shift for more info");
 		    }
 		}
+
 	    }
 	}
+
+	if (unitdata != null) {
+	    MapItemData map = Map.Load(stack);
+	    if (map != null) {
+		event.getToolTip().add("");
+		event.getToolTip().add(TextFormatting.GOLD + "Affix Rarity Loot Bonus: "
+			+ unitdata.getLootBonusPerAffixKills(map) + "%");
+
+	    }
+	}
+
     }
 
 }

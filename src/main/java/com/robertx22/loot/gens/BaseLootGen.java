@@ -43,7 +43,8 @@ public abstract class BaseLootGen {
 	if (hasLevelDistancePunishment()) {
 	    chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);
 	}
-	chance = LootUtils.applyLootMultipliers(chance, mob, victim, world);
+
+	chance = LootUtils.applyLootMultipliers(chance, player, mob, victim, world);
 
 	amount = LootUtils.WhileRoll(chance);
 

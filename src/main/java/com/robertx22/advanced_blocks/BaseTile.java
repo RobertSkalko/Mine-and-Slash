@@ -3,16 +3,74 @@ package com.robertx22.advanced_blocks;
 import java.util.Arrays;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.MathHelper;
 
-public abstract class BaseTile extends TileEntity implements IInventory, ITickable {
+public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInventory, ITickable {
 
     protected ItemStack[] itemStacks;
+
+    // OVERRIDE IF AUTOMATABLE
+    @Override
+    public int[] inputSlots() {
+	return new int[0];
+    }
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing side) {
+	return slots();
+    }
+
+    @Override
+    public boolean isItemValidOutput(ItemStack stack) {
+	return true;
+    }
+
+    private int[] slots() {
+
+	int[] ints = new int[this.itemStacks.length];
+
+	for (int i = 0; i < itemStacks.length; i++) {
+	    ints[i] = i;
+	}
+
+	return ints;
+    }
+
+    private boolean containsSlot(int index, int[] slots) {
+
+	for (int i : this.inputSlots()) {
+	    if (i == index) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
+    @Override
+    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+
+	if (this.isAutomatable() && containsSlot(index, this.inputSlots())) {
+	    // don't insert shit
+	    return this.isItemValidInput(itemStackIn);
+	}
+	return false;
+    }
+
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+
+	if (this.isAutomatable()) {
+	    // don't extract stuff that's being processed
+	    return this.isItemValidInput(stack) == false;
+	}
+	return false;
+    }
 
     // Gets the stack in the given slot
     @Override
@@ -106,7 +164,7 @@ public abstract class BaseTile extends TileEntity implements IInventory, ITickab
     // Return true if the given stack is allowed to go in the given slot
     @Override
     public boolean isItemValidForSlot(int slotIndex, ItemStack itemstack) {
-	return false;
+	return true;
     }
 
     /**
@@ -119,6 +177,7 @@ public abstract class BaseTile extends TileEntity implements IInventory, ITickab
      */
     @Override
     public ItemStack removeStackFromSlot(int slotIndex) {
+
 	ItemStack itemStack = getStackInSlot(slotIndex);
 	if (!itemStack.isEmpty())
 	    setInventorySlotContents(slotIndex, ItemStack.EMPTY); // isEmpty(); EMPTY_ITEM

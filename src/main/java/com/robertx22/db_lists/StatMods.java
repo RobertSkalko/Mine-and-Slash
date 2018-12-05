@@ -99,11 +99,28 @@ import com.robertx22.database.stat_mods.flat.weapon_damages.BowDamageFlat;
 import com.robertx22.database.stat_mods.flat.weapon_damages.HammerDamageFlat;
 import com.robertx22.database.stat_mods.flat.weapon_damages.StaffDamageFlat;
 import com.robertx22.database.stat_mods.flat.weapon_damages.SwordDamageFlat;
+import com.robertx22.database.stat_mods.multi.defense.ArmorMulti;
+import com.robertx22.database.stat_mods.multi.defense.CriticalHitMulti;
+import com.robertx22.database.stat_mods.multi.defense.DodgeMulti;
+import com.robertx22.database.stat_mods.multi.defense.HealthMulti;
+import com.robertx22.database.stat_mods.multi.defense.LessArmorMulti;
+import com.robertx22.database.stat_mods.multi.elemental.all_damage.AllFireDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.all_damage.AllNatureDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.all_damage.AllThunderDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.all_damage.AllWaterDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellFireDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellNatureDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellThunderDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellWaterDamageMulti;
+import com.robertx22.database.stat_mods.multi.offence.LessPhysicalDamageMulti;
+import com.robertx22.database.stat_mods.multi.offence.PhysicalDamageMulti;
+import com.robertx22.database.stat_mods.multi.resources.LessHealthRegenMulti;
+import com.robertx22.database.stat_mods.multi.resources.LessManaMulti;
+import com.robertx22.database.stat_mods.multi.resources.ManaMulti;
 import com.robertx22.database.stat_mods.percent.ArmorPenePercent;
 import com.robertx22.database.stat_mods.percent.ArmorPercent;
 import com.robertx22.database.stat_mods.percent.CriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
-import com.robertx22.database.stat_mods.percent.DamagePercent;
 import com.robertx22.database.stat_mods.percent.DodgePercent;
 import com.robertx22.database.stat_mods.percent.EnergyRegenPercent;
 import com.robertx22.database.stat_mods.percent.HealthPercent;
@@ -113,6 +130,7 @@ import com.robertx22.database.stat_mods.percent.LifestealPercent;
 import com.robertx22.database.stat_mods.percent.MajorCriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.MajorCriticalHitPercent;
 import com.robertx22.database.stat_mods.percent.ManaRegenPercent;
+import com.robertx22.database.stat_mods.percent.PhysicalDamagePercent;
 import com.robertx22.database.stat_mods.percent.less.LessCriticalDamagePercent;
 import com.robertx22.database.stat_mods.percent.less.LessCriticalHitPercent;
 import com.robertx22.database.stat_mods.percent.less.LessDodgePercent;
@@ -164,6 +182,31 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
 	{
 	    {
+		put(new ManaMulti().GUID(), new ManaMulti());
+		put(new LessManaMulti().GUID(), new LessManaMulti());
+		put(new LessHealthRegenMulti().GUID(), new LessHealthRegenMulti());
+
+		put(new PhysicalDamageMulti().GUID(), new PhysicalDamageMulti());
+		put(new LessPhysicalDamageMulti().GUID(), new LessPhysicalDamageMulti());
+
+		put(new SpellWaterDamageMulti().GUID(), new SpellWaterDamageMulti());
+		put(new SpellFireDamageMulti().GUID(), new SpellFireDamageMulti());
+		put(new SpellThunderDamageMulti().GUID(), new SpellThunderDamageMulti());
+		put(new SpellNatureDamageMulti().GUID(), new SpellNatureDamageMulti());
+
+		put(new AllWaterDamageMulti().GUID(), new AllWaterDamageMulti());
+		put(new AllFireDamageMulti().GUID(), new AllFireDamageMulti());
+		put(new AllThunderDamageMulti().GUID(), new AllThunderDamageMulti());
+		put(new AllNatureDamageMulti().GUID(), new AllNatureDamageMulti());
+
+		put(new LessArmorMulti().GUID(), new LessArmorMulti());
+		put(new HealthMulti().GUID(), new HealthMulti());
+		put(new DodgeMulti().GUID(), new DodgeMulti());
+		put(new CriticalHitMulti().GUID(), new CriticalHitMulti());
+		put(new ArmorMulti().GUID(), new ArmorMulti());
+
+		//
+
 		put(new EnergyToManaConvFlat().GUID(), new EnergyToManaConvFlat());
 		put(new ManaToEnergyConvFlat().GUID(), new ManaToEnergyConvFlat());
 
@@ -222,7 +265,7 @@ public class StatMods {
 		put(new CriticalDamageFlat().GUID(), new CriticalDamageFlat());
 		put(new PhysicalDamageFlat().GUID(), new PhysicalDamageFlat());
 		put(new CriticalHitPercent().GUID(), new CriticalHitPercent());
-		put(new DamagePercent().GUID(), new DamagePercent());
+		put(new PhysicalDamagePercent().GUID(), new PhysicalDamagePercent());
 		put(new CriticalDamagePercent().GUID(), new CriticalDamagePercent());
 		put(new ArmorPenePercent().GUID(), new ArmorPenePercent());
 		put(new DodgePercent().GUID(), new DodgePercent());

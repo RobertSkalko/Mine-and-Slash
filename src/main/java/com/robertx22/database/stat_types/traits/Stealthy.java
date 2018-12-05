@@ -1,8 +1,11 @@
 package com.robertx22.database.stat_types.traits;
 
-import com.robertx22.database.stat_types.defense.Dodge;
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.defense.DodgeMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class Stealthy extends Trait implements IAffectsOtherStats {
@@ -15,20 +18,15 @@ public class Stealthy extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
-
-	unit.MyStats.get(Dodge.GUID).Multi += 10;
+    public List<StatMod> getStats() {
+	return Arrays.asList(new DodgeMulti());
 
     }
 
     @Override
     public String Description() {
-	return "+ 10% Dodge multi";
-    }
+	return "";
 
-    @Override
-    public String Name() {
-	return "Stealthy";
     }
 
 }

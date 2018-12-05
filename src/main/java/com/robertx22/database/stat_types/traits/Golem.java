@@ -1,7 +1,11 @@
 package com.robertx22.database.stat_types.traits;
 
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.defense.HealthMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class Golem extends Trait implements IAffectsOtherStats {
@@ -14,20 +18,14 @@ public class Golem extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
-
-	unit.healthData().Multi += 10;
+    public List<StatMod> getStats() {
+	return Arrays.asList(new HealthMulti());
 
     }
 
     @Override
     public String Description() {
-	return "+ 10% Health multi";
-    }
-
-    @Override
-    public String Name() {
-	return "Golem";
+	return "";
     }
 
 }

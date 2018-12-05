@@ -1,8 +1,11 @@
 package com.robertx22.database.stat_types.traits.atronachs;
 
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellWaterDamageMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class FrostAtronach extends Trait implements IAffectsOtherStats {
@@ -15,14 +18,13 @@ public class FrostAtronach extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
-
-	unit.MyStats.get(SpellWaterDamage.GUID).Multi += 15;
+    public List<StatMod> getStats() {
+	return Arrays.asList(new SpellWaterDamageMulti());
 
     }
 
     @Override
     public String Description() {
-	return "Spell Water Damage +15% multi";
+	return "";
     }
 }

@@ -252,12 +252,15 @@ public class GearItemData implements IStatsContainer, ITooltip {
 		    color = TextFormatting.DARK_GREEN;
 		}
 
-		String stat = StringUtils.stripControlCodes(StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
-			.GetTooltipString(this.GetRarity().StatPercents(), data.getLevel(), false));
+		for (String str : StatModData.Load(entry.getValue(), set.GetSet().StatPercent)
+			.GetTooltipString(this.GetRarity().StatPercents(), data.getLevel(), false)) {
 
-		String str = color + "" + entry.getKey() + " set" + ": " + TextFormatting.DARK_GREEN + stat;
+		    String stat = StringUtils.stripControlCodes(str);
 
-		event.getToolTip().add(str);
+		    String str2 = color + "" + entry.getKey() + " set" + ": " + TextFormatting.DARK_GREEN + stat;
+
+		    event.getToolTip().add(str2);
+		}
 
 	    }
 	    event.getToolTip().add("");

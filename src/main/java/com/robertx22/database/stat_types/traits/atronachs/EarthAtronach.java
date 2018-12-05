@@ -1,8 +1,11 @@
 package com.robertx22.database.stat_types.traits.atronachs;
 
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellNatureDamage;
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellNatureDamageMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class EarthAtronach extends Trait implements IAffectsOtherStats {
@@ -15,14 +18,13 @@ public class EarthAtronach extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
-
-	unit.MyStats.get(SpellNatureDamage.GUID).Multi += 15;
+    public List<StatMod> getStats() {
+	return Arrays.asList(new SpellNatureDamageMulti());
 
     }
 
     @Override
     public String Description() {
-	return "Spell Nature Damage +15% multi";
+	return "";
     }
 }

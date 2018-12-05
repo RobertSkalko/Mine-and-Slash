@@ -27,6 +27,21 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileInventorySalvage extends BaseTile {
 
+    @Override
+    public int[] inputSlots() {
+	int[] ints = new int[INPUT_SLOTS_COUNT];
+	for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
+	    ints[i] = 0;
+	}
+
+	return ints;
+    }
+
+    @Override
+    public boolean isAutomatable() {
+	return true;
+    }
+
     float OrbChance = 1F;
 
     public ItemStack getSmeltingResultForItem(ItemStack st) {
@@ -34,19 +49,16 @@ public class TileInventorySalvage extends BaseTile {
 	SpellItemData spell = Spell.Load(st);
 
 	int rarity = 0;
-	int level = 0;
 
 	boolean can = false;
 
 	if (spell != null) {
 	    rarity = spell.rarity;
-	    level = spell.level;
 	    can = true;
 	}
 	if (gear != null && !gear.isUnique) {
 	    if (gear.isSalvagable) {
 		rarity = gear.Rarity;
-		level = gear.level;
 		can = true;
 	    }
 	}
@@ -377,6 +389,11 @@ public class TileInventorySalvage extends BaseTile {
     @Override
     public int getFieldCount() {
 	return NUMBER_OF_FIELDS;
+    }
+
+    @Override
+    public boolean isItemValidInput(ItemStack stack) {
+	return this.getSmeltingResultForItem(stack).isEmpty() == false;
     }
 
 }

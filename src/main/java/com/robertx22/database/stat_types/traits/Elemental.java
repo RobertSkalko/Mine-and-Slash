@@ -1,11 +1,14 @@
 package com.robertx22.database.stat_types.traits;
 
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellNatureDamage;
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
-import com.robertx22.saveclasses.Unit;
+import java.util.Arrays;
+import java.util.List;
+
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellFireDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellNatureDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellThunderDamageMulti;
+import com.robertx22.database.stat_mods.multi.elemental.damage.SpellWaterDamageMulti;
 import com.robertx22.stats.IAffectsOtherStats;
+import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
 
 public class Elemental extends Trait implements IAffectsOtherStats {
@@ -18,18 +21,20 @@ public class Elemental extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public void TryAffectOtherStats(Unit unit) {
+    public int percent() {
+	return 33;
+    }
 
-	unit.MyStats.get(SpellFireDamage.GUID).Multi += 5;
-	unit.MyStats.get(SpellWaterDamage.GUID).Multi += 5;
-	unit.MyStats.get(SpellThunderDamage.GUID).Multi += 5;
-	unit.MyStats.get(SpellNatureDamage.GUID).Multi += 5;
+    @Override
+    public List<StatMod> getStats() {
+	return Arrays.asList(new SpellWaterDamageMulti(), new SpellNatureDamageMulti(), new SpellThunderDamageMulti(),
+		new SpellFireDamageMulti());
 
     }
 
     @Override
     public String Description() {
-	return "All Spell elemental damage +5% multi";
+	return "";
     }
 
     @Override

@@ -51,6 +51,8 @@ public class OnMobDeathDrops {
 
 			IWorldData world = Load.World(entity.world);
 
+			killer.onMobKill(world);
+
 			MasterLootGen.genAndDrop(victim, killer, world, entity);
 
 			int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);

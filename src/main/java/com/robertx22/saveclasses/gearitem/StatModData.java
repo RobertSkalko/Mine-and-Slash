@@ -1,5 +1,8 @@
 package com.robertx22.saveclasses.gearitem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.robertx22.database.MinMax;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.generation.StatGen;
@@ -8,6 +11,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipString;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
 import info.loenwind.autosave.annotations.Storable;
@@ -53,6 +57,13 @@ public class StatModData implements ITooltipString {
 	data.percent = percent;
 
 	return data;
+    }
+
+    public void useOnPlayer(UnitData unit) {
+	String name = this.GetBaseMod().GetBaseStat().Guid();
+	if (unit.getUnit().MyStats.containsKey(name)) {
+	    unit.getUnit().MyStats.get(name).Add(this, unit.getLevel());
+	}
     }
 
     @Store
@@ -119,7 +130,9 @@ public class StatModData implements ITooltipString {
     }
 
     @Override
-    public String GetTooltipString(MinMax minmax, int level, boolean IsNotSet) {
+    public List<String> GetTooltipString(MinMax minmax, int level, boolean IsNotSet) {
+	List<String> list = new ArrayList<String>();
+
 	StatMod mod = GetBaseMod();
 
 	Stat basestat = mod.GetBaseStat();
@@ -148,7 +161,11 @@ public class StatModData implements ITooltipString {
 		StatModData max = StatModData.Load(this.GetBaseMod(), minmax.Max);
 
 		text += TextFormatting.BLUE + " (" + min.GetActualVal(level) + " - " + max.GetActualVal(level) + ")";
+
 	    }
+	    list.add(text);
+
+	    return list;
 
 	} else {
 
@@ -158,11 +175,17 @@ public class StatModData implements ITooltipString {
 
 		Trait trait = (Trait) basestat;
 		text += ": " + TextFormatting.GRAY + trait.Description();
+		list.add(text);
+
+		for (StatModData motdata : trait.getStatsMods()) {
+		    list.addAll(motdata.GetTooltipString(minmax, level, IsNotSet));
+		}
 
 	    }
+
 	}
 
-	return text;
+	return list;
     }
 
 }

@@ -20,6 +20,7 @@ import com.robertx22.stats.IStatTransfer;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 
 import baubles.api.BaublesApi;
@@ -38,8 +39,8 @@ public class PlayerStatUtils {
 
     }
 
-    public static void CalcTraits(Unit unit) {
-	for (StatData statdata : unit.MyStats.values()) {
+    public static void CalcTraits(UnitData unit) {
+	for (StatData statdata : unit.getUnit().MyStats.values()) {
 	    Stat stat = statdata.GetStat();
 	    if (statdata.Value > 0) {
 		if (stat instanceof Trait && stat instanceof IAffectsOtherStats) {

@@ -101,10 +101,11 @@ public class ItemMap extends Item {
 
 	    for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
 
-		String statstring = statmod.GetTooltipString(Rarities.Maps.get(data.rarity).StatPercents(), data.level,
-			false);
+		for (String statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity).StatPercents(),
+			data.level, false)) {
 
-		tooltip.add(" * " + TextFormatting.RED + statstring);
+		    tooltip.add(" * " + TextFormatting.RED + statstring);
+		}
 
 	    }
 

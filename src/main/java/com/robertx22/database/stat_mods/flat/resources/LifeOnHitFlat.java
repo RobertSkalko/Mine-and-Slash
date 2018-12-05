@@ -8,36 +8,36 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public class LifeOnHitFlat extends StatMod {
 
-	public LifeOnHitFlat() {
-	}
+    public LifeOnHitFlat() {
+    }
 
-	@Override
-	public String GUID() {
-		return "LifeOnHitFlat";
-	}
+    @Override
+    public String GUID() {
+	return "LifeOnHitFlat";
+    }
 
-	@Override
-	public int Min() {
-		return 1;
-	}
+    @Override
+    public int Min() {
+	return 1;
+    }
 
-	@Override
-	public int Max() {
-		return 3;
-	}
+    @Override
+    public int Max() {
+	return 2;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Flat;
-	}
+    @Override
+    public StatTypes Type() {
+	return StatTypes.Flat;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new LifeOnHit();
-	}
+    @Override
+    public Stat GetBaseStat() {
+	return new LifeOnHit();
+    }
 
-	@Override
-	public int Weight() {
-		return IWeighted.UncommonWeight;
-	}
+    @Override
+    public int Weight() {
+	return IWeighted.UncommonWeight;
+    }
 }
