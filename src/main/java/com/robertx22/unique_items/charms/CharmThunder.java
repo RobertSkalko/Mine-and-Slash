@@ -3,6 +3,7 @@ package com.robertx22.unique_items.charms;
 import java.util.Arrays;
 import java.util.List;
 
+import com.robertx22.database.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stat_mods.percent.CriticalHitPercent;
 import com.robertx22.database.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.database.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
@@ -35,7 +36,7 @@ public class CharmThunder extends BaseUniqueCharm {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellThunderDamagePercent(), new ManaRegenPercent(), new ThunderPenePercent(),
-		new CriticalHitPercent(), new CrippleLifeOnHitPercent());
+		new CriticalHitPercent(), new ThunderResistFlat(), new CrippleLifeOnHitPercent());
     }
 
     @Override

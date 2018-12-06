@@ -11,44 +11,44 @@ import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Armor extends UsableStat implements IStatEffects {
 
-	public static String GUID = "Armor";
+    public static String GUID = "Armor";
 
-	public Armor() {
-	}
+    public Armor() {
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return true;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return true;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
 
-	@Override
-	public float MaximumPercent() {
-		return 0.75F;
-	}
+    @Override
+    public float MaximumPercent() {
+	return 0.75F;
+    }
 
-	@Override
-	public int AverageStat() {
-		return 10;
-	}
+    @Override
+    public int AverageStat() {
+	return 10;
+    }
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new ArmorEffect());
-	}
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new ArmorEffect());
+    }
 
 }

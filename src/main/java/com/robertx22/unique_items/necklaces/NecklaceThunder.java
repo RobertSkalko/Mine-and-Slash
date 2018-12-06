@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.elemental.bonus.ThunderSpellToAttackFlat;
+import com.robertx22.database.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellThunderDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.NatureToThunderTransferFlat;
 import com.robertx22.database.stat_mods.flat.less.LessHealthRegenFlat;
@@ -35,7 +36,8 @@ public class NecklaceThunder extends BaseUniqueNecklace {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellThunderDamageFlat(), new ThunderSpellToAttackFlat(),
-		new NatureToThunderTransferFlat(), new EnergyRegenFlat(), new LessHealthRegenFlat());
+		new NatureToThunderTransferFlat(), new NatureResistFlat(), new EnergyRegenFlat(),
+		new LessHealthRegenFlat());
 
     }
 

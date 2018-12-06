@@ -16,13 +16,13 @@ public class PhysicalDamagePercent extends StatMod {
     }
 
     @Override
-    public int Min() {
-	return 2;
+    public float Min() {
+	return 3;
     }
 
     @Override
-    public int Max() {
-	return 6;
+    public float Max() {
+	return 8;
     }
 
     @Override

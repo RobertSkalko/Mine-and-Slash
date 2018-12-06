@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
+import com.robertx22.database.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToNatureTransferFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
@@ -37,7 +38,7 @@ public class ChestNature extends BaseUniqueChest {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new HealthPercent(), new HealthRegenFlat(), new ArmorFlat(),
-		new WaterToNatureTransferFlat(), new CrippleDodgePercent());
+		new WaterResistFlat(), new WaterToNatureTransferFlat(), new CrippleDodgePercent());
     }
 
     @Override

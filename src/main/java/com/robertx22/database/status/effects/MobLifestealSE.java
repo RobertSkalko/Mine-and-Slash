@@ -12,19 +12,19 @@ import net.minecraft.item.Item;
 
 public class MobLifestealSE extends BaseStatusEffect {
 
-	@Override
-	public Item ItemModel() {
-		return Items.SPECKLED_MELON;
-	}
+    @Override
+    public Item ItemModel() {
+	return Items.SPECKLED_MELON;
+    }
 
-	@Override
-	public String GUID() {
-		return "MobLifestealSE";
-	}
+    @Override
+    public String GUID() {
+	return "MobLifestealSE";
+    }
 
-	@Override
-	public List<StatModData> Stats() {
-		return Arrays.asList(StatModData.NewStatusEffect(300, new LifestealFlat()));
-	}
+    @Override
+    public List<StatModData> Stats() {
+	return Arrays.asList(StatModData.NewStatusEffect(1200, new LifestealFlat()));
+    }
 
 }

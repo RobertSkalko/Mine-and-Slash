@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.robertx22.database.map_affixes.BaseMapAffix;
+import com.robertx22.db_lists.MapAffixes;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 
 import info.loenwind.autosave.annotations.Storable;
@@ -35,6 +37,17 @@ public class PlayerMapKillsData {
 
     @Store
     private HashMap<String, KillsData> killsPerAffix = new HashMap<String, KillsData>();
+
+    public void init() {
+
+	for (BaseMapAffix affix : MapAffixes.All.values()) {
+
+	    if (killsPerAffix.containsKey(affix.GUID()) == false) {
+		killsPerAffix.put(affix.GUID(), new KillsData(affix.GUID()));
+	    }
+	}
+
+    }
 
     public void onKill(MapItemData map) {
 
@@ -83,20 +96,30 @@ public class PlayerMapKillsData {
     }
 
     private HashMap<String, Integer> getAffixesAndBonuses() {
-
 	HashMap<String, Integer> tiers = new HashMap<String, Integer>();
 
-	List<KillsData> keys = new ArrayList<KillsData>(killsPerAffix.values());
+	List<KillsData> keys = null;
+	try {
+	    while (keys == null) {
+		keys = new ArrayList<KillsData>(killsPerAffix.values());
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+
 	Collections.sort(keys);
 
 	for (int i = 0; i < keys.size(); i++) {
 
 	    for (Entry<Integer, Integer> lootentry : lootBonusPerTier.entrySet()) {
+
 		if (i <= lootentry.getKey()) {
 		    KillsData dat = keys.get(i);
 
 		    tiers.put(dat.guid, lootentry.getValue());
+
 		    break;
+
 		}
 	    }
 

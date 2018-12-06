@@ -13,12 +13,10 @@ import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.projectile.firebolt.SpellFireBolt;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
@@ -29,7 +27,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 @Mod.EventBusSubscriber
 public class OnLogin {
 
-    private static void GiveStarterItems(EntityPlayer player) {
+    public static void GiveStarterItems(EntityPlayer player) {
 
 	GearBlueprint print = new GearBlueprint(1);
 	print.SetSpecificType(new Sword().Name());
@@ -76,18 +74,9 @@ public class OnLogin {
 
 	    if (player.hasCapability(EntityData.Data, null)) {
 
-		Unit unit = UnitSaving.Load(player);
 		UnitData data = Load.Unit(player);
 
-		if (unit == null || data == null) {
-		    Unit newunit = new Unit();
-		    newunit.InitPlayerStats();
-		    UnitSaving.Save(player, newunit);
-		    GiveStarterItems(player);
-		} else {
-		    data.getUnit().InitPlayerStats();
-		    data.recalculateStats(player);
-		}
+		data.onLogin(player);
 
 		player.getCapability(EntityData.Data, null).syncToClient(player);
 

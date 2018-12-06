@@ -3,6 +3,7 @@ package com.robertx22.unique_items.helmet;
 import java.util.Arrays;
 import java.util.List;
 
+import com.robertx22.database.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
@@ -35,12 +36,12 @@ public class HelmetNature extends BaseUniqueHelmet {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new LowDodgeAddArmorFlat(), new SpellNatureDamageFlat(), new HealthRegenFlat(),
-		new HealthFlat(), new LessManaOnHitPercent());
+		new HealthFlat(), new NatureResistFlat(), new LessManaOnHitPercent());
     }
 
     @Override
     public String description() {
-	return "I see sparks all around me.";
+	return "Nature comes to my aid.";
     }
 
 }

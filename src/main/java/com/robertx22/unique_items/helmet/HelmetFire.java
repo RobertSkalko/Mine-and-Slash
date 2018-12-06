@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.MajorArmorFlat;
+import com.robertx22.database.stat_mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stat_mods.percent.less.LessCriticalHitPercent;
@@ -35,7 +36,7 @@ public class HelmetFire extends BaseUniqueHelmet {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new LowDodgeAddArmorFlat(), new SpellFireDamageFlat(), new EnergyRegenFlat(),
-		new MajorArmorFlat(), new LessCriticalHitPercent());
+		new MajorArmorFlat(), new FireResistFlat(), new LessCriticalHitPercent());
     }
 
     @Override

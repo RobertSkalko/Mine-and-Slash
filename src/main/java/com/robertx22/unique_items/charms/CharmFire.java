@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stat_mods.flat.elemental.pene.FirePeneFlat;
+import com.robertx22.database.stat_mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.database.stat_mods.percent.much_less.CrippleDodgePercent;
@@ -35,7 +36,7 @@ public class CharmFire extends BaseUniqueCharm {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellFireDamageFlat(), new ManaRegenPercent(), new FirePeneFlat(),
-		new CriticalHitFlat(), new CrippleDodgePercent());
+		new CriticalHitFlat(), new FireResistFlat(), new CrippleDodgePercent());
     }
 
     @Override

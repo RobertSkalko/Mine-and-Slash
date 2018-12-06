@@ -10,12 +10,12 @@ public abstract class BaseTraitMod extends StatMod {
     }
 
     @Override
-    public int Min() {
+    public float Min() {
 	return 1;
     }
 
     @Override
-    public int Max() {
+    public float Max() {
 	return 1;
     }
 
@@ -26,7 +26,7 @@ public abstract class BaseTraitMod extends StatMod {
 
     @Override
     public int Weight() {
-	return IWeighted.CommonWeight;
+	return IWeighted.UncommonWeight;
     }
 
 }

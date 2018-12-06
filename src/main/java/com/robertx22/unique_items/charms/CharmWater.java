@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.elemental.pene.WaterPeneFlat;
+import com.robertx22.database.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
 import com.robertx22.database.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.stat_mods.percent.pene.WaterPenePercent;
@@ -35,7 +36,7 @@ public class CharmWater extends BaseUniqueCharm {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new ManaToEnergyConvFlat(), new ArmorFlat(), new WaterPeneFlat(), new WaterPenePercent(),
-		new CrippleDodgePercent());
+		new WaterResistFlat(), new CrippleDodgePercent());
     }
 
     @Override

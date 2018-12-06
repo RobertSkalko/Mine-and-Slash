@@ -10,29 +10,29 @@ import com.robertx22.stats.StatEffects.defense.ElementalResistEffect;
 
 public abstract class BaseEleResist extends UsableStat implements IStatEffects {
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new ElementalResistEffect());
-	}
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new ElementalResistEffect());
+    }
 
-	@Override
-	public float MaximumPercent() {
-		return 0.75F;
-	}
+    @Override
+    public float MaximumPercent() {
+	return 0.75F;
+    }
 
-	@Override
-	public int AverageStat() {
-		return 5;
-	}
+    @Override
+    public int AverageStat() {
+	return 3;
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return true;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return true;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
 
 }

@@ -10,6 +10,7 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.UnitPackage;
+import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
@@ -109,6 +110,8 @@ public class EntityData {
 	void onMobKill(IWorldData world);
 
 	int getLootBonusPerAffixKills(MapItemData map);
+
+	void onLogin(EntityPlayer player);
 
     }
 
@@ -476,6 +479,23 @@ public class EntityData {
 	public int getLootBonusPerAffixKills(MapItemData map) {
 
 	    return kills.getLootMulti(map);
+	}
+
+	@Override
+	public void onLogin(EntityPlayer player) {
+
+	    // check if newbie
+	    if (unit == null) {
+		unit = new Unit();
+		unit.InitPlayerStats();
+		OnLogin.GiveStarterItems(player);
+	    } else {
+		getUnit().InitPlayerStats();
+		recalculateStats(player);
+	    }
+
+	    this.kills.init();
+
 	}
 
     }

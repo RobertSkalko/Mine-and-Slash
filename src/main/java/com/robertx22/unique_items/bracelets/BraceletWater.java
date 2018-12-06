@@ -3,6 +3,7 @@ package com.robertx22.unique_items.bracelets;
 import java.util.Arrays;
 import java.util.List;
 
+import com.robertx22.database.stat_mods.flat.elemental.resist.FireResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.resist.WaterResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellWaterDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.FireToWaterTransferFlat;
@@ -35,7 +36,7 @@ public class BraceletWater extends BaseUniqueBracelet {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellWaterDamageFlat(), new FireToWaterTransferFlat(), new EnergyRegenFlat(),
-		new WaterResistFlat(), new CrippleDodgePercent());
+		new WaterResistFlat(), new FireResistFlat(), new CrippleDodgePercent());
     }
 
     @Override

@@ -6,12 +6,12 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 public abstract class BaseAllEleMulti extends StatMod {
 
     @Override
-    public int Min() {
+    public float Min() {
 	return 5;
     }
 
     @Override
-    public int Max() {
+    public float Max() {
 	return 20;
     }
 

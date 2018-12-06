@@ -8,6 +8,7 @@ import com.robertx22.database.stat_mods.flat.elemental.bonus.ThunderSpellToAttac
 import com.robertx22.database.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.percent.much_less.CrippleLifestealPercent;
+import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.stats.StatMod;
 import com.robertx22.unique_items.bases.BaseUniqueChest;
 
@@ -35,7 +36,7 @@ public class ChestThunder extends BaseUniqueChest {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new ThunderResistFlat(), new MajorArmorFlat(),
-		new ThunderSpellToAttackFlat(), new CrippleLifestealPercent());
+		new SpellThunderDamagePercent(), new ThunderSpellToAttackFlat(), new CrippleLifestealPercent());
     }
 
     @Override

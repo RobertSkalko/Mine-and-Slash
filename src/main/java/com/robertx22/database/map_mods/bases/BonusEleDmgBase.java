@@ -6,12 +6,12 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 public abstract class BonusEleDmgBase extends StatMod {
 
     @Override
-    public int Min() {
+    public float Min() {
 	return 25;
     }
 
     @Override
-    public int Max() {
+    public float Max() {
 	return 75;
     }
 

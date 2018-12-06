@@ -9,12 +9,12 @@ public abstract class BaseEleSpellDmgFlat extends StatMod {
 	}
 
 	@Override
-	public int Min() {
+	public float Min() {
 		return 2;
 	}
 
 	@Override
-	public int Max() {
+	public float Max() {
 		return 10;
 	}
 

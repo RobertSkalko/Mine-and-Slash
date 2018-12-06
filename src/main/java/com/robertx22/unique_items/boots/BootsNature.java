@@ -3,6 +3,7 @@ package com.robertx22.unique_items.boots;
 import java.util.Arrays;
 import java.util.List;
 
+import com.robertx22.database.stat_mods.flat.elemental.resist.NatureResistFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.ThunderToNatureTransferFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
@@ -35,12 +36,14 @@ public class BootsNature extends BaseUniqueBoots {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new HealthPercent(), new HealthRegenFlat(),
-		new ThunderToNatureTransferFlat(), new CrippleDodgePercent());
+		new ThunderToNatureTransferFlat(), new NatureResistFlat(), new CrippleDodgePercent());
+
     }
 
     @Override
     public String description() {
 	return "Nothing shall break my roots!";
+
     }
 
 }

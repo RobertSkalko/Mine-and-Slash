@@ -7,32 +7,32 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class EnergyRegenFlat extends StatMod {
 
-	public EnergyRegenFlat() {
-	}
+    public EnergyRegenFlat() {
+    }
 
-	@Override
-	public String GUID() {
-		return "EnergyRegenFlat";
-	}
+    @Override
+    public String GUID() {
+	return "EnergyRegenFlat";
+    }
 
-	@Override
-	public int Min() {
-		return 1;
-	}
+    @Override
+    public float Min() {
+	return 1;
+    }
 
-	@Override
-	public int Max() {
-		return 3;
-	}
+    @Override
+    public float Max() {
+	return 3;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Flat;
-	}
+    @Override
+    public StatTypes Type() {
+	return StatTypes.Flat;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new EnergyRegen();
-	}
+    @Override
+    public Stat GetBaseStat() {
+	return new EnergyRegen();
+    }
 
 }

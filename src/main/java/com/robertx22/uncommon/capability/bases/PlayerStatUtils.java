@@ -14,7 +14,6 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
-import com.robertx22.stats.IAffectsOtherStats;
 import com.robertx22.stats.IStatConversion;
 import com.robertx22.stats.IStatTransfer;
 import com.robertx22.stats.Stat;
@@ -43,8 +42,8 @@ public class PlayerStatUtils {
 	for (StatData statdata : unit.getUnit().MyStats.values()) {
 	    Stat stat = statdata.GetStat();
 	    if (statdata.Value > 0) {
-		if (stat instanceof Trait && stat instanceof IAffectsOtherStats) {
-		    IAffectsOtherStats affects = (IAffectsOtherStats) stat;
+		if (stat instanceof Trait) {
+		    Trait affects = (Trait) stat;
 		    affects.TryAffectOtherStats(unit);
 
 		}

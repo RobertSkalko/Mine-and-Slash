@@ -131,12 +131,10 @@ public class StatModData implements ITooltipString {
 
     @Override
     public List<String> GetTooltipString(MinMax minmax, int level, boolean IsNotSet) {
+
 	List<String> list = new ArrayList<String>();
-
 	StatMod mod = GetBaseMod();
-
 	Stat basestat = mod.GetBaseStat();
-
 	String text = "";
 
 	if (!(basestat instanceof Trait)) {
@@ -170,15 +168,19 @@ public class StatModData implements ITooltipString {
 	} else {
 
 	    text = TraitText();
+	    Trait trait = (Trait) basestat;
+
+	    if (GuiScreen.isShiftKeyDown()) {
+		text += " " + TextFormatting.GRAY + trait.Description();
+	    }
+
+	    list.add(text);
 
 	    if (GuiScreen.isShiftKeyDown()) {
 
-		Trait trait = (Trait) basestat;
-		text += ": " + TextFormatting.GRAY + trait.Description();
-		list.add(text);
-
 		for (StatModData motdata : trait.getStatsMods()) {
-		    list.addAll(motdata.GetTooltipString(minmax, level, IsNotSet));
+		    list.addAll(
+			    motdata.GetTooltipString(new MinMax(trait.percent(), trait.percent()), level, IsNotSet));
 		}
 
 	    }

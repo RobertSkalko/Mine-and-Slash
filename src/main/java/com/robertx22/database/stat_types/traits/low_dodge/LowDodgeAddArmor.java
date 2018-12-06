@@ -16,11 +16,6 @@ public class LowDodgeAddArmor extends BaseTraitLowDodge {
     }
 
     @Override
-    public String Description() {
-	return "";
-    }
-
-    @Override
     public String Guid() {
 	return "LowDodgeAddArmor";
     }

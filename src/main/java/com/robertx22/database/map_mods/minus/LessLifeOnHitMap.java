@@ -7,32 +7,32 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class LessLifeOnHitMap extends StatMod {
 
-	public LessLifeOnHitMap() {
-	}
+    public LessLifeOnHitMap() {
+    }
 
-	@Override
-	public String GUID() {
-		return "LessLifeOnHitMap";
-	}
+    @Override
+    public String GUID() {
+	return "LessLifeOnHitMap";
+    }
 
-	@Override
-	public int Min() {
-		return -30;
-	}
+    @Override
+    public float Min() {
+	return -30;
+    }
 
-	@Override
-	public int Max() {
-		return -80;
-	}
+    @Override
+    public float Max() {
+	return -80;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Multi;
-	}
+    @Override
+    public StatTypes Type() {
+	return StatTypes.Multi;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new LifeOnHit();
-	}
+    @Override
+    public Stat GetBaseStat() {
+	return new LifeOnHit();
+    }
 
 }

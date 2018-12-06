@@ -17,13 +17,13 @@ public class LifeOnHitFlat extends StatMod {
     }
 
     @Override
-    public int Min() {
-	return 1;
+    public float Min() {
+	return 0.75F;
     }
 
     @Override
-    public int Max() {
-	return 2;
+    public float Max() {
+	return 2.25F;
     }
 
     @Override

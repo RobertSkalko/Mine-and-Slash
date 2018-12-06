@@ -16,12 +16,12 @@ public class LessHealthMap extends StatMod {
     }
 
     @Override
-    public int Min() {
+    public float Min() {
 	return -10;
     }
 
     @Override
-    public int Max() {
+    public float Max() {
 	return -40;
     }
 

@@ -6,12 +6,12 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 public abstract class BaseTransferFlat extends StatMod {
 
     @Override
-    public int Min() {
+    public float Min() {
 	return 10;
     }
 
     @Override
-    public int Max() {
+    public float Max() {
 	return 35;
     }
 

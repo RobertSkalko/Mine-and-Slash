@@ -16,12 +16,12 @@ public class LessDodgeMap extends StatMod {
 	}
 
 	@Override
-	public int Min() {
+	public float Min() {
 		return -20;
 	}
 
 	@Override
-	public int Max() {
+	public float Max() {
 		return -50;
 	}
 

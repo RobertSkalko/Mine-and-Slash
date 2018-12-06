@@ -3,6 +3,7 @@ package com.robertx22.unique_items.helmet;
 import java.util.Arrays;
 import java.util.List;
 
+import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.MajorDodgeFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.flat.resources.MajorManaRegenFlat;
@@ -36,7 +37,7 @@ public class HelmetMana extends BaseUniqueHelmet {
     @Override
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new ManaFlat(), new MajorManaRegenFlat(), new ManaRegenPercent(),
-		new MajorDodgeFlat(), new StaffDamageFlat());
+		new MajorDodgeFlat(), new ArmorFlat(), new StaffDamageFlat());
     }
 
     @Override

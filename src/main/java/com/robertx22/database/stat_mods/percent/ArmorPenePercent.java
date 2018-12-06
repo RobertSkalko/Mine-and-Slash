@@ -7,33 +7,33 @@ import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public class ArmorPenePercent extends StatMod {
 
-	public ArmorPenePercent() {
-	}
+    public ArmorPenePercent() {
+    }
 
-	@Override
-	public String GUID() {
-		return "ArmorPenePercent";
-	}
+    @Override
+    public String GUID() {
+	return "ArmorPenePercent";
+    }
 
-	@Override
-	public int Min() {
-		return 5;
+    @Override
+    public float Min() {
+	return 5;
 
-	}
+    }
 
-	@Override
-	public int Max() {
-		return 20;
-	}
+    @Override
+    public float Max() {
+	return 20;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Percent;
-	}
+    @Override
+    public StatTypes Type() {
+	return StatTypes.Percent;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new ArmorPenetration();
-	}
+    @Override
+    public Stat GetBaseStat() {
+	return new ArmorPenetration();
+    }
 
 }
