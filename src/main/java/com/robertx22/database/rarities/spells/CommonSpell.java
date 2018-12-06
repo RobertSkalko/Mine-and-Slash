@@ -16,4 +16,9 @@ public class CommonSpell extends BaseCommon implements SpellRarity {
 	return new MinMax(25, 50);
     }
 
+    @Override
+    public float specialItemChance() {
+	return 0.5F;
+    }
+
 }

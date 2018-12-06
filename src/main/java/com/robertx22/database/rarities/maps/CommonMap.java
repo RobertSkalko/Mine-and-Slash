@@ -20,4 +20,10 @@ public class CommonMap extends BaseCommon implements MapRarity {
     public int Weight() {
 	return super.Weight() - 5000;
     }
+
+    @Override
+    public float specialItemChance() {
+	return 1.5F;
+    }
+
 }

@@ -26,4 +26,9 @@ public class CommonItem extends BaseCommon implements ItemRarity {
 	return 5;
     }
 
+    @Override
+    public float specialItemChance() {
+	return 0.5F;
+    }
+
 }

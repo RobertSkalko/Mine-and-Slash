@@ -5,16 +5,13 @@ import java.util.Arrays;
 import javax.annotation.Nullable;
 
 import com.robertx22.advanced_blocks.BaseTile;
-import com.robertx22.customitems.currency.CurrencyItem;
-import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Spell;
-import com.robertx22.uncommon.utilityclasses.ListUtils;
-import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -31,7 +28,7 @@ public class TileInventorySalvage extends BaseTile {
     public int[] inputSlots() {
 	int[] ints = new int[INPUT_SLOTS_COUNT];
 	for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
-	    ints[i] = 0;
+	    ints[i] = i;
 	}
 
 	return ints;
@@ -42,51 +39,23 @@ public class TileInventorySalvage extends BaseTile {
 	return true;
     }
 
-    float OrbChance = 1F;
-
     public ItemStack getSmeltingResultForItem(ItemStack st) {
+
 	GearItemData gear = Gear.Load(st);
+	if (gear != null) {
+	    return gear.getSalvageResult();
+	}
+
 	SpellItemData spell = Spell.Load(st);
-
-	int rarity = 0;
-
-	boolean can = false;
-
 	if (spell != null) {
-	    rarity = spell.rarity;
-	    can = true;
-	}
-	if (gear != null && !gear.isUnique) {
-	    if (gear.isSalvagable) {
-		rarity = gear.Rarity;
-		can = true;
-	    }
+	    return spell.getSalvageResult();
 	}
 
-	if (can) {
-	    ItemStack stack = ItemStack.EMPTY;
-
-	    if (RandomUtils.roll(OrbChance * (rarity + 1))) {
-
-		Item item = (Item) RandomUtils
-			.WeightedRandom(ListUtils.SameTierOrLess(ListUtils.CollectionToList(CurrencyItem.ITEMS), 0));
-
-		stack = new ItemStack(item);
-
-	    } else {
-
-		int amount = RandomUtils.RandomRange(1, 3);
-
-		ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
-		stack = new ItemStack(ore);
-		stack.setCount(amount);
-
-	    }
-	    if (stack != null) {
-		return stack;
-	    }
-
+	MapItemData map = Map.Load(st);
+	if (map != null) {
+	    return map.getSalvageResult();
 	}
+
 	return ItemStack.EMPTY;
 
     }

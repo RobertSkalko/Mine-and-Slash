@@ -16,4 +16,9 @@ public class RareSpell extends BaseRare implements SpellRarity {
 	return new MinMax(45, 70);
     }
 
+    @Override
+    public float specialItemChance() {
+	return 2.5F;
+    }
+
 }

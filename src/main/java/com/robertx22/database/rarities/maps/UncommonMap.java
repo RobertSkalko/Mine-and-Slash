@@ -20,4 +20,10 @@ public class UncommonMap extends BaseUncommon implements MapRarity {
     public int Weight() {
 	return super.Weight() - 1500;
     }
+
+    @Override
+    public float specialItemChance() {
+	return 3.5F;
+    }
+
 }

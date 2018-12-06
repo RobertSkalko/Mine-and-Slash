@@ -16,4 +16,9 @@ public class EpicMap extends BaseEpic implements MapRarity {
 	return new MinMax(30, 55);
     }
 
+    @Override
+    public float specialItemChance() {
+	return 5.5F;
+    }
+
 }

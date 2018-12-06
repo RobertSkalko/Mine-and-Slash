@@ -1,18 +1,21 @@
 package com.robertx22.saveclasses;
 
-import java.io.Serializable;
-
+import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.rarities.SpellRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Spells;
 import com.robertx22.spells.bases.BaseSpell;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 @Storable
-public class SpellItemData implements Serializable {
+public class SpellItemData implements ISalvagable {
 
     public SpellItemData() {
 
@@ -20,8 +23,6 @@ public class SpellItemData implements Serializable {
 
     public static int MIN_MANA_COST_PERCENT = 50;
     public static int MAX_MANA_COST_PERCENT = 100;
-
-    private static final long serialVersionUID = -8509997736940652748L;
 
     @Store
     public int level = 1;
@@ -114,6 +115,30 @@ public class SpellItemData implements Serializable {
 
     public BaseSpell GetSpell() {
 	return Spells.All.get(spellGUID);
+    }
+
+    @Override
+    public ItemStack getSalvageResult() {
+
+	ItemStack stack = ItemStack.EMPTY;
+
+	if (RandomUtils.roll(this.getRarity().specialItemChance())) {
+
+	    Item item = (Item) RandomUtils
+		    .WeightedRandom(ListUtils.SameTierOrLess(ListUtils.CollectionToList(CurrencyItem.ITEMS), 0));
+
+	    stack = new ItemStack(item);
+	} else {
+
+	    int amount = RandomUtils.RandomRange(1, 3);
+
+	    ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
+	    stack = new ItemStack(ore);
+	    stack.setCount(amount);
+
+	}
+
+	return stack;
     }
 
 }

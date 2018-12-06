@@ -16,4 +16,9 @@ public class EpicSpell extends BaseEpic implements SpellRarity {
 	return new MinMax(55, 80);
     }
 
+    @Override
+    public float specialItemChance() {
+	return 3.5F;
+    }
+
 }

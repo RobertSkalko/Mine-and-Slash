@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
@@ -24,18 +26,21 @@ import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.unique_items.IUnique;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 @Storable
-public class GearItemData implements IStatsContainer, ITooltip {
+public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
     @Store
     public boolean isUnique = false;
@@ -283,6 +288,45 @@ public class GearItemData implements IStatsContainer, ITooltip {
 	if (obj != null) {
 	    list.add(obj);
 	}
+    }
+
+    @Override
+    public ItemStack getSalvageResult() {
+
+	ItemStack stack = ItemStack.EMPTY;
+
+	int tier = 0;
+
+	if (isUnique) {
+	    try {
+		tier = this.uniqueStats.getUniqueItem().Tier();
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	}
+
+	if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
+
+	    Item item = (Item) RandomUtils
+		    .WeightedRandom(ListUtils.SameTierOrLess(ListUtils.CollectionToList(CurrencyItem.ITEMS), tier));
+
+	    if (isUnique) {
+		int amount = RandomUtils.RandomRange(1, 2 + (tier / 5));
+		stack.setCount(amount);
+	    }
+
+	    stack = new ItemStack(item);
+	} else {
+
+	    int amount = RandomUtils.RandomRange(1, 3);
+
+	    ItemOre ore = (ItemOre) ItemOre.ItemOres.get(Rarity);
+	    stack = new ItemStack(ore);
+	    stack.setCount(amount);
+
+	}
+
+	return stack;
     }
 
 }

@@ -31,4 +31,9 @@ public class UniqueItem extends BaseUnique implements ItemRarity {
 	return 0;
     }
 
+    @Override
+    public float specialItemChance() {
+	return 100;
+    }
+
 }

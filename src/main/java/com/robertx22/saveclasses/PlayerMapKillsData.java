@@ -81,15 +81,19 @@ public class PlayerMapKillsData {
 
     public int getLootMulti(MapItemData map) {
 
-	HashMap<String, Integer> bonuses = getAffixesAndBonuses();
-
 	int bonus = 0;
 
-	for (MapAffixData affix : map.affixes) {
+	try {
+	    HashMap<String, Integer> bonuses = getAffixesAndBonuses();
 
-	    if (bonuses.containsKey(affix.GUID)) {
-		bonus += bonuses.get(affix.GUID);
+	    for (MapAffixData affix : map.affixes) {
+
+		if (bonuses.containsKey(affix.GUID)) {
+		    bonus += bonuses.get(affix.GUID);
+		}
 	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
 
 	return bonus;
@@ -98,23 +102,15 @@ public class PlayerMapKillsData {
     private HashMap<String, Integer> getAffixesAndBonuses() {
 	HashMap<String, Integer> tiers = new HashMap<String, Integer>();
 
-	List<KillsData> keys = null;
-	try {
-	    while (keys == null) {
-		keys = new ArrayList<KillsData>(killsPerAffix.values());
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
+	List<KillsData> values = new ArrayList<KillsData>(killsPerAffix.values());
+	Collections.sort(values);
 
-	Collections.sort(keys);
-
-	for (int i = 0; i < keys.size(); i++) {
+	for (int i = 0; i < values.size(); i++) {
 
 	    for (Entry<Integer, Integer> lootentry : lootBonusPerTier.entrySet()) {
 
 		if (i <= lootentry.getKey()) {
-		    KillsData dat = keys.get(i);
+		    KillsData dat = values.get(i);
 
 		    tiers.put(dat.guid, lootentry.getValue());
 

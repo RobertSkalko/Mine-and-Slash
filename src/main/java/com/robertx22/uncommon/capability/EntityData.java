@@ -39,6 +39,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -471,7 +472,21 @@ public class EntityData {
 
 	@Override
 	public void onMobKill(IWorldData world) {
-	    kills.onKill(world.getMap());
+
+	    Runnable noteThread = new Runnable() {
+		@Override
+		public void run() {
+		    try {
+
+			kills.onKill(world.getMap());
+
+		    } catch (Exception e) {
+			e.printStackTrace();
+		    }
+		}
+
+	    };
+	    FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(noteThread);
 
 	}
 
@@ -484,18 +499,23 @@ public class EntityData {
 	@Override
 	public void onLogin(EntityPlayer player) {
 
-	    // check if newbie
-	    if (unit == null) {
-		unit = new Unit();
-		unit.InitPlayerStats();
-		OnLogin.GiveStarterItems(player);
-	    } else {
-		getUnit().InitPlayerStats();
-		recalculateStats(player);
+	    try {
+
+		// check if newbie
+		if (unit == null) {
+		    unit = new Unit();
+		    unit.InitPlayerStats();
+		    OnLogin.GiveStarterItems(player);
+		} else {
+		    getUnit().InitPlayerStats();
+		    recalculateStats(player);
+		}
+
+		kills.init();
+
+	    } catch (Exception e) {
+		e.printStackTrace();
 	    }
-
-	    this.kills.init();
-
 	}
 
     }

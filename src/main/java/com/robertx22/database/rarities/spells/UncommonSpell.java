@@ -15,4 +15,10 @@ public class UncommonSpell extends BaseUncommon implements SpellRarity {
     public MinMax SpellScalingPercents() {
 	return new MinMax(35, 60);
     }
+
+    @Override
+    public float specialItemChance() {
+	return 1.5F;
+    }
+
 }

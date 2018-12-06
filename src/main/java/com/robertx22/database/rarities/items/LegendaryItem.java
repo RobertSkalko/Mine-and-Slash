@@ -26,4 +26,9 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
 	return 50;
     }
 
+    @Override
+    public float specialItemChance() {
+	return 6.5F;
+    }
+
 }

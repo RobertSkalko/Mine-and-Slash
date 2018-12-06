@@ -167,6 +167,10 @@ import com.robertx22.database.stat_mods.traits.atronachs.EarthAtronachFlat;
 import com.robertx22.database.stat_mods.traits.atronachs.FireAtronachFlat;
 import com.robertx22.database.stat_mods.traits.atronachs.FrostAtronachFlat;
 import com.robertx22.database.stat_mods.traits.atronachs.ThunderAtronachFlat;
+import com.robertx22.database.stat_mods.traits.conditionals.high_crit.HighCritAddArmorFlat;
+import com.robertx22.database.stat_mods.traits.conditionals.high_crit.HighCritAddLifestealFlat;
+import com.robertx22.database.stat_mods.traits.conditionals.high_dodge.HighDodgeAddCritDamageFlat;
+import com.robertx22.database.stat_mods.traits.conditionals.high_dodge.HighDodgeAddPhysDamageFlat;
 import com.robertx22.database.stat_mods.traits.conditionals.low_crit_hit.LowCritAddDodgeFlat;
 import com.robertx22.database.stat_mods.traits.conditionals.low_crit_hit.LowCritAddHealthFlat;
 import com.robertx22.database.stat_mods.traits.conditionals.low_dodge.LowDodgeAddArmorFlat;
@@ -350,6 +354,11 @@ public class StatMods {
 		put(new LowDodgeAddCritHitFlat().GUID(), new LowDodgeAddCritHitFlat());
 		put(new LowCritAddDodgeFlat().GUID(), new LowCritAddDodgeFlat());
 		put(new LowCritAddHealthFlat().GUID(), new LowCritAddHealthFlat());
+
+		put(new HighCritAddArmorFlat().GUID(), new HighCritAddArmorFlat());
+		put(new HighCritAddLifestealFlat().GUID(), new HighCritAddLifestealFlat());
+		put(new HighDodgeAddCritDamageFlat().GUID(), new HighDodgeAddCritDamageFlat());
+		put(new HighDodgeAddPhysDamageFlat().GUID(), new HighDodgeAddPhysDamageFlat());
 
 		// Traits
 

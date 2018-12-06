@@ -37,6 +37,11 @@ import com.robertx22.database.stat_types.offense.ArmorPenetration;
 import com.robertx22.database.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stat_types.offense.CriticalHit;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.AxeDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.BowDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.HammerDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.StaffDamage;
+import com.robertx22.database.stat_types.offense.weapon_types.SwordDamage;
 import com.robertx22.database.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stat_types.resources.HealthRegen;
 import com.robertx22.database.stat_types.resources.LifeOnHit;
@@ -180,6 +185,14 @@ public class PlayerStatsGui extends Show {
 	    ShowStat(this.GetStatString(unit.MyStats.get(ThunderPene.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(NaturePene.GUID), stats), list);
 
+	    ShowStat(TextFormatting.BLUE + "Weapon Damage:", list);
+
+	    ShowStat(this.GetStatString(unit.MyStats.get(new HammerDamage().GUID()), stats), list);
+	    ShowStat(this.GetStatString(unit.MyStats.get(new AxeDamage().GUID()), stats), list);
+	    ShowStat(this.GetStatString(unit.MyStats.get(new BowDamage().GUID()), stats), list);
+	    ShowStat(this.GetStatString(unit.MyStats.get(new SwordDamage().GUID()), stats), list);
+	    ShowStat(this.GetStatString(unit.MyStats.get(new StaffDamage().GUID()), stats), list);
+
 	    ShowStat(TextFormatting.GOLD + "Misc:", list);
 
 	    for (StatData data : unit.MyStats.values()) {
@@ -226,8 +239,8 @@ public class PlayerStatsGui extends Show {
 	if (data.GetStat() instanceof UsableStat) {
 	    UsableStat usable = (UsableStat) data.GetStat();
 
-	    return str + " (" + String.format("%.2f", usable.GetUsableValue(this.data.getLevel(), (int) data.Value))
-		    + "%)";
+	    return str + " ("
+		    + String.format("%.2f", usable.GetUsableValue(this.data.getLevel(), (int) data.Value) * 100) + "%)";
 
 	}
 

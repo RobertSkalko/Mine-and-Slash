@@ -28,4 +28,9 @@ public class EpicItem extends BaseEpic implements ItemRarity {
 	return 30;
     }
 
+    @Override
+    public float specialItemChance() {
+	return 4.5F;
+    }
+
 }

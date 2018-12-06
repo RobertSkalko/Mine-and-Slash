@@ -3,6 +3,10 @@ package com.robertx22.saveclasses;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.database.rarities.MapRarity;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.IWP;
 import com.robertx22.mmorpg.ModConfig;
@@ -12,15 +16,19 @@ import com.robertx22.uncommon.capability.MapDatas;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
+import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
 @Storable
-public class MapItemData {
+public class MapItemData implements ISalvagable {
 
     @Store
     public String name = "Adventure Map";
@@ -144,6 +152,36 @@ public class MapItemData {
 	}
 
 	return id;
+    }
+
+    public MapRarity GetRarity() {
+
+	return Rarities.Maps.get(rarity);
+
+    }
+
+    @Override
+    public ItemStack getSalvageResult() {
+
+	ItemStack stack = ItemStack.EMPTY;
+
+	if (RandomUtils.roll(this.GetRarity().specialItemChance())) {
+
+	    Item item = (Item) RandomUtils
+		    .WeightedRandom(ListUtils.SameTierOrLess(ListUtils.CollectionToList(CurrencyItem.ITEMS), tier));
+
+	    stack = new ItemStack(item);
+	} else {
+
+	    int amount = RandomUtils.RandomRange(1, 3);
+
+	    ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
+	    stack = new ItemStack(ore);
+	    stack.setCount(amount);
+
+	}
+
+	return stack;
     }
 
 }

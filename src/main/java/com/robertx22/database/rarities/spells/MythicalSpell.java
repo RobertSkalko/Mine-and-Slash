@@ -15,4 +15,10 @@ public class MythicalSpell extends BaseMythical implements SpellRarity {
     public MinMax SpellScalingPercents() {
 	return new MinMax(75, 100);
     }
+
+    @Override
+    public float specialItemChance() {
+	return 10.5F;
+    }
+
 }

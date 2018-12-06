@@ -91,6 +91,10 @@ import com.robertx22.database.stat_types.traits.ele_lords.LordOfBlizzardsTrait;
 import com.robertx22.database.stat_types.traits.ele_lords.LordOfEarthquakesTrait;
 import com.robertx22.database.stat_types.traits.ele_lords.LordOfThunderstormsTrait;
 import com.robertx22.database.stat_types.traits.ele_lords.LordOfVolcanoesTrait;
+import com.robertx22.database.stat_types.traits.high_crit.HighCritAddArmor;
+import com.robertx22.database.stat_types.traits.high_crit.HighCritAddLifesteal;
+import com.robertx22.database.stat_types.traits.high_dodge.HighDodgeAddCritDamage;
+import com.robertx22.database.stat_types.traits.high_dodge.HighDodgeAddPhysDamage;
 import com.robertx22.database.stat_types.traits.low_crit_hit.LowCritHitAddDodge;
 import com.robertx22.database.stat_types.traits.low_crit_hit.LowCritHitAddHealth;
 import com.robertx22.database.stat_types.traits.low_dodge.LowDodgeAddArmor;
@@ -107,6 +111,10 @@ public class Stats {
 		put(new ManaToEnergyConversion().GUID(), new ManaToEnergyConversion());
 
 		// conditional traits
+		put(new HighCritAddArmor().GUID(), new HighCritAddArmor());
+		put(new HighCritAddLifesteal().GUID(), new HighCritAddLifesteal());
+		put(new HighDodgeAddCritDamage().GUID(), new HighDodgeAddCritDamage());
+		put(new HighDodgeAddPhysDamage().GUID(), new HighDodgeAddPhysDamage());
 
 		put(new LowDodgeAddArmor().GUID(), new LowDodgeAddArmor());
 		put(new LowDodgeAddCritHit().GUID(), new LowDodgeAddCritHit());

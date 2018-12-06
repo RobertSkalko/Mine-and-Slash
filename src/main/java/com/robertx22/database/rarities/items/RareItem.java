@@ -26,4 +26,9 @@ public class RareItem extends BaseRare implements ItemRarity {
 	return 20;
     }
 
+    @Override
+    public float specialItemChance() {
+	return 2.5F;
+    }
+
 }

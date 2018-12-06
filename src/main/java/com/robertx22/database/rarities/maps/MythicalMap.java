@@ -16,4 +16,9 @@ public class MythicalMap extends BaseMythical implements MapRarity {
 	return new MinMax(50, 100);
     }
 
+    @Override
+    public float specialItemChance() {
+	return 20F;
+    }
+
 }

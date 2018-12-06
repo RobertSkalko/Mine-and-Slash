@@ -16,4 +16,9 @@ public class LegendarySpell extends BaseLegendary implements SpellRarity {
 	return new MinMax(65, 90);
     }
 
+    @Override
+    public float specialItemChance() {
+	return 5.5F;
+    }
+
 }

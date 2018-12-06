@@ -16,4 +16,9 @@ public class RareMap extends BaseRare implements MapRarity {
 	return new MinMax(20, 45);
     }
 
+    @Override
+    public float specialItemChance() {
+	return 3.5F;
+    }
+
 }
