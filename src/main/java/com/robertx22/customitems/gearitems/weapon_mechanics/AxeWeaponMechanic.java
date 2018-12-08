@@ -9,8 +9,8 @@ import net.minecraft.entity.EntityLivingBase;
 public class AxeWeaponMechanic extends WeaponMechanic {
 
     @Override
-    public int GetEnergyCost() {
-	return 9;
+    public float GetEnergyCost() {
+	return 8.5F;
     }
 
     @Override

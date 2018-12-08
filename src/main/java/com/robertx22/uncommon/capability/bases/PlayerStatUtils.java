@@ -39,6 +39,7 @@ public class PlayerStatUtils {
     }
 
     public static void CalcTraits(UnitData unit) {
+
 	for (StatData statdata : unit.getUnit().MyStats.values()) {
 	    Stat stat = statdata.GetStat();
 	    if (statdata.Value > 0) {
@@ -91,16 +92,17 @@ public class PlayerStatUtils {
 	    list.add(weapon);
 	}
 
-	IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer) entity);
+	if (entity instanceof EntityPlayer) {
+	    IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer) entity);
 
-	for (int i = 0; i < baubles.getSlots(); i++) {
-	    ItemStack stack = baubles.getStackInSlot(i);
-	    if (stack != null) {
-		list.add(stack);
+	    for (int i = 0; i < baubles.getSlots(); i++) {
+		ItemStack stack = baubles.getStackInSlot(i);
+		if (stack != null) {
+		    list.add(stack);
+		}
+
 	    }
-
 	}
-
 	List<GearItemData> gearitems = new ArrayList<GearItemData>();
 
 	for (ItemStack stack : list) {

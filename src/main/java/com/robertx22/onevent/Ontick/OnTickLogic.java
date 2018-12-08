@@ -38,74 +38,79 @@ public class OnTickLogic {
 
 	if (event.phase == Phase.END && event.side.isServer()) {
 
-	    for (EntityPlayerMP player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList()
-		    .getPlayers()) {
+	    try {
+		for (EntityPlayerMP player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList()
+			.getPlayers()) {
 
-		PlayerTickData data = null;
+		    PlayerTickData data = null;
 
-		if (PlayerTickDatas.containsKey(player.getUniqueID())) {
-		    data = PlayerTickDatas.get(player.getUniqueID());
-		} else {
-		    data = new PlayerTickData();
-		}
-
-		data.increment();
-
-		if (data.regenTicks > TicksToRegen) {
-		    data.regenTicks = 0;
-		    if (player.isEntityAlive()) {
-
-			UnitData unit_capa = player.getCapability(EntityData.Data, null);
-			unit_capa.recalculateStats(player);
-			Unit unit = unit_capa.getUnit();
-
-			int manarestored = (int) unit.MyStats.get(new ManaRegen().Guid()).Value;
-			unit.RestoreMana(manarestored);
-
-			int energyrestored = (int) unit.MyStats.get(new EnergyRegen().Guid()).Value;
-			unit.RestoreEnergy(energyrestored);
-
-			int healthrestored = (int) unit.MyStats.get(new HealthRegen().Guid()).Value;
-			unit.Heal(player, healthrestored);
-
-			unit_capa.setUnit(unit, player);
-
-		    }
-		}
-
-		if (data.worldUpdateTicks > TicksToUpdateWorld) {
-		    data.worldUpdateTicks = 0;
-		    IWorldData mapdata = Load.World(player.world);
-		    if (mapdata.isMapWorld()) {
-			Main.Network.sendTo(new WorldPackage(mapdata), player);
+		    if (PlayerTickDatas.containsKey(player.getUniqueID())) {
+			data = PlayerTickDatas.get(player.getUniqueID());
+		    } else {
+			data = new PlayerTickData();
 		    }
 
-		}
+		    data.increment();
 
-		if (data.mapPortalTicks > TicksToGiveMapPortal) {
-		    data.mapPortalTicks = 0;
+		    if (data.regenTicks > TicksToRegen) {
+			data.regenTicks = 0;
+			if (player.isEntityAlive()) {
 
-		    IWorldData mapdata = Load.World(player.world);
+			    IWorldData mapdata = Load.World(player.world);
+			    UnitData unit_capa = player.getCapability(EntityData.Data, null);
+			    unit_capa.recalculateStats(player, mapdata);
+			    Unit unit = unit_capa.getUnit();
 
-		    if (mapdata.isMapWorld()) {
-			ItemStack portalitem = new ItemStack(ItemMapBackPortal.ITEM);
-			if (!player.inventory.hasItemStack(portalitem)) {
-			    player.inventory.addItemStackToInventory(portalitem);
+			    int manarestored = (int) unit.MyStats.get(new ManaRegen().Guid()).Value;
+			    unit_capa.restoreMana(manarestored);
+
+			    int energyrestored = (int) unit.MyStats.get(new EnergyRegen().Guid()).Value;
+			    unit_capa.restoreEnergy(energyrestored);
+
+			    int healthrestored = (int) unit.MyStats.get(new HealthRegen().Guid()).Value;
+			    unit_capa.heal(player, healthrestored);
+
+			    unit_capa.setUnit(unit, player);
 
 			}
 		    }
 
-		}
+		    if (data.worldUpdateTicks > TicksToUpdateWorld) {
+			data.worldUpdateTicks = 0;
+			IWorldData mapdata = Load.World(player.world);
+			if (mapdata.isMapWorld()) {
+			    Main.Network.sendTo(new WorldPackage(mapdata), player);
+			}
 
-		if (data.playerSyncTick > TicksToUpdatePlayer) {
-		    data.playerSyncTick = 0;
-		    UnitData unit_capa = player.getCapability(EntityData.Data, null);
-		    unit_capa.syncToClient(player);
+		    }
 
+		    if (data.mapPortalTicks > TicksToGiveMapPortal) {
+			data.mapPortalTicks = 0;
+
+			IWorldData mapdata = Load.World(player.world);
+
+			if (mapdata.isMapWorld()) {
+			    ItemStack portalitem = new ItemStack(ItemMapBackPortal.ITEM);
+			    if (!player.inventory.hasItemStack(portalitem)) {
+				player.inventory.addItemStackToInventory(portalitem);
+
+			    }
+			}
+
+		    }
+
+		    if (data.playerSyncTick > TicksToUpdatePlayer) {
+			data.playerSyncTick = 0;
+			UnitData unit_capa = player.getCapability(EntityData.Data, null);
+			unit_capa.syncToClient(player);
+
+		    }
+		    if (data != null) {
+			PlayerTickDatas.put(player.getUniqueID(), data);
+		    }
 		}
-		if (data != null) {
-		    PlayerTickDatas.put(player.getUniqueID(), data);
-		}
+	    } catch (Exception e) {
+		e.printStackTrace();
 	    }
 
 	}

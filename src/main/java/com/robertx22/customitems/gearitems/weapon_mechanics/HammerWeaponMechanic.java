@@ -17,7 +17,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 public class HammerWeaponMechanic extends WeaponMechanic {
 
     @Override
-    public int GetEnergyCost() {
+    public float GetEnergyCost() {
 	return 10;
     }
 

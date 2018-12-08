@@ -65,9 +65,8 @@ public abstract class BaseSpell implements IWeighted {
 		    return false;
 		}
 
-		if (unit.getUnit().manaData().CurrentValue >= data.GetManaCost()) {
-		    unit.getUnit().SpendMana(data.GetManaCost());
-		    // UnitSaving.Save(caster, unit);
+		if (unit.hasEnoughMana(data.GetManaCost())) {
+		    unit.consumeMana(data.GetManaCost());
 
 		    return true;
 

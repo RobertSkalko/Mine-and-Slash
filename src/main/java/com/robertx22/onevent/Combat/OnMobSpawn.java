@@ -7,12 +7,9 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.CommonStatUtils;
-import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
@@ -40,23 +37,17 @@ public class OnMobSpawn {
 	    IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
 
 	    if (!(entity instanceof EntityPlayer)) {
-		if (entity instanceof IMob || entity instanceof EntityMob) {
-		    if (event.getWorld().hasCapability(WorldData.Data, null)) {
+		if (event.getWorld().hasCapability(WorldData.Data, null)) {
 
-			Unit check = UnitSaving.Load(entity);
-			UnitData endata = entity.getCapability(EntityData.Data, null);
+		    UnitData endata = entity.getCapability(EntityData.Data, null);
+		    Unit check = endata.getUnit();
 
-			if (check == null) {
-			    int level = GetMobLevel(data, entity);
-			    Unit unit = Unit.Mob(entity, level, data);
+		    if (check == null) {
+			int level = GetMobLevel(data, entity);
+			Unit unit = Unit.Mob(entity, level, data);
 
-			    endata.forceSetUnit(unit);
+			endata.forceSetUnit(unit);
 
-			    if (endata.getRarity() == 5 && ModConfig.Client.ANNOUNCE_WORLD_BOSS_SPAWN) {
-				AnnounceWorldBossSpawn(entity, unit);
-			    }
-
-			}
 		    }
 
 		}

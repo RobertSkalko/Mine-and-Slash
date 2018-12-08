@@ -3,6 +3,7 @@ package com.robertx22.onevent.combat;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -37,12 +38,6 @@ public class OnMobMeleeAttack {
 	    EntityLivingBase source = (EntityLivingBase) event.getSource().getTrueSource();
 	    EntityLivingBase target = event.getEntityLiving();
 
-	    // this seems to copy vanilla attack speed
-	    if ((float) target.hurtResistantTime > (float) target.maxHurtResistantTime / 2.0F) {
-		event.setCanceled(true);
-		return;
-	    }
-
 	    UnitData targetData = Load.Unit(target);
 	    UnitData sourceData = Load.Unit(source);
 
@@ -57,8 +52,14 @@ public class OnMobMeleeAttack {
 		return;
 	    }
 
-	    targetData.recalculateStats(target);
-	    sourceData.recalculateStats(source);
+	    IWorldData world = Load.World(target.world);
+
+	    if (world == null) {
+		return;
+	    }
+
+	    targetData.recalculateStats(target, world);
+	    sourceData.recalculateStats(source, world);
 
 	    if (source instanceof EntityPlayer) {
 

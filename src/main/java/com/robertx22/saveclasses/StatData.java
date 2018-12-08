@@ -34,8 +34,6 @@ public class StatData {
     @Store
     public String Name;
 
-    public int BaseFlat = 0;
-
     public float Flat = 0;
 
     public float Percent = 0;
@@ -44,9 +42,6 @@ public class StatData {
 
     @Store
     public float Value = 0;
-
-    @Store
-    public float CurrentValue = 0;
 
     public void Clear() {
 	Flat = 0;
@@ -65,17 +60,4 @@ public class StatData {
 	}
     }
 
-    public void Increase(int i) {
-	CurrentValue += i;
-	if (CurrentValue > Value) {
-	    CurrentValue = (int) Value;
-	}
-    }
-
-    public void Decrease(int i) {
-	CurrentValue -= i;
-	if (CurrentValue < 0) {
-	    CurrentValue = 0;
-	}
-    }
 }

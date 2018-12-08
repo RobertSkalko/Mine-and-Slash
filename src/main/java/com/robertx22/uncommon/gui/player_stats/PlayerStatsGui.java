@@ -54,7 +54,6 @@ import com.robertx22.stats.Trait;
 import com.robertx22.stats.UsableStat;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.datasaving.UnitSaving;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextFormatting;
@@ -77,8 +76,8 @@ public class PlayerStatsGui extends Show {
 
 	if (mc != null && mc.player != null) {
 
-	    unit = UnitSaving.Load(mc.player);
 	    data = mc.player.getCapability(EntityData.Data, null);
+	    unit = data.getUnit();
 
 	}
 

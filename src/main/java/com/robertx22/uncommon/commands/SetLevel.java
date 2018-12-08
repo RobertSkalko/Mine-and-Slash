@@ -10,24 +10,24 @@ import net.minecraft.server.MinecraftServer;
 
 public class SetLevel extends CommandBase {
 
-	@Override
-	public String getName() {
-		return "setlevel";
-	}
+    @Override
+    public String getName() {
+	return "setlevel";
+    }
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		return "/setlevel (lvl)";
-	}
+    @Override
+    public String getUsage(ICommandSender sender) {
+	return "/setlevel (lvl)";
+    }
 
-	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+    @Override
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-		int lvl = Integer.valueOf(args[0]);
+	int lvl = Integer.valueOf(args[0]);
 
-		EntityPlayer player = (EntityPlayer) sender;
+	EntityPlayer player = (EntityPlayer) sender;
 
-		player.getCapability(EntityData.Data, null).setLevel(lvl);
+	player.getCapability(EntityData.Data, null).setLevel(lvl, player);
 
-	}
+    }
 }

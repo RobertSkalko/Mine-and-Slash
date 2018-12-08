@@ -10,6 +10,7 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.UnitPackage;
+import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.PlayerMapKillsData;
@@ -18,13 +19,12 @@ import com.robertx22.uncommon.AttackUtils;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -57,12 +57,14 @@ public class EntityData {
     private static final String MOB_SAVED_ONCE = "mob_saved_once";
     private static final String UNIT_OBJECT = "unit_object";
     private static final String KILLS_OBJECT = "kils_object";
+    private static final String MANA = "current_mana";
+    private static final String ENERGY = "current_energy";
 
     public interface UnitData extends ICommonCapability {
 
 	int getLevel();
 
-	void setLevel(int lvl);
+	void setLevel(int lvl, EntityLivingBase entity);
 
 	int getExp();
 
@@ -78,7 +80,7 @@ public class EntityData {
 
 	boolean CheckLevelCap();
 
-	void SetMobLevel(IWorldData data, int lvl);
+	void SetMobLevel(IWorldData data, int lvl, EntityLivingBase entity);
 
 	Unit getUnit();
 
@@ -98,9 +100,7 @@ public class EntityData {
 
 	void HandleCloneEvent(UnitData old);
 
-	void recalculateStats(EntityLivingBase entity);
-
-	void forceRecalculateStats(EntityLivingBase entity);
+	void recalculateStats(EntityLivingBase entity, IWorldData world);
 
 	void forceSetUnit(Unit unit);
 
@@ -114,6 +114,27 @@ public class EntityData {
 
 	void onLogin(EntityPlayer player);
 
+	float getCurrentMana();
+
+	float getCurrentEnergy();
+
+	void setCurrentEnergy(float i);
+
+	void setCurrentMana(float i);
+
+	boolean hasEnoughMana(float i);
+
+	boolean hasEnoughEnergy(float i);
+
+	void restoreMana(float i);
+
+	void restoreEnergy(float i);
+
+	void consumeMana(float i);
+
+	void consumeEnergy(float i);
+
+	void heal(EntityLivingBase entity, int healthrestored);
     }
 
     @Mod.EventBusSubscriber
@@ -121,8 +142,7 @@ public class EntityData {
 	@SubscribeEvent
 	public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
-	    if (event.getObject() instanceof EntityPlayer || event.getObject() instanceof EntityMob
-		    || event.getObject() instanceof IMob) {
+	    if (event.getObject() instanceof EntityLivingBase) {
 
 		event.addCapability(new ResourceLocation(Ref.MODID, "EntityData"),
 			new ICapabilitySerializable<NBTTagCompound>() {
@@ -181,10 +201,14 @@ public class EntityData {
 	int rarity = 0;
 	String uuid = "";
 	String name = "";
-	boolean mobSavedOnce = false;
+
+	float energy;
+	float mana;
 
 	@Override
 	public NBTTagCompound getNBT() {
+	    nbt.setFloat(MANA, mana);
+	    nbt.setFloat(ENERGY, energy);
 	    nbt.setInteger(LEVEL, level);
 	    nbt.setInteger(EXP, exp);
 	    nbt.setInteger(RARITY, rarity);
@@ -215,7 +239,8 @@ public class EntityData {
 	    this.rarity = value.getInteger(RARITY);
 	    this.uuid = value.getString(UUID);
 	    this.name = value.getString(NAME);
-	    this.mobSavedOnce = value.getBoolean(MOB_SAVED_ONCE);
+	    this.energy = value.getFloat(ENERGY);
+	    this.mana = value.getFloat(MANA);
 
 	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(UNIT_OBJECT);
 	    if (object_nbt != null) {
@@ -247,7 +272,7 @@ public class EntityData {
 	}
 
 	@Override
-	public void SetMobLevel(IWorldData data, int lvl) {
+	public void SetMobLevel(IWorldData data, int lvl, EntityLivingBase entity) {
 
 	    if (lvl < 1) {
 		lvl = 1;
@@ -263,7 +288,7 @@ public class EntityData {
 		lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
 	    }
 
-	    setLevel(lvl);
+	    setLevel(lvl, entity);
 	}
 
 	@Override
@@ -315,7 +340,7 @@ public class EntityData {
 
 	    if (CheckIfCanLevelUp() && CheckLevelCap()) {
 
-		this.setLevel(level + 1);
+		this.setLevel(level + 1, player);
 		setExp(0);
 
 		player.sendMessage(new TextComponentString(
@@ -334,7 +359,8 @@ public class EntityData {
 	}
 
 	@Override
-	public void setLevel(int lvl) {
+	public void setLevel(int lvl, EntityLivingBase entity) {
+	    setName(entity);
 	    level = lvl;
 	}
 
@@ -365,14 +391,8 @@ public class EntityData {
 	@Override
 	public void setUnit(Unit unit, EntityLivingBase entity) {
 
-	    if (entity instanceof EntityPlayer) {
-		this.unit = unit;
-	    } else {
-		if (this.mobSavedOnce == false) {
-		    this.mobSavedOnce = true;
-		    this.unit = unit;
-		}
-	    }
+	    this.unit = unit;
+
 	}
 
 	@Override
@@ -398,16 +418,22 @@ public class EntityData {
 
 	@Override
 	public void setName(EntityLivingBase entity) {
+
+	    MobRarity rarity = Rarities.Mobs.get(getRarity());
+	    String rarityprefix = "";
 	    String name = "";
+
 	    if (entity instanceof EntityPlayer) {
 		name = ((EntityPlayer) entity).getDisplayNameString();
-	    } else {
-		MobRarity rarity = Rarities.Mobs.get(getRarity());
 
-		name = TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarity.Name() + " "
-			+ entity.getName();
+	    } else {
+		name = entity.getName();
+		rarityprefix = rarity.Name();
+
 	    }
-	    this.name = name;
+
+	    this.name = TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " "
+		    + name;
 
 	}
 
@@ -422,15 +448,10 @@ public class EntityData {
 	}
 
 	@Override
-	public void recalculateStats(EntityLivingBase entity) {
-	    if (entity instanceof EntityPlayer) {
-		unit.RecalculateStats(entity, this, level);
-	    }
-	}
+	public void recalculateStats(EntityLivingBase entity, IWorldData world) {
 
-	@Override
-	public void forceRecalculateStats(EntityLivingBase entity) {
-	    unit.RecalculateStats(entity, this, level);
+	    unit.RecalculateStats(entity, this, level, world);
+
 	}
 
 	@Override
@@ -441,15 +462,15 @@ public class EntityData {
 	@Override
 	public boolean tryUseWeapon(EntityLivingBase entity, WeaponMechanic iwep, ItemStack weapon) {
 
-	    int energyCost = iwep.GetEnergyCost();
+	    float energyCost = iwep.GetEnergyCost();
 
-	    if (getUnit().hasEnoughEnergy(energyCost) == false) {
+	    if (hasEnoughEnergy(energyCost) == false) {
 
 		AttackUtils.NoEnergyMessage(entity);
 		return false;
 
 	    } else {
-		getUnit().SpendEnergy(energyCost);
+		consumeEnergy(energyCost);
 		weapon.damageItem(1, entity);
 		return true;
 
@@ -508,7 +529,7 @@ public class EntityData {
 		    OnLogin.GiveStarterItems(player);
 		} else {
 		    getUnit().InitPlayerStats();
-		    recalculateStats(player);
+		    recalculateStats(player, Load.World(player));
 		}
 
 		kills.init();
@@ -516,6 +537,83 @@ public class EntityData {
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
+	}
+
+	@Override
+	public float getCurrentMana() {
+	    return mana;
+	}
+
+	@Override
+	public float getCurrentEnergy() {
+	    return energy;
+	}
+
+	@Override
+	public void setCurrentEnergy(float i) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setCurrentMana(float i) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean hasEnoughMana(float i) {
+	    return mana >= i;
+	}
+
+	@Override
+	public boolean hasEnoughEnergy(float i) {
+	    return energy >= i;
+	}
+
+	@Override
+	public void restoreMana(float i) {
+	    float max = unit.manaData().Value;
+
+	    mana += i;
+	    if (mana > max) {
+		mana = (int) max;
+	    }
+
+	}
+
+	@Override
+	public void restoreEnergy(float i) {
+	    float max = unit.energyData().Value;
+
+	    energy += i;
+	    if (energy > max) {
+		energy = (int) max;
+	    }
+
+	}
+
+	@Override
+	public void consumeMana(float i) {
+	    mana -= i;
+	    if (mana < 0) {
+		mana = 0;
+	    }
+
+	}
+
+	@Override
+	public void consumeEnergy(float i) {
+	    energy -= i;
+	    if (energy < 0) {
+		energy = 0;
+	    }
+
+	}
+
+	@Override
+	public void heal(EntityLivingBase entity, int healthrestored) {
+	    entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored * OnHealDecrease.HEAL_DECREASE, entity));
 	}
 
     }

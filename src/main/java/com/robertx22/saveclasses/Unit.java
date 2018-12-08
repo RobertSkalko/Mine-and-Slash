@@ -14,7 +14,8 @@ import com.robertx22.db_lists.Stats;
 import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.onevent.combat.OnHealDecrease;
+import com.robertx22.mmorpg.Main;
+import com.robertx22.network.EntityPackage;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.stats.Stat;
@@ -24,7 +25,6 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import com.robertx22.uncommon.capability.bases.MobStatUtils;
 import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
-import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import info.loenwind.autosave.annotations.Storable;
@@ -125,6 +125,7 @@ public class Unit {
 	DamageEffect dmg = new DamageEffect(source, target, num);
 	dmg.setEffectType(EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 	dmg.Activate();
+
     }
 
     // Stat shortcuts
@@ -152,30 +153,6 @@ public class Unit {
 	return MyStats.get(new Energy().Guid());
     }
 
-    public void SpendMana(int i) {
-	manaData().Decrease(i);
-    }
-
-    public void SpendEnergy(int i) {
-	energyData().Decrease(i);
-    }
-
-    public void RestoreMana(int i) {
-	manaData().Increase(i);
-    }
-
-    public void RestoreEnergy(int i) {
-	energyData().Increase(i);
-    }
-
-    public boolean hasEnoughEnergy(int i) {
-	return energyData().CurrentValue >= i;
-    }
-
-    public boolean hasEnoughMana(int i) {
-	return manaData().CurrentValue >= i;
-    }
-
     public static Unit Mob(EntityLivingBase entity, int level, IWorldData data) {
 
 	Unit mob = new Unit();
@@ -183,16 +160,14 @@ public class Unit {
 
 	UnitData endata = entity.getCapability(EntityData.Data, null);
 
-	endata.SetMobLevel(data, level);
+	endata.SetMobLevel(data, level, entity);
 	endata.setRarity(RandomUtils.RandomWithMinRarity(entity).Rank());
 	endata.setName(entity);
-
-	mob.MyStats.get(Health.GUID).BaseFlat = (int) entity.getMaxHealth();
 
 	CommonStatUtils.addMapAffixes(data, entity, mob, endata);
 	MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
 
-	mob.RecalculateMobStats(entity, endata, level, data);
+	mob.RecalculateStats(entity, endata, level, data);
 
 	return mob;
 
@@ -214,25 +189,79 @@ public class Unit {
 	MyStats.values().forEach((StatData stat) -> stat.GetStat().CalcVal(stat, data));
     }
 
-    public void RecalculateStats(EntityLivingBase entity, UnitData data, int level) {
+    class DirtyCheck {
+	int hp;
+
+	public boolean isDirty(DirtyCheck newcheck) {
+
+	    if (newcheck.hp != hp) {
+		return true;
+	    }
+
+	    return false;
+
+	}
+
+    }
+
+    /**
+     * @return checks if it should be synced to clients. Clients currently only see
+     *         health and status effects
+     */
+    private DirtyCheck getDirtyCheck() {
+
+	DirtyCheck check = new DirtyCheck();
+
+	check.hp = (int) MyStats.get(Health.GUID).Value;
+
+	return check;
+    }
+
+    public void RecalculateStats(EntityLivingBase entity, UnitData data, int level, IWorldData world) {
+
+	if (data.getUnit() == null) {
+	    data.setUnit(this, entity);
+	}
+
+	DirtyCheck old = getDirtyCheck();
+
+	List<GearItemData> gears = PlayerStatUtils.GetEquips(entity); // slow but required
+
+	Unit copy = this.Clone();
+
+	int tier = 0;
+	if (world != null) {
+	    tier = world.getTier();
+	}
+
+	ClearStats();
 
 	if (entity instanceof EntityPlayer) {
-
-	    List<GearItemData> gears = PlayerStatUtils.GetEquips(entity); // slow but required
-
-	    Unit copy = this.Clone();
-
-	    ClearStats();
-	    PlayerStatUtils.CountWornSets(entity, gears, this);
 	    PlayerStatUtils.AddPlayerBaseStats(this);
-	    PlayerStatUtils.AddAllGearStats(entity, gears, this, level); // slow, but required
-	    CommonStatUtils.AddStatusEffectStats(this, level);
-	    PlayerStatUtils.AddAllSetStats(entity, this, level);
-	    CommonStatUtils.AddMapAffixStats(this, level);
-	    PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
-	    PlayerStatUtils.CalcTraits(data);
-	    CalcStats(data);
 
+	} else {
+
+	    MyStats.get(Health.GUID).Flat += entity.getMaxHealth();
+	    MobStatUtils.AddMobcStats(this, data.getLevel());
+	    MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
+	    MobStatUtils.AddMobTierStats(this, tier);
+
+	}
+
+	PlayerStatUtils.CountWornSets(entity, gears, this);
+	PlayerStatUtils.AddAllGearStats(entity, gears, this, level); // slow, but required
+	CommonStatUtils.AddStatusEffectStats(this, level);
+	PlayerStatUtils.AddAllSetStats(entity, this, level);
+	CommonStatUtils.AddMapAffixStats(this, level);
+	PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
+	PlayerStatUtils.CalcTraits(data);
+
+	CalcStats(data);
+
+	DirtyCheck newcheck = getDirtyCheck();
+
+	if (old.isDirty(newcheck)) {
+	    Main.Network.sendToAllTracking(new EntityPackage(entity, data), entity);
 	}
 
     }
@@ -248,27 +277,6 @@ public class Unit {
 
 	return clone;
 
-    }
-
-    public void RecalculateMobStats(EntityLivingBase entity, UnitData endata, int level, IWorldData world) {
-
-	int tier = 0;
-	if (world != null) {
-	    tier = world.getTier();
-	}
-
-	ClearStats();
-	MobStatUtils.AddMobcStats(this, endata.getLevel());
-	MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(endata.getRarity()));
-	CommonStatUtils.AddStatusEffectStats(this, level);
-	CommonStatUtils.AddMapAffixStats(this, level);
-	MobStatUtils.AddMobTierStats(this, tier);
-	CalcStats(endata);
-
-    }
-
-    public void Heal(EntityLivingBase entity, int healthrestored) {
-	entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored * OnHealDecrease.HEAL_DECREASE, entity));
     }
 
 }

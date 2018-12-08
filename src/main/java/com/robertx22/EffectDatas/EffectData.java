@@ -11,6 +11,7 @@ import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffect.EffectSides;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -25,13 +26,15 @@ public abstract class EffectData {
 	this.targetData = Load.Unit(target);
 	this.sourceData = Load.Unit(source);
 
+	IWorldData world = Load.World(target.world);
+
 	try {
 	    targetUnit = targetData.getUnit();
 	    sourceUnit = sourceData.getUnit();
 
 	    if (sourceUnit != null && targetUnit != null) {
-		sourceData.recalculateStats(source);
-		targetData.recalculateStats(target);
+		sourceData.recalculateStats(source, world);
+		targetData.recalculateStats(target, world);
 
 	    } else {
 		this.canceled = true;

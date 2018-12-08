@@ -7,7 +7,7 @@ public abstract class BaseTraitLowDodge extends ConditionalTrait {
 
     @Override
     public boolean condition(UnitData unit) {
-	return unit.getUnit().MyStats.get(Dodge.GUID).BaseFlat < 5;
+	return unit.getUnit().MyStats.get(Dodge.GUID).Flat < 5;
 
     }
 

@@ -2,20 +2,17 @@ package com.robertx22.uncommon.gui.mobs;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
-import java.util.UUID;
 
 import org.lwjgl.opengl.GL11;
 
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
-import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.datasaving.UnitSaving;
+import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -44,9 +41,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class HealthBarRenderer {
 
-    HashMap<UUID, Unit> UnitMap = new HashMap<UUID, Unit>();
-    HashMap<UUID, UnitData> DataMap = new HashMap<UUID, UnitData>();
-
     Minecraft mc = Minecraft.getMinecraft();
 
     List<EntityLivingBase> renderedEntities = new ArrayList();
@@ -56,10 +50,6 @@ public class HealthBarRenderer {
 
 	if ((!Minecraft.isGuiEnabled() || !ModConfig.Client.RENDER_MOB_HEALTH_GUI))
 	    return;
-
-	if (UnitMap.size() > 1000) {
-	    UnitMap.clear();
-	}
 
 	Entity cameraEntity = mc.getRenderViewEntity();
 	BlockPos renderingVector = cameraEntity.getPosition();
@@ -100,19 +90,9 @@ public class HealthBarRenderer {
 	ridingStack.push(entity);
 
 	// UNIT LOADING
-	Unit unit = null;
-	UnitData data = null;
-	if (UnitMap.containsKey(entity.getUniqueID())) {
-	    unit = UnitMap.get(entity.getUniqueID());
-	    data = DataMap.get(entity.getUniqueID());
-	} else {
-	    unit = UnitSaving.Load(entity);
-	    if (unit != null) {
-		UnitMap.put(entity.getUniqueID(), unit);
-		DataMap.put(entity.getUniqueID(), entity.getCapability(EntityData.Data, null));
+	UnitData data = Load.Unit(entity);
+	Unit unit = data.getUnit();
 
-	    }
-	}
 	if (unit == null || data == null) {
 	    return;
 	}

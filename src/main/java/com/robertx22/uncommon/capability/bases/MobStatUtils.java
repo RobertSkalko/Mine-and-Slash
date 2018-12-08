@@ -31,17 +31,17 @@ public class MobStatUtils {
 	unit.MyStats.get(Health.GUID).Flat += 10 * level;
 	unit.MyStats.get(Armor.GUID).Flat += 10 * level;
 	unit.MyStats.get(CriticalHit.GUID).Flat += 5;
-	unit.MyStats.get(CriticalDamage.GUID).Flat += 20;
+	unit.MyStats.get(CriticalDamage.GUID).Flat += 10;
 
 	unit.MyStats.get(WaterResist.GUID).Flat += 4 * level;
 	unit.MyStats.get(FireResist.GUID).Flat += 4 * level;
 	unit.MyStats.get(ThunderResist.GUID).Flat += 4 * level;
 	unit.MyStats.get(NatureResist.GUID).Flat += 4 * level;
 
-	unit.MyStats.get(SpellWaterDamage.GUID).Flat += 10 * level;
-	unit.MyStats.get(SpellFireDamage.GUID).Flat += 10 * level;
-	unit.MyStats.get(SpellThunderDamage.GUID).Flat += 10 * level;
-	unit.MyStats.get(SpellNatureDamage.GUID).Flat += 10 * level;
+	unit.MyStats.get(SpellWaterDamage.GUID).Flat += 8 * level;
+	unit.MyStats.get(SpellFireDamage.GUID).Flat += 8 * level;
+	unit.MyStats.get(SpellThunderDamage.GUID).Flat += 8 * level;
+	unit.MyStats.get(SpellNatureDamage.GUID).Flat += 8 * level;
 
 	unit.MyStats.get(PhysicalDamage.GUID).Flat += 0.4F * level;
 

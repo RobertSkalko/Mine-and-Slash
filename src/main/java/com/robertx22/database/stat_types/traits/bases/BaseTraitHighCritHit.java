@@ -7,7 +7,7 @@ public abstract class BaseTraitHighCritHit extends ConditionalTrait {
 
     @Override
     public boolean condition(UnitData unit) {
-	return unit.getUnit().MyStats.get(CriticalHit.GUID).BaseFlat > 30;
+	return unit.getUnit().MyStats.get(CriticalHit.GUID).Flat > 30;
 
     }
 

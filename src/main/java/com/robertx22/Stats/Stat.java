@@ -43,7 +43,7 @@ public abstract class Stat implements IGUID {
 
 	float finalValue = 0 + BaseFlat;
 
-	finalValue += StatMinimum + data.BaseFlat;
+	finalValue += StatMinimum;
 
 	if (ScalesToLevel()) {
 	    finalValue *= Source.getLevel();

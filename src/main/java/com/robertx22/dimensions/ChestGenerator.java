@@ -32,11 +32,12 @@ public class ChestGenerator implements IWorldGenerator {
 
 	    if (RandomUtils.roll(1F)) {
 
+		EntityZombie zombie = new EntityZombie(world);
 		UnitData mob = new EntityData.DefaultImpl();
 		UnitData player = new EntityData.DefaultImpl();
-		mob.setLevel(data.getLevel());
+		mob.setLevel(data.getLevel(), zombie);
 		mob.setRarity(4);
-		player.setLevel(data.getLevel());
+		player.setLevel(data.getLevel(), zombie);
 
 		List<ItemStack> loot = MasterLootGen.gen(mob, player, data, new EntityZombie(world));
 

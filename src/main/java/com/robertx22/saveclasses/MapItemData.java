@@ -176,6 +176,7 @@ public class MapItemData implements ISalvagable {
 	    int amount = RandomUtils.RandomRange(1, 3);
 
 	    ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
+
 	    stack = new ItemStack(ore);
 	    stack.setCount(amount);
 

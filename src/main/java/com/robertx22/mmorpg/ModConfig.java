@@ -34,10 +34,6 @@ public class ModConfig {
 	@Config.Comment("Posts them in chat if you can't cast spell or attakc")
 	public boolean SHOW_LOW_ENERGY_MANA_WARNING = false;
 
-	@Config.Name("Announce world boss spawn")
-	@Config.Comment("plays a dragon sound when world boss spawns")
-	public boolean ANNOUNCE_WORLD_BOSS_SPAWN = false;
-
 	@Config.Name("Show Floating Exp")
 	@Config.Comment("Shows how much exp you got from a mob kill. Can get annoying when you can't see your damage i assume.")
 	public boolean SHOW_FLOATING_EXP = false;

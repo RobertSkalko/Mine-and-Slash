@@ -9,7 +9,7 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import net.minecraft.entity.EntityLivingBase;
 
 public abstract class WeaponMechanic {
-    public abstract int GetEnergyCost();
+    public abstract float GetEnergyCost();
 
     public abstract WeaponTypes weaponType();
 

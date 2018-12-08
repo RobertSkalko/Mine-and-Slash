@@ -80,14 +80,14 @@ public class DamageEffect extends EffectData
     private void RestoreMana() {
 	int restored = (int) manaRestored;
 	if (restored > 0) {
-	    sourceUnit.RestoreMana(restored);
+	    this.sourceData.restoreMana(restored);
 	}
     }
 
     private void Heal() {
 	int healed = (int) healthHealed;
 	if (healed > 0) {
-	    sourceUnit.Heal(Source, healed);
+	    sourceData.heal(Source, healed);
 	}
     }
 

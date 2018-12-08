@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.robertx22.mmorpg.Main;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
@@ -29,6 +30,11 @@ public class EntityPackage implements IMessage {
     public EntityPackage(EntityLivingBase entity) {
 	this.id = entity.getEntityId();
 	this.nbt = entity.getCapability(EntityData.Data, null).getNBT();
+    }
+
+    public EntityPackage(EntityLivingBase entity, UnitData data) {
+	this.id = entity.getEntityId();
+	this.nbt = data.getNBT();
     }
 
     @Override

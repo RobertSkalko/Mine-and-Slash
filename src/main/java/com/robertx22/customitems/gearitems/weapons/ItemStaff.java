@@ -50,7 +50,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon {
 
 		UnitData data = Load.Unit(player);
 
-		data.recalculateStats(player);
+		data.recalculateStats(player, Load.World(player.world));
 
 		if (data.tryUseWeapon(player, this.mechanic(), player.getHeldItem(hand))) {
 
