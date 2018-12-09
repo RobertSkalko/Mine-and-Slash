@@ -11,6 +11,8 @@ public abstract class BaseAffix implements IWeighted, IGUID {
     public BaseAffix() {
     }
 
+    abstract public String locName();
+
     public abstract String GUID();
 
     @Override

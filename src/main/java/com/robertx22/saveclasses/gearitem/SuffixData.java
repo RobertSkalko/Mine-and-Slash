@@ -69,7 +69,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
 	List<String> list = new ArrayList<String>();
 
-	list.add(CLOC.word("suffix") + ": " + CLOC.suffix(affix.GUID()));
+	list.add(CLOC.word("suffix") + ": " + affix.locName());
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

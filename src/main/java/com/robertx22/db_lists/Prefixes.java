@@ -108,7 +108,7 @@ public class Prefixes {
 	    HashMap<String, Prefix> map = new HashMap<String, Prefix>();
 
 	    for (Prefix s : list) {
-		map.put(s.locName(), s);
+		map.put(s.GUID(), s);
 	    }
 	    all = map;
 

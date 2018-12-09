@@ -61,8 +61,6 @@ public class GearGen {
 
 	Gear.Save(stack, data);
 
-	stack.setStackDisplayName(data.GetDisplayName());
-
 	return stack;
 
     }
@@ -72,8 +70,6 @@ public class GearGen {
 	ItemStack stack = new ItemStack(data.getItem());
 
 	Gear.Save(stack, data);
-
-	stack.setStackDisplayName(data.GetDisplayName());
 
 	return stack;
 

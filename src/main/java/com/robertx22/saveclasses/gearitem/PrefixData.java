@@ -41,7 +41,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 	List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossiblePrefixes());
 	Prefix prefix = (Prefix) RandomUtils.WeightedRandom(list);
 
-	baseAffix = prefix.locName();
+	baseAffix = prefix.GUID();
 
 	RerollNumbers(gear);
 
@@ -71,7 +71,7 @@ public class PrefixData extends AffixData implements Serializable, ITooltipList,
 
 	List<String> list = new ArrayList<String>();
 
-	list.add(CLOC.word("prefix") + ": " + CLOC.prefix(affix.GUID()));
+	list.add(CLOC.word("prefix") + ": " + affix.locName());
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

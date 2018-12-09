@@ -143,17 +143,18 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	String text = GetRarity().Color();
 
 	if (isUnique) {
-	    text += ((IUnique) this.getItem()).locName();
+	    IUnique uniq = (IUnique) this.getItem();
+	    text += uniq.locName();
 
 	} else {
 
 	    if (prefix != null) {
-		text += CLOC.prefix(prefix.BaseAffix().GUID().toLowerCase().replaceAll(" ", "_")) + " ";
+		text += prefix.BaseAffix().locName() + " ";
 	    }
 	    text += name();
 
 	    if (suffix != null) {
-		text += " " + CLOC.suffix(suffix.BaseAffix().GUID().toLowerCase().replaceAll(" ", "_")) + " ";
+		text += " " + suffix.BaseAffix().locName() + " ";
 	    }
 	}
 	return text;
