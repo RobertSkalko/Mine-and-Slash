@@ -23,11 +23,6 @@ public class NecklaceFire extends BaseUniqueNecklace {
     }
 
     @Override
-    public String name() {
-	return "Burning Man Amulet";
-    }
-
-    @Override
     public String GUID() {
 	return "necklacefire0";
     }
@@ -37,11 +32,6 @@ public class NecklaceFire extends BaseUniqueNecklace {
 	return Arrays.asList(new SpellFireDamageFlat(), new FireSpellToAttackFlat(), new WaterToFireTransferFlat(),
 		new WaterResistFlat(), new LessHealthRegenFlat());
 
-    }
-
-    @Override
-    public String description() {
-	return "I will take down my enemies with me, in flames.";
     }
 
 }

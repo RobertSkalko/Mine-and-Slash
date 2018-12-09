@@ -26,11 +26,6 @@ public class ChestNature extends BaseUniqueChest {
     }
 
     @Override
-    public String name() {
-	return "Wooden Plate";
-    }
-
-    @Override
     public String GUID() {
 	return "chestnature0";
     }
@@ -39,11 +34,6 @@ public class ChestNature extends BaseUniqueChest {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new HealthPercent(), new HealthRegenFlat(), new ArmorFlat(),
 		new WaterResistFlat(), new WaterToNatureTransferFlat(), new CrippleDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "Do not try move me.";
     }
 
 }

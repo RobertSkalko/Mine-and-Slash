@@ -24,11 +24,6 @@ public class HelmetFire extends BaseUniqueHelmet {
     }
 
     @Override
-    public String name() {
-	return "Flame Atronach Helmet";
-    }
-
-    @Override
     public String GUID() {
 	return "helmetfire0";
     }
@@ -37,11 +32,6 @@ public class HelmetFire extends BaseUniqueHelmet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new LowDodgeAddArmorFlat(), new SpellFireDamageFlat(), new EnergyRegenFlat(),
 		new MajorArmorFlat(), new FireResistFlat(), new LessCriticalHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "I see flames all around me.";
     }
 
 }

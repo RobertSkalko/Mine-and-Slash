@@ -24,11 +24,6 @@ public class NecklaceWater extends BaseUniqueNecklace {
     }
 
     @Override
-    public String name() {
-	return "Amulet of the Glacier";
-    }
-
-    @Override
     public String GUID() {
 	return "necklacewater0";
     }
@@ -37,11 +32,6 @@ public class NecklaceWater extends BaseUniqueNecklace {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellWaterDamageFlat(), new SpellWaterDamagePercent(), new ArmorFlat(),
 		new ArmorPercent(), new WaterResistFlat(), new CrippleDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "Crystal clear and yet so incredibly tough.";
     }
 
 }

@@ -23,11 +23,6 @@ public class PantsNature extends BaseUniquePants {
     }
 
     @Override
-    public String name() {
-	return "Rooted Leggings";
-    }
-
-    @Override
     public String GUID() {
 	return "pantsnature0";
     }
@@ -36,11 +31,6 @@ public class PantsNature extends BaseUniquePants {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new LowDodgeAddArmorFlat(), new HealthFlat(), new NatureResistFlat(),
 		new FireToNatureTransferFlat(), new CrippleLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Embrace my roots.";
     }
 
 }

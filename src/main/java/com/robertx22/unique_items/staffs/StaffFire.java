@@ -22,11 +22,6 @@ public class StaffFire extends BaseUniqueStaff {
     }
 
     @Override
-    public String name() {
-	return "Staff of Volcanoes";
-    }
-
-    @Override
     public String GUID() {
 	return "uniquestafffire0";
     }
@@ -35,11 +30,6 @@ public class StaffFire extends BaseUniqueStaff {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackFireDamageFlat(), new CriticalDamageFlat(), new FirePeneFlat(),
 		new LifeOnHitFlat());
-    }
-
-    @Override
-    public String description() {
-	return "Leave only ashes behind.";
     }
 
 }

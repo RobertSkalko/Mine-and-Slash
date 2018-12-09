@@ -22,11 +22,6 @@ public class RingCrit extends BaseUniqueRing {
     }
 
     @Override
-    public String name() {
-	return "Ring of Precision";
-    }
-
-    @Override
     public String GUID() {
 	return "ringcrit0";
     }
@@ -35,11 +30,6 @@ public class RingCrit extends BaseUniqueRing {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new MajorCriticalHitPercent(), new MajorCriticalDamagePercent(), new HealthFlat(),
 		new EnergyRegenFlat());
-    }
-
-    @Override
-    public String description() {
-	return "Strike with Accuracy, strike once.";
     }
 
 }

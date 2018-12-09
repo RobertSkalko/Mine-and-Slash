@@ -24,11 +24,6 @@ public class HelmetThunder extends BaseUniqueHelmet {
     }
 
     @Override
-    public String name() {
-	return "Thunder Atronach Helmet";
-    }
-
-    @Override
     public String GUID() {
 	return "helmetthunder0";
     }
@@ -37,11 +32,6 @@ public class HelmetThunder extends BaseUniqueHelmet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new LowDodgeAddCritHitFlat(), new ThunderSpellToAttackFlat(), new EnergyRegenFlat(),
 		new HealthFlat(), new ArmorFlat(), new LessLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "I see sparks all around me.";
     }
 
 }

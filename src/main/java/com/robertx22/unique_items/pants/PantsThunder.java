@@ -24,11 +24,6 @@ public class PantsThunder extends BaseUniquePants {
     }
 
     @Override
-    public String name() {
-	return "Lightning Coil Leggings";
-    }
-
-    @Override
     public String GUID() {
 	return "pantsthunder0";
     }
@@ -37,11 +32,6 @@ public class PantsThunder extends BaseUniquePants {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new SpellFireDamageFlat(), new DodgeFlat(), new FireResistFlat(),
 		new FireToThunderTransferFlat(), new CrippleLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Swallow flames, harness Lightning.";
     }
 
 }

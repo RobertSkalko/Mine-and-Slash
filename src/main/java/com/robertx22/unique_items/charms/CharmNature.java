@@ -24,11 +24,6 @@ public class CharmNature extends BaseUniqueCharm {
     }
 
     @Override
-    public String name() {
-	return "Spirit Spring Charm";
-    }
-
-    @Override
     public String GUID() {
 	return "charmnature0";
     }
@@ -37,11 +32,6 @@ public class CharmNature extends BaseUniqueCharm {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellNatureDamagePercent(), new HealthRegenPercent(), new NaturePenePercent(),
 		new HealthFlat(), new NatureResistFlat(), new LessCriticalDamagePercent());
-    }
-
-    @Override
-    public String description() {
-	return "My life may be limited, but I shine throughout it.";
     }
 
 }

@@ -24,11 +24,6 @@ public class BootsThunder extends BaseUniqueBoots {
     }
 
     @Override
-    public String name() {
-	return "Lightning Tendril Boots";
-    }
-
-    @Override
     public String GUID() {
 	return "bootsthunder0";
     }
@@ -37,11 +32,6 @@ public class BootsThunder extends BaseUniqueBoots {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new HammerDamageFlat(), new ThunderSpellToAttackFlat(),
 		new CriticalDamagePercent(), new ThunderResistFlat(), new CrippleLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Sparks fly wherever I stand.";
     }
 
 }

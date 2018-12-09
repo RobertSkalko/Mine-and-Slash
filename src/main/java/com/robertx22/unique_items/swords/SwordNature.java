@@ -22,12 +22,6 @@ public class SwordNature extends BaseUniqueSword {
     }
 
     @Override
-    public String name() {
-	return "Sword of the Nature Spirit";
-
-    }
-
-    @Override
     public String GUID() {
 	return "swordnature0";
     }
@@ -38,8 +32,4 @@ public class SwordNature extends BaseUniqueSword {
 		new HealthRegenFlat(), new CrippleCriticalDamagePercent());
     }
 
-    @Override
-    public String description() {
-	return "Forever lasting.";
-    }
 }

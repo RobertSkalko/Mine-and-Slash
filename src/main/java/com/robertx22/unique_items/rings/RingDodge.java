@@ -23,11 +23,6 @@ public class RingDodge extends BaseUniqueRing {
     }
 
     @Override
-    public String name() {
-	return "Ring of Swiftness";
-    }
-
-    @Override
     public String GUID() {
 	return "ringdodge0";
     }
@@ -36,11 +31,6 @@ public class RingDodge extends BaseUniqueRing {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new DodgeFlat(), new DodgePercent(), new NatureResistFlat(), new HealthFlat(),
 		new BowDamageFlat());
-    }
-
-    @Override
-    public String description() {
-	return "Swift as the Wind.";
     }
 
 }

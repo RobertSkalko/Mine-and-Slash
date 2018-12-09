@@ -24,11 +24,6 @@ public class CharmWater extends BaseUniqueCharm {
     }
 
     @Override
-    public String name() {
-	return "Charm of the River Dragon";
-    }
-
-    @Override
     public String GUID() {
 	return "charmwater0";
     }
@@ -37,11 +32,6 @@ public class CharmWater extends BaseUniqueCharm {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new ManaToEnergyConvFlat(), new ArmorFlat(), new WaterPeneFlat(), new WaterPenePercent(),
 		new WaterResistFlat(), new CrippleDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "My path cannot be stopped.";
     }
 
 }

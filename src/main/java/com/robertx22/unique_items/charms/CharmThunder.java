@@ -24,11 +24,6 @@ public class CharmThunder extends BaseUniqueCharm {
     }
 
     @Override
-    public String name() {
-	return "Charm of Heavenly Tribulations";
-    }
-
-    @Override
     public String GUID() {
 	return "charmthunder0";
     }
@@ -37,11 +32,6 @@ public class CharmThunder extends BaseUniqueCharm {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellThunderDamagePercent(), new ManaRegenPercent(), new ThunderPenePercent(),
 		new CriticalHitPercent(), new ThunderResistFlat(), new CrippleLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Jade is only worth after it is polished.";
     }
 
 }

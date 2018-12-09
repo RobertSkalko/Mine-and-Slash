@@ -130,6 +130,23 @@ public class UniqueItemRegister {
 	new StaffNature();
 	new StaffLifesteal();
 
+	// localization helper
+
+	/*
+	 * 
+	 * String s = ""; for (Item item : IUnique.ITEMS.values()) { IUnique uniq =
+	 * (IUnique) item;
+	 * 
+	 * s += "\n" + "mmorpg.unique.name." + uniq.GUID() + "=" + uniq.locString(); }
+	 * System.out.println(s);
+	 * 
+	 * String ss = ""; for (Item item : IUnique.ITEMS.values()) { IUnique uniq =
+	 * (IUnique) item;
+	 * 
+	 * ss += "\n" + "mmorpg.unique.tooltip." + uniq.GUID() + "=" +
+	 * uniq.description(); } System.out.println(ss);
+	 * 
+	 */
     }
 
 }

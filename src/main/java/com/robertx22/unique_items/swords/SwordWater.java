@@ -23,12 +23,6 @@ public class SwordWater extends BaseUniqueSword {
     }
 
     @Override
-    public String name() {
-	return "Ice Elemental Sword";
-
-    }
-
-    @Override
     public String GUID() {
 	return "swordwater0";
     }
@@ -39,8 +33,4 @@ public class SwordWater extends BaseUniqueSword {
 		new ManaOnHitFlat(), new EnergyRegenFlat(), new CrippleLifestealPercent());
     }
 
-    @Override
-    public String description() {
-	return "Energy is everywhere, it just begs to be grasped";
-    }
 }

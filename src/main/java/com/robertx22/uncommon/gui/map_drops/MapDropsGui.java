@@ -85,7 +85,7 @@ public class MapDropsGui extends Show {
 		    for (IUnique uniq : uniques) {
 			if (uniq.Tier() == i) {
 			    has = true;
-			    names.add(uniq.name());
+			    names.add(uniq.locName());
 			}
 		    }
 		    if (has) {

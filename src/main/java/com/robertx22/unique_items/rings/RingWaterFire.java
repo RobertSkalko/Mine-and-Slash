@@ -22,11 +22,6 @@ public class RingWaterFire extends BaseUniqueRing {
     }
 
     @Override
-    public String name() {
-	return "FrostFire Ring";
-    }
-
-    @Override
     public String GUID() {
 	return "ringwaterfire0";
     }
@@ -35,11 +30,6 @@ public class RingWaterFire extends BaseUniqueRing {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellFireDamageFlat(), new SpellWaterDamageFlat(), new FireToWaterConvFlat(),
 		new WaterToFireConvFlat());
-    }
-
-    @Override
-    public String description() {
-	return "I will attain perfect control.";
     }
 
 }

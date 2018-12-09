@@ -24,11 +24,6 @@ public class StaffLifesteal extends BaseUniqueStaff {
     }
 
     @Override
-    public String name() {
-	return "Vampire Staff";
-    }
-
-    @Override
     public String GUID() {
 	return "uniquestafflifesteal0";
     }
@@ -37,11 +32,6 @@ public class StaffLifesteal extends BaseUniqueStaff {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new PhysicalDamageFlat(), new LifestealPercent(), new LifestealFlat(), new LifeOnHitFlat(),
 		new HealthRegenFlat(), new CrippleManaOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "All blood will be mine, eventually.";
     }
 
 }

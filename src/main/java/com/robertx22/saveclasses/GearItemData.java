@@ -126,7 +126,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	String text = GetRarity().Color();
 
 	if (isUnique) {
-	    text += ((IUnique) this.getItem()).name();
+	    text += ((IUnique) this.getItem()).locName();
 
 	} else {
 
@@ -225,7 +225,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
 	    IUnique unique = this.uniqueStats.getUniqueItem();
 
-	    event.getToolTip().add(TextFormatting.GREEN + "'" + unique.description() + "'");
+	    event.getToolTip().add(TextFormatting.GREEN + "'" + unique.locDesc() + "'");
 
 	    event.getToolTip().add("");
 

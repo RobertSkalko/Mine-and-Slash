@@ -10,6 +10,7 @@ import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.ITiered;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
@@ -32,9 +33,13 @@ public interface IUnique extends IWeighted, ITiered, IGUID, IGearItem {
 	return this.UncommonWeight;
     }
 
-    String name();
+    public default String locName() {
+	return CLOC.uniqueName(this.GUID());
+    }
 
-    String description();
+    public default String locDesc() {
+	return CLOC.uniqueDesc(this.GUID());
+    }
 
     List<StatMod> uniqueStats();
 

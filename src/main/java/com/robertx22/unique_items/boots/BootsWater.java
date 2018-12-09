@@ -24,11 +24,6 @@ public class BootsWater extends BaseUniqueBoots {
     }
 
     @Override
-    public String name() {
-	return "Ice Steps";
-    }
-
-    @Override
     public String GUID() {
 	return "bootswater0";
     }
@@ -38,11 +33,6 @@ public class BootsWater extends BaseUniqueBoots {
 	return Arrays.asList(new HealthFlat(), new SwordDamageFlat(), new WaterSpellToAttackFlat(),
 		new CriticalDamagePercent(), new WaterResistFlat(), new CrippleLifestealPercent());
 
-    }
-
-    @Override
-    public String description() {
-	return "Ice forms wherever I walk.";
     }
 
 }

@@ -21,12 +21,6 @@ public class SwordPhysical extends BaseUniqueSword {
     }
 
     @Override
-    public String name() {
-	return "Blade of Doom";
-
-    }
-
-    @Override
     public String GUID() {
 	return "swordphysical0";
     }
@@ -37,8 +31,4 @@ public class SwordPhysical extends BaseUniqueSword {
 		new LessHealthRegenFlat());
     }
 
-    @Override
-    public String description() {
-	return "Toughest Opponents fear no pain.";
-    }
 }

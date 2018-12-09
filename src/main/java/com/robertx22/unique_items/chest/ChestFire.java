@@ -25,11 +25,6 @@ public class ChestFire extends BaseUniqueChest {
     }
 
     @Override
-    public String name() {
-	return "Burning Man Chestplate";
-    }
-
-    @Override
     public String GUID() {
 	return "chestfire0";
     }
@@ -38,11 +33,6 @@ public class ChestFire extends BaseUniqueChest {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new FireResistFlat(), new SpellFireDamageFlat(),
 		new NatureToFireTransferFlat(), new CrippleLifeOnHitPercent(), new CrippleLifestealPercent());
-    }
-
-    @Override
-    public String description() {
-	return "What can't kill me only makes me glow brighter.";
     }
 
 }

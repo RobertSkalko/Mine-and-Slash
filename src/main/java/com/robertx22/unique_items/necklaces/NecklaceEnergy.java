@@ -24,11 +24,6 @@ public class NecklaceEnergy extends BaseUniqueNecklace {
     }
 
     @Override
-    public String name() {
-	return "Inner Spirit Amulet";
-    }
-
-    @Override
     public String GUID() {
 	return "necklaceenergy0";
     }
@@ -37,11 +32,6 @@ public class NecklaceEnergy extends BaseUniqueNecklace {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new ManaToEnergyConvFlat(), new EnergyRegenFlat(), new HealthRegenFlat(),
 		new CriticalDamagePercent(), new HealthPercent(), new CrippleDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "One becomes two, two becomes four!";
     }
 
 }

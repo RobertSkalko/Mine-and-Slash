@@ -23,11 +23,6 @@ public class RingEnergy extends BaseUniqueRing {
     }
 
     @Override
-    public String name() {
-	return "Ring of Unlimited Endurance";
-    }
-
-    @Override
     public String GUID() {
 	return "ringenergy0";
     }
@@ -36,11 +31,6 @@ public class RingEnergy extends BaseUniqueRing {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent(), new ManaRegenFlat(), new HealthFlat(),
 		new CrippleCriticalDamagePercent());
-    }
-
-    @Override
-    public String description() {
-	return "I will pay any price to continue!";
     }
 
 }

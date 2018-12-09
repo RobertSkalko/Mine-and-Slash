@@ -23,11 +23,6 @@ public class BootsFire extends BaseUniqueBoots {
     }
 
     @Override
-    public String name() {
-	return "Flaming Steps";
-    }
-
-    @Override
     public String GUID() {
 	return "bootsfire0";
     }
@@ -37,11 +32,6 @@ public class BootsFire extends BaseUniqueBoots {
 	return Arrays.asList(new HealthFlat(), new AxeDamageFlat(), new FireSpellToAttackFlat(),
 		new CriticalDamagePercent(), new CrippleLifeOnHitPercent());
 
-    }
-
-    @Override
-    public String description() {
-	return "Fire brews wherever I walk.";
     }
 
 }

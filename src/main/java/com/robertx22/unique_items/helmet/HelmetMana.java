@@ -25,11 +25,6 @@ public class HelmetMana extends BaseUniqueHelmet {
     }
 
     @Override
-    public String name() {
-	return "Helmet of Mana";
-    }
-
-    @Override
     public String GUID() {
 	return "helmetmana0";
     }
@@ -38,11 +33,6 @@ public class HelmetMana extends BaseUniqueHelmet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new ManaFlat(), new MajorManaRegenFlat(), new ManaRegenPercent(),
 		new MajorDodgeFlat(), new ArmorFlat(), new StaffDamageFlat());
-    }
-
-    @Override
-    public String description() {
-	return "Flow to me.";
     }
 
 }

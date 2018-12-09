@@ -25,11 +25,6 @@ public class NecklaceNature extends BaseUniqueNecklace {
     }
 
     @Override
-    public String name() {
-	return "Amulet of the Oak";
-    }
-
-    @Override
     public String GUID() {
 	return "necklacenature0";
     }
@@ -38,11 +33,6 @@ public class NecklaceNature extends BaseUniqueNecklace {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellNatureDamageFlat(), new HealthFlat(), new HealthRegenFlat(),
 		new FireToNatureTransferFlat(), new FireResistFlat(), new HealthPercent(), new CrippleDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "I seek strength only in nature.";
     }
 
 }

@@ -24,11 +24,6 @@ public class BraceletWater extends BaseUniqueBracelet {
     }
 
     @Override
-    public String name() {
-	return "Frostburn Bracers";
-    }
-
-    @Override
     public String GUID() {
 	return "braceletwater0";
     }
@@ -37,11 +32,6 @@ public class BraceletWater extends BaseUniqueBracelet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellWaterDamageFlat(), new FireToWaterTransferFlat(), new EnergyRegenFlat(),
 		new WaterResistFlat(), new FireResistFlat(), new CrippleDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "Burn them all! With Ice of course.";
     }
 
 }

@@ -25,11 +25,6 @@ public class ChestMana extends BaseUniqueChest {
     }
 
     @Override
-    public String name() {
-	return "Shirt of the Arcane";
-    }
-
-    @Override
     public String GUID() {
 	return "chestmana0";
     }
@@ -38,11 +33,6 @@ public class ChestMana extends BaseUniqueChest {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new EnergyToManaConvFlat(), new HealthFlat(), new ManaFlat(), new EnergyRegenFlat(),
 		new StaffDamageFlat(), new CrippleLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "The process of multiplying energy has just begun!";
     }
 
 }

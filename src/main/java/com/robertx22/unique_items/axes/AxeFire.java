@@ -21,12 +21,6 @@ public class AxeFire extends BaseUniqueAxe {
     }
 
     @Override
-    public String name() {
-	return "Axe of Blazing Cuts";
-
-    }
-
-    @Override
     public String GUID() {
 	return "axefire0";
     }
@@ -37,8 +31,4 @@ public class AxeFire extends BaseUniqueAxe {
 		new FirePeneFlat());
     }
 
-    @Override
-    public String description() {
-	return "My efforts to merge elements shall not be in vain.";
-    }
 }

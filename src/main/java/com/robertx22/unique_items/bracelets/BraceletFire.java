@@ -23,12 +23,6 @@ public class BraceletFire extends BaseUniqueBracelet {
     }
 
     @Override
-    public String name() {
-	return "Flaming Fists";
-
-    }
-
-    @Override
     public String GUID() {
 	return "braceletfire0";
     }
@@ -37,11 +31,6 @@ public class BraceletFire extends BaseUniqueBracelet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellFireDamageFlat(), new FireSpellToAttackFlat(), new FireResistFlat(),
 		new LessCriticalDamagePercent(), new CrippleLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Harness Fire, wield it as your weapon. Incinerate them.";
     }
 
 }

@@ -24,11 +24,6 @@ public class HelmetNature extends BaseUniqueHelmet {
     }
 
     @Override
-    public String name() {
-	return "Leaf Covering";
-    }
-
-    @Override
     public String GUID() {
 	return "helmetnature0";
     }
@@ -37,11 +32,6 @@ public class HelmetNature extends BaseUniqueHelmet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new LowDodgeAddArmorFlat(), new SpellNatureDamageFlat(), new HealthRegenFlat(),
 		new HealthFlat(), new NatureResistFlat(), new LessManaOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Nature comes to my aid.";
     }
 
 }

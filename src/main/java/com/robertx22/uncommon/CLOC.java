@@ -23,4 +23,17 @@ public class CLOC {
 	return I18n.format(Ref.MODID + ".word." + str);
 
     }
+
+    public static String uniqueName(String str) {
+
+	return I18n.format(Ref.MODID + ".unique.name." + str);
+
+    }
+
+    public static String uniqueDesc(String str) {
+
+	return I18n.format(Ref.MODID + ".unique.tooltip." + str);
+
+    }
+
 }

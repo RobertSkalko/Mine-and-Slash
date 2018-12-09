@@ -25,11 +25,6 @@ public class ChestDodge extends BaseUniqueChest {
     }
 
     @Override
-    public String name() {
-	return "Thief's Chestplate";
-    }
-
-    @Override
     public String GUID() {
 	return "chestdodge0";
     }
@@ -38,11 +33,6 @@ public class ChestDodge extends BaseUniqueChest {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new MajorDodgeFlat(), new DodgePercent(), new BowDamageFlat(),
 		new NatureResistFlat(), new CrippleLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Come on, hit me!";
     }
 
 }

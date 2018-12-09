@@ -23,11 +23,6 @@ public class StaffWater extends BaseUniqueStaff {
     }
 
     @Override
-    public String name() {
-	return "Staff of Permafrost";
-    }
-
-    @Override
     public String GUID() {
 	return "uniquestaffwater0";
     }
@@ -36,11 +31,6 @@ public class StaffWater extends BaseUniqueStaff {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackWaterDamageFlat(), new CriticalDamageFlat(), new CriticalHitFlat(),
 		new WaterPeneFlat(), new WaterPenePercent());
-    }
-
-    @Override
-    public String description() {
-	return "What is frozen is as good as dead.";
     }
 
 }

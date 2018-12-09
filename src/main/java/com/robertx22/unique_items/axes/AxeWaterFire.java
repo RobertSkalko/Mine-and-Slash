@@ -22,12 +22,6 @@ public class AxeWaterFire extends BaseUniqueAxe {
     }
 
     @Override
-    public String name() {
-	return "Axe of Frostfire";
-
-    }
-
-    @Override
     public String GUID() {
 	return "axewaterfire0";
     }
@@ -36,11 +30,6 @@ public class AxeWaterFire extends BaseUniqueAxe {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackFireDamageFlat(), new AttackWaterDamageFlat(), new CriticalHitPercent(),
 		new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "My efforts to merge elements shall not be in vain.";
     }
 
 }

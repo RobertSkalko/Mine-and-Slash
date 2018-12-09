@@ -24,11 +24,6 @@ public class NecklaceThunder extends BaseUniqueNecklace {
     }
 
     @Override
-    public String name() {
-	return "Amulet of the Thunderstorm";
-    }
-
-    @Override
     public String GUID() {
 	return "necklacethunder0";
     }
@@ -39,11 +34,6 @@ public class NecklaceThunder extends BaseUniqueNecklace {
 		new NatureToThunderTransferFlat(), new NatureResistFlat(), new EnergyRegenFlat(),
 		new LessHealthRegenFlat());
 
-    }
-
-    @Override
-    public String description() {
-	return "Command Thunder, command Energy.";
     }
 
 }

@@ -24,11 +24,6 @@ public class PantsFire extends BaseUniquePants {
     }
 
     @Override
-    public String name() {
-	return "Flaming Leggings";
-    }
-
-    @Override
     public String GUID() {
 	return "pantsfire0";
     }
@@ -37,11 +32,6 @@ public class PantsFire extends BaseUniquePants {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new LowDodgeAddCritHitFlat(), new HealthFlat(), new FireResistFlat(), new ArmorFlat(),
 		new NatureToFireTransferFlat(), new CrippleLifeOnHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Embrace my flames.";
     }
 
 }

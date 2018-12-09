@@ -24,12 +24,6 @@ public class BraceletThunder extends BaseUniqueBracelet {
     }
 
     @Override
-    public String name() {
-	return "Thunder Bracers";
-
-    }
-
-    @Override
     public String GUID() {
 	return "braceletthunder0";
     }
@@ -38,11 +32,6 @@ public class BraceletThunder extends BaseUniqueBracelet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellThunderDamageFlat(), new CriticalHitPercent(), new CriticalDamagePercent(),
 		new CriticalHitFlat(), new CriticalDamageFlat(), new CrippleLifestealPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Dedication brings unparalleled might.";
     }
 
 }

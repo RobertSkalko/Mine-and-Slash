@@ -24,11 +24,6 @@ public class HelmetWater extends BaseUniqueHelmet {
     }
 
     @Override
-    public String name() {
-	return "Ice Seer Eyes";
-    }
-
-    @Override
     public String GUID() {
 	return "helmetwater0";
     }
@@ -37,11 +32,6 @@ public class HelmetWater extends BaseUniqueHelmet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellWaterDamageFlat(), new ManaFlat(), new ManaRegenFlat(), new EnergyRegenPercent(),
 		new WaterResistFlat(), new LessCriticalHitPercent());
-    }
-
-    @Override
-    public String description() {
-	return "What mortals can't see belongs to me.";
     }
 
 }

@@ -24,12 +24,6 @@ public class BraceletThunderNature extends BaseUniqueBracelet {
     }
 
     @Override
-    public String name() {
-	return "Rooted Thunder Bracers";
-
-    }
-
-    @Override
     public String GUID() {
 	return "braceletthundernature0";
     }
@@ -38,11 +32,6 @@ public class BraceletThunderNature extends BaseUniqueBracelet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new ThunderToNatureConvFlat(), new NatureResistFlat(), new ThunderResistFlat(),
 		new ManaFlat(), new LessCriticalHitPercent(), new LessDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "Heavenly Lightning? I call it mana.";
     }
 
 }

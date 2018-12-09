@@ -24,11 +24,6 @@ public class BootsNature extends BaseUniqueBoots {
     }
 
     @Override
-    public String name() {
-	return "Tree Trunks";
-    }
-
-    @Override
     public String GUID() {
 	return "bootsnature0";
     }
@@ -37,12 +32,6 @@ public class BootsNature extends BaseUniqueBoots {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new HealthPercent(), new HealthRegenFlat(),
 		new ThunderToNatureTransferFlat(), new NatureResistFlat(), new CrippleDodgePercent());
-
-    }
-
-    @Override
-    public String description() {
-	return "Nothing shall break my roots!";
 
     }
 

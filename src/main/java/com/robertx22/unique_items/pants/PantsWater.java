@@ -25,11 +25,6 @@ public class PantsWater extends BaseUniquePants {
     }
 
     @Override
-    public String name() {
-	return "Leggings of the Glacier";
-    }
-
-    @Override
     public String GUID() {
 	return "pantswater0";
     }
@@ -39,11 +34,6 @@ public class PantsWater extends BaseUniquePants {
 	return Arrays.asList(new HealthFlat(), new MajorArmorFlat(), new ArmorPercent(), new WaterResistFlat(),
 		new FireToWaterTransferFlat(), new SpellWaterDamagePercent(), new LessDodgePercent());
 
-    }
-
-    @Override
-    public String description() {
-	return "Try to move me, I dare you.";
     }
 
 }

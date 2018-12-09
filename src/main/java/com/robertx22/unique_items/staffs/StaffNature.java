@@ -22,12 +22,6 @@ public class StaffNature extends BaseUniqueStaff {
     }
 
     @Override
-    public String name() {
-	return "Worldbreaker Staff";
-
-    }
-
-    @Override
     public String GUID() {
 	return "uniquestaffnature0";
     }
@@ -36,11 +30,6 @@ public class StaffNature extends BaseUniqueStaff {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackNatureDamageFlat(), new NaturePeneFlat(), new NaturePenePercent(),
 		new HealthRegenFlat());
-    }
-
-    @Override
-    public String description() {
-	return "Won't break? Smash harder!";
     }
 
 }

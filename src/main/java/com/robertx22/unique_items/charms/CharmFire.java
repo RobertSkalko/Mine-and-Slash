@@ -24,11 +24,6 @@ public class CharmFire extends BaseUniqueCharm {
     }
 
     @Override
-    public String name() {
-	return "Heavenly Fire Charm";
-    }
-
-    @Override
     public String GUID() {
 	return "charmfire0";
     }
@@ -37,11 +32,6 @@ public class CharmFire extends BaseUniqueCharm {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellFireDamageFlat(), new ManaRegenPercent(), new FirePeneFlat(),
 		new CriticalHitFlat(), new FireResistFlat(), new CrippleDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "Bath in flames, thrive!";
     }
 
 }

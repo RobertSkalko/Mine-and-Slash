@@ -24,11 +24,6 @@ public class ChestWater extends BaseUniqueChest {
     }
 
     @Override
-    public String name() {
-	return "Armor of the Glacier";
-    }
-
-    @Override
     public String GUID() {
 	return "chestwater0";
     }
@@ -37,11 +32,6 @@ public class ChestWater extends BaseUniqueChest {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new WaterPeneFlat(), new MajorArmorFlat(), new ArmorPercent(),
 		new NatureToWaterTransferFlat(), new LessDodgePercent());
-    }
-
-    @Override
-    public String description() {
-	return "I am a Fortress of pure Ice.";
     }
 
 }

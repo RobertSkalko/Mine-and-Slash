@@ -22,12 +22,6 @@ public class AxeThunder extends BaseUniqueAxe {
     }
 
     @Override
-    public String name() {
-	return "Thunderstorm Axe";
-
-    }
-
-    @Override
     public String GUID() {
 	return "axethunder0";
     }
@@ -38,8 +32,4 @@ public class AxeThunder extends BaseUniqueAxe {
 		new CriticalDamagePercent(), new CrippleLifeOnHitPercent());
     }
 
-    @Override
-    public String description() {
-	return "Sparks fly, heads roll.";
-    }
 }

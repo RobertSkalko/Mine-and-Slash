@@ -24,12 +24,6 @@ public class HammerThunder extends BaseUniqueHammer {
     }
 
     @Override
-    public String name() {
-	return "Hammer of Thor";
-
-    }
-
-    @Override
     public String GUID() {
 	return "hammerthunder0";
     }
@@ -41,8 +35,4 @@ public class HammerThunder extends BaseUniqueHammer {
 		new CrippleManaOnHitPercent());
     }
 
-    @Override
-    public String description() {
-	return "I will be safe when my enemies are dead.";
-    }
 }

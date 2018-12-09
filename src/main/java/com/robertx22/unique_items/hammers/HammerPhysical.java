@@ -23,12 +23,6 @@ public class HammerPhysical extends BaseUniqueHammer {
     }
 
     @Override
-    public String name() {
-	return "Mountain Breaker";
-
-    }
-
-    @Override
     public String GUID() {
 	return "hammerphysical0";
     }
@@ -39,8 +33,4 @@ public class HammerPhysical extends BaseUniqueHammer {
 		new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new LessManaOnHitPercent());
     }
 
-    @Override
-    public String description() {
-	return "Not even mountains can bar my path!";
-    }
 }

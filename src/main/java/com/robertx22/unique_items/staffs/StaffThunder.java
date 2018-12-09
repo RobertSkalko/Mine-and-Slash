@@ -23,11 +23,6 @@ public class StaffThunder extends BaseUniqueStaff {
     }
 
     @Override
-    public String name() {
-	return "Thunderstorm Staff";
-    }
-
-    @Override
     public String GUID() {
 	return "uniquestaffthunder0";
     }
@@ -36,11 +31,6 @@ public class StaffThunder extends BaseUniqueStaff {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new AttackThunderDamageFlat(), new CriticalDamageFlat(), new ThunderPenePercent(),
 		new DodgeFlat(), new ManaOnHitFlat());
-    }
-
-    @Override
-    public String description() {
-	return "Controlled power can bring both energy and destruction.";
     }
 
 }

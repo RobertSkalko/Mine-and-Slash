@@ -24,11 +24,6 @@ public class ChestThunder extends BaseUniqueChest {
     }
 
     @Override
-    public String name() {
-	return "Armor of the Thunderstorm";
-    }
-
-    @Override
     public String GUID() {
 	return "chestthunder0";
     }
@@ -37,11 +32,6 @@ public class ChestThunder extends BaseUniqueChest {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new HealthFlat(), new ThunderResistFlat(), new MajorArmorFlat(),
 		new SpellThunderDamagePercent(), new ThunderSpellToAttackFlat(), new CrippleLifestealPercent());
-    }
-
-    @Override
-    public String description() {
-	return "Those who dared to follow had long since died.";
     }
 
 }

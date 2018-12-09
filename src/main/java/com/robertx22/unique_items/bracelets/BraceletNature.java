@@ -23,12 +23,6 @@ public class BraceletNature extends BaseUniqueBracelet {
     }
 
     @Override
-    public String name() {
-	return "Thorn Bracers";
-
-    }
-
-    @Override
     public String GUID() {
 	return "braceletnature0";
     }
@@ -37,11 +31,6 @@ public class BraceletNature extends BaseUniqueBracelet {
     public List<StatMod> uniqueStats() {
 	return Arrays.asList(new SpellNatureDamageFlat(), new NatureResistFlat(), new HealthFlat(),
 		new HealthRegenPercent(), new CrippleCriticalDamagePercent());
-    }
-
-    @Override
-    public String description() {
-	return "Fools fight for treasure, but I keep on living.";
     }
 
 }
