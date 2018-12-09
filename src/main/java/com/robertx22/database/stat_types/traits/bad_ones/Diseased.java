@@ -13,6 +13,11 @@ public class Diseased extends Trait implements IAffectsOtherStats {
     public static String GUID = "Diseased";
 
     @Override
+    public String LocString() {
+	return "diseased";
+    }
+
+    @Override
     public String Guid() {
 	return GUID;
     }

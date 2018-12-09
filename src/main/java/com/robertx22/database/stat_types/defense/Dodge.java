@@ -10,34 +10,39 @@ import com.robertx22.stats.StatEffects.defense.DodgeEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Dodge extends Stat implements IStatEffects {
-	public static String GUID = "Dodge";
+    public static String GUID = "Dodge";
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new DodgeEffect());
-	}
+    @Override
+    public String LocString() {
+	return "dodge";
+    }
 
-	public Dodge() {
-		MaximumPercent = 75;
-	}
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new DodgeEffect());
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    public Dodge() {
+	MaximumPercent = 75;
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return false;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return true;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
+
+    @Override
+    public boolean IsPercent() {
+	return true;
+    }
 }

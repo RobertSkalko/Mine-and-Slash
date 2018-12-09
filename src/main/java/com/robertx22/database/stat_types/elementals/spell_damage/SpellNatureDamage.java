@@ -4,29 +4,34 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class SpellNatureDamage extends Stat {
-	public static String GUID = "Spell Nature Damage";
+    public static String GUID = "Spell Nature Damage";
 
-	public SpellNatureDamage() {
-	}
+    public SpellNatureDamage() {
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return true;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return true;
+    }
 
-	@Override
-	public Elements Element() {
-		return Elements.Nature;
-	}
+    @Override
+    public Elements Element() {
+	return Elements.Nature;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
+
+    @Override
+    public String LocString() {
+	return "spell_nature_damage";
+    }
 
 }

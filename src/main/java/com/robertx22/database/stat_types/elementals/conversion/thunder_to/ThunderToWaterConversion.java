@@ -24,4 +24,8 @@ public class ThunderToWaterConversion extends BaseConversionMod {
 
     }
 
+    @Override
+    public String LocString() {
+	return "thunder_water_conversion";
+    }
 }

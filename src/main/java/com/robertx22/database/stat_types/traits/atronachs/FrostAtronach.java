@@ -13,6 +13,11 @@ public class FrostAtronach extends Trait implements IAffectsOtherStats {
     public static String GUID = "Frost Atronach";
 
     @Override
+    public String LocString() {
+	return "frost_atronach";
+    }
+
+    @Override
     public String Guid() {
 	return GUID;
     }

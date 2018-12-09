@@ -3,19 +3,24 @@ package com.robertx22.database.stat_types.elementals.resist;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ThunderResist extends BaseEleResist {
-	public static String GUID = "Thunder Resist";
+    public static String GUID = "Thunder Resist";
 
-	public ThunderResist() {
-	}
+    public ThunderResist() {
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return Elements.Thunder;
-	}
+    @Override
+    public Elements Element() {
+	return Elements.Thunder;
+    }
+
+    @Override
+    public String LocString() {
+	return "thunder_resist";
+    }
 
 }

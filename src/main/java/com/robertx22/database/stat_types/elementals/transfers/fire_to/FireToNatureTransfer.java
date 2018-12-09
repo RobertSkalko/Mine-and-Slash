@@ -24,4 +24,8 @@ public class FireToNatureTransfer extends BaseTransferMod {
 
     }
 
+    @Override
+    public String LocString() {
+	return "fire_nature_transfer";
+    }
 }

@@ -25,4 +25,9 @@ public class FireSpellToAttackDMG extends BaseSpellToBasicDamage {
     public Stat StatThatGiveDamage() {
 	return new SpellFireDamage();
     }
+
+    @Override
+    public String LocString() {
+	return "fire_spell_to_attack";
+    }
 }

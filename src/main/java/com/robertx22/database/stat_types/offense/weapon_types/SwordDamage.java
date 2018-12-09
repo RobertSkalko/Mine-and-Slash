@@ -6,6 +6,11 @@ import com.robertx22.stats.WeaponDamageStat;
 public class SwordDamage extends WeaponDamageStat {
 
     @Override
+    public String LocString() {
+	return "sword_damage";
+    }
+
+    @Override
     public WeaponTypes weaponType() {
 	return WeaponTypes.Sword;
     }

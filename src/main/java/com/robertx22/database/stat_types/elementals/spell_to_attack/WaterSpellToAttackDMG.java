@@ -25,4 +25,9 @@ public class WaterSpellToAttackDMG extends BaseSpellToBasicDamage {
     public Stat StatThatGiveDamage() {
 	return new SpellWaterDamage();
     }
+
+    @Override
+    public String LocString() {
+	return "water_spell_to_attack";
+    }
 }

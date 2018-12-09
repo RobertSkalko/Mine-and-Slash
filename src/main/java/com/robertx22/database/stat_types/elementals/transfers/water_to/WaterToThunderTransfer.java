@@ -24,4 +24,8 @@ public class WaterToThunderTransfer extends BaseTransferMod {
 
     }
 
+    @Override
+    public String LocString() {
+	return "water_thunder_transfer";
+    }
 }

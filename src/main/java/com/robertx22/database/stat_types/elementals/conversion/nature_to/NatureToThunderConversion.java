@@ -24,4 +24,8 @@ public class NatureToThunderConversion extends BaseConversionMod {
 
     }
 
+    @Override
+    public String LocString() {
+	return "nature_thunder_conversion";
+    }
 }

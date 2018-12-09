@@ -24,4 +24,8 @@ public class ThunderToFireConversion extends BaseConversionMod {
 
     }
 
+    @Override
+    public String LocString() {
+	return "thunder_fire_conversion";
+    }
 }

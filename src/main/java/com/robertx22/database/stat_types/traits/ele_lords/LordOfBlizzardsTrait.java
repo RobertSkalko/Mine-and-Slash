@@ -28,8 +28,8 @@ public class LordOfBlizzardsTrait extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public String Name() {
-	return "Lord of Blizzards";
+    public String LocString() {
+	return "Lord_of_Blizzards";
     }
 
 }

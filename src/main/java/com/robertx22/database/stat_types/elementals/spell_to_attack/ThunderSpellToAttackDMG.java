@@ -25,4 +25,9 @@ public class ThunderSpellToAttackDMG extends BaseSpellToBasicDamage {
     public Stat StatThatGiveDamage() {
 	return new AttackThunderDamage();
     }
+
+    @Override
+    public String LocString() {
+	return "thunder_spell_to_attack";
+    }
 }

@@ -17,9 +17,7 @@ public abstract class Stat implements IGUID {
 	return Guid();
     }
 
-    public String Name() {
-	return Guid();
-    }
+    public abstract String LocString();
 
     public int MaximumPercent = 0;
 

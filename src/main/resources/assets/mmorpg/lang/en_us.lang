@@ -56,8 +56,146 @@ item.mmorpg:reroll_prefix_numbers.name=§cOrb Of Prefix Blessing
 item.mmorpg:reroll_unique_numbers.name=§cOrb of Unique Blessing
 item.mmorpg:create_new_unique.name=§cGem Of Unique Heaven
 
+# WORDS
+
+mmorpg.word.percent=Percent
+
+# UNIQUE ITEM NAMES
+
+# UNIQUE ITEM DESCRIPTIONS
+
+
+
+# STAT NAMES
+mmorpg.stat.unknown_stat=Unknown Stat
+
+mmorpg.stat.physical_damage=Physical Damage
+mmorpg.stat.armor_penetration=Armor Penetration
+mmorpg.stat.critical_damage=Critical Damage
+mmorpg.stat.critical_hit=Critical Hit
+
+mmorpg.stat.sword_damage=Sword Damage
+mmorpg.stat.axe_damage=Axe Damage
+mmorpg.stat.staff_damage=Staff Damage
+mmorpg.stat.hammer_damage=Hammer Damage
+mmorpg.stat.bow_damage=Bow Damage
+
+mmorpg.stat.dodge=Dodge
+mmorpg.stat.armor=Armor
+mmorpg.stat.spell_dodge=Spell Dodge
+
+mmorpg.stat.energy_to_mana_conversion=Energy To Mana Conversion
+mmorpg.stat.mana_to_energy_conversion=Mana To Energy Conversion
+
+mmorpg.stat.energy=Energy
+mmorpg.stat.mana=Mana
+mmorpg.stat.health=Health
+mmorpg.stat.energy_regen=Energy Regen
+mmorpg.stat.mana_regen=Mana Regen
+mmorpg.stat.health_regen=Health Regen
+mmorpg.stat.life_on_hit=Life On Hit
+mmorpg.stat.mana_on_hit=Mana On Hit
+mmorpg.stat.lifesteal=Lifesteal
+
+mmorpg.stat.earth_atronach=Earth Atronach
+mmorpg.stat.frost_atronach=Frost Atronach
+mmorpg.stat.thunder_atronach=Thunder Atronach
+mmorpg.stat.fire_atronach=Fire Atronach
+
+mmorpg.stat.barbarian=Barbarian
+mmorpg.stat.clumsy_scholar=Clumsy Scholar
+
+mmorpg.stat.crippled=Crippled
+mmorpg.stat.diseased=Diseased
+
+mmorpg.stat.lord_of_thunderstorms=Lord of Thunderstorms
+mmorpg.stat.lord_of_earthquakes=Lord of Earthquakes
+mmorpg.stat.lord_of_blizzards=Lord of Blizzards
+mmorpg.stat.lord_of_volcanoes=Lord of Volcanoes
+
+mmorpg.stat.armor_on_high_crit=Armor on High Crit
+mmorpg.stat.lifesteal_on_high_crit=Lifesteal on High Crit
+
+mmorpg.stat.crit_damage_on_high_dodge=Crit Damage on High Dodge
+mmorpg.stat.phys_damage_on_high_dodge=Phys Damage on High Dodge
+
+mmorpg.stat.dodge_on_low_crit=Dodge on Low Crit
+mmorpg.stat.health_on_low_crit=Health on Low Crit
+
+mmorpg.stat.armor_on_low_dodge=Armor On Low Dodge
+mmorpg.stat.crit_on_low_dodge=Crit On Low Dodge
+
+mmorpg.stat.armored=Armored
+mmorpg.stat.elemental=Elemental
+mmorpg.stat.golem=Golem
+mmorpg.stat.lucky=Lucky
+mmorpg.stat.stealthy=Stealthy
+
+mmorpg.stat.all_fire_damage=All Fire Damage
+mmorpg.stat.all_nature_damage=All Nature Damage
+mmorpg.stat.all_water_damage=All Water Damage
+mmorpg.stat.all_thunder_damage=All Thunder Damage
+
+mmorpg.stat.attack_fire_damage=Attack Fire Damage
+mmorpg.stat.attack_nature_damage=Attack Nature Damage
+mmorpg.stat.attack_water_damage=Attack Water Damage
+mmorpg.stat.attack_thunder_damage=Attack Thunder Damage
+
+mmorpg.stat.fire_penetration=Fire Penetration
+mmorpg.stat.water_penetration=Water Penetration
+mmorpg.stat.thunder_penetration=Thunder Penetration
+mmorpg.stat.nature_penetration=Nature Penetration
+
+mmorpg.stat.fire_resist=Fire Resist
+mmorpg.stat.water_resist=Water Resist
+mmorpg.stat.thunder_resist=Thunder Resist
+mmorpg.stat.nature_resist=Nature Resist
+
+mmorpg.stat.spell_fire_damage=Spell Fire Damage
+mmorpg.stat.spell_water_damage=Spell Water Damage
+mmorpg.stat.spell_nature_damage=Spell Nature Damage
+mmorpg.stat.spell_thunder_damage=Spell Thunder Damage
+
+mmorpg.stat.thunder_spell_to_attack=Thunder Spell to Attack DMG
+mmorpg.stat.water_spell_to_attack=Water Spell to Attack DMG
+mmorpg.stat.fire_spell_to_attack=Fire Spell to Attack DMG
+mmorpg.stat.nature_spell_to_attack=Nature Spell to Attack DMG
+
+# stat conversions
+mmorpg.stat.fire_water_conversion=Fire to Water Conversion
+mmorpg.stat.fire_thunder_conversion=Fire to Thunder Conversion
+mmorpg.stat.fire_nature_conversion=Fire to Nature Conversion
+
+mmorpg.stat.water_fire_conversion=Water to Fire Conversion
+mmorpg.stat.water_thunder_conversion=Water to Thunder Conversion
+mmorpg.stat.water_nature_conversion=Water to Nature Conversion
+
+mmorpg.stat.thunder_fire_conversion=Thunder to Fire Conversion
+mmorpg.stat.thunder_water_conversion=Thunder to Water Conversion
+mmorpg.stat.thunder_nature_conversion=Thunder to Nature Conversion
+
+mmorpg.stat.nature_water_conversion=Nature to Water Conversion
+mmorpg.stat.nature_thunder_conversion=Nature to Thunder Conversion
+mmorpg.stat.nature_fire_conversion=Nature to Fire Conversion
+
+# stat transfers
+mmorpg.stat.fire_water_transfer=Fire to Water Transfer
+mmorpg.stat.fire_thunder_transfer=Fire to Thunder Transfer
+mmorpg.stat.fire_nature_transfer=Fire to Nature Transfer
+
+mmorpg.stat.water_fire_transfer=Water to Fire Transfer
+mmorpg.stat.water_thunder_transfer=Water to Thunder Transfer
+mmorpg.stat.water_nature_transfer=Water to Nature Transfer
+
+mmorpg.stat.thunder_fire_transfer=Thunder to Fire Transfer
+mmorpg.stat.thunder_water_transfer=Thunder to Water Transfer
+mmorpg.stat.thunder_nature_transfer=Thunder to Nature Transfer
+
+mmorpg.stat.nature_water_transfer=Nature to Water Transfer
+mmorpg.stat.nature_thunder_transfer=Nature to Thunder Transfer
+mmorpg.stat.nature_fire_transfer=Nature to Fire Transfer
+
 # ITEM TOOLTIPS
-mmorpg.tooltip.test=WORKS
 
 # CHAT MESSAGESs
 mmorpg.chat.levelup_success=You have Leveled Up!

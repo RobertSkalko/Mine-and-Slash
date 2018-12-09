@@ -24,4 +24,9 @@ public class FireToWaterTransfer extends BaseTransferMod {
 
     }
 
+    @Override
+    public String LocString() {
+	return "fire_water_transfer";
+    }
+
 }

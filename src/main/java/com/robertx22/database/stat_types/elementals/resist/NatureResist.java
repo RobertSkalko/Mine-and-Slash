@@ -3,19 +3,24 @@ package com.robertx22.database.stat_types.elementals.resist;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class NatureResist extends BaseEleResist {
-	public static String GUID = "Nature Resist";
+    public static String GUID = "Nature Resist";
 
-	public NatureResist() {
-	}
+    public NatureResist() {
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return Elements.Nature;
-	}
+    @Override
+    public Elements Element() {
+	return Elements.Nature;
+    }
+
+    @Override
+    public String LocString() {
+	return "nature_resist";
+    }
 
 }

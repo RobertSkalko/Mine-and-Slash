@@ -24,4 +24,9 @@ public class FireToNatureConversion extends BaseConversionMod {
 
     }
 
+    @Override
+    public String LocString() {
+	return "fire_nature_conversion";
+    }
+
 }

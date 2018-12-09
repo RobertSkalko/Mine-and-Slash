@@ -10,34 +10,39 @@ import com.robertx22.stats.StatEffects.LifestealEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Lifesteal extends Stat implements IStatEffects {
-	public static String GUID = "Lifesteal";
+    public static String GUID = "Lifesteal";
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new LifestealEffect());
-	}
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new LifestealEffect());
+    }
 
-	public Lifesteal() {
-	}
+    @Override
+    public String LocString() {
+	return "lifesteal";
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    public Lifesteal() {
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return false;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return true;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
+
+    @Override
+    public boolean IsPercent() {
+	return true;
+    }
 
 }

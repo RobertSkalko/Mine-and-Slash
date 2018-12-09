@@ -5,39 +5,32 @@ import java.util.List;
 
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
-import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatEffects.ElementalPeneEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class NaturePene extends Stat implements IStatEffects {
-	public static String GUID = "Nature Penetration";
+public class NaturePene extends BasePene implements IStatEffects {
+    public static String GUID = "Nature Penetration";
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new ElementalPeneEffect());
-	}
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new ElementalPeneEffect());
+    }
 
-	public NaturePene() {
-	}
+    public NaturePene() {
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return true;
-	}
+    @Override
+    public Elements Element() {
+	return Elements.Nature;
+    }
 
-	@Override
-	public Elements Element() {
-		return Elements.Nature;
-	}
-
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
-
+    @Override
+    public String LocString() {
+	return "nature_penetration";
+    }
 }

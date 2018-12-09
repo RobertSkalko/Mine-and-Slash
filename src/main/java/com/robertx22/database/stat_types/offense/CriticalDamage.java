@@ -10,35 +10,40 @@ import com.robertx22.stats.StatEffects.offense.CriticalDamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class CriticalDamage extends Stat implements IStatEffects {
-	public static String GUID = "Critical Damage";
+    public static String GUID = "Critical Damage";
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new CriticalDamageEffect());
-	}
+    @Override
+    public String LocString() {
+	return "critical_damage";
+    }
 
-	public CriticalDamage() {
-		this.BaseFlat = 20;
-	}
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new CriticalDamageEffect());
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    public CriticalDamage() {
+	this.BaseFlat = 20;
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return false;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return true;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
+
+    @Override
+    public boolean IsPercent() {
+	return true;
+    }
 
 }

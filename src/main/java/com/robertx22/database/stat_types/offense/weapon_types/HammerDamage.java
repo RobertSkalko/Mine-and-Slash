@@ -6,6 +6,11 @@ import com.robertx22.stats.WeaponDamageStat;
 public class HammerDamage extends WeaponDamageStat {
 
     @Override
+    public String LocString() {
+	return "hammer_damage";
+    }
+
+    @Override
     public WeaponTypes weaponType() {
 	return WeaponTypes.Hammer;
     }

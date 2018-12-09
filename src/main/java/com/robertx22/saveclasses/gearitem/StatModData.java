@@ -11,6 +11,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipString;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
@@ -60,9 +61,9 @@ public class StatModData implements ITooltipString {
     }
 
     public void useOnPlayer(UnitData unit) {
-	String name = this.GetBaseMod().GetBaseStat().Guid();
-	if (unit.getUnit().MyStats.containsKey(name)) {
-	    unit.getUnit().MyStats.get(name).Add(this, unit.getLevel());
+	String guid = this.GetBaseMod().GetBaseStat().Guid();
+	if (unit.getUnit().MyStats.containsKey(guid)) {
+	    unit.getUnit().MyStats.get(guid).Add(this, unit.getLevel());
 	}
     }
 
@@ -101,10 +102,10 @@ public class StatModData implements ITooltipString {
 	StatMod mod = GetBaseMod();
 	Stat basestat = mod.GetBaseStat();
 
-	String str = basestat.Name();
+	String str = CLOC.stat(basestat.LocString().toLowerCase());
 
 	if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
-	    str += " Percent";
+	    str += " " + CLOC.word("percent");
 	}
 
 	if (IsSet) {
@@ -117,7 +118,7 @@ public class StatModData implements ITooltipString {
     public String TraitText() {
 	StatMod mod = GetBaseMod();
 	Stat basestat = mod.GetBaseStat();
-	return TextFormatting.GREEN + " * " + basestat.Name();
+	return TextFormatting.GREEN + " * " + basestat.LocString();
     }
 
     public String NameAndValueText(int level, boolean IsSet) {

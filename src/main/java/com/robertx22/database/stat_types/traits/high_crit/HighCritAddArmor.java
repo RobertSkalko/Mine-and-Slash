@@ -22,8 +22,8 @@ public class HighCritAddArmor extends BaseTraitHighCritHit {
     }
 
     @Override
-    public String Name() {
-	return "Armor On High Crit";
+    public String LocString() {
+	return "Armor_On_High_Crit";
     }
 
 }

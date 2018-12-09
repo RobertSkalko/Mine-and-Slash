@@ -4,30 +4,35 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class EnergyRegen extends Stat {
-	public static String GUID = "Energy Regen";
+    public static String GUID = "Energy Regen";
 
-	public EnergyRegen() {
-		this.StatMinimum = 5;
-	}
+    @Override
+    public String LocString() {
+	return "energy_regen";
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    public EnergyRegen() {
+	this.StatMinimum = 5;
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return false;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
+
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
 
 }

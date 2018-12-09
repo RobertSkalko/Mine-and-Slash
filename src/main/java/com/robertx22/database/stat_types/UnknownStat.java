@@ -4,30 +4,35 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class UnknownStat extends Stat {
-	public static String GUID = "Renamed or Deleted Stat Error";
+    public static String GUID = "Renamed or Deleted Stat Error";
 
-	public UnknownStat() {
+    public UnknownStat() {
 
-	}
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String LocString() {
+	return "unknown_stat";
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return true;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return true;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
+
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
 
 }

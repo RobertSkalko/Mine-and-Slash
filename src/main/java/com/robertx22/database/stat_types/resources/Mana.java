@@ -4,30 +4,35 @@ import com.robertx22.stats.FillableStat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Mana extends FillableStat {
-	public static String GUID = "Mana";
+    public static String GUID = "Mana";
 
-	public Mana() {
-		this.StatMinimum = 50;
-	}
+    public Mana() {
+	this.StatMinimum = 50;
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String LocString() {
+	return "mana";
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return false;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
+
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
 
 }

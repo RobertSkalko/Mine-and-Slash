@@ -26,4 +26,8 @@ public class NatureSpellToAttackDMG extends BaseSpellToBasicDamage {
 	return new SpellNatureDamage();
     }
 
+    @Override
+    public String LocString() {
+	return "nature_spell_to_attack";
+    }
 }

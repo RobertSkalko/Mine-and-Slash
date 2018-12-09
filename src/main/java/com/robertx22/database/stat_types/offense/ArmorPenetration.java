@@ -10,34 +10,39 @@ import com.robertx22.stats.StatEffects.offense.PenetrationEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ArmorPenetration extends Stat implements IStatEffects {
-	public static String GUID = "Armor Penetration";
+    public static String GUID = "Armor Penetration";
 
-	public ArmorPenetration() {
-	}
+    @Override
+    public String LocString() {
+	return "armor_penetration";
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    public ArmorPenetration() {
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return true;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return true;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new PenetrationEffect());
-	}
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
+
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new PenetrationEffect());
+    }
 
 }

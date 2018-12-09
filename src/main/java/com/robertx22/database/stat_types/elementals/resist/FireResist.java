@@ -3,19 +3,24 @@ package com.robertx22.database.stat_types.elementals.resist;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class FireResist extends BaseEleResist {
-	public static String GUID = "Fire Resist";
+    public static String GUID = "Fire Resist";
 
-	public FireResist() {
-	}
+    public FireResist() {
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return Elements.Fire;
-	}
+    @Override
+    public Elements Element() {
+	return Elements.Fire;
+    }
+
+    @Override
+    public String LocString() {
+	return "fire_resist";
+    }
 
 }

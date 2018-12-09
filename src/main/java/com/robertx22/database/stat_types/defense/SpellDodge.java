@@ -10,34 +10,39 @@ import com.robertx22.stats.StatEffects.defense.SpellDodgeEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class SpellDodge extends Stat implements IStatEffects {
-	public static String GUID = "Spell Dodge";
+    public static String GUID = "Spell Dodge";
 
-	@Override
-	public List<IStatEffect> GetEffects() {
-		return Arrays.asList(new SpellDodgeEffect());
-	}
+    @Override
+    public String LocString() {
+	return "spell_dodge";
+    }
 
-	public SpellDodge() {
-	}
+    @Override
+    public List<IStatEffect> GetEffects() {
+	return Arrays.asList(new SpellDodgeEffect());
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    public SpellDodge() {
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return false;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return true;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
+
+    @Override
+    public boolean IsPercent() {
+	return true;
+    }
 
 }

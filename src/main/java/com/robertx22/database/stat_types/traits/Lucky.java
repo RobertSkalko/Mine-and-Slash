@@ -29,4 +29,9 @@ public class Lucky extends Trait implements IAffectsOtherStats {
 
     }
 
+    @Override
+    public String LocString() {
+	return "lucky";
+    }
+
 }

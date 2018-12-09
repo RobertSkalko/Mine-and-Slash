@@ -11,4 +11,16 @@ public class CLOC {
 	return I18n.format(Ref.MODID + ".tooltip." + str);
 
     }
+
+    public static String stat(String str) {
+
+	return I18n.format(Ref.MODID + ".stat." + str);
+
+    }
+
+    public static String word(String str) {
+
+	return I18n.format(Ref.MODID + ".word." + str);
+
+    }
 }

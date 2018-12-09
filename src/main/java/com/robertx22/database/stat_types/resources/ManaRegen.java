@@ -4,30 +4,35 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ManaRegen extends Stat {
-	public static String GUID = "Mana Regen";
+    public static String GUID = "Mana Regen";
 
-	public ManaRegen() {
-		this.StatMinimum = 1;
-	}
+    public ManaRegen() {
+	this.StatMinimum = 1;
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String LocString() {
+	return "mana_regen";
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return false;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return false;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
+
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
 
 }

@@ -4,29 +4,34 @@ import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class SpellWaterDamage extends Stat {
-	public static String GUID = "Spell Water Damage";
+    public static String GUID = "Spell Water Damage";
 
-	public SpellWaterDamage() {
-	}
+    public SpellWaterDamage() {
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return true;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return true;
+    }
 
-	@Override
-	public Elements Element() {
-		return Elements.Water;
-	}
+    @Override
+    public Elements Element() {
+	return Elements.Water;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
+
+    @Override
+    public String LocString() {
+	return "spell_water_damage";
+    }
 
 }

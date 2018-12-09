@@ -28,4 +28,8 @@ public class Golem extends Trait implements IAffectsOtherStats {
 	return "";
     }
 
+    @Override
+    public String LocString() {
+	return "golem";
+    }
 }

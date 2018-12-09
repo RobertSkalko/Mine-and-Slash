@@ -24,4 +24,8 @@ public class ThunderToNatureTransfer extends BaseTransferMod {
 
     }
 
+    @Override
+    public String LocString() {
+	return "thunder_nature_transfer";
+    }
 }

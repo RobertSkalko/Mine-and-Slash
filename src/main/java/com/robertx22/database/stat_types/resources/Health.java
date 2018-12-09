@@ -7,38 +7,43 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityLivingBase;
 
 public class Health extends Stat {
-	public static String GUID = "Health";
+    public static String GUID = "Health";
 
-	public Health() {
-		this.StatMinimum = 20;
-	}
+    public Health() {
+	this.StatMinimum = 20;
+    }
 
-	@Override
-	public String Guid() {
-		return GUID;
-	}
+    @Override
+    public String LocString() {
+	return "health";
+    }
 
-	@Override
-	public boolean ScalesToLevel() {
-		return true;
-	}
+    @Override
+    public String Guid() {
+	return GUID;
+    }
 
-	@Override
-	public Elements Element() {
-		return null;
-	}
+    @Override
+    public boolean ScalesToLevel() {
+	return true;
+    }
 
-	@Override
-	public boolean IsPercent() {
-		return false;
-	}
+    @Override
+    public Elements Element() {
+	return null;
+    }
 
-	public int CurrentValue(EntityLivingBase entity, Unit unit) {
+    @Override
+    public boolean IsPercent() {
+	return false;
+    }
 
-		float mult = entity.getHealth() / entity.getMaxHealth();
+    public int CurrentValue(EntityLivingBase entity, Unit unit) {
 
-		return (int) (mult * unit.healthData().Value);
+	float mult = entity.getHealth() / entity.getMaxHealth();
 
-	}
+	return (int) (mult * unit.healthData().Value);
+
+    }
 
 }
