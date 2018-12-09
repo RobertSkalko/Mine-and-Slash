@@ -16,68 +16,67 @@ import net.minecraft.item.ItemStack;
 
 public class GearGen {
 
-	public static GearItemData CreateData(GearBlueprint blueprint) {
-		GearItemSlot gearslot = blueprint.GetGearType();
+    public static GearItemData CreateData(GearBlueprint blueprint) {
+	GearItemSlot gearslot = blueprint.GetGearType();
 
-		ItemRarity rarity = Rarities.Items.get(blueprint.GetRarity());
+	ItemRarity rarity = Rarities.Items.get(blueprint.GetRarity());
 
-		GearItemData data = new GearItemData();
+	GearItemData data = new GearItemData();
 
-		data.level = blueprint.GetLevel();
-		data.gearTypeName = gearslot.Name();
-		data.Rarity = rarity.Rank();
-		data.name = gearslot.Name();
+	data.level = blueprint.GetLevel();
+	data.gearTypeName = gearslot.GUID();
+	data.Rarity = rarity.Rank();
 
-		data.gearTypeStats = blueprint.genGearTypeStats(data);
+	data.gearTypeStats = blueprint.genGearTypeStats(data);
 
-		data.primaryStats = new PrimaryStatsData();
-		data.primaryStats.RerollFully(data);
+	data.primaryStats = new PrimaryStatsData();
+	data.primaryStats.RerollFully(data);
 
-		data.secondaryStats = new SecondaryStatsData();
-		data.secondaryStats.RerollFully(data);
+	data.secondaryStats = new SecondaryStatsData();
+	data.secondaryStats.RerollFully(data);
 
-		if (RandomUtils.roll(rarity.AffixChance())) {
+	if (RandomUtils.roll(rarity.AffixChance())) {
 
-			data.suffix = new SuffixData();
-			data.suffix.RerollFully(data);
+	    data.suffix = new SuffixData();
+	    data.suffix.RerollFully(data);
 
-		}
-		if (RandomUtils.roll(rarity.AffixChance())) {
-
-			data.prefix = new PrefixData();
-			data.prefix.RerollFully(data);
-
-		}
-
-		data.set = blueprint.GenerateSet();
-
-		return data;
 	}
+	if (RandomUtils.roll(rarity.AffixChance())) {
 
-	public static ItemStack CreateStack(GearBlueprint schema) {
-
-		GearItemData data = CreateData(schema);
-
-		ItemStack stack = new ItemStack(data.getItem());
-
-		Gear.Save(stack, data);
-
-		stack.setStackDisplayName(data.GetDisplayName());
-
-		return stack;
+	    data.prefix = new PrefixData();
+	    data.prefix.RerollFully(data);
 
 	}
 
-	public static ItemStack CreateStack(GearItemData data) {
+	data.set = blueprint.GenerateSet();
 
-		ItemStack stack = new ItemStack(data.getItem());
+	return data;
+    }
 
-		Gear.Save(stack, data);
+    public static ItemStack CreateStack(GearBlueprint schema) {
 
-		stack.setStackDisplayName(data.GetDisplayName());
+	GearItemData data = CreateData(schema);
 
-		return stack;
+	ItemStack stack = new ItemStack(data.getItem());
 
-	}
+	Gear.Save(stack, data);
+
+	stack.setStackDisplayName(data.GetDisplayName());
+
+	return stack;
+
+    }
+
+    public static ItemStack CreateStack(GearItemData data) {
+
+	ItemStack stack = new ItemStack(data.getItem());
+
+	Gear.Save(stack, data);
+
+	stack.setStackDisplayName(data.GetDisplayName());
+
+	return stack;
+
+    }
 
 }

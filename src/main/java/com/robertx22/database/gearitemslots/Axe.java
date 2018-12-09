@@ -14,29 +14,29 @@ import net.minecraft.item.Item;
 
 public class Axe extends BaseWeapon {
 
-	@Override
-	public String Name() {
-		return "Axe";
-	}
+    @Override
+    public String GUID() {
+	return "Axe";
+    }
 
-	@Override
-	public List<StatMod> slotTypeStats() {
-		return Arrays.asList(new LifestealPercent(), new LifeOnHitPercent());
-	}
+    @Override
+    public List<StatMod> slotTypeStats() {
+	return Arrays.asList(new LifestealPercent(), new LifeOnHitPercent());
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemAxe.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemAxe.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemAxe.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemAxe.Items;
+    }
 
-	@Override
-	public int Weight() {
-		return 1000;
-	}
+    @Override
+    public int Weight() {
+	return 1000;
+    }
 
 }

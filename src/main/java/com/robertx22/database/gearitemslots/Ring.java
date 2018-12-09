@@ -24,45 +24,45 @@ import net.minecraft.item.Item;
 
 public class Ring extends GearItemSlot {
 
-	@Override
-	public String Name() {
-		return "Ring";
-	}
+    @Override
+    public String GUID() {
+	return "Ring";
+    }
 
-	@Override
-	public List<Suffix> PossibleSuffixes() {
-		return new ArrayList<Suffix>(Suffixes.Jewerly);
-	}
+    @Override
+    public List<Suffix> PossibleSuffixes() {
+	return new ArrayList<Suffix>(Suffixes.Jewerly);
+    }
 
-	@Override
-	public List<Prefix> PossiblePrefixes() {
-		return new ArrayList<Prefix>(Prefixes.Jewerly);
-	}
+    @Override
+    public List<Prefix> PossiblePrefixes() {
+	return new ArrayList<Prefix>(Prefixes.Jewerly);
+    }
 
-	@Override
-	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(),
-				new SpellNatureDamageFlat());
-	}
+    @Override
+    public List<StatMod> PrimaryStats() {
+	return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(),
+		new SpellNatureDamageFlat());
+    }
 
-	@Override
-	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new EnergyRegenFlat(), new ManaRegenFlat(), new ManaFlat());
-	}
+    @Override
+    public List<StatMod> PossibleSecondaryStats() {
+	return Arrays.asList(new EnergyRegenFlat(), new ManaRegenFlat(), new ManaFlat());
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemRing.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemRing.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemRing.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemRing.Items;
+    }
 
-	@Override
-	public int Weight() {
-		return 1500;
-	}
+    @Override
+    public int Weight() {
+	return 1500;
+    }
 
 }

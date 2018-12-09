@@ -15,7 +15,7 @@ public abstract class BaseUniqueChest extends ItemChest implements IUnique {
 
     @Override
     public String slot() {
-	return new Chest().Name();
+	return new Chest().GUID();
     }
 
 }

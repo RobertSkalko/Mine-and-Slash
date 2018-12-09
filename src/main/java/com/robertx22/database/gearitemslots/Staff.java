@@ -13,30 +13,30 @@ import net.minecraft.item.Item;
 
 public class Staff extends BaseWeapon {
 
-	@Override
-	public String Name() {
-		return "Staff";
-	}
+    @Override
+    public String GUID() {
+	return "Staff";
+    }
 
-	@Override
-	public List<StatMod> slotTypeStats() {
-		return Arrays.asList(new ManaOnHitFlat());
+    @Override
+    public List<StatMod> slotTypeStats() {
+	return Arrays.asList(new ManaOnHitFlat());
 
-	}
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemStaff.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemStaff.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemStaff.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemStaff.Items;
+    }
 
-	@Override
-	public int Weight() {
-		return 1000;
-	}
+    @Override
+    public int Weight() {
+	return 1000;
+    }
 
 }

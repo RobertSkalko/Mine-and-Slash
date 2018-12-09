@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 public class Hammer extends BaseWeapon {
 
 	@Override
-	public String Name() {
+	public String GUID() {
 		return "Hammer";
 	}
 

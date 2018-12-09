@@ -11,6 +11,6 @@ public abstract class BaseUniqueSword extends ItemSword implements IUnique {
 
     @Override
     public String slot() {
-	return new Sword().Name();
+	return new Sword().GUID();
     }
 }

@@ -7,7 +7,7 @@ import net.minecraft.util.text.TextFormatting;
 public abstract class BaseEpic implements Rarity {
 
     @Override
-    public String Name() {
+    public String GUID() {
 
 	return "Epic";
     }

@@ -30,27 +30,27 @@ public class OnLogin {
     public static void GiveStarterItems(EntityPlayer player) {
 
 	GearBlueprint print = new GearBlueprint(1);
-	print.SetSpecificType(new Sword().Name());
+	print.SetSpecificType(new Sword().GUID());
 	print.LevelRange = false;
 	print.SetSpecificRarity(0);
 
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-	print.SetSpecificType(new Boots().Name());
+	print.SetSpecificType(new Boots().GUID());
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-	print.SetSpecificType(new Chest().Name());
+	print.SetSpecificType(new Chest().GUID());
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-	print.SetSpecificType(new Helmet().Name());
+	print.SetSpecificType(new Helmet().GUID());
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-	print.SetSpecificType(new Pants().Name());
+	print.SetSpecificType(new Pants().GUID());
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 
-	print.SetSpecificType(new Ring().Name());
+	print.SetSpecificType(new Ring().GUID());
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-	print.SetSpecificType(new Ring().Name());
+	print.SetSpecificType(new Ring().GUID());
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-	print.SetSpecificType(new Necklace().Name());
+	print.SetSpecificType(new Necklace().GUID());
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
-	print.SetSpecificType(new Bracelet().Name());
+	print.SetSpecificType(new Bracelet().GUID());
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 
 	SpellBlueprint spell = new SpellBlueprint(1);

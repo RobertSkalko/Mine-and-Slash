@@ -12,7 +12,7 @@ public abstract class BaseUniqueAxe extends ItemAxe implements IUnique {
 
     @Override
     public String slot() {
-	return new Axe().Name();
+	return new Axe().GUID();
     }
 
 }

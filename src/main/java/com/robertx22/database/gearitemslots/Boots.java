@@ -9,19 +9,19 @@ import net.minecraft.item.Item;
 
 public class Boots extends BaseArmor {
 
-	@Override
-	public String Name() {
-		return "Boots";
-	}
+    @Override
+    public String GUID() {
+	return "Boots";
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemBoots.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemBoots.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemBoots.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemBoots.Items;
+    }
 
 }

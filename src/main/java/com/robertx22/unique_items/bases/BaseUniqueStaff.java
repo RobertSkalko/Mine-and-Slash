@@ -12,6 +12,6 @@ public abstract class BaseUniqueStaff extends ItemStaff implements IUnique {
 
     @Override
     public String slot() {
-	return new Staff().Name();
+	return new Staff().GUID();
     }
 }

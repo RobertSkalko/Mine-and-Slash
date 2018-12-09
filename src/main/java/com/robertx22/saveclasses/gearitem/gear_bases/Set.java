@@ -37,7 +37,7 @@ public abstract class Set implements IWeighted, IGUID {
 	public boolean CanBePlacedOnItemSlot(String name) {
 
 		for (GearItemSlot slot : GearTypes()) {
-			if (slot.Name().equals(name)) {
+			if (slot.GUID().equals(name)) {
 				return true;
 			}
 		}

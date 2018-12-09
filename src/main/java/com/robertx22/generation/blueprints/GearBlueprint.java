@@ -41,7 +41,7 @@ public class GearBlueprint extends ItemBlueprint {
 
 	if (data.GetBaseGearType().slotTypeStats().size() > 0) {
 
-	    GearTypeStatsData stats = new GearTypeStatsData(data.GetBaseGearType().Name());
+	    GearTypeStatsData stats = new GearTypeStatsData(data.GetBaseGearType().GUID());
 	    stats.RerollFully(data);
 
 	    return stats;

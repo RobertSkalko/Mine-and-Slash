@@ -25,41 +25,41 @@ import net.minecraft.item.Item;
 
 public class Bracelet extends GearItemSlot {
 
-	@Override
-	public String Name() {
-		return "Bracelet";
-	}
+    @Override
+    public String GUID() {
+	return "Bracelet";
+    }
 
-	@Override
-	public List<Suffix> PossibleSuffixes() {
-		return new ArrayList<Suffix>(Suffixes.Jewerly);
-	}
+    @Override
+    public List<Suffix> PossibleSuffixes() {
+	return new ArrayList<Suffix>(Suffixes.Jewerly);
+    }
 
-	@Override
-	public List<Prefix> PossiblePrefixes() {
-		return new ArrayList<Prefix>(Prefixes.Jewerly);
-	}
+    @Override
+    public List<Prefix> PossiblePrefixes() {
+	return new ArrayList<Prefix>(Prefixes.Jewerly);
+    }
 
-	@Override
-	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(),
-				new SpellNatureDamageFlat());
-	}
+    @Override
+    public List<StatMod> PrimaryStats() {
+	return Arrays.asList(new SpellFireDamageFlat(), new SpellThunderDamageFlat(), new SpellWaterDamageFlat(),
+		new SpellNatureDamageFlat());
+    }
 
-	@Override
-	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(),
-				new NatureResistFlat());
-	}
+    @Override
+    public List<StatMod> PossibleSecondaryStats() {
+	return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(),
+		new NatureResistFlat());
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemBracelet.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemBracelet.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemBracelet.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemBracelet.Items;
+    }
 
 }

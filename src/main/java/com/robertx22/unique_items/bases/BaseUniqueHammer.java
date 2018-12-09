@@ -12,6 +12,6 @@ public abstract class BaseUniqueHammer extends ItemHammer implements IUnique {
 
     @Override
     public String slot() {
-	return new Hammer().Name();
+	return new Hammer().GUID();
     }
 }

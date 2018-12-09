@@ -54,7 +54,7 @@ public class GearTypeStatsData implements ITooltipList, IRerollable, IStatsConta
 
 	List<String> list = new ArrayList<String>();
 
-	list.add(TextFormatting.GREEN + getGearType().Name() + CLOC.word("stats") + ": ");
+	list.add(TextFormatting.GREEN + getGearType().locName() + " " + CLOC.word("stats") + ": ");
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

@@ -24,7 +24,7 @@ import net.minecraft.item.Item;
 public class Charm extends GearItemSlot {
 
 	@Override
-	public String Name() {
+	public String GUID() {
 		return "Charm";
 	}
 

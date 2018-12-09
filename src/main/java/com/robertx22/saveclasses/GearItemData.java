@@ -52,8 +52,24 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
     public int Rarity;
     @Store
     public String gearTypeName;
-    @Store
-    public String name = "Error no name";
+
+    public String name() {
+
+	if (isUnique) {
+	    if (IUnique.ITEMS.containsKey(this.uniqueGUID)) {
+		return ((IUnique) IUnique.ITEMS.get(this.uniqueGUID)).locName();
+	    } else {
+		return "error";
+	    }
+	} else {
+	    if (gearTypeName.isEmpty()) {
+		return "error";
+	    } else {
+		return GearTypes.All.get(gearTypeName).locName();
+	    }
+	}
+    }
+
     @Store
     public int level;
 
@@ -134,7 +150,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	    if (prefix != null) {
 		text += prefix.BaseAffix().locName() + " ";
 	    }
-	    text += name;
+	    text += name();
 
 	    if (suffix != null) {
 		text += " " + suffix.BaseAffix().locName() + " ";

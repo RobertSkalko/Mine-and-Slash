@@ -33,9 +33,8 @@ public class UniqueGearGen {
 	    data.uniqueStats.RerollFully(data);
 
 	    data.level = blueprint.GetLevel();
-	    data.gearTypeName = gearslot.Name();
+	    data.gearTypeName = gearslot.GUID();
 	    data.Rarity = rarity.Rank();
-	    data.name = gearslot.Name();
 
 	    data.gearTypeStats = blueprint.genGearTypeStats(data);
 

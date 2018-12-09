@@ -13,6 +13,11 @@ public class CLOC {
 
     }
 
+    public static String geartype(String str) {
+
+	return I18n.format(Ref.MODID + ".gear_type." + str);
+    }
+
     public static String stat(String str) {
 
 	return I18n.format(Ref.MODID + ".stat." + str);
@@ -46,6 +51,12 @@ public class CLOC {
     public static String prefix(String str) {
 
 	return I18n.format(Ref.MODID + ".prefix." + str);
+
+    }
+
+    public static String rarity(String str) {
+
+	return I18n.format(Ref.MODID + ".rarity." + str);
 
     }
 

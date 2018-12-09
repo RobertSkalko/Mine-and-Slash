@@ -15,7 +15,7 @@ public abstract class BaseUniquePants extends ItemPants implements IUnique {
 
     @Override
     public String slot() {
-	return new Pants().Name();
+	return new Pants().GUID();
     }
 
 }

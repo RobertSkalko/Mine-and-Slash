@@ -15,7 +15,7 @@ public abstract class BaseUniqueHelmet extends ItemHelmet implements IUnique {
 
     @Override
     public String slot() {
-	return new Helmet().Name();
+	return new Helmet().GUID();
     }
 
 }

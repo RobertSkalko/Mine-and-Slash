@@ -15,7 +15,7 @@ public abstract class BaseUniqueBoots extends ItemBoots implements IUnique {
 
     @Override
     public String slot() {
-	return new Boots().Name();
+	return new Boots().GUID();
     }
 
 }

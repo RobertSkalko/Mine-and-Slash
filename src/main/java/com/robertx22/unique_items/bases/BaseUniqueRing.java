@@ -19,6 +19,6 @@ public abstract class BaseUniqueRing extends ItemRing implements IUnique {
 
     @Override
     public String slot() {
-	return new Ring().Name();
+	return new Ring().GUID();
     }
 }

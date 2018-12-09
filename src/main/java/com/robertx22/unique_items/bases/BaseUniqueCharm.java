@@ -19,6 +19,6 @@ public abstract class BaseUniqueCharm extends ItemCharm implements IUnique {
 
     @Override
     public String slot() {
-	return new Charm().Name();
+	return new Charm().GUID();
     }
 }

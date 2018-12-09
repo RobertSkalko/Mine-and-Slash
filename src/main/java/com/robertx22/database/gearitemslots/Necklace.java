@@ -23,7 +23,7 @@ import net.minecraft.item.Item;
 public class Necklace extends GearItemSlot {
 
 	@Override
-	public String Name() {
+	public String GUID() {
 		return "Necklace";
 	}
 

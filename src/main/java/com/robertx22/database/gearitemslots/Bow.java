@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 public class Bow extends BaseWeapon {
 
     @Override
-    public String Name() {
+    public String GUID() {
 	return "Bow";
     }
 

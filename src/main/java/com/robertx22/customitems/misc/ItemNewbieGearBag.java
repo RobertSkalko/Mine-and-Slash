@@ -53,7 +53,7 @@ public class ItemNewbieGearBag extends BaseItem {
 			try {
 
 				GearBlueprint weaponPrint = new GearBlueprint(1);
-				weaponPrint.SetSpecificType(new Sword().Name());
+				weaponPrint.SetSpecificType(new Sword().GUID());
 				weaponPrint.LevelRange = false;
 
 				GearBlueprint print = new GearBlueprint(1);

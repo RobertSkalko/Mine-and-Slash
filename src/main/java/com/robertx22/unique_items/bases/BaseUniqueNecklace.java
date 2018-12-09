@@ -19,6 +19,6 @@ public abstract class BaseUniqueNecklace extends ItemNecklace implements IUnique
 
     @Override
     public String slot() {
-	return new Necklace().Name();
+	return new Necklace().GUID();
     }
 }

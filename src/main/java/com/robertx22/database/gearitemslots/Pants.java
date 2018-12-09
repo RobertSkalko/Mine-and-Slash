@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 public class Pants extends BaseArmor {
 
 	@Override
-	public String Name() {
+	public String GUID() {
 		return "Pants";
 	}
 

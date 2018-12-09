@@ -404,3 +404,30 @@ mmorpg.chat.mapworld_ran_out_of_time=This map world has run out of time, telepor
 mmorpg.chat.mapworld_time_left=Time Ticks away, remaining Map time is:
 mmorpg.chat.player_died_mapworld=Player died in a Map World:
 mmorpg.chat.activating_mapworld_time_penalty=Map Time penalty activated
+
+# GEAR TYPES
+mmorpg.gear_type.sword=Sword
+mmorpg.gear_type.axe=Axe
+mmorpg.gear_type.bow=Bow
+mmorpg.gear_type.hammer=Hammer
+mmorpg.gear_type.staff=Staff
+mmorpg.gear_type.pants=Pants
+mmorpg.gear_type.chest=Chest
+mmorpg.gear_type.boots=Boots
+mmorpg.gear_type.helmet=Helmet
+mmorpg.gear_type.ring=Ring
+mmorpg.gear_type.charm=Charm
+mmorpg.gear_type.bracelet=Bracelet
+mmorpg.gear_type.necklace=Necklace
+
+# RARITIES
+mmorpg.rarity.common=Common
+mmorpg.rarity.uncommon=Uncommon
+mmorpg.rarity.rare=Rare
+mmorpg.rarity.epic=Epic
+mmorpg.rarity.legendary=Legendary
+mmorpg.rarity.mythical=Mythical
+mmorpg.rarity.unique=Unique
+
+
+

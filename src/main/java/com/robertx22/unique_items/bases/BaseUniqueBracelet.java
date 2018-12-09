@@ -20,6 +20,6 @@ public abstract class BaseUniqueBracelet extends ItemBracelet implements IUnique
 
     @Override
     public String slot() {
-	return new Bracelet().Name();
+	return new Bracelet().GUID();
     }
 }

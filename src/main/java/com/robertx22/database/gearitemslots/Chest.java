@@ -9,19 +9,19 @@ import net.minecraft.item.Item;
 
 public class Chest extends BaseArmor {
 
-	@Override
-	public String Name() {
-		return "Chest";
-	}
+    @Override
+    public String GUID() {
+	return "Chest";
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemChest.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemChest.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemChest.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemChest.Items;
+    }
 
 }

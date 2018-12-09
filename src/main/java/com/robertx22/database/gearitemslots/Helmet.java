@@ -9,19 +9,19 @@ import net.minecraft.item.Item;
 
 public class Helmet extends BaseArmor {
 
-	@Override
-	public String Name() {
-		return "Helmet";
-	}
+    @Override
+    public String GUID() {
+	return "Helmet";
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemHelmet.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemHelmet.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemHelmet.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemHelmet.Items;
+    }
 
 }
