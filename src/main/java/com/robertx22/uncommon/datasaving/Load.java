@@ -9,18 +9,21 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class Load {
 
-	public static UnitData Unit(ICapabilityProvider provider) {
-		if (provider != null) {
-			return provider.getCapability(EntityData.Data, null);
-		}
-		return null;
+    public static UnitData Unit(ICapabilityProvider provider) {
+	if (provider != null) {
+	    return provider.getCapability(EntityData.Data, null);
 	}
+	return null;
+    }
 
-	public static IWorldData World(ICapabilityProvider provider) {
+    public static IWorldData World(ICapabilityProvider provider) {
 
-		if (provider != null) {
-			return provider.getCapability(WorldData.Data, null);
-		}
-		return null;
+	// System.out.println(I18n.format("test.my_message.hello")); this seems to work
+
+	if (provider != null) {
+	    return provider.getCapability(WorldData.Data, null);
+
 	}
+	return null;
+    }
 }

@@ -1,8 +1,10 @@
 package com.robertx22.dimensions.blocks;
 
 import com.robertx22.dimensions.MyTeleporter;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapWorldData;
+import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
@@ -16,7 +18,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
@@ -72,20 +73,18 @@ public class MapPortalBlock extends BlockEndPortal {
 				IWorldData data = Load.World(DimensionManager.getWorld(portal.id));
 
 				if (data == null) {
-				    entity.sendMessage(new TextComponentString(
-					    "This world doesn't appear to exist, the time probably ran out"));
+				    entity.sendMessage(SLOC.chat("world_doesnt_exist"));
 				    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
 				} else if (data.isSetForDelete()) {
-				    entity.sendMessage(new TextComponentString(
-					    "You can't enter this world, it is closed and is set for deletition"));
+				    entity.sendMessage(SLOC.chat("world_is_closed"));
 				    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 
 				} else if (data.isMapWorld()) {
 
 				    MapWorldData worlddata = data.getWorldData();
 
-				    if (worlddata.joinedPlayerIDs.size() < 5
+				    if (worlddata.joinedPlayerIDs.size() < ModConfig.Server.MAX_PLAYERS_PER_MAP
 					    || worlddata.joinedPlayerIDs.contains(entity.getUniqueID().toString())) {
 
 					if (worlddata.joinedPlayerIDs
@@ -94,8 +93,8 @@ public class MapPortalBlock extends BlockEndPortal {
 					    data.setWorldData(worlddata);
 					}
 
-					entity.sendMessage(new TextComponentString(
-						"You are traveling to a Map World of dimension Id: " + portal.id));
+					entity.sendMessage(
+						SLOC.chat("traveling_to_mapworld").appendText(portal.id + ""));
 
 					World w = DimensionManager.getWorld(portal.id);
 
@@ -107,14 +106,12 @@ public class MapPortalBlock extends BlockEndPortal {
 
 				    }
 
-				    if (worlddata.joinedPlayerIDs.size() > 5) {
-					entity.sendMessage(new TextComponentString(
-						"Maximum Player Count for this Map has been reached."));
+				    if (worlddata.joinedPlayerIDs.size() > ModConfig.Server.MAX_PLAYERS_PER_MAP) {
+					entity.sendMessage(SLOC.chat("mapworld_max_capacity"));
 
 				    }
 				} else { // if not mapworld
-				    entity.sendMessage(new TextComponentString(
-					    "Not a map world (was probably closed after time ran out, in case that is wrong, contact the mod author). Deleting portal block."));
+				    entity.sendMessage(SLOC.chat("not_mapworld"));
 
 				    world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 

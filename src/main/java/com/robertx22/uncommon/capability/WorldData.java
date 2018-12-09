@@ -7,6 +7,7 @@ import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.MapWorldData;
+import com.robertx22.uncommon.SLOC;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
@@ -16,7 +17,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
@@ -270,7 +270,7 @@ public class WorldData {
 		    this.transferPlayersBack(mapworld);
 		} else {
 
-		    player.sendMessage(new TextComponentString("You can't delete this world"));
+		    player.sendMessage(SLOC.chat("cant_delete_world"));
 		}
 	    }
 	}
@@ -279,7 +279,6 @@ public class WorldData {
 	public void init(BlockPos pos, World world, MapItemData map, int dimensionId) {
 
 	    if (this.isInit == false) {
-		// UnitData data = player.getCapability(EntityData.Data, null);
 
 		this.isMap = true;
 		this.level = map.level;
@@ -416,8 +415,7 @@ public class WorldData {
 
 	private void announceDeletition(World world) {
 	    for (EntityPlayer player : world.playerEntities) {
-		player.sendMessage(
-			new TextComponentString("This map world has run out of time, teleporting players back"));
+		player.sendMessage(SLOC.chat("mapworld_ran_out_of_time"));
 
 	    }
 	}
@@ -425,8 +423,7 @@ public class WorldData {
 	private void announceTimeLeft(World world) {
 
 	    for (EntityPlayer player : world.playerEntities) {
-		player.sendMessage(
-			new TextComponentString("This map world has " + this.getMinutesLeft() + " minutes left."));
+		player.sendMessage(SLOC.chat("mapworld_time_left").appendText(this.getMinutesLeft() + ""));
 
 	    }
 
@@ -443,8 +440,8 @@ public class WorldData {
 	    int punishment = 5;
 
 	    for (EntityPlayer player : world.playerEntities) {
-		player.sendMessage(new TextComponentString(victim.getDisplayNameString()
-			+ " has died. World time has been lowered by " + punishment + " as a punishment."));
+		player.sendMessage(SLOC.chat("player_died_mapworld").appendSibling(victim.getDisplayName())
+			.appendSibling(SLOC.chat("activating_mapworld_time_penalty")));
 	    }
 
 	    this.minutesPassed += punishment;

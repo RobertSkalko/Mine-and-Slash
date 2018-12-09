@@ -11,8 +11,6 @@ import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -69,20 +67,6 @@ public class OnMobSpawn {
 	    return data.getLevel();
 	} else {
 	    return GetMobLevelByDistanceFromSpawn(entity);
-	}
-
-    }
-
-    private static void AnnounceWorldBossSpawn(EntityLivingBase entity, Unit unit) {
-
-	for (EntityPlayer player : entity.world.playerEntities) {
-	    if (player.getDistance(entity) < 150) {
-
-		player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_GROWL,
-			SoundCategory.AMBIENT, 0.5F, 1);
-
-	    }
-
 	}
 
     }

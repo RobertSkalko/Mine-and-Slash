@@ -2,6 +2,7 @@ package com.robertx22.customitems.misc;
 
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
@@ -16,7 +17,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -27,116 +27,114 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod.EventBusSubscriber
 public class ItemMapBackPortal extends Item {
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":map_back_portal")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":map_back_portal")
+    public static final Item ITEM = null;
 
-	public ItemMapBackPortal() {
+    public ItemMapBackPortal() {
 
-		RegisterItemUtils.RegisterItemName(this, "map_back_portal");
-		this.setMaxStackSize(1);
-		this.setMaxDamage(0);
-		this.setCreativeTab(CreativeTabList.MyModTab);
+	RegisterItemUtils.RegisterItemName(this, "map_back_portal");
+	this.setMaxStackSize(1);
+	this.setMaxDamage(0);
+	this.setCreativeTab(CreativeTabList.MyModTab);
 
-	}
+    }
 
-	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    @Override
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 
-		try {
-			if (!worldIn.isRemote && entityIn instanceof EntityPlayer) {
+	try {
+	    if (!worldIn.isRemote && entityIn instanceof EntityPlayer) {
 
-				NBTTagCompound nbt = stack.getTagCompound();
+		NBTTagCompound nbt = stack.getTagCompound();
 
-				if (nbt == null) {
-					nbt = new NBTTagCompound();
-				}
-
-				if (nbt.getBoolean("porting")) {
-
-					BlockPos pos = BlockPos.fromLong(nbt.getLong("pos"));
-
-					if (pos.distanceSq(entityIn.getPosition()) > 2) {
-
-						nbt.setBoolean("porting", false);
-						nbt.setInteger("ticks", 0);
-
-						entityIn.sendMessage(new TextComponentString(
-								"Teleport canceled, please don't move while attempting to teleport!"));
-
-					} else {
-
-						if (nbt.hasKey("ticks")) {
-
-							int ticks = nbt.getInteger("ticks");
-							nbt.setInteger("ticks", ticks + 1);
-
-							if (ticks > 100) {
-
-								nbt.setInteger("ticks", 0);
-								nbt.setBoolean("porting", false);
-
-								IWorldData data = Load.World(worldIn);
-								data.teleportPlayerBack((EntityPlayer) entityIn);
-
-								stack.setCount(stack.getCount() - 1);
-
-							}
-						} else {
-							nbt.setInteger("ticks", 1);
-						}
-
-					}
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (nbt == null) {
+		    nbt = new NBTTagCompound();
 		}
-	}
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand hand) {
+		if (nbt.getBoolean("porting")) {
 
-		if (!worldIn.isRemote) {
-			try {
+		    BlockPos pos = BlockPos.fromLong(nbt.getLong("pos"));
+
+		    if (pos.distanceSq(entityIn.getPosition()) > 2) {
+
+			nbt.setBoolean("porting", false);
+			nbt.setInteger("ticks", 0);
+
+			entityIn.sendMessage(SLOC.chat("teleport_canceled"));
+
+		    } else {
+
+			if (nbt.hasKey("ticks")) {
+
+			    int ticks = nbt.getInteger("ticks");
+			    nbt.setInteger("ticks", ticks + 1);
+
+			    if (ticks > 100) {
+
+				nbt.setInteger("ticks", 0);
+				nbt.setBoolean("porting", false);
 
 				IWorldData data = Load.World(worldIn);
-				if (data != null) {
-					if (data.isMapWorld()) {
+				data.teleportPlayerBack((EntityPlayer) entityIn);
 
-						if (!player.getHeldItem(hand).hasTagCompound()) {
-							player.getHeldItem(hand).setTagCompound(new NBTTagCompound());
-						}
+				stack.setCount(stack.getCount() - 1);
 
-						player.getHeldItem(hand).getTagCompound().setBoolean("porting", true);
-						player.getHeldItem(hand).getTagCompound().setLong("pos", player.getPosition().toLong());
-
-						player.sendMessage(new TextComponentString("The teleport has begun, please stay put."));
-
-						return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
-
-					} else {
-						player.sendMessage(new TextComponentString(
-								"You are not inside a map world, if this is false, contact the developer please."));
-
-					}
-
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
+			    }
+			} else {
+			    nbt.setInteger("ticks", 1);
 			}
+
+		    }
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
+    }
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemMapBackPortal());
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand hand) {
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
+	if (!worldIn.isRemote) {
+	    try {
+
+		IWorldData data = Load.World(worldIn);
+		if (data != null) {
+		    if (data.isMapWorld()) {
+
+			if (!player.getHeldItem(hand).hasTagCompound()) {
+			    player.getHeldItem(hand).setTagCompound(new NBTTagCompound());
+			}
+
+			player.getHeldItem(hand).getTagCompound().setBoolean("porting", true);
+			player.getHeldItem(hand).getTagCompound().setLong("pos", player.getPosition().toLong());
+
+			player.sendMessage(SLOC.chat("teleport_begin"));
+
+			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+
+		    } else {
+			player.sendMessage(SLOC.chat("not_inside_map"));
+
+		    }
+
+		}
+
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
 	}
+	return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemMapBackPortal());
+    }
+
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
 
 }

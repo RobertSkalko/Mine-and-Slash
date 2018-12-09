@@ -9,6 +9,7 @@ import com.robertx22.generation.UniqueGearGen;
 import com.robertx22.generation.blueprints.UniqueBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -53,6 +54,8 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
 	tooltip.add("Transforms a Unique item into another Unique");
 	tooltip.add("item of the same tier.");
+
+	tooltip.add(CLOC.tooltip("test"));
 
 	this.TooltipQuote(tooltip, "Don't want it? Transform it!");
     }

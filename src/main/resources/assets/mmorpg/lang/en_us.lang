@@ -14,7 +14,7 @@ tile.mmorpg:ore_block4.name=Legendary Ore Block
 tile.mmorpg:ore_block5.name=Mythical Ore Block
 
 ## CREATIVE TAB
-itemGroup.Mine and Slash=Mine and Slash
+itemGroup.MineandSlash=Mine and Slash
 
 # STATIONS
 tile.mmorpg:modify_station.name=Gear Modify Station
@@ -56,5 +56,25 @@ item.mmorpg:reroll_prefix_numbers.name=§cOrb Of Prefix Blessing
 item.mmorpg:reroll_unique_numbers.name=§cOrb of Unique Blessing
 item.mmorpg:create_new_unique.name=§cGem Of Unique Heaven
 
+# ITEM TOOLTIPS
+mmorpg.tooltip.test=WORKS
 
-
+# CHAT MESSAGESs
+mmorpg.chat.levelup_success=You have Leveled Up!
+mmorpg.chat.low_weapon_durability=Weapon Durability is Too Low.
+mmorpg.chat.teleport_canceled=Teleport Canceled, Please don't move while teleporting.
+mmorpg.chat.teleport_begin=Teleport has begun, please stay put.
+mmorpg.chat.not_inside_map=You aren't inside a map world
+mmorpg.chat.world_doesnt_exist=This world doesn't appear to exist, the time probably ran out
+mmorpg.chat.world_is_closed=You can't enter this world, it is closed and is set for deletition
+mmorpg.chat.traveling_to_mapworld=You are traveling to a Map World of dimension Id:
+mmorpg.chat.mapworld_max_capacity=Maximum Player Count for this Map has been reached.
+mmorpg.chat.not_mapworld=Not a map world or was probably closed after time ran out. Deleting portal block.
+mmorpg.chat.too_low_level=You are too low level.
+mmorpg.chat.not_enough_mana=Not Enough Mana
+mmorpg.chat.not_enough_energy=Not Enough Energy
+mmorpg.chat.cant_delete_world=You can't delete this world
+mmorpg.chat.mapworld_ran_out_of_time=This map world has run out of time, teleporting players back
+mmorpg.chat.mapworld_time_left=Time Ticks away, remaining Map time is:
+mmorpg.chat.player_died_mapworld=Player died in a Map World:
+mmorpg.chat.activating_mapworld_time_penalty=Map Time penalty activated

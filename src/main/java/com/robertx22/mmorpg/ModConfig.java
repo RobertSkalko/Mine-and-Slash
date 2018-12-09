@@ -44,6 +44,26 @@ public class ModConfig {
 
     }
 
+    public static class DropRatesContainer {
+
+	@Config.Name("Map Droprate")
+	@Config.Comment("")
+	public float MAP_DROPRATE = 3;
+
+	@Config.Name("Gear Droprate")
+	@Config.Comment("")
+	public float GEAR_DROPRATE = 3;
+
+	@Config.Name("Unique  Droprate")
+	@Config.Comment("")
+	public float UNIQUE_DROPRATE = 3;
+
+	@Config.Name("Spell Droprate")
+	@Config.Comment("")
+	public float SPELL_DROPRATE = 3;
+
+    }
+
     public static class ServerContainer {
 
 	@Config.Name("Mob Level Per Distance")
@@ -69,6 +89,10 @@ public class ModConfig {
 	@Config.Name("Level Ups Cost Tokens")
 	@Config.Comment("If false, player levels up automatically, if true, you need to craft a token and use it. Basically hardcore mode, every level needs diamonds.")
 	public boolean LEVEL_UPS_COST_TOKEN = false;
+
+	@Config.Name("Max Players Per Map")
+	@Config.Comment("")
+	public int MAX_PLAYERS_PER_MAP = 5;
 
     }
 

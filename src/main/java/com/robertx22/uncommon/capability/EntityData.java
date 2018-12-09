@@ -16,6 +16,7 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.AttackUtils;
+import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Load;
@@ -343,8 +344,7 @@ public class EntityData {
 		this.setLevel(level + 1, player);
 		setExp(0);
 
-		player.sendMessage(new TextComponentString(
-			TextFormatting.GREEN + "You have Leveled up! Current lvl: " + getLevel()));
+		player.sendMessage(SLOC.chat("levelup_success"));
 
 		return true;
 	    }
@@ -551,13 +551,13 @@ public class EntityData {
 
 	@Override
 	public void setCurrentEnergy(float i) {
-	    // TODO Auto-generated method stub
+	    energy = i;
 
 	}
 
 	@Override
 	public void setCurrentMana(float i) {
-	    // TODO Auto-generated method stub
+	    mana = i;
 
 	}
 

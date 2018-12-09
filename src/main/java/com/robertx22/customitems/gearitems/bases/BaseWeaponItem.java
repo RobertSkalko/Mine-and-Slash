@@ -3,6 +3,7 @@ package com.robertx22.customitems.gearitems.bases;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
+import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
@@ -11,7 +12,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class BaseWeaponItem extends ItemTool implements IGearItem, IWeapon {
@@ -32,7 +32,7 @@ public abstract class BaseWeaponItem extends ItemTool implements IGearItem, IWea
     public static boolean checkDurability(EntityLivingBase attacker, ItemStack stack) {
 
 	if (stack.getItemDamage() > stack.getMaxDamage() - 20) {
-	    attacker.sendMessage(new TextComponentString("Weapon has too low durability to be used."));
+	    attacker.sendMessage(SLOC.chat("low_weapon_durability"));
 	    return false;
 
 	}
