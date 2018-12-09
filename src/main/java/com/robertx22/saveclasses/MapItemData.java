@@ -31,9 +31,6 @@ import net.minecraftforge.common.DimensionManager;
 public class MapItemData implements ISalvagable {
 
     @Store
-    public String name = "Adventure Map";
-
-    @Store
     public int minutes = 30; // default
 
     @Store

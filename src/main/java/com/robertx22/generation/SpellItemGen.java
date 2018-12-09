@@ -4,6 +4,7 @@ import com.robertx22.database.rarities.SpellRarity;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -30,7 +31,7 @@ public class SpellItemGen {
 	data.manaCostPercent = RandomUtils.RandomRange(SpellItemData.MIN_MANA_COST_PERCENT,
 		SpellItemData.MAX_MANA_COST_PERCENT);
 
-	stack.setStackDisplayName(rarity.Color() + rarity.Name() + " " + data.GetSpell().Name());
+	stack.setStackDisplayName(rarity.Color() + CLOC.rarityName(rarity) + " " + data.GetSpell().Name());
 
 	Spell.Save(stack, data);
 

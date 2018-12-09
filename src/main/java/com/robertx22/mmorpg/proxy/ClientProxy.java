@@ -30,6 +30,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.renderer.entity.RenderSpectralArrow;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -133,6 +134,11 @@ public class ClientProxy implements IProxy {
 	RenderingRegistry.registerEntityRenderingHandler(theclass,
 		renderManager -> new RenderSnowball<>(renderManager, item, Minecraft.getMinecraft().getRenderItem()));
 
+    }
+
+    @Override
+    public String translate(String str) {
+	return I18n.format(str);
     }
 
 }

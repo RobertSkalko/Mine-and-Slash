@@ -16,6 +16,7 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.AttackUtils;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
@@ -95,9 +96,7 @@ public class EntityData {
 
 	void setUUID(UUID id);
 
-	void setName(EntityLivingBase entity);
-
-	String getName();
+	String getName(EntityLivingBase entity);
 
 	void HandleCloneEvent(UnitData old);
 
@@ -360,7 +359,6 @@ public class EntityData {
 
 	@Override
 	public void setLevel(int lvl, EntityLivingBase entity) {
-	    setName(entity);
 	    level = lvl;
 	}
 
@@ -417,8 +415,7 @@ public class EntityData {
 	}
 
 	@Override
-	public void setName(EntityLivingBase entity) {
-
+	public String getName(EntityLivingBase entity) {
 	    MobRarity rarity = Rarities.Mobs.get(getRarity());
 	    String rarityprefix = "";
 	    String name = "";
@@ -428,17 +425,12 @@ public class EntityData {
 
 	    } else {
 		name = entity.getName();
-		rarityprefix = rarity.Name();
+		rarityprefix = CLOC.rarityName(rarity);
 
 	    }
 
-	    this.name = TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " "
-		    + name;
+	    name = TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " " + name;
 
-	}
-
-	@Override
-	public String getName() {
 	    return name;
 	}
 

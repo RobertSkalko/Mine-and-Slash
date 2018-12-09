@@ -9,6 +9,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Spell;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -65,7 +66,7 @@ public abstract class BaseSpellItem extends Item {
 	    tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data));
 
 	    tooltip.add("");
-	    tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
+	    tooltip.add(rarity.Color() + "Rarity: " + CLOC.rarityName(rarity));
 	}
     }
 

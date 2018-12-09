@@ -13,8 +13,6 @@ public abstract class BaseAffix implements IWeighted, IGUID {
 
     public abstract String GUID();
 
-    public abstract String locName();
-
     @Override
     public int Weight() {
 	return IWeighted.UncommonWeight;

@@ -34,76 +34,76 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemNewbieGearBag extends BaseItem {
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":newbie_gear_bag")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":newbie_gear_bag")
+    public static final Item ITEM = null;
 
-	public ItemNewbieGearBag() {
-		this.setMaxDamage(0);
-		this.setCreativeTab(CreativeTabList.CurrencyTab);
+    public ItemNewbieGearBag() {
+	this.setMaxDamage(0);
+	this.setCreativeTab(CreativeTabList.CurrencyTab);
 
-		RegisterItemUtils.RegisterItemName(this, "newbie_gear_bag");
-	}
+	RegisterItemUtils.RegisterItemName(this, "newbie_gear_bag");
+    }
 
-	public static int ITEMS_AMOUNT = 6;
+    public static int ITEMS_AMOUNT = 6;
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
-		if (!worldIn.isRemote) {
-			try {
+	if (!worldIn.isRemote) {
+	    try {
 
-				GearBlueprint weaponPrint = new GearBlueprint(1);
-				weaponPrint.SetSpecificType(new Sword().GUID());
-				weaponPrint.LevelRange = false;
+		GearBlueprint weaponPrint = new GearBlueprint(1);
+		weaponPrint.SetSpecificType(new Sword().GUID());
+		weaponPrint.LevelRange = false;
 
-				GearBlueprint print = new GearBlueprint(1);
-				print.LevelRange = false;
+		GearBlueprint print = new GearBlueprint(1);
+		print.LevelRange = false;
 
-				GearItemData wepData = GearGen.CreateData(weaponPrint);
-				wepData.isSalvagable = false;
+		GearItemData wepData = GearGen.CreateData(weaponPrint);
+		wepData.isSalvagable = false;
 
-				ItemStack weaponStack = GearGen.CreateStack(wepData);
-				playerIn.dropItem(weaponStack, false, true);
+		ItemStack weaponStack = GearGen.CreateStack(wepData);
+		playerIn.dropItem(weaponStack, false, true);
 
-				for (int i = 0; i < ITEMS_AMOUNT; i++) {
+		for (int i = 0; i < ITEMS_AMOUNT; i++) {
 
-					GearItemData data = GearGen.CreateData(print);
-					data.isSalvagable = false;
-					ItemStack stack = GearGen.CreateStack(data);
+		    GearItemData data = GearGen.CreateData(print);
+		    data.isSalvagable = false;
+		    ItemStack stack = GearGen.CreateStack(data);
 
-					playerIn.dropItem(stack, false, true);
-				}
-
-				return new ActionResult<ItemStack>(EnumActionResult.PASS,
-						EmptyOrDecrease(playerIn.getHeldItem(handIn)));
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		    playerIn.dropItem(stack, false, true);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+
+		return new ActionResult<ItemStack>(EnumActionResult.PASS,
+			EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
 	}
+	return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+    }
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemNewbieGearBag());
-	}
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemNewbieGearBag());
+    }
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		tooltip.add("Creates a pack of level one gear.");
-		tooltip.add(TextFormatting.BLUE + "Right click to use");
-		tooltip.add("");
-		tooltip.add(TextFormatting.GREEN + "'Three Furnaces below, five iron wills above,");
-		tooltip.add(TextFormatting.GREEN + "seed in the middle, materialize hope!'");
+	tooltip.add("Creates a pack of level one gear.");
+	tooltip.add(TextFormatting.BLUE + "Right click to use");
+	tooltip.add("");
+	tooltip.add(TextFormatting.GREEN + "'Three Furnaces below, five iron wills above,");
+	tooltip.add(TextFormatting.GREEN + "seed in the middle, materialize hope!'");
 
-	}
+    }
 
 }

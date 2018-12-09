@@ -42,8 +42,6 @@ public class MapGen {
 
 	data = genAffixes(data, rarity);
 
-	stack.setStackDisplayName(rarity.Color() + rarity.Name() + " " + data.name);
-
 	Map.Save(stack, data);
 
 	return stack;

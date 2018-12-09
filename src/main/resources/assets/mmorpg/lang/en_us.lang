@@ -23,6 +23,9 @@ tile.mmorpg:gear_factory_station.name=Gear Craft Station
 tile.mmorpg:salvage_station.name=Gear Salvage Station
 tile.mmorpg:map_device.name=Map Device
 
+# ITEM TOOLTIPS
+mmorpg.tooltip.ore=Precious Ore that can be used in many ways
+
 # MISC ITEMS
 item.mmorpg:player_levelup.name=Player Level Up Token
 item.mmorpg:loot_bag.name=Gear Loot Bag
@@ -31,6 +34,13 @@ item.mmorpg:currency_bag.name=Currency Bag
 item.mmorpg:newbie_gear_bag.name=Newbie Gear Bag
 item.mmorpg:tutorial_book.name=Mine and Slash Tutorial
 item.mmorpg:map_back_portal.name=Map Leave Pearl
+
+item.mmorpg:map/map0.name=Adventure Map
+item.mmorpg:map/map1.name=Adventure Map
+item.mmorpg:map/map2.name=Adventure Map
+item.mmorpg:map/map3.name=Adventure Map
+item.mmorpg:map/map4.name=Adventure Map
+item.mmorpg:map/map5.name=Adventure Map
 
 # REPAIR CAPACITORS
 item.mmorpg:capacitor0.name=Common Capacitor
@@ -102,7 +112,6 @@ mmorpg.prefix.water_shield=Water Shield
 mmorpg.prefix.inner_spirit=Inner Spirit
 
 # WORDS
-
 mmorpg.word.percent=Percent
 mmorpg.word.prefix=Prefix
 mmorpg.word.suffix=Suffix
@@ -115,6 +124,13 @@ mmorpg.word.level=Level
 mmorpg.word.rarity=Rarity
 mmorpg.word.unsalvagable=Unsalvagable
 mmorpg.word.multi=Multi
+mmorpg.word.tier=Tier
+mmorpg.word.bonus_loot_amount=Bonus Loot Amount
+mmorpg.word.minutes=Minutes
+mmorpg.word.player_affixes=Player Affixes
+mmorpg.word.mob_affixes=Mob Affixes
+mmorpg.word.world_type=World Type
+
 
 # UNIQUE ITEM NAMES
 mmorpg.unique.name.braceletnature0=Thorn Bracers
@@ -385,7 +401,7 @@ mmorpg.tooltip.reroll_suffix_numbers=Re-rolls numbers of a suffix
 mmorpg.tooltip.reroll_unique_numbers=Re-rolls unique stat numbers
 
 
-# CHAT MESSAGESs
+# CHAT MESSAGESS
 mmorpg.chat.levelup_success=You have Leveled Up!
 mmorpg.chat.low_weapon_durability=Weapon Durability is Too Low.
 mmorpg.chat.teleport_canceled=Teleport Canceled, Please don't move while teleporting.
@@ -429,5 +445,9 @@ mmorpg.rarity.legendary=Legendary
 mmorpg.rarity.mythical=Mythical
 mmorpg.rarity.unique=Unique
 
+
+# MAPS
+mmorpg.name.map=Adventure Map
+mmorpg.tooltip.put_in_mapdevice=Put in Map Device to Use
 
 

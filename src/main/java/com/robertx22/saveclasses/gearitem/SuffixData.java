@@ -40,7 +40,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 	List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSuffixes());
 	Suffix suffix = (Suffix) RandomUtils.WeightedRandom(list);
 
-	baseAffix = suffix.locName();
+	baseAffix = suffix.GUID();
 
 	RerollNumbers(gear);
 
@@ -69,7 +69,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
 	List<String> list = new ArrayList<String>();
 
-	list.add(CLOC.word("suffix") + ": " + affix.locName());
+	list.add(CLOC.word("suffix") + ": " + CLOC.suffix(affix.GUID()));
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

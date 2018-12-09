@@ -12,6 +12,7 @@ import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.Map;
@@ -48,10 +49,7 @@ public class ItemMap extends Item {
 
 	    ItemRarity rarity = Rarities.Items.get(data.rarity);
 
-	    tooltip.clear();
-
-	    tooltip.add(Rarities.Items.get(data.rarity).Color() + data.name);
-	    tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
+	    tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + +data.level);
 	    tooltip.add("");
 
 	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
@@ -61,25 +59,26 @@ public class ItemMap extends Item {
 	    tooltip.add("");
 
 	    try {
-		tooltip.add(TextFormatting.BLUE + "World Type: " + data.getWorldProvider().Name());
+		tooltip.add(TextFormatting.BLUE + CLOC.word("world_type") + " :" + data.getWorldProvider().Name());
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
 
 	    tooltip.add("");
-	    tooltip.add(TextFormatting.GOLD + "Tier: " + data.tier);
+	    tooltip.add(TextFormatting.GOLD + CLOC.word("tier") + ": " + data.tier);
 
 	    tooltip.add("");
-	    tooltip.add(TextFormatting.GREEN + "Minutes: " + data.minutes);
+	    tooltip.add(TextFormatting.GREEN + CLOC.word("minutes") + ": " + data.minutes);
 
 	    tooltip.add("");
-	    tooltip.add(TextFormatting.YELLOW + "Bonus Loot Amount: " + data.getBonusLootAmount() + "%");
+	    tooltip.add(
+		    TextFormatting.YELLOW + CLOC.word("bonus_loot_amount") + ": " + data.getBonusLootAmount() + "%");
 
 	    tooltip.add("");
-	    tooltip.add(rarity.Color() + "Rarity: " + rarity.Name());
+	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + CLOC.rarityName(rarity));
 
 	    tooltip.add("");
-	    tooltip.add(TextFormatting.BLUE + "Put in a Map Device to Use");
+	    tooltip.add(TextFormatting.BLUE + CLOC.tooltip("put_in_mapdevice"));
 
 	}
 
@@ -95,7 +94,15 @@ public class ItemMap extends Item {
 	    return;
 	}
 
-	tooltip.add(TextFormatting.GREEN + affected.name() + " Affixes:");
+	String str = "";
+
+	if (affected.equals(AffectedEntities.Players)) {
+	    str = CLOC.word("player_affixes");
+	} else if (affected.equals(AffectedEntities.Mobs)) {
+	    str = CLOC.word("mob_affixes");
+	}
+
+	tooltip.add(TextFormatting.GREEN + str);
 
 	for (MapAffixData affix : affixes) {
 

@@ -148,12 +148,12 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	} else {
 
 	    if (prefix != null) {
-		text += prefix.BaseAffix().locName() + " ";
+		text += CLOC.prefix(prefix.BaseAffix().GUID().toLowerCase().replaceAll(" ", "_")) + " ";
 	    }
 	    text += name();
 
 	    if (suffix != null) {
-		text += " " + suffix.BaseAffix().locName() + " ";
+		text += " " + CLOC.suffix(suffix.BaseAffix().GUID().toLowerCase().replaceAll(" ", "_")) + " ";
 	    }
 	}
 	return text;
@@ -249,7 +249,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	}
 
 	ItemRarity rarity = GetRarity();
-	event.getToolTip().add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.Name());
+	event.getToolTip().add(rarity.Color() + CLOC.word("rarity") + ": " + CLOC.rarityName(rarity));
 
 	if (!this.isSalvagable) {
 	    event.getToolTip().add(TextFormatting.RED + CLOC.word("unsalvagable"));

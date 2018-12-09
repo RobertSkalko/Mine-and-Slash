@@ -162,7 +162,6 @@ public class Unit {
 
 	endata.SetMobLevel(data, level, entity);
 	endata.setRarity(RandomUtils.RandomWithMinRarity(entity).Rank());
-	endata.setName(entity);
 
 	CommonStatUtils.addMapAffixes(data, entity, mob, endata);
 	MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));

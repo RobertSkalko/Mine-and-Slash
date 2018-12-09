@@ -175,7 +175,7 @@ public class HealthBarRenderer {
 		GlStateManager.translate(0F, pastTranslate, 0F);
 
 		float s = 0.5F;
-		String name = I18n.format(data.getName());
+		String name = I18n.format(data.getName(entity));
 		if (entity instanceof EntityLiving && ((EntityLiving) entity).hasCustomName())
 		    name = TextFormatting.ITALIC + ((EntityLiving) entity).getCustomNameTag();
 		else if (entity instanceof EntityVillager)
