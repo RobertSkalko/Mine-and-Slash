@@ -41,7 +41,7 @@ public class CLOC {
 
     public static String uniqueName(String str) {
 
-	return base(Ref.MODID + ".unique.name." + str);
+	return base("item." + Ref.MODID + ".unique." + str + ".name");
 
     }
 

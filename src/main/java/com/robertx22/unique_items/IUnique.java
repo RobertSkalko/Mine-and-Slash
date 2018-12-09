@@ -9,11 +9,11 @@ import com.robertx22.customitems.gearitems.bases.BaseArmorItem;
 import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.database.IGUID;
 import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.ITiered;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
-import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import baubles.api.IBauble;
@@ -58,7 +58,11 @@ public interface IUnique extends IWeighted, ITiered, IGUID, IGearItem {
 	    }
 	    IUnique uniq = (IUnique) item;
 
-	    RegisterItemUtils.RegisterItemName(item, "uniques/" + uniq.slot().toLowerCase() + "/" + uniq.GUID());
+	    item.setRegistryName("uniques/" + uniq.slot().toLowerCase() + "/" + uniq.GUID());
+
+	    item.setUnlocalizedName(Ref.MODID + ".unique." + uniq.GUID());// i kinda fked up here
+
+	    // System.out.println(item.getUnlocalizedName());
 
 	    event.getRegistry().register(item);
 	}

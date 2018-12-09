@@ -31,64 +31,68 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class GearItemRegisters {
 
-	private static List<Item> items = new ArrayList<Item>();
+    private static List<Item> items = new ArrayList<Item>();
 
-	public static void register() {
+    public static void register() {
 
-		for (ItemRarity rarity : Rarities.Items) {
+	for (ItemRarity rarity : Rarities.Items) {
 
-			// 1] class 2] rarity hashmap 3] registry name 4] rarity rank
+	    // 1] class 2] rarity hashmap 3] registry name 4] rarity rank
 
-			int rank = rarity.Rank();
+	    int rank = rarity.Rank();
 
-			// weapons
-			regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());
-			regRarities(new ItemHammer(), ItemHammer.Items, "hammer/hammer", rarity.Rank());
-			regRarities(new ItemAxe(), ItemAxe.Items, "axe/axe", rarity.Rank());
-			regRarities(new ItemBow(), ItemBow.Items, "bow/bow", rarity.Rank());
-			regRarities(new ItemStaff(), ItemStaff.Items, "staff/staff", rarity.Rank());
+	    // weapons
+	    regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());
+	    regRarities(new ItemHammer(), ItemHammer.Items, "hammer/hammer", rarity.Rank());
+	    regRarities(new ItemAxe(), ItemAxe.Items, "axe/axe", rarity.Rank());
+	    regRarities(new ItemBow(), ItemBow.Items, "bow/bow", rarity.Rank());
+	    regRarities(new ItemStaff(), ItemStaff.Items, "staff/staff", rarity.Rank());
 
-			// baubles
-			regRarities(new ItemNecklace(), ItemNecklace.Items, "necklace/necklace", rarity.Rank());
-			regRarities(new ItemBracelet(), ItemBracelet.Items, "bracelet/bracelet", rarity.Rank());
-			regRarities(new ItemRing(), ItemRing.Items, "ring/ring", rarity.Rank());
-			regRarities(new ItemCharm(), ItemCharm.Items, "charm/charm", rarity.Rank());
+	    // baubles
+	    regRarities(new ItemNecklace(), ItemNecklace.Items, "necklace/necklace", rarity.Rank());
+	    regRarities(new ItemBracelet(), ItemBracelet.Items, "bracelet/bracelet", rarity.Rank());
+	    regRarities(new ItemRing(), ItemRing.Items, "ring/ring", rarity.Rank());
+	    regRarities(new ItemCharm(), ItemCharm.Items, "charm/charm", rarity.Rank());
 
-			// armors
-			regRarities(new ItemBoots(rank), ItemBoots.Items, "boots/boots", rarity.Rank());
-			regRarities(new ItemChest(rank), ItemChest.Items, "chest/chest", rarity.Rank());
-			regRarities(new ItemHelmet(rank), ItemHelmet.Items, "helmet/helmet", rarity.Rank());
-			regRarities(new ItemPants(rank), ItemPants.Items, "pants/pants", rarity.Rank());
+	    // armors
+	    regRarities(new ItemBoots(rank), ItemBoots.Items, "boots/boots", rarity.Rank());
+	    regRarities(new ItemChest(rank), ItemChest.Items, "chest/chest", rarity.Rank());
+	    regRarities(new ItemHelmet(rank), ItemHelmet.Items, "helmet/helmet", rarity.Rank());
+	    regRarities(new ItemPants(rank), ItemPants.Items, "pants/pants", rarity.Rank());
 
-			// misc
-			regRarities(new ItemMap(), ItemMap.Items, "map/map", rarity.Rank()); // not gearitem but yeah
-
-		}
+	    // misc
+	    regRarities(new ItemMap(), ItemMap.Items, "map/map", rarity.Rank()); // not gearitem but yeah
 
 	}
 
-	private static void regRarities(Item item, HashMap<Integer, Item> map, String name, int rarity) {
+    }
 
-		String reg = name + rarity;
-		item.setRegistryName(reg).setUnlocalizedName(reg);
-		map.put(rarity, item);
-		items.add(item);
+    private static void regRarities(Item item, HashMap<Integer, Item> map, String name, int rarity) {
 
+	String reg = name + rarity;
+	item.setRegistryName(reg);
+	item.setUnlocalizedName(item.getRegistryName().toString());
+	map.put(rarity, item);
+	items.add(item);
+
+	// System.out.println(item.getRegistryName());
+	// System.out.println(item.getUnlocalizedName());
+
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	for (Item item : items) {
+	    event.getRegistry().register(item);
 	}
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for (Item item : items) {
-			event.getRegistry().register(item);
-		}
+    }
 
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	for (Item item : items) {
+	    RegisterUtils.registerRender(item);
 	}
-
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		for (Item item : items) {
-			RegisterUtils.registerRender(item);
-		}
-	}
+    }
 
 }

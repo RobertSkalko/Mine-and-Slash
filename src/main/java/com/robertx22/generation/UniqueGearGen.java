@@ -64,8 +64,6 @@ public class UniqueGearGen {
 
 	    Gear.Save(stack, data);
 
-	    stack.setStackDisplayName(data.GetDisplayName());
-
 	    return stack;
 	}
 	return ItemStack.EMPTY;
@@ -76,8 +74,6 @@ public class UniqueGearGen {
 	ItemStack stack = new ItemStack(data.getItem());
 
 	Gear.Save(stack, data);
-
-	stack.setStackDisplayName(data.GetDisplayName());
 
 	return stack;
 
