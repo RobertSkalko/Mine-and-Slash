@@ -73,10 +73,11 @@ public class Suffixes {
 	    HashMap<String, Suffix> map = new HashMap<String, Suffix>();
 
 	    for (Suffix s : list) {
-		map.put(s.Name(), s);
+		map.put(s.locName(), s);
 	    }
 	    all = map;
 	}
+
 	return all;
     }
 

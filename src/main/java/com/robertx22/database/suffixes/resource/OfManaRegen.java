@@ -9,17 +9,17 @@ import com.robertx22.stats.StatMod;
 
 public class OfManaRegen extends Suffix {
 
-	public OfManaRegen() {
-	}
+    public OfManaRegen() {
+    }
 
-	@Override
-	public String Name() {
-		return "Of Mana Regen";
-	}
+    @Override
+    public String GUID() {
+	return "Of Mana Regen";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new ManaRegenPercent());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new ManaRegenPercent());
+    }
 
 }

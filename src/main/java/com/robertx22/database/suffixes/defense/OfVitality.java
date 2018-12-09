@@ -9,19 +9,19 @@ import com.robertx22.stats.StatMod;
 
 public class OfVitality extends Suffix {
 
-	public OfVitality() {
-	}
+    public OfVitality() {
+    }
 
-	@Override
-	public String Name() {
-		return "Of Vitality";
-	}
+    @Override
+    public String GUID() {
+	return "Of Vitality";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new HealthPercent());
+	return Arrays.asList(new HealthPercent());
 
-	}
+    }
 
 }

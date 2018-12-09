@@ -12,6 +12,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -39,7 +40,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 	List<IWeighted> list = ListUtils.CollectionToList(gear.GetBaseGearType().PossibleSuffixes());
 	Suffix suffix = (Suffix) RandomUtils.WeightedRandom(list);
 
-	baseAffix = suffix.Name();
+	baseAffix = suffix.locName();
 
 	RerollNumbers(gear);
 
@@ -68,7 +69,7 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
 	List<String> list = new ArrayList<String>();
 
-	list.add("Suffix: " + affix.Name());
+	list.add(CLOC.word("suffix") + ": " + affix.locName());
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

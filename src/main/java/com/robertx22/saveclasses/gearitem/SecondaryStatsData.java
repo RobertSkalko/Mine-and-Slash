@@ -9,6 +9,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -68,7 +69,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 	List<String> list = new ArrayList<String>();
 
-	list.add("Secondary Stats: ");
+	list.add(CLOC.word("secondary_stats") + ":");
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

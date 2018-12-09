@@ -11,7 +11,7 @@ import com.robertx22.stats.StatMod;
 public class OfFirePene extends Suffix {
 
     @Override
-    public String Name() {
+    public String GUID() {
 	return "Of Firestorms";
     }
 

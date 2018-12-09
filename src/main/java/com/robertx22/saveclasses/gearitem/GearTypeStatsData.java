@@ -11,6 +11,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -53,7 +54,7 @@ public class GearTypeStatsData implements ITooltipList, IRerollable, IStatsConta
 
 	List<String> list = new ArrayList<String>();
 
-	list.add(TextFormatting.GREEN + getGearType().Name() + " Stats: ");
+	list.add(TextFormatting.GREEN + getGearType().Name() + CLOC.word("stats") + ": ");
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

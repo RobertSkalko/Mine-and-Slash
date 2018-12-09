@@ -1,29 +1,26 @@
 package com.robertx22.customitems.currency;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect {
+
+    @Override
+    public String GUID() {
+	return "add_prefix";
+    }
 
     private static final String name = "add_prefix";
 
@@ -44,15 +41,6 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect {
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event) {
 	RegisterUtils.registerRender(ITEM);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-	tooltip.add("Use on an item to add a Prefix");
-
-	this.TooltipQuote(tooltip, "Unchart your potential.");
-
     }
 
     @Override
@@ -84,4 +72,5 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect {
     public int Weight() {
 	return this.LegendaryWeight;
     }
+
 }

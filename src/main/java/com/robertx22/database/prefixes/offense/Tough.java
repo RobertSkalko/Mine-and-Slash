@@ -9,17 +9,17 @@ import com.robertx22.stats.StatMod;
 
 public class Tough extends Prefix {
 
-	public Tough() {
-	}
+    public Tough() {
+    }
 
-	@Override
-	public String Name() {
-		return "Tough";
-	}
+    @Override
+    public String GUID() {
+	return "Tough";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new PhysicalDamagePercent());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new PhysicalDamagePercent());
+    }
 
 }

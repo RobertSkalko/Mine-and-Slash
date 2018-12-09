@@ -9,18 +9,18 @@ import com.robertx22.stats.StatMod;
 
 public class Flaming extends Prefix {
 
-	public Flaming() {
-	}
+    public Flaming() {
+    }
 
-	@Override
-	public String Name() {
-		return "Flaming";
-	}
+    @Override
+    public String GUID() {
+	return "Flaming";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new SpellFireDamagePercent());
-	}
+	return Arrays.asList(new SpellFireDamagePercent());
+    }
 
 }

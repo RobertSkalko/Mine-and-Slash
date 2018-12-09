@@ -11,7 +11,7 @@ import com.robertx22.stats.StatMod;
 public class DeepMind extends Prefix {
 
     @Override
-    public String Name() {
+    public String GUID() {
 	return "Deep Mind";
     }
 

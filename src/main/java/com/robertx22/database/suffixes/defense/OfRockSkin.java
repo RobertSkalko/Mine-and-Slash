@@ -9,19 +9,19 @@ import com.robertx22.stats.StatMod;
 
 public class OfRockSkin extends Suffix {
 
-	public OfRockSkin() {
-	}
+    public OfRockSkin() {
+    }
 
-	@Override
-	public String Name() {
-		return "Of Rock Skin";
-	}
+    @Override
+    public String GUID() {
+	return "Of Rock Skin";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new ArmorPercent());
+	return Arrays.asList(new ArmorPercent());
 
-	}
+    }
 
 }

@@ -9,17 +9,17 @@ import com.robertx22.stats.StatMod;
 
 public class Evasive extends Prefix {
 
-	public Evasive() {
-	}
+    public Evasive() {
+    }
 
-	@Override
-	public String Name() {
-		return "Evasive";
-	}
+    @Override
+    public String GUID() {
+	return "Evasive";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new DodgeFlat());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new DodgeFlat());
+    }
 
 }

@@ -9,17 +9,17 @@ import com.robertx22.stats.StatMod;
 
 public class Thundering extends Prefix {
 
-	public Thundering() {
-	}
+    public Thundering() {
+    }
 
-	@Override
-	public String Name() {
-		return "Thundering";
-	}
+    @Override
+    public String GUID() {
+	return "Thundering";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new SpellThunderDamagePercent());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new SpellThunderDamagePercent());
+    }
 
 }

@@ -8,21 +8,18 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public abstract class BaseAffix implements IWeighted, IGUID {
 
-	public BaseAffix() {
-	}
+    public BaseAffix() {
+    }
 
-	public abstract String Name();
+    public abstract String GUID();
 
-	@Override
-	public String GUID() {
-		return Name();
-	}
+    public abstract String locName();
 
-	@Override
-	public int Weight() {
-		return IWeighted.UncommonWeight;
-	}
+    @Override
+    public int Weight() {
+	return IWeighted.UncommonWeight;
+    }
 
-	public abstract List<StatMod> StatMods();
+    public abstract List<StatMod> StatMods();
 
 }

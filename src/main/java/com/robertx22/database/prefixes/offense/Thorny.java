@@ -9,17 +9,17 @@ import com.robertx22.stats.StatMod;
 
 public class Thorny extends Prefix {
 
-	public Thorny() {
-	}
+    public Thorny() {
+    }
 
-	@Override
-	public String Name() {
-		return "Thorny";
-	}
+    @Override
+    public String GUID() {
+	return "Thorny";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new SpellNatureDamagePercent());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new SpellNatureDamagePercent());
+    }
 
 }

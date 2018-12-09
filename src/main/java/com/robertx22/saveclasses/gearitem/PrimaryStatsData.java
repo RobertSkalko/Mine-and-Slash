@@ -8,6 +8,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -50,7 +51,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
 	List<String> list = new ArrayList<String>();
 
-	list.add("Primary Stats: ");
+	list.add(CLOC.word("primary_stats") + ":");
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

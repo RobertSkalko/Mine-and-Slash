@@ -108,9 +108,10 @@ public class Prefixes {
 	    HashMap<String, Prefix> map = new HashMap<String, Prefix>();
 
 	    for (Prefix s : list) {
-		map.put(s.Name(), s);
+		map.put(s.locName(), s);
 	    }
 	    all = map;
+
 	}
 
 	return all;

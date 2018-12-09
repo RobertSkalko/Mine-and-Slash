@@ -9,18 +9,18 @@ import com.robertx22.stats.StatMod;
 
 public class LightningImbued extends Prefix {
 
-	public LightningImbued() {
-	}
+    public LightningImbued() {
+    }
 
-	@Override
-	public String Name() {
-		return "Lightning Imbued";
-	}
+    @Override
+    public String GUID() {
+	return "Lightning Imbued";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new ThunderSpellToAttackFlat());
-	}
+	return Arrays.asList(new ThunderSpellToAttackFlat());
+    }
 
 }

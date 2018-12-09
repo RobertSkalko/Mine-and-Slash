@@ -9,6 +9,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.unique_items.IUnique;
 
 import info.loenwind.autosave.annotations.Storable;
@@ -52,7 +53,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
 	List<String> list = new ArrayList<String>();
 
-	list.add("Unique Stats: ");
+	list.add(CLOC.word("unique_stats") + ":");
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

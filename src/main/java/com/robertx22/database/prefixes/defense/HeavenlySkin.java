@@ -10,24 +10,24 @@ import com.robertx22.stats.StatMod;
 
 public class HeavenlySkin extends Prefix {
 
-	public HeavenlySkin() {
-	}
+    public HeavenlySkin() {
+    }
 
-	@Override
-	public String Name() {
-		return "Heavenly Skin";
-	}
+    @Override
+    public String GUID() {
+	return "Heavenly Skin";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new ArmorPercent(), new HealthPercent());
+	return Arrays.asList(new ArmorPercent(), new HealthPercent());
 
-	}
+    }
 
-	@Override
-	public int Weight() {
-		return this.EpicWeight;
-	}
+    @Override
+    public int Weight() {
+	return this.EpicWeight;
+    }
 
 }

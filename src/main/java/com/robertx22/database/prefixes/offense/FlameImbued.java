@@ -9,18 +9,18 @@ import com.robertx22.stats.StatMod;
 
 public class FlameImbued extends Prefix {
 
-	public FlameImbued() {
-	}
+    public FlameImbued() {
+    }
 
-	@Override
-	public String Name() {
-		return "Flame Imbued";
-	}
+    @Override
+    public String GUID() {
+	return "Flame Imbued";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new FireSpellToAttackFlat());
-	}
+	return Arrays.asList(new FireSpellToAttackFlat());
+    }
 
 }

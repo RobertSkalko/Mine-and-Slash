@@ -1,34 +1,30 @@
 package com.robertx22.customitems.currency;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.generation.UniqueGearGen;
 import com.robertx22.generation.blueprints.UniqueBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect {
 
     private static final String name = "create_new_unique";
+
+    @Override
+    public String GUID() {
+	return "create_new_unique";
+    }
 
     @GameRegistry.ObjectHolder(Ref.MODID + ":create_new_unique")
     public static final Item ITEM = null;
@@ -47,17 +43,6 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event) {
 	RegisterUtils.registerRender(ITEM);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-	tooltip.add("Transforms a Unique item into another Unique");
-	tooltip.add("item of the same tier.");
-
-	tooltip.add(CLOC.tooltip("test"));
-
-	this.TooltipQuote(tooltip, "Don't want it? Transform it!");
     }
 
     @Override

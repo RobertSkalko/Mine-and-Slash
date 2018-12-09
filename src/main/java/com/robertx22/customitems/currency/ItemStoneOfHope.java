@@ -1,9 +1,5 @@
 package com.robertx22.customitems.currency;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
@@ -12,20 +8,20 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect {
+    @Override
+    public String GUID() {
+	return "stone_of_hope";
+    }
 
     private static final String name = "stone_of_hope";
 
@@ -46,14 +42,6 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event) {
 	RegisterUtils.registerRender(ITEM);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-	tooltip.add("Transforms any rarity item into a higher rarity");
-
-	this.TooltipQuote(tooltip, "When there is hope, there is a way.");
     }
 
     @Override

@@ -9,19 +9,19 @@ import com.robertx22.stats.StatMod;
 
 public class OfCriticalDamage extends Suffix {
 
-	public OfCriticalDamage() {
-	}
+    public OfCriticalDamage() {
+    }
 
-	@Override
-	public String Name() {
-		return "Of Critical Damage";
-	}
+    @Override
+    public String GUID() {
+	return "Of Critical Damage";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new CriticalDamageFlat());
+	return Arrays.asList(new CriticalDamageFlat());
 
-	}
+    }
 
 }

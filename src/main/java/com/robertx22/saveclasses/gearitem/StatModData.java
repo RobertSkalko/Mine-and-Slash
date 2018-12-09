@@ -151,7 +151,7 @@ public class StatModData implements ITooltipString {
 	    } else if (mod.Type() == StatTypes.Percent) {
 		text += "%";
 	    } else {
-		text += "% Multi";
+		text += "% " + CLOC.word("multi");
 	    }
 
 	    if (GuiScreen.isShiftKeyDown() && IsNotSet) {

@@ -11,7 +11,7 @@ import com.robertx22.stats.StatMod;
 public class PrefixFireRes extends BaseEleResPrefix {
 
     @Override
-    public String Name() {
+    public String GUID() {
 	return "Fire Shield";
     }
 

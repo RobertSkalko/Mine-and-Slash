@@ -9,18 +9,18 @@ import com.robertx22.stats.StatMod;
 
 public class FrostImbued extends Prefix {
 
-	public FrostImbued() {
-	}
+    public FrostImbued() {
+    }
 
-	@Override
-	public String Name() {
-		return "Frost Imbued";
-	}
+    @Override
+    public String GUID() {
+	return "Frost Imbued";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new WaterSpellToAttackFlat());
-	}
+	return Arrays.asList(new WaterSpellToAttackFlat());
+    }
 
 }

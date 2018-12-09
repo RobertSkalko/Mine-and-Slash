@@ -10,22 +10,22 @@ import com.robertx22.stats.StatMod;
 
 public class OfTheSage extends Suffix {
 
-	public OfTheSage() {
-	}
+    public OfTheSage() {
+    }
 
-	@Override
-	public String Name() {
-		return "Of The Sage";
-	}
+    @Override
+    public String GUID() {
+	return "Of The Sage";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new ManaRegenPercent(), new ManaRegenFlat());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new ManaRegenPercent(), new ManaRegenFlat());
+    }
 
-	@Override
-	public int Weight() {
-		return this.EpicWeight;
-	}
+    @Override
+    public int Weight() {
+	return this.EpicWeight;
+    }
 
 }

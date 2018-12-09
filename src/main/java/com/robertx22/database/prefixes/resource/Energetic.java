@@ -9,17 +9,17 @@ import com.robertx22.stats.StatMod;
 
 public class Energetic extends Prefix {
 
-	public Energetic() {
-	}
+    public Energetic() {
+    }
 
-	@Override
-	public String Name() {
-		return "Energetic";
-	}
+    @Override
+    public String GUID() {
+	return "Energetic";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new EnergyRegenPercent());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new EnergyRegenPercent());
+    }
 
 }

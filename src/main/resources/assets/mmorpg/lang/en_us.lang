@@ -56,9 +56,65 @@ item.mmorpg:reroll_prefix_numbers.name=§cOrb Of Prefix Blessing
 item.mmorpg:reroll_unique_numbers.name=§cOrb of Unique Blessing
 item.mmorpg:create_new_unique.name=§cGem Of Unique Heaven
 
+
+# SUFFIXES
+mmorpg.suffix.of_critical_unity=Of Critical Unity
+mmorpg.suffix.of_element_resist=Of Element Resist
+mmorpg.suffix.of_firestorms=Of Firestorms
+mmorpg.suffix.of_immortality=Of Immortality
+mmorpg.suffix.of_icestorms=Of Icestorms
+mmorpg.suffix.of_critical_hits=Of Critical Hits
+mmorpg.suffix.of_mana_regen=Of Mana Regen
+mmorpg.suffix.of_earthquakes=Of Earthquakes
+mmorpg.suffix.of_the_sage=Of The Sage
+mmorpg.suffix.of_thunderstorms=Of Thunderstorms
+mmorpg.suffix.of_vitality=Of Vitality
+mmorpg.suffix.of_rock_skin=Of Rock Skin
+mmorpg.suffix.of_critical_damage=Of Critical Damage
+
+# PREFIXES
+mmorpg.prefix.flame_imbued=Flame Imbued
+mmorpg.prefix.lightning_imbued=Lightning Imbued
+mmorpg.prefix.evasive=Evasive
+mmorpg.prefix.thorny=Thorny
+mmorpg.prefix.thirst_of_flame=Thirst Of Flame
+mmorpg.prefix.tough=Tough
+mmorpg.prefix.heavenly_skin=Heavenly Skin
+mmorpg.prefix.nature_shield=Nature Shield
+mmorpg.prefix.energetic=Energetic
+mmorpg.prefix.poison_imbued=Poison Imbued
+mmorpg.prefix.flaming=Flaming
+mmorpg.prefix.hardened=Hardened
+mmorpg.prefix.deep_mind=Deep Mind
+mmorpg.prefix.thirst_of_frost=Thirst Of Frost
+mmorpg.prefix.fire_shield=Fire Shield
+mmorpg.prefix.brave_heart=Brave Heart
+mmorpg.prefix.heavenly_strikes=Heavenly Strikes
+mmorpg.prefix.frost_imbued=Frost Imbued
+mmorpg.prefix.thunder_shield=Thunder Shield
+mmorpg.prefix.thirst_of_acid=Thirst Of Acid
+mmorpg.prefix.hard_hitting=Hard Hitting
+mmorpg.prefix.life_stealing=Life Stealing
+mmorpg.prefix.frosty=Frosty
+mmorpg.prefix.thundering=Thundering
+mmorpg.prefix.thirst_of_lightning=Thirst Of Lightning
+mmorpg.prefix.water_shield=Water Shield
+mmorpg.prefix.inner_spirit=Inner Spirit
+
 # WORDS
 
 mmorpg.word.percent=Percent
+mmorpg.word.prefix=Prefix
+mmorpg.word.suffix=Suffix
+mmorpg.word.stats=Stats
+mmorpg.word.primary_stats=Primary Stats
+mmorpg.word.secondary_stats=Secondary Stats
+mmorpg.word.chaos_stats=Chaos Stats
+mmorpg.word.unique_stats=Unique Stats
+mmorpg.word.level=Level
+mmorpg.word.rarity=Rarity
+mmorpg.word.unsalvagable=Unsalvagable
+mmorpg.word.multi=Multi
 
 # UNIQUE ITEM NAMES
 mmorpg.unique.name.braceletnature0=Thorn Bracers
@@ -295,6 +351,39 @@ mmorpg.stat.nature_thunder_transfer=Nature to Thunder Transfer
 mmorpg.stat.nature_fire_transfer=Nature to Fire Transfer
 
 # ITEM TOOLTIPS
+
+# CURRENCY ITEM LORE
+mmorpg.lore.add_prefix=Unchart your potential.
+mmorpg.lore.create_new_unique=Don't want it? Transform it!
+mmorpg.lore.add_secondary_stat=More power is always good, right?
+mmorpg.lore.add_suffix=And soar to the skies.
+mmorpg.lore.chaos_orb=Do not gamble what you are not willing to lose.
+mmorpg.lore.item_levelup=Who said your sword can't level with you?
+mmorpg.lore.number_reroll=Hopefully works better than the last time.
+mmorpg.lore.orb_of_transmutation=Turn trash into treasure!
+mmorpg.lore.randomize_prefix=There is always a better choice
+mmorpg.lore.randomize_suffix=There is always a better choice
+mmorpg.lore.stone_of_hope=When there is hope, there is a way.
+mmorpg.lore.reroll_prefix_numbers=I command you to change!
+mmorpg.lore.reroll_suffix_numbers=I command you to change!
+mmorpg.lore.reroll_unique_numbers=Anything can change.
+
+# CURRENCY ITEM TOOLTIPS
+mmorpg.tooltip.add_prefix=Add a prefix
+mmorpg.tooltip.create_new_unique=Transform unique (same tier)
+mmorpg.tooltip.add_secondary_stat=Add another secondary stat
+mmorpg.tooltip.add_suffix=Add a suffix
+mmorpg.tooltip.chaos_orb=Permently adds a Chaos stat
+mmorpg.tooltip.item_levelup=Increases item level
+mmorpg.tooltip.number_reroll=Re-rolls all numbers on a gear
+mmorpg.tooltip.orb_of_transmutation=Transform Common Item
+mmorpg.tooltip.randomize_prefix=Re-rolls prefix
+mmorpg.tooltip.randomize_suffix=Re-rolls suffix
+mmorpg.tooltip.stone_of_hope=Transform any rarity gear into higher rarity
+mmorpg.tooltip.reroll_prefix_numbers=Re-rolls numbers of a prefix
+mmorpg.tooltip.reroll_suffix_numbers=Re-rolls numbers of a suffix
+mmorpg.tooltip.reroll_unique_numbers=Re-rolls unique stat numbers
+
 
 # CHAT MESSAGESs
 mmorpg.chat.levelup_success=You have Leveled Up!

@@ -12,25 +12,25 @@ import com.robertx22.stats.StatMod;
 
 public class OfElementResist extends Suffix {
 
-	public OfElementResist() {
-	}
+    public OfElementResist() {
+    }
 
-	@Override
-	public String Name() {
-		return "Of Element Resist";
-	}
+    @Override
+    public String GUID() {
+	return "Of Element Resist";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new FireResistFlat(), new WaterResistFlat(), new NatureResistFlat(),
-				new ThunderResistFlat());
+	return Arrays.asList(new FireResistFlat(), new WaterResistFlat(), new NatureResistFlat(),
+		new ThunderResistFlat());
 
-	}
+    }
 
-	@Override
-	public int Weight() {
-		return this.EpicWeight;
-	}
+    @Override
+    public int Weight() {
+	return this.EpicWeight;
+    }
 
 }

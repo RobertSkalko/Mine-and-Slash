@@ -10,23 +10,23 @@ import com.robertx22.stats.StatMod;
 
 public class OfImmortality extends Suffix {
 
-	public OfImmortality() {
-	}
+    public OfImmortality() {
+    }
 
-	@Override
-	public String Name() {
-		return "Of Immortality";
-	}
+    @Override
+    public String GUID() {
+	return "Of Immortality";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new HealthPercent(), new ArmorPercent());
+	return Arrays.asList(new HealthPercent(), new ArmorPercent());
 
-	}
+    }
 
-	@Override
-	public int Weight() {
-		return this.EpicWeight;
-	}
+    @Override
+    public int Weight() {
+	return this.EpicWeight;
+    }
 }

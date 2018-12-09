@@ -9,18 +9,18 @@ import com.robertx22.stats.StatMod;
 
 public class Frosty extends Prefix {
 
-	public Frosty() {
-	}
+    public Frosty() {
+    }
 
-	@Override
-	public String Name() {
-		return "Frosty";
-	}
+    @Override
+    public String GUID() {
+	return "Frosty";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new SpellWaterDamagePercent());
-	}
+	return Arrays.asList(new SpellWaterDamagePercent());
+    }
 
 }

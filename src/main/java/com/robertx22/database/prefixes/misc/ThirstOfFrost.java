@@ -10,18 +10,18 @@ import com.robertx22.stats.StatMod;
 
 public class ThirstOfFrost extends Prefix {
 
-	@Override
-	public String Name() {
-		return "Thirst Of Frost";
-	}
+    @Override
+    public String GUID() {
+	return "Thirst Of Frost";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new LifestealFlat(), new SpellWaterDamagePercent());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new LifestealFlat(), new SpellWaterDamagePercent());
+    }
 
-	@Override
-	public int Weight() {
-		return this.RareWeight;
-	}
+    @Override
+    public int Weight() {
+	return this.RareWeight;
+    }
 }

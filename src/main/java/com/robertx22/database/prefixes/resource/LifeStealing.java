@@ -9,18 +9,18 @@ import com.robertx22.stats.StatMod;
 
 public class LifeStealing extends Prefix {
 
-	public LifeStealing() {
-	}
+    public LifeStealing() {
+    }
 
-	@Override
-	public String Name() {
-		return "Life Stealing";
-	}
+    @Override
+    public String GUID() {
+	return "Life Stealing";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new LifestealPercent());
-	}
+	return Arrays.asList(new LifestealPercent());
+    }
 
 }

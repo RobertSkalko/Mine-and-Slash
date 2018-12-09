@@ -9,19 +9,19 @@ import com.robertx22.stats.StatMod;
 
 public class HardHitting extends Prefix {
 
-	public HardHitting() {
-	}
+    public HardHitting() {
+    }
 
-	@Override
-	public String Name() {
-		return "Hard Hitting";
-	}
+    @Override
+    public String GUID() {
+	return "Hard Hitting";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new CriticalDamageFlat());
+	return Arrays.asList(new CriticalDamageFlat());
 
-	}
+    }
 
 }

@@ -9,19 +9,19 @@ import com.robertx22.stats.StatMod;
 
 public class Hardened extends Prefix {
 
-	public Hardened() {
-	}
+    public Hardened() {
+    }
 
-	@Override
-	public String Name() {
-		return "Hardened";
-	}
+    @Override
+    public String GUID() {
+	return "Hardened";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
+    @Override
+    public List<StatMod> StatMods() {
 
-		return Arrays.asList(new ArmorPercent());
+	return Arrays.asList(new ArmorPercent());
 
-	}
+    }
 
 }

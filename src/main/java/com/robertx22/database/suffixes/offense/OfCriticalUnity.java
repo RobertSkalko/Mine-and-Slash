@@ -10,22 +10,22 @@ import com.robertx22.stats.StatMod;
 
 public class OfCriticalUnity extends Suffix {
 
-	public OfCriticalUnity() {
-	}
+    public OfCriticalUnity() {
+    }
 
-	@Override
-	public String Name() {
-		return "Of Critical Unity";
-	}
+    @Override
+    public String GUID() {
+	return "Of Critical Unity";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat());
+    }
 
-	@Override
-	public int Weight() {
-		return this.EpicWeight;
-	}
+    @Override
+    public int Weight() {
+	return this.EpicWeight;
+    }
 
 }

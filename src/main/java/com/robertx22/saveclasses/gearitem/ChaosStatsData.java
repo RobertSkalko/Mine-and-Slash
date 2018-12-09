@@ -8,6 +8,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -27,7 +28,7 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 	List<String> list = new ArrayList<String>();
 
-	list.add("Chaos Stats: ");
+	list.add(CLOC.word("chaos_stats"));
 
 	for (StatModData data : this.GetAllStats(gear.level)) {
 

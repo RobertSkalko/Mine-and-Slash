@@ -11,7 +11,7 @@ import com.robertx22.stats.StatMod;
 public class PrefixWaterRes extends BaseEleResPrefix {
 
     @Override
-    public String Name() {
+    public String GUID() {
 	return "Water Shield";
     }
 

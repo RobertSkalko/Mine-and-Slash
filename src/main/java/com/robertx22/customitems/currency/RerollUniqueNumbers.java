@@ -1,28 +1,24 @@
 package com.robertx22.customitems.currency;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEffect {
+    @Override
+    public String GUID() {
+	return "reroll_unique_numbers";
+    }
 
     private static final String name = "reroll_unique_numbers";
 
@@ -43,15 +39,6 @@ public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEf
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event) {
 	RegisterUtils.registerRender(ITEM);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-	tooltip.add("Use on an item to re-roll unique stat numbers");
-
-	this.TooltipQuote(tooltip, "Anything can change.");
-
     }
 
     @Override

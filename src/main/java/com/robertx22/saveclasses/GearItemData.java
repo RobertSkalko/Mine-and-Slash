@@ -25,6 +25,7 @@ import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -131,12 +132,12 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	} else {
 
 	    if (prefix != null) {
-		text += prefix.BaseAffix().Name() + " ";
+		text += prefix.BaseAffix().locName() + " ";
 	    }
 	    text += name;
 
 	    if (suffix != null) {
-		text += " " + suffix.BaseAffix().Name() + " ";
+		text += " " + suffix.BaseAffix().locName() + " ";
 	    }
 	}
 	return text;
@@ -193,7 +194,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	event.getToolTip().clear();
 
 	event.getToolTip().add(GetDisplayName());
-	event.getToolTip().add(TextFormatting.YELLOW + "Level: " + level);
+	event.getToolTip().add(TextFormatting.YELLOW + CLOC.word("level") + ": " + level);
 
 	event.getToolTip().add("");
 
@@ -232,10 +233,10 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	}
 
 	ItemRarity rarity = GetRarity();
-	event.getToolTip().add(rarity.Color() + "Rarity: " + rarity.Name());
+	event.getToolTip().add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.Name());
 
 	if (!this.isSalvagable) {
-	    event.getToolTip().add(TextFormatting.RED + "Unsalvagable");
+	    event.getToolTip().add(TextFormatting.RED + CLOC.word("unsalvagable"));
 	}
 
     }

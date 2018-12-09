@@ -10,18 +10,18 @@ import com.robertx22.stats.StatMod;
 
 public class ThirstOfAcid extends Prefix {
 
-	@Override
-	public String Name() {
-		return "Thirst Of Acid";
-	}
+    @Override
+    public String GUID() {
+	return "Thirst Of Acid";
+    }
 
-	@Override
-	public List<StatMod> StatMods() {
-		return Arrays.asList(new LifestealFlat(), new SpellNatureDamagePercent());
-	}
+    @Override
+    public List<StatMod> StatMods() {
+	return Arrays.asList(new LifestealFlat(), new SpellNatureDamagePercent());
+    }
 
-	@Override
-	public int Weight() {
-		return this.RareWeight;
-	}
+    @Override
+    public int Weight() {
+	return this.RareWeight;
+    }
 }
