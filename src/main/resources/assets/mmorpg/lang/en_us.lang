@@ -121,6 +121,22 @@ item.mmorpg:newbie_gear_bag.name=Newbie Gear Bag
 item.mmorpg:tutorial_book.name=Mine and Slash Tutorial
 item.mmorpg:map_back_portal.name=Map Leave Pearl
 
+# SPELL ITEMS
+item.mmorpg:spell_acidbolt.name=§cAcid Bolt
+item.mmorpg:spell_firebolt.name=§cFire Bolt
+item.mmorpg:spell_frostbolt.name=§cFrost Bolt
+item.mmorpg:spell_thunderbolt.name=§cThunder Bolt
+
+item.mmorpg:spell_acidexplosion.name=§cAcid Explosion
+item.mmorpg:spell_frostexplosion.name=§cFrost Explosion
+item.mmorpg:spell_flameexplosion.name=§cFlame Explosion
+item.mmorpg:spell_lightningexplosion.name=§cLightning Explosion
+item.mmorpg:spell_instantheal.name=§cInstant Heal
+
+# SPELL TOOLTIPS
+mmorpg.tooltip.aoe_spell_explosion=Casts an elemental projectile that does AOE dmg on hit.
+mmorpg.tooltip.single_target_spell_bolt=Casts a Single Target elemental projectile.
+mmorpg.tooltip.spell_instant_heal=Instantly Heals the caster.
 
 # REPAIR CAPACITORS
 item.mmorpg:capacitor0.name=Common Capacitor
@@ -210,6 +226,10 @@ mmorpg.word.minutes=Minutes
 mmorpg.word.player_affixes=Player Affixes
 mmorpg.word.mob_affixes=Mob Affixes
 mmorpg.word.world_type=World Type
+mmorpg.word.mana_cost=Mana Cost
+mmorpg.word.base_value=Base Value
+mmorpg.word.scaling_value=Scaling Value
+mmorpg.word.by=By
 
 
 # UNIQUE ITEM NAMES

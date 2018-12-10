@@ -16,37 +16,37 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @EventBusSubscriber
 public class ItemAcidExplosion extends BaseSpellItem {
 
-	public ItemAcidExplosion() {
-		super();
-	}
+    public ItemAcidExplosion() {
+	super();
+    }
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":spell_acidexplosion")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":spell_acidexplosion")
+    public static final Item ITEM = null;
 
-	@Override
-	public String Name() {
-		return "Acid Explosion";
+    @Override
+    public String Name() {
+	return "Acid Explosion";
 
-	}
+    }
 
-	@Override
-	public BaseSpell Spell() {
-		return new SpellAcidExplosion();
-	}
+    @Override
+    public BaseSpell Spell() {
+	return new SpellAcidExplosion();
+    }
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemAcidExplosion());
-	}
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemAcidExplosion());
+    }
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
 
-	@Override
-	public String GUID() {
-		return Ref.MODID + ":spell_acidexplosion";
-	}
+    @Override
+    public String GUID() {
+	return Ref.MODID + ":spell_acidexplosion";
+    }
 
 }

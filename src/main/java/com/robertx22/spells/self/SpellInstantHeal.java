@@ -5,6 +5,7 @@ import com.robertx22.database.stat_types.resources.Health;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.EffectCalculation;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -58,7 +59,7 @@ public class SpellInstantHeal extends BaseSpell {
 
     @Override
     public String GetDescription(SpellItemData data) {
-	return "Instantly Heals the caster";
+	return CLOC.tooltip("spell_instant_heal");
     }
 
     @Override

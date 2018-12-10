@@ -17,48 +17,48 @@ import net.minecraft.world.World;
 
 public class SpellAcidExplosion extends BaseBoltAOE {
 
-	public SpellAcidExplosion() {
-		super();
+    public SpellAcidExplosion() {
+	super();
+    }
+
+    @Override
+    public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
+
+	if (!world.isRemote) {
+
+	    EntityAcidExplosion projectile = new EntityAcidExplosion(world);
+	    projectile.SpawnAndShoot(new EffectAcidExplosion(), new DamageData(caster, data), caster);
+
 	}
 
-	@Override
-	public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
+	SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
+	caster.swingArm(hand);
+	return true;
+    }
 
-		if (!world.isRemote) {
+    @Override
+    public String Name() {
+	return "Acid Explosion";
+    }
 
-			EntityAcidExplosion projectile = new EntityAcidExplosion(world);
-			projectile.SpawnAndShoot(new EffectAcidExplosion(), new DamageData(caster, data), caster);
+    @Override
+    public EffectCalculation ScalingValue() {
+	return new EffectCalculation(new SpellNatureDamage().Guid(), 0.25F);
+    }
 
-		}
+    @Override
+    public Elements Element() {
+	return Elements.Nature;
+    }
 
-		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
-		caster.swingArm(hand);
-		return true;
-	}
+    @Override
+    public Item SpellItem() {
+	return ItemAcidExplosion.ITEM;
+    }
 
-	@Override
-	public String Name() {
-		return "Acid Explosion";
-	}
-
-	@Override
-	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new SpellNatureDamage().Guid(), 0.25F);
-	}
-
-	@Override
-	public Elements Element() {
-		return Elements.Nature;
-	}
-
-	@Override
-	public Item SpellItem() {
-		return ItemAcidExplosion.ITEM;
-	}
-
-	@Override
-	public String GUID() {
-		return "AcidExplosion";
-	}
+    @Override
+    public String GUID() {
+	return "AcidExplosion";
+    }
 
 }

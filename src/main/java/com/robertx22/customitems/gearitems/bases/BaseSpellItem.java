@@ -35,8 +35,8 @@ public abstract class BaseSpellItem extends Item {
     public BaseSpellItem() {
 	this.setMaxStackSize(1);
 	this.setMaxDamage(0);
-	this.setUnlocalizedName(Name());
 	this.setRegistryName(GUID().toLowerCase());
+	this.setUnlocalizedName(this.getRegistryName().toString());
 
     }
 
@@ -50,13 +50,10 @@ public abstract class BaseSpellItem extends Item {
 
 	    ItemRarity rarity = Rarities.Items.get(data.rarity);
 
-	    tooltip.clear();
-
-	    tooltip.add(Rarities.Items.get(data.rarity).Color() + Spell().Name());
-	    tooltip.add(TextFormatting.YELLOW + "Level: " + data.level);
+	    tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + data.level);
 	    tooltip.add("");
 
-	    tooltip.add(TextFormatting.GREEN + "Stats:");
+	    tooltip.add(TextFormatting.GREEN + CLOC.word("stats") + ": ");
 	    tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc()));
 	    tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc()));
 	    tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc()));
@@ -66,7 +63,7 @@ public abstract class BaseSpellItem extends Item {
 	    tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data));
 
 	    tooltip.add("");
-	    tooltip.add(rarity.Color() + "Rarity: " + CLOC.rarityName(rarity));
+	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + CLOC.rarityName(rarity));
 	}
     }
 

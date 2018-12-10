@@ -2,6 +2,7 @@ package com.robertx22.spells.projectile;
 
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.BaseSpell;
+import com.robertx22.uncommon.CLOC;
 
 public abstract class BaseBolt extends BaseSpell {
 
@@ -18,7 +19,7 @@ public abstract class BaseBolt extends BaseSpell {
 
     @Override
     public String GetDescription(SpellItemData data) {
-	return "Casts a Single Target elemental projectile";
+	return CLOC.tooltip("single_target_spell_bolt");
 
     }
 

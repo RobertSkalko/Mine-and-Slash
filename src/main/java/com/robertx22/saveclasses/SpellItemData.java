@@ -6,6 +6,7 @@ import com.robertx22.database.rarities.SpellRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Spells;
 import com.robertx22.spells.bases.BaseSpell;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -30,8 +31,6 @@ public class SpellItemData implements ISalvagable {
     public String spellGUID;
     @Store
     public int rarity;
-    @Store
-    public int untilCooldownOver = 0;
     @Store
     public int manaCostPercent = 100;
     @Store
@@ -81,20 +80,20 @@ public class SpellItemData implements ISalvagable {
 
     public String GetScalingDesc() {
 
-	return "Scales with: " + GetSpell().ScalingValue().GetStat().Guid() + " by : " + (int) (GetScalingValue() * 100)
-		+ "%" + " (" + MinScaling() + "-" + MaxScaling() + ")";
+	return CLOC.word("scaling_value") + ": " + GetSpell().ScalingValue().GetStat().Guid() + " " + CLOC.word("by")
+		+ " : " + (int) (GetScalingValue() * 100) + "%" + " (" + MinScaling() + "-" + MaxScaling() + ")";
 
     }
 
     public String GetBaseDesc() {
 
-	return "Base value: " + this.GetBaseValue() + " (" + MinBase() + "-" + MaxBase() + ")";
+	return CLOC.word("base_value") + ": " + this.GetBaseValue() + " (" + MinBase() + "-" + MaxBase() + ")";
 
     }
 
     public String GetManaDesc() {
 
-	return "Mana Cost: " + this.GetManaCost() + " (" + MinMana() + "-" + MaxMana() + ")";
+	return CLOC.word("mana_cost") + ": " + this.GetManaCost() + " (" + MinMana() + "-" + MaxMana() + ")";
 
     }
 
