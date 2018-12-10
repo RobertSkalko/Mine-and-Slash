@@ -71,7 +71,7 @@ public class LootUtils {
 
 	while (chance > 0) {
 
-	    float maxChance = 70F;
+	    float maxChance = 75F;
 
 	    float currentChance = chance;
 

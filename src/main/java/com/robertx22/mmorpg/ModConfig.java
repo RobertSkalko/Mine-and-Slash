@@ -20,6 +20,10 @@ public class ModConfig {
 
     public static class GUIContainer {
 
+	@Config.Name("Render Item On Ground Rarity Particles")
+	@Config.Comment("Might help with finding gear, but could also be laggy")
+	public boolean RENDER_ITEM_ENTITY_RARITY_PARTICLES = false;
+
 	@Config.Name("Render Chat Combat Log")
 	@Config.Comment("Show/Disable Chat Damage Numbers")
 	public boolean RENDER_CHAT_COMBAT_LOG = false;

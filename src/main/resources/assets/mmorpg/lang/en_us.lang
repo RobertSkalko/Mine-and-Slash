@@ -521,6 +521,7 @@ mmorpg.chat.mapworld_time_left=Time Ticks away, remaining Map time is:
 mmorpg.chat.player_died_mapworld=Player died in a Map World:
 mmorpg.chat.activating_mapworld_time_penalty=Map Time penalty activated
 mmorpg.chat.too_high_level=A piece of gear is too high level for you, no stats added!
+mmorpg.chat.minutes=Minutes
 
 # GEAR TYPES
 mmorpg.gear_type.sword=Sword

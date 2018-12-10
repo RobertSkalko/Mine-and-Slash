@@ -50,10 +50,10 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
     }
 
-    private void SpawnRedstone(Elements element, Entity entity, int radius, int x, int y, int z) {
+    public void SpawnRedstone(Elements element, Entity entity, int radius, int x, int y, int z) {
 
-	ParticleUtils.spawnParticleGenerator(entity, new AoeProjectileParticleGen().Name(), this.posX, this.posY,
-		this.posZ, x, y, z);
+	ParticleUtils.spawnParticleGenerator(entity, new AoeProjectileParticleGen().Name(), entity.posX, entity.posY,
+		entity.posZ, x, y, z);
 
     }
 

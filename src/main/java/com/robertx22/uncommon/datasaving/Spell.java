@@ -31,7 +31,7 @@ public class Spell {
 
     }
 
-    public static void Save(ItemStack stack, SpellItemData gear) {
+    public static void Save(ItemStack stack, SpellItemData spell) {
 	if (stack == null) {
 	    return;
 	}
@@ -39,11 +39,12 @@ public class Spell {
 	    stack.setTagCompound(new NBTTagCompound());
 	}
 
-	if (gear != null) {
+	if (spell != null) {
 	    NBTTagCompound object_nbt = new NBTTagCompound();
-	    Writer.write(object_nbt, gear);
+	    Writer.write(object_nbt, spell);
 	    NBTTagCompound new_nbt = stack.getTagCompound();
 	    new_nbt.setTag(LOC, object_nbt);
+	    new_nbt.setInteger("rarity", spell.rarity);
 	    stack.setTagCompound(new_nbt);
 
 	}

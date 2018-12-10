@@ -423,7 +423,8 @@ public class WorldData {
 	private void announceTimeLeft(World world) {
 
 	    for (EntityPlayer player : world.playerEntities) {
-		player.sendMessage(SLOC.chat("mapworld_time_left").appendText(this.getMinutesLeft() + ""));
+		player.sendMessage(SLOC.chat("mapworld_time_left").appendText(" " + this.getMinutesLeft() + " ")
+			.appendSibling(SLOC.chat("minutes")));
 
 	    }
 

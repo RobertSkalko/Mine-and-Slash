@@ -45,6 +45,7 @@ public class Gear {
 	    Writer.write(object_nbt, gear);
 	    NBTTagCompound new_nbt = stack.getTagCompound();
 	    new_nbt.setTag(LOC, object_nbt);
+	    new_nbt.setInteger("rarity", gear.Rarity);
 	    stack.setTagCompound(new_nbt);
 
 	}
