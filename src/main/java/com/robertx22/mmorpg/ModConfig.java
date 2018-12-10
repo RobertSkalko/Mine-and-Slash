@@ -16,6 +16,8 @@ public class ModConfig {
 
     public static ServerContainer Server = new ServerContainer();
 
+    public static DropRatesContainer DropRates = new DropRatesContainer();
+
     public static class GUIContainer {
 
 	@Config.Name("Render Chat Combat Log")
@@ -47,20 +49,24 @@ public class ModConfig {
     public static class DropRatesContainer {
 
 	@Config.Name("Map Droprate")
-	@Config.Comment("")
-	public float MAP_DROPRATE = 3;
+	@Config.Comment("Adventure maps, temporary items that create a temporary world to kill mobs in")
+	public float MAP_DROPRATE = 1;
 
 	@Config.Name("Gear Droprate")
 	@Config.Comment("")
-	public float GEAR_DROPRATE = 3;
+	public float GEAR_DROPRATE = 7.5F;
 
 	@Config.Name("Unique  Droprate")
-	@Config.Comment("")
-	public float UNIQUE_DROPRATE = 3;
+	@Config.Comment("Unique gear items that drop from maps only")
+	public float UNIQUE_DROPRATE = 0.15F;
 
 	@Config.Name("Spell Droprate")
 	@Config.Comment("")
 	public float SPELL_DROPRATE = 3;
+
+	@Config.Name("Currency Droprate")
+	@Config.Comment("Currency, or items you use to modify gear")
+	public float CURRENCY_DROPRATE = 3;
 
     }
 
@@ -79,7 +85,7 @@ public class ModConfig {
 	public int MAXIMUM_PLAYER_LEVEL = 100;
 
 	@Config.Name("Normal Worlds Mob Level Cap")
-	@Config.Comment("Select maximum level for mobs in normal worlds like vanilla surface, nether, end. This doesn't affect max level for map worlds from my mod!")
+	@Config.Comment("Select maximum level for mobs in normal worlds like vanilla surface, nether, end. This doesn't affect max level for map worlds from my mod! Note: reasoning for low level cap here is to prevent BIS gear being farmable by mob spawners, which ruin the fun")
 	public int MAXIMUM_NORMAL_WORLD_MOB_LEVEL = 25;
 
 	@Config.Name("Exp multiplier")

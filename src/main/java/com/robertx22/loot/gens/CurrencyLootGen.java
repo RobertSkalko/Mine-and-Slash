@@ -3,6 +3,7 @@ package com.robertx22.loot.gens;
 import java.util.ArrayList;
 
 import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.utilityclasses.ITiered;
@@ -22,7 +23,7 @@ public class CurrencyLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-	return 3;
+	return ModConfig.DropRates.CURRENCY_DROPRATE;
 
     }
 

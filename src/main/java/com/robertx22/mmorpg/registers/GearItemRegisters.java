@@ -65,18 +65,7 @@ public class GearItemRegisters {
 
 	}
 
-	java.util.Collections.sort(list);
-
-	String s = "";
-	for (String str : list) {
-	    s += str + "\n";
-	}
-
-	System.out.println(s);
-
     }
-
-    static List<String> list = new ArrayList();
 
     private static void regRarities(Item item, HashMap<Integer, Item> map, String name, int rarity) {
 
@@ -85,10 +74,6 @@ public class GearItemRegisters {
 	item.setUnlocalizedName(item.getRegistryName().toString());
 	map.put(rarity, item);
 	items.add(item);
-
-	// System.out.println(item.getRegistryName());
-
-	list.add(item.getUnlocalizedName());
 
     }
 

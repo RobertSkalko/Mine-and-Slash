@@ -3,6 +3,7 @@ package com.robertx22.loot.gens;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.loot.LootUtils;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
@@ -22,7 +23,7 @@ public class GearLootGen extends BaseLootGen {
 
     @Override
     public float BaseChance() {
-	return 7.5F;
+	return ModConfig.DropRates.GEAR_DROPRATE;
     }
 
     @Override

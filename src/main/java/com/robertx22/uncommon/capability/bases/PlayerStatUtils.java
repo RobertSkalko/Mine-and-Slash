@@ -19,6 +19,7 @@ import com.robertx22.stats.IStatTransfer;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
 import com.robertx22.stats.Trait;
+import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 
@@ -27,7 +28,6 @@ import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextComponentString;
 
 public class PlayerStatUtils {
 
@@ -162,8 +162,9 @@ public class PlayerStatUtils {
 
 	for (GearItemData gear : gears) {
 	    if (gear.level > level) {
-		entity.sendMessage(
-			new TextComponentString(gear.GetDisplayName() + " is too high level for you, no stats added!"));
+		if (entity instanceof EntityPlayer) {
+		    entity.sendMessage(SLOC.chat("too_high_level"));
+		}
 	    } else {
 
 		List<StatModData> datas = gear.GetAllStats(gear.level);
