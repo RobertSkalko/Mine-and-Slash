@@ -30,13 +30,13 @@ public class OnItemOnGroundParticles {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onRenderItemParticles(RenderGameOverlayEvent event) {
 
-	if (event.isCancelable() || event.getType() != ElementType.EXPERIENCE) {
+	if (event.getType().equals(ElementType.EXPERIENCE) == false) {
 	    return;
 	}
 
 	ticks++;
 
-	if (ticks < 15) {
+	if (ticks < 17) {
 	    return;
 	}
 
@@ -50,43 +50,42 @@ public class OnItemOnGroundParticles {
 	    Minecraft mc = Minecraft.getMinecraft();
 	    EntityPlayer p = mc.player;
 
-	    AxisAlignedBB box = new AxisAlignedBB(p.posX - distance, p.posY - distance, p.posZ - distance,
-		    p.posX + distance, p.posY + distance, p.posZ + distance);
+	    AxisAlignedBB box = new AxisAlignedBB(p.getPosition()).grow(distance);
 
-	    for (Entity en : p.world.getEntitiesWithinAABBExcludingEntity(p, box)) {
+	    for (Entity en : p.world.getEntitiesWithinAABB(EntityItem.class, box)) {
 
-		if (en instanceof EntityItem) {
+		ItemStack stack = ((EntityItem) en).getItem();
+		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("rarity")) {
 
-		    ItemStack stack = ((EntityItem) en).getItem();
-		    if (stack.hasTagCompound() && stack.getTagCompound().hasKey("rarity")) {
+		    int rarity = stack.getTagCompound().getInteger("rarity");
 
-			int rarity = stack.getTagCompound().getInteger("rarity");
+		    if (Color.RARITY_COLORS.containsKey(rarity) == false) {
+			continue;
+		    }
 
-			if (Color.RARITY_COLORS.containsKey(rarity) == false) {
-			    return;
-			}
+		    float x = Color.RARITY_COLORS.get(rarity).x;
+		    float y = Color.RARITY_COLORS.get(rarity).y;
+		    float z = Color.RARITY_COLORS.get(rarity).z;
 
-			float x = Color.RARITY_COLORS.get(rarity).x;
-			float y = Color.RARITY_COLORS.get(rarity).y;
-			float z = Color.RARITY_COLORS.get(rarity).z;
+		    int amount = 5;
 
-			int amount = 5;
+		    int yhigh = 0;
 
-			for (int i = 0; i < amount; i++) {
+		    if (rarity == -1) { // if unique
+			yhigh = 1;
+			amount = 6;
 
-			    en.world.spawnParticle(EnumParticleTypes.REDSTONE,
-				    en.posX + rand.nextFloat() * radius - 0.1,
-				    en.posY + en.height / 2 + rand.nextFloat() * radius - 0.1,
-				    en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
+			en.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, en.posX + rand.nextFloat() * radius - 0.1,
+				en.posY + en.height / 2 + rand.nextFloat() * radius - 0.1,
+				en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
+		    }
 
-			}
+		    for (int i = 0; i < amount; i++) {
 
-			if (rarity == -1) { // uniques get more particles
-			    en.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC,
-				    en.posX + rand.nextFloat() * radius - 0.1,
-				    en.posY + en.height / 2 + rand.nextFloat() * radius - 0.1,
-				    en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
-			}
+			en.world.spawnParticle(EnumParticleTypes.REDSTONE, en.posX + rand.nextFloat() * radius - 0.1,
+				en.posY + en.height / 2 + rand.nextFloat() * (radius + yhigh),
+				en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
+
 		    }
 
 		}

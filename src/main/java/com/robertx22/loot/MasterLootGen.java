@@ -26,7 +26,10 @@ public class MasterLootGen {
 	items.addAll(new GearLootGen(mob, player, world, victim).generate());
 	items.addAll(new SpellLootGen(mob, player, world, victim).generate());
 	items.addAll(new MapLootGen(mob, player, world, victim).generate());
-	items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
+
+	if (world.isMapWorld()) {
+	    items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
+	}
 
 	return items;
     }
