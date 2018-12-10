@@ -11,6 +11,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +24,8 @@ public class OnItemOnGroundParticles {
     static Random rand = new Random();
 
     static int ticks = 0;
+
+    static int distance = 9;
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onRenderItemParticles(RenderGameOverlayEvent event) {
@@ -43,69 +46,85 @@ public class OnItemOnGroundParticles {
 
 	ticks = 0;
 
-	Minecraft mc = Minecraft.getMinecraft();
-	EntityPlayer p = mc.player;
+	try {
+	    Minecraft mc = Minecraft.getMinecraft();
+	    EntityPlayer p = mc.player;
 
-	for (Entity en : mc.player.world.loadedEntityList) {
+	    AxisAlignedBB box = new AxisAlignedBB(p.posX - distance, p.posY - distance, p.posZ - distance,
+		    p.posX + distance, p.posY + distance, p.posZ + distance);
 
-	    if (en instanceof EntityItem) {
+	    for (Entity en : p.world.getEntitiesWithinAABBExcludingEntity(p, box)) {
 
-		if (en.isInRangeToRender3d(p.posX, p.posY, p.posZ) == false) {
-		    return;
-		}
+		if (en instanceof EntityItem) {
 
-		ItemStack stack = ((EntityItem) en).getItem();
+		    ItemStack stack = ((EntityItem) en).getItem();
+		    if (stack.hasTagCompound() && stack.getTagCompound().hasKey("rarity")) {
 
-		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("rarity")) {
+			int rarity = stack.getTagCompound().getInteger("rarity");
 
-		    int rarity = stack.getTagCompound().getInteger("rarity");
-		    int x = Color.BY_ELEMENT.get(rarity).x;
-		    int y = Color.BY_ELEMENT.get(rarity).y;
-		    int z = Color.BY_ELEMENT.get(rarity).z;
+			if (Color.RARITY_COLORS.containsKey(rarity) == false) {
+			    return;
+			}
 
-		    if (rarity != 0) {
+			float x = Color.RARITY_COLORS.get(rarity).x;
+			float y = Color.RARITY_COLORS.get(rarity).y;
+			float z = Color.RARITY_COLORS.get(rarity).z;
 
-			for (int i = 0; i < 5; i++) {
+			int amount = 5;
 
-			    en.world.spawnParticle(EnumParticleTypes.REDSTONE, en.posX + rand.nextFloat() * 0.2 - 0.1,
-				    en.posY + en.height / 2 + rand.nextFloat() * 0.2 - 0.1,
-				    en.posZ + rand.nextFloat() * 0.2 - 0.1, x, y, z);
+			for (int i = 0; i < amount; i++) {
+
+			    en.world.spawnParticle(EnumParticleTypes.REDSTONE,
+				    en.posX + rand.nextFloat() * radius - 0.1,
+				    en.posY + en.height / 2 + rand.nextFloat() * radius - 0.1,
+				    en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
 
 			}
+
+			if (rarity == -1) { // uniques get more particles
+			    en.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC,
+				    en.posX + rand.nextFloat() * radius - 0.1,
+				    en.posY + en.height / 2 + rand.nextFloat() * radius - 0.1,
+				    en.posZ + rand.nextFloat() * radius - 0.1, x, y, z);
+			}
 		    }
+
 		}
 	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
 
     }
 
-    public static float radius = 0.5F;
+    public static float radius = 0.2F;
 
     static class Color {
-	int x;
-	int y;
-	int z;
+	float x;
+	float y;
+	float z;
 
 	static Color GREEN = new Color(-1, 1, 0);
 	static Color BLUE = new Color(-1, -1, 1);
 	static Color RED = new Color(0, 0, 0);
 	static Color PURPLE = new Color(0, 0, 1);
 	static Color YELLOW = new Color(0, 1, 0);
+	static Color ORANGE = new Color(0, -0.5F, 0);
+	static Color CYAN = new Color(-1, 1, 1);
 
-	public static HashMap<Integer, Color> BY_ELEMENT = new HashMap<Integer, Color>() {
+	public static HashMap<Integer, Color> RARITY_COLORS = new HashMap<Integer, Color>() {
 	    {
 		put(5, PURPLE);
 		put(4, RED);
 		put(3, BLUE);
 		put(2, YELLOW);
 		put(1, GREEN);
-		put(0, new Color(0, 0, 0));
 		put(-1, YELLOW);
 
 	    }
 	};
 
-	public Color(int x, int y, int z) {
+	public Color(float x, float y, float z) {
 	    this.x = x;
 	    this.y = y;
 	    this.z = z;
