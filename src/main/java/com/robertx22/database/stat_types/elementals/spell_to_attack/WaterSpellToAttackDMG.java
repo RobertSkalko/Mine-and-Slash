@@ -27,7 +27,7 @@ public class WaterSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "water_spell_to_attack";
     }
 }

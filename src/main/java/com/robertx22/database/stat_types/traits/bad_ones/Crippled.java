@@ -14,7 +14,7 @@ public class Crippled extends Trait implements IAffectsOtherStats {
     public static String GUID = "Crippled";
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "crippled";
     }
 

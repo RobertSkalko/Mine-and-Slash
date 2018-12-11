@@ -6,7 +6,7 @@ import com.robertx22.stats.WeaponDamageStat;
 public class BowDamage extends WeaponDamageStat {
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "bow_damage";
     }
 

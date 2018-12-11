@@ -19,7 +19,7 @@ public class AttackWaterDamage extends BaseElementalAttackDamage {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "attack_water_damage";
     }
 }

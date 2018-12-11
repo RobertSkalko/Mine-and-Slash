@@ -16,7 +16,7 @@ public class AllWaterDamage extends AllEleDamageBase {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "all_water_damage";
     }
 

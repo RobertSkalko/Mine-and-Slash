@@ -11,7 +11,7 @@ public class UnknownStat extends Stat {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "unknown_stat";
     }
 

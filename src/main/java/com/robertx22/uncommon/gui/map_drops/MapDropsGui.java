@@ -8,6 +8,7 @@ import com.libraries.rabbit.gui.component.list.entries.ListEntry;
 import com.libraries.rabbit.gui.component.list.entries.StringEntry;
 import com.libraries.rabbit.gui.show.Show;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.unique_items.IUnique;
@@ -89,7 +90,7 @@ public class MapDropsGui extends Show {
 			}
 		    }
 		    if (has) {
-			StringToListEntry(TextFormatting.GREEN + "Tier " + i + ":", list);
+			StringToListEntry(TextFormatting.GREEN + CLOC.word("tier") + " " + i + ":", list);
 		    }
 
 		    for (String name : names) {
@@ -99,7 +100,7 @@ public class MapDropsGui extends Show {
 		}
 
 	    } else {
-		StringToListEntry("This is not a map world", list);
+		StringToListEntry(CLOC.word("not_mapworld"), list);
 	    }
 	    int width = this.width / 2;
 	    int height = this.height - this.height / 5;

@@ -13,7 +13,7 @@ public class SpellDodge extends Stat implements IStatEffects {
     public static String GUID = "Spell Dodge";
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "spell_dodge";
     }
 

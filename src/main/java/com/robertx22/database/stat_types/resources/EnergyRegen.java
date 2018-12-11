@@ -7,7 +7,7 @@ public class EnergyRegen extends Stat {
     public static String GUID = "Energy Regen";
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "energy_regen";
     }
 

@@ -14,7 +14,7 @@ public class Armor extends UsableStat implements IStatEffects {
     public static String GUID = "Armor";
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "armor";
     }
 

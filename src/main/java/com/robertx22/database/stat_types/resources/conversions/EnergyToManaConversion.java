@@ -22,7 +22,7 @@ public class EnergyToManaConversion extends BaseConversionMod {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "energy_to_mana_conversion";
     }
 

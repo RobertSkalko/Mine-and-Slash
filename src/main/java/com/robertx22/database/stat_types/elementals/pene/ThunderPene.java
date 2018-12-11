@@ -31,7 +31,7 @@ public class ThunderPene extends BasePene implements IStatEffects {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "thunder_penetration";
     }
 }

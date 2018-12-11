@@ -52,6 +52,7 @@ import com.robertx22.saveclasses.Unit;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.Trait;
 import com.robertx22.stats.UsableStat;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 
@@ -119,19 +120,19 @@ public class PlayerStatsGui extends Show {
 		stats.add(data.GetStat());
 	    }
 
-	    ShowStat(TextFormatting.GREEN + "Resources:", list);
+	    ShowStat(TextFormatting.GREEN + CLOC.word("resources") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.healthData(), stats), list);
 	    ShowStat(this.GetStatString(unit.manaData(), stats), list);
 	    ShowStat(this.GetStatString(unit.energyData(), stats), list);
 
-	    ShowStat(TextFormatting.YELLOW + "Regen:", list);
+	    ShowStat(TextFormatting.YELLOW + CLOC.word("regen") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(HealthRegen.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(ManaRegen.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(EnergyRegen.GUID), stats), list);
 
-	    ShowStat(TextFormatting.RED + "Attack:", list);
+	    ShowStat(TextFormatting.RED + CLOC.word("attack") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(PhysicalDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(CriticalDamage.GUID), stats), list);
@@ -139,35 +140,35 @@ public class PlayerStatsGui extends Show {
 	    ShowStat(this.GetStatString(unit.MyStats.get(Lifesteal.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(LifeOnHit.GUID), stats), list);
 
-	    ShowStat(TextFormatting.RED + "Elemental Spell Damage:", list);
+	    ShowStat(TextFormatting.RED + CLOC.word("spell_damage") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(SpellFireDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(SpellWaterDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(SpellThunderDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(SpellNatureDamage.GUID), stats), list);
 
-	    ShowStat(TextFormatting.RED + "Elemental Attack Damage:", list);
+	    ShowStat(TextFormatting.RED + CLOC.word("element_attack_damage") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(AttackFireDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(AttackWaterDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(AttackThunderDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(AttackNatureDamage.GUID), stats), list);
 
-	    ShowStat(TextFormatting.RED + "Bonus to All Elemental Damage:", list);
+	    ShowStat(TextFormatting.RED + CLOC.word("bonus_all_ele_dmg") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(AllFireDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(AllWaterDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(AllThunderDamage.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(AllNatureDamage.GUID), stats), list);
 
-	    ShowStat(TextFormatting.RED + "Spell to Attack Conversion Damage:", list);
+	    ShowStat(TextFormatting.RED + CLOC.word("spell_to_attack_conversion") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(FireSpellToAttackDMG.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(WaterSpellToAttackDMG.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(ThunderSpellToAttackDMG.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(NatureSpellToAttackDMG.GUID), stats), list);
 
-	    ShowStat(TextFormatting.BLUE + "Defense:", list);
+	    ShowStat(TextFormatting.BLUE + CLOC.word("defenses") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(Armor.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(Dodge.GUID), stats), list);
@@ -176,7 +177,7 @@ public class PlayerStatsGui extends Show {
 	    ShowStat(this.GetStatString(unit.MyStats.get(ThunderResist.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(NatureResist.GUID), stats), list);
 
-	    ShowStat(TextFormatting.LIGHT_PURPLE + "Penetration:", list);
+	    ShowStat(TextFormatting.LIGHT_PURPLE + CLOC.word("penetration") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(ArmorPenetration.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(FirePene.GUID), stats), list);
@@ -184,7 +185,7 @@ public class PlayerStatsGui extends Show {
 	    ShowStat(this.GetStatString(unit.MyStats.get(ThunderPene.GUID), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(NaturePene.GUID), stats), list);
 
-	    ShowStat(TextFormatting.BLUE + "Weapon Damage:", list);
+	    ShowStat(TextFormatting.BLUE + CLOC.word("weapon_damage") + ": ", list);
 
 	    ShowStat(this.GetStatString(unit.MyStats.get(new HammerDamage().GUID()), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(new AxeDamage().GUID()), stats), list);
@@ -192,7 +193,7 @@ public class PlayerStatsGui extends Show {
 	    ShowStat(this.GetStatString(unit.MyStats.get(new SwordDamage().GUID()), stats), list);
 	    ShowStat(this.GetStatString(unit.MyStats.get(new StaffDamage().GUID()), stats), list);
 
-	    ShowStat(TextFormatting.GOLD + "Misc:", list);
+	    ShowStat(TextFormatting.GOLD + CLOC.word("misc") + ": ", list);
 
 	    for (StatData data : unit.MyStats.values()) {
 		ShowStat(this.GetStatString(data, stats), list);

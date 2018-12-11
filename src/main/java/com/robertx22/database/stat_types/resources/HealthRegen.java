@@ -11,7 +11,7 @@ public class HealthRegen extends Stat {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "health_regen";
     }
 

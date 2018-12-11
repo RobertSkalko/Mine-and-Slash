@@ -237,6 +237,18 @@ mmorpg.word.mana_cost=Mana Cost
 mmorpg.word.base_value=Base Value
 mmorpg.word.scaling_value=Scaling Value
 mmorpg.word.by=By
+mmorpg.word.resources=Resources
+mmorpg.word.regen=Regeneration
+mmorpg.word.attack=Attack
+mmorpg.word.spell_damage=Spell Damage
+mmorpg.word.element_attack_damage=Elemental Attack Damage
+mmorpg.word.bonus_all_ele_dmg=Plus All Elemental Damage
+mmorpg.word.spell_to_attack_conversion=Spell To Attack Damage Conversion
+mmorpg.word.defenses=Defenses
+mmorpg.word.penetration=Penetration
+mmorpg.word.weapon_damage=Weapon Damage
+mmorpg.word.misc=Misc
+mmorpg.word.not_mapworld=Not a Map World
 
 
 # UNIQUE ITEM NAMES

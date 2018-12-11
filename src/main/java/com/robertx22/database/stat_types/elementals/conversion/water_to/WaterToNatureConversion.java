@@ -25,7 +25,7 @@ public class WaterToNatureConversion extends BaseConversionMod {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "water_nature_conversion";
     }
 }

@@ -441,7 +441,7 @@ public class WorldData {
 	    int punishment = 5;
 
 	    for (EntityPlayer player : world.playerEntities) {
-		player.sendMessage(SLOC.chat("player_died_mapworld").appendSibling(victim.getDisplayName())
+		player.sendMessage(SLOC.chat("player_died_mapworld").appendText(" " + victim.getDisplayName() + " ")
 			.appendSibling(SLOC.chat("activating_mapworld_time_penalty")));
 	    }
 

@@ -29,7 +29,7 @@ public class EarthAtronach extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "earth_atronach";
     }
 }

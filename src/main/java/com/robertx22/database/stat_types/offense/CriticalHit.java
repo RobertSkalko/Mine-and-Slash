@@ -42,7 +42,7 @@ public class CriticalHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "critical_hit";
     }
 

@@ -18,7 +18,7 @@ public class ManaOnHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "mana_on_hit";
     }
 

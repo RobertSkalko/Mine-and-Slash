@@ -25,7 +25,7 @@ public class FireToWaterConversion extends BaseConversionMod {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "fire_water_conversion";
     }
 }

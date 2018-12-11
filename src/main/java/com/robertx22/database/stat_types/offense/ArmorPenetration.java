@@ -13,7 +13,7 @@ public class ArmorPenetration extends Stat implements IStatEffects {
     public static String GUID = "Armor Penetration";
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "armor_penetration";
     }
 

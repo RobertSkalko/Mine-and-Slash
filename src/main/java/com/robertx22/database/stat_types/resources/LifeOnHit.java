@@ -18,7 +18,7 @@ public class LifeOnHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "life_on_hit";
     }
 

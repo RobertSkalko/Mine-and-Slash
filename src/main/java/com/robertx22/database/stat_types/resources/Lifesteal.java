@@ -18,7 +18,7 @@ public class Lifesteal extends Stat implements IStatEffects {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "lifesteal";
     }
 

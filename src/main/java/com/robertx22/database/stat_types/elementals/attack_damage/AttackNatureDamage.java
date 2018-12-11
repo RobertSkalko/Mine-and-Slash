@@ -19,7 +19,7 @@ public class AttackNatureDamage extends BaseElementalAttackDamage {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "attack_nature_damage";
     }
 }

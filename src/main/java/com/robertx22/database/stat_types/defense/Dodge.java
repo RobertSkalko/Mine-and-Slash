@@ -13,7 +13,7 @@ public class Dodge extends Stat implements IStatEffects {
     public static String GUID = "Dodge";
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "dodge";
     }
 

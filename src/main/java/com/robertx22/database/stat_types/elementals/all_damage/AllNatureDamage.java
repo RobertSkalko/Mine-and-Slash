@@ -16,7 +16,7 @@ public class AllNatureDamage extends AllEleDamageBase {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "all_nature_damage";
     }
 }

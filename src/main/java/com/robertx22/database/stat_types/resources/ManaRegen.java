@@ -11,7 +11,7 @@ public class ManaRegen extends Stat {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "mana_regen";
     }
 

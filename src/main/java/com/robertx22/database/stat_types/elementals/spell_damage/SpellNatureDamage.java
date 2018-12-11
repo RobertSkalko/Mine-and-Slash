@@ -30,7 +30,7 @@ public class SpellNatureDamage extends Stat {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "spell_nature_damage";
     }
 

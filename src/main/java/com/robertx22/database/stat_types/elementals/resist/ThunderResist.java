@@ -19,7 +19,7 @@ public class ThunderResist extends BaseEleResist {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "thunder_resist";
     }
 

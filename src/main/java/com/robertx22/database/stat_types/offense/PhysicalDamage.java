@@ -31,7 +31,7 @@ public class PhysicalDamage extends Stat {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "physical_damage";
     }
 }

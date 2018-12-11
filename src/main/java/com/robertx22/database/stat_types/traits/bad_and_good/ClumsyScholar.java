@@ -14,7 +14,7 @@ public class ClumsyScholar extends Trait implements IAffectsOtherStats {
     public static String GUID = "Clumsy Scholar";
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "clumsy_scholar";
     }
 

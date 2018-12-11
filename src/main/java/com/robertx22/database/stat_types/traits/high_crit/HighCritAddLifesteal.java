@@ -21,7 +21,7 @@ public class HighCritAddLifesteal extends BaseTraitHighCritHit {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "lifesteal_on_high_crit";
     }
 

@@ -30,7 +30,7 @@ public class NaturePene extends BasePene implements IStatEffects {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "nature_penetration";
     }
 }

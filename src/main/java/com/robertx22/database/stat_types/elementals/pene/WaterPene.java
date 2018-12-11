@@ -30,7 +30,7 @@ public class WaterPene extends BasePene implements IStatEffects {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "water_penetration";
     }
 }

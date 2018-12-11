@@ -11,7 +11,7 @@ public class Mana extends FillableStat {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "mana";
     }
 

@@ -27,7 +27,7 @@ public class ThunderSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "thunder_spell_to_attack";
     }
 }

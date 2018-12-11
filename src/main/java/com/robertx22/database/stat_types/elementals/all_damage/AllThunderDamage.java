@@ -16,7 +16,7 @@ public class AllThunderDamage extends AllEleDamageBase {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "all_thunder_damage";
     }
 }

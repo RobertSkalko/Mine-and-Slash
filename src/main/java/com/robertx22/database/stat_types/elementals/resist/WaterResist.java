@@ -19,7 +19,7 @@ public class WaterResist extends BaseEleResist {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "water_resist";
     }
 

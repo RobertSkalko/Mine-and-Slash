@@ -19,7 +19,7 @@ public class NatureResist extends BaseEleResist {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "nature_resist";
     }
 

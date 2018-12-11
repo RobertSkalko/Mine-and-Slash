@@ -16,7 +16,7 @@ public class AllFireDamage extends AllEleDamageBase {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "All_Fire_Damage";
     }
 

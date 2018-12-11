@@ -38,7 +38,7 @@ public class Elemental extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "Elemental";
     }
 

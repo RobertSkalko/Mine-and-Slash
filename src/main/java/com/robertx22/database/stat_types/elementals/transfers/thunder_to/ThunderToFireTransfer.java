@@ -25,7 +25,7 @@ public class ThunderToFireTransfer extends BaseTransferMod {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "thunder_fire_transfer";
     }
 }

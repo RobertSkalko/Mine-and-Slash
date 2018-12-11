@@ -27,7 +27,7 @@ public class FireSpellToAttackDMG extends BaseSpellToBasicDamage {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "fire_spell_to_attack";
     }
 }

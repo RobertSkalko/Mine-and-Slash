@@ -28,7 +28,7 @@ public class LordOfVolcanoesTrait extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "Lord_of_Volcanoes";
     }
 

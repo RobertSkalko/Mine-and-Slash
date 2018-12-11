@@ -30,7 +30,7 @@ public class FirePene extends BasePene implements IStatEffects {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "fire_penetration";
     }
 }

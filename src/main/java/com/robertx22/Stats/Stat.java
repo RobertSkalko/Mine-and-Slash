@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.robertx22.database.IGUID;
 import com.robertx22.saveclasses.StatData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 
@@ -17,7 +18,11 @@ public abstract class Stat implements IGUID {
 	return Guid();
     }
 
-    public abstract String LocString();
+    public abstract String unlocString();
+
+    public String localizedString() {
+	return CLOC.stat(unlocString().toLowerCase().replaceAll(" ", "_"));
+    }
 
     public int MaximumPercent = 0;
 

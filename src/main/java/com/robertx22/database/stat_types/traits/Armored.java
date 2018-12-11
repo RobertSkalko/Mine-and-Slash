@@ -29,7 +29,7 @@ public class Armored extends Trait implements IAffectsOtherStats {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "armored";
     }
 

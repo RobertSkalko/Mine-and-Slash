@@ -19,7 +19,7 @@ public class FireResist extends BaseEleResist {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "fire_resist";
     }
 

@@ -25,7 +25,7 @@ public class FireToNatureTransfer extends BaseTransferMod {
     }
 
     @Override
-    public String LocString() {
+    public String unlocString() {
 	return "fire_nature_transfer";
     }
 }
