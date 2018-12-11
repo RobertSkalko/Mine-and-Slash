@@ -59,7 +59,7 @@ public class ItemMap extends Item {
 	    tooltip.add("");
 
 	    try {
-		tooltip.add(TextFormatting.BLUE + CLOC.word("world_type") + ": " + data.getWorldProvider().Name());
+		tooltip.add(TextFormatting.BLUE + CLOC.word("world_type") + ": " + data.getWorldProvider().locName());
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }

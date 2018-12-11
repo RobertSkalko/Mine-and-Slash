@@ -80,8 +80,9 @@ public class SpellItemData implements ISalvagable {
 
     public String GetScalingDesc() {
 
-	return CLOC.word("scaling_value") + ": " + GetSpell().ScalingValue().GetStat().Guid() + " " + CLOC.word("by")
-		+ " : " + (int) (GetScalingValue() * 100) + "%" + " (" + MinScaling() + "-" + MaxScaling() + ")";
+	return CLOC.word("scaling_value") + ": " + GetSpell().ScalingValue().GetStat().localizedString() + " "
+		+ CLOC.word("by") + " : " + (int) (GetScalingValue() * 100) + "%" + " (" + MinScaling() + "-"
+		+ MaxScaling() + ")";
 
     }
 

@@ -24,7 +24,7 @@ public class ThicketWP extends BaseWorldProvider {
 	}
 
 	@Override
-	public String Name() {
+	public String unlocString() {
 		return "Thicket";
 	}
 

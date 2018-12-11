@@ -7,25 +7,25 @@ import net.minecraft.world.biome.BiomeProvider;
 
 public class RedDesertWP extends BaseWorldProvider {
 
-	public RedDesertWP() {
-		super(true);
-	}
+    public RedDesertWP() {
+	super(true);
+    }
 
-	private BiomeProvider biomeP = new BPRedDesert(world);
+    private BiomeProvider biomeP = new BPRedDesert(world);
 
-	@Override
-	public BiomeProvider getBiomeProvider() {
-		return biomeP;
-	}
+    @Override
+    public BiomeProvider getBiomeProvider() {
+	return biomeP;
+    }
 
-	@Override
-	public String GUID() {
-		return "RedDesertWP0";
-	}
+    @Override
+    public String GUID() {
+	return "RedDesertWP0";
+    }
 
-	@Override
-	public String Name() {
-		return "Red Desert";
-	}
+    @Override
+    public String unlocString() {
+	return "red_desert";
+    }
 
 }

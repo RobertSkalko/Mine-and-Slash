@@ -250,6 +250,12 @@ mmorpg.word.weapon_damage=Weapon Damage
 mmorpg.word.misc=Misc
 mmorpg.word.not_mapworld=Not a Map World
 
+# BIOME WORDS
+mmorpg.word.arid_highland=Arid Highland
+mmorpg.word.badlands=Badlands
+mmorpg.word.cliffs=Cliffs
+mmorpg.word.red_desert=Red Desert
+mmorpg.word.thicket=Thicket
 
 # UNIQUE ITEM NAMES
 item.mmorpg.unique.braceletnature0.name=§eThorn Bracers
