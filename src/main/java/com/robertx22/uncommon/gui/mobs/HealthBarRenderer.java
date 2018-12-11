@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
+import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
@@ -52,6 +53,7 @@ public class HealthBarRenderer {
 	    return;
 
 	Entity cameraEntity = mc.getRenderViewEntity();
+
 	BlockPos renderingVector = cameraEntity.getPosition();
 	Frustum frustum = new Frustum();
 
@@ -63,7 +65,7 @@ public class HealthBarRenderer {
 
 	if (NeatConfig.showOnlyFocused) {
 	    Entity focused = HealthBarUtils.getEntityLookedAt(mc.player);
-	    if (focused != null && focused instanceof EntityLivingBase && focused.isEntityAlive())
+	    if (focused != null && focused.hasCapability(EntityData.Data, null) && focused.isEntityAlive())
 		try {
 		    renderHealthBar((EntityLivingBase) focused, partialTicks, cameraEntity);
 		} catch (Exception e) {
@@ -91,9 +93,12 @@ public class HealthBarRenderer {
 
 	// UNIT LOADING
 	UnitData data = Load.Unit(entity);
-	Unit unit = data.getUnit();
+	if (data == null) {
+	    return;
+	}
 
-	if (unit == null || data == null) {
+	Unit unit = data.getUnit();
+	if (unit == null) {
 	    return;
 	}
 	// UNIT LOADING

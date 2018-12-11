@@ -11,6 +11,7 @@ import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -21,7 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -98,11 +98,10 @@ public class ItemNewbieGearBag extends BaseItem {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-	tooltip.add("Creates a pack of level one gear.");
-	tooltip.add(TextFormatting.BLUE + "Right click to use");
-	tooltip.add("");
-	tooltip.add(TextFormatting.GREEN + "'Three Furnaces below, five iron wills above,");
-	tooltip.add(TextFormatting.GREEN + "seed in the middle, materialize hope!'");
+	tooltip.add(CLOC.tooltip("newbie_gear_bag"));
+
+	tooltip.add(CLOC.lore("newbie_gear_bag1"));
+	tooltip.add(CLOC.lore("newbie_gear_bag2"));
 
     }
 

@@ -22,7 +22,7 @@ public class HighDodgeAddPhysDamage extends BaseTraitHighCritHit {
 
     @Override
     public String LocString() {
-	return "Phys_Damage_On_High_Dodge";
+	return "phys_damage_on_high_dodge";
     }
 
 }

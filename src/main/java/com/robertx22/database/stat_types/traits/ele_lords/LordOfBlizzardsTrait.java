@@ -29,7 +29,7 @@ public class LordOfBlizzardsTrait extends Trait implements IAffectsOtherStats {
 
     @Override
     public String LocString() {
-	return "Lord_of_Blizzards";
+	return "lord_of_blizzards";
     }
 
 }

@@ -6,19 +6,18 @@ import java.util.Random;
 import com.robertx22.mmorpg.ModConfig;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Side.CLIENT)
 public class OnItemOnGroundParticles {
 
     static Random rand = new Random();
@@ -28,11 +27,7 @@ public class OnItemOnGroundParticles {
     static int distance = 9;
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
-    public static void onRenderItemParticles(RenderGameOverlayEvent event) {
-
-	if (event.getType().equals(ElementType.EXPERIENCE) == false) {
-	    return;
-	}
+    public static void onRenderItemParticles(ClientTickEvent event) {
 
 	ticks++;
 
@@ -48,13 +43,18 @@ public class OnItemOnGroundParticles {
 
 	try {
 	    Minecraft mc = Minecraft.getMinecraft();
+
+	    if (mc == null || mc.player == null || mc.world == null) {
+		return;
+	    }
+
 	    EntityPlayer p = mc.player;
 
 	    AxisAlignedBB box = new AxisAlignedBB(p.getPosition()).grow(distance);
 
-	    for (Entity en : p.world.getEntitiesWithinAABB(EntityItem.class, box)) {
+	    for (EntityItem en : p.world.getEntitiesWithinAABB(EntityItem.class, box)) {
 
-		ItemStack stack = ((EntityItem) en).getItem();
+		ItemStack stack = en.getItem();
 		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("rarity")) {
 
 		    int rarity = stack.getTagCompound().getInteger("rarity");

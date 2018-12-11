@@ -22,7 +22,7 @@ public class HighDodgeAddCritDamage extends BaseTraitHighCritHit {
 
     @Override
     public String LocString() {
-	return "Crit_Damage_On_High_Dodge";
+	return "crit_damage_dn_high_dodge";
     }
 
 }

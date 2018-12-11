@@ -21,12 +21,15 @@ import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -142,7 +145,21 @@ public class EntityData {
 	@SubscribeEvent
 	public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
 
-	    if (event.getObject() instanceof EntityLivingBase) {
+	    boolean can = false;
+
+	    if (ModConfig.Server.ENTITIES_UNDER_SYSTEM.equals(EntitySystemChoice.All_Entities)
+		    && event.getObject() instanceof EntityLivingBase) {
+		can = true;
+	    }
+
+	    if (ModConfig.Server.ENTITIES_UNDER_SYSTEM.equals(EntitySystemChoice.Mobs_And_Players)) {
+		if (event.getObject() instanceof EntityPlayer || event.getObject() instanceof EntityMob
+			|| event.getObject() instanceof IMob) {
+		    can = true;
+		}
+	    }
+
+	    if (can) {
 
 		event.addCapability(new ResourceLocation(Ref.MODID, "EntityData"),
 			new ICapabilitySerializable<NBTTagCompound>() {

@@ -16,7 +16,7 @@ public class LowCritHitAddHealth extends BaseTraitLowCritHit {
 
     @Override
     public String LocString() {
-	return "Health_On_Low_Crit";
+	return "health_on_low_crit";
     }
 
     @Override

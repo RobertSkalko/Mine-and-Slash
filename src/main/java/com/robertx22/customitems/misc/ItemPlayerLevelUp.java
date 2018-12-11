@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.robertx22.customitems.BaseItem;
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
@@ -74,8 +75,7 @@ public class ItemPlayerLevelUp extends BaseItem {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-	tooltip.add("If your experience bar is full, use this item");
-	tooltip.add("to levelup!");
+	tooltip.add(CLOC.tooltip("player_levelup"));
 
     }
 

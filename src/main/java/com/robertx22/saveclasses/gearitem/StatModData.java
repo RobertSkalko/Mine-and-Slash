@@ -102,7 +102,7 @@ public class StatModData implements ITooltipString {
 	StatMod mod = GetBaseMod();
 	Stat basestat = mod.GetBaseStat();
 
-	String str = CLOC.stat(basestat.LocString().toLowerCase());
+	String str = CLOC.stat(basestat.LocString().toLowerCase().replaceAll(" ", "_"));
 
 	if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
 	    str += " " + CLOC.word("percent");

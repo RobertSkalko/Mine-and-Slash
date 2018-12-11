@@ -22,7 +22,7 @@ public class LowDodgeAddCritHit extends BaseTraitLowDodge {
 
     @Override
     public String LocString() {
-	return "Crit_On_Low_Dodge";
+	return "crit_on_low_dodge";
     }
 
 }

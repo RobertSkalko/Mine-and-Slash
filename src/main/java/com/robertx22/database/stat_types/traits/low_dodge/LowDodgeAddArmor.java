@@ -22,7 +22,7 @@ public class LowDodgeAddArmor extends BaseTraitLowDodge {
 
     @Override
     public String LocString() {
-	return "Armor_On_Low_Dodge";
+	return "armor_on_low_dodge";
     }
 
 }

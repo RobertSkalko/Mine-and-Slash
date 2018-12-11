@@ -23,7 +23,7 @@ public class HighCritAddArmor extends BaseTraitHighCritHit {
 
     @Override
     public String LocString() {
-	return "Armor_On_High_Crit";
+	return "armor_on_high_crit";
     }
 
 }

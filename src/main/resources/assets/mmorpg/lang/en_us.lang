@@ -25,6 +25,11 @@ tile.mmorpg:map_device.name=Map Device
 
 # ITEM TOOLTIPS
 mmorpg.tooltip.ore=Precious Ore that can be used in many ways
+mmorpg.tooltip.player_levelup=If your experience bar is full, use this item to levelup!
+mmorpg.tooltip.newbie_gear_bag=Creates a pack of level one gear.
+mmorpg.lore.newbie_gear_bag1=Three Furnaces below, five iron wills above,
+mmorpg.lore.newbie_gear_bag2=seed in the middle, materialize hope!
+
 
 # RARITY ITEM NAMES
 item.mmorpg:axe/axe0.name=§7Common Axe
@@ -552,4 +557,31 @@ mmorpg.rarity.unique=Unique
 mmorpg.name.map=Adventure Map
 mmorpg.tooltip.put_in_mapdevice=Put in Map Device to Use
 
+# CONFIG
+
+# CONFIG DROPRATES
+mmorpg.config.currency_droprate=Currency Droprate
+mmorpg.config.spell_droprate=Spell Droprate
+mmorpg.config.map_droprate=Map Droprate
+mmorpg.config.unique_droprate=Unique Droprate
+mmorpg.config.gear_droprate=Gear Droprate
+
+# CONFIG CLIENT
+mmorpg.config.item_on_ground_particles=Item on Ground Rarity Particles
+mmorpg.config.chat_combat_log=Show Chat Combat Log
+mmorpg.config.floating_damage_numbers=Show Floating Damage
+mmorpg.config.mob_health_bag=Show Mob Health Bar
+mmorpg.config.low_resource_warnings=Show low Resource (mana, energy) Warnings
+mmorpg.config.floating_exp=Show floating exp
+mmorpg.config.player_gui_overlay_type=Player GUI overlay type
+
+# CONFIG SERVER
+mmorpg.config.mob_lvl_per_distance=Mob Lvl Per Distance
+mmorpg.config.mob_lvl_one_area=Mob Lvl 1 Area
+mmorpg.config.player_level_cap=Player Lvl Cap
+mmorpg.config.normal_world_max_lvl_cap=Normal World Mob Lvl Cap
+mmorpg.config.exp_multiplier=Exp Multiplier
+mmorpg.config.levelup_cost_token=Level ups cost tokens
+mmorpg.config.max_players_in_map=Max Players in Map
+mmorpg.config.entities_under_system=Entities under System
 
