@@ -15,6 +15,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
@@ -110,7 +111,7 @@ public class DamageEffect extends EffectData
 
 	if (this.Source instanceof EntityPlayer) {
 
-	    String s = "Dealt " + LogDamage() + " to " + this.Target.getName() + " "
+	    String s = CLOC.word("dealt") + LogDamage() + CLOC.word("to") + " " + this.Target.getName() + " "
 		    + LogCurrentHP(this.Target, this.targetUnit);
 	    this.Source.sendMessage(new TextComponentString(s));
 
@@ -118,7 +119,7 @@ public class DamageEffect extends EffectData
 
 	if (this.Target instanceof EntityPlayer) {
 
-	    String s = "Took " + LogDamage() + " from " + this.Source.getName() + " "
+	    String s = CLOC.word("took") + LogDamage() + CLOC.word("from") + " " + this.Source.getName() + " "
 		    + LogCurrentHP(this.Target, this.targetUnit);
 	    this.Target.sendMessage(new TextComponentString(s));
 
@@ -166,7 +167,7 @@ public class DamageEffect extends EffectData
 
 	String num = FormatDamageNumber(this);
 
-	String str = num + " DMG ";
+	String str = " " + num + " " + CLOC.word("damage") + " ";
 
 	if (Element == null || Element.equals(Elements.None)) {
 	    str = TextFormatting.GRAY + str;

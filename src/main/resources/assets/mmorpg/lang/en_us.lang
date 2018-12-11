@@ -253,6 +253,11 @@ mmorpg.word.put_map=Put Map
 #mmorpg.word.sacrifice_map_for_tier=Sacrifice Map For Tier
 #mmorpg.word.sacrifice_map_for_level=Sacrifice Map For Level
 mmorpg.word.start=Start
+mmorpg.word.dealt=Dealt
+mmorpg.word.took=Took
+mmorpg.word.from=From
+mmorpg.word.to=To
+mmorpg.word.damage=Damage
 
 # BIOME WORDS
 mmorpg.word.arid_highland=Arid Highland
