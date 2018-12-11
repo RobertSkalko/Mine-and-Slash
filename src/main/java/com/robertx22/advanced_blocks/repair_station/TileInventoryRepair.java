@@ -8,6 +8,7 @@ import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.misc.ItemCapacitor;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.item.Item;
@@ -408,7 +409,7 @@ public class TileInventoryRepair extends BaseTile {
     // GUI
     @Override
     public String getName() {
-	return "Repair Station";
+	return CLOC.blank("tile.mmorpg:repair_station.name");
     }
 
     @Override

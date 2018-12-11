@@ -75,4 +75,9 @@ public class CLOC {
 
     }
 
+    public static String blank(String string) {
+
+	return base(string);
+    }
+
 }

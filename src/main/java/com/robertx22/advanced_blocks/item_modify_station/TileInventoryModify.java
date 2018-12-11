@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.currency.ICurrencyItemEffect;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.item.ItemStack;
@@ -308,7 +309,7 @@ public class TileInventoryModify extends BaseTile {
     // GUI
     @Override
     public String getName() {
-	return "Item Modify Station";
+	return CLOC.blank("tile.mmorpg:modify_station.name");
     }
 
     @Override

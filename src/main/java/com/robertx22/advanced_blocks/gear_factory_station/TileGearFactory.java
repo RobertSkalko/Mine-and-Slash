@@ -12,6 +12,7 @@ import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -442,7 +443,7 @@ public class TileGearFactory extends BaseTile {
     // GUI
     @Override
     public String getName() {
-	return "Gear Factory Station";
+	return CLOC.blank("tile.mmorpg:gear_factory_station.name");
     }
 
     @Override

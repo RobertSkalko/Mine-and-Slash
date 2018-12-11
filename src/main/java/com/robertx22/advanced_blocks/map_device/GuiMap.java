@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.uncommon.CLOC;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -54,6 +55,30 @@ public class GuiMap extends GuiContainer {
 	final int LABEL_XPOS = 5;
 	final int LABEL_YPOS = 5;
 	fontRenderer.drawString(tileEntity.getDisplayName().getUnformattedText(), LABEL_XPOS, LABEL_YPOS,
+		Color.darkGray.getRGB());
+
+	final int TIER_XPOS = 35;
+	final int TIER_YPOS = 105;
+	String tier = CLOC.word("tier") + "+";
+	fontRenderer.drawString(tier, TIER_XPOS - fontRenderer.getStringWidth(tier) / 2, TIER_YPOS,
+		Color.darkGray.getRGB());
+
+	final int LEVEL_XPOS = 143;
+	final int LEVEL_YPOS = 105;
+	String level = CLOC.word("level") + "+";
+	fontRenderer.drawString(level, LEVEL_XPOS - fontRenderer.getStringWidth(level) / 2, LEVEL_YPOS,
+		Color.darkGray.getRGB());
+
+	final int MAP_XPOS = 90;
+	final int MAP_YPOS = 15;
+	String map = CLOC.word("put_map");
+	fontRenderer.drawString(map, MAP_XPOS - fontRenderer.getStringWidth(map) / 2, MAP_YPOS,
+		Color.darkGray.getRGB());
+
+	final int START_XPOS = 88;
+	final int START_YPOS = 85;
+	String start = CLOC.word("start");
+	fontRenderer.drawString(start, START_XPOS - fontRenderer.getStringWidth(start) / 2, START_YPOS,
 		Color.darkGray.getRGB());
 
 	List<String> hoveringText = new ArrayList<String>();

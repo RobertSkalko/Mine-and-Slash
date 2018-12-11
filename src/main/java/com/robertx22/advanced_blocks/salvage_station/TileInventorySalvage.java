@@ -8,6 +8,7 @@ import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Spell;
@@ -315,7 +316,7 @@ public class TileInventorySalvage extends BaseTile {
     // GUI
     @Override
     public String getName() {
-	return "Salvage Station";
+	return CLOC.blank("tile.mmorpg:salvage_station.name");
     }
 
     @Override
