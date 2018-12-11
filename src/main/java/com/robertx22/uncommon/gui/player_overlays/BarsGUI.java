@@ -73,7 +73,7 @@ public class BarsGUI extends Gui {
 		bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
 	    }
 	} catch (Exception e) {
-	    // e.printStackTrace();
+	    e.printStackTrace();
 	}
 
     }
