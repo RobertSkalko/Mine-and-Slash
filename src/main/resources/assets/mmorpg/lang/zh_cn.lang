@@ -1,0 +1,533 @@
+##ORES
+item.mmorpg:ore0.name=普通矿石
+item.mmorpg:ore1.name=不寻常矿石
+item.mmorpg:ore2.name=稀有矿石
+item.mmorpg:ore3.name=史诗矿石
+item.mmorpg:ore4.name=传说矿石
+item.mmorpg:ore5.name=神话矿石
+
+tile.mmorpg:ore_block0.name=普通原矿
+tile.mmorpg:ore_block1.name=不寻常原矿
+tile.mmorpg:ore_block2.name=稀有原矿
+tile.mmorpg:ore_block3.name=史诗原矿
+tile.mmorpg:ore_block4.name=传说原矿
+tile.mmorpg:ore_block5.name=神话原矿
+
+## CREATIVE TAB
+itemGroup.MineandSlash=挖矿与砍杀
+
+# STATIONS
+tile.mmorpg:modify_station.name=装备强化台
+tile.mmorpg:repair_station.name=装备修理台
+tile.mmorpg:gear_factory_station.name=装备合成台
+tile.mmorpg:salvage_station.name=装备回收台
+tile.mmorpg:map_device.name=地图装置
+
+# ITEM TOOLTIPS
+mmorpg.tooltip.ore=珍贵的矿物用途广泛。
+
+# RARITY ITEM NAMES
+item.mmorpg:axe/axe0.name=普通斧
+item.mmorpg:axe/axe1.name=不寻常斧
+item.mmorpg:axe/axe2.name=稀有斧
+item.mmorpg:axe/axe3.name=史诗斧
+item.mmorpg:axe/axe4.name=传说斧
+item.mmorpg:axe/axe5.name=神话斧
+item.mmorpg:boots/boots0.name=普通靴子
+item.mmorpg:boots/boots1.name=不寻常靴子
+item.mmorpg:boots/boots2.name=稀有靴子
+item.mmorpg:boots/boots3.name=史诗靴子
+item.mmorpg:boots/boots4.name=传说靴子
+item.mmorpg:boots/boots5.name=神话靴子
+item.mmorpg:bow/bow0.name=普通弓
+item.mmorpg:bow/bow1.name=不寻常弓
+item.mmorpg:bow/bow2.name=稀有弓
+item.mmorpg:bow/bow3.name=史诗弓
+item.mmorpg:bow/bow4.name=传说弓
+item.mmorpg:bow/bow5.name=神话弓
+item.mmorpg:bracelet/bracelet0.name=普通护手
+item.mmorpg:bracelet/bracelet1.name=不寻常护手
+item.mmorpg:bracelet/bracelet2.name=稀有护手
+item.mmorpg:bracelet/bracelet3.name=史诗护手
+item.mmorpg:bracelet/bracelet4.name=传说护手
+item.mmorpg:bracelet/bracelet5.name=神话护手
+item.mmorpg:charm/charm0.name=普通符咒
+item.mmorpg:charm/charm1.name=不寻常符咒
+item.mmorpg:charm/charm2.name=稀有符咒
+item.mmorpg:charm/charm3.name=史诗符咒
+item.mmorpg:charm/charm4.name=传说符咒
+item.mmorpg:charm/charm5.name=神话符咒
+item.mmorpg:chest/chest0.name=普通胸甲
+item.mmorpg:chest/chest1.name=不寻常胸甲
+item.mmorpg:chest/chest2.name=稀有胸甲
+item.mmorpg:chest/chest3.name=史诗胸甲
+item.mmorpg:chest/chest4.name=传说胸甲
+item.mmorpg:chest/chest5.name=神话胸甲
+item.mmorpg:hammer/hammer0.name=普通锤
+item.mmorpg:hammer/hammer1.name=不寻常锤
+item.mmorpg:hammer/hammer2.name=稀有锤
+item.mmorpg:hammer/hammer3.name=史诗锤
+item.mmorpg:hammer/hammer4.name=传说锤
+item.mmorpg:hammer/hammer5.name=神话锤
+item.mmorpg:helmet/helmet0.name=普通头盔
+item.mmorpg:helmet/helmet1.name=不寻常头盔
+item.mmorpg:helmet/helmet2.name=稀有头盔
+item.mmorpg:helmet/helmet3.name=史诗头盔
+item.mmorpg:helmet/helmet4.name=传说头盔
+item.mmorpg:helmet/helmet5.name=神话头盔
+item.mmorpg:necklace/necklace0.name=普通项链
+item.mmorpg:necklace/necklace1.name=不寻常项链
+item.mmorpg:necklace/necklace2.name=稀有项链
+item.mmorpg:necklace/necklace3.name=史诗项链
+item.mmorpg:necklace/necklace4.name=传说项链
+item.mmorpg:necklace/necklace5.name=神话项链
+item.mmorpg:pants/pants0.name=普通护腿
+item.mmorpg:pants/pants1.name=不寻常护腿
+item.mmorpg:pants/pants2.name=稀有护腿
+item.mmorpg:pants/pants3.name=史诗护腿
+item.mmorpg:pants/pants4.name=传说护腿
+item.mmorpg:pants/pants5.name=神话护腿
+item.mmorpg:ring/ring0.name=普通指环
+item.mmorpg:ring/ring1.name=不寻常指环
+item.mmorpg:ring/ring2.name=稀有指环
+item.mmorpg:ring/ring3.name=史诗指环
+item.mmorpg:ring/ring4.name=传说指环
+item.mmorpg:ring/ring5.name=神话指环
+item.mmorpg:staff/staff0.name=普通法杖
+item.mmorpg:staff/staff1.name=不寻常法杖
+item.mmorpg:staff/staff2.name=稀有法杖
+item.mmorpg:staff/staff3.name=史诗法杖
+item.mmorpg:staff/staff4.name=传说法杖
+item.mmorpg:staff/staff5.name=神话法杖
+item.mmorpg:sword/sword0.name=普通剑
+item.mmorpg:sword/sword1.name=不寻常剑
+item.mmorpg:sword/sword2.name=稀有剑
+item.mmorpg:sword/sword3.name=史诗剑
+item.mmorpg:sword/sword4.name=传说剑
+item.mmorpg:sword/sword5.name=神话剑
+
+
+# MISC ITEMS
+item.mmorpg:player_levelup.name=升级令牌
+item.mmorpg:loot_bag.name=装备战利品袋
+item.mmorpg:map_bag.name=地图袋
+item.mmorpg:currency_bag.name=宝石袋
+item.mmorpg:newbie_gear_bag.name=新手装备袋
+item.mmorpg:tutorial_book.name=挖矿与砍杀指引
+item.mmorpg:map_back_portal.name=回程珍珠
+
+item.mmorpg:map/map0.name=冒险地图
+item.mmorpg:map/map1.name=冒险地图
+item.mmorpg:map/map2.name=冒险地图
+item.mmorpg:map/map3.name=冒险地图
+item.mmorpg:map/map4.name=冒险地图
+item.mmorpg:map/map5.name=冒险地图
+
+# REPAIR CAPACITORS
+item.mmorpg:capacitor0.name=普通容器
+item.mmorpg:capacitor1.name=不常见容器
+item.mmorpg:capacitor2.name=稀有容器
+item.mmorpg:capacitor3.name=史诗容器
+item.mmorpg:capacitor4.name=传说容器
+item.mmorpg:capacitor5.name=神话容器
+
+# CURRENCIES
+item.mmorpg:add_secondary_stat.name=§c传说水晶
+item.mmorpg:chaos_orb.name=§c混沌宝珠
+item.mmorpg:item_levelup.name=§c飞升宝珠
+item.mmorpg:number_reroll.name=§c祝福宝珠
+item.mmorpg:orb_of_transmutation.name=§c嬗变宝珠
+item.mmorpg:randomize_prefix.name=§c千变宝珠-前缀
+item.mmorpg:randomize_suffix.name=§c千变宝珠-后缀
+item.mmorpg:stone_of_hope.name=§c希望之石
+item.mmorpg:add_suffix.name=§c发掘后缀
+item.mmorpg:add_prefix.name=§c发觉前缀
+item.mmorpg:reroll_suffix_numbers.name=§c后缀祝福宝珠
+item.mmorpg:reroll_prefix_numbers.name=§c前缀祝福宝珠
+item.mmorpg:reroll_unique_numbers.name=§c独特祝福宝珠
+item.mmorpg:create_new_unique.name=§c独特神圣宝石
+
+# SUFFIXES
+mmorpg.suffix.of_critical_unity=Of Critical Unity
+mmorpg.suffix.of_element_resist= - 元素绝缘 
+mmorpg.suffix.of_firestorms= - 炎浪
+mmorpg.suffix.of_immortality= - 不朽
+mmorpg.suffix.of_icestorms= - 凛风
+mmorpg.suffix.of_critical_hits= - 精准
+mmorpg.suffix.of_mana_regen= - 法力再生
+mmorpg.suffix.of_earthquakes= - 地震
+mmorpg.suffix.of_the_sage= - 圣贤
+mmorpg.suffix.of_thunderstorms= - 雷暴
+mmorpg.suffix.of_vitality= - 生机
+mmorpg.suffix.of_rock_skin= - 岩肤
+mmorpg.suffix.of_critical_damage= - 重斩
+
+# PREFIXES
+mmorpg.prefix.flame_imbued=炎铸
+mmorpg.prefix.lightning_imbued=雷铸
+mmorpg.prefix.evasive=闪避
+mmorpg.prefix.thorny=荆棘
+mmorpg.prefix.thirst_of_flame=嗜焰
+mmorpg.prefix.tough=坚韧
+mmorpg.prefix.heavenly_skin=圣肤
+mmorpg.prefix.nature_shield=自然守护
+mmorpg.prefix.energetic=充能
+mmorpg.prefix.poison_imbued=毒铸
+mmorpg.prefix.flaming=灼炎
+mmorpg.prefix.hardened=硬化
+mmorpg.prefix.deep_mind=深思
+mmorpg.prefix.thirst_of_frost=嗜寒
+mmorpg.prefix.fire_shield=火焰守护
+mmorpg.prefix.brave_heart=英勇之心
+mmorpg.prefix.heavenly_strikes=神惩
+mmorpg.prefix.frost_imbued=霜铸
+mmorpg.prefix.thunder_shield=雷霆守护
+mmorpg.prefix.thirst_of_acid=嗜酸
+mmorpg.prefix.hard_hitting=重击
+mmorpg.prefix.life_stealing=吸血
+mmorpg.prefix.frosty=寒霜
+mmorpg.prefix.thundering=闪电
+mmorpg.prefix.thirst_of_lightning=嗜雷
+mmorpg.prefix.water_shield=水灵守护
+mmorpg.prefix.inner_spirit=蕴灵
+
+# WORDS
+
+mmorpg.word.percent=百分比
+mmorpg.word.prefix=前缀
+mmorpg.word.suffix=后缀
+mmorpg.word.stats=属性
+mmorpg.word.primary_stats=主要属性
+mmorpg.word.secondary_stats=次要属性
+mmorpg.word.chaos_stats=混沌属性
+mmorpg.word.unique_stats=独特属性
+mmorpg.word.level=等级
+mmorpg.word.rarity=稀有度
+mmorpg.word.unsalvagable=不可回收
+mmorpg.word.multi=多人
+mmorpg.word.tier=级别
+mmorpg.word.bonus_loot_amount=奖励战利品数目
+mmorpg.word.minutes=分钟
+mmorpg.word.player_affixes=玩家词缀
+mmorpg.word.mob_affixes=生物词缀
+mmorpg.word.world_type=世界类型
+
+# UNIQUE ITEM NAMES
+mmorpg.unique.name.braceletnature0=荆棘护手
+mmorpg.unique.name.pantswater0=冰川护腿
+mmorpg.unique.name.axefire0=燃劈之斧
+mmorpg.unique.name.ringwaterfire0=霜炙指环
+mmorpg.unique.name.braceletthunder0=雷霆护手
+mmorpg.unique.name.charmfire0=圣火符咒
+mmorpg.unique.name.uniquestaffthunder0=雷暴法杖
+mmorpg.unique.name.chestnature0=木灵胸甲
+mmorpg.unique.name.braceletwater0=霜燃护手
+mmorpg.unique.name.pantsnature0=生根护腿
+mmorpg.unique.name.charmwater0=河龙符咒
+mmorpg.unique.name.bootsnature0=大地之靴
+mmorpg.unique.name.helmetthunder0=雷侍头盔
+mmorpg.unique.name.hammerthunder0=托尔之锤
+mmorpg.unique.name.swordnature0=自然灵剑
+mmorpg.unique.name.ringenergy0=无尽指环
+mmorpg.unique.name.uniquestafflifesteal0=吸血鬼之杖
+mmorpg.unique.name.uniquestaffwater0=永冻法杖
+mmorpg.unique.name.pantsthunder0=雷环护腿
+mmorpg.unique.name.chestthunder0=雷暴胸甲
+mmorpg.unique.name.chestdodge0=盗贼护甲
+mmorpg.unique.name.hammerphysical0=碎山巨锤
+mmorpg.unique.name.ringcrit0=精准指环
+mmorpg.unique.name.bootsfire0=炎步之靴
+mmorpg.unique.name.axethunder0=雷暴战斧
+mmorpg.unique.name.swordphysical0=末日利刃
+mmorpg.unique.name.braceletfire0=灼炎拳套
+mmorpg.unique.name.necklacewater0=冰川护符
+mmorpg.unique.name.bootswater0=霜踏之靴
+mmorpg.unique.name.helmetfire0=炎侍头盔
+mmorpg.unique.name.bootsthunder0=雷须之靴
+mmorpg.unique.name.chestfire0=燃烧胸甲
+mmorpg.unique.name.charmnature0=春晖符咒
+mmorpg.unique.name.chestwater0=冰川胸甲
+mmorpg.unique.name.charmthunder0=天罚符咒
+mmorpg.unique.name.swordwater0=冰素之剑
+mmorpg.unique.name.helmetwater0=冰目头盔
+mmorpg.unique.name.helmetmana0=法力头盔
+mmorpg.unique.name.braceletthundernature0=大地之雷护手
+mmorpg.unique.name.uniquestaffnature0=地崩法杖
+mmorpg.unique.name.necklacefire0=燃烧护符
+mmorpg.unique.name.necklaceenergy0=蕴灵护符
+mmorpg.unique.name.necklacenature0=巨橡护符
+mmorpg.unique.name.pantsfire0=灼炎护腿
+mmorpg.unique.name.ringdodge0=敏捷指环
+mmorpg.unique.name.necklacethunder0=雷暴护符
+mmorpg.unique.name.helmetnature0=覆叶头盔
+mmorpg.unique.name.axewaterfire0=霜炙之斧
+mmorpg.unique.name.uniquestafffire0=火山法杖
+mmorpg.unique.name.chestmana0=奥术之衫
+
+# UNIQUE ITEM DESCRIPTIONS 
+mmorpg.unique.tooltip.braceletnature0=只有傻瓜才会为了财富而战。活着才是最重要的。
+mmorpg.unique.tooltip.pantswater0=动我试试，我会怕你吗？
+mmorpg.unique.tooltip.axefire0=我辛辛苦苦融合的元素之力不会白费力气的。
+mmorpg.unique.tooltip.ringwaterfire0=我将实现这完美的平衡。
+mmorpg.unique.tooltip.braceletthunder0=奉献换来的是无与伦比的力量！
+mmorpg.unique.tooltip.charmfire0=浴火而生！
+mmorpg.unique.tooltip.uniquestaffthunder0=掌控雷电，即是掌控了力量，或是毁灭！
+mmorpg.unique.tooltip.chestnature0=别想动我。
+mmorpg.unique.tooltip.braceletwater0=用冰霜的力量，烧死你们！
+mmorpg.unique.tooltip.pantsnature0=拥抱我的根吧。
+mmorpg.unique.tooltip.charmwater0=没人能阻挡我的道路。
+mmorpg.unique.tooltip.bootsnature0=我的根，无坚不摧！
+mmorpg.unique.tooltip.helmetthunder0=我看见有火花萦绕着我。
+mmorpg.unique.tooltip.hammerthunder0=敌人死的时候，我依然很安全。
+mmorpg.unique.tooltip.swordnature0=永远，持续。
+mmorpg.unique.tooltip.ringenergy0=不惜一切，永不停歇！
+mmorpg.unique.tooltip.uniquestafflifesteal0=所有的鲜血，终将归于我！
+mmorpg.unique.tooltip.uniquestaffwater0=冰冻三尺，非一日之寒。
+mmorpg.unique.tooltip.pantsthunder0=吞火，而驭雷。
+mmorpg.unique.tooltip.chestthunder0=那些敢追逐闪电的人，都怎么样了？
+mmorpg.unique.tooltip.chestdodge0=来啊~打我啊~
+mmorpg.unique.tooltip.hammerphysical0=就算是大山，也挡不住我！
+mmorpg.unique.tooltip.ringcrit0=精准打击，一击毙命。
+mmorpg.unique.tooltip.bootsfire0=我所踏足之地，火焰在酝酿。
+mmorpg.unique.tooltip.axethunder0=火星飞溅，首级落地。
+mmorpg.unique.tooltip.swordphysical0=最强大的对手不畏痛苦。
+mmorpg.unique.tooltip.braceletfire0=驾驭着火焰，把它用作武器。烧尽你的敌人。
+mmorpg.unique.tooltip.necklacewater0=冰晶般剔透，冰晶般坚韧。
+mmorpg.unique.tooltip.bootswater0=足下生冰，如履坚冰。
+mmorpg.unique.tooltip.helmetfire0=我看见了烈焰环绕着我。
+mmorpg.unique.tooltip.bootsthunder0=所到之处，火花四溅。
+mmorpg.unique.tooltip.chestfire0=那些没能打败我的事物，都让我更加熠熠生辉。
+mmorpg.unique.tooltip.charmnature0=也许我的生命是有限的，但我永远在闪耀。
+mmorpg.unique.tooltip.chestwater0=我即是臻冰要塞！
+mmorpg.unique.tooltip.charmthunder0=只有经得起打磨，才能变得光彩夺目。
+mmorpg.unique.tooltip.swordwater0=能量无处不在，只是需要我们去把握。
+mmorpg.unique.tooltip.helmetwater0=凡人看不见的事物，都属于我。
+mmorpg.unique.tooltip.helmetmana0=涌向我吧。
+mmorpg.unique.tooltip.braceletthundernature0=大地之雷？我管他叫法力。
+mmorpg.unique.tooltip.uniquestaffnature0=破坏不了？那我就用力粉碎！
+mmorpg.unique.tooltip.necklacefire0=我会将敌人带入这熊熊烈焰，看着它们倒下。
+mmorpg.unique.tooltip.necklaceenergy0=两仪生四象，四象生八卦。
+mmorpg.unique.tooltip.necklacenature0=我只在大自然中寻求力量。
+mmorpg.unique.tooltip.pantsfire0=拥抱我的烈焰吧。
+mmorpg.unique.tooltip.ringdodge0=迅捷如风！
+mmorpg.unique.tooltip.necklacethunder0=掌控雷电，掌控能量。
+mmorpg.unique.tooltip.helmetnature0=自然也会帮助我。
+mmorpg.unique.tooltip.axewaterfire0=我辛辛苦苦融合的元素之力不会白费力气的。
+mmorpg.unique.tooltip.uniquestafffire0=灰飞烟灭。
+mmorpg.unique.tooltip.chestmana0=能量生生不息，这才只是个开始！
+
+
+# STAT NAMES
+mmorpg.stat.unknown_stat=未知属性
+
+mmorpg.stat.physical_damage=物理伤害
+mmorpg.stat.armor_penetration=护甲穿透
+mmorpg.stat.critical_damage=暴击伤害
+mmorpg.stat.critical_hit=暴击率
+
+mmorpg.stat.sword_damage=剑伤害
+mmorpg.stat.axe_damage=斧伤害
+mmorpg.stat.staff_damage=法杖伤害
+mmorpg.stat.hammer_damage=战锤伤害
+mmorpg.stat.bow_damage=弓伤害
+
+mmorpg.stat.dodge=闪避
+mmorpg.stat.armor=护甲
+mmorpg.stat.spell_dodge=法术闪避
+
+mmorpg.stat.energy_to_mana_conversion=能/法转化
+mmorpg.stat.mana_to_energy_conversion=法/能转化
+
+mmorpg.stat.energy=能量
+mmorpg.stat.mana=法力
+mmorpg.stat.health=生命值
+mmorpg.stat.energy_regen=能量回复
+mmorpg.stat.mana_regen=法力回复
+mmorpg.stat.health_regen=生命回复
+mmorpg.stat.life_on_hit=Life On Hit
+mmorpg.stat.mana_on_hit=Mana On Hit
+mmorpg.stat.lifesteal=吸血
+
+mmorpg.stat.earth_atronach=大地侍灵
+mmorpg.stat.frost_atronach=冰霜侍灵
+mmorpg.stat.thunder_atronach=雷霆侍灵
+mmorpg.stat.fire_atronach=火焰侍灵
+
+mmorpg.stat.barbarian=野蛮
+mmorpg.stat.clumsy_scholar=生疏学者
+
+mmorpg.stat.crippled=致残
+mmorpg.stat.diseased=疾病
+
+mmorpg.stat.lord_of_thunderstorms=雷暴领主
+mmorpg.stat.lord_of_earthquakes=地震领主
+mmorpg.stat.lord_of_blizzards=暴雪领主
+mmorpg.stat.lord_of_volcanoes=火山领主
+
+mmorpg.stat.armor_on_high_crit=高暴击护甲
+mmorpg.stat.lifesteal_on_high_crit=高暴击吸血
+
+mmorpg.stat.crit_damage_on_high_dodge=高闪避暴击伤害
+mmorpg.stat.phys_damage_on_high_dodge=高闪避物理伤害
+
+mmorpg.stat.dodge_on_low_crit=低暴击闪避
+mmorpg.stat.health_on_low_crit=低暴击生命值
+
+mmorpg.stat.armor_on_low_dodge=低闪避护甲
+mmorpg.stat.crit_on_low_dodge=低闪避暴击
+
+mmorpg.stat.armored=装甲
+mmorpg.stat.elemental=元素
+mmorpg.stat.golem=傀儡
+mmorpg.stat.lucky=幸运
+mmorpg.stat.stealthy=潜行
+
+mmorpg.stat.all_fire_damage=所有火焰伤害
+mmorpg.stat.all_nature_damage=所有自然伤害
+mmorpg.stat.all_water_damage=所有水系伤害
+mmorpg.stat.all_thunder_damage=所有雷系伤害
+
+mmorpg.stat.attack_fire_damage=火焰攻击
+mmorpg.stat.attack_nature_damage=自然攻击
+mmorpg.stat.attack_water_damage=水系攻击
+mmorpg.stat.attack_thunder_damage=雷霆攻击
+
+mmorpg.stat.fire_penetration=火焰穿透
+mmorpg.stat.water_penetration=水系穿透
+mmorpg.stat.thunder_penetration=雷霆穿透
+mmorpg.stat.nature_penetration=自然穿透
+
+mmorpg.stat.fire_resist=火焰抗性
+mmorpg.stat.water_resist=水系抗性
+mmorpg.stat.thunder_resist=雷霆抗性
+mmorpg.stat.nature_resist=自然抗性
+
+mmorpg.stat.spell_fire_damage=火焰法术伤害
+mmorpg.stat.spell_water_damage=水系法术伤害
+mmorpg.stat.spell_nature_damage=自然法术伤害
+mmorpg.stat.spell_thunder_damage=雷霆法术伤害
+
+mmorpg.stat.thunder_spell_to_attack=Thunder Spell to Attack DMG
+mmorpg.stat.water_spell_to_attack=Water Spell to Attack DMG
+mmorpg.stat.fire_spell_to_attack=Fire Spell to Attack DMG
+mmorpg.stat.nature_spell_to_attack=Nature Spell to Attack DMG
+
+# stat conversions
+mmorpg.stat.fire_water_conversion=Fire to Water Conversion
+mmorpg.stat.fire_thunder_conversion=Fire to Thunder Conversion
+mmorpg.stat.fire_nature_conversion=Fire to Nature Conversion
+
+mmorpg.stat.water_fire_conversion=Water to Fire Conversion
+mmorpg.stat.water_thunder_conversion=Water to Thunder Conversion
+mmorpg.stat.water_nature_conversion=Water to Nature Conversion
+
+mmorpg.stat.thunder_fire_conversion=Thunder to Fire Conversion
+mmorpg.stat.thunder_water_conversion=Thunder to Water Conversion
+mmorpg.stat.thunder_nature_conversion=Thunder to Nature Conversion
+
+mmorpg.stat.nature_water_conversion=Nature to Water Conversion
+mmorpg.stat.nature_thunder_conversion=Nature to Thunder Conversion
+mmorpg.stat.nature_fire_conversion=Nature to Fire Conversion
+
+# stat transfers
+mmorpg.stat.fire_water_transfer=Fire to Water Transfer
+mmorpg.stat.fire_thunder_transfer=Fire to Thunder Transfer
+mmorpg.stat.fire_nature_transfer=Fire to Nature Transfer
+
+mmorpg.stat.water_fire_transfer=Water to Fire Transfer
+mmorpg.stat.water_thunder_transfer=Water to Thunder Transfer
+mmorpg.stat.water_nature_transfer=Water to Nature Transfer
+
+mmorpg.stat.thunder_fire_transfer=Thunder to Fire Transfer
+mmorpg.stat.thunder_water_transfer=Thunder to Water Transfer
+mmorpg.stat.thunder_nature_transfer=Thunder to Nature Transfer
+
+mmorpg.stat.nature_water_transfer=Nature to Water Transfer
+mmorpg.stat.nature_thunder_transfer=Nature to Thunder Transfer
+mmorpg.stat.nature_fire_transfer=Nature to Fire Transfer
+
+# ITEM TOOLTIPS
+
+# CURRENCY ITEM LORE
+mmorpg.lore.add_prefix=潜力无限。
+mmorpg.lore.create_new_unique=不喜欢这个？换一个试试！
+mmorpg.lore.add_secondary_stat=能力永远不嫌多，不是吗？
+mmorpg.lore.add_suffix=翱翔天际。
+mmorpg.lore.chaos_orb=愿赌就要服输，害怕的话就不要尝试。
+mmorpg.lore.item_levelup=谁说你的剑不能与你一起升级?
+mmorpg.lore.number_reroll=希望能比上次好点。
+mmorpg.lore.orb_of_transmutation=变废为宝！
+mmorpg.lore.randomize_prefix=总有更好的选择
+mmorpg.lore.randomize_suffix=总有更好的选择
+mmorpg.lore.stone_of_hope=有希望的地方，就有前进的道路。
+mmorpg.lore.reroll_prefix_numbers=给我变！！
+mmorpg.lore.reroll_suffix_numbers=给我变！！
+mmorpg.lore.reroll_unique_numbers=万物皆可变。
+
+# CURRENCY ITEM TOOLTIPS
+mmorpg.tooltip.add_prefix=增加一个前缀
+mmorpg.tooltip.create_new_unique=转化独特装备（同级）
+mmorpg.tooltip.add_secondary_stat=增加一个次要属性
+mmorpg.tooltip.add_suffix=增加一个后缀
+mmorpg.tooltip.chaos_orb=永久添加一个混沌属性
+mmorpg.tooltip.item_levelup=提高物品等级
+mmorpg.tooltip.number_reroll=随机刷新装备所有的属性数字
+mmorpg.tooltip.orb_of_transmutation=转化普通物品
+mmorpg.tooltip.randomize_prefix=随机刷新前缀
+mmorpg.tooltip.randomize_suffix=随机刷新后缀
+mmorpg.tooltip.stone_of_hope=将任意稀有度的装备提升等级
+mmorpg.tooltip.reroll_prefix_numbers=随机刷新前缀属性的数值
+mmorpg.tooltip.reroll_suffix_numbers=随机刷新后缀属性的数值
+mmorpg.tooltip.reroll_unique_numbers=随机刷新独特属性的数值
+
+
+# CHAT MESSAGESs
+mmorpg.chat.levelup_success=你升级了！
+mmorpg.chat.low_weapon_durability=武器耐久度过低！
+mmorpg.chat.teleport_canceled=传送已取消。传送引导期间请勿移动。
+mmorpg.chat.teleport_begin=开始传送，请保持静止。
+mmorpg.chat.not_inside_map=你不在地图世界里。
+mmorpg.chat.world_doesnt_exist=这个世界似乎不存在，时间大概用完了。
+mmorpg.chat.world_is_closed=你不能进入该世界，该世界已经关闭并被删除。
+mmorpg.chat.traveling_to_mapworld=你正前往一个地图世界，维度ID为：
+mmorpg.chat.mapworld_max_capacity=此地图已达到最大玩家数。
+mmorpg.chat.not_mapworld=没有地图世界，或者世界已经时间耗尽。正在清除传送门方块。
+mmorpg.chat.too_low_level=你的等级太低了！
+mmorpg.chat.not_enough_mana=法力值不足
+mmorpg.chat.not_enough_energy=能量不足
+mmorpg.chat.cant_delete_world=你不能删除这个世界
+mmorpg.chat.mapworld_ran_out_of_time=这个地图世界时间耗尽，玩家将传送回来。
+mmorpg.chat.mapworld_time_left=时间在流逝，剩余地图时间为:
+mmorpg.chat.player_died_mapworld=玩家死于地图世界:
+mmorpg.chat.activating_mapworld_time_penalty=地图时间惩罚已激活
+
+# GEAR TYPES
+mmorpg.gear_type.sword=剑
+mmorpg.gear_type.axe=斧
+mmorpg.gear_type.bow=弓
+mmorpg.gear_type.hammer=锤
+mmorpg.gear_type.staff=法杖
+mmorpg.gear_type.pants=护腿
+mmorpg.gear_type.chest=胸甲
+mmorpg.gear_type.boots=靴子
+mmorpg.gear_type.helmet=头盔
+mmorpg.gear_type.ring=指环
+mmorpg.gear_type.charm=符咒
+mmorpg.gear_type.bracelet=护手
+mmorpg.gear_type.necklace=项链
+
+# RARITIES
+mmorpg.rarity.common=普通
+mmorpg.rarity.uncommon=不寻常
+mmorpg.rarity.rare=稀有
+mmorpg.rarity.epic=史诗
+mmorpg.rarity.legendary=传说
+mmorpg.rarity.mythical=神话
+mmorpg.rarity.unique=独特
+
+
+# MAPS
+mmorpg.name.map=冒险地图
+mmorpg.tooltip.put_in_mapdevice=置入地图装置来使用。
+
+

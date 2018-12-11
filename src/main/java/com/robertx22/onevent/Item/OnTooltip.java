@@ -4,6 +4,7 @@ import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.Unit;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -58,7 +59,7 @@ public class OnTooltip {
 
 		    if (GuiScreen.isShiftKeyDown() == false) {
 
-			event.getToolTip().add("Press shift for more info");
+			event.getToolTip().add(CLOC.tooltip("press_shift_more_info"));
 		    }
 		}
 
@@ -69,7 +70,7 @@ public class OnTooltip {
 	    MapItemData map = Map.Load(stack);
 	    if (map != null) {
 		event.getToolTip().add("");
-		event.getToolTip().add(TextFormatting.GOLD + "Affix Rarity Loot Bonus: "
+		event.getToolTip().add(TextFormatting.GOLD + CLOC.tooltip("affix_rarity_lootbonus") + ": "
 			+ unitdata.getLootBonusPerAffixKills(map) + "%");
 
 	    }

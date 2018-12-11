@@ -29,6 +29,8 @@ mmorpg.tooltip.player_levelup=If your experience bar is full, use this item to l
 mmorpg.tooltip.newbie_gear_bag=Creates a pack of level one gear.
 mmorpg.lore.newbie_gear_bag1=Three Furnaces below, five iron wills above,
 mmorpg.lore.newbie_gear_bag2=seed in the middle, materialize hope!
+mmorpg.tooltip.capacitor=Put Inside Repair Station to decrease fuel consumption.
+mmorpg.tooltip.capacitor2=Fuel Multiplier
 
 
 # RARITY ITEM NAMES
@@ -558,6 +560,10 @@ mmorpg.name.map=Adventure Map
 mmorpg.tooltip.put_in_mapdevice=Put in Map Device to Use
 
 # CONFIG
+mmorpg.config.client=Client
+mmorpg.config.server=Server
+mmorpg.config.droprates=Droprates
+mmorpg.config.title=Mine and Slash
 
 # CONFIG DROPRATES
 mmorpg.config.currency_droprate=Currency Droprate
@@ -584,4 +590,7 @@ mmorpg.config.exp_multiplier=Exp Multiplier
 mmorpg.config.levelup_cost_token=Level ups cost tokens
 mmorpg.config.max_players_in_map=Max Players in Map
 mmorpg.config.entities_under_system=Entities under System
+
+mmorpg.tooltip.press_shift_more_info=Press Shift for more info
+mmorpg.tooltip.affix_rarity_lootbonus=Affix Rarity Loot Bonus
 

@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -25,45 +26,46 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber
 public class ItemCapacitor extends Item {
 
-	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-	public ItemCapacitor(int rarity) {
-		this.rarity = rarity;
+    public ItemCapacitor(int rarity) {
+	this.rarity = rarity;
 
-		this.setMaxDamage(0);
-		this.setCreativeTab(CreativeTabList.CurrencyTab);
+	this.setMaxDamage(0);
+	this.setCreativeTab(CreativeTabList.CurrencyTab);
 
-		RegisterItemUtils.RegisterItemName(this, "capacitor" + rarity);
-	}
+	RegisterItemUtils.RegisterItemName(this, "capacitor" + rarity);
+    }
 
-	int rarity;
+    int rarity;
 
-	public List<Float> RepairValues = Arrays.asList(0.95F, 0.9F, 0.8F, 0.7F, 0.5F, 0.25F);
+    public List<Float> RepairValues = Arrays.asList(0.95F, 0.9F, 0.8F, 0.7F, 0.5F, 0.25F);
 
-	public Float GetFuelMultiplier() {
+    public Float GetFuelMultiplier() {
 
-		return RepairValues.get(rarity);
+	return RepairValues.get(rarity);
 
-	}
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		tooltip.add("Put inside a Repair Stationn to");
-		tooltip.add("decrease fuel consumption by " + this.GetFuelMultiplier() + "x");
+	tooltip.add(CLOC.tooltip("capacitor"));
 
-	}
+	tooltip.add(CLOC.tooltip("capacitor2") + " :" + this.GetFuelMultiplier() + "x");
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemCapacitor(x.Rank())));
-		Items.values().forEach((x) -> event.getRegistry().register(x));
-	}
+    }
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		Items.values().forEach((x) -> RegisterUtils.registerRender(x));
-	}
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemCapacitor(x.Rank())));
+	Items.values().forEach((x) -> event.getRegistry().register(x));
+    }
+
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	Items.values().forEach((x) -> RegisterUtils.registerRender(x));
+    }
 
 }
