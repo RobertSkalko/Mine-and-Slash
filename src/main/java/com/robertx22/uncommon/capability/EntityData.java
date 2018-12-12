@@ -71,6 +71,8 @@ public class EntityData {
 
 	void setLevel(int lvl, EntityLivingBase entity);
 
+	boolean increaseRarity();
+
 	int getExp();
 
 	void setExp(int exp);
@@ -376,6 +378,10 @@ public class EntityData {
 
 	@Override
 	public void setLevel(int lvl, EntityLivingBase entity) {
+	    if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+		lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+	    }
+
 	    level = lvl;
 	}
 
@@ -433,22 +439,24 @@ public class EntityData {
 
 	@Override
 	public String getName(EntityLivingBase entity) {
-	    MobRarity rarity = Rarities.Mobs.get(getRarity());
-	    String rarityprefix = "";
-	    String name = "";
 
 	    if (entity instanceof EntityPlayer) {
-		name = ((EntityPlayer) entity).getDisplayNameString();
+
+		return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + " "
+			+ entity.getDisplayName().toString();
 
 	    } else {
-		name = entity.getName();
+		MobRarity rarity = Rarities.Mobs.get(getRarity());
+		String rarityprefix = "";
+		String name = "";
+
+		name = entity.getDisplayName().getFormattedText();
 		rarityprefix = CLOC.rarityName(rarity);
 
+		return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " "
+			+ name;
+
 	    }
-
-	    name = TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " " + name;
-
-	    return name;
 	}
 
 	@Override
@@ -623,6 +631,17 @@ public class EntityData {
 	@Override
 	public void heal(EntityLivingBase entity, int healthrestored) {
 	    entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored * OnHealDecrease.HEAL_DECREASE, entity));
+	}
+
+	@Override
+	public boolean increaseRarity() {
+
+	    if (rarity == 5) {
+		return false;
+	    } else {
+		rarity = rarity + 1;
+		return true;
+	    }
 	}
 
     }

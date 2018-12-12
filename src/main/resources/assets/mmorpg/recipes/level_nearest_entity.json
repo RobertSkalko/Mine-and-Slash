@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CAC",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:iron_ingot"
+    }, 
+	"A": {
+      "item": "mmorpg:ore2"
+    }, 
+	"B": {
+      "item": "mmorpg:ore3"
+    }
+  },
+  "result": {
+    "item": "mmorpg:level_nearest_entity"
+  }
+}

@@ -27,9 +27,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
@@ -181,10 +179,6 @@ public class HealthBarRenderer {
 
 		float s = 0.5F;
 		String name = I18n.format(data.getName(entity));
-		if (entity instanceof EntityLiving && ((EntityLiving) entity).hasCustomName())
-		    name = TextFormatting.ITALIC + ((EntityLiving) entity).getCustomNameTag();
-		else if (entity instanceof EntityVillager)
-		    name = I18n.format("entity.Villager.name");
 
 		float namel = mc.fontRenderer.getStringWidth(name) * s;
 		if (namel + 20 > size * 2)

@@ -14,7 +14,10 @@ tile.mmorpg:ore_block4.name=Legendary Ore Block
 tile.mmorpg:ore_block5.name=Mythical Ore Block
 
 ## CREATIVE TAB
-itemGroup.MineandSlash=Mine and Slash
+itemGroup.mmorpg_main=Mine and Slash
+itemGroup.mmorpg_uniques=Unique Gear
+itemGroup.mmorpg_currency=Crafting Items
+itemGroup.mmorpg_lootboxes=LootBoxes
 
 # STATIONS
 tile.mmorpg:modify_station.name=Gear Modify Station
@@ -127,6 +130,8 @@ item.mmorpg:currency_bag.name=Currency Bag
 item.mmorpg:newbie_gear_bag.name=Newbie Gear Bag
 item.mmorpg:tutorial_book.name=Mine and Slash Tutorial
 item.mmorpg:map_back_portal.name=Map Leave Pearl
+item.mmorpg:level_nearest_entity.name=Level Nearest Entity
+item.mmorpg:increase_rarity_nearest_entity.name=Increase Rarity Nearest Entity
 
 # SPELL ITEMS
 item.mmorpg:spell_acidbolt.name=§cAcid Bolt
@@ -556,6 +561,8 @@ mmorpg.chat.player_died_mapworld=Player died in a Map World:
 mmorpg.chat.activating_mapworld_time_penalty=Map Time penalty activated
 mmorpg.chat.too_high_level=A piece of gear is too high level for you, no stats added!
 mmorpg.chat.minutes=Minutes
+mmorpg.chat.you_leveledup_entity=You have successfully leveled up an entity!
+mmorpg.chat.you_increased_rarity_entity=Succesfully increased rarity of an entity!
 
 # GEAR TYPES
 mmorpg.gear_type.sword=Sword
