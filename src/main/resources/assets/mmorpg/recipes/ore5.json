@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {  
+	"A": {
+      "item": "mmorpg:ore4"
+    }   
+  },
+  "result": {
+    "item": "mmorpg:ore5"
+  }
+}

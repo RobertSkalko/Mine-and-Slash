@@ -52,7 +52,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon {
 
 		data.recalculateStats(player, Load.World(player.world));
 
-		if (data.tryUseWeapon(player, this.mechanic(), player.getHeldItem(hand))) {
+		if (data.tryUseWeapon(player, player.getHeldItem(hand))) {
 
 		    EntityStaffProjectileNormal projectile = new EntityStaffProjectileNormal(world, player);
 		    projectile.SetReady(player.getHeldItem(hand));

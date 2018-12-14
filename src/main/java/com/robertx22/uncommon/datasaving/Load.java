@@ -18,8 +18,6 @@ public class Load {
 
     public static IWorldData World(ICapabilityProvider provider) {
 
-	// System.out.println(I18n.format("test.my_message.hello")); this seems to work
-
 	if (provider != null) {
 	    return provider.getCapability(WorldData.Data, null);
 

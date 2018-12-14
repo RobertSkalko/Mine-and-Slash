@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
 import com.robertx22.database.stat_types.resources.Health;
 import com.robertx22.db_lists.Sets;
@@ -88,7 +87,7 @@ public class PlayerStatUtils {
 	    }
 	}
 	ItemStack weapon = entity.getHeldItemMainhand();
-	if (weapon.getItem() instanceof IWeapon) {
+	if (weapon != null) {
 	    list.add(weapon);
 	}
 

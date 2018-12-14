@@ -19,7 +19,7 @@ public class GiveUnique extends CommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-	return "/giveunique (lvl),  (type: Sword, Necklace etc), (tier), (amount)";
+	return "/giveunique (lvl),  (type: Sword, Necklace etc), (tier), (amount) NOTE: It's Caps sensitive! Sword, not sword.";
     }
 
     @Override

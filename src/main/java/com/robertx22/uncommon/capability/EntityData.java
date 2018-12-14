@@ -12,6 +12,7 @@ import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.UnitPackage;
 import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.onevent.player.OnLogin;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
@@ -20,6 +21,7 @@ import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
@@ -37,7 +39,6 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
@@ -71,7 +72,7 @@ public class EntityData {
 
 	void setLevel(int lvl, EntityLivingBase entity);
 
-	boolean increaseRarity();
+	boolean increaseRarity(EntityLivingBase entity);
 
 	int getExp();
 
@@ -109,7 +110,7 @@ public class EntityData {
 
 	void forceSetUnit(Unit unit);
 
-	boolean tryUseWeapon(EntityLivingBase entity, WeaponMechanic iwep, ItemStack weapon);
+	boolean tryUseWeapon(EntityLivingBase entity, ItemStack weapon);
 
 	void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon);
 
@@ -350,11 +351,9 @@ public class EntityData {
 	public boolean LevelUp(EntityPlayer player) {
 
 	    if (!CheckIfCanLevelUp()) {
-		player.sendMessage(
-			new TextComponentString(TextFormatting.RED + "You don't have enough experience to Level Up."));
+		player.sendMessage(SLOC.chat("not_enough_experience"));
 	    } else if (!CheckLevelCap()) {
-		player.sendMessage(
-			new TextComponentString(TextFormatting.RED + "You have already reached maximum level."));
+		player.sendMessage(SLOC.chat("cannot_over_maximum_level"));
 	    }
 
 	    if (CheckIfCanLevelUp() && CheckLevelCap()) {
@@ -383,6 +382,7 @@ public class EntityData {
 	    }
 
 	    level = lvl;
+
 	}
 
 	@Override
@@ -477,32 +477,48 @@ public class EntityData {
 	}
 
 	@Override
-	public boolean tryUseWeapon(EntityLivingBase entity, WeaponMechanic iwep, ItemStack weapon) {
+	public boolean tryUseWeapon(EntityLivingBase source, ItemStack weapon) {
 
-	    float energyCost = iwep.GetEnergyCost();
+	    try {
+		GearItemData weaponData = Gear.Load(weapon);
 
-	    if (hasEnoughEnergy(energyCost) == false) {
+		if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
 
-		AttackUtils.NoEnergyMessage(entity);
-		return false;
+		    IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
-	    } else {
-		consumeEnergy(energyCost);
-		weapon.damageItem(1, entity);
-		return true;
+		    float energyCost = iwep.mechanic().GetEnergyCost();
 
+		    if (hasEnoughEnergy(energyCost) == false) {
+
+			AttackUtils.NoEnergyMessage(source);
+			return false;
+
+		    } else {
+			consumeEnergy(energyCost);
+			weapon.damageItem(1, source);
+
+			return true;
+
+		    }
+
+		}
+	    } catch (Exception e) {
+
+		e.printStackTrace();
 	    }
-
+	    return false;
 	}
 
 	public void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon) {
 
 	    UnitData targetData = Load.Unit(target);
 
-	    if (weapon != null && !weapon.isEmpty() && weapon.getItem() instanceof IWeapon) {
+	    GearItemData weaponData = Gear.Load(weapon);
 
-		WeaponMechanic iWep = ((IWeapon) weapon.getItem()).mechanic();
+	    if (weapon != null && !weapon.isEmpty() && weaponData.GetBaseGearType() instanceof IWeapon) {
 
+		IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
+		WeaponMechanic iWep = iwep.mechanic();
 		iWep.Attack(source, target, this, targetData);
 
 	    }
@@ -634,13 +650,15 @@ public class EntityData {
 	}
 
 	@Override
-	public boolean increaseRarity() {
+	public boolean increaseRarity(EntityLivingBase entity) {
 
 	    if (rarity == 5) {
 		return false;
 	    } else {
 		rarity = rarity + 1;
+
 		return true;
+
 	    }
 	}
 

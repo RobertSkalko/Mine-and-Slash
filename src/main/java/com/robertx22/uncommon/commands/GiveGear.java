@@ -11,36 +11,36 @@ import net.minecraft.server.MinecraftServer;
 
 public class GiveGear extends CommandBase {
 
-	@Override
-	public String getName() {
-		return "givegear";
+    @Override
+    public String getName() {
+	return "givegear";
+    }
+
+    @Override
+    public String getUsage(ICommandSender sender) {
+	return "/givegear (lvl), (rarity 0-4), (type: Sword, Necklace etc), (amount)  NOTE: It's Caps sensitive! Sword, not sword.";
+    }
+
+    @Override
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+
+	int lvl = Integer.valueOf(args[0]);
+	int rarity = Integer.valueOf(args[1]);
+	String type = args[2];
+	int amount = Integer.valueOf(args[3]);
+
+	GearBlueprint schema = new GearBlueprint(lvl);
+	if (rarity > -1) {
+	    schema.SetSpecificRarity(rarity);
+	}
+	if (!type.equals("random")) {
+	    schema.SetSpecificType(type);
+	}
+	EntityPlayer player = (EntityPlayer) sender;
+
+	for (int i = 0; i < amount; i++) {
+	    player.addItemStackToInventory(GearGen.CreateStack(schema));
 	}
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		return "/givegear (lvl), (rarity 0-4), (type: Sword, Necklace etc), (amount)";
-	}
-
-	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-
-		int lvl = Integer.valueOf(args[0]);
-		int rarity = Integer.valueOf(args[1]);
-		String type = args[2];
-		int amount = Integer.valueOf(args[3]);
-
-		GearBlueprint schema = new GearBlueprint(lvl);
-		if (rarity > -1) {
-			schema.SetSpecificRarity(rarity);
-		}
-		if (!type.equals("random")) {
-			schema.SetSpecificType(type);
-		}
-		EntityPlayer player = (EntityPlayer) sender;
-
-		for (int i = 0; i < amount; i++) {
-			player.addItemStackToInventory(GearGen.CreateStack(schema));
-		}
-
-	}
+    }
 }

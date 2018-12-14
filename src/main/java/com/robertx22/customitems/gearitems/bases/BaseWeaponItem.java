@@ -48,8 +48,9 @@ public abstract class BaseWeaponItem extends ItemTool implements IGearItem, IWea
 
 	    UnitData sourceUnit = Load.Unit(attacker);
 
-	    if (sourceUnit.tryUseWeapon(attacker, this.mechanic(), stack)) {
+	    if (sourceUnit.tryUseWeapon(attacker, stack)) {
 		sourceUnit.attackWithWeapon(attacker, target, stack);
+
 		return true;
 	    }
 	}

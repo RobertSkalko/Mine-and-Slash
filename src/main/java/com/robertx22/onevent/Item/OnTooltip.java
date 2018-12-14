@@ -1,6 +1,5 @@
 package com.robertx22.onevent.Item;
 
-import com.robertx22.customitems.gearitems.bases.IGearItem;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.Unit;
@@ -49,18 +48,16 @@ public class OnTooltip {
 	    unit = unitdata.getUnit();
 	}
 	if (GuiScreen.isCtrlKeyDown() == false) {
-	    if (stack.getItem() instanceof IGearItem) {
 
-		GearItemData gear = Gear.Load(stack);
+	    GearItemData gear = Gear.Load(stack);
 
-		if (unit != null && gear != null) {
+	    if (unit != null && gear != null) {
 
-		    gear.BuildTooltip(event, unit, event.getEntityPlayer().getCapability(EntityData.Data, null));
+		gear.BuildTooltip(event, unit, event.getEntityPlayer().getCapability(EntityData.Data, null));
 
-		    if (GuiScreen.isShiftKeyDown() == false) {
+		if (GuiScreen.isShiftKeyDown() == false) {
 
-			event.getToolTip().add(CLOC.tooltip("press_shift_more_info"));
-		    }
+		    event.getToolTip().add(CLOC.tooltip("press_shift_more_info"));
 		}
 
 	    }

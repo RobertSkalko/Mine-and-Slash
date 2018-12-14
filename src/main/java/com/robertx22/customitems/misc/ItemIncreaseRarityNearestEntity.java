@@ -52,7 +52,7 @@ public class ItemIncreaseRarityNearestEntity extends Item {
 
 			UnitData data = Load.Unit(en);
 
-			if (data.increaseRarity()) {
+			if (data.increaseRarity(en)) {
 
 			    player.getHeldItem(hand).shrink(1);
 
@@ -60,7 +60,7 @@ public class ItemIncreaseRarityNearestEntity extends Item {
 
 			    return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 			} else {
-
+			    player.sendMessage(SLOC.chat("no_targets_found"));
 			}
 		    }
 

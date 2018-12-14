@@ -53,7 +53,7 @@ public class ItemLevelNearestEntity extends Item {
 
 			UnitData data = Load.Unit(en);
 
-			if (data.getLevel() + 1 < ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
+			if (data.getLevel() + 1 <= ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
 			    data.setLevel(data.getLevel() + 1, en);
 
 			    player.getHeldItem(hand).shrink(1);
@@ -62,7 +62,7 @@ public class ItemLevelNearestEntity extends Item {
 
 			    return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 			} else {
-
+			    player.sendMessage(SLOC.chat("no_targets_found"));
 			}
 		    }
 

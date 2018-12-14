@@ -1,7 +1,24 @@
 package com.robertx22.mmorpg;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.robertx22.database.gearitemslots.Axe;
+import com.robertx22.database.gearitemslots.Boots;
+import com.robertx22.database.gearitemslots.Bracelet;
+import com.robertx22.database.gearitemslots.Charm;
+import com.robertx22.database.gearitemslots.Chest;
+import com.robertx22.database.gearitemslots.Hammer;
+import com.robertx22.database.gearitemslots.Helmet;
+import com.robertx22.database.gearitemslots.Necklace;
+import com.robertx22.database.gearitemslots.Pants;
+import com.robertx22.database.gearitemslots.Ring;
+import com.robertx22.database.gearitemslots.Sword;
+import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.db_lists.GearTypes;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 
+import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -18,6 +35,32 @@ public class ModConfig {
     @Config.LangKey("mmorpg.config.client")
     public static ClientContainer Client = new ClientContainer();
 
+    @Config.Name("Items Under System")
+    @Config.LangKey("mmorpg.config.items_under_system")
+    public static ItemsUnderSystem ItemsUnderSystem = new ItemsUnderSystem();
+
+    static {
+
+	// add blank slots
+	for (int i = 0; i < 100; i++) {
+	    String str = String.format("%07d", i);
+
+	    ItemsUnderSystem.Swords.put(str, "");
+	    ItemsUnderSystem.Axes.put(str, "");
+	    ItemsUnderSystem.Hammers.put(str, "");
+	    ItemsUnderSystem.Chests.put(str, "");
+	    ItemsUnderSystem.Pants.put(str, "");
+	    ItemsUnderSystem.Helmets.put(str, "");
+	    ItemsUnderSystem.Boots.put(str, "");
+	    ItemsUnderSystem.Rings.put(str, "");
+	    ItemsUnderSystem.Pants.put(str, "");
+	    ItemsUnderSystem.Necklaces.put(str, "");
+	    ItemsUnderSystem.Charms.put(str, "");
+	    ItemsUnderSystem.Bracelets.put(str, "");
+
+	}
+    }
+
     @Config.Name("Server")
     @Config.LangKey("mmorpg.config.server")
     public static ServerContainer Server = new ServerContainer();
@@ -25,6 +68,99 @@ public class ModConfig {
     @Config.Name("Droprates")
     @Config.LangKey("mmorpg.config.droprates")
     public static DropRatesContainer DropRates = new DropRatesContainer();
+
+    public static class ItemsUnderSystem {
+
+	@Config.Ignore
+	public Map<String, String> all = new HashMap();
+
+	public void sync() {
+
+	    all.clear();
+
+	    syncOne(Swords, all, new Sword().GUID());
+	    syncOne(Chests, all, new Chest().GUID());
+	    syncOne(Pants, all, new Pants().GUID());
+	    syncOne(Helmets, all, new Helmet().GUID());
+	    syncOne(Boots, all, new Boots().GUID());
+	    syncOne(Rings, all, new Ring().GUID());
+	    syncOne(Necklaces, all, new Necklace().GUID());
+	    syncOne(Charms, all, new Charm().GUID());
+	    syncOne(Bracelets, all, new Bracelet().GUID());
+	    syncOne(Hammers, all, new Hammer().GUID());
+	    syncOne(Axes, all, new Axe().GUID());
+
+	}
+
+	public GearItemSlot getType(Item item) {
+
+	    try {
+		sync();
+
+		String id = item.getRegistryName().toString();
+
+		if (all.containsKey(id)) {
+		    String type = all.get(id);
+
+		    return GearTypes.All.get(type);
+		} else {
+		    return null;
+		}
+	    } catch (Exception e) {
+		e.printStackTrace();
+		return null;
+	    }
+	}
+
+	private void syncOne(Map<String, String> items, Map<String, String> all, String gearType) {
+
+	    for (String id : items.values()) {
+
+		if (all.containsKey(id) && !id.isEmpty()) {
+		    System.out
+			    .println("Error, item under system is contained under more than 1 gear type, please check "
+				    + Ref.MODID + " config. Id: " + id);
+
+		} else {
+		    all.put(id, gearType);
+		}
+	    }
+	}
+
+	@Config.Name("Swords")
+	public Map<String, String> Swords = new HashMap<String, String>();
+
+	@Config.Name("Chests")
+	public Map<String, String> Chests = new HashMap<String, String>();
+
+	@Config.Name("Pants")
+	public Map<String, String> Pants = new HashMap<String, String>();
+
+	@Config.Name("Boots")
+	public Map<String, String> Boots = new HashMap<String, String>();
+
+	@Config.Name("Helmets")
+	public Map<String, String> Helmets = new HashMap<String, String>();
+
+	@Config.Name("Rings")
+	public Map<String, String> Rings = new HashMap<String, String>();
+
+	@Config.Name("Necklaces")
+	public Map<String, String> Necklaces = new HashMap<String, String>();
+
+	@Config.Name("Charms")
+	public Map<String, String> Charms = new HashMap<String, String>();
+
+	@Config.Name("Bracelets")
+	public Map<String, String> Bracelets = new HashMap<String, String>();
+
+	@Config.Name("Hammers")
+	public Map<String, String> Hammers = new HashMap<String, String>();
+
+	@Config.Name("Axes")
+	public Map<String, String> Axes = new HashMap<String, String>();
+
+    }
 
     public static class ClientContainer {
 
@@ -96,6 +232,11 @@ public class ModConfig {
 
     public static class ServerContainer {
 
+	@Config.Name("Crafted Items are Under System")
+	@Config.LangKey("")
+	@Config.Comment("")
+	public boolean CRAFTED_ITEMS_UNDER_SYSTEM = false;
+
 	@Config.Name("Mob Level Per Distance")
 	@Config.LangKey("mmorpg.config.mob_lvl_per_distance")
 	@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
@@ -110,6 +251,11 @@ public class ModConfig {
 	@Config.LangKey("mmorpg.config.player_level_cap")
 	@Config.Comment("Select maximum level")
 	public int MAXIMUM_PLAYER_LEVEL = 100;
+
+	@Config.Name("Non Mod Damage Multiplier")
+	@Config.LangKey("mmorpg.config.non_mod_damage_multiplier")
+	@Config.Comment("0 to 1. 0 means other types of damage (not from my mod) are nullified. 1 means they are the same. Please leave at default value unless required to change it. Too high value means you do 2 different types of damage, vanilla damage (sword that does half a mob's health) plus my mod's damage.. Which will lead to you both one shotting mobs and mobs one shotting you too.")
+	public float NON_MOD_DAMAGE_MULTI = 0.03F;
 
 	@Config.Name("Normal Worlds Mob Level Cap")
 	@Config.LangKey("mmorpg.config.normal_world_max_lvl_cap")
@@ -138,13 +284,62 @@ public class ModConfig {
 
     }
 
+    public static class DimensionConfigs {
+
+	public DimensionConfigs() {
+
+	}
+
+	public DimensionConfigs(int id, int min, int max) {
+	    this.DIMENSION_id = id;
+	    this.MINIMUM_MOB_LEVEL = min;
+	    this.MAXIMUM_MOB_LEVEL = max;
+	}
+
+	public DimensionConfigs(int id, int distance, int area, int min, int max) {
+	    this.DIMENSION_id = id;
+	    this.MOB_LEVEL_PER_DISTANCE = distance;
+	    this.MOB_LEVEL_ONE_AREA = area;
+	    this.MINIMUM_MOB_LEVEL = min;
+	    this.MAXIMUM_MOB_LEVEL = max;
+	}
+
+	@Config.Name("Dimension ID")
+	@Config.LangKey("mmorpg.config.dimension_id")
+	@Config.Comment("0 is overwold for example")
+	public int DIMENSION_id = 0;
+
+	@Config.Name("Mob Level Per Distance")
+	@Config.LangKey("mmorpg.config.mob_lvl_per_distance")
+	@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
+	public int MOB_LEVEL_PER_DISTANCE = 14500;
+
+	@Config.Name("Mob Level One Area")
+	@Config.LangKey("mmorpg.config.mob_lvl_one_area")
+	@Config.Comment("How big you want level 1 mob area to be. Bigger value means bigger area")
+	public int MOB_LEVEL_ONE_AREA = 25000;
+
+	@Config.Name("Maximum mob level")
+	@Config.LangKey("mmorpg.config.maximum_mob_level")
+	@Config.Comment("Select maximum level")
+	public int MAXIMUM_MOB_LEVEL = 100;
+
+	@Config.Name("Minimum mob level")
+	@Config.LangKey("mmorpg.config.minimum_mob_level")
+	@Config.Comment("Select maximum level for mobs in normal worlds like vanilla surface, nether, end. This doesn't affect max level for map worlds from my mod! Note: reasoning for low level cap here is to prevent BIS gear being farmable by mob spawners, which ruin the fun")
+	public int MINIMUM_MOB_LEVEL = 25;
+
+    }
+
     @Mod.EventBusSubscriber
     private static class EventHandler {
 
 	@SubscribeEvent
 	public static void onConfigChanged(ConfigChangedEvent event) {
+
 	    if (event.getModID().equals(Ref.MODID)) {
 		ConfigManager.sync(Ref.MODID, Config.Type.INSTANCE);
+
 		System.out.println("Syncing Config");
 	    }
 	}

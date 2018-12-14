@@ -31,6 +31,10 @@ public class OnMobSpawn {
 	    return;
 	}
 
+	if (entity.hasCapability(EntityData.Data, null) == false) {
+	    return;
+	}
+
 	try {
 	    IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
 
@@ -73,7 +77,8 @@ public class OnMobSpawn {
 
     public static int GetMobLevelByDistanceFromSpawn(Entity entity) {
 
-	double distance = entity.world.getSpawnPoint().distanceSq(entity.posX, entity.posY, entity.posZ);
+	double distance = entity.world.getSpawnPoint().getDistance((int) entity.posX, (int) entity.posY,
+		(int) entity.posZ);
 
 	int lvl = 1;
 

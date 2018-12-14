@@ -263,6 +263,8 @@ mmorpg.word.took=Took
 mmorpg.word.from=From
 mmorpg.word.to=To
 mmorpg.word.damage=Damage
+mmorpg.word.progress=Progress
+mmorpg.word.fuel=Fuel
 
 # BIOME WORDS
 mmorpg.word.arid_highland=Arid Highland
@@ -523,6 +525,7 @@ mmorpg.lore.reroll_prefix_numbers=I command you to change!
 mmorpg.lore.reroll_suffix_numbers=I command you to change!
 mmorpg.lore.reroll_unique_numbers=Anything can change.
 
+
 # CURRENCY ITEM TOOLTIPS
 mmorpg.tooltip.add_prefix=Add a prefix
 mmorpg.tooltip.create_new_unique=Transform unique (same tier)
@@ -563,6 +566,9 @@ mmorpg.chat.too_high_level=A piece of gear is too high level for you, no stats a
 mmorpg.chat.minutes=Minutes
 mmorpg.chat.you_leveledup_entity=You have successfully leveled up an entity!
 mmorpg.chat.you_increased_rarity_entity=Succesfully increased rarity of an entity!
+mmorpg.chat.no_targets_found=No targets found
+mmorpg.chat.not_enough_experience=Not Enough Experience
+mmorpg.chat.cannot_over_maximum_level=Cannot be higher than maximum level!
 
 # GEAR TYPES
 mmorpg.gear_type.sword=Sword
@@ -624,6 +630,11 @@ mmorpg.config.exp_multiplier=Exp Multiplier
 mmorpg.config.levelup_cost_token=Level ups cost tokens
 mmorpg.config.max_players_in_map=Max Players in Map
 mmorpg.config.entities_under_system=Entities under System
+mmorpg.config.non_mod_damage_multiplier=Non Mod Damage Multiplier
+mmorpg.config.maximum_mob_level=Maximum Mob Level
+mmorpg.config.minimum_mob_level=Minimum Mob Level
+mmorpg.config.dimension_id=Dimension ID
+mmorpg.config.items_under_system=Items Under System
 
 mmorpg.tooltip.press_shift_more_info=Press Shift for more info
 mmorpg.tooltip.affix_rarity_lootbonus=Affix Rarity Loot Bonus

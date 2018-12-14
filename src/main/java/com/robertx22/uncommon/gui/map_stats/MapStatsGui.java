@@ -9,6 +9,7 @@ import com.libraries.rabbit.gui.component.list.entries.StringEntry;
 import com.libraries.rabbit.gui.show.Show;
 import com.robertx22.customitems.misc.ItemMap;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
@@ -75,7 +76,7 @@ public class MapStatsGui extends Show {
 		    StringToListEntry(str, list);
 		}
 	    } else {
-		StringToListEntry("This is not a map world", list);
+		StringToListEntry(CLOC.word("not_mapworld"), list);
 	    }
 	    int width = this.width / 2;
 	    int height = this.height - this.height / 5;

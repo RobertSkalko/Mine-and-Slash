@@ -8,6 +8,7 @@ import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -62,6 +63,16 @@ public class OnMobMeleeAttack {
 	    sourceData.recalculateStats(source, world);
 
 	    if (source instanceof EntityPlayer) {
+
+		ItemStack stack = source.getHeldItemMainhand();
+
+		if (stack != null && !stack.isEmpty()) {
+
+		    if (sourceData.tryUseWeapon(source, stack)) {
+			sourceData.attackWithWeapon(source, target, stack);
+		    }
+
+		}
 
 	    } else { // if its a mob
 
