@@ -635,6 +635,7 @@ mmorpg.config.maximum_mob_level=Maximum Mob Level
 mmorpg.config.minimum_mob_level=Minimum Mob Level
 mmorpg.config.dimension_id=Dimension ID
 mmorpg.config.items_under_system=Items Under System
+mmorpg.config.crafted_items_are_under_system=Crafted Items are Under System
 
 mmorpg.tooltip.press_shift_more_info=Press Shift for more info
 mmorpg.tooltip.affix_rarity_lootbonus=Affix Rarity Loot Bonus

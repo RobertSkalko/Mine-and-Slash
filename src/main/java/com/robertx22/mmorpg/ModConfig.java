@@ -36,6 +36,7 @@ public class ModConfig {
     public static ClientContainer Client = new ClientContainer();
 
     @Config.Name("Items Under System")
+    @Config.Comment("When items are crafted, they get stats like items from my mod. Put IDs here, like minecraft:diamond_sword. This is not my intented way to play the mod but it should be good for modpack makers or some who want an easier way to gear up.")
     @Config.LangKey("mmorpg.config.items_under_system")
     public static ItemsUnderSystem ItemsUnderSystem = new ItemsUnderSystem();
 
@@ -70,6 +71,11 @@ public class ModConfig {
     public static DropRatesContainer DropRates = new DropRatesContainer();
 
     public static class ItemsUnderSystem {
+
+	@Config.Name("Crafted Items are Under System")
+	@Config.LangKey("mmorpg.config.crafted_items_are_under_system")
+	@Config.Comment("This enables crafted items to get stats, if their ID matches. So if you put minecraft:iron_axe in Swords, the iron axe gets sword stats and sword attack functionality.")
+	public boolean CRAFTED_ITEMS_UNDER_SYSTEM = false;
 
 	@Config.Ignore
 	public Map<String, String> all = new HashMap();
@@ -231,11 +237,6 @@ public class ModConfig {
     }
 
     public static class ServerContainer {
-
-	@Config.Name("Crafted Items are Under System")
-	@Config.LangKey("")
-	@Config.Comment("")
-	public boolean CRAFTED_ITEMS_UNDER_SYSTEM = false;
 
 	@Config.Name("Mob Level Per Distance")
 	@Config.LangKey("mmorpg.config.mob_lvl_per_distance")

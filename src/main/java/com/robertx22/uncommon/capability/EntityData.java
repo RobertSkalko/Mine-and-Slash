@@ -443,7 +443,7 @@ public class EntityData {
 	    if (entity instanceof EntityPlayer) {
 
 		return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + " "
-			+ entity.getDisplayName().toString();
+			+ entity.getDisplayName().getFormattedText();
 
 	    } else {
 		MobRarity rarity = Rarities.Mobs.get(getRarity());
