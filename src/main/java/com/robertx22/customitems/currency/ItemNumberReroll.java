@@ -66,4 +66,9 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     public int Tier() {
 	return 0;
     }
+
+    @Override
+    public int Rank() {
+	return 0;
+    }
 }

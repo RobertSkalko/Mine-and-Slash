@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.db_lists.CreativeTabList;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.ITiered;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
@@ -42,9 +43,26 @@ public abstract class CurrencyItem extends Item implements IWeighted, ITiered {
 
     }
 
+    public abstract int Rank();
+
     @Override
     public int Weight() {
-	return this.UncommonWeight;
+
+	if (Rank() == 0) {
+	    return ModConfig.RarityWeightConfig.CURRENCY.COMMON_WEIGHT;
+	} else if (Rank() == 1) {
+	    return ModConfig.RarityWeightConfig.CURRENCY.UNCOMMON_WEIGHT;
+	} else if (Rank() == 2) {
+	    return ModConfig.RarityWeightConfig.CURRENCY.RARE_WEIGHT;
+	} else if (Rank() == 3) {
+	    return ModConfig.RarityWeightConfig.CURRENCY.EPIC_WEIGHT;
+	} else if (Rank() == 4) {
+	    return ModConfig.RarityWeightConfig.CURRENCY.LEGENDARY_WEIGHT;
+	} else if (Rank() == 5) {
+	    return ModConfig.RarityWeightConfig.CURRENCY.MYTHICAL_WEIGHT;
+	}
+	return 0;
+
     }
 
 }

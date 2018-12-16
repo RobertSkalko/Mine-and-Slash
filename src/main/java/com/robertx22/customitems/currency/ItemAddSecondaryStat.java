@@ -67,4 +67,9 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     public int Tier() {
 	return 0;
     }
+
+    @Override
+    public int Rank() {
+	return 1;
+    }
 }

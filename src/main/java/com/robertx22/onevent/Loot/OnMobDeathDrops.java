@@ -36,32 +36,34 @@ public class OnMobDeathDrops {
 
 	    if (!(entity instanceof EntityPlayer)) {
 		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+		    if (entity.hasCapability(EntityData.Data, null)) {
 
-		    float loot_multi = EntityTypeUtils.getLootMulti(entity);
-		    float exp_multi = EntityTypeUtils.getExpMulti(entity);
+			float loot_multi = EntityTypeUtils.getLootMulti(entity);
+			float exp_multi = EntityTypeUtils.getExpMulti(entity);
 
-		    UnitData victim = entity.getCapability(EntityData.Data, null);
-		    UnitData killer = event.getSource().getTrueSource().getCapability(EntityData.Data, null);
+			UnitData victim = entity.getCapability(EntityData.Data, null);
+			UnitData killer = event.getSource().getTrueSource().getCapability(EntityData.Data, null);
 
-		    if (loot_multi > 0) {
+			if (loot_multi > 0) {
 
-			IWorldData world = Load.World(entity.world);
+			    IWorldData world = Load.World(entity.world);
 
-			killer.onMobKill(world);
+			    killer.onMobKill(world);
 
-			MasterLootGen.genAndDrop(victim, killer, world, entity);
+			    MasterLootGen.genAndDrop(victim, killer, world, entity);
 
-		    }
+			}
 
-		    if (exp_multi > 0) {
-			int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim,
-				exp_multi);
+			if (exp_multi > 0) {
+			    int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim,
+				    exp_multi);
 
-			DamageNumberPackage packet = new DamageNumberPackage(entity, Elements.Nature,
-				"+" + DamageEffect.FormatNumber(exp) + " Exp!");
-			packet.isExp = true;
+			    DamageNumberPackage packet = new DamageNumberPackage(entity, Elements.Nature,
+				    "+" + DamageEffect.FormatNumber(exp) + " Exp!");
+			    packet.isExp = true;
 
-			Main.Network.sendTo(packet, (EntityPlayerMP) event.getSource().getTrueSource());
+			    Main.Network.sendTo(packet, (EntityPlayerMP) event.getSource().getTrueSource());
+			}
 		    }
 		}
 	    }

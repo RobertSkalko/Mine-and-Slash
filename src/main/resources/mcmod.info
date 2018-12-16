@@ -1,16 +1,16 @@
 [
 {
   "modid": "mmorpg",
-  "name": "Mine and Slash Reloaded",
-  "description": "Diablo like mod for minecraft",
+  "name": "Mine and Slash",
+  "description": "Turn Minecraft into a hack and slash looter!",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://minecraft.curseforge.com/projects/mine-and-slash-reloaded",
   "updateUrl": "",
   "authorList": ["robertx22"],
-  "credits": "Vazkii (Neat - Mob health bars)",
+  "credits": "Vazkii, Traverse Team, Dom_codes",
   "logoFile": "logo",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": [baubles, patchouli]
 }
 ]

@@ -66,7 +66,7 @@ public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEf
     }
 
     @Override
-    public int Weight() {
-	return this.EpicWeight;
+    public int Rank() {
+	return 3;
     }
 }

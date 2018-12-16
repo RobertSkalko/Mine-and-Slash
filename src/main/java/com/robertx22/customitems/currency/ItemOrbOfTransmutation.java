@@ -76,4 +76,8 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
 	return 0;
     }
 
+    @Override
+    public int Rank() {
+	return 0;
+    }
 }

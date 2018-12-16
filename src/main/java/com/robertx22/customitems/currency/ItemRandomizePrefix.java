@@ -67,4 +67,8 @@ public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEf
 	return 0;
     }
 
+    @Override
+    public int Rank() {
+	return 0;
+    }
 }

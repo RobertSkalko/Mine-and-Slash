@@ -68,7 +68,7 @@ public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect {
     }
 
     @Override
-    public int Weight() {
-	return this.LegendaryWeight;
+    public int Rank() {
+	return 4;
     }
 }

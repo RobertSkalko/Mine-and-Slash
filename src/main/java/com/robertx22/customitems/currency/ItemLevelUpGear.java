@@ -55,8 +55,8 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
     public static final int MAXIMUM_LEVEL_UPS = 10;
 
     @Override
-    public int Weight() {
-	return this.RareWeight;
+    public int Rank() {
+	return 2;
     }
 
     @Override
@@ -70,4 +70,5 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
     public int Tier() {
 	return 5;
     }
+
 }
