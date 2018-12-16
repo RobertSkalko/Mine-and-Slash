@@ -23,9 +23,4 @@ public abstract class BaseLegendary implements Rarity {
 	return TextFormatting.GOLD.toString();
     }
 
-    @Override
-    public int Weight() {
-	return 1250;
-    }
-
 }

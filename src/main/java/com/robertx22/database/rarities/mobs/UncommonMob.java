@@ -2,6 +2,7 @@ package com.robertx22.database.rarities.mobs;
 
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.rarities.base.BaseUncommon;
+import com.robertx22.mmorpg.ModConfig;
 
 public class UncommonMob extends BaseUncommon implements MobRarity {
 
@@ -33,6 +34,11 @@ public class UncommonMob extends BaseUncommon implements MobRarity {
     @Override
     public float ExpOnKill() {
 	return 5;
+    }
+
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.MOBS.UNCOMMON_WEIGHT;
     }
 
 }

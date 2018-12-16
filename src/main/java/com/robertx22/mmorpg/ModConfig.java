@@ -35,6 +35,14 @@ public class ModConfig {
     @Config.LangKey("mmorpg.config.client")
     public static ClientContainer Client = new ClientContainer();
 
+    @Config.Name("Entity Config")
+    @Config.LangKey("mmorpg.word.entities")
+    public static EntityConfigs EntityTypeConfig = new EntityConfigs();
+
+    @Config.Name("Rarity Weights")
+    @Config.LangKey("mmorpg.config.rarity_weights")
+    public static RarityWeights RarityWeightConfig = new RarityWeights();
+
     @Config.Name("Items Under System")
     @Config.Comment("When items are crafted, they get stats like items from my mod. Put IDs here, like minecraft:diamond_sword. This is not my intented way to play the mod but it should be good for modpack makers or some who want an easier way to gear up.")
     @Config.LangKey("mmorpg.config.items_under_system")
@@ -70,6 +78,130 @@ public class ModConfig {
     @Config.LangKey("mmorpg.config.droprates")
     public static DropRatesContainer DropRates = new DropRatesContainer();
 
+    public static class RarityWeights {
+
+	@Config.Name("Item Weights")
+	@Config.LangKey("mmorpg.word.item")
+	@Config.Comment("")
+	public RarityWeight ITEMS = new RarityWeight();
+
+	@Config.Name("Mob Weights")
+	@Config.LangKey("mmorpg.word.mob")
+	@Config.Comment("")
+	public RarityWeight MOBS = new RarityWeight();
+
+	@Config.Name("Map Weights")
+	@Config.LangKey("mmorpg.word.map")
+	@Config.Comment("")
+	public RarityWeight MAPS = new RarityWeight();
+
+	@Config.Name("Currency Weights")
+	@Config.LangKey("mmorpg.word.currency")
+	@Config.Comment("")
+	public RarityWeight CURRENCY = new RarityWeight();
+
+	@Config.Name("Spells Weights")
+	@Config.LangKey("mmorpg.word.spell")
+	@Config.Comment("")
+	public RarityWeight SPELLS = new RarityWeight();
+
+    }
+
+    public static class RarityWeight {
+
+	@Config.Name("Common")
+	@Config.LangKey("mmorpg.rarity.common")
+	@Config.Comment("")
+	public int COMMON_WEIGHT = 25000;
+
+	@Config.Name("Uncommon")
+	@Config.LangKey("mmorpg.rarity.uncommon")
+	@Config.Comment("")
+	public int UNCOMMON_WEIGHT = 20000;
+
+	@Config.Name("Rare")
+	@Config.LangKey("mmorpg.rarity.rare")
+	@Config.Comment("")
+	public int RARE_WEIGHT = 5000;
+
+	@Config.Name("Epic")
+	@Config.LangKey("mmorpg.rarity.epic")
+	@Config.Comment("")
+	public int EPIC_WEIGHT = 3000;
+
+	@Config.Name("Legendary")
+	@Config.LangKey("mmorpg.rarity.legendary")
+	@Config.Comment("")
+	public int LEGENDARY_WEIGHT = 1250;
+
+	@Config.Name("Mythical")
+	@Config.LangKey("mmorpg.rarity.mythical")
+	@Config.Comment("")
+	public int MYTHICAL_WEIGHT = 300;
+
+    }
+
+    public static class EntityConfigs {
+
+	@Config.Name("NPC Config")
+	@Config.LangKey("mmorpg.word.npc")
+	@Config.Comment("")
+	public NPCConfig NPC_CONFIG = new NPCConfig();
+
+	@Config.Name("Mob Config")
+	@Config.LangKey("mmorpg.word.mob")
+	@Config.Comment("")
+	public MobConfig MOB_CONFIG = new MobConfig();
+
+	@Config.Name("Animal Config")
+	@Config.LangKey("mmorpg.word.animal")
+	@Config.Comment("")
+	public AnimalConfig ANIMAL_CONFIG = new AnimalConfig();
+
+    }
+
+    public static class MobConfig {
+
+	@Config.Name("Loot Multi")
+	@Config.LangKey("mmorpg.config.loot_multi")
+	@Config.Comment("")
+	public float LOOT_MULTI = 1F;
+
+	@Config.Name("Exp Multi")
+	@Config.LangKey("mmorpg.config.exp_multi")
+	@Config.Comment("")
+	public float EXP_MULTI = 1F;
+
+    }
+
+    public static class AnimalConfig {
+
+	@Config.Name("Loot Multi")
+	@Config.LangKey("mmorpg.config.loot_multi")
+	@Config.Comment("")
+	public float LOOT_MULTI = 0.01F;
+
+	@Config.Name("Exp Multi")
+	@Config.LangKey("mmorpg.config.exp_multi")
+	@Config.Comment("")
+	public float EXP_MULTI = 0.05F;
+
+    }
+
+    public static class NPCConfig {
+
+	@Config.Name("Loot Multi")
+	@Config.LangKey("mmorpg.config.loot_multi")
+	@Config.Comment("")
+	public float LOOT_MULTI = 0.3F;
+
+	@Config.Name("Exp Multi")
+	@Config.LangKey("mmorpg.config.exp_multi")
+	@Config.Comment("")
+	public float EXP_MULTI = 0.4F;
+
+    }
+
     public static class ItemsUnderSystem {
 
 	@Config.Name("Crafted Items are Under System")
@@ -78,7 +210,7 @@ public class ModConfig {
 	public boolean CRAFTED_ITEMS_UNDER_SYSTEM = false;
 
 	@Config.Ignore
-	public Map<String, String> all = new HashMap();
+	public Map<String, String> all = new HashMap<String, String>();
 
 	public void sync() {
 

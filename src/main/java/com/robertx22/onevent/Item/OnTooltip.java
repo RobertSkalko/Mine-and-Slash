@@ -53,7 +53,7 @@ public class OnTooltip {
 
 	    if (unit != null && gear != null) {
 
-		gear.BuildTooltip(event, unit, event.getEntityPlayer().getCapability(EntityData.Data, null));
+		gear.BuildTooltip(stack, event, unit, event.getEntityPlayer().getCapability(EntityData.Data, null));
 
 		if (GuiScreen.isShiftKeyDown() == false) {
 

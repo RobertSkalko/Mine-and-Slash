@@ -3,6 +3,7 @@ package com.robertx22.database.rarities.spells;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.SpellRarity;
 import com.robertx22.database.rarities.base.BaseLegendary;
+import com.robertx22.mmorpg.ModConfig;
 
 public class LegendarySpell extends BaseLegendary implements SpellRarity {
 
@@ -21,4 +22,8 @@ public class LegendarySpell extends BaseLegendary implements SpellRarity {
 	return 5.5F;
     }
 
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.SPELLS.LEGENDARY_WEIGHT;
+    }
 }

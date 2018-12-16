@@ -3,6 +3,7 @@ package com.robertx22.generation.blueprints;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.RarityGen;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class MapBlueprint extends ItemBlueprint {
@@ -49,15 +50,16 @@ public class MapBlueprint extends ItemBlueprint {
 	if (RandomRarity) {
 
 	    if (minRarity > -1) {
-		MapRarity rar = Rarities.Maps.get(RarityGen.Random(0).Rank());
+		MapRarity rar = Rarities.Maps
+			.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps)).Rank());
 
 		while (rar.Rank() < minRarity) {
-		    rar = Rarities.Maps.get(RarityGen.Random(0).Rank());
+		    rar = Rarities.Maps.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps)).Rank());
 		}
 		return rar.Rank();
 
 	    } else {
-		return RarityGen.Random(0).Rank();
+		return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Maps)).Rank();
 	    }
 	} else {
 	    return rarity;

@@ -23,9 +23,4 @@ public abstract class BaseMythical implements Rarity {
 	return TextFormatting.LIGHT_PURPLE.toString();
     }
 
-    @Override
-    public int Weight() {
-	return 300;
-    }
-
 }

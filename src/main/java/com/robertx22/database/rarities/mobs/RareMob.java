@@ -2,6 +2,7 @@ package com.robertx22.database.rarities.mobs;
 
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.rarities.base.BaseRare;
+import com.robertx22.mmorpg.ModConfig;
 
 public class RareMob extends BaseRare implements MobRarity {
 
@@ -35,4 +36,8 @@ public class RareMob extends BaseRare implements MobRarity {
 	return 10;
     }
 
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.MOBS.RARE_WEIGHT;
+    }
 }

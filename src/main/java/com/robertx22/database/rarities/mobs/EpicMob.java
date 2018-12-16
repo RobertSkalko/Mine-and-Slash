@@ -2,6 +2,7 @@ package com.robertx22.database.rarities.mobs;
 
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.rarities.base.BaseEpic;
+import com.robertx22.mmorpg.ModConfig;
 
 public class EpicMob extends BaseEpic implements MobRarity {
 
@@ -35,4 +36,8 @@ public class EpicMob extends BaseEpic implements MobRarity {
 	return 15;
     }
 
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.MOBS.EPIC_WEIGHT;
+    }
 }

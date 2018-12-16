@@ -45,7 +45,7 @@ public class DamageEffect extends EffectData
 
     public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
 
-    public static String DmgSourceName = Ref.MODID + "_Custom_Damage";
+    public static String DmgSourceName = Ref.MODID + ".custom_amage";
     public Elements Element = Elements.None;
     public int ArmorPene;
     public int ElementalPene;

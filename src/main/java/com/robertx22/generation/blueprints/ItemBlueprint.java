@@ -4,6 +4,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.RarityGen;
 import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 public class ItemBlueprint {
@@ -40,15 +41,16 @@ public class ItemBlueprint {
 	if (RandomRarity) {
 
 	    if (minRarity > -1) {
-		ItemRarity rar = Rarities.Items.get(RarityGen.Random(0).Rank());
+		ItemRarity rar = Rarities.Items
+			.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items)).Rank());
 
 		while (rar.Rank() < minRarity) {
-		    rar = Rarities.Items.get(RarityGen.Random(0).Rank());
+		    rar = Rarities.Items.get(RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items)).Rank());
 		}
 		return rar.Rank();
 
 	    } else {
-		return RarityGen.Random(0).Rank();
+		return RarityGen.Random(0, ListUtils.CollectionToList(Rarities.Items)).Rank();
 	    }
 	} else {
 	    return rarity;

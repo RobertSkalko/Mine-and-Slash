@@ -13,101 +13,101 @@ import net.minecraft.entity.EntityLivingBase;
 
 public class RandomUtils {
 
-	private static Random ran = new Random();
+    private static Random ran = new Random();
 
-	public static int RandomRange(int min, int max) {
+    public static int RandomRange(int min, int max) {
 
-		int result = ran.nextInt(max - min);
+	int result = ran.nextInt(max - min);
 
-		return result + min;
+	return result + min;
 
+    }
+
+    public static MobRarity RandomWithMinRarity(EntityLivingBase entity) {
+
+	double y = entity.posY;
+
+	int minRarity = 0;
+
+	if (y < 50) {
+	    minRarity = 1;
+	}
+	if (y < 30) {
+	    minRarity = 2;
 	}
 
-	public static MobRarity RandomWithMinRarity(EntityLivingBase entity) {
+	List<MobRarity> rarities = Rarities.Mobs;
+	List<MobRarity> after = new ArrayList();
 
-		double y = entity.posY;
-
-		int minRarity = 0;
-
-		if (y < 50) {
-			minRarity = 1;
-		}
-		if (y < 30) {
-			minRarity = 2;
-		}
-
-		List<MobRarity> rarities = Rarities.Mobs;
-		List<MobRarity> after = new ArrayList();
-
-		for (MobRarity rar : rarities) {
-			if (rar.Rank() >= minRarity) {
-				after.add(rar);
-			}
-		}
-
-		MobRarity finalRarity = (MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(after));
-
-		return finalRarity;
-
+	for (MobRarity rar : rarities) {
+	    if (rar.Rank() >= minRarity) {
+		after.add(rar);
+	    }
 	}
 
-	public static boolean roll(int chance) {
+	MobRarity finalRarity = (MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(after));
 
-		Random ran = new Random();
+	return finalRarity;
 
-		double ranNum = ran.nextDouble() * 100;
+    }
 
-		if (chance > ranNum) {
-			return true;
-		}
+    public static boolean roll(int chance) {
 
-		return false;
+	Random ran = new Random();
+
+	double ranNum = ran.nextDouble() * 100;
+
+	if (chance > ranNum) {
+	    return true;
 	}
 
-	public static boolean roll(float chance) {
+	return false;
+    }
 
-		Random ran = new Random();
+    public static boolean roll(float chance) {
 
-		double ranNum = ran.nextDouble() * 100;
+	Random ran = new Random();
 
-		if (chance > ranNum) {
-			return true;
-		}
+	double ranNum = ran.nextDouble() * 100;
 
-		return false;
+	if (chance > ranNum) {
+	    return true;
 	}
 
-	public static IWeighted WeightedRandom(List<IWeighted> lootTable) {
+	return false;
+    }
 
-		double value = Total(lootTable) * Math.random();
-		double weight = 0;
+    public static IWeighted WeightedRandom(List<IWeighted> lootTable) {
 
-		for (IWeighted item : lootTable) {
-			weight += item.Weight();
-			if (value < weight)
-				return item;
-		}
+	double value = Total(lootTable) * Math.random();
+	double weight = 0;
 
-		return null;
-
+	for (IWeighted item : lootTable) {
+	    weight += item.Weight();
+	    if (value < weight)
+		return item;
 	}
 
-	private static int Total(List<IWeighted> list) {
+	return null;
 
-		int total = 0;
+    }
 
-		for (IWeighted w : list) {
-			total += w.Weight();
-		}
-		return total;
+    private static int Total(List<IWeighted> list) {
 
+	int total = 0;
+
+	for (IWeighted w : list) {
+	    total += w.Weight();
 	}
+	return total;
 
-	public static IWeighted WeightedRandom(Collection<IWeighted> lootTable) {
-		List<IWeighted> slots = ListUtils.CollectionToList(Spells.All.values());
+    }
 
-		return WeightedRandom(slots);
+    public static IWeighted WeightedRandom(Collection<IWeighted> lootTable) {
+	List<IWeighted> slots = ListUtils.CollectionToList(Spells.All.values());
 
-	}
+	return WeightedRandom(slots);
+
+    }
 
 }

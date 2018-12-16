@@ -3,6 +3,7 @@ package com.robertx22.database.rarities.maps;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.database.rarities.base.BaseLegendary;
+import com.robertx22.mmorpg.ModConfig;
 
 public class LegendaryMap extends BaseLegendary implements MapRarity {
 
@@ -21,4 +22,8 @@ public class LegendaryMap extends BaseLegendary implements MapRarity {
 	return 10.5F;
     }
 
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.MAPS.LEGENDARY_WEIGHT;
+    }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -39,6 +40,10 @@ public abstract class BaseLootGen {
 	this.world_tier = world.getTier();
 
 	float chance = BaseChance();
+
+	float entity_type_multi = EntityTypeUtils.getLootMulti(victim);
+
+	chance *= entity_type_multi;
 
 	if (hasLevelDistancePunishment()) {
 	    chance = LootUtils.ApplyLevelDistancePunishment(mob, player, chance);

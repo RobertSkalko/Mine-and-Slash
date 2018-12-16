@@ -3,6 +3,7 @@ package com.robertx22.database.rarities.items;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.base.BaseMythical;
+import com.robertx22.mmorpg.ModConfig;
 
 public class MythicalItem extends BaseMythical implements ItemRarity {
 
@@ -29,6 +30,11 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
     @Override
     public float specialItemChance() {
 	return 15.5F;
+    }
+
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.ITEMS.MYTHICAL_WEIGHT;
     }
 
 }

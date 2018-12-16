@@ -3,6 +3,7 @@ package com.robertx22.database.rarities.maps;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.database.rarities.base.BaseUncommon;
+import com.robertx22.mmorpg.ModConfig;
 
 public class UncommonMap extends BaseUncommon implements MapRarity {
 
@@ -17,13 +18,13 @@ public class UncommonMap extends BaseUncommon implements MapRarity {
     }
 
     @Override
-    public int Weight() {
-	return super.Weight() - 1500;
+    public float specialItemChance() {
+	return 3.5F;
     }
 
     @Override
-    public float specialItemChance() {
-	return 3.5F;
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.MAPS.UNCOMMON_WEIGHT;
     }
 
 }

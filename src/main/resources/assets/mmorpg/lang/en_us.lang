@@ -265,6 +265,13 @@ mmorpg.word.to=To
 mmorpg.word.damage=Damage
 mmorpg.word.progress=Progress
 mmorpg.word.fuel=Fuel
+mmorpg.word.npc=NPC
+mmorpg.word.mob=Mob
+mmorpg.word.animal=Animal
+mmorpg.word.item=Item
+mmorpg.word.currency=Currency
+mmorpg.word.map=Map
+mmorpg.word.spell=Spell
 
 # BIOME WORDS
 mmorpg.word.arid_highland=Arid Highland
@@ -272,6 +279,7 @@ mmorpg.word.badlands=Badlands
 mmorpg.word.cliffs=Cliffs
 mmorpg.word.red_desert=Red Desert
 mmorpg.word.thicket=Thicket
+mmorpg.word.entities=Entities
 
 # UNIQUE ITEM NAMES
 item.mmorpg.unique.braceletnature0.name=§eThorn Bracers
@@ -569,6 +577,7 @@ mmorpg.chat.you_increased_rarity_entity=Succesfully increased rarity of an entit
 mmorpg.chat.no_targets_found=No targets found
 mmorpg.chat.not_enough_experience=Not Enough Experience
 mmorpg.chat.cannot_over_maximum_level=Cannot be higher than maximum level!
+mmorpg.chat.has_died_by_the_hands_of=has died by the hands of
 
 # GEAR TYPES
 mmorpg.gear_type.sword=Sword
@@ -604,6 +613,14 @@ mmorpg.config.client=Client
 mmorpg.config.server=Server
 mmorpg.config.droprates=Droprates
 mmorpg.config.title=Mine and Slash
+
+
+mmorpg.config.rarity_weights=Rarity Weights
+
+# CONFIG ENTITIES
+
+mmorpg.config.loot_multi=Loot Multiplier
+mmorpg.config.exp_multi=Experience Multiplier
 
 # CONFIG DROPRATES
 mmorpg.config.currency_droprate=Currency Droprate

@@ -11,11 +11,9 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.Elements;
+import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -37,17 +35,15 @@ public class OnMobDeathDrops {
 	    EntityLivingBase entity = event.getEntityLiving();
 
 	    if (!(entity instanceof EntityPlayer)) {
-		if (entity instanceof IMob || entity instanceof EntityMob) {
+		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 
-		    if (entity instanceof EntitySlime && ((EntitySlime) entity).isSmallSlime()) {
-			return;
-		    }
+		    float loot_multi = EntityTypeUtils.getLootMulti(entity);
+		    float exp_multi = EntityTypeUtils.getExpMulti(entity);
 
 		    UnitData victim = entity.getCapability(EntityData.Data, null);
+		    UnitData killer = event.getSource().getTrueSource().getCapability(EntityData.Data, null);
 
-		    if (event.getSource().getTrueSource() instanceof EntityPlayer) {
-
-			UnitData killer = event.getSource().getTrueSource().getCapability(EntityData.Data, null);
+		    if (loot_multi > 0) {
 
 			IWorldData world = Load.World(entity.world);
 
@@ -55,7 +51,11 @@ public class OnMobDeathDrops {
 
 			MasterLootGen.genAndDrop(victim, killer, world, entity);
 
-			int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim);
+		    }
+
+		    if (exp_multi > 0) {
+			int exp = GiveExp((EntityLivingBase) event.getSource().getTrueSource(), killer, victim,
+				exp_multi);
 
 			DamageNumberPackage packet = new DamageNumberPackage(entity, Elements.Nature,
 				"+" + DamageEffect.FormatNumber(exp) + " Exp!");
@@ -63,7 +63,6 @@ public class OnMobDeathDrops {
 
 			Main.Network.sendTo(packet, (EntityPlayerMP) event.getSource().getTrueSource());
 		    }
-
 		}
 	    }
 
@@ -75,9 +74,9 @@ public class OnMobDeathDrops {
 
     }
 
-    private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob) {
+    private static int GiveExp(EntityLivingBase entity, UnitData player, UnitData mob, float multi) {
 
-	int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill());
+	int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill() * multi);
 
 	exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
 

@@ -23,9 +23,4 @@ public abstract class BaseEpic implements Rarity {
 	return TextFormatting.BLUE.toString();
     }
 
-    @Override
-    public int Weight() {
-	return 3000;
-    }
-
 }

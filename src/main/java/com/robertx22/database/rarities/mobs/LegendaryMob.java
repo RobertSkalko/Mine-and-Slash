@@ -2,6 +2,7 @@ package com.robertx22.database.rarities.mobs;
 
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.rarities.base.BaseLegendary;
+import com.robertx22.mmorpg.ModConfig;
 
 public class LegendaryMob extends BaseLegendary implements MobRarity {
 
@@ -33,6 +34,11 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
     @Override
     public float ExpOnKill() {
 	return 25;
+    }
+
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.MOBS.LEGENDARY_WEIGHT;
     }
 
 }

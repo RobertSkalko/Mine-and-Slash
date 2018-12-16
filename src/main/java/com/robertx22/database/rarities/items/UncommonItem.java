@@ -3,6 +3,7 @@ package com.robertx22.database.rarities.items;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.base.BaseUncommon;
+import com.robertx22.mmorpg.ModConfig;
 
 public class UncommonItem extends BaseUncommon implements ItemRarity {
 
@@ -29,6 +30,11 @@ public class UncommonItem extends BaseUncommon implements ItemRarity {
     @Override
     public float specialItemChance() {
 	return 1.5F;
+    }
+
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.ITEMS.UNCOMMON_WEIGHT;
     }
 
 }

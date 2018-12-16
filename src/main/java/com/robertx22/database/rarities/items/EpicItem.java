@@ -3,6 +3,7 @@ package com.robertx22.database.rarities.items;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.base.BaseEpic;
+import com.robertx22.mmorpg.ModConfig;
 
 public class EpicItem extends BaseEpic implements ItemRarity {
     public EpicItem() {
@@ -33,4 +34,8 @@ public class EpicItem extends BaseEpic implements ItemRarity {
 	return 4.5F;
     }
 
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.ITEMS.EPIC_WEIGHT;
+    }
 }

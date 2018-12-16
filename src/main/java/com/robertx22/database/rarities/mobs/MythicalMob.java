@@ -2,6 +2,7 @@ package com.robertx22.database.rarities.mobs;
 
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.rarities.base.BaseMythical;
+import com.robertx22.mmorpg.ModConfig;
 
 public class MythicalMob extends BaseMythical implements MobRarity {
 
@@ -33,6 +34,11 @@ public class MythicalMob extends BaseMythical implements MobRarity {
     @Override
     public float ExpOnKill() {
 	return 50;
+    }
+
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.MOBS.MYTHICAL_WEIGHT;
     }
 
 }

@@ -23,9 +23,4 @@ public abstract class BaseRare implements Rarity {
 	return TextFormatting.YELLOW.toString();
     }
 
-    @Override
-    public int Weight() {
-	return 5000;
-    }
-
 }

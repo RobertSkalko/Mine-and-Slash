@@ -3,6 +3,7 @@ package com.robertx22.database.rarities.maps;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.database.rarities.base.BaseMythical;
+import com.robertx22.mmorpg.ModConfig;
 
 public class MythicalMap extends BaseMythical implements MapRarity {
 
@@ -19,6 +20,11 @@ public class MythicalMap extends BaseMythical implements MapRarity {
     @Override
     public float specialItemChance() {
 	return 20F;
+    }
+
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.MAPS.MYTHICAL_WEIGHT;
     }
 
 }

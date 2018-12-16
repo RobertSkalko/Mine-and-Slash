@@ -3,6 +3,7 @@ package com.robertx22.database.rarities.items;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.base.BaseLegendary;
+import com.robertx22.mmorpg.ModConfig;
 
 public class LegendaryItem extends BaseLegendary implements ItemRarity {
 
@@ -31,4 +32,8 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
 	return 6.5F;
     }
 
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.ITEMS.LEGENDARY_WEIGHT;
+    }
 }

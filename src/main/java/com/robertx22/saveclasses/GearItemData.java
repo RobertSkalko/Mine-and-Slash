@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
@@ -206,7 +207,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
     }
 
     @Override
-    public void BuildTooltip(ItemTooltipEvent event, Unit unit, UnitData data) {
+    public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit, UnitData data) {
 
 	event.getToolTip().clear();
 
@@ -254,6 +255,15 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
 	if (!this.isSalvagable) {
 	    event.getToolTip().add(TextFormatting.RED + CLOC.word("unsalvagable"));
+	}
+
+	if (this.GetBaseGearType() instanceof IWeapon) {
+	    IWeapon iwep = (IWeapon) this.GetBaseGearType();
+
+	    event.getToolTip().add("");
+
+	    event.getToolTip().add(TextFormatting.GREEN + CLOC.stat("energy") + ": " + iwep.mechanic().GetEnergyCost());
+
 	}
 
     }

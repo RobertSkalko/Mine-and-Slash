@@ -22,9 +22,4 @@ public abstract class BaseUncommon implements Rarity {
 	return TextFormatting.GREEN.toString();
     }
 
-    @Override
-    public int Weight() {
-	return 20000;
-    }
-
 }
