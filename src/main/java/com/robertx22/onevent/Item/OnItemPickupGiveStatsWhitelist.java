@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class OnItemPickupGiveStatsWhitelist {
 
     @SubscribeEvent
-    public static void onItemCraftAddStats(PlayerContainerEvent.Open event) {
+    public static void onItemCraftAddStats(PlayerContainerEvent event) {
 
 	try {
 	    if (event.getEntityPlayer().world.isRemote) {
