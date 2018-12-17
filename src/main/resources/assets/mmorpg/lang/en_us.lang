@@ -616,6 +616,9 @@ mmorpg.config.title=Mine and Slash
 
 
 mmorpg.config.rarity_weights=Rarity Weights
+mmorpg.config.map_id_start=Map ID Start
+mmorpg.config.map_id_reserved=Map IDs Reserved
+mmorpg.config.map_dimensions_config=Map Dimensions Config
 
 # CONFIG ENTITIES
 

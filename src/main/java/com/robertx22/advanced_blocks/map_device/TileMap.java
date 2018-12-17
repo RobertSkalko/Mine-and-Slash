@@ -9,6 +9,7 @@ import com.robertx22.customitems.misc.ItemMap;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.datasaving.Map;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -84,50 +85,54 @@ public class TileMap extends BaseTile {
 
 		BlockPos p = this.pos;
 
-		world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN,
-			SoundCategory.BLOCKS, 0.6f, 0);
+		EntityPlayer player = this.getWorld().getClosestPlayer(p.getX(), p.getY(), p.getZ(), 500, false);
 
-		world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL,
-			SoundCategory.BLOCKS, 0.4f, 0);
+		if (player != null) {
 
-		// start map
-		this.MapSlot().shrink(1);
-		this.StartSlot().shrink(1);
+		    world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN,
+			    SoundCategory.BLOCKS, 0.6f, 0);
 
-		int id = map.createDimension(world, pos);
+		    world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL,
+			    SoundCategory.BLOCKS, 0.4f, 0);
 
-		BlockPos pos = this.pos.north(4);
-		ItemMap.createMap(id, pos, world, map);
+		    // start map
+		    this.MapSlot().shrink(1);
+		    this.StartSlot().shrink(1);
 
-		BlockPos pos1 = this.pos.south(4);
-		ItemMap.createMap(id, pos1, world, map);
+		    int id = map.createDimension(world, pos, player);
 
-		BlockPos pos2 = this.pos.east(4);
-		ItemMap.createMap(id, pos2, world, map);
+		    BlockPos pos = this.pos.north(4);
+		    ItemMap.createMap(id, pos, world, map);
 
-		BlockPos pos3 = this.pos.west(4);
-		ItemMap.createMap(id, pos3, world, map);
+		    BlockPos pos1 = this.pos.south(4);
+		    ItemMap.createMap(id, pos1, world, map);
 
-	    }
+		    BlockPos pos2 = this.pos.east(4);
+		    ItemMap.createMap(id, pos2, world, map);
 
-	    else if (level != null) {
+		    BlockPos pos3 = this.pos.west(4);
+		    ItemMap.createMap(id, pos3, world, map);
 
-		if (map.increaseLevel(level.rarity + 1)) {
-		    this.LevelSlot().shrink(1);
-		    Map.Save(this.MapSlot(), map);
 		}
 
-	    } else if (tier != null) {
+		else if (level != null) {
 
-		if (map.increaseTier(tier.rarity + 1)) {
-		    this.TierSlot().shrink(1);
-		    Map.Save(this.MapSlot(), map);
+		    if (map.increaseLevel(level.rarity + 1)) {
+			this.LevelSlot().shrink(1);
+			Map.Save(this.MapSlot(), map);
+		    }
+
+		} else if (tier != null) {
+
+		    if (map.increaseTier(tier.rarity + 1)) {
+			this.TierSlot().shrink(1);
+			Map.Save(this.MapSlot(), map);
+		    }
 		}
 	    }
+
+	    markDirty();
 	}
-
-	markDirty();
-
     }
 
     @Override

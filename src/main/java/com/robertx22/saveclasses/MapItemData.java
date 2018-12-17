@@ -12,15 +12,18 @@ import com.robertx22.dimensions.IWP;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.MapDatas;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.enumclasses.AffectedEntities;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -111,18 +114,26 @@ public class MapItemData implements ISalvagable {
 	return WorldProviders.All.get(this.worldGeneratorName);
     }
 
-    public int createDimension(World ogworld, BlockPos pos) {
+    public int createDimension(World ogworld, BlockPos pos, EntityPlayer player) {
 
-	int id = findFreeDimensionId();
+	UnitData unit = Load.Unit(player);
+
+	int id = findFreeDimensionId(player, unit);
+
+	unit.setCurrentMapId(id);
 
 	DimensionData dimData = getDimData(id, this.worldGeneratorName);
+
+	if (DimensionManager.isDimensionRegistered(id)) {
+	    DimensionManager.unregisterDimension(id);
+	}
 
 	DimensionManager.registerDimension(id, dimData.getDimensionType());
 	DimensionManager.initDimension(id);
 	World world = DimensionManager.getWorld(id);
 
 	IWorldData data = world.getCapability(WorldData.Data, null);
-	data.init(pos, ogworld, this, id);
+	data.init(pos, ogworld, this, id, player);
 
 	MapDatas mapdatas = (MapDatas) DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
 		MapDatas.getLoc());
@@ -140,15 +151,54 @@ public class MapItemData implements ISalvagable {
 	return data;
     }
 
-    private int findFreeDimensionId() {
+    private int findFreeDimensionId(EntityPlayer player, UnitData unit) {
 
-	int id = -1462;
+	if (unit.hasCurrentMapId()) {
+	    int id = unit.getCurrentMapId();
+	    if (DimensionManager.isDimensionRegistered(id)) {
+		World w = DimensionManager.getWorld(id);
+
+		if (w == null) {
+		    DimensionManager.initDimension(id);
+
+		    IWorldData world = Load.World(DimensionManager.getWorld(id));
+
+		    if (world.isOwner(player)) {
+			return id;
+		    }
+		}
+	    }
+
+	}
+
+	int id = ModConfig.MapDimensions.MAP_ID_START;
 
 	while (DimensionManager.isDimensionRegistered(id)) {
+
+	    if (isInReserveRange(id)) {
+
+		IWorldData world = Load.World(DimensionManager.getWorld(id));
+
+		if (world != null) {
+		    if (world.isReserved()) {
+			world.setReserved(false);
+			return id;
+		    }
+		}
+
+	    }
+
 	    id--;
 	}
 
 	return id;
+    }
+
+    private boolean isInReserveRange(int id) {
+
+	return id <= ModConfig.MapDimensions.MAP_ID_START
+		&& id >= ModConfig.MapDimensions.MAP_ID_START - ModConfig.MapDimensions.MAP_ID_RESERVED;
+
     }
 
     public MapRarity GetRarity() {

@@ -51,7 +51,7 @@ public class WorldData {
 
 	String getOwner();
 
-	void init(BlockPos pos, World world, MapItemData map, int dimensionId);
+	void init(BlockPos pos, World world, MapItemData map, int dimensionId, EntityPlayer owner);
 
 	void delete(EntityPlayer player, World mapworld);
 
@@ -82,6 +82,12 @@ public class WorldData {
 	void onPlayerDeath(EntityPlayer victim, World world);
 
 	void setDelete(boolean bool);
+
+	boolean isReserved();
+
+	void setReserved(boolean bool);
+
+	boolean isOwner(EntityPlayer player);
 
     }
 
@@ -149,6 +155,7 @@ public class WorldData {
     static final String POS_OBJ = "POS_OBJ";
     static final String MAP_WORLD_OBJ = "MAP_WORLD_OBJ";
     static final String MINUTES_PASSED = "minutes_passed";
+    static final String ISRESERVED = "is_reserved";
 
     public static class DefaultImpl implements IWorldData {
 	private NBTTagCompound nbt = new NBTTagCompound();
@@ -167,6 +174,7 @@ public class WorldData {
 	boolean didntSetBackPortal = true;
 	String saveName = "";
 	int minutesPassed;
+	boolean reserved = false;
 
 	@Override
 	public NBTTagCompound getNBT() {
@@ -181,6 +189,7 @@ public class WorldData {
 	    nbt.setBoolean(DIDNT_SET_BACK_PORTAL, didntSetBackPortal);
 	    nbt.setString(SAVE_NAME, saveName);
 	    nbt.setInteger(MINUTES_PASSED, minutesPassed);
+	    nbt.setBoolean(ISRESERVED, reserved);
 
 	    if (mapdata != null) {
 		NBTTagCompound tag = new NBTTagCompound();
@@ -213,6 +222,7 @@ public class WorldData {
 	    this.didntSetBackPortal = nbt.getBoolean(DIDNT_SET_BACK_PORTAL);
 	    this.saveName = nbt.getString(SAVE_NAME);
 	    this.minutesPassed = nbt.getInteger(MINUTES_PASSED);
+	    this.reserved = nbt.getBoolean(ISRESERVED);
 
 	    NBTTagCompound mapnbt = (NBTTagCompound) this.nbt.getTag(MAP_OBJECT);
 	    if (mapnbt != null) {
@@ -276,7 +286,7 @@ public class WorldData {
 	}
 
 	@Override
-	public void init(BlockPos pos, World world, MapItemData map, int dimensionId) {
+	public void init(BlockPos pos, World world, MapItemData map, int dimensionId, EntityPlayer owner) {
 
 	    if (this.isInit == false) {
 
@@ -289,6 +299,8 @@ public class WorldData {
 		this.mapDevicePos = pos.toLong();
 
 		this.isInit = true;
+
+		this.setOwner(owner);
 
 	    }
 	}
@@ -354,14 +366,20 @@ public class WorldData {
 	@Override
 	public void teleportPlayerBack(EntityPlayer player) {
 
+	    BlockPos pos = player.getBedLocation();
+
 	    if (getMapDevicePos() != null) {
 
-		int x = getMapDevicePos().getX() - 4;
+		pos = getMapDevicePos();
+		pos = pos.north(2);
 
-		player.setPosition(x, getMapDevicePos().getY(), getMapDevicePos().getZ());
+		if (pos != null) {
+		    player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+		}
+
 	    }
-	    player.changeDimension(this.originalDimension,
-		    new MyTeleporter(this.getMapDevicePos(), player, this.originalDimension));
+
+	    player.changeDimension(this.originalDimension, new MyTeleporter(pos, player, this.originalDimension));
 
 	}
 
@@ -441,7 +459,8 @@ public class WorldData {
 	    int punishment = 5;
 
 	    for (EntityPlayer player : world.playerEntities) {
-		player.sendMessage(SLOC.chat("player_died_mapworld").appendText(" " + victim.getDisplayName() + " ")
+		player.sendMessage(SLOC.chat("player_died_mapworld")
+			.appendText(" " + victim.getDisplayName().getFormattedText() + " ")
 			.appendSibling(SLOC.chat("activating_mapworld_time_penalty")));
 	    }
 
@@ -451,6 +470,22 @@ public class WorldData {
 
 	    checkDeletition(world);
 
+	}
+
+	@Override
+	public boolean isReserved() {
+	    return reserved;
+	}
+
+	@Override
+	public void setReserved(boolean bool) {
+	    this.reserved = bool;
+
+	}
+
+	@Override
+	public boolean isOwner(EntityPlayer player) {
+	    return player.getUniqueID().toString().equals(this.owner);
 	}
 
     }

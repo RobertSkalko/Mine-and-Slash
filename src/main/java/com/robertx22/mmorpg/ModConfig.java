@@ -48,6 +48,11 @@ public class ModConfig {
     @Config.LangKey("mmorpg.config.items_under_system")
     public static ItemsUnderSystem ItemsUnderSystem = new ItemsUnderSystem();
 
+    @Config.Name("Map Dimensions Config")
+    @Config.Comment("")
+    @Config.LangKey("mmorpg.config.map_dimensions_config")
+    public static MapDimensionsConfig MapDimensions = new MapDimensionsConfig();
+
     static {
 
 	// add blank slots
@@ -414,6 +419,20 @@ public class ModConfig {
 	@Config.LangKey("mmorpg.config.entities_under_system")
 	@Config.Comment("By system, it means they get my mod's health, damage stats etc. They can also use the gear (if possible). All entities means even sheep or villagers are under the system. ")
 	public EntitySystemChoice ENTITIES_UNDER_SYSTEM = EntitySystemChoice.All_Entities;
+
+    }
+
+    public static class MapDimensionsConfig {
+
+	@Config.Name("Map ID Start")
+	@Config.LangKey("mmorpg.config.map_id_start")
+	@Config.Comment("The start of dimension IDs used for maps. It goes down from here.. to -1463.. -1464 etc")
+	public int MAP_ID_START = -1462;
+
+	@Config.Name("Map ID Reserved")
+	@Config.LangKey("mmorpg.config.map_id_reserved")
+	@Config.Comment("This just reserves all the IDs that it can so there's less chance for gamebreaking errors. But those reserved maps won't be usable until activated.")
+	public int MAP_ID_RESERVED = 15;
 
     }
 

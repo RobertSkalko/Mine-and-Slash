@@ -4,8 +4,11 @@ package com.robertx22.uncommon.capability;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.DimensionData;
 import com.robertx22.saveclasses.MapDataList;
+import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.datasaving.Load;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
@@ -90,7 +93,34 @@ public class MapDatas extends WorldSavedData {
 	    }
 	} else {
 
-	    System.out.println("Dimension Error");
+	    DimensionManager.unregisterDimension(data.ID);
+
+	    DimensionManager.registerDimension(data.ID, type);
+	}
+    }
+
+    private void registerReserved(int id) {
+
+	if (DimensionManager.isDimensionRegistered(id) == false) {
+
+	    DimensionManager.registerDimension(id, DimensionType.OVERWORLD);
+
+	    DimensionManager.initDimension(id);
+
+	    IWorldData world = Load.World(DimensionManager.getWorld(id));
+
+	    world.setReserved(true);
+
+	}
+
+    }
+
+    public void reserveDimensions() {
+
+	for (int i = 0; i < ModConfig.MapDimensions.MAP_ID_RESERVED; i++) {
+	    int id = ModConfig.MapDimensions.MAP_ID_START - i;
+	    registerReserved(id);
+
 	}
     }
 
@@ -103,6 +133,8 @@ public class MapDatas extends WorldSavedData {
 	    this.dimensionIds.add(data.ID);
 
 	}
+
+	reserveDimensions();
     }
 
     public static void unregisterDimensions() {

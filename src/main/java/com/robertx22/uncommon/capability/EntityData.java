@@ -65,6 +65,7 @@ public class EntityData {
     private static final String KILLS_OBJECT = "kils_object";
     private static final String MANA = "current_mana";
     private static final String ENERGY = "current_energy";
+    private static final String CURRENT_MAP_ID = "current_map_id";
 
     public interface UnitData extends ICommonCapability {
 
@@ -141,6 +142,14 @@ public class EntityData {
 	void consumeEnergy(float i);
 
 	void heal(EntityLivingBase entity, int healthrestored);
+
+	int getCurrentMapId();
+
+	void setCurrentMapId(int id);
+
+	boolean hasCurrentMapId();
+
+	void clearCurrentMapId();
     }
 
     @Mod.EventBusSubscriber
@@ -221,6 +230,7 @@ public class EntityData {
 	int rarity = 0;
 	String uuid = "";
 	String name = "";
+	int currentMapId = 0;
 
 	float energy;
 	float mana;
@@ -235,6 +245,7 @@ public class EntityData {
 	    nbt.setString(UUID, uuid);
 	    nbt.setString(NAME, name);
 	    nbt.setBoolean(MOB_SAVED_ONCE, true);
+	    nbt.setInteger(CURRENT_MAP_ID, currentMapId);
 
 	    if (unit != null) {
 		NBTTagCompound unitnbt = new NBTTagCompound();
@@ -261,6 +272,7 @@ public class EntityData {
 	    this.name = value.getString(NAME);
 	    this.energy = value.getFloat(ENERGY);
 	    this.mana = value.getFloat(MANA);
+	    this.currentMapId = value.getInteger(CURRENT_MAP_ID);
 
 	    NBTTagCompound object_nbt = (NBTTagCompound) this.nbt.getTag(UNIT_OBJECT);
 	    if (object_nbt != null) {
@@ -662,6 +674,25 @@ public class EntityData {
 	    }
 	}
 
+	@Override
+	public int getCurrentMapId() {
+	    return this.currentMapId;
+	}
+
+	@Override
+	public void setCurrentMapId(int id) {
+	    this.currentMapId = id;
+	}
+
+	@Override
+	public boolean hasCurrentMapId() {
+	    return this.currentMapId != 0;
+	}
+
+	@Override
+	public void clearCurrentMapId() {
+	    this.currentMapId = 0;
+	}
     }
 
 }
