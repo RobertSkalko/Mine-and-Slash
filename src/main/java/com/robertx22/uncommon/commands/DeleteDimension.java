@@ -8,7 +8,6 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -33,7 +32,7 @@ public class DeleteDimension extends CommandBase {
 
 	try {
 	    int id = Integer.valueOf(args[0]);
-	    EntityPlayer player = (EntityPlayer) sender;
+	    // EntityPlayer player = (EntityPlayer) sender;
 
 	    if (DimensionManager.isDimensionRegistered(id)) {
 
@@ -42,7 +41,7 @@ public class DeleteDimension extends CommandBase {
 		IWorldData data = world.getCapability(WorldData.Data, null);
 
 		if (data != null && data.isMapWorld()) {
-		    data.setDelete(true);
+		    data.setDelete(true, world);
 		    Main.Network.sendToAll(new WorldPackage(data));
 
 		}

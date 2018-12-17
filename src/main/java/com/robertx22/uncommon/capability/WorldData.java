@@ -81,7 +81,7 @@ public class WorldData {
 
 	void onPlayerDeath(EntityPlayer victim, World world);
 
-	void setDelete(boolean bool);
+	void setDelete(boolean bool, World world);
 
 	boolean isReserved();
 
@@ -274,7 +274,7 @@ public class WorldData {
 
 	    if (this.isMapWorld()) {
 
-		if (player.getUniqueID().toString().equals(this.getOwner())) {
+		if (isOwner(player)) {
 		    this.setForDelete = true;
 
 		    this.transferPlayersBack(mapworld);
@@ -288,21 +288,17 @@ public class WorldData {
 	@Override
 	public void init(BlockPos pos, World world, MapItemData map, int dimensionId, EntityPlayer owner) {
 
-	    if (this.isInit == false) {
+	    this.isMap = true;
+	    this.level = map.level;
+	    this.tier = map.tier;
+	    this.mapdata = map;
+	    this.originalDimension = world.provider.getDimension();
+	    this.mapDimension = dimensionId;
+	    this.mapDevicePos = pos.toLong();
+	    this.isInit = true;
+	    this.setOwner(owner);
+	    this.reserved = false;
 
-		this.isMap = true;
-		this.level = map.level;
-		this.tier = map.tier;
-		this.mapdata = map;
-		this.originalDimension = world.provider.getDimension();
-		this.mapDimension = dimensionId;
-		this.mapDevicePos = pos.toLong();
-
-		this.isInit = true;
-
-		this.setOwner(owner);
-
-	    }
 	}
 
 	@Override
@@ -419,9 +415,8 @@ public class WorldData {
 	private void checkDeletition(World world) {
 
 	    if (this.getMinutesLeft() < 1) {
-		announceDeletition(world);
-		this.setForDelete = true;
-		this.transferPlayersBack(world);
+		this.setDelete(true, world);
+
 	    }
 
 	}
@@ -449,8 +444,16 @@ public class WorldData {
 	}
 
 	@Override
-	public void setDelete(boolean bool) {
+	public void setDelete(boolean bool, World world) {
 	    this.setForDelete = bool;
+
+	    if (bool) {
+
+		announceDeletition(world);
+
+		this.transferPlayersBack(world);
+	    }
+
 	}
 
 	@Override

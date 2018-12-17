@@ -30,6 +30,11 @@ public abstract class BaseWorldProvider extends WorldProviderSurface implements 
 	return type != null ? type : super.getDimensionType();
     }
 
+    @Override
+    public boolean canDropChunk(int x, int z) {
+	return true;
+    }
+
     /**
      * 
      * Do not override this.

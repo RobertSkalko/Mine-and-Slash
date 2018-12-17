@@ -7,6 +7,8 @@ import javax.annotation.Nullable;
 import com.robertx22.advanced_blocks.BaseTile;
 import com.robertx22.customitems.misc.ItemMap;
 import com.robertx22.saveclasses.MapItemData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.datasaving.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -95,11 +97,15 @@ public class TileMap extends BaseTile {
 		    world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL,
 			    SoundCategory.BLOCKS, 0.4f, 0);
 
+		    UnitData unit = Load.Unit(player);
+
+		    int id = map.findFreeDimensionId(player, unit);
+
 		    // start map
 		    this.MapSlot().shrink(1);
 		    this.StartSlot().shrink(1);
 
-		    int id = map.createDimension(world, pos, player);
+		    map.createDimension(id, world, pos, player);
 
 		    BlockPos pos = this.pos.north(4);
 		    ItemMap.createMap(id, pos, world, map);
@@ -113,9 +119,7 @@ public class TileMap extends BaseTile {
 		    BlockPos pos3 = this.pos.west(4);
 		    ItemMap.createMap(id, pos3, world, map);
 
-		}
-
-		else if (level != null) {
+		} else if (level != null) {
 
 		    if (map.increaseLevel(level.rarity + 1)) {
 			this.LevelSlot().shrink(1);
@@ -133,6 +137,7 @@ public class TileMap extends BaseTile {
 
 	    markDirty();
 	}
+
     }
 
     @Override

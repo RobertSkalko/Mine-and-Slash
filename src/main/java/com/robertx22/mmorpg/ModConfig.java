@@ -429,11 +429,6 @@ public class ModConfig {
 	@Config.Comment("The start of dimension IDs used for maps. It goes down from here.. to -1463.. -1464 etc")
 	public int MAP_ID_START = -1462;
 
-	@Config.Name("Map ID Reserved")
-	@Config.LangKey("mmorpg.config.map_id_reserved")
-	@Config.Comment("This just reserves all the IDs that it can so there's less chance for gamebreaking errors. But those reserved maps won't be usable until activated.")
-	public int MAP_ID_RESERVED = 15;
-
     }
 
     public static class DimensionConfigs {

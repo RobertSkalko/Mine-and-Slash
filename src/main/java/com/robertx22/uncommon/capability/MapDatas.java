@@ -4,7 +4,6 @@ package com.robertx22.uncommon.capability;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.DimensionData;
 import com.robertx22.saveclasses.MapDataList;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -115,15 +114,6 @@ public class MapDatas extends WorldSavedData {
 
     }
 
-    public void reserveDimensions() {
-
-	for (int i = 0; i < ModConfig.MapDimensions.MAP_ID_RESERVED; i++) {
-	    int id = ModConfig.MapDimensions.MAP_ID_START - i;
-	    registerReserved(id);
-
-	}
-    }
-
     public void registerDimensions() {
 
 	this.dimensionIds.clear();
@@ -134,7 +124,6 @@ public class MapDatas extends WorldSavedData {
 
 	}
 
-	reserveDimensions();
     }
 
     public static void unregisterDimensions() {

@@ -31,45 +31,45 @@ public class CheckWorldDelete {
 		try {
 
 		    if (!event.getWorld().isRemote) {
-			deleteIfSet(event.getWorld());
+			World world = event.getWorld();
+
+			if (world.hasCapability(WorldData.Data, null)) {
+			    IWorldData data = world.getCapability(WorldData.Data, null);
+
+			    if (data != null && data.isSetForDelete()) {
+
+				MapDatas mapdata = (MapDatas) world.getMapStorage().getOrLoadData(MapDatas.class,
+					MapDatas.getLoc());
+
+				if (mapdata != null) {
+
+				    mapdata.delete(world.provider.getDimension());
+
+				    try {
+					FileUtils.deleteDirectory(WorldFileUtils.getWorldDirectory(world));
+					System.out.println("Deleting a temporary map world to free up disk space!");
+
+				    } catch (IOException e) {
+					e.printStackTrace();
+				    }
+
+				}
+			    }
+
+			}
 		    }
 		    scheduler.shutdown();
 
 		} catch (Exception e) {
 		    e.printStackTrace();
+		    // keep scheduling until it's correctly deleted
+		    scheduler.schedule(this, 1, TimeUnit.SECONDS);
 		}
 	    }
 
 	};
-	scheduler.schedule(noteThread, 20, TimeUnit.SECONDS);
+	scheduler.schedule(noteThread, 1, TimeUnit.SECONDS);
 
-    }
-
-    private static void deleteIfSet(World world) {
-
-	if (world.hasCapability(WorldData.Data, null)) {
-	    IWorldData data = world.getCapability(WorldData.Data, null);
-
-	    if (data != null && data.isSetForDelete()) {
-
-		MapDatas mapdata = (MapDatas) world.getMapStorage().getOrLoadData(MapDatas.class, MapDatas.getLoc());
-
-		if (mapdata != null) {
-
-		    mapdata.delete(world.provider.getDimension());
-
-		    try {
-			FileUtils.deleteDirectory(WorldFileUtils.getWorldDirectory(world));
-			System.out.println("Deleting a temporary map world to free up disk space!");
-
-		    } catch (IOException e) {
-			e.printStackTrace();
-		    }
-
-		}
-	    }
-
-	}
     }
 
 }

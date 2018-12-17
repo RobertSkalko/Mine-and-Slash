@@ -114,15 +114,15 @@ public class MapItemData implements ISalvagable {
 	return WorldProviders.All.get(this.worldGeneratorName);
     }
 
-    public int createDimension(World ogworld, BlockPos pos, EntityPlayer player) {
+    public void createDimension(int id, World ogworld, BlockPos pos, EntityPlayer player) {
 
 	UnitData unit = Load.Unit(player);
 
-	int id = findFreeDimensionId(player, unit);
+	MapItemData map = this;
 
 	unit.setCurrentMapId(id);
 
-	DimensionData dimData = getDimData(id, this.worldGeneratorName);
+	DimensionData dimData = getDimData(id, map.worldGeneratorName);
 
 	if (DimensionManager.isDimensionRegistered(id)) {
 	    DimensionManager.unregisterDimension(id);
@@ -133,14 +133,12 @@ public class MapItemData implements ISalvagable {
 	World world = DimensionManager.getWorld(id);
 
 	IWorldData data = world.getCapability(WorldData.Data, null);
-	data.init(pos, ogworld, this, id, player);
+	data.init(pos, ogworld, map, id, player);
 
 	MapDatas mapdatas = (MapDatas) DimensionManager.getWorld(0).getMapStorage().getOrLoadData(MapDatas.class,
 		MapDatas.getLoc());
 
 	mapdatas.register(dimData);
-
-	return id;
 
     }
 
@@ -151,54 +149,29 @@ public class MapItemData implements ISalvagable {
 	return data;
     }
 
-    private int findFreeDimensionId(EntityPlayer player, UnitData unit) {
+    public int findFreeDimensionId(EntityPlayer player, UnitData unit) {
 
 	if (unit.hasCurrentMapId()) {
-	    int id = unit.getCurrentMapId();
-	    if (DimensionManager.isDimensionRegistered(id)) {
-		World w = DimensionManager.getWorld(id);
 
-		if (w == null) {
-		    DimensionManager.initDimension(id);
-
-		    IWorldData world = Load.World(DimensionManager.getWorld(id));
-
-		    if (world.isOwner(player)) {
-			return id;
-		    }
+	    int lastid = unit.getCurrentMapId();
+	    if (DimensionManager.isDimensionRegistered(lastid)) {
+		DimensionManager.initDimension(lastid);
+		World world = DimensionManager.getWorld(lastid);
+		if (world != null) {
+		    IWorldData data = Load.World(world);
+		    data.setDelete(true, world);
 		}
 	    }
-
 	}
 
 	int id = ModConfig.MapDimensions.MAP_ID_START;
 
 	while (DimensionManager.isDimensionRegistered(id)) {
 
-	    if (isInReserveRange(id)) {
-
-		IWorldData world = Load.World(DimensionManager.getWorld(id));
-
-		if (world != null) {
-		    if (world.isReserved()) {
-			world.setReserved(false);
-			return id;
-		    }
-		}
-
-	    }
-
 	    id--;
 	}
 
 	return id;
-    }
-
-    private boolean isInReserveRange(int id) {
-
-	return id <= ModConfig.MapDimensions.MAP_ID_START
-		&& id >= ModConfig.MapDimensions.MAP_ID_START - ModConfig.MapDimensions.MAP_ID_RESERVED;
-
     }
 
     public MapRarity GetRarity() {
