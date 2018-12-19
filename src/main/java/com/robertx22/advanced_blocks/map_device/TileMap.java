@@ -87,7 +87,7 @@ public class TileMap extends BaseTile {
 
 		BlockPos p = this.pos;
 
-		EntityPlayer player = this.getWorld().getClosestPlayer(p.getX(), p.getY(), p.getZ(), 500, false);
+		EntityPlayer player = this.getWorld().getClosestPlayer(p.getX(), p.getY(), p.getZ(), 20, false);
 
 		if (player != null) {
 

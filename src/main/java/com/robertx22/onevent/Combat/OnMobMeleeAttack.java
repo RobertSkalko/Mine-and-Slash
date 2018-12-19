@@ -72,6 +72,8 @@ public class OnMobMeleeAttack {
 			sourceData.attackWithWeapon(source, target, stack);
 		    }
 
+		} else {
+		    sourceData.unarmedAttack(source, target);
 		}
 
 	    } else { // if its a mob

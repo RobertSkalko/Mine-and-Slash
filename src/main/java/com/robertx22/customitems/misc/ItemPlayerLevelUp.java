@@ -7,6 +7,9 @@ import javax.annotation.Nullable;
 import com.robertx22.customitems.BaseItem;
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.structures.GenStructure;
+import com.robertx22.structures.StructureList;
+import com.robertx22.structures.processors.AddChestLoot;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
@@ -47,6 +50,18 @@ public class ItemPlayerLevelUp extends BaseItem {
 
 	if (!worldIn.isRemote) {
 	    try {
+
+		// TEST
+
+		try {
+		    GenStructure.gen(StructureList.SMALL_FLYING_TREASURE, playerIn.getPosition(), worldIn,
+			    new AddChestLoot());
+		} catch (Exception e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		// END TEST
 
 		if (playerIn.getCapability(EntityData.Data, null).LevelUp((EntityPlayerMP) playerIn)) {
 

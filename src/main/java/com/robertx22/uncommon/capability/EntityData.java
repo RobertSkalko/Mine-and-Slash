@@ -5,7 +5,11 @@ import java.util.UUID;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.database.rarities.MobRarity;
+import com.robertx22.database.stat_types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.effectdatas.DamageEffect;
+import com.robertx22.effectdatas.EffectData.EffectTypes;
+import com.robertx22.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
@@ -150,6 +154,10 @@ public class EntityData {
 	boolean hasCurrentMapId();
 
 	void clearCurrentMapId();
+
+	void unarmedAttack(EntityLivingBase source, EntityLivingBase target);
+
+	boolean decreaseRarity(EntityLivingBase entity);
     }
 
     @Mod.EventBusSubscriber
@@ -675,6 +683,19 @@ public class EntityData {
 	}
 
 	@Override
+	public boolean decreaseRarity(EntityLivingBase entity) {
+
+	    if (rarity - 1 < 0) {
+		return false;
+	    } else {
+		rarity = rarity - 1;
+
+		return true;
+
+	    }
+	}
+
+	@Override
 	public int getCurrentMapId() {
 	    return this.currentMapId;
 	}
@@ -692,6 +713,15 @@ public class EntityData {
 	@Override
 	public void clearCurrentMapId() {
 	    this.currentMapId = 0;
+	}
+
+	@Override
+	public void unarmedAttack(EntityLivingBase source, EntityLivingBase target) {
+
+	    int num = (int) unit.MyStats.get(PhysicalDamage.GUID).Value;
+	    DamageEffect dmg = new DamageEffect(source, target, num);
+	    dmg.setEffectType(EffectTypes.BASIC_ATTACK, WeaponTypes.None);
+	    dmg.Activate();
 	}
     }
 
