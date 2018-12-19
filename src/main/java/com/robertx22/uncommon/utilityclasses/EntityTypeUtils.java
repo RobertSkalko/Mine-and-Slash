@@ -18,7 +18,7 @@ public class EntityTypeUtils {
 	} else if (isAnimal(en)) {
 	    return ModConfig.EntityTypeConfig.ANIMAL_CONFIG.LOOT_MULTI;
 	} else {
-	    return 0;
+	    return ModConfig.EntityTypeConfig.OTHER_CONFIG.LOOT_MULTI;
 	}
 
     }
@@ -26,16 +26,13 @@ public class EntityTypeUtils {
     public static float getExpMulti(Entity en) {
 
 	if (isMob(en)) {
-
 	    return ModConfig.EntityTypeConfig.MOB_CONFIG.EXP_MULTI;
 	} else if (isNPC(en)) {
-
 	    return ModConfig.EntityTypeConfig.NPC_CONFIG.EXP_MULTI;
 	} else if (isAnimal(en)) {
-
 	    return ModConfig.EntityTypeConfig.ANIMAL_CONFIG.EXP_MULTI;
 	} else {
-	    return 0;
+	    return ModConfig.EntityTypeConfig.OTHER_CONFIG.EXP_MULTI;
 	}
 
     }

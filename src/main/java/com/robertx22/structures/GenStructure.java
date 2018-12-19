@@ -23,13 +23,11 @@ public class GenStructure {
 		.getTemplate(world.getMinecraftServer(), structure);
 
 	if (processor != null) {
-
 	    template.addBlocksToWorld(world, pos, processor, settings, 2);
 	} else {
+	    template.addBlocksToWorld(world, pos, settings);
 
 	}
-	template.addBlocksToWorld(world, pos, settings);
-
 	// System.out.println(template.getSize() + " ");
 
     }

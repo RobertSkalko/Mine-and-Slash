@@ -163,6 +163,25 @@ public class ModConfig {
 	@Config.Comment("")
 	public AnimalConfig ANIMAL_CONFIG = new AnimalConfig();
 
+	@Config.Name("Other Entities Config")
+	@Config.LangKey("mmorpg.word.other_entities")
+	@Config.Comment("")
+	public OtherEntityConfig OTHER_CONFIG = new OtherEntityConfig();
+
+    }
+
+    public static class OtherEntityConfig {
+
+	@Config.Name("Loot Multi")
+	@Config.LangKey("mmorpg.config.loot_multi")
+	@Config.Comment("")
+	public float LOOT_MULTI = 0;
+
+	@Config.Name("Exp Multi")
+	@Config.LangKey("mmorpg.config.exp_multi")
+	@Config.Comment("")
+	public float EXP_MULTI = 0;
+
     }
 
     public static class MobConfig {

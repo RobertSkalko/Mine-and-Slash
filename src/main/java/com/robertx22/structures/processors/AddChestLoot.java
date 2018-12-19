@@ -39,6 +39,7 @@ public class AddChestLoot implements ITemplateProcessor {
 		for (ItemStack stack : MasterLootGen.gen(mob, player, data, new EntityZombie(world))) {
 		    items.add(stack);
 		}
+
 	    }
 
 	    TileEntityChest chest = new TileEntityChest();
@@ -49,11 +50,11 @@ public class AddChestLoot implements ITemplateProcessor {
 		}
 	    }
 
-	    return new BlockInfo(blockInfoIn.pos, Blocks.CHEST.getDefaultState(), chest.getTileData());
+	    return new BlockInfo(blockInfoIn.pos, Blocks.CHEST.getDefaultState(), chest.serializeNBT());
 
 	}
 
-	return null;
+	return blockInfoIn;
     }
 
 }
