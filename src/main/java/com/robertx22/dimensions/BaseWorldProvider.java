@@ -55,7 +55,7 @@ public abstract class BaseWorldProvider extends WorldProviderSurface implements 
 
     @Override
     public String getSaveFolder() {
-	return "MineAndSlash_MapWorld" + world.provider.getDimension();
+	return "MineAndSlash_MapWorld" + this.getDimension();
     }
 
     @Override

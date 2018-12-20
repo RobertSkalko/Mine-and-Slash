@@ -1,5 +1,6 @@
 package com.robertx22.customitems.currency;
 
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -63,7 +64,9 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
     public boolean CanItemBeModified(ItemStack stack) {
 	GearItemData gear = Gear.Load(stack);
 
-	return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS;
+	return gear != null && gear.timesLeveledUp < MAXIMUM_LEVEL_UPS
+		&& gear.level < ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
+
     }
 
     @Override
