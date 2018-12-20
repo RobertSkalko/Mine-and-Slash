@@ -578,6 +578,7 @@ mmorpg.chat.no_targets_found=No targets found
 mmorpg.chat.not_enough_experience=Not Enough Experience
 mmorpg.chat.cannot_over_maximum_level=Cannot be higher than maximum level!
 mmorpg.chat.has_died_by_the_hands_of=has died by the hands of
+mmorpg.chat.flying_building_spawned=A mysterious flying building has spawned somewhere near a certain player?
 
 # GEAR TYPES
 mmorpg.gear_type.sword=Sword
