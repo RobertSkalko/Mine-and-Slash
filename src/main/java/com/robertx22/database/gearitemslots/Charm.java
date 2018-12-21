@@ -23,45 +23,49 @@ import net.minecraft.item.Item;
 
 public class Charm extends GearItemSlot {
 
-	@Override
-	public String GUID() {
-		return "Charm";
-	}
+    @Override
+    public String GUID() {
+	return "Charm";
+    }
 
-	@Override
-	public List<Suffix> PossibleSuffixes() {
-		return new ArrayList<Suffix>(Suffixes.Weapon);
-	}
+    @Override
+    public List<Suffix> PossibleSuffixes() {
+	return new ArrayList<Suffix>(Suffixes.Weapon);
+    }
 
-	@Override
-	public List<Prefix> PossiblePrefixes() {
-		return new ArrayList<Prefix>(Prefixes.Weapon);
-	}
+    @Override
+    public List<Prefix> PossiblePrefixes() {
+	return new ArrayList<Prefix>(Prefixes.Weapon);
+    }
 
-	@Override
-	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new NaturePeneFlat(), new ThunderPeneFlat(),
-				new ArmorPeneFlat());
-	}
+    @Override
+    public List<StatMod> PrimaryStats() {
+	return Arrays.asList(new FirePeneFlat(), new WaterPeneFlat(), new NaturePeneFlat(), new ThunderPeneFlat(),
+		new ArmorPeneFlat());
+    }
 
-	@Override
-	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new ArmorFlat());
-	}
+    @Override
+    public List<StatMod> PossibleSecondaryStats() {
+	return Arrays.asList(new ArmorFlat());
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemCharm.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemCharm.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemCharm.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemCharm.Items;
+    }
 
-	@Override
-	public int Weight() {
-		return 1000;
-	}
+    @Override
+    public int Weight() {
+	return 1000;
+    }
 
+    @Override
+    public GearSlotType slotType() {
+	return GearSlotType.Jewerly;
+    }
 }

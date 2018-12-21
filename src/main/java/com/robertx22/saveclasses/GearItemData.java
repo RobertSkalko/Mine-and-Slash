@@ -8,6 +8,7 @@ import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
@@ -18,6 +19,7 @@ import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
 import com.robertx22.saveclasses.gearitem.SetData;
+import com.robertx22.saveclasses.gearitem.SocketsData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.UniqueStatsData;
@@ -91,6 +93,8 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
     public SetData set;
     @Store
     public ChaosStatsData chaosStats;
+    @Store
+    public SocketsData socket;
     // Stats
 
     @Store
@@ -99,6 +103,18 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
     @Store
     public int timesLeveledUp = 0;
     //
+
+    public boolean isSocketable() {
+	return this.GetBaseGearType().slotType().equals(GearSlotType.Armor);
+    }
+
+    public boolean isUpgradable() {
+	return this.GetBaseGearType().slotType().equals(GearSlotType.Weapon);
+    }
+
+    public boolean isEnchantable() {
+	return this.GetBaseGearType().slotType().equals(GearSlotType.Jewerly);
+    }
 
     public Item getItem() {
 
@@ -164,33 +180,18 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
     public List<IStatsContainer> GetAllStatContainers() {
 
-	List<IStatsContainer> containers = new ArrayList<IStatsContainer>();
+	List<IStatsContainer> list = new ArrayList<IStatsContainer>();
 
-	if (suffix != null) {
-	    containers.add(suffix);
-	}
-	if (prefix != null) {
-	    containers.add(prefix);
-	}
+	IfNotNullAdd(secondaryStats, list);
+	IfNotNullAdd(primaryStats, list);
+	IfNotNullAdd(prefix, list);
+	IfNotNullAdd(suffix, list);
+	IfNotNullAdd(chaosStats, list);
+	IfNotNullAdd(uniqueStats, list);
+	IfNotNullAdd(gearTypeStats, list);
+	IfNotNullAdd(socket, list);
 
-	if (uniqueStats != null) {
-	    containers.add(uniqueStats);
-	}
-
-	if (primaryStats != null) {
-	    containers.add(primaryStats);
-	}
-	if (secondaryStats != null) {
-	    containers.add(secondaryStats);
-	}
-	if (chaosStats != null) {
-	    containers.add(chaosStats);
-	}
-	if (gearTypeStats != null) {
-	    containers.add(gearTypeStats);
-	}
-
-	return containers;
+	return list;
 
     }
 
@@ -227,6 +228,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	list.add(suffix);
 	list.add(chaosStats);
 	list.add(gearTypeStats);
+	list.add(socket);
 
 	for (ITooltipList part : list) {
 

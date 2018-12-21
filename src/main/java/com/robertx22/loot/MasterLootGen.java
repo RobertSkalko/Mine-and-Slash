@@ -15,8 +15,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
 public class MasterLootGen {
+
     public static List<ItemStack> gen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
-	List<ItemStack> items = new ArrayList();
+	List<ItemStack> items = new ArrayList<ItemStack>();
 
 	if (mob == null || player == null || world == null || victim == null) {
 	    return items;
@@ -29,6 +30,25 @@ public class MasterLootGen {
 
 	if (world.isMapWorld()) {
 	    items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
+	}
+
+	return items;
+    }
+
+    public static List<ItemStack> gen(float multi, IWorldData world, int level) {
+	List<ItemStack> items = new ArrayList<ItemStack>();
+
+	if (world == null) {
+	    return items;
+	}
+
+	items.addAll(new CurrencyLootGen(multi, world).generate());
+	items.addAll(new GearLootGen(multi, world, level).generate());
+	items.addAll(new SpellLootGen(multi, world, level).generate());
+	items.addAll(new MapLootGen(multi, world, level).generate());
+
+	if (world.isMapWorld()) {
+	    items.addAll(new UniqueGearLootGen(multi, world, level).generate());
 	}
 
 	return items;

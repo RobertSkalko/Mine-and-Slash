@@ -33,6 +33,7 @@ public class GiveMap extends CommandBase {
 	if (rarity > -1) {
 	    blueprint.SetSpecificRarity(rarity);
 	}
+	blueprint.LevelRange = false;
 
 	EntityPlayer player = (EntityPlayer) sender;
 

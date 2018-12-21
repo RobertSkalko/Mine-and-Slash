@@ -21,6 +21,10 @@ public class CurrencyLootGen extends BaseLootGen {
 
     }
 
+    public CurrencyLootGen(float multi, IWorldData world) {
+	super(multi, world);
+    }
+
     @Override
     public float BaseChance() {
 	return ModConfig.DropRates.CURRENCY_DROPRATE;

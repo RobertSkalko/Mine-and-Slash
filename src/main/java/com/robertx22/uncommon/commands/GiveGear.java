@@ -29,17 +29,19 @@ public class GiveGear extends CommandBase {
 	String type = args[2];
 	int amount = Integer.valueOf(args[3]);
 
-	GearBlueprint schema = new GearBlueprint(lvl);
+	GearBlueprint blueprint = new GearBlueprint(lvl);
 	if (rarity > -1) {
-	    schema.SetSpecificRarity(rarity);
+	    blueprint.SetSpecificRarity(rarity);
 	}
 	if (!type.equals("random")) {
-	    schema.SetSpecificType(type);
+	    blueprint.SetSpecificType(type);
 	}
+	blueprint.LevelRange = false;
+
 	EntityPlayer player = (EntityPlayer) sender;
 
 	for (int i = 0; i < amount; i++) {
-	    player.addItemStackToInventory(GearGen.CreateStack(schema));
+	    player.addItemStackToInventory(GearGen.CreateStack(blueprint));
 	}
 
     }

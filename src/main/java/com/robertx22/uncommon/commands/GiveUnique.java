@@ -33,6 +33,7 @@ public class GiveUnique extends CommandBase {
 	UniqueBlueprint blueprint = new UniqueBlueprint(lvl, tier, true);
 	blueprint.SetSpecificRarity(new UniqueItem().Rank());
 	blueprint.SetSpecificType(type);
+	blueprint.LevelRange = false;
 
 	EntityPlayer player = (EntityPlayer) sender;
 

@@ -34,6 +34,19 @@ public abstract class BaseLootGen {
     public IWorldData world;
     public int world_tier;
 
+    public BaseLootGen(float multi, IWorldData world) {
+
+	this.world = world;
+	this.world_tier = world.getTier();
+
+	float chance = BaseChance();
+
+	chance *= multi;
+
+	amount = LootUtils.WhileRoll(chance);
+
+    }
+
     public BaseLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
 
 	this.world = world;

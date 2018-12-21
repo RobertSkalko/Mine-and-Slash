@@ -22,40 +22,45 @@ import net.minecraft.item.Item;
 
 public class Necklace extends GearItemSlot {
 
-	@Override
-	public String GUID() {
-		return "Necklace";
-	}
+    @Override
+    public String GUID() {
+	return "Necklace";
+    }
 
-	@Override
-	public List<Suffix> PossibleSuffixes() {
-		return new ArrayList<Suffix>(Suffixes.All().values());
-	}
+    @Override
+    public List<Suffix> PossibleSuffixes() {
+	return new ArrayList<Suffix>(Suffixes.All().values());
+    }
 
-	@Override
-	public List<Prefix> PossiblePrefixes() {
-		return new ArrayList<Prefix>(Prefixes.All().values());
-	}
+    @Override
+    public List<Prefix> PossiblePrefixes() {
+	return new ArrayList<Prefix>(Prefixes.All().values());
+    }
 
-	@Override
-	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new HealthRegenFlat());
-	}
+    @Override
+    public List<StatMod> PrimaryStats() {
+	return Arrays.asList(new HealthRegenFlat());
+    }
 
-	@Override
-	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(),
-				new NatureResistFlat());
-	}
+    @Override
+    public List<StatMod> PossibleSecondaryStats() {
+	return Arrays.asList(new FireResistFlat(), new ThunderResistFlat(), new WaterResistFlat(),
+		new NatureResistFlat());
+    }
 
-	@Override
-	public Item DefaultItem() {
-		return ItemNecklace.Items.get(0);
-	}
+    @Override
+    public Item DefaultItem() {
+	return ItemNecklace.Items.get(0);
+    }
 
-	@Override
-	public HashMap<Integer, Item> ItemsForRarities() {
-		return ItemNecklace.Items;
-	}
+    @Override
+    public HashMap<Integer, Item> ItemsForRarities() {
+	return ItemNecklace.Items;
+    }
+
+    @Override
+    public GearSlotType slotType() {
+	return GearSlotType.Jewerly;
+    }
 
 }

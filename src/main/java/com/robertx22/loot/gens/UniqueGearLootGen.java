@@ -19,6 +19,12 @@ public class UniqueGearLootGen extends BaseLootGen {
 
     }
 
+    public UniqueGearLootGen(float multi, IWorldData world, int level) {
+	super(multi, world);
+	gearPrint = new UniqueBlueprint(level, this.world_tier, true);
+
+    }
+
     @Override
     public float BaseChance() {
 	return ModConfig.DropRates.UNIQUE_DROPRATE;

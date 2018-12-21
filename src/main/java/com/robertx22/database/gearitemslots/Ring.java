@@ -65,4 +65,8 @@ public class Ring extends GearItemSlot {
 	return 1500;
     }
 
+    @Override
+    public GearSlotType slotType() {
+	return GearSlotType.Jewerly;
+    }
 }

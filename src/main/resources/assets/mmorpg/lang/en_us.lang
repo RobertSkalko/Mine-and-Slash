@@ -272,6 +272,8 @@ mmorpg.word.item=Item
 mmorpg.word.currency=Currency
 mmorpg.word.map=Map
 mmorpg.word.spell=Spell
+mmorpg.word.socket=Socket
+mmorpg.word.sockets=Sockets
 
 # BIOME WORDS
 mmorpg.word.arid_highland=Arid Highland

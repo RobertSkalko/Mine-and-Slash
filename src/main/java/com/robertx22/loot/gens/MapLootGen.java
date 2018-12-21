@@ -19,6 +19,13 @@ public class MapLootGen extends BaseLootGen {
 
     }
 
+    public MapLootGen(float multi, IWorldData world, int level) {
+	super(multi, world);
+
+	blueprint = new MapBlueprint(level, world.getTier());
+
+    }
+
     @Override
     public float BaseChance() {
 	return ModConfig.DropRates.MAP_DROPRATE;

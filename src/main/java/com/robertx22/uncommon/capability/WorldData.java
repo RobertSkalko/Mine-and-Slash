@@ -375,7 +375,8 @@ public class WorldData {
 
 	    }
 
-	    player.changeDimension(this.originalDimension, new MyTeleporter(pos, player, this.originalDimension));
+	    player.changeDimension(this.originalDimension,
+		    new MyTeleporter(player.world, pos, player, this.originalDimension));
 
 	}
 

@@ -62,4 +62,8 @@ public class Bracelet extends GearItemSlot {
 	return ItemBracelet.Items;
     }
 
+    @Override
+    public GearSlotType slotType() {
+	return GearSlotType.Jewerly;
+    }
 }

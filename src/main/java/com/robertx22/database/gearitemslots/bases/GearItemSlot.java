@@ -17,7 +17,13 @@ import net.minecraft.item.ItemStack;
 
 public abstract class GearItemSlot implements IWeighted {
 
+    public enum GearSlotType {
+	Weapon, Armor, Jewerly
+    }
+
     public abstract String GUID();
+
+    public abstract GearSlotType slotType();
 
     public String locName() {
 	return CLOC.geartype(GUID().toLowerCase());

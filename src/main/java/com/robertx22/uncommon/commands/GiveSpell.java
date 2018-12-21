@@ -29,17 +29,19 @@ public class GiveSpell extends CommandBase {
 	String type = args[2];
 	int amount = Integer.valueOf(args[3]);
 
-	SpellBlueprint schema = new SpellBlueprint(lvl);
+	SpellBlueprint blueprint = new SpellBlueprint(lvl);
 	if (rarity > -1) {
-	    schema.SetSpecificRarity(rarity);
+	    blueprint.SetSpecificRarity(rarity);
 	}
 	if (!type.equals("random")) {
-	    schema.SetSpecificType(type);
+	    blueprint.SetSpecificType(type);
 	}
+	blueprint.LevelRange = false;
+
 	EntityPlayer player = (EntityPlayer) sender;
 
 	for (int i = 0; i < amount; i++) {
-	    player.addItemStackToInventory(SpellItemGen.Create(schema));
+	    player.addItemStackToInventory(SpellItemGen.Create(blueprint));
 	}
     }
 }

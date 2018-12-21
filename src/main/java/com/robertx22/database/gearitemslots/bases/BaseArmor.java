@@ -14,24 +14,28 @@ import com.robertx22.stats.StatMod;
 
 public abstract class BaseArmor extends GearItemSlot {
 
-	@Override
-	public List<Suffix> PossibleSuffixes() {
-		return new ArrayList<Suffix>(Suffixes.Armor);
-	}
+    @Override
+    public List<Suffix> PossibleSuffixes() {
+	return new ArrayList<Suffix>(Suffixes.Armor);
+    }
 
-	@Override
-	public List<Prefix> PossiblePrefixes() {
-		return new ArrayList<Prefix>(Prefixes.Armor);
-	}
+    @Override
+    public List<Prefix> PossiblePrefixes() {
+	return new ArrayList<Prefix>(Prefixes.Armor);
+    }
 
-	@Override
-	public List<StatMod> PrimaryStats() {
-		return Arrays.asList(new HealthFlat());
-	}
+    @Override
+    public List<StatMod> PrimaryStats() {
+	return Arrays.asList(new HealthFlat());
+    }
 
-	@Override
-	public List<StatMod> PossibleSecondaryStats() {
-		return Arrays.asList(new ArmorFlat());
-	}
+    @Override
+    public List<StatMod> PossibleSecondaryStats() {
+	return Arrays.asList(new ArmorFlat());
+    }
 
+    @Override
+    public GearSlotType slotType() {
+	return GearSlotType.Armor;
+    }
 }

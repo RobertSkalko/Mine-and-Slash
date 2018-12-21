@@ -4,13 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 import com.robertx22.loot.MasterLootGen;
-import com.robertx22.uncommon.capability.EntityData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
@@ -32,17 +29,10 @@ public class ChestGenerator implements IWorldGenerator {
 
 	    if (RandomUtils.roll(1F)) {
 
-		EntityZombie zombie = new EntityZombie(world);
-		UnitData mob = new EntityData.DefaultImpl();
-		UnitData player = new EntityData.DefaultImpl();
-		mob.setLevel(data.getLevel(), zombie);
-		mob.setRarity(4);
-		player.setLevel(data.getLevel(), zombie);
-
-		List<ItemStack> loot = MasterLootGen.gen(mob, player, data, new EntityZombie(world));
+		List<ItemStack> loot = MasterLootGen.gen(50, data, data.getLevel());
 
 		while (loot.size() < 2) {
-		    for (ItemStack stack : MasterLootGen.gen(mob, player, data, new EntityZombie(world))) {
+		    for (ItemStack stack : MasterLootGen.gen(50, data, data.getLevel())) {
 			loot.add(stack);
 		    }
 		}

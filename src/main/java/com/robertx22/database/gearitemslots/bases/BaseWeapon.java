@@ -36,4 +36,9 @@ public abstract class BaseWeapon extends GearItemSlot implements IWeapon {
 	return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new LifestealFlat(), new LifeOnHitFlat());
     }
 
+    @Override
+    public GearSlotType slotType() {
+	return GearSlotType.Weapon;
+    }
+
 }

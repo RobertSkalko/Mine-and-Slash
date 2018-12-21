@@ -49,6 +49,12 @@ public class EntityTypeUtils {
 
     }
 
+    /**
+     * has to be checked first because inpc extends ianimals
+     * 
+     * @param en
+     * @return
+     */
     public static boolean isNPC(Entity en) {
 
 	return en instanceof INpc;

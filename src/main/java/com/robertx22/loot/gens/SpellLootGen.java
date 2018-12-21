@@ -20,6 +20,13 @@ public class SpellLootGen extends BaseLootGen {
 
     }
 
+    public SpellLootGen(float multi, IWorldData world, int level) {
+	super(multi, world);
+
+	spellPrint = new SpellBlueprint(level);
+
+    }
+
     @Override
     public float BaseChance() {
 	return ModConfig.DropRates.SPELL_DROPRATE;

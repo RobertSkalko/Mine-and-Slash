@@ -3,12 +3,9 @@ package com.robertx22.structures.processors;
 import java.util.List;
 
 import com.robertx22.loot.MasterLootGen;
-import com.robertx22.uncommon.capability.EntityData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
 
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
@@ -26,20 +23,12 @@ public class AddChestLoot implements ITemplateProcessor {
 
 	    IWorldData data = Load.World(world);
 
-	    EntityZombie zombie = new EntityZombie(world);
-	    UnitData mob = new EntityData.DefaultImpl();
-	    UnitData player = new EntityData.DefaultImpl();
-	    mob.setLevel(data.getLevel(), zombie);
-	    mob.setRarity(4);
-	    player.setLevel(data.getLevel(), zombie);
-
-	    List<ItemStack> items = MasterLootGen.gen(mob, player, data, new EntityZombie(world));
+	    List<ItemStack> items = MasterLootGen.gen(100, data, data.getLevel());
 
 	    while (items.size() < 2) {
-		for (ItemStack stack : MasterLootGen.gen(mob, player, data, new EntityZombie(world))) {
+		for (ItemStack stack : MasterLootGen.gen(100, data, data.getLevel())) {
 		    items.add(stack);
 		}
-
 	    }
 
 	    TileEntityChest chest = new TileEntityChest();

@@ -21,6 +21,12 @@ public class GearLootGen extends BaseLootGen {
 
     }
 
+    public GearLootGen(float multi, IWorldData world, int level) {
+	super(multi, world);
+	gearPrint = new GearBlueprint(level);
+
+    }
+
     @Override
     public float BaseChance() {
 	return ModConfig.DropRates.GEAR_DROPRATE;
