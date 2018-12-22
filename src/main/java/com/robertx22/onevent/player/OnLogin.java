@@ -1,5 +1,6 @@
 package com.robertx22.onevent.player;
 
+import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.gearitemslots.Boots;
 import com.robertx22.database.gearitemslots.Bracelet;
 import com.robertx22.database.gearitemslots.Chest;
@@ -19,6 +20,7 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -57,6 +59,8 @@ public class OnLogin {
 	spell.SetSpecificType(new SpellFireBolt().GUID());
 	spell.LevelRange = false;
 	spell.SetSpecificRarity(0);
+
+	player.inventory.addItemStackToInventory(new ItemStack(ItemOre.ItemOres.get(0)));
 
 	player.inventory.addItemStackToInventory(SpellItemGen.Create(spell));
 

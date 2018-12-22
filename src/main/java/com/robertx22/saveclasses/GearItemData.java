@@ -19,7 +19,7 @@ import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
 import com.robertx22.saveclasses.gearitem.SetData;
-import com.robertx22.saveclasses.gearitem.SocketsData;
+import com.robertx22.saveclasses.gearitem.SocketsListData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.UniqueStatsData;
@@ -94,7 +94,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
     @Store
     public ChaosStatsData chaosStats;
     @Store
-    public SocketsData socket;
+    public SocketsListData sockets;
     // Stats
 
     @Store
@@ -189,7 +189,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	IfNotNullAdd(chaosStats, list);
 	IfNotNullAdd(uniqueStats, list);
 	IfNotNullAdd(gearTypeStats, list);
-	IfNotNullAdd(socket, list);
+	IfNotNullAdd(sockets, list);
 
 	return list;
 
@@ -205,6 +205,29 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	}
 
 	return datas;
+    }
+
+    public List<StatModData> mergeSameStats(List<StatModData> mods) {
+
+	List<StatModData> newmods = new ArrayList();
+
+	for (StatModData mod : mods) {
+
+	    for (StatModData newmod : newmods) {
+
+		if (newmod.baseModName.equals(mod.baseModName)) {
+		    newmod.percent += mod.percent;
+		    break;
+		}
+
+	    }
+
+	    newmods.add(mod);
+
+	}
+
+	return newmods;
+
     }
 
     @Override
@@ -223,14 +246,20 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	    list.add(uniqueStats);
 	}
 	list.add(primaryStats);
+
+	List<String> mergedStats = new ArrayList();
+
 	list.add(secondaryStats);
 	list.add(prefix);
 	list.add(suffix);
+
 	list.add(chaosStats);
 	list.add(gearTypeStats);
-	list.add(socket);
+	list.add(sockets);
 
-	for (ITooltipList part : list) {
+	for (
+
+	ITooltipList part : list) {
 
 	    if (part != null) {
 		event.getToolTip().addAll(part.GetTooltipString(this));
@@ -253,7 +282,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	}
 
 	ItemRarity rarity = GetRarity();
-	event.getToolTip().add(rarity.Color() + CLOC.word("rarity") + ": " + CLOC.rarityName(rarity));
+	event.getToolTip().add(CLOC.word("rarity") + ": " + rarity.Color() + CLOC.rarityName(rarity));
 
 	if (!this.isSalvagable) {
 	    event.getToolTip().add(TextFormatting.RED + CLOC.word("unsalvagable"));

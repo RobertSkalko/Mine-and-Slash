@@ -34,7 +34,7 @@ mmorpg.lore.newbie_gear_bag1=Three Furnaces below, five iron wills above,
 mmorpg.lore.newbie_gear_bag2=seed in the middle, materialize hope!
 mmorpg.tooltip.capacitor=Put Inside Repair Station to decrease fuel consumption.
 mmorpg.tooltip.capacitor2=Fuel Multiplier
-
+mmorpg.tooltip.socketable_item=This Gem can be inserted into a Socket slot
 
 # RARITY ITEM NAMES
 item.mmorpg:axe/axe0.name=§7Common Axe
@@ -274,6 +274,10 @@ mmorpg.word.map=Map
 mmorpg.word.spell=Spell
 mmorpg.word.socket=Socket
 mmorpg.word.sockets=Sockets
+mmorpg.word.empty=Empty
+mmorpg.word.square=Square
+mmorpg.word.circle=Circle
+
 
 # BIOME WORDS
 mmorpg.word.arid_highland=Arid Highland

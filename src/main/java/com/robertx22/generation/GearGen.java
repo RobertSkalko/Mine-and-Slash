@@ -8,6 +8,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
+import com.robertx22.saveclasses.gearitem.SocketsListData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -46,6 +47,10 @@ public class GearGen {
 	    data.prefix = new PrefixData();
 	    data.prefix.RerollFully(data);
 
+	}
+
+	if (data.isSocketable()) {
+	    data.sockets = new SocketsListData();
 	}
 
 	data.set = blueprint.GenerateSet();

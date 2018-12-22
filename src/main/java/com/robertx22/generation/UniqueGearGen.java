@@ -7,6 +7,7 @@ import com.robertx22.db_lists.GearTypes;
 import com.robertx22.generation.blueprints.UniqueBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
+import com.robertx22.saveclasses.gearitem.SocketsListData;
 import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -49,6 +50,9 @@ public class UniqueGearGen {
 		data.prefix = new PrefixData();
 		data.prefix.RerollFully(data);
 
+	    }
+	    if (data.isSocketable()) {
+		data.sockets = new SocketsListData();
 	    }
 	}
 
