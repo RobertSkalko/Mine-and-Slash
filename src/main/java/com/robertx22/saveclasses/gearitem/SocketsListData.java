@@ -36,7 +36,7 @@ public class SocketsListData implements IStatsContainer, ITooltipList {
     @Override
     public List<StatModData> GetAllStats(int level) {
 
-	return null;
+	return new ArrayList();
 
     }
 

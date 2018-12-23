@@ -620,6 +620,7 @@ mmorpg.config.client=Client
 mmorpg.config.server=Server
 mmorpg.config.droprates=Droprates
 mmorpg.config.title=Mine and Slash
+mmorpg.config.lenghty_gear_tooltips=Lenghty Gear Tooltips
 
 mmorpg.config.other_entity=Other Entities
 

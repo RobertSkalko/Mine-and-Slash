@@ -109,7 +109,7 @@ public class StatModData implements ITooltipString {
 	}
 
 	if (IsSet) {
-	    return TextFormatting.RED + " ● " + str + ": ";
+	    return TextFormatting.RED + STAT_PREFIX + str + ": ";
 	} else {
 	    return TextFormatting.RED + str + ": ";
 	}
@@ -118,7 +118,7 @@ public class StatModData implements ITooltipString {
     public String TraitText() {
 	StatMod mod = GetBaseMod();
 	Stat basestat = mod.GetBaseStat();
-	return TextFormatting.GREEN + " ● " + basestat.localizedString();
+	return TextFormatting.GREEN + STAT_PREFIX + basestat.localizedString();
     }
 
     public String NameAndValueText(int level, boolean IsSet) {

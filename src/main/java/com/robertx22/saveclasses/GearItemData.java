@@ -13,6 +13,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.saveclasses.gearitem.GearTypeStatsData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
@@ -36,6 +37,7 @@ import com.robertx22.unique_items.IUnique;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -213,17 +215,22 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
 	for (StatModData mod : mods) {
 
+	    boolean add = true;
+
 	    for (StatModData newmod : newmods) {
 
 		if (newmod.baseModName.equals(mod.baseModName)) {
 		    newmod.percent += mod.percent;
+		    add = false;
 		    break;
+
 		}
 
 	    }
 
-	    newmods.add(mod);
-
+	    if (add) {
+		newmods.add(mod);
+	    }
 	}
 
 	return newmods;
@@ -242,16 +249,46 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
 	List<ITooltipList> list = new ArrayList<ITooltipList>();
 
-	if (isUnique) {
-	    list.add(uniqueStats);
+	if (uniqueStats != null) {
+	    event.getToolTip().addAll(uniqueStats.GetTooltipString(this));
 	}
-	list.add(primaryStats);
+	if (primaryStats != null) {
+	    event.getToolTip().addAll(primaryStats.GetTooltipString(this));
+	}
+	event.getToolTip().add("");
 
-	List<String> mergedStats = new ArrayList();
+	if (GuiScreen.isShiftKeyDown() == false && ModConfig.Client.LENTHY_GEAR_TOOLTIPS == false) {
+	    List<StatModData> mods = new ArrayList();
 
-	list.add(secondaryStats);
-	list.add(prefix);
-	list.add(suffix);
+	    if (secondaryStats != null) {
+
+		mods.addAll(secondaryStats.Mods);
+	    }
+	    if (suffix != null) {
+		mods.addAll(suffix.GetAllStats(level));
+	    }
+	    if (prefix != null) {
+		mods.addAll(prefix.GetAllStats(level));
+	    }
+
+	    List<StatModData> merged = mergeSameStats(mods);
+
+	    if (merged.size() > 0) {
+		event.getToolTip().add(CLOC.word("stats") + ": ");
+
+		for (StatModData mod : merged) {
+		    event.getToolTip().addAll(mod.GetTooltipString(this.GetRarity().StatPercents(), level, true));
+		}
+
+		event.getToolTip().add("");
+	    }
+
+	} else {
+
+	    list.add(secondaryStats);
+	    list.add(prefix);
+	    list.add(suffix);
+	}
 
 	list.add(chaosStats);
 	list.add(gearTypeStats);
@@ -272,11 +309,8 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	this.BuildSetTooltip(event, unit, data);
 
 	if (isUnique) {
-
 	    IUnique unique = this.uniqueStats.getUniqueItem();
-
 	    event.getToolTip().add(TextFormatting.GREEN + "'" + unique.locDesc() + "'");
-
 	    event.getToolTip().add("");
 
 	}
@@ -290,13 +324,37 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
 	if (this.GetBaseGearType() instanceof IWeapon) {
 	    IWeapon iwep = (IWeapon) this.GetBaseGearType();
-
 	    event.getToolTip().add("");
-
 	    event.getToolTip().add(TextFormatting.GREEN + CLOC.stat("energy") + ": " + iwep.mechanic().GetEnergyCost());
-
 	}
 
+	List<String> tool = removeDoubleBlankLines(event.getToolTip());
+	event.getToolTip().clear();
+	event.getToolTip().addAll(tool);
+
+    }
+
+    private List<String> removeDoubleBlankLines(List<String> tooltip) {
+
+	List<String> newt = new ArrayList();
+
+	String s = "";
+	for (int i = 0; i < tooltip.size(); i++) {
+
+	    if (i > 0) {
+
+		if (s.equals(tooltip.get(i)) && s.isEmpty()) {
+
+		} else {
+		    newt.add(tooltip.get(i));
+		}
+	    } else {
+		newt.add(tooltip.get(i));
+	    }
+	    s = tooltip.get(i);
+	}
+
+	return newt;
     }
 
     private void BuildSetTooltip(ItemTooltipEvent event, Unit unit, UnitData data) {
