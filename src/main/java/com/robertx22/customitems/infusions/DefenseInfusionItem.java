@@ -57,7 +57,7 @@ public class DefenseInfusionItem extends BaseInfusionItem {
 
     @Override
     public List<StatMod> jewerlyInfusions() {
-	return Arrays.asList(new DodgeFlat(), new ArmorFlat());
+	return armorInfusions();
     }
 
     @Override

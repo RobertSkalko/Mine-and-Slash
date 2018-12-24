@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public String GUID() {
-	return "add_secondary_stat";
+	return name;
     }
 
     private static final String name = "add_secondary_stat";

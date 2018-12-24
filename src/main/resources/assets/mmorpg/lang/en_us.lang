@@ -287,6 +287,9 @@ mmorpg.word.empty=Empty
 mmorpg.word.square=Square
 mmorpg.word.circle=Circle
 mmorpg.word.infusion=Infusion
+mmorpg.word.bonus_success_rate=Bonus Success Rate
+mmorpg.word.major_success_bonus=Major Success Chance
+mmorpg.word.major_failure_chance=Major Failure Chance
 
 
 # BIOME WORDS

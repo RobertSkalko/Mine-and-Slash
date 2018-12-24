@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "AMA",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "mmorpg:ore4"
+    }, 
+	"A": {
+      "item": "mmorpg:add_secondary_stat"
+    },
+	"M": {
+      "item": "minecraft:lapis_block"
+    }, 
+	"B": {
+      "item": "mmorpg:orb_of_transmutation"
+    }
+  },
+  "result": {
+    "item": "mmorpg:resource_infusion"
+  }
+}

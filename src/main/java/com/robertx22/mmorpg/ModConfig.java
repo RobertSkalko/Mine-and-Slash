@@ -403,12 +403,12 @@ public class ModConfig {
 	@Config.Name("Mob Level Per Distance")
 	@Config.LangKey("mmorpg.config.mob_lvl_per_distance")
 	@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
-	public int MOB_LEVEL_PER_DISTANCE = 2500;
+	public int MOB_LEVEL_PER_DISTANCE = 250;
 
 	@Config.Name("Mob Level One Area")
 	@Config.LangKey("mmorpg.config.mob_lvl_one_area")
 	@Config.Comment("How big you want level 1 mob area to be. Bigger value means bigger area")
-	public int MOB_LEVEL_ONE_AREA = 5000;
+	public int MOB_LEVEL_ONE_AREA = 500;
 
 	@Config.Name("Player Level Cap")
 	@Config.LangKey("mmorpg.config.player_level_cap")

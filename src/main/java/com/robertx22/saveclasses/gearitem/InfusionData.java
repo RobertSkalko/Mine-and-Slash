@@ -78,6 +78,10 @@ public class InfusionData extends StatGroupData implements ITooltipList {
 	return currentLevel * 10;
     }
 
+    public boolean canUpgrade() {
+	return this.currentLevel < this.maxLevel;
+    }
+
     @Override
     public List<String> GetTooltipString(GearItemData gear) {
 
