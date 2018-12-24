@@ -29,10 +29,10 @@ public class ChestGenerator implements IWorldGenerator {
 
 	    if (RandomUtils.roll(1F)) {
 
-		List<ItemStack> loot = MasterLootGen.gen(50, data, data.getLevel());
+		List<ItemStack> loot = MasterLootGen.gen(2F, data, data.getLevel());
 
 		while (loot.size() < 2) {
-		    for (ItemStack stack : MasterLootGen.gen(50, data, data.getLevel())) {
+		    for (ItemStack stack : MasterLootGen.gen(1F, data, data.getLevel())) {
 			loot.add(stack);
 		    }
 		}

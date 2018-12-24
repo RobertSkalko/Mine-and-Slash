@@ -63,6 +63,9 @@ public class BarsGUI extends Gui {
 	if (unit == null || data == null || mc == null || mc.player == null) {
 	    return;
 	}
+	if (unit.energyData() == null || unit.manaData() == null || unit.healthData() == null) {
+	    return;
+	}
 
 	try {
 	    if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Top_Left)) {

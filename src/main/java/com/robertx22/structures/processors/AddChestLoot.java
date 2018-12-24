@@ -23,10 +23,10 @@ public class AddChestLoot implements ITemplateProcessor {
 
 	    IWorldData data = Load.World(world);
 
-	    List<ItemStack> items = MasterLootGen.gen(100, data, data.getLevel());
+	    List<ItemStack> items = MasterLootGen.gen(5F, data, data.getLevel());
 
 	    while (items.size() < 2) {
-		for (ItemStack stack : MasterLootGen.gen(100, data, data.getLevel())) {
+		for (ItemStack stack : MasterLootGen.gen(1F, data, data.getLevel())) {
 		    items.add(stack);
 		}
 	    }
