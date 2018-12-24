@@ -7,11 +7,10 @@ import java.util.List;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.SLOC;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.text.TextFormatting;
 
 @Storable
 public class InfusionData extends StatGroupData implements ITooltipList {
@@ -29,28 +28,26 @@ public class InfusionData extends StatGroupData implements ITooltipList {
 	return this.Mods.size() == 0;
     }
 
-    public void success(EntityLivingBase player) {
-	level();
-	player.sendMessage(SLOC.chat("infusion_sucess"));
-    }
-
-    public void fail(EntityLivingBase player) {
-	decrease();
-	player.sendMessage(SLOC.chat("infusion_fail"));
-    }
-
-    public void majorFail(EntityLivingBase player) {
-	decrease();
-	decrease();
-
-	player.sendMessage(SLOC.chat("infusion_major_fail"));
-    }
-
-    public void majorSuccess(EntityLivingBase player) {
-	level();
+    public void success() {
 	level();
 
-	player.sendMessage(SLOC.chat("infusion_major_sucess"));
+    }
+
+    public void fail() {
+	decrease();
+
+    }
+
+    public void majorFail() {
+	decrease();
+	decrease();
+
+    }
+
+    public void majorSuccess() {
+	level();
+	level();
+
     }
 
     public void level() {
@@ -88,7 +85,7 @@ public class InfusionData extends StatGroupData implements ITooltipList {
 
 	if (isEmpty() == false) {
 
-	    list.add(CLOC.word("infusion") + ": ");
+	    list.add(TextFormatting.LIGHT_PURPLE + "+" + this.currentLevel + " " + CLOC.word("infusion") + ": ");
 
 	    for (StatModData data : this.GetAllStats(gear.level)) {
 		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
@@ -99,7 +96,17 @@ public class InfusionData extends StatGroupData implements ITooltipList {
 
     }
 
-    public static HashMap<Integer, Float> All = new HashMap<Integer, Float>() {
+    public float getChance() {
+
+	if (chancePerLevel.containsKey(currentLevel)) {
+	    return chancePerLevel.get(currentLevel);
+	}
+
+	return 1F;
+
+    }
+
+    public static HashMap<Integer, Float> chancePerLevel = new HashMap<Integer, Float>() {
 	{
 	    {
 		put(1, 100F);

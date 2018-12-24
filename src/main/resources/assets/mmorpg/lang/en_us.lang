@@ -133,6 +133,8 @@ item.mmorpg:map_back_portal.name=Map Leave Pearl
 item.mmorpg:level_nearest_entity.name=Level Nearest Entity
 item.mmorpg:increase_rarity_nearest_entity.name=Increase Rarity Nearest Entity
 
+
+
 # SPELL ITEMS
 item.mmorpg:spell_acidbolt.name=§cAcid Bolt
 item.mmorpg:spell_firebolt.name=§cFire Bolt
@@ -173,6 +175,13 @@ item.mmorpg:reroll_suffix_numbers.name=§cOrb Of Suffix Blessing
 item.mmorpg:reroll_prefix_numbers.name=§cOrb Of Prefix Blessing
 item.mmorpg:reroll_unique_numbers.name=§cOrb of Unique Blessing
 item.mmorpg:create_new_unique.name=§cGem Of Unique Heaven
+
+item.mmorpg:resource_infusion.name=§cResource Infusion
+item.mmorpg:defense_infusion.name=§cDefense Infusion
+item.mmorpg:attack_infusion.name=§cAttack Infusion
+item.mmorpg:wondrous_upgrade_infusion.name=§cWondrous Infusion Upgrade
+item.mmorpg:superior_upgrade_infusion.name=§cSuperior Infusion Upgrade
+item.mmorpg:normal_upgrade_infusion.name=§cNormal Infusion Upgrade
 
 
 # SUFFIXES
@@ -540,6 +549,12 @@ mmorpg.lore.reroll_prefix_numbers=I command you to change!
 mmorpg.lore.reroll_suffix_numbers=I command you to change!
 mmorpg.lore.reroll_unique_numbers=Anything can change.
 
+mmorpg.lore.attack_infusion=Luck is Etheral and yet affects everything.
+mmorpg.lore.defense_infusion=Luck is Etheral and yet affects everything.
+mmorpg.lore.resource_infusion=Luck is Etheral and yet affects everything.
+mmorpg.lore.normal_upgrade_infusion=Luck is Etheral and yet affects everything.
+mmorpg.lore.superior_upgrade_infusion=You start to feel the essence of Luck.
+mmorpg.lore.wondrous_upgrade_infusion=Grasp Luck with your own hands.
 
 # CURRENCY ITEM TOOLTIPS
 mmorpg.tooltip.add_prefix=Add a prefix
@@ -556,6 +571,13 @@ mmorpg.tooltip.stone_of_hope=Transform any rarity gear into higher rarity
 mmorpg.tooltip.reroll_prefix_numbers=Re-rolls numbers of a prefix
 mmorpg.tooltip.reroll_suffix_numbers=Re-rolls numbers of a suffix
 mmorpg.tooltip.reroll_unique_numbers=Re-rolls unique stat numbers
+
+mmorpg.tooltip.attack_infusion=Infuses an item with Attack Modifiers
+mmorpg.tooltip.defense_infusion=Infuses an item with Defense Modifiers
+mmorpg.tooltip.resource_infusion=Infuses an item with Resource Modifiers
+mmorpg.tooltip.normal_upgrade_infusion=Used when attempting Infusion Upgrading
+mmorpg.tooltip.superior_upgrade_infusion=Used when attempting Infusion Upgrading
+mmorpg.tooltip.wondrous_upgrade_infusion=Used when attempting Infusion Upgrading
 
 
 # CHAT MESSAGESS

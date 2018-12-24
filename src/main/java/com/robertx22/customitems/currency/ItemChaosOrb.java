@@ -23,7 +23,7 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
 
     private static final String name = "chaos_orb";
 
-    @GameRegistry.ObjectHolder(Ref.MODID + ":chaos_orb")
+    @GameRegistry.ObjectHolder(Ref.MODID + ":" + name)
     public static final Item ITEM = null;
 
     public ItemChaosOrb() {
