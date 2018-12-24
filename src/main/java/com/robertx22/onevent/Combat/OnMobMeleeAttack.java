@@ -1,5 +1,6 @@
 package com.robertx22.onevent.combat;
 
+import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -28,7 +29,8 @@ public class OnMobMeleeAttack {
 	    return;
 	}
 
-	if (event.getSource() instanceof MyDamageSource) {
+	if (event.getSource() instanceof MyDamageSource
+		|| event.getSource().getDamageType().equals(DamageEffect.DmgSourceName)) {
 	    return;
 	}
 	try {

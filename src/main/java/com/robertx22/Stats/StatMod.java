@@ -27,7 +27,13 @@ public abstract class StatMod implements IWeighted, IGUID {
 
     public int GetValueByPercent(int percent) {
 
-	return (int) (Min() + (Max() - Min()) * percent / 100);
+	return (int) GetFloatByPercent(percent);
+
+    }
+
+    public float GetFloatByPercent(int percent) {
+
+	return (Min() + (Max() - Min()) * percent / 100);
 
     }
 

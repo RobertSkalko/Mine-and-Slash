@@ -1,5 +1,6 @@
 package com.robertx22.saveclasses.gearitem;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,13 +81,13 @@ public class StatModData implements ITooltipString {
 	return StatMods.All.get(baseModName);
     }
 
-    public int GetActualVal(int level) {
+    public float GetActualVal(int level) {
 
 	StatMod mod = GetBaseMod();
 
 	Stat stat = mod.GetBaseStat();
 
-	int val = mod.GetValueByPercent(percent);
+	float val = mod.GetFloatByPercent(percent);
 
 	if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
 	    val *= level;
@@ -96,7 +97,27 @@ public class StatModData implements ITooltipString {
 
     }
 
-    public static String STAT_PREFIX = " ● ";
+    private String printValue(int level) {
+
+	float val = GetActualVal(level);
+
+	DecimalFormat format = new DecimalFormat();
+
+	if (val < 10) {
+	    format.setMaximumFractionDigits(1);
+
+	    return format.format(val);
+
+	} else {
+
+	    int intval = (int) val;
+	    return intval + "";
+
+	}
+
+    }
+
+    public static String STAT_PREFIX = " * ";
 
     public String NameText(boolean IsSet) {
 	StatMod mod = GetBaseMod();
@@ -123,11 +144,11 @@ public class StatModData implements ITooltipString {
 
     public String NameAndValueText(int level, boolean IsSet) {
 
-	int val = this.GetActualVal(level);
+	float val = this.GetActualVal(level);
 
 	String minusplus = val > 0 ? "+" : "";
 
-	return NameText(IsSet) + minusplus + val;
+	return NameText(IsSet) + minusplus + printValue(level);
     }
 
     @Override
@@ -159,7 +180,7 @@ public class StatModData implements ITooltipString {
 		StatModData min = StatModData.Load(this.GetBaseMod(), minmax.Min);
 		StatModData max = StatModData.Load(this.GetBaseMod(), minmax.Max);
 
-		text += TextFormatting.BLUE + " (" + min.GetActualVal(level) + " - " + max.GetActualVal(level) + ")";
+		text += TextFormatting.BLUE + " (" + min.printValue(level) + " - " + max.printValue(level) + ")";
 
 	    }
 	    list.add(text);
