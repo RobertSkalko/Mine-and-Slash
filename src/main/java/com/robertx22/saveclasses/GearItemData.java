@@ -16,6 +16,7 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.saveclasses.gearitem.GearTypeStatsData;
+import com.robertx22.saveclasses.gearitem.InfusionData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.gearitem.SecondaryStatsData;
@@ -97,6 +98,8 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
     public ChaosStatsData chaosStats;
     @Store
     public SocketsListData sockets;
+    @Store
+    public InfusionData infusion;
     // Stats
 
     @Store
@@ -192,6 +195,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	IfNotNullAdd(uniqueStats, list);
 	IfNotNullAdd(gearTypeStats, list);
 	IfNotNullAdd(sockets, list);
+	IfNotNullAdd(infusion, list);
 
 	return list;
 
@@ -293,6 +297,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	list.add(chaosStats);
 	list.add(gearTypeStats);
 	list.add(sockets);
+	list.add(infusion);
 
 	for (
 

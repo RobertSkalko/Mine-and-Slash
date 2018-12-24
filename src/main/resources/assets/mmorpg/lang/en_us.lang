@@ -277,6 +277,7 @@ mmorpg.word.sockets=Sockets
 mmorpg.word.empty=Empty
 mmorpg.word.square=Square
 mmorpg.word.circle=Circle
+mmorpg.word.infusion=Infusion
 
 
 # BIOME WORDS
@@ -585,6 +586,10 @@ mmorpg.chat.not_enough_experience=Not Enough Experience
 mmorpg.chat.cannot_over_maximum_level=Cannot be higher than maximum level!
 mmorpg.chat.has_died_by_the_hands_of=has died by the hands of
 mmorpg.chat.flying_building_spawned=A mysterious flying building has spawned somewhere near a certain player?
+mmorpg.chat.infusion_sucess=Infusion Successfull!
+mmorpg.chat.infusion_major_sucess=This Infusion was incredibly Successful!
+mmorpg.chat.infusion_fail=Infusion Failed.
+mmorpg.chat.infusion_major_fail=The Infusion failed horribly.
 
 # GEAR TYPES
 mmorpg.gear_type.sword=Sword
@@ -621,7 +626,7 @@ mmorpg.config.server=Server
 mmorpg.config.droprates=Droprates
 mmorpg.config.title=Mine and Slash
 mmorpg.config.lenghty_gear_tooltips=Lenghty Gear Tooltips
-
+mmorpg.config.non_mod_heal_multi=Non Mod Heal Multiplier
 mmorpg.config.other_entity=Other Entities
 
 

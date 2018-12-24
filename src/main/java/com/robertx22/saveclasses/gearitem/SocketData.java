@@ -24,13 +24,9 @@ public class SocketData extends StatGroupData implements ITooltipList {
     }
 
     public SocketData(SocketData socket) {
-	this.level = socket.level;
 	this.rarity = socket.rarity;
 	this.Mods = socket.Mods;
     }
-
-    @Store
-    int level = 1;
 
     @Store
     int rarity = 0;
@@ -40,7 +36,7 @@ public class SocketData extends StatGroupData implements ITooltipList {
     }
 
     public String getPrefix() {
-	return " ■ ";
+	return " ";
     }
 
     @Override
@@ -52,9 +48,9 @@ public class SocketData extends StatGroupData implements ITooltipList {
 	    list.add(getPrefix() + CLOC.word("empty") + " " + CLOC.word("socket"));
 	} else {
 
-	    for (StatModData data : this.GetAllStats(level)) {
+	    for (StatModData data : this.GetAllStats(gear.level)) {
 
-		list.addAll(data.GetTooltipString(GetRarity().StatPercents(), level, true));
+		list.addAll(data.GetTooltipString(GetRarity().StatPercents(), gear.level, true));
 	    }
 	}
 

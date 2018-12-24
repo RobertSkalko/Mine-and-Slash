@@ -11,16 +11,16 @@ import info.loenwind.autosave.annotations.Store;
 @Storable
 public abstract class StatGroupData implements IStatsContainer {
 
-	public StatGroupData() {
+    public StatGroupData() {
 
-	}
+    }
 
-	@Store
-	public List<StatModData> Mods = new ArrayList<StatModData>();
+    @Store
+    public List<StatModData> Mods = new ArrayList<StatModData>();
 
-	@Override
-	public List<StatModData> GetAllStats(int level) {
-		return Mods;
-	}
+    @Override
+    public List<StatModData> GetAllStats(int level) {
+	return Mods;
+    }
 
 }

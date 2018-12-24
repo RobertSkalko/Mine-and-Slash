@@ -14,7 +14,6 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.UnitPackage;
-import com.robertx22.onevent.combat.OnHealDecrease;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
@@ -666,7 +665,8 @@ public class EntityData {
 
 	@Override
 	public void heal(EntityLivingBase entity, int healthrestored) {
-	    entity.heal(HealthUtils.DamageToMinecraftHealth(healthrestored * OnHealDecrease.HEAL_DECREASE, entity));
+	    entity.heal(
+		    HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.Server.NON_MOD_HEAL_MULTI, entity));
 	}
 
 	@Override

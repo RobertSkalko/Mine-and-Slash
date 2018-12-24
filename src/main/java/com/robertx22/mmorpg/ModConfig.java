@@ -403,12 +403,12 @@ public class ModConfig {
 	@Config.Name("Mob Level Per Distance")
 	@Config.LangKey("mmorpg.config.mob_lvl_per_distance")
 	@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
-	public int MOB_LEVEL_PER_DISTANCE = 14500;
+	public int MOB_LEVEL_PER_DISTANCE = 2500;
 
 	@Config.Name("Mob Level One Area")
 	@Config.LangKey("mmorpg.config.mob_lvl_one_area")
 	@Config.Comment("How big you want level 1 mob area to be. Bigger value means bigger area")
-	public int MOB_LEVEL_ONE_AREA = 25000;
+	public int MOB_LEVEL_ONE_AREA = 5000;
 
 	@Config.Name("Player Level Cap")
 	@Config.LangKey("mmorpg.config.player_level_cap")
@@ -419,6 +419,11 @@ public class ModConfig {
 	@Config.LangKey("mmorpg.config.non_mod_damage_multiplier")
 	@Config.Comment("0 to 1. 0 means other types of damage (not from my mod) are nullified. 1 means they are the same. Please leave at default value unless required to change it. Too high value means you do 2 different types of damage, vanilla damage (sword that does half a mob's health) plus my mod's damage.. Which will lead to you both one shotting mobs and mobs one shotting you too.")
 	public float NON_MOD_DAMAGE_MULTI = 0.03F;
+
+	@Config.Name("Non Mod Heal Multiplier")
+	@Config.LangKey("mmorpg.config.non_mod_heal_multi")
+	@Config.Comment("0 to 1. 0 means other types of healing (not from my mod) are smaller. 1 means they are the same. Please leave at default value unless required to change it. High values make health regen too fast(both normal and my mods) but low value makes stuff like health potions useless. ")
+	public float NON_MOD_HEAL_MULTI = 0.1F;
 
 	@Config.Name("Normal Worlds Mob Level Cap")
 	@Config.LangKey("mmorpg.config.normal_world_max_lvl_cap")
