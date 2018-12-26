@@ -142,15 +142,31 @@ public class Unit {
     }
 
     public StatData healthData() {
-	return MyStats.get(new Health().Guid());
+	try {
+	    return MyStats.get(new Health().Guid());
+	} catch (Exception e) {
+	    e.printStackTrace();
+
+	}
+	return null;
     }
 
     public StatData manaData() {
-	return MyStats.get(new Mana().Guid());
+	try {
+	    return MyStats.get(new Mana().Guid());
+	} catch (Exception e) {
+
+	}
+	return null;
     }
 
     public StatData energyData() {
-	return MyStats.get(new Energy().Guid());
+	try {
+	    return MyStats.get(new Energy().Guid());
+	} catch (Exception e) {
+
+	}
+	return null;
     }
 
     public static Unit Mob(EntityLivingBase entity, int level, IWorldData data) {
@@ -235,12 +251,11 @@ public class Unit {
 
 	ClearStats();
 
+	MyStats.get(Health.GUID).Flat += entity.getMaxHealth();
+
 	if (entity instanceof EntityPlayer) {
 	    PlayerStatUtils.AddPlayerBaseStats(this);
-
 	} else {
-
-	    MyStats.get(Health.GUID).Flat += entity.getMaxHealth();
 	    MobStatUtils.AddMobcStats(this, data.getLevel());
 	    MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
 	    MobStatUtils.AddMobTierStats(this, tier);

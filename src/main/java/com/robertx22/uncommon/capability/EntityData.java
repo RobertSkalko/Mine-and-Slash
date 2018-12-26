@@ -303,10 +303,14 @@ public class EntityData {
 	    int tens = lvl / 10;
 
 	    if (lvl < 5) {
-		return 250 * lvl;
+		return 150 * lvl;
 	    }
 
-	    return lvl * 750 + (tens * 2500);
+	    if (lvl < 8) {
+		return 200 * lvl;
+	    }
+
+	    return lvl * 500 + (tens * 2000);
 
 	}
 

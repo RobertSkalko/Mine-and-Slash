@@ -53,7 +53,7 @@ public class ItemCapacitor extends Item {
 
 	tooltip.add(CLOC.tooltip("capacitor"));
 
-	tooltip.add(CLOC.tooltip("capacitor2") + " :" + this.GetFuelMultiplier() + "x");
+	tooltip.add(CLOC.tooltip("capacitor2") + ": " + this.GetFuelMultiplier() + "x");
 
     }
 

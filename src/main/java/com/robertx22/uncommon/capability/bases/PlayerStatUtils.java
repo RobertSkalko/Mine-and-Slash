@@ -32,8 +32,8 @@ public class PlayerStatUtils {
 
     public static void AddPlayerBaseStats(Unit unit) {
 
-	unit.MyStats.get(Health.GUID).Flat += 10;
-	unit.MyStats.get(PhysicalDamage.GUID).Flat += 2;
+	unit.MyStats.get(Health.GUID).Flat += 20;
+	unit.MyStats.get(PhysicalDamage.GUID).Flat += 3;
 
     }
 
