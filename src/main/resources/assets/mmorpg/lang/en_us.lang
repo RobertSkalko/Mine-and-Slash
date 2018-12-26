@@ -653,6 +653,7 @@ mmorpg.config.title=Mine and Slash
 mmorpg.config.lenghty_gear_tooltips=Lenghty Gear Tooltips
 mmorpg.config.non_mod_heal_multi=Non Mod Heal Multiplier
 mmorpg.config.other_entity=Other Entities
+mmorpg.config.maps_start_drop=Maps Start To Drop at Lvl
 
 
 mmorpg.config.rarity_weights=Rarity Weights

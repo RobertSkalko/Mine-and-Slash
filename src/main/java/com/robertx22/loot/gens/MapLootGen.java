@@ -38,8 +38,12 @@ public class MapLootGen extends BaseLootGen {
 
     @Override
     public ItemStack generateOne() {
+	if (blueprint.level >= ModConfig.Server.MAPS_DROP_AFTER_LEVEL) {
+	    return MapGen.Create(blueprint);
+	} else {
+	    return ItemStack.EMPTY;
+	}
 
-	return MapGen.Create(blueprint);
     }
 
 }

@@ -405,6 +405,11 @@ public class ModConfig {
 	@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
 	public int MOB_LEVEL_PER_DISTANCE = 250;
 
+	@Config.Name("Maps Start Dropping At Level")
+	@Config.LangKey("mmorpg.config.maps_start_drop")
+	@Config.Comment("If you don't want newbies to have their inventory spammed with maps before they even craft a map bag :3.")
+	public int MAPS_DROP_AFTER_LEVEL = 20;
+
 	@Config.Name("Mob Level One Area")
 	@Config.LangKey("mmorpg.config.mob_lvl_one_area")
 	@Config.Comment("How big you want level 1 mob area to be. Bigger value means bigger area")
