@@ -8,6 +8,7 @@ import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.MapLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.loot.gens.UniqueGearLootGen;
+import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 
@@ -23,7 +24,9 @@ public class MasterLootGen {
 	    return items;
 	}
 
-	items.addAll(new CurrencyLootGen(mob, player, world, victim).generate());
+	if (mob.getLevel() >= ModConfig.Server.CURRENCY_DROP_AFTER_LEVEL) {
+	    items.addAll(new CurrencyLootGen(mob, player, world, victim).generate());
+	}
 	items.addAll(new GearLootGen(mob, player, world, victim).generate());
 	items.addAll(new SpellLootGen(mob, player, world, victim).generate());
 	items.addAll(new MapLootGen(mob, player, world, victim).generate());
@@ -42,7 +45,10 @@ public class MasterLootGen {
 	    return items;
 	}
 
-	items.addAll(new CurrencyLootGen(multi, world).generate());
+	if (level >= ModConfig.Server.CURRENCY_DROP_AFTER_LEVEL) {
+	    items.addAll(new CurrencyLootGen(multi, world).generate());
+	}
+
 	items.addAll(new GearLootGen(multi, world, level).generate());
 	items.addAll(new SpellLootGen(multi, world, level).generate());
 	items.addAll(new MapLootGen(multi, world, level).generate());

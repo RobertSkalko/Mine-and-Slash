@@ -405,10 +405,20 @@ public class ModConfig {
 	@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
 	public int MOB_LEVEL_PER_DISTANCE = 250;
 
+	@Config.Name("Unarmed Energy Cost")
+	@Config.LangKey("mmorpg.config.unarmed_energy_cost")
+	@Config.Comment("If an item isn't a weapon, it does unarmed damage. Meaning your base damage")
+	public float UNARMED_ENERGY_COST = 0.5F;
+
 	@Config.Name("Maps Start Dropping At Level")
 	@Config.LangKey("mmorpg.config.maps_start_drop")
 	@Config.Comment("If you don't want newbies to have their inventory spammed with maps before they even craft a map bag :3.")
 	public int MAPS_DROP_AFTER_LEVEL = 20;
+
+	@Config.Name("Currency Start Dropping At Level")
+	@Config.LangKey("mmorpg.config.currency_start_drop")
+	@Config.Comment("If you don't want newbies to have their inventory spammed with currency before they even craft a modify station.")
+	public int CURRENCY_DROP_AFTER_LEVEL = 10;
 
 	@Config.Name("Mob Level One Area")
 	@Config.LangKey("mmorpg.config.mob_lvl_one_area")

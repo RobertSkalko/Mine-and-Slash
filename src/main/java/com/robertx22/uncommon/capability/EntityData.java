@@ -157,6 +157,8 @@ public class EntityData {
 	void unarmedAttack(EntityLivingBase source, EntityLivingBase target);
 
 	boolean decreaseRarity(EntityLivingBase entity);
+
+	boolean isWeapon(ItemStack stack);
     }
 
     @Mod.EventBusSubscriber
@@ -722,10 +724,37 @@ public class EntityData {
 	@Override
 	public void unarmedAttack(EntityLivingBase source, EntityLivingBase target) {
 
-	    int num = (int) unit.MyStats.get(PhysicalDamage.GUID).Value;
-	    DamageEffect dmg = new DamageEffect(source, target, num);
-	    dmg.setEffectType(EffectTypes.BASIC_ATTACK, WeaponTypes.None);
-	    dmg.Activate();
+	    float cost = ModConfig.Server.UNARMED_ENERGY_COST;
+
+	    if (this.hasEnoughEnergy(cost)) {
+
+		this.consumeEnergy(cost);
+		int num = (int) unit.MyStats.get(PhysicalDamage.GUID).Value;
+		DamageEffect dmg = new DamageEffect(source, target, num);
+		dmg.setEffectType(EffectTypes.BASIC_ATTACK, WeaponTypes.None);
+		dmg.Activate();
+	    }
+	}
+
+	@Override
+	public boolean isWeapon(ItemStack stack) {
+	    try {
+
+		if (stack == null || stack.isEmpty()) {
+		    return false;
+		}
+
+		GearItemData weaponData = Gear.Load(stack);
+
+		if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
+
+		    return true;
+
+		}
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	    return false;
 	}
     }
 

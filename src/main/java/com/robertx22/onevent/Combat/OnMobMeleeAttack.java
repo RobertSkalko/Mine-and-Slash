@@ -68,7 +68,7 @@ public class OnMobMeleeAttack {
 
 		ItemStack stack = source.getHeldItemMainhand();
 
-		if (stack != null && !stack.isEmpty()) {
+		if (sourceData.isWeapon(stack)) {
 
 		    if (sourceData.tryUseWeapon(source, stack)) {
 			sourceData.attackWithWeapon(source, target, stack);
