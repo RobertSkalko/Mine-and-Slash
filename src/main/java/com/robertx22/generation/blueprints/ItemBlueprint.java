@@ -3,7 +3,7 @@ package com.robertx22.generation.blueprints;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.RarityGen;
-import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 

@@ -1,6 +1,5 @@
 package com.robertx22.onevent.world;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -59,16 +58,11 @@ public class CheckWorldDelete {
 				if (mapdata != null) {
 
 				    mapdata.delete(world.provider.getDimension());
+				    increaseCount(id);
 
-				    try {
-					increaseCount(id);
+				    FileUtils.deleteDirectory(WorldFileUtils.getWorldDirectory(world));
+				    System.out.println("Deleting a temporary map world to free up disk space!");
 
-					FileUtils.deleteDirectory(WorldFileUtils.getWorldDirectory(world));
-					System.out.println("Deleting a temporary map world to free up disk space!");
-
-				    } catch (IOException e) {
-					// e.printStackTrace();
-				    }
 				}
 
 			    }

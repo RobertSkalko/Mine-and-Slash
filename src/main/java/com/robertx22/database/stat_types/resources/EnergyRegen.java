@@ -12,7 +12,7 @@ public class EnergyRegen extends Stat {
     }
 
     public EnergyRegen() {
-	this.StatMinimum = 5;
+
     }
 
     @Override

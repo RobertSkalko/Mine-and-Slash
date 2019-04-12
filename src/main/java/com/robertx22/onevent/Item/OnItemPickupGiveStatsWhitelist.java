@@ -3,7 +3,7 @@ package com.robertx22.onevent.Item;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
-import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;

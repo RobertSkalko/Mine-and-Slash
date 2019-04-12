@@ -1,6 +1,6 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.mmorpg.config.ModConfig;
 
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;

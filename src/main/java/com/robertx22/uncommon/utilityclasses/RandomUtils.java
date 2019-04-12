@@ -1,15 +1,10 @@
 package com.robertx22.uncommon.utilityclasses;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import com.robertx22.database.rarities.MobRarity;
-import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Spells;
-
-import net.minecraft.entity.EntityLivingBase;
 
 public class RandomUtils {
 
@@ -20,34 +15,6 @@ public class RandomUtils {
 	int result = ran.nextInt(max - min);
 
 	return result + min;
-
-    }
-
-    public static MobRarity RandomWithMinRarity(EntityLivingBase entity) {
-
-	double y = entity.posY;
-
-	int minRarity = 0;
-
-	if (y < 50) {
-	    minRarity = 1;
-	}
-	if (y < 30) {
-	    minRarity = 2;
-	}
-
-	List<MobRarity> rarities = Rarities.Mobs;
-	List<MobRarity> after = new ArrayList();
-
-	for (MobRarity rar : rarities) {
-	    if (rar.Rank() >= minRarity) {
-		after.add(rar);
-	    }
-	}
-
-	MobRarity finalRarity = (MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(after));
-
-	return finalRarity;
 
     }
 

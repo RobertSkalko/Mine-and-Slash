@@ -1,7 +1,7 @@
 package com.robertx22.customitems.currency;
 
-import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;

@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.utilityclasses;
 
-import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.mmorpg.config.ModConfig;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.INpc;

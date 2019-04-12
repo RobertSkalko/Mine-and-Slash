@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.gui.player_overlays;
 
-import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Player_GUIs;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -77,7 +77,7 @@ public class BarsGUI extends Gui {
 		bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
 	    }
 	} catch (Exception e) {
-	    e.printStackTrace();
+	    // e.printStackTrace();
 	}
 
     }

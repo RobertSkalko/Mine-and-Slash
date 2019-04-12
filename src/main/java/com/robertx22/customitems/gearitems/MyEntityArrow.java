@@ -254,105 +254,113 @@ public class MyEntityArrow extends EntitySpectralArrow {
      */
     @Override
     protected void onHit(RayTraceResult raytraceResultIn) {
-	Entity entity = raytraceResultIn.entityHit;
+	try {
+	    Entity entity = raytraceResultIn.entityHit;
 
-	if (entity instanceof EntityLivingBase) {
-	    float f = MathHelper
-		    .sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-	    int i = MathHelper.ceil((double) f * this.damage);
+	    if (entity instanceof EntityLivingBase) {
+		float f = MathHelper
+			.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+		int i = MathHelper.ceil((double) f * this.damage);
 
-	    if (this.getIsCritical()) {
-		i += this.rand.nextInt(i / 2 + 2);
-	    }
-
-	    //
-
-	    if (this.shootingEntity instanceof EntityLivingBase) {
-
-		EntityLivingBase entitylivingbase = (EntityLivingBase) entity;
-
-		if (!this.world.isRemote) {
-
-		    if (!entity.equals(this.shootingEntity)) {
-
-			this.setDead();
-
-			UnitData sourceUnit = Load.Unit(this.shootingEntity);
-
-			sourceUnit.attackWithWeapon((EntityLivingBase) this.shootingEntity, entitylivingbase,
-				this.weapon);
-
-		    }
-
-		    entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
+		if (this.getIsCritical()) {
+		    i += this.rand.nextInt(i / 2 + 2);
 		}
 
-		if (this.knockbackStrength > 0) {
-		    float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-		    if (f1 > 0.0F) {
-			entitylivingbase.addVelocity(
-				this.motionX * (double) this.knockbackStrength * 0.6000000238418579D / (double) f1,
-				0.1D,
-				this.motionZ * (double) this.knockbackStrength * 0.6000000238418579D / (double) f1);
-		    }
-		}
+		//
 
 		if (this.shootingEntity instanceof EntityLivingBase) {
-		    EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
-		    EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase) this.shootingEntity,
-			    entitylivingbase);
-		}
 
-		this.arrowHit(entitylivingbase);
+		    EntityLivingBase entitylivingbase = (EntityLivingBase) entity;
 
-		if (this.shootingEntity != null && entitylivingbase != this.shootingEntity
-			&& entitylivingbase instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP) {
-		    ((EntityPlayerMP) this.shootingEntity).connection.sendPacket(new SPacketChangeGameState(6, 0.0F));
-		}
+		    if (!this.world.isRemote) {
 
-		this.playSound(SoundEvents.ENTITY_ARROW_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+			if (!entity.equals(this.shootingEntity)) {
 
-	    } else {
-		this.motionX *= -0.10000000149011612D;
-		this.motionY *= -0.10000000149011612D;
-		this.motionZ *= -0.10000000149011612D;
-		this.rotationYaw += 180.0F;
-		this.prevRotationYaw += 180.0F;
-		this.ticksInAir = 0;
+			    this.setDead();
 
-		if (!this.world.isRemote && this.motionX * this.motionX + this.motionY * this.motionY
-			+ this.motionZ * this.motionZ < 0.0010000000474974513D) {
-		    if (this.pickupStatus == MyEntityArrow.PickupStatus.ALLOWED) {
-			this.entityDropItem(this.getArrowStack(), 0.1F);
+			    UnitData sourceUnit = Load.Unit(this.shootingEntity);
+
+			    sourceUnit.attackWithWeapon((EntityLivingBase) this.shootingEntity, entitylivingbase,
+				    this.weapon);
+
+			}
+
+			entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
 		    }
 
-		    this.setDead();
+		    if (this.knockbackStrength > 0) {
+			float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+			if (f1 > 0.0F) {
+			    entitylivingbase.addVelocity(
+				    this.motionX * (double) this.knockbackStrength * 0.6000000238418579D / (double) f1,
+				    0.1D,
+				    this.motionZ * (double) this.knockbackStrength * 0.6000000238418579D / (double) f1);
+			}
+		    }
+
+		    if (this.shootingEntity instanceof EntityLivingBase) {
+			EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
+			EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase) this.shootingEntity,
+				entitylivingbase);
+		    }
+
+		    this.arrowHit(entitylivingbase);
+
+		    if (this.shootingEntity != null && entitylivingbase != this.shootingEntity
+			    && entitylivingbase instanceof EntityPlayer
+			    && this.shootingEntity instanceof EntityPlayerMP) {
+			((EntityPlayerMP) this.shootingEntity).connection
+				.sendPacket(new SPacketChangeGameState(6, 0.0F));
+		    }
+
+		    this.playSound(SoundEvents.ENTITY_ARROW_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+
+		} else {
+		    this.motionX *= -0.10000000149011612D;
+		    this.motionY *= -0.10000000149011612D;
+		    this.motionZ *= -0.10000000149011612D;
+		    this.rotationYaw += 180.0F;
+		    this.prevRotationYaw += 180.0F;
+		    this.ticksInAir = 0;
+
+		    if (!this.world.isRemote && this.motionX * this.motionX + this.motionY * this.motionY
+			    + this.motionZ * this.motionZ < 0.0010000000474974513D) {
+			if (this.pickupStatus == MyEntityArrow.PickupStatus.ALLOWED) {
+			    this.entityDropItem(this.getArrowStack(), 0.1F);
+			}
+
+			this.setDead();
+		    }
+		}
+	    } else {
+		BlockPos blockpos = raytraceResultIn.getBlockPos();
+		if (blockpos != null) {
+		    this.xTile = blockpos.getX();
+		    this.yTile = blockpos.getY();
+		    this.zTile = blockpos.getZ();
+		    IBlockState iblockstate = this.world.getBlockState(blockpos);
+		    this.inTile = iblockstate.getBlock();
+		    this.inData = this.inTile.getMetaFromState(iblockstate);
+		    this.motionX = (double) ((float) (raytraceResultIn.hitVec.x - this.posX));
+		    this.motionY = (double) ((float) (raytraceResultIn.hitVec.y - this.posY));
+		    this.motionZ = (double) ((float) (raytraceResultIn.hitVec.z - this.posZ));
+		    float f2 = MathHelper.sqrt(
+			    this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+		    this.posX -= this.motionX / (double) f2 * 0.05000000074505806D;
+		    this.posY -= this.motionY / (double) f2 * 0.05000000074505806D;
+		    this.posZ -= this.motionZ / (double) f2 * 0.05000000074505806D;
+		    this.inGround = true;
+		    this.arrowShake = 7;
+		    this.setIsCritical(false);
+
+		    if (iblockstate.getMaterial() != Material.AIR) {
+			this.inTile.onEntityCollidedWithBlock(this.world, blockpos, iblockstate, this);
+		    }
 		}
 	    }
-	} else {
-	    BlockPos blockpos = raytraceResultIn.getBlockPos();
-	    this.xTile = blockpos.getX();
-	    this.yTile = blockpos.getY();
-	    this.zTile = blockpos.getZ();
-	    IBlockState iblockstate = this.world.getBlockState(blockpos);
-	    this.inTile = iblockstate.getBlock();
-	    this.inData = this.inTile.getMetaFromState(iblockstate);
-	    this.motionX = (double) ((float) (raytraceResultIn.hitVec.x - this.posX));
-	    this.motionY = (double) ((float) (raytraceResultIn.hitVec.y - this.posY));
-	    this.motionZ = (double) ((float) (raytraceResultIn.hitVec.z - this.posZ));
-	    float f2 = MathHelper
-		    .sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-	    this.posX -= this.motionX / (double) f2 * 0.05000000074505806D;
-	    this.posY -= this.motionY / (double) f2 * 0.05000000074505806D;
-	    this.posZ -= this.motionZ / (double) f2 * 0.05000000074505806D;
-	    this.inGround = true;
-	    this.arrowShake = 7;
-	    this.setIsCritical(false);
-
-	    if (iblockstate.getMaterial() != Material.AIR) {
-		this.inTile.onEntityCollidedWithBlock(this.world, blockpos, iblockstate, this);
-	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
 
     }

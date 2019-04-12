@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -43,22 +44,42 @@ public class ItemPlayerLevelUp extends BaseItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 
 	if (!worldIn.isRemote) {
 	    try {
 
-		if (playerIn.getCapability(EntityData.Data, null).LevelUp((EntityPlayerMP) playerIn)) {
+		int req = tokensRequired(player.getCapability(EntityData.Data, null).getLevel());
 
-		    return new ActionResult<ItemStack>(EnumActionResult.PASS,
-			    EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+		if (hasEnoughTokens(player.getHeldItem(handIn), req)) {
 
+		    if (player.getCapability(EntityData.Data, null).LevelUp((EntityPlayerMP) player)) {
+
+			return new ActionResult<ItemStack>(EnumActionResult.PASS,
+				EmptyOrDecrease(player.getHeldItem(handIn), req));
+
+		    }
+		} else {
+		    player.sendMessage(new TextComponentString("You need a total of " + req + " tokens to level up."));
 		}
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
 	}
-	return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+	return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(handIn));
+    }
+
+    private boolean hasEnoughTokens(ItemStack stack, int tokensreq) {
+	return stack.getCount() >= tokensreq;
+    }
+
+    private int tokensRequired(int level) {
+
+	if (level >= 64) {
+	    return 64;
+	} else {
+	    return level;
+	}
     }
 
     @SubscribeEvent

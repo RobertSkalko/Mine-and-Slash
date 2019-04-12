@@ -1,5 +1,6 @@
-package com.robertx22.mmorpg;
+package com.robertx22.mmorpg.config;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,8 @@ import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
+import com.robertx22.mmorpg.Player_GUIs;
+import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 
 import net.minecraft.item.Item;
@@ -39,6 +42,11 @@ public class ModConfig {
     @Config.LangKey("mmorpg.word.entities")
     public static EntityConfigs EntityTypeConfig = new EntityConfigs();
 
+    @Config.Name("Base Player Stats")
+    @Config.LangKey("mmorpg.word.base_player_stats")
+    @Config.Comment("Be careful! Some Stats don't scale with levels so they shouldn't have any per level bonuses. You can still do it but you've been warned!")
+    public static StatConfig BasePlayerStats = new StatConfig();
+
     @Config.Name("Rarity Weights")
     @Config.LangKey("mmorpg.config.rarity_weights")
     public static RarityWeights RarityWeightConfig = new RarityWeights();
@@ -53,10 +61,15 @@ public class ModConfig {
     @Config.LangKey("mmorpg.config.map_dimensions_config")
     public static MapDimensionsConfig MapDimensions = new MapDimensionsConfig();
 
+    @Config.Name("Dimensions Config")
+    @Config.Comment("")
+    @Config.LangKey("mmorpg.config.dimensions_config")
+    public static DimensionsConfig Dimensions = new DimensionsConfig();
+
     static {
 
 	// add blank slots
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 10; i++) {
 	    String str = String.format("%07d", i);
 
 	    ItemsUnderSystem.Swords.put(str, "");
@@ -400,11 +413,6 @@ public class ModConfig {
 
     public static class ServerContainer {
 
-	@Config.Name("Mob Level Per Distance")
-	@Config.LangKey("mmorpg.config.mob_lvl_per_distance")
-	@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
-	public int MOB_LEVEL_PER_DISTANCE = 250;
-
 	@Config.Name("Unarmed Energy Cost")
 	@Config.LangKey("mmorpg.config.unarmed_energy_cost")
 	@Config.Comment("If an item isn't a weapon, it does unarmed damage. Meaning your base damage")
@@ -420,11 +428,6 @@ public class ModConfig {
 	@Config.Comment("If you don't want newbies to have their inventory spammed with currency before they even craft a modify station.")
 	public int CURRENCY_DROP_AFTER_LEVEL = 10;
 
-	@Config.Name("Mob Level One Area")
-	@Config.LangKey("mmorpg.config.mob_lvl_one_area")
-	@Config.Comment("How big you want level 1 mob area to be. Bigger value means bigger area")
-	public int MOB_LEVEL_ONE_AREA = 500;
-
 	@Config.Name("Player Level Cap")
 	@Config.LangKey("mmorpg.config.player_level_cap")
 	@Config.Comment("Select maximum level")
@@ -439,11 +442,6 @@ public class ModConfig {
 	@Config.LangKey("mmorpg.config.non_mod_heal_multi")
 	@Config.Comment("0 to 1. 0 means other types of healing (not from my mod) are smaller. 1 means they are the same. Please leave at default value unless required to change it. High values make health regen too fast(both normal and my mods) but low value makes stuff like health potions useless. ")
 	public float NON_MOD_HEAL_MULTI = 0.1F;
-
-	@Config.Name("Normal Worlds Mob Level Cap")
-	@Config.LangKey("mmorpg.config.normal_world_max_lvl_cap")
-	@Config.Comment("Select maximum level for mobs in normal worlds like vanilla surface, nether, end. This doesn't affect max level for map worlds from my mod! Note: reasoning for low level cap here is to prevent BIS gear being farmable by mob spawners, which ruin the fun")
-	public int MAXIMUM_NORMAL_WORLD_MOB_LEVEL = 25;
 
 	@Config.Name("Exp multiplier")
 	@Config.LangKey("mmorpg.config.exp_multiplier")
@@ -467,59 +465,102 @@ public class ModConfig {
 
     }
 
+    public static class DimensionsConfig {
+
+	public DimensionsContainer getAll() {
+
+	    ArrayList<DimensionConfigs> list = new ArrayList<DimensionConfigs>();
+
+	    list.add(overworld);
+	    list.add(nether);
+	    list.add(end);
+	    list.add(extra1);
+	    list.add(extra2);
+	    list.add(extra3);
+	    list.add(extra4);
+	    list.add(extra5);
+	    list.add(extra6);
+	    list.add(extra7);
+	    list.add(extra8);
+	    list.add(extra9);
+
+	    return new DimensionsContainer(list);
+
+	}
+
+	@Config.Name("Overworld")
+	@Config.LangKey("mmorpg.config.overworld")
+	@Config.Comment("")
+	public DimensionConfigs overworld = DimensionConfigs.Overworld();
+
+	@Config.Name("Nether")
+	@Config.LangKey("mmorpg.config.overworld")
+	@Config.Comment("")
+	public DimensionConfigs nether = DimensionConfigs.Nether();
+
+	@Config.Name("End")
+	@Config.LangKey("mmorpg.config.overworld")
+	@Config.Comment("")
+	public DimensionConfigs end = DimensionConfigs.End();
+
+	@Config.Name("Default")
+	@Config.LangKey("mmorpg.config.default")
+	@Config.Comment("If the dimension isn't in any other config, it defaults to values inside this. The dimension ID doesn't matter in this one.")
+	public DimensionConfigs default_dim = DimensionConfigs.Overworld();
+
+	@Config.Name("Extra 1")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra1 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 2")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra2 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 3")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra3 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 4")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra4 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 5")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra5 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 6")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra6 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 7")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra7 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 8")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra8 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 9")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra9 = DimensionConfigs.DefaultExtra();
+
+    }
+
     public static class MapDimensionsConfig {
 
 	@Config.Name("Map ID Start")
 	@Config.LangKey("mmorpg.config.map_id_start")
 	@Config.Comment("The start of dimension IDs used for maps. It goes down from here.. to -1463.. -1464 etc")
 	public int MAP_ID_START = -1462;
-
-    }
-
-    public static class DimensionConfigs {
-
-	public DimensionConfigs() {
-
-	}
-
-	public DimensionConfigs(int id, int min, int max) {
-	    this.DIMENSION_id = id;
-	    this.MINIMUM_MOB_LEVEL = min;
-	    this.MAXIMUM_MOB_LEVEL = max;
-	}
-
-	public DimensionConfigs(int id, int distance, int area, int min, int max) {
-	    this.DIMENSION_id = id;
-	    this.MOB_LEVEL_PER_DISTANCE = distance;
-	    this.MOB_LEVEL_ONE_AREA = area;
-	    this.MINIMUM_MOB_LEVEL = min;
-	    this.MAXIMUM_MOB_LEVEL = max;
-	}
-
-	@Config.Name("Dimension ID")
-	@Config.LangKey("mmorpg.config.dimension_id")
-	@Config.Comment("0 is overwold for example")
-	public int DIMENSION_id = 0;
-
-	@Config.Name("Mob Level Per Distance")
-	@Config.LangKey("mmorpg.config.mob_lvl_per_distance")
-	@Config.Comment("How fast you want mobs to level up based on distance. Higher value means slower leveling.")
-	public int MOB_LEVEL_PER_DISTANCE = 14500;
-
-	@Config.Name("Mob Level One Area")
-	@Config.LangKey("mmorpg.config.mob_lvl_one_area")
-	@Config.Comment("How big you want level 1 mob area to be. Bigger value means bigger area")
-	public int MOB_LEVEL_ONE_AREA = 25000;
-
-	@Config.Name("Maximum mob level")
-	@Config.LangKey("mmorpg.config.maximum_mob_level")
-	@Config.Comment("Select maximum level")
-	public int MAXIMUM_MOB_LEVEL = 100;
-
-	@Config.Name("Minimum mob level")
-	@Config.LangKey("mmorpg.config.minimum_mob_level")
-	@Config.Comment("Select maximum level for mobs in normal worlds like vanilla surface, nether, end. This doesn't affect max level for map worlds from my mod! Note: reasoning for low level cap here is to prevent BIS gear being farmable by mob spawners, which ruin the fun")
-	public int MINIMUM_MOB_LEVEL = 25;
 
     }
 

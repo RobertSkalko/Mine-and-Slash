@@ -22,13 +22,14 @@ public class CommonStatUtils {
 	for (StatusEffectData status : unit.statusEffects.values()) {
 	    List<StatModData> datas = status.GetAllStats(level);
 	    for (StatModData data : datas) {
+
 		StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
 		if (stat == null) {
 		    System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Guid());
 		} else {
 		    stat.Add(data, level);
-
 		}
+
 	    }
 	}
 

@@ -1,6 +1,6 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData;
 

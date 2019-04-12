@@ -15,6 +15,7 @@ import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 
 @Storable
 public class SecondaryStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
@@ -25,6 +26,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
     }
 
+    @Store
     public boolean AddedStat = false;
 
     @Override

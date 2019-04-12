@@ -7,7 +7,7 @@ public class Energy extends FillableStat {
     public static String GUID = "Energy";
 
     public Energy() {
-	this.StatMinimum = 100;
+
     }
 
     @Override

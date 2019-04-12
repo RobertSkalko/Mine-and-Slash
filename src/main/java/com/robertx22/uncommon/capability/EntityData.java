@@ -11,8 +11,9 @@ import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mmorpg.Main;
-import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.config.DimensionConfigs;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.network.UnitPackage;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
@@ -33,7 +34,6 @@ import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -72,6 +72,8 @@ public class EntityData {
 
     public interface UnitData extends ICommonCapability {
 
+	void freelySetLevel(int lvl);
+
 	int getLevel();
 
 	void setLevel(int lvl, EntityLivingBase entity);
@@ -92,7 +94,7 @@ public class EntityData {
 
 	boolean CheckLevelCap();
 
-	void SetMobLevel(IWorldData data, int lvl, EntityLivingBase entity);
+	void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity);
 
 	Unit getUnit();
 
@@ -174,8 +176,7 @@ public class EntityData {
 	    }
 
 	    if (ModConfig.Server.ENTITIES_UNDER_SYSTEM.equals(EntitySystemChoice.Mobs_And_Players)) {
-		if (event.getObject() instanceof EntityPlayer || event.getObject() instanceof EntityMob
-			|| event.getObject() instanceof IMob) {
+		if (event.getObject() instanceof IMob || event.getObject() instanceof EntityPlayer) {
 		    can = true;
 		}
 	    }
@@ -233,7 +234,7 @@ public class EntityData {
 	private NBTTagCompound nbt = new NBTTagCompound();
 
 	Unit unit = null;
-	PlayerMapKillsData kills = new PlayerMapKillsData();
+	PlayerMapKillsData kills = null;
 	int level = 1;
 	int exp = 0;
 	int rarity = 0;
@@ -317,23 +318,60 @@ public class EntityData {
 	}
 
 	@Override
-	public void SetMobLevel(IWorldData data, int lvl, EntityLivingBase entity) {
+	public void SetMobLevelAtSpawn(IWorldData data, EntityLivingBase entity) {
+
+	    DimensionConfigs config = ModConfig.Dimensions.getAll().getConfig(entity.dimension);
+
+	    int lvl = 1;
+
+	    if (data != null && data.isMapWorld()) {
+		lvl = data.getLevel();
+	    } else {
+		if (config.SINGLEPLAYER_MOB_SCALING) {
+
+		    EntityPlayer player = entity.world.getClosestPlayerToEntity(entity, 9999);
+
+		    if (player != null) {
+			lvl = player.getCapability(EntityData.Data, null).getLevel();
+
+		    }
+
+		} else {
+		    lvl = GetMobLevelByDistanceFromSpawn(entity, config);
+		}
+		if (lvl > config.MAXIMUM_MOB_LEVEL) {
+		    lvl = config.MAXIMUM_MOB_LEVEL;
+		}
+		if (lvl < config.MINIMUM_MOB_LEVEL) {
+		    lvl = config.MINIMUM_MOB_LEVEL;
+		}
+
+	    }
 
 	    if (lvl < 1) {
 		lvl = 1;
 
 	    }
-	    if (data != null && !data.isMapWorld()) {
-		if (lvl > ModConfig.Server.MAXIMUM_NORMAL_WORLD_MOB_LEVEL) {
-		    lvl = ModConfig.Server.MAXIMUM_NORMAL_WORLD_MOB_LEVEL;
-		}
+
+	    this.level = lvl;
+	}
+
+	public static int GetMobLevelByDistanceFromSpawn(Entity entity, DimensionConfigs config) {
+
+	    double distance = entity.world.getSpawnPoint().getDistance((int) entity.posX, (int) entity.posY,
+		    (int) entity.posZ);
+
+	    int lvl = 1;
+
+	    if (distance < config.MOB_LEVEL_ONE_AREA) {
+		lvl = 1;
+	    } else {
+
+		lvl = (int) (1 + (distance / config.MOB_LEVEL_PER_DISTANCE));
 	    }
 
-	    if (lvl > ModConfig.Server.MAXIMUM_PLAYER_LEVEL) {
-		lvl = ModConfig.Server.MAXIMUM_PLAYER_LEVEL;
-	    }
+	    return lvl;
 
-	    setLevel(lvl, entity);
 	}
 
 	@Override
@@ -557,6 +595,10 @@ public class EntityData {
 		public void run() {
 		    try {
 
+			if (kills == null) {
+			    kills = new PlayerMapKillsData();
+			}
+
 			kills.onKill(world.getMap());
 
 		    } catch (Exception e) {
@@ -572,7 +614,11 @@ public class EntityData {
 	@Override
 	public int getLootBonusPerAffixKills(MapItemData map) {
 
-	    return kills.getLootMulti(map);
+	    if (kills == null) {
+		return 0;
+	    } else {
+		return kills.getLootMulti(map);
+	    }
 	}
 
 	@Override
@@ -588,6 +634,10 @@ public class EntityData {
 		} else {
 		    getUnit().InitPlayerStats();
 		    recalculateStats(player, Load.World(player));
+		}
+
+		if (kills == null) {
+		    kills = new PlayerMapKillsData();
 		}
 
 		kills.init();
@@ -755,6 +805,11 @@ public class EntityData {
 		e.printStackTrace();
 	    }
 	    return false;
+	}
+
+	@Override
+	public void freelySetLevel(int lvl) {
+	    this.level = lvl;
 	}
     }
 

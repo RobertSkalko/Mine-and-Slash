@@ -3,14 +3,17 @@
   "pattern": [
     "CCC",
     "CAC",
-    "CCC"
+    "TTT"
   ],
   "key": {  
-	"C": {
-      "item": "minecraft:diamond"
-    }, 
 	"A": {
-      "item": "minecraft:redstone_block"
+      "item": "minecraft:gold_ingot"
+    }, 
+	"C": {
+      "item": "minecraft:iron_ingot"
+    }, 
+	"T": {
+      "item": "mmorpg:ore0"
     }
   },
   "result": {

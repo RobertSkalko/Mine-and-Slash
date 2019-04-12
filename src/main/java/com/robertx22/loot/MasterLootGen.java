@@ -8,7 +8,7 @@ import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.MapLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.loot.gens.UniqueGearLootGen;
-import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 

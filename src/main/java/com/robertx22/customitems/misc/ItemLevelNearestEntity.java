@@ -1,8 +1,8 @@
 package com.robertx22.customitems.misc;
 
 import com.robertx22.db_lists.CreativeTabList;
-import com.robertx22.mmorpg.ModConfig;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;

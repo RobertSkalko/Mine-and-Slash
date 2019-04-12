@@ -7,7 +7,7 @@ public class Mana extends FillableStat {
     public static String GUID = "Mana";
 
     public Mana() {
-	this.StatMinimum = 50;
+
     }
 
     @Override

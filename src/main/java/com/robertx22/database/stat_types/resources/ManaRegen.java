@@ -7,7 +7,7 @@ public class ManaRegen extends Stat {
     public static String GUID = "Mana Regen";
 
     public ManaRegen() {
-	this.StatMinimum = 1;
+
     }
 
     @Override

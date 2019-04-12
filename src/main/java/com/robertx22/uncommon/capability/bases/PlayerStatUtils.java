@@ -5,9 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.robertx22.database.stat_types.offense.PhysicalDamage;
-import com.robertx22.database.stat_types.resources.Health;
 import com.robertx22.db_lists.Sets;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
@@ -30,10 +29,130 @@ import net.minecraft.item.ItemStack;
 
 public class PlayerStatUtils {
 
-    public static void AddPlayerBaseStats(Unit unit) {
+    public static void AddPlayerBaseStats(UnitData data, Unit unit) {
 
-	unit.MyStats.get(Health.GUID).Flat += 20;
-	unit.MyStats.get(PhysicalDamage.GUID).Flat += 3;
+	unit.MyStats.get("Thunder Resist").Flat += (int) (ModConfig.BasePlayerStats.thunder_resist
+		+ data.getLevel() * ModConfig.BasePlayerStats.thunder_resist_per_level);
+
+	unit.MyStats.get("Water Penetration").Flat += (int) (ModConfig.BasePlayerStats.water_penetration
+		+ data.getLevel() * ModConfig.BasePlayerStats.water_penetration_per_level);
+
+	unit.MyStats.get("Physical Damage").Flat += (int) (ModConfig.BasePlayerStats.physical_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.physical_damage_per_level);
+
+	unit.MyStats.get("Mana").Flat += (int) (ModConfig.BasePlayerStats.mana
+		+ data.getLevel() * ModConfig.BasePlayerStats.mana_per_level);
+
+	unit.MyStats.get("Dodge").Flat += (int) (ModConfig.BasePlayerStats.dodge
+		+ data.getLevel() * ModConfig.BasePlayerStats.dodge_per_level);
+
+	unit.MyStats.get("Energy").Flat += (int) (ModConfig.BasePlayerStats.energy
+		+ data.getLevel() * ModConfig.BasePlayerStats.energy_per_level);
+
+	unit.MyStats.get("Spell Fire Damage").Flat += (int) (ModConfig.BasePlayerStats.spell_fire_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.spell_fire_damage_per_level);
+
+	unit.MyStats.get("Water Resist").Flat += (int) (ModConfig.BasePlayerStats.water_resist
+		+ data.getLevel() * ModConfig.BasePlayerStats.water_resist_per_level);
+
+	unit.MyStats.get("Hammer Damage").Flat += (int) (ModConfig.BasePlayerStats.hammer_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.hammer_damage_per_level);
+
+	unit.MyStats.get("Fire Resist").Flat += (int) (ModConfig.BasePlayerStats.fire_resist
+		+ data.getLevel() * ModConfig.BasePlayerStats.fire_resist_per_level);
+
+	unit.MyStats.get("Bow Damage").Flat += (int) (ModConfig.BasePlayerStats.bow_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.bow_damage_per_level);
+
+	unit.MyStats.get("Spell Water Damage").Flat += (int) (ModConfig.BasePlayerStats.spell_water_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.spell_water_damage_per_level);
+
+	unit.MyStats.get("Spell Dodge").Flat += (int) (ModConfig.BasePlayerStats.spell_dodge
+		+ data.getLevel() * ModConfig.BasePlayerStats.spell_dodge_per_level);
+
+	unit.MyStats.get("All Water Damage").Flat += (int) (ModConfig.BasePlayerStats.all_water_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.all_water_damage_per_level);
+
+	unit.MyStats.get("All Fire Damage").Flat += (int) (ModConfig.BasePlayerStats.All_Fire_Damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.All_Fire_Damage_per_level);
+
+	unit.MyStats.get("Mana Regen").Flat += (int) (ModConfig.BasePlayerStats.mana_regen
+		+ data.getLevel() * ModConfig.BasePlayerStats.mana_regen_per_level);
+
+	unit.MyStats.get("Spell Thunder Damage").Flat += (int) (ModConfig.BasePlayerStats.spell_thunder_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.spell_thunder_damage_per_level);
+
+	unit.MyStats.get("Life On Hit").Flat += (int) (ModConfig.BasePlayerStats.life_on_hit
+		+ data.getLevel() * ModConfig.BasePlayerStats.life_on_hit_per_level);
+
+	unit.MyStats.get("Staff Damage").Flat += (int) (ModConfig.BasePlayerStats.staff_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.staff_damage_per_level);
+
+	unit.MyStats.get("Thunder Penetration").Flat += (int) (ModConfig.BasePlayerStats.thunder_penetration
+		+ data.getLevel() * ModConfig.BasePlayerStats.thunder_penetration_per_level);
+
+	unit.MyStats.get("All Thunder Damage").Flat += (int) (ModConfig.BasePlayerStats.all_thunder_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.all_thunder_damage_per_level);
+
+	unit.MyStats.get("Mana On Hit").Flat += (int) (ModConfig.BasePlayerStats.mana_on_hit
+		+ data.getLevel() * ModConfig.BasePlayerStats.mana_on_hit_per_level);
+
+	unit.MyStats.get("Attack Thunder Damage").Flat += (int) (ModConfig.BasePlayerStats.attack_thunder_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.attack_thunder_damage_per_level);
+
+	unit.MyStats.get("Nature Penetration").Flat += (int) (ModConfig.BasePlayerStats.nature_penetration
+		+ data.getLevel() * ModConfig.BasePlayerStats.nature_penetration_per_level);
+
+	unit.MyStats.get("All Nature Damage").Flat += (int) (ModConfig.BasePlayerStats.all_nature_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.all_nature_damage_per_level);
+
+	unit.MyStats.get("Attack Fire Damage").Flat += (int) (ModConfig.BasePlayerStats.attack_fire_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.attack_fire_damage_per_level);
+
+	unit.MyStats.get("Nature Resist").Flat += (int) (ModConfig.BasePlayerStats.nature_resist
+		+ data.getLevel() * ModConfig.BasePlayerStats.nature_resist_per_level);
+
+	unit.MyStats.get("Sword Damage").Flat += (int) (ModConfig.BasePlayerStats.sword_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.sword_damage_per_level);
+
+	unit.MyStats.get("Health Regen").Flat += (int) (ModConfig.BasePlayerStats.health_regen
+		+ data.getLevel() * ModConfig.BasePlayerStats.health_regen_per_level);
+
+	unit.MyStats.get("Fire Penetration").Flat += (int) (ModConfig.BasePlayerStats.fire_penetration
+		+ data.getLevel() * ModConfig.BasePlayerStats.fire_penetration_per_level);
+
+	unit.MyStats.get("Armor").Flat += (int) (ModConfig.BasePlayerStats.armor
+		+ data.getLevel() * ModConfig.BasePlayerStats.armor_per_level);
+
+	unit.MyStats.get("Attack Nature Damage").Flat += (int) (ModConfig.BasePlayerStats.attack_nature_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.attack_nature_damage_per_level);
+
+	unit.MyStats.get("Health").Flat += (int) (ModConfig.BasePlayerStats.health
+		+ data.getLevel() * ModConfig.BasePlayerStats.health_per_level);
+
+	unit.MyStats.get("Attack Water Damage").Flat += (int) (ModConfig.BasePlayerStats.attack_water_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.attack_water_damage_per_level);
+
+	unit.MyStats.get("Axe Damage").Flat += (int) (ModConfig.BasePlayerStats.axe_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.axe_damage_per_level);
+
+	unit.MyStats.get("Critical Hit").Flat += (int) (ModConfig.BasePlayerStats.critical_hit
+		+ data.getLevel() * ModConfig.BasePlayerStats.critical_hit_per_level);
+
+	unit.MyStats.get("Spell Nature Damage").Flat += (int) (ModConfig.BasePlayerStats.spell_nature_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.spell_nature_damage_per_level);
+
+	unit.MyStats.get("Energy Regen").Flat += (int) (ModConfig.BasePlayerStats.energy_regen
+		+ data.getLevel() * ModConfig.BasePlayerStats.energy_regen_per_level);
+
+	unit.MyStats.get("Armor Penetration").Flat += (int) (ModConfig.BasePlayerStats.armor_penetration
+		+ data.getLevel() * ModConfig.BasePlayerStats.armor_penetration_per_level);
+
+	unit.MyStats.get("Critical Damage").Flat += (int) (ModConfig.BasePlayerStats.critical_damage
+		+ data.getLevel() * ModConfig.BasePlayerStats.critical_damage_per_level);
+
+	unit.MyStats.get("Lifesteal").Flat += (int) (ModConfig.BasePlayerStats.lifesteal
+		+ data.getLevel() * ModConfig.BasePlayerStats.lifesteal_per_level);
 
     }
 

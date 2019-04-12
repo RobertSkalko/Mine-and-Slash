@@ -7,7 +7,7 @@ public class HealthRegen extends Stat {
     public static String GUID = "Health Regen";
 
     public HealthRegen() {
-	this.StatMinimum = 1;
+
     }
 
     @Override

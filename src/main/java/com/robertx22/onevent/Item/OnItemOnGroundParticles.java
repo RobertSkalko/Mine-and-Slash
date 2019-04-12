@@ -3,7 +3,7 @@ package com.robertx22.onevent.Item;
 import java.util.HashMap;
 import java.util.Random;
 
-import com.robertx22.mmorpg.ModConfig;
+import com.robertx22.mmorpg.config.ModConfig;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;

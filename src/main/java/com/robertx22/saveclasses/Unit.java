@@ -1,10 +1,12 @@
 package com.robertx22.saveclasses;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
 import com.robertx22.database.stat_types.resources.Energy;
 import com.robertx22.database.stat_types.resources.Health;
@@ -15,6 +17,8 @@ import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.effectdatas.EffectData.EffectTypes;
 import com.robertx22.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mmorpg.Main;
+import com.robertx22.mmorpg.config.DimensionConfigs;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.network.EntityPackage;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
@@ -25,6 +29,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import com.robertx22.uncommon.capability.bases.MobStatUtils;
 import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
+import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import info.loenwind.autosave.annotations.Storable;
@@ -145,8 +150,6 @@ public class Unit {
 	try {
 	    return MyStats.get(new Health().Guid());
 	} catch (Exception e) {
-	    e.printStackTrace();
-
 	}
 	return null;
     }
@@ -169,22 +172,61 @@ public class Unit {
 	return null;
     }
 
-    public static Unit Mob(EntityLivingBase entity, int level, IWorldData data) {
+    public static Unit Mob(EntityLivingBase entity, IWorldData data) {
 
 	Unit mob = new Unit();
 	mob.InitMobStats();
 
 	UnitData endata = entity.getCapability(EntityData.Data, null);
 
-	endata.SetMobLevel(data, level, entity);
-	endata.setRarity(RandomUtils.RandomWithMinRarity(entity).Rank());
+	endata.SetMobLevelAtSpawn(data, entity);
+	endata.setRarity(randomRarity(entity, endata.getLevel()));
 
 	CommonStatUtils.addMapAffixes(data, entity, mob, endata);
 	MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
 
-	mob.RecalculateStats(entity, endata, level, data);
+	mob.RecalculateStats(entity, endata, endata.getLevel(), data);
 
 	return mob;
+
+    }
+
+    private static int randomRarity(EntityLivingBase entity, int level) {
+
+	double y = entity.posY;
+
+	int minRarity = 0;
+
+	if (entity.dimension == 0) {
+
+	    if (y < 50) {
+		minRarity = 1;
+	    }
+	    if (y < 30) {
+		minRarity = 2;
+	    }
+	}
+
+	List<MobRarity> rarities = Rarities.Mobs;
+	List<MobRarity> after = new ArrayList<MobRarity>();
+
+	DimensionConfigs config = ModConfig.Dimensions.getAll().getConfig(entity.dimension);
+
+	for (MobRarity rar : rarities) {
+	    if (rar.Rank() >= minRarity) {
+		if (rar.Rank() == 4 && config.LEVEL_FOR_MOBS_TO_BE_LEGENDARY > level) {
+
+		} else if (rar.Rank() == 5 && config.LEVEL_FOR_MOBS_TO_BE_MYTHICAL > level) {
+
+		} else {
+		    after.add(rar);
+		}
+	    }
+	}
+
+	MobRarity finalRarity = (MobRarity) RandomUtils.WeightedRandom(ListUtils.CollectionToList(after));
+
+	return finalRarity.Rank();
 
     }
 
@@ -251,10 +293,10 @@ public class Unit {
 
 	ClearStats();
 
-	MyStats.get(Health.GUID).Flat += entity.getMaxHealth();
+	MyStats.get(Health.GUID).Flat += entity.getMaxHealth() * data.getLevel();
 
 	if (entity instanceof EntityPlayer) {
-	    PlayerStatUtils.AddPlayerBaseStats(this);
+	    PlayerStatUtils.AddPlayerBaseStats(data, this);
 	} else {
 	    MobStatUtils.AddMobcStats(this, data.getLevel());
 	    MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));

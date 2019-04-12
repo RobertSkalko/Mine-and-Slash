@@ -4,16 +4,15 @@ import com.robertx22.uncommon.testing.tests.ItemGenRarityTest;
 
 public class TestManager {
 
-	private static boolean RunTests = false;
+    private static boolean RunTests = false;
 
-	public static void RunAllTests() {
+    public static void RunAllTests() {
 
-		if (RunTests) {
-
-			new ItemGenRarityTest().GenManyItems();
-
-		}
+	if (RunTests) {
+	    new ItemGenRarityTest().GenManyItems();
 
 	}
+
+    }
 
 }
