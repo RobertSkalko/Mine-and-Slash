@@ -23,12 +23,14 @@ public class ParticlePackage implements IMessage {
     private double yVel;
     private double zVel;
     private boolean isGenerator;
+    private double radius;
+    private int amount;
 
     public ParticlePackage() {
     }
 
     public ParticlePackage(boolean isGen, String name, double x, double y, double z, double xVel, double yVel,
-	    double zVel) {
+	    double zVel, double radius, int amount) {
 	this.isGenerator = isGen;
 	this.name = name;
 	this.x = x;
@@ -37,6 +39,8 @@ public class ParticlePackage implements IMessage {
 	this.xVel = xVel;
 	this.yVel = yVel;
 	this.zVel = zVel;
+	this.radius = radius;
+	this.amount = amount;
     }
 
     @Override
@@ -50,6 +54,8 @@ public class ParticlePackage implements IMessage {
 	xVel = tag.getDouble("xVel");
 	yVel = tag.getDouble("yVel");
 	zVel = tag.getDouble("zVel");
+	radius = tag.getDouble("radius");
+	amount = tag.getInteger("amount");
     }
 
     @Override
@@ -63,6 +69,8 @@ public class ParticlePackage implements IMessage {
 	tag.setDouble("xVel", xVel);
 	tag.setDouble("yVel", yVel);
 	tag.setDouble("zVel", zVel);
+	tag.setDouble("radius", radius);
+	tag.setInteger("amount", amount);
 	ByteBufUtils.writeTag(buf, tag);
 
     }
@@ -81,7 +89,8 @@ public class ParticlePackage implements IMessage {
 
 			    ParticleGen gen = ParticleGens.All.get(message.name);
 
-			    gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel);
+			    gen.Summon(message.x, message.y, message.z, message.xVel, message.yVel, message.zVel,
+				    message.radius, message.amount);
 
 			} else {
 

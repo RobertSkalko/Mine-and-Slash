@@ -1,10 +1,10 @@
-package com.robertx22.spells.projectile;
+package com.robertx22.spells.aoe_projectile;
 
 import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.spells.bases.BaseSpell;
+import com.robertx22.spells.projectile.BaseBolt;
 import com.robertx22.uncommon.CLOC;
 
-public abstract class BaseBoltAOE extends BaseSpell {
+public abstract class BaseBoltAOE extends BaseBolt {
 
     @Override
     public int ManaCost() {

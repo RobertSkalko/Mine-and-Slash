@@ -2,62 +2,48 @@ package com.robertx22.spells.projectile.thunderbolt;
 
 import com.robertx22.customitems.spells.projectile.ItemThunderBolt;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
-import com.robertx22.saveclasses.SpellItemData;
-import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.EffectCalculation;
-import com.robertx22.spells.projectile.BaseBolt;
+import com.robertx22.spells.bases.projectile.EntityElementalBolt;
+import com.robertx22.spells.projectile.BaseSpellProjectile;
 import com.robertx22.uncommon.enumclasses.Elements;
-import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class SpellThunderBolt extends BaseBolt {
+public class SpellThunderBolt extends BaseSpellProjectile {
 
-	public SpellThunderBolt() {
-		super();
-	}
+    public SpellThunderBolt() {
+	super();
+    }
 
-	@Override
-	public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
+    @Override
+    public String Name() {
+	return "Thunder Bolt";
+    }
 
-		if (!world.isRemote) {
-			EntityThunderBolt projectile = new EntityThunderBolt(world);
-			projectile.SpawnAndShoot(new EffectThunderBolt(), new DamageData(caster, data), caster);
+    @Override
+    public EffectCalculation ScalingValue() {
+	return new EffectCalculation(new SpellThunderDamage().Guid(), 0.5F);
+    }
 
-		}
+    @Override
+    public Elements Element() {
+	return Elements.Thunder;
+    }
 
-		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_LIGHTNING_IMPACT, 1, 1);
-		caster.swingArm(hand);
-		return true;
-	}
+    @Override
+    public Item SpellItem() {
+	return ItemThunderBolt.ITEM;
+    }
 
-	@Override
-	public String Name() {
-		return "Thunder Bolt";
-	}
+    @Override
+    public String GUID() {
+	return "ThunderBolt";
+    }
 
-	@Override
-	public EffectCalculation ScalingValue() {
-		return new EffectCalculation(new SpellThunderDamage().Guid(), 0.5F);
-	}
-
-	@Override
-	public Elements Element() {
-		return Elements.Thunder;
-	}
-
-	@Override
-	public Item SpellItem() {
-		return ItemThunderBolt.ITEM;
-	}
-
-	@Override
-	public String GUID() {
-		return "ThunderBolt";
-	}
+    @Override
+    public EntityElementalBolt projectile(World world) {
+	return new EntityThunderBolt(world);
+    }
 
 }

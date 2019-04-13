@@ -1,7 +1,6 @@
 package com.robertx22.spells.bases.projectile;
 
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
-import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
@@ -73,7 +72,7 @@ public abstract class EntityStaffProjectile extends EntitySpecialThrowable {
 	}
     }
 
-    public void SpawnAndShoot(BaseSpellEffect effect, EntityLivingBase caster) {
+    public void SpawnAndShoot(EntityLivingBase caster) {
 
 	this.ignoreEntity = caster;
 	Vec3d look = caster.getLookVec();

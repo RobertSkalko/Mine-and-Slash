@@ -297,6 +297,7 @@ public class Unit {
 
 	if (entity instanceof EntityPlayer) {
 	    PlayerStatUtils.AddPlayerBaseStats(data, this);
+
 	} else {
 	    MobStatUtils.AddMobcStats(this, data.getLevel());
 	    MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));

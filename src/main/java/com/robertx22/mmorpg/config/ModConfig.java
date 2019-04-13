@@ -413,10 +413,15 @@ public class ModConfig {
 
     public static class ServerContainer {
 
+	@Config.Name("Generate Ores")
+	@Config.LangKey("mmorpg.config.")
+	@Config.Comment("")
+	public boolean GENERATE_ORES = true;
+
 	@Config.Name("Unarmed Energy Cost")
 	@Config.LangKey("mmorpg.config.unarmed_energy_cost")
 	@Config.Comment("If an item isn't a weapon, it does unarmed damage. Meaning your base damage")
-	public float UNARMED_ENERGY_COST = 0.5F;
+	public float UNARMED_ENERGY_COST = 1;
 
 	@Config.Name("Maps Start Dropping At Level")
 	@Config.LangKey("mmorpg.config.maps_start_drop")

@@ -8,26 +8,15 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class ParticleUtils {
 
-	public static void spawnParticle(Entity source, String name, double x, double y, double z, double xVel, double yVel,
-			double zVel) {
+    public static void spawnParticleGenerator(Entity source, String name, double x, double y, double z, double xVel,
+	    double yVel, double zVel, double radius, int amount) {
 
-		ParticlePackage packet = new ParticlePackage(false, name, x, y, z, xVel, yVel, zVel);
+	ParticlePackage packet = new ParticlePackage(true, name, x, y, z, xVel, yVel, zVel, radius, amount);
 
-		TargetPoint point = new TargetPoint(source.dimension, x, y, z, 100);
+	TargetPoint point = new TargetPoint(source.dimension, x, y, z, 100);
 
-		Main.Network.sendToAllAround(packet, point);
+	Main.Network.sendToAllAround(packet, point);
 
-	}
-
-	public static void spawnParticleGenerator(Entity source, String name, double x, double y, double z, double xVel,
-			double yVel, double zVel) {
-
-		ParticlePackage packet = new ParticlePackage(true, name, x, y, z, xVel, yVel, zVel);
-
-		TargetPoint point = new TargetPoint(source.dimension, x, y, z, 100);
-
-		Main.Network.sendToAllAround(packet, point);
-
-	}
+    }
 
 }

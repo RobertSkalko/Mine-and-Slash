@@ -9,6 +9,7 @@ import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.ChestGenerator;
 import com.robertx22.dimensions.blocks.TileMapPortal;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
@@ -114,11 +115,15 @@ public class Main {
 
 	// RegisterBiomes.initBiomeManagerAndDictionary();
 
-	int chance = 6;
-	int amount = 7;
+	if (ModConfig.Server.GENERATE_ORES) {
+	    int chance = 6;
+	    int amount = 7;
 
-	for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
-	    GameRegistry.registerWorldGenerator(new OreGen(ItemOre.Blocks.get(i), amount - i, 10, 75, chance - i), 0);
+	    for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
+		GameRegistry.registerWorldGenerator(new OreGen(ItemOre.Blocks.get(i), amount - i, 10, 75, chance - i),
+			0);
+	    }
+
 	}
 
 	GameRegistry.registerWorldGenerator(new ChestGenerator(), 5);

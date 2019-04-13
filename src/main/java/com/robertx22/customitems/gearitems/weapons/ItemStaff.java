@@ -9,7 +9,6 @@ import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.customitems.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.spells.EntityStaffProjectileNormal;
-import com.robertx22.spells.aoe_projectile.AcidExplosion.EffectAcidExplosion;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
@@ -56,7 +55,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon {
 
 		    EntityStaffProjectileNormal projectile = new EntityStaffProjectileNormal(world, player);
 		    projectile.SetReady(player.getHeldItem(hand));
-		    projectile.SpawnAndShoot(new EffectAcidExplosion(), player);
+		    projectile.SpawnAndShoot(player);
 
 		    player.getHeldItem(hand).damageItem(1, player);
 

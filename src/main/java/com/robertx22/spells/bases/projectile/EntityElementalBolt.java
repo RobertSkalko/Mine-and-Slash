@@ -1,10 +1,11 @@
 package com.robertx22.spells.bases.projectile;
 
+import com.robertx22.ColoredRedstone;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
+import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -13,6 +14,8 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 
     BaseSpellEffect effect;
     DamageData data;
+
+    public abstract Elements element();
 
     public EntityElementalBolt(World worldIn) {
 	super(worldIn);
@@ -40,22 +43,24 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 
     }
 
+    int ticks = 0;
+
     @Override
     public void onUpdate() {
 
 	super.onUpdate();
 
 	if (world.isRemote) {
-	    for (int i = 0; i < 20; i++) {
 
-		this.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX + rand.nextFloat() * 0.2 - 0.1,
-			this.posY + this.height / 2 + rand.nextFloat() * 0.2 - 0.1,
-			this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
-
+	    ticks++;
+	    if (ticks > 1) {
+		ticks = 0;
+		ColoredRedstone.SpawnAoeRedstone(element(), this, 0.25F, 30);
 	    }
+
 	}
 
-	if (this.ticksExisted > 20) {
+	if (this.ticksExisted > 30) {
 	    this.setDead();
 	}
     }
