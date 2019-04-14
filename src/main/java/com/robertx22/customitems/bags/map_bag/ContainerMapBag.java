@@ -3,7 +3,6 @@ package com.robertx22.customitems.bags.map_bag;
 import com.robertx22.customitems.bags.BaseContainer;
 import com.robertx22.customitems.bags.BaseInventory;
 import com.robertx22.customitems.bags.BaseSlot;
-import com.robertx22.customitems.bags.loot_bag.ItemLootBag;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,7 +24,7 @@ public class ContainerMapBag extends BaseContainer {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-	    return ItemLootBag.IsValidItem(stack);
+	    return new ItemMapBag().IsValidItem(stack);
 	}
 
 	@Override

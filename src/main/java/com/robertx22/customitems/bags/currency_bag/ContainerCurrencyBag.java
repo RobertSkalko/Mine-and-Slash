@@ -24,7 +24,7 @@ public class ContainerCurrencyBag extends BaseContainer {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-	    return ItemCurrencyBag.IsValidItem(stack);
+	    return new ItemCurrencyBag().IsValidItem(stack);
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class ContainerLootBag extends BaseContainer {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-	    return ItemLootBag.IsValidItem(stack);
+	    return new ItemLootBag().IsValidItem(stack);
 	}
 
 	@Override
