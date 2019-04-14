@@ -32,11 +32,11 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
     @Override
     protected void onImpact(RayTraceResult result) {
 
-	if (world.isRemote && result.entityHit != null) {
-	    SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
-	}
 	if (result.entityHit != null && result.entityHit instanceof EntityLivingBase && effect != null
 		&& data != null) {
+	    if (world.isRemote) {
+		SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
+	    }
 
 	    effect.Activate(data, (EntityLivingBase) result.entityHit);
 

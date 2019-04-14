@@ -23,6 +23,7 @@ import com.robertx22.uncommon.datasaving.Gear;
 
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -235,7 +236,7 @@ public class PlayerStatUtils {
 
     }
 
-    public static void CountWornSets(EntityLivingBase entity, List<GearItemData> gears, Unit unit) {
+    public static void CountWornSets(Entity entity, List<GearItemData> gears, Unit unit) {
 
 	unit.WornSets = new HashMap<String, Integer>();
 
@@ -256,7 +257,7 @@ public class PlayerStatUtils {
 
     }
 
-    public static void AddAllSetStats(EntityLivingBase entity, Unit unit, int level) {
+    public static void AddAllSetStats(Entity entity, Unit unit, int level) {
 
 	for (Entry<String, Integer> entry : unit.WornSets.entrySet()) {
 
@@ -276,7 +277,7 @@ public class PlayerStatUtils {
 
     }
 
-    public static void AddAllGearStats(EntityLivingBase entity, List<GearItemData> gears, Unit unit, int level) {
+    public static void AddAllGearStats(Entity entity, List<GearItemData> gears, Unit unit, int level) {
 
 	for (GearItemData gear : gears) {
 	    if (gear.level > level) {

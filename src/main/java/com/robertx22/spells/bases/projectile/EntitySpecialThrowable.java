@@ -192,7 +192,7 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 	for (int i = 0; i < list.size(); ++i) {
 	    Entity entity1 = list.get(i);
 
-	    if (entity1.hasCapability(EntityData.Data, null) && entity1.canBeCollidedWith()) {
+	    if (entity1.hasCapability(EntityData.Data, null)) {
 		if (entity1 == this.ignoreEntity) {
 		    flag = true;
 		} else if (this.thrower != null && this.ticksExisted < 2 && this.ignoreEntity == null) {

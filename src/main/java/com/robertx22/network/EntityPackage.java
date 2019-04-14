@@ -27,12 +27,12 @@ public class EntityPackage implements IMessage {
 
     }
 
-    public EntityPackage(EntityLivingBase entity) {
+    public EntityPackage(Entity entity) {
 	this.id = entity.getEntityId();
 	this.nbt = entity.getCapability(EntityData.Data, null).getNBT();
     }
 
-    public EntityPackage(EntityLivingBase entity, UnitData data) {
+    public EntityPackage(Entity entity, UnitData data) {
 	this.id = entity.getEntityId();
 	this.nbt = data.getNBT();
     }

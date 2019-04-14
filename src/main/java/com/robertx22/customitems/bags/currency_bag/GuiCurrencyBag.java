@@ -10,8 +10,8 @@ public class GuiCurrencyBag extends BaseBagGui {
 
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/loot_bag.png");
 
-    public GuiCurrencyBag(InventoryPlayer playerInv, InventoryCurrencyBag flowerBagInv) {
-	super(new ContainerCurrencyBag(playerInv, flowerBagInv));
+    public GuiCurrencyBag(InventoryPlayer playerInv, InventoryCurrencyBag baginv) {
+	super(new ContainerCurrencyBag(playerInv, baginv));
     }
 
     @Override

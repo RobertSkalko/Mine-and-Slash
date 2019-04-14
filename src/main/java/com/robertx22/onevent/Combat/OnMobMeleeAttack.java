@@ -34,7 +34,8 @@ public class OnMobMeleeAttack {
 	    return;
 	}
 	try {
-	    if (event.getEntityLiving() == null || event.getSource().getTrueSource() == null) {
+	    if (event.getEntityLiving() == null || event.getSource().getTrueSource() == null
+		    || !(event.getSource().getTrueSource() instanceof EntityLivingBase)) {
 		return;
 	    }
 

@@ -1,6 +1,7 @@
 package com.robertx22.mmorpg.proxy;
 
 import com.robertx22.customitems.gearitems.MyEntityArrow;
+import com.robertx22.customitems.gearitems.RenderMyArrow;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
@@ -29,7 +30,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
-import net.minecraft.client.renderer.entity.RenderSpectralArrow;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -120,7 +120,7 @@ public class ClientProxy implements IProxy {
 	RenderingRegistry.registerEntityRenderingHandler(theclass, new IRenderFactory() {
 	    @Override
 	    public Render createRenderFor(RenderManager manager) {
-		return new RenderSpectralArrow(manager);
+		return new RenderMyArrow(manager);
 	    }
 	});
 
