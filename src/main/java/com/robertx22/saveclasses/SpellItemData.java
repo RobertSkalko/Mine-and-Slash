@@ -22,6 +22,11 @@ public class SpellItemData implements ISalvagable {
 
     }
 
+    @Override
+    public int getSalvagedRarity() {
+	return this.rarity;
+    }
+
     public static int MIN_MANA_COST_PERCENT = 50;
     public static int MAX_MANA_COST_PERCENT = 100;
 

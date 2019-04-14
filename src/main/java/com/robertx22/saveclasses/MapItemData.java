@@ -51,6 +51,11 @@ public class MapItemData implements ISalvagable {
     @Store
     public String worldGeneratorName;
 
+    @Override
+    public int getSalvagedRarity() {
+	return this.rarity;
+    }
+
     public int getBonusLootAmount() {
 
 	return (int) (getTotalPercents() * .5F);

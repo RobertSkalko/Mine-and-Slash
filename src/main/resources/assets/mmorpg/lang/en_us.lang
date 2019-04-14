@@ -703,3 +703,10 @@ mmorpg.config.crafted_items_are_under_system=Crafted Items are Under System
 mmorpg.tooltip.press_shift_more_info=Press Shift for more info
 mmorpg.tooltip.affix_rarity_lootbonus=Affix Rarity Loot Bonus
 
+# Auto Salvage Bags
+item.mmorpg:auto_salvage_bag0.name=§7Auto Salvage Bag
+item.mmorpg:auto_salvage_bag1.name=§aAuto Salvage Bag
+item.mmorpg:auto_salvage_bag2.name=§eAuto Salvage Bag
+item.mmorpg:auto_salvage_bag3.name=§9Auto Salvage Bag
+item.mmorpg:auto_salvage_bag4.name=§6Auto Salvage Bag
+item.mmorpg:auto_salvage_bag5.name=§dAuto Salvage Bag

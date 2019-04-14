@@ -1,8 +1,6 @@
 package com.robertx22.customitems.gearitems.bases;
 
-import baubles.api.BaublesApi;
 import baubles.api.IBauble;
-import baubles.api.cap.IBaublesItemHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -24,19 +22,18 @@ public abstract class BaseBaublesItem extends Item implements IBauble, IGearItem
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-	if (!world.isRemote) {
-	    IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-	    for (int i = 0; i < baubles.getSlots(); i++)
-		if ((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty())
-			&& baubles.isItemValidForSlot(i, player.getHeldItem(hand), player)) {
-		    baubles.setStackInSlot(i, player.getHeldItem(hand).copy());
-		    if (!player.capabilities.isCreativeMode) {
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-		    }
-		    onEquipped(player.getHeldItem(hand), player);
-		    break;
-		}
-	}
+	// CAUSE DUPE GLITCH
+
+	/*
+	 * if (!world.isRemote) { IBaublesItemHandler baubles =
+	 * BaublesApi.getBaublesHandler(player); for (int i = 0; i < baubles.getSlots();
+	 * i++) if ((baubles.getStackInSlot(i) == null ||
+	 * baubles.getStackInSlot(i).isEmpty()) && baubles.isItemValidForSlot(i,
+	 * player.getHeldItem(hand), player)) { baubles.setStackInSlot(i,
+	 * player.getHeldItem(hand).copy()); if (!player.capabilities.isCreativeMode) {
+	 * player.inventory.setInventorySlotContents(player.inventory.currentItem,
+	 * ItemStack.EMPTY); } onEquipped(player.getHeldItem(hand), player); break; } }
+	 */
 	return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
 

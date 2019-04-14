@@ -1,17 +1,20 @@
 package com.robertx22.customitems;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.ISalvagable;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Spell;
@@ -31,11 +34,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -46,6 +52,10 @@ public class AutoSalvageBag extends Item implements IBauble {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public int rarity = 0;
+
+    private final int defaul_gear_rarity_salvage = 0;
+    private final int default_spell_rarity_salvage = 0;
+    private final int default_map_rarity_salvage = -1;
 
     public AutoSalvageBag(int rarity) {
 	this.rarity = rarity;
@@ -70,13 +80,47 @@ public class AutoSalvageBag extends Item implements IBauble {
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 
 	if (!world.isRemote) {
-	    ItemStack stack = player.getHeldItem(hand);
+	    ItemStack bag = player.getHeldItem(hand);
 
-	    NBTTagCompound nbt = stack.serializeNBT();
+	    NBTTagCompound nbt = bag.getTagCompound();
 
+	    if (nbt == null) {
+		nbt = new NBTTagCompound();
+	    }
+
+	    ItemStack stack = player.getHeldItemOffhand();
+
+	    if (stack != null) {
+
+		GearItemData gear = Gear.Load(stack);
+		if (gear != null) {
+		    nbt.setInteger("gear", gear.Rarity);
+		    successChat(player);
+		}
+		SpellItemData spell = Spell.Load(stack);
+		if (spell != null) {
+		    nbt.setInteger("spell", spell.rarity);
+		    successChat(player);
+		}
+		MapItemData map = Map.Load(stack);
+		if (map != null) {
+		    nbt.setInteger("map", map.rarity);
+		    successChat(player);
+		}
+
+		bag.setTagCompound(nbt);
+
+	    } else {
+		player.sendMessage(new TextComponentString(
+			"You Need to Hold an Item In your off hand for Configuration to work."));
+	    }
 	}
 
 	return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+    }
+
+    private void successChat(EntityPlayer player) {
+	player.sendMessage(new TextComponentString("You Have Successfully Modified your Automatic Salvaging Bag."));
     }
 
     public ItemStack getSalvageResultForItem(ISalvagable sal) {
@@ -88,7 +132,8 @@ public class AutoSalvageBag extends Item implements IBauble {
     public static ISalvagable getSalvagable(ItemStack st) {
 
 	GearItemData gear = Gear.Load(st);
-	if (gear != null) {
+	if (gear != null && gear.isUnique == false) { // DO NOT SALVAGE UNIQUE ITEMS, their rarity was -1. should
+						      // probably change that
 	    return gear;
 	}
 
@@ -110,48 +155,153 @@ public class AutoSalvageBag extends Item implements IBauble {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-	// tooltip.add(CLOC.tooltip("Right Click To Configure Auto Salvaging."));
+	NBTTagCompound nbt = stack.getTagCompound();
 
-	tooltip.add("Right Click To Configure Auto Salvaging.");
+	if (nbt == null) {
+	    nbt = new NBTTagCompound();
+	}
+
+	tooltip.add("Automatically Salvages items! (Gears, Spells, Maps)");
+
+	tooltip.add("");
+
+	tooltip.add("Salvages Gears: ");
+	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items), this.getGear(nbt)));
+
+	tooltip.add("Salvages Spells: ");
+	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Spells), this.getSpell(nbt)));
+
+	tooltip.add("Salvages Maps: ");
+	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps), this.getMap(nbt)));
+
+	tooltip.add("");
+
+	tooltip.add("Bonus Salvage Item Chance: " + this.getBonusSalvageChance() + "%");
+	tooltip.add("");
 
 	tooltip.add("Place on your Baubles Chest Slot");
+	tooltip.add("");
+
+	tooltip.add(TextFormatting.GREEN + "How To Configure which Rarities are Salvaged: ");
+	tooltip.add("Place An Item Of Maximum Rarity You want to");
+	tooltip.add("salvage in your off-hand");
+	tooltip.add("Then Right click with this bag.");
+	tooltip.add("If you put an Uncommon Sword for example, that means");
+	tooltip.add("Common and Uncommon Gear Items will be salvaged");
+    }
+
+    public String getSalvagedRarities(List<Rarity> rarities, int rarity) {
+
+	String text = "";
+
+	for (ItemRarity rar : Rarities.Items) {
+	    if (rar.Rank() <= rarity) {
+		if (text.length() > 0) {
+		    text += TextFormatting.GRAY + ", ";
+		}
+		text += rar.Color() + rar.GUID();
+	    }
+	}
+
+	if (text.length() == 0) {
+	    text += "None";
+	}
+
+	return text;
 
     }
 
-    @SubscribeEvent
+    public boolean shouldSalvageItem(ISalvagable sal, NBTTagCompound nbt) {
+
+	if (nbt != null) {
+	    int rarity = sal.getSalvagedRarity();
+
+	    if (sal instanceof GearItemData) {
+		if (rarity <= getGear(nbt)) {
+		    return true;
+		}
+	    } else if (sal instanceof SpellItemData) {
+		if (rarity <= getSpell(nbt)) {
+		    return true;
+		}
+	    } else if (sal instanceof MapItemData) {
+		if (rarity <= getMap(nbt)) {
+		    return true;
+		}
+	    }
+	}
+
+	return false;
+    }
+
+    private int getGear(NBTTagCompound nbt) {
+
+	if (nbt.hasKey("gear")) {
+	    return nbt.getInteger("gear");
+	}
+	return this.defaul_gear_rarity_salvage;
+
+    }
+
+    private int getSpell(NBTTagCompound nbt) {
+
+	if (nbt.hasKey("spell")) {
+	    return nbt.getInteger("spell");
+	}
+	return this.default_spell_rarity_salvage;
+
+    }
+
+    private int getMap(NBTTagCompound nbt) {
+
+	if (nbt.hasKey("map")) {
+	    return nbt.getInteger("map");
+	}
+	return this.default_map_rarity_salvage;
+
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onPickupItem(EntityItemPickupEvent event) {
 
 	if (event.getEntityPlayer() != null) {
 
 	    EntityPlayer player = event.getEntityPlayer();
 
-	    IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
-	    for (int a = 0; a < handler.getSlots(); a++) {
-		if (!handler.getStackInSlot(a).isEmpty()
-			&& handler.getStackInSlot(a).getItem() instanceof AutoSalvageBag) {
+	    if (!player.world.isRemote) {
 
-		    AutoSalvageBag salvageBag = (AutoSalvageBag) handler.getStackInSlot(a).getItem();
+		ItemStack stack = event.getItem().getItem();
 
-		    ItemStack stack = event.getItem().getItem();
-		    ISalvagable sal = getSalvagable(stack);
+		IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
+		for (int a = 0; a < handler.getSlots(); a++) {
+		    if (!handler.getStackInSlot(a).isEmpty()
+			    && handler.getStackInSlot(a).getItem() instanceof AutoSalvageBag) {
 
-		    if (sal != null) {
+			AutoSalvageBag salvageBag = (AutoSalvageBag) handler.getStackInSlot(a).getItem();
 
-			ItemStack result = salvageBag.getSalvageResultForItem(sal);
+			ISalvagable sal = getSalvagable(stack);
 
-			stack.setCount(0);
+			if (sal != null) {
 
-			// we drop the item and pick it up so the events for picking item works, that
-			// means it works with currency bags
-			EntityItem item = new EntityItem(player.world, player.posX, 0, player.posZ, result);
-			int hook = net.minecraftforge.event.ForgeEventFactory.onItemPickup(item, player);
-			// dont remove
+			    if (salvageBag.shouldSalvageItem(sal, handler.getStackInSlot(a).getTagCompound())) {
+
+				ItemStack result = salvageBag.getSalvageResultForItem(sal);
+
+				stack.setCount(0);
+
+				EntityItem item = new EntityItem(player.world, player.posX, player.posY, player.posZ,
+					result);
+				item.setNoPickupDelay();
+				player.world.spawnEntity(item);
+
+			    }
+			}
+
+			return;
 
 		    }
-
 		}
 	    }
-
 	}
     }
 

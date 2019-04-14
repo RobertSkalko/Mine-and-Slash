@@ -8,6 +8,8 @@ public interface ISalvagable {
 
     ItemStack getSalvageResult(float salvageBonus);
 
+    int getSalvagedRarity();
+
     public default int tryIncreaseAmount(float salvageBonus, int amount) {
 
 	if (RandomUtils.roll((salvageBonus - 1) * 100)) {

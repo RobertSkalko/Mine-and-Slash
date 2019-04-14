@@ -456,4 +456,9 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	return stack;
     }
 
+    @Override
+    public int getSalvagedRarity() {
+	return this.Rarity;
+    }
+
 }
