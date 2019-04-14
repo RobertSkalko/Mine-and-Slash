@@ -78,24 +78,40 @@ public class SpellItemData implements ISalvagable {
 	return Rarities.Spells.get(this.rarity);
     }
 
-    public String GetScalingDesc() {
+    public String GetScalingDesc(boolean moreInfo) {
 
-	return CLOC.word("scaling_value") + ": " + GetSpell().ScalingValue().GetStat().localizedString() + " "
-		+ CLOC.word("by") + " : " + (int) (GetScalingValue() * 100) + "%" + " (" + MinScaling() + "-"
-		+ MaxScaling() + ")";
+	String text = CLOC.word("scaling_value") + ": " + GetSpell().ScalingValue().GetStat().localizedString() + " "
+		+ CLOC.word("by") + " : " + (int) (GetScalingValue() * 100) + "%";
+
+	if (moreInfo) {
+	    text += "" + " (" + MinScaling() + "-" + MaxScaling() + ")";
+	}
+
+	return text;
 
     }
 
-    public String GetBaseDesc() {
+    public String GetBaseDesc(boolean moreInfo) {
 
-	return CLOC.word("base_value") + ": " + this.GetBaseValue() + " (" + MinBase() + "-" + MaxBase() + ")";
+	String text = CLOC.word("base_value") + ": " + this.GetBaseValue();
 
+	if (moreInfo) {
+
+	    text += "" + " (" + MinBase() + "-" + MaxBase() + ")";
+	}
+
+	return text;
     }
 
-    public String GetManaDesc() {
+    public String GetManaDesc(boolean moreInfo) {
 
-	return CLOC.word("mana_cost") + ": " + this.GetManaCost() + " (" + MinMana() + "-" + MaxMana() + ")";
+	String text = CLOC.word("mana_cost") + ": " + this.GetManaCost();
 
+	if (moreInfo) {
+
+	    text += "" + " (" + MinMana() + "-" + MaxMana() + ")";
+	}
+	return text;
     }
 
     public int GetDamage(Unit unit) {
@@ -118,7 +134,10 @@ public class SpellItemData implements ISalvagable {
     }
 
     @Override
-    public ItemStack getSalvageResult() {
+    public ItemStack getSalvageResult(float salvageBonus) {
+
+	int min = tryIncreaseAmount(salvageBonus, 1);
+	int max = tryIncreaseAmount(salvageBonus, 3);
 
 	ItemStack stack = ItemStack.EMPTY;
 
@@ -130,7 +149,7 @@ public class SpellItemData implements ISalvagable {
 	    stack = new ItemStack(item);
 	} else {
 
-	    int amount = RandomUtils.RandomRange(1, 3);
+	    int amount = RandomUtils.RandomRange(min, max);
 
 	    ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
 	    stack = new ItemStack(ore);

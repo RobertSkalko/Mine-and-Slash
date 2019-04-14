@@ -22,6 +22,11 @@ import net.minecraft.world.World;
 public class SpellInstantHeal extends BaseSpell {
 
     @Override
+    public SpellType Type() {
+	return SpellType.Self_Heal;
+    }
+
+    @Override
     public String GUID() {
 	return "instant_heal";
     }

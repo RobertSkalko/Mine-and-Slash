@@ -17,6 +17,12 @@ import net.minecraft.world.World;
 
 public abstract class BaseSpell implements IWeighted {
 
+    public enum SpellType {
+	Single_Target_Projectile, Aoe_Projectile, Self_Heal
+    }
+
+    public abstract SpellType Type();
+
     public abstract String GUID();
 
     public abstract String Name();

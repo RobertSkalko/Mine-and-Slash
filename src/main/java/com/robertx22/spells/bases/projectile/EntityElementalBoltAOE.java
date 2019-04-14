@@ -3,10 +3,10 @@ package com.robertx22.spells.bases.projectile;
 import java.util.List;
 
 import com.robertx22.ColoredRedstone;
+import com.robertx22.SoundUtils;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -25,8 +25,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
 	if (world.isRemote) {
 
-	    world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS,
-		    0.1F, 0.5F, true);
+	    SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.4F, 0.5F);
 
 	} else {
 

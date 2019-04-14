@@ -12,6 +12,7 @@ import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Spell;
 
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -53,10 +54,12 @@ public abstract class BaseSpellItem extends Item {
 	    tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + data.level);
 	    tooltip.add("");
 
+	    boolean moreInfo = GuiScreen.isShiftKeyDown();
+
 	    tooltip.add(TextFormatting.GREEN + CLOC.word("stats") + ": ");
-	    tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc()));
-	    tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc()));
-	    tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc()));
+	    tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc(moreInfo)));
+	    tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc(moreInfo)));
+	    tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc(moreInfo)));
 
 	    tooltip.add("");
 

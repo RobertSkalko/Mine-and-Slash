@@ -44,17 +44,17 @@ public class TileInventorySalvage extends BaseTile {
 
 	GearItemData gear = Gear.Load(st);
 	if (gear != null) {
-	    return gear.getSalvageResult();
+	    return gear.getSalvageResult(0);
 	}
 
 	SpellItemData spell = Spell.Load(st);
 	if (spell != null) {
-	    return spell.getSalvageResult();
+	    return spell.getSalvageResult(0);
 	}
 
 	MapItemData map = Map.Load(st);
 	if (map != null) {
-	    return map.getSalvageResult();
+	    return map.getSalvageResult(0);
 	}
 
 	return ItemStack.EMPTY;

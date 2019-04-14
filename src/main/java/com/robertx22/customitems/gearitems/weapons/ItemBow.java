@@ -110,7 +110,7 @@ public class ItemBow extends BaseBow implements IWeapon {
 			}
 
 			MyEntityArrow entityarrow = new MyEntityArrow(worldIn, entityplayer, sourcedata, stack);
-			entityarrow.shoot(entityplayer, entityplayer.rotationPitch, rotaY, 0.0F, f * 3F, 0.5F);
+			entityarrow.shoot(entityplayer, entityplayer.rotationPitch, rotaY, 0.0F, f * 3F, 1F);
 
 			int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
 

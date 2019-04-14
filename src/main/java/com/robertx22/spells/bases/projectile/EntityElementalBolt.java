@@ -1,11 +1,13 @@
 package com.robertx22.spells.bases.projectile;
 
 import com.robertx22.ColoredRedstone;
+import com.robertx22.SoundUtils;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -29,18 +31,26 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 
     @Override
     protected void onImpact(RayTraceResult result) {
+
+	if (world.isRemote && result.entityHit != null) {
+	    SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
+	}
 	if (result.entityHit != null && result.entityHit instanceof EntityLivingBase && effect != null
 		&& data != null) {
 
 	    effect.Activate(data, (EntityLivingBase) result.entityHit);
 
+	} else {
+	    if (world.isRemote) {
+		SoundUtils.playSound(this, SoundEvents.BLOCK_CLOTH_HIT, 0.7F, 0.9F);
+	    }
 	}
 
 	if (!this.world.isRemote) {
 	    this.world.setEntityState(this, (byte) 3);
 	    this.setDead();
-	}
 
+	}
     }
 
     int ticks = 0;
@@ -60,7 +70,7 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 
 	}
 
-	if (this.ticksExisted > 30) {
+	if (this.ticksExisted > 50) {
 	    this.setDead();
 	}
     }

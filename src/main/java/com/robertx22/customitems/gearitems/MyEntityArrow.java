@@ -102,7 +102,6 @@ public class MyEntityArrow extends EntitySpectralArrow {
      */
     @Override
     public void onUpdate() {
-	// super.onUpdate();
 
 	super.onUpdate();
 

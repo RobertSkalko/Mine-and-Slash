@@ -18,6 +18,11 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
     }
 
     @Override
+    public SpellType Type() {
+	return SpellType.Aoe_Projectile;
+    }
+
+    @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellItemData data) {
 
 	if (!world.isRemote) {

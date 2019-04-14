@@ -58,7 +58,7 @@ public abstract class EntityStaffProjectile extends EntitySpecialThrowable {
 	super.onUpdate();
 
 	if (world.isRemote) {
-	    for (int i = 0; i < 20; i++) {
+	    for (int i = 0; i < 5; i++) {
 
 		this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + rand.nextFloat() * 0.2 - 0.1,
 			this.posY + this.height / 2 + rand.nextFloat() * 0.2 - 0.1,

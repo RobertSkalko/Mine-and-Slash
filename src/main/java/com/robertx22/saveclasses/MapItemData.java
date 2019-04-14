@@ -181,7 +181,10 @@ public class MapItemData implements ISalvagable {
     }
 
     @Override
-    public ItemStack getSalvageResult() {
+    public ItemStack getSalvageResult(float salvageBonus) {
+
+	int min = tryIncreaseAmount(salvageBonus, 1);
+	int max = tryIncreaseAmount(salvageBonus, 3);
 
 	ItemStack stack = ItemStack.EMPTY;
 
@@ -193,7 +196,7 @@ public class MapItemData implements ISalvagable {
 	    stack = new ItemStack(item);
 	} else {
 
-	    int amount = RandomUtils.RandomRange(1, 3);
+	    int amount = RandomUtils.RandomRange(min, max);
 
 	    ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
 

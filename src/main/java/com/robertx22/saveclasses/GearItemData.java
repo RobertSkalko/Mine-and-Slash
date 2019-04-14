@@ -413,11 +413,16 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
     }
 
     @Override
-    public ItemStack getSalvageResult() {
+    public ItemStack getSalvageResult(float salvageBonus) {
 
 	ItemStack stack = ItemStack.EMPTY;
-
 	int tier = 0;
+
+	int min = 1;
+	int max = 3;
+
+	min = tryIncreaseAmount(salvageBonus, min);
+	max = tryIncreaseAmount(salvageBonus, max);
 
 	if (isUnique) {
 	    try {
@@ -433,14 +438,14 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 		    .WeightedRandom(ListUtils.SameTierOrLess(ListUtils.CollectionToList(CurrencyItem.ITEMS), tier));
 
 	    if (isUnique) {
-		int amount = RandomUtils.RandomRange(1, 2 + (tier / 5));
+		int amount = RandomUtils.RandomRange(min, max + (tier / 5));
 		stack.setCount(amount);
 	    }
 
 	    stack = new ItemStack(item);
 	} else {
 
-	    int amount = RandomUtils.RandomRange(1, 3);
+	    int amount = RandomUtils.RandomRange(min, max);
 
 	    ItemOre ore = (ItemOre) ItemOre.ItemOres.get(Rarity);
 	    stack = new ItemStack(ore);
