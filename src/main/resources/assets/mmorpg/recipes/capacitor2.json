@@ -2,16 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ASA",
-    "SAS",
+    "SCS",
     "ASA"
   ],
   "key": {  
+	"C": {
+      "item": "mmorpg:capacitor1"
+    },
 	"A": {
-      "item": "minecraft:gold_block"
+      "item": "minecraft:diamond_block"
     },
     "S": 
       {
-        "item": "mmorpg:capacitor1"        
+        "item": "mmorpg:ore2"        
       }
   },
   "result": {

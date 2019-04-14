@@ -2,16 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ASA",
-    "SAS",
+    "SCS",
     "ASA"
   ],
   "key": {  
+	"C": {
+      "item": "mmorpg:capacitor3"
+    },
 	"A": {
-      "item": "minecraft:lapis_block"
+      "item": "mmorpg:stone_of_hope"
     },
     "S": 
       {
-        "item": "mmorpg:capacitor3"        
+        "item": "mmorpg:ore4"        
       }
   },
   "result": {

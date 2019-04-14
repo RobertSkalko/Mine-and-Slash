@@ -39,7 +39,7 @@ public class ItemCapacitor extends Item {
 
     int rarity;
 
-    public List<Float> RepairValues = Arrays.asList(0.95F, 0.9F, 0.8F, 0.7F, 0.5F, 0.25F);
+    public List<Float> RepairValues = Arrays.asList(0.95F, 0.9F, 0.8F, 0.7F, 0.6F, 0.5F);
 
     public Float GetFuelMultiplier() {
 

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+   "ingredients": [
+        {
+           "item": "mmorpg:capacitor5"
+        },
+        {
+           "item": "minecraft:furnace"
+        }
+    ], 
+  "result": {
+        "item": "mmorpg:auto_salvage_bag5"
+    }
+}

@@ -213,22 +213,21 @@ public class AutoSalvageBag extends Item implements IBauble {
 
     public boolean shouldSalvageItem(ISalvagable sal, NBTTagCompound nbt) {
 
-	if (nbt != null) {
-	    int rarity = sal.getSalvagedRarity();
+	int rarity = sal.getSalvagedRarity();
 
-	    if (sal instanceof GearItemData) {
-		if (rarity <= getGear(nbt)) {
-		    return true;
-		}
-	    } else if (sal instanceof SpellItemData) {
-		if (rarity <= getSpell(nbt)) {
-		    return true;
-		}
-	    } else if (sal instanceof MapItemData) {
-		if (rarity <= getMap(nbt)) {
-		    return true;
-		}
+	if (sal instanceof GearItemData) {
+	    if (rarity <= getGear(nbt)) {
+		return true;
 	    }
+	} else if (sal instanceof SpellItemData) {
+	    if (rarity <= getSpell(nbt)) {
+		return true;
+	    }
+	} else if (sal instanceof MapItemData) {
+	    if (rarity <= getMap(nbt)) {
+		return true;
+	    }
+
 	}
 
 	return false;
@@ -236,26 +235,31 @@ public class AutoSalvageBag extends Item implements IBauble {
 
     private int getGear(NBTTagCompound nbt) {
 
-	if (nbt.hasKey("gear")) {
-	    return nbt.getInteger("gear");
+	if (nbt != null) {
+	    if (nbt.hasKey("gear")) {
+		return nbt.getInteger("gear");
+	    }
 	}
 	return this.defaul_gear_rarity_salvage;
 
     }
 
     private int getSpell(NBTTagCompound nbt) {
-
-	if (nbt.hasKey("spell")) {
-	    return nbt.getInteger("spell");
+	if (nbt != null) {
+	    if (nbt.hasKey("spell")) {
+		return nbt.getInteger("spell");
+	    }
 	}
 	return this.default_spell_rarity_salvage;
 
     }
 
     private int getMap(NBTTagCompound nbt) {
+	if (nbt != null) {
 
-	if (nbt.hasKey("map")) {
-	    return nbt.getInteger("map");
+	    if (nbt.hasKey("map")) {
+		return nbt.getInteger("map");
+	    }
 	}
 	return this.default_map_rarity_salvage;
 

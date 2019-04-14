@@ -2,16 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ASA",
-    "SAS",
+    "SCS",
     "ASA"
   ],
   "key": {  
+	"C": {
+      "item": "mmorpg:capacitor4"
+    },
 	"A": {
-      "item": "minecraft:emerald_block"
+      "item": "mmorpg:create_new_unique"
     },
     "S": 
       {
-        "item": "mmorpg:capacitor4"        
+        "item": "mmorpg:ore5"        
       }
   },
   "result": {
