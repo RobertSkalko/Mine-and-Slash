@@ -1,4 +1,4 @@
-package com.robertx22.customitems;
+package com.robertx22.customitems.bags;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,7 +90,7 @@ public class AutoSalvageBag extends Item implements IBauble {
 
 	    ItemStack stack = player.getHeldItemOffhand();
 
-	    if (stack != null) {
+	    if (stack != null && !stack.isEmpty()) {
 
 		GearItemData gear = Gear.Load(stack);
 		if (gear != null) {
@@ -111,8 +111,11 @@ public class AutoSalvageBag extends Item implements IBauble {
 		bag.setTagCompound(nbt);
 
 	    } else {
-		player.sendMessage(new TextComponentString(
-			"You Need to Hold an Item In your off hand for Configuration to work."));
+		nbt.setInteger("gear", -1);
+		nbt.setInteger("spell", -1);
+		nbt.setInteger("map", -1);
+
+		player.sendMessage(new TextComponentString("Bag Config Cleared"));
 	    }
 	}
 
@@ -188,6 +191,9 @@ public class AutoSalvageBag extends Item implements IBauble {
 	tooltip.add("Then Right click with this bag.");
 	tooltip.add("If you put an Uncommon Sword for example, that means");
 	tooltip.add("Common and Uncommon Gear Items will be salvaged");
+	tooltip.add("To Not Salvage Any Items, clear the config by");
+	tooltip.add("Right Clicking the bag while shield slot is empty.");
+
     }
 
     public String getSalvagedRarities(List<Rarity> rarities, int rarity) {

@@ -87,7 +87,7 @@ public class ItemCurrencyBag extends Item {
 
     private static class InvProvider implements ICapabilitySerializable<NBTBase> {
 
-	private final IItemHandler inv = new ItemStackHandler(16);
+	private final IItemHandler inv = new ItemStackHandler(ContainerCurrencyBag.size);
 
 	@Override
 	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
