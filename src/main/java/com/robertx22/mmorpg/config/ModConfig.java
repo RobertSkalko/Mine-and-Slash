@@ -384,6 +384,11 @@ public class ModConfig {
 
     public static class DropRatesContainer {
 
+	@Config.Name("Rune Droprate")
+	@Config.LangKey("mmorpg.config.rune_droprate")
+	@Config.Comment("Runes that can be socketed into items and create runewords!")
+	public float RUNE_DROPRATE = 0.5F;
+
 	@Config.Name("Map Droprate")
 	@Config.LangKey("mmorpg.config.map_droprate")
 	@Config.Comment("Adventure maps, temporary items that create a temporary world to kill mobs in")
@@ -412,6 +417,11 @@ public class ModConfig {
     }
 
     public static class ServerContainer {
+
+	@Config.Name("Maximum Worn Unique Items")
+	@Config.LangKey("mmorpg.config.")
+	@Config.Comment("")
+	public int MAXIMUM_WORN_UNIQUE_ITEMS = 3;
 
 	@Config.Name("Generate Ores")
 	@Config.LangKey("mmorpg.config.")

@@ -18,6 +18,7 @@ import com.robertx22.customitems.gearitems.weapons.ItemHammer;
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
 import com.robertx22.customitems.gearitems.weapons.ItemSword;
 import com.robertx22.customitems.misc.ItemMap;
+import com.robertx22.customitems.runes.CenItem;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
@@ -40,6 +41,11 @@ public class GearItemRegisters {
 	    // 1] class 2] rarity hashmap 3] registry name 4] rarity rank
 
 	    int rank = rarity.Rank();
+
+	    // runes
+	    regRarities(new CenItem(rank), CenItem.Items, "runes/cen", rank);
+	    // regRarities(new ZohItem(rank), ZohItem.Items, "runes/zoh", rarity.Rank());
+	    // regRarities(new MosItem(rank), MosItem.Items, "runes/mos", rarity.Rank());
 
 	    // weapons
 	    regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());

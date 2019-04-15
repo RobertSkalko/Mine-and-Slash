@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.database.MinMax;
+import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.GearItemData;
@@ -35,6 +36,17 @@ public class StatModData implements ITooltipString {
 	data.baseModName = mod.GUID();
 	data.type = mod.Type();
 	data.percent = StatGen.GenPercent(gear.GetRarity());
+
+	return data;
+    }
+
+    public static StatModData NewRandom(RuneRarity rar, StatMod mod) {
+
+	StatModData data = new StatModData();
+
+	data.baseModName = mod.GUID();
+	data.type = mod.Type();
+	data.percent = StatGen.GenPercent(rar);
 
 	return data;
     }

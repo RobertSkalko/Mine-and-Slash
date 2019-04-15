@@ -29,13 +29,17 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.CommonStatUtils;
 import com.robertx22.uncommon.capability.bases.MobStatUtils;
 import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentString;
 
 @Storable
 public class Unit {
@@ -282,7 +286,17 @@ public class Unit {
 
 	DirtyCheck old = getDirtyCheck();
 
-	List<GearItemData> gears = PlayerStatUtils.GetEquips(entity); // slow but required
+	List<GearItemData> gears = PlayerStatUtils.getEquipsExcludingWeapon(entity); // slow but required
+
+	boolean gearIsValid = this.isGearCombinationValid(gears, entity);
+
+	ItemStack weapon = entity.getHeldItemMainhand();
+	if (weapon != null) {
+	    GearItemData wep = Gear.Load(weapon);
+	    if (wep != null) {
+		gears.add(wep);
+	    }
+	}
 
 	Unit copy = this.Clone();
 
@@ -305,10 +319,13 @@ public class Unit {
 
 	}
 
-	PlayerStatUtils.CountWornSets(entity, gears, this);
-	PlayerStatUtils.AddAllGearStats(entity, gears, this, level); // slow, but required
+	if (gearIsValid) {
+	    PlayerStatUtils.CountWornSets(entity, gears, this);
+	    PlayerStatUtils.AddAllGearStats(entity, gears, this, level); // slow, but required
+	    PlayerStatUtils.AddAllSetStats(entity, this, level);
+	}
+
 	CommonStatUtils.AddStatusEffectStats(this, level);
-	PlayerStatUtils.AddAllSetStats(entity, this, level);
 	CommonStatUtils.AddMapAffixStats(this, level);
 	PlayerStatUtils.CalcStatConversionsAndTransfers(copy, this);
 	PlayerStatUtils.CalcTraits(data);
@@ -320,6 +337,41 @@ public class Unit {
 	if (old.isDirty(newcheck)) {
 	    Main.Network.sendToAllTracking(new EntityPackage(entity, data), entity);
 	}
+
+    }
+
+// gear check works on everything but the weapon.
+    public boolean isGearCombinationValid(List<GearItemData> gears, Entity en) {
+
+	int unique_items = countUniqueItems(gears);
+
+	if (unique_items > ModConfig.Server.MAXIMUM_WORN_UNIQUE_ITEMS) {
+	    if (en instanceof EntityPlayer) {
+		en.sendMessage(new TextComponentString(
+			"Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): "
+				+ ModConfig.Server.MAXIMUM_WORN_UNIQUE_ITEMS));
+	    }
+	    return false;
+	}
+
+	// here i can go through all the items and then runewords and check if there is
+	// more than
+
+	return true;
+
+    }
+
+    private int countUniqueItems(List<GearItemData> gears) {
+
+	int amount = 0;
+
+	for (GearItemData gear : gears) {
+	    if (gear.isUnique) {
+		amount++;
+	    }
+	}
+
+	return amount;
 
     }
 

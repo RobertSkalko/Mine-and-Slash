@@ -197,7 +197,7 @@ public class PlayerStatUtils {
 
     }
 
-    public static List<GearItemData> GetEquips(EntityLivingBase entity) {
+    public static List<GearItemData> getEquipsExcludingWeapon(EntityLivingBase entity) {
 
 	List<ItemStack> list = new ArrayList<ItemStack>();
 
@@ -205,10 +205,6 @@ public class PlayerStatUtils {
 	    if (stack != null) {
 		list.add(stack);
 	    }
-	}
-	ItemStack weapon = entity.getHeldItemMainhand();
-	if (weapon != null) {
-	    list.add(weapon);
 	}
 
 	if (entity instanceof EntityPlayer) {

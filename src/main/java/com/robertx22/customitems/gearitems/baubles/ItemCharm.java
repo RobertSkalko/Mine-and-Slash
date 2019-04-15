@@ -9,15 +9,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemCharm extends BaseBaublesItem {
-	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-	public ItemCharm() {
+    public ItemCharm() {
 
-	}
+    }
 
-	@Override
-	public BaubleType getBaubleType(ItemStack itemstack) {
-		return BaubleType.CHARM;
-	}
+    @Override
+    public BaubleType getBaubleType(ItemStack itemstack) {
+	return BaubleType.CHARM;
+    }
 
 }
