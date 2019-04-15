@@ -51,6 +51,20 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
 	return Arrays.asList(new LevelAndStats(list, this.level));
     }
 
+    public int getAveragePercents() {
+	int per = 0;
+
+	for (StatModData mod : Mods) {
+	    per += mod.percent;
+
+	}
+
+	per = per / Mods.size();
+
+	return per;
+
+    }
+
     @Override
     public List<String> GetTooltipString(GearItemData gear) {
 	List<String> list = new ArrayList();

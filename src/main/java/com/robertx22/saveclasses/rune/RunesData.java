@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.robertx22.database.runewords.base.RuneWord;
+import com.robertx22.db_lists.RuneWords;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -21,6 +23,9 @@ public class RunesData implements ITooltipList, IStatsContainer {
     public List<InsertedRuneData> runes = new ArrayList<InsertedRuneData>();
 
     @Store
+    public RuneWordData runeword = new RuneWordData();
+
+    @Store
     public int capacity = 1;
 
     @Override
@@ -31,14 +36,72 @@ public class RunesData implements ITooltipList, IStatsContainer {
 	    list.addAll(rune.GetAllStats(level));
 	}
 
+	list.addAll(runeword.GetAllStats(level));
+
 	return list;
+    }
+
+    public String getRuneWordCombo() {
+
+	String text = "";
+
+	for (InsertedRuneData item : runes) {
+	    text += item.rune.toUpperCase();
+	}
+	return text;
     }
 
     public void insert(RuneItemData rune, GearItemData gear) {
 
 	this.runes.add(new InsertedRuneData(rune.level, rune.name, Arrays.asList(rune.getModFor(gear)), rune.rarity));
 
-	// create runeword
+	if (runes.size() == this.capacity) {// create runeword
+	    RuneWord runeword = RuneWords.findMatching(this);
+
+	    if (runeword != null) {
+		this.runeword = new RuneWordData(this, runeword);
+	    }
+
+	}
+
+    }
+
+    public int getAveragePercents() {
+	int per = 0;
+
+	for (InsertedRuneData rune : runes) {
+
+	    per += rune.getAveragePercents();
+	}
+	per = per / runes.size();
+
+	return per;
+
+    }
+
+    public int getAverageLevel() {
+	int per = 0;
+
+	for (InsertedRuneData rune : runes) {
+
+	    per += rune.level;
+	}
+	per = per / runes.size();
+
+	return per;
+
+    }
+
+    public int getAverageRarity() {
+	int per = 0;
+
+	for (InsertedRuneData rune : runes) {
+
+	    per += rune.rarity;
+	}
+	per = per / runes.size();
+
+	return per;
 
     }
 
@@ -87,7 +150,10 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
 	list.add("");
 
-	// list.add("Rune Slots: " + this.capacity);
+	if (this.runeword != null && runeword.Mods.size() > 0) {
+
+	    list.addAll(runeword.GetTooltipString(gear));
+	}
 
 	return list;
     }
