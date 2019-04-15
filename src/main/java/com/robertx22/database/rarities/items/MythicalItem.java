@@ -37,4 +37,9 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
 	return ModConfig.RarityWeightConfig.ITEMS.MYTHICAL_WEIGHT;
     }
 
+    @Override
+    public int runeSlots() {
+	return 5;
+    }
+
 }

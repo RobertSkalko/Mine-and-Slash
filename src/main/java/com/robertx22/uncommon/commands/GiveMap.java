@@ -18,7 +18,7 @@ public class GiveMap extends CommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-	return "/givemap (lvl), (rarity 0-4), (tier 0-20)  (amount)";
+	return "/givemap (lvl), (rarity 0-5), (tier 0-20)  (amount)";
     }
 
     @Override

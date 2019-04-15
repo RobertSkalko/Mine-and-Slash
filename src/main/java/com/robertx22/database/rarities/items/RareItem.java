@@ -36,4 +36,10 @@ public class RareItem extends BaseRare implements ItemRarity {
     public int Weight() {
 	return ModConfig.RarityWeightConfig.ITEMS.RARE_WEIGHT;
     }
+
+    @Override
+    public int runeSlots() {
+	return 2;
+    }
+
 }

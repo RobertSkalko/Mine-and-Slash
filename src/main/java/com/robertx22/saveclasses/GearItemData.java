@@ -204,6 +204,7 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	IfNotNullAdd(gearTypeStats, list);
 	IfNotNullAdd(sockets, list);
 	IfNotNullAdd(infusion, list);
+	IfNotNullAdd(runes, list);
 
 	return list;
 
@@ -267,6 +268,11 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 	if (primaryStats != null) {
 	    event.getToolTip().addAll(primaryStats.GetTooltipString(this));
 	}
+
+	if (runes != null) {
+	    event.getToolTip().addAll(runes.GetTooltipString(this));
+	}
+
 	event.getToolTip().add("");
 
 	if (GuiScreen.isShiftKeyDown() == false && ModConfig.Client.LENTHY_GEAR_TOOLTIPS == false) {

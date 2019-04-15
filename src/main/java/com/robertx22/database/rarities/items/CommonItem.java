@@ -36,4 +36,10 @@ public class CommonItem extends BaseCommon implements ItemRarity {
     public int Weight() {
 	return ModConfig.RarityWeightConfig.ITEMS.COMMON_WEIGHT;
     }
+
+    @Override
+    public int runeSlots() {
+	return 1;
+    }
+
 }

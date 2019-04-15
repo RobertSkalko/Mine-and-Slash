@@ -36,4 +36,9 @@ public class UniqueItem extends BaseUnique implements ItemRarity {
 	return 100;
     }
 
+    @Override
+    public int runeSlots() {
+	return 0;
+    }
+
 }

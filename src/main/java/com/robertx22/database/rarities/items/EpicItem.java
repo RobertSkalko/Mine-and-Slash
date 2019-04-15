@@ -38,4 +38,10 @@ public class EpicItem extends BaseEpic implements ItemRarity {
     public int Weight() {
 	return ModConfig.RarityWeightConfig.ITEMS.EPIC_WEIGHT;
     }
+
+    @Override
+    public int runeSlots() {
+	return 3;
+    }
+
 }

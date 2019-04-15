@@ -37,4 +37,9 @@ public class UncommonItem extends BaseUncommon implements ItemRarity {
 	return ModConfig.RarityWeightConfig.ITEMS.UNCOMMON_WEIGHT;
     }
 
+    @Override
+    public int runeSlots() {
+	return 2;
+    }
+
 }

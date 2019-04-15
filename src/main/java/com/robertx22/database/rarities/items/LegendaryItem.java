@@ -36,4 +36,10 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
     public int Weight() {
 	return ModConfig.RarityWeightConfig.ITEMS.LEGENDARY_WEIGHT;
     }
+
+    @Override
+    public int runeSlots() {
+	return 4;
+    }
+
 }

@@ -353,11 +353,35 @@ public class Unit {
 	    }
 	    return false;
 	}
+	int runed_items = countRunedItems(gears);
+
+	if (runed_items > ModConfig.Server.MAXIMUM_WORN_RUNED_ITEMS) {
+	    if (en instanceof EntityPlayer) {
+		en.sendMessage(new TextComponentString(
+			"Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): "
+				+ ModConfig.Server.MAXIMUM_WORN_RUNED_ITEMS));
+	    }
+	    return false;
+	}
 
 	// here i can go through all the items and then runewords and check if there is
 	// more than
 
 	return true;
+
+    }
+
+    private int countRunedItems(List<GearItemData> gears) {
+
+	int amount = 0;
+
+	for (GearItemData gear : gears) {
+	    if (gear.isRuned()) {
+		amount++;
+	    }
+	}
+
+	return amount;
 
     }
 

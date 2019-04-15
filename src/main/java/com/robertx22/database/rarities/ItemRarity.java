@@ -12,4 +12,6 @@ public interface ItemRarity extends Rarity, SalvagableItem {
 
     int SetChance();
 
+    int runeSlots();
+
 }

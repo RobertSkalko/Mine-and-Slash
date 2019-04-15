@@ -384,6 +384,11 @@ public class ModConfig {
 
     public static class DropRatesContainer {
 
+	@Config.Name("Runed Gear Droprate")
+	@Config.LangKey("mmorpg.config.runed_gear_droprate")
+	@Config.Comment("")
+	public float RUNED_GEAR_DROPRATE = 2F;
+
 	@Config.Name("Rune Droprate")
 	@Config.LangKey("mmorpg.config.rune_droprate")
 	@Config.Comment("Runes that can be socketed into items and create runewords!")
@@ -417,6 +422,11 @@ public class ModConfig {
     }
 
     public static class ServerContainer {
+
+	@Config.Name("Maximum Worn Runed Items")
+	@Config.LangKey("mmorpg.config.")
+	@Config.Comment("")
+	public int MAXIMUM_WORN_RUNED_ITEMS = 3;
 
 	@Config.Name("Maximum Worn Unique Items")
 	@Config.LangKey("mmorpg.config.")

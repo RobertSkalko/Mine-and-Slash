@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.commands;
 
-import com.robertx22.generation.RuneGen;
-import com.robertx22.generation.blueprints.RuneBlueprint;
+import com.robertx22.generation.RunedGearGen;
+import com.robertx22.generation.blueprints.GearBlueprint;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -9,16 +9,16 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
-public class GiveRune extends CommandBase {
+public class GiveRunedGear extends CommandBase {
 
     @Override
     public String getName() {
-	return "giverune";
+	return "giverunedgear";
     }
 
     @Override
     public String getUsage(ICommandSender sender) {
-	return "/giverune (lvl), (rarity 0-5), (amount)";
+	return "/giverunedgear (lvl), (rarity 0-5), (type: Sword, Necklace etc), (amount)  NOTE: It's Caps sensitive! Sword, not sword.";
     }
 
     @Override
@@ -26,19 +26,22 @@ public class GiveRune extends CommandBase {
 
 	int lvl = Integer.valueOf(args[0]);
 	int rarity = Integer.valueOf(args[1]);
-	int amount = Integer.valueOf(args[2]);
+	String type = args[2];
+	int amount = Integer.valueOf(args[3]);
 
-	RuneBlueprint blueprint = new RuneBlueprint(lvl);
+	GearBlueprint blueprint = new GearBlueprint(lvl);
 	if (rarity > -1) {
 	    blueprint.SetSpecificRarity(rarity);
 	}
-
+	if (!type.equals("random")) {
+	    blueprint.SetSpecificType(type);
+	}
 	blueprint.LevelRange = false;
 
 	EntityPlayer player = (EntityPlayer) sender;
 
 	for (int i = 0; i < amount; i++) {
-	    player.addItemStackToInventory(RuneGen.Create(blueprint));
+	    player.addItemStackToInventory(RunedGearGen.CreateStack(blueprint));
 	}
 
     }

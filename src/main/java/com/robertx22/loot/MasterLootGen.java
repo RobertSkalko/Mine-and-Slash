@@ -7,6 +7,7 @@ import com.robertx22.loot.gens.CurrencyLootGen;
 import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.MapLootGen;
 import com.robertx22.loot.gens.RuneLootGen;
+import com.robertx22.loot.gens.RunedGearLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.loot.gens.UniqueGearLootGen;
 import com.robertx22.mmorpg.config.ModConfig;
@@ -32,6 +33,7 @@ public class MasterLootGen {
 	items.addAll(new SpellLootGen(mob, player, world, victim).generate());
 	items.addAll(new MapLootGen(mob, player, world, victim).generate());
 	items.addAll(new RuneLootGen(mob, player, world, victim).generate());
+	items.addAll(new RunedGearLootGen(mob, player, world, victim).generate());
 
 	if (world.isMapWorld()) {
 	    items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
@@ -55,6 +57,7 @@ public class MasterLootGen {
 	items.addAll(new SpellLootGen(multi, world, level).generate());
 	items.addAll(new MapLootGen(multi, world, level).generate());
 	items.addAll(new RuneLootGen(multi, world, level).generate());
+	items.addAll(new RunedGearLootGen(multi, world, level).generate());
 
 	if (world.isMapWorld()) {
 	    items.addAll(new UniqueGearLootGen(multi, world, level).generate());
