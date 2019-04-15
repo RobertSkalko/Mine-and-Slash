@@ -59,6 +59,14 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
     @Store
     public String gearTypeName;
 
+    @Store
+    public RunesData runes;
+
+    public boolean isRuned() {
+	return runes != null;
+
+    }
+
     public String name() {
 
 	if (isUnique) {

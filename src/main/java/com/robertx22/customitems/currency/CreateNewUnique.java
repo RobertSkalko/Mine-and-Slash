@@ -46,7 +46,7 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack) {
+    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
 	GearItemData gear = Gear.Load(stack);
 
@@ -68,7 +68,7 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public boolean CanItemBeModified(ItemStack stack) {
+    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 
 	GearItemData gear = Gear.Load(stack);
 

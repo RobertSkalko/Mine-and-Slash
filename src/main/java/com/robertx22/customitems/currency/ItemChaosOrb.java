@@ -43,7 +43,7 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack) {
+    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
 	GearItemData gear = Gear.Load(stack);
 	gear.chaosStats = new ChaosStatsData();
@@ -54,11 +54,11 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect {
     }
 
     @Override
-    public boolean CanItemBeModified(ItemStack stack) {
+    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 
 	GearItemData gear = Gear.Load(stack);
 
-	if (gear.chaosStats == null) {
+	if (gear.chaosStats == null && !gear.isRuned()) {
 	    return true;
 	}
 

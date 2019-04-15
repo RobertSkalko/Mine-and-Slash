@@ -42,7 +42,7 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack) {
+    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
 	GearItemData gear = Gear.Load(stack);
 
@@ -53,10 +53,10 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     }
 
     @Override
-    public boolean CanItemBeModified(ItemStack stack) {
+    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 	GearItemData gear = Gear.Load(stack);
 
-	if (gear.secondaryStats != null && gear.secondaryStats.AddedStat == false) {
+	if (gear.secondaryStats != null && gear.secondaryStats.AddedStat == false && !gear.isRuned()) {
 	    return true;
 	}
 

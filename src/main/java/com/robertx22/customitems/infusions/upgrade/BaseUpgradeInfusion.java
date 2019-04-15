@@ -61,7 +61,7 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack) {
+    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
 	GearItemData gear = Gear.Load(stack);
 
@@ -74,7 +74,7 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
     }
 
     @Override
-    public boolean CanItemBeModified(ItemStack stack) {
+    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 	GearItemData gear = Gear.Load(stack);
 
 	return gear.infusion != null && gear.infusion.canUpgrade();

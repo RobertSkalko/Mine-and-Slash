@@ -43,7 +43,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack) {
+    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
 	GearItemData gear = Gear.Load(stack);
 
@@ -56,10 +56,10 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public boolean CanItemBeModified(ItemStack stack) {
+    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 	GearItemData gear = Gear.Load(stack);
 
-	return gear != null;
+	return gear != null && !gear.isRuned();
     }
 
     @Override

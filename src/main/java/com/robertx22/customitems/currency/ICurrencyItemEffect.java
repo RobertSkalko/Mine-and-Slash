@@ -4,8 +4,8 @@ import net.minecraft.item.ItemStack;
 
 public interface ICurrencyItemEffect {
 
-	public abstract ItemStack ModifyItem(ItemStack stack);
+    public abstract ItemStack ModifyItem(ItemStack stack, ItemStack currency);
 
-	public abstract boolean CanItemBeModified(ItemStack stack);
+    boolean canItemBeModified(ItemStack item, ItemStack currency);
 
 }

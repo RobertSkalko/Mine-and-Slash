@@ -52,7 +52,7 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     public abstract List<StatMod> jewerlyInfusions();
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack) {
+    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 	GearItemData gear = Gear.Load(stack);
 
 	this.createInfusion(gear);
@@ -62,7 +62,7 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     }
 
     @Override
-    public boolean CanItemBeModified(ItemStack stack) {
+    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 	GearItemData gear = Gear.Load(stack);
 
 	return gear != null;

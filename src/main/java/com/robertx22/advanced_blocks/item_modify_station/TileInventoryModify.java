@@ -40,15 +40,16 @@ public class TileInventoryModify extends BaseTile {
 	if (gearStack == null || gearStack.isEmpty() || craftStack == null || craftStack.isEmpty()) {
 	    return ItemStack.EMPTY;
 	}
+
 	GearItemData gear = Gear.Load(stack);
 
 	if (gear != null && craftStack.getItem() instanceof ICurrencyItemEffect) {
 
 	    ICurrencyItemEffect effect = (ICurrencyItemEffect) craftStack.getItem();
 
-	    if (effect.CanItemBeModified(gearStack)) {
+	    if (effect.canItemBeModified(gearStack, craftStack)) {
 		ItemStack copy = gearStack.copy();
-		copy = effect.ModifyItem(copy);
+		copy = effect.ModifyItem(copy, craftStack);
 		return copy;
 	    } else {
 		return ItemStack.EMPTY;

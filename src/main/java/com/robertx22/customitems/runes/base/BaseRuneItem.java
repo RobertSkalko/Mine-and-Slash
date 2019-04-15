@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.robertx22.customitems.currency.ICurrencyItemEffect;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.stat_mods.flat.elemental.pene.FirePeneFlat;
 import com.robertx22.database.stat_mods.flat.elemental.pene.NaturePeneFlat;
@@ -30,9 +31,12 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellFireDamagePer
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.RuneItemData;
+import com.robertx22.saveclasses.RunesData;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.CLOC;
+import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
@@ -44,7 +48,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class BaseRuneItem extends Item implements IWeighted {
+public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect {
 
     public int rarity;
 
@@ -60,6 +64,37 @@ public abstract class BaseRuneItem extends Item implements IWeighted {
 	this.setMaxStackSize(1);
 	this.rarity = rarity;
 
+    }
+
+    @Override
+    public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
+	GearItemData gear = Gear.Load(stack);
+
+	RuneItemData rune = Rune.Load(currency);
+
+	gear.runes.insert(rune, gear);
+
+	Gear.Save(stack, gear);
+
+	return stack;
+
+    }
+
+    @Override
+    public boolean canItemBeModified(ItemStack stack, ItemStack currency) {
+
+	GearItemData gear = Gear.Load(stack);
+
+	if (gear != null && gear.isRuned()) {
+	    if (gear.runes == null) {
+		gear.runes = new RunesData();
+		Gear.Save(stack, gear);
+	    }
+
+	    return gear.runes.canFit();
+	}
+
+	return false;
     }
 
     @Override
