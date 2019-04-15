@@ -42,4 +42,9 @@ public class UncommonItem extends BaseUncommon implements ItemRarity {
 	return 2;
     }
 
+    @Override
+    public MinMax SpawnDurabilityHit() {
+	return new MinMax(60, 70);
+    }
+
 }

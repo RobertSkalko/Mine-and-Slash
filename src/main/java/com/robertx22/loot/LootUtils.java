@@ -1,5 +1,6 @@
 package com.robertx22.loot;
 
+import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -32,9 +33,10 @@ public class LootUtils {
 
     }
 
-    public static ItemStack RandomDamagedGear(ItemStack stack) {
+    public static ItemStack RandomDamagedGear(ItemStack stack, ItemRarity rar) {
 	if (stack.getMaxDamage() > 0) {
-	    float damage = (float) RandomUtils.RandomRange(75, 95) / (float) 100;
+	    float damage = (float) RandomUtils.RandomRange(rar.SpawnDurabilityHit().Min, rar.SpawnDurabilityHit().Max)
+		    / (float) 100;
 	    stack.setItemDamage((int) (damage * stack.getMaxDamage()));
 	}
 

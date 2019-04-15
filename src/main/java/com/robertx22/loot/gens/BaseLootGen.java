@@ -24,8 +24,13 @@ public abstract class BaseLootGen {
     public List<ItemStack> generate() {
 
 	List<ItemStack> list = new ArrayList<ItemStack>();
+
 	for (int i = 0; i < amount; i++) {
-	    list.add(generateOne());
+	    try {
+		list.add(generateOne());
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
 	}
 	return list;
     }

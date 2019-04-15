@@ -42,4 +42,9 @@ public class CommonItem extends BaseCommon implements ItemRarity {
 	return 1;
     }
 
+    @Override
+    public MinMax SpawnDurabilityHit() {
+	return new MinMax(55, 65);
+    }
+
 }

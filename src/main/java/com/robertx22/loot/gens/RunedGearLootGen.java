@@ -4,8 +4,10 @@ import com.robertx22.generation.RunedGearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
+import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -35,7 +37,11 @@ public class RunedGearLootGen extends BaseLootGen {
     @Override
     public ItemStack generateOne() {
 
-	return LootUtils.RandomDamagedGear(RunedGearGen.CreateStack(gearPrint));
+	ItemStack stack = RunedGearGen.CreateStack(gearPrint);
+
+	GearItemData gear = Gear.Load(stack);
+
+	return LootUtils.RandomDamagedGear(stack, gear.GetRarity());
 
     }
 

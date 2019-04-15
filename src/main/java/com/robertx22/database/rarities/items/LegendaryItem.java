@@ -42,4 +42,9 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
 	return 4;
     }
 
+    @Override
+    public MinMax SpawnDurabilityHit() {
+	return new MinMax(75, 85);
+    }
+
 }

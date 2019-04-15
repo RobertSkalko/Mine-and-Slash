@@ -42,4 +42,9 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
 	return 5;
     }
 
+    @Override
+    public MinMax SpawnDurabilityHit() {
+	return new MinMax(80, 90);
+    }
+
 }

@@ -42,4 +42,9 @@ public class RareItem extends BaseRare implements ItemRarity {
 	return 2;
     }
 
+    @Override
+    public MinMax SpawnDurabilityHit() {
+	return new MinMax(65, 75);
+    }
+
 }
