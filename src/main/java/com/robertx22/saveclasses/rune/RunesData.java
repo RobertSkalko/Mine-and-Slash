@@ -36,14 +36,25 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
     public void insert(RuneItemData rune, GearItemData gear) {
 
-	this.runes.add(new InsertedRuneData(rune.level, rune.name, Arrays.asList(rune.getModFor(gear))));
+	this.runes.add(new InsertedRuneData(rune.level, rune.name, Arrays.asList(rune.getModFor(gear)), rune.rarity));
 
 	// create runeword
 
     }
 
     public boolean canFit(GearItemData gear, RuneItemData rune) {
-	return this.runes.size() < capacity && gear.level >= rune.level;
+	return this.runes.size() < capacity && gear.level >= rune.level && !alreadyContains(rune);
+    }
+
+    public boolean alreadyContains(RuneItemData rune) {
+
+	for (InsertedRuneData r : runes) {
+	    if (r.rune.equals(rune.name)) {
+		return true;
+	    }
+	}
+	return false;
+
     }
 
     public void clearRunes() {
@@ -57,29 +68,26 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
 	list.add("");
 
-	if (runes.size() > 0) {
+	String txt = "Runes: ";
 
-	    String txt = "Runes: ";
+	list.add(txt);
 
-	    for (int i = 0; i < runes.size(); i++) {
-
-		txt += runes.get(i).rune;
-
-		if (i < runes.size() - 1) {
-		    txt += " + ";
-		}
-	    }
-	    list.add(txt);
-
-	}
 	for (InsertedRuneData rune : runes) {
 
 	    list.addAll(rune.GetTooltipString(gear));
 	}
 
+	int empty = capacity - runes.size();
+
+	for (int i = 0; i < empty; i++) {
+
+	    list.add("Rune: [ Empty ]");
+
+	}
+
 	list.add("");
 
-	list.add("Rune Slots: " + this.capacity);
+	// list.add("Rune Slots: " + this.capacity);
 
 	return list;
     }

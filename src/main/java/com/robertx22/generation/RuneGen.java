@@ -23,7 +23,7 @@ public class RuneGen {
 
 	RuneItemData data = new RuneItemData();
 
-	data.rarity = blueprint.GetRarity();
+	data.rarity = item.rarity;
 	data.name = item.name();
 	data.level = blueprint.level;
 

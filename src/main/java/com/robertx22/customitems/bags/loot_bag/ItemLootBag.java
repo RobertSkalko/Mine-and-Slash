@@ -7,7 +7,9 @@ import com.robertx22.mmorpg.gui.GuiHandler;
 import com.robertx22.mmorpg.gui.GuiHandlerRegistry;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.SpellItemData;
+import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.uncommon.datasaving.Gear;
+import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
@@ -54,16 +56,19 @@ public class ItemLootBag extends BaseBagItem {
 
 	if (gear != null) {
 	    return true;
-
 	}
 
 	SpellItemData spell = Spell.Load(stack);
 
 	if (spell != null) {
 	    return true;
-
 	}
 
+	RuneItemData rune = Rune.Load(stack);
+	if (rune != null) {
+	    return true;
+
+	}
 	return false;
     }
 

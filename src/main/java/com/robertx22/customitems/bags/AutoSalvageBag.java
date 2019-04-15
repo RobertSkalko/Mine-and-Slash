@@ -15,8 +15,10 @@ import com.robertx22.saveclasses.ISalvagable;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.saveclasses.rune.RuneItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
+import com.robertx22.uncommon.datasaving.Rune;
 import com.robertx22.uncommon.datasaving.Spell;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
@@ -56,6 +58,7 @@ public class AutoSalvageBag extends Item implements IBauble {
     private final int defaul_gear_rarity_salvage = 0;
     private final int default_spell_rarity_salvage = 0;
     private final int default_map_rarity_salvage = -1;
+    private final int default_rune_rarity_salvage = 1;
 
     public AutoSalvageBag(int rarity) {
 	this.rarity = rarity;
@@ -107,6 +110,11 @@ public class AutoSalvageBag extends Item implements IBauble {
 		    nbt.setInteger("map", map.rarity);
 		    successChat(player);
 		}
+		RuneItemData rune = Rune.Load(stack);
+		if (rune != null) {
+		    nbt.setInteger("rune", rune.rarity);
+		    successChat(player);
+		}
 
 		bag.setTagCompound(nbt);
 
@@ -114,6 +122,7 @@ public class AutoSalvageBag extends Item implements IBauble {
 		nbt.setInteger("gear", -1);
 		nbt.setInteger("spell", -1);
 		nbt.setInteger("map", -1);
+		nbt.setInteger("rune", -1);
 
 		player.sendMessage(new TextComponentString("Bag Config Cleared"));
 	    }
@@ -150,6 +159,10 @@ public class AutoSalvageBag extends Item implements IBauble {
 	    return map;
 	}
 
+	RuneItemData rune = Rune.Load(st);
+	if (rune != null) {
+	    return rune;
+	}
 	return null;
 
     }
@@ -176,6 +189,9 @@ public class AutoSalvageBag extends Item implements IBauble {
 
 	tooltip.add("Salvages Maps: ");
 	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps), this.getMap(nbt)));
+
+	tooltip.add("Salvages Runes: ");
+	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes), this.getRune(nbt)));
 
 	tooltip.add("");
 
@@ -233,6 +249,10 @@ public class AutoSalvageBag extends Item implements IBauble {
 	    if (rarity <= getMap(nbt)) {
 		return true;
 	    }
+	} else if (sal instanceof RuneItemData) {
+	    if (rarity <= getRune(nbt)) {
+		return true;
+	    }
 
 	}
 
@@ -257,6 +277,16 @@ public class AutoSalvageBag extends Item implements IBauble {
 	    }
 	}
 	return this.default_spell_rarity_salvage;
+
+    }
+
+    private int getRune(NBTTagCompound nbt) {
+	if (nbt != null) {
+	    if (nbt.hasKey("rune")) {
+		return nbt.getInteger("rune");
+	    }
+	}
+	return this.default_rune_rarity_salvage;
 
     }
 

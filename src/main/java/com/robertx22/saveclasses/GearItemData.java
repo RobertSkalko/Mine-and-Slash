@@ -27,9 +27,9 @@ import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
-import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -176,6 +176,8 @@ public class GearItemData implements ITooltip, ISalvagable {
 	    IUnique uniq = (IUnique) this.getItem();
 	    text += uniq.locName();
 
+	} else if (this.isRuned()) {
+	    text += "Runed " + name();
 	} else {
 
 	    if (prefix != null) {

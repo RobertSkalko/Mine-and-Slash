@@ -21,10 +21,12 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
 
     }
 
-    public InsertedRuneData(int level, String name, List<StatModData> mods) {
+    public InsertedRuneData(int level, String name, List<StatModData> mods, int rarity) {
 	this.level = level;
 	this.rune = name;
 	this.Mods = mods;
+	this.rarity = rarity;
+
     }
 
     @Store
@@ -57,7 +59,15 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
 	    list.addAll(mod.GetTooltipString(this.getRarity().StatPercents(), level, true));
 	}
 
-	return list;
+	List<String> list2 = new ArrayList();
+
+	RuneRarity rar = this.getRarity();
+
+	for (String s : list) {
+	    list2.add(rar.Color() + rune.toUpperCase() + rar.Color() + ": [" + s + rar.Color() + " ]");
+	}
+
+	return list2;
     }
 
 }
