@@ -30,9 +30,10 @@ public class ChaosStatsData extends StatGroupData implements Serializable, ITool
 
 	list.add(CLOC.word("chaos_stats"));
 
-	for (StatModData data : this.GetAllStats(gear.level)) {
-
-	    list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
+	for (LevelAndStats part : this.GetAllStats(gear.level)) {
+	    for (StatModData data : part.mods) {
+		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
+	    }
 	}
 
 	return list;

@@ -7,6 +7,7 @@ import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
@@ -20,16 +21,18 @@ public class CommonStatUtils {
     public static void AddStatusEffectStats(Unit unit, int level) {
 
 	for (StatusEffectData status : unit.statusEffects.values()) {
-	    List<StatModData> datas = status.GetAllStats(level);
-	    for (StatModData data : datas) {
+	    List<LevelAndStats> levelsandstats = status.GetAllStats(level);
+	    for (LevelAndStats levelstat : levelsandstats) {
+		for (StatModData data : levelstat.mods) {
 
-		StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
-		if (stat == null) {
-		    System.out.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Guid());
-		} else {
-		    stat.Add(data, level);
+		    StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
+		    if (stat == null) {
+			System.out
+				.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Guid());
+		    } else {
+			stat.Add(data, level);
+		    }
 		}
-
 	    }
 	}
 

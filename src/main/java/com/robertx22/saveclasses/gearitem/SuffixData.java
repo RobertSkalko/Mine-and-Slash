@@ -71,9 +71,10 @@ public class SuffixData extends AffixData implements Serializable, ITooltipList,
 
 	list.add(CLOC.word("suffix") + ": " + affix.locName());
 
-	for (StatModData data : this.GetAllStats(gear.level)) {
-
-	    list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
+	for (LevelAndStats part : this.GetAllStats(gear.level)) {
+	    for (StatModData data : part.mods) {
+		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
+	    }
 	}
 
 	return list;

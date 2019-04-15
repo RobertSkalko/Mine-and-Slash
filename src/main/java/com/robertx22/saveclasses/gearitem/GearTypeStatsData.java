@@ -1,6 +1,7 @@
 package com.robertx22.saveclasses.gearitem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
@@ -56,9 +57,10 @@ public class GearTypeStatsData implements ITooltipList, IRerollable, IStatsConta
 
 	list.add(TextFormatting.GREEN + getGearType().locName() + " " + CLOC.word("stats") + ": ");
 
-	for (StatModData data : this.GetAllStats(gear.level)) {
-
-	    list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
+	for (LevelAndStats part : this.GetAllStats(gear.level)) {
+	    for (StatModData data : part.mods) {
+		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
+	    }
 	}
 
 	return list;
@@ -70,7 +72,7 @@ public class GearTypeStatsData implements ITooltipList, IRerollable, IStatsConta
     }
 
     @Override
-    public List<StatModData> GetAllStats(int level) {
+    public List<LevelAndStats> GetAllStats(int level) {
 	GearItemSlot slot = getGearType();
 
 	List<StatModData> list = new ArrayList<StatModData>();
@@ -82,7 +84,7 @@ public class GearTypeStatsData implements ITooltipList, IRerollable, IStatsConta
 	    list.add(StatModData.Load(mod, percents.get(i)));
 	}
 
-	return list;
+	return Arrays.asList(new LevelAndStats(list, level));
     }
 
 }

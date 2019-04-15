@@ -73,9 +73,10 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
 	list.add(CLOC.word("secondary_stats") + ":");
 
-	for (StatModData data : this.GetAllStats(gear.level)) {
-
-	    list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
+	for (LevelAndStats part : this.GetAllStats(gear.level)) {
+	    for (StatModData data : part.mods) {
+		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
+	    }
 	}
 
 	return list;

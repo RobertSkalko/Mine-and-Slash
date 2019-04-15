@@ -13,7 +13,6 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.saveclasses.gearitem.GearTypeStatsData;
 import com.robertx22.saveclasses.gearitem.InfusionData;
@@ -27,6 +26,8 @@ import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
+import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.stats.StatMod;
@@ -38,7 +39,6 @@ import com.robertx22.unique_items.IUnique;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -47,7 +47,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 @Storable
-public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
+public class GearItemData implements ITooltip, ISalvagable {
 
     @Store
     public boolean isUnique = false;
@@ -210,10 +210,9 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
     }
 
-    @Override
-    public List<StatModData> GetAllStats(int level) {
+    public List<LevelAndStats> GetAllStats(int level) {
 
-	List<StatModData> datas = new ArrayList<StatModData>();
+	List<LevelAndStats> datas = new ArrayList<LevelAndStats>();
 
 	for (IStatsContainer con : GetAllStatContainers()) {
 	    datas.addAll(con.GetAllStats(this.level));
@@ -275,38 +274,9 @@ public class GearItemData implements IStatsContainer, ITooltip, ISalvagable {
 
 	event.getToolTip().add("");
 
-	if (GuiScreen.isShiftKeyDown() == false && ModConfig.Client.LENTHY_GEAR_TOOLTIPS == false) {
-	    List<StatModData> mods = new ArrayList();
-
-	    if (secondaryStats != null) {
-
-		mods.addAll(secondaryStats.Mods);
-	    }
-	    if (suffix != null) {
-		mods.addAll(suffix.GetAllStats(level));
-	    }
-	    if (prefix != null) {
-		mods.addAll(prefix.GetAllStats(level));
-	    }
-
-	    List<StatModData> merged = mergeSameStats(mods);
-
-	    if (merged.size() > 0) {
-		event.getToolTip().add(CLOC.word("stats") + ": ");
-
-		for (StatModData mod : merged) {
-		    event.getToolTip().addAll(mod.GetTooltipString(this.GetRarity().StatPercents(), level, true));
-		}
-
-		event.getToolTip().add("");
-	    }
-
-	} else {
-
-	    list.add(secondaryStats);
-	    list.add(prefix);
-	    list.add(suffix);
-	}
+	list.add(secondaryStats);
+	list.add(prefix);
+	list.add(suffix);
 
 	list.add(chaosStats);
 	list.add(gearTypeStats);

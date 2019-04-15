@@ -1,6 +1,7 @@
 package com.robertx22.saveclasses.gearitem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.saveclasses.gearitem.gear_bases.BaseAffix;
@@ -23,7 +24,7 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
     public abstract BaseAffix BaseAffix();
 
     @Override
-    public List<StatModData> GetAllStats(int level) {
+    public List<LevelAndStats> GetAllStats(int level) {
 
 	BaseAffix base = BaseAffix();
 
@@ -36,7 +37,7 @@ public abstract class AffixData implements IStatsContainer, IRerollable {
 	    list.add(StatModData.Load(mod, percents.get(i)));
 	}
 
-	return list;
+	return Arrays.asList(new LevelAndStats(list, level));
 
     }
 

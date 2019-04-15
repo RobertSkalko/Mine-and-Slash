@@ -34,9 +34,9 @@ public class SocketsListData implements IStatsContainer, ITooltipList {
     }
 
     @Override
-    public List<StatModData> GetAllStats(int level) {
+    public List<LevelAndStats> GetAllStats(int level) {
 
-	List<StatModData> mods = new ArrayList();
+	List<LevelAndStats> mods = new ArrayList();
 
 	for (SocketData socket : sockets) {
 	    mods.addAll(socket.GetAllStats(level));

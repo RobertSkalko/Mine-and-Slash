@@ -1,6 +1,7 @@
 package com.robertx22.saveclasses.gearitem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.generation.StatGen;
@@ -55,9 +56,10 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
 	list.add(CLOC.word("unique_stats") + ":");
 
-	for (StatModData data : this.GetAllStats(gear.level)) {
-
-	    list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
+	for (LevelAndStats part : this.GetAllStats(gear.level)) {
+	    for (StatModData data : part.mods) {
+		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
+	    }
 	}
 
 	return list;
@@ -69,7 +71,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
     }
 
     @Override
-    public List<StatModData> GetAllStats(int level) {
+    public List<LevelAndStats> GetAllStats(int level) {
 
 	IUnique unique = getUniqueItem();
 
@@ -80,7 +82,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 	    list.add(StatModData.Load(mod, percents.get(i)));
 	}
 
-	return list;
+	return Arrays.asList(new LevelAndStats(list, level));
     }
 
 }

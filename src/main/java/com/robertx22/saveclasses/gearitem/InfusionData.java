@@ -1,6 +1,7 @@
 package com.robertx22.saveclasses.gearitem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -64,14 +65,14 @@ public class InfusionData extends StatGroupData implements ITooltipList {
     }
 
     @Override
-    public List<StatModData> GetAllStats(int level) {
+    public List<LevelAndStats> GetAllStats(int level) {
 
 	List<StatModData> list = new ArrayList<StatModData>(Mods);
 	for (StatModData mod : list) {
 	    mod.percent += bonusModPercent();
 	}
 
-	return list;
+	return Arrays.asList(new LevelAndStats(list, level));
     }
 
     public int bonusModPercent() {
@@ -91,9 +92,12 @@ public class InfusionData extends StatGroupData implements ITooltipList {
 
 	    list.add(TextFormatting.LIGHT_PURPLE + "+" + this.currentLevel + " " + CLOC.word("infusion") + ": ");
 
-	    for (StatModData data : this.GetAllStats(gear.level)) {
-		list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), gear.level, true));
+	    for (LevelAndStats part : this.GetAllStats(gear.level)) {
+		for (StatModData data : part.mods) {
+		    list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
+		}
 	    }
+
 	}
 
 	return list;

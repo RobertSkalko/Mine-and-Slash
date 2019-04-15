@@ -11,6 +11,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
 import com.robertx22.saveclasses.gearitem.gear_bases.Set;
 import com.robertx22.stats.IStatConversion;
 import com.robertx22.stats.IStatTransfer;
@@ -282,15 +283,17 @@ public class PlayerStatUtils {
 		}
 	    } else {
 
-		List<StatModData> datas = gear.GetAllStats(gear.level);
-		for (StatModData data : datas) {
-		    StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
-		    if (stat == null) {
-			System.out
-				.println("Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Guid());
-		    } else {
-			stat.Add(data, gear.level);
+		List<LevelAndStats> levelstats = gear.GetAllStats(gear.level);
+		for (LevelAndStats datas : levelstats) {
+		    for (StatModData data : datas.mods) {
+			StatData stat = unit.MyStats.get(data.GetBaseMod().GetBaseStat().Guid());
+			if (stat == null) {
+			    System.out.println(
+				    "Error! can't load a stat called: " + data.GetBaseMod().GetBaseStat().Guid());
+			} else {
+			    stat.Add(data, datas.level);
 
+			}
 		    }
 		}
 	    }

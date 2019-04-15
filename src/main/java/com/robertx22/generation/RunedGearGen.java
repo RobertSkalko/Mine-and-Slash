@@ -5,8 +5,8 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.RunesData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
+import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.uncommon.datasaving.Gear;
 
 import net.minecraft.item.ItemStack;

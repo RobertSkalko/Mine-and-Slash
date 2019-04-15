@@ -28,16 +28,16 @@ public class GiveRune extends CommandBase {
 	int rarity = Integer.valueOf(args[1]);
 	int amount = Integer.valueOf(args[2]);
 
-	RuneBlueprint blueprint = new RuneBlueprint(lvl);
-	if (rarity > -1) {
-	    blueprint.SetSpecificRarity(rarity);
-	}
-
-	blueprint.LevelRange = false;
-
-	EntityPlayer player = (EntityPlayer) sender;
-
 	for (int i = 0; i < amount; i++) {
+	    RuneBlueprint blueprint = new RuneBlueprint(lvl);
+	    if (rarity > -1) {
+		blueprint.SetSpecificRarity(rarity);
+	    }
+
+	    blueprint.LevelRange = false;
+
+	    EntityPlayer player = (EntityPlayer) sender;
+
 	    player.addItemStackToInventory(RuneGen.Create(blueprint));
 	}
 

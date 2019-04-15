@@ -32,8 +32,8 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellNatureDamageP
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.saveclasses.RuneItemData;
-import com.robertx22.saveclasses.RunesData;
+import com.robertx22.saveclasses.rune.RuneItemData;
+import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
@@ -91,7 +91,11 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 		Gear.Save(stack, gear);
 	    }
 
-	    return gear.runes.canFit();
+	    RuneItemData rune = Rune.Load(currency);
+
+	    if (rune != null) {
+		return gear.runes.canFit(gear, rune);
+	    }
 	}
 
 	return false;

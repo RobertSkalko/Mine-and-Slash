@@ -48,10 +48,12 @@ public class SocketData extends StatGroupData implements ITooltipList {
 	    list.add(getPrefix() + CLOC.word("empty") + " " + CLOC.word("socket"));
 	} else {
 
-	    for (StatModData data : this.GetAllStats(gear.level)) {
-
-		list.addAll(data.GetTooltipString(GetRarity().StatPercents(), gear.level, true));
+	    for (LevelAndStats part : this.GetAllStats(gear.level)) {
+		for (StatModData data : part.mods) {
+		    list.addAll(data.GetTooltipString(gear.GetRarity().StatPercents(), part.level, true));
+		}
 	    }
+
 	}
 
 	return list;

@@ -1,6 +1,6 @@
 package com.robertx22.uncommon.datasaving;
 
-import com.robertx22.saveclasses.RuneItemData;
+import com.robertx22.saveclasses.rune.RuneItemData;
 
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
