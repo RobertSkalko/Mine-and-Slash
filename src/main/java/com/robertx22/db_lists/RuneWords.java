@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.robertx22.database.runewords.base.RuneWord;
 import com.robertx22.database.runewords.base.slots_2.RuneWordStone;
+import com.robertx22.database.runewords.base.slots_5.RuneWordHoming;
 import com.robertx22.saveclasses.rune.RunesData;
 
 public class RuneWords {
@@ -12,6 +13,7 @@ public class RuneWords {
 	    {
 
 		put(new RuneWordStone().name(), new RuneWordStone());
+		put(new RuneWordHoming().name(), new RuneWordHoming());
 
 	    }
 	}

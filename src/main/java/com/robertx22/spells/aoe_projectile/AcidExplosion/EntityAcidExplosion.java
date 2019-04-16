@@ -7,15 +7,15 @@ import net.minecraft.world.World;
 
 public class EntityAcidExplosion extends EntityElementalBoltAOE {
 
-	public EntityAcidExplosion(World worldIn) {
+    public EntityAcidExplosion(World worldIn) {
 
-		super(worldIn);
+	super(worldIn);
 
-	}
+    }
 
-	@Override
-	public Elements element() {
-		return Elements.Nature;
-	}
+    @Override
+    public Elements element() {
+	return Elements.Nature;
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.robertx22.stats;
+package com.robertx22.database.stat_types.spell_buff_traits.base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,23 +6,17 @@ import java.util.List;
 import com.robertx22.database.MinMax;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
+import com.robertx22.stats.IStatEffects;
+import com.robertx22.stats.ITrait;
+import com.robertx22.stats.Stat;
+import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.TextFormatting;
 
-public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
-
-    @Override
-    public void TryAffectOtherStats(UnitData unit) {
-	if (this.condition(unit)) {
-	    for (StatModData mod : getStatsMods()) {
-		mod.useOnPlayer(unit);
-	    }
-	}
-
-    }
+public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrait {
 
     // override if it has a condition
     public boolean condition(UnitData unit) {
@@ -73,23 +67,14 @@ public abstract class Trait extends Stat implements IAffectsOtherStats, ITrait {
 	String text = "";
 
 	text = TraitText(data);
-	Trait trait = (Trait) basestat;
-
-	if (GuiScreen.isShiftKeyDown()) {
-	    text += " " + TextFormatting.GRAY + trait.Description();
-	}
+	SpellBuffTrait trait = (SpellBuffTrait) basestat;
 
 	list.add(text);
 
 	if (GuiScreen.isShiftKeyDown()) {
-
-	    for (StatModData motdata : trait.getStatsMods()) {
-		list.addAll(motdata.GetTooltipString(new MinMax(trait.percent(), trait.percent()), level, IsNotSet));
-	    }
-
+	    list.add(" " + TextFormatting.GRAY + trait.Description());
 	}
 
 	return list;
     }
-
 }

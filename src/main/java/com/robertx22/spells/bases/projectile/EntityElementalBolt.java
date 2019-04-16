@@ -2,6 +2,7 @@ package com.robertx22.spells.bases.projectile;
 
 import com.robertx22.ColoredRedstone;
 import com.robertx22.SoundUtils;
+import com.robertx22.effectdatas.SpellBuffEffect;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -29,6 +30,7 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
     public void SetReady(BaseSpellEffect effect, DamageData data) {
 	this.effect = effect;
 	this.data = data;
+
     }
 
     public void ifDamageKilledEnemy(EntityLivingBase enemy) {
@@ -88,6 +90,11 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
     }
 
     public void SpawnAndShoot(BaseSpellEffect effect, DamageData data, EntityLivingBase caster) {
+
+	this.spellType = data.spellItem.GetSpell().Type();
+
+	SpellBuffEffect spelleffect = new SpellBuffEffect(caster, this);
+	spelleffect.Activate();
 
 	this.ignoreEntity = caster;
 	this.thrower = caster;

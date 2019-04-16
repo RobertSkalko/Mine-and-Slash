@@ -1,5 +1,7 @@
 package com.robertx22.effectdatas.interfaces;
 
+import com.robertx22.spells.bases.BaseSpell.SpellType;
+
 public interface IBuffableSpell {
 
     enum SpellBuffType {
@@ -9,4 +11,8 @@ public interface IBuffableSpell {
     void setBuff(SpellBuffType buff);
 
     SpellBuffType getBuff();
+
+    void setType(SpellType type);
+
+    SpellType getType();
 }

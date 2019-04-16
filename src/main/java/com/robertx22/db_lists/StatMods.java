@@ -155,6 +155,7 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellFireDamagePer
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
+import com.robertx22.database.stat_mods.spell_buffs.HomingFlat;
 import com.robertx22.database.stat_mods.traits.ArmoredFlat;
 import com.robertx22.database.stat_mods.traits.BarbarianFlat;
 import com.robertx22.database.stat_mods.traits.ClumsyScholarFlat;
@@ -186,6 +187,12 @@ public class StatMods {
     public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
 	{
 	    {
+		// spell buffs
+
+		put(new HomingFlat().GUID(), new HomingFlat());
+
+		// spell buffs
+
 		put(new ManaMulti().GUID(), new ManaMulti());
 		put(new LessManaMulti().GUID(), new LessManaMulti());
 		put(new LessHealthRegenMulti().GUID(), new LessHealthRegenMulti());

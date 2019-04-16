@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.robertx22.effectdatas.interfaces.IBuffableSpell;
+import com.robertx22.spells.bases.BaseSpell.SpellType;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
@@ -27,7 +29,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntitySpecialThrowable extends Entity implements IProjectile {
+public abstract class EntitySpecialThrowable extends Entity implements IProjectile, IBuffableSpell {
     private int xTile;
     private int yTile;
     private int zTile;
@@ -41,6 +43,30 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
     private int ticksInAir;
     public Entity ignoreEntity;
     private int ignoreTime;
+
+    public SpellBuffType buff = SpellBuffType.None;
+    public SpellType spellType = SpellType.Self_Heal;
+
+    @Override
+    public void setType(SpellType type) {
+	this.spellType = type;
+    }
+
+    @Override
+    public SpellType getType() {
+	return this.spellType;
+    }
+
+    @Override
+    public void setBuff(SpellBuffType buff) {
+	this.buff = buff;
+
+    }
+
+    @Override
+    public SpellBuffType getBuff() {
+	return buff;
+    }
 
     public EntitySpecialThrowable(World worldIn) {
 	super(worldIn);
@@ -315,42 +341,46 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
     }
 
     public void checkHoming() {
-	// homing
-	if (!this.collided && !this.world.isRemote) {
 
-	    double seekingRange = 3.0d;
+	if (this.getBuff().equals(SpellBuffType.Homing_Projectile)) {
+	    // homing
 
-	    if (setHomingTarget == false) {
-		List<EntityLivingBase> entities = WizardryUtilities.getEntitiesWithinRadius(seekingRange, this.posX,
-			this.posY, this.posZ, this.world);
+	    if (!this.collided && !this.world.isRemote) {
 
-		for (Entity possibleTarget : entities) {
-		    // Decides if current entity should be replaced.
-		    if (homindTarget == null || this.getDistance(homindTarget) > this.getDistance(possibleTarget)) {
-			// Decides if new entity is a valid target.
-			if (possibleTarget.hasCapability(EntityData.Data, null)
-				&& !possibleTarget.equals(this.getThrower())) {
-			    homindTarget = possibleTarget;
-			    setHomingTarget = true;
-			    this.setNoGravity(true);
-			    this.motionX /= (double) 5;
-			    this.motionY /= (double) 5;
-			    this.motionZ /= (double) 5;
+		double seekingRange = 3.0d;
 
+		if (setHomingTarget == false) {
+		    List<EntityLivingBase> entities = WizardryUtilities.getEntitiesWithinRadius(seekingRange, this.posX,
+			    this.posY, this.posZ, this.world);
+
+		    for (Entity possibleTarget : entities) {
+			// Decides if current entity should be replaced.
+			if (homindTarget == null || this.getDistance(homindTarget) > this.getDistance(possibleTarget)) {
+			    // Decides if new entity is a valid target.
+			    if (possibleTarget.hasCapability(EntityData.Data, null)
+				    && !possibleTarget.equals(this.getThrower())) {
+				homindTarget = possibleTarget;
+				setHomingTarget = true;
+				this.setNoGravity(true);
+				this.motionX /= (double) 5;
+				this.motionY /= (double) 5;
+				this.motionZ /= (double) 5;
+
+			    }
 			}
 		    }
 		}
-	    }
 
-	    if (homindTarget != null && Math.abs(this.motionX) < 5 && Math.abs(this.motionY) < 5
-		    && Math.abs(this.motionZ) < 5) {
+		if (homindTarget != null && Math.abs(this.motionX) < 5 && Math.abs(this.motionY) < 5
+			&& Math.abs(this.motionZ) < 5) {
 
-		this.addVelocity((homindTarget.posX - this.posX) / 30,
-			(homindTarget.posY + homindTarget.height / 2 - this.posY) / 30,
-			(homindTarget.posZ - this.posZ) / 30);
+		    this.addVelocity((homindTarget.posX - this.posX) / 30,
+			    (homindTarget.posY + homindTarget.height / 2 - this.posY) / 30,
+			    (homindTarget.posZ - this.posZ) / 30);
 
-		// this.motionY += (target.posY + target.height - this.posY) / 30;
+		    // this.motionY += (target.posY + target.height - this.posY) / 30;
 
+		}
 	    }
 	}
     }

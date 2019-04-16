@@ -74,6 +74,7 @@ import com.robertx22.database.stat_types.resources.ManaOnHit;
 import com.robertx22.database.stat_types.resources.ManaRegen;
 import com.robertx22.database.stat_types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.database.stat_types.resources.conversions.ManaToEnergyConversion;
+import com.robertx22.database.stat_types.spell_buff_traits.HomingSpell;
 import com.robertx22.database.stat_types.traits.Armored;
 import com.robertx22.database.stat_types.traits.Elemental;
 import com.robertx22.database.stat_types.traits.Golem;
@@ -106,6 +107,11 @@ public class Stats {
     public static HashMap<String, Stat> All = new HashMap<String, Stat>() {
 	{
 	    {
+
+		// spell buffs
+		put(new HomingSpell().GUID(), new HomingSpell());
+
+		// spell buffs
 
 		put(new EnergyToManaConversion().GUID(), new EnergyToManaConversion());
 		put(new ManaToEnergyConversion().GUID(), new ManaToEnergyConversion());

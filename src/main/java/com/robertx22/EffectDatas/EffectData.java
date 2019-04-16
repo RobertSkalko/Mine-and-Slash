@@ -23,25 +23,34 @@ public abstract class EffectData {
 	this.Source = source;
 	this.Target = target;
 
-	this.targetData = Load.Unit(target);
-	this.sourceData = Load.Unit(source);
+	if (target != null) {
+	    this.targetData = Load.Unit(target);
+	}
+	if (source != null) {
+	    this.sourceData = Load.Unit(source);
 
-	IWorldData world = Load.World(target.world);
+	}
+	if (source != null) {
+	    IWorldData world = Load.World(source.world);
 
-	try {
-	    targetUnit = targetData.getUnit();
-	    sourceUnit = sourceData.getUnit();
+	    try {
+		if (target != null) {
+		    targetUnit = targetData.getUnit();
+		}
 
-	    if (sourceUnit != null && targetUnit != null) {
-		sourceData.recalculateStats(source, world);
-		targetData.recalculateStats(target, world);
+		sourceUnit = sourceData.getUnit();
 
-	    } else {
-		this.canceled = true;
+		if (sourceUnit != null) {
+		    sourceData.recalculateStats(source, world);
+		} else if (targetUnit != null) {
+		    targetData.recalculateStats(target, world);
+		} else {
+		    this.canceled = true;
 
+		}
+	    } catch (Exception e) {
+		e.printStackTrace();
 	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
 	}
 
     }
@@ -123,7 +132,7 @@ public abstract class EffectData {
 
     protected abstract void activate();
 
-    private EffectData TryApplyEffects(Unit unit) {
+    protected EffectData TryApplyEffects(Unit unit) {
 
 	if (this.canceled) {
 	    return this;
