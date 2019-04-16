@@ -16,9 +16,9 @@ import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
@@ -76,7 +76,7 @@ public class SpellInstantHeal extends BaseSpell {
 
 	if (buffable.getBuff().equals(SpellBuffType.Zephyr_Speed_Boost)) {
 
-	    caster.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 100));
+	    caster.addPotionEffect(new PotionEffect(MobEffects.SPEED, 200));
 
 	}
 
@@ -91,17 +91,19 @@ public class SpellInstantHeal extends BaseSpell {
 
 	try {
 
-	    UnitData unit = Load.Unit(caster);
-	    unit.heal(caster, data.GetDamage(unit.getUnit()));
+	    if (!world.isRemote) {
 
-	    // spell buffs
-	    SpellBuffCheck check = new SpellBuffCheck(this.Type());
-	    SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);
-	    spelleffect.Activate();
-	    checkSpellBuffs(caster, check);
-	    //
+		UnitData unit = Load.Unit(caster);
+		unit.heal(caster, data.GetDamage(unit.getUnit()));
+		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
+		// spell buffs
+		SpellBuffCheck check = new SpellBuffCheck(this.Type());
+		SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);
+		spelleffect.Activate();
+		checkSpellBuffs(caster, check);
+		//
+	    } else {
 
-	    if (world.isRemote) {
 		for (int i = 0; i < 10; i++) {
 		    double d0 = (double) ((float) caster.posX + world.rand.nextFloat() * 2 - 1.0F);
 		    // Apparently the client side spawns the particles 1 block higher than it
@@ -114,8 +116,6 @@ public class SpellInstantHeal extends BaseSpell {
 		    world.spawnParticle(EnumParticleTypes.HEART, d0, d1, d2, 0, 48 + world.rand.nextInt(12), 1.0f);
 
 		}
-		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
-
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();

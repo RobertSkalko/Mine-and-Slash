@@ -74,20 +74,25 @@ public abstract class BaseSpellItem extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
-	try {
-	    SpellItemData data = Spell.Load(playerIn.getHeldItem(handIn));
+	if (worldIn.isRemote) {
+	    this.Spell().cast(worldIn, playerIn, handIn, 5, null);
+	} else {
 
-	    if (data != null) {
+	    try {
+		SpellItemData data = Spell.Load(playerIn.getHeldItem(handIn));
 
-		if (Spell().CanCast(playerIn, data)) {
-		    Spell().cast(worldIn, playerIn, handIn, 5, data);
+		if (data != null) {
+
+		    if (Spell().CanCast(playerIn, data)) {
+			Spell().cast(worldIn, playerIn, handIn, 5, data);
+		    }
 		}
+	    } catch (Exception e) {
+		e.printStackTrace();
 	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
+
 	}
 
 	return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
     }
-
 }
