@@ -62,7 +62,7 @@ public class Rarities {
     public static List<MapRarity> Maps = Arrays.asList(new CommonMap(), new UncommonMap(), new RareMap(), new EpicMap(),
 	    new LegendaryMap(), new MythicalMap());
 
-    public static List<MobRarity> Mobs = Arrays.asList(new CommonMob(), new RareMob(), new UncommonMob(), new EpicMob(),
+    public static List<MobRarity> Mobs = Arrays.asList(new CommonMob(), new UncommonMob(), new RareMob(), new EpicMob(),
 	    new LegendaryMob(), new MythicalMob());
 
     public static List<SpellRarity> Spells = Arrays.asList(new CommonSpell(), new UncommonSpell(), new RareSpell(),

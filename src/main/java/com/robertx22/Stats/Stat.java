@@ -103,11 +103,7 @@ public abstract class Stat implements IGUID {
 	List<String> list = new ArrayList<String>();
 	StatMod mod = data.GetBaseMod();
 	Stat basestat = mod.GetBaseStat();
-	String text = "";
-
-	text =
-
-		NameAndValueText(data, level, IsNotSet);
+	String text = NameAndValueText(data, level, IsNotSet);
 
 	if (mod.Type() == StatTypes.Flat) {
 
