@@ -155,7 +155,9 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellFireDamagePer
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
+import com.robertx22.database.stat_mods.spell_buffs.GhostProjectileFlat;
 import com.robertx22.database.stat_mods.spell_buffs.HomingFlat;
+import com.robertx22.database.stat_mods.spell_buffs.ZephyrFlat;
 import com.robertx22.database.stat_mods.traits.ArmoredFlat;
 import com.robertx22.database.stat_mods.traits.BarbarianFlat;
 import com.robertx22.database.stat_mods.traits.ClumsyScholarFlat;
@@ -190,6 +192,8 @@ public class StatMods {
 		// spell buffs
 
 		put(new HomingFlat().GUID(), new HomingFlat());
+		put(new GhostProjectileFlat().GUID(), new GhostProjectileFlat());
+		put(new ZephyrFlat().GUID(), new ZephyrFlat());
 
 		// spell buffs
 

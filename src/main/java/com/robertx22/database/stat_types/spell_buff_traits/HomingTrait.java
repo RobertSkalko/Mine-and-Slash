@@ -7,7 +7,7 @@ import com.robertx22.database.stat_types.spell_buff_traits.base.SpellBuffTrait;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.StatEffects.spell_buffs.HomingBuff;
 
-public class HomingSpell extends SpellBuffTrait {
+public class HomingTrait extends SpellBuffTrait {
 
     public static String GUID = "Homing";
 

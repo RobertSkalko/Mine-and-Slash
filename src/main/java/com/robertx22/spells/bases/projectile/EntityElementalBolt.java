@@ -1,5 +1,8 @@
 package com.robertx22.spells.bases.projectile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.robertx22.ColoredRedstone;
 import com.robertx22.SoundUtils;
 import com.robertx22.effectdatas.SpellBuffEffect;
@@ -39,6 +42,8 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 	}
     }
 
+    public List<EntityLivingBase> entitiesHit = new ArrayList();
+
     @Override
     protected void onImpact(RayTraceResult result) {
 
@@ -47,12 +52,14 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 	    if (world.isRemote) {
 		SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
 	    }
-
-	    effect.Activate(data, (EntityLivingBase) result.entityHit);
-
 	    EntityLivingBase living = (EntityLivingBase) result.entityHit;
 
-	    ifDamageKilledEnemy(living);
+	    if (!entitiesHit.contains(living)) {
+		effect.Activate(data, living);
+
+		ifDamageKilledEnemy(living);
+		entitiesHit.add(living);
+	    }
 
 	} else {
 	    if (world.isRemote) {
@@ -61,8 +68,12 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 	}
 
 	if (!this.world.isRemote) {
-	    this.world.setEntityState(this, (byte) 3);
-	    this.setDead();
+	    if (this.getBuff().equals(SpellBuffType.Ghost_Projectile) == false) { // spell buff to go through all
+											 // mobs in the way and damage
+											 // them all
+		this.world.setEntityState(this, (byte) 3);
+		this.setDead();
+	    }
 
 	}
     }

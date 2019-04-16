@@ -74,7 +74,9 @@ import com.robertx22.database.stat_types.resources.ManaOnHit;
 import com.robertx22.database.stat_types.resources.ManaRegen;
 import com.robertx22.database.stat_types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.database.stat_types.resources.conversions.ManaToEnergyConversion;
-import com.robertx22.database.stat_types.spell_buff_traits.HomingSpell;
+import com.robertx22.database.stat_types.spell_buff_traits.GhostProjectileTrait;
+import com.robertx22.database.stat_types.spell_buff_traits.HomingTrait;
+import com.robertx22.database.stat_types.spell_buff_traits.ZephyrTrait;
 import com.robertx22.database.stat_types.traits.Armored;
 import com.robertx22.database.stat_types.traits.Elemental;
 import com.robertx22.database.stat_types.traits.Golem;
@@ -109,7 +111,9 @@ public class Stats {
 	    {
 
 		// spell buffs
-		put(new HomingSpell().GUID(), new HomingSpell());
+		put(new HomingTrait().GUID(), new HomingTrait());
+		put(new GhostProjectileTrait().GUID(), new GhostProjectileTrait());
+		put(new ZephyrTrait().GUID(), new ZephyrTrait());
 
 		// spell buffs
 
