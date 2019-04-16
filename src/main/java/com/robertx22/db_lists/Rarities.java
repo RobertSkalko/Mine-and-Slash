@@ -26,6 +26,12 @@ import com.robertx22.database.rarities.mobs.LegendaryMob;
 import com.robertx22.database.rarities.mobs.MythicalMob;
 import com.robertx22.database.rarities.mobs.RareMob;
 import com.robertx22.database.rarities.mobs.UncommonMob;
+import com.robertx22.database.rarities.runed_items.CommonRunedItem;
+import com.robertx22.database.rarities.runed_items.EpicRunedItem;
+import com.robertx22.database.rarities.runed_items.LegendaryRunedItem;
+import com.robertx22.database.rarities.runed_items.MythicalRunedItem;
+import com.robertx22.database.rarities.runed_items.RareRunedItem;
+import com.robertx22.database.rarities.runed_items.UncommonRunedItem;
 import com.robertx22.database.rarities.runes.CommonRune;
 import com.robertx22.database.rarities.runes.EpicRune;
 import com.robertx22.database.rarities.runes.LegendaryRune;
@@ -43,6 +49,9 @@ public class Rarities {
 
     public static final int MAXIMUM_ITEM_RARITY = 5;
     public static final int MAXIMUM_Mob_RARITY = 5;
+
+    public static List<ItemRarity> RunedItems = Arrays.asList(new CommonRunedItem(), new UncommonRunedItem(),
+	    new RareRunedItem(), new EpicRunedItem(), new LegendaryRunedItem(), new MythicalRunedItem());
 
     public static List<RuneRarity> Runes = Arrays.asList(new CommonRune(), new UncommonRune(), new RareRune(),
 	    new EpicRune(), new LegendaryRune(), new MythicalRune());

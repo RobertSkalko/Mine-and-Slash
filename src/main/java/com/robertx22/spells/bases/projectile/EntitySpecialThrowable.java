@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -90,6 +91,9 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 	this.motionX += entityThrower.motionX;
 	this.motionZ += entityThrower.motionZ;
 
+	if (entityThrower instanceof EntityLivingBase) {
+	    this.thrower = (EntityLivingBase) entityThrower;
+	}
 	if (!entityThrower.onGround) {
 	    this.motionY += entityThrower.motionY;
 	}
@@ -140,6 +144,21 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
     }
 
     /**
+     * Sets this projectile's velocity as a normalised vector towards the target.
+     */
+    public void directTowards(Entity target, float velocity) {
+
+	double dx = target.posX - this.posX;
+	double dy = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F)
+		- (this.posY + (double) (this.height / 2.0F));
+	double dz = target.posZ - this.posZ;
+
+	this.motionX = dx / this.getDistance(target) * velocity;
+	this.motionY = dy / this.getDistance(target) * velocity;
+	this.motionZ = dz / this.getDistance(target) * velocity;
+    }
+
+    /**
      * Called to update the entity's position/logic.
      */
     public void onUpdate() {
@@ -173,6 +192,10 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 	    ++this.ticksInAir;
 	}
 
+	this.posX += this.motionX;
+	this.posY += this.motionY;
+	this.posZ += this.motionZ;
+
 	Vec3d vec3d = new Vec3d(this.posX, this.posY, this.posZ);
 	Vec3d vec3d1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 	RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d, vec3d1);
@@ -185,7 +208,7 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 
 	Entity entity = null;
 	List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this,
-		this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D));
+		this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.2D));
 	double d0 = 0.0D;
 	boolean flag = false;
 
@@ -240,9 +263,6 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 	    }
 	}
 
-	this.posX += this.motionX;
-	this.posY += this.motionY;
-	this.posZ += this.motionZ;
 	float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 	this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
 
@@ -289,9 +309,57 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 	}
 
 	this.setPosition(this.posX, this.posY, this.posZ);
+
+	checkHoming();
+
     }
 
+    public void checkHoming() {
+	// homing
+	if (!this.collided && !this.world.isRemote) {
+
+	    double seekingRange = 3.0d;
+
+	    if (setHomingTarget == false) {
+		List<EntityLivingBase> entities = WizardryUtilities.getEntitiesWithinRadius(seekingRange, this.posX,
+			this.posY, this.posZ, this.world);
+
+		for (Entity possibleTarget : entities) {
+		    // Decides if current entity should be replaced.
+		    if (homindTarget == null || this.getDistance(homindTarget) > this.getDistance(possibleTarget)) {
+			// Decides if new entity is a valid target.
+			if (possibleTarget.hasCapability(EntityData.Data, null)
+				&& !possibleTarget.equals(this.getThrower())) {
+			    homindTarget = possibleTarget;
+			    setHomingTarget = true;
+			    this.setNoGravity(true);
+			    this.motionX /= (double) 5;
+			    this.motionY /= (double) 5;
+			    this.motionZ /= (double) 5;
+
+			}
+		    }
+		}
+	    }
+
+	    if (homindTarget != null && Math.abs(this.motionX) < 5 && Math.abs(this.motionY) < 5
+		    && Math.abs(this.motionZ) < 5) {
+
+		this.addVelocity((homindTarget.posX - this.posX) / 30,
+			(homindTarget.posY + homindTarget.height / 2 - this.posY) / 30,
+			(homindTarget.posZ - this.posZ) / 30);
+
+		// this.motionY += (target.posY + target.height - this.posY) / 30;
+
+	    }
+	}
+    }
+
+    Entity homindTarget = null;
+    boolean setHomingTarget = false;
+
     /**
+     * 
      * Gets the amount of gravity to apply to the thrown entity with each tick.
      */
     protected float getGravityVelocity() {

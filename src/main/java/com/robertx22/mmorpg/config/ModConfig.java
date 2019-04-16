@@ -19,6 +19,7 @@ import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.mmorpg.Player_GUIs;
 import com.robertx22.mmorpg.Ref;
+import com.robertx22.mmorpg.config.RarityDropratesConfig.RarityWeights;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 
 import net.minecraft.item.Item;
@@ -95,69 +96,6 @@ public class ModConfig {
     @Config.Name("Droprates")
     @Config.LangKey("mmorpg.config.droprates")
     public static DropRatesContainer DropRates = new DropRatesContainer();
-
-    public static class RarityWeights {
-
-	@Config.Name("Item Weights")
-	@Config.LangKey("mmorpg.word.item")
-	@Config.Comment("")
-	public RarityWeight ITEMS = new RarityWeight();
-
-	@Config.Name("Mob Weights")
-	@Config.LangKey("mmorpg.word.mob")
-	@Config.Comment("")
-	public RarityWeight MOBS = new RarityWeight();
-
-	@Config.Name("Map Weights")
-	@Config.LangKey("mmorpg.word.map")
-	@Config.Comment("")
-	public RarityWeight MAPS = new RarityWeight();
-
-	@Config.Name("Currency Weights")
-	@Config.LangKey("mmorpg.word.currency")
-	@Config.Comment("")
-	public RarityWeight CURRENCY = new RarityWeight();
-
-	@Config.Name("Spells Weights")
-	@Config.LangKey("mmorpg.word.spell")
-	@Config.Comment("")
-	public RarityWeight SPELLS = new RarityWeight();
-
-    }
-
-    public static class RarityWeight {
-
-	@Config.Name("Common")
-	@Config.LangKey("mmorpg.rarity.common")
-	@Config.Comment("")
-	public int COMMON_WEIGHT = 25000;
-
-	@Config.Name("Uncommon")
-	@Config.LangKey("mmorpg.rarity.uncommon")
-	@Config.Comment("")
-	public int UNCOMMON_WEIGHT = 20000;
-
-	@Config.Name("Rare")
-	@Config.LangKey("mmorpg.rarity.rare")
-	@Config.Comment("")
-	public int RARE_WEIGHT = 5000;
-
-	@Config.Name("Epic")
-	@Config.LangKey("mmorpg.rarity.epic")
-	@Config.Comment("")
-	public int EPIC_WEIGHT = 3000;
-
-	@Config.Name("Legendary")
-	@Config.LangKey("mmorpg.rarity.legendary")
-	@Config.Comment("")
-	public int LEGENDARY_WEIGHT = 1250;
-
-	@Config.Name("Mythical")
-	@Config.LangKey("mmorpg.rarity.mythical")
-	@Config.Comment("")
-	public int MYTHICAL_WEIGHT = 300;
-
-    }
 
     public static class EntityConfigs {
 

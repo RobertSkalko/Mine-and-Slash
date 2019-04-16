@@ -14,8 +14,6 @@ import com.robertx22.database.stat_types.resources.Mana;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.effectdatas.EffectData.EffectTypes;
-import com.robertx22.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.config.DimensionConfigs;
 import com.robertx22.mmorpg.config.ModConfig;
@@ -132,7 +130,7 @@ public class Unit {
 
 	int num = (int) (unitsource.MyStats.get(PhysicalDamage.GUID).Value * event_damage);
 	DamageEffect dmg = new DamageEffect(source, target, num);
-	dmg.setEffectType(EffectTypes.BASIC_ATTACK, WeaponTypes.None);
+
 	dmg.Activate();
 
     }

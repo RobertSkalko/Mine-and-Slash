@@ -43,8 +43,8 @@ public class HammerWeaponMechanic extends WeaponMechanic {
 
 	for (EntityLivingBase entity : entities) {
 	    int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
-	    DamageEffect dmg = new DamageEffect(source, entity, num, unitsource, targetUnit);
-	    dmg.setEffectType(EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer);
+	    DamageEffect dmg = new DamageEffect(source, entity, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK,
+		    WeaponTypes.Hammer);
 	    dmg.Activate();
 	}
 

@@ -3,7 +3,7 @@ package com.robertx22.generation;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.blueprints.RunedGearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrimaryStatsData;
 import com.robertx22.saveclasses.rune.RunesData;
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public class RunedGearGen {
 
-    public static GearItemData CreateData(GearBlueprint blueprint) {
+    public static GearItemData CreateData(RunedGearBlueprint blueprint) {
 	GearItemSlot gearslot = blueprint.GetGearType();
 
 	ItemRarity rarity = Rarities.Items.get(blueprint.GetRarity());
@@ -38,7 +38,7 @@ public class RunedGearGen {
 	return data;
     }
 
-    public static ItemStack CreateStack(GearBlueprint schema) {
+    public static ItemStack CreateStack(RunedGearBlueprint schema) {
 
 	GearItemData data = CreateData(schema);
 

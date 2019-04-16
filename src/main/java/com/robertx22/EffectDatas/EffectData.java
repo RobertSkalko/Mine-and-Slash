@@ -64,7 +64,7 @@ public abstract class EffectData {
 
     }
 
-    private EffectTypes effectType = EffectTypes.NORMAL;
+    private EffectTypes effectType = EffectTypes.BASIC_ATTACK;
 
     public EffectTypes getEffectType() {
 	return effectType;

@@ -9,6 +9,7 @@ import com.robertx22.effectdatas.interfaces.IDamageEffect;
 import com.robertx22.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.effectdatas.interfaces.IPenetrable;
+import com.robertx22.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.ModConfig;
@@ -37,9 +38,10 @@ public class DamageEffect extends EffectData
     }
 
     public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, UnitData sourceData,
-	    UnitData targetData) {
+	    UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
 	super(source, target, sourceData, targetData);
 
+	this.setEffectType(effectType, weptype);
 	this.Number = dmg;
     }
 

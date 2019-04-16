@@ -16,8 +16,9 @@ public abstract class WeaponMechanic {
     public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
 
 	int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
-	DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit);
-	dmg.setEffectType(EffectTypes.BASIC_ATTACK, weaponType());
+	DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK,
+		weaponType());
+
 	dmg.Activate();
 
 	return true;

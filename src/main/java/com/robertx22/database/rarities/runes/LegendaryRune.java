@@ -2,6 +2,7 @@ package com.robertx22.database.rarities.runes;
 
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.rarities.items.LegendaryItem;
+import com.robertx22.mmorpg.config.ModConfig;
 
 public class LegendaryRune extends LegendaryItem implements RuneRarity {
 
@@ -15,4 +16,8 @@ public class LegendaryRune extends LegendaryItem implements RuneRarity {
 	return 3;
     }
 
+    @Override
+    public int Weight() {
+	return ModConfig.RarityWeightConfig.RUNES.LEGENDARY_WEIGHT;
+    }
 }

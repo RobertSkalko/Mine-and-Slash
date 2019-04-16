@@ -123,6 +123,10 @@ public class HealthBarRenderer {
 		double z = passedEntity.lastTickPosZ + (passedEntity.posZ - passedEntity.lastTickPosZ) * partialTicks;
 
 		float scale = 0.026666672F;
+
+		if (unit == null || unit.healthData() == null) {
+		    return;
+		}
 		float maxHealth = unit.healthData().Value;
 		float health = unit.health().CurrentValue(entity, unit);
 

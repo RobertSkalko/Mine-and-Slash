@@ -17,6 +17,8 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
     BaseSpellEffect effect;
     DamageData data;
 
+    public int lifeTicks = 250;
+
     public abstract Elements element();
 
     public EntityElementalBolt(World worldIn) {
@@ -29,6 +31,12 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 	this.data = data;
     }
 
+    public void ifDamageKilledEnemy(EntityLivingBase enemy) {
+	if (enemy.getHealth() <= 0) {
+
+	}
+    }
+
     @Override
     protected void onImpact(RayTraceResult result) {
 
@@ -39,6 +47,10 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 	    }
 
 	    effect.Activate(data, (EntityLivingBase) result.entityHit);
+
+	    EntityLivingBase living = (EntityLivingBase) result.entityHit;
+
+	    ifDamageKilledEnemy(living);
 
 	} else {
 	    if (world.isRemote) {
@@ -65,12 +77,12 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 	    ticks++;
 	    if (ticks > 1) {
 		ticks = 0;
-		ColoredRedstone.SpawnAoeRedstone(element(), this, 0.25F, 30);
+		ColoredRedstone.SpawnAoeRedstone(element(), this, 0.15F, 15);
 	    }
 
 	}
 
-	if (this.ticksExisted > 50) {
+	if (this.ticksExisted > lifeTicks) {
 	    this.setDead();
 	}
     }
@@ -78,11 +90,12 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
     public void SpawnAndShoot(BaseSpellEffect effect, DamageData data, EntityLivingBase caster) {
 
 	this.ignoreEntity = caster;
+	this.thrower = caster;
 	Vec3d look = caster.getLookVec();
 
 	SetReady(effect, data);
 	setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);
-	shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
+	shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1F, 1.0F); // start velocity
 
 	world.spawnEntity(this);
     }

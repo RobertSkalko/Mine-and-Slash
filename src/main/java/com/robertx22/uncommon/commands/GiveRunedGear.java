@@ -1,7 +1,7 @@
 package com.robertx22.uncommon.commands;
 
 import com.robertx22.generation.RunedGearGen;
-import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.blueprints.RunedGearBlueprint;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -29,7 +29,7 @@ public class GiveRunedGear extends CommandBase {
 	String type = args[2];
 	int amount = Integer.valueOf(args[3]);
 
-	GearBlueprint blueprint = new GearBlueprint(lvl);
+	RunedGearBlueprint blueprint = new RunedGearBlueprint(lvl);
 	if (rarity > -1) {
 	    blueprint.SetSpecificRarity(rarity);
 	}

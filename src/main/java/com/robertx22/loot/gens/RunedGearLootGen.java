@@ -1,7 +1,7 @@
 package com.robertx22.loot.gens;
 
 import com.robertx22.generation.RunedGearGen;
-import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.blueprints.RunedGearBlueprint;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.GearItemData;
@@ -14,18 +14,18 @@ import net.minecraft.item.ItemStack;
 
 public class RunedGearLootGen extends BaseLootGen {
 
-    GearBlueprint gearPrint;
+    RunedGearBlueprint gearPrint;
 
     public RunedGearLootGen(UnitData mob, UnitData player, IWorldData world, EntityLivingBase victim) {
 	super(mob, player, world, victim);
 
-	gearPrint = new GearBlueprint(mob.getLevel());
+	gearPrint = new RunedGearBlueprint(mob.getLevel());
 
     }
 
     public RunedGearLootGen(float multi, IWorldData world, int level) {
 	super(multi, world);
-	gearPrint = new GearBlueprint(level);
+	gearPrint = new RunedGearBlueprint(level);
 
     }
 
