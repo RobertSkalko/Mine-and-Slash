@@ -34,6 +34,9 @@ public abstract class BasePlayerOverlay {
 	mc.getTextureManager().bindTexture(res);
 	gui.drawTexturedModalRect(x, y, 0, 0, TEXTURE_WIDTH, this.TEXTURE_HEIGHT); // the bar
 	int barwidth = (int) (((float) current / max * 100));
+	if (barwidth > 100) {
+	    barwidth = 100;
+	}
 	gui.drawTexturedModalRect(x + 3, y + 3, 0, TEXTURE_HEIGHT, barwidth, 5); // inner fill texture
 
 	String now = DamageEffect.FormatNumber((int) current);

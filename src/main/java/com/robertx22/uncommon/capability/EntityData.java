@@ -381,14 +381,13 @@ public class EntityData {
 
 	    if (exp > this.GetExpRequiredForLevelUp()) {
 
-		setExp(this.GetExpRequiredForLevelUp());
-
 		if (ModConfig.Server.LEVEL_UPS_COST_TOKEN == false) {
 
 		    if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
 			this.LevelUp(player);
 		    }
 		}
+
 		return i;
 	    }
 
@@ -401,6 +400,15 @@ public class EntityData {
 
 	    return getExp() >= GetExpRequiredForLevelUp();
 
+	}
+
+	public int getRemainingExp() {
+	    int num = getExp() - GetExpRequiredForLevelUp();
+
+	    if (num < 0) {
+		num = 0;
+	    }
+	    return num;
 	}
 
 	@Override
@@ -420,7 +428,8 @@ public class EntityData {
 	    if (CheckIfCanLevelUp() && CheckLevelCap()) {
 
 		this.setLevel(level + 1, player);
-		setExp(0);
+
+		setExp(getRemainingExp());
 
 		player.sendMessage(SLOC.chat("levelup_success"));
 
