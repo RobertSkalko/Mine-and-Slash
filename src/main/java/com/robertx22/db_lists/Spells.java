@@ -2,6 +2,10 @@ package com.robertx22.db_lists;
 
 import java.util.HashMap;
 
+import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
+import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
+import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
+import com.robertx22.spells.aoe_bomb_proj.SpellThunderBomb;
 import com.robertx22.spells.aoe_projectile.AcidExplosion.SpellAcidExplosion;
 import com.robertx22.spells.aoe_projectile.FlameExplosion.SpellFlameExplosion;
 import com.robertx22.spells.aoe_projectile.FrostExplosion.SpellFrostExplosion;
@@ -28,6 +32,11 @@ public class Spells {
 		put(new SpellAcidExplosion().GUID(), new SpellAcidExplosion());
 
 		put(new SpellInstantHeal().GUID(), new SpellInstantHeal());
+
+		put(new SpellFireBomb().GUID(), new SpellFireBomb());
+		put(new SpellThunderBomb().GUID(), new SpellThunderBomb());
+		put(new SpellAcidBomb().GUID(), new SpellAcidBomb());
+		put(new SpellIceBomb().GUID(), new SpellIceBomb());
 
 	    }
 	}

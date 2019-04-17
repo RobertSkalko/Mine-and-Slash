@@ -1,7 +1,5 @@
 package com.robertx22.mmorpg.proxy;
 
-import com.robertx22.customitems.gearitems.MyEntityArrow;
-import com.robertx22.customitems.gearitems.RenderMyArrow;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
@@ -13,32 +11,19 @@ import com.robertx22.network.MessagePackage;
 import com.robertx22.network.ParticlePackage;
 import com.robertx22.network.UnitPackage;
 import com.robertx22.network.WorldPackage;
-import com.robertx22.spells.EntityStaffProjectileNormal;
-import com.robertx22.spells.aoe_projectile.AcidExplosion.EntityAcidExplosion;
-import com.robertx22.spells.aoe_projectile.FlameExplosion.EntityFlameExplosion;
-import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
-import com.robertx22.spells.aoe_projectile.LightningExplosion.EntityLightningExplosion;
-import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
-import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
-import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
-import com.robertx22.spells.projectile.thunderbolt.EntityThunderBolt;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -97,36 +82,7 @@ public class ClientProxy implements IProxy {
 
     }
 
-    @Override
-    public void RegisterEntityRenders() {
-	RegisterModEntityClient(Items.SNOWBALL, EntityFrostBolt.class, 0);
-	RegisterModEntityClient(Items.MAGMA_CREAM, EntityFireBolt.class, 1);
-	RegisterModEntityClient(Items.SLIME_BALL, EntityAcidBolt.class, 2);
-	RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityThunderBolt.class, 3);
-	RegisterModEntityClient(Items.SNOWBALL, EntityFrostExplosion.class, 4);
-	RegisterModEntityClient(Items.MAGMA_CREAM, EntityFlameExplosion.class, 5);
-	RegisterModEntityClient(Items.SLIME_BALL, EntityAcidExplosion.class, 6);
-	RegisterModEntityClient(Items.GLOWSTONE_DUST, EntityLightningExplosion.class, 7);
-	RegisterModEntityClient(Items.ENDER_PEARL, EntityStaffProjectileNormal.class, 8);
-	regArrow(Items.ARROW, MyEntityArrow.class, 9);
-
-    }
-
-    private static void regArrow(Item item, Class<? extends Entity> theclass, int id) {
-
-	EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
-		Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
-
-	RenderingRegistry.registerEntityRenderingHandler(theclass, new IRenderFactory() {
-	    @Override
-	    public Render createRenderFor(RenderManager manager) {
-		return new RenderMyArrow(manager);
-	    }
-	});
-
-    }
-
-    private static void RegisterModEntityClient(Item item, Class<? extends Entity> theclass, int id) {
+    public void RegisterModEntity(Item item, Class<? extends Entity> theclass, int id) {
 
 	EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
 		Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);

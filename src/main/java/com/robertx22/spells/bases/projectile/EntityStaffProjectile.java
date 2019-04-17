@@ -1,6 +1,8 @@
 package com.robertx22.spells.bases.projectile;
 
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
+import com.robertx22.spells.bases.BaseSpellEffect;
+import com.robertx22.spells.bases.DamageData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 
@@ -11,7 +13,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public abstract class EntityStaffProjectile extends EntitySpecialThrowable {
+public class EntityStaffProjectile extends EntityBaseProjectile {
 
     ItemStack staff;
 
@@ -72,10 +74,11 @@ public abstract class EntityStaffProjectile extends EntitySpecialThrowable {
 	}
     }
 
-    public void SpawnAndShoot(EntityLivingBase caster) {
+    public void SpawnAndShoot(BaseSpellEffect effect, DamageData data, EntityLivingBase caster) {
 
 	this.ignoreEntity = caster;
 	Vec3d look = caster.getLookVec();
+	this.thrower = caster;
 
 	SetReady(caster.getHeldItemMainhand());
 	setPosition(caster.posX + look.x, caster.posY + look.y + 1.3, caster.posZ + look.z);

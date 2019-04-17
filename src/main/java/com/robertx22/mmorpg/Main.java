@@ -68,7 +68,7 @@ public class Main {
 
 	proxy.preInit(event);
 
-	proxy.RegisterEntityRenders();
+	proxy.registerRenders();
 
 	GearItemRegisters.register();
 

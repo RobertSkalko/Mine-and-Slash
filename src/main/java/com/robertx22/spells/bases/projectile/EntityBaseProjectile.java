@@ -29,23 +29,34 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntitySpecialThrowable extends Entity implements IProjectile, IBuffableSpell {
+public abstract class EntityBaseProjectile extends Entity implements IProjectile, IBuffableSpell, IShootableProjectile {
+
     private int xTile;
     private int yTile;
     private int zTile;
     private Block inTile;
     protected boolean inGround;
     public int throwableShake;
-    /** The entity that threw this throwable item. */
+    /**
+     * The entity that threw this throwable item.
+     */
     protected EntityLivingBase thrower;
     private String throwerName;
     private int ticksInGround;
     private int ticksInAir;
+    private int deathTime = 80;
+    private int airProcTime;
+    private boolean doGroundProc;
+
     public Entity ignoreEntity;
     private int ignoreTime;
 
     public SpellBuffType buff = SpellBuffType.None;
     public SpellType spellType = SpellType.Self_Heal;
+
+    protected boolean shouldExcludeCaster() {
+	return true;
+    }
 
     @Override
     public void setType(SpellType type) {
@@ -63,12 +74,57 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 
     }
 
+    protected boolean onExpireProc(EntityLivingBase caster) {
+
+	return false;
+    }
+
     @Override
     public SpellBuffType getBuff() {
 	return buff;
     }
 
-    public EntitySpecialThrowable(World worldIn) {
+    public boolean getDoExpireProc() {
+	return this.doGroundProc;
+    }
+
+    public int getTicksInAir() {
+	return this.ticksInAir;
+    }
+
+    public int getTicksInGround() {
+	return this.ticksInGround;
+    }
+
+    public void setTicksInAir(int newVal) {
+	this.ticksInAir = newVal;
+    }
+
+    public void setTicksInGround(int newVal) {
+	this.ticksInGround = newVal;
+    }
+
+    public int getAirProcTime() {
+	return this.airProcTime;
+    }
+
+    public void setAirProcTime(int newVal) {
+	this.airProcTime = newVal;
+    }
+
+    public int getDeathTime() {
+	return this.deathTime;
+    }
+
+    public void setDeathTime(int newVal) {
+	this.deathTime = newVal;
+    }
+
+    public void setDoExpireProc(boolean newVal) {
+	this.doGroundProc = newVal;
+    }
+
+    public EntityBaseProjectile(World worldIn) {
 	super(worldIn);
 	this.xTile = -1;
 	this.yTile = -1;
@@ -76,12 +132,12 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 	this.setSize(0.25F, 0.25F);
     }
 
-    public EntitySpecialThrowable(World worldIn, double x, double y, double z) {
+    public EntityBaseProjectile(World worldIn, double x, double y, double z) {
 	this(worldIn);
 	this.setPosition(x, y, z);
     }
 
-    public EntitySpecialThrowable(World worldIn, EntityLivingBase throwerIn) {
+    public EntityBaseProjectile(World worldIn, EntityLivingBase throwerIn) {
 	this(worldIn, throwerIn.posX, throwerIn.posY + (double) throwerIn.getEyeHeight() - 0.10000000149011612D,
 		throwerIn.posZ);
 	this.thrower = throwerIn;
@@ -195,6 +251,12 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 
 	if (this.throwableShake > 0) {
 	    --this.throwableShake;
+	}
+
+	if (this.getDoExpireProc() && this.ticksExisted > 0 && this.ticksExisted % this.deathTime == 0) {
+	    if (this.onExpireProc(this.getThrower())) {
+		this.setDead();
+	    }
 	}
 
 	if (this.inGround) {
@@ -338,6 +400,10 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 
 	checkHoming();
 
+	if (this.ticksExisted > this.getDeathTime()) {
+	    this.setDead();
+	}
+
     }
 
     public void checkHoming() {
@@ -421,6 +487,9 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 	}
 
 	compound.setString("ownerName", this.throwerName == null ? "" : this.throwerName);
+	compound.setBoolean("doGroundProc", this.getDoExpireProc());
+	compound.setInteger("airProcTime", this.getAirProcTime());
+	compound.setInteger("deathTime", this.getDeathTime());
     }
 
     /**
@@ -447,6 +516,10 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 	}
 
 	this.thrower = this.getThrower();
+
+	this.setDoExpireProc(compound.getBoolean("doGroundProc"));
+	this.setAirProcTime(compound.getInteger("airProcTime"));
+	this.setDeathTime(compound.getInteger("deathTime"));
     }
 
     @Nullable
@@ -469,4 +542,5 @@ public abstract class EntitySpecialThrowable extends Entity implements IProjecti
 
 	return this.thrower;
     }
+
 }

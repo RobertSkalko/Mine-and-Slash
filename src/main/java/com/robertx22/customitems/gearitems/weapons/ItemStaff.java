@@ -8,7 +8,7 @@ import com.robertx22.customitems.gearitems.bases.BaseWeaponItem;
 import com.robertx22.customitems.gearitems.bases.IWeapon;
 import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
 import com.robertx22.customitems.gearitems.weapon_mechanics.StaffWeaponMechanic;
-import com.robertx22.spells.EntityStaffProjectileNormal;
+import com.robertx22.spells.bases.projectile.EntityStaffProjectile;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
@@ -53,9 +53,9 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon {
 
 		if (data.tryUseWeapon(player, player.getHeldItem(hand))) {
 
-		    EntityStaffProjectileNormal projectile = new EntityStaffProjectileNormal(world, player);
+		    EntityStaffProjectile projectile = new EntityStaffProjectile(world);
 		    projectile.SetReady(player.getHeldItem(hand));
-		    projectile.SpawnAndShoot(player);
+		    projectile.SpawnAndShoot(null, null, player);
 
 		    player.getHeldItem(hand).damageItem(1, player);
 

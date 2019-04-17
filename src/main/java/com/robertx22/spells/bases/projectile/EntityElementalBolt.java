@@ -8,6 +8,7 @@ import com.robertx22.SoundUtils;
 import com.robertx22.effectdatas.SpellBuffEffect;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
+import com.robertx22.spells.bases.projectile.Targeting.TargetType;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -16,18 +17,23 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public abstract class EntityElementalBolt extends EntitySpecialThrowable {
+public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
-    BaseSpellEffect effect;
-    DamageData data;
-
-    public int lifeTicks = 250;
+    protected BaseSpellEffect effect;
+    protected DamageData data;
 
     public abstract Elements element();
 
     public EntityElementalBolt(World worldIn) {
 	super(worldIn);
 
+    }
+
+    protected TargetType getTargetType() {
+	return TargetType.ENEMY;
+    }
+
+    protected void entityInit() {
     }
 
     public void SetReady(BaseSpellEffect effect, DamageData data) {
@@ -69,8 +75,8 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 
 	if (!this.world.isRemote) {
 	    if (this.getBuff().equals(SpellBuffType.Ghost_Projectile) == false) { // spell buff to go through all
-											 // mobs in the way and damage
-											 // them all
+										  // mobs in the way and damage
+										  // them all
 		this.world.setEntityState(this, (byte) 3);
 		this.setDead();
 	    }
@@ -95,9 +101,6 @@ public abstract class EntityElementalBolt extends EntitySpecialThrowable {
 
 	}
 
-	if (this.ticksExisted > lifeTicks) {
-	    this.setDead();
-	}
     }
 
     public void SpawnAndShoot(BaseSpellEffect effect, DamageData data, EntityLivingBase caster) {
