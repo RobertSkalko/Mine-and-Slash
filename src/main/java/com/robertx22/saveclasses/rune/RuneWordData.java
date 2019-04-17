@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.rarities.RuneRarity;
-import com.robertx22.database.runewords.base.RuneWord;
+import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.RuneWords;
 import com.robertx22.saveclasses.GearItemData;

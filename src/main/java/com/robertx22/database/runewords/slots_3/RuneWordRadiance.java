@@ -1,4 +1,4 @@
-package com.robertx22.database.runewords.base.slots_3;
+package com.robertx22.database.runewords.slots_3;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +7,7 @@ import com.robertx22.customitems.runes.MosItem;
 import com.robertx22.customitems.runes.RahItem;
 import com.robertx22.customitems.runes.ZohItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
-import com.robertx22.database.runewords.base.RuneWord;
+import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.database.stat_mods.percent.ManaRegenPercent;
 import com.robertx22.stats.StatMod;

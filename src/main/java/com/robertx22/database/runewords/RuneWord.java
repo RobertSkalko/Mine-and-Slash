@@ -1,4 +1,4 @@
-package com.robertx22.database.runewords.base;
+package com.robertx22.database.runewords;
 
 import java.util.List;
 

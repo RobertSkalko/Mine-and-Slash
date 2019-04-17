@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.database.runewords.base.RuneWord;
+import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.db_lists.RuneWords;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
