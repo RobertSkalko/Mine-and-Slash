@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
 
-public abstract class RuneWord {
+public abstract class RuneWord implements IWeighted {
 
     public abstract List<StatMod> mods();
 
@@ -17,6 +18,11 @@ public abstract class RuneWord {
 	return runes().size();
     }
 
+    @Override
+    public int Weight() {
+	return 1000;
+    }
+
     public String getRuneWordCombo() {
 
 	String text = "";
@@ -24,6 +30,18 @@ public abstract class RuneWord {
 	for (BaseRuneItem item : runes()) {
 	    text += item.name().toUpperCase();
 	}
+	return text;
+    }
+
+    public String getRuneWordComboString() {
+
+	String text = "";
+
+	for (BaseRuneItem item : runes()) {
+	    text += item.name().toUpperCase() + " + ";
+	}
+	text = text.substring(0, text.length() - 3);
+
 	return text;
     }
 

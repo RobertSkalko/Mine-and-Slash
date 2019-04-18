@@ -1,5 +1,9 @@
 package com.robertx22.customitems.misc;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.robertx22.customitems.currency.ICurrencyItemEffect;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.db_lists.CreativeTabList;
@@ -10,14 +14,18 @@ import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber
 public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
@@ -32,6 +40,19 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 	this.setMaxDamage(0);
 	this.setCreativeTab(CreativeTabList.MyModTab);
 
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
+	if (stack != null && this.getWord(stack).length() > 0) {
+	    tooltip.add("RuneWord: " + this.getWord(stack));
+
+	    tooltip.add(RuneWords.All.get(this.getWord(stack)).getRuneWordComboString());
+	}
+	tooltip.add("Place into an Item Modify Table with the item");
+	tooltip.add("that contains the runeword combination to unlock it");
     }
 
     @SubscribeEvent
@@ -50,11 +71,12 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 	if (currency.getItem() instanceof ItemAwakenRuneWord) {
 	    GearItemData gear = Gear.Load(stack);
 	    if (gear != null) {
-		gear.runes.AwakenRuneWord();
+		gear.runes.AwakenRuneWord(this.getWord(currency));
+		Gear.Save(stack, gear);
 	    }
 	}
 
-	return null;
+	return stack;
     }
 
     public void setWord(ItemStack stack, RuneWord word) {
@@ -63,17 +85,16 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 	    nbt = new NBTTagCompound();
 	}
 	nbt.setString("runeword", word.name());
+	stack.setTagCompound(nbt);
 
     }
 
     public String getWord(ItemStack stack) {
 
-	try {
+	if (stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("runeword")) {
 	    return stack.getTagCompound().getString("runeword");
-	} catch (Exception e) {
-
-	    e.printStackTrace();
 	}
+
 	return "";
 
     }
