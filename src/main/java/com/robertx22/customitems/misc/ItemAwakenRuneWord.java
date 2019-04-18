@@ -18,6 +18,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -46,10 +47,21 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-	if (stack != null && this.getWord(stack).length() > 0) {
-	    tooltip.add("RuneWord: " + this.getWord(stack));
+	if (stack != null && RuneWords.All.containsKey(this.getWord(stack))) {
+	    tooltip.add("");
+	    tooltip.add("RuneWord: ");
 
-	    tooltip.add(RuneWords.All.get(this.getWord(stack)).getRuneWordComboString());
+	    String word = this.getWord(stack);
+
+	    RuneWord runeword = RuneWords.All.get(word);
+
+	    tooltip.add(TextFormatting.GOLD + runeword.locName());
+
+	    tooltip.add(TextFormatting.GREEN + runeword.getRuneWordComboString());
+
+	    tooltip.add(TextFormatting.AQUA + "Runes: " + runeword.size());
+
+	    tooltip.add("");
 	}
 	tooltip.add("Place into an Item Modify Table with the item");
 	tooltip.add("that contains the runeword combination to unlock it");

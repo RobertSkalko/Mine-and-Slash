@@ -3,6 +3,7 @@ package com.robertx22.loot;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.loot.gens.AwakenRuneWordLootGen;
 import com.robertx22.loot.gens.CurrencyLootGen;
 import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.MapLootGen;
@@ -34,6 +35,7 @@ public class MasterLootGen {
 	items.addAll(new MapLootGen(mob, player, world, victim).generate());
 	items.addAll(new RuneLootGen(mob, player, world, victim).generate());
 	items.addAll(new RunedGearLootGen(mob, player, world, victim).generate());
+	items.addAll(new AwakenRuneWordLootGen(mob, player, world, victim).generate());
 
 	if (world.isMapWorld()) {
 	    items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
@@ -58,6 +60,7 @@ public class MasterLootGen {
 	items.addAll(new MapLootGen(multi, world, level).generate());
 	items.addAll(new RuneLootGen(multi, world, level).generate());
 	items.addAll(new RunedGearLootGen(multi, world, level).generate());
+	items.addAll(new AwakenRuneWordLootGen(multi, world).generate());
 
 	if (world.isMapWorld()) {
 	    items.addAll(new UniqueGearLootGen(multi, world, level).generate());

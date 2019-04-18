@@ -132,7 +132,7 @@ item.mmorpg:tutorial_book.name=Mine and Slash Tutorial
 item.mmorpg:map_back_portal.name=Map Leave Pearl
 item.mmorpg:level_nearest_entity.name=Level Nearest Entity
 item.mmorpg:increase_rarity_nearest_entity.name=Increase Rarity Nearest Entity
-item.mmorpg:awaken_runeword.name=Awaken RuneWord
+item.mmorpg:awaken_runeword.name=§cAwaken RuneWord
 
 
 # SPELL ITEMS
