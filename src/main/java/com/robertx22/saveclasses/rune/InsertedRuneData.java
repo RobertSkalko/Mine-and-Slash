@@ -30,6 +30,9 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
     }
 
     @Store
+    public String usedForRuneWord = "";
+
+    @Store
     public int level = 1;
 
     @Store

@@ -23,7 +23,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
     public List<InsertedRuneData> runes = new ArrayList<InsertedRuneData>();
 
     @Store
-    public RuneWordData runeword = new RuneWordData();
+    public List<RuneWordData> runewords = new ArrayList<RuneWordData>();
 
     @Store
     public int capacity = 1;
@@ -36,17 +36,20 @@ public class RunesData implements ITooltipList, IStatsContainer {
 	    list.addAll(rune.GetAllStats(level));
 	}
 
-	list.addAll(runeword.GetAllStats(level));
-
+	for (RuneWordData word : runewords) {
+	    list.addAll(word.GetAllStats(level));
+	}
 	return list;
     }
 
-    public String getRuneWordCombo() {
+    public String getRemainingRuneWordCombo() {
 
 	String text = "";
 
 	for (InsertedRuneData item : runes) {
-	    text += item.rune.toUpperCase();
+	    if (item.usedForRuneWord.length() == 0) {
+		text += item.rune.toUpperCase();
+	    }
 	}
 	return text;
     }
@@ -55,15 +58,50 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
 	this.runes.add(new InsertedRuneData(rune.level, rune.name, Arrays.asList(rune.getModFor(gear)), rune.rarity));
 
-	if (runes.size() == this.capacity) {// create runeword
-	    RuneWord runeword = RuneWords.findMatching(this);
+    }
 
-	    if (runeword != null) {
-		this.runeword = new RuneWordData(this, runeword);
+    public boolean canAwakenRuneWord(RuneWord word) {
+
+	String text = "";
+
+	for (int i = 0; i < word.size(); i++) {
+	    for (InsertedRuneData inserted : runes) {
+		if (inserted.usedForRuneWord.length() == 0 && inserted.rune.equals(word.runes().get(i).name())) {
+
+		    text += word.runes().get(i).name();
+
+		    break;
+		}
 	    }
 
 	}
 
+	return text.toUpperCase().equals(word.getRuneWordCombo().toUpperCase());
+
+    }
+
+    public boolean AwakenRuneWord(String word) {
+	RuneWord runeword = RuneWords.All.get(word);
+
+	if (runeword != null) {
+
+	    this.runewords.add(new RuneWordData(this, runeword));
+
+	    for (int i = 0; i < runeword.size(); i++) {
+		for (InsertedRuneData inserted : runes) {
+		    if (inserted.usedForRuneWord.length() == 0
+			    && inserted.rune.equals(runeword.runes().get(i).name())) {
+
+			inserted.usedForRuneWord = runeword.name();
+			break;
+		    }
+		}
+
+	    }
+	    return true;
+
+	}
+	return false;
     }
 
     public int getAveragePercents() {
@@ -150,9 +188,10 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
 	list.add("");
 
-	if (this.runeword != null && runeword.Mods.size() > 0) {
-
-	    list.addAll(runeword.GetTooltipString(gear));
+	if (this.runewords != null && runewords.size() > 0) {
+	    for (RuneWordData word : runewords) {
+		list.addAll(word.GetTooltipString(gear));
+	    }
 	}
 
 	return list;

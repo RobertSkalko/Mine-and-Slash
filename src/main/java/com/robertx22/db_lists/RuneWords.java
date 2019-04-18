@@ -13,7 +13,6 @@ import com.robertx22.database.runewords.slots_4.RuneWordZephyr;
 import com.robertx22.database.runewords.slots_5.RuneWordGhost;
 import com.robertx22.database.runewords.slots_5.RuneWordHoming;
 import com.robertx22.database.runewords.slots_5.RuneWordLight;
-import com.robertx22.saveclasses.rune.RunesData;
 
 public class RuneWords {
     public static HashMap<String, RuneWord> All = new HashMap<String, RuneWord>() {
@@ -35,16 +34,5 @@ public class RuneWords {
 	    }
 	}
     };
-
-    public static RuneWord findMatching(RunesData data) {
-	for (RuneWord runeword : All.values()) {
-	    if (runeword.runesMatch(data)) {
-		return runeword;
-	    }
-
-	}
-	return null;
-
-    }
 
 }

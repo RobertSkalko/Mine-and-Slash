@@ -3,7 +3,6 @@ package com.robertx22.database.runewords;
 import java.util.List;
 
 import com.robertx22.customitems.runes.base.BaseRuneItem;
-import com.robertx22.saveclasses.rune.RunesData;
 import com.robertx22.stats.StatMod;
 
 public abstract class RuneWord {
@@ -28,8 +27,8 @@ public abstract class RuneWord {
 	return text;
     }
 
-    public boolean runesMatch(RunesData data) {
-	return this.getRuneWordCombo().equals(data.getRuneWordCombo());
+    public boolean runesMatch(String word) {
+	return this.getRuneWordCombo().equals(word);
     }
 
 }
