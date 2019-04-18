@@ -32,7 +32,7 @@ public class RegenPotion extends SpellPotionBase {
     private RegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName("effect.regen");
+	setPotionName(Ref.MODID + ".effect.self_regen");
     }
 
     @Override
@@ -59,17 +59,19 @@ public class RegenPotion extends SpellPotionBase {
     @Override
     public void performEffectEverySetTime(EntityLivingBase entity, int amplifier) {
 
-	UnitData data = Load.Unit(entity);
+	try {
 
-	float hp_percent = ((float) amplifier) / 100;
+	    if (entity.world.isRemote) {
+		SpellInstantHeal.spawnHealParticles(entity, 3);
+	    } else {
+		UnitData data = Load.Unit(entity);
+		float hp_percent = ((float) amplifier) / 100;
 
-	if (entity.world.isRemote) {
-	    SpellInstantHeal.spawnHealParticles(entity, 3);
-	} else {
-	    Load.Unit(entity).heal(entity, (int) ((int) data.getUnit().healthData().Value * hp_percent));
+		data.heal(entity, (int) ((int) data.getUnit().healthData().Value * hp_percent));
 
-	    System.out.println("healed " + hp_percent);
-
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
 
     }

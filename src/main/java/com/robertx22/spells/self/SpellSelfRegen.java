@@ -8,8 +8,6 @@ import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellBuffCheck;
 import com.robertx22.spells.potion_effects.all.RegenPotion;
 import com.robertx22.uncommon.CLOC;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -63,8 +61,6 @@ public class SpellSelfRegen extends BaseSpellHeal {
 
 	    if (!world.isRemote) {
 
-		UnitData unit = Load.Unit(caster);
-		// unit.heal(caster, data.GetDamage(unit.getUnit()));
 		SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
 
 		caster.addPotionEffect(

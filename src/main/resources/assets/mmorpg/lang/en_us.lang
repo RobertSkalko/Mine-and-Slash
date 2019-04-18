@@ -143,20 +143,27 @@ item.mmorpg:spell_thunderbolt.name=§cThunder Bolt
 
 item.mmorpg:spell_acid_bomb.name=§cAcid Bomb
 item.mmorpg:spell_fire_bomb.name=§cFire Bomb
-item.mmorpg:spell_fros_bomb.name=§cFrost Bomb
+item.mmorpg:spell_frost_bomb.name=§cIce Bomb
 item.mmorpg:spell_thunder_bomb.name=§cThunder Bomb
 
 item.mmorpg:spell_acidexplosion.name=§cAcid Explosion
 item.mmorpg:spell_frostexplosion.name=§cFrost Explosion
 item.mmorpg:spell_flameexplosion.name=§cFlame Explosion
 item.mmorpg:spell_lightningexplosion.name=§cLightning Explosion
+
 item.mmorpg:spell_instantheal.name=§cInstant Heal
+item.mmorpg:spell_self_regen.name=§cRegenerate
+
+# STATUS EFFECTS
+mmorpg.effect.self_regen=Regenerate
+mmorpg.effect.aoe_regen=Aoe Regen
 
 # SPELL TOOLTIPS
 mmorpg.tooltip.aoe_spell_explosion=Casts an elemental projectile that does AOE dmg on hit.
 mmorpg.tooltip.single_target_spell_bolt=Casts a Single Target elemental projectile.
 mmorpg.tooltip.spell_instant_heal=Instantly Heals the caster.
 mmorpg.tooltip.aoe_bomb_spell=Leaves out a bomb that explodes later for Aoe Damage.
+mmorpg.tooltip.spell_self_regen=Heals the caster over time.
 
 # REPAIR CAPACITORS
 item.mmorpg:capacitor0.name=Common Capacitor

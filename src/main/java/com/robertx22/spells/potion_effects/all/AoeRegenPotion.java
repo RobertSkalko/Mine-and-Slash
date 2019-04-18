@@ -32,7 +32,7 @@ public class AoeRegenPotion extends SpellPotionBase {
     private AoeRegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName("effect.aoe_regen");
+	setPotionName(Ref.MODID + ".effect.aoe_regen");
     }
 
     @Override
