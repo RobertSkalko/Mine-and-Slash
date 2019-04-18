@@ -47,7 +47,7 @@ public class RuneWordData implements IStatsContainer, ITooltipList {
 
 	int percent = data.getAveragePercents();
 
-	name = word.name();
+	name = word.GUID();
 
 	rarity = data.getAverageRarity();
 
@@ -75,7 +75,7 @@ public class RuneWordData implements IStatsContainer, ITooltipList {
 
 	RuneWord word = getRuneWord();
 
-	list.add(rar.Color() + "Rune Word: " + word.name().toUpperCase());
+	list.add(rar.Color() + "Rune Word: " + word.locName().toUpperCase());
 	// list.add("");
 
 	for (StatModData mod : this.Mods) {

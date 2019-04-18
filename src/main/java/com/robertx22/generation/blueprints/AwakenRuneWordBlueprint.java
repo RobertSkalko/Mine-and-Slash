@@ -15,7 +15,7 @@ public class AwakenRuneWordBlueprint {
 
 	    RuneWord random = (RuneWord) RandomUtils.WeightedRandom(ListUtils.CollectionToList(RuneWords.All.values()));
 
-	    word = random.name();
+	    word = random.GUID();
 
 	}
 

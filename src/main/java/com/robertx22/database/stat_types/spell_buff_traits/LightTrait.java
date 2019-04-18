@@ -9,7 +9,7 @@ import com.robertx22.stats.StatEffects.spell_buffs.LightBuff;
 
 public class LightTrait extends SpellBuffTrait {
 
-    public static String GUID = "Light";
+    public static String GUID = "Shining Light";
 
     @Override
     public String Guid() {
@@ -17,14 +17,8 @@ public class LightTrait extends SpellBuffTrait {
     }
 
     @Override
-    public String Description() {
-	return "Your Self Heal Spells now grant you Aoe Regen";
-
-    }
-
-    @Override
     public String unlocString() {
-	return "light";
+	return "shining_light";
     }
 
     @Override

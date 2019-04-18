@@ -21,9 +21,11 @@ public class CreateJsonsOfRunes {
 
 	    for (int i = 0; i < 6; i++) {
 
+		String runename = Rarities.Items.get(i).Color() + "" + rune.name() + " - "
+			+ Rarities.Items.get(i).GUID() + " Rune ";
+
 		// for lang file
-		lang += "item.mmorpg:runes/" + rune.name().toLowerCase() + i + ".name=" + Rarities.Items.get(i).Color()
-			+ "" + Rarities.Items.get(i).GUID() + " Rune " + rune.name() + "\n";
+		lang += "item.mmorpg:runes/" + rune.name().toLowerCase() + i + ".name=" + runename + "\n";
 
 		// for model files
 		String newtext = text.replaceAll("1", i + "");

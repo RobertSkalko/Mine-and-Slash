@@ -19,17 +19,17 @@ public class RuneWords {
 	{
 	    {
 
-		put(new RuneWordStone().name(), new RuneWordStone());
-		put(new RuneWordHoming().name(), new RuneWordHoming());
-		put(new RuneWordGhost().name(), new RuneWordGhost());
+		put(new RuneWordStone().GUID(), new RuneWordStone());
+		put(new RuneWordHoming().GUID(), new RuneWordHoming());
+		put(new RuneWordGhost().GUID(), new RuneWordGhost());
 
-		put(new RuneWordScales().name(), new RuneWordScales());
-		put(new RuneWordRadiance().name(), new RuneWordRadiance());
-		put(new RuneWordThief().name(), new RuneWordThief());
-		put(new RuneWordMagician().name(), new RuneWordMagician());
-		put(new RuneWordMountain().name(), new RuneWordMountain());
-		put(new RuneWordZephyr().name(), new RuneWordZephyr());
-		put(new RuneWordLight().name(), new RuneWordLight());
+		put(new RuneWordScales().GUID(), new RuneWordScales());
+		put(new RuneWordRadiance().GUID(), new RuneWordRadiance());
+		put(new RuneWordThief().GUID(), new RuneWordThief());
+		put(new RuneWordMagician().GUID(), new RuneWordMagician());
+		put(new RuneWordMountain().GUID(), new RuneWordMountain());
+		put(new RuneWordZephyr().GUID(), new RuneWordZephyr());
+		put(new RuneWordLight().GUID(), new RuneWordLight());
 
 	    }
 	}

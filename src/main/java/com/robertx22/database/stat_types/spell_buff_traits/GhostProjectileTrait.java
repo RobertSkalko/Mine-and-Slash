@@ -17,12 +17,6 @@ public class GhostProjectileTrait extends SpellBuffTrait {
     }
 
     @Override
-    public String Description() {
-	return "Your Single Target Spell Projectiles now go through enemies, damaging all!";
-
-    }
-
-    @Override
     public String unlocString() {
 	return "ghost_projectile";
     }

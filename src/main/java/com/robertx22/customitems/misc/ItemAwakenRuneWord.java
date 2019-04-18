@@ -84,7 +84,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 	if (nbt == null) {
 	    nbt = new NBTTagCompound();
 	}
-	nbt.setString("runeword", word.name());
+	nbt.setString("runeword", word.GUID());
 	stack.setTagCompound(nbt);
 
     }

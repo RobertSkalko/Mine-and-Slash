@@ -17,12 +17,6 @@ public class HomingTrait extends SpellBuffTrait {
     }
 
     @Override
-    public String Description() {
-	return "Your Single Target Spell Projectiles now Home in on the target";
-
-    }
-
-    @Override
     public String unlocString() {
 	return "homing_projectile";
     }

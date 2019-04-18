@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.robertx22.customitems.runes.BerItem;
 import com.robertx22.customitems.runes.CenItem;
+import com.robertx22.customitems.runes.ItaItem;
 import com.robertx22.customitems.runes.VohItem;
-import com.robertx22.customitems.runes.ZohItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
@@ -22,14 +22,19 @@ public class RuneWordMountain extends RuneWord {
     }
 
     @Override
-    public String name() {
+    public String GUID() {
 	return "Mountain";
     }
 
     @Override
     public List<BaseRuneItem> runes() {
-	return Arrays.asList(new ZohItem(0), new CenItem(0), new VohItem(0), new BerItem(0));
+	return Arrays.asList(new ItaItem(0), new CenItem(0), new VohItem(0), new BerItem(0));
 
+    }
+
+    @Override
+    public String unlocName() {
+	return "mountain";
     }
 
 }

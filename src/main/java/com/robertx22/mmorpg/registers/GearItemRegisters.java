@@ -18,16 +18,16 @@ import com.robertx22.customitems.gearitems.weapons.ItemHammer;
 import com.robertx22.customitems.gearitems.weapons.ItemStaff;
 import com.robertx22.customitems.gearitems.weapons.ItemSword;
 import com.robertx22.customitems.misc.ItemMap;
+import com.robertx22.customitems.runes.AnoItem;
 import com.robertx22.customitems.runes.BerItem;
 import com.robertx22.customitems.runes.CenItem;
 import com.robertx22.customitems.runes.DosItem;
 import com.robertx22.customitems.runes.GohItem;
+import com.robertx22.customitems.runes.ItaItem;
 import com.robertx22.customitems.runes.MosItem;
 import com.robertx22.customitems.runes.RahItem;
 import com.robertx22.customitems.runes.VohItem;
 import com.robertx22.customitems.runes.XahItem;
-import com.robertx22.customitems.runes.YuzItem;
-import com.robertx22.customitems.runes.ZohItem;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
@@ -52,19 +52,16 @@ public class GearItemRegisters {
 	    int rank = rarity.Rank();
 
 	    // runes
-	    regRarities(new CenItem(rank), CenItem.Items, "runes/cen", rank);
-	    regRarities(new BerItem(rank), BerItem.Items, "runes/ber", rank);
-	    regRarities(new DosItem(rank), DosItem.Items, "runes/dos", rank);
-	    regRarities(new GohItem(rank), GohItem.Items, "runes/goh", rank);
-	    regRarities(new MosItem(rank), MosItem.Items, "runes/mos", rank);
-	    regRarities(new RahItem(rank), RahItem.Items, "runes/rah", rank);
-	    regRarities(new VohItem(rank), VohItem.Items, "runes/voh", rank);
-	    regRarities(new XahItem(rank), XahItem.Items, "runes/xah", rank);
-	    regRarities(new YuzItem(rank), YuzItem.Items, "runes/yuz", rank);
-	    regRarities(new ZohItem(rank), ZohItem.Items, "runes/zoh", rank);
-
-	    // regRarities(new ZohItem(rank), ZohItem.Items, "runes/zoh", rarity.Rank());
-	    // regRarities(new MosItem(rank), MosItem.Items, "runes/mos", rarity.Rank());
+	    regRarities(new CenItem(rank), CenItem.Items, "runes/" + new CenItem(rank).name().toLowerCase(), rank);
+	    regRarities(new BerItem(rank), BerItem.Items, "runes/" + new BerItem(rank).name().toLowerCase(), rank);
+	    regRarities(new DosItem(rank), DosItem.Items, "runes/" + new DosItem(rank).name().toLowerCase(), rank);
+	    regRarities(new GohItem(rank), GohItem.Items, "runes/" + new GohItem(rank).name().toLowerCase(), rank);
+	    regRarities(new MosItem(rank), MosItem.Items, "runes/" + new MosItem(rank).name().toLowerCase(), rank);
+	    regRarities(new RahItem(rank), RahItem.Items, "runes/" + new RahItem(rank).name().toLowerCase(), rank);
+	    regRarities(new VohItem(rank), VohItem.Items, "runes/" + new VohItem(rank).name().toLowerCase(), rank);
+	    regRarities(new XahItem(rank), XahItem.Items, "runes/" + new XahItem(rank).name().toLowerCase(), rank);
+	    regRarities(new AnoItem(rank), AnoItem.Items, "runes/" + new AnoItem(rank).name().toLowerCase(), rank);
+	    regRarities(new ItaItem(rank), ItaItem.Items, "runes/" + new ItaItem(rank).name().toLowerCase(), rank);
 
 	    // weapons
 	    regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());

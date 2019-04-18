@@ -19,13 +19,18 @@ public class RuneWordScales extends RuneWord {
     }
 
     @Override
-    public String name() {
+    public String GUID() {
 	return "Scales";
     }
 
     @Override
     public List<BaseRuneItem> runes() {
 	return Arrays.asList(new BerItem(0), new CenItem(0));
+    }
+
+    @Override
+    public String unlocName() {
+	return "scales";
     }
 
 }

@@ -278,11 +278,6 @@ public class ModConfig {
     public static class ClientContainer
 
     {
-	@Config.Name("Lenghty Gear Tooltips")
-	@Config.LangKey("mmorpg.config.lenghty_gear_tooltips")
-	@Config.Comment("If you like always knowing what stat belongs where.")
-	public boolean LENTHY_GEAR_TOOLTIPS = true;
-
 	@Config.Name("Render Item On Ground Rarity Particles")
 	@Config.LangKey("mmorpg.config.item_on_ground_particles")
 	@Config.Comment("Might help with finding gear, but could also be laggy")

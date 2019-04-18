@@ -20,7 +20,7 @@ public class RuneWordThief extends RuneWord {
     }
 
     @Override
-    public String name() {
+    public String GUID() {
 	return "Thief";
     }
 
@@ -29,6 +29,11 @@ public class RuneWordThief extends RuneWord {
 
 	return Arrays.asList(new RahItem(0), new MosItem(0), new GohItem(0));
 
+    }
+
+    @Override
+    public String unlocName() {
+	return "thief";
     }
 
 }

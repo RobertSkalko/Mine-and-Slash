@@ -92,7 +92,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
 		    if (inserted.usedForRuneWord.length() == 0
 			    && inserted.rune.equals(runeword.runes().get(i).name())) {
 
-			inserted.usedForRuneWord = runeword.name();
+			inserted.usedForRuneWord = runeword.GUID();
 			break;
 		    }
 		}

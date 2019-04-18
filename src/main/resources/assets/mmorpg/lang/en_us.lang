@@ -305,6 +305,9 @@ mmorpg.word.major_success_bonus=Major Success Chance
 mmorpg.word.major_failure_chance=Major Failure Chance
 
 
+
+
+
 # BIOME WORDS
 mmorpg.word.arid_highland=Arid Highland
 mmorpg.word.badlands=Badlands
@@ -547,6 +550,11 @@ mmorpg.stat.nature_water_transfer=Nature to Water Transfer
 mmorpg.stat.nature_thunder_transfer=Nature to Thunder Transfer
 mmorpg.stat.nature_fire_transfer=Nature to Fire Transfer
 
+mmorpg.stat.ghost_projectile=Ghost Projectile
+mmorpg.stat.homing_projectile=Homing Projectile
+mmorpg.stat.shining_light=Shining Light
+mmorpg.stat.zephyr_speed=Zephyr's Speed
+
 # ITEM TOOLTIPS
 
 # CURRENCY ITEM LORE
@@ -725,64 +733,85 @@ item.mmorpg:auto_salvage_bag4.name=§6Auto Salvage Bag
 item.mmorpg:auto_salvage_bag5.name=§dAuto Salvage Bag
 
 # RUNES
-item.mmorpg:runes/mos0.name=§7Common Rune MOS
-item.mmorpg:runes/mos1.name=§aUncommon Rune MOS
-item.mmorpg:runes/mos2.name=§eRare Rune MOS
-item.mmorpg:runes/mos3.name=§9Epic Rune MOS
-item.mmorpg:runes/mos4.name=§6Legendary Rune MOS
-item.mmorpg:runes/mos5.name=§dMythical Rune MOS
-item.mmorpg:runes/goh0.name=§7Common Rune GOH
-item.mmorpg:runes/goh1.name=§aUncommon Rune GOH
-item.mmorpg:runes/goh2.name=§eRare Rune GOH
-item.mmorpg:runes/goh3.name=§9Epic Rune GOH
-item.mmorpg:runes/goh4.name=§6Legendary Rune GOH
-item.mmorpg:runes/goh5.name=§dMythical Rune GOH
-item.mmorpg:runes/zoh0.name=§7Common Rune ZOH
-item.mmorpg:runes/zoh1.name=§aUncommon Rune ZOH
-item.mmorpg:runes/zoh2.name=§eRare Rune ZOH
-item.mmorpg:runes/zoh3.name=§9Epic Rune ZOH
-item.mmorpg:runes/zoh4.name=§6Legendary Rune ZOH
-item.mmorpg:runes/zoh5.name=§dMythical Rune ZOH
-item.mmorpg:runes/rah0.name=§7Common Rune RAH
-item.mmorpg:runes/rah1.name=§aUncommon Rune RAH
-item.mmorpg:runes/rah2.name=§eRare Rune RAH
-item.mmorpg:runes/rah3.name=§9Epic Rune RAH
-item.mmorpg:runes/rah4.name=§6Legendary Rune RAH
-item.mmorpg:runes/rah5.name=§dMythical Rune RAH
-item.mmorpg:runes/dos0.name=§7Common Rune DOS
-item.mmorpg:runes/dos1.name=§aUncommon Rune DOS
-item.mmorpg:runes/dos2.name=§eRare Rune DOS
-item.mmorpg:runes/dos3.name=§9Epic Rune DOS
-item.mmorpg:runes/dos4.name=§6Legendary Rune DOS
-item.mmorpg:runes/dos5.name=§dMythical Rune DOS
-item.mmorpg:runes/cen0.name=§7Common Rune CEN
-item.mmorpg:runes/cen1.name=§aUncommon Rune CEN
-item.mmorpg:runes/cen2.name=§eRare Rune CEN
-item.mmorpg:runes/cen3.name=§9Epic Rune CEN
-item.mmorpg:runes/cen4.name=§6Legendary Rune CEN
-item.mmorpg:runes/cen5.name=§dMythical Rune CEN
-item.mmorpg:runes/ber0.name=§7Common Rune BER
-item.mmorpg:runes/ber1.name=§aUncommon Rune BER
-item.mmorpg:runes/ber2.name=§eRare Rune BER
-item.mmorpg:runes/ber3.name=§9Epic Rune BER
-item.mmorpg:runes/ber4.name=§6Legendary Rune BER
-item.mmorpg:runes/ber5.name=§dMythical Rune BER
-item.mmorpg:runes/voh0.name=§7Common Rune VOH
-item.mmorpg:runes/voh1.name=§aUncommon Rune VOH
-item.mmorpg:runes/voh2.name=§eRare Rune VOH
-item.mmorpg:runes/voh3.name=§9Epic Rune VOH
-item.mmorpg:runes/voh4.name=§6Legendary Rune VOH
-item.mmorpg:runes/voh5.name=§dMythical Rune VOH
-item.mmorpg:runes/xah0.name=§7Common Rune XAH
-item.mmorpg:runes/xah1.name=§aUncommon Rune XAH
-item.mmorpg:runes/xah2.name=§eRare Rune XAH
-item.mmorpg:runes/xah3.name=§9Epic Rune XAH
-item.mmorpg:runes/xah4.name=§6Legendary Rune XAH
-item.mmorpg:runes/xah5.name=§dMythical Rune XAH
-item.mmorpg:runes/yuz0.name=§7Common Rune YUZ
-item.mmorpg:runes/yuz1.name=§aUncommon Rune YUZ
-item.mmorpg:runes/yuz2.name=§eRare Rune YUZ
-item.mmorpg:runes/yuz3.name=§9Epic Rune YUZ
-item.mmorpg:runes/yuz4.name=§6Legendary Rune YUZ
-item.mmorpg:runes/yuz5.name=§dMythical Rune YUZ
+item.mmorpg:runes/mos0.name=§7MOS - Common Rune 
+item.mmorpg:runes/mos1.name=§aMOS - Uncommon Rune 
+item.mmorpg:runes/mos2.name=§eMOS - Rare Rune 
+item.mmorpg:runes/mos3.name=§9MOS - Epic Rune 
+item.mmorpg:runes/mos4.name=§6MOS - Legendary Rune 
+item.mmorpg:runes/mos5.name=§dMOS - Mythical Rune 
+item.mmorpg:runes/goh0.name=§7GOH - Common Rune 
+item.mmorpg:runes/goh1.name=§aGOH - Uncommon Rune 
+item.mmorpg:runes/goh2.name=§eGOH - Rare Rune 
+item.mmorpg:runes/goh3.name=§9GOH - Epic Rune 
+item.mmorpg:runes/goh4.name=§6GOH - Legendary Rune 
+item.mmorpg:runes/goh5.name=§dGOH - Mythical Rune 
+item.mmorpg:runes/ano0.name=§7ANO - Common Rune 
+item.mmorpg:runes/ano1.name=§aANO - Uncommon Rune 
+item.mmorpg:runes/ano2.name=§eANO - Rare Rune 
+item.mmorpg:runes/ano3.name=§9ANO - Epic Rune 
+item.mmorpg:runes/ano4.name=§6ANO - Legendary Rune 
+item.mmorpg:runes/ano5.name=§dANO - Mythical Rune 
+item.mmorpg:runes/ita0.name=§7ITA - Common Rune 
+item.mmorpg:runes/ita1.name=§aITA - Uncommon Rune 
+item.mmorpg:runes/ita2.name=§eITA - Rare Rune 
+item.mmorpg:runes/ita3.name=§9ITA - Epic Rune 
+item.mmorpg:runes/ita4.name=§6ITA - Legendary Rune 
+item.mmorpg:runes/ita5.name=§dITA - Mythical Rune 
+item.mmorpg:runes/rah0.name=§7RAH - Common Rune 
+item.mmorpg:runes/rah1.name=§aRAH - Uncommon Rune 
+item.mmorpg:runes/rah2.name=§eRAH - Rare Rune 
+item.mmorpg:runes/rah3.name=§9RAH - Epic Rune 
+item.mmorpg:runes/rah4.name=§6RAH - Legendary Rune 
+item.mmorpg:runes/rah5.name=§dRAH - Mythical Rune 
+item.mmorpg:runes/dos0.name=§7DOS - Common Rune 
+item.mmorpg:runes/dos1.name=§aDOS - Uncommon Rune 
+item.mmorpg:runes/dos2.name=§eDOS - Rare Rune 
+item.mmorpg:runes/dos3.name=§9DOS - Epic Rune 
+item.mmorpg:runes/dos4.name=§6DOS - Legendary Rune 
+item.mmorpg:runes/dos5.name=§dDOS - Mythical Rune 
+item.mmorpg:runes/cen0.name=§7CEN - Common Rune 
+item.mmorpg:runes/cen1.name=§aCEN - Uncommon Rune 
+item.mmorpg:runes/cen2.name=§eCEN - Rare Rune 
+item.mmorpg:runes/cen3.name=§9CEN - Epic Rune 
+item.mmorpg:runes/cen4.name=§6CEN - Legendary Rune 
+item.mmorpg:runes/cen5.name=§dCEN - Mythical Rune 
+item.mmorpg:runes/ber0.name=§7BER - Common Rune 
+item.mmorpg:runes/ber1.name=§aBER - Uncommon Rune 
+item.mmorpg:runes/ber2.name=§eBER - Rare Rune 
+item.mmorpg:runes/ber3.name=§9BER - Epic Rune 
+item.mmorpg:runes/ber4.name=§6BER - Legendary Rune 
+item.mmorpg:runes/ber5.name=§dBER - Mythical Rune 
+item.mmorpg:runes/voh0.name=§7VOH - Common Rune 
+item.mmorpg:runes/voh1.name=§aVOH - Uncommon Rune 
+item.mmorpg:runes/voh2.name=§eVOH - Rare Rune 
+item.mmorpg:runes/voh3.name=§9VOH - Epic Rune 
+item.mmorpg:runes/voh4.name=§6VOH - Legendary Rune 
+item.mmorpg:runes/voh5.name=§dVOH - Mythical Rune 
+item.mmorpg:runes/xah0.name=§7XAH - Common Rune 
+item.mmorpg:runes/xah1.name=§aXAH - Uncommon Rune 
+item.mmorpg:runes/xah2.name=§eXAH - Rare Rune 
+item.mmorpg:runes/xah3.name=§9XAH - Epic Rune 
+item.mmorpg:runes/xah4.name=§6XAH - Legendary Rune 
+item.mmorpg:runes/xah5.name=§dXAH - Mythical Rune 
+
+
+# RUNEWORDS
+mmorpg.word.scales=Scales
+mmorpg.word.stone=Stone
+mmorpg.word.radiance=Radiance
+mmorpg.word.thief=Thief
+mmorpg.word.magician=Magician
+mmorpg.word.zephyr=Zephyr
+mmorpg.word.ghost=Ghost
+mmorpg.word.follower=Follower
+mmorpg.word.light=Light
+mmorpg.word.mountain=Mountain
+# RUNEWORDS
+
+# TRAIT Tooltips
+
+mmorpg.tooltip.homing=Your Single Target Spell Projectiles now Home in on the target.
+mmorpg.tooltip.shining_light=Your Self Heal Spells now grant you Aoe Regen.
+mmorpg.tooltip.zephyr_speed=Your Self Heal Spells now boost your speed temporarily.
+mmorpg.tooltip.ghost_projectile=Your Single Target Spell Projectiles now go through enemies.
 

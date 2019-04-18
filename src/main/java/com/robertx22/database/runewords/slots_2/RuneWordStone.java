@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.customitems.runes.CenItem;
-import com.robertx22.customitems.runes.ZohItem;
+import com.robertx22.customitems.runes.ItaItem;
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stat_mods.percent.ArmorPercent;
@@ -18,13 +18,18 @@ public class RuneWordStone extends RuneWord {
     }
 
     @Override
-    public String name() {
+    public String GUID() {
 	return "Stone";
     }
 
     @Override
     public List<BaseRuneItem> runes() {
-	return Arrays.asList(new ZohItem(0), new CenItem(0));
+	return Arrays.asList(new ItaItem(0), new CenItem(0));
+    }
+
+    @Override
+    public String unlocName() {
+	return "stone";
     }
 
 }

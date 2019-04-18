@@ -23,13 +23,18 @@ public class RuneWordZephyr extends RuneWord {
     }
 
     @Override
-    public String name() {
+    public String GUID() {
 	return "Zephyr";
     }
 
     @Override
     public List<BaseRuneItem> runes() {
 	return Arrays.asList(new MosItem(0), new XahItem(0), new CenItem(0), new BerItem(0));
+    }
+
+    @Override
+    public String unlocName() {
+	return "zephyr";
     }
 
 }

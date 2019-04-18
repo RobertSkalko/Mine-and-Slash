@@ -4,13 +4,20 @@ import java.util.List;
 
 import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public abstract class RuneWord implements IWeighted {
 
     public abstract List<StatMod> mods();
 
-    public abstract String name();
+    public abstract String GUID();
+
+    public abstract String unlocName();
+
+    public String locName() {
+	return CLOC.word(unlocName());
+    }
 
     public abstract List<BaseRuneItem> runes();
 

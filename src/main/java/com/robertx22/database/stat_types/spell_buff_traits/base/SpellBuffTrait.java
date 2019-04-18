@@ -10,6 +10,7 @@ import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.ITrait;
 import com.robertx22.stats.Stat;
 import com.robertx22.stats.StatMod;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;
 
@@ -36,6 +37,11 @@ public abstract class SpellBuffTrait extends Stat implements IStatEffects, ITrai
     @Override
     public boolean IsPercent() {
 	return false;
+    }
+
+    @Override
+    public String Description() {
+	return CLOC.tooltip(this.unlocString());
     }
 
     @Override

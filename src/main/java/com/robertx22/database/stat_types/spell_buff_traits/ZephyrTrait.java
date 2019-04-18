@@ -9,7 +9,7 @@ import com.robertx22.stats.StatEffects.spell_buffs.ZephyrBuff;
 
 public class ZephyrTrait extends SpellBuffTrait {
 
-    public static String GUID = "Zephyr";
+    public static String GUID = "Zephyr's Speed";
 
     @Override
     public String Guid() {
@@ -17,14 +17,8 @@ public class ZephyrTrait extends SpellBuffTrait {
     }
 
     @Override
-    public String Description() {
-	return "Your Self Heal Spells now boost your speed temporarily";
-
-    }
-
-    @Override
     public String unlocString() {
-	return "zephyr";
+	return "zephyr_speed";
     }
 
     @Override

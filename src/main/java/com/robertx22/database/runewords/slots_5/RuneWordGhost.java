@@ -23,13 +23,18 @@ public class RuneWordGhost extends RuneWord {
     }
 
     @Override
-    public String name() {
+    public String GUID() {
 	return "Ghost";
     }
 
     @Override
     public List<BaseRuneItem> runes() {
 	return Arrays.asList(new VohItem(0), new XahItem(0), new BerItem(0), new XahItem(0), new CenItem(0));
+    }
+
+    @Override
+    public String unlocName() {
+	return "ghost";
     }
 
 }
