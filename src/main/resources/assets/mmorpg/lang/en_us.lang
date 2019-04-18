@@ -806,6 +806,9 @@ mmorpg.word.ghost=Ghost
 mmorpg.word.follower=Follower
 mmorpg.word.light=Light
 mmorpg.word.mountain=Mountain
+mmorpg.word.zeal=Zeal
+mmorpg.word.magma=Magma
+mmorpg.word.bloom=Bloom
 # RUNEWORDS
 
 # TRAIT Tooltips

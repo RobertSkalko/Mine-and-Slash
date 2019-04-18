@@ -24,10 +24,12 @@ public class StatData {
 	if (Stats.All.containsKey(Name)) {
 	    return Stats.All.get(Name);
 	}
-
-	System.out.println(
-		"No such stat, this is probably a legacy item and the stat has been renamed or removed: " + Name);
-
+	/*
+	 * System.out.println(
+	 * "No such stat, this is probably a legacy item and the stat has been renamed or removed: "
+	 * + Name);
+	 * 
+	 */
 	return Stats.All.get(UnknownStat.GUID);
     }
 

@@ -43,6 +43,10 @@ public class ServerProxy implements IProxy {
 	return ctx.getServerHandler().player;
     }
 
+    public void regArrow(Item item, Class<? extends Entity> theclass, int id) {
+
+    }
+
     @Override
     public String translate(String str) {
 	return "TRANSLATION PROXY ERROR";

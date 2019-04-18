@@ -3,10 +3,13 @@ package com.robertx22.db_lists;
 import java.util.HashMap;
 
 import com.robertx22.database.runewords.RuneWord;
+import com.robertx22.database.runewords.slots_2.RuneWordBloom;
 import com.robertx22.database.runewords.slots_2.RuneWordScales;
 import com.robertx22.database.runewords.slots_2.RuneWordStone;
+import com.robertx22.database.runewords.slots_3.RuneWordMagma;
 import com.robertx22.database.runewords.slots_3.RuneWordRadiance;
 import com.robertx22.database.runewords.slots_3.RuneWordThief;
+import com.robertx22.database.runewords.slots_3.RuneWordZeal;
 import com.robertx22.database.runewords.slots_4.RuneWordMagician;
 import com.robertx22.database.runewords.slots_4.RuneWordMountain;
 import com.robertx22.database.runewords.slots_4.RuneWordZephyr;
@@ -30,6 +33,10 @@ public class RuneWords {
 		put(new RuneWordMountain().GUID(), new RuneWordMountain());
 		put(new RuneWordZephyr().GUID(), new RuneWordZephyr());
 		put(new RuneWordLight().GUID(), new RuneWordLight());
+
+		put(new RuneWordMagma().GUID(), new RuneWordMagma());
+		put(new RuneWordBloom().GUID(), new RuneWordBloom());
+		put(new RuneWordZeal().GUID(), new RuneWordZeal());
 
 	    }
 	}

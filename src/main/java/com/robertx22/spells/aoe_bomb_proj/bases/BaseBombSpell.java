@@ -13,8 +13,13 @@ public abstract class BaseBombSpell extends BaseSpellProjectile {
     }
 
     @Override
+    public SpellType Type() {
+	return SpellType.Aoe_Bomb_Projectile;
+    }
+
+    @Override
     public int ManaCost() {
-	return 20;
+	return 30;
     }
 
     public float damageScaling = 0.5F;

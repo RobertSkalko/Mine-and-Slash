@@ -345,7 +345,7 @@ public class ModConfig {
 	@Config.Name("Spell Droprate")
 	@Config.LangKey("mmorpg.config.spell_droprate")
 	@Config.Comment("")
-	public float SPELL_DROPRATE = 3;
+	public float SPELL_DROPRATE = 4;
 
 	@Config.Name("Currency Droprate")
 	@Config.LangKey("mmorpg.config.currency_droprate")

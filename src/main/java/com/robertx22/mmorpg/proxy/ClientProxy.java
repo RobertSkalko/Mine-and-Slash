@@ -1,5 +1,6 @@
 package com.robertx22.mmorpg.proxy;
 
+import com.robertx22.customitems.gearitems.RenderMyArrow;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
@@ -16,6 +17,8 @@ import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
 import com.robertx22.uncommon.gui.player_overlays.BarsGUI;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
@@ -24,6 +27,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -79,6 +83,20 @@ public class ClientProxy implements IProxy {
     @Override
     public void serverStarting(FMLServerStartingEvent event) {
 	// This will never get called on client side
+
+    }
+
+    public void regArrow(Item item, Class<? extends Entity> theclass, int id) {
+
+	EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
+		Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
+
+	RenderingRegistry.registerEntityRenderingHandler(theclass, new IRenderFactory() {
+	    @Override
+	    public Render createRenderFor(RenderManager manager) {
+		return new RenderMyArrow(manager);
+	    }
+	});
 
     }
 

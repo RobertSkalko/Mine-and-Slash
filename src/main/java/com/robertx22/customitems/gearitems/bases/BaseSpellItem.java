@@ -63,6 +63,10 @@ public abstract class BaseSpellItem extends Item {
 
 	    tooltip.add("");
 
+	    tooltip.add(TextFormatting.AQUA + "Type: " + this.Spell().typeString());
+
+	    tooltip.add("");
+
 	    tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data));
 
 	    tooltip.add("");

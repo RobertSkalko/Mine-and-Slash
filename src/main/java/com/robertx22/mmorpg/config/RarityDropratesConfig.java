@@ -46,9 +46,11 @@ public class RarityDropratesConfig {
 
 	public static RarityWeight Runes() {
 	    RarityWeight r = new RarityWeight();
-	    r.COMMON_WEIGHT = 15000;
-	    r.UNCOMMON_WEIGHT = 10000;
+	    r.COMMON_WEIGHT = 12000;
+	    r.UNCOMMON_WEIGHT = 7000;
 	    r.RARE_WEIGHT = 4000;
+	    r.LEGENDARY_WEIGHT = 1500;
+	    r.MYTHICAL_WEIGHT = 500;
 	    return r;
 
 	}
