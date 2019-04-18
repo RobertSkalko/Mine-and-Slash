@@ -31,7 +31,6 @@ public abstract class BaseBolt extends BaseSpell {
     @Override
     public int ManaCost() {
 	return 10;
-
     }
 
     @Override

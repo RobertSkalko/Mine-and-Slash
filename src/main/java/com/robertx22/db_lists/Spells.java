@@ -16,6 +16,7 @@ import com.robertx22.spells.projectile.firebolt.SpellFireBolt;
 import com.robertx22.spells.projectile.frostbolt.SpellFrostBolt;
 import com.robertx22.spells.projectile.thunderbolt.SpellThunderBolt;
 import com.robertx22.spells.self.SpellInstantHeal;
+import com.robertx22.spells.self.SpellSelfRegen;
 
 public class Spells {
     public static HashMap<String, BaseSpell> All = new HashMap<String, BaseSpell>() {
@@ -32,6 +33,7 @@ public class Spells {
 		put(new SpellAcidExplosion().GUID(), new SpellAcidExplosion());
 
 		put(new SpellInstantHeal().GUID(), new SpellInstantHeal());
+		put(new SpellSelfRegen().GUID(), new SpellSelfRegen());
 
 		put(new SpellFireBomb().GUID(), new SpellFireBomb());
 		put(new SpellThunderBomb().GUID(), new SpellThunderBomb());

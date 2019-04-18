@@ -16,9 +16,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class AoeRegenPotion extends SpellPotionBase {
+public class RegenPotion extends SpellPotionBase {
 
-    public static final AoeRegenPotion INSTANCE = new AoeRegenPotion();
+    public static final RegenPotion INSTANCE = new RegenPotion();
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Potion> event) {
@@ -29,15 +29,15 @@ public class AoeRegenPotion extends SpellPotionBase {
 	return INSTANCE.newSpellCast(source);
     }
 
-    private AoeRegenPotion() {
+    private RegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName("effect.aoe_regen");
+	setPotionName("effect.regen");
     }
 
     @Override
     public ResourceLocation getIconTexture() {
-	return new ResourceLocation(Ref.MODID, "textures/status_effects/aoe_regen.png");
+	return new ResourceLocation(Ref.MODID, "textures/status_effects/regen.png");
     }
 
     private static void apply(EntityLivingBase entity) {
@@ -61,20 +61,21 @@ public class AoeRegenPotion extends SpellPotionBase {
 
 	UnitData data = Load.Unit(entity);
 
-	for (EntityLivingBase en : this.getEntitiesAround(entity, 3F)) {
+	float hp_percent = ((float) amplifier) / 100;
 
-	    if (en.world.isRemote) {
-		SpellInstantHeal.spawnHealParticles(en, 3);
-	    } else {
-		Load.Unit(en).heal(en, (int) data.getUnit().healthData().Value / 50);
+	if (entity.world.isRemote) {
+	    SpellInstantHeal.spawnHealParticles(entity, 3);
+	} else {
+	    Load.Unit(entity).heal(entity, (int) ((int) data.getUnit().healthData().Value * hp_percent));
 
-	    }
+	    System.out.println("healed " + hp_percent);
+
 	}
 
     }
 
     @Override
     public int performEachXTicks() {
-	return 40;
+	return 50;
     }
 }
