@@ -249,7 +249,7 @@ public class StatConfig {
 
     @Config.Name("Armor Per Level")
     @Config.LangKey("mmorpg.stat.armor_per_level")
-    public float armor_per_level = 2;
+    public float armor_per_level = 4;
 
     @Config.Name("Attack Nature Damage")
     @Config.LangKey("mmorpg.stat.attack_nature_damage")

@@ -28,7 +28,7 @@ public class MobStatUtils {
 
     public static void AddMobcStats(Unit unit, int level) {
 
-	unit.MyStats.get(Health.GUID).Flat += 15 * level;
+	// unit.MyStats.get(Health.GUID).Flat += 15 * level;
 	unit.MyStats.get(Armor.GUID).Flat += 10 * level;
 	unit.MyStats.get(CriticalHit.GUID).Flat += 5;
 	unit.MyStats.get(CriticalDamage.GUID).Flat += 10;

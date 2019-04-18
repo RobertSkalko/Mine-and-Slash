@@ -33,6 +33,18 @@ public abstract class BaseSpellHeal extends BaseSpell {
 
     }
 
+    public void checkPurityRemoveNegativeEffects(EntityPlayer caster, SpellBuffCheck buffable) {
+
+	if (buffable.getBuff().equals(SpellBuffType.Purity_Remove_Negative_Effects)) {
+	    for (PotionEffect pot : caster.getActivePotionEffects()) {
+		if (pot.getPotion().isBadEffect()) {
+		    caster.removePotionEffect(pot.getPotion());
+		}
+	    }
+	}
+
+    }
+
     public void checkAddLightBuff(EntityPlayer caster, SpellBuffCheck buffable) {
 	if (buffable.getBuff().equals(SpellBuffType.Light_Aoe_Regen)) {
 	    caster.addPotionEffect(new PotionEffect(AoeRegenPotion.INSTANCE, 200));
@@ -43,6 +55,7 @@ public abstract class BaseSpellHeal extends BaseSpell {
     public void checkSpellBuffs(EntityPlayer caster, SpellBuffCheck buffable) {
 	checkZephyrSpeedBoost(caster, buffable);
 	checkAddLightBuff(caster, buffable);
+	checkPurityRemoveNegativeEffects(caster, buffable);
     }
 
     public static void spawnHealParticles(EntityLivingBase en, int amount) {

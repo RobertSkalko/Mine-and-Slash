@@ -75,10 +75,15 @@ public class ItemPlayerLevelUp extends BaseItem {
 
     private int tokensRequired(int level) {
 
-	if (level >= 64) {
+	int req = level / 10;
+
+	if (req < 1) {
+	    req = 1;
+	}
+	if (req >= 64) {
 	    return 64;
 	} else {
-	    return level;
+	    return req;
 	}
     }
 

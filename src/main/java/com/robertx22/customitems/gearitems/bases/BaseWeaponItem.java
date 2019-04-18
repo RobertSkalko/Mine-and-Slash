@@ -4,8 +4,6 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 import com.robertx22.uncommon.SLOC;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
-import com.robertx22.uncommon.datasaving.Load;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -42,20 +40,9 @@ public abstract class BaseWeaponItem extends ItemTool implements IGearItem, IWea
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 
-	if (checkDurability(attacker, stack)) {
+	stack.damageItem(1, attacker);
 
-	    stack.damageItem(1, attacker);
-
-	    UnitData sourceUnit = Load.Unit(attacker);
-
-	    if (sourceUnit.tryUseWeapon(attacker, stack)) {
-		sourceUnit.attackWithWeapon(attacker, target, stack);
-
-		return true;
-	    }
-	}
-
-	return false;
+	return true;
     }
 
 }

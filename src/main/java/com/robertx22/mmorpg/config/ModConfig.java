@@ -360,6 +360,11 @@ public class ModConfig {
 
     public static class ServerContainer {
 
+	@Config.Name("Disable Vanilla Hp Regen")
+	@Config.LangKey("mmorpg.config.")
+	@Config.Comment("This should always be disabled because otherwise with my mod's nerfed vanilla healing, the hp regen spends way too much hunger. Also you have hp regen from my mod")
+	public boolean DISABLE_VANILLA_HP_REGEN = true;
+
 	@Config.Name("Maximum Worn Runed Items")
 	@Config.LangKey("mmorpg.config.")
 	@Config.Comment("")
@@ -387,7 +392,7 @@ public class ModConfig {
 
 	@Config.Name("Currency Start Dropping At Level")
 	@Config.LangKey("mmorpg.config.currency_start_drop")
-	@Config.Comment("If you don't want newbies to have their inventory spammed with currency before they even craft a modify station.")
+	@Config.Comment("If you don't want newbies to have their inventory spammed with currency before they even craft a modify station. This Includes runeword awakening items")
 	public int CURRENCY_DROP_AFTER_LEVEL = 10;
 
 	@Config.Name("Player Level Cap")

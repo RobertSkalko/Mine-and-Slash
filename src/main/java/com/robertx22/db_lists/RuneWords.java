@@ -15,7 +15,9 @@ import com.robertx22.database.runewords.slots_4.RuneWordMountain;
 import com.robertx22.database.runewords.slots_4.RuneWordZephyr;
 import com.robertx22.database.runewords.slots_5.RuneWordGhost;
 import com.robertx22.database.runewords.slots_5.RuneWordHoming;
+import com.robertx22.database.runewords.slots_5.RuneWordInfinity;
 import com.robertx22.database.runewords.slots_5.RuneWordLight;
+import com.robertx22.database.runewords.slots_5.RuneWordPurity;
 
 public class RuneWords {
     public static HashMap<String, RuneWord> All = new HashMap<String, RuneWord>() {
@@ -37,6 +39,8 @@ public class RuneWords {
 		put(new RuneWordMagma().GUID(), new RuneWordMagma());
 		put(new RuneWordBloom().GUID(), new RuneWordBloom());
 		put(new RuneWordZeal().GUID(), new RuneWordZeal());
+		put(new RuneWordPurity().GUID(), new RuneWordPurity());
+		put(new RuneWordInfinity().GUID(), new RuneWordInfinity());
 
 	    }
 	}

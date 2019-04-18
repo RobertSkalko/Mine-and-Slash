@@ -83,6 +83,7 @@ import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToFireTran
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToNatureTransferFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToThunderTransferFlat;
 import com.robertx22.database.stat_mods.flat.less.LessHealthRegenFlat;
+import com.robertx22.database.stat_mods.flat.resources.EnergyFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.database.stat_mods.flat.resources.HealthRegenFlat;
@@ -158,6 +159,7 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePe
 import com.robertx22.database.stat_mods.spell_buffs.GhostProjectileFlat;
 import com.robertx22.database.stat_mods.spell_buffs.HomingFlat;
 import com.robertx22.database.stat_mods.spell_buffs.LightFlat;
+import com.robertx22.database.stat_mods.spell_buffs.PurityFlat;
 import com.robertx22.database.stat_mods.spell_buffs.ZephyrFlat;
 import com.robertx22.database.stat_mods.traits.ArmoredFlat;
 import com.robertx22.database.stat_mods.traits.BarbarianFlat;
@@ -196,6 +198,7 @@ public class StatMods {
 		put(new GhostProjectileFlat().GUID(), new GhostProjectileFlat());
 		put(new ZephyrFlat().GUID(), new ZephyrFlat());
 		put(new LightFlat().GUID(), new LightFlat());
+		put(new PurityFlat().GUID(), new PurityFlat());
 
 		// spell buffs
 
@@ -297,6 +300,7 @@ public class StatMods {
 		put(new EnergyRegenFlat().GUID(), new EnergyRegenFlat());
 		put(new EnergyRegenPercent().GUID(), new EnergyRegenPercent());
 		put(new ManaRegenPercent().GUID(), new ManaRegenPercent());
+		put(new EnergyFlat().GUID(), new EnergyFlat());
 
 		put(new LifestealFlat().GUID(), new LifestealFlat());
 		put(new LifestealPercent().GUID(), new LifestealPercent());

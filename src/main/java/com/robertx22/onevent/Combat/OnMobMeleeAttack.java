@@ -40,7 +40,12 @@ public class OnMobMeleeAttack {
 	    }
 
 	    EntityLivingBase source = (EntityLivingBase) event.getSource().getTrueSource();
+
 	    EntityLivingBase target = event.getEntityLiving();
+
+	    if (target.isEntityAlive() == false) {
+		return; // stops attacking dead mobs
+	    }
 
 	    UnitData targetData = Load.Unit(target);
 	    UnitData sourceData = Load.Unit(source);

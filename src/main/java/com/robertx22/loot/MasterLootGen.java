@@ -29,13 +29,13 @@ public class MasterLootGen {
 
 	if (mob.getLevel() >= ModConfig.Server.CURRENCY_DROP_AFTER_LEVEL) {
 	    items.addAll(new CurrencyLootGen(mob, player, world, victim).generate());
+	    items.addAll(new AwakenRuneWordLootGen(mob, player, world, victim).generate());
 	}
 	items.addAll(new GearLootGen(mob, player, world, victim).generate());
 	items.addAll(new SpellLootGen(mob, player, world, victim).generate());
 	items.addAll(new MapLootGen(mob, player, world, victim).generate());
 	items.addAll(new RuneLootGen(mob, player, world, victim).generate());
 	items.addAll(new RunedGearLootGen(mob, player, world, victim).generate());
-	items.addAll(new AwakenRuneWordLootGen(mob, player, world, victim).generate());
 
 	if (world.isMapWorld()) {
 	    items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
@@ -53,6 +53,7 @@ public class MasterLootGen {
 
 	if (level >= ModConfig.Server.CURRENCY_DROP_AFTER_LEVEL) {
 	    items.addAll(new CurrencyLootGen(multi, world).generate());
+	    items.addAll(new AwakenRuneWordLootGen(multi, world).generate());
 	}
 
 	items.addAll(new GearLootGen(multi, world, level).generate());
@@ -60,10 +61,10 @@ public class MasterLootGen {
 	items.addAll(new MapLootGen(multi, world, level).generate());
 	items.addAll(new RuneLootGen(multi, world, level).generate());
 	items.addAll(new RunedGearLootGen(multi, world, level).generate());
-	items.addAll(new AwakenRuneWordLootGen(multi, world).generate());
 
 	if (world.isMapWorld()) {
 	    items.addAll(new UniqueGearLootGen(multi, world, level).generate());
+
 	}
 
 	return items;

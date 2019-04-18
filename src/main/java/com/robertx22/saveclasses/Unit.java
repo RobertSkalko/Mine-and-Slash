@@ -305,7 +305,12 @@ public class Unit {
 
 	ClearStats();
 
-	MyStats.get(Health.GUID).Flat += entity.getMaxHealth() * data.getLevel();
+	float hpadded = entity.getMaxHealth() * data.getLevel();
+	if (!(entity instanceof EntityPlayer)) {
+	    hpadded *= 1.5F;
+	}
+
+	MyStats.get(Health.GUID).Flat += hpadded;
 
 	if (entity instanceof EntityPlayer) {
 	    PlayerStatUtils.AddPlayerBaseStats(data, this);

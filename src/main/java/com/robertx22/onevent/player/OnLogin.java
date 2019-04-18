@@ -14,7 +14,7 @@ import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.spells.projectile.firebolt.SpellFireBolt;
+import com.robertx22.spells.self.SpellInstantHeal;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -56,7 +56,7 @@ public class OnLogin {
 	player.inventory.addItemStackToInventory(GearGen.CreateStack(print));
 
 	SpellBlueprint spell = new SpellBlueprint(1);
-	spell.SetSpecificType(new SpellFireBolt().GUID());
+	spell.SetSpecificType(new SpellInstantHeal().GUID());
 	spell.LevelRange = false;
 	spell.SetSpecificRarity(0);
 

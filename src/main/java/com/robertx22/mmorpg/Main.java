@@ -28,6 +28,8 @@ import com.robertx22.uncommon.testing.TestManager;
 import com.robertx22.unique_items.UniqueItemRegister;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
@@ -175,6 +177,13 @@ public class Main {
 
     @EventHandler
     public static void onWorldLoad(FMLServerStartedEvent event) {
+	WorldServer world = DimensionManager.getWorld(0); // default world
+
+	if (world != null) {
+	    if (ModConfig.Server.DISABLE_VANILLA_HP_REGEN) {
+		world.getGameRules().setOrCreateGameRule("naturalRegeneration", "false");
+	    }
+	}
 
     }
 }

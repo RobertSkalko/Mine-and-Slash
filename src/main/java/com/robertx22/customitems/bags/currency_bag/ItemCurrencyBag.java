@@ -2,6 +2,7 @@ package com.robertx22.customitems.bags.currency_bag;
 
 import com.robertx22.customitems.bags.BaseBagItem;
 import com.robertx22.customitems.currency.CurrencyItem;
+import com.robertx22.customitems.currency.ICurrencyItemEffect;
 import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
@@ -48,7 +49,8 @@ public class ItemCurrencyBag extends BaseBagItem {
 
     public boolean IsValidItem(ItemStack stack) {
 
-	return stack.getItem() instanceof CurrencyItem || stack.getItem() instanceof ItemOre;
+	return stack.getItem() instanceof ICurrencyItemEffect || stack.getItem() instanceof CurrencyItem
+		|| stack.getItem() instanceof ItemOre;
     }
 
     @Override

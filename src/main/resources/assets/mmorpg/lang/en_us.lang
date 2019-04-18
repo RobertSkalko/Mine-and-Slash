@@ -554,6 +554,7 @@ mmorpg.stat.ghost_projectile=Ghost Projectile
 mmorpg.stat.homing_projectile=Homing Projectile
 mmorpg.stat.shining_light=Shining Light
 mmorpg.stat.zephyr_speed=Zephyr's Speed
+mmorpg.stat.purity=Purity
 
 # ITEM TOOLTIPS
 
@@ -809,6 +810,8 @@ mmorpg.word.mountain=Mountain
 mmorpg.word.zeal=Zeal
 mmorpg.word.magma=Magma
 mmorpg.word.bloom=Bloom
+mmorpg.word.purity=Purity
+mmorpg.word.infinity=Infinity
 # RUNEWORDS
 
 # TRAIT Tooltips
@@ -817,4 +820,4 @@ mmorpg.tooltip.homing=Your Single Target Spell Projectiles now Home in on the ta
 mmorpg.tooltip.shining_light=Your Self Heal Spells now grant you Aoe Regen.
 mmorpg.tooltip.zephyr_speed=Your Self Heal Spells now boost your speed temporarily.
 mmorpg.tooltip.ghost_projectile=Your Single Target Spell Projectiles now go through enemies.
-
+mmorpg.tooltip.purity=Your Self Heal Spells now cure you of all negative effects.
