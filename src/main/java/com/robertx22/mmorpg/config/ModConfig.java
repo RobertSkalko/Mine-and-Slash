@@ -357,6 +357,10 @@ public class ModConfig {
 	@Config.Comment("Currency, or items you use to modify gear")
 	public float CURRENCY_DROPRATE = 3;
 
+	@Config.Name("Awaken RuneWord Droprate")
+	@Config.LangKey("mmorpg.config.awaken_runeword_droprate")
+	@Config.Comment("These Items Awaken The dormant RuneWord combination of an item")
+	public float AWAKEN_RUNEWORD_DROPRATE = 1;
     }
 
     public static class ServerContainer {

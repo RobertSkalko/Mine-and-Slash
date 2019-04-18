@@ -12,6 +12,11 @@ public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     }
 
+    @Override
+    public int ManaCost() {
+	return 20;
+    }
+
     public float damageScaling = 0.5F;
 
 }
