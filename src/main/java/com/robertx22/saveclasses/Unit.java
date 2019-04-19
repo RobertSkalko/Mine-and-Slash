@@ -307,7 +307,7 @@ public class Unit {
 
 	float hpadded = entity.getMaxHealth() * data.getLevel();
 	if (!(entity instanceof EntityPlayer)) {
-	    hpadded *= 1.5F;
+	    hpadded *= 2F;
 	}
 
 	MyStats.get(Health.GUID).Flat += hpadded;

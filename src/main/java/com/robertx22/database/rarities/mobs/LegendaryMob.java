@@ -13,7 +13,7 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
 
     @Override
     public float DamageMultiplier() {
-	return 3.5F;
+	return 3F;
     }
 
     @Override

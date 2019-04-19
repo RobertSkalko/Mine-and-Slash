@@ -65,7 +65,7 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 	GearItemData gear = Gear.Load(stack);
 
-	return gear != null;
+	return gear != null && !gear.isRuned();
     }
 
     @Override
