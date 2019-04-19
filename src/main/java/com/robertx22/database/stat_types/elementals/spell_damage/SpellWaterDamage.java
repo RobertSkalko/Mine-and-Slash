@@ -1,9 +1,8 @@
 package com.robertx22.database.stat_types.elementals.spell_damage;
 
-import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
-public class SpellWaterDamage extends Stat {
+public class SpellWaterDamage extends BaseSpellDamage {
     public static String GUID = "Spell Water Damage";
 
     public SpellWaterDamage() {

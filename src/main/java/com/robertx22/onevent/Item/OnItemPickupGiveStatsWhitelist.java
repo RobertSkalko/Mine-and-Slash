@@ -60,6 +60,7 @@ public class OnItemPickupGiveStatsWhitelist {
 			    schema.SetSpecificType(type.GUID());
 
 			    GearItemData gear = GearGen.CreateData(schema);
+			    gear.isNotFromMyMod = true;
 
 			    Gear.Save(stack, gear);
 

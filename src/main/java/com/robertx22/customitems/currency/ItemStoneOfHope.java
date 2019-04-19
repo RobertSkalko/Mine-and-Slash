@@ -57,7 +57,16 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
 	GearItemData newgear = GearGen.CreateData(gearPrint);
 	gear.WriteOverDataThatShouldStay(newgear);
 
-	return GearGen.CreateStack(newgear);
+	ItemStack result = ItemStack.EMPTY;
+
+	if (gear.changesItemStack()) {
+	    result = GearGen.CreateStack(newgear);
+	} else {
+	    result = stack;
+	    Gear.Save(result, newgear);
+	}
+
+	return stack;
 
     }
 

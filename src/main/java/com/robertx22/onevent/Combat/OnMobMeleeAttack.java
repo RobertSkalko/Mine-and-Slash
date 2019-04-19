@@ -86,7 +86,7 @@ public class OnMobMeleeAttack {
 
 	    } else { // if its a mob
 
-		sourceData.getUnit().MobBasicAttack(source, target, sourceData.getUnit(), event.getAmount());
+		sourceData.getUnit().MobBasicAttack(source, target, sourceData, event.getAmount());
 
 		if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
 		    EntityLivingBase defender = event.getEntityLiving();

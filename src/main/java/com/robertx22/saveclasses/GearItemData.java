@@ -56,6 +56,10 @@ public class GearItemData implements ITooltip, ISalvagable {
 
     @Store
     public int Rarity;
+
+    @Store
+    public boolean isNotFromMyMod = false;
+
     @Store
     public String gearTypeName;
 
@@ -65,6 +69,10 @@ public class GearItemData implements ITooltip, ISalvagable {
     public boolean isRuned() {
 	return runes != null;
 
+    }
+
+    public boolean changesItemStack() {
+	return this.isNotFromMyMod == false;
     }
 
     public String name() {

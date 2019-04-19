@@ -44,7 +44,8 @@ public class ServerProxy implements IProxy {
     }
 
     public void regArrow(Item item, Class<? extends Entity> theclass, int id) {
-
+	EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
+		Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
     }
 
     @Override

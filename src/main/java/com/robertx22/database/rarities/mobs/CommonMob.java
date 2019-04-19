@@ -13,7 +13,7 @@ public class CommonMob extends BaseCommon implements MobRarity {
 
     @Override
     public float DamageMultiplier() {
-	return 0.4F;
+	return 1F;
     }
 
     @Override

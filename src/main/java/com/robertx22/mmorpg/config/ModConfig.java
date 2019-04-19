@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.robertx22.database.gearitemslots.Axe;
 import com.robertx22.database.gearitemslots.Boots;
+import com.robertx22.database.gearitemslots.Bow;
 import com.robertx22.database.gearitemslots.Bracelet;
 import com.robertx22.database.gearitemslots.Charm;
 import com.robertx22.database.gearitemslots.Chest;
@@ -14,6 +15,7 @@ import com.robertx22.database.gearitemslots.Helmet;
 import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.Ring;
+import com.robertx22.database.gearitemslots.Staff;
 import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
@@ -85,6 +87,8 @@ public class ModConfig {
 	    ItemsUnderSystem.Necklaces.put(str, "");
 	    ItemsUnderSystem.Charms.put(str, "");
 	    ItemsUnderSystem.Bracelets.put(str, "");
+	    ItemsUnderSystem.Staffs.put(str, "");
+	    ItemsUnderSystem.Bows.put(str, "");
 
 	}
     }
@@ -202,6 +206,8 @@ public class ModConfig {
 	    syncOne(Bracelets, all, new Bracelet().GUID());
 	    syncOne(Hammers, all, new Hammer().GUID());
 	    syncOne(Axes, all, new Axe().GUID());
+	    syncOne(Bows, all, new Bow().GUID());
+	    syncOne(Staffs, all, new Staff().GUID());
 
 	}
 
@@ -273,6 +279,12 @@ public class ModConfig {
 	@Config.Name("Axes")
 	public Map<String, String> Axes = new HashMap<String, String>();
 
+	@Config.Name("Bows")
+	public Map<String, String> Bows = new HashMap<String, String>();
+
+	@Config.Name("Staffs")
+	public Map<String, String> Staffs = new HashMap<String, String>();
+
     }
 
     public static class ClientContainer
@@ -325,7 +337,7 @@ public class ModConfig {
 	@Config.Name("Rune Droprate")
 	@Config.LangKey("mmorpg.config.rune_droprate")
 	@Config.Comment("Runes that can be socketed into items and create runewords!")
-	public float RUNE_DROPRATE = 0.5F;
+	public float RUNE_DROPRATE = 1.1F;
 
 	@Config.Name("Map Droprate")
 	@Config.LangKey("mmorpg.config.map_droprate")
@@ -355,7 +367,7 @@ public class ModConfig {
 	@Config.Name("Awaken RuneWord Droprate")
 	@Config.LangKey("mmorpg.config.awaken_runeword_droprate")
 	@Config.Comment("These Items Awaken The dormant RuneWord combination of an item")
-	public float AWAKEN_RUNEWORD_DROPRATE = 1;
+	public float AWAKEN_RUNEWORD_DROPRATE = 0.3F;
     }
 
     public static class ServerContainer {

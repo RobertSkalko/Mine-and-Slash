@@ -143,7 +143,7 @@ item.mmorpg:spell_thunderbolt.name=§cThunder Bolt
 
 item.mmorpg:spell_acid_bomb.name=§cAcid Bomb
 item.mmorpg:spell_fire_bomb.name=§cFire Bomb
-item.mmorpg:spell_frost_bomb.name=§cIce Bomb
+item.mmorpg:spell_ice_bomb.name=§cIce Bomb
 item.mmorpg:spell_thunder_bomb.name=§cThunder Bomb
 
 item.mmorpg:spell_acidexplosion.name=§cAcid Explosion
@@ -154,9 +154,11 @@ item.mmorpg:spell_lightningexplosion.name=§cLightning Explosion
 item.mmorpg:spell_instantheal.name=§cInstant Heal
 item.mmorpg:spell_self_regen.name=§cRegenerate
 
+
 # STATUS EFFECTS
 mmorpg.effect.self_regen=Regenerate
 mmorpg.effect.aoe_regen=Aoe Regen
+mmorpg.effect.cleanse_poison=Cleanse Poison
 
 # SPELL TOOLTIPS
 mmorpg.tooltip.aoe_spell_explosion=Casts an elemental projectile that does AOE dmg on hit.
@@ -820,4 +822,4 @@ mmorpg.tooltip.homing=Your Single Target Spell Projectiles now Home in on the ta
 mmorpg.tooltip.shining_light=Your Self Heal Spells now grant you Aoe Regen.
 mmorpg.tooltip.zephyr_speed=Your Self Heal Spells now boost your speed temporarily.
 mmorpg.tooltip.ghost_projectile=Your Single Target Spell Projectiles now go through enemies.
-mmorpg.tooltip.purity=Your Self Heal Spells now cure you of all negative effects.
+mmorpg.tooltip.purity=Your Self Heal Spells now cure you of a negative effect.

@@ -1,5 +1,7 @@
 package com.robertx22.spells.self;
 
+import java.util.ArrayList;
+
 import com.robertx22.effectdatas.interfaces.IBuffableSpell.SpellBuffType;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.bases.SpellBuffCheck;
@@ -25,6 +27,10 @@ public abstract class BaseSpellHeal extends BaseSpell {
 	return Elements.None;
     }
 
+    public int Weight() {
+	return super.Weight() * 3;
+    }
+
     public void checkZephyrSpeedBoost(EntityPlayer caster, SpellBuffCheck buffable) {
 
 	if (buffable.getBuff().equals(SpellBuffType.Zephyr_Speed_Boost)) {
@@ -33,12 +39,13 @@ public abstract class BaseSpellHeal extends BaseSpell {
 
     }
 
-    public void checkPurityRemoveNegativeEffects(EntityPlayer caster, SpellBuffCheck buffable) {
+    public void checkPurityRemoveNegativeEffect(EntityPlayer caster, SpellBuffCheck buffable) {
 
 	if (buffable.getBuff().equals(SpellBuffType.Purity_Remove_Negative_Effects)) {
-	    for (PotionEffect pot : caster.getActivePotionEffects()) {
+	    for (PotionEffect pot : new ArrayList<PotionEffect>(caster.getActivePotionEffects())) {
 		if (pot.getPotion().isBadEffect()) {
 		    caster.removePotionEffect(pot.getPotion());
+		    break;
 		}
 	    }
 	}
@@ -55,7 +62,7 @@ public abstract class BaseSpellHeal extends BaseSpell {
     public void checkSpellBuffs(EntityPlayer caster, SpellBuffCheck buffable) {
 	checkZephyrSpeedBoost(caster, buffable);
 	checkAddLightBuff(caster, buffable);
-	checkPurityRemoveNegativeEffects(caster, buffable);
+	checkPurityRemoveNegativeEffect(caster, buffable);
     }
 
     public static void spawnHealParticles(EntityLivingBase en, int amount) {

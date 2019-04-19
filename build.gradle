@@ -4,10 +4,7 @@ buildscript {
         maven { url = "http://files.minecraftforge.net/maven" }			
     }
     dependencies {
-		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'	
-		classpath 'com.google.code.gson:gson:2.8.5'				
-		
-   
+		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -15,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 
-version = "1.5.0"
+version = "1.5.2"
 group = "com.robertx22.mmorpg" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Mine and Slash"
 
@@ -23,6 +20,8 @@ sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse t
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
+
+
 
 minecraft {
     version = "1.12.2-14.23.5.2795"
@@ -33,10 +32,42 @@ minecraft {
 	//replace "{@version:mod}":version
 }
 
+repositories {
+    jcenter()
+		
+	maven { 
+		name = "jitpack"
+		url "https://jitpack.io" 
+	}
+	
+	 maven { url = "http://maven2.tterrag.com" } // AutoSave
+	
+	 maven { url 'https://maven.blamejared.com' }
+	
+}
+
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+
+configurations {
+        // configuration that holds jars to embed inside the jar
+    embed
+	compile.extendsFrom(embed)
+	
+}
+
 dependencies {
 
-	compile files("libs/Baubles-1.12-1.5.2.jar")
-	compile 'com.google.code.gson:gson:2.8.5'	
+	compile files("libs/Baubles-1.12-1.5.2.jar") // Rings, REQUIRED
+    compile "vazkii.patchouli:Patchouli:1.0-19.98" // Tutorial book, REQUIRED
+	shade 'net.objecthunter:exp4j:0.4.5' // Gui Stuff dependency, REQUIRED
+	
+	compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.10" // Auto Nbt Saving, REQUIRED
+    embed "info.loenwind.autosave:AutoSave:1.12.2-1.0.10"
 }
 
 processResources {
@@ -59,58 +90,7 @@ processResources {
     }
 }
 
-repositories {
 
-    maven { url 'https://maven.blamejared.com' }
-	
-	
-}
-
-dependencies {
-
-    compile "vazkii.patchouli:Patchouli:1.0-7.9"
-  
-}
-
-repositories {
-    jcenter()
-		
-	maven { 
-		name = "jitpack"
-		url "https://jitpack.io" 
-	}
-}
-
-
-configurations {
-    shade
-    compile.extendsFrom shade
-}
-dependencies {
-    shade 'net.objecthunter:exp4j:0.4.5'
-}
-
-repositories {
-    maven { url = "http://maven2.tterrag.com" } // AutoSave
-}
-
-
-dependencies {
-    compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.8"
-}
-
-
-configurations {
-        // configuration that holds jars to embed inside the jar
-    embed
-	compile.extendsFrom(embed)
-	
-}
-dependencies {
-    // This dependency and its transitive deps will be embedded
-    embed "info.loenwind.autosave:AutoSave:1.12.2-1.0.8"
-	
-}
 
 jar {
     from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }

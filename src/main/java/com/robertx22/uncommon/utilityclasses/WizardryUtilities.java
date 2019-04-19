@@ -1,7 +1,6 @@
 package com.robertx22.uncommon.utilityclasses;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -12,22 +11,17 @@ import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
-import baubles.common.CommonProxy;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.inventory.EntityEquipmentSlot.Type;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -40,49 +34,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-/**
- * This class contains some useful static methods for use anywhere - items,
- * entities, spells, events, blocks, etc. Broadly speaking, these fall into the
- * following categories:
- * <p>
- * - In-world utilities (position calculating, retrieving entities, etc.)<br>
- * - Raytracing<br>
- * - Drawing utilities (client-only)<br>
- * - NBT and data storage utilities<br>
- * - Interaction with the ally designation system<br>
- * - Loot and weighting utilities
- * 
- * @see CommonProxy
- * @see WandHelper
- * @since Wizardry 1.0
- * @author Electroblob
- */
 public final class WizardryUtilities {
-
-    /**
-     * Constant which is simply an array of the four armour slots. (Could've sworn
-     * this exists somewhere in vanilla, but I can't find it anywhere...)
-     */
-    public static final EntityEquipmentSlot[] ARMOUR_SLOTS;
-    /**
-     * Changed to a constant in wizardry 2.1, since this is a lot more efficient.
-     */
-    private static final DataParameter<Boolean> POWERED;
-
-    static {
-	// The list of slots needs to be mutable.
-	List<EntityEquipmentSlot> slots = new ArrayList<EntityEquipmentSlot>(
-		Arrays.asList(EntityEquipmentSlot.values()));
-	slots.removeIf(slot -> slot.getSlotType() != Type.ARMOR);
-	ARMOUR_SLOTS = slots.toArray(new EntityEquipmentSlot[0]);
-
-	// Null is passed in deliberately since POWERED is a static field.
-	POWERED = ReflectionHelper.getPrivateValue(EntityCreeper.class, null, "POWERED", "field_184714_b");
-    }
 
     // SECTION Block/Entity/World Utilities
     // ===============================================================================================================
@@ -562,16 +517,6 @@ public final class WizardryUtilities {
     // the code required by both.
     public static boolean isLiving(Entity entity) {
 	return entity instanceof EntityLivingBase && !(entity instanceof EntityArmorStand);
-    }
-
-    /**
-     * Turns the given creeper into a charged creeper. In 1.10, this requires
-     * reflection since the DataManager keys are private. (You <i>could</i> call
-     * {@link EntityCreeper#onStruckByLightning(...)} and then heal it and
-     * extinguish it, but that's a bit awkward.)
-     */
-    public static void chargeCreeper(EntityCreeper creeper) {
-	creeper.getDataManager().set(POWERED, true);
     }
 
     // SECTION Raytracing

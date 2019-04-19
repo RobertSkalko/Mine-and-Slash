@@ -12,13 +12,13 @@ import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDam
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.database.stat_types.offense.CriticalDamage;
 import com.robertx22.database.stat_types.offense.CriticalHit;
-import com.robertx22.database.stat_types.offense.PhysicalDamage;
-import com.robertx22.database.stat_types.resources.Health;
 import com.robertx22.database.status.effects.bases.BaseStatusEffect;
+import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.StatusEffects;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
+import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 
@@ -26,24 +26,27 @@ import net.minecraft.entity.EntityLivingBase;
 
 public class MobStatUtils {
 
-    public static void AddMobcStats(Unit unit, int level) {
+    static int spelldmg = 8;
+    static int spellresist = 4;
 
-	// unit.MyStats.get(Health.GUID).Flat += 15 * level;
-	unit.MyStats.get(Armor.GUID).Flat += 10 * level;
-	unit.MyStats.get(CriticalHit.GUID).Flat += 5;
-	unit.MyStats.get(CriticalDamage.GUID).Flat += 10;
+    public static void AddMobcStats(UnitData unitdata, int level) {
 
-	unit.MyStats.get(WaterResist.GUID).Flat += 4 * level;
-	unit.MyStats.get(FireResist.GUID).Flat += 4 * level;
-	unit.MyStats.get(ThunderResist.GUID).Flat += 4 * level;
-	unit.MyStats.get(NatureResist.GUID).Flat += 4 * level;
+	MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
+	Unit unit = unitdata.getUnit();
 
-	unit.MyStats.get(SpellWaterDamage.GUID).Flat += 8 * level;
-	unit.MyStats.get(SpellFireDamage.GUID).Flat += 8 * level;
-	unit.MyStats.get(SpellThunderDamage.GUID).Flat += 8 * level;
-	unit.MyStats.get(SpellNatureDamage.GUID).Flat += 8 * level;
+	unit.MyStats.get(Armor.GUID).Flat += 10 * level * rar.StatMultiplier();
+	unit.MyStats.get(CriticalHit.GUID).Flat += 5 * rar.StatMultiplier();
+	unit.MyStats.get(CriticalDamage.GUID).Flat += 5 * rar.StatMultiplier();
 
-	unit.MyStats.get(PhysicalDamage.GUID).Flat += 0.4F * level;
+	unit.MyStats.get(WaterResist.GUID).Flat += spellresist * level * rar.StatMultiplier();
+	unit.MyStats.get(FireResist.GUID).Flat += spellresist * level * rar.StatMultiplier();
+	unit.MyStats.get(ThunderResist.GUID).Flat += spellresist * level * rar.StatMultiplier();
+	unit.MyStats.get(NatureResist.GUID).Flat += spellresist * level * rar.StatMultiplier();
+
+	unit.MyStats.get(SpellWaterDamage.GUID).Flat += spelldmg * level * rar.DamageMultiplier();
+	unit.MyStats.get(SpellFireDamage.GUID).Flat += spelldmg * level * rar.DamageMultiplier();
+	unit.MyStats.get(SpellThunderDamage.GUID).Flat += spelldmg * level * rar.DamageMultiplier();
+	unit.MyStats.get(SpellNatureDamage.GUID).Flat += spelldmg * level * rar.DamageMultiplier();
 
     }
 
@@ -58,24 +61,6 @@ public class MobStatUtils {
 
     private static float IncByPercent(float val, int tier) {
 	return val + (val * tier * 10 / 100);
-    }
-
-    public static void SetMobStrengthMultiplier(Unit unit, MobRarity rarity) {
-
-	float stat_multi = rarity.StatMultiplier();
-	float hpmulti = rarity.HealthMultiplier();
-	float damagemulti = rarity.DamageMultiplier();
-
-	for (StatData stat : unit.MyStats.values()) {
-	    if (stat.GetStat() instanceof PhysicalDamage) {
-		stat.Flat *= damagemulti;
-	    } else if (stat.GetStat() instanceof Health) {
-		stat.Flat *= hpmulti;
-	    } else {
-		stat.Flat *= stat_multi;
-	    }
-	}
-
     }
 
     public static void AddRandomMobStatusEffects(EntityLivingBase entity, Unit unit, MobRarity rarity) {

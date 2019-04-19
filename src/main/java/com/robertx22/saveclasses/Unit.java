@@ -120,16 +120,18 @@ public class Unit {
 	return GUID.hashCode();
     }
 
-    public static final float MAXIMUM_EVENT_DMG_MULTI = 30;
+    public void MobBasicAttack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource,
+	    float event_damage) {
 
-    public void MobBasicAttack(EntityLivingBase source, EntityLivingBase target, Unit unitsource, float event_damage) {
+	MobRarity rar = Rarities.Mobs.get(unitsource.getRarity());
 
-	if (event_damage > MAXIMUM_EVENT_DMG_MULTI) {
-	    event_damage = MAXIMUM_EVENT_DMG_MULTI;
-	}
+	float mystat = unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
 
-	int num = (int) (unitsource.MyStats.get(PhysicalDamage.GUID).Value * event_damage);
-	DamageEffect dmg = new DamageEffect(source, target, num);
+	float vanilla = event_damage * unitsource.getLevel();
+
+	float num = (mystat + vanilla) / 1.5F * rar.DamageMultiplier();
+
+	DamageEffect dmg = new DamageEffect(source, target, (int) num);
 
 	dmg.Activate();
 
@@ -305,9 +307,11 @@ public class Unit {
 
 	ClearStats();
 
+	MobRarity rar = Rarities.Mobs.get(data.getRarity());
+
 	float hpadded = entity.getMaxHealth() * data.getLevel();
 	if (!(entity instanceof EntityPlayer)) {
-	    hpadded *= 2F;
+	    hpadded *= 2F * rar.HealthMultiplier();
 	}
 
 	MyStats.get(Health.GUID).Flat += hpadded;
@@ -316,8 +320,9 @@ public class Unit {
 	    PlayerStatUtils.AddPlayerBaseStats(data, this);
 
 	} else {
-	    MobStatUtils.AddMobcStats(this, data.getLevel());
-	    MobStatUtils.SetMobStrengthMultiplier(this, Rarities.Mobs.get(data.getRarity()));
+	    MobStatUtils.AddMobcStats(data, data.getLevel());
+	    // MobStatUtils.SetMobStrengthMultiplier(this,
+	    // Rarities.Mobs.get(data.getRarity()));
 	    MobStatUtils.AddMobTierStats(this, tier);
 
 	}
