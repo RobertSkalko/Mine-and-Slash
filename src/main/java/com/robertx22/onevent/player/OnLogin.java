@@ -74,9 +74,14 @@ public class OnLogin {
 	}
 
 	try {
+
 	    EntityPlayer player = event.player;
 
 	    if (player.hasCapability(EntityData.Data, null)) {
+
+		// TEST
+		// player.addPotionEffect(new PotionEffect(ManaRegenPotion.INSTANCE, 20000,
+		// 100));
 
 		UnitData data = Load.Unit(player);
 

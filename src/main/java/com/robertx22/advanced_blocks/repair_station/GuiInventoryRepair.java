@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.advanced_blocks.TileGui;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiInventoryRepair extends GuiContainer {
+public class GuiInventoryRepair extends TileGui {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");
@@ -47,11 +47,6 @@ public class GuiInventoryRepair extends GuiContainer {
     final int FLAME_WIDTH = 14;
     final int FLAME_HEIGHT = 14;
     final int FLAME_X_SPACING = 18;
-
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-	super.drawScreen(mouseX, mouseY, partialTicks);
-	super.renderHoveredToolTip(mouseX, mouseY);
-    }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {

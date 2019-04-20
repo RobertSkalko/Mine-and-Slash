@@ -1,16 +1,29 @@
-package com.robertx22.spells.projectile.firebolt;
+package com.robertx22.spells.projectile;
 
 import com.robertx22.customitems.spells.projectile.ItemFireBolt;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
-import com.robertx22.spells.projectile.BaseSpellProjectile;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellFireBolt extends BaseSpellProjectile {
+
+    static public class EntityFireBolt extends EntityElementalBolt {
+
+	public EntityFireBolt(World worldIn) {
+
+	    super(worldIn);
+
+	}
+
+	@Override
+	public Elements element() {
+	    return Elements.Fire;
+	}
+    }
 
     public SpellFireBolt() {
 	super();

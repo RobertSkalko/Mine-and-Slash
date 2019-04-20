@@ -10,8 +10,6 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-
-
 version = "1.5.2"
 group = "com.robertx22.mmorpg" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Mine and Slash"
@@ -20,8 +18,6 @@ sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse t
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
-
-
 
 minecraft {
     version = "1.12.2-14.23.5.2795"
@@ -46,12 +42,10 @@ repositories {
 	
 }
 
-
 configurations {
     shade
     compile.extendsFrom shade
 }
-
 
 configurations {
         // configuration that holds jars to embed inside the jar
@@ -90,9 +84,10 @@ processResources {
     }
 }
 
-
-
 jar {
-    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+   from configurations.embed.collect {
+    it.isDirectory() ? it : zipTree(it).matching {
+        exclude 'META-INF', 'META-INF/**'
+    }
 }
-
+}

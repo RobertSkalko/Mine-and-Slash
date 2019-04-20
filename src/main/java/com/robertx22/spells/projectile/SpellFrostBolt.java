@@ -1,8 +1,7 @@
-package com.robertx22.spells.aoe_projectile.FrostExplosion;
+package com.robertx22.spells.projectile;
 
-import com.robertx22.customitems.spells.aoe_projectile.ItemFrostExplosion;
+import com.robertx22.customitems.spells.projectile.ItemFrostBolt;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
-import com.robertx22.spells.aoe_projectile.BaseAoeSpellProjectile;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.uncommon.enumclasses.Elements;
@@ -10,20 +9,33 @@ import com.robertx22.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class SpellFrostExplosion extends BaseAoeSpellProjectile {
+public class SpellFrostBolt extends BaseSpellProjectile {
+    static public class EntityFrostBolt extends EntityElementalBolt {
 
-    public SpellFrostExplosion() {
+	public EntityFrostBolt(World worldIn) {
+
+	    super(worldIn);
+
+	}
+
+	@Override
+	public Elements element() {
+	    return Elements.Water;
+	}
+    }
+
+    public SpellFrostBolt() {
 	super();
     }
 
     @Override
     public String Name() {
-	return "Frost Explosion";
+	return "Frost Bolt";
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellWaterDamage().Guid(), 0.25F);
+	return new EffectCalculation(new SpellWaterDamage().Guid(), 0.5F);
     }
 
     @Override
@@ -33,17 +45,17 @@ public class SpellFrostExplosion extends BaseAoeSpellProjectile {
 
     @Override
     public Item SpellItem() {
-	return ItemFrostExplosion.ITEM;
+	return ItemFrostBolt.ITEM;
     }
 
     @Override
     public String GUID() {
-	return "FrostExplosion";
+	return "FrostBolt";
     }
 
     @Override
     public EntityElementalBolt projectile(World world) {
-	return new EntityFrostExplosion(world);
+	return new EntityFrostBolt(world);
     }
 
 }

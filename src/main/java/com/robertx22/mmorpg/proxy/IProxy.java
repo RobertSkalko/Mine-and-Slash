@@ -5,15 +5,15 @@ import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellThunderBomb;
-import com.robertx22.spells.aoe_projectile.AcidExplosion.EntityAcidExplosion;
-import com.robertx22.spells.aoe_projectile.FlameExplosion.EntityFlameExplosion;
-import com.robertx22.spells.aoe_projectile.FrostExplosion.EntityFrostExplosion;
-import com.robertx22.spells.aoe_projectile.LightningExplosion.EntityLightningExplosion;
+import com.robertx22.spells.aoe_projectile.SpellAcidExplosion;
+import com.robertx22.spells.aoe_projectile.SpellFlameExplosion;
+import com.robertx22.spells.aoe_projectile.SpellFrostExplosion;
+import com.robertx22.spells.aoe_projectile.SpellLightningExplosion;
 import com.robertx22.spells.bases.projectile.EntityStaffProjectile;
-import com.robertx22.spells.projectile.acidbolt.EntityAcidBolt;
-import com.robertx22.spells.projectile.firebolt.EntityFireBolt;
-import com.robertx22.spells.projectile.frostbolt.EntityFrostBolt;
-import com.robertx22.spells.projectile.thunderbolt.EntityThunderBolt;
+import com.robertx22.spells.projectile.SpellAcidBolt;
+import com.robertx22.spells.projectile.SpellFireBolt;
+import com.robertx22.spells.projectile.SpellFrostBolt;
+import com.robertx22.spells.projectile.SpellThunderBolt;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,15 +35,15 @@ public interface IProxy {
 
 	int i = 0;
 
-	RegisterModEntity(Items.SNOWBALL, EntityFrostBolt.class, i++);
-	RegisterModEntity(Items.MAGMA_CREAM, EntityFireBolt.class, i++);
-	RegisterModEntity(Items.SLIME_BALL, EntityAcidBolt.class, i++);
-	RegisterModEntity(Items.GLOWSTONE_DUST, EntityThunderBolt.class, i++);
+	RegisterModEntity(Items.SNOWBALL, SpellFrostBolt.EntityFrostBolt.class, i++);
+	RegisterModEntity(Items.MAGMA_CREAM, SpellFireBolt.EntityFireBolt.class, i++);
+	RegisterModEntity(Items.SLIME_BALL, SpellAcidBolt.EntityAcidBolt.class, i++);
+	RegisterModEntity(Items.GLOWSTONE_DUST, SpellThunderBolt.EntityThunderBolt.class, i++);
 
-	RegisterModEntity(Items.SNOWBALL, EntityFrostExplosion.class, i++);
-	RegisterModEntity(Items.MAGMA_CREAM, EntityFlameExplosion.class, i++);
-	RegisterModEntity(Items.SLIME_BALL, EntityAcidExplosion.class, i++);
-	RegisterModEntity(Items.GLOWSTONE_DUST, EntityLightningExplosion.class, i++);
+	RegisterModEntity(Items.SNOWBALL, SpellFrostExplosion.EntityFrostExplosion.class, i++);
+	RegisterModEntity(Items.MAGMA_CREAM, SpellFlameExplosion.EntityFlameExplosion.class, i++);
+	RegisterModEntity(Items.SLIME_BALL, SpellAcidExplosion.EntityAcidExplosion.class, i++);
+	RegisterModEntity(Items.GLOWSTONE_DUST, SpellLightningExplosion.EntityLightningExplosion.class, i++);
 
 	RegisterModEntity(Items.ENDER_PEARL, EntityStaffProjectile.class, i++);
 

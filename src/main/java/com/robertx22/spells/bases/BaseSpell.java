@@ -27,6 +27,10 @@ public abstract class BaseSpell implements IWeighted {
 
     }
 
+    public boolean hasScalingValue() {
+	return true;
+    }
+
     public abstract SpellType Type();
 
     public abstract String GUID();

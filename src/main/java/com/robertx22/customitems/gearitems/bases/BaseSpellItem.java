@@ -47,7 +47,9 @@ public abstract class BaseSpellItem extends Item {
 
 	SpellItemData data = Spell.Load(stack);
 
-	if (data != null) {
+	if (data != null && data.GetSpell() != null) {
+
+	    BaseSpell spell = data.GetSpell();
 
 	    ItemRarity rarity = Rarities.Items.get(data.rarity);
 
@@ -59,7 +61,10 @@ public abstract class BaseSpellItem extends Item {
 	    tooltip.add(TextFormatting.GREEN + CLOC.word("stats") + ": ");
 	    tooltip.add(" * " + (TextFormatting.RED + data.GetManaDesc(moreInfo)));
 	    tooltip.add(" * " + (TextFormatting.RED + data.GetBaseDesc(moreInfo)));
-	    tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc(moreInfo)));
+
+	    if (spell.hasScalingValue()) {
+		tooltip.add(" * " + (TextFormatting.RED + data.GetScalingDesc(moreInfo)));
+	    }
 
 	    tooltip.add("");
 

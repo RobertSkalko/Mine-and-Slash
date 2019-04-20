@@ -2,7 +2,7 @@ package com.robertx22.customitems.spells.aoe_projectile;
 
 import com.robertx22.customitems.gearitems.bases.BaseSpellItem;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.spells.aoe_projectile.LightningExplosion.SpellLightningExplosion;
+import com.robertx22.spells.aoe_projectile.SpellLightningExplosion;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 

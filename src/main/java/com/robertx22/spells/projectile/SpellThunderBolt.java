@@ -1,16 +1,28 @@
-package com.robertx22.spells.projectile.thunderbolt;
+package com.robertx22.spells.projectile;
 
 import com.robertx22.customitems.spells.projectile.ItemThunderBolt;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
-import com.robertx22.spells.projectile.BaseSpellProjectile;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class SpellThunderBolt extends BaseSpellProjectile {
+    static public class EntityThunderBolt extends EntityElementalBolt {
+
+	public EntityThunderBolt(World worldIn) {
+
+	    super(worldIn);
+
+	}
+
+	@Override
+	public Elements element() {
+	    return Elements.Thunder;
+	}
+    }
 
     public SpellThunderBolt() {
 	super();

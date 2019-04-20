@@ -36,7 +36,7 @@ public class SpellInstantHeal extends BaseSpellHeal {
 
     @Override
     public int ManaCost() {
-	return 25;
+	return 30;
     }
 
     @Override

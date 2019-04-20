@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.advanced_blocks.TileGui;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.uncommon.CLOC;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiMap extends GuiContainer {
+public class GuiMap extends TileGui {
 
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/map_device.png");
@@ -30,11 +30,6 @@ public class GuiMap extends GuiContainer {
 	ySize = 207;
 
 	this.tileEntity = tileInventory;
-    }
-
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-	super.drawScreen(mouseX, mouseY, partialTicks);
-	super.renderHoveredToolTip(mouseX, mouseY);
     }
 
     @Override

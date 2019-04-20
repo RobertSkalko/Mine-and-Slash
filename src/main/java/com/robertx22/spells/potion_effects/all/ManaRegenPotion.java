@@ -10,15 +10,16 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class RegenPotion extends SpellPotionBase {
+public class ManaRegenPotion extends SpellPotionBase {
 
-    public static final RegenPotion INSTANCE = new RegenPotion();
+    public static final ManaRegenPotion INSTANCE = new ManaRegenPotion();
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Potion> event) {
@@ -29,15 +30,15 @@ public class RegenPotion extends SpellPotionBase {
 	return INSTANCE.newSpellCast(source);
     }
 
-    private RegenPotion() {
+    private ManaRegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName(Ref.MODID + ".effect.self_regen");
+	setPotionName(Ref.MODID + ".effect.mana_regen");
     }
 
     @Override
     public ResourceLocation getIconTexture() {
-	return new ResourceLocation(Ref.MODID, "textures/status_effects/regen.png");
+	return new ResourceLocation(Ref.MODID, "textures/status_effects/mana_regen.png");
     }
 
     private static void apply(EntityLivingBase entity) {
@@ -62,10 +63,10 @@ public class RegenPotion extends SpellPotionBase {
 	try {
 
 	    if (entity.world.isRemote) {
-		SpellInstantHeal.spawnHealParticles(entity, 3);
+		SpellInstantHeal.spawnParticles(EnumParticleTypes.CRIT_MAGIC, entity, 3);
 	    } else {
 		UnitData data = Load.Unit(entity);
-		data.heal(entity, amplifier);
+		data.restoreMana(amplifier);
 
 	    }
 	} catch (Exception e) {
@@ -76,6 +77,6 @@ public class RegenPotion extends SpellPotionBase {
 
     @Override
     public int performEachXTicks() {
-	return 50;
+	return 20;
     }
 }
