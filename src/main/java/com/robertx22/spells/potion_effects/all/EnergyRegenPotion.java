@@ -10,15 +10,16 @@ import com.robertx22.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class RegenPotion extends SpellPotionBase {
+public class EnergyRegenPotion extends SpellPotionBase {
 
-    public static final RegenPotion INSTANCE = new RegenPotion();
+    public static final EnergyRegenPotion INSTANCE = new EnergyRegenPotion();
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Potion> event) {
@@ -29,19 +30,15 @@ public class RegenPotion extends SpellPotionBase {
 	return INSTANCE.newSpellCast(source);
     }
 
-    private RegenPotion() {
+    private EnergyRegenPotion() {
 	// boolean isBadEffectIn, int liquidColorIn
 	super(false, 4393423);
-	setPotionName(Ref.MODID + ".effect.self_regen");
+	setPotionName(Ref.MODID + ".effect.energy_regen");
     }
 
     @Override
     public ResourceLocation getIconTexture() {
-	return new ResourceLocation(Ref.MODID, "textures/status_effects/regen.png");
-    }
-
-    private static void apply(EntityLivingBase entity) {
-
+	return new ResourceLocation(Ref.MODID, "textures/status_effects/energy_regen.png");
     }
 
     @Override
@@ -50,23 +47,15 @@ public class RegenPotion extends SpellPotionBase {
     }
 
     @Override
-    public void doEffect(Entity applier, Entity caster, EntityLivingBase target, int amplifier, SpellCast cast) {
-
-	apply(target);
-
-    }
-
-    @Override
     public void performEffectEverySetTime(EntityLivingBase entity, int amplifier) {
 
 	try {
 
 	    if (entity.world.isRemote) {
-		SpellInstantHeal.spawnHealParticles(entity, 3);
+		SpellInstantHeal.spawnParticles(EnumParticleTypes.VILLAGER_HAPPY, entity, 5);
 	    } else {
 		UnitData data = Load.Unit(entity);
-		data.heal(entity, amplifier);
-
+		data.restoreEnergy(amplifier);
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -76,6 +65,11 @@ public class RegenPotion extends SpellPotionBase {
 
     @Override
     public int performEachXTicks() {
-	return 50;
+	return 40;
+    }
+
+    @Override
+    public void doEffect(Entity applier, Entity caster, EntityLivingBase target, int amplifier, SpellCast cast) {
+
     }
 }

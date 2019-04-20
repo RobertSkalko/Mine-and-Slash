@@ -153,10 +153,13 @@ item.mmorpg:spell_lightningexplosion.name=§cLightning Explosion
 
 item.mmorpg:spell_instantheal.name=§cInstant Heal
 item.mmorpg:spell_self_regen.name=§cRegenerate
-
+item.mmorpg:spell_mana_regen.name=§cRenegenerate Mana
+item.mmorpg:spell_energy_regen.name=§cRenegenerate Energy
 
 # STATUS EFFECTS
-mmorpg.effect.self_regen=Regenerate
+mmorpg.effect.self_regen=Regen Health
+mmorpg.effect.mana_regen=Regen Mana
+mmorpg.effect.energy_regen=Regen Energy
 mmorpg.effect.aoe_regen=Aoe Regen
 mmorpg.effect.cleanse_poison=Cleanse Poison
 

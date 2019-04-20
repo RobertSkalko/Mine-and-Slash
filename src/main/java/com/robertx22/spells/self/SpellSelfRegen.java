@@ -6,7 +6,7 @@ import com.robertx22.effectdatas.SpellBuffEffect;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellBuffCheck;
-import com.robertx22.spells.potion_effects.all.RegenPotion;
+import com.robertx22.spells.potion_effects.all.HealthRegenPotion;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
@@ -70,7 +70,7 @@ public class SpellSelfRegen extends BaseSpellHeal {
 		int healed = (int) (data.GetBaseValue()
 			+ data.GetScalingValue() * unit.getUnit().healthData().Value / 100);
 
-		caster.addPotionEffect(new PotionEffect(RegenPotion.INSTANCE, 400, healed));
+		caster.addPotionEffect(new PotionEffect(HealthRegenPotion.INSTANCE, 400, healed));
 
 		// spell buffs
 		SpellBuffCheck check = new SpellBuffCheck(this.Type());
