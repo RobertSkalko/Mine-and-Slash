@@ -33,6 +33,11 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 	return TargetType.ENEMY;
     }
 
+    @Override
+    public double radius() {
+	return 0.5D;
+    }
+
     protected void entityInit() {
     }
 

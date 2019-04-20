@@ -27,6 +27,11 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     }
 
     @Override
+    public double radius() {
+	return 0.5D;
+    }
+
+    @Override
     protected void onImpact(RayTraceResult result) {
 	if (result.entityHit != null && result.entityHit instanceof EntityLivingBase && staff != null) {
 

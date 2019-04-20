@@ -74,6 +74,8 @@ import com.robertx22.database.stat_types.resources.ManaOnHit;
 import com.robertx22.database.stat_types.resources.ManaRegen;
 import com.robertx22.database.stat_types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.database.stat_types.resources.conversions.ManaToEnergyConversion;
+import com.robertx22.database.stat_types.spell_buff_traits.BuffEnergyRegenTrait;
+import com.robertx22.database.stat_types.spell_buff_traits.BuffManaRegenTrait;
 import com.robertx22.database.stat_types.spell_buff_traits.GhostProjectileTrait;
 import com.robertx22.database.stat_types.spell_buff_traits.HomingTrait;
 import com.robertx22.database.stat_types.spell_buff_traits.LightTrait;
@@ -118,6 +120,8 @@ public class Stats {
 		put(new ZephyrTrait().GUID(), new ZephyrTrait());
 		put(new LightTrait().GUID(), new LightTrait());
 		put(new PurityTrait().GUID(), new PurityTrait());
+		put(new BuffEnergyRegenTrait().GUID(), new BuffEnergyRegenTrait());
+		put(new BuffManaRegenTrait().GUID(), new BuffManaRegenTrait());
 
 		// spell buffs
 

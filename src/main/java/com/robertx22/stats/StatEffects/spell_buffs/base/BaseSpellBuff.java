@@ -12,6 +12,11 @@ import com.robertx22.stats.Stat;
 public abstract class BaseSpellBuff implements IStatEffect {
 
     @Override
+    public int GetPriority() {
+	return 0;
+    }
+
+    @Override
     public EffectSides Side() {
 	return EffectSides.Source;
     }

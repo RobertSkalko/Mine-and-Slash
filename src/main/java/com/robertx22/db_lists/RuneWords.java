@@ -17,6 +17,8 @@ import com.robertx22.database.runewords.slots_5.RuneWordGhost;
 import com.robertx22.database.runewords.slots_5.RuneWordHoming;
 import com.robertx22.database.runewords.slots_5.RuneWordInfinity;
 import com.robertx22.database.runewords.slots_5.RuneWordLight;
+import com.robertx22.database.runewords.slots_5.RuneWordLimitless;
+import com.robertx22.database.runewords.slots_5.RuneWordProfoundSea;
 import com.robertx22.database.runewords.slots_5.RuneWordPurity;
 
 public class RuneWords {
@@ -41,6 +43,9 @@ public class RuneWords {
 		put(new RuneWordZeal().GUID(), new RuneWordZeal());
 		put(new RuneWordPurity().GUID(), new RuneWordPurity());
 		put(new RuneWordInfinity().GUID(), new RuneWordInfinity());
+
+		put(new RuneWordProfoundSea().GUID(), new RuneWordProfoundSea());
+		put(new RuneWordLimitless().GUID(), new RuneWordLimitless());
 
 	    }
 	}

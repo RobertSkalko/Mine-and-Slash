@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.robertx22.ColoredRedstone;
 import com.robertx22.SoundUtils;
+import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -18,7 +18,10 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
     }
 
-    public static int radius = 3;
+    @Override
+    public double radius() {
+	return 3D;
+    }
 
     @Override
     protected void onImpact(RayTraceResult result) {
@@ -29,17 +32,13 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
 
 	} else {
 
-	    ColoredRedstone.SpawnAoeRedstone(element(), this, radius, 100);
+	    ColoredRedstone.SpawnAoeRedstone(element(), this, radius(), 500);
 
 	}
 	if (effect != null && data != null) {
 
-	    double x = result.hitVec.x;
-	    double y = result.hitVec.y;
-	    double z = result.hitVec.z;
-
-	    List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class,
-		    new AxisAlignedBB(x - radius, y - radius, z - radius, x + radius, y + radius, z + radius));
+	    List<EntityLivingBase> entities = WizardryUtilities.getEntitiesWithinRadius(radius(), this,
+		    EntityLivingBase.class);
 
 	    if (entities != null) {
 		for (EntityLivingBase entity : entities) {

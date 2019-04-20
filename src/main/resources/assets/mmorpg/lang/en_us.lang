@@ -153,8 +153,6 @@ item.mmorpg:spell_lightningexplosion.name=§cLightning Explosion
 
 item.mmorpg:spell_instantheal.name=§cInstant Heal
 item.mmorpg:spell_self_regen.name=§cRegenerate
-item.mmorpg:spell_mana_regen.name=§cRenegenerate Mana
-item.mmorpg:spell_energy_regen.name=§cRenegenerate Energy
 
 # STATUS EFFECTS
 mmorpg.effect.self_regen=Regen Health
@@ -560,6 +558,8 @@ mmorpg.stat.homing_projectile=Homing Projectile
 mmorpg.stat.shining_light=Shining Light
 mmorpg.stat.zephyr_speed=Zephyr's Speed
 mmorpg.stat.purity=Purity
+mmorpg.stat.buff_energy_regen=Energy Regen Buff
+mmorpg.stat.buff_mana_regen=Mana Regen Buff
 
 # ITEM TOOLTIPS
 
@@ -817,6 +817,8 @@ mmorpg.word.magma=Magma
 mmorpg.word.bloom=Bloom
 mmorpg.word.purity=Purity
 mmorpg.word.infinity=Infinity
+mmorpg.word.profound_sea=Profound Sea
+mmorpg.word.limitless=Limitless
 # RUNEWORDS
 
 # TRAIT Tooltips
@@ -826,3 +828,5 @@ mmorpg.tooltip.shining_light=Your Self Heal Spells now grant you Aoe Regen.
 mmorpg.tooltip.zephyr_speed=Your Self Heal Spells now boost your speed temporarily.
 mmorpg.tooltip.ghost_projectile=Your Single Target Spell Projectiles now go through enemies.
 mmorpg.tooltip.purity=Your Self Heal Spells now cure you of a negative effect.
+mmorpg.tooltip.buff_energy_regen=Killing Blows with Bomb Spells grant you Energy Regen.
+mmorpg.tooltip.buff_mana_regen=Killing Blows with Bomb Spells grant you Mana Regen.

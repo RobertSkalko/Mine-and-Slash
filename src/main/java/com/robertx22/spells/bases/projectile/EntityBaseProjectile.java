@@ -54,6 +54,8 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     public SpellBuffType buff = SpellBuffType.None;
     public SpellType spellType = SpellType.Self_Heal;
 
+    public abstract double radius();
+
     protected boolean shouldExcludeCaster() {
 	return true;
     }

@@ -156,9 +156,11 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellFireDamagePer
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellNatureDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellThunderDamagePercent;
 import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePercent;
+import com.robertx22.database.stat_mods.spell_buffs.EnergyRegenBuffFlat;
 import com.robertx22.database.stat_mods.spell_buffs.GhostProjectileFlat;
 import com.robertx22.database.stat_mods.spell_buffs.HomingFlat;
 import com.robertx22.database.stat_mods.spell_buffs.LightFlat;
+import com.robertx22.database.stat_mods.spell_buffs.ManaRegenBuffFlat;
 import com.robertx22.database.stat_mods.spell_buffs.PurityFlat;
 import com.robertx22.database.stat_mods.spell_buffs.ZephyrFlat;
 import com.robertx22.database.stat_mods.traits.ArmoredFlat;
@@ -199,6 +201,8 @@ public class StatMods {
 		put(new ZephyrFlat().GUID(), new ZephyrFlat());
 		put(new LightFlat().GUID(), new LightFlat());
 		put(new PurityFlat().GUID(), new PurityFlat());
+		put(new EnergyRegenBuffFlat().GUID(), new EnergyRegenBuffFlat());
+		put(new ManaRegenBuffFlat().GUID(), new ManaRegenBuffFlat());
 
 		// spell buffs
 

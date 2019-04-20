@@ -296,6 +296,21 @@ public final class WizardryUtilities {
 	return entityList;
     }
 
+    public static <T extends Entity> List<T> getEntitiesWithinRadius(double radius, Entity entity,
+	    Class<T> entityType) {
+	double x = entity.posX;
+	double y = entity.posY;
+	double z = entity.posZ;
+	AxisAlignedBB aabb = new AxisAlignedBB(x - radius, y - radius, z - radius, x + radius, y + radius, z + radius);
+	List<T> entityList = entity.world.getEntitiesWithinAABB(entityType, aabb);
+	for (int i = 0; i < entityList.size(); i++) {
+	    if (entityList.get(i).getDistance(x, y, z) > radius) {
+		entityList.remove(i);
+	    }
+	}
+	return entityList;
+    }
+
     /**
      * Gets an entity from its UUID. Note that you should check this isn't null. If
      * the UUID is known to belong to an EntityPlayer, use the more efficient
