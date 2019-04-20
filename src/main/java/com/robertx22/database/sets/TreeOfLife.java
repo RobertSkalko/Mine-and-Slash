@@ -13,27 +13,28 @@ import com.robertx22.stats.StatMod;
 
 public class TreeOfLife extends Set {
 
-	@Override
-	public String Name() {
-		return "Tree of Life";
-	}
+    @Override
+    public String Name() {
+	return "Tree of Life";
+    }
 
-	@Override
-	public HashMap<Integer, StatMod> AllMods() {
+    @Override
+    public HashMap<Integer, StatMod> AllMods() {
 
-		return new HashMap<Integer, StatMod>() {
-			{
-				{
-					put(2, new HealthPercent());
+	return new HashMap<Integer, StatMod>() {
+	    {
+		{
+		    put(2, new HealthPercent());
 
-				}
-			}
-		};
-	}
+		}
+	    }
 
-	@Override
-	public List<GearItemSlot> GearTypes() {
-		return Arrays.asList(new Ring(), new Charm());
-	}
+	};
+    }
+
+    @Override
+    public List<GearItemSlot> GearTypes() {
+	return Arrays.asList(new Ring(), new Charm());
+    }
 
 }

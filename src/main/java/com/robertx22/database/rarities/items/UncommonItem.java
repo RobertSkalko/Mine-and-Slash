@@ -24,7 +24,7 @@ public class UncommonItem extends BaseUncommon implements ItemRarity {
 
     @Override
     public int SetChance() {
-	return 15;
+	return 25;
     }
 
     @Override

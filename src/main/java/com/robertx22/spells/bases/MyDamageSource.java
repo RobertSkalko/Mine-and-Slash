@@ -16,7 +16,7 @@ public class MyDamageSource extends EntityDamageSource {
 
     public MyDamageSource(String damageTypeIn, Entity source, Elements element, int dmg) {
 	super(damageTypeIn, source);
-	this.setDamageBypassesArmor();
+	// this.setDamageBypassesArmor();
 	this.setDamageIsAbsolute();
 	this.element = element;
 	realDamage = dmg;

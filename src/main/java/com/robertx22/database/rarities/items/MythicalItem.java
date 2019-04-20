@@ -24,7 +24,7 @@ public class MythicalItem extends BaseMythical implements ItemRarity {
 
     @Override
     public int SetChance() {
-	return 75;
+	return 80;
     }
 
     @Override

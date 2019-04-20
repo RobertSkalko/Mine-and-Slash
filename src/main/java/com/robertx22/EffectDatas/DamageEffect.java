@@ -24,6 +24,8 @@ import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
@@ -55,12 +57,39 @@ public class DamageEffect extends EffectData
     public float healthHealed;
     public float manaRestored;
 
+    private boolean canBlockDamageSource(EntityLivingBase target, DamageSource damageSourceIn) {
+	if (!damageSourceIn.isUnblockable() && target.isActiveItemStackBlocking()) {
+	    Vec3d vec3d = damageSourceIn.getDamageLocation();
+
+	    if (vec3d != null) {
+		Vec3d vec3d1 = target.getLook(1.0F);
+		Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(target.posX, target.posY, target.posZ)).normalize();
+		vec3d2 = new Vec3d(vec3d2.x, 0.0D, vec3d2.z);
+
+		if (vec3d2.dotProduct(vec3d1) < 0.0D) {
+		    return true;
+		}
+	    }
+	}
+
+	return false;
+    }
+
     @Override
     protected void activate() {
 
 	MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
-
 	float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
+
+	if (canBlockDamageSource(Target, dmgsource)) {
+	    dmg /= 5; // I NEED TO STILL ADD A BLOCK STAT
+
+	    dmgsource.setDamageBypassesArmor();
+
+	} else {
+
+	}
+
 	Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
 	Target.attackEntityFrom(dmgsource, dmg);
 

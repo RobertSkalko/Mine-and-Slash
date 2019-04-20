@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
 import com.robertx22.database.stat_types.resources.Energy;
@@ -293,8 +294,17 @@ public class Unit {
 	ItemStack weapon = entity.getHeldItemMainhand();
 	if (weapon != null) {
 	    GearItemData wep = Gear.Load(weapon);
-	    if (wep != null) {
+	    if (wep != null && wep.GetBaseGearType().slotType().equals(GearSlotType.Weapon)) {
 		gears.add(wep);
+	    }
+
+	}
+
+	ItemStack offhand = entity.getHeldItemOffhand();
+	if (offhand != null) {
+	    GearItemData off = Gear.Load(offhand);
+	    if (off != null && off.GetBaseGearType().slotType().equals(GearSlotType.OffHand)) {
+		gears.add(off);
 	    }
 	}
 

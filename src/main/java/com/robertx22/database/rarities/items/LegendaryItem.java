@@ -24,7 +24,7 @@ public class LegendaryItem extends BaseLegendary implements ItemRarity {
 
     @Override
     public int SetChance() {
-	return 50;
+	return 60;
     }
 
     @Override

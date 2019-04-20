@@ -26,7 +26,7 @@ public class EpicItem extends BaseEpic implements ItemRarity {
 
     @Override
     public int SetChance() {
-	return 30;
+	return 50;
     }
 
     @Override

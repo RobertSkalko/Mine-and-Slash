@@ -24,7 +24,7 @@ public class RareItem extends BaseRare implements ItemRarity {
 
     @Override
     public int SetChance() {
-	return 20;
+	return 30;
     }
 
     @Override
