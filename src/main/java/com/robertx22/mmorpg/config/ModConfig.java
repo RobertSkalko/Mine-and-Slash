@@ -19,10 +19,8 @@ import com.robertx22.database.gearitemslots.Staff;
 import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
-import com.robertx22.mmorpg.Player_GUIs;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.RarityDropratesConfig.RarityWeights;
-import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Config;
@@ -69,6 +67,14 @@ public class ModConfig {
     @Config.LangKey("mmorpg.config.dimensions_config")
     public static DimensionsConfig Dimensions = new DimensionsConfig();
 
+    @Config.Name("Server")
+    @Config.LangKey("mmorpg.config.server")
+    public static ServerContainer Server = new ServerContainer();
+
+    @Config.Name("Droprates")
+    @Config.LangKey("mmorpg.config.droprates")
+    public static DropRatesContainer DropRates = new DropRatesContainer();
+
     static {
 
 	// add blank slots
@@ -92,14 +98,6 @@ public class ModConfig {
 
 	}
     }
-
-    @Config.Name("Server")
-    @Config.LangKey("mmorpg.config.server")
-    public static ServerContainer Server = new ServerContainer();
-
-    @Config.Name("Droprates")
-    @Config.LangKey("mmorpg.config.droprates")
-    public static DropRatesContainer DropRates = new DropRatesContainer();
 
     public static class EntityConfigs {
 
@@ -284,163 +282,6 @@ public class ModConfig {
 
 	@Config.Name("Staffs")
 	public Map<String, String> Staffs = new HashMap<String, String>();
-
-    }
-
-    public static class ClientContainer
-
-    {
-	@Config.Name("Render Item On Ground Rarity Particles")
-	@Config.LangKey("mmorpg.config.item_on_ground_particles")
-	@Config.Comment("Might help with finding gear, but could also be laggy")
-	public boolean RENDER_ITEM_ENTITY_RARITY_PARTICLES = false;
-
-	@Config.Name("Render Chat Combat Log")
-	@Config.LangKey("mmorpg.config.chat_combat_log")
-	@Config.Comment("Show/Disable Chat Damage Numbers")
-	public boolean RENDER_CHAT_COMBAT_LOG = false;
-
-	@Config.Name("Render Floating Damage Numbers")
-	@Config.LangKey("mmorpg.config.floating_damage_numbers")
-	@Config.Comment("Show/Disable Floating Damage Numbers when you attack mobs")
-	public boolean RENDER_FLOATING_DAMAGE = true;
-
-	@Config.Name("Render Mob Health Bar")
-	@Config.LangKey("mmorpg.config.mob_health_bag")
-	@Config.Comment("Show/Disable mob health bars")
-	public boolean RENDER_MOB_HEALTH_GUI = true;
-
-	@Config.Name("Show Low Ene/Mana Warnings")
-	@Config.LangKey("mmorpg.config.low_resource_warnings")
-	@Config.Comment("Posts them in chat if you can't cast spell or attakc")
-	public boolean SHOW_LOW_ENERGY_MANA_WARNING = false;
-
-	@Config.Name("Show Floating Exp")
-	@Config.LangKey("mmorpg.config.floating_exp")
-	@Config.Comment("Shows how much exp you got from a mob kill. Can get annoying when you can't see your damage i assume.")
-	public boolean SHOW_FLOATING_EXP = false;
-
-	@Config.Name("Player Gui Overlay Type")
-	@Config.LangKey("mmorpg.config.player_gui_overlay_type")
-	@Config.Comment("Choose different Gui styles for hp mana etc overlay")
-	public Player_GUIs PLAYER_GUI_TYPE = Player_GUIs.Bottom_Middle_Corners;
-
-    }
-
-    public static class DropRatesContainer {
-
-	@Config.Name("Runed Gear Droprate")
-	@Config.LangKey("mmorpg.config.runed_gear_droprate")
-	@Config.Comment("")
-	public float RUNED_GEAR_DROPRATE = 2F;
-
-	@Config.Name("Rune Droprate")
-	@Config.LangKey("mmorpg.config.rune_droprate")
-	@Config.Comment("Runes that can be socketed into items and create runewords!")
-	public float RUNE_DROPRATE = 1.1F;
-
-	@Config.Name("Map Droprate")
-	@Config.LangKey("mmorpg.config.map_droprate")
-	@Config.Comment("Adventure maps, temporary items that create a temporary world to kill mobs in")
-	public float MAP_DROPRATE = 1;
-
-	@Config.Name("Gear Droprate")
-	@Config.LangKey("mmorpg.config.gear_droprate")
-	@Config.Comment("")
-	public float GEAR_DROPRATE = 7.5F;
-
-	@Config.Name("Unique  Droprate")
-	@Config.LangKey("mmorpg.config.unique_droprate")
-	@Config.Comment("Unique gear items that drop from maps only")
-	public float UNIQUE_DROPRATE = 0.15F;
-
-	@Config.Name("Spell Droprate")
-	@Config.LangKey("mmorpg.config.spell_droprate")
-	@Config.Comment("")
-	public float SPELL_DROPRATE = 4;
-
-	@Config.Name("Currency Droprate")
-	@Config.LangKey("mmorpg.config.currency_droprate")
-	@Config.Comment("Currency, or items you use to modify gear")
-	public float CURRENCY_DROPRATE = 3;
-
-	@Config.Name("Awaken RuneWord Droprate")
-	@Config.LangKey("mmorpg.config.awaken_runeword_droprate")
-	@Config.Comment("These Items Awaken The dormant RuneWord combination of an item")
-	public float AWAKEN_RUNEWORD_DROPRATE = 0.3F;
-    }
-
-    public static class ServerContainer {
-
-	@Config.Name("Disable Vanilla Hp Regen")
-	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This should always be disabled because otherwise with my mod's nerfed vanilla healing, the hp regen spends way too much hunger. Also you have hp regen from my mod")
-	public boolean DISABLE_VANILLA_HP_REGEN = true;
-
-	@Config.Name("Maximum Worn Runed Items")
-	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("")
-	public int MAXIMUM_WORN_RUNED_ITEMS = 3;
-
-	@Config.Name("Maximum Worn Unique Items")
-	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("")
-	public int MAXIMUM_WORN_UNIQUE_ITEMS = 3;
-
-	@Config.Name("Generate Ores")
-	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("")
-	public boolean GENERATE_ORES = true;
-
-	@Config.Name("Unarmed Energy Cost")
-	@Config.LangKey("mmorpg.config.unarmed_energy_cost")
-	@Config.Comment("If an item isn't a weapon, it does unarmed damage. Meaning your base damage")
-	public float UNARMED_ENERGY_COST = 1;
-
-	@Config.Name("Maps Start Dropping At Level")
-	@Config.LangKey("mmorpg.config.maps_start_drop")
-	@Config.Comment("If you don't want newbies to have their inventory spammed with maps before they even craft a map bag :3.")
-	public int MAPS_DROP_AFTER_LEVEL = 20;
-
-	@Config.Name("Currency Start Dropping At Level")
-	@Config.LangKey("mmorpg.config.currency_start_drop")
-	@Config.Comment("If you don't want newbies to have their inventory spammed with currency before they even craft a modify station. This Includes runeword awakening items")
-	public int CURRENCY_DROP_AFTER_LEVEL = 10;
-
-	@Config.Name("Player Level Cap")
-	@Config.LangKey("mmorpg.config.player_level_cap")
-	@Config.Comment("Select maximum level")
-	public int MAXIMUM_PLAYER_LEVEL = 100;
-
-	@Config.Name("Non Mod Damage Multiplier")
-	@Config.LangKey("mmorpg.config.non_mod_damage_multiplier")
-	@Config.Comment("0 to 1. 0 means other types of damage (not from my mod) are nullified. 1 means they are the same. Please leave at default value unless required to change it. Too high value means you do 2 different types of damage, vanilla damage (sword that does half a mob's health) plus my mod's damage.. Which will lead to you both one shotting mobs and mobs one shotting you too.")
-	public float NON_MOD_DAMAGE_MULTI = 0.03F;
-
-	@Config.Name("Non Mod Heal Multiplier")
-	@Config.LangKey("mmorpg.config.non_mod_heal_multi")
-	@Config.Comment("0 to 1. 0 means other types of healing (not from my mod) are smaller. 1 means they are the same. Please leave at default value unless required to change it. High values make health regen too fast(both normal and my mods) but low value makes stuff like health potions useless. ")
-	public float NON_MOD_HEAL_MULTI = 0.1F;
-
-	@Config.Name("Exp multiplier")
-	@Config.LangKey("mmorpg.config.exp_multiplier")
-	@Config.Comment("Want to level faster or slower? 1 is normal, 0.5 half speed, 2 double")
-	public float EXPERIENCE_MULTIPLIER = 1F;
-
-	@Config.Name("Level Ups Cost Tokens")
-	@Config.LangKey("mmorpg.config.levelup_cost_token")
-	@Config.Comment("If false, player levels up automatically, if true, you need to craft a token and use it. Basically hardcore mode, every level needs diamonds.")
-	public boolean LEVEL_UPS_COST_TOKEN = false;
-
-	@Config.Name("Max Players Per Map")
-	@Config.LangKey("mmorpg.config.max_players_in_map")
-	@Config.Comment("")
-	public int MAX_PLAYERS_PER_MAP = 5;
-
-	@Config.Name("Entities Under System")
-	@Config.LangKey("mmorpg.config.entities_under_system")
-	@Config.Comment("By system, it means they get my mod's health, damage stats etc. They can also use the gear (if possible). All entities means even sheep or villagers are under the system. ")
-	public EntitySystemChoice ENTITIES_UNDER_SYSTEM = EntitySystemChoice.All_Entities;
 
     }
 

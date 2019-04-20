@@ -10,6 +10,7 @@ import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.dimensions.ChestGenerator;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.mmorpg.config.non_mine_items.Serialization;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
@@ -63,6 +64,8 @@ public class Main {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+
+	Serialization.generateConfig(event);
 
 	UniqueItemRegister.registerAll();
 
@@ -137,6 +140,8 @@ public class Main {
 
 	proxy.postInit(event);
 	RabbitGui.proxy.postInit();
+
+	Serialization.generateConfig(event);
 
     }
 

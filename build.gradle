@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
 		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+		classpath 'com.google.code.gson:gson:2.8.5'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -59,7 +60,7 @@ dependencies {
 	compile files("libs/Baubles-1.12-1.5.2.jar") // Rings, REQUIRED
     compile "vazkii.patchouli:Patchouli:1.0-19.98" // Tutorial book, REQUIRED
 	shade 'net.objecthunter:exp4j:0.4.5' // Gui Stuff dependency, REQUIRED
-	
+	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
 	compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.10" // Auto Nbt Saving, REQUIRED
     embed "info.loenwind.autosave:AutoSave:1.12.2-1.0.10"
 }
