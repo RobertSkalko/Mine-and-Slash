@@ -61,7 +61,7 @@ public class GearItemData implements ITooltip, ISalvagable {
     public boolean isNotFromMyMod = false;
 
     @Store
-    public String gearTypeName;
+    public String gearTypeName = "";
 
     @Store
     public RunesData runes;

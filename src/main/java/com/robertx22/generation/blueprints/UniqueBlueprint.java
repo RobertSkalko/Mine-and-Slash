@@ -14,8 +14,18 @@ public class UniqueBlueprint extends GearBlueprint {
 	this.map_tier = map_tier;
     }
 
-    private int map_tier = 0;
-    private int tier = -1;
+    public UniqueBlueprint(int level, String guid) {
+	super(level);
+	this.guid = guid;
+	this.uniqueIsRandom = false;
+
+    }
+
+    private String guid = "";
+    public boolean uniqueIsRandom = true;
+
+    public int map_tier = 0;
+    public int tier = -1;
 
     private boolean randomTier = true;
 
@@ -43,13 +53,17 @@ public class UniqueBlueprint extends GearBlueprint {
 
     public IUnique getUnique() {
 
-	tier = this.GetTier();
+	if (this.uniqueIsRandom) {
+	    tier = this.GetTier();
 
-	if (this.randomTier == false) {
-	    return (IUnique) RandomUtils.WeightedRandom(
-		    ListUtils.CollectionToList(IUnique.getAllUniquesOfTier(map_tier, IUnique.ITEMS.values())));
+	    if (this.randomTier == false) {
+		return (IUnique) RandomUtils.WeightedRandom(
+			ListUtils.CollectionToList(IUnique.getAllUniquesOfTier(map_tier, IUnique.ITEMS.values())));
+	    } else {
+		return randomUnique();
+	    }
 	} else {
-	    return randomUnique();
+	    return (IUnique) IUnique.ITEMS.get(this.guid);
 	}
 
     }

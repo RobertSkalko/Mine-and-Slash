@@ -1,9 +1,9 @@
 package com.robertx22.onevent.Item;
 
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.generation.GearGen;
-import com.robertx22.generation.blueprints.GearBlueprint;
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.db_lists.GearTypes;
+import com.robertx22.mmorpg.config.non_mine_items.ConfigItem;
+import com.robertx22.mmorpg.config.non_mine_items.ConfigItems;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -27,10 +27,10 @@ public class OnItemPickupGiveStatsWhitelist {
 		return;
 	    }
 
-	    if (ModConfig.ItemsUnderSystem.CRAFTED_ITEMS_UNDER_SYSTEM == false) {
-		return;
+//	    if (ModConfig.ItemsUnderSystem.CRAFTED_ITEMS_UNDER_SYSTEM == false) {
+//		return;
 
-	    }
+//	    }
 
 	    UnitData data = null;
 
@@ -44,28 +44,28 @@ public class OnItemPickupGiveStatsWhitelist {
 
 		if (test == null) {
 
-		    GearItemSlot type = ModConfig.ItemsUnderSystem.getType(stack.getItem());
+		    String reg = stack.getItem().getRegistryName().toString();
+		    if (ConfigItems.INSTANCE.map.containsKey(reg)) {
 
-		    if (type != null) {
+			ConfigItem config = ConfigItems.INSTANCE.map.get(reg);
 
-			EntityPlayer player = event.getEntityPlayer();
+			GearItemSlot type = GearTypes.All.get(config.itemType);
 
-			if (player.hasCapability(EntityData.Data, null)) {
+			if (type != null) {
 
-			    if (data == null) {
-				data = Load.Unit(player);
+			    EntityPlayer player = event.getEntityPlayer();
+
+			    if (player.hasCapability(EntityData.Data, null)) {
+
+				if (data == null) {
+				    data = Load.Unit(player);
+				}
+
+				stack = config.create(stack, data);
+
+				event.getEntityPlayer().inventory.markDirty();
+
 			    }
-
-			    GearBlueprint schema = new GearBlueprint(data.getLevel());
-			    schema.SetSpecificType(type.GUID());
-
-			    GearItemData gear = GearGen.CreateData(schema);
-			    gear.isNotFromMyMod = true;
-
-			    Gear.Save(stack, gear);
-
-			    event.getEntityPlayer().inventory.markDirty();
-
 			}
 		    }
 		}
