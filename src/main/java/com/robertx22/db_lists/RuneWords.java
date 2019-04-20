@@ -10,15 +10,15 @@ import com.robertx22.database.runewords.slots_3.RuneWordMagma;
 import com.robertx22.database.runewords.slots_3.RuneWordRadiance;
 import com.robertx22.database.runewords.slots_3.RuneWordThief;
 import com.robertx22.database.runewords.slots_3.RuneWordZeal;
+import com.robertx22.database.runewords.slots_4.RuneWordLimitless;
 import com.robertx22.database.runewords.slots_4.RuneWordMagician;
 import com.robertx22.database.runewords.slots_4.RuneWordMountain;
+import com.robertx22.database.runewords.slots_4.RuneWordProfoundSea;
 import com.robertx22.database.runewords.slots_4.RuneWordZephyr;
 import com.robertx22.database.runewords.slots_5.RuneWordGhost;
 import com.robertx22.database.runewords.slots_5.RuneWordHoming;
 import com.robertx22.database.runewords.slots_5.RuneWordInfinity;
 import com.robertx22.database.runewords.slots_5.RuneWordLight;
-import com.robertx22.database.runewords.slots_5.RuneWordLimitless;
-import com.robertx22.database.runewords.slots_5.RuneWordProfoundSea;
 import com.robertx22.database.runewords.slots_5.RuneWordPurity;
 
 public class RuneWords {

@@ -11,30 +11,28 @@ public abstract class BaseArmorItem extends ItemArmor implements IGearItem {
 
     public static int MAX_GEAR_DURABILITY = 1000;
 
-    static int[] nums = new int[] { 3, 3, 3, 3 };
-
     static int Enchantability = 10;
 
     static ItemArmor.ArmorMaterial COMMON_MAT = EnumHelper.addArmorMaterial("common", Utils.setLocation("common"), 20,
-	    nums, Enchantability, null, 0);
+	    new int[] { 1, 2, 3, 1 }, Enchantability, null, 0);
 
     static ItemArmor.ArmorMaterial UNCOMMON_MAT = EnumHelper.addArmorMaterial("uncommon", Utils.setLocation("uncommon"),
-	    20, nums, Enchantability, null, 0);
+	    20, new int[] { 1, 4, 5, 2 }, Enchantability, null, 0);
 
-    static ItemArmor.ArmorMaterial RARE_MAT = EnumHelper.addArmorMaterial("rare", Utils.setLocation("rare"), 20, nums,
-	    Enchantability, null, 0);
+    static ItemArmor.ArmorMaterial RARE_MAT = EnumHelper.addArmorMaterial("rare", Utils.setLocation("rare"), 20,
+	    new int[] { 1, 4, 5, 2 }, Enchantability, null, 0);
 
-    static ItemArmor.ArmorMaterial EPIC_MAT = EnumHelper.addArmorMaterial("epic", Utils.setLocation("epic"), 20, nums,
-	    Enchantability, null, 0);
+    static ItemArmor.ArmorMaterial EPIC_MAT = EnumHelper.addArmorMaterial("epic", Utils.setLocation("epic"), 20,
+	    new int[] { 2, 5, 6, 2 }, Enchantability, null, 0);
 
     static ItemArmor.ArmorMaterial LEGENDARY_MAT = EnumHelper.addArmorMaterial("legendary",
-	    Utils.setLocation("legendary"), 20, nums, Enchantability, null, 0);
+	    Utils.setLocation("legendary"), 20, new int[] { 2, 5, 6, 2 }, Enchantability, null, 0);
 
     static ItemArmor.ArmorMaterial MYTHICAL_MAT = EnumHelper.addArmorMaterial("mythical", Utils.setLocation("mythical"),
-	    20, nums, Enchantability, null, 0);
+	    30, new int[] { 3, 6, 8, 3 }, Enchantability, null, 0);
 
     static ItemArmor.ArmorMaterial UNIQUE_MAT = EnumHelper.addArmorMaterial("unique", Utils.setLocation("unique"), 30,
-	    nums, Enchantability, null, 0);
+	    new int[] { 3, 6, 8, 3 }, Enchantability, null, 0);
 
     public abstract String Name();
 

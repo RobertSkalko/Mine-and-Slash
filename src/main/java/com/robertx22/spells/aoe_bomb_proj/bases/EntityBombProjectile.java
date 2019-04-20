@@ -105,26 +105,17 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
     @Override
     protected void onImpact(RayTraceResult result) {
-	if (!this.world.isRemote) {
 
-	    switch (result.typeOfHit) {
-	    case BLOCK:
-		this.motionX = 0.0;
-		this.motionY = 0.0;
-		this.motionZ = 0.0;
-		break;
-	    case ENTITY:
-		break;
-	    case MISS:
-		break;
-	    }
+	switch (result.typeOfHit) {
+	case BLOCK:
+	    this.setVelocity(0, 0, 0);
+	    break;
+	case ENTITY:
+	    break;
+	case MISS:
+	    break;
 	}
 
-    }
-
-    @Override
-    public float getGravityVelocity() {
-	return 0.00F;
     }
 
 }
