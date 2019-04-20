@@ -2,12 +2,8 @@ package com.robertx22.mmorpg.config.non_mine_items;
 
 public class ConfigItem {
 
-    public enum PlayerOrConfig {
-	PLAYER_LEVEL, CONFIG_LEVEL
-    }
-
-    public String itemID = "";
-    public String itemType = "";
+    // public String itemID = "modid:itemid";
+    public String itemType = "Sword";
 
     public int uniqueItemWeight = 0;
     public int normalItemWeight = 80;
@@ -16,8 +12,10 @@ public class ConfigItem {
     public int minRarity = 0;
     public int maxRarity = 5;
 
-    public PlayerOrConfig itemLevelMethod = PlayerOrConfig.PLAYER_LEVEL;
-    public int configLevel = 1;
+    public boolean itemIsPlayerLevel = true;
+
+    public int itemLevelIfDoesntUsePlayerLevel = 1;
+
     public int levelVariance = 0;
 
     public String uniqueId = "";

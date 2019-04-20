@@ -1,14 +1,16 @@
 package com.robertx22.mmorpg.config.non_mine_items;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.mmorpg.Ref;
@@ -24,19 +26,34 @@ public class Serialization {
 
     public static void generateConfig(FMLPreInitializationEvent event) {
 
-	String path = event.getModConfigurationDirectory().getAbsolutePath() + "/" + Ref.MODID + "/";
-	config_path = path;
+	config_path = event.getModConfigurationDirectory().getAbsolutePath() + "/" + Ref.MODID + "/";
 
-	new File(path).mkdirs();
+	new File(config_path).mkdirs();
+
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	List<ConfigItem> obj = Arrays.asList(new ConfigItem(), new ConfigItem(), new ConfigItem());
+	String json = gson.toJson(new ConfigItems());
 
-	String json = gson.toJson(obj);
+	makeFileAndDirAndWrite(getItemsConfigPath(), json, false);
 
-	String filename = path + "CompatibleItems.txt";
+    }
 
-	makeFileAndDirAndWrite(filename, json, false);
+    public static String getItemsConfigPath() {
+	return config_path + "CompatibleItems.txt";
+    }
 
+    public static void loadConfig(FMLPostInitializationEvent event) {
+
+	JsonReader reader;
+	try {
+	    reader = new JsonReader(new FileReader(getItemsConfigPath()));
+
+	    ConfigItems.INSTANCE = new Gson().fromJson(reader, ConfigItems.class);
+
+	    System.out.println("Items added to config: " + ConfigItems.INSTANCE.map.size());
+	} catch (FileNotFoundException e) {
+
+	    e.printStackTrace();
+	}
     }
 
     public static void generateConfig(FMLPostInitializationEvent event) {
@@ -75,7 +92,7 @@ public class Serialization {
 	String text = "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW THE GUIDS/IDS OF ALL UNIQUE ITEMS\n"
 		+ String.join("\n", list);
 
-	makeFileAndDirAndWrite(config_path + "UniqueItemGUIDS.txt", text, true);
+	makeFileAndDirAndWrite(config_path + "UniqueItemGUIDS-TUTORIAL.txt", text, true);
 
     }
 
@@ -90,7 +107,7 @@ public class Serialization {
 	String text = "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW WHAT ITEM TYPES THERE ARE\n"
 		+ String.join("\n", list);
 
-	makeFileAndDirAndWrite(config_path + "GearTypeGUIDS.txt", text, true);
+	makeFileAndDirAndWrite(config_path + "GearTypeGUIDS-TUTORIAL.txt", text, true);
 
     }
 }

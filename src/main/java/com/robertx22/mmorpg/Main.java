@@ -143,6 +143,8 @@ public class Main {
 
 	Serialization.generateConfig(event);
 
+	Serialization.loadConfig(event);
+
     }
 
     @EventHandler
