@@ -12,6 +12,7 @@ import com.robertx22.customitems.gearitems.baubles.ItemBracelet;
 import com.robertx22.customitems.gearitems.baubles.ItemCharm;
 import com.robertx22.customitems.gearitems.baubles.ItemNecklace;
 import com.robertx22.customitems.gearitems.baubles.ItemRing;
+import com.robertx22.customitems.gearitems.offhands.NormalShield;
 import com.robertx22.customitems.gearitems.weapons.ItemAxe;
 import com.robertx22.customitems.gearitems.weapons.ItemBow;
 import com.robertx22.customitems.gearitems.weapons.ItemHammer;
@@ -62,6 +63,10 @@ public class GearItemRegisters {
 	    regRarities(new XahItem(rank), XahItem.Items, "runes/" + new XahItem(rank).name().toLowerCase(), rank);
 	    regRarities(new AnoItem(rank), AnoItem.Items, "runes/" + new AnoItem(rank).name().toLowerCase(), rank);
 	    regRarities(new ItaItem(rank), ItaItem.Items, "runes/" + new ItaItem(rank).name().toLowerCase(), rank);
+
+	    // offhands
+	    regRarities(new NormalShield("normal_shield" + rarity.Rank()), NormalShield.Items, "shields/normal_shield",
+		    rarity.Rank());
 
 	    // weapons
 	    regRarities(new ItemSword(), ItemSword.Items, "sword/sword", rarity.Rank());

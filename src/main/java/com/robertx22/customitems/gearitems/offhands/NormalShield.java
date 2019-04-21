@@ -1,4 +1,6 @@
-package com.robertx22.customitems;
+package com.robertx22.customitems.gearitems.offhands;
+
+import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
@@ -13,27 +15,27 @@ import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-public class CustomShield extends ItemShield {
+public class NormalShield extends ItemShield {
 
-    public static final String ID = "custom_shield";
+    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+
+    public static final String ID = "shields/normal_shield";
     @GameRegistry.ObjectHolder(Ref.MODID + ":" + ID)
     public static final Item ITEM = null;
 
-    public CustomShield() {
+    public NormalShield(String name) {
 	super();
-	this.setMaxDamage(548);
-	this.setUnlocalizedName(ID);
-	setRegistryName(ID);
+	this.setMaxDamage(750);
+	// this.setUnlocalizedName(ID);
+	// setRegistryName(ID);
 	this.setCreativeTab(CreativeTabList.MyModTab);
 
-	this.setTileEntityItemStackRenderer(
-		new ShieldRenderer(TileEntityItemStackRenderer.instance, ID, this));
+	this.setTileEntityItemStackRenderer(new ShieldRenderer(TileEntityItemStackRenderer.instance, name, this));
     }
 
     @Override
@@ -42,13 +44,10 @@ public class CustomShield extends ItemShield {
     }
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new CustomShield());
-    }
-
-    @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event) {
-	registerModel(ITEM, ID);
+	for (Item item : Items.values()) {
+	    registerModel(item);
+	}
     }
 
     public static void registerModel(Item item) {

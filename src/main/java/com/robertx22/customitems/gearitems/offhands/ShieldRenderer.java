@@ -1,4 +1,4 @@
-package com.robertx22.customitems;
+package com.robertx22.customitems.gearitems.offhands;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelShield;
