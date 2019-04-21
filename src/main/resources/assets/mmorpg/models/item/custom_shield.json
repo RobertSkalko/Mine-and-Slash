@@ -126,7 +126,7 @@
       "predicate": {
         "blocking": 1
       },
-      "model": "mmorpg:item/scorger_shellshield_blocking"
+      "model": "mmorpg:item/custom_shield_blocking"
     }
   ]
 }

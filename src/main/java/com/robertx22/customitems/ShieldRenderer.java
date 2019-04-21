@@ -13,21 +13,25 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ShieldRenderer extends TileEntityItemStackRenderer {
     public final TileEntityItemStackRenderer parent;
 
-    private final ModelShield modelShield = new ModelShield();
-    private final ResourceLocation modelTexture = new ResourceLocation("mmorpg:textures/items/shield0.png");
+    Item theitem;
 
-    public ShieldRenderer(TileEntityItemStackRenderer renderer) {
+    private final ShieldModel modelShield = new ShieldModel();
+    private ResourceLocation modelTexture = new ResourceLocation("mmorpg:textures/shield/scorgershell_shield.png");
+
+    public ShieldRenderer(TileEntityItemStackRenderer renderer, String name, Item item) {
 	parent = renderer;
 
-	System.out.println(modelTexture.getResourcePath());
+	modelTexture = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
+
+	this.theitem = item;
+
     }
 
     @Override
     public void renderByItem(ItemStack stack) {
 	super.renderByItem(stack);
 	Item item = stack.getItem();
-	if (item == MyShield.ITEM) {
-	    System.out.println("IT WORKS");
+	if (item == theitem) {
 	    Minecraft.getMinecraft().getTextureManager().bindTexture(modelTexture);
 	    GlStateManager.pushMatrix();
 	    GlStateManager.scale(1.0, -1.0, -1.0);

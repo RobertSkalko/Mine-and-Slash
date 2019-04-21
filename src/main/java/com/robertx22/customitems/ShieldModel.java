@@ -6,14 +6,14 @@ import net.minecraft.client.model.ModelRenderer;
 /**
  * ModelScorgerShellSheild - bagu_chan Created using Tabula 7.0.0
  */
-public class ModelScorgerShellShield extends ModelBase {
+public class ShieldModel extends ModelBase {
     public ModelRenderer plate;
     public ModelRenderer plate2;
     public ModelRenderer plate3;
     public ModelRenderer plate4;
     public ModelRenderer plate5;
 
-    public ModelScorgerShellShield() {
+    public ShieldModel() {
 	this.textureWidth = 64;
 	this.textureHeight = 64;
 	this.plate2 = new ModelRenderer(this, 24, 0);

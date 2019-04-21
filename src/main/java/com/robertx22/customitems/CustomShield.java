@@ -6,6 +6,7 @@ import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShield;
@@ -18,17 +19,21 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-public class ItemScorgerShellShield extends ItemShield {
+public class CustomShield extends ItemShield {
 
-    @GameRegistry.ObjectHolder(Ref.MODID + ":scorger_shellshield")
+    public static final String ID = "custom_shield";
+    @GameRegistry.ObjectHolder(Ref.MODID + ":" + ID)
     public static final Item ITEM = null;
 
-    public ItemScorgerShellShield() {
+    public CustomShield() {
 	super();
 	this.setMaxDamage(548);
-	this.setUnlocalizedName("scorger_shellshield");
-	setRegistryName("scorger_shellshield");
+	this.setUnlocalizedName(ID);
+	setRegistryName(ID);
 	this.setCreativeTab(CreativeTabList.MyModTab);
+
+	this.setTileEntityItemStackRenderer(
+		new ShieldRenderer(TileEntityItemStackRenderer.instance, ID, this));
     }
 
     @Override
@@ -38,12 +43,12 @@ public class ItemScorgerShellShield extends ItemShield {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemScorgerShellShield());
+	event.getRegistry().register(new CustomShield());
     }
 
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event) {
-	registerModel(ITEM, "scorger_shellshield");
+	registerModel(ITEM, ID);
     }
 
     public static void registerModel(Item item) {
