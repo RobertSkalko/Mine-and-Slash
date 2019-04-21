@@ -1,6 +1,7 @@
 package com.robertx22.customitems;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelShield;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.Item;
@@ -15,7 +16,7 @@ public class ShieldRenderer extends TileEntityItemStackRenderer {
 
     Item theitem;
 
-    private final ShieldModel modelShield = new ShieldModel();
+    private final ModelShield modelShield = new ModelShield();
     private ResourceLocation modelTexture = new ResourceLocation("mmorpg:textures/shield/scorgershell_shield.png");
 
     public ShieldRenderer(TileEntityItemStackRenderer renderer, String name, Item item) {
