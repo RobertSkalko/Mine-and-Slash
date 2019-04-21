@@ -1,7 +1,6 @@
 package com.robertx22.onevent.Item;
 
-import com.robertx22.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.db_lists.GearTypes;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.mmorpg.config.non_mine_items.ConfigItem;
 import com.robertx22.mmorpg.config.non_mine_items.ConfigItems;
 import com.robertx22.saveclasses.GearItemData;
@@ -27,10 +26,9 @@ public class OnItemPickupGiveStatsWhitelist {
 		return;
 	    }
 
-//	    if (ModConfig.ItemsUnderSystem.CRAFTED_ITEMS_UNDER_SYSTEM == false) {
-//		return;
-
-//	    }
+	    if (ModConfig.Server.USE_COMPATIBILITY_ITEMS == false) {
+		return;
+	    }
 
 	    UnitData data = null;
 
@@ -49,25 +47,20 @@ public class OnItemPickupGiveStatsWhitelist {
 
 			ConfigItem config = ConfigItems.INSTANCE.map.get(reg);
 
-			GearItemSlot type = GearTypes.All.get(config.itemType);
+			EntityPlayer player = event.getEntityPlayer();
 
-			if (type != null) {
-
-			    EntityPlayer player = event.getEntityPlayer();
-
-			    if (player.hasCapability(EntityData.Data, null)) {
-
-				if (data == null) {
-				    data = Load.Unit(player);
-				}
-
-				stack = config.create(stack, data);
-
-				event.getEntityPlayer().inventory.markDirty();
-
+			if (player.hasCapability(EntityData.Data, null)) {
+			    if (data == null) {
+				data = Load.Unit(player);
 			    }
+
+			    stack = config.create(stack, data);
+
+			    event.getEntityPlayer().inventory.markDirty();
+
 			}
 		    }
+
 		}
 	    }
 

@@ -1,5 +1,6 @@
 package com.robertx22.mmorpg.proxy;
 
+import com.robertx22.customitems.ScorgeldSheildItemRender;
 import com.robertx22.customitems.gearitems.RenderMyArrow;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
@@ -20,6 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -73,6 +75,9 @@ public class ClientProxy implements IProxy {
 	System.out.println("on Client side");
 
 	MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getMinecraft()));
+
+	TileEntityItemStackRenderer.instance = new ScorgeldSheildItemRender(TileEntityItemStackRenderer.instance);
+
     }
 
     @Override

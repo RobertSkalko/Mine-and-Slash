@@ -5,6 +5,12 @@ import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import net.minecraftforge.common.config.Config;
 
 public class ServerContainer {
+
+    @Config.Name("Enable Outside Item Stats")
+    @Config.LangKey("mmorpg.config.")
+    @Config.Comment("This enables adding stats to items not from my mod automatically if they are added to my mod's config file inside the folder")
+    public boolean USE_COMPATIBILITY_ITEMS = false;
+
     @Config.Name("Disable Vanilla Hp Regen")
     @Config.LangKey("mmorpg.config.")
     @Config.Comment("This should always be disabled because otherwise with my mod's nerfed vanilla healing, the hp regen spends way too much hunger. Also you have hp regen from my mod")

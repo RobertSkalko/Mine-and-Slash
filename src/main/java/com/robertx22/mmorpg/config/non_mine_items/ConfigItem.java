@@ -12,6 +12,7 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.item.ItemStack;
 
@@ -107,7 +108,11 @@ public class ConfigItem {
 	GearItemData gear = UniqueGearGen.CreateData(blueprint);
 	gear.isNotFromMyMod = true;
 
-	Gear.Save(stack, gear);
+	if (gear.uniqueGUID != null || !IUnique.ITEMS.containsKey(gear.uniqueGUID)) {
+	    return createNormal(stack, data);
+	} else {
+	    Gear.Save(stack, gear);
+	}
 
 	return stack;
 
