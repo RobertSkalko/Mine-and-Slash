@@ -167,6 +167,7 @@ mmorpg.tooltip.single_target_spell_bolt=Casts a Single Target elemental projecti
 mmorpg.tooltip.spell_instant_heal=Instantly Heals the caster.
 mmorpg.tooltip.aoe_bomb_spell=Leaves out a bomb that explodes later for Aoe Damage.
 mmorpg.tooltip.spell_self_regen=Heals the caster over time.
+mmorpg.tooltip.aoe_spell_nova=Damages everyone around you.
 
 # REPAIR CAPACITORS
 item.mmorpg:capacitor0.name=Common Capacitor

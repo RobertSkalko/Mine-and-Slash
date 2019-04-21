@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public abstract class BaseSpell implements IWeighted {
 
     public enum SpellType {
-	Single_Target_Projectile, Aoe_Projectile, Self_Heal, Aoe_Bomb_Projectile, Restore_Energy
+	Single_Target_Projectile, Aoe_Projectile, Self_Heal, Aoe_Bomb_Projectile, Restore_Energy, Aoe_Damage_Nova
     }
 
     public String typeString() {

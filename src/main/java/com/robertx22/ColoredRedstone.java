@@ -3,6 +3,7 @@ package com.robertx22;
 import java.util.HashMap;
 
 import com.robertx22.database.particle_gens.AoeProjectileParticleGen;
+import com.robertx22.database.particle_gens.NovaParticleGen;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.ParticleUtils;
 
@@ -34,6 +35,15 @@ public class ColoredRedstone {
 
     }
 
+    public static void SpawnNovaRedstone(Elements element, Entity entity, double radius, int amount) {
+
+	Color color = Color.BY_ELEMENT.get(element);
+	String name = new NovaParticleGen().Name();
+
+	ParticleUtils.spawnParticleGenerator(entity, name, entity.posX, entity.posY + entity.height / 2, entity.posZ,
+		color.x, color.y, color.z, radius, amount);
+    }
+
     public static void SpawnAoeRedstone(Elements element, Entity entity, double radius, int amount) {
 
 	Color color = Color.BY_ELEMENT.get(element);
@@ -41,7 +51,6 @@ public class ColoredRedstone {
 
 	ParticleUtils.spawnParticleGenerator(entity, name, entity.posX, entity.posY, entity.posZ, color.x, color.y,
 		color.z, radius, amount);
-
     }
 
 }

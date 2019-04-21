@@ -1,4 +1,4 @@
-package com.robertx22.database.runewords.slots_3;
+package com.robertx22.database.runewords.slots_2;
 
 import java.util.Arrays;
 import java.util.List;

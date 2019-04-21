@@ -4,12 +4,12 @@ import java.util.HashMap;
 
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.runewords.slots_2.RuneWordBloom;
+import com.robertx22.database.runewords.slots_2.RuneWordMagma;
 import com.robertx22.database.runewords.slots_2.RuneWordScales;
 import com.robertx22.database.runewords.slots_2.RuneWordStone;
-import com.robertx22.database.runewords.slots_3.RuneWordMagma;
+import com.robertx22.database.runewords.slots_2.RuneWordZeal;
 import com.robertx22.database.runewords.slots_3.RuneWordRadiance;
 import com.robertx22.database.runewords.slots_3.RuneWordThief;
-import com.robertx22.database.runewords.slots_3.RuneWordZeal;
 import com.robertx22.database.runewords.slots_4.RuneWordLimitless;
 import com.robertx22.database.runewords.slots_4.RuneWordMagician;
 import com.robertx22.database.runewords.slots_4.RuneWordMountain;
