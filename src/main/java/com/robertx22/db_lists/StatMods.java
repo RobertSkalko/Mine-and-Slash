@@ -32,6 +32,7 @@ import com.robertx22.database.map_mods.minus.weapon.LessStaffDamageMap;
 import com.robertx22.database.map_mods.minus.weapon.LessSwordDamageMap;
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.ArmorPeneFlat;
+import com.robertx22.database.stat_mods.flat.BlockStrengthFlat;
 import com.robertx22.database.stat_mods.flat.CriticalDamageFlat;
 import com.robertx22.database.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stat_mods.flat.DodgeFlat;
@@ -293,6 +294,7 @@ public class StatMods {
 		put(new CriticalDamagePercent().GUID(), new CriticalDamagePercent());
 		put(new ArmorPenePercent().GUID(), new ArmorPenePercent());
 		put(new DodgePercent().GUID(), new DodgePercent());
+		put(new BlockStrengthFlat().GUID(), new BlockStrengthFlat());
 
 		// Resources
 		put(new MajorManaRegenFlat().GUID(), new MajorManaRegenFlat());

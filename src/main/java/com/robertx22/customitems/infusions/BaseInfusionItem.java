@@ -35,6 +35,8 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
 	    possible = this.weaponInfusions();
 	} else if (gear.GetBaseGearType().slotType().equals(GearSlotType.Jewerly)) {
 	    possible = this.jewerlyInfusions();
+	} else {
+	    possible = this.jewerlyInfusions();
 	}
 
 	StatMod random = (StatMod) RandomUtils.WeightedRandom(ListUtils.CollectionToList(possible));

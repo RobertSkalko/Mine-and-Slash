@@ -561,6 +561,8 @@ mmorpg.stat.purity=Purity
 mmorpg.stat.buff_energy_regen=Energy Regen Buff
 mmorpg.stat.buff_mana_regen=Mana Regen Buff
 
+mmorpg.stat.block_strength=Block Strength
+
 # ITEM TOOLTIPS
 
 # CURRENCY ITEM LORE
@@ -657,6 +659,7 @@ mmorpg.gear_type.ring=Ring
 mmorpg.gear_type.charm=Charm
 mmorpg.gear_type.bracelet=Bracelet
 mmorpg.gear_type.necklace=Necklace
+mmorpg.gear_type.shield=Shield
 
 # RARITIES
 mmorpg.rarity.common=Common

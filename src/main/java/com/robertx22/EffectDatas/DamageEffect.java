@@ -3,6 +3,7 @@ package com.robertx22.effectdatas;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import com.robertx22.database.stat_types.defense.BlockStrength;
 import com.robertx22.effectdatas.interfaces.IArmorReducable;
 import com.robertx22.effectdatas.interfaces.ICrittable;
 import com.robertx22.effectdatas.interfaces.IDamageEffect;
@@ -78,11 +79,22 @@ public class DamageEffect extends EffectData
     @Override
     protected void activate() {
 
+	boolean fullyblocked = false;
+
 	MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
 	float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 
 	if (canBlockDamageSource(Target, dmgsource)) {
-	    dmg /= 5; // I NEED TO STILL ADD A BLOCK STAT
+
+	    float blockval = targetUnit.MyStats.get(BlockStrength.GUID).Value;
+
+	    float afterblock = Number - blockval;
+
+	    if (afterblock < 0) {
+		fullyblocked = true;
+	    } else {
+		dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) afterblock);
+	    }
 
 	    dmgsource.setDamageBypassesArmor();
 
@@ -90,21 +102,23 @@ public class DamageEffect extends EffectData
 
 	}
 
-	Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
-	Target.attackEntityFrom(dmgsource, dmg);
+	if (fullyblocked == false) {
+	    Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
+	    Target.attackEntityFrom(dmgsource, dmg);
 
-	addBonusElementDamage();
-	Heal();
-	RestoreMana();
+	    addBonusElementDamage();
+	    Heal();
+	    RestoreMana();
 
-	if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
-	    LogCombat();
-	}
+	    if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
+		LogCombat();
+	    }
 
-	if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
+	    if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
 
-	    Main.Network.sendTo(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
-		    (EntityPlayerMP) Source);
+		Main.Network.sendTo(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
+			(EntityPlayerMP) Source);
+	    }
 	}
 
     }

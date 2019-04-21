@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
-import com.robertx22.database.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.database.stat_mods.flat.BlockStrengthFlat;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
@@ -26,7 +26,7 @@ public abstract class BaseOffHand extends GearItemSlot {
 
     @Override
     public List<StatMod> PrimaryStats() {
-	return Arrays.asList(new HealthFlat());
+	return Arrays.asList(new BlockStrengthFlat());
     }
 
     @Override

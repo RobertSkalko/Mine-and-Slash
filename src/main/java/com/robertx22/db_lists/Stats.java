@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.robertx22.database.stat_types.UnknownStat;
 import com.robertx22.database.stat_types.defense.Armor;
+import com.robertx22.database.stat_types.defense.BlockStrength;
 import com.robertx22.database.stat_types.defense.Dodge;
 import com.robertx22.database.stat_types.defense.SpellDodge;
 import com.robertx22.database.stat_types.elementals.all_damage.AllFireDamage;
@@ -167,6 +168,8 @@ public class Stats {
 		put(Energy.GUID, new Energy());
 		put(EnergyRegen.GUID, new EnergyRegen());
 		// Resources
+
+		put(BlockStrength.GUID, new BlockStrength());
 
 		put(Armor.GUID, new Armor());
 		put(ArmorPenetration.GUID, new ArmorPenetration());

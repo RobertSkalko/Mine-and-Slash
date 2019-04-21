@@ -74,9 +74,6 @@ public class ClientProxy implements IProxy {
 
 	MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getMinecraft()));
 
-	// TileEntityItemStackRenderer.instance = new
-	// ScorgeldSheildItemRender(TileEntityItemStackRenderer.instance);
-
     }
 
     @Override

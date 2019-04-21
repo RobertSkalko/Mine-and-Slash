@@ -19,6 +19,7 @@ public class BarsGUI extends Gui {
     BottomMiddleOverlay bottomMiddle = new BottomMiddleOverlay();
     BottomMiddleCornersOverlay bottomMiddleCorners = new BottomMiddleCornersOverlay();
     TopLeftOverlay topleft = new TopLeftOverlay();
+    MiddleOverlay middle = new MiddleOverlay();
 
     public BarsGUI(Minecraft mc) {
 	super();
@@ -44,7 +45,7 @@ public class BarsGUI extends Gui {
 
 	    ticks++;
 
-	    if (ticks > 13) {
+	    if (ticks > 12) {
 		UnitData newData = mc.player.getCapability(EntityData.Data, null);
 
 		ticks = 0;
@@ -75,6 +76,8 @@ public class BarsGUI extends Gui {
 		bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
 	    } else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle_Corners)) {
 		bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
+	    } else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Middle)) {
+		middle.Draw(this, mc, mc.player, event, unit, data);
 	    }
 	} catch (Exception e) {
 	    // e.printStackTrace();

@@ -13,6 +13,7 @@ import com.robertx22.database.gearitemslots.Helmet;
 import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.Ring;
+import com.robertx22.database.gearitemslots.Shield;
 import com.robertx22.database.gearitemslots.Staff;
 import com.robertx22.database.gearitemslots.Sword;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
@@ -34,8 +35,10 @@ public class GearTypes {
 		put(new Hammer().GUID(), new Hammer());
 		put(new Staff().GUID(), new Staff());
 		put(new Axe().GUID(), new Axe());
+		put(new Shield().GUID(), new Shield());
 
 	    }
+
 	}
     };
 }
