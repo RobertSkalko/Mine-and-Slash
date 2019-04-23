@@ -410,6 +410,10 @@ public class GearItemData implements ITooltip, ISalvagable {
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
 
+	if (this.isSalvagable == false) {
+	    return ItemStack.EMPTY;
+	}
+
 	ItemStack stack = ItemStack.EMPTY;
 	int tier = 0;
 
