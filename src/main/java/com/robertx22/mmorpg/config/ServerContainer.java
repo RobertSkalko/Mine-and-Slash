@@ -56,6 +56,11 @@ public class ServerContainer {
     @Config.Comment("0 to 1. 0 means other types of damage (not from my mod) are nullified. 1 means they are the same. Please leave at default value unless required to change it. Too high value means you do 2 different types of damage, vanilla damage (sword that does half a mob's health) plus my mod's damage.. Which will lead to you both one shotting mobs and mobs one shotting you too.")
     public float NON_MOD_DAMAGE_MULTI = 0.03F;
 
+    @Config.Name("Mob Environment Damage Multiplier")
+    @Config.LangKey("mmorpg.config.non_mod_damage_multiplier")
+    @Config.Comment("")
+    public float MOB_ENVIRONMENT_DAMAGE_MULTI = 0.2F;
+
     @Config.Name("Non Mod Heal Multiplier")
     @Config.LangKey("mmorpg.config.non_mod_heal_multi")
     @Config.Comment("0 to 1. 0 means other types of healing (not from my mod) are smaller. 1 means they are the same. Please leave at default value unless required to change it. High values make health regen too fast(both normal and my mods) but low value makes stuff like health potions useless. ")

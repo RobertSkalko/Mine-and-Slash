@@ -6,12 +6,12 @@ public class DropRatesContainer {
     @Config.Name("Runed Gear Droprate")
     @Config.LangKey("mmorpg.config.runed_gear_droprate")
     @Config.Comment("")
-    public float RUNED_GEAR_DROPRATE = 2F;
+    public float RUNED_GEAR_DROPRATE = 1.8F;
 
     @Config.Name("Rune Droprate")
     @Config.LangKey("mmorpg.config.rune_droprate")
     @Config.Comment("Runes that can be socketed into items and create runewords!")
-    public float RUNE_DROPRATE = 1.1F;
+    public float RUNE_DROPRATE = 1.25F;
 
     @Config.Name("Map Droprate")
     @Config.LangKey("mmorpg.config.map_droprate")
@@ -41,5 +41,5 @@ public class DropRatesContainer {
     @Config.Name("Awaken RuneWord Droprate")
     @Config.LangKey("mmorpg.config.awaken_runeword_droprate")
     @Config.Comment("These Items Awaken The dormant RuneWord combination of an item")
-    public float AWAKEN_RUNEWORD_DROPRATE = 0.3F;
+    public float AWAKEN_RUNEWORD_DROPRATE = 0.25F;
 }

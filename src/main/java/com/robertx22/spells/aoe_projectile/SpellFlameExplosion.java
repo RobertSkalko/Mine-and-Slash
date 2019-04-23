@@ -31,11 +31,6 @@ public class SpellFlameExplosion extends BaseAoeSpellProjectile {
     }
 
     @Override
-    public String Name() {
-	return "Flame Explosion";
-    }
-
-    @Override
     public EffectCalculation ScalingValue() {
 	return new EffectCalculation(new SpellFireDamage().Guid(), 0.25F);
     }

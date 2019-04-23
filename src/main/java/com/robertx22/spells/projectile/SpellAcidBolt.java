@@ -30,11 +30,6 @@ public class SpellAcidBolt extends BaseSpellProjectile {
     }
 
     @Override
-    public String Name() {
-	return "Acid Bolt";
-    }
-
-    @Override
     public EffectCalculation ScalingValue() {
 	return new EffectCalculation(new SpellNatureDamage().Guid(), 0.5F);
     }

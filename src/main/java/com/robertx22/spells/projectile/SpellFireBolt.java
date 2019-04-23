@@ -30,11 +30,6 @@ public class SpellFireBolt extends BaseSpellProjectile {
     }
 
     @Override
-    public String Name() {
-	return "Fire Bolt";
-    }
-
-    @Override
     public EffectCalculation ScalingValue() {
 	return new EffectCalculation(new SpellFireDamage().Guid(), 0.5F);
     }

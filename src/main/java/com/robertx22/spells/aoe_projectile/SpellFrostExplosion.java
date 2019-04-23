@@ -31,11 +31,6 @@ public class SpellFrostExplosion extends BaseAoeSpellProjectile {
     }
 
     @Override
-    public String Name() {
-	return "Frost Explosion";
-    }
-
-    @Override
     public EffectCalculation ScalingValue() {
 	return new EffectCalculation(new SpellWaterDamage().Guid(), 0.25F);
     }

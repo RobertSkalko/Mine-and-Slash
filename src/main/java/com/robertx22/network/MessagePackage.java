@@ -2,9 +2,10 @@ package com.robertx22.network;
 
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.uncommon.SLOC;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -64,7 +65,10 @@ public class MessagePackage implements IMessage {
 
 			    if (ModConfig.Client.SHOW_LOW_ENERGY_MANA_WARNING) {
 
-				Main.proxy.getPlayerEntityFromContext(ctx).sendMessage(SLOC.chat(message.text));
+				EntityPlayer player = Main.proxy.getPlayerEntityFromContext(ctx);
+				player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
+
+				// player.sendMessage(SLOC.chat(message.text));
 			    }
 
 			}

@@ -3,7 +3,7 @@ package com.robertx22.spells.bases.projectile;
 import java.util.List;
 
 import com.robertx22.ColoredRedstone;
-import com.robertx22.SoundUtils;
+import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.entity.EntityLivingBase;

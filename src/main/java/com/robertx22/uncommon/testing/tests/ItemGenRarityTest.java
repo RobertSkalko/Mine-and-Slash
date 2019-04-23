@@ -9,7 +9,6 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.GearGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 
 public class ItemGenRarityTest {
@@ -41,8 +40,8 @@ public class ItemGenRarityTest {
 
 	for (Entry<Integer, Integer> entry : RarityandNumber.entrySet()) {
 	    float percent = (float) entry.getValue() / (float) amount * 100;
-	    System.out.println("Rarity: " + CLOC.rarityName(Rarities.Items.get(entry.getKey()))
-		    + " has this many items: " + entry.getValue() + " , percent of total: " + Float.toString(percent));
+	    System.out.println("Rarity: " + Rarities.Items.get(entry.getKey()).locName() + " has this many items: "
+		    + entry.getValue() + " , percent of total: " + Float.toString(percent));
 	}
 	System.out.println("It took " + watch.getTime() + " miliseconds for " + amount
 		+ " items to generate, in other words it took this many miliseconds for one item: "

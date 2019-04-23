@@ -17,11 +17,6 @@ public class SpellAcidBomb extends BaseBombSpell {
 	super();
     }
 
-    @Override
-    public String Name() {
-	return "Acid Bomb";
-    }
-
     static public class EntityAcidBomb extends EntityBombProjectile {
 
 	public EntityAcidBomb(World worldIn) {

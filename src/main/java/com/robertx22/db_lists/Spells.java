@@ -13,6 +13,8 @@ import com.robertx22.spells.aoe_projectile.SpellLightningExplosion;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.spells.nova.SpellFireNova;
 import com.robertx22.spells.nova.SpellFrostNova;
+import com.robertx22.spells.nova.SpellPoisonNova;
+import com.robertx22.spells.nova.SpellThunderNova;
 import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;
@@ -44,6 +46,8 @@ public class Spells {
 
 		put(new SpellFrostNova().GUID(), new SpellFrostNova());
 		put(new SpellFireNova().GUID(), new SpellFireNova());
+		put(new SpellThunderNova().GUID(), new SpellThunderNova());
+		put(new SpellPoisonNova().GUID(), new SpellPoisonNova());
 
 	    }
 	}

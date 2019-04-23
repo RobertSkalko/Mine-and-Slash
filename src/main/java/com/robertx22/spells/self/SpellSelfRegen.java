@@ -27,11 +27,6 @@ public class SpellSelfRegen extends BaseSpellHeal {
     }
 
     @Override
-    public String Name() {
-	return "Regenerate";
-    }
-
-    @Override
     public int ManaCost() {
 	return 25;
     }

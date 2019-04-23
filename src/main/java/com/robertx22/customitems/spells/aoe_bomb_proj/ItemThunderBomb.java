@@ -24,12 +24,6 @@ public class ItemThunderBomb extends BaseSpellItem {
     public static final Item ITEM = null;
 
     @Override
-    public String Name() {
-	return "Thunder Bomb";
-
-    }
-
-    @Override
     public BaseSpell Spell() {
 	return new SpellThunderBomb();
     }

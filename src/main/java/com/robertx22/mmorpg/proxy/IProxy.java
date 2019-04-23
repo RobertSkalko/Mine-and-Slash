@@ -27,10 +27,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public interface IProxy {
 
-    default void s() {
-
-    }
-
     default void registerRenders() {
 
 	int i = 0;

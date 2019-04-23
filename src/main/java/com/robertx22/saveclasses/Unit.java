@@ -18,7 +18,7 @@ import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.config.DimensionConfigs;
 import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.network.EntityPackage;
+import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.stats.Stat;
@@ -353,7 +353,7 @@ public class Unit {
 	DirtyCheck newcheck = getDirtyCheck();
 
 	if (old.isDirty(newcheck)) {
-	    Main.Network.sendToAllTracking(new EntityPackage(entity, data), entity);
+	    Main.Network.sendToAllTracking(new EntityUnitPackage(entity, data), entity);
 	}
 
     }

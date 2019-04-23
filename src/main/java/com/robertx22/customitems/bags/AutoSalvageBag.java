@@ -16,6 +16,7 @@ import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.saveclasses.rune.RuneItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Map;
 import com.robertx22.uncommon.datasaving.Rune;
@@ -27,6 +28,7 @@ import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -177,38 +179,41 @@ public class AutoSalvageBag extends Item implements IBauble {
 	    nbt = new NBTTagCompound();
 	}
 
-	tooltip.add("Automatically Salvages items! (Gears, Spells, Maps)");
+	tooltip.add(CLOC.tooltip("auto_salvage_items") + "!");
 
 	tooltip.add("");
 
-	tooltip.add("Salvages Gears: ");
+	tooltip.add(TextFormatting.YELLOW + CLOC.word("gears") + ":");
 	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items), this.getGear(nbt)));
 
-	tooltip.add("Salvages Spells: ");
+	tooltip.add(TextFormatting.YELLOW + CLOC.word("spells") + ":");
 	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Spells), this.getSpell(nbt)));
 
-	tooltip.add("Salvages Maps: ");
+	tooltip.add(TextFormatting.YELLOW + CLOC.word("maps") + ":");
 	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps), this.getMap(nbt)));
 
-	tooltip.add("Salvages Runes: ");
+	tooltip.add(TextFormatting.YELLOW + CLOC.word("runes") + ":");
 	tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes), this.getRune(nbt)));
 
 	tooltip.add("");
 
-	tooltip.add("Bonus Salvage Item Chance: " + this.getBonusSalvageChance() + "%");
+	tooltip.add(CLOC.tooltip("bonus_salvage_chance") + ": " + this.getBonusSalvageChance() + "%");
+
 	tooltip.add("");
 
-	tooltip.add("Place on your Baubles Chest Slot");
+	tooltip.add(CLOC.tooltip("works_when_in_baubles_slot"));
 	tooltip.add("");
 
-	tooltip.add(TextFormatting.GREEN + "How To Configure which Rarities are Salvaged: ");
-	tooltip.add("Place An Item Of Maximum Rarity You want to");
-	tooltip.add("salvage in your off-hand");
-	tooltip.add("Then Right click with this bag.");
-	tooltip.add("If you put an Uncommon Sword for example, that means");
-	tooltip.add("Common and Uncommon Gear Items will be salvaged");
-	tooltip.add("To Not Salvage Any Items, clear the config by");
-	tooltip.add("Right Clicking the bag while shield slot is empty.");
+	if (GuiScreen.isShiftKeyDown() == false) {
+
+	    tooltip.add(TextFormatting.GREEN + CLOC.tooltip("sal_info"));
+	} else {
+	    tooltip.add(CLOC.tooltip("sal1"));
+	    tooltip.add(CLOC.tooltip("sal2"));
+	    tooltip.add(CLOC.tooltip("sal3"));
+	    tooltip.add(CLOC.tooltip("sal4"));
+	    tooltip.add(CLOC.tooltip("sal5"));
+	}
 
     }
 
@@ -221,12 +226,12 @@ public class AutoSalvageBag extends Item implements IBauble {
 		if (text.length() > 0) {
 		    text += TextFormatting.GRAY + ", ";
 		}
-		text += rar.Color() + rar.GUID();
+		text += rar.Color() + rar.locName();
 	    }
 	}
 
 	if (text.length() == 0) {
-	    text += "None";
+	    text += CLOC.word("none");
 	}
 
 	return text;

@@ -30,11 +30,6 @@ public class SpellInstantHeal extends BaseSpellHeal {
     }
 
     @Override
-    public String Name() {
-	return "Instant Heal";
-    }
-
-    @Override
     public int ManaCost() {
 	return 30;
     }

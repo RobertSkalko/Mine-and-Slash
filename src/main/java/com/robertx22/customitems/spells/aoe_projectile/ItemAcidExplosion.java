@@ -24,12 +24,6 @@ public class ItemAcidExplosion extends BaseSpellItem {
     public static final Item ITEM = null;
 
     @Override
-    public String Name() {
-	return "Acid Explosion";
-
-    }
-
-    @Override
     public BaseSpell Spell() {
 	return new SpellAcidExplosion();
     }

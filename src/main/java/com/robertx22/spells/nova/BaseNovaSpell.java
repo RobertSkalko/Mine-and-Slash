@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 public abstract class BaseNovaSpell extends BaseSpell {
 
-    public float scaling = 0.25F;
+    public float scaling = 0.3F;
     public double radius = 4;
 
     @Override
@@ -59,8 +59,10 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
 		if (entity1.hasCapability(EntityData.Data, null) && entity1 != caster) {
 
+		    entity1.playSound(SoundEvents.ENCHANT_THORNS_HIT, 0.7F, 0);
+
 		    SpellEffectDamage effect = new SpellEffectDamage(this.Element());
-		    effect.Activate(new DamageData(entity1, data), entity1);
+		    effect.Activate(new DamageData(caster, data), entity1);
 
 		}
 

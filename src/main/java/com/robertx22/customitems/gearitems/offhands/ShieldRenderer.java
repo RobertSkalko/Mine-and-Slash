@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -14,17 +13,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ShieldRenderer extends TileEntityItemStackRenderer {
     public final TileEntityItemStackRenderer parent;
 
-    Item theitem;
-
     private final ModelShield modelShield = new ModelShield();
-    private ResourceLocation modelTexture = new ResourceLocation("mmorpg:textures/shield/scorgershell_shield.png");
 
-    public ShieldRenderer(TileEntityItemStackRenderer renderer, String name, Item item) {
+    public ShieldRenderer(TileEntityItemStackRenderer renderer) {
 	parent = renderer;
-
-	modelTexture = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
-
-	this.theitem = item;
 
     }
 
@@ -32,8 +24,11 @@ public class ShieldRenderer extends TileEntityItemStackRenderer {
     public void renderByItem(ItemStack stack) {
 	super.renderByItem(stack);
 	Item item = stack.getItem();
-	if (item == theitem) {
-	    Minecraft.getMinecraft().getTextureManager().bindTexture(modelTexture);
+	if (item instanceof NormalShield) {
+
+	    NormalShield shield = (NormalShield) item;
+
+	    Minecraft.getMinecraft().getTextureManager().bindTexture(shield.resource);
 	    GlStateManager.pushMatrix();
 	    GlStateManager.scale(1.0, -1.0, -1.0);
 	    modelShield.render();

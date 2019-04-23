@@ -29,11 +29,6 @@ public class SpellFrostBolt extends BaseSpellProjectile {
     }
 
     @Override
-    public String Name() {
-	return "Frost Bolt";
-    }
-
-    @Override
     public EffectCalculation ScalingValue() {
 	return new EffectCalculation(new SpellWaterDamage().Guid(), 0.5F);
     }

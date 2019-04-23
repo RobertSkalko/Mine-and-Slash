@@ -6,10 +6,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.robertx22.db_lists.CreativeTabList;
-import com.robertx22.db_lists.Rarities;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -48,13 +46,13 @@ public class ItemSocket extends Item {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-	Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemSocket(x.Rank())));
-	Items.values().forEach((x) -> event.getRegistry().register(x));
+	// Rarities.Items.forEach((x) -> Items.put(x.Rank(), new ItemSocket(x.Rank())));
+	// Items.values().forEach((x) -> event.getRegistry().register(x));
     }
 
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event) {
-	Items.values().forEach((x) -> RegisterUtils.registerRender(x));
+	// Items.values().forEach((x) -> RegisterUtils.registerRender(x));
     }
 
 }

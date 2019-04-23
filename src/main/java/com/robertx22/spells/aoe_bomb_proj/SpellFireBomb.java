@@ -17,11 +17,6 @@ public class SpellFireBomb extends BaseBombSpell {
 	super();
     }
 
-    @Override
-    public String Name() {
-	return "Fire Bomb";
-    }
-
     static public class EntityFireBomb extends EntityBombProjectile {
 
 	public EntityFireBomb(World worldIn) {

@@ -16,37 +16,31 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @EventBusSubscriber
 public class ItemInstantHeal extends BaseSpellItem {
 
-	public ItemInstantHeal() {
-		super();
-	}
+    public ItemInstantHeal() {
+	super();
+    }
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":spell_instantheal")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":spell_instantheal")
+    public static final Item ITEM = null;
 
-	@Override
-	public String Name() {
-		return "Instant Heal";
+    @Override
+    public BaseSpell Spell() {
+	return new SpellInstantHeal();
+    }
 
-	}
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemInstantHeal());
+    }
 
-	@Override
-	public BaseSpell Spell() {
-		return new SpellInstantHeal();
-	}
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemInstantHeal());
-	}
-
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
-
-	@Override
-	public String GUID() {
-		return Ref.MODID + ":spell_instantheal";
-	}
+    @Override
+    public String GUID() {
+	return Ref.MODID + ":spell_instantheal";
+    }
 
 }

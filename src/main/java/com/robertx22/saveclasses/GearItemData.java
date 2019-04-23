@@ -13,6 +13,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.saveclasses.gearitem.GearTypeStatsData;
 import com.robertx22.saveclasses.gearitem.InfusionData;
@@ -75,7 +76,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 	return this.isNotFromMyMod == false;
     }
 
-    public String name() {
+    public String name(ItemStack stack) {
 
 	if (isUnique) {
 	    if (IUnique.ITEMS.containsKey(this.uniqueGUID)) {
@@ -87,7 +88,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 	    if (gearTypeName.isEmpty()) {
 		return "error";
 	    } else {
-		return GearTypes.All.get(gearTypeName).locName();
+		return stack.getDisplayName();
 	    }
 	}
     }
@@ -176,7 +177,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 	}
     }
 
-    public String GetDisplayName() {
+    public String GetDisplayName(ItemStack stack) {
 
 	String text = GetRarity().Color();
 
@@ -185,15 +186,15 @@ public class GearItemData implements ITooltip, ISalvagable {
 	    text += uniq.locName();
 
 	} else if (this.isRuned()) {
-	    text += "Runed " + name();
+	    text += "Runed " + name(stack);
 	} else {
 
-	    if (prefix != null) {
+	    if (prefix != null && ModConfig.Client.SHOW_AFFIXED_NAME) {
 		text += prefix.BaseAffix().locName() + " ";
 	    }
-	    text += name();
+	    text += name(stack);
 
-	    if (suffix != null) {
+	    if (suffix != null && ModConfig.Client.SHOW_AFFIXED_NAME) {
 		text += " " + suffix.BaseAffix().locName() + " ";
 	    }
 	}
@@ -264,7 +265,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 
 	event.getToolTip().clear();
 
-	event.getToolTip().add(GetDisplayName());
+	event.getToolTip().add(GetDisplayName(stack));
 	event.getToolTip().add(TextFormatting.YELLOW + CLOC.word("level") + ": " + level);
 
 	event.getToolTip().add("");
@@ -315,7 +316,7 @@ public class GearItemData implements ITooltip, ISalvagable {
 	}
 
 	ItemRarity rarity = GetRarity();
-	event.getToolTip().add(CLOC.word("rarity") + ": " + rarity.Color() + CLOC.rarityName(rarity));
+	event.getToolTip().add(CLOC.word("rarity") + ": " + rarity.Color() + rarity.locName());
 
 	if (!this.isSalvagable) {
 	    event.getToolTip().add(TextFormatting.RED + CLOC.word("unsalvagable"));

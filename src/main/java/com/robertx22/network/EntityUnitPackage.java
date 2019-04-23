@@ -18,21 +18,21 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class EntityPackage implements IMessage {
+public class EntityUnitPackage implements IMessage {
 
     public int id;
     public NBTTagCompound nbt;
 
-    public EntityPackage() {
+    public EntityUnitPackage() {
 
     }
 
-    public EntityPackage(Entity entity) {
+    public EntityUnitPackage(Entity entity) {
 	this.id = entity.getEntityId();
 	this.nbt = entity.getCapability(EntityData.Data, null).getNBT();
     }
 
-    public EntityPackage(Entity entity, UnitData data) {
+    public EntityUnitPackage(Entity entity, UnitData data) {
 	this.id = entity.getEntityId();
 	this.nbt = data.getNBT();
     }
@@ -50,10 +50,10 @@ public class EntityPackage implements IMessage {
 
     }
 
-    public static class Handler implements IMessageHandler<EntityPackage, IMessage> {
+    public static class Handler implements IMessageHandler<EntityUnitPackage, IMessage> {
 
 	@Override
-	public IMessage onMessage(EntityPackage message, MessageContext ctx) {
+	public IMessage onMessage(EntityUnitPackage message, MessageContext ctx) {
 
 	    Runnable noteThread = new Runnable() {
 		@Override

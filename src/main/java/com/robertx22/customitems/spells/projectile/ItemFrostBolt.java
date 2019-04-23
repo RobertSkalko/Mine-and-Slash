@@ -16,37 +16,31 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @EventBusSubscriber
 public class ItemFrostBolt extends BaseSpellItem {
 
-	public ItemFrostBolt() {
-		super();
-	}
+    public ItemFrostBolt() {
+	super();
+    }
 
-	@GameRegistry.ObjectHolder(Ref.MODID + ":spell_frostbolt")
-	public static final Item ITEM = null;
+    @GameRegistry.ObjectHolder(Ref.MODID + ":spell_frostbolt")
+    public static final Item ITEM = null;
 
-	@Override
-	public String Name() {
-		return "Frost Bolt";
+    @Override
+    public BaseSpell Spell() {
+	return new SpellFrostBolt();
+    }
 
-	}
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+	event.getRegistry().register(new ItemFrostBolt());
+    }
 
-	@Override
-	public BaseSpell Spell() {
-		return new SpellFrostBolt();
-	}
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	RegisterUtils.registerRender(ITEM);
+    }
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemFrostBolt());
-	}
-
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		RegisterUtils.registerRender(ITEM);
-	}
-
-	@Override
-	public String GUID() {
-		return Ref.MODID + ":spell_frostbolt";
-	}
+    @Override
+    public String GUID() {
+	return Ref.MODID + ":spell_frostbolt";
+    }
 
 }

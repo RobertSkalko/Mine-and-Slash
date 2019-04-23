@@ -3,12 +3,12 @@ package com.robertx22.spells.aoe_bomb_proj.bases;
 import java.util.List;
 
 import com.robertx22.ColoredRedstone;
-import com.robertx22.SoundUtils;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.Targeting;
 import com.robertx22.spells.potion_effects.all.EnergyRegenPotion;
 import com.robertx22.spells.potion_effects.all.ManaRegenPotion;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -31,6 +31,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 	this.setDeathTime(60);
 	this.setAirProcTime(40);
 	this.setDoExpireProc(true);
+	this.setNoGravity(true); // REQUIRED
 
     }
 
@@ -108,7 +109,10 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
 
 	switch (result.typeOfHit) {
 	case BLOCK:
-	    this.setVelocity(0, 0, 0);
+	    this.motionX = 0;
+	    this.motionY = 0;
+	    this.motionZ = 0;
+
 	    break;
 	case ENTITY:
 	    break;

@@ -24,12 +24,6 @@ public class ItemSelfRegen extends BaseSpellItem {
     public static final Item ITEM = null;
 
     @Override
-    public String Name() {
-	return "Regenerate";
-
-    }
-
-    @Override
     public BaseSpell Spell() {
 	return new SpellSelfRegen();
     }

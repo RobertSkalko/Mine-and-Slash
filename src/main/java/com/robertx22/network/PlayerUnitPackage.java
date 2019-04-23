@@ -11,15 +11,15 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class UnitPackage implements IMessage {
+public class PlayerUnitPackage implements IMessage {
 
-    public UnitPackage() {
+    public PlayerUnitPackage() {
 
     }
 
     private NBTTagCompound nbt;
 
-    public UnitPackage(NBTTagCompound nbt) {
+    public PlayerUnitPackage(NBTTagCompound nbt) {
 	this.nbt = nbt;
     }
 
@@ -35,10 +35,10 @@ public class UnitPackage implements IMessage {
 	ByteBufUtils.writeTag(buf, nbt);
     }
 
-    public static class Handler implements IMessageHandler<UnitPackage, IMessage> {
+    public static class Handler implements IMessageHandler<PlayerUnitPackage, IMessage> {
 
 	@Override
-	public IMessage onMessage(UnitPackage message, MessageContext ctx) {
+	public IMessage onMessage(PlayerUnitPackage message, MessageContext ctx) {
 
 	    Runnable noteThread = new Runnable() {
 		@Override

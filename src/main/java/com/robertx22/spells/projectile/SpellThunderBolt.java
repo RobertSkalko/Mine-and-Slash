@@ -29,11 +29,6 @@ public class SpellThunderBolt extends BaseSpellProjectile {
     }
 
     @Override
-    public String Name() {
-	return "Thunder Bolt";
-    }
-
-    @Override
     public EffectCalculation ScalingValue() {
 	return new EffectCalculation(new SpellThunderDamage().Guid(), 0.5F);
     }

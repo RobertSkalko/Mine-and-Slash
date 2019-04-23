@@ -27,8 +27,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BaseSpellItem extends Item {
 
-    public abstract String Name();
-
     public abstract String GUID();
 
     public abstract BaseSpell Spell();
@@ -75,7 +73,7 @@ public abstract class BaseSpellItem extends Item {
 	    tooltip.add(TextFormatting.LIGHT_PURPLE + data.GetSpell().GetDescription(data));
 
 	    tooltip.add("");
-	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + CLOC.rarityName(rarity));
+	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName());
 	}
     }
 

@@ -17,35 +17,38 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class StartupGearFactory {
-	public static Block blockInventoryAdvanced;
-	public static ItemBlock itemBlockInventoryAdvanced;
+    public static Block blockInventoryAdvanced;
+    public static ItemBlock itemBlockInventoryAdvanced;
 
-	public static void preInitCommon(FMLPreInitializationEvent event) {
-		blockInventoryAdvanced = new BlockGearFactory().setUnlocalizedName(Ref.MODID + ":gear_factory_station");
-		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":gear_factory_station");
-		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
+    public static void preInitCommon(FMLPreInitializationEvent event) {
+	blockInventoryAdvanced = new BlockGearFactory().setUnlocalizedName(Ref.MODID + ":gear_factory_station");
+	blockInventoryAdvanced.setRegistryName(Ref.MODID + ":gear_factory_station");
+	ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
 
-		itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced);
-		itemBlockInventoryAdvanced.setRegistryName(blockInventoryAdvanced.getRegistryName());
-		ForgeRegistries.ITEMS.register(itemBlockInventoryAdvanced);
+	itemBlockInventoryAdvanced = new ItemBlock(blockInventoryAdvanced);
+	itemBlockInventoryAdvanced.setRegistryName(blockInventoryAdvanced.getRegistryName());
+	ForgeRegistries.ITEMS.register(itemBlockInventoryAdvanced);
 
-		GameRegistry.registerTileEntity(TileGearFactory.class, Ref.MODID + ":gear_factory_station_entity");
+	// GameRegistry.registerTileEntity(TileGearFactory.class,
+	// new ResourceLocation(Ref.MODID, "gear_factory_station_entity"));
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
-		GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GuiHandler.getGuiID());
+	GameRegistry.registerTileEntity(TileGearFactory.class, Ref.MODID + ":gear_factory_station_entity");
 
-		if (event.getSide().equals(Side.CLIENT)) {
-			preInitClientOnly();
-		}
+	NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
+	GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GuiHandler.getGuiID());
+
+	if (event.getSide().equals(Side.CLIENT)) {
+	    preInitClientOnly();
 	}
+    }
 
-	@SideOnly(Side.CLIENT)
-	public static void preInitClientOnly() {
-		ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation(Ref.MODID + ":gear_factory_station",
-				"inventory");
-		final int DEFAULT_ITEM_SUBTYPE = 0;
-		ModelLoader.setCustomModelResourceLocation(itemBlockInventoryAdvanced, DEFAULT_ITEM_SUBTYPE,
-				itemModelResourceLocation);
-	}
+    @SideOnly(Side.CLIENT)
+    public static void preInitClientOnly() {
+	ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation(Ref.MODID + ":gear_factory_station",
+		"inventory");
+	final int DEFAULT_ITEM_SUBTYPE = 0;
+	ModelLoader.setCustomModelResourceLocation(itemBlockInventoryAdvanced, DEFAULT_ITEM_SUBTYPE,
+		itemModelResourceLocation);
+    }
 
 }

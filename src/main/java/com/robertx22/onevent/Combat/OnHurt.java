@@ -31,7 +31,7 @@ public class OnHurt {
 	if (event.getSource() != null && event.getSource().getTrueSource() instanceof EntityLivingBase
 		&& event.getEntityLiving().hasCapability(EntityData.Data, null)) {
 	    if (event.getSource().isExplosion()) {
-		event.setAmount(event.getAmount() / 5);
+		event.setAmount(event.getAmount() * ModConfig.Server.MOB_ENVIRONMENT_DAMAGE_MULTI);
 		return;
 	    } else {
 		event.setAmount(event.getAmount() * ModConfig.Server.NON_MOD_DAMAGE_MULTI);

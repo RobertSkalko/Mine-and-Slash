@@ -33,7 +33,7 @@ public class Armor extends UsableStat implements IStatEffects {
 
     @Override
     public Elements Element() {
-	return null;
+	return Elements.None;
     }
 
     @Override

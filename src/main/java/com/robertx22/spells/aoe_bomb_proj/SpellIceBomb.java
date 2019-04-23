@@ -17,11 +17,6 @@ public class SpellIceBomb extends BaseBombSpell {
 	super();
     }
 
-    @Override
-    public String Name() {
-	return "Ice Bomb";
-    }
-
     static public class EntityIceBomb extends EntityBombProjectile {
 
 	public EntityIceBomb(World worldIn) {

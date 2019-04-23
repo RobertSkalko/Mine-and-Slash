@@ -75,7 +75,7 @@ public class ItemMap extends Item {
 		    TextFormatting.YELLOW + CLOC.word("bonus_loot_amount") + ": " + data.getBonusLootAmount() + "%");
 
 	    tooltip.add("");
-	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + CLOC.rarityName(rarity));
+	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName());
 
 	    tooltip.add("");
 	    tooltip.add(TextFormatting.BLUE + CLOC.tooltip("put_in_mapdevice"));

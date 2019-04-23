@@ -12,14 +12,13 @@ import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.mmorpg.config.DimensionConfigs;
 import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.network.UnitPackage;
+import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.PlayerMapKillsData;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.AttackUtils;
-import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
@@ -468,7 +467,7 @@ public class EntityData {
 	@Override
 	public void syncToClient(EntityPlayer player) {
 	    if (unit != null) {
-		UnitPackage packet = new UnitPackage(this.getNBT());
+		PlayerUnitPackage packet = new PlayerUnitPackage(this.getNBT());
 		Main.Network.sendTo(packet, (EntityPlayerMP) player);
 	    }
 	}
@@ -521,7 +520,7 @@ public class EntityData {
 		String name = "";
 
 		name = entity.getDisplayName().getFormattedText();
-		rarityprefix = CLOC.rarityName(rarity);
+		rarityprefix = rarity.locName();
 
 		return TextFormatting.YELLOW + "[Lv:" + this.getLevel() + "] " + rarity.Color() + rarityprefix + " "
 			+ name;
@@ -559,7 +558,6 @@ public class EntityData {
 		    float energyCost = iwep.mechanic().GetEnergyCost();
 
 		    if (hasEnoughEnergy(energyCost) == false) {
-
 			AttackUtils.NoEnergyMessage(source);
 			return false;
 

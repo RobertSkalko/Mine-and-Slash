@@ -2,7 +2,6 @@ package com.robertx22.uncommon;
 
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.saveclasses.gearitem.gear_bases.Rarity;
 
 import net.minecraft.util.text.TextFormatting;
 
@@ -10,10 +9,6 @@ public class CLOC {
 
     private static String base(String s) {
 	return Main.proxy.translate(s);
-    }
-
-    public static String rarityName(Rarity rar) {
-	return rarity(rar.GUID().toLowerCase());
     }
 
     public static String tooltip(String str) {

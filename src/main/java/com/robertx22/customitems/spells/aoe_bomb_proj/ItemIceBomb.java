@@ -24,12 +24,6 @@ public class ItemIceBomb extends BaseSpellItem {
     public static final Item ITEM = null;
 
     @Override
-    public String Name() {
-	return "Ice Bomb";
-
-    }
-
-    @Override
     public BaseSpell Spell() {
 	return new SpellIceBomb();
     }

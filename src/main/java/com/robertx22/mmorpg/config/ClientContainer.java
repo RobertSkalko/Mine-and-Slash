@@ -15,6 +15,11 @@ public class ClientContainer {
     @Config.Comment("Show/Disable Chat Damage Numbers")
     public boolean RENDER_CHAT_COMBAT_LOG = false;
 
+    @Config.Name("Show Affixes In Item Names")
+    @Config.LangKey("")
+    @Config.Comment("")
+    public boolean SHOW_AFFIXED_NAME = true;
+
     @Config.Name("Render Floating Damage Numbers")
     @Config.LangKey("mmorpg.config.floating_damage_numbers")
     @Config.Comment("Show/Disable Floating Damage Numbers when you attack mobs")

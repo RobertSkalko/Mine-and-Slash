@@ -1,16 +1,17 @@
 package com.robertx22.mmorpg.proxy;
 
 import com.robertx22.customitems.gearitems.RenderMyArrow;
+import com.robertx22.customitems.gearitems.offhands.ShieldRenderer;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.mmorpg.Keybinds;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
-import com.robertx22.network.EntityPackage;
+import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.MessagePackage;
 import com.robertx22.network.ParticlePackage;
-import com.robertx22.network.UnitPackage;
+import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.gui.mobs.HealthBarRenderer;
 import com.robertx22.uncommon.gui.mobs.ToggleKeyBind;
@@ -20,6 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,8 +49,8 @@ public class ClientProxy implements IProxy {
 	MinecraftForge.EVENT_BUS.register(new ToggleKeyBind());
 	MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
 
-	MinecraftForge.EVENT_BUS.register(new UnitPackage.Handler());
-	MinecraftForge.EVENT_BUS.register(new EntityPackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage.Handler());
+	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage.Handler());
 	MinecraftForge.EVENT_BUS.register(new DamageNumberPackage.Handler());
 	MinecraftForge.EVENT_BUS.register(new ParticlePackage.Handler());
 	MinecraftForge.EVENT_BUS.register(new WorldPackage.Handler());
@@ -64,6 +66,8 @@ public class ClientProxy implements IProxy {
 	System.out.println("on Client side");
 
 	Keybinds.register();
+
+	TileEntityItemStackRenderer.instance = new ShieldRenderer(TileEntityItemStackRenderer.instance);
 
     }
 

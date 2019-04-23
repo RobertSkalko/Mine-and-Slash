@@ -1,7 +1,7 @@
 package com.robertx22.spells.nova;
 
 import com.robertx22.customitems.spells.nova.ItemFireNova;
-import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
+import com.robertx22.database.stat_types.elementals.resist.FireResist;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.uncommon.enumclasses.Elements;
 
@@ -15,13 +15,8 @@ public class SpellFireNova extends BaseNovaSpell {
     }
 
     @Override
-    public String Name() {
-	return "Fire Nova";
-    }
-
-    @Override
     public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellFireDamage().Guid(), scaling);
+	return new EffectCalculation(new FireResist().Guid(), scaling);
     }
 
     @Override

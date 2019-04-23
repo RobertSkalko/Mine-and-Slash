@@ -15,10 +15,10 @@ import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
 import com.robertx22.network.DamageNumberPackage;
-import com.robertx22.network.EntityPackage;
+import com.robertx22.network.EntityUnitPackage;
 import com.robertx22.network.MessagePackage;
 import com.robertx22.network.ParticlePackage;
-import com.robertx22.network.UnitPackage;
+import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.network.WorldPackage;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.MapDatas;
@@ -84,14 +84,14 @@ public class Main {
 	StartupGearFactory.preInitCommon(event);
 	StartupMap.preInitCommon(event);
 
-	MinecraftForge.EVENT_BUS.register(new UnitPackage());
-	MinecraftForge.EVENT_BUS.register(new EntityPackage());
+	MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());
+	MinecraftForge.EVENT_BUS.register(new EntityUnitPackage());
 	MinecraftForge.EVENT_BUS.register(new DamageNumberPackage());
 	MinecraftForge.EVENT_BUS.register(new ParticlePackage());
 	MinecraftForge.EVENT_BUS.register(new WorldPackage());
 
-	Network.registerMessage(UnitPackage.Handler.class, UnitPackage.class, 0, Side.CLIENT);
-	Network.registerMessage(EntityPackage.Handler.class, EntityPackage.class, 1, Side.CLIENT);
+	Network.registerMessage(PlayerUnitPackage.Handler.class, PlayerUnitPackage.class, 0, Side.CLIENT);
+	Network.registerMessage(EntityUnitPackage.Handler.class, EntityUnitPackage.class, 1, Side.CLIENT);
 	Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2, Side.CLIENT);
 	Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Side.CLIENT);
 	Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Side.CLIENT);

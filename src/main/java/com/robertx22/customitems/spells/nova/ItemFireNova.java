@@ -19,17 +19,10 @@ public class ItemFireNova extends BaseSpellItem {
     public ItemFireNova() {
 	super();
 
-	System.out.println(this.getRegistryName().toString());
     }
 
     @GameRegistry.ObjectHolder(Ref.MODID + ":spell_fire_nova")
     public static final Item ITEM = null;
-
-    @Override
-    public String Name() {
-	return "Frost Bolt";
-
-    }
 
     @Override
     public BaseSpell Spell() {

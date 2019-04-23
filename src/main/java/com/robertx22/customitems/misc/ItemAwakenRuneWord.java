@@ -6,10 +6,10 @@ import javax.annotation.Nullable;
 
 import com.robertx22.customitems.currency.ICurrencyItemEffect;
 import com.robertx22.database.runewords.RuneWord;
-import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.db_lists.RuneWords;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.saveclasses.GearItemData;
+import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
@@ -39,7 +39,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 	RegisterItemUtils.RegisterItemName(this, "awaken_runeword");
 	this.setMaxStackSize(64);
 	this.setMaxDamage(0);
-	this.setCreativeTab(CreativeTabList.MyModTab);
+	// this.setCreativeTab(CreativeTabList.MyModTab);
 
     }
 
@@ -49,7 +49,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
 	if (stack != null && RuneWords.All.containsKey(this.getWord(stack))) {
 	    tooltip.add("");
-	    tooltip.add("RuneWord: ");
+	    tooltip.add(CLOC.word("runeword") + ":");
 
 	    String word = this.getWord(stack);
 
@@ -63,8 +63,8 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
 	    tooltip.add("");
 	}
-	tooltip.add("Place into an Item Modify Table with the item");
-	tooltip.add("that contains the runeword combination to unlock it");
+	tooltip.add(CLOC.tooltip("place_in_modify"));
+	tooltip.add(CLOC.tooltip("unlocks_runeword_combo"));
     }
 
     @SubscribeEvent

@@ -4,15 +4,14 @@ import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.mmorpg.Ref;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
@@ -28,14 +27,14 @@ public class NormalShield extends ItemShield {
     @GameRegistry.ObjectHolder(Ref.MODID + ":" + ID)
     public static final Item ITEM = null;
 
+    ResourceLocation resource = new ResourceLocation("");
+
     public NormalShield(String name) {
 	super();
 	this.setMaxDamage(750);
-	// this.setUnlocalizedName(ID);
-	// setRegistryName(ID);
-	this.setCreativeTab(CreativeTabList.MyModTab);
 
-	this.setTileEntityItemStackRenderer(new ShieldRenderer(TileEntityItemStackRenderer.instance, name, this));
+	resource = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
+
     }
 
     @Override
