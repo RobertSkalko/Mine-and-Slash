@@ -737,7 +737,7 @@ mmorpg.config.dimension_id=Dimension ID
 mmorpg.config.items_under_system=Items Under System
 mmorpg.config.crafted_items_are_under_system=Crafted Items are Under System
 
-mmorpg.tooltip.press_shift_more_info=Press Shift for more info
+mmorpg.tooltip.press_shift_more_info=[Shift]: Info, [Ctrl]: Show Enchants
 mmorpg.tooltip.affix_rarity_lootbonus=Affix Rarity Loot Bonus
 
 # Auto Salvage Bags
@@ -840,7 +840,6 @@ mmorpg.tooltip.ghost_projectile=Your Single Target Spell Projectiles now go thro
 mmorpg.tooltip.purity=Your Self Heal Spells now cure you of a negative effect.
 mmorpg.tooltip.buff_energy_regen=Killing Blows with Bomb Spells grant you Energy Regen.
 mmorpg.tooltip.buff_mana_regen=Killing Blows with Bomb Spells grant you Mana Regen.
-
 
 
 # rune tooltip
