@@ -710,6 +710,7 @@ mmorpg.config.spell_droprate=Spell Droprate
 mmorpg.config.map_droprate=Map Droprate
 mmorpg.config.unique_droprate=Unique Droprate
 mmorpg.config.gear_droprate=Gear Droprate
+mmorpg.config.compatible_items_droprate=Compatible Items Droprate
 
 # CONFIG CLIENT
 mmorpg.config.item_on_ground_particles=Item on Ground Rarity Particles
