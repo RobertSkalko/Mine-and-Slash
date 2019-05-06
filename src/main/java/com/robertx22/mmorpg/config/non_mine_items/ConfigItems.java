@@ -1,6 +1,9 @@
 package com.robertx22.mmorpg.config.non_mine_items;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ConfigItems {
 
@@ -12,6 +15,41 @@ public class ConfigItems {
 
     public static ConfigItems INSTANCE = new ConfigItems();
 
+    String version = "1.0";
+
     public HashMap<String, ConfigItem> map = new HashMap();
+
+    private List<ConfigItem> list = new ArrayList();
+
+    public List<ConfigItem> getAll() {
+
+        if (list.isEmpty()) {
+
+            for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
+                entry.getValue().registryName = entry.getKey();
+                list.add(entry.getValue());
+
+            }
+        }
+
+        return list;
+    }
+
+    public void validateAll() {
+
+        try {
+
+            for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
+                if (entry.getValue().isValid() == false) {
+
+                    System.out.println(entry.getKey() + " Is not correctly implemented. Please go to CompatibleItems file and fix it");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
 
 }

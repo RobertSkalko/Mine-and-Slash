@@ -3,6 +3,7 @@ package com.robertx22.uncommon;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class CLOC {

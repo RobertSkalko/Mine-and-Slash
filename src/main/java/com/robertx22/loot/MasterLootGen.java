@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.loot.gens.AwakenRuneWordLootGen;
+import com.robertx22.loot.gens.CompatibleItemLootGen;
 import com.robertx22.loot.gens.CurrencyLootGen;
 import com.robertx22.loot.gens.GearLootGen;
 import com.robertx22.loot.gens.MapLootGen;
@@ -37,6 +38,10 @@ public class MasterLootGen {
 	items.addAll(new RuneLootGen(mob, player, world, victim).generate());
 	items.addAll(new RunedGearLootGen(mob, player, world, victim).generate());
 
+	if (ModConfig.Server.USE_COMPATIBILITY_ITEMS) {
+        items.addAll(new CompatibleItemLootGen(mob, player, world, victim).generate());
+    }
+	
 	if (world.isMapWorld()) {
 	    items.addAll(new UniqueGearLootGen(mob, player, world, victim).generate());
 	}

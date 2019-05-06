@@ -22,6 +22,11 @@ public class DropRatesContainer {
     @Config.LangKey("mmorpg.config.gear_droprate")
     @Config.Comment("")
     public float GEAR_DROPRATE = 7.5F;
+    
+    @Config.Name("Gear Droprate")
+    @Config.LangKey("mmorpg.config.compatible_items_droprate")
+    @Config.Comment("")
+    public float COMPATIBLE_ITEMS_DROPRATE = 7.5F;
 
     @Config.Name("Unique  Droprate")
     @Config.LangKey("mmorpg.config.unique_droprate")
