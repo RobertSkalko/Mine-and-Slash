@@ -840,3 +840,32 @@ mmorpg.tooltip.ghost_projectile=Your Single Target Spell Projectiles now go thro
 mmorpg.tooltip.purity=Your Self Heal Spells now cure you of a negative effect.
 mmorpg.tooltip.buff_energy_regen=Killing Blows with Bomb Spells grant you Energy Regen.
 mmorpg.tooltip.buff_mana_regen=Killing Blows with Bomb Spells grant you Mana Regen.
+
+
+
+# rune tooltip
+
+mmorpg.tooltip.stats_on_weapon=Stats on Weapon
+mmorpg.tooltip.stats_on_armor=Stats on Armor
+mmorpg.tooltip.stats_on_jewerly=Stats on Jewerly
+
+mmorpg.tooltip.place_in_modify=Place in Item Modify Table
+mmorpg.tooltip.unlocks_runeword_combo=Unlocks runeword combination
+
+mmorpg.word.runeword=RuneWord
+
+mmorpg.tooltip.auto_salvage_items=Automatically salvages items
+mmorpg.word.gears=Gears
+mmorpg.word.spells=Spells
+mmorpg.word.maps=Maps
+mmorpg.word.runes=Runes
+mmorpg.word.none=None
+mmorpg.tooltip.bonus_salvage_chance=Bonus salvage chance
+mmorpg.tooltip.works_when_in_baubles_slot=Works If Equipped
+
+mmorpg.tooltip.sal_info=Press Shift For Setup Info
+mmorpg.tooltip.sal1=Place An Item Of Maximum Rarity You want to
+mmorpg.tooltip.sal2=salvage in your off-hand.
+mmorpg.tooltip.sal3=Then right click with this bag.
+mmorpg.tooltip.sal4=To Not Salvage Any Items, clear the config by
+mmorpg.tooltip.sal5=Right Clicking the bag while shield slot is empty.
