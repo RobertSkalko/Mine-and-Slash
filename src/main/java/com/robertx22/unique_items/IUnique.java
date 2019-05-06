@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
-public interface IUnique extends IWeighted, ITiered, IGUID {
+public interface IUnique extends IWeighted, ITiered, IGUID, IGearItem {
 
     public static HashMap<String, Item> ITEMS = new HashMap<String, Item>();
 
@@ -61,18 +61,32 @@ public interface IUnique extends IWeighted, ITiered, IGUID {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+	for (Item item : ITEMS.values()) {
+	    item.setCreativeTab(CreativeTabList.UniqueItems);
+	    item.setMaxStackSize(1);
 
-        UniqueItemRegister.registerAll();
+	    if (item instanceof IBauble) {
+		item.setMaxDamage(0);
+	    } else {
+		item.setMaxDamage(BaseArmorItem.MAX_GEAR_DURABILITY);
+	    }
+	    IUnique uniq = (IUnique) item;
 
-        for (Item item : ITEMS.values()) {
+	    item.setRegistryName("uniques/" + uniq.slot().toLowerCase() + "/" + uniq.GUID());
 
-            IUnique uniq = (IUnique) item;
+	    item.setUnlocalizedName(Ref.MODID + ".unique." + uniq.GUID());// i kinda fked up here
 
-            item.setRegistryName("uniques/" + uniq.slot()
-                    .toLowerCase() + "/" + uniq.GUID());
+	    // System.out.println(item.getUnlocalizedName());
 
-            event.getRegistry().register(item);
-        }
+	    event.getRegistry().register(item);
+	}
+    }
+
+    @SubscribeEvent
+    public static void onModelRegistry(ModelRegistryEvent event) {
+	for (Item item : ITEMS.values()) {
+	    RegisterUtils.registerRender(item);
+	}
     }
 
     public static List<IUnique> getAllUniquesOfTier(int tier, Collection<Item> coll) {
