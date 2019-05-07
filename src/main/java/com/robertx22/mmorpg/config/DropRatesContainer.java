@@ -26,7 +26,7 @@ public class DropRatesContainer {
     @Config.Name("Compatible Items Droprate")
     @Config.LangKey("mmorpg.config.compatible_items_droprate")
     @Config.Comment("")
-    public float COMPATIBLE_ITEMS_DROPRATE = 7.5F;
+    public float COMPATIBLE_ITEMS_DROPRATE = 2.5F;
 
     @Config.Name("Unique  Droprate")
     @Config.LangKey("mmorpg.config.unique_droprate")
