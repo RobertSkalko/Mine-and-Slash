@@ -810,6 +810,65 @@ item.mmorpg:runes/xah3.name=§9XAH - Epic Rune
 item.mmorpg:runes/xah4.name=§6XAH - Legendary Rune 
 item.mmorpg:runes/xah5.name=§dXAH - Mythical Rune 
 
+# SPELL LOOTBOXES
+item.Big_Spell_lootbox_0.name=§7Common Big Spell Loot Box 
+item.Big_Spell_lootbox_1.name=§aUncommon Big Spell Loot Box 
+item.Big_Spell_lootbox_2.name=§eRare Big Spell Loot Box 
+item.Big_Spell_lootbox_3.name=§9Epic Big Spell Loot Box 
+item.Big_Spell_lootbox_4.name=§6Legendary Big Spell Loot Box 
+item.Big_Spell_lootbox_5.name=§dMythical Big Spell Loot Box 
+item.Medium_Spell_lootbox_0.name=§7Common Medium Spell Loot Box 
+item.Medium_Spell_lootbox_1.name=§aUncommon Medium Spell Loot Box 
+item.Medium_Spell_lootbox_2.name=§eRare Medium Spell Loot Box 
+item.Medium_Spell_lootbox_3.name=§9Epic Medium Spell Loot Box 
+item.Medium_Spell_lootbox_4.name=§6Legendary Medium Spell Loot Box 
+item.Medium_Spell_lootbox_5.name=§dMythical Medium Spell Loot Box 
+item.Small_Spell_lootbox_0.name=§7Common Small Spell Loot Box 
+item.Small_Spell_lootbox_1.name=§aUncommon Small Spell Loot Box 
+item.Small_Spell_lootbox_2.name=§eRare Small Spell Loot Box 
+item.Small_Spell_lootbox_3.name=§9Epic Small Spell Loot Box 
+item.Small_Spell_lootbox_4.name=§6Legendary Small Spell Loot Box 
+item.Small_Spell_lootbox_5.name=§dMythical Small Spell Loot Box 
+
+# CURRENCY LOOTBOXES
+item.Big_Currency_lootbox_0.name=§7Common Big Currency Loot Box 
+item.Big_Currency_lootbox_1.name=§aUncommon Big Currency Loot Box 
+item.Big_Currency_lootbox_2.name=§eRare Big Currency Loot Box 
+item.Big_Currency_lootbox_3.name=§9Epic Big Currency Loot Box 
+item.Big_Currency_lootbox_4.name=§6Legendary Big Currency Loot Box 
+item.Big_Currency_lootbox_5.name=§dMythical Big Currency Loot Box 
+item.Medium_Currency_lootbox_0.name=§7Common Medium Currency Loot Box 
+item.Medium_Currency_lootbox_1.name=§aUncommon Medium Currency Loot Box 
+item.Medium_Currency_lootbox_2.name=§eRare Medium Currency Loot Box 
+item.Medium_Currency_lootbox_3.name=§9Epic Medium Currency Loot Box 
+item.Medium_Currency_lootbox_4.name=§6Legendary Medium Currency Loot Box 
+item.Medium_Currency_lootbox_5.name=§dMythical Medium Currency Loot Box 
+item.Small_Currency_lootbox_0.name=§7Common Small Currency Loot Box 
+item.Small_Currency_lootbox_1.name=§aUncommon Small Currency Loot Box 
+item.Small_Currency_lootbox_2.name=§eRare Small Currency Loot Box 
+item.Small_Currency_lootbox_3.name=§9Epic Small Currency Loot Box 
+item.Small_Currency_lootbox_4.name=§6Legendary Small Currency Loot Box 
+item.Small_Currency_lootbox_5.name=§dMythical Small Currency Loot Box 
+
+# GEAR LOOTBOXES
+item.Big_Gear_lootbox_0.name=§7Common Big Gear Loot Box 
+item.Big_Gear_lootbox_1.name=§aUncommon Big Gear Loot Box 
+item.Big_Gear_lootbox_2.name=§eRare Big Gear Loot Box 
+item.Big_Gear_lootbox_3.name=§9Epic Big Gear Loot Box 
+item.Big_Gear_lootbox_4.name=§6Legendary Big Gear Loot Box 
+item.Big_Gear_lootbox_5.name=§dMythical Big Gear Loot Box 
+item.Medium_Gear_lootbox_0.name=§7Common Medium Gear Loot Box 
+item.Medium_Gear_lootbox_1.name=§aUncommon Medium Gear Loot Box 
+item.Medium_Gear_lootbox_2.name=§eRare Medium Gear Loot Box 
+item.Medium_Gear_lootbox_3.name=§9Epic Medium Gear Loot Box 
+item.Medium_Gear_lootbox_4.name=§6Legendary Medium Gear Loot Box 
+item.Medium_Gear_lootbox_5.name=§dMythical Medium Gear Loot Box 
+item.Small_Gear_lootbox_0.name=§7Common Small Gear Loot Box 
+item.Small_Gear_lootbox_1.name=§aUncommon Small Gear Loot Box 
+item.Small_Gear_lootbox_2.name=§eRare Small Gear Loot Box 
+item.Small_Gear_lootbox_3.name=§9Epic Small Gear Loot Box 
+item.Small_Gear_lootbox_4.name=§6Legendary Small Gear Loot Box 
+item.Small_Gear_lootbox_5.name=§dMythical Small Gear Loot Box 
 
 # RUNEWORDS
 mmorpg.word.scales=Scales
