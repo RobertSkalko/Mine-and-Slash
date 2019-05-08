@@ -112,9 +112,14 @@ public abstract class BaseBagItem extends Item {
 
 	ItemStack stack = event.getItem().getItem();
 
+	if (stack.isEmpty()) {
+	    return;
+	}
+
 	for (int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
-	    if (i == event.getEntityPlayer().inventory.currentItem)
+	    if (i == event.getEntityPlayer().inventory.currentItem) {
 		continue; // prevent item deletion
+	    }
 
 	    ItemStack bag = event.getEntityPlayer().inventory.getStackInSlot(i);
 	    if (!bag.isEmpty() && bag.getItem() instanceof BaseBagItem) {
