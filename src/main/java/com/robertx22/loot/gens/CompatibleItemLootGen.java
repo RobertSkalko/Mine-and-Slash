@@ -15,47 +15,53 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class CompatibleItemLootGen extends BaseLootGen {
 
-    EntityData.UnitData mob;
+  EntityData.UnitData mob;
 
-    public CompatibleItemLootGen(EntityData.UnitData mob, EntityData.UnitData player,
-                                 IWorldData world, EntityLivingBase victim) {
-        super(mob, player, world, victim);
+  public CompatibleItemLootGen(EntityData.UnitData mob, EntityData.UnitData player,
+      IWorldData world, EntityLivingBase victim) {
+    super(mob, player, world, victim);
 
-        this.mob = mob;
-    }
+    this.mob = mob;
+  }
 
-    public CompatibleItemLootGen(World theworld, float multi, IWorldData world,
-                                 int level) {
-        super(multi, world);
+  public CompatibleItemLootGen(World theworld, float multi, IWorldData world, int level) {
+    super(multi, world);
 
-    }
+  }
 
-    @Override
-    public float BaseChance() {
-        return ModConfig.DropRates.COMPATIBLE_ITEMS_DROPRATE;
-    }
+  @Override
+  public float BaseChance() {
+    return ModConfig.DropRates.COMPATIBLE_ITEMS_DROPRATE;
+  }
 
-    @Override
-    public ItemStack generateOne() {
+  @Override
+  public ItemStack generateOne() {
 
-        if (ModConfig.Server.USE_COMPATIBILITY_ITEMS == true && mob != null) {
+    if (ModConfig.Server.USE_COMPATIBILITY_ITEMS == true && mob != null) {
 
-            ConfigItem config = (ConfigItem) RandomUtils.WeightedRandom(ListUtils.CollectionToList(ConfigItems.INSTANCE
-                    .getAll()));
-
-            ResourceLocation res = new ResourceLocation(config.registryName);
-
-            if (ForgeRegistries.ITEMS.containsKey(res)) {
-
-                ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
-
-                return config.create(stack, mob);
-            }
-
-        }
-
-        return ItemStack.EMPTY;
+      gen(mob.getLevel());
 
     }
+
+    return ItemStack.EMPTY;
+
+  }
+
+
+  public static ItemStack gen(int level) {
+
+    ConfigItem config = (ConfigItem) RandomUtils
+        .WeightedRandom(ListUtils.CollectionToList(ConfigItems.INSTANCE.getAll()));
+
+    ResourceLocation res = new ResourceLocation(config.registryName);
+
+    if (ForgeRegistries.ITEMS.containsKey(res)) {
+
+      ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
+
+      return config.create(stack, level);
+    }
+    return ItemStack.EMPTY;
+  }
 
 }

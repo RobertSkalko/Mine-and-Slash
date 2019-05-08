@@ -3,24 +3,25 @@ package com.robertx22.customitems.lootboxes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import com.robertx22.customitems.BaseItem;
 import com.robertx22.customitems.currency.CurrencyItem;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.db_lists.CreativeTabList;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.generation.GearGen;
+import com.robertx22.generation.RunedGearGen;
 import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
+import com.robertx22.generation.blueprints.RunedGearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
+import com.robertx22.loot.gens.CompatibleItemLootGen;
+import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
-import com.robertx22.uncommon.enumclasses.LootBoxSizes;
-import com.robertx22.uncommon.enumclasses.LootTypes;
+import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
-
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -35,146 +36,243 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
-public class ItemLootbox extends BaseItem {
-	public static HashMap<String, Item> Items = new HashMap<String, Item>();
+public class ItemLootbox extends BaseItem implements IWeighted {
+  public static HashMap<String, Item> Items = new HashMap<String, Item>();
 
-	public static Item GetItem(int rarity, LootTypes type, LootBoxSizes size) {
-		String key = GetStringForType(rarity, type, size);
+  public enum LootTypes {
+    Gear, Spell, Currency
 
-		if (Items.containsKey(key)) {
-			return Items.get(key);
-		}
 
-		return null;
-	}
 
-	private static String GetStringForType(int rarity, LootTypes type, LootBoxSizes size) {
+  }
+  public enum LootBoxSizes {
+    Small(2F), Medium(1F), Big(0.3F);
 
-		return size.toString() + "_" + type.toString() + "_lootbox_" + rarity;
+    LootBoxSizes(float mult) {
+      this.weightMult = mult;
+    }
 
-	}
+    float weightMult;
+  }
 
-	private static HashMap<LootBoxSizes, Integer> ItemAmount = new HashMap<LootBoxSizes, Integer>() {
-		{
-			{
-				put(LootBoxSizes.Small, 1);
-				put(LootBoxSizes.Medium, 3);
-				put(LootBoxSizes.Big, 5);
+  public enum GearType {
+    Runed, Normal, Compatible
+  }
 
-			}
-		}
-	};
 
-	public LootBoxSizes size;
-	public int rarity;
-	public LootTypes lootType;
 
-	public ItemLootbox(LootBoxSizes size, LootTypes type, int rarity) {
-		this.setMaxStackSize(64);
-		this.setMaxDamage(0);
-		this.setCreativeTab(CreativeTabList.LootboxTab);
-		this.setUnlocalizedName(GetStringForType(rarity, type, size));
-		this.setRegistryName(GetStringForType(rarity, type, size));
+  public static Item GetItem(int rarity, LootTypes type, LootBoxSizes size) {
+    String key = GetStringForType(rarity, type, size);
 
-		this.size = size;
-		this.rarity = rarity;
-		this.lootType = type;
+    if (Items.containsKey(key)) {
+      return Items.get(key);
+    }
 
-		Items.put(GetStringForType(rarity, type, size), this);
+    return null;
+  }
 
-	}
+  private static String GetStringForType(int rarity, LootTypes type, LootBoxSizes size) {
 
-	private void GiveItems(EntityPlayer player, int lvl) {
+    return size.toString() + "_" + type.toString() + "_lootbox_" + rarity;
 
-		List<ItemStack> stacks = new ArrayList<ItemStack>();
+  }
 
-		if (lootType.equals(LootTypes.Gear)) {
+  private static HashMap<LootBoxSizes, Integer> ItemAmount = new HashMap<LootBoxSizes, Integer>() {
+    {
+      {
+        put(LootBoxSizes.Small, 2);
+        put(LootBoxSizes.Medium, 4);
+        put(LootBoxSizes.Big, 6);
 
-			GearBlueprint print = new GearBlueprint(lvl);
-			print.minRarity = this.rarity;
-			print.LevelRange = false;
+      }
+    }
+  };
 
-			for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
-				stacks.add(GearGen.CreateStack(print));
-			}
 
-		} else if (lootType.equals(LootTypes.Spell)) {
 
-			SpellBlueprint print = new SpellBlueprint(lvl);
-			print.minRarity = this.rarity;
-			print.LevelRange = false;
+  public int weight = 1;
+  public LootBoxSizes size;
+  public int rarity;
+  public LootTypes lootType;
 
-			for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
-				stacks.add(SpellItemGen.Create(print));
-			}
+  public ItemLootbox(LootBoxSizes size, LootTypes type, int rarity) {
+    this.setMaxStackSize(64);
+    this.setMaxDamage(0);
+    this.setCreativeTab(CreativeTabList.LootboxTab);
+    this.setUnlocalizedName(GetStringForType(rarity, type, size));
+    this.setRegistryName(GetStringForType(rarity, type, size));
 
-		} else if (lootType.equals(LootTypes.Currency)) {
+    this.size = size;
+    this.rarity = rarity;
+    this.lootType = type;
 
-			for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
 
-				CurrencyItem item = (CurrencyItem) RandomUtils
-						.WeightedRandom(ListUtils.CollectionToList(CurrencyItem.ITEMS));
-				stacks.add(new ItemStack(item));
-			}
 
-		}
+    Items.put(GetStringForType(rarity, type, size), this);
 
-		for (ItemStack stack : stacks) {
-			player.dropItem(stack, false);
-		}
-	}
+  }
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
+  private void setWeight() {
 
-		for (ItemRarity rarity : Rarities.Items) {
-			for (LootTypes type : LootTypes.values()) {
-				for (LootBoxSizes size : LootBoxSizes.values()) {
-					new ItemLootbox(size, type, rarity.Rank());
-				}
-			}
+    int base = Rarities.Items.get(rarity).Weight();
 
-		}
+    base *= this.size.weightMult;
 
-		Items.values().forEach((x) -> event.getRegistry().register(x));
+    this.weight = base;
+  }
 
-	}
 
-	@SubscribeEvent
-	public static void onModelRegistry(ModelRegistryEvent event) {
-		Items.values().forEach((x) -> RegisterUtils.registerRender(x));
 
-	}
+  static class GenWeight implements IWeighted {
+    public GenWeight(GearType gen, int weight) {
+      this.gen = gen;
+      this.weight = weight;
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+    GearType gen = GearType.Normal;
+    int weight = 1;
 
-		EntityFireworkRocket firework = new EntityFireworkRocket(worldIn);
-		firework.setPosition(playerIn.posX, playerIn.posY, playerIn.posZ);
-		worldIn.spawnEntity(firework);
+    @Override
+    public int Weight() {
+      return weight;
+    }
+  }
 
-		if (!worldIn.isRemote) {
-			try {
-				UnitData data = Load.Unit(playerIn);
 
-				if (data != null) {
+  private GearType getRandomType() {
 
-					int lvl = data.getLevel();
+    List<GenWeight> types = new ArrayList();
 
-					GiveItems(playerIn, lvl);
+    if (ModConfig.Server.USE_COMPATIBILITY_ITEMS) {
+      types.add(new GenWeight(GearType.Compatible,
+          (int) (ModConfig.DropRates.COMPATIBLE_ITEMS_DROPRATE) * 100));
+    }
+    types.add(new GenWeight(GearType.Runed, (int) (ModConfig.DropRates.RUNED_GEAR_DROPRATE) * 100));
+    types.add(new GenWeight(GearType.Normal, (int) (ModConfig.DropRates.GEAR_DROPRATE) * 100));
 
-					return new ActionResult<ItemStack>(EnumActionResult.PASS,
-							EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+    GenWeight winner = (GenWeight) RandomUtils.WeightedRandom(ListUtils.CollectionToList(types));
 
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
-	}
+    return winner.gen;
 
-	public String Name() {
-		return "LootBox";
-	}
+
+  }
+
+
+  private void GiveItems(EntityPlayer player, int lvl) {
+
+    List<ItemStack> stacks = new ArrayList<ItemStack>();
+
+    if (lootType.equals(LootTypes.Gear)) {
+
+
+      for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
+
+        GearType type = getRandomType();
+
+        if (type.equals(GearType.Compatible)) {
+
+          stacks.add(CompatibleItemLootGen.gen(lvl));
+
+        } else if (type.equals(GearType.Runed)) {
+
+          RunedGearBlueprint print = new RunedGearBlueprint(lvl);
+          print.minRarity = this.rarity;
+          print.LevelRange = false;
+
+          stacks.add(RunedGearGen.CreateStack(print));
+
+        } else {
+          GearBlueprint print = new GearBlueprint(lvl);
+          print.minRarity = this.rarity;
+          print.LevelRange = false;
+
+          stacks.add(GearGen.CreateStack(print));
+        }
+      }
+
+    } else if (lootType.equals(LootTypes.Spell)) {
+
+      SpellBlueprint print = new SpellBlueprint(lvl);
+      print.minRarity = this.rarity;
+      print.LevelRange = false;
+
+      for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
+        stacks.add(SpellItemGen.Create(print));
+      }
+
+    } else if (lootType.equals(LootTypes.Currency)) {
+
+      for (int i = 0; i < this.ItemAmount.get(this.size) + rarity; i++) {
+
+        CurrencyItem item = (CurrencyItem) RandomUtils
+            .WeightedRandom(ListUtils.CollectionToList(CurrencyItem.ITEMS));
+        stacks.add(new ItemStack(item));
+      }
+
+    }
+
+    for (ItemStack stack : stacks) {
+      player.dropItem(stack, false);
+    }
+  }
+
+  @SubscribeEvent
+  public static void registerItems(RegistryEvent.Register<Item> event) {
+
+    for (ItemRarity rarity : Rarities.Items) {
+      for (LootTypes type : LootTypes.values()) {
+        for (LootBoxSizes size : LootBoxSizes.values()) {
+          new ItemLootbox(size, type, rarity.Rank());
+        }
+      }
+
+    }
+
+    Items.values().forEach((x) -> event.getRegistry().register(x));
+
+  }
+
+  @SubscribeEvent
+  public static void onModelRegistry(ModelRegistryEvent event) {
+    Items.values().forEach((x) -> RegisterUtils.registerRender(x));
+
+  }
+
+  @Override
+  public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn,
+      EnumHand handIn) {
+
+    EntityFireworkRocket firework = new EntityFireworkRocket(worldIn);
+    firework.setPosition(playerIn.posX, playerIn.posY, playerIn.posZ);
+    worldIn.spawnEntity(firework);
+
+    if (!worldIn.isRemote) {
+      try {
+        UnitData data = Load.Unit(playerIn);
+
+        if (data != null) {
+
+          int lvl = data.getLevel();
+
+          GiveItems(playerIn, lvl);
+
+          return new ActionResult<ItemStack>(EnumActionResult.PASS,
+              EmptyOrDecrease(playerIn.getHeldItem(handIn)));
+
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+    return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+  }
+
+  public String Name() {
+    return "LootBox";
+  }
+
+  @Override
+  public int Weight() {
+    return weight;
+  }
 }
