@@ -17,16 +17,20 @@ public class CompatibleItemLootGen extends BaseLootGen {
 
   EntityData.UnitData mob;
 
+  int level = 1;
+
   public CompatibleItemLootGen(EntityData.UnitData mob, EntityData.UnitData player,
       IWorldData world, EntityLivingBase victim) {
     super(mob, player, world, victim);
 
     this.mob = mob;
+
+    level = mob.getLevel();
   }
 
   public CompatibleItemLootGen(World theworld, float multi, IWorldData world, int level) {
     super(multi, world);
-
+    this.level = level;
   }
 
   @Override
@@ -37,13 +41,16 @@ public class CompatibleItemLootGen extends BaseLootGen {
   @Override
   public ItemStack generateOne() {
 
-    if (ModConfig.Server.USE_COMPATIBILITY_ITEMS == true && mob != null) {
+    if (ModConfig.Server.USE_COMPATIBILITY_ITEMS == true) {
 
-      gen(mob.getLevel());
+
+      return gen(level);
 
     }
 
     return ItemStack.EMPTY;
+
+
 
   }
 
