@@ -19,7 +19,6 @@ public interface WidgetList<T> {
 
 	public WidgetList<T> addAll(Collection<T> values);
 
-	@SuppressWarnings("unchecked")
 	public WidgetList<T> addAll(T... objects);
 
 	public WidgetList<T> clear();
