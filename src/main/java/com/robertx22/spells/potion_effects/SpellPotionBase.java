@@ -83,10 +83,6 @@ public abstract class SpellPotionBase extends Potion {
 	    return;
 
 	SpellCast cast = new SpellCast(this, target);
-	if (cast == null) {
-	    return;
-	}
-
 	doEffect(applier, caster, target, amplifier, cast);
     }
 

@@ -148,9 +148,6 @@ public class AssetsBrowser {
 				if (pack instanceof AbstractResourcePack) {
 					AbstractResourcePack p = (AbstractResourcePack) pack;
 					File file = new File((String) p.getResourceDomains().toArray()[0], p.getPackName());
-					if (file == null) {
-						continue;
-					}
 					set.add(file.getAbsolutePath());
 				}
 			}
