@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public interface WidgetContainer {
 
-	@SuppressWarnings("unchecked")
 	default <T> T findComponentById(String id) {
 		return (T) getComponentsList().stream().filter(com -> id.equals(com.getId())).findFirst().orElse(null);
 	}
