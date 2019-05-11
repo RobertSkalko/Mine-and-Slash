@@ -163,14 +163,14 @@ item.mmorpg:spell_self_regen.name=§cRegenerate
 mmorpg.effect.self_regen=Regen Health
 mmorpg.effect.mana_regen=Regen Mana
 mmorpg.effect.energy_regen=Regen Energy
-mmorpg.effect.aoe_regen=Aoe Regen
+mmorpg.effect.aoe_regen=AoE Regen
 mmorpg.effect.cleanse_poison=Cleanse Poison
 
 # SPELL TOOLTIPS
-mmorpg.tooltip.aoe_spell_explosion=Casts an elemental projectile that does AOE dmg on hit.
+mmorpg.tooltip.aoe_spell_explosion=Casts an elemental projectile that does AoE dmg on hit.
 mmorpg.tooltip.single_target_spell_bolt=Casts a Single Target elemental projectile.
 mmorpg.tooltip.spell_instant_heal=Instantly Heals the caster.
-mmorpg.tooltip.aoe_bomb_spell=Leaves out a bomb that explodes later for Aoe Damage.
+mmorpg.tooltip.aoe_bomb_spell=Leaves out a bomb that explodes later for AoE Damage.
 mmorpg.tooltip.spell_self_regen=Heals the caster over time.
 mmorpg.tooltip.aoe_spell_nova=Damages everyone around you.
 
@@ -261,7 +261,7 @@ mmorpg.word.chaos_stats=Chaos Stats
 mmorpg.word.unique_stats=Unique Stats
 mmorpg.word.level=Level
 mmorpg.word.rarity=Rarity
-mmorpg.word.unsalvagable=Unsalvagable
+mmorpg.word.unsalvagable=Unsalvageable
 mmorpg.word.multi=Multi
 mmorpg.word.tier=Tier
 mmorpg.word.bonus_loot_amount=Bonus Loot Amount
@@ -572,7 +572,7 @@ mmorpg.stat.block_strength=Block Strength
 # ITEM TOOLTIPS
 
 # CURRENCY ITEM LORE
-mmorpg.lore.add_prefix=Unchart your potential.
+mmorpg.lore.add_prefix=Unlock your potential.
 mmorpg.lore.create_new_unique=Don't want it? Transform it!
 mmorpg.lore.add_secondary_stat=More power is always good, right?
 mmorpg.lore.add_suffix=And soar to the skies.
@@ -587,10 +587,10 @@ mmorpg.lore.reroll_prefix_numbers=I command you to change!
 mmorpg.lore.reroll_suffix_numbers=I command you to change!
 mmorpg.lore.reroll_unique_numbers=Anything can change.
 
-mmorpg.lore.attack_infusion=Luck is Etheral and yet affects everything.
-mmorpg.lore.defense_infusion=Luck is Etheral and yet affects everything.
-mmorpg.lore.resource_infusion=Luck is Etheral and yet affects everything.
-mmorpg.lore.normal_upgrade_infusion=Luck is Etheral and yet affects everything.
+mmorpg.lore.attack_infusion=Luck is Ethereal and yet affects everything.
+mmorpg.lore.defense_infusion=Luck is Ethereal and yet affects everything.
+mmorpg.lore.resource_infusion=Luck is Ethereal and yet affects everything.
+mmorpg.lore.normal_upgrade_infusion=Luck is Ethereal and yet affects everything.
 mmorpg.lore.superior_upgrade_infusion=You start to feel the essence of Luck.
 mmorpg.lore.wondrous_upgrade_infusion=Grasp Luck with your own hands.
 
@@ -623,9 +623,9 @@ mmorpg.chat.levelup_success=You have Leveled Up!
 mmorpg.chat.low_weapon_durability=Weapon Durability is Too Low.
 mmorpg.chat.teleport_canceled=Teleport Canceled, Please don't move while teleporting.
 mmorpg.chat.teleport_begin=Teleport has begun, please stay put.
-mmorpg.chat.not_inside_map=You aren't inside a map world
-mmorpg.chat.world_doesnt_exist=This world doesn't appear to exist, the time probably ran out
-mmorpg.chat.world_is_closed=You can't enter this world, it is closed and is set for deletition
+mmorpg.chat.not_inside_map=You aren't inside a map world!
+mmorpg.chat.world_doesnt_exist=This world doesn't appear to exist, the time probably ran out.
+mmorpg.chat.world_is_closed=You can't enter this world, it is closed and is set for deletion.
 mmorpg.chat.traveling_to_mapworld=You are traveling to a Map World of dimension Id:
 mmorpg.chat.mapworld_max_capacity=Maximum Player Count for this Map has been reached.
 mmorpg.chat.not_mapworld=Not a map world or was probably closed after time ran out. Deleting portal block.
@@ -640,13 +640,13 @@ mmorpg.chat.activating_mapworld_time_penalty=Map Time penalty activated
 mmorpg.chat.too_high_level=A piece of gear is too high level for you, no stats added!
 mmorpg.chat.minutes=Minutes
 mmorpg.chat.you_leveledup_entity=You have successfully leveled up an entity!
-mmorpg.chat.you_increased_rarity_entity=Succesfully increased rarity of an entity!
+mmorpg.chat.you_increased_rarity_entity=Successfully increased rarity of an entity!
 mmorpg.chat.no_targets_found=No targets found
 mmorpg.chat.not_enough_experience=Not Enough Experience
 mmorpg.chat.cannot_over_maximum_level=Cannot be higher than maximum level!
 mmorpg.chat.has_died_by_the_hands_of=has died by the hands of
 mmorpg.chat.flying_building_spawned=A mysterious flying building has spawned somewhere near a certain player?
-mmorpg.chat.infusion_sucess=Infusion Successfull!
+mmorpg.chat.infusion_sucess=Infusion Successful!
 mmorpg.chat.infusion_major_sucess=This Infusion was incredibly Successful!
 mmorpg.chat.infusion_fail=Infusion Failed.
 mmorpg.chat.infusion_major_fail=The Infusion failed horribly.
@@ -715,11 +715,11 @@ mmorpg.config.compatible_items_droprate=Compatible Items Droprate
 # CONFIG CLIENT
 mmorpg.config.item_on_ground_particles=Item on Ground Rarity Particles
 mmorpg.config.chat_combat_log=Show Chat Combat Log
-mmorpg.config.floating_damage_numbers=Show Floating Damage
+mmorpg.config.floating_damage_numbers=Show Floating Damage Numbers
 mmorpg.config.mob_health_bag=Show Mob Health Bar
-mmorpg.config.low_resource_warnings=Show low Resource (mana, energy) Warnings
-mmorpg.config.floating_exp=Show floating exp
-mmorpg.config.player_gui_overlay_type=Player GUI overlay type
+mmorpg.config.low_resource_warnings=Show Low Resource (Mana, Energy) Warnings
+mmorpg.config.floating_exp=Show Floating Experience Numbers
+mmorpg.config.player_gui_overlay_type=Player GUI Overlay Type
 
 # CONFIG SERVER
 mmorpg.config.mob_lvl_per_distance=Mob Lvl Per Distance
@@ -893,7 +893,7 @@ mmorpg.word.limitless=Limitless
 # TRAIT Tooltips
 
 mmorpg.tooltip.homing=Your Single Target Spell Projectiles now Home in on the target.
-mmorpg.tooltip.shining_light=Your Self Heal Spells now grant you Aoe Regen.
+mmorpg.tooltip.shining_light=Your Self Heal Spells now grant you AoE Regen.
 mmorpg.tooltip.zephyr_speed=Your Self Heal Spells now boost your speed temporarily.
 mmorpg.tooltip.ghost_projectile=Your Single Target Spell Projectiles now go through enemies.
 mmorpg.tooltip.purity=Your Self Heal Spells now cure you of a negative effect.
@@ -905,10 +905,10 @@ mmorpg.tooltip.buff_mana_regen=Killing Blows with Bomb Spells grant you Mana Reg
 
 mmorpg.tooltip.stats_on_weapon=Stats on Weapon
 mmorpg.tooltip.stats_on_armor=Stats on Armor
-mmorpg.tooltip.stats_on_jewerly=Stats on Jewerly
+mmorpg.tooltip.stats_on_jewerly=Stats on Jewelry
 
 mmorpg.tooltip.place_in_modify=Place in Item Modify Table
-mmorpg.tooltip.unlocks_runeword_combo=Unlocks runeword combination
+mmorpg.tooltip.unlocks_runeword_combo=Unlocks RuneWord Combination
 
 mmorpg.word.runeword=RuneWord
 
