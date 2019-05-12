@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatEffects.offense.ElementalAttackDamageEffect;
+import com.robertx22.stats.stat_effects.offense.ElementalAttackDamageEffect;
 
 public abstract class BaseElementalAttackDamage extends Stat implements IStatEffects {
 

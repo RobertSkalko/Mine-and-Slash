@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
 import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatEffects.ManaOnHitEffect;
+import com.robertx22.stats.stat_effects.ManaOnHitEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ManaOnHit extends Stat implements IStatEffects {

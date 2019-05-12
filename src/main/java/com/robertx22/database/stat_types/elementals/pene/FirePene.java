@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.robertx22.stats.IStatEffect;
 import com.robertx22.stats.IStatEffects;
-import com.robertx22.stats.StatEffects.ElementalPeneEffect;
+import com.robertx22.stats.stat_effects.ElementalPeneEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class FirePene extends BasePene implements IStatEffects {
