@@ -10,7 +10,6 @@ import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.RunedGearBlueprint;
 import com.robertx22.generation.blueprints.UniqueBlueprint;
 import com.robertx22.saveclasses.GearItemData;
-import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
@@ -89,6 +88,8 @@ public class ConfigItem implements IWeighted {
 
   public ItemStack create(ItemStack stack, int level) {
 
+    level = this.getLevel(level);
+
     switch (getCreationType()) {
       case NORMAL:
         createNormal(stack, level);
@@ -116,9 +117,13 @@ public class ConfigItem implements IWeighted {
     return result.type;
   }
 
-  private int getLevel(UnitData data) {
-    return this.itemIsPlayerLevel ? data.getLevel() : this.itemLevelIfDoesntUsePlayerLevel;
+
+
+  private int getLevel(int level) {
+    return this.itemIsPlayerLevel ? level : this.itemLevelIfDoesntUsePlayerLevel;
   }
+
+
 
   private ItemStack createNormal(ItemStack stack, int level) {
 
