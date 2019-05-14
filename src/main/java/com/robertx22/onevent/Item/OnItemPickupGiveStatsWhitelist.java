@@ -1,8 +1,8 @@
 package com.robertx22.onevent.Item;
 
-import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.mmorpg.config.non_mine_items.ConfigItem;
-import com.robertx22.mmorpg.config.non_mine_items.ConfigItems;
+import com.robertx22.config.ModConfig;
+import com.robertx22.config.non_mine_items.ConfigItem;
+import com.robertx22.config.non_mine_items.ConfigItems;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;

@@ -1,6 +1,5 @@
 package com.robertx22.onevent.player;
 
-import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.gearitemslots.Boots;
 import com.robertx22.database.gearitemslots.Bracelet;
 import com.robertx22.database.gearitemslots.Chest;
@@ -13,6 +12,7 @@ import com.robertx22.generation.GearGen;
 import com.robertx22.generation.SpellItemGen;
 import com.robertx22.generation.blueprints.GearBlueprint;
 import com.robertx22.generation.blueprints.SpellBlueprint;
+import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.spells.self.SpellInstantHeal;
 import com.robertx22.uncommon.capability.EntityData;

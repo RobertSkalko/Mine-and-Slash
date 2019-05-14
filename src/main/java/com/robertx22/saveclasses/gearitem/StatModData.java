@@ -5,12 +5,12 @@ import java.util.List;
 
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.RuneRarity;
+import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.StatMods;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipString;
-import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 

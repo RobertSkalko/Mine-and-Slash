@@ -1,10 +1,10 @@
 package com.robertx22.database.stat_types.elementals.transfers;
 
+import com.robertx22.database.stats.IStatTransfer;
+import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.TransferMethod;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.stats.IStatTransfer;
-import com.robertx22.stats.Stat;
-import com.robertx22.stats.TransferMethod;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public abstract class BaseTransferMod extends Stat implements IStatTransfer {

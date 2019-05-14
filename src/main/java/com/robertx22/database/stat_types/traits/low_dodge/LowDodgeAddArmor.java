@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.multi.defense.ArmorMulti;
 import com.robertx22.database.stat_types.traits.bases.BaseTraitLowDodge;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
 
 public class LowDodgeAddArmor extends BaseTraitLowDodge {
 

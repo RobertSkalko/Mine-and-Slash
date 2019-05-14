@@ -6,13 +6,13 @@ import java.util.List;
 
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.runewords.RuneWord;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.RuneWords;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.StatModData;
 import com.robertx22.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
-import com.robertx22.stats.StatMod;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

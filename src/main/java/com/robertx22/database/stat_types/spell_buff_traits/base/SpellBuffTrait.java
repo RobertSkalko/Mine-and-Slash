@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.database.MinMax;
+import com.robertx22.database.stats.IStatEffects;
+import com.robertx22.database.stats.ITrait;
+import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.gearitem.StatModData;
-import com.robertx22.stats.IStatEffects;
-import com.robertx22.stats.ITrait;
-import com.robertx22.stats.Stat;
-import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.enumclasses.Elements;

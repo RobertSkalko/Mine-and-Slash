@@ -2,10 +2,10 @@ package com.robertx22.database.gearitemslots;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
-import com.robertx22.customitems.gearitems.weapon_mechanics.HammerWeaponMechanic;
-import com.robertx22.customitems.gearitems.weapons.ItemHammer;
 import com.robertx22.database.gearitemslots.bases.BaseWeapon;
+import com.robertx22.items.gearitems.bases.WeaponMechanic;
+import com.robertx22.items.gearitems.weapon_mechanics.HammerWeaponMechanic;
+import com.robertx22.items.gearitems.weapons.ItemHammer;
 
 import net.minecraft.item.Item;
 

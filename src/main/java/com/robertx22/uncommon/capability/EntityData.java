@@ -2,16 +2,15 @@ package com.robertx22.uncommon.capability;
 
 import java.util.UUID;
 import com.robertx22.api.MineAndSlashEvents;
-import com.robertx22.customitems.gearitems.bases.IWeapon;
-import com.robertx22.customitems.gearitems.bases.WeaponMechanic;
+import com.robertx22.config.DimensionConfigs;
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.effectdatas.DamageEffect;
+import com.robertx22.items.gearitems.bases.IWeapon;
+import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.config.DimensionConfigs;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.network.PlayerUnitPackage;
 import com.robertx22.onevent.player.OnLogin;
 import com.robertx22.saveclasses.GearItemData;
@@ -24,6 +23,7 @@ import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import info.loenwind.autosave.Reader;
@@ -66,10 +66,15 @@ public class EntityData {
   private static final String MANA = "current_mana";
   private static final String ENERGY = "current_energy";
   private static final String CURRENT_MAP_ID = "current_map_id";
+  private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
 
   public interface UnitData extends ICommonCapability {
 
-    void freelySetLevel(int lvl);
+	void onDamage(EntityLivingBase attacker, EntityLivingBase defender, float dmg);
+
+    boolean shouldDropLoot(EntityLivingBase entity);
+      
+	void freelySetLevel(int lvl);
 
     int getLevel();
 
@@ -241,6 +246,8 @@ public class EntityData {
     String uuid = "";
     String name = "";
     int currentMapId = 0;
+    
+    float dmgByNonPlayers = 0;
 
     float energy;
     float mana;
@@ -252,6 +259,7 @@ public class EntityData {
       nbt.setInteger(LEVEL, level);
       nbt.setInteger(EXP, exp);
       nbt.setInteger(RARITY, rarity);
+      nbt.setFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
       nbt.setString(UUID, uuid);
       nbt.setString(NAME, name);
       nbt.setBoolean(MOB_SAVED_ONCE, true);
@@ -281,6 +289,7 @@ public class EntityData {
       this.uuid = value.getString(UUID);
       this.name = value.getString(NAME);
       this.energy = value.getFloat(ENERGY);
+      this.dmgByNonPlayers = value.getFloat(DMG_DONE_BY_NON_PLAYERS);
       this.mana = value.getFloat(MANA);
       this.currentMapId = value.getInteger(CURRENT_MAP_ID);
 
@@ -827,6 +836,27 @@ public class EntityData {
     public void freelySetLevel(int lvl) {
       this.level = lvl;
     }
+
+	 @Override
+     public void onDamage(EntityLivingBase attacker, EntityLivingBase defender,
+                          float dmg) {
+
+         if (attacker instanceof EntityPlayer == false) {
+             if (defender instanceof EntityPlayer == false) {
+                 this.dmgByNonPlayers += dmg;
+             }
+         }
+     }
+
+     @Override
+     public boolean shouldDropLoot(EntityLivingBase entity) {
+
+         if (entity.getMaxHealth() * 0.5F > this.dmgByNonPlayers) {
+             return true;
+         }
+
+         return false;
+     }
   }
 
 }

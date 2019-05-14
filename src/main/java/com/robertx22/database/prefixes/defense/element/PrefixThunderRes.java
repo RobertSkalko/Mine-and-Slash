@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stat_mods.percent.HealthPercent;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
 
 public class PrefixThunderRes extends BaseEleResPrefix {
 

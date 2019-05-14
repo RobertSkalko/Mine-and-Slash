@@ -2,9 +2,9 @@ package com.robertx22.uncommon.testing.tests;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.db_lists.RuneWords;
+import com.robertx22.items.runes.base.BaseRuneItem;
 
 public class CountRuneUsageInRuneWords {
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.generation.StatGen;
 import com.robertx22.saveclasses.GearItemData;
@@ -11,7 +12,6 @@ import com.robertx22.saveclasses.gearitem.gear_bases.BaseAffix;
 import com.robertx22.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
-import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.ListUtils;

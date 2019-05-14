@@ -2,9 +2,9 @@ package com.robertx22.generation.blueprints;
 
 import java.util.List;
 
+import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.unique_items.IUnique;
 
 public class UniqueBlueprint extends GearBlueprint {
 

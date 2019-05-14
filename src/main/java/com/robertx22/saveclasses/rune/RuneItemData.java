@@ -1,10 +1,10 @@
 package com.robertx22.saveclasses.rune;
 
-import com.robertx22.customitems.currency.CurrencyItem;
-import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.db_lists.Rarities;
+import com.robertx22.items.currency.CurrencyItem;
+import com.robertx22.items.ores.ItemOre;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.ISalvagable;
 import com.robertx22.saveclasses.gearitem.StatModData;

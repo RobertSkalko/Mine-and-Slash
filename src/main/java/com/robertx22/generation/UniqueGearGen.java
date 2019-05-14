@@ -5,6 +5,7 @@ import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.items.UniqueItem;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.generation.blueprints.UniqueBlueprint;
+import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.saveclasses.gearitem.PrefixData;
 import com.robertx22.saveclasses.gearitem.SocketsListData;
@@ -12,7 +13,6 @@ import com.robertx22.saveclasses.gearitem.SuffixData;
 import com.robertx22.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.unique_items.IUnique;
 
 import net.minecraft.item.ItemStack;
 

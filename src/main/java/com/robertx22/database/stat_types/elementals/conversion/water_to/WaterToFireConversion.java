@@ -8,7 +8,7 @@ import com.robertx22.database.stat_types.elementals.attack_damage.AttackWaterDam
 import com.robertx22.database.stat_types.elementals.conversion.BaseConversionMod;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
-import com.robertx22.stats.ConversionMethod;
+import com.robertx22.database.stats.ConversionMethod;
 
 public class WaterToFireConversion extends BaseConversionMod {
 

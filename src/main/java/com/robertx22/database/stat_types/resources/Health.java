@@ -1,7 +1,7 @@
 package com.robertx22.database.stat_types.resources;
 
+import com.robertx22.database.stats.Stat;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;

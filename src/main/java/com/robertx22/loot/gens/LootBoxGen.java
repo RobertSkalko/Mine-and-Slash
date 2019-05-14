@@ -1,7 +1,7 @@
 package com.robertx22.loot.gens;
 
-import com.robertx22.customitems.lootboxes.ItemLootbox;
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.config.ModConfig;
+import com.robertx22.items.lootboxes.ItemLootbox;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.utilityclasses.ListUtils;

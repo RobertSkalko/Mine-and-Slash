@@ -1,7 +1,6 @@
 package com.robertx22.onevent.loot;
 
 import com.robertx22.db_lists.Rarities;
-import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.loot.LootUtils;
 import com.robertx22.loot.MasterLootGen;
 import com.robertx22.mmorpg.Main;
@@ -10,6 +9,7 @@ import com.robertx22.uncommon.capability.EntityData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.effectdatas.DamageEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityLivingBase;
@@ -43,6 +43,10 @@ public class OnMobDeathDrops {
             UnitData victim = entity.getCapability(EntityData.Data, null);
             UnitData killer =
                 event.getSource().getTrueSource().getCapability(EntityData.Data, null);
+            
+            if (victim.shouldDropLoot(entity) == false) {
+                return;
+            }
 
             if (loot_multi > 0) {
 

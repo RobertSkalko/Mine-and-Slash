@@ -3,10 +3,10 @@ package com.robertx22.database.stat_types.resources;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.stats.IStatEffect;
-import com.robertx22.stats.IStatEffects;
-import com.robertx22.stats.Stat;
-import com.robertx22.stats.stat_effects.LifeOnHitEffect;
+import com.robertx22.database.stats.IStatEffect;
+import com.robertx22.database.stats.IStatEffects;
+import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.stat_effects.LifeOnHitEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class LifeOnHit extends Stat implements IStatEffects {

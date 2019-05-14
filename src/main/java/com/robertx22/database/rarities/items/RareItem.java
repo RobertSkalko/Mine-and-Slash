@@ -1,9 +1,9 @@
 package com.robertx22.database.rarities.items;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.ItemRarity;
 import com.robertx22.database.rarities.base.BaseRare;
-import com.robertx22.mmorpg.config.ModConfig;
 
 public class RareItem extends BaseRare implements ItemRarity {
 

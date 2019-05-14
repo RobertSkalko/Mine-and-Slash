@@ -1,9 +1,9 @@
 package com.robertx22.loot.gens;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.generation.UniqueGearGen;
 import com.robertx22.generation.blueprints.UniqueBlueprint;
 import com.robertx22.loot.LootUtils;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;

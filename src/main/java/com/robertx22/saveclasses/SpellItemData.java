@@ -1,10 +1,10 @@
 package com.robertx22.saveclasses;
 
-import com.robertx22.customitems.currency.CurrencyItem;
-import com.robertx22.customitems.ores.ItemOre;
 import com.robertx22.database.rarities.SpellRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Spells;
+import com.robertx22.items.currency.CurrencyItem;
+import com.robertx22.items.ores.ItemOre;
 import com.robertx22.spells.bases.BaseSpell;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.ListUtils;

@@ -3,7 +3,6 @@ package com.robertx22.generation;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.customitems.misc.ItemMap;
 import com.robertx22.database.map_affixes.BaseMapAffix;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.db_lists.MapAffixes;
@@ -11,6 +10,7 @@ import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.IWP;
 import com.robertx22.generation.blueprints.MapBlueprint;
+import com.robertx22.items.misc.ItemMap;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.datasaving.Map;

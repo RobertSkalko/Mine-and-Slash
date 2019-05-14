@@ -1,8 +1,8 @@
 package com.robertx22.spells.bases;
 
-import com.robertx22.effectdatas.DamageEffect;
-import com.robertx22.effectdatas.EffectData.EffectTypes;
-import com.robertx22.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.uncommon.effectdatas.DamageEffect;
+import com.robertx22.uncommon.effectdatas.EffectData.EffectTypes;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 import net.minecraft.entity.EntityLivingBase;

@@ -1,7 +1,7 @@
 package com.robertx22.database.stat_mods.multi.elemental.damage;
 
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 
 public class SpellFireDamageMulti extends BaseEleMulti {
 

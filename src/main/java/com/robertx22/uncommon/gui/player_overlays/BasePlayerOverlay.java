@@ -2,9 +2,9 @@ package com.robertx22.uncommon.gui.player_overlays;
 
 import java.awt.Color;
 
-import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
+import com.robertx22.uncommon.effectdatas.DamageEffect;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

@@ -1,16 +1,17 @@
 package com.robertx22.mmorpg;
 
 import com.libraries.rabbit.gui.RabbitGui;
-import com.robertx22.advanced_blocks.gear_factory_station.StartupGearFactory;
-import com.robertx22.advanced_blocks.item_modify_station.StartupModify;
-import com.robertx22.advanced_blocks.map_device.StartupMap;
-import com.robertx22.advanced_blocks.repair_station.StartupRepair;
-import com.robertx22.advanced_blocks.salvage_station.StartupSalvage;
-import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.blocks.gear_factory_station.StartupGearFactory;
+import com.robertx22.blocks.item_modify_station.StartupModify;
+import com.robertx22.blocks.map_device.StartupMap;
+import com.robertx22.blocks.repair_station.StartupRepair;
+import com.robertx22.blocks.salvage_station.StartupSalvage;
+import com.robertx22.config.ModConfig;
+import com.robertx22.config.non_mine_items.Serialization;
 import com.robertx22.dimensions.ChestGenerator;
 import com.robertx22.dimensions.blocks.TileMapPortal;
-import com.robertx22.mmorpg.config.ModConfig;
-import com.robertx22.mmorpg.config.non_mine_items.Serialization;
+import com.robertx22.items.ores.ItemOre;
+import com.robertx22.items.unique_items.UniqueItemRegister;
 import com.robertx22.mmorpg.proxy.IProxy;
 import com.robertx22.mmorpg.registers.CommandRegisters;
 import com.robertx22.mmorpg.registers.GearItemRegisters;
@@ -26,7 +27,6 @@ import com.robertx22.uncommon.capability.PlayerDeathItems;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
-import com.robertx22.unique_items.UniqueItemRegister;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;

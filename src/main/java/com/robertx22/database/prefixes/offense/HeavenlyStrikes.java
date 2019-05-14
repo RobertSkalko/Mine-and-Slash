@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.CriticalHitFlat;
 import com.robertx22.database.stat_mods.percent.MajorCriticalHitPercent;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
-import com.robertx22.stats.StatMod;
 
 public class HeavenlyStrikes extends Prefix {
 

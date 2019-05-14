@@ -1,6 +1,6 @@
 package com.robertx22.database.stat_mods;
 
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 

@@ -1,8 +1,8 @@
 package com.robertx22.spells.bases;
 
+import com.robertx22.database.stats.Stat;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.stats.Stat;
 
 public class EffectCalculation {
 

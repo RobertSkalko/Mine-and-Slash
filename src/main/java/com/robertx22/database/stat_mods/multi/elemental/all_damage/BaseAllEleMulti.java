@@ -1,6 +1,6 @@
 package com.robertx22.database.stat_mods.multi.elemental.all_damage;
 
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public abstract class BaseAllEleMulti extends StatMod {

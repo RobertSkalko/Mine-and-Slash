@@ -2,6 +2,8 @@ package com.robertx22.loot;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.robertx22.config.ModConfig;
 import com.robertx22.loot.gens.AwakenRuneWordLootGen;
 import com.robertx22.loot.gens.CompatibleItemLootGen;
 import com.robertx22.loot.gens.CurrencyLootGen;
@@ -12,7 +14,6 @@ import com.robertx22.loot.gens.RuneLootGen;
 import com.robertx22.loot.gens.RunedGearLootGen;
 import com.robertx22.loot.gens.SpellLootGen;
 import com.robertx22.loot.gens.UniqueGearLootGen;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import net.minecraft.entity.EntityLivingBase;

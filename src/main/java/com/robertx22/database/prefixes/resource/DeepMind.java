@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.database.stat_mods.percent.ManaRegenPercent;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
-import com.robertx22.stats.StatMod;
 
 public class DeepMind extends Prefix {
 

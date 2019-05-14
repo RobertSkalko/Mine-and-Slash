@@ -1,8 +1,8 @@
 package com.robertx22.loot.gens;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.generation.AwakenRuneWordGen;
 import com.robertx22.generation.blueprints.AwakenRuneWordBlueprint;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 

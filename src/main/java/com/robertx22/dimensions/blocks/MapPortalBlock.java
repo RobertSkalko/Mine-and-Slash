@@ -1,8 +1,8 @@
 package com.robertx22.dimensions.blocks;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.dimensions.MyTeleporter;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.MapWorldData;
 import com.robertx22.uncommon.SLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;

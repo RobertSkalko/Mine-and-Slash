@@ -1,7 +1,7 @@
 package com.robertx22.database.stat_mods.flat.weapon_damages;
 
 import com.robertx22.database.stat_types.offense.weapon_types.HammerDamage;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 
 public class HammerDamageFlat extends BaseWeaponDamageFlat {
 

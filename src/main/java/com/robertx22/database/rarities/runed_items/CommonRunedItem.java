@@ -1,7 +1,7 @@
 package com.robertx22.database.rarities.runed_items;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.items.CommonItem;
-import com.robertx22.mmorpg.config.ModConfig;
 
 public class CommonRunedItem extends CommonItem {
 

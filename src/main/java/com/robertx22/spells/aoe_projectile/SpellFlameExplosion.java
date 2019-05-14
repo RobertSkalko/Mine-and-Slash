@@ -1,7 +1,7 @@
 package com.robertx22.spells.aoe_projectile;
 
-import com.robertx22.customitems.spells.aoe_projectile.ItemFlameExplosion;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
+import com.robertx22.items.spells.aoe_projectile.ItemFlameExplosion;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.projectile.EntityElementalBolt;
 import com.robertx22.spells.bases.projectile.EntityElementalBoltAOE;

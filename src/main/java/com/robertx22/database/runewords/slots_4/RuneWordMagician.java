@@ -3,16 +3,16 @@ package com.robertx22.database.runewords.slots_4;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.customitems.runes.AnoItem;
-import com.robertx22.customitems.runes.DosItem;
-import com.robertx22.customitems.runes.RahItem;
-import com.robertx22.customitems.runes.XahItem;
-import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.items.runes.AnoItem;
+import com.robertx22.items.runes.DosItem;
+import com.robertx22.items.runes.RahItem;
+import com.robertx22.items.runes.XahItem;
+import com.robertx22.items.runes.base.BaseRuneItem;
 
 public class RuneWordMagician extends RuneWord {
 

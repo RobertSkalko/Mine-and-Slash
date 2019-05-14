@@ -1,6 +1,6 @@
 package com.robertx22.database.map_mods.minus.all_ele_dmg;
 
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public abstract class BaseAllEleDmgMap extends StatMod {

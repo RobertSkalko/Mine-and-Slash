@@ -8,7 +8,7 @@ import java.util.Stack;
 
 import org.lwjgl.opengl.GL11;
 
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.config.ModConfig;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.saveclasses.effects.StatusEffectData;
 import com.robertx22.uncommon.capability.EntityData;

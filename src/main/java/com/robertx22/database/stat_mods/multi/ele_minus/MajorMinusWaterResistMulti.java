@@ -1,7 +1,7 @@
 package com.robertx22.database.stat_mods.multi.ele_minus;
 
 import com.robertx22.database.stat_types.elementals.resist.WaterResist;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 
 public class MajorMinusWaterResistMulti extends BaseMajorEleResistMinus {
 

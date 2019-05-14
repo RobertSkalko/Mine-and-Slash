@@ -7,7 +7,7 @@ import com.libraries.rabbit.gui.component.list.ScrollableDisplayList;
 import com.libraries.rabbit.gui.component.list.entries.ListEntry;
 import com.libraries.rabbit.gui.component.list.entries.StringEntry;
 import com.libraries.rabbit.gui.show.Show;
-import com.robertx22.customitems.misc.ItemMap;
+import com.robertx22.items.misc.ItemMap;
 import com.robertx22.saveclasses.MapItemData;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;

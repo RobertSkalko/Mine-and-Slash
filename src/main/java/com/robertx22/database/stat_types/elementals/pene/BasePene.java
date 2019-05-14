@@ -1,7 +1,7 @@
 package com.robertx22.database.stat_types.elementals.pene;
 
-import com.robertx22.stats.IStatEffects;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.IStatEffects;
+import com.robertx22.database.stats.Stat;
 
 public abstract class BasePene extends Stat implements IStatEffects {
 

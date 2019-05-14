@@ -16,8 +16,8 @@ import com.robertx22.database.gearitemslots.Necklace;
 import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.Ring;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.stats.StatMod;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public abstract class Set implements IWeighted, IGUID {

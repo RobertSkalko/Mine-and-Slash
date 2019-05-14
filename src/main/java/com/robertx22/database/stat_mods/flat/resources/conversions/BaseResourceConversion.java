@@ -1,6 +1,6 @@
 package com.robertx22.database.stat_mods.flat.resources.conversions;
 
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.uncommon.enumclasses.StatTypes;
 
 public abstract class BaseResourceConversion extends StatMod {

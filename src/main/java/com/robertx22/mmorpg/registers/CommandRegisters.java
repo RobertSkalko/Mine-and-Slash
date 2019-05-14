@@ -1,15 +1,15 @@
 package com.robertx22.mmorpg.registers;
 
-import com.robertx22.uncommon.commands.DeleteDimension;
-import com.robertx22.uncommon.commands.GiveAwakenRuneWord;
-import com.robertx22.uncommon.commands.GiveGear;
-import com.robertx22.uncommon.commands.GiveMap;
-import com.robertx22.uncommon.commands.GiveRune;
-import com.robertx22.uncommon.commands.GiveRunedGear;
-import com.robertx22.uncommon.commands.GiveSpell;
-import com.robertx22.uncommon.commands.GiveUnique;
-import com.robertx22.uncommon.commands.PortDimension;
-import com.robertx22.uncommon.commands.SetLevel;
+import com.robertx22.commands.DeleteDimension;
+import com.robertx22.commands.GiveAwakenRuneWord;
+import com.robertx22.commands.GiveGear;
+import com.robertx22.commands.GiveMap;
+import com.robertx22.commands.GiveRune;
+import com.robertx22.commands.GiveRunedGear;
+import com.robertx22.commands.GiveSpell;
+import com.robertx22.commands.GiveUnique;
+import com.robertx22.commands.PortDimension;
+import com.robertx22.commands.SetLevel;
 
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 

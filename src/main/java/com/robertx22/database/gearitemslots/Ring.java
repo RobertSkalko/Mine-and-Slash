@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.robertx22.customitems.gearitems.baubles.ItemRing;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellFireDamageFlat;
 import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellNatureDamageFlat;
@@ -14,11 +13,12 @@ import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellWaterDamag
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.database.stat_mods.flat.resources.ManaRegenFlat;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
+import com.robertx22.items.gearitems.baubles.ItemRing;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
-import com.robertx22.stats.StatMod;
 
 import net.minecraft.item.Item;
 

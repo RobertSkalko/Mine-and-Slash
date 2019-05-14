@@ -1,9 +1,9 @@
 package com.robertx22.mmorpg.proxy;
 
-import com.robertx22.customitems.gearitems.RenderMyArrow;
-import com.robertx22.customitems.gearitems.offhands.ShieldRenderer;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
+import com.robertx22.items.gearitems.RenderMyArrow;
+import com.robertx22.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.mmorpg.Keybinds;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;

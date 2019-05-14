@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.elemental.bonus.WaterSpellToAttackFlat;
 import com.robertx22.database.stat_mods.flat.elemental.pene.WaterPeneFlat;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
-import com.robertx22.stats.StatMod;
 
 public class OfWaterPene extends Suffix {
 

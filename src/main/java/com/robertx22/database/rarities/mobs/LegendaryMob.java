@@ -1,8 +1,8 @@
 package com.robertx22.database.rarities.mobs;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.MobRarity;
 import com.robertx22.database.rarities.base.BaseLegendary;
-import com.robertx22.mmorpg.config.ModConfig;
 
 public class LegendaryMob extends BaseLegendary implements MobRarity {
 

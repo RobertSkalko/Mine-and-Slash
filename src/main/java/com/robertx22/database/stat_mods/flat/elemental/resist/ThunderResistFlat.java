@@ -1,7 +1,7 @@
 package com.robertx22.database.stat_mods.flat.elemental.resist;
 
 import com.robertx22.database.stat_types.elementals.resist.ThunderResist;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 
 public class ThunderResistFlat extends BaseEleResistFlat {
 

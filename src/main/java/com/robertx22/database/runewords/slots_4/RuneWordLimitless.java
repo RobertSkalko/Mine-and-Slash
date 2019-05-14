@@ -3,16 +3,16 @@ package com.robertx22.database.runewords.slots_4;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.customitems.runes.BerItem;
-import com.robertx22.customitems.runes.ItaItem;
-import com.robertx22.customitems.runes.VohItem;
-import com.robertx22.customitems.runes.XahItem;
-import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stat_mods.percent.DodgePercent;
 import com.robertx22.database.stat_mods.spell_buffs.EnergyRegenBuffFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.items.runes.BerItem;
+import com.robertx22.items.runes.ItaItem;
+import com.robertx22.items.runes.VohItem;
+import com.robertx22.items.runes.XahItem;
+import com.robertx22.items.runes.base.BaseRuneItem;
 
 public class RuneWordLimitless extends RuneWord {
 

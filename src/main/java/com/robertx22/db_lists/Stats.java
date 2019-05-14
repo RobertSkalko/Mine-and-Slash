@@ -107,7 +107,7 @@ import com.robertx22.database.stat_types.traits.low_crit_hit.LowCritHitAddDodge;
 import com.robertx22.database.stat_types.traits.low_crit_hit.LowCritHitAddHealth;
 import com.robertx22.database.stat_types.traits.low_dodge.LowDodgeAddArmor;
 import com.robertx22.database.stat_types.traits.low_dodge.LowDodgeAddCritHit;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 
 public class Stats {
 

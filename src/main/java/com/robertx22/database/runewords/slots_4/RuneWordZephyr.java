@@ -3,17 +3,17 @@ package com.robertx22.database.runewords.slots_4;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.customitems.runes.BerItem;
-import com.robertx22.customitems.runes.CenItem;
-import com.robertx22.customitems.runes.MosItem;
-import com.robertx22.customitems.runes.XahItem;
-import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.elemental.resist.ThunderResistFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stat_mods.spell_buffs.ZephyrFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.items.runes.BerItem;
+import com.robertx22.items.runes.CenItem;
+import com.robertx22.items.runes.MosItem;
+import com.robertx22.items.runes.XahItem;
+import com.robertx22.items.runes.base.BaseRuneItem;
 
 public class RuneWordZephyr extends RuneWord {
 

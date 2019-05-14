@@ -1,6 +1,6 @@
 package com.robertx22.database.stat_types.offense;
 
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class PhysicalDamage extends Stat {
