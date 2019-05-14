@@ -1,6 +1,6 @@
 package com.robertx22.network;
 
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.config.ModConfig;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.gui.dmg_numbers.OnDisplayDamage;
 

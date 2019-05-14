@@ -8,7 +8,7 @@ import com.robertx22.database.stat_types.elementals.attack_damage.AttackThunderD
 import com.robertx22.database.stat_types.elementals.conversion.BaseConversionMod;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
-import com.robertx22.stats.ConversionMethod;
+import com.robertx22.database.stats.ConversionMethod;
 
 public class FireToThunderConversion extends BaseConversionMod {
 

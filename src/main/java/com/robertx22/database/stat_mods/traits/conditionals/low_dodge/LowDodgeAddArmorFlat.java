@@ -2,7 +2,7 @@ package com.robertx22.database.stat_mods.traits.conditionals.low_dodge;
 
 import com.robertx22.database.stat_mods.BaseTraitMod;
 import com.robertx22.database.stat_types.traits.low_dodge.LowDodgeAddArmor;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 
 public class LowDodgeAddArmorFlat extends BaseTraitMod {
 

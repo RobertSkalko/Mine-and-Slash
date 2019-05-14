@@ -3,9 +3,9 @@ package com.robertx22.database.stat_types.elementals.pene;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.stats.IStatEffect;
-import com.robertx22.stats.IStatEffects;
-import com.robertx22.stats.stat_effects.ElementalPeneEffect;
+import com.robertx22.database.stats.IStatEffect;
+import com.robertx22.database.stats.IStatEffects;
+import com.robertx22.database.stats.stat_effects.ElementalPeneEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class ThunderPene extends BasePene implements IStatEffects {

@@ -1,6 +1,6 @@
 package com.robertx22.database.stat_types.resources;
 
-import com.robertx22.stats.FillableStat;
+import com.robertx22.database.stats.FillableStat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public class Mana extends FillableStat {

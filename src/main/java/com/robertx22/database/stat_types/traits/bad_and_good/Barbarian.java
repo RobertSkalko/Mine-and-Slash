@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.multi.offence.PhysicalDamageMulti;
 import com.robertx22.database.stat_mods.multi.resources.LessManaMulti;
-import com.robertx22.stats.IAffectsOtherStats;
-import com.robertx22.stats.StatMod;
-import com.robertx22.stats.Trait;
+import com.robertx22.database.stats.IAffectsOtherStats;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.Trait;
 
 public class Barbarian extends Trait implements IAffectsOtherStats {
 

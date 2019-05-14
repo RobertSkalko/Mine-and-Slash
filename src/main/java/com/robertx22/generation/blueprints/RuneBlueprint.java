@@ -1,10 +1,10 @@
 package com.robertx22.generation.blueprints;
 
-import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Runes;
 import com.robertx22.generation.RarityGen;
+import com.robertx22.items.runes.base.BaseRuneItem;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 

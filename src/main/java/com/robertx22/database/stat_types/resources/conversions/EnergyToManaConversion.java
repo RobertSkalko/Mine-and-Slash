@@ -6,7 +6,7 @@ import java.util.List;
 import com.robertx22.database.stat_types.elementals.conversion.BaseConversionMod;
 import com.robertx22.database.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stat_types.resources.ManaRegen;
-import com.robertx22.stats.ConversionMethod;
+import com.robertx22.database.stats.ConversionMethod;
 
 public class EnergyToManaConversion extends BaseConversionMod {
 

@@ -6,11 +6,11 @@ import java.util.List;
 
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.BlockStrengthFlat;
+import com.robertx22.database.stats.StatMod;
 import com.robertx22.db_lists.Prefixes;
 import com.robertx22.db_lists.Suffixes;
 import com.robertx22.saveclasses.gearitem.gear_bases.Prefix;
 import com.robertx22.saveclasses.gearitem.gear_bases.Suffix;
-import com.robertx22.stats.StatMod;
 
 public abstract class BaseOffHand extends GearItemSlot {
 

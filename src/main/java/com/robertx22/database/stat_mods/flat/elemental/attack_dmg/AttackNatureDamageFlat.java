@@ -1,7 +1,7 @@
 package com.robertx22.database.stat_mods.flat.elemental.attack_dmg;
 
 import com.robertx22.database.stat_types.elementals.attack_damage.AttackNatureDamage;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 
 public class AttackNatureDamageFlat extends BaseEleAttackDmgFlat {
 

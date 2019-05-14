@@ -1,7 +1,7 @@
 package com.robertx22.spells.bases;
 
-import com.robertx22.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
+import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 
 public class SpellBuffCheck implements IBuffableSpell {
 

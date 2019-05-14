@@ -1,10 +1,10 @@
 package com.robertx22.database.stat_types.elementals.conversion;
 
+import com.robertx22.database.stats.ConversionMethod;
+import com.robertx22.database.stats.IStatConversion;
+import com.robertx22.database.stats.Stat;
 import com.robertx22.saveclasses.StatData;
 import com.robertx22.saveclasses.Unit;
-import com.robertx22.stats.ConversionMethod;
-import com.robertx22.stats.IStatConversion;
-import com.robertx22.stats.Stat;
 import com.robertx22.uncommon.enumclasses.Elements;
 
 public abstract class BaseConversionMod extends Stat implements IStatConversion {

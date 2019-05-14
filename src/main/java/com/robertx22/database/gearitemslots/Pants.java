@@ -2,8 +2,8 @@ package com.robertx22.database.gearitemslots;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.gearitems.armor.ItemPants;
 import com.robertx22.database.gearitemslots.bases.BaseArmor;
+import com.robertx22.items.gearitems.armor.ItemPants;
 
 import net.minecraft.item.Item;
 

@@ -5,9 +5,9 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.robertx22.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.spells.bases.BaseSpell.SpellType;
 import com.robertx22.uncommon.capability.EntityData;
+import com.robertx22.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.uncommon.utilityclasses.WizardryUtilities;
 
 import net.minecraft.block.Block;

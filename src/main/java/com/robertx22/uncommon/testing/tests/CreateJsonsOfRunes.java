@@ -5,9 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.Runes;
+import com.robertx22.items.runes.base.BaseRuneItem;
 
 public class CreateJsonsOfRunes {
 

@@ -1,9 +1,9 @@
 package com.robertx22.uncommon.testing.tests;
 
+import com.robertx22.database.stats.Stat;
+import com.robertx22.database.stats.Trait;
 import com.robertx22.db_lists.Stats;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.stats.Stat;
-import com.robertx22.stats.Trait;
 
 public class CreateStatConfig {
 

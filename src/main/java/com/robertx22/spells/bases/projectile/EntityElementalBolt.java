@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.robertx22.ColoredRedstone;
-import com.robertx22.effectdatas.SpellBuffEffect;
 import com.robertx22.spells.bases.BaseSpellEffect;
 import com.robertx22.spells.bases.DamageData;
 import com.robertx22.spells.bases.projectile.Targeting.TargetType;
+import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 

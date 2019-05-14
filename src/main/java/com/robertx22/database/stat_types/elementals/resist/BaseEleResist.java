@@ -3,10 +3,10 @@ package com.robertx22.database.stat_types.elementals.resist;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.stats.IStatEffect;
-import com.robertx22.stats.IStatEffects;
-import com.robertx22.stats.UsableStat;
-import com.robertx22.stats.stat_effects.defense.ElementalResistEffect;
+import com.robertx22.database.stats.IStatEffect;
+import com.robertx22.database.stats.IStatEffects;
+import com.robertx22.database.stats.UsableStat;
+import com.robertx22.database.stats.stat_effects.defense.ElementalResistEffect;
 
 public abstract class BaseEleResist extends UsableStat implements IStatEffects {
 

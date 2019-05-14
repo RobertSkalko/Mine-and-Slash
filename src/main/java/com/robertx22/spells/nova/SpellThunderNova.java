@@ -1,7 +1,7 @@
 package com.robertx22.spells.nova;
 
-import com.robertx22.customitems.spells.nova.ItemThunderNova;
 import com.robertx22.database.stat_types.elementals.resist.ThunderResist;
+import com.robertx22.items.spells.nova.ItemThunderNova;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.uncommon.enumclasses.Elements;
 

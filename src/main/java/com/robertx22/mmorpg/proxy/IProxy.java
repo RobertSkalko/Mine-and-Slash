@@ -1,6 +1,6 @@
 package com.robertx22.mmorpg.proxy;
 
-import com.robertx22.customitems.gearitems.MyEntityArrow;
+import com.robertx22.items.gearitems.MyEntityArrow;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellIceBomb;

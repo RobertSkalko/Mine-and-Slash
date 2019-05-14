@@ -1,9 +1,9 @@
 package com.robertx22.database.rarities.maps;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.MinMax;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.database.rarities.base.BaseLegendary;
-import com.robertx22.mmorpg.config.ModConfig;
 
 public class LegendaryMap extends BaseLegendary implements MapRarity {
 

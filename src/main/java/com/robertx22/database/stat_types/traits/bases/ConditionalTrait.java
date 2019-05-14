@@ -1,6 +1,6 @@
 package com.robertx22.database.stat_types.traits.bases;
 
-import com.robertx22.stats.Trait;
+import com.robertx22.database.stats.Trait;
 
 public abstract class ConditionalTrait extends Trait {
 

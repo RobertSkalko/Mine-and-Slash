@@ -1,7 +1,7 @@
 package com.robertx22.database.stat_mods.percent.pene;
 
 import com.robertx22.database.stat_types.elementals.pene.FirePene;
-import com.robertx22.stats.Stat;
+import com.robertx22.database.stats.Stat;
 
 public class FirePenePercent extends BaseElePenePercent {
 

@@ -1,8 +1,7 @@
 package com.robertx22.spells.self;
 
-import com.robertx22.customitems.spells.self.ItemSelfRegen;
 import com.robertx22.database.stat_types.resources.HealthRegen;
-import com.robertx22.effectdatas.SpellBuffEffect;
+import com.robertx22.items.spells.self.ItemSelfRegen;
 import com.robertx22.saveclasses.SpellItemData;
 import com.robertx22.spells.bases.EffectCalculation;
 import com.robertx22.spells.bases.SpellBuffCheck;
@@ -10,6 +9,7 @@ import com.robertx22.spells.potion_effects.all.HealthRegenPotion;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.uncommon.utilityclasses.SoundUtils;
 
 import net.minecraft.entity.player.EntityPlayer;

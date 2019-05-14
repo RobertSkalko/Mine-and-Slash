@@ -2,8 +2,8 @@ package com.robertx22.database.gearitemslots;
 
 import java.util.HashMap;
 
-import com.robertx22.customitems.gearitems.offhands.NormalShield;
 import com.robertx22.database.gearitemslots.bases.BaseOffHand;
+import com.robertx22.items.gearitems.offhands.NormalShield;
 
 import net.minecraft.item.Item;
 

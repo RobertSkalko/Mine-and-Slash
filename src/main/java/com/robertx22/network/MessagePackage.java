@@ -1,7 +1,7 @@
 package com.robertx22.network;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.mmorpg.Main;
-import com.robertx22.mmorpg.config.ModConfig;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;

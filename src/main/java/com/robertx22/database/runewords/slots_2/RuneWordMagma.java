@@ -3,13 +3,13 @@ package com.robertx22.database.runewords.slots_2;
 import java.util.Arrays;
 import java.util.List;
 
-import com.robertx22.customitems.runes.DosItem;
-import com.robertx22.customitems.runes.VohItem;
-import com.robertx22.customitems.runes.base.BaseRuneItem;
 import com.robertx22.database.runewords.RuneWord;
 import com.robertx22.database.stat_mods.flat.ArmorFlat;
 import com.robertx22.database.stat_mods.flat.elemental.resist.FireResistFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.items.runes.DosItem;
+import com.robertx22.items.runes.VohItem;
+import com.robertx22.items.runes.base.BaseRuneItem;
 
 public class RuneWordMagma extends RuneWord {
 

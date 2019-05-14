@@ -2,8 +2,8 @@ package com.robertx22.database.runewords;
 
 import java.util.List;
 
-import com.robertx22.customitems.runes.base.BaseRuneItem;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.items.runes.base.BaseRuneItem;
 import com.robertx22.uncommon.CLOC;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 

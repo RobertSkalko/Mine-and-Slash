@@ -2,8 +2,8 @@ package com.robertx22.loot.gens;
 
 import java.util.ArrayList;
 
-import com.robertx22.customitems.currency.CurrencyItem;
-import com.robertx22.mmorpg.config.ModConfig;
+import com.robertx22.config.ModConfig;
+import com.robertx22.items.currency.CurrencyItem;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.utilityclasses.ITiered;

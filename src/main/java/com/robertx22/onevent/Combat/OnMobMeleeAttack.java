@@ -1,11 +1,11 @@
 package com.robertx22.onevent.combat;
 
-import com.robertx22.effectdatas.DamageEffect;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.WorldData.IWorldData;
 import com.robertx22.uncommon.datasaving.Load;
+import com.robertx22.uncommon.effectdatas.DamageEffect;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

@@ -3,14 +3,14 @@ package com.robertx22.saveclasses;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.robertx22.customitems.currency.CurrencyItem;
-import com.robertx22.customitems.ores.ItemOre;
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.MapRarity;
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.db_lists.WorldProviders;
 import com.robertx22.dimensions.IWP;
+import com.robertx22.items.currency.CurrencyItem;
+import com.robertx22.items.ores.ItemOre;
 import com.robertx22.mmorpg.Ref;
-import com.robertx22.mmorpg.config.ModConfig;
 import com.robertx22.saveclasses.mapitem.MapAffixData;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.capability.MapDatas;

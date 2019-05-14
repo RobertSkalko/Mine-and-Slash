@@ -1,8 +1,8 @@
 package com.robertx22.database.rarities.runes;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.rarities.RuneRarity;
 import com.robertx22.database.rarities.items.MythicalItem;
-import com.robertx22.mmorpg.config.ModConfig;
 
 public class MythicalRune extends MythicalItem implements RuneRarity {
 

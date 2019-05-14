@@ -8,7 +8,7 @@ import com.robertx22.database.stat_types.elementals.attack_damage.AttackThunderD
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellNatureDamage;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellThunderDamage;
 import com.robertx22.database.stat_types.elementals.transfers.BaseTransferMod;
-import com.robertx22.stats.TransferMethod;
+import com.robertx22.database.stats.TransferMethod;
 
 public class ThunderToNatureTransfer extends BaseTransferMod {
 

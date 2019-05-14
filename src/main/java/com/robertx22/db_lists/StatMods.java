@@ -188,7 +188,7 @@ import com.robertx22.database.stat_mods.traits.ele_lords.LordOfBlizzardsFlat;
 import com.robertx22.database.stat_mods.traits.ele_lords.LordOfEarthquakesFlat;
 import com.robertx22.database.stat_mods.traits.ele_lords.LordOfThunderstormsFlat;
 import com.robertx22.database.stat_mods.traits.ele_lords.LordOfVolcanoesFlat;
-import com.robertx22.stats.StatMod;
+import com.robertx22.database.stats.StatMod;
 
 public class StatMods {
 

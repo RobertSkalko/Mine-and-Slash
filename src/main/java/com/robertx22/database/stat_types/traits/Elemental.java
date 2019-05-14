@@ -7,9 +7,9 @@ import com.robertx22.database.stat_mods.multi.elemental.damage.SpellFireDamageMu
 import com.robertx22.database.stat_mods.multi.elemental.damage.SpellNatureDamageMulti;
 import com.robertx22.database.stat_mods.multi.elemental.damage.SpellThunderDamageMulti;
 import com.robertx22.database.stat_mods.multi.elemental.damage.SpellWaterDamageMulti;
-import com.robertx22.stats.IAffectsOtherStats;
-import com.robertx22.stats.StatMod;
-import com.robertx22.stats.Trait;
+import com.robertx22.database.stats.IAffectsOtherStats;
+import com.robertx22.database.stats.StatMod;
+import com.robertx22.database.stats.Trait;
 
 public class Elemental extends Trait implements IAffectsOtherStats {
 

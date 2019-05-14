@@ -8,7 +8,7 @@ import com.robertx22.database.stat_types.elementals.attack_damage.AttackWaterDam
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellFireDamage;
 import com.robertx22.database.stat_types.elementals.spell_damage.SpellWaterDamage;
 import com.robertx22.database.stat_types.elementals.transfers.BaseTransferMod;
-import com.robertx22.stats.TransferMethod;
+import com.robertx22.database.stats.TransferMethod;
 
 public class WaterToFireTransfer extends BaseTransferMod {
 
