@@ -43,6 +43,10 @@ public class OnMobDeathDrops {
             UnitData victim = entity.getCapability(EntityData.Data, null);
             UnitData killer =
                 event.getSource().getTrueSource().getCapability(EntityData.Data, null);
+            
+            if (victim.shouldDropLoot(entity) == false) {
+                return;
+            }
 
             if (loot_multi > 0) {
 

@@ -66,10 +66,15 @@ public class EntityData {
   private static final String MANA = "current_mana";
   private static final String ENERGY = "current_energy";
   private static final String CURRENT_MAP_ID = "current_map_id";
+  private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
 
   public interface UnitData extends ICommonCapability {
 
-    void freelySetLevel(int lvl);
+	void onDamage(EntityLivingBase attacker, EntityLivingBase defender, float dmg);
+
+    boolean shouldDropLoot(EntityLivingBase entity);
+      
+	void freelySetLevel(int lvl);
 
     int getLevel();
 
@@ -241,6 +246,8 @@ public class EntityData {
     String uuid = "";
     String name = "";
     int currentMapId = 0;
+    
+    float dmgByNonPlayers = 0;
 
     float energy;
     float mana;
@@ -252,6 +259,7 @@ public class EntityData {
       nbt.setInteger(LEVEL, level);
       nbt.setInteger(EXP, exp);
       nbt.setInteger(RARITY, rarity);
+      nbt.setFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
       nbt.setString(UUID, uuid);
       nbt.setString(NAME, name);
       nbt.setBoolean(MOB_SAVED_ONCE, true);
@@ -281,6 +289,7 @@ public class EntityData {
       this.uuid = value.getString(UUID);
       this.name = value.getString(NAME);
       this.energy = value.getFloat(ENERGY);
+      this.dmgByNonPlayers = value.getFloat(DMG_DONE_BY_NON_PLAYERS);
       this.mana = value.getFloat(MANA);
       this.currentMapId = value.getInteger(CURRENT_MAP_ID);
 
@@ -827,6 +836,27 @@ public class EntityData {
     public void freelySetLevel(int lvl) {
       this.level = lvl;
     }
+
+	 @Override
+     public void onDamage(EntityLivingBase attacker, EntityLivingBase defender,
+                          float dmg) {
+
+         if (attacker instanceof EntityPlayer == false) {
+             if (defender instanceof EntityPlayer == false) {
+                 this.dmgByNonPlayers += dmg;
+             }
+         }
+     }
+
+     @Override
+     public boolean shouldDropLoot(EntityLivingBase entity) {
+
+         if (entity.getMaxHealth() * 0.5F > this.dmgByNonPlayers) {
+             return true;
+         }
+
+         return false;
+     }
   }
 
 }
