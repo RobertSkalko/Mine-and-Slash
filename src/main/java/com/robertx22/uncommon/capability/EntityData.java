@@ -70,11 +70,11 @@ public class EntityData {
 
   public interface UnitData extends ICommonCapability {
 
-	void onDamage(EntityLivingBase attacker, EntityLivingBase defender, float dmg);
+    void onDamage(EntityLivingBase attacker, EntityLivingBase defender, float dmg);
 
     boolean shouldDropLoot(EntityLivingBase entity);
-      
-	void freelySetLevel(int lvl);
+
+    void freelySetLevel(int lvl);
 
     int getLevel();
 
@@ -246,7 +246,7 @@ public class EntityData {
     String uuid = "";
     String name = "";
     int currentMapId = 0;
-    
+
     float dmgByNonPlayers = 0;
 
     float energy;
@@ -837,26 +837,26 @@ public class EntityData {
       this.level = lvl;
     }
 
-	 @Override
-     public void onDamage(EntityLivingBase attacker, EntityLivingBase defender,
-                          float dmg) {
+    @Override
+    public void onDamage(EntityLivingBase attacker, EntityLivingBase defender, float dmg) {
 
-         if (attacker instanceof EntityPlayer == false) {
-             if (defender instanceof EntityPlayer == false) {
-                 this.dmgByNonPlayers += dmg;
-             }
-         }
-     }
+      if (attacker instanceof EntityPlayer == false) {
+        if (defender instanceof EntityPlayer == false) {
+          this.dmgByNonPlayers += dmg;
+        }
+      }
+    }
 
-     @Override
-     public boolean shouldDropLoot(EntityLivingBase entity) {
+    @Override
+    public boolean shouldDropLoot(EntityLivingBase entity) {
 
-         if (entity.getMaxHealth() * 0.5F > this.dmgByNonPlayers) {
-             return true;
-         }
+      if (entity.getMaxHealth()
+          * ModConfig.Server.STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT > this.dmgByNonPlayers) {
+        return true;
+      }
 
-         return false;
-     }
+      return false;
+    }
   }
 
 }
