@@ -38,6 +38,7 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -339,7 +340,7 @@ public class EntityData {
       } else {
         if (config.SINGLEPLAYER_MOB_SCALING) {
 
-          EntityPlayer player = entity.world.getClosestPlayerToEntity(entity, 9999);
+          EntityPlayer player = entity.world.getClosestPlayerToEntity(entity, 4999);
 
           if (player != null) {
             lvl = player.getCapability(EntityData.Data, null).getLevel();
@@ -347,21 +348,13 @@ public class EntityData {
           }
 
         } else {
-          lvl = GetMobLevelByDistanceFromSpawn(entity, config);
-        }
-        if (lvl > config.MAXIMUM_MOB_LEVEL) {
-          lvl = config.MAXIMUM_MOB_LEVEL;
-        }
-        if (lvl < config.MINIMUM_MOB_LEVEL) {
-          lvl = config.MINIMUM_MOB_LEVEL;
+
+          lvl = GetMobLevelByDistanceFromSpawn(entity, config) + config.MINIMUM_MOB_LEVEL - 1;
+
         }
 
       }
-
-      if (lvl < 1) {
-        lvl = 1;
-
-      }
+      lvl = MathHelper.clamp(lvl, config.MINIMUM_MOB_LEVEL, config.MAXIMUM_MOB_LEVEL);
 
       this.level = lvl;
     }
