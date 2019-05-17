@@ -8,7 +8,7 @@ public class ServerContainer {
   @Config.Name("Enable Outside Item Stats")
   @Config.LangKey("mmorpg.config.")
   @Config.Comment("This enables adding stats to items not from my mod automatically if they are added to my mod's config file inside the folder")
-  public boolean USE_COMPATIBILITY_ITEMS = false;
+  public boolean USE_COMPATIBILITY_ITEMS = true;
 
   @Config.Name("Disable Vanilla Hp Regen")
   @Config.LangKey("mmorpg.config.")
