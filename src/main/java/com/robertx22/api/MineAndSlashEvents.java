@@ -16,6 +16,7 @@ public class MineAndSlashEvents {
       playerCapability = playerdata;
       this.experience = exp;
       this.setResult(Result.ALLOW);
+
     }
 
   }
