@@ -15,6 +15,7 @@ import com.robertx22.db_lists.GearTypes;
 import com.robertx22.items.unique_items.IUnique;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class Serialization {
@@ -55,7 +56,7 @@ public class Serialization {
     }
   }
 
-  public static void generateConfigTut(FMLPreInitializationEvent event) {
+  public static void generateConfigTut(FMLPostInitializationEvent event) {
     genListOfUniqueItems();
     genListOfItemTypes();
   }

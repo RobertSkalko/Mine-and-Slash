@@ -42,6 +42,7 @@ public class OnItemPickupGiveStatsWhitelist {
         if (test == null) {
 
           String reg = stack.getItem().getRegistryName().toString();
+
           if (ConfigItems.INSTANCE.map.containsKey(reg)) {
 
             ConfigItem config = ConfigItems.INSTANCE.map.get(reg);

@@ -70,7 +70,6 @@ public class Main {
 
 
     Serialization.generateConfig(event);
-    Serialization.generateConfigTut(event);
     Serialization.loadConfig(event);
 
 
@@ -152,7 +151,7 @@ public class Main {
 
     proxy.postInit(event);
     RabbitGui.proxy.postInit();
-
+    Serialization.generateConfigTut(event);
 
 
   }

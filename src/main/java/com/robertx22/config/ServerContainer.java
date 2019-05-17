@@ -65,6 +65,11 @@ public class ServerContainer {
   @Config.Comment("")
   public float STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT = 0.5F;
 
+  @Config.Name("PLAYER_HEART_TO_HEALTH_CONVERSION")
+  @Config.LangKey("mmorpg.config")
+  @Config.Comment("")
+  public float PLAYER_HEART_TO_HEALTH_CONVERSION = 1F;
+
   @Config.Name("Non Mod Heal Multiplier")
   @Config.LangKey("mmorpg.config.non_mod_heal_multi")
   @Config.Comment("0 to 1. 0 means other types of healing (not from my mod) are smaller. 1 means they are the same. Please leave at default value unless required to change it. High values make health regen too fast(both normal and my mods) but low value makes stuff like health potions useless. ")
