@@ -26,7 +26,22 @@ public class LootUtils {
         return chance;
       }
 
-      float levelDiff = player.getLevel() / player.getLevel() + difference;
+
+
+      float levelDiff = 1;
+
+      if (player.getLevel() > mob.getLevel()) {
+        levelDiff = (float) mob.getLevel() / (float) (player.getLevel());
+      } else {
+        levelDiff = (float) player.getLevel() / (float) (mob.getLevel());
+      }
+
+
+      if (levelDiff > 1) {
+        levelDiff = 1;
+      }
+
+
 
       return chance * levelDiff;
 

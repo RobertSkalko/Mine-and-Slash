@@ -18,21 +18,6 @@ public class OnMobMeleeAttack {
 
 
 
-  @SubscribeEvent
-  public static void regDmg(LivingAttackEvent event) {
-
-    if (event.getSource() != null && event.getSource().getTrueSource() instanceof EntityLivingBase
-        && event.getEntityLiving() != null) {
-
-      UnitData data = Load.Unit(event.getEntityLiving());
-
-      if (data != null) {
-        data.onDamage(event.getEntityLiving(), (EntityLivingBase) event.getSource().getTrueSource(),
-            event.getAmount());
-      }
-    }
-  }
-
   /**
    * On attack, cancel and spawn the real attack with my damage source, mobs don't use energy but
    * players do

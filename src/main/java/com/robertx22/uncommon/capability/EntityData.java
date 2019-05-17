@@ -71,7 +71,7 @@ public class EntityData {
 
   public interface UnitData extends ICommonCapability {
 
-    void onDamage(EntityLivingBase attacker, EntityLivingBase defender, float dmg);
+    void onDamagedByNonPlayer(float dmg);
 
     boolean shouldDropLoot(EntityLivingBase entity);
 
@@ -831,13 +831,10 @@ public class EntityData {
     }
 
     @Override
-    public void onDamage(EntityLivingBase attacker, EntityLivingBase defender, float dmg) {
+    public void onDamagedByNonPlayer(float dmg) {
 
-      if (attacker instanceof EntityPlayer == false) {
-        if (defender instanceof EntityPlayer == false) {
-          this.dmgByNonPlayers += dmg;
-        }
-      }
+      this.dmgByNonPlayers += dmg;
+
     }
 
     @Override
