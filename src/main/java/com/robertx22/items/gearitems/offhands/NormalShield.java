@@ -2,6 +2,7 @@ package com.robertx22.items.gearitems.offhands;
 
 import java.util.HashMap;
 import javax.annotation.Nullable;
+import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,9 +31,7 @@ public class NormalShield extends ItemShield {
     super();
     this.setMaxDamage(750);
     resource = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
-    this.setTileEntityItemStackRenderer(new ShieldRenderer());
-
-
+    Main.proxy.setShieldRenderer(this);
   }
 
   @Override

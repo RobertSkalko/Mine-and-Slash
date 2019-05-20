@@ -3,6 +3,8 @@ package com.robertx22.mmorpg.proxy;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.items.gearitems.RenderMyArrow;
+import com.robertx22.items.gearitems.offhands.NormalShield;
+import com.robertx22.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.mmorpg.Keybinds;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
@@ -116,6 +118,11 @@ public class ClientProxy implements IProxy {
   @Override
   public String translate(String str) {
     return I18n.format(str);
+  }
+
+  @Override
+  public void setShieldRenderer(NormalShield normalShield) {
+    normalShield.setTileEntityItemStackRenderer(new ShieldRenderer());
   }
 
 }

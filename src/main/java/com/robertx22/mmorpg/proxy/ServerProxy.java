@@ -1,5 +1,6 @@
 package com.robertx22.mmorpg.proxy;
 
+import com.robertx22.items.gearitems.offhands.NormalShield;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import net.minecraft.entity.Entity;
@@ -57,6 +58,11 @@ public class ServerProxy implements IProxy {
 
     EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, theclass.getName()), theclass,
         Ref.MODID + ":" + theclass.getName(), id, Main.instance, 64, 10, true);
+
+  }
+
+  @Override
+  public void setShieldRenderer(NormalShield normalShield) {
 
   }
 }
