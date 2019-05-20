@@ -3,7 +3,6 @@ package com.robertx22.mmorpg.proxy;
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
 import com.robertx22.items.gearitems.RenderMyArrow;
-import com.robertx22.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.mmorpg.Keybinds;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
@@ -20,7 +19,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
-import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -66,7 +64,6 @@ public class ClientProxy implements IProxy {
 
     Keybinds.register();
 
-    TileEntityItemStackRenderer.instance = new ShieldRenderer(TileEntityItemStackRenderer.instance);
 
   }
 

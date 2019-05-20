@@ -11,30 +11,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ShieldRenderer extends TileEntityItemStackRenderer {
-    public final TileEntityItemStackRenderer parent;
 
-    private final ModelShield modelShield = new ModelShield();
+  private final ModelShield modelShield = new ModelShield();
 
-    public ShieldRenderer(TileEntityItemStackRenderer renderer) {
-	parent = renderer;
+  public ShieldRenderer() {
+
+  }
+
+  @Override
+  public void renderByItem(ItemStack stack) {
+    Item item = stack.getItem();
+    if (item instanceof NormalShield) {
+
+      NormalShield shield = (NormalShield) item;
+
+      Minecraft.getMinecraft().getTextureManager().bindTexture(shield.resource);
+      GlStateManager.pushMatrix();
+      GlStateManager.scale(1.0, -1.0, -1.0);
+      modelShield.render();
+      GlStateManager.popMatrix();
 
     }
-
-    @Override
-    public void renderByItem(ItemStack stack) {
-	super.renderByItem(stack);
-	Item item = stack.getItem();
-	if (item instanceof NormalShield) {
-
-	    NormalShield shield = (NormalShield) item;
-
-	    Minecraft.getMinecraft().getTextureManager().bindTexture(shield.resource);
-	    GlStateManager.pushMatrix();
-	    GlStateManager.scale(1.0, -1.0, -1.0);
-	    modelShield.render();
-	    GlStateManager.popMatrix();
-
-	}
-    }
+  }
 
 }
