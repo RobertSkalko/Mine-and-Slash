@@ -13,7 +13,7 @@ import net.minecraft.world.chunk.Chunk;
 public class StructureUtils {
 
     public static BlockPos getTopLiquidBlock(World world, BlockPos pos) {
-	Chunk chunk = world.getChunkFromBlockCoords(pos);
+	Chunk chunk = world.getChunk(pos);
 	BlockPos blockpos;
 	BlockPos blockpos1;
 

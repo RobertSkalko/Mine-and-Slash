@@ -74,7 +74,7 @@ public interface IUnique extends IWeighted, ITiered, IGUID, IGearItem {
 
       item.setRegistryName("uniques/" + uniq.slot().toLowerCase() + "/" + uniq.GUID());
 
-      item.setUnlocalizedName(Ref.MODID + ".unique." + uniq.GUID());// i kinda fked up here
+      item.setTranslationKey(Ref.MODID + ".unique." + uniq.GUID());// i kinda fked up here
 
       // System.out.println(item.getUnlocalizedName());
 

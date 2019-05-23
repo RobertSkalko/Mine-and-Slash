@@ -48,7 +48,7 @@ public class NormalShield extends ItemShield {
   }
 
   public static void registerModel(Item item) {
-    registerModel(item, item.getRegistryName().getResourcePath());
+    registerModel(item, item.getRegistryName().getNamespace());
   }
 
   public static void registerModel(Item item, String modelName) {

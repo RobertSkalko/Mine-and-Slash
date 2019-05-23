@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "1.6.12"
+version = "1.6.13"
 
 group = "com.robertx22.mmorpg" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Mine and Slash"
@@ -25,7 +25,7 @@ minecraft {
     version = "1.12.2-14.23.5.2836"
     runDir = "run"
  
-    mappings = "snapshot_20171003"
+    mappings = "stable_39"
 	
 	//replace "{@version:mod}":version
 }

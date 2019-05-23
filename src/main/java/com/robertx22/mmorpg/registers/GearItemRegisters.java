@@ -98,7 +98,7 @@ public class GearItemRegisters {
 
 	String reg = name + rarity;
 	item.setRegistryName(reg);
-	item.setUnlocalizedName(item.getRegistryName().toString());
+	item.setTranslationKey(item.getRegistryName().toString());
 	map.put(rarity, item);
 	items.add(item);
 

@@ -16,7 +16,7 @@ public class BlockBasic extends Block {
 		this.setHarvestLevel("pickaxe", 2);
 		this.setResistance(15);
 		this.setRegistryName(name);
-		this.setUnlocalizedName(this.getRegistryName().toString());
+		this.setTranslationKey(this.getRegistryName().toString());
 	}
 
 }

@@ -22,7 +22,7 @@ public class StartupMap {
 					  // to your block
 
     public static void preInitCommon(FMLPreInitializationEvent event) {
-	blockMap = new BlockMap().setUnlocalizedName(Ref.MODID + ":map_device");
+	blockMap = new BlockMap().setTranslationKey(Ref.MODID + ":map_device");
 	blockMap.setRegistryName(Ref.MODID + ":map_device");
 	ForgeRegistries.BLOCKS.register(blockMap);
 

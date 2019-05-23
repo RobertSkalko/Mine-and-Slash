@@ -42,7 +42,7 @@ public class OnDisplayDamage {
     public RayTraceResult rayTrace(Entity e, double blockReachDistance, float partialTicks) {
 	Vec3d vec3d = e.getPositionEyes(partialTicks);
 	Vec3d vec3d1 = e.getLook(partialTicks);
-	Vec3d vec3d2 = vec3d.addVector(vec3d1.x * blockReachDistance, vec3d1.y * blockReachDistance,
+	Vec3d vec3d2 = vec3d.add(vec3d1.x * blockReachDistance, vec3d1.y * blockReachDistance,
 		vec3d1.z * blockReachDistance);
 	return mc.world.rayTraceBlocks(vec3d, vec3d2, false, true, true);
     }
@@ -69,7 +69,7 @@ public class OnDisplayDamage {
 	}
 
 	Vec3d lookVector = observer.getLook(partialTicks);
-	Vec3d lookVectorFromEyePosition = observerPositionEyes.addVector(lookVector.x * reachDistance,
+	Vec3d lookVectorFromEyePosition = observerPositionEyes.add(lookVector.x * reachDistance,
 		lookVector.y * reachDistance, lookVector.z * reachDistance);
 	this.pointedEntity = null;
 	Vec3d hitVector = null;

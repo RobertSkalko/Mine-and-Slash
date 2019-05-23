@@ -29,7 +29,7 @@ public final class ImageCacheHelper {
 	private static final MessageDigest digestor;
 
 	static {
-		cacheFolder = new File(Minecraft.getMinecraft().mcDataDir, "/Rabbit/cache");
+		cacheFolder = new File(Minecraft.getMinecraft().gameDir, "/Rabbit/cache");
 		try {
 			digestor = MessageDigest.getInstance("SHA-1");
 		} catch (NoSuchAlgorithmException e) {

@@ -22,7 +22,7 @@ public class StartupSalvage {
 														// to your block
 
 	public static void preInitCommon(FMLPreInitializationEvent event) {
-		block = new BlockInventorySalvage().setUnlocalizedName(Ref.MODID + ":salvage_station");
+		block = new BlockInventorySalvage().setTranslationKey(Ref.MODID + ":salvage_station");
 		block.setRegistryName(Ref.MODID + ":salvage_station");
 		ForgeRegistries.BLOCKS.register(block);
 

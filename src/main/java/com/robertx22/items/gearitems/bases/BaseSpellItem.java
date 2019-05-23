@@ -35,7 +35,7 @@ public abstract class BaseSpellItem extends Item {
 	this.setMaxStackSize(1);
 	this.setMaxDamage(0);
 	this.setRegistryName(GUID().toLowerCase());
-	this.setUnlocalizedName(this.getRegistryName().toString());
+	this.setTranslationKey(this.getRegistryName().toString());
 
     }
 

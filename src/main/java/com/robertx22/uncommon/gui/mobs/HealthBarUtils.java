@@ -50,13 +50,13 @@ public class HealthBarUtils {
 
 		Vec3d positionVector = e.getPositionVector();
 		if (e instanceof EntityPlayer)
-			positionVector = positionVector.addVector(0, e.getEyeHeight(), 0);
+			positionVector = positionVector.add(0, e.getEyeHeight(), 0);
 
 		if (pos != null)
 			distance = pos.hitVec.distanceTo(positionVector);
 
 		Vec3d lookVector = e.getLookVec();
-		Vec3d reachVector = positionVector.addVector(lookVector.x * finalDistance, lookVector.y * finalDistance,
+		Vec3d reachVector = positionVector.add(lookVector.x * finalDistance, lookVector.y * finalDistance,
 				lookVector.z * finalDistance);
 
 		Entity lookedEntity = null;

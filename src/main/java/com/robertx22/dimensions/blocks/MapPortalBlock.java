@@ -37,7 +37,7 @@ public class MapPortalBlock extends BlockEndPortal {
 
 	super(Material.PORTAL);
 	this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
-	this.setUnlocalizedName(Ref.MODID + ":map_portal_block");
+	this.setTranslationKey(Ref.MODID + ":map_portal_block");
 	this.setHardness(100F);
 
     }
@@ -49,7 +49,7 @@ public class MapPortalBlock extends BlockEndPortal {
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
 	try {
 	    if (world.isRemote == false && entity instanceof EntityPlayer) {
 		if (!entity.isRiding() && !entity.isBeingRidden() && entity.isNonBoss()) {
