@@ -296,7 +296,7 @@ public class Renderer {
 		List<String> content = stack.getTooltip(Minecraft.getMinecraft().player, ITooltipFlag.TooltipFlags.ADVANCED);
 		for (int i = 0; i < content.size(); ++i) {
 			if (i == 0) {
-				content.set(i, stack.getRarity().rarityColor + content.get(i));
+				content.set(i, stack.getRarity().color + content.get(i));
 			} else {
 				content.set(i, TextFormatting.GRAY + content.get(i));
 			}

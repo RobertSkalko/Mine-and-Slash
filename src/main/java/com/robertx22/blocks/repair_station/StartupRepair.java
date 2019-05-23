@@ -30,7 +30,7 @@ public class StartupRepair {
 														// to your block
 
 	public static void preInitCommon(FMLPreInitializationEvent event) {
-		blockInventoryAdvanced = new BlockInventoryRepair().setUnlocalizedName(Ref.MODID + ":repair_station");
+		blockInventoryAdvanced = new BlockInventoryRepair().setTranslationKey(Ref.MODID + ":repair_station");
 		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":repair_station");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
 

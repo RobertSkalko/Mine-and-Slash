@@ -13,7 +13,7 @@ public class CreativeTabList {
 	public static final CreativeTabs MyModTab = new CreativeTabs(Ref.MODID + "_main") {
 
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return new ItemStack(ItemSword.Items.get(5));
 		}
 
@@ -22,7 +22,7 @@ public class CreativeTabList {
 	public static final CreativeTabs UniqueItems = new CreativeTabs(Ref.MODID + "_uniques") {
 
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return new ItemStack(ItemSword.Items.get(2));
 		}
 
@@ -31,7 +31,7 @@ public class CreativeTabList {
 	public static final CreativeTabs CurrencyTab = new CreativeTabs(Ref.MODID + "_currency") {
 
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return new ItemStack(ItemChaosOrb.ITEM);
 		}
 
@@ -40,7 +40,7 @@ public class CreativeTabList {
 	public static final CreativeTabs LootboxTab = new CreativeTabs(Ref.MODID + "_lootboxes") {
 
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return new ItemStack(ItemLootBag.ITEM);
 		}
 

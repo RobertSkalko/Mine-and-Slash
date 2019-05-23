@@ -100,7 +100,7 @@ public class ItemLootbox extends BaseItem implements IWeighted {
     this.setMaxStackSize(64);
     this.setMaxDamage(0);
     this.setCreativeTab(CreativeTabList.LootboxTab);
-    this.setUnlocalizedName(GetStringForType(rarity, type, size));
+    this.setTranslationKey(GetStringForType(rarity, type, size));
     this.setRegistryName(GetStringForType(rarity, type, size));
 
     this.size = size;

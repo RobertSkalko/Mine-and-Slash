@@ -546,7 +546,7 @@ public final class WizardryUtilities {
 
 	Vec3d start = new Vec3d(entity.posX, entity.getEntityBoundingBox().minY + entity.getEyeHeight(), entity.posZ);
 	Vec3d look = entity.getLookVec();
-	Vec3d end = start.addVector(look.x * range, look.y * range, look.z * range);
+	Vec3d end = start.add(look.x * range, look.y * range, look.z * range);
 	return world.rayTraceBlocks(start, end, hitLiquids);
     }
 

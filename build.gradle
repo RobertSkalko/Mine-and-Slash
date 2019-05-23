@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "1.6.12"
+version = "1.6.13"
 
 group = "com.robertx22.mmorpg" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Mine and Slash"
@@ -25,7 +25,7 @@ minecraft {
     version = "1.12.2-14.23.5.2836"
     runDir = "run"
  
-    mappings = "snapshot_20171003"
+    mappings = "stable_39"
 	
 	//replace "{@version:mod}":version
 }
@@ -59,7 +59,6 @@ configurations {
 dependencies {
 
 	compile files("libs/Baubles-1.12-1.5.2.jar") // Rings, REQUIRED
-    compile "vazkii.patchouli:Patchouli:1.0-19.98" // Tutorial book, REQUIRED
 	shade 'net.objecthunter:exp4j:0.4.5' // Gui Stuff dependency, REQUIRED
 	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
 	compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.10" // Auto Nbt Saving, REQUIRED

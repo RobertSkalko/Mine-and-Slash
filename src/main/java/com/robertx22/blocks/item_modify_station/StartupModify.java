@@ -30,7 +30,7 @@ public class StartupModify {
 														// to your block
 
 	public static void preInitCommon(FMLPreInitializationEvent event) {
-		blockInventoryAdvanced = new BlockInventoryModify().setUnlocalizedName(Ref.MODID + ":modify_station");
+		blockInventoryAdvanced = new BlockInventoryModify().setTranslationKey(Ref.MODID + ":modify_station");
 		blockInventoryAdvanced.setRegistryName(Ref.MODID + ":modify_station");
 		ForgeRegistries.BLOCKS.register(blockInventoryAdvanced);
 
