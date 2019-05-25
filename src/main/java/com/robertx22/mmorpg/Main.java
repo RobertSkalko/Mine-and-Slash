@@ -51,7 +51,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber
 @Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME,
-    dependencies = "required-after:baubles;required-after:patchouli ")
+    dependencies = "required-after:baubles;required-after:patchouli")
 public class Main {
 
   @SidedProxy(clientSide = "com.robertx22.mmorpg.proxy.ClientProxy",

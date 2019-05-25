@@ -1,7 +1,6 @@
 package com.robertx22.config.non_mine_items;
 
 import java.util.Arrays;
-
 import com.robertx22.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.db_lists.GearTypes;
 import com.robertx22.generation.GearGen;
@@ -15,7 +14,6 @@ import com.robertx22.saveclasses.GearItemData;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
-
 import net.minecraft.item.ItemStack;
 
 public class ConfigItem implements IWeighted {
@@ -52,6 +50,73 @@ public class ConfigItem implements IWeighted {
 
   public String uniqueId = "";
   public boolean uniqueIsRandom = true;
+
+
+  public ConfigItem setUniqueId(IUnique uniq) {
+    this.uniqueId = uniq.GUID();
+    this.uniqueIsRandom = false;
+    return this;
+  }
+
+  public ConfigItem setMaxUniqueTier(int tier) {
+    this.randomUniqueUpToTier = tier;
+    return this;
+  }
+
+  public ConfigItem setAlwaysNormal() {
+    this.normalItemWeight = 1;
+    this.uniqueItemWeight = 0;
+    this.runedItemWeight = 0;
+    return this;
+  }
+
+  public ConfigItem setAlwaysRuned() {
+    this.normalItemWeight = 0;
+    this.uniqueItemWeight = 0;
+    this.runedItemWeight = 1;
+    return this;
+  }
+
+  public ConfigItem setAlwaysUnique() {
+    this.normalItemWeight = 0;
+    this.uniqueItemWeight = 1;
+    this.runedItemWeight = 0;
+    return this;
+  }
+
+  public ConfigItem setGenerationWeights(int normalItemWeight, int runedItemWeight,
+      int uniqueItemWeight) {
+    this.normalItemWeight = normalItemWeight;
+    this.uniqueItemWeight = uniqueItemWeight;
+    this.runedItemWeight = runedItemWeight;
+    return this;
+  }
+
+  public ConfigItem setType(GearItemSlot type) {
+    this.itemType = type.GUID();
+    return this;
+  }
+
+  public ConfigItem setType(String type) {
+    this.itemType = type;
+    return this;
+  }
+
+  public ConfigItem setDropWeight(int weight) {
+    this.dropWeight = weight;
+    return this;
+  }
+
+  public ConfigItem setMinRarity(int rar) {
+    this.minRarity = rar;
+    return this;
+  }
+
+  public ConfigItem setMaxRarity(int rar) {
+    this.maxRarity = rar;
+    return this;
+  }
+
 
   public boolean isValid() throws Exception {
 
