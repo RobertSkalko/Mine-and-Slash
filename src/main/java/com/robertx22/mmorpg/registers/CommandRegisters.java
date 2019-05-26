@@ -2,6 +2,7 @@ package com.robertx22.mmorpg.registers;
 
 import com.robertx22.commands.DeleteDimension;
 import com.robertx22.commands.GiveAwakenRuneWord;
+import com.robertx22.commands.GiveExp;
 import com.robertx22.commands.GiveGear;
 import com.robertx22.commands.GiveMap;
 import com.robertx22.commands.GiveRune;
@@ -20,6 +21,7 @@ public class CommandRegisters {
 	event.registerServerCommand(new PortDimension());
 	event.registerServerCommand(new DeleteDimension());
 	event.registerServerCommand(new SetLevel());
+	event.registerServerCommand(new GiveExp());
 	event.registerServerCommand(new GiveMap());
 	event.registerServerCommand(new GiveUnique());
 	event.registerServerCommand(new GiveRune());
