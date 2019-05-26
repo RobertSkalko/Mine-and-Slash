@@ -5,6 +5,7 @@ import com.robertx22.uncommon.capability.EntityData;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
@@ -17,17 +18,20 @@ public class SetLevel extends CommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-	return "/setlevel (lvl)";
+	return "/setlevel (player) (lvl)";
     }
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-	int lvl = Integer.valueOf(args[0]);
+	
+    	if (args.length < 2) throw new WrongUsageException("/setlevel (player) (lvl)");
+    	
+    	int lvl = parseInt(args[1], 0);
+    	
+    	EntityPlayer player = getPlayer(server, sender, args[0]);
 
-	EntityPlayer player = (EntityPlayer) sender;
-
-	player.getCapability(EntityData.Data, null).setLevel(lvl, player);
+    	player.getCapability(EntityData.Data, null).setLevel(lvl, player);
 
     }
 }
