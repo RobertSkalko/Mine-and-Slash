@@ -1,4 +1,4 @@
-##ORES
+##ORES/矿石
 item.mmorpg:ore0.name=普通矿石
 item.mmorpg:ore1.name=不寻常矿石
 item.mmorpg:ore2.name=稀有矿石
@@ -13,21 +13,20 @@ tile.mmorpg:ore_block3.name=史诗原矿
 tile.mmorpg:ore_block4.name=传说原矿
 tile.mmorpg:ore_block5.name=神话原矿
 
-## CREATIVE TAB
-itemGroup.MineandSlash=挖矿与砍杀
+## CREATIVE TAB/创造栏
 itemGroup.mmorpg_main=挖矿与砍杀
 itemGroup.mmorpg_uniques=挖矿与砍杀|珍品装备
-itemGroup.mmorpg_currency=挖矿与砍杀|强化材料
+itemGroup.mmorpg_currency=挖矿与砍杀|强化宝珠
 itemGroup.mmorpg_lootboxes=挖矿与砍杀|战利品箱
 
-# STATIONS
+# STATIONS/工作站
 tile.mmorpg:modify_station.name=装备强化台
 tile.mmorpg:repair_station.name=装备修理台
 tile.mmorpg:gear_factory_station.name=装备锻造台
 tile.mmorpg:salvage_station.name=装备回收台
 tile.mmorpg:map_device.name=地图装置
 
-# ITEM TOOLTIPS
+# ITEM TOOLTIPS/物品提示信息
 mmorpg.tooltip.ore=珍贵的矿物用途广泛。
 mmorpg.tooltip.player_levelup=如果你的经验条已满，就使用令牌升级吧！
 mmorpg.tooltip.newbie_gear_bag=生成一小堆一级装备
@@ -35,8 +34,9 @@ mmorpg.lore.newbie_gear_bag1=三个熔炉底一行，五个铁锭半圈放。
 mmorpg.lore.newbie_gear_bag2=正中置以小种子，种下我们的希望！
 mmorpg.tooltip.capacitor=放在修理台中以降低修复装备消耗的燃料。
 mmorpg.tooltip.capacitor2=燃料消耗比率
+mmorpg.tooltip.socketable_item=这个宝石可以镶嵌在修饰槽里。
 
-# RARITY ITEM NAMES
+# RARITY ITEM NAMES/稀有度物品名
 item.mmorpg:axe/axe0.name=§7普通斧
 item.mmorpg:axe/axe1.name=§a不寻常斧
 item.mmorpg:axe/axe2.name=§e稀有斧
@@ -122,7 +122,7 @@ item.mmorpg:map/map3.name=§9冒险地图
 item.mmorpg:map/map4.name=§6冒险地图
 item.mmorpg:map/map5.name=§d冒险地图
 
-# MISC ITEMS
+# MISC ITEMS/杂项物品
 item.mmorpg:player_levelup.name=升级令牌
 item.mmorpg:loot_bag.name=装备战利品袋
 item.mmorpg:map_bag.name=地图袋
@@ -130,33 +130,59 @@ item.mmorpg:currency_bag.name=宝石袋
 item.mmorpg:newbie_gear_bag.name=新手装备袋
 item.mmorpg:tutorial_book.name=挖矿与砍杀指引
 item.mmorpg:map_back_portal.name=回程珍珠
+item.mmorpg:level_nearest_entity.name=提升最近实体等级
+item.mmorpg:increase_rarity_nearest_entity.name=提升最近实体稀有度
+item.mmorpg:awaken_runeword.name=§c唤醒符文之语
 
-# SPELL ITEMS
-item.mmorpg:spell_acidbolt.name=§c酸液冲击
+
+# SPELL ITEMS/法术物品
+item.mmorpg:spell_acidbolt.name=§c强酸冲击
 item.mmorpg:spell_firebolt.name=§c烈焰冲击
 item.mmorpg:spell_frostbolt.name=§c冰霜冲击
 item.mmorpg:spell_thunderbolt.name=§c雷霆冲击
 
-item.mmorpg:spell_acidexplosion.name=§c酸液爆发
+item.mmorpg:spell_acid_bomb.name=§c强酸炸弹
+item.mmorpg:spell_fire_bomb.name=§c烈焰炸弹
+item.mmorpg:spell_ice_bomb.name=§c冰霜炸弹
+item.mmorpg:spell_thunder_bomb.name=§c雷霆炸弹
+
+item.mmorpg:spell_acidexplosion.name=§c强酸爆发
 item.mmorpg:spell_frostexplosion.name=§c冰霜爆发
 item.mmorpg:spell_flameexplosion.name=§c烈焰爆发
 item.mmorpg:spell_lightningexplosion.name=§c雷霆爆发
+
+item.mmorpg:spell_frost_nova.name=§c霜冻新星
+item.mmorpg:spell_fire_nova.name=§c烈焰新星
+item.mmorpg:spell_thunder_nova.name=§c雷霆新星
+item.mmorpg:spell_poison_nova.name=§c剧毒新星
+
 item.mmorpg:spell_instantheal.name=§c瞬间治疗
+item.mmorpg:spell_self_regen.name=§c再生
 
-# SPELL TOOLTIPS
+# STATUS EFFECTS/状态效果
+mmorpg.effect.self_regen=生命回复
+mmorpg.effect.mana_regen=法力回复
+mmorpg.effect.energy_regen=能量回复
+mmorpg.effect.aoe_regen=范围回复
+mmorpg.effect.cleanse_poison=剧毒净化
+
+# SPELL TOOLTIPS/法术提示信息
 mmorpg.tooltip.aoe_spell_explosion=释放元素弹体，命中后造成范围伤害。
-mmorpg.tooltip.single_target_spell_bolt=释放元素弹体，对单体造成伤害
+mmorpg.tooltip.single_target_spell_bolt=释放元素弹体，对单体造成伤害。
 mmorpg.tooltip.spell_instant_heal=治疗施法者自身。
+mmorpg.tooltip.aoe_bomb_spell=放置一颗炸弹，爆炸后造成范围伤害。
+mmorpg.tooltip.spell_self_regen=随着时间治愈施法者。
+mmorpg.tooltip.aoe_spell_nova=对你周围的所有单位造成伤害。
 
-# REPAIR CAPACITORS
+# REPAIR CAPACITORS/修复容器
 item.mmorpg:capacitor0.name=普通容器
-item.mmorpg:capacitor1.name=不常见容器
+item.mmorpg:capacitor1.name=不寻常容器
 item.mmorpg:capacitor2.name=稀有容器
 item.mmorpg:capacitor3.name=史诗容器
 item.mmorpg:capacitor4.name=传说容器
 item.mmorpg:capacitor5.name=神话容器
 
-# CURRENCIES
+# CURRENCIES/宝珠
 item.mmorpg:add_secondary_stat.name=§c传说水晶
 item.mmorpg:chaos_orb.name=§c混沌宝珠
 item.mmorpg:item_levelup.name=§c飞升宝珠
@@ -172,13 +198,21 @@ item.mmorpg:reroll_prefix_numbers.name=§c前缀祝福宝珠
 item.mmorpg:reroll_unique_numbers.name=§c珍品祝福宝珠
 item.mmorpg:create_new_unique.name=§c珍品神圣宝石
 
-# SUFFIXES
+item.mmorpg:resource_infusion.name=§c注魔石：资源
+item.mmorpg:defense_infusion.name=§c注魔石：防御
+item.mmorpg:attack_infusion.name=§c注魔石：攻击
+item.mmorpg:wondrous_upgrade_infusion.name=§c精妙注魔强化石
+item.mmorpg:superior_upgrade_infusion.name=§c优异注魔强化石
+item.mmorpg:normal_upgrade_infusion.name=§c普通注魔强化石
+
+
+# SUFFIXES/后缀
 mmorpg.suffix.of_critical_unity=- 暴君
 mmorpg.suffix.of_element_resist=- 元素绝缘 
 mmorpg.suffix.of_firestorms=- 炎浪
 mmorpg.suffix.of_immortality=- 不朽
 mmorpg.suffix.of_icestorms=- 凛风
-mmorpg.suffix.of_critical_hits=- 精准
+mmorpg.suffix.of_critical_hits=- 会心之击
 mmorpg.suffix.of_mana_regen=- 法力再生
 mmorpg.suffix.of_earthquakes=- 地震
 mmorpg.suffix.of_the_sage=- 圣贤
@@ -187,7 +221,7 @@ mmorpg.suffix.of_vitality=- 生机
 mmorpg.suffix.of_rock_skin=- 岩肤
 mmorpg.suffix.of_critical_damage=- 绝斩
 
-# PREFIXES
+# PREFIXES/前缀
 mmorpg.prefix.flame_imbued=炎铸
 mmorpg.prefix.lightning_imbued=雷铸
 mmorpg.prefix.evasive=闪避
@@ -206,18 +240,17 @@ mmorpg.prefix.fire_shield=火焰守护
 mmorpg.prefix.brave_heart=英勇之心
 mmorpg.prefix.heavenly_strikes=神惩
 mmorpg.prefix.frost_imbued=霜铸
-mmorpg.prefix.thunder_shield=雷霆守护
+mmorpg.prefix.thunder_shield=雷佑
 mmorpg.prefix.thirst_of_acid=嗜酸
 mmorpg.prefix.hard_hitting=重击
 mmorpg.prefix.life_stealing=吸血
 mmorpg.prefix.frosty=寒霜
 mmorpg.prefix.thundering=闪电
 mmorpg.prefix.thirst_of_lightning=嗜雷
-mmorpg.prefix.water_shield=水灵守护
+mmorpg.prefix.water_shield=水佑
 mmorpg.prefix.inner_spirit=蕴灵
 
-# WORDS
-
+# WORDS/词汇
 mmorpg.word.percent=百分比
 mmorpg.word.prefix=前缀
 mmorpg.word.suffix=后缀
@@ -263,15 +296,36 @@ mmorpg.word.to= 目标：
 mmorpg.word.damage=点伤害
 mmorpg.word.progress=进度
 mmorpg.word.fuel=燃料
+mmorpg.word.npc=NPC
+mmorpg.word.mob=生物
+mmorpg.word.animal=动物
+mmorpg.word.item=物品
+mmorpg.word.currency=宝石
+mmorpg.word.map=地图
+mmorpg.word.spell=法术
+mmorpg.word.socket=嵌槽
+mmorpg.word.sockets=嵌槽
+mmorpg.word.empty=空
+mmorpg.word.square=方
+mmorpg.word.circle=圆
+mmorpg.word.infusion=注魔
+mmorpg.word.bonus_success_rate=额外属性成功比率
+mmorpg.word.major_success_bonus=大获成功几率
+mmorpg.word.major_failure_chance=严重失败几率
 
-# BIOME WORDS
+
+
+
+
+# BIOME WORDS/群系词汇
 mmorpg.word.arid_highland=贫瘠高原（Arid Highland）
 mmorpg.word.badlands=荒地（Badlands）
 mmorpg.word.cliffs=陡岸（Cliffs）
 mmorpg.word.red_desert=赤色沙漠（Red Desert）
 mmorpg.word.thicket=灌木地（Thicket）
+mmorpg.word.entities=实体
 
-# UNIQUE ITEM NAMES
+# UNIQUE ITEM NAMES/稀世珍品名称
 item.mmorpg.unique.braceletnature0.name=§e荆棘护手
 item.mmorpg.unique.pantswater0.name=§e冰川护腿
 item.mmorpg.unique.axefire0.name=§e燃劈之斧
@@ -324,19 +378,19 @@ item.mmorpg.unique.uniquestafffire0.name=§e火山法杖
 item.mmorpg.unique.chestmana0.name=§e奥术衬衫
 
 # UNIQUE ITEM DESCRIPTIONS 
-mmorpg.unique.tooltip.braceletnature0=只有傻瓜才会为了财富而战。活着才是最重要的。
-mmorpg.unique.tooltip.pantswater0=动我试试？冻死你。
-mmorpg.unique.tooltip.axefire0=用这把斧子砍树也许不是个好主意。
-mmorpg.unique.tooltip.ringwaterfire0=我将实现这完美的平衡。
+mmorpg.unique.tooltip.braceletnature0=只有傻瓜才会为财富而战。活着才是最重要的。
+mmorpg.unique.tooltip.pantswater0=我自岿然不动。
+mmorpg.unique.tooltip.axefire0=我融合元素之力的努力不会白费。
+mmorpg.unique.tooltip.ringwaterfire0=我将实现这完美的掌控。
 mmorpg.unique.tooltip.braceletthunder0=无与伦比的力量！
 mmorpg.unique.tooltip.charmfire0=浴火而生！
 mmorpg.unique.tooltip.uniquestaffthunder0=掌控雷电，即是掌控了力量，或是毁灭！
-mmorpg.unique.tooltip.chestnature0=大自然庇佑着我。
-mmorpg.unique.tooltip.braceletwater0=用冰霜的力量，烧死你们！
+mmorpg.unique.tooltip.chestnature0=不要想撼动我。
+mmorpg.unique.tooltip.braceletwater0=用冰霜的力量，焚烧一切！
 mmorpg.unique.tooltip.pantsnature0=拥抱我的根吧。
 mmorpg.unique.tooltip.charmwater0=没人能阻挡我的道路。
 mmorpg.unique.tooltip.bootsnature0=我的根，无坚不摧！
-mmorpg.unique.tooltip.helmetthunder0=我不是避雷针！再说一次，我不是！
+mmorpg.unique.tooltip.helmetthunder0=我看到周围尽是火花。
 mmorpg.unique.tooltip.hammerthunder0=曾经有很多人想要拿起它。
 mmorpg.unique.tooltip.swordnature0=永远，持续，下去。
 mmorpg.unique.tooltip.ringenergy0=不惜一切，永不停歇！
@@ -344,20 +398,20 @@ mmorpg.unique.tooltip.uniquestafflifesteal0=所有的鲜血，终将归于我！
 mmorpg.unique.tooltip.uniquestaffwater0=冰冻三尺，非一日之寒。
 mmorpg.unique.tooltip.pantsthunder0=搞不好能跑的像闪电一样快呢！呃，我猜的。
 mmorpg.unique.tooltip.chestthunder0=那些敢追逐闪电的人，最后都怎么样了？
-mmorpg.unique.tooltip.chestdodge0=来啊~打我啊~
-mmorpg.unique.tooltip.hammerphysical0=大山，也挡不住我。
+mmorpg.unique.tooltip.chestdodge0=来啊~打不到我吧~
+mmorpg.unique.tooltip.hammerphysical0=即使是巨峰，也挡不住我。
 mmorpg.unique.tooltip.ringcrit0=精准打击，一击毙命。
 mmorpg.unique.tooltip.bootsfire0=我所踏足之地，火焰在酝酿。
 mmorpg.unique.tooltip.axethunder0=电石火花之间，敌人首级落地。
 mmorpg.unique.tooltip.swordphysical0=最强大的对手从来不畏痛苦。
-mmorpg.unique.tooltip.braceletfire0=烫！烫！烫！……
+mmorpg.unique.tooltip.braceletfire0=火焰即是你的武器，焚烧他们！
 mmorpg.unique.tooltip.necklacewater0=冰晶般剔透，冰晶般坚韧。
 mmorpg.unique.tooltip.bootswater0=足下生冰，如履坚冰。
 mmorpg.unique.tooltip.helmetfire0=我看见了烈焰环绕着我。
 mmorpg.unique.tooltip.bootsthunder0=所到之处，火花四溅。
 mmorpg.unique.tooltip.chestfire0=那些没能打败我的事物，都让我更加熠熠生辉。
 mmorpg.unique.tooltip.charmnature0=也许我的生命是有限的，但我永远在闪耀。
-mmorpg.unique.tooltip.chestwater0=我即是臻冰堡垒！
+mmorpg.unique.tooltip.chestwater0=我即是臻冰堡垒。
 mmorpg.unique.tooltip.charmthunder0=只有经得起打磨，才能变得光彩夺目。
 mmorpg.unique.tooltip.swordwater0=力量本身并不可怕，可怕的是……这把剑。
 mmorpg.unique.tooltip.helmetwater0=我仿佛看到了凡人看不到的事物。
@@ -365,10 +419,10 @@ mmorpg.unique.tooltip.helmetmana0=涌向我吧。
 mmorpg.unique.tooltip.braceletthundernature0=大地之雷？我管他叫地雷。
 mmorpg.unique.tooltip.uniquestaffnature0=粉碎吧！粉碎吧！！
 mmorpg.unique.tooltip.necklacefire0=我将注视着敌人的身躯倒在这熊熊烈火中。
-mmorpg.unique.tooltip.necklaceenergy0=两仪生四象，四象生八卦，八卦生绯闻。
+mmorpg.unique.tooltip.necklaceenergy0=两仪生四象，四象生八卦，八卦生……什么呢？
 mmorpg.unique.tooltip.necklacenature0=我只在大自然中寻求力量。
 mmorpg.unique.tooltip.pantsfire0=拥抱无尽的烈焰吧！
-mmorpg.unique.tooltip.ringdodge0=死亡如风，常伴吾身。嗯……
+mmorpg.unique.tooltip.ringdodge0=死亡如风，常伴吾身。
 mmorpg.unique.tooltip.necklacethunder0=掌控雷电，掌控能量。
 mmorpg.unique.tooltip.helmetnature0=自然也会帮助我。
 mmorpg.unique.tooltip.axewaterfire0=所以这两种东西到底是怎么混在一起的？
@@ -376,7 +430,7 @@ mmorpg.unique.tooltip.uniquestafffire0=我将焚烧这个世界。
 mmorpg.unique.tooltip.chestmana0=法力生生不息，生生不息，不息，息……
 
 
-# STAT NAMES
+# STAT NAMES/属性名称
 mmorpg.stat.unknown_stat=未知属性
 
 mmorpg.stat.physical_damage=物理伤害
@@ -471,7 +525,7 @@ mmorpg.stat.water_spell_to_attack=水系法术伤害化攻
 mmorpg.stat.fire_spell_to_attack=火系法术伤害化攻
 mmorpg.stat.nature_spell_to_attack=自然系法术伤害化攻
 
-# stat conversions
+# stat conversions/属性加赐
 mmorpg.stat.fire_water_conversion=加赐-火至水
 mmorpg.stat.fire_thunder_conversion=加赐-火至雷
 mmorpg.stat.fire_nature_conversion=加赐-火至自然
@@ -488,7 +542,7 @@ mmorpg.stat.nature_water_conversion=加赐-自然至水
 mmorpg.stat.nature_thunder_conversion=加赐-自然至雷
 mmorpg.stat.nature_fire_conversion=加赐-自然至火
 
-# stat transfers
+# stat transfers/属性转化
 mmorpg.stat.fire_water_transfer=转化-火至水
 mmorpg.stat.fire_thunder_transfer=转化-火至雷
 mmorpg.stat.fire_nature_transfer=转化-火至自然
@@ -505,10 +559,20 @@ mmorpg.stat.nature_water_transfer=转化-自然至水
 mmorpg.stat.nature_thunder_transfer=转化-自然至雷
 mmorpg.stat.nature_fire_transfer=转化-自然至火
 
-# ITEM TOOLTIPS
+mmorpg.stat.ghost_projectile=幽灵弹射物
+mmorpg.stat.homing_projectile=寻踪弹射物
+mmorpg.stat.shining_light=耀眼光芒
+mmorpg.stat.zephyr_speed=西风之速
+mmorpg.stat.purity=净化
+mmorpg.stat.buff_energy_regen=能量回复增益
+mmorpg.stat.buff_mana_regen=法力回复增益
 
-# CURRENCY ITEM LORE
-mmorpg.lore.add_prefix=潜力无限。
+mmorpg.stat.block_strength=方块之力
+
+# ITEM TOOLTIPS/物品提示信息
+
+# CURRENCY ITEM LORE/强化材料物品信息
+mmorpg.lore.add_prefix=解锁你的潜能。
 mmorpg.lore.create_new_unique=不喜欢这个？换一个试试！
 mmorpg.lore.add_secondary_stat=能力永远不嫌多，不是吗？
 mmorpg.lore.add_suffix=翱翔天际。
@@ -523,7 +587,14 @@ mmorpg.lore.reroll_prefix_numbers=给我变！！
 mmorpg.lore.reroll_suffix_numbers=给我变！！
 mmorpg.lore.reroll_unique_numbers=万物皆可变。
 
-# CURRENCY ITEM TOOLTIPS
+mmorpg.lore.attack_infusion=运气本虚无缥缈，但又冥冥之中影响一切。
+mmorpg.lore.defense_infusion=运气本虚无缥缈，但又冥冥之中影响一切。
+mmorpg.lore.resource_infusion=运气本虚无缥缈，但又冥冥之中影响一切。
+mmorpg.lore.normal_upgrade_infusion=运气本虚无缥缈，但又冥冥之中影响一切。
+mmorpg.lore.superior_upgrade_infusion=你开始感受到运气的重要所在。
+mmorpg.lore.wondrous_upgrade_infusion=用你的双手牢牢握住幸运。
+
+# CURRENCY ITEM TOOLTIPS/强化材料物品提示信息
 mmorpg.tooltip.add_prefix=增加一个前缀
 mmorpg.tooltip.create_new_unique=转化一个珍品装备（同级）
 mmorpg.tooltip.add_secondary_stat=增加一个次要属性
@@ -539,8 +610,15 @@ mmorpg.tooltip.reroll_prefix_numbers=随机刷新前缀属性的数值
 mmorpg.tooltip.reroll_suffix_numbers=随机刷新后缀属性的数值
 mmorpg.tooltip.reroll_unique_numbers=随机刷新珍品属性的数值
 
+mmorpg.tooltip.attack_infusion=为一件物品注入攻击属性
+mmorpg.tooltip.defense_infusion=为一件物品注入防御属性
+mmorpg.tooltip.resource_infusion=为一件物品注入资源属性
+mmorpg.tooltip.normal_upgrade_infusion=用于尝试强化注魔属性
+mmorpg.tooltip.superior_upgrade_infusion=用于尝试强化注魔属性
+mmorpg.tooltip.wondrous_upgrade_infusion=用于尝试强化注魔属性
 
-# CHAT MESSAGESs
+
+# CHAT MESSAGESs/聊天栏信息
 mmorpg.chat.levelup_success=你升级了！
 mmorpg.chat.low_weapon_durability=武器耐久度过低！
 mmorpg.chat.teleport_canceled=传送已取消。传送引导期间请勿移动。
@@ -561,8 +639,19 @@ mmorpg.chat.player_died_mapworld=玩家死于地图世界:
 mmorpg.chat.activating_mapworld_time_penalty=地图时间惩罚已激活
 mmorpg.chat.too_high_level=你的一件装备等级过高，它不会为你增加任何属性。
 mmorpg.chat.minutes=分钟
+mmorpg.chat.you_leveledup_entity=你成功的提升了一个实体的等级！
+mmorpg.chat.you_increased_rarity_entity=成功提升了一个实体的稀有度！
+mmorpg.chat.no_targets_found=无法找到目标。
+mmorpg.chat.not_enough_experience=没有足够经验
+mmorpg.chat.cannot_over_maximum_level=不能高于最大等级！
+mmorpg.chat.has_died_by_the_hands_of=死于
+mmorpg.chat.flying_building_spawned=一个神秘的飞行建筑在某个玩家附近产生了?
+mmorpg.chat.infusion_sucess=注魔成功！
+mmorpg.chat.infusion_major_sucess=注魔大获成功！！
+mmorpg.chat.infusion_fail=注魔失败。
+mmorpg.chat.infusion_major_fail=注魔惨败。
 
-# GEAR TYPES
+# GEAR TYPES/装备种类
 mmorpg.gear_type.sword=剑
 mmorpg.gear_type.axe=斧
 mmorpg.gear_type.bow=弓
@@ -576,8 +665,9 @@ mmorpg.gear_type.ring=指环
 mmorpg.gear_type.charm=符咒
 mmorpg.gear_type.bracelet=护腕
 mmorpg.gear_type.necklace=项链
+mmorpg.gear_type.shield=盾牌
 
-# RARITIES
+# RARITIES/稀有度
 mmorpg.rarity.common=普通
 mmorpg.rarity.uncommon=不寻常
 mmorpg.rarity.rare=稀有
@@ -586,26 +676,43 @@ mmorpg.rarity.legendary=传说
 mmorpg.rarity.mythical=神话
 mmorpg.rarity.unique=珍品
 
-# MAPS
+
+# MAPS/地图
 mmorpg.name.map=冒险地图
 mmorpg.tooltip.put_in_mapdevice=置入地图装置来使用。
 
-# CONFIG
-
-# CONFIG
+# CONFIG/配置
 mmorpg.config.client=客户端
 mmorpg.config.server=服务端
 mmorpg.config.droprates=掉落率
 mmorpg.config.title=挖矿与砍杀
+mmorpg.config.lenghty_gear_tooltips=装备文本框长度
+mmorpg.config.non_mod_heal_multi=非本Mod治疗增幅
+mmorpg.config.other_entity=其他实体
+mmorpg.config.maps_start_drop=地图开始掉落等级
+mmorpg.config.unarmed_energy_cost=无武器能量消耗
+mmorpg.config.currency_start_drop=宝石开始掉落等级
 
-# CONFIG DROPRATES
+
+mmorpg.config.rarity_weights=稀有度权重
+mmorpg.config.map_id_start=地图ID始于
+mmorpg.config.map_id_reserved=地图ID保留
+mmorpg.config.map_dimensions_config=地图维度配置
+
+# CONFIG ENTITIES/实体配置
+
+mmorpg.config.loot_multi=战利品增幅
+mmorpg.config.exp_multi=经验值增幅
+
+# CONFIG DROPRATES/掉率配置
 mmorpg.config.currency_droprate=宝石掉落率
 mmorpg.config.spell_droprate=法术掉落率
 mmorpg.config.map_droprate=地图掉落率
 mmorpg.config.unique_droprate=珍品装备掉落率
 mmorpg.config.gear_droprate=装备掉落率
+mmorpg.config.compatible_items_droprate=兼容物品掉落率
 
-# CONFIG CLIENT
+# CONFIG CLIENT/客户端配置
 mmorpg.config.item_on_ground_particles=物品形式的稀有度粒子
 mmorpg.config.chat_combat_log=显示聊天栏战斗文本
 mmorpg.config.floating_damage_numbers=显示浮动伤害文本
@@ -614,7 +721,7 @@ mmorpg.config.low_resource_warnings=显示资源过低（法力，能量）警�
 mmorpg.config.floating_exp=显示浮动经验文本
 mmorpg.config.player_gui_overlay_type=玩家GUI显示类型
 
-# CONFIG SERVER
+# CONFIG SERVER/服务端配置
 mmorpg.config.mob_lvl_per_distance=生物随距离等级
 mmorpg.config.mob_lvl_one_area=一级生物区域
 mmorpg.config.player_level_cap=玩家等级上限
@@ -623,6 +730,200 @@ mmorpg.config.exp_multiplier=经验倍率
 mmorpg.config.levelup_cost_token=升级消耗令牌
 mmorpg.config.max_players_in_map=地图世界玩家最大数目
 mmorpg.config.entities_under_system=受系统影响实体
+mmorpg.config.non_mod_damage_multiplier=非本Mod伤害增幅
+mmorpg.config.maximum_mob_level=最大生物等级
+mmorpg.config.minimum_mob_level=最小生物等级
+mmorpg.config.dimension_id=维度ID
+mmorpg.config.items_under_system=受系统影响物品
+mmorpg.config.crafted_items_are_under_system=合成物品受系统影响
 
 mmorpg.tooltip.press_shift_more_info=按Shift查看更多信息
 mmorpg.tooltip.affix_rarity_lootbonus=附属效果稀有战利品奖励
+
+# Auto Salvage Bags
+item.mmorpg:auto_salvage_bag0.name=§7自动回收袋
+item.mmorpg:auto_salvage_bag1.name=§a自动回收袋
+item.mmorpg:auto_salvage_bag2.name=§e自动回收袋
+item.mmorpg:auto_salvage_bag3.name=§9自动回收袋
+item.mmorpg:auto_salvage_bag4.name=§6自动回收袋
+item.mmorpg:auto_salvage_bag5.name=§d自动回收袋
+
+# RUNES
+tem.mmorpg:runes/mos0.name=§7MOS - 普通符文
+item.mmorpg:runes/mos1.name=§aMOS - 不寻常符文 
+item.mmorpg:runes/mos2.name=§eMOS - 稀有符文 
+item.mmorpg:runes/mos3.name=§9MOS - 史诗符文 
+item.mmorpg:runes/mos4.name=§6MOS - 传说符文 
+item.mmorpg:runes/mos5.name=§dMOS - 神话符文 
+item.mmorpg:runes/goh0.name=§7GOH - 普通符文
+item.mmorpg:runes/goh1.name=§aGOH - 不寻常符文 
+item.mmorpg:runes/goh2.name=§eGOH - 稀有符文 
+item.mmorpg:runes/goh3.name=§9GOH - 史诗符文 
+item.mmorpg:runes/goh4.name=§6GOH - 传说符文 
+item.mmorpg:runes/goh5.name=§dGOH - 神话符文 
+item.mmorpg:runes/ano0.name=§7ANO - 普通符文
+item.mmorpg:runes/ano1.name=§aANO - 不寻常符文 
+item.mmorpg:runes/ano2.name=§eANO - 稀有符文 
+item.mmorpg:runes/ano3.name=§9ANO - 史诗符文 
+item.mmorpg:runes/ano4.name=§6ANO - 传说符文 
+item.mmorpg:runes/ano5.name=§dANO - 神话符文 
+item.mmorpg:runes/ita0.name=§7ITA - 普通符文
+item.mmorpg:runes/ita1.name=§aITA - 不寻常符文 
+item.mmorpg:runes/ita2.name=§eITA - 稀有符文 
+item.mmorpg:runes/ita3.name=§9ITA - 史诗符文 
+item.mmorpg:runes/ita4.name=§6ITA - 传说符文 
+item.mmorpg:runes/ita5.name=§dITA - 神话符文 
+item.mmorpg:runes/rah0.name=§7RAH - 普通符文
+item.mmorpg:runes/rah1.name=§aRAH - 不寻常符文 
+item.mmorpg:runes/rah2.name=§eRAH - 稀有符文 
+item.mmorpg:runes/rah3.name=§9RAH - 史诗符文 
+item.mmorpg:runes/rah4.name=§6RAH - 传说符文 
+item.mmorpg:runes/rah5.name=§dRAH - 神话符文 
+item.mmorpg:runes/dos0.name=§7DOS - 普通符文
+item.mmorpg:runes/dos1.name=§aDOS - 不寻常符文 
+item.mmorpg:runes/dos2.name=§eDOS - 稀有符文 
+item.mmorpg:runes/dos3.name=§9DOS - 史诗符文 
+item.mmorpg:runes/dos4.name=§6DOS - 传说符文 
+item.mmorpg:runes/dos5.name=§dDOS - 神话符文 
+item.mmorpg:runes/cen0.name=§7CEN - 普通符文
+item.mmorpg:runes/cen1.name=§aCEN - 不寻常符文 
+item.mmorpg:runes/cen2.name=§eCEN - 稀有符文 
+item.mmorpg:runes/cen3.name=§9CEN - 史诗符文 
+item.mmorpg:runes/cen4.name=§6CEN - 传说符文 
+item.mmorpg:runes/cen5.name=§dCEN - 神话符文 
+item.mmorpg:runes/ber0.name=§7BER - 普通符文
+item.mmorpg:runes/ber1.name=§aBER - 不寻常符文 
+item.mmorpg:runes/ber2.name=§eBER - 稀有符文 
+item.mmorpg:runes/ber3.name=§9BER - 史诗符文 
+item.mmorpg:runes/ber4.name=§6BER - 传说符文 
+item.mmorpg:runes/ber5.name=§dBER - 神话符文 
+item.mmorpg:runes/voh0.name=§7VOH - 普通符文
+item.mmorpg:runes/voh1.name=§aVOH - 不寻常符文 
+item.mmorpg:runes/voh2.name=§eVOH - 稀有符文 
+item.mmorpg:runes/voh3.name=§9VOH - 史诗符文 
+item.mmorpg:runes/voh4.name=§6VOH - 传说符文 
+item.mmorpg:runes/voh5.name=§dVOH - 神话符文 
+item.mmorpg:runes/xah0.name=§7XAH - 普通符文
+item.mmorpg:runes/xah1.name=§aXAH - 不寻常符文 
+item.mmorpg:runes/xah2.name=§eXAH - 稀有符文 
+item.mmorpg:runes/xah3.name=§9XAH - 史诗符文 
+item.mmorpg:runes/xah4.name=§6XAH - 传说符文 
+item.mmorpg:runes/xah5.name=§dXAH - 神话符文 
+
+# SPELL LOOTBOXES
+item.Big_Spell_lootbox_0.name=§7普通大型法术战利品箱
+item.Big_Spell_lootbox_1.name=§a不寻常大型法术战利品箱
+item.Big_Spell_lootbox_2.name=§e稀有大型法术战利品箱
+item.Big_Spell_lootbox_3.name=§9史诗大型法术战利品箱
+item.Big_Spell_lootbox_4.name=§6传说大型法术战利品箱
+item.Big_Spell_lootbox_5.name=§d神话大型法术战利品箱
+item.Medium_Spell_lootbox_0.name=§7普通中型法术战利品箱
+item.Medium_Spell_lootbox_1.name=§a不寻常中型法术战利品箱
+item.Medium_Spell_lootbox_2.name=§e稀有中型法术战利品箱
+item.Medium_Spell_lootbox_3.name=§9史诗中型法术战利品箱
+item.Medium_Spell_lootbox_4.name=§6传说中型法术战利品箱
+item.Medium_Spell_lootbox_5.name=§d神话中型法术战利品箱
+item.Small_Spell_lootbox_0.name=§7普通小型法术战利品箱
+item.Small_Spell_lootbox_1.name=§a不寻常小型法术战利品箱
+item.Small_Spell_lootbox_2.name=§e稀有小型法术战利品箱
+item.Small_Spell_lootbox_3.name=§9史诗小型法术战利品箱
+item.Small_Spell_lootbox_4.name=§6传说小型法术战利品箱
+item.Small_Spell_lootbox_5.name=§d神话小型法术战利品箱
+
+# CURRENCY LOOTBOXES
+item.Big_Currency_lootbox_0.name=§7普通大型强化物战利品箱
+item.Big_Currency_lootbox_1.name=§a不寻常大型强化物战利品箱
+item.Big_Currency_lootbox_2.name=§e稀有大型强化物战利品箱
+item.Big_Currency_lootbox_3.name=§9史诗大型强化物战利品箱
+item.Big_Currency_lootbox_4.name=§6传说大型强化物战利品箱
+item.Big_Currency_lootbox_5.name=§d神话大型强化物战利品箱
+item.Medium_Currency_lootbox_0.name=§7普通中型强化物战利品箱
+item.Medium_Currency_lootbox_1.name=§a不寻常中型强化物战利品箱
+item.Medium_Currency_lootbox_2.name=§e稀有中型强化物战利品箱
+item.Medium_Currency_lootbox_3.name=§9史诗中型强化物战利品箱
+item.Medium_Currency_lootbox_4.name=§6传说中型强化物战利品箱
+item.Medium_Currency_lootbox_5.name=§d神话中型强化物战利品箱
+item.Small_Currency_lootbox_0.name=§7普通小型强化物战利品箱
+item.Small_Currency_lootbox_1.name=§a不寻常小型强化物战利品箱
+item.Small_Currency_lootbox_2.name=§e稀有小型强化物战利品箱
+item.Small_Currency_lootbox_3.name=§9史诗小型强化物战利品箱
+item.Small_Currency_lootbox_4.name=§6传说小型强化物战利品箱
+item.Small_Currency_lootbox_5.name=§d神话小型强化物战利品箱
+
+# GEAR LOOTBOXES
+item.Big_Gear_lootbox_0.name=§7普通大型装备战利品箱
+item.Big_Gear_lootbox_1.name=§a不寻常大型装备战利品箱
+item.Big_Gear_lootbox_2.name=§e稀有大型装备战利品箱
+item.Big_Gear_lootbox_3.name=§9史诗大型装备战利品箱
+item.Big_Gear_lootbox_4.name=§6传说大型装备战利品箱
+item.Big_Gear_lootbox_5.name=§d神话大型装备战利品箱
+item.Medium_Gear_lootbox_0.name=§7普通中型装备战利品箱
+item.Medium_Gear_lootbox_1.name=§a不寻常中型装备战利品箱
+item.Medium_Gear_lootbox_2.name=§e稀有中型装备战利品箱
+item.Medium_Gear_lootbox_3.name=§9史诗中型装备战利品箱
+item.Medium_Gear_lootbox_4.name=§6传说中型装备战利品箱
+item.Medium_Gear_lootbox_5.name=§d神话中型装备战利品箱
+item.Small_Gear_lootbox_0.name=§7普通小型装备战利品箱
+item.Small_Gear_lootbox_1.name=§a不寻常小型装备战利品箱
+item.Small_Gear_lootbox_2.name=§e稀有小型装备战利品箱
+item.Small_Gear_lootbox_3.name=§9史诗小型装备战利品箱
+item.Small_Gear_lootbox_4.name=§6传说小型装备战利品箱
+item.Small_Gear_lootbox_5.name=§d神话小型装备战利品箱
+
+# RUNEWORDS/符文之语
+mmorpg.word.scales=衡量
+mmorpg.word.stone=岩石
+mmorpg.word.radiance=焕发
+mmorpg.word.thief=盗贼
+mmorpg.word.magician=术师
+mmorpg.word.zephyr=西风
+mmorpg.word.ghost=幽灵
+mmorpg.word.follower=信徒
+mmorpg.word.light=圣光
+mmorpg.word.mountain=山脉
+mmorpg.word.zeal=热忱
+mmorpg.word.magma=熔岩
+mmorpg.word.bloom=繁盛
+mmorpg.word.purity=净化
+mmorpg.word.infinity=无尽
+mmorpg.word.profound_sea=深远之海
+mmorpg.word.limitless=无界
+# RUNEWORDS/符文之语
+
+# TRAIT Tooltips/特性提示信息
+
+mmorpg.tooltip.homing=你的单体目标法术会追踪目标。
+mmorpg.tooltip.shining_light=你的自我治疗法术现在会提供范围回复。
+mmorpg.tooltip.zephyr_speed=你的自我治疗法术现在会提供短暂的移动速度加成。
+mmorpg.tooltip.ghost_projectile=你的单体目标法术的弹射物会穿透敌人。
+mmorpg.tooltip.purity=你的自我治疗法术现在会移除你身上的负面效果。
+mmorpg.tooltip.buff_energy_regen=用炸弹法术杀死目标可以让你的能量回复。
+mmorpg.tooltip.buff_mana_regen=用炸弹法术杀死目标可以让你的法力回复。
+
+
+# rune tooltip/符文提示信息
+
+mmorpg.tooltip.stats_on_weapon=武器属性
+mmorpg.tooltip.stats_on_armor=盔甲属性
+mmorpg.tooltip.stats_on_jewerly=宝珠属性
+
+mmorpg.tooltip.place_in_modify=把物品放入物品强化台
+mmorpg.tooltip.unlocks_runeword_combo=解锁符文之语组合
+
+mmorpg.word.runeword=符文之语
+
+mmorpg.tooltip.auto_salvage_items=自动回收物品
+mmorpg.word.gears=装备
+mmorpg.word.spells=法术
+mmorpg.word.maps=地图
+mmorpg.word.runes=符文
+mmorpg.word.none=无
+mmorpg.tooltip.bonus_salvage_chance=额外回收几率加成
+mmorpg.tooltip.works_when_in_baubles_slot=装备以生效
+
+mmorpg.tooltip.sal_info=按Shift了解装配信息
+mmorpg.tooltip.sal1=让你的副手持有一个
+mmorpg.tooltip.sal2=你希望的最高稀有度的物品，
+mmorpg.tooltip.sal3=然后拿着这个袋子右击。
+mmorpg.tooltip.sal4=若想要不回收任何物品，副手栏为空时
+mmorpg.tooltip.sal5=通过右击袋子来清除选项。
