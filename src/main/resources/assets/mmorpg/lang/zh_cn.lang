@@ -16,7 +16,7 @@ tile.mmorpg:ore_block5.name=神话原矿
 ## CREATIVE TAB/创造栏
 itemGroup.mmorpg_main=挖矿与砍杀
 itemGroup.mmorpg_uniques=挖矿与砍杀|珍品装备
-itemGroup.mmorpg_currency=挖矿与砍杀|强化宝珠
+itemGroup.mmorpg_currency=挖矿与砍杀|强化物品
 itemGroup.mmorpg_lootboxes=挖矿与砍杀|战利品箱
 
 # STATIONS/工作站
