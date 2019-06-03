@@ -437,6 +437,7 @@ mmorpg.stat.physical_damage=Physical Damage
 mmorpg.stat.armor_penetration=Armor Penetration
 mmorpg.stat.critical_damage=Critical Damage
 mmorpg.stat.critical_hit=Critical Hit
+mmorpg.stat.bonusexpflat=Bonus Experience
 
 mmorpg.stat.sword_damage=Sword Damage
 mmorpg.stat.axe_damage=Axe Damage

@@ -83,6 +83,7 @@ import com.robertx22.database.stat_mods.flat.elemental.transfers.ThunderToWaterT
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToFireTransferFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToNatureTransferFlat;
 import com.robertx22.database.stat_mods.flat.elemental.transfers.WaterToThunderTransferFlat;
+import com.robertx22.database.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.database.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyFlat;
 import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
@@ -192,271 +193,274 @@ import com.robertx22.database.stats.StatMod;
 
 public class StatMods {
 
-    public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
-	{
-	    {
-		// spell buffs
+	public static HashMap<String, StatMod> All = new HashMap<String, StatMod>() {
+		{
+			{
 
-		put(new HomingFlat().GUID(), new HomingFlat());
-		put(new GhostProjectileFlat().GUID(), new GhostProjectileFlat());
-		put(new ZephyrFlat().GUID(), new ZephyrFlat());
-		put(new LightFlat().GUID(), new LightFlat());
-		put(new PurityFlat().GUID(), new PurityFlat());
-		put(new EnergyRegenBuffFlat().GUID(), new EnergyRegenBuffFlat());
-		put(new ManaRegenBuffFlat().GUID(), new ManaRegenBuffFlat());
+				put(new BonusExpFlat().GUID(), new BonusExpFlat());
 
-		// spell buffs
+				// spell buffs
 
-		put(new ManaMulti().GUID(), new ManaMulti());
-		put(new LessManaMulti().GUID(), new LessManaMulti());
-		put(new LessHealthRegenMulti().GUID(), new LessHealthRegenMulti());
+				put(new HomingFlat().GUID(), new HomingFlat());
+				put(new GhostProjectileFlat().GUID(), new GhostProjectileFlat());
+				put(new ZephyrFlat().GUID(), new ZephyrFlat());
+				put(new LightFlat().GUID(), new LightFlat());
+				put(new PurityFlat().GUID(), new PurityFlat());
+				put(new EnergyRegenBuffFlat().GUID(), new EnergyRegenBuffFlat());
+				put(new ManaRegenBuffFlat().GUID(), new ManaRegenBuffFlat());
 
-		put(new PhysicalDamageMulti().GUID(), new PhysicalDamageMulti());
-		put(new LessPhysicalDamageMulti().GUID(), new LessPhysicalDamageMulti());
+				// spell buffs
 
-		put(new SpellWaterDamageMulti().GUID(), new SpellWaterDamageMulti());
-		put(new SpellFireDamageMulti().GUID(), new SpellFireDamageMulti());
-		put(new SpellThunderDamageMulti().GUID(), new SpellThunderDamageMulti());
-		put(new SpellNatureDamageMulti().GUID(), new SpellNatureDamageMulti());
+				put(new ManaMulti().GUID(), new ManaMulti());
+				put(new LessManaMulti().GUID(), new LessManaMulti());
+				put(new LessHealthRegenMulti().GUID(), new LessHealthRegenMulti());
 
-		put(new AllWaterDamageMulti().GUID(), new AllWaterDamageMulti());
-		put(new AllFireDamageMulti().GUID(), new AllFireDamageMulti());
-		put(new AllThunderDamageMulti().GUID(), new AllThunderDamageMulti());
-		put(new AllNatureDamageMulti().GUID(), new AllNatureDamageMulti());
+				put(new PhysicalDamageMulti().GUID(), new PhysicalDamageMulti());
+				put(new LessPhysicalDamageMulti().GUID(), new LessPhysicalDamageMulti());
 
-		put(new LessArmorMulti().GUID(), new LessArmorMulti());
-		put(new HealthMulti().GUID(), new HealthMulti());
-		put(new DodgeMulti().GUID(), new DodgeMulti());
-		put(new CriticalHitMulti().GUID(), new CriticalHitMulti());
-		put(new ArmorMulti().GUID(), new ArmorMulti());
+				put(new SpellWaterDamageMulti().GUID(), new SpellWaterDamageMulti());
+				put(new SpellFireDamageMulti().GUID(), new SpellFireDamageMulti());
+				put(new SpellThunderDamageMulti().GUID(), new SpellThunderDamageMulti());
+				put(new SpellNatureDamageMulti().GUID(), new SpellNatureDamageMulti());
 
-		//
+				put(new AllWaterDamageMulti().GUID(), new AllWaterDamageMulti());
+				put(new AllFireDamageMulti().GUID(), new AllFireDamageMulti());
+				put(new AllThunderDamageMulti().GUID(), new AllThunderDamageMulti());
+				put(new AllNatureDamageMulti().GUID(), new AllNatureDamageMulti());
 
-		put(new EnergyToManaConvFlat().GUID(), new EnergyToManaConvFlat());
-		put(new ManaToEnergyConvFlat().GUID(), new ManaToEnergyConvFlat());
+				put(new LessArmorMulti().GUID(), new LessArmorMulti());
+				put(new HealthMulti().GUID(), new HealthMulti());
+				put(new DodgeMulti().GUID(), new DodgeMulti());
+				put(new CriticalHitMulti().GUID(), new CriticalHitMulti());
+				put(new ArmorMulti().GUID(), new ArmorMulti());
 
-		// lord Flats
-		put(new LordOfVolcanoesFlat().GUID(), new LordOfVolcanoesFlat());
-		put(new LordOfBlizzardsFlat().GUID(), new LordOfBlizzardsFlat());
-		put(new LordOfThunderstormsFlat().GUID(), new LordOfThunderstormsFlat());
-		put(new LordOfEarthquakesFlat().GUID(), new LordOfEarthquakesFlat());
+				//
 
-		// weapon damages
+				put(new EnergyToManaConvFlat().GUID(), new EnergyToManaConvFlat());
+				put(new ManaToEnergyConvFlat().GUID(), new ManaToEnergyConvFlat());
 
-		put(new HammerDamageFlat().GUID(), new HammerDamageFlat());
-		put(new SwordDamageFlat().GUID(), new SwordDamageFlat());
-		put(new BowDamageFlat().GUID(), new BowDamageFlat());
-		put(new AxeDamageFlat().GUID(), new AxeDamageFlat());
-		put(new StaffDamageFlat().GUID(), new StaffDamageFlat());
+				// lord Flats
+				put(new LordOfVolcanoesFlat().GUID(), new LordOfVolcanoesFlat());
+				put(new LordOfBlizzardsFlat().GUID(), new LordOfBlizzardsFlat());
+				put(new LordOfThunderstormsFlat().GUID(), new LordOfThunderstormsFlat());
+				put(new LordOfEarthquakesFlat().GUID(), new LordOfEarthquakesFlat());
 
-		put(new LessHammerDamageMap().GUID(), new LessHammerDamageMap());
-		put(new LessSwordDamageMap().GUID(), new LessSwordDamageMap());
-		put(new LessBowDamageMap().GUID(), new LessBowDamageMap());
-		put(new LessAxeDamageMap().GUID(), new LessAxeDamageMap());
-		put(new LessStaffDamageMap().GUID(), new LessStaffDamageMap());
+				// weapon damages
 
-		// less stats
+				put(new HammerDamageFlat().GUID(), new HammerDamageFlat());
+				put(new SwordDamageFlat().GUID(), new SwordDamageFlat());
+				put(new BowDamageFlat().GUID(), new BowDamageFlat());
+				put(new AxeDamageFlat().GUID(), new AxeDamageFlat());
+				put(new StaffDamageFlat().GUID(), new StaffDamageFlat());
 
-		put(new LessHealthRegenFlat().GUID(), new LessHealthRegenFlat());
-		put(new LessCriticalDamagePercent().GUID(), new LessCriticalDamagePercent());
-		put(new LessCriticalHitPercent().GUID(), new LessCriticalHitPercent());
-		put(new LessDodgePercent().GUID(), new LessDodgePercent());
-		put(new LessHealthRegenPercent().GUID(), new LessHealthRegenPercent());
-		put(new LessManaRegenPercent().GUID(), new LessManaRegenPercent());
-		put(new LessManaOnHitPercent().GUID(), new LessManaOnHitPercent());
-		put(new LessLifestealPercent().GUID(), new LessLifestealPercent());
-		put(new LessLifeOnHitPercent().GUID(), new LessLifeOnHitPercent());
-		// less stats
+				put(new LessHammerDamageMap().GUID(), new LessHammerDamageMap());
+				put(new LessSwordDamageMap().GUID(), new LessSwordDamageMap());
+				put(new LessBowDamageMap().GUID(), new LessBowDamageMap());
+				put(new LessAxeDamageMap().GUID(), new LessAxeDamageMap());
+				put(new LessStaffDamageMap().GUID(), new LessStaffDamageMap());
 
-		// cripple stats (much less)
-		put(new CrippleCriticalDamagePercent().GUID(), new CrippleCriticalDamagePercent());
-		put(new CrippleCriticalHitPercent().GUID(), new CrippleCriticalHitPercent());
-		put(new CrippleDodgePercent().GUID(), new CrippleDodgePercent());
-		put(new CrippleHealthRegenPercent().GUID(), new CrippleHealthRegenPercent());
-		put(new CrippleManaRegenPercent().GUID(), new CrippleManaRegenPercent());
-		put(new CrippleManaOnHitPercent().GUID(), new CrippleManaOnHitPercent());
-		put(new CrippleLifestealPercent().GUID(), new CrippleLifestealPercent());
-		put(new CrippleLifeOnHitPercent().GUID(), new CrippleLifeOnHitPercent());
-		// cripple
+				// less stats
 
-		put(new MajorCriticalHitPercent().GUID(), new MajorCriticalHitPercent());
-		put(new MajorCriticalDamagePercent().GUID(), new MajorCriticalDamagePercent());
+				put(new LessHealthRegenFlat().GUID(), new LessHealthRegenFlat());
+				put(new LessCriticalDamagePercent().GUID(), new LessCriticalDamagePercent());
+				put(new LessCriticalHitPercent().GUID(), new LessCriticalHitPercent());
+				put(new LessDodgePercent().GUID(), new LessDodgePercent());
+				put(new LessHealthRegenPercent().GUID(), new LessHealthRegenPercent());
+				put(new LessManaRegenPercent().GUID(), new LessManaRegenPercent());
+				put(new LessManaOnHitPercent().GUID(), new LessManaOnHitPercent());
+				put(new LessLifestealPercent().GUID(), new LessLifestealPercent());
+				put(new LessLifeOnHitPercent().GUID(), new LessLifeOnHitPercent());
+				// less stats
 
-		put(new MajorDodgeFlat().GUID(), new MajorDodgeFlat());
-		put(new MajorArmorFlat().GUID(), new MajorArmorFlat());
-		put(new ArmorFlat().GUID(), new ArmorFlat());
-		put(new ArmorPeneFlat().GUID(), new ArmorPeneFlat());
-		put(new CriticalHitFlat().GUID(), new CriticalHitFlat());
-		put(new CriticalDamageFlat().GUID(), new CriticalDamageFlat());
-		put(new PhysicalDamageFlat().GUID(), new PhysicalDamageFlat());
-		put(new CriticalHitPercent().GUID(), new CriticalHitPercent());
-		put(new PhysicalDamagePercent().GUID(), new PhysicalDamagePercent());
-		put(new CriticalDamagePercent().GUID(), new CriticalDamagePercent());
-		put(new ArmorPenePercent().GUID(), new ArmorPenePercent());
-		put(new DodgePercent().GUID(), new DodgePercent());
-		put(new BlockStrengthFlat().GUID(), new BlockStrengthFlat());
+				// cripple stats (much less)
+				put(new CrippleCriticalDamagePercent().GUID(), new CrippleCriticalDamagePercent());
+				put(new CrippleCriticalHitPercent().GUID(), new CrippleCriticalHitPercent());
+				put(new CrippleDodgePercent().GUID(), new CrippleDodgePercent());
+				put(new CrippleHealthRegenPercent().GUID(), new CrippleHealthRegenPercent());
+				put(new CrippleManaRegenPercent().GUID(), new CrippleManaRegenPercent());
+				put(new CrippleManaOnHitPercent().GUID(), new CrippleManaOnHitPercent());
+				put(new CrippleLifestealPercent().GUID(), new CrippleLifestealPercent());
+				put(new CrippleLifeOnHitPercent().GUID(), new CrippleLifeOnHitPercent());
+				// cripple
 
-		// Resources
-		put(new MajorManaRegenFlat().GUID(), new MajorManaRegenFlat());
-		put(new HealthFlat().GUID(), new HealthFlat());
-		put(new HealthPercent().GUID(), new HealthPercent());
-		put(new HealthRegenPercent().GUID(), new HealthRegenPercent());
-		put(new HealthRegenFlat().GUID(), new HealthRegenFlat());
-		put(new ManaRegenFlat().GUID(), new ManaRegenFlat());
-		put(new EnergyRegenFlat().GUID(), new EnergyRegenFlat());
-		put(new EnergyRegenPercent().GUID(), new EnergyRegenPercent());
-		put(new ManaRegenPercent().GUID(), new ManaRegenPercent());
-		put(new EnergyFlat().GUID(), new EnergyFlat());
+				put(new MajorCriticalHitPercent().GUID(), new MajorCriticalHitPercent());
+				put(new MajorCriticalDamagePercent().GUID(), new MajorCriticalDamagePercent());
 
-		put(new LifestealFlat().GUID(), new LifestealFlat());
-		put(new LifestealPercent().GUID(), new LifestealPercent());
-		put(new LifeOnHitFlat().GUID(), new LifeOnHitFlat());
-		put(new LifeOnHitPercent().GUID(), new LifeOnHitPercent());
-		put(new ManaFlat().GUID(), new ManaFlat());
-		put(new ManaOnHitFlat().GUID(), new ManaOnHitFlat());
-		// Resources
+				put(new MajorDodgeFlat().GUID(), new MajorDodgeFlat());
+				put(new MajorArmorFlat().GUID(), new MajorArmorFlat());
+				put(new ArmorFlat().GUID(), new ArmorFlat());
+				put(new ArmorPeneFlat().GUID(), new ArmorPeneFlat());
+				put(new CriticalHitFlat().GUID(), new CriticalHitFlat());
+				put(new CriticalDamageFlat().GUID(), new CriticalDamageFlat());
+				put(new PhysicalDamageFlat().GUID(), new PhysicalDamageFlat());
+				put(new CriticalHitPercent().GUID(), new CriticalHitPercent());
+				put(new PhysicalDamagePercent().GUID(), new PhysicalDamagePercent());
+				put(new CriticalDamagePercent().GUID(), new CriticalDamagePercent());
+				put(new ArmorPenePercent().GUID(), new ArmorPenePercent());
+				put(new DodgePercent().GUID(), new DodgePercent());
+				put(new BlockStrengthFlat().GUID(), new BlockStrengthFlat());
 
-		// Elements
-		put(new SpellFireDamageFlat().GUID(), new SpellFireDamageFlat());
-		put(new SpellWaterDamageFlat().GUID(), new SpellWaterDamageFlat());
-		put(new SpellThunderDamageFlat().GUID(), new SpellThunderDamageFlat());
-		put(new SpellNatureDamageFlat().GUID(), new SpellNatureDamageFlat());
+				// Resources
+				put(new MajorManaRegenFlat().GUID(), new MajorManaRegenFlat());
+				put(new HealthFlat().GUID(), new HealthFlat());
+				put(new HealthPercent().GUID(), new HealthPercent());
+				put(new HealthRegenPercent().GUID(), new HealthRegenPercent());
+				put(new HealthRegenFlat().GUID(), new HealthRegenFlat());
+				put(new ManaRegenFlat().GUID(), new ManaRegenFlat());
+				put(new EnergyRegenFlat().GUID(), new EnergyRegenFlat());
+				put(new EnergyRegenPercent().GUID(), new EnergyRegenPercent());
+				put(new ManaRegenPercent().GUID(), new ManaRegenPercent());
+				put(new EnergyFlat().GUID(), new EnergyFlat());
 
-		put(new AttackFireDamageFlat().GUID(), new AttackFireDamageFlat());
-		put(new AttackWaterDamageFlat().GUID(), new AttackWaterDamageFlat());
-		put(new AttackThunderDamageFlat().GUID(), new AttackThunderDamageFlat());
-		put(new AttackNatureDamageFlat().GUID(), new AttackNatureDamageFlat());
+				put(new LifestealFlat().GUID(), new LifestealFlat());
+				put(new LifestealPercent().GUID(), new LifestealPercent());
+				put(new LifeOnHitFlat().GUID(), new LifeOnHitFlat());
+				put(new LifeOnHitPercent().GUID(), new LifeOnHitPercent());
+				put(new ManaFlat().GUID(), new ManaFlat());
+				put(new ManaOnHitFlat().GUID(), new ManaOnHitFlat());
+				// Resources
 
-		put(new FireResistFlat().GUID(), new FireResistFlat());
-		put(new WaterResistFlat().GUID(), new WaterResistFlat());
-		put(new ThunderResistFlat().GUID(), new ThunderResistFlat());
-		put(new NatureResistFlat().GUID(), new NatureResistFlat());
+				// Elements
+				put(new SpellFireDamageFlat().GUID(), new SpellFireDamageFlat());
+				put(new SpellWaterDamageFlat().GUID(), new SpellWaterDamageFlat());
+				put(new SpellThunderDamageFlat().GUID(), new SpellThunderDamageFlat());
+				put(new SpellNatureDamageFlat().GUID(), new SpellNatureDamageFlat());
 
-		put(new FirePeneFlat().GUID(), new FirePeneFlat());
-		put(new WaterPeneFlat().GUID(), new WaterPeneFlat());
-		put(new ThunderPeneFlat().GUID(), new ThunderPeneFlat());
-		put(new NaturePeneFlat().GUID(), new NaturePeneFlat());
+				put(new AttackFireDamageFlat().GUID(), new AttackFireDamageFlat());
+				put(new AttackWaterDamageFlat().GUID(), new AttackWaterDamageFlat());
+				put(new AttackThunderDamageFlat().GUID(), new AttackThunderDamageFlat());
+				put(new AttackNatureDamageFlat().GUID(), new AttackNatureDamageFlat());
 
-		put(new FirePenePercent().GUID(), new FirePenePercent());
-		put(new WaterPenePercent().GUID(), new WaterPenePercent());
-		put(new ThunderPenePercent().GUID(), new ThunderPenePercent());
-		put(new NaturePenePercent().GUID(), new NaturePenePercent());
+				put(new FireResistFlat().GUID(), new FireResistFlat());
+				put(new WaterResistFlat().GUID(), new WaterResistFlat());
+				put(new ThunderResistFlat().GUID(), new ThunderResistFlat());
+				put(new NatureResistFlat().GUID(), new NatureResistFlat());
 
-		put(new SpellFireDamagePercent().GUID(), new SpellFireDamagePercent());
-		put(new SpellWaterDamagePercent().GUID(), new SpellWaterDamagePercent());
-		put(new SpellThunderDamagePercent().GUID(), new SpellThunderDamagePercent());
-		put(new SpellNatureDamagePercent().GUID(), new SpellNatureDamagePercent()); // Elements
+				put(new FirePeneFlat().GUID(), new FirePeneFlat());
+				put(new WaterPeneFlat().GUID(), new WaterPeneFlat());
+				put(new ThunderPeneFlat().GUID(), new ThunderPeneFlat());
+				put(new NaturePeneFlat().GUID(), new NaturePeneFlat());
 
-		put(new ArmorPercent().GUID(), new ArmorPercent());
-		put(new DodgeFlat().GUID(), new DodgeFlat());
+				put(new FirePenePercent().GUID(), new FirePenePercent());
+				put(new WaterPenePercent().GUID(), new WaterPenePercent());
+				put(new ThunderPenePercent().GUID(), new ThunderPenePercent());
+				put(new NaturePenePercent().GUID(), new NaturePenePercent());
 
-		// bonus dmg
-		put(new WaterSpellToAttackFlat().GUID(), new WaterSpellToAttackFlat());
-		put(new FireSpellToAttackFlat().GUID(), new FireSpellToAttackFlat());
-		put(new ThunderSpellToAttackFlat().GUID(), new ThunderSpellToAttackFlat());
-		put(new NatureSpellToAttackFlat().GUID(), new NatureSpellToAttackFlat());
-		// bonus dmg
+				put(new SpellFireDamagePercent().GUID(), new SpellFireDamagePercent());
+				put(new SpellWaterDamagePercent().GUID(), new SpellWaterDamagePercent());
+				put(new SpellThunderDamagePercent().GUID(), new SpellThunderDamagePercent());
+				put(new SpellNatureDamagePercent().GUID(), new SpellNatureDamagePercent()); // Elements
 
-		// Traits
-		put(new GolemFlat().GUID(), new GolemFlat());
-		put(new ElementalFlat().GUID(), new ElementalFlat());
-		put(new ClumsyScholarFlat().GUID(), new ClumsyScholarFlat());
-		put(new DiseasedFlat().GUID(), new DiseasedFlat());
-		put(new CrippledFlat().GUID(), new CrippledFlat());
-		put(new BarbarianFlat().GUID(), new BarbarianFlat());
-		put(new EarthAtronachFlat().GUID(), new EarthAtronachFlat());
-		put(new FireAtronachFlat().GUID(), new FireAtronachFlat());
-		put(new FrostAtronachFlat().GUID(), new FrostAtronachFlat());
-		put(new ThunderAtronachFlat().GUID(), new ThunderAtronachFlat());
-		put(new LuckyFlat().GUID(), new LuckyFlat());
-		put(new ArmoredFlat().GUID(), new ArmoredFlat());
+				put(new ArmorPercent().GUID(), new ArmorPercent());
+				put(new DodgeFlat().GUID(), new DodgeFlat());
 
-		// conditional traits
+				// bonus dmg
+				put(new WaterSpellToAttackFlat().GUID(), new WaterSpellToAttackFlat());
+				put(new FireSpellToAttackFlat().GUID(), new FireSpellToAttackFlat());
+				put(new ThunderSpellToAttackFlat().GUID(), new ThunderSpellToAttackFlat());
+				put(new NatureSpellToAttackFlat().GUID(), new NatureSpellToAttackFlat());
+				// bonus dmg
 
-		put(new LowDodgeAddArmorFlat().GUID(), new LowDodgeAddArmorFlat());
-		put(new LowDodgeAddCritHitFlat().GUID(), new LowDodgeAddCritHitFlat());
-		put(new LowCritAddDodgeFlat().GUID(), new LowCritAddDodgeFlat());
-		put(new LowCritAddHealthFlat().GUID(), new LowCritAddHealthFlat());
+				// Traits
+				put(new GolemFlat().GUID(), new GolemFlat());
+				put(new ElementalFlat().GUID(), new ElementalFlat());
+				put(new ClumsyScholarFlat().GUID(), new ClumsyScholarFlat());
+				put(new DiseasedFlat().GUID(), new DiseasedFlat());
+				put(new CrippledFlat().GUID(), new CrippledFlat());
+				put(new BarbarianFlat().GUID(), new BarbarianFlat());
+				put(new EarthAtronachFlat().GUID(), new EarthAtronachFlat());
+				put(new FireAtronachFlat().GUID(), new FireAtronachFlat());
+				put(new FrostAtronachFlat().GUID(), new FrostAtronachFlat());
+				put(new ThunderAtronachFlat().GUID(), new ThunderAtronachFlat());
+				put(new LuckyFlat().GUID(), new LuckyFlat());
+				put(new ArmoredFlat().GUID(), new ArmoredFlat());
 
-		put(new HighCritAddArmorFlat().GUID(), new HighCritAddArmorFlat());
-		put(new HighCritAddLifestealFlat().GUID(), new HighCritAddLifestealFlat());
-		put(new HighDodgeAddCritDamageFlat().GUID(), new HighDodgeAddCritDamageFlat());
-		put(new HighDodgeAddPhysDamageFlat().GUID(), new HighDodgeAddPhysDamageFlat());
+				// conditional traits
 
-		// Traits
+				put(new LowDodgeAddArmorFlat().GUID(), new LowDodgeAddArmorFlat());
+				put(new LowDodgeAddCritHitFlat().GUID(), new LowDodgeAddCritHitFlat());
+				put(new LowCritAddDodgeFlat().GUID(), new LowCritAddDodgeFlat());
+				put(new LowCritAddHealthFlat().GUID(), new LowCritAddHealthFlat());
 
-		// Map mods
+				put(new HighCritAddArmorFlat().GUID(), new HighCritAddArmorFlat());
+				put(new HighCritAddLifestealFlat().GUID(), new HighCritAddLifestealFlat());
+				put(new HighDodgeAddCritDamageFlat().GUID(), new HighDodgeAddCritDamageFlat());
+				put(new HighDodgeAddPhysDamageFlat().GUID(), new HighDodgeAddPhysDamageFlat());
 
-		put(new BonusHealthMap().GUID(), new BonusHealthMap());
-		put(new BonusLifestealMap().GUID(), new BonusLifestealMap());
+				// Traits
 
-		put(new LessCriticalHitMap().GUID(), new LessCriticalHitMap());
-		put(new LessDodgeMap().GUID(), new LessDodgeMap());
+				// Map mods
 
-		put(new BonusFireDamageMap().GUID(), new BonusFireDamageMap());
-		put(new BonusNatureDamageMap().GUID(), new BonusNatureDamageMap());
-		put(new BonusThunderDamageMap().GUID(), new BonusThunderDamageMap());
-		put(new BonusWaterDamageMap().GUID(), new BonusWaterDamageMap());
+				put(new BonusHealthMap().GUID(), new BonusHealthMap());
+				put(new BonusLifestealMap().GUID(), new BonusLifestealMap());
 
-		put(new BonusFireResistMap().GUID(), new BonusFireResistMap());
-		put(new BonusNatureResistMap().GUID(), new BonusNatureResistMap());
-		put(new BonusThunderResistMap().GUID(), new BonusThunderResistMap());
-		put(new BonusWaterResistMap().GUID(), new BonusWaterResistMap());
+				put(new LessCriticalHitMap().GUID(), new LessCriticalHitMap());
+				put(new LessDodgeMap().GUID(), new LessDodgeMap());
 
-		put(new LessAllFireDamageMap().GUID(), new LessAllFireDamageMap());
-		put(new LessAllNatureDamageMap().GUID(), new LessAllNatureDamageMap());
-		put(new LessAllThunderDamageMap().GUID(), new LessAllThunderDamageMap());
-		put(new LessAllWaterDamageMap().GUID(), new LessAllWaterDamageMap());
+				put(new BonusFireDamageMap().GUID(), new BonusFireDamageMap());
+				put(new BonusNatureDamageMap().GUID(), new BonusNatureDamageMap());
+				put(new BonusThunderDamageMap().GUID(), new BonusThunderDamageMap());
+				put(new BonusWaterDamageMap().GUID(), new BonusWaterDamageMap());
 
-		put(new LessEnergyRegenMap().GUID(), new LessEnergyRegenMap());
-		put(new LessManaRegenMap().GUID(), new LessManaRegenMap());
-		put(new LessHealthRegenMap().GUID(), new LessHealthRegenMap());
-		put(new LessLifeOnHitMap().GUID(), new LessLifeOnHitMap());
-		put(new LessLifestealMap().GUID(), new LessLifestealMap());
-		put(new LessHealthMap().GUID(), new LessHealthMap());
-		put(new LessManaOnHitMap().GUID(), new LessManaOnHitMap());
-		// Map mods
+				put(new BonusFireResistMap().GUID(), new BonusFireResistMap());
+				put(new BonusNatureResistMap().GUID(), new BonusNatureResistMap());
+				put(new BonusThunderResistMap().GUID(), new BonusThunderResistMap());
+				put(new BonusWaterResistMap().GUID(), new BonusWaterResistMap());
 
-		// elemental conversions
+				put(new LessAllFireDamageMap().GUID(), new LessAllFireDamageMap());
+				put(new LessAllNatureDamageMap().GUID(), new LessAllNatureDamageMap());
+				put(new LessAllThunderDamageMap().GUID(), new LessAllThunderDamageMap());
+				put(new LessAllWaterDamageMap().GUID(), new LessAllWaterDamageMap());
 
-		put(new WaterToThunderConvFlat().GUID(), new WaterToThunderConvFlat());
-		put(new WaterToNatureConvFlat().GUID(), new WaterToNatureConvFlat());
-		put(new WaterToFireConvFlat().GUID(), new WaterToFireConvFlat());
+				put(new LessEnergyRegenMap().GUID(), new LessEnergyRegenMap());
+				put(new LessManaRegenMap().GUID(), new LessManaRegenMap());
+				put(new LessHealthRegenMap().GUID(), new LessHealthRegenMap());
+				put(new LessLifeOnHitMap().GUID(), new LessLifeOnHitMap());
+				put(new LessLifestealMap().GUID(), new LessLifestealMap());
+				put(new LessHealthMap().GUID(), new LessHealthMap());
+				put(new LessManaOnHitMap().GUID(), new LessManaOnHitMap());
+				// Map mods
 
-		put(new FireToThunderConvFlat().GUID(), new FireToThunderConvFlat());
-		put(new FireToNatureConvFlat().GUID(), new FireToNatureConvFlat());
-		put(new FireToWaterConvFlat().GUID(), new FireToWaterConvFlat());
+				// elemental conversions
 
-		put(new ThunderToWaterConvFlat().GUID(), new ThunderToWaterConvFlat());
-		put(new ThunderToNatureConvFlat().GUID(), new ThunderToNatureConvFlat());
-		put(new ThunderToFireConvFlat().GUID(), new ThunderToFireConvFlat());
+				put(new WaterToThunderConvFlat().GUID(), new WaterToThunderConvFlat());
+				put(new WaterToNatureConvFlat().GUID(), new WaterToNatureConvFlat());
+				put(new WaterToFireConvFlat().GUID(), new WaterToFireConvFlat());
 
-		put(new NatureToThunderConvFlat().GUID(), new NatureToThunderConvFlat());
-		put(new NatureToWaterConvFlat().GUID(), new NatureToWaterConvFlat());
-		put(new NatureToFireConvFlat().GUID(), new NatureToFireConvFlat());
+				put(new FireToThunderConvFlat().GUID(), new FireToThunderConvFlat());
+				put(new FireToNatureConvFlat().GUID(), new FireToNatureConvFlat());
+				put(new FireToWaterConvFlat().GUID(), new FireToWaterConvFlat());
 
-		// elemental Transfers
+				put(new ThunderToWaterConvFlat().GUID(), new ThunderToWaterConvFlat());
+				put(new ThunderToNatureConvFlat().GUID(), new ThunderToNatureConvFlat());
+				put(new ThunderToFireConvFlat().GUID(), new ThunderToFireConvFlat());
 
-		put(new WaterToThunderTransferFlat().GUID(), new WaterToThunderTransferFlat());
-		put(new WaterToNatureTransferFlat().GUID(), new WaterToNatureTransferFlat());
-		put(new WaterToFireTransferFlat().GUID(), new WaterToFireTransferFlat());
+				put(new NatureToThunderConvFlat().GUID(), new NatureToThunderConvFlat());
+				put(new NatureToWaterConvFlat().GUID(), new NatureToWaterConvFlat());
+				put(new NatureToFireConvFlat().GUID(), new NatureToFireConvFlat());
 
-		put(new FireToThunderTransferFlat().GUID(), new FireToThunderTransferFlat());
-		put(new FireToNatureTransferFlat().GUID(), new FireToNatureTransferFlat());
-		put(new FireToWaterTransferFlat().GUID(), new FireToWaterTransferFlat());
+				// elemental Transfers
 
-		put(new ThunderToWaterTransferFlat().GUID(), new ThunderToWaterTransferFlat());
-		put(new ThunderToNatureTransferFlat().GUID(), new ThunderToNatureTransferFlat());
-		put(new ThunderToFireTransferFlat().GUID(), new ThunderToFireTransferFlat());
+				put(new WaterToThunderTransferFlat().GUID(), new WaterToThunderTransferFlat());
+				put(new WaterToNatureTransferFlat().GUID(), new WaterToNatureTransferFlat());
+				put(new WaterToFireTransferFlat().GUID(), new WaterToFireTransferFlat());
 
-		put(new NatureToThunderTransferFlat().GUID(), new NatureToThunderTransferFlat());
-		put(new NatureToWaterTransferFlat().GUID(), new NatureToWaterTransferFlat());
-		put(new NatureToFireTransferFlat().GUID(), new NatureToFireTransferFlat());
+				put(new FireToThunderTransferFlat().GUID(), new FireToThunderTransferFlat());
+				put(new FireToNatureTransferFlat().GUID(), new FireToNatureTransferFlat());
+				put(new FireToWaterTransferFlat().GUID(), new FireToWaterTransferFlat());
 
-		//
+				put(new ThunderToWaterTransferFlat().GUID(), new ThunderToWaterTransferFlat());
+				put(new ThunderToNatureTransferFlat().GUID(), new ThunderToNatureTransferFlat());
+				put(new ThunderToFireTransferFlat().GUID(), new ThunderToFireTransferFlat());
 
-	    }
-	}
-    };
+				put(new NatureToThunderTransferFlat().GUID(), new NatureToThunderTransferFlat());
+				put(new NatureToWaterTransferFlat().GUID(), new NatureToWaterTransferFlat());
+				put(new NatureToFireTransferFlat().GUID(), new NatureToFireTransferFlat());
+
+				//
+
+			}
+		}
+	};
 
 }
