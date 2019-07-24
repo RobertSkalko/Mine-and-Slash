@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[10,)"
+issueTrackerURL="https://github.com/RobertSkalko/Mine-and-Slash/issues"
+logoFile="logo.png"
+[[mods]]
+modId="mmorpg"
+version="2.1.1"
+displayName="Mine and Slash"
+displayURL="https://minecraft.curseforge.com/proajects/mine-and-slash-reloaded"
+authors="robertx22(main author), matpac(artist)"
+description='''
+Turn Minecraft Into a hack and slash looter!
+'''
+[[dependencies.mmorpg]]
+    modId="forge"
+    mandatory=true
+    versionRange="[10,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.mmorpg]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+	side="BOTH"
+[[dependencies.mmorpg]]
+    modId="curios" 
+    mandatory=true 
+    versionRange="[0,)" 
+    ordering="NONE"
+    side="BOTH"
+	

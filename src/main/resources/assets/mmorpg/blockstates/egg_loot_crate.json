@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "mmorpg:block/egg_loot_crate" }
+    }
+}

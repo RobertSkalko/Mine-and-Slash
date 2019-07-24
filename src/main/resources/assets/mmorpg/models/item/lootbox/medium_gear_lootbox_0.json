@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/gear_loot_boxes/0"
+        "layer0": "mmorpg:items/lootboxes/gear"
     }
 }

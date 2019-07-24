@@ -1,0 +1,14 @@
+{
+    "parent":"mmorpg:item/uniques/shield/shield_basic_base",
+    "textures": {
+        "layer0":"mmorpg:items/paidassets/pixeltiers/shields/shield_wisdom0"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "mmorpg:item/uniques/shield/shield_wisdom0_blocking"
+        }
+    ]
+}

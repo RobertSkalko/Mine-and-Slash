@@ -1,0 +1,36 @@
+{
+  "parent": "mmorpg:mine_and_slash/player_level_20",
+  "display": {
+    "icon": {
+      "item": "mmorpg:hammer/hammer2"
+    },
+    "title": {
+      "extra": [
+        {
+          "text": ": 50"
+        }
+      ],
+      "translate": "mmorpg.word.level"
+    },
+    "description": {
+      "translate": "mmorpg.advancement.desc.levelup"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "player_level_50": {
+      "trigger": "mmorpg:player_level",
+      "conditions": {
+        "level": 50
+      }
+    }
+  },
+  "requirements": [
+    [
+      "player_level_50"
+    ]
+  ]
+}

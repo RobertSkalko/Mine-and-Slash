@@ -1,0 +1,6 @@
+{
+    "parent": "mmorpg:tome",
+    "textures": {
+        "layer0": "mmorpg:items/spells/extra_lightning_dmg"
+    }
+}

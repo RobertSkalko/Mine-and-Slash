@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AEA",
+    "ASA",
+    "AAA"
+  ],
+  "key": {  
+	"S": {
+      "item": "mmorpg:hearthstone/3"
+    },	
+	"E": {
+      "item": "minecraft:ender_pearl"
+    },	
+    "A": 
+      {
+        "item": "mmorpg:ore4"        
+      }
+  },
+  "result": {
+    "item": "mmorpg:hearthstone/4"
+  }
+}

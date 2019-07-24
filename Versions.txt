@@ -1,0 +1,46 @@
+2.2.7
+compatible items now use my new registry system too.
+added warning on using weapon in offhand
+2.2.6
+added warning on no space for map device portals
+added first adv map advancement
+bows no longer work melee
+reworked unique item registry, it was not using my new registry system properly, also added more error checking to my registry
+reduced spell dmg randomness a bit
+2.2.5
+initial update to forge 1.14.4, probably unstable. Doesn't work on 1.14.3!
+reduced mob spell resist
+added level penalty advacement
+more code reworks, this time item types and their data.
+please check if auto salvage bags work right along with salvage stations and item modification
+added super rare suffix
+2.2.4 
+added more mob configs, please test if they work! (stuff like min lvl, min rarity, lvl modifier etc. hp multi.)
+fixed runewords
+fixed runes
+2.2.3
+reworked my registry system so it uses my registry classes instead of plain old hashmaps. This should reduce crashes as now instead of returning null, it returns empty or default classes in case no key is in the registry
+unstable because this needs to be tested a bit to make sure everything works, but should increase stability in the long run.
+2.2.2
+renamed my code packages to include both my curseforge name and my mod name
+added a super rare ring unique
+should fix /restorelevel not working
+fix crash on unknown stat. now it shouldn't crash anymore, but just give a warning, and only once 
+2.2.0
+fix capacitors being extracted
+added 4 new spells. bonus dmg on weapon hits! For all those who don't like the spell system much and prefer to use weapons.
+unique items should now be enchantable
+weapons should now be able to get weapon enchants
+nerfed hp per lvl a bit (needs config delete/adjust)
+swords are now faster (i think?)
+fixed rune tooltips wrong numbers
+made rare maps less rare
+trying to fix atk speed to be more fluid
+improved projectile targeting a bit
+added item for clearing runes and runewords from an item
+most spells have their cast speed increased
+tweaked some code to be cleaner, could cause weird bugs
+created a level backup system. there's a command /restorelevel that any1 can use. it restores the highest level gotten by that player
+added an item that adds group affix to map
+made nova hit more consistently i hope
+added 2 high lvl sets

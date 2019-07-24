@@ -1,0 +1,6 @@
+{
+    "parent":"mmorpg:item/uniques/shield/shield_basic_base_blocking",
+    "textures": {
+        "layer0":"mmorpg:items/paidassets/pixeltiers/shields/nature_ele_shield0"
+    }
+}

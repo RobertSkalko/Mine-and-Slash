@@ -1,0 +1,7 @@
+{
+    "parent": "mmorpg:block/attunement_altar_base",
+    "textures": {
+        "particle": "mmorpg:blocks/base_block_particles",
+        "body": "mmorpg:blocks/map_bottom"      
+    }
+}

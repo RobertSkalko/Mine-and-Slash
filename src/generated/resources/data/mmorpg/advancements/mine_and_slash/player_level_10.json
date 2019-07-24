@@ -1,0 +1,36 @@
+{
+  "parent": "mmorpg:mine_and_slash/root",
+  "display": {
+    "icon": {
+      "item": "mmorpg:hammer/hammer0"
+    },
+    "title": {
+      "extra": [
+        {
+          "text": ": 10"
+        }
+      ],
+      "translate": "mmorpg.word.level"
+    },
+    "description": {
+      "translate": "mmorpg.advancement.desc.levelup10"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "player_level_10": {
+      "trigger": "mmorpg:player_level",
+      "conditions": {
+        "level": 10
+      }
+    }
+  },
+  "requirements": [
+    [
+      "player_level_10"
+    ]
+  ]
+}

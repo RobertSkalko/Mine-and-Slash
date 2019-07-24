@@ -1,6 +1,0 @@
-{
-	"name": "Craftable Items",
-	"description": "All the craftable items",
-	"icon": "minecraft:textures/blocks/crafting_table_front.png",
-	"sortnum": 2
-}

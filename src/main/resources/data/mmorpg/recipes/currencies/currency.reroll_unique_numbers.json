@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "ACA",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "mmorpg:ore3"
+    }, 
+	"A": {
+      "item": "mmorpg:currency/number_reroll"
+    }, 
+	"B": {
+      "item": "mmorpg:currency/item_levelup"
+    }
+  },
+  "result": {
+    "item": "mmorpg:currency/reroll_unique_numbers"
+  }
+}

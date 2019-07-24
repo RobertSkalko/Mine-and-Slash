@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "mmorpg:items/paidassets/pixeltiers/swords/water_ele_saber0"
+    }
+}

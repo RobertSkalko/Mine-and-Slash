@@ -1,5 +1,8 @@
 {
     "variants": {
-           "normal": { "model": "mmorpg:gear_factory_station_normal"}
+        "facing=north": { "model": "mmorpg:block/gear_factory_station_normal" },
+        "facing=south": { "model": "mmorpg:block/gear_factory_station_normal", "y": 180 },
+        "facing=west":  { "model": "mmorpg:block/gear_factory_station_normal", "y": 270 },
+        "facing=east":  { "model": "mmorpg:block/gear_factory_station_normal", "y": 90 }
     }
 }

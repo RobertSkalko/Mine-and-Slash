@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AEA",
+    "ASA",
+    "AAA"
+  ],
+  "key": {  
+	"S": {
+      "item": "minecraft:furnace"
+    },	
+	"E": {
+      "item": "minecraft:ender_pearl"
+    },	
+    "A": 
+      {
+        "item": "mmorpg:ore0"        
+      }
+  },
+  "result": {
+    "item": "mmorpg:hearthstone/0"
+  }
+}

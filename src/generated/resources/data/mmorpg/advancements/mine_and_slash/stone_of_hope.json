@@ -1,0 +1,35 @@
+{
+  "parent": "mmorpg:mine_and_slash/orb_of_transmutation",
+  "display": {
+    "icon": {
+      "item": "mmorpg:currency/stone_of_hope"
+    },
+    "title": {
+      "text": "§cStone Of Hope"
+    },
+    "description": {
+      "translate": "mmorpg.advancement.desc.stoneofhope"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "stone_of_hope": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mmorpg:currency/stone_of_hope"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "stone_of_hope"
+    ]
+  ]
+}
