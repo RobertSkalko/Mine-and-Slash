@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.db_lists.registry;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.uncommon.comparators.RarityComparator;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IGearSlotType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
@@ -11,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FilterListWrap<C extends ISlashRegistryEntry> {
@@ -44,6 +46,24 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
         this.list = list.stream()
                 .filter(x -> ((IRarity) x).getRarityRank() == rarity)
                 .collect(Collectors.toList());
+        return this;
+    }
+
+    public FilterListWrap<C> ofHighestRarity() {
+
+        final int highest;
+
+        Optional<C> optional = list.stream().max(new RarityComparator());
+
+        if (optional.isPresent()) {
+            highest = optional.get().getRarityRank();
+
+            this.list = list.stream()
+                    .filter(x -> ((IRarity) x).getRarityRank() == highest)
+                    .collect(Collectors.toList());
+        } else {
+            this.list.clear();
+        }
         return this;
     }
 

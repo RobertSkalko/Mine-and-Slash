@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    AddRarestAffixes("Add Rarest Affixes"),
     PefectPrimaryStats("Perfect Primary Stats"),
     BetterPrimaryStats("Better Primary Stats"),
     AddSet("Add Set"),

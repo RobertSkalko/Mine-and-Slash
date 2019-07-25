@@ -19,6 +19,7 @@ public class ItemModifications implements ISlashRegistryInit {
                     add(new AddSetMod());
                     add(new BetterPrimaryStats());
                     add(new PerfectPrimaryStats());
+                    add(new AddRarestAffixesMod());
 
                 }
 

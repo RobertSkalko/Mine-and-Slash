@@ -28,7 +28,7 @@ public class AddSetMod extends BaseGearMod {
 
     @Override
     public String GUID() {
-        return "add_chaos_stats";
+        return "add_set";
     }
 
     @Override
