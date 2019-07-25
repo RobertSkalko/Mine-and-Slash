@@ -1,5 +1,7 @@
-package com.robertx22.mine_and_slash.database.item_modifications;
+package com.robertx22.mine_and_slash.database.item_modifications.gear_items;
 
+import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseGearMod;
+import com.robertx22.mine_and_slash.database.item_modifications.bases.ItemModType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -7,6 +9,11 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
 
 public class ChaosStatMod extends BaseGearMod {
+
+    @Override
+    public ItemModType getItemModType() {
+        return ItemModType.CHAOS_STATS;
+    }
 
     @Override
     public ITextComponent locName() {

@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.item_modifications;
+package com.robertx22.mine_and_slash.database.item_modifications.bases;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
@@ -46,6 +46,8 @@ public abstract class BaseItemModification implements IWeighted, IRarity, ISlash
     public boolean isRightDataType(ICommonDataItem data) {
         return getDataType().isType(data);
     }
+
+    public abstract ItemModType getItemModType();
 
     public abstract ITextComponent locName();
 

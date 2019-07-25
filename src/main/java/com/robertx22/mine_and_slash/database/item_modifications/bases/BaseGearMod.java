@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.item_modifications;
+package com.robertx22.mine_and_slash.database.item_modifications.bases;
 
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 
