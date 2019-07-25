@@ -1,6 +1,11 @@
 package com.robertx22.mine_and_slash.config.dimension_configs;
 
-public class DimensionConfig {
+import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+
+public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
 
     public DimensionConfig() {
 
@@ -35,6 +40,8 @@ public class DimensionConfig {
 
     }
 
+    public transient String GUID = "";
+
     public int MOB_LEVEL_PER_DISTANCE = 125;
 
     public int MOB_LEVEL_ONE_AREA = 50;
@@ -57,4 +64,37 @@ public class DimensionConfig {
 
     public float MOB_STRENGTH_MULTIPLIER = 1F;
 
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.DIMENSION_CONFIGS;
+    }
+
+    @Override
+    public String GUID() {
+        return GUID;
+    }
+
+    @Override
+    public int Weight() {
+        return 1;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return 0;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
+    }
+
+    @Override
+    public int Tier() {
+        return this.MAP_TIER;
+    }
+
+    public boolean isMapWorld() {
+        return MAP_TIER > 0;
+    }
 }

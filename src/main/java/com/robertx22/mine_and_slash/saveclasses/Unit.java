@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
-import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsContainer;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -14,6 +13,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
@@ -245,7 +245,8 @@ public class Unit {
         List<MobRarity> rarities = Rarities.Mobs.rarities();
         List<MobRarity> after = new ArrayList<MobRarity>();
 
-        DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(entity.world);
+        DimensionConfig config = SlashRegistry.DimensionConfigs()
+                .get(MapManager.getId(entity.world));
 
         for (MobRarity rar : rarities) {
             if (rar.Rank() >= minRarity) {

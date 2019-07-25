@@ -1,16 +1,12 @@
 package com.robertx22.mine_and_slash.config.dimension_configs;
 
 import com.robertx22.mine_and_slash.config.IConfig;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class DimensionsContainer implements IConfig {
-
-    public static DimensionsContainer INSTANCE = new DimensionsContainer();
+public class DimensionsContainer implements IConfig, ISlashRegistryInit {
 
     public DimensionsContainer() {
 
@@ -30,59 +26,15 @@ public class DimensionsContainer implements IConfig {
         return ConfigType;
     }
 
-    DimensionConfig defaultconfig = DimensionConfig.DefaultExtra();
-
     public HashMap<String, DimensionConfig> dimensionsList = new HashMap();
 
-    public boolean hasConfig(World world) {
-        String id = getId(world);
-
-        return hasConfig(id);
-    }
-
-    private boolean hasConfig(String id) {
-        if (dimensionsList.containsKey(id)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private String getId(IWorld world) {
-
-        String id = "";
-
-        if (world != null && world.getDimension() != null) {
-
-            ResourceLocation loc = DimensionType.getKey(world.getDimension().getType());
-
-            if (loc != null) {
-                id = loc.toString();
-            }
+    @Override
+    public void registerAll() {
+        for (Map.Entry<String, DimensionConfig> entry : this.dimensionsList.entrySet()) {
+            entry.getValue().GUID = entry.getKey();
+            entry.getValue().registerToSlashRegistry();
 
         }
-        return id;
-    }
-
-    public DimensionConfig getConfig(IWorld world) {
-        String id = getId(world);
-
-        if (dimensionsList.containsKey(id)) {
-
-            return getConfig(id);
-        }
-
-        return defaultconfig; // default
 
     }
-
-    private DimensionConfig getConfig(String id) {
-
-        if (dimensionsList.containsKey(id)) {
-            return this.dimensionsList.get(id);
-        }
-
-        return defaultconfig; // default
-    }
-
 }

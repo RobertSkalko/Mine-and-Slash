@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
-import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsContainer;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
@@ -70,7 +71,8 @@ public class WorldUtils {
 
     public static BlockPos getPosByLevel(World world, int lvl) {
 
-        DimensionConfig config = DimensionsContainer.INSTANCE.getConfig(world);
+        DimensionConfig config = SlashRegistry.DimensionConfigs()
+                .get(MapManager.getId(world));
 
         BlockPos pos = LevelUtils.getAreaPosOfLevel(world, lvl, config);
 
@@ -166,7 +168,9 @@ public class WorldUtils {
         }
 
         if (world.getDimension() instanceof BaseWorldProvider == false) {
-            return DimensionsContainer.INSTANCE.getConfig(world).MAP_TIER > 0;
+            return SlashRegistry.DimensionConfigs()
+                    .get(MapManager.getId(world))
+                    .isMapWorld();
         }
 
         return true;
@@ -194,8 +198,8 @@ public class WorldUtils {
 
     public static int getTier(World world, PlayerEntity player) {
 
-        if (DimensionsContainer.INSTANCE.hasConfig(world)) {
-            return DimensionsContainer.INSTANCE.getConfig(world).MAP_TIER;
+        if (SlashRegistry.DimensionConfigs().isRegistered(MapManager.getId(world))) {
+            return SlashRegistry.DimensionConfigs().get(MapManager.getId(world)).MAP_TIER;
         } else {
 
             return Load.playerMapData(player).getTier();
@@ -205,11 +209,12 @@ public class WorldUtils {
 
     public static boolean dropsUniques(World world) {
 
-        if (isMapWorld(world) == true) {
+        if (isMapWorld(world)) {
             return true;
         }
 
-        return DimensionsContainer.INSTANCE.getConfig(world).DROPS_UNIQUE_ITEMS;
+        return SlashRegistry.DimensionConfigs()
+                .get(MapManager.getId(world)).DROPS_UNIQUE_ITEMS;
     }
 
 }

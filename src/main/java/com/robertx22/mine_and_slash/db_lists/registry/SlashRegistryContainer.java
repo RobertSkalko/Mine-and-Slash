@@ -21,6 +21,12 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private C empty;
     private HashMap<String, C> map = new HashMap<>();
     private boolean errorIfEmpty = true;
+    private boolean logAdditionsToRegistry = false;
+
+    public SlashRegistryContainer logAdditions() {
+        this.logAdditionsToRegistry = true;
+        return this;
+    }
 
     public SlashRegistryContainer dontErrorIfEmpty() {
         this.errorIfEmpty = false;
@@ -36,7 +42,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         this.empty = empty;
     }
 
-    private void emptyRegistryLog() {
+    private void tryLogEmptyRegistry() {
         if (errorIfEmpty) {
             if (map.isEmpty()) {
                 logRegistryError("Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
@@ -45,7 +51,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public HashMap<String, C> getAll() {
-        emptyRegistryLog();
+        tryLogEmptyRegistry();
 
         return map;
     }
@@ -56,7 +62,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public C get(String guid) {
 
-        emptyRegistryLog();
+        tryLogEmptyRegistry();
 
         if (guid.isEmpty()) {
             return empty;
@@ -109,7 +115,16 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             }
 
         } else {
+            tryLogAddition(c);
             map.put(c.GUID(), c);
+        }
+
+    }
+
+    private void tryLogAddition(C c) {
+        if (logAdditionsToRegistry) {
+            System.out.println("[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type
+                    .toString() + " registry");
         }
 
     }

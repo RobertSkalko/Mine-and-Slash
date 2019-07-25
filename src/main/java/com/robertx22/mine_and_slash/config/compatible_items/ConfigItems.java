@@ -39,7 +39,6 @@ public class ConfigItems implements IConfig, ISlashRegistryInit {
             for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
                 entry.getValue().registryName = entry.getKey();
                 list.add(entry.getValue());
-                System.out.println(Ref.MODID + ":Added Compatible Item: " + entry.getKey());
             }
 
             list.forEach(x -> x.registerToSlashRegistry());
@@ -59,7 +58,6 @@ public class ConfigItems implements IConfig, ISlashRegistryInit {
 
             for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
                 if (entry.getValue().isValid() == false) {
-
                     System.out.println(entry.getKey() + " Is not correctly implemented. Please go to CompatibleItems file and fix it");
                 }
             }

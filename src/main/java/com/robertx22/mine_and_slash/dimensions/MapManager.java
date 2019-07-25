@@ -13,6 +13,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
@@ -95,6 +96,16 @@ public class MapManager {
 
     public static DimensionType fromResource(ResourceLocation res) {
         return DimensionType.byName(res);
+    }
+
+    public static String getId(IWorld world) {
+        try {
+            return getResourceLocation(world.getDimension().getType()).toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
     public static World getWorld(DimensionType type) {

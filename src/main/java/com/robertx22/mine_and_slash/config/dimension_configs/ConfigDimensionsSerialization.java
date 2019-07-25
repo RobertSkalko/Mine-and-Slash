@@ -37,10 +37,11 @@ public class ConfigDimensionsSerialization implements ISerializedConfig {
         try {
             reader = new JsonReader(new FileReader(this.getPath()));
 
-            DimensionsContainer.INSTANCE = new Gson().fromJson(reader, DimensionsContainer.class);
+            DimensionsContainer dims = new Gson().fromJson(reader, DimensionsContainer.class);
+            dims.registerAll();
 
-            System.out.println("Dimensions added to config: " + DimensionsContainer.INSTANCE.dimensionsList
-                    .size());
+            System.out.println("Dimensions added to config: " + dims.dimensionsList.size());
+
         } catch (FileNotFoundException e) {
 
             e.printStackTrace();

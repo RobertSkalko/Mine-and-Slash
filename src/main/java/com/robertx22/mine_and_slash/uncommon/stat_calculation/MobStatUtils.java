@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
-import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsContainer;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
@@ -50,7 +49,8 @@ public class MobStatUtils {
     public static void worldMultiplierStats(World world, Unit unit) {
 
         for (StatData stat : unit.getStats().values()) {
-            stat.Flat *= DimensionsContainer.INSTANCE.getConfig(world).MOB_STRENGTH_MULTIPLIER;
+
+            stat.Flat *= SlashRegistry.getDimensionConfig(world).MOB_STRENGTH_MULTIPLIER;
         }
 
     }

@@ -2,6 +2,7 @@
 compatible items now use my new registry system too.
 added warning on using weapon in offhand
 added modifyItem op command to test the new item modification system
+transfered dimension configs to my registry system. this means better logging (you can check logs to make sure the configs registered)
 2.2.6
 added warning on no space for map device portals
 added first adv map advancement
