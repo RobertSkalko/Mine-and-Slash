@@ -55,6 +55,8 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
             Tooltip.add(new StringTextComponent(TextFormatting.GOLD + "").appendSibling(runeword
                     .locName()), tooltip);
 
+            tooltip.add(Styles.GOLDCOMP().appendSibling(Words.RunesRequiered.locName()).appendText(": "));
+
             Tooltip.add(new StringTextComponent(TextFormatting.GREEN + runeword.getRuneWordComboString()), tooltip);
 
             Tooltip.add(TextFormatting.AQUA + "Runes: " + runeword.size(), tooltip);

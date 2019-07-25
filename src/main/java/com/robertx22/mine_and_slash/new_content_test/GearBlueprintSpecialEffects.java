@@ -54,7 +54,7 @@ public enum GearBlueprintSpecialEffects implements IWeighted, IRarity {
         }
     },
 
-    MAJOR_ARCANA_CHAOS_STAT("major_arcana_chaos", Words.AlwaysMajorArcana) {
+    MAJOR_ARCANA_CHAOS_STAT("major_arcana_chaos", Words.AddMajorArcana) {
         @Override
         public int getRarityRank() {
             return IRarity.Legendary;

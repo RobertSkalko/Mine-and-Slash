@@ -5,9 +5,11 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
 
+    AddChaosStats("Add ChaosStats"),
+    RunesRequiered("Runes Required"),
     Requirements("Requirements"),
     Blueprint("Blueprint"),
-    AlwaysMajorArcana("Always has Major Arcana Chaos Stats"),
+    AddMajorArcana("Add Major Arcana Chaos Stats"),
     AlwaysMythicAffixes("Always has Mythic Affixes"),
     AlwaysChaosStats("Always has Chaos Stats"),
     AlwaysSet("Always has Set"),

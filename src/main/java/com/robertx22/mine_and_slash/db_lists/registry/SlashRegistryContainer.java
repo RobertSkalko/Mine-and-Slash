@@ -77,6 +77,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return new FilterListWrap<C>(this.map.values());
     }
 
+    public FilterListWrap<C> getFilterWrapped(Predicate<C> pred) {
+        return new FilterListWrap<C>(getFiltered(pred));
+    }
+
     // just do predicate.and() .or() etc. if need multiple
     public List<C> getFiltered(Predicate<C> predicate) {
         return this.getList().stream().filter(predicate).collect(Collectors.toList());
