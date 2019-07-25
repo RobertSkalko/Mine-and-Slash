@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseItemModification;
+import com.robertx22.mine_and_slash.database.item_modifications.gear_items.AddChaosStatMod;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
@@ -22,7 +24,9 @@ import java.util.HashMap;
 
 public class SlashRegistry {
 
-    public static Predicates PREDICATES = new Predicates();
+    public static SlashRegistryContainer<BaseItemModification> ItemModifications() {
+        return getRegistry(SlashRegistryType.ITEM_MODIFICATION);
+    }
 
     public static SlashRegistryContainer<ConfigItem> CompatibleItems() {
         return getRegistry(SlashRegistryType.COMPATIBLE_ITEM);
@@ -111,6 +115,7 @@ public class SlashRegistry {
         new UniqueGears().registerAll();
         new WorldProviders().registerAll();
         new Sets().registerAll();
+        new ItemModifications().registerAll();
     }
 
     private static void createRegistries() {
@@ -127,6 +132,7 @@ public class SlashRegistry {
         map.put(SlashRegistryType.MAP_AFFIX, new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
         map.put(SlashRegistryType.STATUS_EFFECT, new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
         map.put(SlashRegistryType.WORLD_PROVIDER, new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new BirchForestIWP(null, null)));
+        map.put(SlashRegistryType.ITEM_MODIFICATION, new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
         map.put(SlashRegistryType.COMPATIBLE_ITEM, new SlashRegistryContainer<ConfigItem>(SlashRegistryType.COMPATIBLE_ITEM, new ConfigItem())
                 .dontErrorIfEmpty());
 

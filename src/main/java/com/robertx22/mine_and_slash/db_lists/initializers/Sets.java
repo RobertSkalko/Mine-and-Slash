@@ -20,7 +20,6 @@ import com.robertx22.mine_and_slash.database.sets.uniques.WisdomOfTheElders;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
@@ -97,7 +96,7 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
 
         }
 
-        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SET).register(x));
+        All.forEach(x -> x.registerToSlashRegistry());
 
     }
 

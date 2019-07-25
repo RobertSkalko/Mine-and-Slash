@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.spells.SpellBonusEleBasicDmg;
 import com.robertx22.mine_and_slash.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.mine_and_slash.spells.aoe_bomb_proj.SpellFireBomb;
@@ -78,7 +76,7 @@ public class Spells implements ISlashRegistryInit {
             gen.generateAllPossibleStatVariations().forEach(x -> All.add(x));
         }
 
-        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.SPELL).register(x));
+        All.forEach(x -> x.registerToSlashRegistry());
 
     }
 }

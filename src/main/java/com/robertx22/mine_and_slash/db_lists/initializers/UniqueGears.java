@@ -36,7 +36,6 @@ import com.robertx22.mine_and_slash.database.unique_items.swords.SwordNature;
 import com.robertx22.mine_and_slash.database.unique_items.swords.SwordPhysical;
 import com.robertx22.mine_and_slash.database.unique_items.swords.SwordWater;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;
@@ -150,12 +149,12 @@ public class UniqueGears implements ISlashRegistryInit {
         if (item instanceof IGenerated) {
             IGenerated<IUnique> gen = (IGenerated) item;
             for (IUnique uniq : gen.generateAllPossibleStatVariations()) {
-                SlashRegistry.UniqueGears().register(uniq);
+                uniq.registerToSlashRegistry();
             }
 
         } else {
             IUnique uniq = (IUnique) item;
-            SlashRegistry.UniqueGears().register(uniq);
+            uniq.registerToSlashRegistry();
         }
     }
 

@@ -7,8 +7,6 @@ import com.robertx22.mine_and_slash.database.runewords.slots_3.RuneWordThief;
 import com.robertx22.mine_and_slash.database.runewords.slots_4.*;
 import com.robertx22.mine_and_slash.database.runewords.slots_5.*;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +45,7 @@ public class RuneWords implements ISlashRegistryInit {
             }
         };
 
-        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.RUNEWORD)
-                .register(x));
+        All.forEach(x -> x.registerToSlashRegistry());
 
     }
 }

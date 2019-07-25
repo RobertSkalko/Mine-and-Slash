@@ -19,6 +19,6 @@ public interface IWeighted {
 
      */
 
-    public static int UniqueSetSuperCommonWeight = 100555;
+    public static int UniqueSetSuperCommonWeight = 200555;
 
 }

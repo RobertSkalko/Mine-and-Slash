@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.gearitemslots.*;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +35,7 @@ public class GearTypes implements ISlashRegistryInit {
             }
         };
 
-        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.GEAR_TYPE)
-                .register(x));
+        All.forEach(x -> x.registerToSlashRegistry());
 
     }
 }

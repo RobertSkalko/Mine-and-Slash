@@ -49,7 +49,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.BaseTrait;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -256,8 +255,7 @@ public class StatMods implements ISlashRegistryInit {
             }
         }
 
-        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.STATMOD)
-                .register(x));
+        All.forEach(x -> x.registerToSlashRegistry());
 
     }
 

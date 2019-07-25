@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.world_providers.*;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.world.biome.Biome;
 
@@ -67,8 +66,7 @@ public class WorldProviders implements ISlashRegistryInit {
 
         };
 
-        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.WORLD_PROVIDER)
-                .register(x));
+        All.forEach(x -> x.registerToSlashRegistry());
 
     }
 

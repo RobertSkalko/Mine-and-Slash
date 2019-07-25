@@ -17,8 +17,6 @@ import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAll
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllThunderDmgAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllWaterDmgAffix;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
@@ -85,8 +83,7 @@ public class MapAffixes implements ISlashRegistryInit {
             }
         }
 
-        All.forEach(x -> SlashRegistry.getRegistry(SlashRegistryType.MAP_AFFIX)
-                .register(x));
+        All.forEach(x -> x.registerToSlashRegistry());
 
     }
 
