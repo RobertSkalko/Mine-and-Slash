@@ -2,34 +2,28 @@ package com.robertx22.mine_and_slash.database.item_modifications.gear_items;
 
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseGearMod;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.ItemModType;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.ChaosStatsData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.SetData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
 
-public class ChaosStatMod extends BaseGearMod {
+public class AddSetMod extends BaseGearMod {
 
     @Override
     public ItemModType getItemModType() {
-        return ItemModType.CHAOS_STATS;
+        return ItemModType.SET;
     }
 
     @Override
     public ITextComponent locName() {
-        return Words.Chaos_Stats.locName();
+        return Words.AddSet.locName();
     }
 
     @Override
     public boolean canModifyPRIVATE(ICommonDataItem data) {
         GearItemData gear = (GearItemData) data;
-        return gear.chaosStats == null;
-    }
-
-    @Override
-    public void modifyGear(GearItemData gear) {
-        gear.chaosStats = new ChaosStatsData();
-        gear.chaosStats.RerollFully(gear);
+        return gear.set == null;
     }
 
     @Override
@@ -37,4 +31,10 @@ public class ChaosStatMod extends BaseGearMod {
         return "add_chaos_stats";
     }
 
+    @Override
+    public void modifyGear(GearItemData gear) {
+        gear.set = new SetData();
+        gear.set = gear.set.generate(gear);
+
+    }
 }

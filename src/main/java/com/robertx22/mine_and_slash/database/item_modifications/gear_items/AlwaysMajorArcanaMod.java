@@ -31,10 +31,7 @@ public class AlwaysMajorArcanaMod extends BaseGearMod {
     }
 
     @Override
-    public void modify(ICommonDataItem data) {
-
-        GearItemData gear = (GearItemData) data;
-
+    public void modifyGear(GearItemData gear) {
         StatMod mod = SlashRegistry.StatMods()
                 .getFilterWrapped(x -> x.GetBaseStat() instanceof BaseMajorArcana)
                 .random();
@@ -43,7 +40,7 @@ public class AlwaysMajorArcanaMod extends BaseGearMod {
         gear.chaosStats.create(gear, mod);
 
     }
-
+  
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;

@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
 
+    AddSet("Add Set"),
     AddChaosStats("Add ChaosStats"),
     RunesRequiered("Runes Required"),
     Requirements("Requirements"),
