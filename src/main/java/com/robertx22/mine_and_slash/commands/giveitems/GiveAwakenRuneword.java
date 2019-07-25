@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.mine_and_slash.commands.bases.GearTypeSuggestions;
+import com.robertx22.mine_and_slash.commands.bases.RunewordSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.AwakenRuneWordBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.AwakenRuneWordLootGen;
 import net.minecraft.command.CommandSource;
@@ -22,7 +22,7 @@ public class GiveAwakenRuneword {
                 .requires(e -> e.hasPermissionLevel(2))
                 .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("type", StringArgumentType.word())
-                                .suggests(new GearTypeSuggestions())
+                                .suggests(new RunewordSuggestions())
                                 .then(Commands.argument("amount", IntegerArgumentType.integer(1, 30000))
                                         .executes(e -> run(e.getSource(), EntityArgument.getPlayer(e, "target"), StringArgumentType
                                                 .getString(e, "type"), IntegerArgumentType

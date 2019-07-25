@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.robertx22.mine_and_slash.commands.ModifyItem;
 import com.robertx22.mine_and_slash.commands.ReloadConfigs;
 import com.robertx22.mine_and_slash.commands.RestoreLevel;
 import com.robertx22.mine_and_slash.commands.entity.*;
@@ -33,6 +34,7 @@ public class CommandRegister {
         RemoveStat.register(dispatcher);
         ClearStats.register(dispatcher);
         ReloadConfigs.register(dispatcher);
+        ModifyItem.register(dispatcher);
 
     }
 }

@@ -5,11 +5,11 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RunewordSuggestions extends CommandSuggestions {
+public class ItemModSuggestions extends CommandSuggestions {
 
     @Override
     public List<String> suggestions() {
-        return SlashRegistry.RuneWords()
+        return SlashRegistry.ItemModifications()
                 .getList()
                 .stream()
                 .map(x -> x.GUID())
@@ -17,4 +17,3 @@ public class RunewordSuggestions extends CommandSuggestions {
     }
 
 }
-

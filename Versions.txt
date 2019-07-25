@@ -1,6 +1,7 @@
 2.2.7
 compatible items now use my new registry system too.
 added warning on using weapon in offhand
+added modifyItem op command to test the new item modification system
 2.2.6
 added warning on no space for map device portals
 added first adv map advancement
