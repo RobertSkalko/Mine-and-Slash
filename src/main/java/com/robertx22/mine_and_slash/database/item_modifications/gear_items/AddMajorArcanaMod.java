@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
 
-public class AlwaysMajorArcanaMod extends BaseGearMod {
+public class AddMajorArcanaMod extends BaseGearMod {
 
     @Override
     public ITextComponent locName() {
@@ -25,7 +25,7 @@ public class AlwaysMajorArcanaMod extends BaseGearMod {
     }
 
     @Override
-    public boolean canModifyPRIVATE(ICommonDataItem data) {
+    protected boolean canModifyPRIVATE(ICommonDataItem data) {
         GearItemData gear = (GearItemData) data;
         return gear.chaosStats == null;
     }
@@ -40,7 +40,7 @@ public class AlwaysMajorArcanaMod extends BaseGearMod {
         gear.chaosStats.create(gear, mod);
 
     }
-  
+
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;

@@ -10,6 +10,9 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataIt
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.ITextComponent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class BaseItemModification implements IWeighted, IRarity, ISlashRegistryEntry<BaseItemModification> {
 
     @Override
@@ -51,7 +54,16 @@ public abstract class BaseItemModification implements IWeighted, IRarity, ISlash
 
     public abstract ITextComponent locName();
 
-    public abstract boolean canModifyPRIVATE(ICommonDataItem data);
+    protected abstract boolean canModifyPRIVATE(ICommonDataItem data);
 
     public abstract void modify(ICommonDataItem data);
+
+    public static List<BaseItemModification> randomList(int amount) {
+
+        List<BaseItemModification> list = new ArrayList<>();
+        List<ItemModType> types = new ArrayList<>();
+
+        return list;
+
+    }
 }

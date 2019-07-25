@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -64,6 +65,10 @@ public class StatModData implements ITooltipString {
 
     public void setPercent(int perc) {
         this.percent = perc;
+    }
+
+    public void setPercentClamp(MinMax minmax, int perc) {
+        this.percent = MathHelper.clamp(perc, minmax.Min, minmax.Max);
     }
 
     @Store
