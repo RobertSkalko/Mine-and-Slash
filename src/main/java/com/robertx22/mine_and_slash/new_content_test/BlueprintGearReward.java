@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test;
 
+import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseItemModification;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Storable
 public class BlueprintGearReward {
@@ -34,7 +36,7 @@ public class BlueprintGearReward {
     public GearItemEnum enumGearType;
 
     @Store
-    public List<GearBlueprintSpecialEffects> specialEffects = new ArrayList<>();
+    public List<String> specialEffects = new ArrayList<>();
 
     public BlueprintGearReward() {
 
@@ -88,10 +90,18 @@ public class BlueprintGearReward {
         }
 
         GearItemData gear = Gear.Load(stack);
-        specialEffects.forEach(x -> x.modify(gear));
+        getItemModifications().forEach(x -> x.modify(gear));
         Gear.Save(stack, gear);
 
         return stack;
 
     }
+
+    public List<BaseItemModification> getItemModifications() {
+        return this.specialEffects.stream()
+                .map(x -> SlashRegistry.ItemModifications().get(x))
+                .collect(Collectors.toList());
+
+    }
+
 }

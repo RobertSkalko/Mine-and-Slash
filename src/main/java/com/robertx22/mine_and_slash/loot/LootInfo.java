@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.loot;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.LootTypeBonusFlat;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -118,8 +117,7 @@ public class LootInfo {
         }
 
         if (world != null) {
-            chance *= SlashRegistry.DimensionConfigs()
-                    .get(MapManager.getId(world)).DROP_MULTIPLIER;
+            chance *= SlashRegistry.getDimensionConfig(world).DROP_MULTIPLIER;
 
             if (world.getDimension() instanceof IWP) {
                 IWP iwp = (IWP) world.getDimension();

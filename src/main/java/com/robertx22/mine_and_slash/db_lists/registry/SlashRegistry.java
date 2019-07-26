@@ -30,7 +30,9 @@ import java.util.HashMap;
 public class SlashRegistry {
 
     public static DimensionConfig getDimensionConfig(IWorld world) {
-        return DimensionConfigs().get(MapManager.getId(world));
+        String id = MapManager.getId(world);
+        return DimensionConfigs().get(id);
+
     }
 
     public static ModEntityConfig getEntityConfig(Entity entity) {
@@ -49,11 +51,11 @@ public class SlashRegistry {
         }
     }
 
-    public static SlashRegistryContainer<ModEntityConfig> ModEntityConfigs() {
+    private static SlashRegistryContainer<ModEntityConfig> ModEntityConfigs() {
         return getRegistry(SlashRegistryType.MOD_ENTITY_CONFIGS);
     }
 
-    public static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
+    private static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
         return getRegistry(SlashRegistryType.DIMENSION_CONFIGS);
     }
 
@@ -170,7 +172,7 @@ public class SlashRegistry {
                 .dontErrorIfEmpty()
                 .logAdditions());
         map.put(SlashRegistryType.DIMENSION_CONFIGS, new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig
-                .DefaultExtra()).logAdditions());
+                .DefaultExtra()).logAdditions().dontErrorMissingEntriesOnAccess());
         map.put(SlashRegistryType.MOD_ENTITY_CONFIGS, new SlashRegistryContainer<ModEntityConfig>(SlashRegistryType.MOD_ENTITY_CONFIGS, new ModEntityConfig())
                 .logAdditions());
 

@@ -1,15 +1,35 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class OnPlayerClone {
 
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onPlayerClone(PlayerEvent.Clone event) {
+
+        PlayerEntity original = event.getOriginal();
+        PlayerEntity current = event.getEntityPlayer();
+
+        try {
+            Load.Unit(current).setNBT(Load.Unit(original).getNBT());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Load.playerMapData(current).setNBT(Load.playerMapData(original).getNBT());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /*
     public static final String ENTITY_DATA_BACKUP = "mmorpg:entity_data_backup";
     public static final String PLAYER_MAP_DATA_BACKUP = "mmorpg:player_map_data_backup";
 
@@ -75,5 +95,6 @@ public class OnPlayerClone {
         }
 
     }
+    */
 
 }

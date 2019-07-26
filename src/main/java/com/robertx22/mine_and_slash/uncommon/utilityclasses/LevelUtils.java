@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.EntityPredicates;
@@ -14,8 +13,7 @@ public class LevelUtils {
 
     public static int determineLevel(World world, BlockPos pos) {
 
-        DimensionConfig config = SlashRegistry.DimensionConfigs()
-                .get(MapManager.getId(world));
+        DimensionConfig config = SlashRegistry.getDimensionConfig(world);
 
         int lvl = 1;
 
@@ -69,8 +67,7 @@ public class LevelUtils {
 
     public static int determineLevelPerDistanceFromSpawn(World world, BlockPos pos) {
 
-        return determineLevelPerDistanceFromSpawn(world, pos, SlashRegistry.DimensionConfigs()
-                .get(MapManager.getId(world)));
+        return determineLevelPerDistanceFromSpawn(world, pos, SlashRegistry.getDimensionConfig(world));
 
     }
 

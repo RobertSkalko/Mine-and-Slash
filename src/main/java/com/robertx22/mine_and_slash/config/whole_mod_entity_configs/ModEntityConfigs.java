@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.config.whole_mod_entity_configs;
 
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 
 import java.util.HashMap;
 
@@ -27,6 +28,7 @@ public class ModEntityConfigs implements ISlashRegistryInit {
         allMobsInAMod.entrySet().forEach(x -> x.getValue().GUID = x.getKey());
         specificMobs.entrySet().forEach(x -> x.getValue().registerToSlashRegistry());
         allMobsInAMod.entrySet().forEach(x -> x.getValue().registerToSlashRegistry());
-        SlashRegistry.ModEntityConfigs().setDefault(defaultConfig);
+        SlashRegistry.getRegistry(SlashRegistryType.MOD_ENTITY_CONFIGS)
+                .setDefault(defaultConfig);
     }
 }

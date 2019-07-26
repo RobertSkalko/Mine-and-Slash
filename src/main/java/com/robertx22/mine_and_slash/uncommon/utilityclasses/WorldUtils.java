@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
@@ -71,8 +70,7 @@ public class WorldUtils {
 
     public static BlockPos getPosByLevel(World world, int lvl) {
 
-        DimensionConfig config = SlashRegistry.DimensionConfigs()
-                .get(MapManager.getId(world));
+        DimensionConfig config = SlashRegistry.getDimensionConfig(world);
 
         BlockPos pos = LevelUtils.getAreaPosOfLevel(world, lvl, config);
 
@@ -168,9 +166,7 @@ public class WorldUtils {
         }
 
         if (world.getDimension() instanceof BaseWorldProvider == false) {
-            return SlashRegistry.DimensionConfigs()
-                    .get(MapManager.getId(world))
-                    .isMapWorld();
+            return SlashRegistry.getDimensionConfig(world).isMapWorld();
         }
 
         return true;
@@ -198,13 +194,11 @@ public class WorldUtils {
 
     public static int getTier(World world, PlayerEntity player) {
 
-        if (SlashRegistry.DimensionConfigs().isRegistered(MapManager.getId(world))) {
-            return SlashRegistry.DimensionConfigs().get(MapManager.getId(world)).MAP_TIER;
-        } else {
-
+        if (WorldUtils.isMapWorldClass(world)) {
             return Load.playerMapData(player).getTier();
+        } else {
+            return SlashRegistry.getDimensionConfig(world).MAP_TIER;
         }
-
     }
 
     public static boolean dropsUniques(World world) {
@@ -213,8 +207,7 @@ public class WorldUtils {
             return true;
         }
 
-        return SlashRegistry.DimensionConfigs()
-                .get(MapManager.getId(world)).DROPS_UNIQUE_ITEMS;
+        return SlashRegistry.getDimensionConfig(world).DROPS_UNIQUE_ITEMS;
     }
 
 }

@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
@@ -244,8 +243,7 @@ public class Unit {
         List<MobRarity> rarities = Rarities.Mobs.rarities();
         List<MobRarity> after = new ArrayList<MobRarity>();
 
-        DimensionConfig config = SlashRegistry.DimensionConfigs()
-                .get(MapManager.getId(entity.world));
+        DimensionConfig config = SlashRegistry.getDimensionConfig(entity.world);
 
         for (MobRarity rar : rarities) {
             if (rar.Rank() >= minRarity) {

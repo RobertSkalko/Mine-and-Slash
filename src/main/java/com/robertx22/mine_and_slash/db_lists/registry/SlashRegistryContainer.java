@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
-    public List<String> registersErrorsAlertedFor = new ArrayList<>();
-    public List<String> accessorErrosAletedFor = new ArrayList<>();
+    private List<String> registersErrorsAlertedFor = new ArrayList<>();
+    private List<String> accessorErrosAletedFor = new ArrayList<>();
 
     public static void logRegistryError(String text) {
         System.out.println("[Mine and Slash Registry Error]: " + text);
@@ -22,9 +22,15 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private HashMap<String, C> map = new HashMap<>();
     private boolean errorIfEmpty = true;
     private boolean logAdditionsToRegistry = false;
+    private boolean logMissingEntryOnAccess = true;
 
     public SlashRegistryContainer logAdditions() {
         this.logAdditionsToRegistry = true;
+        return this;
+    }
+
+    public SlashRegistryContainer dontErrorMissingEntriesOnAccess() {
+        this.logMissingEntryOnAccess = false;
         return this;
     }
 
@@ -74,11 +80,12 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         if (map.containsKey(guid)) {
             return map.get(guid);
         } else {
-            if (accessorErrosAletedFor.contains(guid) == false) {
-                logRegistryError("GUID Error: " + guid + " of type: " + type.toString() + " doesn't exist. This is either a removed/renamed old registry, or robertx22 forgot to include it in an update.");
-                accessorErrosAletedFor.add(guid);
+            if (logMissingEntryOnAccess) {
+                if (accessorErrosAletedFor.contains(guid) == false) {
+                    logRegistryError("GUID Error: " + guid + " of type: " + type.toString() + " doesn't exist. This is either a removed/renamed old registry, or robertx22 forgot to include it in an update.");
+                    accessorErrosAletedFor.add(guid);
+                }
             }
-
             return emptyDefault;
         }
     }
@@ -111,6 +118,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public void register(C c) {
 
         if (isRegistered(c)) {
+
             if (registersErrorsAlertedFor.contains(c.GUID()) == false) {
                 logRegistryError("Key: " + c.GUID() + " has already been registered to: " + c
                         .getSlashRegistryType()
