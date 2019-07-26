@@ -75,8 +75,8 @@ public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
 
         tooltip.add(Words.Requirements.locName().appendText(": "));
 
-        dataRequests.forEach(x -> x.GetTooltipString(info));
-        simpleItemRequests.forEach(x -> x.GetTooltipString(info));
+        dataRequests.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
+        simpleItemRequests.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
 
     }
 

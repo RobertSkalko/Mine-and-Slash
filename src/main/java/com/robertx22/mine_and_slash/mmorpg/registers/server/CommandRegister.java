@@ -35,6 +35,7 @@ public class CommandRegister {
         ClearStats.register(dispatcher);
         ReloadConfigs.register(dispatcher);
         ModifyItem.register(dispatcher);
+        GiveBlueprint.register(dispatcher);
 
     }
 }

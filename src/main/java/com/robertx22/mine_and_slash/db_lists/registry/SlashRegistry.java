@@ -132,7 +132,7 @@ public class SlashRegistry {
 
     public static void init() {
         try {
-            map = new HashMap<>();
+            map = new HashMap<>(); // same reason this is here
             createRegistries();
             registerFromAllInits();
         } catch (ExceptionInInitializerError e) {

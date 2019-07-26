@@ -9,10 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FilterListWrap<C extends ISlashRegistryEntry> {
@@ -72,6 +69,28 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
                 .filter(x -> ((IGearSlotType) x).getGearSlot()
                         .equals(type) || type.isEmpty() || type.equals("random"))
                 .collect(Collectors.toList());
+        return this;
+    }
+
+    public FilterListWrap<C> randomAmountWithoutDuplicates(int amount) {
+
+        HashSet<C> set = new HashSet<>();
+
+        while (set.size() < amount) {
+            list.add(random());
+        }
+        this.list = new ArrayList<>(set);
+        return this;
+    }
+
+    public FilterListWrap<C> randomAmount(int amount) {
+
+        List<C> list = new ArrayList<>();
+
+        while (list.size() < amount) {
+            list.add(random());
+        }
+        this.list = list;
         return this;
     }
 
