@@ -1,10 +1,11 @@
 package com.robertx22.mine_and_slash.config.whole_mod_entity_configs;
 
-import net.minecraft.entity.Entity;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
 import java.util.HashMap;
 
-public class ModEntityConfigs {
+public class ModEntityConfigs implements ISlashRegistryInit {
 
     public static ModEntityConfigs INSTANCE = new ModEntityConfigs();
 
@@ -16,21 +17,16 @@ public class ModEntityConfigs {
 
     private ModEntityConfig defaultConfig = new ModEntityConfig();
 
-    public ModEntityConfig getConfig(Entity entity) {
-
-        String monster_id = entity.getType().getRegistryName().toString();
-        String mod_id = entity.getType().getRegistryName().getNamespace();
-
-        if (specificMobs.containsKey(monster_id)) {
-            return specificMobs.get(monster_id);
-        } else {
-            return allMobsInAMod.getOrDefault(mod_id, defaultConfig);
-        }
-
-    }
-
     public HashMap<String, ModEntityConfig> specificMobs = new HashMap<>();
 
     public HashMap<String, ModEntityConfig> allMobsInAMod = new HashMap<>();
 
+    @Override
+    public void registerAll() {
+        specificMobs.entrySet().forEach(x -> x.getValue().GUID = x.getKey());
+        allMobsInAMod.entrySet().forEach(x -> x.getValue().GUID = x.getKey());
+        specificMobs.entrySet().forEach(x -> x.getValue().registerToSlashRegistry());
+        allMobsInAMod.entrySet().forEach(x -> x.getValue().registerToSlashRegistry());
+        SlashRegistry.ModEntityConfigs().setDefault(defaultConfig);
+    }
 }

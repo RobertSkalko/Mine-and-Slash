@@ -1,6 +1,13 @@
 package com.robertx22.mine_and_slash.config.whole_mod_entity_configs;
 
-public class ModEntityConfig {
+import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+
+public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {
+
+    public transient String GUID = "";
 
     public double LOOT_MULTI = 1F;
     public double EXP_MULTI = 1F;
@@ -13,4 +20,33 @@ public class ModEntityConfig {
     public double HP_MULTI = 1;
     public double STAT_MULTI = 1;
 
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.MOD_ENTITY_CONFIGS;
+    }
+
+    @Override
+    public String GUID() {
+        return GUID;
+    }
+
+    @Override
+    public int Weight() {
+        return 100;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return 0;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
+    }
+
+    @Override
+    public int Tier() {
+        return 0;
+    }
 }

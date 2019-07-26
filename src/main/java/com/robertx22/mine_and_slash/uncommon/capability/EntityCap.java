@@ -3,11 +3,11 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
@@ -328,7 +328,7 @@ public class EntityCap {
 
             float num = 1.1F * vanilla * rar.DamageMultiplier();
 
-            num *= ModEntityConfigs.INSTANCE.getConfig(source).DMG_MULTI;
+            num *= SlashRegistry.getEntityConfig(source).DMG_MULTI;
 
             DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 
@@ -384,7 +384,7 @@ public class EntityCap {
         public void SetMobLevelAtSpawn(LivingEntity entity) {
 
             this.setMobStats = true;
-            ModEntityConfig config = ModEntityConfigs.INSTANCE.getConfig(entity);
+            ModEntityConfig config = SlashRegistry.getEntityConfig(entity);
 
             int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition()) + config.LEVEL_MODIFIER;
 

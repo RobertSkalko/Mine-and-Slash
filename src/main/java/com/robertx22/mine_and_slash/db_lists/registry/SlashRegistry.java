@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.db_lists.registry;
 
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -21,6 +22,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
+import net.minecraft.entity.Entity;
 import net.minecraft.world.IWorld;
 
 import java.util.HashMap;
@@ -29,6 +31,26 @@ public class SlashRegistry {
 
     public static DimensionConfig getDimensionConfig(IWorld world) {
         return DimensionConfigs().get(MapManager.getId(world));
+    }
+
+    public static ModEntityConfig getEntityConfig(Entity entity) {
+
+        String monster_id = entity.getType().getRegistryName().toString();
+        String mod_id = entity.getType().getRegistryName().getNamespace();
+
+        if (ModEntityConfigs().isRegistered(monster_id)) {
+            return ModEntityConfigs().get(monster_id);
+        } else {
+            if (ModEntityConfigs().isRegistered(mod_id)) {
+                return ModEntityConfigs().get(mod_id);
+            } else {
+                return ModEntityConfigs().getDefault();
+            }
+        }
+    }
+
+    public static SlashRegistryContainer<ModEntityConfig> ModEntityConfigs() {
+        return getRegistry(SlashRegistryType.MOD_ENTITY_CONFIGS);
     }
 
     public static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
@@ -149,6 +171,8 @@ public class SlashRegistry {
                 .logAdditions());
         map.put(SlashRegistryType.DIMENSION_CONFIGS, new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig
                 .DefaultExtra()).logAdditions());
+        map.put(SlashRegistryType.MOD_ENTITY_CONFIGS, new SlashRegistryContainer<ModEntityConfig>(SlashRegistryType.MOD_ENTITY_CONFIGS, new ModEntityConfig())
+                .logAdditions());
 
     }
 

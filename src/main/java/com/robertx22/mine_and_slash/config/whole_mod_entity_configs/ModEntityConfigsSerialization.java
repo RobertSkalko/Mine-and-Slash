@@ -37,12 +37,8 @@ public class ModEntityConfigsSerialization implements ISerializedConfig {
         try {
             reader = new JsonReader(new FileReader(this.getPath()));
 
-            ModEntityConfigs.INSTANCE = new Gson().fromJson(reader, ModEntityConfigs.class);
-
-            System.out.println("Mod Entity Configs added : " + ModEntityConfigs.INSTANCE.specificMobs
-                    .size());
-            System.out.println("All Mobs in mod entity Configs added : " + ModEntityConfigs.INSTANCE.allMobsInAMod
-                    .size());
+            ModEntityConfigs all = new Gson().fromJson(reader, ModEntityConfigs.class);
+            all.registerAll();
 
         } catch (FileNotFoundException e) {
 

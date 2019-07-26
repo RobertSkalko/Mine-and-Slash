@@ -1,3 +1,6 @@
+2.2.8
+added defaultconfig back to dimension configs
+transfered mod entity configs to registry system
 2.2.7
 compatible items now use my new registry system too.
 added warning on using weapon in offhand

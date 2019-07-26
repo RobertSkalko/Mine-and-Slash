@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
@@ -59,7 +58,7 @@ public class MobStatUtils {
                                               int level) {
 
         Unit unit = unitdata.getUnit();
-        ModEntityConfig config = ModEntityConfigs.INSTANCE.getConfig(entity);
+        ModEntityConfig config = SlashRegistry.getEntityConfig(entity);
 
         for (StatData data : unit.getStats().values()) {
             Stat stat = data.GetStat();

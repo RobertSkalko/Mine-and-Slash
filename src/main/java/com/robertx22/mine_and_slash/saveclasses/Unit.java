@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.saveclasses;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -262,7 +261,7 @@ public class Unit {
 
         MobRarity finalRarity = RandomUtils.weightedRandom(after);
 
-        ModEntityConfig entityconfig = ModEntityConfigs.INSTANCE.getConfig(entity);
+        ModEntityConfig entityconfig = SlashRegistry.getEntityConfig(entity);
 
         return MathHelper.clamp(finalRarity.Rank(), entityconfig.MIN_RARITY, entityconfig.MAX_RARITY);
 

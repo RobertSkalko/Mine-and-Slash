@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.db_lists.registry;
 
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -35,6 +36,7 @@ public enum SlashRegistryType {
     MAP_AFFIX(BaseMapAffix.class),
     ITEM_MODIFICATION(BaseItemModification.class),
     DIMENSION_CONFIGS(DimensionConfig.class),
+    MOD_ENTITY_CONFIGS(ModEntityConfig.class),
     COMPATIBLE_ITEM(ConfigItem.class);
 
     public Class<? extends ISlashRegistryEntry> theclass;

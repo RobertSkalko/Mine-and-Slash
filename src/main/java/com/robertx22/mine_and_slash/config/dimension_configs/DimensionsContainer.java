@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.config.dimension_configs;
 
 import com.robertx22.mine_and_slash.config.IConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +27,8 @@ public class DimensionsContainer implements IConfig, ISlashRegistryInit {
         return ConfigType;
     }
 
+    DimensionConfig defaultconfig = DimensionConfig.DefaultExtra();
+
     public HashMap<String, DimensionConfig> dimensionsList = new HashMap();
 
     @Override
@@ -33,8 +36,9 @@ public class DimensionsContainer implements IConfig, ISlashRegistryInit {
         for (Map.Entry<String, DimensionConfig> entry : this.dimensionsList.entrySet()) {
             entry.getValue().GUID = entry.getKey();
             entry.getValue().registerToSlashRegistry();
-
         }
+
+        SlashRegistry.DimensionConfigs().setDefault(this.defaultconfig);
 
     }
 }
