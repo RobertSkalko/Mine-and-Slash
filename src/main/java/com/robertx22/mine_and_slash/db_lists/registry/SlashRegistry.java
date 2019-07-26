@@ -119,7 +119,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.STATMOD);
     }
 
-    private static HashMap<SlashRegistryType, SlashRegistryContainer> map = null;
+    private static HashMap<SlashRegistryType, SlashRegistryContainer> map = new HashMap<>();
 
     public static SlashRegistryContainer getRegistry(SlashRegistryType type) {
         return map.get(type);
@@ -131,9 +131,15 @@ public class SlashRegistry {
     }
 
     public static void init() {
-        map = new HashMap<>();
-        createRegistries();
-        registerFromAllInits();
+        try {
+            map = new HashMap<>();
+            createRegistries();
+            registerFromAllInits();
+        } catch (ExceptionInInitializerError e) {
+            // leave this, once this error happened and we don't know why. this is to know the cause if it happens again
+            e.printStackTrace();
+            e.getCause().printStackTrace();
+        }
     }
 
     private static void registerFromAllInits() {
