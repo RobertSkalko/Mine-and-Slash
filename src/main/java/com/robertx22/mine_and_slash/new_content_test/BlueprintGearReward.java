@@ -51,8 +51,17 @@ public class BlueprintGearReward {
 
         this.enumGearType = GearItemEnum.random();
 
+        this.specialEffects = BaseItemModification.randomList(3)
+                .stream()
+                .map(x -> x.GUID())
+                .collect(Collectors.toList());
+
         if (this.enumGearType == GearItemEnum.UNIQUE) {
-            this.uniqueID = SlashRegistry.UniqueGears().random().GUID();
+            this.uniqueID = SlashRegistry.UniqueGears()
+                    .getWrapped()
+                    .ofTierOrLess(data.tier)
+                    .random()
+                    .GUID();
         }
 
         // TODO BASE THE REWARD ON THE DIFFICULTY..

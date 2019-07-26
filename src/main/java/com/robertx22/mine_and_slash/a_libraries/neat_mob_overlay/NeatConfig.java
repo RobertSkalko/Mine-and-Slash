@@ -16,7 +16,6 @@ public class NeatConfig {
     public static int barHeight = 4;
     public static int plateSize = 25;
     public static int plateSizeBoss = 50;
-    public static boolean showAttributes = true;
     public static boolean colorByType = false;
     public static int hpTextHeight = 14;
     public static boolean showMaxHP = true;

@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.item_modifications.bases;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -63,7 +64,27 @@ public abstract class BaseItemModification implements IWeighted, IRarity, ISlash
         List<BaseItemModification> list = new ArrayList<>();
         List<ItemModType> types = new ArrayList<>();
 
+        int count = 0;
+
+        int tries = 0;
+
+        while (count < amount) {
+            tries++;
+
+            BaseItemModification mod = SlashRegistry.ItemModifications().random();
+            if (types.contains(mod.getItemModType()) == false) {
+                types.add(mod.getItemModType());
+                list.add(mod);
+                count++;
+            }
+
+            if (tries > 100) {
+                break;
+            }
+        }
+
         return list;
 
     }
+
 }

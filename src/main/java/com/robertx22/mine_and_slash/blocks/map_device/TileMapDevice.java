@@ -190,7 +190,7 @@ public class TileMapDevice extends BaseTile {
 
     private void trySetupMapForGroup(MapItemData map, PlayerEntity player) {
 
-        AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(15);
+        AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(20);
 
         if (map.groupPlay) {
             List<ServerPlayerEntity> players = world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab);
