@@ -88,8 +88,6 @@ public class MMORPG {
 
         SlashRegistry.init(); // after config registerAll
 
-        ConfigRegister.regConfigsWhichDontNeedMyRegistry(); // still need after reg is inited
-
         StructurePieceRegisters.reg();
 
         bus.addListener(this::commonSetupEvent);
@@ -127,10 +125,10 @@ public class MMORPG {
 
     private void interModProcessEvent(final InterModProcessEvent event) {
         System.out.println(Ref.MODID + ":InterModProcessEvent");
-        
+
         ConfigItemsSerialization.INSTANCE.generateConfigTutorials();
         ConfigRegister.regConfigsWhichNeedMyRegistry();
-
+        ConfigRegister.regConfigsWhichDontNeedMyRegistry(); // still need after reg is inited
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {
