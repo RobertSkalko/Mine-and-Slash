@@ -17,6 +17,7 @@ import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.AffectedEntities;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -30,6 +31,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -43,30 +45,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti {
+public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti, Cloneable {
 
     @Store
     public int minutes = 30; // default
-
     @Store
     public int level = 1;
-
     @Store
     public int tier = 0;
-
     @Store
     public int rarity = 0;
-
     @Store
     public int maxPlayersInGroup = 0;
     @Store
     public boolean groupPlay = false;
-
     @Store
     public boolean isPermaDeath = false;
-
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
+
+    @Override
+    public MapItemData clone() {
+        CompoundNBT nbt = new CompoundNBT();
+        Map.Save(nbt, this);
+        return Map.Load(nbt);
+    }
 
     @Store
     public String worldGeneratorName;

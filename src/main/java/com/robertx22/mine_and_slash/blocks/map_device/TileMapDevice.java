@@ -147,9 +147,11 @@ public class TileMapDevice extends BaseTile {
                     DimensionType type = null;
                     try {
 
+                        MapItemData cloned = map.clone();
+
                         type = map.setupPlayerMapData(world, p, player);
 
-                        trySetupMapForGroup(map, player);
+                        trySetupMapForGroup(cloned, player);
 
                         // start map
                         this.MapSlot().shrink(1);
@@ -198,10 +200,12 @@ public class TileMapDevice extends BaseTile {
             int added = 0;
 
             for (ServerPlayerEntity p : players) {
+
                 double dist = p.getDistance(player);
 
                 if (dist <= distance && added < map.maxPlayersInGroup) {
-                    map.setupPlayerMapData(world, this.pos, p);
+                    MapItemData cloned = map.clone();
+                    cloned.setupPlayerMapData(world, this.pos, p);
 
                     distance = dist;
                     added++;

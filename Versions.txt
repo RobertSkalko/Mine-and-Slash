@@ -1,7 +1,8 @@
 2.2.8
 added defaultconfig back to dimension configs
 transfered mod entity configs to registry system
-removed player capability save workaround
+removed player capability save workaround (if lvl is erased, do /restorelevel , if that doesn't work, get an OP to /setlevel on you)
+attempt to fix group maps behaving weird
 2.2.7
 compatible items now use my new registry system too.
 added warning on using weapon in offhand
