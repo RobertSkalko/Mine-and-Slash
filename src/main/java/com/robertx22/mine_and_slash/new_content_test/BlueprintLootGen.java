@@ -44,6 +44,9 @@ public class BlueprintLootGen extends BaseLootGen {
 
         data.level = blueprint.level;
         data.tier = blueprint.tier;
+        data.rarity = blueprint.getRarityRank();
+
+        blueprint.generateRequests(data);
 
         Blueprint.Save(stack, data);
 

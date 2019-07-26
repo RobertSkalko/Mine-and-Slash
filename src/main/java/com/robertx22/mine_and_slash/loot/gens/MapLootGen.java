@@ -61,7 +61,7 @@ public class MapLootGen extends BaseLootGen {
     public static ItemStack Create(MapBlueprint blueprint) {
 
         MapItemData data = new MapItemData();
-        MapRarity rarity = Rarities.Maps.get(blueprint.getRarity());
+        MapRarity rarity = Rarities.Maps.get(blueprint.getRarityRank());
         ItemStack stack = new ItemStack(ItemMap.Items.get(rarity.Rank()));
 
         data.rarity = rarity.Rank();

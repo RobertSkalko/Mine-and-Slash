@@ -46,7 +46,7 @@ public abstract class ItemBlueprint {
 
     }
 
-    public int getRarity() {
+    public int getRarityRank() {
 
         RaritiesContainer<? extends Rarity> rarities = getRarityContainer();
 

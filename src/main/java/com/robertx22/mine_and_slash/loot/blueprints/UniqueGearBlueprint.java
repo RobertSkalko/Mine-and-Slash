@@ -22,7 +22,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
     }
 
     @Override
-    public int getRarity() {
+    public int getRarityRank() {
         return new UniqueItem().Rank();
     }
 

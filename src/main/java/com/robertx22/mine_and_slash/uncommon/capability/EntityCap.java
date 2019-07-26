@@ -35,6 +35,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -211,6 +212,10 @@ public class EntityCap {
 
         @SubscribeEvent
         public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
+
+            if (event.getObject() instanceof ArmorStandEntity) {
+                return;
+            }
 
             if (event.getObject() instanceof LivingEntity) {
                 event.addCapability(RESOURCE, new Provider());

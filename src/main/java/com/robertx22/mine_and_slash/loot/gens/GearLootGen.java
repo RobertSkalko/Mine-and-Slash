@@ -51,7 +51,7 @@ public class GearLootGen extends BaseLootGen {
 
     public static GearItemData CreateData(GearBlueprint blueprint, GearItemEnum type) {
 
-        ItemRarity rarity = Rarities.Items.get(blueprint.getRarity());
+        ItemRarity rarity = Rarities.Items.get(blueprint.getRarityRank());
         GearItemData data = new GearItemData();
 
         data.level = blueprint.getLevel();

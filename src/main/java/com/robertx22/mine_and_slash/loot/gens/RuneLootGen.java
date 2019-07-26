@@ -38,7 +38,7 @@ public class RuneLootGen extends BaseLootGen {
 
     public static ItemStack Create(RuneBlueprint blueprint) {
 
-        int rarity = blueprint.getRarity();
+        int rarity = blueprint.getRarityRank();
 
         BaseRuneItem item = blueprint.getRuneItem().byRarity(rarity);
 

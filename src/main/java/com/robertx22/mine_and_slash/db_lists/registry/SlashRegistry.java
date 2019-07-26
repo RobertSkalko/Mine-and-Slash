@@ -119,7 +119,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.STATMOD);
     }
 
-    private static HashMap<SlashRegistryType, SlashRegistryContainer> map = new HashMap<>();
+    private static HashMap<SlashRegistryType, SlashRegistryContainer> map = null;
 
     public static SlashRegistryContainer getRegistry(SlashRegistryType type) {
         return map.get(type);
@@ -131,6 +131,7 @@ public class SlashRegistry {
     }
 
     public static void init() {
+        map = new HashMap<>();
         createRegistries();
         registerFromAllInits();
     }

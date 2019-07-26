@@ -40,7 +40,7 @@ public class SpellLootGen extends BaseLootGen {
         BaseSpell spell = blueprint.GetSpell();
         ItemStack stack = new ItemStack(spell.SpellItem());
         SpellItemData data = new SpellItemData();
-        data.rarity = blueprint.getRarity();
+        data.rarity = blueprint.getRarityRank();
         SpellRarity rarity = data.getRarity();
 
         data.rarity = rarity.Rank();
