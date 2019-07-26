@@ -20,17 +20,21 @@ import java.nio.file.Path;
 
 public class ConfigRegister {
 
-    public static void regAndLoadNonForgeConfigs() {
+    public static void regConfigsWhichDontNeedMyRegistry() {
 
-        ConfigItemsSerialization.INSTANCE.generateIfEmpty();
         ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
         ModDmgWhitelistSerialization.INSTANCE.generateIfEmpty();
         ModEntityConfigsSerialization.INSTANCE.generateIfEmpty();
 
-        ConfigItemsSerialization.INSTANCE.load();
         ConfigDimensionsSerialization.INSTANCE.load();
         ModDmgWhitelistSerialization.INSTANCE.load();
         ModEntityConfigsSerialization.INSTANCE.load();
+    }
+
+    public static void regConfigsWhichNeedMyRegistry() {
+
+        ConfigItemsSerialization.INSTANCE.generateIfEmpty();
+        ConfigItemsSerialization.INSTANCE.load();
 
     }
 

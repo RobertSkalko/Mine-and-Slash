@@ -89,6 +89,11 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     }
 
     public C random() {
+
+        if (this.list.isEmpty()) {
+            return null;
+        }
+
         return RandomUtils.weightedRandom(list);
     }
 

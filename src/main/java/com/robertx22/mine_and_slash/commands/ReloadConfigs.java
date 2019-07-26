@@ -17,7 +17,9 @@ public class ReloadConfigs {
     private static int run(CommandSource source) {
 
         try {
-            ConfigRegister.regAndLoadNonForgeConfigs();
+
+            ConfigRegister.regConfigsWhichNeedMyRegistry();
+            ConfigRegister.regConfigsWhichDontNeedMyRegistry();
 
             if (source.getEntity() instanceof ServerPlayerEntity) {
                 ((ServerPlayerEntity) source.getEntity()).sendMessage(new StringTextComponent("Configs reloaded"));

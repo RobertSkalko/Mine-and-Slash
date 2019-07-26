@@ -88,6 +88,8 @@ public class MMORPG {
 
         SlashRegistry.init(); // after config registerAll
 
+        ConfigRegister.regConfigsWhichDontNeedMyRegistry(); // still need after reg is inited
+
         StructurePieceRegisters.reg();
 
         bus.addListener(this::commonSetupEvent);
@@ -125,7 +127,9 @@ public class MMORPG {
 
     private void interModProcessEvent(final InterModProcessEvent event) {
         System.out.println(Ref.MODID + ":InterModProcessEvent");
+        
         ConfigItemsSerialization.INSTANCE.generateConfigTutorials();
+        ConfigRegister.regConfigsWhichNeedMyRegistry();
 
     }
 
@@ -144,7 +148,6 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
         CommandRegister.Register(event.getServer());
-        ConfigRegister.regAndLoadNonForgeConfigs();
 
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();
