@@ -1,11 +1,9 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
 public class CurrencyLootGen extends BaseLootGen {
@@ -33,7 +31,10 @@ public class CurrencyLootGen extends BaseLootGen {
     @Override
     public ItemStack generateOne() {
 
-        return new ItemStack(RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, info.tier)));
+        return new ItemStack(SlashRegistry.CurrencyItems()
+                .getWrapped()
+                .ofTierOrLess(info.tier)
+                .random());
 
     }
 

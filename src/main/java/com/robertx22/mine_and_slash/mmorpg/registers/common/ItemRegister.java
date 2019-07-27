@@ -10,13 +10,6 @@ import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ItemMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.mine_and_slash.items.currency.*;
-import com.robertx22.mine_and_slash.items.currency.map.ItemAddGroupMap;
-import com.robertx22.mine_and_slash.items.infusions.AttackInfusionItem;
-import com.robertx22.mine_and_slash.items.infusions.DefenseInfusionItem;
-import com.robertx22.mine_and_slash.items.infusions.ResourceInfusionItem;
-import com.robertx22.mine_and_slash.items.infusions.upgrade.NormalUpgradeInfusion;
-import com.robertx22.mine_and_slash.items.infusions.upgrade.SuperiorUpgradeInfusion;
-import com.robertx22.mine_and_slash.items.infusions.upgrade.WondrousUpgradeInfusion;
 import com.robertx22.mine_and_slash.items.level_incentives.Hearthstone;
 import com.robertx22.mine_and_slash.items.misc.*;
 import com.robertx22.mine_and_slash.items.spells.ItemBonusEleAtkDmg;
@@ -115,6 +108,10 @@ public class ItemRegister {
 
     private static List<Item> list = new ArrayList<>();
 
+    public static void shcheduleToRegister(Item item) {
+        list.add(item);
+    }
+
     private static void registerSingles(RegistryEvent.Register<Item> event) {
 
         IForgeRegistry<Item> r = event.getRegistry();
@@ -123,32 +120,6 @@ public class ItemRegister {
         list.add(new ItemLootBag().setRegistryName(ItemLootBag.ID));
         list.add(new ItemMapBag().setRegistryName(ItemMapBag.ID));
         list.add(new ItemMasterBag().setRegistryName(ItemMasterBag.ID));
-
-        list.add(new ItemAddSet());
-        list.add(new ItemAddGroupMap());
-        list.add(new ItemClearRunes());
-        list.add(new ItemRerollSet());
-        list.add(new CreateNewUnique());
-        list.add(new ItemAddPrefix());
-        list.add(new ItemAddSecondaryStat());
-        list.add(new ItemAddSuffix());
-        list.add(new ItemChaosOrb());
-        list.add(new ItemLevelUpGear());
-        list.add(new ItemNumberReroll());
-        list.add(new ItemOrbOfTransmutation());
-        list.add(new ItemRandomizePrefix());
-        list.add(new ItemRandomizeSuffix());
-        list.add(new ItemStoneOfHope());
-        list.add(new RerollPrefixNumbers());
-        list.add(new RerollSuffixNumbers());
-        list.add(new RerollUniqueNumbers());
-
-        list.add(new NormalUpgradeInfusion());
-        list.add(new SuperiorUpgradeInfusion());
-        list.add(new WondrousUpgradeInfusion());
-        list.add(new AttackInfusionItem());
-        list.add(new DefenseInfusionItem());
-        list.add(new ResourceInfusionItem());
 
         list.add(new ItemAwakenRuneWord());
         list.add(new ItemIncreaseRarityNearestEntity());

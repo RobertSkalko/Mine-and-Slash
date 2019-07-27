@@ -31,6 +31,13 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
         return this;
     }
 
+    public FilterListWrap<C> ofTierRange(int min, int max) {
+        this.list = list.stream()
+                .filter(x -> x.Tier() >= min && x.Tier() <= max)
+                .collect(Collectors.toList());
+        return this;
+    }
+
     public FilterListWrap<C> ofExactTier(int tier) {
         this.list = list.stream()
                 .filter(x -> ((ITiered) x).Tier() == tier)

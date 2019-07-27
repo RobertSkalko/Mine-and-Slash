@@ -1,14 +1,17 @@
 package com.robertx22.mine_and_slash.items.currency;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.items.ItemDefault;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -25,12 +28,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements IGUID, ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
-
-    public static List<CurrencyItem> ITEMS = new ArrayList<>();
+public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 
@@ -42,8 +42,6 @@ public abstract class CurrencyItem extends Item implements IGUID, ICurrencyItemE
         super(new ItemDefault().maxStackSize(64));
 
         RegisterItemUtils.RegisterItemName(this, name);
-
-        ITEMS.add(this);
 
     }
 
@@ -106,8 +104,7 @@ public abstract class CurrencyItem extends Item implements IGUID, ICurrencyItemE
         Tooltip.add("", tooltip);
 
         tooltip.add(TooltipUtils.tier(this.Tier()));
-        tooltip.add(TooltipUtils.rarity(Rarities.Items.get(this.rarity())));
-
+        tooltip.add(TooltipUtils.rarity(getRarity()));
         Tooltip.add("", tooltip);
 
         Tooltip.add(Styles.BLUECOMP()
@@ -115,22 +112,35 @@ public abstract class CurrencyItem extends Item implements IGUID, ICurrencyItemE
 
     }
 
-    public abstract int rarity();
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.CURRENCY_ITEMS;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return IRarity.Uncommon;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
+    }
 
     @Override
     public int Weight() {
 
-        if (rarity() == 0) {
+        if (getRarityRank() == 0) {
             return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.COMMON_WEIGHT.get();
-        } else if (rarity() == 1) {
+        } else if (getRarityRank() == 1) {
             return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.UNCOMMON_WEIGHT.get();
-        } else if (rarity() == 2) {
+        } else if (getRarityRank() == 2) {
             return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.RARE_WEIGHT.get();
-        } else if (rarity() == 3) {
+        } else if (getRarityRank() == 3) {
             return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.EPIC_WEIGHT.get();
-        } else if (rarity() == 4) {
+        } else if (getRarityRank() == 4) {
             return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.LEGENDARY_WEIGHT.get();
-        } else if (rarity() == 5) {
+        } else if (getRarityRank() == 5) {
             return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.MYTHICAL_WEIGHT.get();
         }
         return 0;

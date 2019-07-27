@@ -38,7 +38,7 @@ public class BlueprintBlueprint extends ItemBlueprint {
 
         // use new registry randomlist here instead
         // add currneices to registry
-        
+
         for (int i = 0; i < 4; i++) {
 
             BlueprintSimpleItemRequest simple = new BlueprintSimpleItemRequest();

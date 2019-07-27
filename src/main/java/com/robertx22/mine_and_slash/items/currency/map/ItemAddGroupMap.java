@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
@@ -53,8 +54,8 @@ public class ItemAddGroupMap extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public int rarity() {
-        return 4;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

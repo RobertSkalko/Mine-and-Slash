@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
@@ -24,7 +23,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataIt
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -375,7 +373,10 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
 
             if (isUnique || RandomUtils.roll(this.getRarity().specialItemChance())) {
 
-                Item item = RandomUtils.weightedRandom(ListUtils.minMaxTier(CurrencyItem.ITEMS, tier - 5, tier + 2));
+                Item item = SlashRegistry.CurrencyItems()
+                        .getWrapped()
+                        .ofTierRange(tier - 5, tier + 2)
+                        .random();
 
                 int tierAmountBonus = (tier / 4);
 

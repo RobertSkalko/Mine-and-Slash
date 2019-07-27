@@ -1,6 +1,7 @@
 2.2.9
 armor stands can no longer get stats
 added more safety to registry initialization
+added currency items to registry
 2.2.8
 added defaultconfig back to dimension configs
 transfered mod entity configs to registry system

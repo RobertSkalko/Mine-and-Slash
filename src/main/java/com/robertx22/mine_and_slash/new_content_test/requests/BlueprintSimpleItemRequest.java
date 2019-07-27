@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.new_content_test.requests;
 
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
-import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -41,7 +41,8 @@ public class BlueprintSimpleItemRequest extends BaseBlueprintRequest {
         this.amount = RandomUtils.RandomRange(raramount, raramount * 2);
 
         // TODO turn currency items into a registry?
-        this.itemRegistryName = RandomUtils.weightedRandom(CurrencyItem.ITEMS)
+        this.itemRegistryName = SlashRegistry.CurrencyItems()
+                .random()
                 .getRegistryName()
                 .toString();
 

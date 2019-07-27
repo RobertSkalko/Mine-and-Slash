@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
@@ -70,8 +71,8 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public int rarity() {
-        return 4;
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

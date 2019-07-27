@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
@@ -75,8 +76,8 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public int rarity() {
-        return 5;
+    public int getRarityRank() {
+        return IRarity.Mythic;
     }
 
     @Override
@@ -93,4 +94,5 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     public String locDescForLangFile() {
         return "Transform unique (same tier)";
     }
+
 }

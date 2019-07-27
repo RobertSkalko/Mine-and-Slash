@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
-import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -193,7 +192,10 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         if (RandomUtils.roll(this.getRarity().specialItemChance())) {
 
-            Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, tier));
+            Item item = SlashRegistry.CurrencyItems()
+                    .getWrapped()
+                    .ofTierOrLess(tier)
+                    .random();
 
             stack = new ItemStack(item);
         } else {

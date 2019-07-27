@@ -45,11 +45,6 @@ public class NormalUpgradeInfusion extends BaseUpgradeInfusion {
     }
 
     @Override
-    public int rarity() {
-        return 1;
-    }
-
-    @Override
     public String locNameForLangFile() {
         return nameColor + "Normal Infusion Upgrade";
     }

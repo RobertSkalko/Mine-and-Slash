@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.items.infusions.upgrade;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -45,8 +46,8 @@ public class SuperiorUpgradeInfusion extends BaseUpgradeInfusion {
     }
 
     @Override
-    public int rarity() {
-        return 2;
+    public int getRarityRank() {
+        return IRarity.Rare;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -14,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -82,7 +81,10 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
         if (RandomUtils.roll(this.getRarity().specialItemChance())) {
 
-            Item item = RandomUtils.weightedRandom(ListUtils.SameTierOrLess(CurrencyItem.ITEMS, 10));
+            Item item = SlashRegistry.CurrencyItems()
+                    .getWrapped()
+                    .ofExactTier(this.rarity + 10)
+                    .random();
 
             stack = new ItemStack(item);
         } else {

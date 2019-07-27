@@ -55,11 +55,6 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     }
 
     @Override
-    public int rarity() {
-        return 1;
-    }
-
-    @Override
     public List<String> loreLines() {
         return Arrays.asList("More power is always good, right?");
     }

@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.InfusionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
@@ -79,9 +80,8 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     }
 
     @Override
-    public int rarity() {
-        return 4;
-
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override
