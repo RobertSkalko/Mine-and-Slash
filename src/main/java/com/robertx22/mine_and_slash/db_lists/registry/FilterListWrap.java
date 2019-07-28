@@ -94,8 +94,10 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
         List<C> list = new ArrayList<>();
 
-        while (list.size() < amount) {
+        int tries = 0;
+        while (list.size() < amount && tries < 100) {
             list.add(random());
+            tries++;
         }
         this.list = list;
         return this;
