@@ -5,18 +5,17 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.Comple
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ElementalSpellToAttackDMGPercent;
+import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EleSpellDmgStaff extends BaseUniqueStaff implements IGenerated<IUnique> {
+public class EleSpellDmgStaff extends BaseUniqueStaff implements IElementalUnique {
 
     public Elements element;
 
@@ -56,9 +55,8 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IGenerated<IUni
     }
 
     @Override
-    public List<IUnique> generateAllPossibleStatVariations() {
-        List<IUnique> list = new ArrayList<>();
-        Elements.getAllSingleElements().forEach(x -> list.add(new EleSpellDmgStaff(x)));
-        return list;
+    public IUnique newInstance(Elements element) {
+        return new EleSpellDmgStaff(element);
     }
+
 }

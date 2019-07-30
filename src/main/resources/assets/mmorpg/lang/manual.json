@@ -5,6 +5,8 @@
     "item.mmorpg.hearthstone.4": "Legendary Hearthstone",
     "item.mmorpg.hearthstone.5": "Mythical Hearthstone",	
 
+	"block.mmorpg.egg_loot_crate": "Loot Crate",
+
     "block.mmorpg.ore_block0": "Common Ore Block",
     "block.mmorpg.ore_block1": "Uncommon Ore Block",
     "block.mmorpg.ore_block2": "Rare Ore Block",

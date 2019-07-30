@@ -19,26 +19,23 @@ public class PlayersCapBackup {
 
         int currentLvl = data.getLevel();
 
-        int backedUpLvl = 0;
-
         if (map.containsKey(getKey(player))) {
-            backedUpLvl = map.get(getKey(player));
-            if (backedUpLvl > currentLvl) {
+            int backedUpLvl = map.get(getKey(player));
+            if (currentLvl > backedUpLvl) {
                 map.put(getKey(player), data.getLevel());
             }
         } else {
             map.put(getKey(player), data.getLevel());
         }
     }
-
+    
     public void restoreFromBackup(ServerPlayerEntity player) {
 
         int currentLvl = Load.Unit(player).getLevel();
         int backedUpLvl = map.getOrDefault(getKey(player), currentLvl);
 
         if (currentLvl < backedUpLvl) {
-            Load.Unit(player)
-                    .freelySetLevel(map.getOrDefault(getKey(player), currentLvl));
+            Load.Unit(player).freelySetLevel(backedUpLvl);
             player.sendMessage(new StringTextComponent("Level Restored. If you have an error in your log file relating to the level loss, send to robertx22 (Mine and Slash)."));
 
         } else {

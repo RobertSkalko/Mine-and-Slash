@@ -113,8 +113,8 @@ public class GearItemRegisters {
     private static void regRarities(Item item, HashMap<Integer, Item> map, String name,
                                     int rarity) {
 
-        String reg = name + rarity;
-        item.setRegistryName(reg);
+        String reg = name.toLowerCase() + rarity;
+        item.setRegistryName(Ref.MODID, reg);
         map.put(rarity, item);
         items.add(item);
 

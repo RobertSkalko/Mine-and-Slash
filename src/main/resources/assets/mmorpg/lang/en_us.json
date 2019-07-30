@@ -6,6 +6,8 @@
     "item.mmorpg.hearthstone.4": "Legendary Hearthstone",
     "item.mmorpg.hearthstone.5": "Mythical Hearthstone",	
 
+	"block.mmorpg.egg_loot_crate": "Loot Crate",
+
     "block.mmorpg.ore_block0": "Common Ore Block",
     "block.mmorpg.ore_block1": "Uncommon Ore Block",
     "block.mmorpg.ore_block2": "Rare Ore Block",
@@ -163,26 +165,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7Common Big Currency Treasure Box",
@@ -241,6 +223,26 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§dMythical Small Spell Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -433,6 +435,7 @@
 	"mmorpg.word.activation_time": "Activation Time",
 	"mmorpg.word.addchaosstats": "Add ChaosStats",
 	"mmorpg.word.addmajorarcana": "Add Major Arcana Chaos Stats",
+	"mmorpg.word.addrarestaffixes": "Add Rarest Affixes",
 	"mmorpg.word.addset": "Add Set",
 	"mmorpg.word.affixes_affecting_all": "Affixes Affecting All",
 	"mmorpg.word.alwayschaosstats": "Always has Chaos Stats",
@@ -571,6 +574,7 @@
 	"mmorpg.stat.blockstrength": "Block Strength",
 	"mmorpg.stat.bonus_all_drops": "Bonus All Drops",
 	"mmorpg.stat.bonus_awakenruneword_drops": "Bonus Awaken Runeword Drops",
+	"mmorpg.stat.bonus_blueprint_drops": "Bonus Blueprint Drops",
 	"mmorpg.stat.bonus_compatibleitem_drops": "Bonus Compatible Item Drops",
 	"mmorpg.stat.bonus_currency_drops": "Bonus Currency Drops",
 	"mmorpg.stat.bonus_lootbox_drops": "Bonus Loot Box Drops",
@@ -822,6 +826,27 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.boots": "Boots",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.chest": "Chest",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.helmet": "Helmet",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.pants": "Pants",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -899,27 +924,6 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.boots": "Boots",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.chest": "Chest",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.helmet": "Helmet",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.pants": "Pants",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1099,8 +1103,8 @@
 	"item.mmorpg.uniques.boots.bootsnature0.desc": "Nothing shall break my roots!",
 	"item.mmorpg.uniques.boots.bootsthunder0.desc": "Sparks fly wherever I stand.",
 	"item.mmorpg.uniques.boots.bootswater0.desc": "Ice forms wherever I walk.",
-	"item.mmorpg.uniques.bow.bow_fire0.desc": "Aim steady, imbue with flame!",
-	"item.mmorpg.uniques.bow.bow_nature0.desc": "Aim steady, imbue with poison!",
+	"item.mmorpg.uniques.bow.bow_fire0.desc": "Aim steady, imbue with Flame!",
+	"item.mmorpg.uniques.bow.bow_nature0.desc": "Aim steady, imbue with Venom!",
 	"item.mmorpg.uniques.bow.bow_thunder0.desc": "Aim steady, imbue with Lightning!",
 	"item.mmorpg.uniques.bow.bow_water0.desc": "Aim steady, imbue with Frost!",
 	"item.mmorpg.uniques.bracelet.braceletfire0.desc": "Harness Fire, wield it as your weapon. Incinerate them.",

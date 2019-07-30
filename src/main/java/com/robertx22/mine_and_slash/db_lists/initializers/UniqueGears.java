@@ -8,10 +8,7 @@ import com.robertx22.mine_and_slash.database.unique_items.boots.BootsFire;
 import com.robertx22.mine_and_slash.database.unique_items.boots.BootsNature;
 import com.robertx22.mine_and_slash.database.unique_items.boots.BootsThunder;
 import com.robertx22.mine_and_slash.database.unique_items.boots.BootsWater;
-import com.robertx22.mine_and_slash.database.unique_items.bows.BowFire;
-import com.robertx22.mine_and_slash.database.unique_items.bows.BowNature;
-import com.robertx22.mine_and_slash.database.unique_items.bows.BowThunder;
-import com.robertx22.mine_and_slash.database.unique_items.bows.BowWater;
+import com.robertx22.mine_and_slash.database.unique_items.bows.BowElemental;
 import com.robertx22.mine_and_slash.database.unique_items.bracelets.*;
 import com.robertx22.mine_and_slash.database.unique_items.charms.CharmFire;
 import com.robertx22.mine_and_slash.database.unique_items.charms.CharmNature;
@@ -49,23 +46,19 @@ public class UniqueGears implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        add(new RingHermitsInsanity());
+        add(new ElementalSaber(Elements.Physical));
+        add(new ShieldElemental(Elements.Physical));
+        add(new BowElemental(Elements.Physical));
         add(new EleSpellDmgStaff(Elements.Physical));
+
+        add(new RingHermitsInsanity());
         add(new MagesLuckyAmulet());
 
         add(new HelmetWisdom());
         add(new ShieldWisdom());
 
-        add(new ElementalSaber(Elements.Physical));
-        add(new ShieldElemental(Elements.Physical));
-
         add(new ShieldEleResist());
         // bows
-        add(new BowNature());
-        add(new BowWater());
-        add(new BowThunder());
-        add(new BowFire());
-
         // charms
         add(new CharmThunder());
         add(new CharmWater());

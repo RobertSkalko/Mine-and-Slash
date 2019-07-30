@@ -15,7 +15,7 @@ public class CurrencySlotHandler extends BaseSlot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return ItemFilterGroup.ANY_CURRENCY.anyMatchesFilter(stack);
+        return ItemFilterGroup.CURRENCY_BAG.anyMatchesFilter(stack);
     }
 
 }
