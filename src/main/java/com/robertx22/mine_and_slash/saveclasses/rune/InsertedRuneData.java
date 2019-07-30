@@ -42,6 +42,10 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
     @Store
     public int rarity;
 
+    public boolean isNotUsedByAnyRuneWord() {
+        return this.usedForRuneWord.isEmpty();
+    }
+
     public RuneRarity getRarity() {
         return Rarities.Runes.get(rarity);
     }

@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.commands.giveitems;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.robertx22.mine_and_slash.commands.bases.RuneItemSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.RuneBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.RuneLootGen;
 import net.minecraft.command.CommandSource;
@@ -19,22 +21,26 @@ public class GiveRune {
         commandDispatcher.register(Commands.literal("giverune")
                 .requires(e -> e.hasPermissionLevel(2))
                 .then(Commands.argument("target", EntityArgument.player())
-                        .then(Commands.argument("level", IntegerArgumentType.integer())
-                                .then(Commands.argument("rarity", IntegerArgumentType.integer(0, 5))
-                                        .then(Commands.argument("amount", IntegerArgumentType
-                                                .integer(1, 30000))
+                        .then(Commands.argument("type", StringArgumentType.word())
+                                .suggests(new RuneItemSuggestions())
+                                .then(Commands.argument("level", IntegerArgumentType.integer())
+                                        .then(Commands.argument("rarity", IntegerArgumentType
+                                                .integer(0, 5))
+                                                .then(Commands.argument("amount", IntegerArgumentType
+                                                        .integer(1, 30000))
 
-                                                .executes(e -> run(e.getSource(), EntityArgument
-                                                        .getPlayer(e, "target"), IntegerArgumentType
-                                                        .getInteger(e, "level"), IntegerArgumentType
-                                                        .getInteger(e, "rarity"), IntegerArgumentType
-                                                        .getInteger(e, "amount")
+                                                        .executes(e -> run(e.getSource(), EntityArgument
+                                                                .getPlayer(e, "target"), StringArgumentType
+                                                                .getString(e, "type"), IntegerArgumentType
+                                                                .getInteger(e, "level"), IntegerArgumentType
+                                                                .getInteger(e, "rarity"), IntegerArgumentType
+                                                                .getInteger(e, "amount")
 
-                                                )))))));
+                                                        ))))))));
     }
 
     private static int run(CommandSource commandSource, @Nullable PlayerEntity player,
-                           int lvl, int rarity, int amount) {
+                           String type, int lvl, int rarity, int amount) {
 
         if (Objects.isNull(player)) {
             try {
@@ -49,6 +55,12 @@ public class GiveRune {
             RuneBlueprint blueprint = new RuneBlueprint(lvl);
             if (rarity > -1) {
                 blueprint.setSpecificRarity(rarity);
+            }
+
+            if (type.equals("random") || type.isEmpty()) {
+
+            } else {
+                blueprint.SetSpecificType(type);
             }
 
             blueprint.LevelRange = false;

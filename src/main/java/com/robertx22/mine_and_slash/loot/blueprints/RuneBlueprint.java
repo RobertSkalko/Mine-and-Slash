@@ -19,18 +19,13 @@ public class RuneBlueprint extends ItemBlueprint {
         return Rarities.Runes;
     }
 
-    BaseRuneItem rune = null;
-
     public BaseRuneItem getRuneItem() {
 
-        if (rune != null) {
-            return rune;
+        if (this.GUID.isEmpty()) {
+            return RandomUtils.weightedRandom(SlashRegistry.Runes().getList());
+
         } else {
-
-            rune = RandomUtils.weightedRandom(SlashRegistry.Runes().getList());
-
-            return rune;
-
+            return SlashRegistry.Runes().get(GUID);
         }
 
     }

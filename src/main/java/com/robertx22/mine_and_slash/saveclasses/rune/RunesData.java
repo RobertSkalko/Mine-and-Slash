@@ -67,19 +67,20 @@ public class RunesData implements ITooltipList, IStatsContainer {
 
         for (int i = 0; i < word.size(); i++) {
             for (InsertedRuneData inserted : runes) {
-                if (inserted.usedForRuneWord.length() == 0 && inserted.rune.equals(word.runes()
-                        .get(i)
-                        .name())) {
+                if (inserted.isNotUsedByAnyRuneWord()) {
+                    if (inserted.rune.equals(word.runes().get(i).GUID())) {
 
-                    text += word.runes().get(i).name();
-
-                    break;
+                        text += word.runes().get(i).name();
+                        break;
+                    }
                 }
             }
 
         }
 
-        return text.toUpperCase().equals(word.getRuneWordCombo().toUpperCase());
+        String wordToAwaken = word.getRuneWordCombo().toUpperCase();
+
+        return text.toUpperCase().equals(wordToAwaken);
 
     }
 
