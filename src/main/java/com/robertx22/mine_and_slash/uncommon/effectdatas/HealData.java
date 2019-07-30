@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
-import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import net.minecraft.entity.LivingEntity;
 

@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.generated;
 
+import com.robertx22.mine_and_slash.database.items.spell_items.BaseSpellItem;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_effects.offense.BonusSpecificSpellEffect;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.database.items.spells.BaseSpellItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;

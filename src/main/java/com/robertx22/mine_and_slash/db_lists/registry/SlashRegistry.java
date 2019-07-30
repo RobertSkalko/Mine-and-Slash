@@ -23,7 +23,7 @@ import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
-import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.IWorld;
 

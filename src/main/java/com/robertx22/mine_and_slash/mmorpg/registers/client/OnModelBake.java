@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
-import com.robertx22.mine_and_slash.database.items.spells.InGame3DWhile2DInvModel;
+import com.robertx22.mine_and_slash.database.items.spell_items.InGame3DWhile2DInvModel;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.SimpleBakedModel;

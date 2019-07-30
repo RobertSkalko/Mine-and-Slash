@@ -44,8 +44,8 @@ public abstract class BasePlayerOverlay {
         }
         gui.blit(x, y, 0, NEW_TEXTURE_HEIGHT, barwidth, NEW_TEXTURE_HEIGHT); // inner fill texture
 
-        String now = DamageEffect.FormatNumber((int) current);
-        String maximum = DamageEffect.FormatNumber((int) max);
+        String now = DamageEffect.formatNumber((int) current);
+        String maximum = DamageEffect.formatNumber((int) max);
         String str = "";
 
         if (!isExp) {
@@ -78,8 +78,8 @@ public abstract class BasePlayerOverlay {
         }
         gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, barwidth, 5); // inner fill texture
 
-        String now = DamageEffect.FormatNumber((int) current);
-        String maximum = DamageEffect.FormatNumber((int) max);
+        String now = DamageEffect.formatNumber((int) current);
+        String maximum = DamageEffect.formatNumber((int) max);
         String str = "";
 
         if (!isExp) {

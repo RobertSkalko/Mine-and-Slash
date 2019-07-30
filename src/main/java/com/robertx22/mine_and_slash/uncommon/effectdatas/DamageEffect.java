@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.DmgNumPacket;
-import com.robertx22.mine_and_slash.spells.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -160,24 +160,32 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
     }
 
-    public static String FormatNumber(int Number) {
+    private static String getNumberString(int num, int divided, String letter) {
 
-        String num = "";
-        if (Number > 1000) {
-            int thousands = (int) (Number / 1000);
+        int thousands = (int) (num / divided);
+        int leftover = (int) ((num - thousands * divided) / 100);
+        return thousands + "." + leftover + letter;
+    }
 
-            int leftover = (int) ((Number - thousands * 1000) / 100);
+    static int MILLION = 1000000;
+    static int THOUSAND = 1000;
 
-            num = thousands + "." + leftover + "k";
-        } else {
-            num = Number + "";
+    public static String formatNumber(int num) {
+        String text = "";
+
+        if (num > MILLION) {
+            return getNumberString(num, MILLION, "m");
+        }
+        if (num > THOUSAND) {
+            return getNumberString(num, THOUSAND, "k");
         }
 
-        return num;
+        return num + "";
+
     }
 
     public static String FormatDamageNumber(DamageEffect data) {
-        String num = FormatNumber((int) data.number);
+        String num = formatNumber((int) data.number);
 
         if (data.crit) {
             num += "!";

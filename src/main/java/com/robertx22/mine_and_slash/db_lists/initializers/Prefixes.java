@@ -18,7 +18,7 @@ import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.MagesGambl
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.spells.projectile.SpellAcidBolt;
+import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 

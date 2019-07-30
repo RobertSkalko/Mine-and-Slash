@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.items.currency.*;
+import com.robertx22.mine_and_slash.database.items.currency.infusions.AttackInfusionItem;
+import com.robertx22.mine_and_slash.database.items.currency.infusions.DefenseInfusionItem;
+import com.robertx22.mine_and_slash.database.items.currency.infusions.ResourceInfusionItem;
+import com.robertx22.mine_and_slash.database.items.currency.infusions.upgrade.NormalUpgradeInfusion;
+import com.robertx22.mine_and_slash.database.items.currency.infusions.upgrade.SuperiorUpgradeInfusion;
+import com.robertx22.mine_and_slash.database.items.currency.infusions.upgrade.WondrousUpgradeInfusion;
 import com.robertx22.mine_and_slash.database.items.currency.map.ItemAddGroupMap;
-import com.robertx22.mine_and_slash.items.infusions.AttackInfusionItem;
-import com.robertx22.mine_and_slash.items.infusions.DefenseInfusionItem;
-import com.robertx22.mine_and_slash.items.infusions.ResourceInfusionItem;
-import com.robertx22.mine_and_slash.items.infusions.upgrade.NormalUpgradeInfusion;
-import com.robertx22.mine_and_slash.items.infusions.upgrade.SuperiorUpgradeInfusion;
-import com.robertx22.mine_and_slash.items.infusions.upgrade.WondrousUpgradeInfusion;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ItemRegister;
 
 public class CurrencyItems implements ISlashRegistryInit {

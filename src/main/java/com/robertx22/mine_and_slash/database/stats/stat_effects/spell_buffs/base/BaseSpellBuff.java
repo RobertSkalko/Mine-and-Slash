@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_effects.spell_buffs.bas
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.spells.bases.BaseSpell.SpellType;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell.SpellType;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell.SpellBuffType;

@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
+import com.robertx22.mine_and_slash.database.items.spell_items.BaseSpellItem;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.database.items.spells.BaseSpellItem;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

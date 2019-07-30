@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.BonusSpecificSpellFlat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 

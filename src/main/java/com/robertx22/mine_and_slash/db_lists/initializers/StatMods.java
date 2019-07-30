@@ -49,7 +49,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.BaseTrait;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.spells.projectile.SpellAcidBolt;
+import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;

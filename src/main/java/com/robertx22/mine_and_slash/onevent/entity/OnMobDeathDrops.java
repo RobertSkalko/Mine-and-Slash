@@ -60,7 +60,7 @@ public class OnMobDeathDrops {
                                     .getTrueSource(), killer, victim, exp_multi);
 
                             DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature, "+" + DamageEffect
-                                    .FormatNumber(exp) + " Exp!");
+                                    .formatNumber(exp) + " Exp!");
                             packet.isExp = true;
 
                             ServerPlayerEntity mp = (ServerPlayerEntity) event.getSource()

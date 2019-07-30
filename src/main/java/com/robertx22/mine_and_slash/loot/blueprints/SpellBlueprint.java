@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.spells.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 public class SpellBlueprint extends ItemBlueprint {

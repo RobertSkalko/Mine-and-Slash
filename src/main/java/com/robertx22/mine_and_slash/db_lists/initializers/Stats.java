@@ -41,7 +41,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.traits.low_dodge.L
 import com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana.*;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.spells.projectile.SpellAcidBolt;
+import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;

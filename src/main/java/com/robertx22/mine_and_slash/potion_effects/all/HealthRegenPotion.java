@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
-import com.robertx22.mine_and_slash.spells.self.SpellSelfRegen;
+import com.robertx22.mine_and_slash.database.spells.self.SpellSelfRegen;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;

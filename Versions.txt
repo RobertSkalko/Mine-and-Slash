@@ -1,5 +1,6 @@
 2.2.12
 giverune command now can give specific runes
+fixed exp number overflow at high lvls, now its says 2m instead of 200k  TODO
 2.2.11
 fix auto salvage bag config reset not working
 2.2.10
