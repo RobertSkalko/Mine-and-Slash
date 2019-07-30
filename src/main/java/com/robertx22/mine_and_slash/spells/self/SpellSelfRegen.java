@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.spells.self;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.HealthRegen;
-import com.robertx22.mine_and_slash.items.spells.self.ItemSelfRegen;
+import com.robertx22.mine_and_slash.database.items.spells.self.ItemSelfRegen;
 import com.robertx22.mine_and_slash.potion_effects.all.HealthRegenPotion;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.spells.bases.EffectCalculation;

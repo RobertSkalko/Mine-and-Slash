@@ -6,11 +6,11 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.BuffManaRegenTrait;
-import com.robertx22.mine_and_slash.items.runes.AnoItem;
-import com.robertx22.mine_and_slash.items.runes.CenItem;
-import com.robertx22.mine_and_slash.items.runes.DosItem;
-import com.robertx22.mine_and_slash.items.runes.RahItem;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.AnoItem;
+import com.robertx22.mine_and_slash.database.items.runes.CenItem;
+import com.robertx22.mine_and_slash.database.items.runes.DosItem;
+import com.robertx22.mine_and_slash.database.items.runes.RahItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.util.Arrays;
 import java.util.List;

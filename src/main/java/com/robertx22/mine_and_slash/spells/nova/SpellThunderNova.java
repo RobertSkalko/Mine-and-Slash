@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.spells.nova;
 
-import com.robertx22.mine_and_slash.items.spells.nova.ItemThunderNova;
+import com.robertx22.mine_and_slash.database.items.spells.nova.ItemThunderNova;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 

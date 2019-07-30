@@ -5,11 +5,11 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ArmorPercent;
-import com.robertx22.mine_and_slash.items.runes.BerItem;
-import com.robertx22.mine_and_slash.items.runes.CenItem;
-import com.robertx22.mine_and_slash.items.runes.ItaItem;
-import com.robertx22.mine_and_slash.items.runes.VohItem;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.BerItem;
+import com.robertx22.mine_and_slash.database.items.runes.CenItem;
+import com.robertx22.mine_and_slash.database.items.runes.ItaItem;
+import com.robertx22.mine_and_slash.database.items.runes.VohItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.util.Arrays;
 import java.util.List;

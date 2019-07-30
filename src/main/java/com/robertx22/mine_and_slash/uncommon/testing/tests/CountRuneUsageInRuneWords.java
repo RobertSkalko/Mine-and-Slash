@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.testing.tests;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.util.HashMap;
 

@@ -4,9 +4,9 @@ import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.EnergyRegenPercent;
-import com.robertx22.mine_and_slash.items.runes.GohItem;
-import com.robertx22.mine_and_slash.items.runes.MosItem;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.GohItem;
+import com.robertx22.mine_and_slash.database.items.runes.MosItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.util.Arrays;
 import java.util.List;

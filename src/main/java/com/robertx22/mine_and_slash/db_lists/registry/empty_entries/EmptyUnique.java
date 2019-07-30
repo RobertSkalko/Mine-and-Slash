@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.Boots;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 
 import java.util.ArrayList;
 import java.util.List;

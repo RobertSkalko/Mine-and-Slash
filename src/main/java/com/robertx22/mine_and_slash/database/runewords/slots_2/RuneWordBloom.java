@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.database.runewords.slots_2;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.mine_and_slash.items.runes.AnoItem;
-import com.robertx22.mine_and_slash.items.runes.GohItem;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.AnoItem;
+import com.robertx22.mine_and_slash.database.items.runes.GohItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.util.Arrays;
 import java.util.List;

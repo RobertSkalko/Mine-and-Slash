@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
-import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import net.minecraft.entity.player.PlayerEntity;

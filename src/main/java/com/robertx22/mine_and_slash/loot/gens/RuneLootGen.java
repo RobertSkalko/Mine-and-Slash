@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.RuneBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -47,7 +47,7 @@ public class RuneLootGen extends BaseLootGen {
         RuneItemData data = new RuneItemData();
 
         data.rarity = item.rarity;
-        data.name = item.name();
+        data.name = item.GUID();
         data.level = blueprint.level;
 
         data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item

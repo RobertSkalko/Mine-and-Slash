@@ -4,10 +4,10 @@ import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ManaRegenPercent;
-import com.robertx22.mine_and_slash.items.runes.ItaItem;
-import com.robertx22.mine_and_slash.items.runes.MosItem;
-import com.robertx22.mine_and_slash.items.runes.RahItem;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.ItaItem;
+import com.robertx22.mine_and_slash.database.items.runes.MosItem;
+import com.robertx22.mine_and_slash.database.items.runes.RahItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.util.Arrays;
 import java.util.List;

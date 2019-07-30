@@ -7,11 +7,11 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.ZephyrTrait;
-import com.robertx22.mine_and_slash.items.runes.BerItem;
-import com.robertx22.mine_and_slash.items.runes.CenItem;
-import com.robertx22.mine_and_slash.items.runes.MosItem;
-import com.robertx22.mine_and_slash.items.runes.XahItem;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.BerItem;
+import com.robertx22.mine_and_slash.database.items.runes.CenItem;
+import com.robertx22.mine_and_slash.database.items.runes.MosItem;
+import com.robertx22.mine_and_slash.database.items.runes.XahItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

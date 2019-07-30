@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.items.currency.*;
-import com.robertx22.mine_and_slash.items.currency.map.ItemAddGroupMap;
+import com.robertx22.mine_and_slash.database.items.currency.*;
+import com.robertx22.mine_and_slash.database.items.currency.map.ItemAddGroupMap;
 import com.robertx22.mine_and_slash.items.infusions.AttackInfusionItem;
 import com.robertx22.mine_and_slash.items.infusions.DefenseInfusionItem;
 import com.robertx22.mine_and_slash.items.infusions.ResourceInfusionItem;

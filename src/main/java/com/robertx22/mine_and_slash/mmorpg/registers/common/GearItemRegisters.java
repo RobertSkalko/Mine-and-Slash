@@ -15,7 +15,7 @@ import com.robertx22.mine_and_slash.items.gearitems.offhands.NormalShield;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.*;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
-import com.robertx22.mine_and_slash.items.runes.*;
+import com.robertx22.mine_and_slash.database.items.runes.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;

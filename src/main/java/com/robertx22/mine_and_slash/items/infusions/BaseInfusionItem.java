@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.items.infusions;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
-import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.InfusionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;

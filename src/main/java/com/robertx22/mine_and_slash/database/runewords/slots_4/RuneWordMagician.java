@@ -5,11 +5,11 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.items.runes.AnoItem;
-import com.robertx22.mine_and_slash.items.runes.DosItem;
-import com.robertx22.mine_and_slash.items.runes.RahItem;
-import com.robertx22.mine_and_slash.items.runes.XahItem;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.AnoItem;
+import com.robertx22.mine_and_slash.database.items.runes.DosItem;
+import com.robertx22.mine_and_slash.database.items.runes.RahItem;
+import com.robertx22.mine_and_slash.database.items.runes.XahItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

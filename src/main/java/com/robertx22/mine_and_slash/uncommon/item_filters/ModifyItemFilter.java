@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.item_filters;
 
-import com.robertx22.mine_and_slash.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilter;
 import net.minecraft.item.ItemStack;
 

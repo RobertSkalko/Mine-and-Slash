@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.spells;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.items.spells.ItemBonusEleAtkDmg;
+import com.robertx22.mine_and_slash.database.items.spells.ItemBonusEleAtkDmg;
 import com.robertx22.mine_and_slash.potion_effects.all.BonusDmgPotion;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;

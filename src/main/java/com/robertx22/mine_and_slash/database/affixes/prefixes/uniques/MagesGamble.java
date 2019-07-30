@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.affixes.prefixes.uniques;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
+import com.robertx22.mine_and_slash.database.items.unique_items.necklaces.MagesLuckyAmulet;
 import com.robertx22.mine_and_slash.database.requirements.ExactUniquesRequierement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.BonusSpecificSpellFlat;
-import com.robertx22.mine_and_slash.database.unique_items.necklaces.MagesLuckyAmulet;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.spells.bases.BaseSpell;

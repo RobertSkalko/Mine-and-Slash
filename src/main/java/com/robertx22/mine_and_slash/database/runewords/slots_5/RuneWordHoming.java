@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.Critic
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.HomingTrait;
-import com.robertx22.mine_and_slash.items.runes.*;
-import com.robertx22.mine_and_slash.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.*;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.util.Arrays;
 import java.util.List;

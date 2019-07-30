@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.Elemental
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
-import com.robertx22.mine_and_slash.items.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;

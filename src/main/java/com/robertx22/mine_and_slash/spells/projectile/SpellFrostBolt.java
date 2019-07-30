@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.spells.projectile;
 
-import com.robertx22.mine_and_slash.items.spells.projectile.ItemFrostBolt;
+import com.robertx22.mine_and_slash.database.items.spells.projectile.ItemFrostBolt;
 import com.robertx22.mine_and_slash.spells.entities.bases.proj.EntityFrostBolt;
 import com.robertx22.mine_and_slash.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;

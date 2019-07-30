@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.spells.aoe_projectile;
 
-import com.robertx22.mine_and_slash.items.spells.aoe_projectile.ItemAcidExplosion;
+import com.robertx22.mine_and_slash.database.items.spells.aoe_projectile.ItemAcidExplosion;
 import com.robertx22.mine_and_slash.spells.entities.bases.aoe.EntityAcidExplosion;
 import com.robertx22.mine_and_slash.spells.entities.bases.EntityElementalBolt;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;

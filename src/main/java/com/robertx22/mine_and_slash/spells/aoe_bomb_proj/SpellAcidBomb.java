@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.spells.aoe_bomb_proj;
 
-import com.robertx22.mine_and_slash.items.spells.aoe_bomb_proj.ItemAcidBomb;
+import com.robertx22.mine_and_slash.database.items.spells.aoe_bomb_proj.ItemAcidBomb;
 import com.robertx22.mine_and_slash.spells.aoe_bomb_proj.bases.BaseBombSpell;
 import com.robertx22.mine_and_slash.spells.entities.bases.bomb.EntityAcidBomb;
 import com.robertx22.mine_and_slash.spells.entities.bases.EntityElementalBolt;
