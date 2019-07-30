@@ -81,21 +81,19 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
             ItemStack stack = player.getHeldItemOffhand();
 
-            if (stack != null && !stack.isEmpty()) {
-
+            if (stack == null || stack.isEmpty()) {
+                for (DataItemType type : DataItemType.values()) {
+                    nbt.putInt(type.nbtGUID, -1);
+                }
+                player.sendMessage(new StringTextComponent("Bag Config Cleared"));
+            } else {
                 ICommonDataItem data = ICommonDataItem.load(stack);
-
                 if (data != null) {
                     nbt.putInt(data.getDataType().nbtGUID, data.getRarityRank());
                     successChat(player);
-                } else {
-                    for (DataItemType type : DataItemType.values()) {
-                        nbt.putInt(type.nbtGUID, -1);
-                    }
-                    player.sendMessage(new StringTextComponent("Bag Config Cleared"));
                 }
-
             }
+
             bag.setTag(nbt);
         }
 

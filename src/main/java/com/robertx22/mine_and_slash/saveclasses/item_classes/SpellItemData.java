@@ -102,7 +102,7 @@ public class SpellItemData implements ICommonDataItem {
 
     @Override
     public int getRarityRank() {
-        return 0;
+        return this.rarity;
     }
 
     public SpellRarity getRarity() {

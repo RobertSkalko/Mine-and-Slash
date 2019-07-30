@@ -1,8 +1,13 @@
+2.2.12
+
+2.2.11
+fix auto salvage bag config reset not working
 2.2.10
 unified bow uniques and buffed a bit
 /giveawakenruneword now can give specific runewords
 localized egg
 fixed currency bag
+should fix spells always being salvaged
 2.2.9
 armor stands can no longer get stats
 added more safety to registry initialization

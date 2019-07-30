@@ -164,16 +164,14 @@ public class WorldUtils {
         if (world == null) {
             return false;
         }
-
-        if (world.getDimension() instanceof BaseWorldProvider == false) {
+        if (isMapWorldClass(world)) {
+            return true;
+        } else {
             return SlashRegistry.getDimensionConfig(world).isMapWorld();
         }
-
-        return true;
-
     }
 
-    public static boolean isMapWorldClass(World world) {
+    public static boolean isMapWorldClass(IWorld world) {
 
         if (world == null) {
             return false;
