@@ -1,5 +1,5 @@
 2.3.1
-
+added crossbows!
 2.3.0
 giverune command now can give specific runes
 fixed exp number overflow at high lvls, now its says 2m instead of 200k 

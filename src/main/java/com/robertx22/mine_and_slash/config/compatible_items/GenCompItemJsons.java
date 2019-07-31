@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.config.compatible_items;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
 
 public class GenCompItemJsons {
@@ -28,14 +29,22 @@ public class GenCompItemJsons {
             for (GearItemSlot slot : SlashRegistry.GearTypes().getAll().values())
                 for (int i = 0; i < 5; i++) {
                     Item item = slot.GetItemForRarity(i);
-                    ConfigItem config = new ConfigItem().setGenerationWeights(1000, 200, 0)
-                            .setMaxRarity(i)
-                            .setMinRarity(i)
-                            .setSalvagable(true)
-                            .setType(slot);
-                    config.dropsAsLoot = false;
 
-                    items.add(item.getRegistryName().toString(), config);
+                    if (item.getRegistryName() == null) {
+                        continue;
+                    }
+
+                    if (item.getRegistryName().getNamespace().equals(Ref.MODID)) {
+
+                        ConfigItem config = new ConfigItem().setGenerationWeights(1000, 200, 0)
+                                .setMaxRarity(i)
+                                .setMinRarity(i)
+                                .setSalvagable(true)
+                                .setType(slot);
+                        config.dropsAsLoot = false;
+
+                        items.add(item.getRegistryName().toString(), config);
+                    }
                 }
         } catch (Exception e) {
             e.printStackTrace();
