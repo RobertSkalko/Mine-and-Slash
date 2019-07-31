@@ -21,7 +21,14 @@ public class MasterLootGen {
 
         items = populateOnce(info);
 
+        int tries = 0;
+
         while (items.size() < info.minItems) {
+
+            tries++;
+            if (tries > 30) {
+                break;
+            }
 
             List<ItemStack> extra = populateOnce(info);
 

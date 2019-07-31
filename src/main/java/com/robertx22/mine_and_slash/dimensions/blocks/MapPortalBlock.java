@@ -1,10 +1,11 @@
 package com.robertx22.mine_and_slash.dimensions.blocks;
 
 import com.robertx22.mine_and_slash.dimensions.MapManager;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -69,6 +70,10 @@ public class MapPortalBlock extends EndPortalBlock {
                                     PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
                                     if (data.hasTimeForMap()) {
+
+                                        MMORPG.devToolsLog("trying to teleport to portal id:  " + portal.id + " world id: " + MapManager
+                                                .getId(mapworld));
+
                                         entity.sendMessage(Chats.Teleport_started.locName());
 
                                         BlockPos pos1 = WorldUtils.getPosByLevel(mapworld, data
@@ -78,7 +83,10 @@ public class MapPortalBlock extends EndPortalBlock {
                                                 .getType();
 
                                         // TODO
+
                                         PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos1);
+
+                                        MMORPG.devToolsLog("tp to map succeeded");
 
                                     } else {
                                         entity.sendMessage(Chats.Not_enough_time.locName());

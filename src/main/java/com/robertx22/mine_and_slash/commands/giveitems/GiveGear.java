@@ -11,6 +11,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -59,7 +60,8 @@ public class GiveGear {
         blueprint.LevelRange = false;
 
         for (int i = 0; i < amount; i++) {
-            player.addItemStackToInventory(GearLootGen.CreateStack(blueprint));
+            ItemStack stack = GearLootGen.CreateStack(blueprint);
+            player.addItemStackToInventory(stack);
         }
 
         return 0;

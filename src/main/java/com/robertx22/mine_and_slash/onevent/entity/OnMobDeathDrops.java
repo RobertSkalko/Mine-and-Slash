@@ -8,9 +8,9 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.network.DmgNumPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -59,7 +59,7 @@ public class OnMobDeathDrops {
                             int exp = GiveExp(entity, (LivingEntity) event.getSource()
                                     .getTrueSource(), killer, victim, exp_multi);
 
-                            DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature, "+" + DamageEffect
+                            DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature, "+" + NumberUtils
                                     .formatNumber(exp) + " Exp!");
                             packet.isExp = true;
 

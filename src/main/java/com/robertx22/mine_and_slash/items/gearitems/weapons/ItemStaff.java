@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapons;
 
+import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityStaffProjectile;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.bases.BaseWeaponItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
@@ -8,7 +9,6 @@ import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityStaffProjectile;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -62,23 +62,19 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
             if (!world.isRemote) {
 
-                if (checkDurability(player, stack)) {
+                UnitData data = Load.Unit(player);
+                data.recalculateStats(player);
+                GearItemData weapondata = data.getWeaponData(player);
 
-                    UnitData data = Load.Unit(player);
-                    data.recalculateStats(player);
-                    GearItemData weapondata = data.getWeaponData(player);
+                if (data.tryUseWeapon(weapondata, player)) {
 
-                    if (data.tryUseWeapon(weapondata, player)) {
+                    EntityStaffProjectile projectile = new EntityStaffProjectile(world);
+                    projectile.SetReady(stack);
+                    projectile.SpawnAndShoot(null, null, player);
 
-                        EntityStaffProjectile projectile = new EntityStaffProjectile(world);
-                        projectile.SetReady(stack);
-                        projectile.SpawnAndShoot(null, null, player);
+                    stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
 
-                        stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
-
-                        SoundUtils.playSoundAtPlayer((PlayerEntity) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
-
-                    }
+                    SoundUtils.playSoundAtPlayer((PlayerEntity) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
 
                 }
 

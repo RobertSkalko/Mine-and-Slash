@@ -27,7 +27,7 @@ public abstract class ItemBlueprint {
 
     public int minLevel = 1;
 
-    public String GUID;
+    public String GUID = "";
     public boolean randomGUID = true;
 
     public void SetSpecificType(String type) {

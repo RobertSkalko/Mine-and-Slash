@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.items.runes.*;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class Runes implements ISlashRegistryInit {
                     add(new VohItem(0));
                     add(new XahItem(0));
                     add(new AnoItem(0));
+                    add(new PSIItem());
 
                 }
 

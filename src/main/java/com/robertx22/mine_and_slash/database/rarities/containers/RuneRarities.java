@@ -9,10 +9,24 @@ import java.util.List;
 
 public class RuneRarities extends RaritiesContainer<RuneRarity> {
 
-    public static final List<RuneRarity> Runes = Arrays.asList(new CommonRune(), new UncommonRune(), new RareRune(), new EpicRune(), new LegendaryRune(), new MythicalRune());
+    private static final List<RuneRarity> Runes = Arrays.asList(new CommonRune(), new UncommonRune(), new RareRune(), new EpicRune(), new LegendaryRune(), new MythicalRune());
+
+    UniqueRune unique = new UniqueRune();
 
     @Override
     public List<RuneRarity> rarities() {
         return Runes;
     }
+
+    @Override
+    public RuneRarity get(int i) {
+
+        if (i == -1) {
+            return unique;
+        }
+
+        return super.get(i);
+
+    }
+
 }

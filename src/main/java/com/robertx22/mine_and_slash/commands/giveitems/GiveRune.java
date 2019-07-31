@@ -25,7 +25,7 @@ public class GiveRune {
                                 .suggests(new RuneItemSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
                                         .then(Commands.argument("rarity", IntegerArgumentType
-                                                .integer(0, 5))
+                                                .integer(-1, 5))
                                                 .then(Commands.argument("amount", IntegerArgumentType
                                                         .integer(1, 30000))
 
@@ -53,7 +53,7 @@ public class GiveRune {
 
         for (int i = 0; i < amount; i++) {
             RuneBlueprint blueprint = new RuneBlueprint(lvl);
-            if (rarity > -1) {
+            if (rarity > -2) {
                 blueprint.setSpecificRarity(rarity);
             }
 
