@@ -4,13 +4,12 @@ import com.google.common.collect.Sets;
 import com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
-import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.TieredItem;
 
-import java.util.Random;
 import java.util.Set;
 
 public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAutoLocName, IGearItem {
@@ -40,22 +39,12 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
         return "";
     }
 
-    public static boolean checkDurability(LivingEntity attacker, ItemStack stack) {
-
-        if (stack.getDamage() > stack.getMaxDamage() - 20) {
-            attacker.sendMessage(Chats.Weapon_durability_is_too_low.locName());
-            return false;
-
-        }
-        return true;
-    }
-
     @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target,
                              LivingEntity attacker) {
-
-        stack.attemptDamageItem(1, new Random(), null);
-
+        stack.damageItem(1, attacker, (entity) -> {
+            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        });
         return true;
     }
 
