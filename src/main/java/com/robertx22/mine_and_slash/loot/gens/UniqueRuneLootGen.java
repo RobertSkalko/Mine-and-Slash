@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.item.ItemStack;
 
 public class UniqueRuneLootGen extends BaseLootGen {
@@ -20,6 +21,11 @@ public class UniqueRuneLootGen extends BaseLootGen {
     @Override
     public float BaseChance() {
         return ModConfig.INSTANCE.DropRates.UNIQUE_RUNE_DROPRATE.get().floatValue();
+    }
+
+    @Override
+    public boolean condition() {
+        return WorldUtils.dropsUniques(info.world);
     }
 
     @Override
@@ -47,6 +53,7 @@ public class UniqueRuneLootGen extends BaseLootGen {
         data.rarity = item.rarity;
         data.name = item.GUID();
         data.level = blueprint.level;
+        data.tier = item.Tier();
 
         data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
                 .armorStat()));

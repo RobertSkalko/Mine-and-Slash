@@ -52,7 +52,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
             RuneWord runeword = SlashRegistry.RuneWords().get(word);
 
-            Tooltip.add(new StringTextComponent(TextFormatting.GOLD + "").appendSibling(runeword
+            Tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "").appendSibling(runeword
                     .locName()), tooltip);
 
             tooltip.add(Styles.GOLDCOMP()

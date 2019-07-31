@@ -151,6 +151,11 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
             Tooltip.add(TooltipUtils.rarity(rune.getRarity()), tooltip);
 
+            if (this.tier > 0) {
+                Tooltip.add("", tooltip);
+                tooltip.add(TooltipUtils.tier(tier));
+            }
+
             Tooltip.add("", tooltip);
 
             Tooltip.add(Styles.BLUECOMP()
