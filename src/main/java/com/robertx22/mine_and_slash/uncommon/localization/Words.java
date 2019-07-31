@@ -9,7 +9,7 @@ public enum Words implements IAutoLocName {
     BetterPrimaryStats("Better Primary Stats"),
     AddSet("Add Set"),
     AddChaosStats("Add ChaosStats"),
-    RunesRequiered("Runes Required"),
+    NeedsGearWithRunesInserted("Needs Gear with these runes inserted"),
     Requirements("Requirements"),
     Blueprint("Blueprint"),
     AddMajorArcana("Add Major Arcana Chaos Stats"),
@@ -20,6 +20,7 @@ public enum Words implements IAutoLocName {
     Weapon("Weapon"),
     Jewerly("Jewerly"),
     Offhand("Offhand"),
+    RunesNeeded("Runes needed"),
 
     Item_modifiable_in_station("Can be used inside Gear Modify Station"),
     unlocks_runeword_combo("Unlocks RuneWord combination."),

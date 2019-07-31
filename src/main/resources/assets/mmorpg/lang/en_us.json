@@ -499,6 +499,7 @@
 	"mmorpg.word.mob": "Mob",
 	"mmorpg.word.mob_affixes": "Mob Affixes",
 	"mmorpg.word.multi": "Multi",
+	"mmorpg.word.needsgearwithrunesinserted": "Needs Gear with these runes inserted",
 	"mmorpg.word.none": "None",
 	"mmorpg.word.not_a_map_world": "Not a Map World",
 	"mmorpg.word.npc": "Npc",
@@ -522,7 +523,7 @@
 	"mmorpg.word.resources": "Resources",
 	"mmorpg.word.runed": "Runed",
 	"mmorpg.word.runes": "Runes",
-	"mmorpg.word.runesrequiered": "Runes Required",
+	"mmorpg.word.runesneeded": "Runes needed",
 	"mmorpg.word.runeword": "Runeword",
 	"mmorpg.word.sacrifice_map_for_level": "Sacrifice Map For Level",
 	"mmorpg.word.sacrifice_map_for_tier": "Sacrifice Map For Tier",
@@ -834,27 +835,6 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.boots": "Boots",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.chest": "Chest",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.helmet": "Helmet",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.pants": "Pants",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -932,6 +912,27 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.boots": "Boots",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.chest": "Chest",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.helmet": "Helmet",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.pants": "Pants",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",

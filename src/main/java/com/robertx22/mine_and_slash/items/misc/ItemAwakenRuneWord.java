@@ -45,23 +45,33 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         if (stack != null && SlashRegistry.RuneWords().isRegistered(getWord(stack))) {
-            Tooltip.add("", tooltip);
-            Tooltip.add(Styles.GOLDCOMP()
-                    .appendSibling(Words.Runeword.locName().appendText(": ")), tooltip);
+
             String word = this.getWord(stack);
 
             RuneWord runeword = SlashRegistry.RuneWords().get(word);
 
-            Tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "").appendSibling(runeword
-                    .locName()), tooltip);
+            ITextComponent name = new StringTextComponent(TextFormatting.LIGHT_PURPLE + "")
+                    .appendSibling(runeword.locName());
 
-            tooltip.add(Styles.GOLDCOMP()
-                    .appendSibling(Words.RunesRequiered.locName())
+            Tooltip.add(Styles.GOLDCOMP()
+                    .appendSibling(Words.Runeword.locName()
+                            .appendText(": ")
+                            .appendSibling(name)), tooltip);
+
+            Tooltip.add("", tooltip);
+
+            tooltip.add(Styles.REDCOMP()
+                    .appendSibling(Words.NeedsGearWithRunesInserted.locName())
                     .appendText(": "));
+
+            Tooltip.add("", tooltip);
 
             Tooltip.add(runeword.getRuneWordComboString(), tooltip);
 
-            Tooltip.add(TextFormatting.AQUA + "Runes: " + runeword.size(), tooltip);
+            Tooltip.add("", tooltip);
+
+            Tooltip.add(new StringTextComponent(TextFormatting.AQUA + "").appendSibling(Words.RunesNeeded
+                    .locName()).appendText(": " + runeword.size()), tooltip);
 
             Tooltip.add("", tooltip);
 
