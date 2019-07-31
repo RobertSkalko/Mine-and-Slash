@@ -10,6 +10,7 @@ public enum WeaponTypes {
     Hammer(true),
     Bow(true),
     Sword(true),
+    CrossBow(true),
     Staff(true);
 
     WeaponTypes(boolean bool) {

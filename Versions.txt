@@ -1,3 +1,5 @@
+2.3.1
+
 2.3.0
 giverune command now can give specific runes
 fixed exp number overflow at high lvls, now its says 2m instead of 200k 
@@ -6,72 +8,4 @@ added new runes, unique runes! They drop at high tier maps just as unique gears
 added new runewords, ones that contain these unique runes, the awaken items for them drop everywhere but are much rarer
 capacitors now speed up salvage and repair stations
 simplified awaken runeword text because too many confusions
-2.2.11
-fix auto salvage bag config reset not working
-2.2.10
-unified bow uniques and buffed a bit
-/giveawakenruneword now can give specific runewords
-localized egg
-fixed currency bag
-should fix spells always being salvaged
-2.2.9
-armor stands can no longer get stats
-added more safety to registry initialization
-added currency items to registry
-add secondary stat can no longer be added infinitely.
-should fix restorelevel not working correctly
-2.2.8
-added defaultconfig back to dimension configs
-transfered mod entity configs to registry system
-removed player capability save workaround (if lvl is erased, do /restorelevel , if that doesn't work, get an OP to /setlevel on you)
-attempt to fix group maps behaving weird
-2.2.7
-compatible items now use my new registry system too.
-added warning on using weapon in offhand
-added modifyItem op command to test the new item modification system
-transfered dimension configs to my registry system. this means better logging (you can check logs to make sure the configs registered)
-fixed dimension configs being added too late, making mob spawns on world load not respect them
-configs now loaded at better time
-2.2.6
-added warning on no space for map device portals
-added first adv map advancement
-bows no longer work melee
-reworked unique item registry, it was not using my new registry system properly, also added more error checking to my registry
-reduced spell dmg randomness a bit
-2.2.5
-initial update to forge 1.14.4, probably unstable. Doesn't work on 1.14.3!
-reduced mob spell resist
-added level penalty advacement
-more code reworks, this time item types and their data.
-please check if auto salvage bags work right along with salvage stations and item modification
-added super rare suffix
-2.2.4 
-added more mob configs, please test if they work! (stuff like min lvl, min rarity, lvl modifier etc. hp multi.)
-fixed runewords
-fixed runes
-2.2.3
-reworked my registry system so it uses my registry classes instead of plain old hashmaps. This should reduce crashes as now instead of returning null, it returns empty or default classes in case no key is in the registry
-unstable because this needs to be tested a bit to make sure everything works, but should increase stability in the long run.
-2.2.2
-renamed my code packages to include both my curseforge name and my mod name
-added a super rare ring unique
-should fix /restorelevel not working
-fix crash on unknown stat. now it shouldn't crash anymore, but just give a warning, and only once 
-2.2.0
-fix capacitors being extracted
-added 4 new spells. bonus dmg on weapon hits! For all those who don't like the spell system much and prefer to use weapons.
-unique items should now be enchantable
-weapons should now be able to get weapon enchants
-nerfed hp per lvl a bit (needs config delete/adjust)
-swords are now faster (i think?)
-fixed rune tooltips wrong numbers
-made rare maps less rare
-trying to fix atk speed to be more fluid
-improved projectile targeting a bit
-added item for clearing runes and runewords from an item
-most spells have their cast speed increased
-tweaked some code to be cleaner, could cause weird bugs
-created a level backup system. there's a command /restorelevel that any1 can use. it restores the highest level gotten by that player
-added an item that adds group affix to map
-made nova hit more consistently i hope
-added 2 high lvl sets
+added giveuniquerune command

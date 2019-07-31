@@ -29,6 +29,7 @@ public class GearTypes implements ISlashRegistryInit {
                     add(new Axe());
                     add(new Shield());
                     add(new Torch());
+                    add(new CrossBow());
 
                 }
 

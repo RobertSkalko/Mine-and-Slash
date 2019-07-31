@@ -81,6 +81,8 @@ public class GearItemRegisters {
             // weapons
             regRarities(new ItemSword(rarity.Rank()), ItemSword.Items, "sword/sword", rarity
                     .Rank());
+            regRarities(new ItemCrossbow(rarity.Rank()), ItemCrossbow.Items, "crossbows/crossbow", rarity
+                    .Rank());
             regRarities(new ItemHammer(rarity.Rank()), ItemHammer.Items, "hammer/hammer", rarity
                     .Rank());
             regRarities(new ItemAxe(rarity.Rank()), ItemAxe.Items, "axe/axe", rarity.Rank());
