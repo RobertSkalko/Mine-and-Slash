@@ -88,6 +88,11 @@ public class TileMapDevice extends BaseTile {
     }
 
     @Override
+    public int getCookTime() {
+        return 0;
+    }
+
+    @Override
     public void tick() {
         if (!this.world.isRemote) {
 

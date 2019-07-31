@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -23,6 +23,11 @@ public class TileGearModify extends BaseTile {
     @Override
     public boolean isItemValidInput(ItemStack stack) {
         return true;
+    }
+
+    @Override
+    public int getCookTime() {
+        return COOK_TIME_FOR_COMPLETION;
     }
 
     public ItemStack getSmeltingResultForItem(ItemStack stack) {

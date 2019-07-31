@@ -159,18 +159,6 @@ public class TileGearFactory extends BaseTile {
     }
 
     /**
-     * return the remaining burn time of the FuelRemaining in the given slot
-     *
-     * @param fuelSlot the number of the FuelRemaining slot (0..3)
-     * @return seconds remaining
-     */
-    public int secondsOfFuelRemaining(int fuelSlot) {
-        if (fuel <= 0)
-            return 0;
-        return fuel; // 20 ticks per second
-    }
-
-    /**
      * Returns the amount of cook time completed on the currently cooking item.
      *
      * @return fraction remaining, between 0 - 1
@@ -203,6 +191,11 @@ public class TileGearFactory extends BaseTile {
     @Override
     public void doActionEveryTime() {
         this.burnFuel();
+    }
+
+    @Override
+    public int getCookTime() {
+        return COOK_TIME_FOR_COMPLETION;
     }
 
     private int burnFuel() {

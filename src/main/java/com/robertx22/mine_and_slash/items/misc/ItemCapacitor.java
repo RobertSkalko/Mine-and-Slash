@@ -37,6 +37,8 @@ public class ItemCapacitor extends Item {
 
     public List<Float> bonusSalvageChance = Arrays.asList(1F, 2.5F, 5F, 10F, 15F, 25F);
 
+    public List<Float> stationSpeedMulti = Arrays.asList(1F, 0.9F, 0.8F, 0.7F, 0.6F, 0.5F);
+
     public Float getSalvageBonusChance() {
 
         return bonusSalvageChance.get(rarity);
@@ -46,6 +48,12 @@ public class ItemCapacitor extends Item {
     public Float GetFuelMultiplier() {
 
         return RepairValues.get(rarity);
+
+    }
+
+    public Float GetSpeedMultiplier() {
+
+        return stationSpeedMulti.get(rarity);
 
     }
 

@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -25,6 +26,32 @@ public class TileGearSalvage extends BaseTile {
         }
 
         return ints;
+    }
+
+    @Override
+    public int getCookTime() {
+
+        ItemCapacitor cap = getCapacitor();
+        if (cap != null) {
+            return (int) (COOK_TIME_FOR_COMPLETION * cap.GetSpeedMultiplier());
+        }
+
+        return COOK_TIME_FOR_COMPLETION;
+    }
+
+    public ItemCapacitor getCapacitor() {
+
+        if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
+
+            Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
+
+            if (item instanceof ItemCapacitor) {
+                return (ItemCapacitor) item;
+            }
+
+        }
+        return null;
+
     }
 
     @Override
@@ -88,13 +115,13 @@ public class TileGearSalvage extends BaseTile {
      * @return fraction remaining, between 0 - 1
      */
     public double fractionOfCookTimeComplete() {
-        double fraction = cookTime / (double) COOK_TIME_FOR_COMPLETION;
+        double fraction = cookTime / (double) getCookTime();
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
     @Override
     public int ticksRequired() {
-        return COOK_TIME_FOR_COMPLETION;
+        return getCookTime();
     }
 
     @Override

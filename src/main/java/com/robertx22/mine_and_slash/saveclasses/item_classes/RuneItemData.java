@@ -83,7 +83,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
             Item item = SlashRegistry.CurrencyItems()
                     .getWrapped()
-                    .ofExactTier(this.rarity + 10)
+                    .ofTierOrLess(this.rarity + 10)
                     .random();
 
             stack = new ItemStack(item);

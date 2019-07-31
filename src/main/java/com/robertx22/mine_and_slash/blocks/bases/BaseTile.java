@@ -40,6 +40,8 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     public abstract void doActionEveryTime();
 
+    public abstract int getCookTime();
+
     @Override
     public void tick() {
         if (!this.world.isRemote) {

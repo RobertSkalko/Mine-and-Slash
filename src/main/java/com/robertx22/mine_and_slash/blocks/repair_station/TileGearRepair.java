@@ -29,6 +29,32 @@ public class TileGearRepair extends BaseTile {
         return getSmeltingResultForItem(stack).isEmpty() == false;
     }
 
+    @Override
+    public int getCookTime() {
+
+        ItemCapacitor cap = getCapacitor();
+        if (cap != null) {
+            return (int) (COOK_TIME_FOR_COMPLETION * cap.GetSpeedMultiplier());
+        }
+
+        return COOK_TIME_FOR_COMPLETION;
+    }
+
+    public ItemCapacitor getCapacitor() {
+
+        if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
+
+            Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
+
+            if (item instanceof ItemCapacitor) {
+                return (ItemCapacitor) item;
+            }
+
+        }
+        return null;
+
+    }
+
     public int MaximumFuel = 5000;
 
     // returns the smelting result for the given stack. Returns null if the given
@@ -105,13 +131,13 @@ public class TileGearRepair extends BaseTile {
      * @return fraction remaining, between 0 - 1
      */
     public double fractionOfCookTimeComplete() {
-        double fraction = cookTime / (double) COOK_TIME_FOR_COMPLETION;
+        double fraction = cookTime / (double) getCookTime();
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
     @Override
     public int ticksRequired() {
-        return COOK_TIME_FOR_COMPLETION;
+        return getCookTime();
     }
 
     @Override
