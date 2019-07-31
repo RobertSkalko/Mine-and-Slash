@@ -6,6 +6,7 @@ import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 public class DropRatesContainer {
 
     public DoubleValue RUNED_GEAR_DROPRATE;
+    public DoubleValue UNIQUE_RUNE_DROPRATE;
     public DoubleValue RUNE_DROPRATE;
     public DoubleValue MAP_DROPRATE;
     public DoubleValue GEAR_DROPRATE;
@@ -18,6 +19,10 @@ public class DropRatesContainer {
 
     DropRatesContainer(ForgeConfigSpec.Builder builder) {
         builder.push("DROPRATES");
+
+        UNIQUE_RUNE_DROPRATE = builder.comment(".")
+                .translation("mmorpg.config.unique_rune_droprate")
+                .defineInRange("UNIQUE_RUNE_DROPRATE", 0.1D, 0, Integer.MAX_VALUE);
 
         RUNED_GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.runed_gear_droprate")

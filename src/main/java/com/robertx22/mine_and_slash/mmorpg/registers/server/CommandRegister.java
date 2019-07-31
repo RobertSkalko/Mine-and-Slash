@@ -27,7 +27,7 @@ public class CommandRegister {
         GiveRune.register(dispatcher);
         GiveRunedGear.register(dispatcher);
         GiveSpell.register(dispatcher);
-        GiveUnique.register(dispatcher);
+        GiveUniqueGear.register(dispatcher);
         SetEntityLevel.register(dispatcher);
         SetEntityRarity.register(dispatcher);
         GiveStat.register(dispatcher);
@@ -36,6 +36,7 @@ public class CommandRegister {
         ReloadConfigs.register(dispatcher);
         ModifyItem.register(dispatcher);
         GiveBlueprint.register(dispatcher);
+        GiveUniqueRune.register(dispatcher);
 
     }
 }

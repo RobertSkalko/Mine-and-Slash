@@ -15,4 +15,9 @@ public class MapRarities extends RaritiesContainer<MapRarity> {
     public List<MapRarity> rarities() {
         return Maps;
     }
+
+    @Override
+    public MapRarity unique() {
+        return null;
+    }
 }

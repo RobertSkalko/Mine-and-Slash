@@ -6,6 +6,10 @@ import com.robertx22.mine_and_slash.database.runewords.slots_3.RuneWordRadiance;
 import com.robertx22.mine_and_slash.database.runewords.slots_3.RuneWordThief;
 import com.robertx22.mine_and_slash.database.runewords.slots_4.*;
 import com.robertx22.mine_and_slash.database.runewords.slots_5.*;
+import com.robertx22.mine_and_slash.database.runewords.unique.RuneWordAttuned;
+import com.robertx22.mine_and_slash.database.runewords.unique.RuneWordFortress;
+import com.robertx22.mine_and_slash.database.runewords.unique.RuneWordRoyalty;
+import com.robertx22.mine_and_slash.database.runewords.unique.RuneWordTrueHit;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
@@ -19,6 +23,11 @@ public class RuneWords implements ISlashRegistryInit {
         List<RuneWord> All = new ArrayList<RuneWord>() {
             {
                 {
+
+                    add(new RuneWordRoyalty());
+                    add(new RuneWordAttuned());
+                    add(new RuneWordTrueHit());
+                    add(new RuneWordFortress());
 
                     add(new RuneWordStone());
                     add(new RuneWordHoming());

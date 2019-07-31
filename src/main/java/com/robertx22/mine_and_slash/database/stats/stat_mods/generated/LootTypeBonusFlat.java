@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_mods.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.LootTypeBonus;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -21,7 +22,7 @@ public class LootTypeBonusFlat extends StatMod implements IGenerated<StatMod> {
 
     @Override
     public Stat GetBaseStat() {
-        return new com.robertx22.mine_and_slash.database.stats.stat_types.generated.LootTypeBonusFlat(type);
+        return new LootTypeBonus(type);
     }
 
     @Override

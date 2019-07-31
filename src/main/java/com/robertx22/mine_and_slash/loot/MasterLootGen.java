@@ -64,6 +64,7 @@ public class MasterLootGen {
         items.addAll(new LootBoxGen(info).tryGenerate());
         items.addAll(new CompatibleItemLootGen(info).tryGenerate());
         items.addAll(new UniqueGearLootGen(info).tryGenerate());
+        items.addAll(new UniqueRuneLootGen(info).tryGenerate());
 
         return items.stream()
                 .filter(x -> x.isEmpty() == false)

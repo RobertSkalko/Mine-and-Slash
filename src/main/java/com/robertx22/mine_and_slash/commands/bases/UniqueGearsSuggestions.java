@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UniqueItemsSuggestions extends CommandSuggestions {
+public class UniqueGearsSuggestions extends CommandSuggestions {
 
     @Override
     public List<String> suggestions() {

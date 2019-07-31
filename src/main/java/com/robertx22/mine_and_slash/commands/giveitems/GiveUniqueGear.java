@@ -16,10 +16,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-public class GiveUnique {
+public class GiveUniqueGear {
 
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
-        commandDispatcher.register(Commands.literal("giveunique")
+        commandDispatcher.register(Commands.literal("giveuniquegear")
                 .requires(e -> e.hasPermissionLevel(2))
                 .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("type", StringArgumentType.word())

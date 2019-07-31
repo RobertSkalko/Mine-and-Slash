@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.items.misc;
 
+import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;
-import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -55,9 +55,11 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
             Tooltip.add(new StringTextComponent(TextFormatting.GOLD + "").appendSibling(runeword
                     .locName()), tooltip);
 
-            tooltip.add(Styles.GOLDCOMP().appendSibling(Words.RunesRequiered.locName()).appendText(": "));
+            tooltip.add(Styles.GOLDCOMP()
+                    .appendSibling(Words.RunesRequiered.locName())
+                    .appendText(": "));
 
-            Tooltip.add(new StringTextComponent(TextFormatting.GREEN + runeword.getRuneWordComboString()), tooltip);
+            Tooltip.add(runeword.getRuneWordComboString(), tooltip);
 
             Tooltip.add(TextFormatting.AQUA + "Runes: " + runeword.size(), tooltip);
 

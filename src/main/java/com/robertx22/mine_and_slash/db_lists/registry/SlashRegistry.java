@@ -11,10 +11,13 @@ import com.robertx22.mine_and_slash.database.item_modifications.gear_items.AddCh
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.items.currency.ItemOrbOfTransmutation;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
@@ -23,7 +26,6 @@ import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.IWorld;
 
@@ -55,6 +57,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<CurrencyItem> CurrencyItems() {
         return getRegistry(SlashRegistryType.CURRENCY_ITEMS);
+    }
+
+    public static SlashRegistryContainer<BaseUniqueRuneItem> UniqueRunes() {
+        return getRegistry(SlashRegistryType.UNIQUE_RUNES);
     }
 
     private static SlashRegistryContainer<ModEntityConfig> ModEntityConfigs() {
@@ -165,6 +171,7 @@ public class SlashRegistry {
         new Sets().registerAll();
         new ItemModifications().registerAll();
         new CurrencyItems().registerAll();
+        new UniqueRunes().registerAll();
     }
 
     private static void createRegistries() {
@@ -174,6 +181,7 @@ public class SlashRegistry {
         map.put(SlashRegistryType.SET, new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()));
         map.put(SlashRegistryType.SPELL, new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         map.put(SlashRegistryType.UNIQUE_GEAR, new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, new EmptyUnique()));
+        map.put(SlashRegistryType.UNIQUE_RUNES, new SlashRegistryContainer<BaseUniqueRuneItem>(SlashRegistryType.UNIQUE_RUNES, new PSIItem()));
         map.put(SlashRegistryType.SUFFIX, new SlashRegistryContainer<Suffix>(SlashRegistryType.SUFFIX, new EmptySuffix()));
         map.put(SlashRegistryType.PREFIX, new SlashRegistryContainer<Prefix>(SlashRegistryType.PREFIX, new EmptyPrefix()));
         map.put(SlashRegistryType.RUNE, new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0)));

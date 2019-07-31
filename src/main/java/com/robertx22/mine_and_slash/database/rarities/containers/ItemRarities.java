@@ -11,22 +11,16 @@ public class ItemRarities extends RaritiesContainer<ItemRarity> {
 
     public static final List<ItemRarity> Items = Arrays.asList(new CommonItem(), new UncommonItem(), new RareItem(), new EpicItem(), new LegendaryItem(), new MythicalItem());
 
-    @Override
-    public List<ItemRarity> rarities() {
-        return Items;
-    }
-
     UniqueItem unique = new UniqueItem();
 
     @Override
-    public ItemRarity get(int i) {
+    public ItemRarity unique() {
+        return unique;
+    }
 
-        if (i == -1) {
-            return unique;
-        }
-
-        return super.get(i);
-
+    @Override
+    public List<ItemRarity> rarities() {
+        return Items;
     }
 
 }

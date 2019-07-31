@@ -101,8 +101,12 @@ public class ItemRegister {
             item.setRegistryName("uniques/" + uniq.getGearSlot()
                     .GUID()
                     .toLowerCase() + "/" + uniq.GUID());
-            event.getRegistry().register(item);
+            r.register(item);
         }
+
+        SlashRegistry.UniqueRunes()
+                .getList()
+                .forEach(x -> r.register(x.setRegistryName(x.genRegisryName())));
 
     }
 

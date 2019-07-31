@@ -2,6 +2,8 @@
 giverune command now can give specific runes
 fixed exp number overflow at high lvls, now its says 2m instead of 200k 
 weapons now properly break if durability gets to 0
+added new runes, unique runes! They drop at high tier maps just as unique gears
+added new runewords, ones that contain these unique runes, the awaken items for them drop everywhere but are much rarer
 2.2.11
 fix auto salvage bag config reset not working
 2.2.10

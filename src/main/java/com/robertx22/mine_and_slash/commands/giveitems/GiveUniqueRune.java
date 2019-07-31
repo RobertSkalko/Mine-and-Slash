@@ -4,10 +4,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.mine_and_slash.commands.bases.UniqueGearsSuggestions;
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
-import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
+import com.robertx22.mine_and_slash.commands.bases.UniqueRuneSuggestions;
+import com.robertx22.mine_and_slash.database.rarities.runes.UniqueRune;
+import com.robertx22.mine_and_slash.loot.blueprints.UniqueRuneBlueprint;
+import com.robertx22.mine_and_slash.loot.gens.UniqueRuneLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -16,13 +16,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-public class GiveExactUnique {
+public class GiveUniqueRune {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
-        commandDispatcher.register(Commands.literal("giveexactunique")
+        commandDispatcher.register(Commands.literal("giveuniquerune")
                 .requires(e -> e.hasPermissionLevel(2))
                 .then(Commands.argument("target", EntityArgument.player())
                         .then(Commands.argument("uniqueID", StringArgumentType.word())
-                                .suggests(new UniqueGearsSuggestions())
+                                .suggests(new UniqueRuneSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
                                         .then(Commands.argument("amount", IntegerArgumentType
                                                 .integer(1, 5000))
@@ -47,13 +47,16 @@ public class GiveExactUnique {
             }
         }
 
-        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, 0, true);
-        blueprint.setSpecificRarity(new UniqueItem().Rank());
-        blueprint.setSpecificID(id);
+        UniqueRuneBlueprint blueprint = new UniqueRuneBlueprint(lvl, 0);
+
+        blueprint.setSpecificRarity(new UniqueRune().Rank());
+
+        blueprint.SetSpecificType(id);
+
         blueprint.LevelRange = false;
 
         for (int i = 0; i < amount; i++) {
-            player.addItemStackToInventory(UniqueGearLootGen.CreateStack(blueprint));
+            player.addItemStackToInventory(UniqueRuneLootGen.Create(blueprint));
         }
 
         return 0;

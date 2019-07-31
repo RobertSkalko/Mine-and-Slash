@@ -12,6 +12,17 @@ public class MinMax {
         this.Max = max;
     }
 
+    public boolean isInRange(int num) {
+
+        if (num >= Min) {
+            if (num <= Max) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public int genPercent() {
         return RandomUtils.RandomRange(Min, Max);
     }

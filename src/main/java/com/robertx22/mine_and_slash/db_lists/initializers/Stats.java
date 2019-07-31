@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
@@ -41,7 +42,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.traits.low_dodge.L
 import com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana.*;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
@@ -66,7 +66,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new ElementalConversion(Elements.Physical, Elements.Physical));
                     add(new ElementalTransfer(Elements.Physical, Elements.Physical));
                     add(new ElementalAffinity(Elements.Physical));
-                    add(new LootTypeBonusFlat(LootType.NormalItem));
+                    add(new LootTypeBonus(LootType.NormalItem));
                     add(new WeaponDamage(WeaponTypes.None));
                     add(new ElementalAttackDamage(Elements.Physical));
                     add(new ElementalSpellToAttackDMG(Elements.Physical));

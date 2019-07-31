@@ -25,7 +25,7 @@ public class GiveRune {
                                 .suggests(new RuneItemSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
                                         .then(Commands.argument("rarity", IntegerArgumentType
-                                                .integer(-1, 5))
+                                                .integer(0, 5))
                                                 .then(Commands.argument("amount", IntegerArgumentType
                                                         .integer(1, 30000))
 

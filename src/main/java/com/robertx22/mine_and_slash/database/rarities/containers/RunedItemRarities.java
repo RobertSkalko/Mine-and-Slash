@@ -15,5 +15,11 @@ public class RunedItemRarities extends RaritiesContainer<ItemRarity> {
     public List<ItemRarity> rarities() {
         return RunedItems;
     }
+
+    @Override
+    public ItemRarity unique() {
+        return null;
+    }
+
 }
 

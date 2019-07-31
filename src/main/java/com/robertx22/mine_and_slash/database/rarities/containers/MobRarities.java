@@ -14,5 +14,10 @@ public class MobRarities extends RaritiesContainer<MobRarity> {
     public List<MobRarity> rarities() {
         return Mobs;
     }
+
+    @Override
+    public MobRarity unique() {
+        return null;
+    }
 }
 

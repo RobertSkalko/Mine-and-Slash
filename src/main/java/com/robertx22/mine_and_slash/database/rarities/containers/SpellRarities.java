@@ -15,4 +15,9 @@ public class SpellRarities extends RaritiesContainer<SpellRarity> {
     public List<SpellRarity> rarities() {
         return Spells;
     }
+
+    @Override
+    public SpellRarity unique() {
+        return null;
+    }
 }

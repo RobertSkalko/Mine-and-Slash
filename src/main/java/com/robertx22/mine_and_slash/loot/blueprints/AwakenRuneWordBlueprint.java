@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 public class AwakenRuneWordBlueprint extends ItemBlueprint {
 
@@ -19,8 +18,7 @@ public class AwakenRuneWordBlueprint extends ItemBlueprint {
 
         if (SlashRegistry.RuneWords().isRegistered(word) == false) {
 
-            RuneWord random = RandomUtils.weightedRandom(SlashRegistry.RuneWords()
-                    .getList());
+            RuneWord random = SlashRegistry.RuneWords().random();
 
             word = random.GUID();
 

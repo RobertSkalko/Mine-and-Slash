@@ -2,26 +2,26 @@ package com.robertx22.mine_and_slash.database.items.runes.unique_runes;
 
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalAffinityFlat;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class PSIItem extends BaseUniqueRuneItem {
+public class QARItem extends BaseUniqueRuneItem {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new CriticalDamageFlat().multi(2));
+        return new ElementalAffinityFlat(Elements.Physical).getAllSingleElementVariations();
     }
 
     @Override
     public String name() {
-        return "PSI";
+        return "QAR";
     }
 
     @Override
     public int Tier() {
-        return 2;
+        return 3;
     }
 
 }

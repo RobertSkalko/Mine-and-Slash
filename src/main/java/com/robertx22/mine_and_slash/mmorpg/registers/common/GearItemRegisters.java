@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.items.runes.*;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.armor.ItemBoots;
@@ -36,8 +34,6 @@ public class GearItemRegisters {
     public static List<Item> items = new ArrayList<Item>();
 
     private static void register() {
-
-        PSIItem.item = (BaseRuneItem) reg(new PSIItem(), "runes/" + new PSIItem().genRegisryName());
 
         for (ItemRarity rarity : Rarities.Items.rarities()) {
 
@@ -112,13 +108,6 @@ public class GearItemRegisters {
 
         }
 
-    }
-
-    private static Item reg(Item item, String name) {
-        String reg = name.toLowerCase();
-        item.setRegistryName(Ref.MODID, reg);
-        items.add(item);
-        return item;
     }
 
     private static void regRarities(Item item, HashMap<Integer, Item> map, String name,

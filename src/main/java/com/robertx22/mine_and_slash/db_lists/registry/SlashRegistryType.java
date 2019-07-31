@@ -19,6 +19,7 @@ public enum SlashRegistryType {
     DIMENSION_CONFIGS(),
     MOD_ENTITY_CONFIGS(),
     CURRENCY_ITEMS(),
+    UNIQUE_RUNES(),
     COMPATIBLE_ITEM();
 
 }

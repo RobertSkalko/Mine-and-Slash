@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.generated.LootTypeBonusFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.LootTypeBonus;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
@@ -102,11 +102,11 @@ public class LootInfo {
         if (this.playerData != null) {
 
             chance *= this.playerData.getUnit()
-                    .getStat(new LootTypeBonusFlat(gen.lootType()))
+                    .getStat(new LootTypeBonus(gen.lootType()))
                     .getMultiplier();
 
             chance *= this.playerData.getUnit()
-                    .getStat(new LootTypeBonusFlat(LootType.All))
+                    .getStat(new LootTypeBonus(LootType.All))
                     .getMultiplier();
 
         }

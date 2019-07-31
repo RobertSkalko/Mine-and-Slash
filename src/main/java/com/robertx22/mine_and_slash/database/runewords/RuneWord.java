@@ -1,16 +1,20 @@
 package com.robertx22.mine_and_slash.database.runewords;
 
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
@@ -71,16 +75,30 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISlash
         return text;
     }
 
-    public String getRuneWordComboString() {
+    public ITextComponent getRuneWordComboString() {
 
-        String text = "";
+        ITextComponent comp = new StringTextComponent("");
+
+        int current = 0;
 
         for (BaseRuneItem item : runes()) {
-            text += item.name().toUpperCase() + " + ";
-        }
-        text = text.substring(0, text.length() - 3);
 
-        return text;
+            String runetext = item.name().toUpperCase();
+
+            if (current < runes().size() - 1) {
+                runetext += " + ";
+            }
+
+            if (item instanceof BaseUniqueRuneItem) {
+                comp.appendText(TextFormatting.YELLOW + runetext);
+            } else {
+                comp.appendText(TextFormatting.GREEN + runetext);
+            }
+
+            current++;
+        }
+
+        return comp;
     }
 
     public boolean runesMatch(String word) {

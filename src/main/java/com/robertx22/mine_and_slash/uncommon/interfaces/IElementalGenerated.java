@@ -17,4 +17,10 @@ public interface IElementalGenerated<T extends IGUID> extends IGenerated {
         return list;
     }
 
+    public default List<T> getAllSingleElementVariations() {
+        List<T> list = new ArrayList<>();
+        Elements.getAllSingleElements().forEach(x -> list.add(newGeneratedInstance(x)));
+        return list;
+    }
+
 }

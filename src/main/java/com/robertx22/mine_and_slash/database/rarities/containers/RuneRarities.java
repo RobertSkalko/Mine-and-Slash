@@ -19,14 +19,8 @@ public class RuneRarities extends RaritiesContainer<RuneRarity> {
     }
 
     @Override
-    public RuneRarity get(int i) {
-
-        if (i == -1) {
-            return unique;
-        }
-
-        return super.get(i);
-
+    public RuneRarity unique() {
+        return unique;
     }
 
 }

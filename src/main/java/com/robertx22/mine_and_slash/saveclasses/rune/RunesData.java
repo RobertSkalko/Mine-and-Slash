@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -137,15 +138,22 @@ public class RunesData implements ITooltipList, IStatsContainer {
     }
 
     public int getAverageRarity() {
-        int per = 0;
 
-        for (InsertedRuneData rune : runes) {
+        int avg = this.getAveragePercents();
 
-            per += rune.rarity;
+        if (avg > 90) {
+            return IRarity.Mythic;
+        } else if (avg > 80) {
+            return IRarity.Legendary;
+        } else if (avg > 65) {
+            return IRarity.Epic;
+        } else if (avg > 50) {
+            return IRarity.Rare;
+        } else if (avg > 30) {
+            return IRarity.Uncommon;
+        } else {
+            return IRarity.Common;
         }
-        per = per / runes.size();
-
-        return per;
 
     }
 
