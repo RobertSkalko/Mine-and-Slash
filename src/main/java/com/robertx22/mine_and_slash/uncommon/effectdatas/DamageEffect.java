@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 
@@ -121,7 +122,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if ((int) number > 0 && source instanceof ServerPlayerEntity) {
 
                 ServerPlayerEntity player = (ServerPlayerEntity) source;
-                DmgNumPacket packet = new DmgNumPacket(target, this.element, FormatDamageNumber(this));
+                DmgNumPacket packet = new DmgNumPacket(target, this.element, NumberUtils.formatDamageNumber(this));
                 MMORPG.sendToClient(packet, player);
 
             }
@@ -158,40 +159,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 bonus.Activate();
             }
         }
-    }
-
-    private static String getNumberString(int num, int divided, String letter) {
-
-        int thousands = (int) (num / divided);
-        int leftover = (int) ((num - thousands * divided) / 100);
-        return thousands + "." + leftover + letter;
-    }
-
-    static int MILLION = 1000000;
-    static int THOUSAND = 1000;
-
-    public static String formatNumber(int num) {
-        String text = "";
-
-        if (num > MILLION) {
-            return getNumberString(num, MILLION, "m");
-        }
-        if (num > THOUSAND) {
-            return getNumberString(num, THOUSAND, "k");
-        }
-
-        return num + "";
-
-    }
-
-    public static String FormatDamageNumber(DamageEffect data) {
-        String num = formatNumber((int) data.number);
-
-        if (data.crit) {
-            num += "!";
-        }
-
-        return num;
     }
 
     @Override

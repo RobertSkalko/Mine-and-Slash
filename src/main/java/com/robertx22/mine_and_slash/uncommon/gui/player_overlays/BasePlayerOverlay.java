@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.gui.player_overlays;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.LivingEntity;
@@ -44,8 +44,8 @@ public abstract class BasePlayerOverlay {
         }
         gui.blit(x, y, 0, NEW_TEXTURE_HEIGHT, barwidth, NEW_TEXTURE_HEIGHT); // inner fill texture
 
-        String now = DamageEffect.formatNumber((int) current);
-        String maximum = DamageEffect.formatNumber((int) max);
+        String now = NumberUtils.formatNumber((int) current);
+        String maximum = NumberUtils.formatNumber((int) max);
         String str = "";
 
         if (!isExp) {
@@ -78,8 +78,8 @@ public abstract class BasePlayerOverlay {
         }
         gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, barwidth, 5); // inner fill texture
 
-        String now = DamageEffect.formatNumber((int) current);
-        String maximum = DamageEffect.formatNumber((int) max);
+        String now = NumberUtils.formatNumber((int) current);
+        String maximum = NumberUtils.formatNumber((int) max);
         String str = "";
 
         if (!isExp) {
