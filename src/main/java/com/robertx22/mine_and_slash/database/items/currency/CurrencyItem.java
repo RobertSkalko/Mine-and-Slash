@@ -57,7 +57,7 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
         }
 
         for (BaseLocRequirement req : requirements()) {
-            if (req.isNotAllowed(data)) {
+            if (req.isNotAllowed(data, Currency)) {
                 return false;
 
             }
@@ -65,8 +65,6 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
         }
         return true;
     }
-
-    public abstract List<BaseLocRequirement> requirements();
 
     @Override
     public AutoLocGroup locDescGroup() {

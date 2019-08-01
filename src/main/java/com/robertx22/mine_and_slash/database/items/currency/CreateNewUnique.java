@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
@@ -59,15 +61,8 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-
-        GearItemData gear = Gear.Load(stack);
-
-        if (gear != null && gear.isUnique) {
-            return true;
-        }
-
-        return false;
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(SimpleGearLocReq.IS_UNIQUE);
     }
 
     @Override

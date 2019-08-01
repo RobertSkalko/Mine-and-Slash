@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -44,10 +46,8 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-        GearItemData gear = Gear.Load(stack);
-
-        return gear != null && !gear.getGearEnum().canRerollNumbers();
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(GearEnumLocReq.REROLL_NUMBERS);
     }
 
     @Override

@@ -4,6 +4,21 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    canFitRune("Item has enough rune slots and no same runes"),
+    hasUniqueStats("Has Unique stats"),
+    hasSet("Has Set"),
+    hasSuffix("Has Suffix"),
+    hasPrefix("Has Prefix"),
+    isNotUnique("Is Not Unique"),
+    isLowerThanMythic("Is Not Mythical"),
+    IsCommon("Is Common Rarity"),
+    LvlLessThanMax("Lvl Less than max lvl"),
+    NoChaosStats("Doesn't have Chaos Stats"),
+    HasInfusion("Has Infusion Stats"),
+    NoSuffix("Doesn't have suffix"),
+    NoPrefix("Doesn't have prefix"),
+    CanOnlyUseOnce("Can only use once"),
+    CanOnlyUse10times("Can only use 10 times"),
     Doesnthaveset("Doesn't have set"),
     AllowedOn("Allowed on: "),
     NotAllowedOn("Not Allowed on: "),

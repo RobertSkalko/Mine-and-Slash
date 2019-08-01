@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.items.currency.loc_reqs;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.Arrays;
@@ -17,6 +18,7 @@ public class GearEnumLocReq extends BaseLocRequirement {
     public static final GearEnumLocReq CHAOS_STATS = new GearEnumLocReq(x -> x.canGetChaosStats());
     public static final GearEnumLocReq INFUSIONS = new GearEnumLocReq(x -> x.canGetInfusions());
     public static final GearEnumLocReq REROLL_NUMBERS = new GearEnumLocReq(x -> x.canRerollNumbers());
+    public static final GearEnumLocReq RUNED = new GearEnumLocReq(x -> x == GearItemEnum.RUNED);
 
     private GearEnumLocReq(Predicate<GearItemEnum> pred) {
         this.gearsThatCanDoThis = pred;
@@ -38,7 +40,7 @@ public class GearEnumLocReq extends BaseLocRequirement {
     }
 
     @Override
-    public boolean isAllowed(Object object) {
+    public boolean isAllowed(Object object, ItemStack currency) {
 
         if (object instanceof GearItemData) {
             GearItemData gear = (GearItemData) object;

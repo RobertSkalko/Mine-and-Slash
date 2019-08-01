@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.items.runes.base;
 
 import com.robertx22.mine_and_slash.database.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.FitRuneLocReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -10,7 +12,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
-import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -25,6 +26,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -110,24 +112,8 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack currency) {
-
-        GearItemData gear = Gear.Load(stack);
-
-        if (gear != null && gear.isRuned()) {
-            if (gear.runes == null) {
-                gear.runes = new RunesData();
-                Gear.Save(stack, gear);
-            }
-
-            RuneItemData rune = Rune.Load(currency);
-
-            if (rune != null) {
-                return gear.runes.canFit(gear, rune);
-            }
-        }
-
-        return false;
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(FitRuneLocReq.INSTANCE);
     }
 
     @Override

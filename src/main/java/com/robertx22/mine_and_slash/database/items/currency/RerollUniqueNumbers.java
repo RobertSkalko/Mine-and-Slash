@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -42,10 +44,8 @@ public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEf
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-        GearItemData gear = Gear.Load(stack);
-
-        return gear != null && gear.uniqueStats != null && gear.isUnique;
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(SimpleGearLocReq.HAS_UNIQUE_STATS);
     }
 
     @Override

@@ -1,5 +1,8 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -39,15 +42,8 @@ public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEf
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-
-        GearItemData gear = Gear.Load(stack);
-
-        if (gear.prefix != null) {
-            return true;
-        }
-
-        return false;
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(GearEnumLocReq.AFFIXES, SimpleGearLocReq.HAS_PREFIX);
     }
 
     @Override

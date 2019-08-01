@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
-import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -59,15 +60,8 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-
-        GearItemData gear = Gear.Load(stack);
-
-        if (gear != null && gear.Rarity < Rarities.MAXIMUM_ITEM_RARITY) {
-            return true;
-        }
-
-        return false;
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(SimpleGearLocReq.IS_LOWER_THAN_MYTHIC, SimpleGearLocReq.IS_NOT_UNIQUE);
     }
 
     @Override

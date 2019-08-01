@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -57,15 +59,8 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-
-        GearItemData gear = Gear.Load(stack);
-
-        if (gear != null && gear.Rarity == 0) {
-            return true;
-        }
-
-        return false;
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(SimpleGearLocReq.IS_COMMON);
     }
 
     @Override
