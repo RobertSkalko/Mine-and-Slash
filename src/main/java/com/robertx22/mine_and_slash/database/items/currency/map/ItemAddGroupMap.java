@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.items.currency.map;
 
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleMapLocReq;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
@@ -43,9 +45,8 @@ public class ItemAddGroupMap extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-        MapItemData map = Map.Load(stack);
-        return map != null && map.groupPlay == false;
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(SimpleMapLocReq.NO_GROUP_MAP_AFFIX);
     }
 
     @Override

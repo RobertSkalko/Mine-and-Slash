@@ -2,6 +2,9 @@ package com.robertx22.mine_and_slash.database.items.currency.infusions.upgrade;
 
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.InfusionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -17,6 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurrencyItemEffect {
@@ -86,11 +90,8 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-        GearItemData gear = Gear.Load(stack);
-
-        return gear != null && gear.infusion != null && gear.infusion.canUpgrade();
-
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(GearEnumLocReq.INFUSIONS, SimpleGearLocReq.HAS_INSFUSION, SimpleGearLocReq.CAN_UPGRADE_INFUSION);
     }
 
     public abstract float critOnSuccessChance();

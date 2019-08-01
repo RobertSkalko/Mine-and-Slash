@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.database.items.currency.infusions;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.InfusionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -68,10 +70,8 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
-        GearItemData gear = Gear.Load(stack);
-
-        return gear != null && gear.getGearEnum().canGetInfusions();
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(GearEnumLocReq.INFUSIONS);
     }
 
     @Override

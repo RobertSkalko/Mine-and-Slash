@@ -122,6 +122,8 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
         Tooltip.add(Styles.BLUECOMP()
                 .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
 
+        Tooltip.addEmpty(tooltip);
+
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.AwakenRuneWordLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;
@@ -24,6 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 
 public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
@@ -117,25 +120,24 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     }
 
     @Override
-    public boolean canItemBeModifiedPROTECTED(ItemStack item, ItemStack currency) {
+    public final boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 
-        if (currency.getItem() instanceof ItemAwakenRuneWord) {
-            GearItemData gear = Gear.Load(item);
+        GearItemData data = Gear.Load(stack);
 
-            if (gear != null) {
+        if (data != null) {
+            for (BaseLocRequirement req : requirements()) {
+                if (req.isNotAllowed(data, Currency)) {
+                    return false;
 
-                String wordtext = this.getWord(currency);
-
-                if (SlashRegistry.RuneWords().isRegistered(wordtext)) {
-                    if (gear.isRuned() && gear.runes.canAwakenRuneWord(SlashRegistry.RuneWords()
-                            .get(wordtext))) {
-                        return true;
-                    }
                 }
             }
         }
+        return true;
+    }
 
-        return false;
+    @Override
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(AwakenRuneWordLocReq.INSTANCE);
     }
 
 }

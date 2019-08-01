@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
+import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -20,6 +21,13 @@ public class OnTooltip {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onItemTooltip(ItemTooltipEvent event) {
+
+        buildDataTootltip(event);
+        buildCurrencyEffectTooltip(event);
+
+    }
+
+    private static void buildDataTootltip(ItemTooltipEvent event) {
 
         if (Screen.hasControlDown()) {
             return;
@@ -65,6 +73,16 @@ public class OnTooltip {
 
                 }
             }
+        }
+
+    }
+
+    private static void buildCurrencyEffectTooltip(ItemTooltipEvent event) {
+
+        if (event.getItemStack().getItem() instanceof ICurrencyItemEffect) {
+            ICurrencyItemEffect currency = (ICurrencyItemEffect) event.getItemStack()
+                    .getItem();
+            currency.addToTooltip(event.getToolTip());
         }
 
     }

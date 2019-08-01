@@ -112,6 +112,24 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     @Override
+    public boolean canItemBeModified(ItemStack item, ItemStack currency) {
+
+        GearItemData gear = Gear.Load(item);
+
+        if (gear == null) {
+            return false;
+        }
+
+        for (BaseLocRequirement req : requirements()) {
+            if (req.isNotAllowed(gear, currency)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public List<BaseLocRequirement> requirements() {
         return Arrays.asList(FitRuneLocReq.INSTANCE);
     }

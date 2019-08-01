@@ -34,7 +34,7 @@ public class SimpleGearLocReq extends BaseLocRequirement {
             .locName());
     public static final SimpleGearLocReq IS_NOT_UNIQUE = new SimpleGearLocReq(x -> x.Rarity != IRarity.Unique, Words.isNotUnique
             .locName());
-    public static final SimpleGearLocReq IS_UNIQUE = new SimpleGearLocReq(x -> x.Rarity == IRarity.Unique, Words.isNotUnique
+    public static final SimpleGearLocReq IS_UNIQUE = new SimpleGearLocReq(x -> x.Rarity == IRarity.Unique, Words.isUnique
             .locName());
 
     public static final BaseLocRequirement HAS_PREFIX = new SimpleGearLocReq(x -> x.prefix != null, Words.hasPrefix
@@ -45,6 +45,8 @@ public class SimpleGearLocReq extends BaseLocRequirement {
             .locName());
     public static final BaseLocRequirement HAS_UNIQUE_STATS = new SimpleGearLocReq(x -> x.uniqueStats != null, Words.hasUniqueStats
             .locName());
+    public static final BaseLocRequirement CAN_UPGRADE_INFUSION = new SimpleGearLocReq(x -> x.infusion != null && x.infusion
+            .canUpgrade(), Words.canUpgradeInfusion.locName());
 
     private SimpleGearLocReq(Predicate<GearItemData> pred, ITextComponent text) {
         this.text = text;

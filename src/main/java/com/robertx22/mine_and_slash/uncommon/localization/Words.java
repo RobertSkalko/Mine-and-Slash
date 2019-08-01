@@ -4,6 +4,11 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    PressShiftForRequirements("Press Shift for Requirements"),
+    isUnique("Is Unique"),
+    hasMatchingRunes("Matching Runes are in gear"),
+    canUpgradeInfusion("Can Upgrade Infusion"),
+    noGroupAffix("No Group Map Affix"),
     canFitRune("Item has enough rune slots and no same runes"),
     hasUniqueStats("Has Unique stats"),
     hasSet("Has Set"),
@@ -20,7 +25,7 @@ public enum Words implements IAutoLocName {
     CanOnlyUseOnce("Can only use once"),
     CanOnlyUse10times("Can only use 10 times"),
     Doesnthaveset("Doesn't have set"),
-    AllowedOn("Allowed on: "),
+    AllowedOn("Allowed on"),
     NotAllowedOn("Not Allowed on: "),
     Unique_Gear("Unique Gear"),
     Normal_Gear("Normal Gear"),
@@ -51,6 +56,8 @@ public enum Words implements IAutoLocName {
     unlocks_runeword_combo("Unlocks RuneWord combination."),
 
     Press_Shift_For_Setup_Info("Press Shift For Setup Info"),
+
+    Press_Shift_For_More_Info("Press Shift For More Info"),
 
     Penetration("Penetration"),
 
