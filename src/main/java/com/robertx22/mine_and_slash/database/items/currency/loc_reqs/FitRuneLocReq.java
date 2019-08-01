@@ -27,6 +27,7 @@ public class FitRuneLocReq extends BaseLocRequirement {
                 RuneItemData rune = Rune.Load(currency);
                 if (rune != null) {
                     if (gear.runes.canFit(gear, rune)) {
+
                         return true;
                     }
                 }

@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public interface ICurrencyItemEffect {
                     .appendText(": ")));
 
             for (BaseLocRequirement req : requirements()) {
-                tooltip.add(Tooltip.color(TextFormatting.RED, req.getText()));
+                tooltip.add(Tooltip.color(TextFormatting.RED, new StringTextComponent(" * ")
+                        .appendSibling(req.getText())));
             }
         } else {
             tooltip.add(Tooltip.color(TextFormatting.GREEN, Words.PressShiftForRequirements
