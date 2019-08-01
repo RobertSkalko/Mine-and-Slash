@@ -45,7 +45,7 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
         GearItemData gear = Gear.Load(stack);
 
         return gear.secondaryStats != null && gear.getGearEnum()
-                .canGetSecondaryStats(gear) && gear.secondaryStats.AddedStat == false;
+                .canGetSecondaryStats() && gear.secondaryStats.AddedStat == false;
 
     }
 

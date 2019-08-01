@@ -47,7 +47,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
-        return gear != null && !gear.isRuned();
+        return gear != null && !gear.getGearEnum().canRerollNumbers();
     }
 
     @Override

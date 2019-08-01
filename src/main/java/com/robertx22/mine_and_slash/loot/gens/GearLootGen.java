@@ -72,27 +72,34 @@ public class GearLootGen extends BaseLootGen {
                 data.uniqueGUID = unique.GUID();
                 data.uniqueStats = new UniqueStatsData(unique.GUID());
                 data.uniqueStats.RerollFully(data);
+
+                if (unique.canGetSet()) {
+                    data.set = new SetData();
+                    data.set = data.set.generate(data);
+
+                }
+
             } else {
                 return null;
             }
         }
 
-        if (type.canGetPrimaryStats(data)) {
+        if (type.canGetPrimaryStats()) {
             data.primaryStats = new PrimaryStatsData();
             data.primaryStats.RerollFully(data);
         }
-        if (type.canGetSecondaryStats(data)) {
+        if (type.canGetSecondaryStats()) {
             data.secondaryStats = new SecondaryStatsData();
             data.secondaryStats.RerollFully(data);
         }
-        if (type.canGetChaosStats(data)) {
+        if (type.canGetChaosStats()) {
             if (blueprint.getsChaosStats()) {
                 data.chaosStats = new ChaosStatsData();
                 data.chaosStats.RerollFully(data);
             }
         }
 
-        if (type.canGetAffixes(data)) {
+        if (type.canGetAffixes()) {
             if (RandomUtils.roll(rarity.AffixChance())) {
 
                 data.suffix = new SuffixData();
@@ -106,7 +113,7 @@ public class GearLootGen extends BaseLootGen {
 
             }
         }
-        if (type.canGetSet(data)) {
+        if (type.canGetSet()) {
             if (blueprint.canGetSet(data)) {
                 data.set = new SetData();
                 data.set = data.set.generate(data);

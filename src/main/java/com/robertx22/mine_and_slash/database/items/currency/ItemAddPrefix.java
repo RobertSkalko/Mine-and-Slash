@@ -46,8 +46,7 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect, 
     public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
-        return gear != null && gear.prefix == null && gear.getGearEnum()
-                .canGetAffixes(gear);
+        return gear != null && gear.prefix == null && gear.getGearEnum().canGetAffixes();
     }
 
     @Override

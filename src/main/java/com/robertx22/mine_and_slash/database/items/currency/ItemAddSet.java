@@ -50,7 +50,7 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect {
     public boolean canItemBeModifiedPROTECTED(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
 
-        return gear.set == null && gear.getGearEnum().canGetSet(gear);
+        return gear.set == null && gear.getGearEnum().canGetSet();
 
     }
 

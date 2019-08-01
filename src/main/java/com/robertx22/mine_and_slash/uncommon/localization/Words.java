@@ -5,6 +5,9 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
 
+    Unique_Gear("Unique Gear"),
+    Normal_Gear("Normal Gear"),
+    Runed_Gear("Runed Gear"),
     PicksUpItemsAuto("Automatically picks up certain items!"),
     HoldToPreventPickup("Hold in your hand to prevent item pickup."),
     BewareCreativeBagBug1("Beware, switching to Creative"),

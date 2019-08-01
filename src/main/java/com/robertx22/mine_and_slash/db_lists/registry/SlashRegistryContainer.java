@@ -98,7 +98,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return new FilterListWrap<C>(getFiltered(pred));
     }
 
-    // just do predicate.and() .or() etc. if need multiple
+    // just do gearsThatCanDoThis.and() .or() etc. if need multiple
     public List<C> getFiltered(Predicate<C> predicate) {
         return this.getList().stream().filter(predicate).collect(Collectors.toList());
     }

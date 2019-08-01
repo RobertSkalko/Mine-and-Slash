@@ -45,7 +45,7 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, I
 
         GearItemData gear = Gear.Load(stack);
 
-        if (gear.chaosStats == null && gear.getGearEnum().canGetChaosStats(gear)) {
+        if (gear.chaosStats == null && gear.getGearEnum().canGetChaosStats()) {
             return true;
         }
 
