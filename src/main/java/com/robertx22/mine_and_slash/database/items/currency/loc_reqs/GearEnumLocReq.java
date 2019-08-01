@@ -2,23 +2,23 @@ package com.robertx22.mine_and_slash.database.items.currency.loc_reqs;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-class GearEnumLocReq extends BaseLocRequirement {
+public class GearEnumLocReq extends BaseLocRequirement {
 
-    GearEnumLocReq AFFIXES = new GearEnumLocReq(x -> x.canGetAffixes());
-    GearEnumLocReq SETS = new GearEnumLocReq(x -> x.canGetSet());
-    GearEnumLocReq SECONDARY_STATS = new GearEnumLocReq(x -> x.canGetSecondaryStats());
-    GearEnumLocReq PRIMARY_STATS = new GearEnumLocReq(x -> x.canGetPrimaryStats());
-    GearEnumLocReq CHAOS_STATS = new GearEnumLocReq(x -> x.canGetChaosStats());
-    GearEnumLocReq INFUSIONS = new GearEnumLocReq(x -> x.canGetInfusions());
-    GearEnumLocReq REROLL_NUMBERS = new GearEnumLocReq(x -> x.canRerollNumbers());
+    public static final GearEnumLocReq AFFIXES = new GearEnumLocReq(x -> x.canGetAffixes());
+    public static final GearEnumLocReq SETS = new GearEnumLocReq(x -> x.canGetSet());
+    public static final GearEnumLocReq SECONDARY_STATS = new GearEnumLocReq(x -> x.canGetSecondaryStats());
+    public static final GearEnumLocReq PRIMARY_STATS = new GearEnumLocReq(x -> x.canGetPrimaryStats());
+    public static final GearEnumLocReq CHAOS_STATS = new GearEnumLocReq(x -> x.canGetChaosStats());
+    public static final GearEnumLocReq INFUSIONS = new GearEnumLocReq(x -> x.canGetInfusions());
+    public static final GearEnumLocReq REROLL_NUMBERS = new GearEnumLocReq(x -> x.canRerollNumbers());
 
-    public GearEnumLocReq(Predicate<GearItemEnum> pred) {
+    private GearEnumLocReq(Predicate<GearItemEnum> pred) {
         this.gearsThatCanDoThis = pred;
     }
 
@@ -27,7 +27,7 @@ class GearEnumLocReq extends BaseLocRequirement {
     @Override
     public ITextComponent getText() {
 
-        ITextComponent comp = new StringTextComponent("");
+        ITextComponent comp = Words.AllowedOn.locName().appendText(": ");
 
         Arrays.stream(GearItemEnum.values())
                 .filter(gearsThatCanDoThis)

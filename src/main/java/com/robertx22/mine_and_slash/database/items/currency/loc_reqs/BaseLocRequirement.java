@@ -8,4 +8,8 @@ public abstract class BaseLocRequirement {
 
     public abstract boolean isAllowed(Object object);
 
+    public boolean isNotAllowed(Object object) {
+        return this.isAllowed(object) == false;
+    }
+
 }

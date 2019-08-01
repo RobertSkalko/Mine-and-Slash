@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
@@ -11,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -46,13 +48,25 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
     }
 
     @Override
-    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
+    public final boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
 
-        if (this.itemTypesUsableOn.isType(stack)) {
-            return this.canItemBeModifiedPROTECTED(stack, Currency);
+        ICommonDataItem data = ICommonDataItem.load(stack);
+
+        if (this.itemTypesUsableOn.isType(stack) == false) {
+            return false;
         }
-        return false;
+
+        for (BaseLocRequirement req : requirements()) {
+            if (req.isNotAllowed(data)) {
+                return false;
+
+            }
+
+        }
+        return true;
     }
+
+    public abstract List<BaseLocRequirement> requirements();
 
     @Override
     public AutoLocGroup locDescGroup() {

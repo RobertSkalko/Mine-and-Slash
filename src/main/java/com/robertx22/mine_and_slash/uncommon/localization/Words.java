@@ -4,7 +4,9 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
-
+    Doesnthaveset("Doesn't have set"),
+    AllowedOn("Allowed on: "),
+    NotAllowedOn("Not Allowed on: "),
     Unique_Gear("Unique Gear"),
     Normal_Gear("Normal Gear"),
     Runed_Gear("Runed Gear"),
