@@ -4,6 +4,11 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+
+    PicksUpItemsAuto("Automatically picks up certain items!"),
+    HoldToPreventPickup("Hold in your hand to prevent item pickup."),
+    BewareCreativeBagBug1("Beware, switching to Creative"),
+    BewareCreativeBagBug2("while on server could clear the bag!"),
     AddRarestAffixes("Add Rarest Affixes"),
     PefectPrimaryStats("Perfect Primary Stats"),
     BetterPrimaryStats("Better Primary Stats"),

@@ -64,6 +64,7 @@ public class RegisterEvents {
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnTooltip.class);
+            register(OnItemDroppedSound.class);
         });
 
     }

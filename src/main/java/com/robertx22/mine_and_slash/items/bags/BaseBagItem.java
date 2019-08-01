@@ -3,6 +3,9 @@ package com.robertx22.mine_and_slash.items.bags;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.ItemSingle;
 import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
@@ -13,7 +16,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -23,6 +30,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public abstract class BaseBagItem extends Item {
 
@@ -35,6 +44,21 @@ public abstract class BaseBagItem extends Item {
     public BaseBagItem(String name) {
 
         super(new ItemSingle().group(CreativeTabs.MyModTab));
+
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn,
+                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+
+        tooltip.add(Tooltip.color(TextFormatting.GREEN, Words.PicksUpItemsAuto.locName()));
+        tooltip.add(Tooltip.color(TextFormatting.YELLOW, Words.HoldToPreventPickup.locName()));
+
+        Tooltip.addEmpty(tooltip);
+
+        tooltip.add(Tooltip.color(TextFormatting.RED, Words.BewareCreativeBagBug1.locName()));
+        tooltip.add(Tooltip.color(TextFormatting.RED, Words.BewareCreativeBagBug2.locName()));
 
     }
 

@@ -165,26 +165,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7Common Big Currency Treasure Box",
@@ -243,6 +223,26 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§dMythical Small Spell Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -456,6 +456,8 @@
 	"mmorpg.word.basevalue": "Base Value",
 	"mmorpg.word.betterprimarystats": "Better Primary Stats",
 	"mmorpg.word.beware": "Beware",
+	"mmorpg.word.bewarecreativebagbug1": "Beware, switching to Creative",
+	"mmorpg.word.bewarecreativebagbug2": "while on server could clear the bag!",
 	"mmorpg.word.blocks": "Blocks",
 	"mmorpg.word.blueprint": "Blueprint",
 	"mmorpg.word.bonus_loot_amount": "Bonus Loot Amount",
@@ -478,6 +480,7 @@
 	"mmorpg.word.gear_modify": "Gear Modify",
 	"mmorpg.word.gears": "Gears",
 	"mmorpg.word.groupplay": "Group Play",
+	"mmorpg.word.holdtopreventpickup": "Hold in your hand to prevent item pickup.",
 	"mmorpg.word.infusion": "Infusion",
 	"mmorpg.word.item": "Item",
 	"mmorpg.word.item_modifiable_in_station": "Can be used inside Gear Modify Station",
@@ -509,6 +512,7 @@
 	"mmorpg.word.penetration": "Penetration",
 	"mmorpg.word.percent": "Percent",
 	"mmorpg.word.permadeath": "Permadeath",
+	"mmorpg.word.picksupitemsauto": "Automatically picks up certain items!",
 	"mmorpg.word.player_affixes": "Player Affixes",
 	"mmorpg.word.position": "Position",
 	"mmorpg.word.prefix": "Prefix",
