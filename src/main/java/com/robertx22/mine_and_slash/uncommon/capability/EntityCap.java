@@ -516,8 +516,9 @@ public class EntityCap {
 
             this.equipsChanged = true;
 
-            CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) entity, this);
-
+            if (entity instanceof ServerPlayerEntity) {
+                CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) entity, this);
+            }
         }
 
         @Override
