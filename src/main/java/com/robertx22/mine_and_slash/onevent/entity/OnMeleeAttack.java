@@ -2,14 +2,16 @@ package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
-import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemBow;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -124,10 +126,16 @@ public class OnMeleeAttack {
         if (event.getSource().getTrueSource() instanceof LivingEntity) {
             LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
 
-            if (en.getHeldItemMainhand()
-                    .getItem() instanceof ItemBow || en.getHeldItemOffhand()
-                    .getItem() instanceof ItemBow) {
+            ItemStack offhand = en.getHeldItemOffhand();
+            ItemStack mainhand = en.getHeldItemMainhand();
 
+            Item off = offhand.getItem();
+            Item main = mainhand.getItem();
+
+            if (main instanceof BowItem || off instanceof BowItem) {
+                return event.getSource().isProjectile() == false;
+            }
+            if (main instanceof CrossbowItem || off instanceof CrossbowItem) {
                 return event.getSource().isProjectile() == false;
             }
         }

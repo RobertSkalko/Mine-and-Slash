@@ -10,12 +10,12 @@ public class CrossBowWeaponMechanic extends WeaponMechanic {
 
     @Override
     public ITextComponent tooltipDesc() {
-        return new StringTextComponent(Styles.GREEN + "Normal Attack");
+        return new StringTextComponent(Styles.GREEN + "Double Damage");
     }
 
     @Override
     public float GetEnergyCost() {
-        return 4;
+        return 6.5F;
     }
 
     @Override

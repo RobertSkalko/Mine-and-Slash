@@ -26,7 +26,7 @@ public class CrossBow extends BaseWeapon {
     public Item DefaultItem() {
         return Items.CROSSBOW;
     }
-    
+
     @Override
     public List<StatMod> PossibleSecondaryStats() {
         return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Physical));
