@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
+import com.robertx22.mine_and_slash.database.rarities.base.DropSoundData;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IColor;
@@ -15,6 +16,10 @@ public interface Rarity extends IWeighted, IAutoLocName, IColor {
     String Color();
 
     int Weight();
+
+    default DropSoundData getDropSound() {
+        return new DropSoundData();
+    }
 
     TextFormatting textFormatColor();
 

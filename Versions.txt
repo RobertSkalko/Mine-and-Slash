@@ -1,6 +1,7 @@
+2.4.2
+changed stat tooltips to more accurately clarify what the stat type does (% stats like crit now prefix with "Flat" and + 5% Percent is now + 5% Increased)
 2.4.1
 fix currency bug where uniques could get sets etc
-
 2.4.0
 all currency items now show the requirements on the tooltip when pressing shift! (there will probably be some bugs cus major refactoring..)
 fixed level nearest entity item

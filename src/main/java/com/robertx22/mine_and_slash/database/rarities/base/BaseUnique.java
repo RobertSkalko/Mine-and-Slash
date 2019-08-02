@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.rarities.base;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class BaseUnique implements Rarity {
@@ -16,6 +17,11 @@ public abstract class BaseUnique implements Rarity {
     public int Rank() {
 
         return -1;
+    }
+
+    @Override
+    public DropSoundData getDropSound() {
+        return new DropSoundData(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE).volume(0.7F);
     }
 
     @Override

@@ -21,6 +21,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, MasterBagPacket.class, MasterBagPacket::encode, MasterBagPacket::decode, MasterBagPacket::handle);
 
+        MMORPG.Network.registerMessage(index++, RarityItemDropPacket.class, RarityItemDropPacket::encode, RarityItemDropPacket::decode, RarityItemDropPacket::handle);
+
     }
 }
 
