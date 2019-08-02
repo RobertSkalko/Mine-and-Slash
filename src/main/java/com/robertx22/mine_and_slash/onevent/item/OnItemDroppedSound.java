@@ -13,6 +13,10 @@ public class OnItemDroppedSound {
     @SubscribeEvent
     public static void onItemSpawn(EntityJoinWorldEvent event) {
 
+        if (true) {
+            return; //NOT READY YET
+        }
+
         if (event.getWorld().isRemote) {
             return;
         }

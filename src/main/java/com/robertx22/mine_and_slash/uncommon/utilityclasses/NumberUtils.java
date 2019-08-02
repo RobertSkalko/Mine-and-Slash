@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 public class NumberUtils {
     private static String formatNumber(int number, int divided, String letter) {
         int amount = number / divided;
-        int remaining = number - (amount * divided);
+        int remaining = (number - (amount * divided)) / (divided / 10);
         String firstRemaining = (remaining + "").substring(0, 1);
 
         return amount + "." + firstRemaining + letter;

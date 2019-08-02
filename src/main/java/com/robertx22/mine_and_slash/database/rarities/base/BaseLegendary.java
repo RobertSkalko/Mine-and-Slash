@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.rarities.base;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements.RGB;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class BaseLegendary implements Rarity {
@@ -21,7 +20,7 @@ public abstract class BaseLegendary implements Rarity {
 
     @Override
     public DropSoundData getDropSound() {
-        return new DropSoundData(SoundEvents.ITEM_TOTEM_USE);
+        return new DropSoundData();
     }
 
     @Override

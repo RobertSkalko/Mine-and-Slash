@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases.renderers;
 
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.entity.Entity;
 
-public class FireBoltRender extends Model {
+public class firebolt extends EntityModel {
     private final RendererModel bone;
 
-    public FireBoltRender() {
+    public firebolt() {
         textureWidth = 16;
         textureHeight = 16;
 
@@ -20,6 +21,12 @@ public class FireBoltRender extends Model {
         bone.cubeList.add(new ModelBox(bone, 0, 0, -1.847F, -0.6083F, -20.304F, 2, 2, 0, 0.0F, false));
         bone.cubeList.add(new ModelBox(bone, 0, 0, -1.7893F, -0.6083F, -28.9379F, 2, 2, 2, 0.0F, false));
         bone.cubeList.add(new ModelBox(bone, 0, 0, -1.3121F, -0.0855F, -30.926F, 1, 1, 2, 0.0F, false));
+    }
+
+    @Override
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4,
+                       float f5) {
+        bone.render(f5);
     }
 
     public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
