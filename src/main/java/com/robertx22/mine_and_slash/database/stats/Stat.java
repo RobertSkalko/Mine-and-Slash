@@ -135,14 +135,17 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     @OnlyIn(Dist.CLIENT)
     public ITextComponent NameText(TooltipInfo info, StatModData data) {
+
         StatMod mod = data.getStatMod();
         Stat basestat = mod.GetBaseStat();
 
-        ITextComponent str = basestat.locName();
+        ITextComponent str = new StringTextComponent("");
 
-        if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
-            str.appendText(" ").appendSibling(Words.Percent.locName());
+        if (mod.Type().equals(StatTypes.Flat) && basestat.IsPercent()) {
+            str.appendSibling(Words.Flat.locName()).appendText(" ");
         }
+
+        str.appendSibling(basestat.locName());
 
         if (info.isSet == false) {
             return Styles.REDCOMP()
@@ -179,6 +182,15 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         } else if (mod.Type() == StatTypes.Percent) {
             text.appendText("%");
+
+            if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
+                if (data.GetActualVal(info.level) > 0) {
+                    text.appendText(" ").appendSibling(Words.Increased.locName());
+                } else {
+                    text.appendText(" ").appendSibling(Words.Decreased.locName());
+                }
+            }
+
         } else {
             text.appendText("% ").appendSibling(Words.Multi.locName());
         }
