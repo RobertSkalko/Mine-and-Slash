@@ -40,11 +40,15 @@ public class GearEnumLocReq extends BaseLocRequirement {
     }
 
     @Override
+
     public boolean isAllowed(Object object, ItemStack currency) {
 
         if (object instanceof GearItemData) {
             GearItemData gear = (GearItemData) object;
-            if (gear.getGearEnum().canGetAffixes()) {
+
+            GearItemEnum genum = gear.getGearEnum();
+
+            if (gearsThatCanDoThis.test(genum)) {
                 return true;
             }
         }

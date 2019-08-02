@@ -1,18 +1,7 @@
+2.4.1
+fix currency bug where uniques could get sets etc
+
 2.4.0
 all currency items now show the requirements on the tooltip when pressing shift! (there will probably be some bugs cus major refactoring..)
 fixed level nearest entity item
 added auto bag tooltips
-2.3.2
-fixed crossbows, they deal double dmg accordingly now
-2.3.1
-added crossbows!
-fixed unique gear generation and command
-2.3.0
-giverune command now can give specific runes
-fixed exp number overflow at high lvls, now its says 2m instead of 200k 
-weapons now properly break if durability gets to 0
-added new runes, unique runes! They drop at high tier maps just as unique gears
-added new runewords, ones that contain these unique runes, the awaken items for them drop everywhere but are much rarer
-capacitors now speed up salvage and repair stations
-simplified awaken runeword text because too many confusions
-added giveuniquerune command

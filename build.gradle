@@ -1,5 +1,5 @@
 buildscript {
-    repositories {		  	
+    repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
@@ -124,7 +124,10 @@ dependencies {
 
     compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}") // Trinkets, REQUIRED
     compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
-		
+
+    //compile fg.deobf(files("jars/mobcatcher-1.2.jar"))
+
+
 }
 
 
