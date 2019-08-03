@@ -165,6 +165,26 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7Common Big Currency Treasure Box",
@@ -223,26 +243,6 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§dMythical Small Spell Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -871,28 +871,6 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.boots": "Boots",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.chest": "Chest",
-	"mmorpg.gear_type.crossbow": "Crossbow",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.helmet": "Helmet",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.pants": "Pants",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -970,6 +948,28 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.boots": "Boots",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.chest": "Chest",
+	"mmorpg.gear_type.crossbow": "Crossbow",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.helmet": "Helmet",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.pants": "Pants",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1136,6 +1136,7 @@
 	"mmorpg.chat.you_have_attuned_to_this_altar": "You have attuned to this Altar",
 	"mmorpg.chat.you_have_leveled_up": "You have leveled up",
 	"mmorpg.chat.you_have_ran_out_of_time": "You have ran out of time",
+	"mmorpg.chat.youneedheartstone": "You need a hearthstone item to attune to this block.",
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
 

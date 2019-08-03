@@ -57,7 +57,6 @@ public class RegisterEvents {
     private static void registerItemEvents() {
 
         register(OnContainerCompatibleItem.class);
-        register(OnLeftClickHearthstone.class);
         register(OnMissingMappings.class);
         register(OnPickupInsertIntoBag.class);
         register(OnPickUpSalvage.class);
