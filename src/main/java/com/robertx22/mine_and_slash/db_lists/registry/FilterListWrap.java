@@ -72,10 +72,15 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     }
 
     public FilterListWrap<C> ofSpecificGearType(String type) {
-        this.list = list.stream()
-                .filter(x -> ((IGearSlotType) x).getGearSlot().GUID().equals(type) || type
-                        .isEmpty() || type.equals("random"))
-                .collect(Collectors.toList());
+
+        if (type.isEmpty() || type.equals("random")) {
+            // keep everything the same
+        } else {
+            this.list = list.stream()
+                    .filter(x -> ((IGearSlotType) x).getGearSlot().GUID().equals(type))
+                    .collect(Collectors.toList());
+        }
+
         return this;
     }
 

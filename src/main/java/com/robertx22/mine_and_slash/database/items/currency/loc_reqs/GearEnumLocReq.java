@@ -7,7 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class GearEnumLocReq extends BaseLocRequirement {
 
@@ -31,10 +33,23 @@ public class GearEnumLocReq extends BaseLocRequirement {
 
         ITextComponent comp = Words.AllowedOn.locName().appendText(": ");
 
-        Arrays.stream(GearItemEnum.values())
-                .filter(gearsThatCanDoThis)
-                .map(x -> x.word())
-                .forEach(x -> comp.appendSibling(x.locName().appendText(" ")));
+        Predicate<GearItemEnum> predicate = gearsThatCanDoThis;
+
+        List<GearItemEnum> enums = Arrays.stream(GearItemEnum.values())
+                .filter(x -> predicate.test(x))
+                .collect(Collectors.toList());
+
+        int count = 1;
+        for (GearItemEnum x : enums) {
+
+            comp.appendSibling(x.word().locName());
+
+            if (count < enums.size()) {
+                comp.appendText(", ");
+            }
+
+            count++;
+        }
 
         return comp;
     }

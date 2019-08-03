@@ -16,7 +16,12 @@ public class OnLeftClickHearthstone {
     @SubscribeEvent
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock evt) {
 
+        if (evt.getEntityPlayer().world.isRemote) {
+            return;
+        }
+
         ServerPlayerEntity player = (ServerPlayerEntity) evt.getEntityPlayer();
+
         BlockState block = player.world.getBlockState(evt.getPos());
 
         ItemStack stack = evt.getItemStack();

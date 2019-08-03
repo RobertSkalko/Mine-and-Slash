@@ -1,3 +1,5 @@
+2.4.3
+fix crash in newest forge version hopefully
 2.4.2
 changed stat tooltips to more accurately clarify what the stat type does (% stats like crit now prefix with "Flat" and + 5% Percent is now + 5% Increased)
 fixed gui numbers
