@@ -1,5 +1,6 @@
 2.4.4
 buffed block a bit
+shields now grant knockback immunity for the next attack when blocking. 
 2.4.3
 fix crash in newest forge version hopefully
 updated to forge v40
