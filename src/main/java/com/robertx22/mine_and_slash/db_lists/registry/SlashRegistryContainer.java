@@ -74,7 +74,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
         tryLogEmptyRegistry();
 
-        if (guid.isEmpty()) {
+        if (guid == null || guid.isEmpty()) {
             return emptyDefault;
         }
         if (map.containsKey(guid)) {

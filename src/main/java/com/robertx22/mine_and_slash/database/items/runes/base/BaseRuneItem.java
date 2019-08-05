@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.runes.base;
 
-import com.robertx22.mine_and_slash.database.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.FitRuneLocReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;

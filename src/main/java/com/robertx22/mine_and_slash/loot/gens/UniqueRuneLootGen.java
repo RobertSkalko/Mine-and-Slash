@@ -30,7 +30,7 @@ public class UniqueRuneLootGen extends BaseLootGen {
 
     @Override
     public LootType lootType() {
-        return LootType.Rune;
+        return LootType.UniqueRune;
     }
 
     @Override

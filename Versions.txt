@@ -1,3 +1,5 @@
+2.4.5
+awaken runeword items now preview the runeword stats on the tooltip (not fully accurate but u get to know the stats at least)
 2.4.4
 buffed block a bit
 shields now grant knockback immunity for the next attack when blocking. 

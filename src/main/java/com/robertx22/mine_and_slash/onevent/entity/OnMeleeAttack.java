@@ -126,16 +126,12 @@ public class OnMeleeAttack {
         if (event.getSource().getTrueSource() instanceof LivingEntity) {
             LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
 
-            ItemStack offhand = en.getHeldItemOffhand();
-            ItemStack mainhand = en.getHeldItemMainhand();
+            Item item = en.getHeldItem(en.getActiveHand()).getItem();
 
-            Item off = offhand.getItem();
-            Item main = mainhand.getItem();
-
-            if (main instanceof BowItem || off instanceof BowItem) {
+            if (item instanceof BowItem) {
                 return event.getSource().isProjectile() == false;
             }
-            if (main instanceof CrossbowItem || off instanceof CrossbowItem) {
+            if (item instanceof CrossbowItem) {
                 return event.getSource().isProjectile() == false;
             }
         }

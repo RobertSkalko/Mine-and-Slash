@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.items.misc;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.AwakenRuneWordLocReq;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
@@ -7,7 +8,11 @@ import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.rune.RuneWordData;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -28,6 +33,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
@@ -78,11 +84,33 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
             Tooltip.add("", tooltip);
 
+            try {
+                RuneWordData data = new RuneWordData();
+                data.name = word;
+
+                data.Mods = runeword.mods()
+                        .stream()
+                        .map(x -> StatModData.Load(x, 100))
+                        .collect(Collectors.toList());
+
+                TooltipInfo info = new TooltipInfo();
+                info.level = 1;
+                info.unitdata = new EntityCap.DefaultImpl();
+                info.minmax = new MinMax(0, 100);
+
+                tooltip.addAll(data.GetTooltipString(info));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Tooltip.add("", tooltip);
+
         }
         Tooltip.add(Styles.BLUECOMP()
                 .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
         Tooltip.add(Styles.BLUECOMP()
                 .appendSibling(Words.unlocks_runeword_combo.locName()), tooltip);
+
     }
 
     @Override

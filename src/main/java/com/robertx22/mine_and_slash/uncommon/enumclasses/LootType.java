@@ -14,6 +14,7 @@ public enum LootType implements IGUID {
     Map("Map"),
     Spell("Spell"),
     Rune("Rune"),
+    UniqueRune("Unique Rune"),
     All("All"),
     Blueprint("Blueprint");
 

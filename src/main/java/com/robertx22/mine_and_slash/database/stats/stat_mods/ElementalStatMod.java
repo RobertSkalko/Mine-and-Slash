@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database;
+package com.robertx22.mine_and_slash.database.stats.stat_mods;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
