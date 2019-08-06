@@ -11,10 +11,9 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -31,7 +30,7 @@ public class OnTickLogic {
     @SubscribeEvent
     public static void onTickLogicVoid(TickEvent.PlayerTickEvent event) {
 
-        if (event.side.equals(LogicalSide.SERVER) && event.phase == Phase.END) {
+        if (event.side.equals(LogicalSide.SERVER) && event.phase == TickEvent.Phase.END) {
 
             try {
 

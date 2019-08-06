@@ -208,7 +208,7 @@ public class PlayerMapCap {
             this.minutesPassed = 0;
             this.mapDevicePos = pos.toLong();
             this.originalDimension = player.world.getDimension().getType();
-            this.mapdata = map;
+            this.mapdata = map.clone();
             this.mapGUID = UUID.randomUUID().toString();
 
         }

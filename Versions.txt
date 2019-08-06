@@ -1,3 +1,7 @@
+2.4.6
+updated to forge v45. You need that version or higher now.
+update curios too.
+attempt to fix group map issue
 2.4.5
 awaken runeword items now preview the runeword stats on the tooltip (not fully accurate but u get to know the stats at least)
 2.4.4

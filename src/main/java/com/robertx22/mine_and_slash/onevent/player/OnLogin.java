@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.*;
+import com.robertx22.mine_and_slash.database.spells.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -11,7 +12,6 @@ import com.robertx22.mine_and_slash.loot.gens.SpellLootGen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
-import com.robertx22.mine_and_slash.database.spells.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
@@ -21,13 +21,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 public class OnLogin {
 
     @SubscribeEvent
-    public static void onLogin(PlayerLoggedInEvent event) {
+    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
 
         if (event.getPlayer().world.isRemote) {
             return;
