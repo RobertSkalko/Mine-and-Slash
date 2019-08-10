@@ -13,6 +13,8 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,7 +36,7 @@ public class OnMeleeAttack {
 
         if (event.getSource() != null) {
 
-            if (isRangedWeaponUsedAsMelee(event)) {
+            if (isForbiddenAttack(event)) {
                 return;
             }
 
@@ -121,18 +123,18 @@ public class OnMeleeAttack {
 
     }
 
-    public static boolean isRangedWeaponUsedAsMelee(LivingAttackEvent event) {
+    public static boolean isForbiddenAttack(LivingAttackEvent event) {
 
         if (event.getSource().getTrueSource() instanceof LivingEntity) {
             LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
+            DamageSource source = event.getSource();
 
             Item item = en.getHeldItem(en.getActiveHand()).getItem();
 
-            if (item instanceof BowItem) {
-                return event.getSource().isProjectile() == false;
-            }
-            if (item instanceof CrossbowItem) {
-                return event.getSource().isProjectile() == false;
+            if (item instanceof BowItem || item instanceof CrossbowItem) {
+                return !source.isProjectile();
+            } else {
+                return source instanceof IndirectEntityDamageSource;
             }
         }
 

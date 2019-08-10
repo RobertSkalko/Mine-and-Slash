@@ -33,6 +33,10 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Self_Buff,
     }
 
+    public boolean use3dBookModel() {
+        return true;
+    }
+
     @Override
     public int getRarityRank() {
         return IRarity.Uncommon;

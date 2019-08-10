@@ -21,6 +21,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.AffectedEntities;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.*;
@@ -38,6 +39,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -177,6 +180,8 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         UnitData unit = Load.Unit(player);
 
         ParticleUtils.spawnEnergyRestoreParticles(player, 10);
+
+        player.sendMessage(Styles.GREENCOMP().appendSibling(Chats.MapStarted.locName()));
 
         return MapManager.setupPlayerMapDimension(player, unit, this, pos);
 
@@ -342,6 +347,16 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
             }
 
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this, false);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj, false);
     }
 
     @Override

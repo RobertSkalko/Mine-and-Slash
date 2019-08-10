@@ -109,7 +109,7 @@ public class ServerContainer {
 
         UNARMED_ENERGY_COST = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("UNARMED_ENERGY_COST", 1D, 0D, Integer.MAX_VALUE);
+                .defineInRange("UNARMED_ENERGY_COST", 1.5D, 0D, Integer.MAX_VALUE);
 
         builder.pop();
     }

@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.blocks.map_device;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
+import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
@@ -149,14 +150,19 @@ public class TileMapDevice extends BaseTile {
                     world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.6f, 0);
                     world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
 
-                    DimensionType type = null;
                     try {
+
+                        DimensionType type = MapManager.getDimensionType(map.getIWP()
+                                .getResourceLoc());
 
                         MapItemData cloned = map.clone();
 
-                        type = map.setupPlayerMapData(world, p, player);
+                        if (map.groupPlay) {
+                            trySetupMapForGroup(cloned, player);
 
-                        trySetupMapForGroup(cloned, player);
+                        } else {
+                            map.setupPlayerMapData(world, p, player);
+                        }
 
                         // start map
                         this.MapSlot().shrink(1);
@@ -206,9 +212,7 @@ public class TileMapDevice extends BaseTile {
             int added = 0;
 
             for (ServerPlayerEntity p : players) {
-
                 double dist = p.getDistance(player);
-
                 if (dist <= distance && added < map.maxPlayersInGroup) {
                     MapItemData cloned = map.clone();
                     cloned.setupPlayerMapData(world, this.pos, p);

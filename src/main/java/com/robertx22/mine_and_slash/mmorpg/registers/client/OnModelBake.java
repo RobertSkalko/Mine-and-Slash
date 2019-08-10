@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.database.items.spell_items.InGame3DWhile2DInvModel;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.SimpleBakedModel;
@@ -20,12 +22,31 @@ public class OnModelBake {
     @SubscribeEvent
     public static void bake(ModelBakeEvent event) {
 
-        List<ResourceLocation> locations = event.getModelRegistry()
-                .keySet()
+        List<ResourceLocation> locations = new ArrayList<>();
+
+        List<String> spellIds = SlashRegistry.Spells()
+                .getList()
                 .stream()
-                .filter(x -> x.getNamespace().equals(Ref.MODID) && x.getPath()
-                        .contains("spell"))
+                .filter(x -> x.SpellItem().getRegistryName() != null)
+                .map(x -> x.SpellItem().getRegistryName().getPath())
                 .collect(Collectors.toList());
+
+        for (ResourceLocation loc : event.getModelRegistry().keySet()) {
+
+            try {
+                String key = loc.getPath();
+
+                if (spellIds.contains(key)) {
+                    BaseSpell spell = getSpellByItemId(loc);
+
+                    if (spell != null && spell.use3dBookModel()) {
+                        locations.add(loc);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         List<IBakedModel> models = new ArrayList<>();
         locations.stream().forEach(x -> models.add(event.getModelRegistry().get(x)));
@@ -39,6 +60,20 @@ public class OnModelBake {
                 event.getModelRegistry().put(loc, mymodel);
             }
         }
+
+    }
+
+    public static BaseSpell getSpellByItemId(ResourceLocation loc) {
+
+        for (BaseSpell spell : SlashRegistry.Spells().getList()) {
+            if (spell.SpellItem().getRegistryName() != null && loc != null) {
+                if (spell.SpellItem().getRegistryName().equals(loc)) {
+                    return spell;
+                }
+            }
+
+        }
+        return null;
 
     }
 

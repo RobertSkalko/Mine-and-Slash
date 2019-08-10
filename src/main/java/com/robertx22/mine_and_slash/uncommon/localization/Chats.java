@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Chats implements IAutoLocName {
+    MapStarted("Adventure Map Successfully Sacrificed"),
     Youneedheartstone("You need a hearthstone item to attune to this block."),
     NoSpaceForPortal("No Space for the portals. Please make room."),
     Dev_tools_enabled_contact_the_author("Devs tools enabled, if you see this please contact the author of Mine and Slash [robertx22], he forgot to disable them!"),
