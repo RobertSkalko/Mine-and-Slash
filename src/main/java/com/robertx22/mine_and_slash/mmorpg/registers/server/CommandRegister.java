@@ -37,6 +37,7 @@ public class CommandRegister {
         ModifyItem.register(dispatcher);
         GiveBlueprint.register(dispatcher);
         GiveUniqueRune.register(dispatcher);
+        SayMapInfo.register(dispatcher);
 
     }
 }

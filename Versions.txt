@@ -1,8 +1,9 @@
 2.4.7
 made all registered spells use the 3d model by default, with option to disable it for addon makers
-map sacrificing now activates a chat message
+map sacrificing now activates a chat message to all players that recieve the map stats
 increased unarmed energy cost 1 to 1.5
-snowballs can no longer be used to effectively make melee weapons ranged with 0 cooldown.
+snowballs can no longer be used to effectively make melee weapons ranged with 0 cooldown. (this could lead to other issues. i plan to rework the whole system..)
+added /givemapinfo command, i'd like to ask people who use group maps with their friends to use that command on themselves and then give me the server log file (should help me figure out the group map bug) 
 2.4.6
 updated to forge v45. You need that version or higher now.
 update curios too.
