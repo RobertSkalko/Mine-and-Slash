@@ -120,7 +120,6 @@ public class MMORPG {
         CapabilityRegister.register();
         CriteriaRegisters.register();
         WorldGenRegisters.register();
-        EnchantRegisters.register();
 
     }
 

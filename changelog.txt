@@ -1,3 +1,5 @@
+2.4.9
+apparently the enchant workaround wasn't needed. shadow told me about a forge provided way to do it which was hidden inside an interface. Also, testing automated curseforge deployment with this build!
 2.4.8
 no longer re-register enchants. just change the type (ignore this)
 2.4.7

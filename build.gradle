@@ -124,7 +124,7 @@ dependencies {
 
     compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}") // Trinkets, REQUIRED
     compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
-  
+
 
 }
 
@@ -157,12 +157,19 @@ task deobfJar(type: Jar) {
 
 curseforge {
 
+    def curseProp = new Properties()
+    File secretPropsFile = file("key.properties")
+    curseProp.load(secretPropsFile.newInputStream())
+
+
     project {
-        apiKey = findProperty('curseKey') ?: 0
+        apiKey = curseProp.getProperty('curseKey')
         id = "${curse_id}"
         releaseType = "${curse_release}"
-        changelogType = 'markdown'
-        changelog = file('CHANGELOG.txt')       
+        changelogType = 'wysiwyg'
+        changelog = file('CHANGELOG.txt')
         addArtifact(deobfJar)
+        SupportedModloaderVersions = 'forge'
+        
     }
 }
