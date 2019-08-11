@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -26,7 +28,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                          ITextComponent comp) {
         super(cont, invPlayer, comp, TileGearModify.class);
 
-        xSize = 176;
+        xSize = 256;
         ySize = 207;
 
     }
@@ -50,7 +52,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         // draw the cook progress bar
-        blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (this.tile
+        blit(guiLeft + 85, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (this.tile
                 .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
     }
@@ -58,6 +60,33 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+
+        LocReqContext context = tile.getLocReqContext();
+        if (context.effect != null && context.hasStack()) {
+            int y = 80;
+
+            boolean add = true;
+
+            for (BaseLocRequirement req : context.effect.requirements()) {
+                if (req.isNotAllowed(context)) {
+                    String txt = CLOC.translate(req.getText());
+
+                    if (add) {
+                        String reqtext = CLOC.translate(Words.RequirementsNotMet.locName()) + ": ";
+
+                        font.drawString(reqtext, this.xSize / 2 - font.getStringWidth(reqtext) / 2, y, Color.red
+                                .getRGB());
+                        y += font.FONT_HEIGHT + 1;
+                        add = false;
+                    }
+
+                    font.drawString(txt, this.xSize / 2 - font.getStringWidth(txt) / 2, y, Color.red
+                            .getRGB());
+                    y += font.FONT_HEIGHT;
+                }
+
+            }
+        }
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;

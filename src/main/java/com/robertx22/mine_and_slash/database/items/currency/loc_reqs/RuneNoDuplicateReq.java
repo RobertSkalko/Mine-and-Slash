@@ -4,29 +4,27 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
-public class FitRuneLocReq extends BaseLocRequirement {
+public class RuneNoDuplicateReq extends BaseLocRequirement {
 
-    public static final FitRuneLocReq INSTANCE = new FitRuneLocReq();
+    public static final RuneNoDuplicateReq INSTANCE = new RuneNoDuplicateReq();
 
     @Override
     public ITextComponent getText() {
-        return Words.canFitRune.locName();
+        return Words.NoDuplicateRunes.locName();
     }
 
     @Override
-    public boolean isAllowed(Object object, ItemStack currency) {
+    public boolean isAllowed(LocReqContext context) {
 
-        if (object instanceof GearItemData) {
-            GearItemData gear = (GearItemData) object;
+        if (context.data instanceof GearItemData) {
+            GearItemData gear = (GearItemData) context.data;
 
             if (gear.runes != null) {
-
-                RuneItemData rune = Rune.Load(currency);
+                RuneItemData rune = Rune.Load(context.Currency);
                 if (rune != null) {
-                    if (gear.runes.canFit(gear, rune)) {
+                    if (gear.runes.alreadyContains(rune) == false) {
 
                         return true;
                     }
@@ -38,3 +36,4 @@ public class FitRuneLocReq extends BaseLocRequirement {
         return false;
     }
 }
+

@@ -168,8 +168,7 @@ curseforge {
         releaseType = "${curse_release}"
         changelogType = 'wysiwyg'
         changelog = file('CHANGELOG.txt')
+        //SupportedModloaderVersions = 'forge'
         addArtifact(deobfJar)
-        SupportedModloaderVersions = 'forge'
-        
     }
 }

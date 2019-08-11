@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.misc.ItemAwakenRuneWord;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
 public class AwakenRuneWordLocReq extends BaseLocRequirement {
@@ -17,19 +16,19 @@ public class AwakenRuneWordLocReq extends BaseLocRequirement {
     }
 
     @Override
-    public boolean isAllowed(Object object, ItemStack currency) {
+    public boolean isAllowed(LocReqContext context) {
 
-        if (object instanceof GearItemData) {
+        if (context.data instanceof GearItemData) {
 
-            if (currency.getItem() instanceof ItemAwakenRuneWord) {
+            if (context.Currency.getItem() instanceof ItemAwakenRuneWord) {
 
-                ItemAwakenRuneWord awaken = (ItemAwakenRuneWord) currency.getItem();
+                ItemAwakenRuneWord awaken = (ItemAwakenRuneWord) context.Currency.getItem();
 
-                GearItemData gear = (GearItemData) object;
+                GearItemData gear = (GearItemData) context.data;
 
                 if (gear != null) {
 
-                    String wordtext = awaken.getWord(currency);
+                    String wordtext = awaken.getWord(context.Currency);
 
                     if (SlashRegistry.RuneWords().isRegistered(wordtext)) {
                         if (gear.isRuned() && gear.runes.canAwakenRuneWord(SlashRegistry.RuneWords()

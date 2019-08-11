@@ -30,6 +30,10 @@ public class RunesData implements ITooltipList, IStatsContainer {
     @Store
     public int capacity = 1;
 
+    public boolean hasSpace() {
+        return runes.size() < capacity;
+    }
+
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
 
@@ -158,7 +162,7 @@ public class RunesData implements ITooltipList, IStatsContainer {
     }
 
     public boolean canFit(GearItemData gear, RuneItemData rune) {
-        return this.runes.size() < capacity && gear.level >= rune.level && !alreadyContains(rune);
+        return hasSpace() && gear.level >= rune.level && !alreadyContains(rune);
     }
 
     public boolean alreadyContains(RuneItemData rune) {

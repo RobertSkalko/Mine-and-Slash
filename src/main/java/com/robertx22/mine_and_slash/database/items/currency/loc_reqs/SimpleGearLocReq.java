@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.items.currency.ItemLevelUpGear;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.function.Predicate;
@@ -63,10 +62,10 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     }
 
     @Override
-    public boolean isAllowed(Object object, ItemStack currency) {
+    public boolean isAllowed(LocReqContext context) {
 
-        if (object instanceof GearItemData) {
-            GearItemData gear = (GearItemData) object;
+        if (context.data instanceof GearItemData) {
+            GearItemData gear = (GearItemData) context.data;
             return gearsThatCanDoThis.test(gear);
 
         }

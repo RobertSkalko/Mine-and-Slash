@@ -1,3 +1,5 @@
+2.4.10
+made gear modify table show info on why the item failed to be modified (if it's localized)
 2.4.9
 apparently the enchant workaround wasn't needed. shadow told me about a forge provided way to do it which was hidden inside an interface. Also, testing automated curseforge deployment with this build!
 2.4.8

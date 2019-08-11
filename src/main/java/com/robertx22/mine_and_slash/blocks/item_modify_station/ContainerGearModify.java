@@ -37,17 +37,17 @@ public class ContainerGearModify extends BaseTileContainer {
 
         this.pos = pos;
 
+        final int PLAYER_INVENTORY_XPOS = 47;
+
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
-        final int HOTBAR_XPOS = 8;
         final int HOTBAR_YPOS = 183;
         // Add the players hotbar to the gui - the [xpos, ypos] location of each item
         for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
             int slotNumber = x;
-            addSlot(new Slot(invPlayer, slotNumber, HOTBAR_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
+            addSlot(new Slot(invPlayer, slotNumber, PLAYER_INVENTORY_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
         }
 
-        final int PLAYER_INVENTORY_XPOS = 8;
         final int PLAYER_INVENTORY_YPOS = 125;
         // Add the rest of the players inventory to the gui
         for (int y = 0; y < PLAYER_INVENTORY_ROW_COUNT; y++) {
@@ -61,7 +61,7 @@ public class ContainerGearModify extends BaseTileContainer {
 
         // VANILLA END
 
-        final int INPUT_SLOTS_XPOS = 26;
+        final int INPUT_SLOTS_XPOS = 65;
         final int INPUT_SLOTS_YPOS = 24;
         // Add the tile input slots
 
@@ -69,9 +69,9 @@ public class ContainerGearModify extends BaseTileContainer {
 
         addSlot(new ModifySlot(inventory, count++, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
 
-        addSlot(new AnyModifySlot(inventory, count++, 72, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
+        addSlot(new AnyModifySlot(inventory, count++, 111, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
 
-        final int OUTPUT_SLOTS_XPOS = 134;
+        final int OUTPUT_SLOTS_XPOS = 172;
         final int OUTPUT_SLOTS_YPOS = 24;
 
         addSlot(new OutputSlot(inventory, count++, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));

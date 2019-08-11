@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.runes.base;
 
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
-import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
-import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.FitRuneLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.*;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.*;
@@ -112,16 +111,10 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     @Override
-    public boolean canItemBeModified(ItemStack item, ItemStack currency) {
-
-        GearItemData gear = Gear.Load(item);
-
-        if (gear == null) {
-            return false;
-        }
+    public boolean canItemBeModified(LocReqContext context) {
 
         for (BaseLocRequirement req : requirements()) {
-            if (req.isNotAllowed(gear, currency)) {
+            if (req.isNotAllowed(context)) {
                 return false;
             }
         }
@@ -131,7 +124,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(FitRuneLocReq.INSTANCE);
+        return Arrays.asList(RuneEmptySlotReq.INSTANCE, RuneNoDuplicateReq.INSTANCE, RuneLvlReq.INSTANCE);
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.items.currency.loc_reqs;
 
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.function.Predicate;
@@ -27,10 +26,10 @@ public class SimpleMapLocReq extends BaseLocRequirement {
     }
 
     @Override
-    public boolean isAllowed(Object object, ItemStack currency) {
+    public boolean isAllowed(LocReqContext context) {
 
-        if (object instanceof MapItemData) {
-            MapItemData gear = (MapItemData) object;
+        if (context.data instanceof MapItemData) {
+            MapItemData gear = (MapItemData) context.data;
             return mapThatCanDoThis.test(gear);
 
         }

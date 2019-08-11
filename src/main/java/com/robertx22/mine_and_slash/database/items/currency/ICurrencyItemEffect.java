@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.gui.screen.Screen;
@@ -17,7 +18,7 @@ public interface ICurrencyItemEffect {
 
     public abstract List<BaseLocRequirement> requirements();
 
-    boolean canItemBeModified(ItemStack item, ItemStack currency);
+    boolean canItemBeModified(LocReqContext context);
 
     public default void addToTooltip(List<ITextComponent> tooltip) {
 

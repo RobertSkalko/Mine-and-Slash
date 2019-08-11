@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.AwakenRuneWordLocReq;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;
@@ -148,18 +149,14 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     }
 
     @Override
-    public final boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
+    public final boolean canItemBeModified(LocReqContext context) {
 
-        GearItemData data = Gear.Load(stack);
-
-        if (data != null) {
-            for (BaseLocRequirement req : requirements()) {
-                if (req.isNotAllowed(data, Currency)) {
-                    return false;
-
-                }
+        for (BaseLocRequirement req : requirements()) {
+            if (req.isNotAllowed(context)) {
+                return false;
             }
         }
+
         return true;
     }
 

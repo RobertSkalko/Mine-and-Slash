@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
-import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,20 +32,17 @@ public class TileGearModify extends BaseTile {
 
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
 
-        ItemStack gearStack = this.GearSlot();
-        ItemStack craftStack = this.CraftItemSlot();
+        LocReqContext context = getLocReqContext();
 
-        if (gearStack == null || gearStack.isEmpty() || craftStack == null || craftStack.isEmpty()) {
+        if (context.isValid() == false) {
             return ItemStack.EMPTY;
         }
 
-        if (craftStack.getItem() instanceof ICurrencyItemEffect) {
+        if (context.effect != null) {
 
-            ICurrencyItemEffect effect = (ICurrencyItemEffect) craftStack.getItem();
-
-            if (effect.canItemBeModified(gearStack, craftStack)) {
-                ItemStack copy = gearStack.copy();
-                copy = effect.ModifyItem(copy, craftStack);
+            if (context.effect.canItemBeModified(context)) {
+                ItemStack copy = context.stack.copy();
+                copy = context.effect.ModifyItem(copy, context.Currency);
                 return copy;
             } else {
                 return ItemStack.EMPTY;
@@ -54,6 +51,17 @@ public class TileGearModify extends BaseTile {
         }
 
         return ItemStack.EMPTY;
+    }
+
+    public LocReqContext getLocReqContext() {
+
+        ItemStack gearStack = this.GearSlot();
+        ItemStack craftStack = this.CraftItemSlot();
+
+        LocReqContext context = new LocReqContext(gearStack, craftStack, this);
+
+        return context;
+
     }
 
     public ItemStack GearSlot() {
