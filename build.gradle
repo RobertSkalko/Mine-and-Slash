@@ -166,7 +166,7 @@ curseforge {
         apiKey = curseProp.getProperty('curseKey')
         id = "${curse_id}"
         releaseType = "${curse_release}"
-        changelogType = 'wysiwyg'
+        changelogType = 'text'
         changelog = file('CHANGELOG.txt')
         //SupportedModloaderVersions = 'forge'
         addArtifact(deobfJar)
