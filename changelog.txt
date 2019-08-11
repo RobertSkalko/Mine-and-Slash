@@ -1,69 +1,30 @@
-1.14.3 UPDATE!
-
-This update contains more than a month of changes, improvements and additions because i started updating to 1.13/1.14 and then kept working on it. I couldn't release it as my dependancies didn't update so i had to wait.
-
-* dimension configs are now in config/Mine_And_Slash folder. That means they are infinite and not stuck at 10 dimensions.
-* fixed gear factory eating capacitors
-* removed some guis that relied on an outdated gui library (player stats, map stats, map drops)
-* removed feature and config option for item rarity particles for items on ground
-* new item, hearthstone!
-* fixed orb of transmutation bug
-* bows now fire 1 arrow but that arrow does double damage (this makes compatible bow items actually equal)
-* compatible items are now in mineandslash/compatible_items folder and all files with matching json are now loaded. This means you can make separate files for each mod, organize it better and even share with the community much more easily!
-* i also welcome anyone to make compatible item files for certain mods, i could include these in my mod for automatic support. Of course the catch is it needs to be balanced good. Which at the very least assumes the player can't create infinite resources by salvaging wooden swords. 
-Of course some things are impossible to prevent, like players who use project E. Perfect balance in modding is of course impossible.
-* added core stats like strength, dex, int etc
-* added bonus exp stat
-* runeword traits can no longer be gotten on chaos stats (this was an oversight)
-* added major arcana tarot cards as chaos stats!
-* removed weapon stats, i feel they are boring and the tooltips are too big on weapons
-* added description of weapon abilities (like you now know that axe has a double attack)
-* added consumable items, potions that restore mana, give buffs etc
-* added attack cooldown for attacks and spells! (configurable) but i feel it will be a lot less wonky as no more machine gun spells etc. 
-* added spell damage stat and many affixes for it
-* fixed unique item names not being localized properly unless on tooltips
-* overhauled affix system! Now some affixes may only appear on say a Ring but not on a necklace. Others might appear after level 20 while others might only appear on unique items!
-* overhauled set system the same way
-* new gear type, torch! provides regens and has a special ability that restores resources at the cost of applying some debuffs
-* all stats now have built in descriptions! Don't know what it does? click [Alt] and it show you! Say goodbye to reading tutorials!
-* overhauled stat calculation! Stat calculation now happens much less often, which should lead to less lag when attacking mobs or being attacked. I don't think there was any lag before but
-i can't be sure. Now gear is calculated only when an armor or weapon piece changes, like if you swap your hotbar slot or change armor. Exception is every 5 seconds players get forcefully 
-recalculated stats just in case. (and because the addon that provides slots for rings and such don't send the update that the piece changed). Stat calc was a problem because it did it on every attack.
-And if you had 4 different kinds of elemental damage and attacked with an axe.. That's 10 attacks at once. Yes, they all recalculated stats. Not anymore!
-* added uniques to my API. you can now add uniques too!
-* baubles is now no longer the jewerly dependency, it's now curios api! Curios allows me to make as many slots as i want!
-* added many new sets! Sets now have minimum and maximum levels, so as you level you will start seeing different and better sets!
-* more options for compatible items now! 
-* bows now use arrows as normal!
-* unique items now show what tier they are, making it easier to know what map you need to grind to get more of them
-* axes and such weapons no longer attack twice, now their damage is increased instead (less dmg numbers!)
-* added bonus loot drop stats (many variations)
-* added all attribute stat
-* stats now calculate as soon as you change gears, feels a lot neater.
-* i made many things automatically localizable, so the lang file should be prettier and more organized now! This also means i'll allow more things to be translated as it's easier now.
-* remade my stat system, should be easier to add new stats, especially elemental ones or ones with lots of variations! (this could break some past gears but i tried to avoid it, report if something is broken!)
-* shields are now a lot smaller so you can actually see when wielding them!
-* added some unique shields
-* some uniques can now have sets. Most will also have their own exclusive sets and a rare chance to get other sets.
-* remodeled the player stats Gui! (press P). Now stats are divided in rows and hopefully easy to understand icons will help. Some stats also don't appear as they only influence other stats, so it's not needed.
-And there's too many stats to list them all.. There's at least 50 traits. plus 25 conversion and transfers, so i assume you don't want to scroll those!
-* added commands /givestat /removestat so you can add custom stats with custom identifiers, this way you can have an achievement like "complete x dungeon" in your mod and give "x_dun_completed" stat to a player.
-* bomb spells now have gravity and higher explosion radius, they also detonate faster
-* there's now base spell damage for players, a bit higher early on so low lvl spells are a bit more effective
-* currencies now show tier and rarity on their tooltips
-* added config option for starter items
-* stations now have shift click functionality! This was actually really hard to do.
-* added more really rare currencies
-* should fix mobs not spawning in maps sometimes
-* maps now have structures! For now there's not much but there's small decorations, treasures and 2 bigger structures, a tower house and a floating island which is more rare. If nothing goes wrong i should be adding more and more world gen to maps, hopefully making it more interesting.
-* the structures in maps automatically transform into the biome of the map they're in. So the nether biome the structures are made of nether bricks while in the swamp they're made of prismarine. You'll see.
-* maps are now night only and there's no special mob spawning rules, so it's same as vanilla for now. ( i want to add special events later on but that idea is still wip)
-* mobs are no longer immune to sunlight as maps are now always night. (there's mods that configure this if u want to keep the sunlight resistance)
-* nerfed bonus salvage chance for auto salvage bags
-* you can't die in maps anymore. Deaths in maps are prevented and you're teleported out with a time penalty. in perma death maps it's game over for that map though.
-* maps now drop from lvl 10 (old was 15)
-* added master bag! crafted by all the other bags combined, has storage of all types of items for my mod (or most at least) could be buggy, especially on servers so be careful
-
-
-
-
+2.4.8
+no longer re-register enchants. just change the type (ignore this)
+2.4.7
+made all registered spells use the 3d model by default, with option to disable it for addon makers
+map sacrificing now activates a chat message to all players that recieve the map stats
+increased unarmed energy cost 1 to 1.5
+snowballs can no longer be used to effectively make melee weapons ranged with 0 cooldown. (this could lead to other issues. i plan to rework the whole system..)
+added /givemapinfo command, i'd like to ask people who use group maps with their friends to use that command on themselves and then give me the server log file (should help me figure out the group map bug) 
+2.4.6
+updated to forge v45. You need that version or higher now.
+update curios too.
+attempt to fix group map issue
+2.4.5
+awaken runeword items now preview the runeword stats on the tooltip (not fully accurate but u get to know the stats at least)
+2.4.4
+buffed block a bit
+shields now grant knockback immunity for the next attack when blocking. 
+2.4.3
+fix crash in newest forge version hopefully
+updated to forge v40
+changed from blockevent to onblockavtivated
+2.4.2
+changed stat tooltips to more accurately clarify what the stat type does (% stats like crit now prefix with "Flat" and + 5% Percent is now + 5% Increased)
+fixed gui numbers
+2.4.1
+fix currency bug where uniques could get sets etc
+2.4.0
+all currency items now show the requirements on the tooltip when pressing shift! (there will probably be some bugs cus major refactoring..)
+fixed level nearest entity item
+added auto bag tooltips

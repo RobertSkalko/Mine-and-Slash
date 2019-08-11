@@ -18,8 +18,11 @@ build
 .gradle
 
 # other
+key.properties
+cursetoken
 eclipse
 run
+ignore/
 src/main/resources/assets/mmorpg/textures/items/paid_assets
 src/main/resources/assets/mmorpg/textures/items/PAID_ASSETS
 src/main/resources/assets/mmorpg/textures/items/paidassets

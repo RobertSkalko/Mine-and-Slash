@@ -149,3 +149,20 @@ jar {
 
 
 }
+
+task deobfJar(type: Jar) {
+    classifier = 'deobf'
+    from sourceSets.main.output
+}
+
+curseforge {
+
+    project {
+        apiKey = findProperty('curseKey') ?: 0
+        id = "${curse_id}"
+        releaseType = "${curse_release}"
+        changelogType = 'markdown'
+        changelog = file('CHANGELOG.txt')       
+        addArtifact(deobfJar)
+    }
+}

@@ -56,10 +56,6 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
                 openPercent += changeOpenPercent;
             } else {
                 openPercent -= changeOpenPercent;
-
-                if (ifIsNotTheItemBeingHeld(stack)) {
-                    GlStateManager.rotatef(310, 0.2F, 0.5F, 0); // rotate it so icon is visible in inv gui
-                }
             }
 
             openPercent = MathHelper.clamp(openPercent, 0, 1);
@@ -80,18 +76,6 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
         return mc.player.getActiveItemStack()
                 .getItem() instanceof BaseSpellItem && mc.player.getActiveItemStack()
                 .equals(stack);
-
-    }
-
-    private boolean ifIsNotTheItemBeingHeld(ItemStack stack) {
-
-        if (mc.player.getHeldItemMainhand()
-                .getItem() instanceof BaseSpellItem && mc.player.getHeldItemMainhand()
-                .equals(stack)) {
-
-            return false;
-        }
-        return true;
 
     }
 
