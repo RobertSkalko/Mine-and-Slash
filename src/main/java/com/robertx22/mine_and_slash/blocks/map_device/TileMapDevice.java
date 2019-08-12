@@ -158,7 +158,7 @@ public class TileMapDevice extends BaseTile {
                         MapItemData cloned = map.clone();
 
                         if (map.groupPlay) {
-                            trySetupMapForGroup(cloned, player);
+                            trySetupMapForGroup(cloned);
 
                         } else {
                             map.setupPlayerMapData(world, p, player);
@@ -199,7 +199,7 @@ public class TileMapDevice extends BaseTile {
 
     }
 
-    private void trySetupMapForGroup(MapItemData map, PlayerEntity player) {
+    private void trySetupMapForGroup(MapItemData map) {
 
         if (map.groupPlay) {
 
@@ -207,17 +207,12 @@ public class TileMapDevice extends BaseTile {
 
             List<ServerPlayerEntity> players = world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab);
 
-            double distance = Double.MAX_VALUE;
-
             int added = 0;
 
             for (ServerPlayerEntity p : players) {
-                double dist = p.getDistance(player);
-                if (dist <= distance && added < map.maxPlayersInGroup) {
+                if (added < map.maxPlayersInGroup) {
                     MapItemData cloned = map.clone();
                     cloned.setupPlayerMapData(world, this.pos, p);
-
-                    distance = dist;
                     added++;
 
                 }

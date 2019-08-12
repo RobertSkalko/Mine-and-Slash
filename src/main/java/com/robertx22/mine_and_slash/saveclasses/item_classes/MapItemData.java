@@ -45,6 +45,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Storable
 public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti, Cloneable {
@@ -65,6 +66,16 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public boolean isPermaDeath = false;
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
+
+    @Store
+    public String mapUUID = UUID.randomUUID().toString();
+
+    public static MapItemData empty() {
+        MapItemData map = new MapItemData();
+        map.mapUUID = "error";
+        return map;
+
+    }
 
     @Override
     public MapItemData clone() {

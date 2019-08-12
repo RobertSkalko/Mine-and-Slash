@@ -1,3 +1,5 @@
+2.4.12
+another try to fix group maps with help of jotac
 2.4.11
 fixed possible crash on start
 torch doesnt add debuff if nothing was restored anymore

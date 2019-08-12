@@ -25,8 +25,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.UUID;
-
 @Mod.EventBusSubscriber
 public class PlayerMapCap {
 
@@ -37,7 +35,6 @@ public class PlayerMapCap {
 
     static final String POS_OBJ = "POS_OBJ";
     static final String ORIGINAL_DIM = "original_dimension";
-    static final String MAP_GUID = "MAP_GUID";
     static final String MIN_PASSED = "MIN_PASSED";
 
     public interface IPlayerMapData extends ICommonCapability {
@@ -104,7 +101,6 @@ public class PlayerMapCap {
         MapItemData mapdata = new MapItemData();
         DimensionType originalDimension = null;
         int minutesPassed = 0;
-        String mapGUID = ""; // used to check if same map for chests
         boolean isDead = false;
 
         @Override
@@ -116,7 +112,6 @@ public class PlayerMapCap {
                 Map.Save(nbt, mapdata);
             }
 
-            nbt.putString(MAP_GUID, mapGUID);
             nbt.putLong(POS_OBJ, mapDevicePos);
             nbt.putInt(MIN_PASSED, minutesPassed);
             nbt.putBoolean("isdead", isDead);
@@ -135,7 +130,6 @@ public class PlayerMapCap {
 
             mapdata = Map.Load(nbt);
             this.mapDevicePos = nbt.getLong(POS_OBJ);
-            this.mapGUID = nbt.getString(MAP_GUID);
             this.minutesPassed = nbt.getInt(MIN_PASSED);
             this.isDead = nbt.getBoolean("isdead");
 
@@ -209,7 +203,6 @@ public class PlayerMapCap {
             this.mapDevicePos = pos.toLong();
             this.originalDimension = player.world.getDimension().getType();
             this.mapdata = map.clone();
-            this.mapGUID = UUID.randomUUID().toString();
 
         }
 
@@ -242,7 +235,10 @@ public class PlayerMapCap {
 
         @Override
         public String getLastMapGUID() {
-            return this.mapGUID;
+
+            return
+
+                    this.getMap().mapUUID;
         }
 
         @Override
@@ -265,7 +261,7 @@ public class PlayerMapCap {
             if (mapdata != null) {
                 return this.mapdata;
             } else {
-                return new MapItemData();
+                return MapItemData.empty();
             }
         }
 

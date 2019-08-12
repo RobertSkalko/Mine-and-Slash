@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,25 +42,20 @@ public class ConfigItemsSerialization implements ISerializedConfig {
     @Override
     public void load() {
 
-        JsonReader reader;
+        for (File file : Objects.requireNonNull(new File(folder()).listFiles())) {
 
-        try {
-
-            for (File file : Objects.requireNonNull(new File(folder()).listFiles())) {
-
-                reader = new JsonReader(new FileReader(file.getPath()));
+            try {
+                JsonReader reader = new JsonReader(new FileReader(file.getPath()));
                 ConfigItems items = new Gson().fromJson(reader, ConfigItems.class);
                 items.validateAll();
                 items.registerAll();
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            System.out.println("Items added to config: " + SlashRegistry.CompatibleItems()
-                    .getSize());
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
 
         }
+        System.out.println("Items added to config: " + SlashRegistry.CompatibleItems()
+                .getSize());
 
     }
 
