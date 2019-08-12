@@ -101,18 +101,25 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
             float energyrestored = restoreBasedOnMissing(data.getCurrentEnergy(), data.getUnit()
                     .energyData().Value);
 
+            boolean restored = false;
+
             if (manarestored > energyrestored) {
                 if (manarestored > 0) {
                     data.restoreMana(manarestored);
+                    restored = true;
                 }
             } else {
                 if (energyrestored > 0) {
                     data.restoreEnergy(energyrestored);
+                    restored = true;
                 }
             }
 
-            player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 100, 3));
-            player.addPotionEffect(new EffectInstance(Effects.HUNGER, 350, 2));
+            if (restored) {
+                player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 100, 3));
+                player.addPotionEffect(new EffectInstance(Effects.HUNGER, 350, 2));
+            }
+
         } else {
             ParticleUtils.spawnEnergyRestoreParticles(player, 4);
             ParticleUtils.spawnManaRestoreParticles(player, 4);

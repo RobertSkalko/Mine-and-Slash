@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class OnModelBake {
@@ -24,12 +23,18 @@ public class OnModelBake {
 
         List<ResourceLocation> locations = new ArrayList<>();
 
-        List<String> spellIds = SlashRegistry.Spells()
-                .getList()
-                .stream()
-                .filter(x -> x.SpellItem().getRegistryName() != null)
-                .map(x -> x.SpellItem().getRegistryName().getPath())
-                .collect(Collectors.toList());
+        List<String> spellIds = new ArrayList<>();
+
+        for (BaseSpell baseSpell : SlashRegistry.Spells().getList()) {
+
+            try {
+                String path = baseSpell.SpellItem().getRegistryName().getPath();
+                spellIds.add(path);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
         for (ResourceLocation loc : event.getModelRegistry().keySet()) {
 
@@ -66,10 +71,14 @@ public class OnModelBake {
     public static BaseSpell getSpellByItemId(ResourceLocation loc) {
 
         for (BaseSpell spell : SlashRegistry.Spells().getList()) {
-            if (spell.SpellItem().getRegistryName() != null && loc != null) {
-                if (spell.SpellItem().getRegistryName().equals(loc)) {
-                    return spell;
+            try {
+                if (spell.SpellItem().getRegistryName() != null && loc != null) {
+                    if (spell.SpellItem().getRegistryName().equals(loc)) {
+                        return spell;
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }

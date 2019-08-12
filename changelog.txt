@@ -1,3 +1,6 @@
+2.4.11
+fixed possible crash on start
+torch doesnt add debuff if nothing was restored anymore
 2.4.10
 made gear modify station show info on why the item failed to be modified (if it's localized), hopefully this ends any and all confusion about currency items.
 possible introduced some bugs, do test out the gear modify station please!
