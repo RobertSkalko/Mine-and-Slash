@@ -35,6 +35,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     public EntityElementalBolt(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
+        this.shootSpeed = 1.75F;
 
     }
 
@@ -124,7 +125,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
         SetReady(effect, data);
         this.setPos(caster);
-        shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.3F, 0.5F); // start velocity
+        shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, this.shootSpeed, 0.5F); // start velocity
 
         WorldUtils.spawnEntity(world, this);
     }

@@ -30,6 +30,7 @@ public abstract class EntityBombProjectile extends EntityElementalBolt {
         this.setDeathTime(30);
         this.setAirProcTime(30);
         this.setDoExpireProc(true);
+        this.shootSpeed = 1.3F;
 
     }
 

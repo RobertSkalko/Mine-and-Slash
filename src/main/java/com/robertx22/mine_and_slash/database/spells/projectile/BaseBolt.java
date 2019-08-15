@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.spells.projectile;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.database.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.database.spells.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -44,7 +44,7 @@ public abstract class BaseBolt extends BaseSpell {
 
     @Override
     public int BaseValue() {
-        return 10;
+        return 12;
     }
 
     @Override

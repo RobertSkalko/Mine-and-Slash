@@ -35,6 +35,8 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     Entity homindTarget = null;
     boolean setHomingTarget = false;
 
+    public float shootSpeed = 1.3F;
+
     private int xTile;
     private int yTile;
     private int zTile;

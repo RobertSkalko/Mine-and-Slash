@@ -10,7 +10,7 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
         classpath 'com.google.code.gson:gson:2.8.5'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.3.0'
+        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
     }
 }
 
@@ -174,7 +174,7 @@ curseforge {
         releaseType = "${curse_release}"
         changelogType = 'text'
         changelog = file('CHANGELOG.txt')
-        //SupportedModloaderVersions = 'forge' not yet implemented in cursegradle
+        addGameVersion("Forge")
         relations(myCurseRelatons)
         addArtifact(deobfJar)
     }

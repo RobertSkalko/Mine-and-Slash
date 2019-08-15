@@ -44,7 +44,7 @@ public class SpellSelfRegen extends BaseSpellHeal {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new HealthRegen(), 0.5F);
+        return new EffectCalculation(new HealthRegen(), 0.75F);
 
     }
 
