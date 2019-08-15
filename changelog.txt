@@ -1,3 +1,6 @@
+2.4.13
+fixed a nullpointer on unique rune generation
+added more safety on packet sending
 2.4.12
 another try to fix group maps with help of jotac
 2.4.11

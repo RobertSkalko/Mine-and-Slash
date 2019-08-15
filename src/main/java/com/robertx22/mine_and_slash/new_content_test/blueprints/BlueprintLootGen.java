@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test;
+package com.robertx22.mine_and_slash.new_content_test.blueprints;
 
 import com.robertx22.mine_and_slash.items.misc.ItemAwakenRuneWord;
 import com.robertx22.mine_and_slash.loot.LootInfo;

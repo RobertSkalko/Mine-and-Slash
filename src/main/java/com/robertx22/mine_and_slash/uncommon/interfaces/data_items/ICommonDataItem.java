@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.interfaces.data_items;
 
-import com.robertx22.mine_and_slash.new_content_test.BlueprintItemData;
+import com.robertx22.mine_and_slash.new_content_test.blueprints.BlueprintItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;

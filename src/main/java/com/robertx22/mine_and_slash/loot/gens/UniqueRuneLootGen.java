@@ -44,27 +44,31 @@ public class UniqueRuneLootGen extends BaseLootGen {
 
     public static ItemStack Create(UniqueRuneBlueprint blueprint) {
 
-        BaseRuneItem item = blueprint.getRuneItem().byRarity(blueprint.getRarityRank());
+        BaseRuneItem item = blueprint.getRuneItem();
 
-        ItemStack stack = new ItemStack(item);
+        ItemStack stack = ItemStack.EMPTY;
 
-        RuneItemData data = new RuneItemData();
+        if (item != null) {
+            stack = new ItemStack(item);
 
-        data.rarity = item.rarity;
-        data.name = item.GUID();
-        data.level = blueprint.level;
-        data.tier = item.Tier();
+            RuneItemData data = new RuneItemData();
 
-        data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                .armorStat()));
+            data.rarity = item.rarity;
+            data.name = item.GUID();
+            data.level = blueprint.level;
+            data.tier = item.Tier();
 
-        data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                .weaponStat()));
+            data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
+                    .armorStat()));
 
-        data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                .jewerlyStat()));
+            data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
+                    .weaponStat()));
 
-        Rune.Save(stack, data);
+            data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
+                    .jewerlyStat()));
+
+            Rune.Save(stack, data);
+        }
 
         return stack;
 

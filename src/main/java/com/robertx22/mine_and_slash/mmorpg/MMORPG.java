@@ -221,7 +221,9 @@ public class MMORPG {
 
     public static <MSG> void sendToClient(MSG msg, ServerPlayerEntity player) {
 
-        Network.sendTo(msg, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+        if (player != null && msg != null) {
+            Network.sendTo(msg, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+        }
     }
 
     public static <MSG> void sendToServer(MSG msg) {

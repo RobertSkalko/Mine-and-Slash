@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.runes.base;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -16,7 +15,7 @@ public abstract class BaseUniqueRuneItem extends BaseRuneItem {
 
     @Override
     public BaseRuneItem byRarity(int rar) {
-        return SlashRegistry.UniqueRunes().get(this.GUID());
+        return this;
     }
 
     @Override

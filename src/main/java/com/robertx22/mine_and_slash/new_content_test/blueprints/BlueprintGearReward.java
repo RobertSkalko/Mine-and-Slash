@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test;
+package com.robertx22.mine_and_slash.new_content_test.blueprints;
 
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseItemModification;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;

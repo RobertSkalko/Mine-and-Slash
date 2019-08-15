@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test.requests;
+package com.robertx22.mine_and_slash.new_content_test.blueprints.requests;
 
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;

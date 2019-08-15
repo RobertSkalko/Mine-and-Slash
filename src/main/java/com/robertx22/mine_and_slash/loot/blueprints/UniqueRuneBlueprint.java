@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -22,10 +22,9 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
         return Rarities.Runes;
     }
 
-    public BaseRuneItem getRuneItem() {
+    public BaseUniqueRuneItem getRuneItem() {
         if (this.GUID.isEmpty()) {
             return SlashRegistry.UniqueRunes().getWrapped().ofTierOrLess(tier).random();
-
         } else {
             return SlashRegistry.UniqueRunes().get(GUID);
         }

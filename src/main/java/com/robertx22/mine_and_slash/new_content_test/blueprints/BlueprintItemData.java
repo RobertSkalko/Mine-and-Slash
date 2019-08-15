@@ -1,9 +1,9 @@
-package com.robertx22.mine_and_slash.new_content_test;
+package com.robertx22.mine_and_slash.new_content_test.blueprints;
 
 import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.new_content_test.requests.BlueprintDataItemRequest;
-import com.robertx22.mine_and_slash.new_content_test.requests.BlueprintSimpleItemRequest;
+import com.robertx22.mine_and_slash.new_content_test.blueprints.requests.BlueprintDataItemRequest;
+import com.robertx22.mine_and_slash.new_content_test.blueprints.requests.BlueprintSimpleItemRequest;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
