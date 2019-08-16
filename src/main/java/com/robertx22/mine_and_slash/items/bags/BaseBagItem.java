@@ -17,6 +17,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -47,6 +48,8 @@ public abstract class BaseBagItem extends Item {
 
     }
 
+    protected boolean showCraftWarning = true;
+
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn,
@@ -59,6 +62,13 @@ public abstract class BaseBagItem extends Item {
 
         tooltip.add(Tooltip.color(TextFormatting.RED, Words.BewareCreativeBagBug1.locName()));
         tooltip.add(Tooltip.color(TextFormatting.RED, Words.BewareCreativeBagBug2.locName()));
+
+        if (showCraftWarning) {
+            tooltip.add(new StringTextComponent(""));
+            tooltip.add(Tooltip.color(TextFormatting.RED, Words.CraftingDeletesItemsInside
+                    .locName()));
+
+        }
 
     }
 

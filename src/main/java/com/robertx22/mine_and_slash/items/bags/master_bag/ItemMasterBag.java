@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.items.bags.master_bag;
 
 import com.robertx22.mine_and_slash.items.bags.BaseBagItem;
-import com.robertx22.mine_and_slash.uncommon.capability.MasterLootBagCap;
-import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.capability.MasterLootBagCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -30,8 +30,8 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
 
     public ItemMasterBag() {
         super(ID);
-
         this.size *= ContainerMasterBag.ItemType.values().length;
+        this.showCraftWarning = false;
 
     }
 
