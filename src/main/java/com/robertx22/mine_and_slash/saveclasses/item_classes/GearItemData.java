@@ -182,12 +182,12 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
                     .appendSibling(name(stack)));
         } else {
 
-            if (prefix != null && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get()) {
+            if (prefix != null && showAffix()) {
                 text.appendSibling(prefix.BaseAffix().locName().appendText(" "));
             }
             text.appendSibling(name(stack));
 
-            if (suffix != null && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get()) {
+            if (suffix != null && showAffix()) {
                 text.appendText(" ")
                         .appendSibling(suffix.BaseAffix().locName())
                         .appendText(" ");
@@ -197,6 +197,11 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
 
         return text;
 
+    }
+
+    private boolean showAffix() {
+
+        return !this.isUnique() && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get();
     }
 
     public List<IStatsContainer> GetAllStatContainers() {

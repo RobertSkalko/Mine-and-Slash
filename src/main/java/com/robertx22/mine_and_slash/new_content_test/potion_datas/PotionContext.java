@@ -13,6 +13,14 @@ public class PotionContext {
     public static PotionContext onTick(PotionData data, LivingEntity en) {
         PotionContext ctx = new PotionContext(IPotionEffect.Type.Tick, data);
         ctx.source = en;
+        ctx.target = en;
+        return ctx;
+    }
+
+    public static PotionContext onStatCalc(PotionData data, LivingEntity en) {
+        PotionContext ctx = new PotionContext(IPotionEffect.Type.StatGive, data);
+        ctx.source = en;
+        ctx.target = en;
         return ctx;
     }
 

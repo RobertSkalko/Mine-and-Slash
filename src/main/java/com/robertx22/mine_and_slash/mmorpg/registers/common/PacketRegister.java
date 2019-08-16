@@ -23,6 +23,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, RarityItemDropPacket.class, RarityItemDropPacket::encode, RarityItemDropPacket::decode, RarityItemDropPacket::handle);
 
+        MMORPG.Network.registerMessage(index++, PlayerMapPacket.class, PlayerMapPacket::encode, PlayerMapPacket::decode, PlayerMapPacket::handle);
+
     }
 }
 

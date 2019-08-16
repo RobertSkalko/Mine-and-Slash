@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -7,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,7 +21,11 @@ public class OnMobSpawn {
         if (event.getWorld().isRemote) {
             return;
         }
+
         if (event.getEntity() instanceof PlayerEntity) {
+            if (!event.getWorld().isRemote) {
+                MMORPG.syncMapData((ServerPlayerEntity) event.getEntity());
+            }
             return;
         }
 

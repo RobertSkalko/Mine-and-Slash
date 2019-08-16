@@ -7,6 +7,10 @@ import java.util.List;
 
 public class BaseDataPotion {
 
+    public BaseDataPotion(List<IPotionEffect> effects) {
+        this.effects = effects;
+    }
+
     private List<IPotionEffect> effects = new ArrayList<>();
 
     public void useEffects(PotionContext ctx) {

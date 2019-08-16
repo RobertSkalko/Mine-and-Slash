@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
@@ -203,6 +204,8 @@ public class PlayerMapCap {
             this.mapDevicePos = pos.toLong();
             this.originalDimension = player.world.getDimension().getType();
             this.mapdata = map.clone();
+
+            MMORPG.syncMapData((ServerPlayerEntity) player);
 
         }
 

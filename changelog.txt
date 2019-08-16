@@ -3,6 +3,8 @@ A bit of balancing, i think some won't like the nerfs but i feel it's needed:
 buffed regenerate spell scaling value
 buffed bolt spells base dmg a bit, increased their shoot speed
 instant heal scaling value nerfed, mana cost increased, base value buffed. Should ensure a lvl 1 heal spell isn't that useful for a lvl 50 character.
+normal items now show affixes in name by default but not uniques
+map leave pearl now shows your current map info (velox's idea!)
 2.4.13
 fixed a nullpointer on unique rune generation
 added more safety on packet sending

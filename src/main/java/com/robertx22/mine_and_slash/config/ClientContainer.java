@@ -34,7 +34,7 @@ public class ClientContainer {
 
         SHOW_AFFIXED_NAME = builder.comment(".")
                 .translation("mmorpg.config.show_item_affixes")
-                .define("SHOW_AFFIXED_NAME", false);
+                .define("SHOW_AFFIXED_NAME", true);
 
         SHOW_VANILLA_HEARTS = builder.comment(".")
                 .translation("mmorpg.config.show_vanilla_hearts")

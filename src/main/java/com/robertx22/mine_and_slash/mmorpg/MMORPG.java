@@ -18,6 +18,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.client.RenderRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.*;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
+import com.robertx22.mine_and_slash.network.PlayerMapPacket;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
@@ -223,6 +224,12 @@ public class MMORPG {
 
         if (player != null && msg != null) {
             Network.sendTo(msg, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+        }
+    }
+
+    public static <MSG> void syncMapData(ServerPlayerEntity p) {
+        if (p != null) {
+            sendToClient(new PlayerMapPacket(p), p);
         }
     }
 
