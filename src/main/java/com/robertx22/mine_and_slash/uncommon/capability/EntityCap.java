@@ -327,10 +327,11 @@ public class EntityCap {
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
 
             try {
-                this.type = EntityTypeUtils.EntityType.valueOf(nbt.getString(ENTITY_TYPE));
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                String typestring = nbt.getString(ENTITY_TYPE);
+                this.type = EntityTypeUtils.EntityType.valueOf(typestring);
+            } catch (Exception e) {
                 this.type = EntityTypeUtils.EntityType.OTHER;
+                //if no nbt, set to default. Then at spawn, set correctly
             }
 
             CustomStatsData newstats = CustomStats.Load(nbt);

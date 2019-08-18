@@ -1,3 +1,6 @@
+2.5.1
+updated infusion and spell icons by matpac!
+fixed log spam of IllegalArgumentException
 2.5.0
 A bit of balancing, i think some won't like the nerfs but i feel it's needed:
 buffed regenerate spell scaling value
@@ -7,48 +10,5 @@ normal items now show affixes in name by default but not uniques
 map leave pearl now shows your current map info (velox's idea!)
 added warning for crafting bags, to empty items inside
 fixed the anti cheese mechanic, should work with lava and enviromental dmg correctly now. Also added a barrier icon to note that mob won't drop mine and slash loot if it's been damaged too much by non player dmg sources.
-mobs now show their type if you are shift clicking. (so you know if a mod's mob is actually a mob, or it's considered an animal or npc (meaning less loot))
+mobs now show their type if you are holding shift. (so you know if a mod's mob is actually a mob, or it's considered an animal or npc (meaning less loot))
 transfered some entity configs to the ones in folder. Means now there are default mob configs per type.
-2.4.13
-fixed a nullpointer on unique rune generation
-added more safety on packet sending
-2.4.12
-another try to fix group maps with help of jotac
-2.4.11
-fixed possible crash on start
-torch doesnt add debuff if nothing was restored anymore
-2.4.10
-made gear modify station show info on why the item failed to be modified (if it's localized), hopefully this ends any and all confusion about currency items.
-possible introduced some bugs, do test out the gear modify station please!
-2.4.9
-apparently the enchant workaround wasn't needed. shadow told me about a forge provided way to do it which was hidden inside an interface. Also, testing automated curseforge deployment with this build!
-2.4.8
-no longer re-register enchants. just change the type (ignore this)
-2.4.7
-made all registered spells use the 3d model by default, with option to disable it for addon makers
-map sacrificing now activates a chat message to all players that recieve the map stats
-increased unarmed energy cost 1 to 1.5
-snowballs can no longer be used to effectively make melee weapons ranged with 0 cooldown. (this could lead to other issues. i plan to rework the whole system..)
-added /givemapinfo command, i'd like to ask people who use group maps with their friends to use that command on themselves and then give me the server log file (should help me figure out the group map bug) 
-2.4.6
-updated to forge v45. You need that version or higher now.
-update curios too.
-attempt to fix group map issue
-2.4.5
-awaken runeword items now preview the runeword stats on the tooltip (not fully accurate but u get to know the stats at least)
-2.4.4
-buffed block a bit
-shields now grant knockback immunity for the next attack when blocking. 
-2.4.3
-fix crash in newest forge version hopefully
-updated to forge v40
-changed from blockevent to onblockavtivated
-2.4.2
-changed stat tooltips to more accurately clarify what the stat type does (% stats like crit now prefix with "Flat" and + 5% Percent is now + 5% Increased)
-fixed gui numbers
-2.4.1
-fix currency bug where uniques could get sets etc
-2.4.0
-all currency items now show the requirements on the tooltip when pressing shift! (there will probably be some bugs cus major refactoring..)
-fixed level nearest entity item
-added auto bag tooltips
