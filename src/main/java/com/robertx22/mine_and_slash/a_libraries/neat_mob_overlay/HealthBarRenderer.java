@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -19,6 +20,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.*;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -263,7 +265,19 @@ public class HealthBarRenderer {
                     off -= 16;
 
                 }
+                // show that loots are prevented
+                if (!data.shouldDropLoot()) {
+                    renderIcon(off, 0, new ItemStack(Items.BARRIER), 16, 16);
+                    off -= 16;
+                }
                 //MY CODE
+
+                EntityTypeUtils.EntityType type = EntityTypeUtils.getType(entity);
+
+                if (type.showsItem()) {
+                    renderIcon(off, 0, new ItemStack(type.itemDenotingType), 16, 16);
+                    off -= 16;
+                }
 
                 GlStateManager.popMatrix();
 

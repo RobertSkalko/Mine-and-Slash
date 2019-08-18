@@ -4,10 +4,46 @@ import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.INPC;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 
 public class EntityTypeUtils {
+
+    public enum EntityType {
+        MOB(Items.ZOMBIE_SPAWN_EGG),
+        PLAYER(null),
+        ANIMAL(Items.WHEAT),
+        NPC(Items.EMERALD),
+        OTHER(null);
+
+        EntityType(Item item) {
+            this.itemDenotingType = item;
+        }
+
+        public Item itemDenotingType;
+
+        public boolean showsItem() {
+            return itemDenotingType != null;
+        }
+
+    }
+
+    public static EntityType getType(LivingEntity entity) {
+
+        if (isMob(entity)) {
+            return EntityType.MOB;
+        } else if (isAnimal(entity)) {
+            return EntityType.ANIMAL;
+        } else if (isNPC(entity)) {
+            return EntityType.NPC;
+        } else {
+            return EntityType.OTHER;
+        }
+
+    }
 
     public static float getLootMulti(Entity en) {
 

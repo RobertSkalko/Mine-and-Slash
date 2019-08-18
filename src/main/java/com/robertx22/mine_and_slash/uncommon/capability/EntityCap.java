@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
+import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.network.PlayerUnitPacket;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
 import com.robertx22.mine_and_slash.saveclasses.CustomStatsData;
@@ -77,8 +78,13 @@ public class EntityCap {
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
     private static final String TIER = "TIER";
     private static final String LAST_ATTACK_TICK = "LAST_ATTACK_TICK";
+    private static final String PREVENT_LOOT = "PREVENT_LOOT";
+    private static final String SHOULD_SYNC = "SHOULD_SYNC";
 
     public interface UnitData extends ICommonCapability {
+
+        void trySync(LivingEntity entity);
+
         int getTicksSinceLastAttack(LivingEntity entity);
 
         void onAttackEntity(LivingEntity attacker, LivingEntity victim);
@@ -92,9 +98,9 @@ public class EntityCap {
 
         void setEquipsChanged(boolean bool);
 
-        void onDamagedByNonPlayer(float dmg);
+        void onDamagedByNonPlayer(LivingEntity entity, float dmg);
 
-        boolean shouldDropLoot(LivingEntity entity);
+        boolean shouldDropLoot();
 
         int PostGiveExpEvent(LivingEntity killed, PlayerEntity player, int exp);
 
@@ -250,6 +256,8 @@ public class EntityCap {
         boolean equipsChanged = true;
         int tier = 0;
         int lastAttackTick = 0;
+        boolean preventLoot = false;
+        boolean shouldSync = false;
 
         float dmgByNonPlayers = 0;
 
@@ -276,6 +284,8 @@ public class EntityCap {
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
+            nbt.putBoolean(PREVENT_LOOT, preventLoot);
+            nbt.putBoolean(SHOULD_SYNC, shouldSync);
 
             if (customStats != null) {
                 CustomStats.Save(nbt, customStats);
@@ -305,6 +315,8 @@ public class EntityCap {
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
             this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
             this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
+            this.preventLoot = nbt.getBoolean(PREVENT_LOOT);
+            this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
 
             CustomStatsData newstats = CustomStats.Load(nbt);
             if (newstats != null) {
@@ -339,17 +351,6 @@ public class EntityCap {
 
             dmg.Activate();
 
-        }
-
-        public static float nullifyVanillaArmor(LivingEntity target, float damage) {
-
-            float armorValue = (float) target.getTotalArmorValue();
-            float armorToughness = (float) target.getAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS)
-                    .getValue();
-
-            float lvt_3_1_ = 2.0F + armorToughness / 4.0F;
-            float lvt_4_1_ = MathHelper.clamp(armorValue - damage / lvt_3_1_, armorValue * 0.2F, 20.0F);
-            return damage / (1.0F - lvt_4_1_ / 25.0F);
         }
 
         @Override
@@ -403,14 +404,23 @@ public class EntityCap {
         }
 
         @Override
-        public void onDamagedByNonPlayer(float dmg) {
+        public void onDamagedByNonPlayer(LivingEntity entity, float dmg) {
 
             this.dmgByNonPlayers += dmg;
+
+            if (this.preventLoot == false && this.shouldDropLoot(entity) == false) {
+                this.preventLoot = true;
+                this.shouldSync = true;
+            }
 
         }
 
         @Override
-        public boolean shouldDropLoot(LivingEntity entity) {
+        public boolean shouldDropLoot() {
+            return this.preventLoot == false;
+        }
+
+        private boolean shouldDropLoot(LivingEntity entity) {
 
             if (entity.getMaxHealth() * ModConfig.INSTANCE.Server.STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT
                     .get() >= this.dmgByNonPlayers) {
@@ -534,6 +544,13 @@ public class EntityCap {
         @Override
         public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
             this.lastAttackTick = attacker.ticksExisted;
+        }
+
+        @Override
+        public void trySync(LivingEntity entity) {
+            if (this.shouldSync) {
+                MMORPG.sendToTracking(new EntityUnitPacket(entity), entity);
+            }
         }
 
         @Override

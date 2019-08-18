@@ -6,6 +6,8 @@ instant heal scaling value nerfed, mana cost increased, base value buffed. Shoul
 normal items now show affixes in name by default but not uniques
 map leave pearl now shows your current map info (velox's idea!)
 added warning for crafting bags, to empty items inside
+fixed the anti cheese mechanic, should work with lava and enviromental dmg correctly now. Also added a barrier icon to note that mob won't drop mine and slash loot if it's been damaged too much by non player dmg sources.
+mobs now show zombie spawn eggg icon denoting they are mobs. If some mod's mob doesn't show spawn egg head but instead shows wheat that means it's an animal. If it shows nothing it means it's considered "other". If it shows emerald it means it's an npc.
 2.4.13
 fixed a nullpointer on unique rune generation
 added more safety on packet sending

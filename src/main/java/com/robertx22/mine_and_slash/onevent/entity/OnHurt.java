@@ -14,13 +14,23 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class OnHurt {
 
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onhurt(LivingHurtEvent event) {
+
+        if (event.getEntity().world.isRemote) {
+            return;
+        }
+        onHurtRecordNonPlayerDmg(event);
+
+    }
+
     /**
      * If damage is from my source, leave the value, otherwise decrease it (this
      * makes my damage source the best one)
      *
      * @param event
      */
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void OnLivingHurt(LivingHurtEvent event) {
 
         if (event.getEntity().world.isRemote) {
@@ -28,7 +38,6 @@ public class OnHurt {
         }
 
         if (event.getSource() instanceof MyDamageSource) {
-            onHurt(event);
             return;
         }
 
@@ -41,6 +50,7 @@ public class OnHurt {
                     event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI
                             .get()
                             .floatValue());
+
                     return;
                 }
             } else {
@@ -66,9 +76,9 @@ public class OnHurt {
 
     }
 
-    public static void onHurt(LivingHurtEvent event) {
+    public static void onHurtRecordNonPlayerDmg(LivingHurtEvent event) {
 
-        Entity defender = event.getEntityLiving();
+        LivingEntity defender = event.getEntityLiving();
 
         if (defender instanceof PlayerEntity == false) {
 
@@ -78,13 +88,16 @@ public class OnHurt {
                 if (attacker instanceof PlayerEntity == false) {
                     UnitData data = Load.Unit(event.getEntityLiving());
                     if (data != null) {
-                        data.onDamagedByNonPlayer(event.getAmount());
+                        data.onDamagedByNonPlayer(defender, event.getAmount());
+                        data.trySync(defender);
                     }
+
                 }
             } else {
                 UnitData data = Load.Unit(event.getEntityLiving());
                 if (data != null) {
-                    data.onDamagedByNonPlayer(event.getAmount());
+                    data.onDamagedByNonPlayer(defender, event.getAmount());
+                    data.trySync(defender);
                 }
             }
         }

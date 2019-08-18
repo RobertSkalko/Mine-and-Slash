@@ -40,7 +40,7 @@ public class OnMobDeathDrops {
                         UnitData victim = Load.Unit(entity);
                         UnitData killer = Load.Unit(event.getSource().getTrueSource());
 
-                        if (victim.shouldDropLoot(entity) == false) {
+                        if (victim.shouldDropLoot() == false) {
                             return;
                         }
 
