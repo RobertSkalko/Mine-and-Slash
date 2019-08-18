@@ -259,7 +259,7 @@ public class Unit {
 
         MobRarity finalRarity = RandomUtils.weightedRandom(after);
 
-        ModEntityConfig entityconfig = SlashRegistry.getEntityConfig(entity);
+        ModEntityConfig entityconfig = SlashRegistry.getEntityConfig(entity, Load.Unit(entity));
 
         return MathHelper.clamp(finalRarity.Rank(), entityconfig.MIN_RARITY, entityconfig.MAX_RARITY);
 

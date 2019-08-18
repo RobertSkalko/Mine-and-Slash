@@ -19,6 +19,11 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     private SlashRegistryType type;
     private C emptyDefault;
+
+    protected C getDefault() {
+        return this.emptyDefault;
+    }
+
     private HashMap<String, C> map = new HashMap<>();
     private boolean errorIfEmpty = true;
     private boolean logAdditionsToRegistry = false;
@@ -75,7 +80,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         tryLogEmptyRegistry();
 
         if (guid == null || guid.isEmpty()) {
-            return emptyDefault;
+            return getDefault();
         }
         if (map.containsKey(guid)) {
             return map.get(guid);
@@ -86,7 +91,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
                     accessorErrosAletedFor.add(guid);
                 }
             }
-            return emptyDefault;
+            return getDefault();
         }
     }
 
@@ -141,7 +146,4 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     }
 
-    public C getDefault() {
-        return this.emptyDefault;
-    }
 }

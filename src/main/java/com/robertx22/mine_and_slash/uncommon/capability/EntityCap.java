@@ -32,6 +32,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.AttackUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -80,8 +81,13 @@ public class EntityCap {
     private static final String LAST_ATTACK_TICK = "LAST_ATTACK_TICK";
     private static final String PREVENT_LOOT = "PREVENT_LOOT";
     private static final String SHOULD_SYNC = "SHOULD_SYNC";
+    private static final String ENTITY_TYPE = "ENTITY_TYPE";
 
     public interface UnitData extends ICommonCapability {
+
+        void setType(LivingEntity en);
+
+        EntityTypeUtils.EntityType getType();
 
         void trySync(LivingEntity entity);
 
@@ -258,6 +264,7 @@ public class EntityCap {
         int lastAttackTick = 0;
         boolean preventLoot = false;
         boolean shouldSync = false;
+        EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
 
         float dmgByNonPlayers = 0;
 
@@ -286,6 +293,7 @@ public class EntityCap {
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
             nbt.putBoolean(PREVENT_LOOT, preventLoot);
             nbt.putBoolean(SHOULD_SYNC, shouldSync);
+            nbt.putString(ENTITY_TYPE, this.type.toString());
 
             if (customStats != null) {
                 CustomStats.Save(nbt, customStats);
@@ -318,6 +326,13 @@ public class EntityCap {
             this.preventLoot = nbt.getBoolean(PREVENT_LOOT);
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
 
+            try {
+                this.type = EntityTypeUtils.EntityType.valueOf(nbt.getString(ENTITY_TYPE));
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                this.type = EntityTypeUtils.EntityType.OTHER;
+            }
+
             CustomStatsData newstats = CustomStats.Load(nbt);
             if (newstats != null) {
                 this.customStats = newstats;
@@ -345,7 +360,7 @@ public class EntityCap {
 
             float num = 1.1F * vanilla * rar.DamageMultiplier();
 
-            num *= SlashRegistry.getEntityConfig(source).DMG_MULTI;
+            num *= SlashRegistry.getEntityConfig(source, sourcedata).DMG_MULTI;
 
             DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 
@@ -390,7 +405,7 @@ public class EntityCap {
         public void SetMobLevelAtSpawn(LivingEntity entity) {
 
             this.setMobStats = true;
-            ModEntityConfig config = SlashRegistry.getEntityConfig(entity);
+            ModEntityConfig config = SlashRegistry.getEntityConfig(entity, this);
 
             int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition()) + config.LEVEL_MODIFIER;
 
@@ -544,6 +559,16 @@ public class EntityCap {
         @Override
         public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
             this.lastAttackTick = attacker.ticksExisted;
+        }
+
+        @Override
+        public void setType(LivingEntity en) {
+            this.type = EntityTypeUtils.getType(en);
+        }
+
+        @Override
+        public EntityTypeUtils.EntityType getType() {
+            return this.type;
         }
 
         @Override

@@ -39,6 +39,8 @@ public class OnMobSpawn {
 
         if (endata != null) {
 
+            endata.setType(entity);
+
             PlayerEntity nearestPlayer = null;
 
             if (WorldUtils.isMapWorld(entity.world)) {

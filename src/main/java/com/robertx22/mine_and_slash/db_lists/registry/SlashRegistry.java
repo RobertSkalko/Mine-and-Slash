@@ -26,7 +26,8 @@ import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
-import net.minecraft.entity.Entity;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.IWorld;
 
 import java.util.HashMap;
@@ -39,20 +40,38 @@ public class SlashRegistry {
 
     }
 
-    public static ModEntityConfig getEntityConfig(Entity entity) {
+    public static ModEntityConfig getEntityConfig(LivingEntity entity,
+                                                  EntityCap.UnitData data) {
 
         String monster_id = entity.getType().getRegistryName().toString();
         String mod_id = entity.getType().getRegistryName().getNamespace();
 
-        if (ModEntityConfigs().isRegistered(monster_id)) {
-            return ModEntityConfigs().get(monster_id);
+        ModEntityConfig config = null;
+
+        if (EntityConfigs().isRegistered(monster_id)) {
+            config = EntityConfigs().get(monster_id);
+            if (config != null) {
+                return config;
+            }
         } else {
-            if (ModEntityConfigs().isRegistered(mod_id)) {
-                return ModEntityConfigs().get(mod_id);
+            if (EntityConfigs().isRegistered(mod_id)) {
+                config = EntityConfigs().get(mod_id);
+
+                if (config != null) {
+                    return config;
+                }
+
             } else {
-                return ModEntityConfigs().getDefault();
+                config = EntityConfigs().byEntityTypeDefault.get(data.getType());
+
+                if (config != null) {
+                    return config;
+                }
             }
         }
+
+        return EntityConfigs().getDefault();
+
     }
 
     public static SlashRegistryContainer<CurrencyItem> CurrencyItems() {
@@ -61,10 +80,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<BaseUniqueRuneItem> UniqueRunes() {
         return getRegistry(SlashRegistryType.UNIQUE_RUNES);
-    }
-
-    private static SlashRegistryContainer<ModEntityConfig> ModEntityConfigs() {
-        return getRegistry(SlashRegistryType.MOD_ENTITY_CONFIGS);
     }
 
     private static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
@@ -121,6 +136,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<BaseWorldProvider> WorldProviders() {
         return getRegistry(SlashRegistryType.WORLD_PROVIDER);
+    }
+
+    public static ModEntityContainer EntityConfigs() {
+        return (ModEntityContainer) getRegistry(SlashRegistryType.MOD_ENTITY_CONFIGS);
     }
 
     public static SlashRegistryContainer<Stat> Stats() {
@@ -196,7 +215,7 @@ public class SlashRegistry {
                 .logAdditions());
         map.put(SlashRegistryType.DIMENSION_CONFIGS, new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig
                 .DefaultExtra()).logAdditions().dontErrorMissingEntriesOnAccess());
-        map.put(SlashRegistryType.MOD_ENTITY_CONFIGS, new SlashRegistryContainer<ModEntityConfig>(SlashRegistryType.MOD_ENTITY_CONFIGS, new ModEntityConfig())
+        map.put(SlashRegistryType.MOD_ENTITY_CONFIGS, new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS)
                 .logAdditions());
 
     }

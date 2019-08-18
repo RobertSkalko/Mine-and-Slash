@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -9,7 +11,6 @@ import com.robertx22.mine_and_slash.network.DmgNumPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -46,8 +47,10 @@ public class OnMobDeathDrops {
 
                         CriteriaRegisters.DROP_LVL_PENALTY_TRIGGER.trigger((ServerPlayerEntity) player, killer, victim);
 
-                        float loot_multi = EntityTypeUtils.getLootMulti(entity);
-                        float exp_multi = EntityTypeUtils.getExpMulti(entity);
+                        ModEntityConfig config = SlashRegistry.getEntityConfig(entity, victim);
+
+                        float loot_multi = (float) config.LOOT_MULTI;
+                        float exp_multi = (float) config.EXP_MULTI;
 
                         if (loot_multi > 0) {
 

@@ -7,6 +7,15 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 
 public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {
 
+    public ModEntityConfig() {
+
+    }
+
+    public ModEntityConfig(float loot, float exp) {
+        this.EXP_MULTI = exp;
+        this.LOOT_MULTI = loot;
+    }
+
     public transient String GUID = "";
 
     public double LOOT_MULTI = 1F;

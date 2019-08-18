@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -96,7 +95,7 @@ public class LootInfo {
         chance *= multi;
 
         if (victim != null) {
-            chance *= EntityTypeUtils.getLootMulti(victim);
+            chance *= SlashRegistry.getEntityConfig(victim, this.mobData).LOOT_MULTI;
         }
 
         if (this.playerData != null) {

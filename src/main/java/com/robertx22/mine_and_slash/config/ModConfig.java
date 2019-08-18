@@ -5,7 +5,6 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class ModConfig {
 
-    public EntityConfigs EntityTypeConfig;
     public RarityDropratesConfig RarityWeightConfig;
     public ServerContainer Server;
     public DropRatesContainer DropRates;
@@ -26,7 +25,6 @@ public class ModConfig {
 
         builder.comment("Mine and Slash Config").push(NAME);
 
-        EntityTypeConfig = builder.configure(EntityConfigs::new).getLeft();
         RarityWeightConfig = builder.configure(RarityDropratesConfig::new).getLeft();
         Server = builder.configure(ServerContainer::new).getLeft();
         DropRates = builder.configure(DropRatesContainer::new).getLeft();

@@ -1,4 +1,4 @@
-2.4.14
+2.5.0
 A bit of balancing, i think some won't like the nerfs but i feel it's needed:
 buffed regenerate spell scaling value
 buffed bolt spells base dmg a bit, increased their shoot speed
@@ -7,7 +7,8 @@ normal items now show affixes in name by default but not uniques
 map leave pearl now shows your current map info (velox's idea!)
 added warning for crafting bags, to empty items inside
 fixed the anti cheese mechanic, should work with lava and enviromental dmg correctly now. Also added a barrier icon to note that mob won't drop mine and slash loot if it's been damaged too much by non player dmg sources.
-mobs now show zombie spawn eggg icon denoting they are mobs. If some mod's mob doesn't show spawn egg head but instead shows wheat that means it's an animal. If it shows nothing it means it's considered "other". If it shows emerald it means it's an npc.
+mobs now show their type if you are shift clicking. (so you know if a mod's mob is actually a mob, or it's considered an animal or npc (meaning less loot))
+transfered some entity configs to the ones in folder. Means now there are default mob configs per type.
 2.4.13
 fixed a nullpointer on unique rune generation
 added more safety on packet sending

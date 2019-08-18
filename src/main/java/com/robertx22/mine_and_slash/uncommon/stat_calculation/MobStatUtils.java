@@ -20,7 +20,6 @@ import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 
@@ -54,11 +53,11 @@ public class MobStatUtils {
 
     }
 
-    public static void modifyMobStatsByConfig(Entity entity, UnitData unitdata,
+    public static void modifyMobStatsByConfig(LivingEntity entity, UnitData unitdata,
                                               int level) {
 
         Unit unit = unitdata.getUnit();
-        ModEntityConfig config = SlashRegistry.getEntityConfig(entity);
+        ModEntityConfig config = SlashRegistry.getEntityConfig(entity, unitdata);
 
         for (StatData data : unit.getStats().values()) {
             Stat stat = data.GetStat();
