@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
+import com.robertx22.mine_and_slash.config.compatible_items.auto_gen.AvgMat;
 import com.robertx22.mine_and_slash.config.compatible_items.auto_gen.GenAutoCompItems;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -26,6 +27,8 @@ public class ConfigItemsSerialization implements ISerializedConfig {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(GenCompItemJsons.generate());
         SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
+
+        AvgMat.ArmorValues avg = AvgMat.GetAvgArmorValues();
 
         GenAutoCompItems.getMap();
 

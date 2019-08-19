@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.config.compatible_items.auto_gen;
 
+import net.minecraft.item.*;
+
 public enum AutoItemTiers {
 
     Trash(new AutoItemTier(0).lvl(0, 20).rar(0, 2)),
@@ -13,5 +15,31 @@ public enum AutoItemTiers {
     }
 
     public AutoItemTier tierStats;
+
+    public AutoItemTiers getTier(GenAutoCompItems.AutoCompItem ctx) {
+
+        Item item = ctx.item;
+
+        float perc = 0;
+
+        if (item instanceof ArmorItem) {
+            ArmorItem armor = (ArmorItem) item;
+            IArmorMaterial mat = armor.getArmorMaterial();
+
+            perc += mat.getDamageReductionAmount(ctx.getSlot()) / ArmorMaterial.DIAMOND.getDamageReductionAmount(ctx
+                    .getSlot());
+            perc += mat.getDurability(ctx.getSlot()) / ArmorMaterial.DIAMOND.getDamageReductionAmount(ctx
+                    .getSlot());
+            perc += mat.getToughness() / ArmorMaterial.DIAMOND.getToughness();
+
+            perc += mat.getEnchantability() / ArmorMaterial.DIAMOND.getEnchantability();
+
+        } else if (item instanceof TieredItem) {
+            TieredItem tiered = (TieredItem) item;
+            IItemTier tier = tiered.getTier();
+        }
+        return Trash;
+
+    }
 
 }
