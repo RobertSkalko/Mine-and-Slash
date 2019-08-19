@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.AxeWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemAxe;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -13,6 +14,11 @@ public class Axe extends BaseWeapon {
     @Override
     public String GUID() {
         return "Axe";
+    }
+
+    @Override
+    public boolean isGearOfThisType(Item item) {
+        return item instanceof AxeItem;
     }
 
     @Override

@@ -21,6 +21,11 @@ public class Hammer extends BaseWeapon {
     }
 
     @Override
+    public boolean isGearOfThisType(Item item) {
+        return false;
+    }
+
+    @Override
     public HashMap<Integer, Item> ItemsForRarities() {
         return ItemHammer.Items;
     }

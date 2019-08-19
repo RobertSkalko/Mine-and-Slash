@@ -28,6 +28,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         OffHand
     }
 
+    public boolean isGearOfThisType(Item item) {
+        return false;
+    }
+
     @Override
     public int getRarityRank() {
         return 0;

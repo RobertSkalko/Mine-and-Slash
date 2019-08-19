@@ -575,8 +575,10 @@ public class EntityCap {
         @Override
         public void trySync(LivingEntity entity) {
             if (this.shouldSync) {
+                this.shouldSync = false;
                 MMORPG.sendToTracking(new EntityUnitPacket(entity), entity);
             }
+
         }
 
         @Override

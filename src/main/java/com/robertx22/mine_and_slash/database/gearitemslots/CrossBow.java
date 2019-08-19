@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.Elemental
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.CrossBowWeaponMechanic;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
@@ -25,6 +26,11 @@ public class CrossBow extends BaseWeapon {
     @Override
     public Item DefaultItem() {
         return Items.CROSSBOW;
+    }
+
+    @Override
+    public boolean isGearOfThisType(Item item) {
+        return item instanceof CrossbowItem;
     }
 
     @Override

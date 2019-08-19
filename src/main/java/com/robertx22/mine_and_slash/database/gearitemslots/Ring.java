@@ -51,6 +51,11 @@ public class Ring extends GearItemSlot {
     }
 
     @Override
+    public boolean isGearOfThisType(Item item) {
+        return false;
+    }
+
+    @Override
     public GearSlotType slotType() {
         return GearSlotType.Jewerly;
     }

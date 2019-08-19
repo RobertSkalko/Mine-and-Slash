@@ -68,7 +68,7 @@ public class BonusDmgPotion extends SpellPotionBase implements IGenerated<BonusD
 
     @Override
     public String locNameForLangFile() {
-        return "Bonus " + element.dmgName + " Dmg";
+        return "+ " + element.dmgName + " Dmg";
     }
 
     @Override

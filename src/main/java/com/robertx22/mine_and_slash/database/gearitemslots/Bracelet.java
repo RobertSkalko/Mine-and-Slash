@@ -27,6 +27,11 @@ public class Bracelet extends GearItemSlot {
     }
 
     @Override
+    public boolean isGearOfThisType(Item item) {
+        return false;
+    }
+
+    @Override
     public List<StatMod> PossibleSecondaryStats() {
         return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
     }

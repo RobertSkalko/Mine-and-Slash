@@ -28,6 +28,11 @@ public class Charm extends GearItemSlot {
     }
 
     @Override
+    public boolean isGearOfThisType(Item item) {
+        return false;
+    }
+
+    @Override
     public List<StatMod> PossibleSecondaryStats() {
         return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(), new StaminaFlat(), new DexterityFlat());
     }

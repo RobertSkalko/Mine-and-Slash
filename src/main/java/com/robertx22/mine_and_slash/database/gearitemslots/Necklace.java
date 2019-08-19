@@ -26,6 +26,11 @@ public class Necklace extends GearItemSlot {
     }
 
     @Override
+    public boolean isGearOfThisType(Item item) {
+        return false; //        Curios item.getTags().contains("necklace");
+    }
+
+    @Override
     public List<StatMod> PossibleSecondaryStats() {
 
         return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
