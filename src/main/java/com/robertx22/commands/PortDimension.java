@@ -30,7 +30,7 @@ public class PortDimension extends CommandBase {
 
 	if (DimensionManager.isDimensionRegistered(id)) {
 	    player.changeDimension(id,
-		    new MyTeleporter(player.world, DimensionManager.getWorld(id).getSpawnPoint(), player, id));
+		    new MyTeleporter(player.world, DimensionManager.getWorld(id).getSpawnPoint(), player));
 	} else {
 	    player.sendMessage(new TextComponentString("No such dimension"));
 	}
