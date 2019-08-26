@@ -4,11 +4,11 @@ import net.minecraft.item.*;
 
 public enum AutoItemTiers {
 
-    Trash(new AutoItemTier(0).lvl(0, 20).rar(0, 2)),
-    Decent(new AutoItemTier(1).lvl(10, 30).rar(0, 3)),
-    Good(new AutoItemTier(2).lvl(20, 40).rar(0, 4)),
-    Great(new AutoItemTier(3).lvl(30, 60).rar(1, 4)),
-    Amazing(new AutoItemTier(4).lvl(40, 100).rar(1, 5));
+    Trash(new AutoItemTier(0, 0).lvl(0, 20).rar(0, 2)),
+    Decent(new AutoItemTier(1, 0.2F).lvl(10, 30).rar(0, 3)),
+    Good(new AutoItemTier(2, 0.5F).lvl(20, 40).rar(0, 4)),
+    Great(new AutoItemTier(3, 0.75F).lvl(30, 60).rar(1, 4)),
+    Amazing(new AutoItemTier(4, 0.9F).lvl(40, 100).rar(1, 5));
 
     AutoItemTiers(AutoItemTier stats) {
         this.tierStats = stats;

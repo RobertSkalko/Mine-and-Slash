@@ -1,5 +1,6 @@
 2.5.2
 fixed possible source of lag
+tried to fix crash for some languages on the psi rune item
 2.5.1
 updated infusion and spell icons by matpac!
 fixed log spam of IllegalArgumentException
