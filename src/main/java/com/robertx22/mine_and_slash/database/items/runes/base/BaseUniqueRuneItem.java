@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.List;
+import java.util.Locale;
 
 public abstract class BaseUniqueRuneItem extends BaseRuneItem {
 
@@ -30,7 +31,7 @@ public abstract class BaseUniqueRuneItem extends BaseRuneItem {
 
     @Override
     public String genRegisryName() {
-        return "runes/uniques/" + name().toLowerCase();
+        return "runes/uniques/" + name().toLowerCase(Locale.ROOT);
     }
 
     @Override
