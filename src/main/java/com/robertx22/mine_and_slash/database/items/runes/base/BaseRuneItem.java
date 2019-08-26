@@ -27,6 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect, IAutoLocName, ISlashRegistryEntry<BaseRuneItem> {
@@ -49,7 +50,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     public String genRegisryName() {
-        return "runes/" + name() + rarity;
+        return "runes/" + name().toLowerCase(Locale.ROOT) + rarity;
     }
 
     @Override

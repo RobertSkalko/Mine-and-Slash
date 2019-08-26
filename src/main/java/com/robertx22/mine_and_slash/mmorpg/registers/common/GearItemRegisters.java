@@ -48,25 +48,25 @@ public class GearItemRegisters {
             int rank = rarity.Rank();
 
             // runes
-            regRarities(new CenItem(rank), CenItem.Items, "runes/" + new CenItem(rank).name()
+            regRune(new CenItem(rank), CenItem.Items, new CenItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new BerItem(rank), BerItem.Items, "runes/" + new BerItem(rank).name()
+            regRune(new BerItem(rank), BerItem.Items, new BerItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new DosItem(rank), DosItem.Items, "runes/" + new DosItem(rank).name()
+            regRune(new DosItem(rank), DosItem.Items, new DosItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new GohItem(rank), GohItem.Items, "runes/" + new GohItem(rank).name()
+            regRune(new GohItem(rank), GohItem.Items, new GohItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new MosItem(rank), MosItem.Items, "runes/" + new MosItem(rank).name()
+            regRune(new MosItem(rank), MosItem.Items, new MosItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new RahItem(rank), RahItem.Items, "runes/" + new RahItem(rank).name()
+            regRune(new RahItem(rank), RahItem.Items, new RahItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new VohItem(rank), VohItem.Items, "runes/" + new VohItem(rank).name()
+            regRune(new VohItem(rank), VohItem.Items, new VohItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new XahItem(rank), XahItem.Items, "runes/" + new XahItem(rank).name()
+            regRune(new XahItem(rank), XahItem.Items, new XahItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new AnoItem(rank), AnoItem.Items, "runes/" + new AnoItem(rank).name()
+            regRune(new AnoItem(rank), AnoItem.Items, new AnoItem(rank).genRegisryName()
                     .toLowerCase(), rank);
-            regRarities(new ItaItem(rank), ItaItem.Items, "runes/" + new ItaItem(rank).name()
+            regRune(new ItaItem(rank), ItaItem.Items, new ItaItem(rank).genRegisryName()
                     .toLowerCase(), rank);
 
             // offhands
@@ -107,6 +107,15 @@ public class GearItemRegisters {
             regRarities(new ItemMap(rank), ItemMap.Items, "map/map", rarity.Rank()); // not gearitem but yeah
 
         }
+
+    }
+
+    private static void regRune(Item item, HashMap<Integer, Item> map, String name,
+                                int rarity) {
+        String reg = name;
+        item.setRegistryName(Ref.MODID, reg);
+        map.put(rarity, item);
+        items.add(item);
 
     }
 
