@@ -23,14 +23,14 @@ public class FuelSlot extends Slot {
         {
             {
                 put(Items.DIAMOND, 500);
-                put(Items.GOLD_INGOT, 200);
-                put(Items.IRON_INGOT, 50);
-                put(Items.EMERALD, 400);
+                put(Items.GOLD_INGOT, 150);
+                put(Items.IRON_INGOT, 40);
+                put(Items.EMERALD, 300);
                 put(Items.REDSTONE, 4);
 
-                put(ItemOre.ItemOres.get(0), 50);
-                put(ItemOre.ItemOres.get(1), 100);
-                put(ItemOre.ItemOres.get(2), 150);
+                put(ItemOre.ItemOres.get(0), 40);
+                put(ItemOre.ItemOres.get(1), 85);
+                put(ItemOre.ItemOres.get(2), 125);
                 put(ItemOre.ItemOres.get(3), 250);
                 put(ItemOre.ItemOres.get(4), 500);
                 put(ItemOre.ItemOres.get(5), 1000);

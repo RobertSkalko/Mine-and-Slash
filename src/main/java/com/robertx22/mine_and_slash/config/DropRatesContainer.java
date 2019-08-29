@@ -26,7 +26,7 @@ public class DropRatesContainer {
 
         RUNED_GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.runed_gear_droprate")
-                .defineInRange("RUNED_GEAR_DROPRATE", 1.8D, 0, Integer.MAX_VALUE);
+                .defineInRange("RUNED_GEAR_DROPRATE", 1.7D, 0, Integer.MAX_VALUE);
 
         LOOTBOX_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.lootbox_droprate")
@@ -34,15 +34,15 @@ public class DropRatesContainer {
 
         RUNE_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.rune_droprate")
-                .defineInRange("RUNE_DROPRATE", 1.4D, 0, Integer.MAX_VALUE);
+                .defineInRange("RUNE_DROPRATE", 1.3D, 0, Integer.MAX_VALUE);
 
         MAP_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.map_droprate")
-                .defineInRange("MAP_DROPRATE", 0.8F, 0, Integer.MAX_VALUE);
+                .defineInRange("MAP_DROPRATE", 0.7F, 0, Integer.MAX_VALUE);
 
         GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.gear_droprate")
-                .defineInRange("GEAR_DROPRATE", 7.4F, 0, Integer.MAX_VALUE);
+                .defineInRange("GEAR_DROPRATE", 7F, 0, Integer.MAX_VALUE);
 
         UNIQUE_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.unique_droprate")
@@ -54,11 +54,11 @@ public class DropRatesContainer {
 
         CURRENCY_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.currency_droprate")
-                .defineInRange("CURRENCY_DROPRATE", 3F, 0, Integer.MAX_VALUE);
+                .defineInRange("CURRENCY_DROPRATE", 2F, 0, Integer.MAX_VALUE);
 
         AWAKEN_RUNEWORD_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.awaken_runeword_droprate")
-                .defineInRange("AWAKEN_RUNEWORD_DROPRATE", 0.15F, 0, Integer.MAX_VALUE);
+                .defineInRange("AWAKEN_RUNEWORD_DROPRATE", 0.14F, 0, Integer.MAX_VALUE);
 
         COMPATIBLE_ITEMS_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.compatible_items_droprate")

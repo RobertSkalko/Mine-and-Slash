@@ -1,3 +1,8 @@
+2.5.3
+reduced droprates a bit (config change, i feel there's a bit too much drops cus i kept adding more and more types of loot)
+added bonus droprate for loot of lvl 5 and less if player is also lvl 5 or less
+fixed a bug that made all adventure maps have double droprate
+reduced repair values of materials by a bit
 2.5.2
 fixed possible source of lag
 tried to fix crash for some languages on the psi rune item
