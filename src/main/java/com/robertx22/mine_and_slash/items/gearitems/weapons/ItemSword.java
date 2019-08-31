@@ -64,6 +64,8 @@ public class ItemSword extends BaseWeaponItem implements IWeapon {
         Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot);
         if (slot == EquipmentSlotType.MAINHAND) {
             map.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double) attackSpeed, AttributeModifier.Operation.ADDITION));
+            map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 5 + (this.rarity + 1), AttributeModifier.Operation.ADDITION));
+
         }
 
         return map;

@@ -95,7 +95,7 @@ public class MobStatUtils {
         }
 
     }
-    
+
     // this apparently takes 60 ms
     public static void AddRandomMobStatusEffects(LivingEntity entity, Unit unit,
                                                  MobRarity rarity) {

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.bases;
 
+import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -8,6 +9,8 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -63,6 +66,17 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
             entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
         return true;
+    }
+
+    @Override
+    public Multimap<String, AttributeModifier> getAttributeModifiers(
+            EquipmentSlotType slot) {
+        Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot);
+        if (slot == EquipmentSlotType.MAINHAND) {
+            map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 5 + (this.rarity + 1), AttributeModifier.Operation.ADDITION));
+        }
+
+        return map;
     }
 
 }

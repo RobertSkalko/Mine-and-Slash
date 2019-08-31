@@ -4,13 +4,16 @@ This could be called the hardcore update! I know a lot of you won't like any of 
 * INSTABILITY! Gear items have this value and as you use currency items the instability increases. 
 The higher the instability the higher the break chance. This means the more you modify the item, the more likely it will break. 
 Some items like Chaos Orb reduce instability. If any other item would do this, it'd be an item like the chaos orb that has a chance to make the item worse. (you're encouraged to risk it)
+-Now the why. Because it adds SCARCITY. And this will be the theme of more of my mods (if i can get some good ideas). Basically, to ensure BIS (Best in Slot) items are very hard to get.
+And to stop the gameplay of farming currencies at endgame to just reroll your existing items into perfection.
 
 * STAT GROWTH FORMULA CHANGES! now instead of stats being x * level. They are in a different formula that makes them grow slower at low lvls (lvl 2 mobs are no longer 2 times stronger than lvl 1) but a lvl 100 mob is now MUCH stronger than a lvl 90.
+(this will likely lead to bugs! Beware of weirdness in stats and battle)
 
-Now the why. Because it adds SCARCITY. And this will be the theme of more of my mods (if i can get some good ideas). Basically, to ensure BIS (Best in Slot) items are very hard to get.
-And to stop the gameplay of farming currencies at endgame to just reroll your existing items into perfection. 
-
+Other more minor changes:
 reduced droprates a bit (config change, i feel there's a bit too much drops cus i kept adding more and more types of loot)
 added bonus droprate for loot of lvl 5 and less if player is also lvl 5 or less
 fixed a bug that made all adventure maps have double droprate
 reduced repair values of materials by a bit
+nerfed instant heal % hp value, buffed base value
+fixed weakness making weapons unusable (will still happen on some compatible weapons i assume)

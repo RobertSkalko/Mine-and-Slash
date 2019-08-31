@@ -41,7 +41,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         float percent = data.Value / (StatModData.calculateStatGrowth(this.amountToReach100Percent(), unitdata
                 .getLevel())) * 100;
 
-        percent = MathHelper.clamp(percent, 0, 10000);
+        percent = MathHelper.clamp(percent, 0, 1000000);
 
         for (StatMod statmod : this.statsThatBenefit()) {
             StatModData.Load(statmod, (int) percent).useOnPlayer(unitdata);

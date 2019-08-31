@@ -38,13 +38,12 @@ public class SpellInstantHeal extends BaseSpellHeal {
 
     @Override
     public int BaseValue() {
-        return 15;
+        return 25;
     }
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new Health(), 0.2F);
-
+        return new EffectCalculation(new Health(), 0.1F);
     }
 
     @Override

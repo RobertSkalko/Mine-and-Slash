@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.ElementalStat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.ICoreStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
@@ -49,11 +48,9 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
 
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
-
         for (StatMod statmod : this.statsThatBenefit()) {
-            StatModData.Load(statmod, (int) data.Value).useOnPlayer(unitdata);
+            unitdata.getUnit().getStat(statmod.GetBaseStat()).Flat += data.Value;
         }
-
     }
 
     @Override
