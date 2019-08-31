@@ -8,7 +8,6 @@ public class ServerContainer {
     public BooleanValue DISABLE_VANILLA_HP_REGEN;
     public BooleanValue GENERATE_ORES;
     public BooleanValue LEVEL_UPS_COST_TOKEN;
-    public BooleanValue USE_ATTACK_COOLDOWN;
     public BooleanValue GET_STARTER_ITEMS;
     public BooleanValue RESET_MAP_DIMENSIONS_ON_LOAD;
     public BooleanValue DISABLE_DEATH_IN_MAPS;
@@ -18,7 +17,6 @@ public class ServerContainer {
 
     public IntValue MAXIMUM_WORN_RUNED_ITEMS;
     public IntValue MAXIMUM_WORN_UNIQUE_ITEMS;
-    public IntValue MAX_PLAYERS_PER_MAP;
     public IntValue MAPS_DROP_AFTER_LEVEL;
     public IntValue CURRENCY_DROP_AFTER_LEVEL;
     public IntValue MAXIMUM_PLAYER_LEVEL;
@@ -37,10 +35,6 @@ public class ServerContainer {
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("PLAYER_HEART_TO_HEALTH_CONVERSION", 1D, 0D, 100D);
-
-        USE_ATTACK_COOLDOWN = builder.comment(".")
-                .translation("mmorpg.word")
-                .define("USE_ATTACK_COOLDOWN", true);
 
         ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS = builder.comment(".")
                 .define("ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS", true);
@@ -98,7 +92,7 @@ public class ServerContainer {
 
         NON_MOD_DAMAGE_MULTI = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("NON_MOD_DAMAGE_MULTI", 0.03D, 0D, Integer.MAX_VALUE);
+                .defineInRange("NON_MOD_DAMAGE_MULTI", 0D, 0D, Integer.MAX_VALUE);
 
         STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT = builder.comment(".")
                 .translation("mmorpg.word.")

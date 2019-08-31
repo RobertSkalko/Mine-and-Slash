@@ -92,12 +92,7 @@ public class EntityCap {
 
         void trySync(LivingEntity entity);
 
-        int getTicksSinceLastAttack(LivingEntity entity);
-
         void onAttackEntity(LivingEntity attacker, LivingEntity victim);
-
-        boolean attackCooldownAllowsAttack(float amount, LivingEntity attacker,
-                                           LivingEntity victim, GearItemData gear);
 
         void syncToClient(PlayerEntity player);
 
@@ -265,7 +260,6 @@ public class EntityCap {
         boolean isNewbie = true;
         boolean equipsChanged = true;
         int tier = 0;
-        int lastAttackTick = 0;
         boolean preventLoot = false;
         boolean shouldSync = false;
         EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
@@ -288,7 +282,6 @@ public class EntityCap {
             nbt.putInt(EXP, exp);
             nbt.putInt(RARITY, rarity);
             nbt.putInt(TIER, tier);
-            nbt.putInt(LAST_ATTACK_TICK, lastAttackTick);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
             nbt.putString(CURRENT_MAP_ID, currentMapResourceLoc);
@@ -318,7 +311,6 @@ public class EntityCap {
             this.exp = nbt.getInt(EXP);
             this.rarity = nbt.getInt(RARITY);
             this.tier = nbt.getInt(TIER);
-            this.lastAttackTick = nbt.getInt(LAST_ATTACK_TICK);
             this.uuid = nbt.getString(UUID);
             this.energy = nbt.getFloat(ENERGY);
             this.dmgByNonPlayers = nbt.getFloat(DMG_DONE_BY_NON_PLAYERS);
@@ -563,7 +555,7 @@ public class EntityCap {
 
         @Override
         public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
-            this.lastAttackTick = attacker.ticksExisted;
+
         }
 
         @Override
@@ -585,77 +577,12 @@ public class EntityCap {
 
         }
 
-        @Override
-        public int getTicksSinceLastAttack(LivingEntity entity) {
-            if (this.lastAttackTick == 0) {
-                return 1000;
-            }
-
-            return MathHelper.clamp(entity.ticksExisted - this.lastAttackTick, 0, 1000);
-
-        }
-
         public static float getCooldownPeriod(LivingEntity entity) {
 
             double atkSpeed = entity.getAttribute(SharedMonsterAttributes.ATTACK_SPEED)
                     .getValue();
 
             return (float) (1.0D / atkSpeed * 20.0D);
-        }
-
-        /**
-         * Returns the percentage of attack power available based on the cooldown (zero to one).
-         */
-        public static float getCooledAttackStrength(boolean useTicks, UnitData data,
-                                                    LivingEntity entity,
-                                                    float adjustTicks) {
-
-            int lastAtk = 0;
-
-            if (useTicks) {
-                lastAtk = data.getTicksSinceLastAttack(entity);
-            }
-
-            float cooldownPeriod = getCooldownPeriod(entity);
-
-            return MathHelper.clamp(((float) lastAtk + adjustTicks) / cooldownPeriod, 0.0F, 1.0F);
-        }
-
-        // makes sure hammers the aoe weapons arent machine guns
-        @Override
-        public boolean attackCooldownAllowsAttack(float amount, LivingEntity attacker,
-                                                  LivingEntity victim,
-                                                  GearItemData gear) {
-
-            if (attacker instanceof PlayerEntity) {
-                float cooled = getCooledAttackStrength(true, this, attacker, 0.5F);
-                float base = getCooledAttackStrength(false, this, attacker, 0.5F);
-
-                boolean canAtk = false;
-
-                if (cooled >= 1 || Float.compare(cooled, base) == 0) {
-                    canAtk = true;
-                }
-
-                if (canAtk) {
-                    if ((float) victim.hurtResistantTime > 10.0F) {
-                        if (amount <= attacker.lastDamage) {
-                            return false;
-                        }
-                    }
-
-                } else {
-                    return false;
-                }
-            } else {
-                if ((float) victim.hurtResistantTime > 10.0F) {
-                    if (amount <= attacker.lastDamage) {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
         }
 
         @Override

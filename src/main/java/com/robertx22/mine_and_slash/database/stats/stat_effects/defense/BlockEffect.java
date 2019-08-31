@@ -83,7 +83,7 @@ public class BlockEffect implements IStatEffect {
 
     private boolean canBlockDamageSource(LivingEntity target,
                                          DamageSource damageSourceIn) {
-        if (!damageSourceIn.isUnblockable() && target.isActiveItemStackBlocking()) {
+        if (target.isActiveItemStackBlocking()) {
             Vec3d vec3d = damageSourceIn.getDamageLocation();
 
             if (vec3d != null) {

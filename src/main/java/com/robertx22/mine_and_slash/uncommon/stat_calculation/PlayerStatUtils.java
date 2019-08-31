@@ -34,8 +34,11 @@ public class PlayerStatUtils {
         int lvl = data.getLevel();
 
         unit.getStat(PhysicalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.physical_damage
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.physical_damage_per_level
-                .get());
+                .get() + StatModData.calculateStatGrowth(ModConfig.INSTANCE.PlayerBaseStats.physical_damage_per_level
+                .get()
+                .floatValue(), lvl));
+
+        // TODO IM LAZY
 
         unit.getStat(Mana.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana.get() + data
                 .getLevel() * ModConfig.INSTANCE.PlayerBaseStats.mana_per_level.get());
@@ -56,7 +59,9 @@ public class PlayerStatUtils {
                 .getLevel() * ModConfig.INSTANCE.PlayerBaseStats.armor_per_level.get());
 
         unit.getStat(Health.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.health_per_level.get());
+                .get() + StatModData.calculateStatGrowth(ModConfig.INSTANCE.PlayerBaseStats.health_per_level
+                .get()
+                .floatValue(), lvl));
 
         unit.getStat(CriticalHit.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_hit
                 .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.critical_hit_per_level.get());

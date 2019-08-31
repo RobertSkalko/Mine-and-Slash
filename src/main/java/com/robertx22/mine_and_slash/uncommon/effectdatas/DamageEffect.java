@@ -113,26 +113,24 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             this.sourceData.onAttackEntity(source, target);
 
-            int hurtResistantTime = 0;
-
-            if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
-                hurtResistantTime = target.hurtResistantTime;
-            } else {
-                hurtResistantTime = 3;
-            }
-
-            target.hurtResistantTime = 0;   // set to 0 so my attack can work (cus it comes after a vanilla atk) and then set it back to what it was before
-
             DmgByElement info = getDmgByElement();
 
-            if (event != null) {
-                event.setAmount(info.totalDmg);
-                event.getSource().setDamageBypassesArmor();
-            } else {
-                target.attackEntityFrom(dmgsource, info.totalDmg);
-            }
+            int dmg = (int) ((event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI
+                    .get()
+                    .floatValue()) + info.totalDmg);
 
-            target.hurtResistantTime = hurtResistantTime;
+            if (event != null) {
+                event.setAmount(dmg);
+                event.getSource()
+                        .setDamageBypassesArmor(); // this also sets it as unblockable..
+                event.getSource().setDamageIsAbsolute();
+            } else {
+                int hurtResistantTime = target.hurtResistantTime;
+                target.hurtResistantTime = 0;
+                target.attackEntityFrom(dmgsource, dmg);
+                target.hurtResistantTime = hurtResistantTime;
+
+            }
 
             Heal();
             RestoreMana();
@@ -140,7 +138,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if ((int) number > 0 && source instanceof ServerPlayerEntity) {
 
                 ServerPlayerEntity player = (ServerPlayerEntity) source;
-                DmgNumPacket packet = new DmgNumPacket(target, this.element, NumberUtils.formatDamageNumber(this));
+                DmgNumPacket packet = new DmgNumPacket(target, info.highestDmgElement, NumberUtils
+                        .formatDamageNumber(this));
                 MMORPG.sendToClient(packet, player);
 
             }

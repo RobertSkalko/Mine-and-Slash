@@ -17,3 +17,5 @@ fixed a bug that made all adventure maps have double droprate
 reduced repair values of materials by a bit
 nerfed instant heal % hp value, buffed base value
 fixed weakness making weapons unusable (will still happen on some compatible weapons i assume)
+removed config for instant attack speed.
+reduced player hp regen at lvl 1

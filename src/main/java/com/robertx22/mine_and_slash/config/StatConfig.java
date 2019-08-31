@@ -50,7 +50,7 @@ public class StatConfig {
         mana_regen_per_level = builder.translation("mmorpg.stat.mana_regen_per_level")
                 .defineInRange("mana_regen_per_level", 0F, 0, Integer.MAX_VALUE);
         health_regen = builder.translation("mmorpg.stat.health_regen")
-                .defineInRange("health_regen", 5F, 0, Integer.MAX_VALUE);
+                .defineInRange("health_regen", 4F, 0, Integer.MAX_VALUE);
         health_regen_per_level = builder.translation("mmorpg.stat.health_regen_per_level")
                 .defineInRange("health_regen_per_level", 1F, 0, Integer.MAX_VALUE);
         armor = builder.translation("mmorpg.stat.armor")

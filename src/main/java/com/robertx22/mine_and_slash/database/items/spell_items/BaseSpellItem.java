@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.items.spell_items;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
@@ -82,11 +81,7 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
     @Override
     final public int getUseDuration(ItemStack stack) {
-        if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
-            return Spell().useTimeTicks();
-        } else {
-            return 1;
-        }
+        return Spell().useTimeTicks();
     }
 
     @Override

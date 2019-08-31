@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -49,15 +48,14 @@ public class OnMeleeAttack {
             if (event.getSource().getTrueSource() instanceof LivingEntity) {
                 LivingEntity source = (LivingEntity) event.getSource().getTrueSource();
 
-                onAttack(true, source, target, event.getAmount(), event);
+                onAttack(source, target, event.getAmount(), event);
             }
 
         }
 
     }
 
-    public static void onAttack(boolean useCooldown, LivingEntity source,
-                                LivingEntity target, float amount,
+    public static void onAttack(LivingEntity source, LivingEntity target, float amount,
                                 LivingHurtEvent event) {
 
         try {
@@ -73,14 +71,6 @@ public class OnMeleeAttack {
             }
 
             GearItemData weapondata = sourceData.getWeaponData(source);
-
-            if (useCooldown) {
-                if (ModConfig.INSTANCE.Server.USE_ATTACK_COOLDOWN.get()) {
-                    if (sourceData.attackCooldownAllowsAttack(amount, source, target, weapondata) == false) {
-                        return;
-                    }
-                }
-            }
 
             UnitData targetData = Load.Unit(target);
 
@@ -130,7 +120,7 @@ public class OnMeleeAttack {
             LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
             DamageSource source = event.getSource();
 
-            Item item = en.getHeldItem(en.getActiveHand()).getItem();
+            Item item = en.getHeldItemMainhand().getItem();
 
             if (item instanceof BowItem || item instanceof CrossbowItem) {
                 return !source.isProjectile();
