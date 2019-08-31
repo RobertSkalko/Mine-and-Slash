@@ -24,7 +24,7 @@ public class OnMeleeAttack {
 
     // damageevent could work, maybe dmg event for players but livingattack event for mobs?
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void onMobMeleeAttack(LivingHurtEvent event) {
 
         LivingEntity target = event.getEntityLiving();

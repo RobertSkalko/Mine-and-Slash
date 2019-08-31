@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_effects.defense.BlockEff
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.DmgNumPacket;
+import com.robertx22.mine_and_slash.onevent.entity.DmgSourceUtils;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -92,6 +93,15 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     }
 
+    public float getEventDmg() {
+        if (event != null) {
+            return event.getAmount();
+        } else {
+            return 0;
+        }
+
+    }
+
     @Override
     protected void activate() {
 
@@ -115,7 +125,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             DmgByElement info = getDmgByElement();
 
-            int dmg = (int) ((event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI
+            int dmg = (int) ((getEventDmg() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI
                     .get()
                     .floatValue()) + info.totalDmg);
 
@@ -124,6 +134,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 event.getSource()
                         .setDamageBypassesArmor(); // this also sets it as unblockable..
                 event.getSource().setDamageIsAbsolute();
+                DmgSourceUtils.markSourceAsMine(event.getSource());
+
             } else {
                 int hurtResistantTime = target.hurtResistantTime;
                 target.hurtResistantTime = 0;

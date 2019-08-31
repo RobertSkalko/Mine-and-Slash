@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
-import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
@@ -13,6 +12,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+// TODO THESE ARE FKED SOMEHOW I NEED TO REWORK TO FIGURE OUT WTF IS WRONG
 public class OnHurt {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -37,17 +37,18 @@ public class OnHurt {
         if (event.getEntity().world.isRemote) {
             return;
         }
+        if (event.getSource() == null) {
+            return;
+        }
 
-        if (event.getSource() instanceof MyDamageSource) {
+        if (DmgSourceUtils.isMyDmgSource(event.getSource())) {
+            DmgSourceUtils.removeSourceMarker(event.getSource());
             return;
         }
 
         // mobs take much less damage from any source other than my mods. This is
         // required or else there's no point in getting legendary weapons if a diamond
         // sword more damage
-        if (event.getSource() == null) {
-            return;
-        }
 
         if (isEnviromentalDmg(event.getSource())) {
             if (event.getEntity() instanceof PlayerEntity == false) {
@@ -68,6 +69,11 @@ public class OnHurt {
                 event.setAmount(event.getAmount() * mod.dmgMultiplier);
                 return;
             }
+
+            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI
+                    .get()
+                    .floatValue());
+
             return;
         }
 
