@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
@@ -315,7 +316,7 @@ public class Unit {
 
     private float getHpAdded(LivingEntity entity, MobRarity rar, UnitData data) {
 
-        float hpadded = entity.getMaxHealth() * data.getLevel();
+        float hpadded = StatModData.calculateStatGrowth(entity.getMaxHealth(), data.getLevel());
 
         if (entity instanceof PlayerEntity) {
             hpadded *= ModConfig.INSTANCE.Server.PLAYER_HEART_TO_HEALTH_CONVERSION.get();
@@ -401,7 +402,7 @@ public class Unit {
                 MobStatUtils.increaseMobStatsPerTier(data, this);
             }
 
-            MobStatUtils.modifyMobStatsByConfig(entity, data, level);
+            MobStatUtils.modifyMobStatsByConfig(entity, data);
 
         }
 

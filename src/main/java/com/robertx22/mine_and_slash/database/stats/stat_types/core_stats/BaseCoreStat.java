@@ -38,7 +38,8 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
 
-        float percent = data.Value / (this.amountToReach100Percent() * unitdata.getLevel()) * 100;
+        float percent = data.Value / (StatModData.calculateStatGrowth(this.amountToReach100Percent(), unitdata
+                .getLevel())) * 100;
 
         percent = MathHelper.clamp(percent, 0, 10000);
 

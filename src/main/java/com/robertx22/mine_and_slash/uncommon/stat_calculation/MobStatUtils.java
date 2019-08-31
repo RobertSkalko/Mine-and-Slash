@@ -53,8 +53,7 @@ public class MobStatUtils {
 
     }
 
-    public static void modifyMobStatsByConfig(LivingEntity entity, UnitData unitdata,
-                                              int level) {
+    public static void modifyMobStatsByConfig(LivingEntity entity, UnitData unitdata) {
 
         Unit unit = unitdata.getUnit();
         ModEntityConfig config = SlashRegistry.getEntityConfig(entity, unitdata);
@@ -77,25 +76,26 @@ public class MobStatUtils {
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 
-        unit.getStat(Armor.GUID).Flat += 10 * level * rar.StatMultiplier();
+        unit.getStat(Armor.GUID).addFlat(10 * rar.StatMultiplier(), level);
         unit.getStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
         unit.getStat(CriticalDamage.GUID).Flat += 10 * rar.DamageMultiplier();
 
         for (Elements element : Elements.getAllSingleElements()) {
 
-            unit.getStat(new ElementalResist(element).GUID()).Flat += spellresist * level * rar
-                    .StatMultiplier();
-            unit.getStat(new ElementalSpellDamage(element).GUID()).Flat += spelldmg * level * rar
-                    .DamageMultiplier();
+            unit.getStat(new ElementalResist(element).GUID())
+                    .addFlat(spellresist * rar.StatMultiplier(), level);
+            unit.getStat(new ElementalSpellDamage(element).GUID())
+                    .addFlat(spelldmg * rar.DamageMultiplier(), level);
         }
 
         for (Elements element : Elements.getAllExceptNone()) {
-            unit.getStat(new ElementalPene(element).GUID()).Flat += elePene * level * rar.DamageMultiplier();
+            unit.getStat(new ElementalPene(element).GUID())
+                    .addFlat(elePene * rar.DamageMultiplier(), level);
 
         }
 
     }
-
+    
     // this apparently takes 60 ms
     public static void AddRandomMobStatusEffects(LivingEntity entity, Unit unit,
                                                  MobRarity rarity) {
