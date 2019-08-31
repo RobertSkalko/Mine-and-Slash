@@ -30,6 +30,11 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
     }
 
+    @Override
+    public boolean activatesBreakRoll() {
+        return false;
+    }
+
     @OnlyIn(Dist.CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn,

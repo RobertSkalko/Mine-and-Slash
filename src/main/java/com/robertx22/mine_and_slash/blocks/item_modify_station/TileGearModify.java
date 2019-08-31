@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
+import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.items.currency.IAddsInstability;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
@@ -51,24 +52,26 @@ public class TileGearModify extends BaseTile {
 
                 ICommonDataItem data = ICommonDataItem.load(copy);
 
-                if (data instanceof IInstability && context.Currency.getItem() instanceof IAddsInstability) {
+                if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM.get()) {
+                    if (data instanceof IInstability && context.Currency.getItem() instanceof IAddsInstability) {
 
-                    IInstability insta = (IInstability) data;
-                    IAddsInstability addsInta = (IAddsInstability) context.Currency.getItem();
+                        IInstability insta = (IInstability) data;
+                        IAddsInstability addsInta = (IAddsInstability) context.Currency.getItem();
 
-                    if (insta.isInstabilityCapReached()) {
-                        copy = ItemStack.EMPTY;
-                    } else {
-                        boolean broke = false;
-                        if (insta.usesBreakChance()) {
-                            if (RandomUtils.roll(insta.getBreakChance())) {
-                                copy = new ItemStack(Items.GUNPOWDER);
-                                broke = true;
+                        if (insta.isInstabilityCapReached()) {
+                            copy = ItemStack.EMPTY;
+                        } else {
+                            boolean broke = false;
+                            if (insta.usesBreakChance()) {
+                                if (RandomUtils.roll(insta.getBreakChance())) {
+                                    copy = new ItemStack(Items.GUNPOWDER);
+                                    broke = true;
+                                }
                             }
-                        }
-                        if (broke == false) {
-                            insta.increaseInstability(addsInta.instabilityAddAmount());
-                            data.saveToStack(copy);
+                            if (broke == false) {
+                                insta.increaseInstability(addsInta.instabilityAddAmount());
+                                data.saveToStack(copy);
+                            }
                         }
                     }
                 }

@@ -1,22 +1,14 @@
-2.5.3
+2.6.0
+This could be called the hardcore update! I know a lot of you won't like any of this so i kept most of it configurable:
+
+* INSTABILITY! Gear items have this value and as you use currency items the instability increases. 
+The higher the instability the higher the break chance. This means the more you modify the item, the more likely it will break. 
+Some items like Chaos Orb reduce instability. If any other item would do this, it'd be an item like the chaos orb that has a chance to make the item worse. (you're encouraged to risk it)
+
+Now the why. Because it adds SCARCITY. And this will be the theme of more of my mods (if i can get some good ideas). Basically, to ensure BIS (Best in Slot) items are very hard to get.
+And to stop the gameplay of farming currencies at endgame to just reroll your existing items into perfection. 
+
 reduced droprates a bit (config change, i feel there's a bit too much drops cus i kept adding more and more types of loot)
 added bonus droprate for loot of lvl 5 and less if player is also lvl 5 or less
 fixed a bug that made all adventure maps have double droprate
 reduced repair values of materials by a bit
-2.5.2
-fixed possible source of lag
-tried to fix crash for some languages on the psi rune item
-2.5.1
-updated infusion and spell icons by matpac!
-fixed log spam of IllegalArgumentException
-2.5.0
-A bit of balancing, i think some won't like the nerfs but i feel it's needed:
-buffed regenerate spell scaling value
-buffed bolt spells base dmg a bit, increased their shoot speed
-instant heal scaling value nerfed, mana cost increased, base value buffed. Should ensure a lvl 1 heal spell isn't that useful for a lvl 50 character.
-normal items now show affixes in name by default but not uniques
-map leave pearl now shows your current map info (velox's idea!)
-added warning for crafting bags, to empty items inside
-fixed the anti cheese mechanic, should work with lava and enviromental dmg correctly now. Also added a barrier icon to note that mob won't drop mine and slash loot if it's been damaged too much by non player dmg sources.
-mobs now show their type if you are holding shift. (so you know if a mod's mob is actually a mob, or it's considered an animal or npc (meaning less loot))
-transfered some entity configs to the ones in folder. Means now there are default mob configs per type.

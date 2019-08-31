@@ -25,6 +25,11 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
 
     }
 
+    @Override
+    public boolean activatesBreakRoll() {
+        return false;
+    }
+
     public void createInfusion(GearItemData gear) {
 
         gear.infusion = new InfusionData();
