@@ -73,4 +73,8 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
         return "Increases item level";
     }
 
+    @Override
+    public int instabilityAddAmount() {
+        return 5;
+    }
 }

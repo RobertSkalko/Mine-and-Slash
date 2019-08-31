@@ -59,4 +59,9 @@ public class SuperiorUpgradeInfusion extends BaseUpgradeInfusion {
     public String locNameForLangFile() {
         return nameColor + "Superior Infusion Upgrade";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 2;
+    }
 }

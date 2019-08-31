@@ -73,4 +73,9 @@ public class RerollPrefixNumbers extends CurrencyItem implements ICurrencyItemEf
     public String locDescForLangFile() {
         return "Re-rolls numbers of a prefix";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 10;
+    }
 }

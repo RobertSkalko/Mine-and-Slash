@@ -25,6 +25,8 @@ public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable<
         return true;
     }
 
+    void saveToStack(ItemStack stack);
+
     @Nullable
     static ICommonDataItem load(ItemStack stack) {
 

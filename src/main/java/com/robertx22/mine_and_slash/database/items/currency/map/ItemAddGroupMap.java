@@ -73,5 +73,15 @@ public class ItemAddGroupMap extends CurrencyItem implements ICurrencyItemEffect
     public String locDescForLangFile() {
         return "Turns a Map into a group map.";
     }
+
+    @Override
+    public boolean addsInstability() {
+        return false;
+    }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 0;
+    }
 }
 

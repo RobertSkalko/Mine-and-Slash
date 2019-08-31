@@ -76,4 +76,9 @@ public class ItemRerollSet extends CurrencyItem implements ICurrencyItemEffect {
     public String locDescForLangFile() {
         return "Re-rolls an item's set.";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 20;
+    }
 }

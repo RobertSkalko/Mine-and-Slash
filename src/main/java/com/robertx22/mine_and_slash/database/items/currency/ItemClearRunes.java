@@ -63,4 +63,9 @@ public class ItemClearRunes extends CurrencyItem implements ICurrencyItemEffect 
     public String locDescForLangFile() {
         return "Clears runes and runewords from an item.";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 10;
+    }
 }

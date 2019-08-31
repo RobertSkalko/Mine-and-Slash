@@ -32,7 +32,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
+public abstract class CurrencyItem extends Item implements IAddsInstability, ISlashRegistryEntry<CurrencyItem>, ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 
@@ -115,6 +115,13 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
         tooltip.add(TooltipUtils.tier(this.Tier()));
         tooltip.add(TooltipUtils.rarity(getRarity()));
+        Tooltip.add("", tooltip);
+
+        if (this instanceof IAddsInstability && ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM
+                .get()) {
+            tooltip.add(Styles.REDCOMP()
+                    .appendText("Adds " + this.instabilityAddAmount() + " Instability"));
+        }
         Tooltip.add("", tooltip);
 
         Tooltip.add(Styles.BLUECOMP()

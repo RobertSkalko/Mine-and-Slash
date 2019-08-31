@@ -57,4 +57,9 @@ public class AttackInfusionItem extends BaseInfusionItem {
     public String locDescForLangFile() {
         return "Infuses an item with Attack Modifiers";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 5;
+    }
 }

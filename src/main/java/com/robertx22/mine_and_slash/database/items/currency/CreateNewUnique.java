@@ -90,4 +90,8 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
         return "Transform unique (same tier)";
     }
 
+    @Override
+    public int instabilityAddAmount() {
+        return 0;
+    }
 }

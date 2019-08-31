@@ -78,4 +78,9 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect {
     public String locDescForLangFile() {
         return "Adds a set to an item";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 40;
+    }
 }

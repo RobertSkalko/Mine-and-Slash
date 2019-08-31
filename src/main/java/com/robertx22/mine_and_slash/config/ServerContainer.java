@@ -13,6 +13,9 @@ public class ServerContainer {
     public BooleanValue RESET_MAP_DIMENSIONS_ON_LOAD;
     public BooleanValue DISABLE_DEATH_IN_MAPS;
 
+    public BooleanValue ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS;
+    public BooleanValue ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM;
+
     public IntValue MAXIMUM_WORN_RUNED_ITEMS;
     public IntValue MAXIMUM_WORN_UNIQUE_ITEMS;
     public IntValue MAX_PLAYERS_PER_MAP;
@@ -38,6 +41,12 @@ public class ServerContainer {
         USE_ATTACK_COOLDOWN = builder.comment(".")
                 .translation("mmorpg.word")
                 .define("USE_ATTACK_COOLDOWN", true);
+
+        ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS = builder.comment(".")
+                .define("ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS", true);
+
+        ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM = builder.comment(".")
+                .define("ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM", true);
 
         RESET_MAP_DIMENSIONS_ON_LOAD = builder.comment(".")
                 .translation("mmorpg.word")

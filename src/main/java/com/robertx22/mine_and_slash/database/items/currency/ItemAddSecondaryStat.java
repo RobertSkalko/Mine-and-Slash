@@ -67,4 +67,9 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
     public String locDescForLangFile() {
         return "Add another secondary stat";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 10;
+    }
 }

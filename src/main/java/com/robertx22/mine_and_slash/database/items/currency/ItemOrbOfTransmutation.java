@@ -87,4 +87,9 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
     public String locDescForLangFile() {
         return "Transform Common Item";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 0;
+    }
 }

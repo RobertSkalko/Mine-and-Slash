@@ -76,4 +76,9 @@ public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect, 
     public String locDescForLangFile() {
         return "Add a suffix";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 25;
+    }
 }

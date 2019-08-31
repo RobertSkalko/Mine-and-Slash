@@ -50,4 +50,9 @@ public class ResourceInfusionItem extends BaseInfusionItem {
     public String locNameForLangFile() {
         return nameColor + "Resource Infusion";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 5;
+    }
 }

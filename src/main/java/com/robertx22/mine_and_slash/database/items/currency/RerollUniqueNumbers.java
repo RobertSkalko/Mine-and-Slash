@@ -72,4 +72,9 @@ public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEf
     public String locDescForLangFile() {
         return "Re-rolls unique stat numbers";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 10;
+    }
 }

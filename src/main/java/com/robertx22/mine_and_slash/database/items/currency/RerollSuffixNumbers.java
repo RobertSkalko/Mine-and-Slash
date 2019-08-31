@@ -73,4 +73,9 @@ public class RerollSuffixNumbers extends CurrencyItem implements ICurrencyItemEf
     public String locDescForLangFile() {
         return "Re-rolls numbers of a suffix";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 10;
+    }
 }

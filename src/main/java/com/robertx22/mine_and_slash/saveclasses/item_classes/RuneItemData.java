@@ -50,6 +50,11 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
     public StatModData jewerly;
 
     @Override
+    public void saveToStack(ItemStack stack) {
+        Rune.Save(stack, this);
+    }
+
+    @Override
     public String getUniqueGUID() {
         return this.name;
     }

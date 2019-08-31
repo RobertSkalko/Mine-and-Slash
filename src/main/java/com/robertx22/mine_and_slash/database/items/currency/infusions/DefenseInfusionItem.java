@@ -56,4 +56,9 @@ public class DefenseInfusionItem extends BaseInfusionItem {
     public String locNameForLangFile() {
         return nameColor + "Defense Infusion";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 5;
+    }
 }

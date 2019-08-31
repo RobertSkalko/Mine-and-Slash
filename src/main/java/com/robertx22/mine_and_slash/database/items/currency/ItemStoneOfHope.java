@@ -88,4 +88,9 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
     public String locDescForLangFile() {
         return "Transform any rarity gear into higher rarity";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 0;
+    }
 }

@@ -68,4 +68,8 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, I
         return "Permanently adds a Chaos stat";
     }
 
+    @Override
+    public int instabilityAddAmount() {
+        return -25;
+    }
 }

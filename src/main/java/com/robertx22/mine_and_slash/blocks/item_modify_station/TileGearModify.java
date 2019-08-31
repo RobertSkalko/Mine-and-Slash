@@ -1,13 +1,18 @@
 package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
+import com.robertx22.mine_and_slash.database.items.currency.IAddsInstability;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
@@ -43,6 +48,31 @@ public class TileGearModify extends BaseTile {
             if (context.effect.canItemBeModified(context)) {
                 ItemStack copy = context.stack.copy();
                 copy = context.effect.ModifyItem(copy, context.Currency);
+
+                ICommonDataItem data = ICommonDataItem.load(copy);
+
+                if (data instanceof IInstability && context.Currency.getItem() instanceof IAddsInstability) {
+
+                    IInstability insta = (IInstability) data;
+                    IAddsInstability addsInta = (IAddsInstability) context.Currency.getItem();
+
+                    if (insta.isInstabilityCapReached()) {
+                        copy = ItemStack.EMPTY;
+                    } else {
+                        boolean broke = false;
+                        if (insta.usesBreakChance()) {
+                            if (RandomUtils.roll(insta.getBreakChance())) {
+                                copy = new ItemStack(Items.GUNPOWDER);
+                                broke = true;
+                            }
+                        }
+                        if (broke == false) {
+                            insta.increaseInstability(addsInta.instabilityAddAmount());
+                            data.saveToStack(copy);
+                        }
+                    }
+                }
+
                 return copy;
             } else {
                 return ItemStack.EMPTY;

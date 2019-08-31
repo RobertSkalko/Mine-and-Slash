@@ -70,6 +70,11 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     @Store
     public String mapUUID = UUID.randomUUID().toString();
 
+    @Override
+    public void saveToStack(ItemStack stack) {
+        Map.Save(stack, this);
+    }
+
     public static MapItemData empty() {
         MapItemData map = new MapItemData();
         map.mapUUID = "error";

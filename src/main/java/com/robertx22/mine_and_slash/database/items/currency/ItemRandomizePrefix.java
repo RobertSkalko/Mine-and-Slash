@@ -70,4 +70,9 @@ public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEf
     public String locDescForLangFile() {
         return "Re-rolls prefix";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 5;
+    }
 }

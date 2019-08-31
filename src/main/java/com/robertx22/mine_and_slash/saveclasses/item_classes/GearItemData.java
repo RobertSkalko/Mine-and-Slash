@@ -18,6 +18,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -41,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class GearItemData implements ICommonDataItem<ItemRarity> {
+public class GearItemData implements ICommonDataItem<ItemRarity>, IInstability {
 
     @Store
     public boolean isUnique = false;
@@ -124,6 +125,10 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
     // crafting limits
     @Store
     public int timesLeveledUp = 0;
+
+    @Store
+    public int instability = 0;
+
     //
 
     // used when upgrading item rarity
@@ -324,6 +329,20 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
             event.getToolTip()
                     .add(Styles.GOLDCOMP()
                             .appendSibling(new StringTextComponent("Power Level: " + getPowerLevel())));
+
+            if (this.usesInstability()) {
+                event.getToolTip()
+                        .add(Styles.REDCOMP()
+                                .appendText("Instability: " + getInstability() + "/" + getMaxInstability()));
+
+                if (this.usesBreakChance()) {
+                    event.getToolTip()
+                            .add(Styles.REDCOMP()
+                                    .appendText("Break chance: " + getBreakChance() + "%"));
+
+                }
+            }
+
             event.getToolTip()
                     .add(Styles.BLUECOMP()
                             .appendSibling(new StringTextComponent("[Alt]: Show Detailed Stat Descriptions")));
@@ -423,6 +442,11 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
     }
 
     @Override
+    public void saveToStack(ItemStack stack) {
+        Gear.Save(stack, this);
+    }
+
+    @Override
     public String getUniqueGUID() {
 
         try {
@@ -456,5 +480,15 @@ public class GearItemData implements ICommonDataItem<ItemRarity> {
     @Override
     public String getSpecificType() {
         return this.gearTypeName;
+    }
+
+    @Override
+    public int getInstability() {
+        return this.instability;
+    }
+
+    @Override
+    public void increaseInstability(int amount) {
+        this.instability += amount;
     }
 }

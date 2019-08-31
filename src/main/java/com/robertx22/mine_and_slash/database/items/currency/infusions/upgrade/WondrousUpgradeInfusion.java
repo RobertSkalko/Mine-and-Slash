@@ -58,4 +58,9 @@ public class WondrousUpgradeInfusion extends BaseUpgradeInfusion {
     public String locNameForLangFile() {
         return nameColor + "Wondrous Infusion Upgrade";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 1;
+    }
 }

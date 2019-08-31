@@ -74,4 +74,9 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
     public String locDescForLangFile() {
         return "Re-rolls all numbers on a gear";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 10;
+    }
 }

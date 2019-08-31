@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.new_content_test.blueprints.requests.Bluepri
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Blueprint;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -39,6 +40,11 @@ public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
 
     @Store
     public int rarity;
+
+    @Override
+    public void saveToStack(ItemStack stack) {
+        Blueprint.Save(stack, this);
+    }
 
     public int getDifficulty() {
 

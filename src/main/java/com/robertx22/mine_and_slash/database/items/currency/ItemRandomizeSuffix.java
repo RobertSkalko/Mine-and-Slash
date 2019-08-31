@@ -70,4 +70,9 @@ public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEf
     public String locDescForLangFile() {
         return "Re-rolls suffix";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 5;
+    }
 }

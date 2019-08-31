@@ -54,4 +54,8 @@ public class NormalUpgradeInfusion extends BaseUpgradeInfusion {
         return Arrays.asList("You start to feel the essence of Luck.");
     }
 
+    @Override
+    public int instabilityAddAmount() {
+        return 3;
+    }
 }

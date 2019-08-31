@@ -74,4 +74,9 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect, 
     public String locDescForLangFile() {
         return "Add a prefix";
     }
+
+    @Override
+    public int instabilityAddAmount() {
+        return 25;
+    }
 }
