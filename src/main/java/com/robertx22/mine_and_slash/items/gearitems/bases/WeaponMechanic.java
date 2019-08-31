@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public abstract class WeaponMechanic {
 
@@ -16,23 +17,23 @@ public abstract class WeaponMechanic {
 
     public abstract WeaponTypes weaponType();
 
-    public boolean Attack(LivingEntity source, LivingEntity target, UnitData unitsource,
-                          UnitData targetUnit) {
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
+                          UnitData unitsource, UnitData targetUnit) {
 
         int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
-        DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
+        DamageEffect dmg = new DamageEffect(event, source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
 
         dmg.Activate();
 
         return true;
     }
 
-    public boolean multiplyDamage(LivingEntity source, LivingEntity target,
-                                  UnitData unitsource, UnitData targetUnit,
-                                  float multiplier) {
+    public boolean multiplyDamage(LivingHurtEvent event, LivingEntity source,
+                                  LivingEntity target, UnitData unitsource,
+                                  UnitData targetUnit, float multiplier) {
 
         int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
-        DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
+        DamageEffect dmg = new DamageEffect(event, source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
 
         dmg.setMultiplier(multiplier);
 

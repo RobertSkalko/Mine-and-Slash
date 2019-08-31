@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class CrossBowWeaponMechanic extends WeaponMechanic {
 
@@ -26,10 +27,10 @@ public class CrossBowWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public boolean Attack(LivingEntity source, LivingEntity target,
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
                           EntityCap.UnitData unitsource, EntityCap.UnitData targetUnit) {
 
-        super.multiplyDamage(source, target, unitsource, targetUnit, 2);
+        super.multiplyDamage(event, source, target, unitsource, targetUnit, 2);
 
         return true;
     }

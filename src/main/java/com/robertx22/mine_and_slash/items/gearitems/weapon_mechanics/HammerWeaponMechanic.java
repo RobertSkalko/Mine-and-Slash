@@ -2,16 +2,17 @@ package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +37,8 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     float radius = 1.5F;
 
     @Override
-    public boolean Attack(LivingEntity source, LivingEntity target, UnitData unitsource,
-                          UnitData targetUnit) {
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
+                          UnitData unitsource, UnitData targetUnit) {
 
         List<LivingEntity> entities = new ArrayList<LivingEntity>();
 
@@ -50,7 +51,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
 
         for (LivingEntity entity : entities) {
 
-            DamageEffect dmg = new DamageEffect(source, entity, num, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer);
+            DamageEffect dmg = new DamageEffect(event, source, entity, num, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer);
             dmg.Activate();
         }
 

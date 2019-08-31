@@ -1,12 +1,13 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
 
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class BowWeaponMechanic extends WeaponMechanic {
 
@@ -26,10 +27,10 @@ public class BowWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public boolean Attack(LivingEntity source, LivingEntity target,
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
                           EntityCap.UnitData unitsource, EntityCap.UnitData targetUnit) {
 
-        super.multiplyDamage(source, target, unitsource, targetUnit, 4);
+        super.multiplyDamage(event, source, target, unitsource, targetUnit, 4);
 
         return true;
     }

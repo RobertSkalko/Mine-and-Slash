@@ -51,6 +51,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -120,8 +121,9 @@ public class EntityCap {
 
         int getLevel();
 
-        void mobBasicAttack(LivingEntity source, LivingEntity target, UnitData sourcedata,
-                            UnitData targetdata, float event_damage);
+        void mobBasicAttack(LivingHurtEvent event, LivingEntity source,
+                            LivingEntity target, UnitData sourcedata, UnitData targetdata,
+                            float event_damage);
 
         void setLevel(int lvl, LivingEntity entity);
 
@@ -167,8 +169,9 @@ public class EntityCap {
 
         boolean tryUseWeapon(GearItemData gear, LivingEntity entity);
 
-        void attackWithWeapon(ItemStack weapon, GearItemData gear, LivingEntity source,
-                              LivingEntity target, UnitData targetdata);
+        void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData gear,
+                              LivingEntity source, LivingEntity target,
+                              UnitData targetdata);
 
         void onLogin(PlayerEntity player);
 
@@ -202,7 +205,8 @@ public class EntityCap {
 
         void clearCurrentMapId();
 
-        void unarmedAttack(LivingEntity source, LivingEntity target, UnitData targetdata);
+        void unarmedAttack(LivingHurtEvent event, LivingEntity source,
+                           LivingEntity target, UnitData targetdata);
 
         boolean decreaseRarity(LivingEntity entity);
 
@@ -351,9 +355,9 @@ public class EntityCap {
         }
 
         @Override
-        public void mobBasicAttack(LivingEntity source, LivingEntity target,
-                                   UnitData sourcedata, UnitData targetdata,
-                                   float event_damage) {
+        public void mobBasicAttack(LivingHurtEvent event, LivingEntity source,
+                                   LivingEntity target, UnitData sourcedata,
+                                   UnitData targetdata, float event_damage) {
 
             MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
 
@@ -363,7 +367,7 @@ public class EntityCap {
 
             num *= SlashRegistry.getEntityConfig(source, sourcedata).DMG_MULTI;
 
-            DamageEffect dmg = new DamageEffect(source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
+            DamageEffect dmg = new DamageEffect(event, source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 
             dmg.Activate();
 
@@ -796,9 +800,9 @@ public class EntityCap {
         }
 
         @Override
-        public void attackWithWeapon(ItemStack weapon, GearItemData weaponData,
-                                     LivingEntity source, LivingEntity target,
-                                     UnitData targetdata) {
+        public void attackWithWeapon(LivingHurtEvent event, ItemStack weapon,
+                                     GearItemData weaponData, LivingEntity source,
+                                     LivingEntity target, UnitData targetdata) {
 
             if (weaponData.GetBaseGearType() instanceof IWeapon) {
 
@@ -808,7 +812,7 @@ public class EntityCap {
 
                 IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
                 WeaponMechanic iWep = iwep.mechanic();
-                iWep.Attack(source, target, this, targetdata);
+                iWep.Attack(event, source, target, this, targetdata);
 
             }
         }
@@ -970,8 +974,8 @@ public class EntityCap {
         }
 
         @Override
-        public void unarmedAttack(LivingEntity source, LivingEntity target,
-                                  UnitData targetdata) {
+        public void unarmedAttack(LivingHurtEvent event, LivingEntity source,
+                                  LivingEntity target, UnitData targetdata) {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
@@ -979,7 +983,7 @@ public class EntityCap {
 
                 this.consumeEnergy(cost);
                 int num = (int) unit.getStat(PhysicalDamage.GUID).Value;
-                DamageEffect dmg = new DamageEffect(source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
+                DamageEffect dmg = new DamageEffect(event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
                 dmg.Activate();
             }

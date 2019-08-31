@@ -13,20 +13,24 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
 
-    public DamageEffect(LivingEntity source, LivingEntity target, int dmg,
-                        UnitData sourceData, UnitData targetData, EffectTypes effectType,
-                        WeaponTypes weptype) {
+    public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target,
+                        int dmg, UnitData sourceData, UnitData targetData,
+                        EffectTypes effectType, WeaponTypes weptype) {
         super(source, target, sourceData, targetData);
 
         this.setEffectType(effectType, weptype);
         this.number = dmg;
+        this.event = event;
     }
+
+    LivingHurtEvent event;
 
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
 
@@ -78,10 +82,20 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return false;
     }
 
+    public float getActualDamage() {
+
+        this.number *= damageMultiplier; // this way axes can do double damage instead of doing double attacks
+
+        float dmg = HealthUtils.DamageToMinecraftHealth(number + 1, target);
+
+        return dmg;
+
+    }
+
     @Override
     protected void activate() {
 
-        if (target.isAlive() == false) {
+        if (target.getHealth() <= 0F || !target.isAlive()) {
             return;
         }
 
@@ -89,10 +103,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             return;
         }
 
-        this.number *= damageMultiplier; // this way axes can do double damage instead of doing double attacks
-
         MyDamageSource dmgsource = new MyDamageSource(dmgSourceName, this.source, element, (int) number);
-        float dmg = HealthUtils.DamageToMinecraftHealth(number + 1, target);
 
         if (this.isPartiallyBlocked) {
             dmgsource.setDamageBypassesArmor();
@@ -112,11 +123,17 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             target.hurtResistantTime = 0;   // set to 0 so my attack can work (cus it comes after a vanilla atk) and then set it back to what it was before
 
-            target.attackEntityFrom(dmgsource, dmg);
-            target.hurtResistantTime = hurtResistantTime;
-            //
+            DmgByElement info = getDmgByElement();
 
-            activateBonusElementDamage();
+            if (event != null) {
+                event.setAmount(info.totalDmg);
+                event.getSource().setDamageBypassesArmor();
+            } else {
+                target.attackEntityFrom(dmgsource, info.totalDmg);
+            }
+
+            target.hurtResistantTime = hurtResistantTime;
+
             Heal();
             RestoreMana();
 
@@ -127,10 +144,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 MMORPG.sendToClient(packet, player);
 
             }
-
-            BlockEffect.removeKnockbackResist(target);
-
         }
+
+        BlockEffect.removeKnockbackResist(target);
 
     }
 
@@ -153,15 +169,47 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return this;
     }
 
-    private void activateBonusElementDamage() {
+    static class DmgByElement {
+
+        public HashMap<Elements, Integer> dmgmap = new HashMap<>();
+        public Elements highestDmgElement;
+        public float highestDmgValue;
+        public float totalDmg = 0;
+
+        public void addDmg(float dmg, Elements element) {
+
+            int total = (int) (dmgmap.getOrDefault(element, 0) + dmg);
+
+            dmgmap.put(element, total);
+
+            totalDmg += dmg;
+
+            if (total > highestDmgValue) {
+                highestDmgElement = element;
+                highestDmgValue = total;
+            }
+
+        }
+
+    }
+
+    private DmgByElement getDmgByElement() {
+        DmgByElement info = new DmgByElement();
+
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
-                DamageEffect bonus = new DamageEffect(source, target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
+                DamageEffect bonus = new DamageEffect(null, source, target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;
-                bonus.Activate();
+
+                info.addDmg(bonus.getActualDamage(), bonus.element);
+
             }
         }
+        info.addDmg(this.getActualDamage(), this.element);
+
+        return info;
+
     }
 
     @Override

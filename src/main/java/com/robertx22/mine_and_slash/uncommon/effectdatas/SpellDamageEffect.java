@@ -13,7 +13,7 @@ public class SpellDamageEffect extends DamageEffect implements IHasSpellEffect {
     public SpellDamageEffect(LivingEntity source, LivingEntity target, int dmg,
                              EntityCap.UnitData sourceData, EntityCap.UnitData targetData,
                              BaseSpell spell) {
-        super(source, target, dmg, sourceData, targetData, EffectTypes.SPELL, WeaponTypes.None);
+        super(null, source, target, dmg, sourceData, targetData, EffectTypes.SPELL, WeaponTypes.None);
 
         this.spell = spell;
     }

@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -26,7 +26,7 @@ public class OnMeleeAttack {
     // damageevent could work, maybe dmg event for players but livingattack event for mobs?
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onMobMeleeAttack(LivingAttackEvent event) {
+    public static void onMobMeleeAttack(LivingHurtEvent event) {
 
         LivingEntity target = event.getEntityLiving();
 
@@ -49,7 +49,7 @@ public class OnMeleeAttack {
             if (event.getSource().getTrueSource() instanceof LivingEntity) {
                 LivingEntity source = (LivingEntity) event.getSource().getTrueSource();
 
-                onAttack(true, source, target, event.getAmount());
+                onAttack(true, source, target, event.getAmount(), event);
             }
 
         }
@@ -57,7 +57,8 @@ public class OnMeleeAttack {
     }
 
     public static void onAttack(boolean useCooldown, LivingEntity source,
-                                LivingEntity target, float amount) {
+                                LivingEntity target, float amount,
+                                LivingHurtEvent event) {
 
         try {
 
@@ -103,17 +104,17 @@ public class OnMeleeAttack {
 
                 if (sourceData.isWeapon(weapondata)) {
                     if (sourceData.tryUseWeapon(weapondata, source)) {
-                        sourceData.attackWithWeapon(source.getHeldItemMainhand(), weapondata, source, target, targetData);
+                        sourceData.attackWithWeapon(event, source.getHeldItemMainhand(), weapondata, source, target, targetData);
                     }
 
                 } else {
-                    sourceData.unarmedAttack(source, target, targetData);
+                    sourceData.unarmedAttack(event, source, target, targetData);
                 }
 
             } else { // if its a mob
 
-                sourceData.mobBasicAttack(source, target, sourceData, targetData, amount);
-
+                sourceData.mobBasicAttack(event, source, target, sourceData, targetData, amount);
+                //event.setAmount();
             }
 
         } catch (Exception e) {
@@ -123,7 +124,7 @@ public class OnMeleeAttack {
 
     }
 
-    public static boolean isForbiddenAttack(LivingAttackEvent event) {
+    public static boolean isForbiddenAttack(LivingHurtEvent event) {
 
         if (event.getSource().getTrueSource() instanceof LivingEntity) {
             LivingEntity en = (LivingEntity) event.getSource().getTrueSource();

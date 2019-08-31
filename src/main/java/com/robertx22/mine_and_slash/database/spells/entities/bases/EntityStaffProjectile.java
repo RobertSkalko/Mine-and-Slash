@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpellEffect;
+import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpellEffect;
-import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -66,7 +66,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
                     UnitData targetdata = Load.Unit(entity);
 
                     staffclass.mechanic()
-                            .Attack(this.getThrower(), entity, sourcedata, targetdata);
+                            .Attack(null, this.getThrower(), entity, sourcedata, targetdata);
                 } catch (Exception e) {
                     e.printStackTrace();
 
