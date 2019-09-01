@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.mine_and_slash.onevent.entity.*;
+import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
 import com.robertx22.mine_and_slash.onevent.item.*;
 import com.robertx22.mine_and_slash.onevent.ontick.OnTickLogic;
 import com.robertx22.mine_and_slash.onevent.player.*;
@@ -39,8 +40,7 @@ public class RegisterEvents {
 
     private static void registerEntityEvents() {
 
-        register(OnHurt.class);
-        register(OnMeleeAttack.class);
+        register(OnHurtEvent.class);
         register(OnEquipChange.class);
         register(OnHealDecrease.class);
         register(OnMobDeathDrops.class);

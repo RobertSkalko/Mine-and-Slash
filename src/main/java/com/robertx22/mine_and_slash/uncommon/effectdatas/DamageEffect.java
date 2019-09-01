@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_effects.defense.BlockEff
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.DmgNumPacket;
-import com.robertx22.mine_and_slash.onevent.entity.DmgSourceUtils;
+import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -84,13 +84,14 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     public float getActualDamage() {
-
-        this.number *= damageMultiplier; // this way axes can do double damage instead of doing double attacks
-
-        float dmg = HealthUtils.DamageToMinecraftHealth(number + 1, target);
-
+        float dmg = this.number * damageMultiplier; // this way axes can do double damage instead of doing double attacks
+        dmg = HealthUtils.DamageToMinecraftHealth(dmg + 1, target, targetData);
         return dmg;
+    }
 
+    public float getVisibleDamage() {
+        float dmg = this.number * damageMultiplier; // this way axes can do double damage instead of doing double attacks
+        return dmg;
     }
 
     public float getEventDmg() {
@@ -151,7 +152,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                 ServerPlayerEntity player = (ServerPlayerEntity) source;
                 DmgNumPacket packet = new DmgNumPacket(target, info.highestDmgElement, NumberUtils
-                        .formatDamageNumber(this));
+                        .formatDamageNumber(this, (int) HealthUtils.vanillaHealthToActualHealth(dmg, target, targetData)));
                 MMORPG.sendToClient(packet, player);
 
             }

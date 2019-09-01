@@ -31,8 +31,8 @@ public class NumberUtils {
 
     }
 
-    public static String formatDamageNumber(DamageEffect data) {
-        String num = formatNumber((int) data.number);
+    public static String formatDamageNumber(DamageEffect data, int val) {
+        String num = formatNumber(val);
 
         if (data.crit) {
             num += "!";

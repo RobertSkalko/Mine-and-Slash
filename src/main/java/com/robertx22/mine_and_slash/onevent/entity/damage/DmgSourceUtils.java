@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.onevent.entity;
+package com.robertx22.mine_and_slash.onevent.entity.damage;
 
 import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;

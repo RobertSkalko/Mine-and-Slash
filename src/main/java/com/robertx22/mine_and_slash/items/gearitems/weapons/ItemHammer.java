@@ -27,4 +27,5 @@ public class ItemHammer extends BaseWeaponItem implements IWeapon {
     public WeaponMechanic mechanic() {
         return new HammerWeaponMechanic();
     }
+
 }

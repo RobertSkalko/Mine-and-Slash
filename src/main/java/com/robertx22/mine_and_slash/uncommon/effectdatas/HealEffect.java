@@ -30,6 +30,6 @@ public class HealEffect extends EffectData {
         // increases heal amount by the amount its decreased after in an event
         return HealthUtils.DamageToMinecraftHealth(number / ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI
                 .get()
-                .floatValue(), target);
+                .floatValue(), target, targetData);
     }
 }

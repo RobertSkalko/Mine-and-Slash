@@ -50,4 +50,5 @@ public class ItemAxe extends BaseWeaponItem implements IWeapon {
             return material != Material.PLANTS && material != Material.CORAL && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
         }
     }
+
 }

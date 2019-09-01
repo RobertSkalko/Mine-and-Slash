@@ -1,11 +1,13 @@
-package com.robertx22.mine_and_slash.onevent.entity;
+package com.robertx22.mine_and_slash.onevent.entity.damage;
 
+import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
@@ -15,17 +17,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class OnMeleeAttack {
+public class LivingHurtUtils {
 
-    // AttackEntityEvent doesnt work with things like bow..
-
-    // damageevent could work, maybe dmg event for players but livingattack event for mobs?
-
-    @SubscribeEvent(priority = EventPriority.NORMAL)
-    public static void onMobMeleeAttack(LivingHurtEvent event) {
+    public static void onAttack(LivingHurtEvent event) {
 
         LivingEntity target = event.getEntityLiving();
 
@@ -102,14 +97,11 @@ public class OnMeleeAttack {
                 }
 
             } else { // if its a mob
-
                 sourceData.mobBasicAttack(event, source, target, sourceData, targetData, amount);
-                //event.setAmount();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-
         }
 
     }
@@ -130,6 +122,88 @@ public class OnMeleeAttack {
         }
 
         return false;
+    }
+
+    /**
+     * If damage is from my source, leave the value, otherwise decrease it (this
+     * makes my damage source the best one)
+     *
+     * @param event
+     */
+    public static void modifyDamage(LivingHurtEvent event) {
+        if (event.getEntity().world.isRemote) {
+            return;
+        }
+        if (event.getSource() == null) {
+            return;
+        }
+
+        if (DmgSourceUtils.isMyDmgSource(event.getSource())) {
+            DmgSourceUtils.removeSourceMarker(event.getSource());
+            return;
+        }
+
+        // mobs take much less damage from any source other than my mods. This is
+        // required or else there's no point in getting legendary weapons if a diamond
+        // sword more damage
+
+        if (isEnviromentalDmg(event.getSource())) {
+            if (event.getEntity() instanceof PlayerEntity == false) {
+                event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI
+                        .get()
+                        .floatValue());
+                return;
+            }
+        } else {
+
+            // dont decrease dmg if its from whitelist item
+            LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
+
+            ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(en
+                    .getHeldItemMainhand());
+
+            if (mod != null) {
+                event.setAmount(event.getAmount() * mod.dmgMultiplier);
+                return;
+            }
+
+            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI
+                    .get()
+                    .floatValue());
+
+            return;
+        }
+    }
+
+    public static boolean isEnviromentalDmg(DamageSource source) {
+        return source.getTrueSource() instanceof LivingEntity == false;
+    }
+
+    public static void onHurtRecordNonPlayerDmg(LivingHurtEvent event) {
+
+        LivingEntity defender = event.getEntityLiving();
+
+        if (defender instanceof PlayerEntity == false) {
+
+            if (event.getSource() != null) {
+                Entity attacker = event.getSource().getTrueSource();
+
+                if (attacker instanceof PlayerEntity == false) {
+                    UnitData data = Load.Unit(event.getEntityLiving());
+                    if (data != null) {
+                        data.onDamagedByNonPlayer(defender, event.getAmount());
+                        data.trySync(defender);
+                    }
+
+                }
+            } else {
+                UnitData data = Load.Unit(event.getEntityLiving());
+                if (data != null) {
+                    data.onDamagedByNonPlayer(defender, event.getAmount());
+                    data.trySync(defender);
+                }
+            }
+        }
     }
 
 }

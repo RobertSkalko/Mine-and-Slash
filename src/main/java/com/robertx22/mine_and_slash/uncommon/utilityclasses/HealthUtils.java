@@ -3,15 +3,14 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 
 public class HealthUtils {
 
-    public static float DamageToMinecraftHealth(float dmg, LivingEntity entity) {
+    public static float DamageToMinecraftHealth(float dmg, LivingEntity entity,
+                                                UnitData data) {
 
         try {
-            UnitData data = Load.Unit(entity);
             Unit unit = data.getUnit();
 
             float maxhp = unit.getStat(new Health()).Value;
@@ -19,6 +18,24 @@ public class HealthUtils {
 
             return (float) (maxMChp / maxhp * dmg);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+
+    }
+
+    public static float vanillaHealthToActualHealth(float dmg, LivingEntity entity,
+                                                    UnitData data) {
+
+        try {
+            Unit unit = data.getUnit();
+
+            float maxHp = unit.healthData().Value;
+            float maxVanillaHp = entity.getMaxHealth();
+
+            return (float) (dmg / maxVanillaHp * maxHp);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return 0;
 
