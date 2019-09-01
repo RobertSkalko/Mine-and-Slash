@@ -67,7 +67,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         for (int i = 0; i < TileGearRepair.FUEL_SLOTS_COUNT; ++i) {
             //double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
 
-            int yOffset = (int) ((1.0 - tile.fractionOfCookTimeComplete()) * FLAME_HEIGHT);
+            int yOffset = (int) ((1 - (float) tile.fuel / tile.MaximumFuel) * FLAME_HEIGHT);
             blit(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
         }
 

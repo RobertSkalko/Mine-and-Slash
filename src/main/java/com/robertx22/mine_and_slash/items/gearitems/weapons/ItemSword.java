@@ -27,6 +27,7 @@ public class ItemSword extends SwordItem implements IWeapon, IAutoLocName, IGear
 
     public ItemSword(int rar) {
         super(new RarityItemTier(rar), 5 + (rar + 1), -2.4F, (new Item.Properties()));
+        this.rarity = rar;
     }
 
     @Override

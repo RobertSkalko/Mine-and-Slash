@@ -95,9 +95,10 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                     if (insta.activatesBreakRoll()) {
                         if (context.data instanceof IInstability) {
                             IInstability i = (IInstability) context.data;
+
                             if (i.getBreakChance() > 0) {
-                                String breaktxt = Words.BreakChance.translate() + ": " + i
-                                        .getBreakChance();
+                                String breaktxt = Words.BreakChance.translate() + ": " + String
+                                        .format("%.1f", i.getBreakChance()) + "%";
                                 font.drawString(breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y, Color.red
                                         .getRGB());
                                 y += font.FONT_HEIGHT;
