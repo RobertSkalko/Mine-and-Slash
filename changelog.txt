@@ -11,9 +11,8 @@ And to stop the gameplay of farming currencies at endgame to just reroll your ex
 (this will likely lead to bugs! Beware of weirdness in stats and battle)
 
 * COMBAT OVERHAUL! 
-//Attack speed should be fixed now
 there is no longer many dmg numbers for every element you do, it's all combined into 1 now.
-i changed internal code of it, should be buggy
+i changed internal code of it, could be buggy
 
 Other more minor changes:
 reduced droprates a bit (config change, i feel there's a bit too much drops cus i kept adding more and more types of loot)
@@ -24,3 +23,4 @@ nerfed instant heal % hp value, buffed base value
 fixed weakness making weapons unusable (will still happen on some compatible weapons i assume)
 removed config for instant attack speed.
 reduced player hp regen at lvl 1
+default non mod dmg is now 0. Should prevent weirdness like lvl 1 players able to kill lvl 100 mobs. (was 3% before)
