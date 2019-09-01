@@ -39,7 +39,7 @@ minecraft {
         client {
             workingDirectory project.file('run')
 
-            property 'forge.logging.console.level', 'debug'
+            //property 'forge.logging.console.level', 'debug'
 
             mods {
                 mmorpg {
@@ -51,7 +51,7 @@ minecraft {
         server {
             workingDirectory project.file('run')
 
-            property 'forge.logging.console.level', 'debug'
+            //property 'forge.logging.console.level', 'debug'
 
             mods {
                 mmorpg {
@@ -65,10 +65,10 @@ minecraft {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP,CORE,PULSARCONFIG'
+            //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP,CORE,PULSARCONFIG'
 
             // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
+            //property 'forge.logging.console.level', 'debug'
 
             args '--mod', 'mmorpg', '--all', '--output', file('src/generated/resources/')
 

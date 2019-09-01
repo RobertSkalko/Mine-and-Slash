@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.spell_items;
 
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
+import com.robertx22.mine_and_slash.items.gearitems.bases.MyForgeItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 
-public abstract class BaseSpellItem extends Item implements IAutoLocName {
+public abstract class BaseSpellItem extends Item implements IAutoLocName, MyForgeItem {
 
     public abstract String GUID();
 

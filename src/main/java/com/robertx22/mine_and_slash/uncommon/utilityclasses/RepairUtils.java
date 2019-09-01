@@ -23,9 +23,14 @@ public class RepairUtils {
         stack.getOrCreateTag().putBoolean(IS_BEING_REPAIRED, true);
     }
 
+    public static void disableRepair(ItemStack stack) {
+        stack.getOrCreateTag().putBoolean(IS_BEING_REPAIRED, false);
+    }
+
     public static void setDamage(ItemStack stack, int damage) {
         allowRepair(stack);
         setDamageOverride(stack, damage);
+        disableRepair(stack);
     }
 
 }
