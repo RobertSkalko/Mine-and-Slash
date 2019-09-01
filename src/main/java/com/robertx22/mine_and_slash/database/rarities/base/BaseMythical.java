@@ -33,7 +33,7 @@ public abstract class BaseMythical implements Rarity {
 
     @Override
     public MinMax SpawnDurabilityHit() {
-        return new MinMax(80, 90);
+        return new MinMax(85, 95);
     }
 
     @Override

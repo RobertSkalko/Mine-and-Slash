@@ -30,9 +30,9 @@ public class RarityWeight {
                 .defineInRange("LEGENDARY_WEIGHT", 1250, 0, Integer.MAX_VALUE);
 
         MYTHICAL_WEIGHT = builder.translation("mmorpg.rarity.mythical")
-                .defineInRange("MYTHICAL_WEIGHT", 400, 0, Integer.MAX_VALUE);
+                .defineInRange("MYTHICAL_WEIGHT", 250, 0, Integer.MAX_VALUE);
 
         builder.pop();
     }
-    
+
 }

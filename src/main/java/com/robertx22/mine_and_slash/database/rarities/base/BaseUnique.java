@@ -32,7 +32,7 @@ public abstract class BaseUnique implements Rarity {
 
     @Override
     public MinMax SpawnDurabilityHit() {
-        return new MinMax(70, 90);
+        return new MinMax(75, 90);
     }
 
     @Override

@@ -27,6 +27,5 @@ default non mod dmg is now 0. Should prevent weirdness like lvl 1 players able t
 added durability to jewerly and spells
 swords now work like vanilla ones and do aoe
 made rarities rarer
-
-TODO
-reduce durability items spawn in at higher lvls
+items drop with less current durability now
+reduce durability items spawn in at higher lvls but increases at lower lvls

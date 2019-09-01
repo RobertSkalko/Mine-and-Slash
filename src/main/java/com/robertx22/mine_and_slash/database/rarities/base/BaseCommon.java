@@ -20,7 +20,7 @@ public abstract class BaseCommon implements Rarity {
 
     @Override
     public MinMax SpawnDurabilityHit() {
-        return new MinMax(40, 70);
+        return new MinMax(60, 80);
     }
 
     @Override
