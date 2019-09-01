@@ -28,7 +28,7 @@ reduced repair values of materials by a bit
 nerfed instant heal % hp value, buffed base value
 fixed weakness making weapons unusable (will still happen on some compatible weapons i assume)
 removed config for instant attack speed.
-reduced player hp regen at lvl 1
+reduced player hp regen at lvl 1 (early game seemed to be a snooze fest where you can't die)
 default non mod dmg is now 0. Should prevent weirdness like lvl 1 players able to kill lvl 100 mobs. (was 3% before)
 added durability to jewerly and spells
 made rarities rarer (finding mythics will be much harder now, use currencies wisely)

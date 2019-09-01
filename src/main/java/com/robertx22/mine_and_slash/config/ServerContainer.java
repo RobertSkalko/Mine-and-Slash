@@ -52,7 +52,7 @@ public class ServerContainer {
                 .define("DISABLE_DEATH_IN_MAPS", true);
 
         ONLY_REPAIR_IN_STATION = builder.comment(".")
-                .define("ONLY_REPAIR_IN_STATION", true);
+                .define("ONLY_REPAIR_IN_STATION", false);
 
         GET_STARTER_ITEMS = builder.comment(".")
                 .translation("mmorpg.word")

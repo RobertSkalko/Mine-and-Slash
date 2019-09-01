@@ -2,9 +2,12 @@ package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
+import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.database.items.currency.IAddsInstability;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.client.Minecraft;
@@ -84,8 +87,27 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                             .getRGB());
                     y += font.FONT_HEIGHT;
                 }
-
             }
+
+            if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS.get()) {
+                if (context.Currency.getItem() instanceof IAddsInstability) {
+                    IAddsInstability insta = (IAddsInstability) context.Currency.getItem();
+                    if (insta.activatesBreakRoll()) {
+                        if (context.data instanceof IInstability) {
+                            IInstability i = (IInstability) context.data;
+                            if (i.getBreakChance() > 0) {
+                                String breaktxt = Words.BreakChance.translate() + ": " + i
+                                        .getBreakChance();
+                                font.drawString(breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y, Color.red
+                                        .getRGB());
+                                y += font.FONT_HEIGHT;
+
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
         final int LABEL_XPOS = 5;

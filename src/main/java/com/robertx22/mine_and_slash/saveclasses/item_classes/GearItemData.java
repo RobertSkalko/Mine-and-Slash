@@ -337,12 +337,14 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
                 event.getToolTip()
                         .add(Styles.REDCOMP()
-                                .appendText("Instability: " + getInstability() + "/" + getMaxInstability()));
+                                .appendSibling(Words.Instability.locName()
+                                        .appendText(": " + getInstability() + "/" + getMaxInstability())));
 
                 if (this.usesBreakChance()) {
                     event.getToolTip()
                             .add(Styles.REDCOMP()
-                                    .appendText("Break chance: " + getBreakChance() + "%"));
+                                    .appendSibling(Words.BreakChance.locName()
+                                            .appendText(": " + getBreakChance() + "%")));
 
                 }
 
