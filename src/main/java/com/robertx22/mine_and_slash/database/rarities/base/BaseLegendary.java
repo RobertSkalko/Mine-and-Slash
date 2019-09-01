@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities.base;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements.RGB;
 import net.minecraft.util.text.TextFormatting;
@@ -26,6 +27,11 @@ public abstract class BaseLegendary implements Rarity {
     @Override
     public TextFormatting textFormatColor() {
         return TextFormatting.GOLD;
+    }
+
+    @Override
+    public MinMax SpawnDurabilityHit() {
+        return new MinMax(75, 85);
     }
 
     @Override

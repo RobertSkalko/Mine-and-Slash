@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.network;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.DropSoundData;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -54,7 +54,7 @@ public class RarityItemDropPacket {
 
                 if (player != null) {
 
-                    ItemRarity rar = Rarities.Items.get(pkt.rarity);
+                    GearRarity rar = Rarities.Items.get(pkt.rarity);
 
                     DropSoundData data = rar.getDropSound();
 

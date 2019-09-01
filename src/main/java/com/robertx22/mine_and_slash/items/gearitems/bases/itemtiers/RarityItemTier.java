@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;
@@ -12,7 +12,7 @@ public class RarityItemTier implements IItemTier {
         this.rar = Rarities.Items.get(rar);
     }
 
-    ItemRarity rar;
+    GearRarity rar;
 
     @Override
     public int getMaxUses() {

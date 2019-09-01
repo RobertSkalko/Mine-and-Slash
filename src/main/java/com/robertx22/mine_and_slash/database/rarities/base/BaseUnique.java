@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities.base;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.SoundEvents;
@@ -27,6 +28,11 @@ public abstract class BaseUnique implements Rarity {
     @Override
     public TextFormatting textFormatColor() {
         return TextFormatting.YELLOW;
+    }
+
+    @Override
+    public MinMax SpawnDurabilityHit() {
+        return new MinMax(70, 90);
     }
 
     @Override

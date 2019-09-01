@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
@@ -41,7 +41,7 @@ public class GearLootGen extends BaseLootGen {
 
         GearItemData gear = Gear.Load(stack);
 
-        return LootUtils.RandomDamagedGear(stack, gear.getRarity());
+        return LootUtils.RandomDamagedGear(stack, gear.getRarity(), gear.level);
 
     }
 
@@ -51,7 +51,7 @@ public class GearLootGen extends BaseLootGen {
 
     public static GearItemData CreateData(GearBlueprint blueprint, GearItemEnum type) {
 
-        ItemRarity rarity = Rarities.Items.get(blueprint.getRarityRank());
+        GearRarity rarity = Rarities.Items.get(blueprint.getRarityRank());
         GearItemData data = new GearItemData();
 
         data.level = blueprint.getLevel();

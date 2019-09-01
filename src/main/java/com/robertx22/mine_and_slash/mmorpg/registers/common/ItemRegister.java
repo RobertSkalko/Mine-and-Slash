@@ -21,7 +21,7 @@ import com.robertx22.mine_and_slash.database.items.spell_items.projectile.ItemTh
 import com.robertx22.mine_and_slash.database.items.spell_items.self.ItemInstantHeal;
 import com.robertx22.mine_and_slash.database.items.spell_items.self.ItemSelfRegen;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
@@ -68,12 +68,12 @@ public class ItemRegister {
 
     private static void putInLists() {
 
-        for (ItemRarity x : Rarities.Items.rarities()) {
+        for (GearRarity x : Rarities.Items.rarities()) {
             AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
             Hearthstone.Items.put(x.Rank(), new Hearthstone(x.Rank()));
             ItemCapacitor.Items.put(x.Rank(), new ItemCapacitor(x.Rank()));
 
-            for (ItemRarity rarity : Rarities.Items.rarities()) {
+            for (GearRarity rarity : Rarities.Items.rarities()) {
                 for (ItemLootbox.LootTypes type : ItemLootbox.LootTypes.values()) {
                     for (ItemLootbox.LootBoxSizes size : ItemLootbox.LootBoxSizes.values()) {
                         String reg = ItemLootbox.GetStringForType(rarity.Rank(), type, size);

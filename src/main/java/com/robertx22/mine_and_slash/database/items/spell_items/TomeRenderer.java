@@ -59,7 +59,7 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             openPercent = MathHelper.clamp(openPercent, 0, 1);
 
             nbt.putFloat(Ref.MODID + ":openPercent", openPercent);
-       
+
             float ticks = mc.getRenderPartialTicks() + mc.player.ticksExisted;
 
             tomeModel.render(ticks, 0, 0, openPercent, 0.0F, 0.0625F);

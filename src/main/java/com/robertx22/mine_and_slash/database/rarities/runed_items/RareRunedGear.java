@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.rarities.runed_items;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.database.rarities.items.RareItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.RareGear;
 
-public class RareRunedItem extends RareItem {
+public class RareRunedGear extends RareGear {
 
     @Override
     public int Weight() {

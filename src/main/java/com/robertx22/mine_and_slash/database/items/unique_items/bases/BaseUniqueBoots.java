@@ -3,14 +3,14 @@ package com.robertx22.mine_and_slash.database.items.unique_items.bases;
 import com.robertx22.mine_and_slash.database.gearitemslots.Boots;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.gearitems.armor.ItemBoots;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 
 public abstract class BaseUniqueBoots extends ItemBoots implements IUnique {
 
     public BaseUniqueBoots() {
-        super(new UniqueItem().Rank());
+        super(new UniqueGear().Rank());
 
     }
 

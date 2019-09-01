@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities.base;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements.RGB;
 import net.minecraft.util.text.TextFormatting;
@@ -21,6 +22,11 @@ public abstract class BaseEpic implements Rarity {
     @Override
     public TextFormatting textFormatColor() {
         return TextFormatting.BLUE;
+    }
+
+    @Override
+    public MinMax SpawnDurabilityHit() {
+        return new MinMax(70, 80);
     }
 
     @Override

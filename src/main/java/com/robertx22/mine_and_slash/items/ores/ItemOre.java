@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.ores;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -79,7 +79,7 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
 
     public static void RegisterBlocks(RegistryEvent.Register<Block> event) {
 
-        for (ItemRarity rarity : Rarities.Items.rarities()) {
+        for (GearRarity rarity : Rarities.Items.rarities()) {
 
             int i = rarity.Rank();
 

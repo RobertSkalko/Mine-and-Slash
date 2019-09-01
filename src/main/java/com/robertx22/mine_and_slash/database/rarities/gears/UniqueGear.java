@@ -1,10 +1,10 @@
-package com.robertx22.mine_and_slash.database.rarities.items;
+package com.robertx22.mine_and_slash.database.rarities.gears;
 
 import com.robertx22.mine_and_slash.database.MinMax;
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseUnique;
 
-public class UniqueItem extends BaseUnique implements ItemRarity {
+public class UniqueGear extends BaseUnique implements GearRarity {
 
     @Override
     public int Weight() {
@@ -34,11 +34,6 @@ public class UniqueItem extends BaseUnique implements ItemRarity {
     @Override
     public int runeSlots() {
         return 0;
-    }
-
-    @Override
-    public MinMax SpawnDurabilityHit() {
-        return new MinMax(70, 90);
     }
 
     @Override

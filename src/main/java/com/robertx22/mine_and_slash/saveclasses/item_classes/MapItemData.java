@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -246,7 +246,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
             List<ITextComponent> tooltip = event.getToolTip();
 
-            ItemRarity rarity = Rarities.Items.get(this.rarity);
+            GearRarity rarity = Rarities.Items.get(this.rarity);
 
             tooltip.add(TooltipUtils.level(this.level));
             Tooltip.add("", tooltip);

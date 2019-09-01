@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.rarities.runes;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
-import com.robertx22.mine_and_slash.database.rarities.items.UncommonItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.UncommonGear;
 
-public class UncommonRune extends UncommonItem implements RuneRarity {
+public class UncommonRune extends UncommonGear implements RuneRarity {
 
     @Override
     public int Weight() {

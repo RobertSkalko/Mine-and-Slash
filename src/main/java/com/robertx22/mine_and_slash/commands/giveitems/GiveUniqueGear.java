@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.GearTypeSuggestions;
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
 import net.minecraft.command.CommandSource;
@@ -54,7 +54,7 @@ public class GiveUniqueGear {
         for (int i = 0; i < amount; i++) {
 
             UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, tier, true);
-            blueprint.setSpecificRarity(new UniqueItem().Rank());
+            blueprint.setSpecificRarity(new UniqueGear().Rank());
 
             if (type.equals("random") == false) {
                 blueprint.SetSpecificType(type);

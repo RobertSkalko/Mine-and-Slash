@@ -3,13 +3,13 @@ package com.robertx22.mine_and_slash.database.items.unique_items.bases;
 import com.robertx22.mine_and_slash.database.gearitemslots.Charm;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 
 public abstract class BaseUniqueCharm extends ItemCharm implements IUnique {
     public BaseUniqueCharm() {
-        super(new UniqueItem().Rank());
+        super(new UniqueGear().Rank());
     }
 
     @Override

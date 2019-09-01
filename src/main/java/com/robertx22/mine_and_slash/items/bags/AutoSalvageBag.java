@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.bags;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.interfaces.ISalvageBag;
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -192,7 +192,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
         ITextComponent text = new StringTextComponent("");
 
-        for (ItemRarity rar : Rarities.Items.rarities()) {
+        for (GearRarity rar : Rarities.Items.rarities()) {
             if (rar.Rank() <= rarity) {
 
                 if (text.getSiblings().size() > 0) {

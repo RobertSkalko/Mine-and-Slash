@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.db_lists;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.containers.*;
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +18,9 @@ public class Rarities {
     public static final MobRarities Mobs = new MobRarities();
     public static final SpellRarities Spells = new SpellRarities();
 
-    public static List<ItemRarity> allIncludingUnique() {
-        List<ItemRarity> list = new ArrayList<>(Items.rarities());
-        list.add(new UniqueItem());
+    public static List<GearRarity> allIncludingUnique() {
+        List<GearRarity> list = new ArrayList<>(Items.rarities());
+        list.add(new UniqueGear());
         return list;
     }
 

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.SpellRarity;
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -228,7 +228,7 @@ public class SpellItemData implements ICommonDataItem {
 
             BaseSpell spell = GetSpell();
 
-            ItemRarity rarity = Rarities.Items.get(this.rarity);
+            GearRarity rarity = Rarities.Items.get(this.rarity);
 
             tooltip.add(TooltipUtils.level(level));
             Tooltip.add("", tooltip);

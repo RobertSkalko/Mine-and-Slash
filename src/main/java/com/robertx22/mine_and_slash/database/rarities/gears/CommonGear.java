@@ -1,11 +1,11 @@
-package com.robertx22.mine_and_slash.database.rarities.items;
+package com.robertx22.mine_and_slash.database.rarities.gears;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.MinMax;
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseCommon;
 
-public class CommonItem extends BaseCommon implements ItemRarity {
+public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public int AffixChance() {
@@ -35,11 +35,6 @@ public class CommonItem extends BaseCommon implements ItemRarity {
     @Override
     public int runeSlots() {
         return 1;
-    }
-
-    @Override
-    public MinMax SpawnDurabilityHit() {
-        return new MinMax(30, 50);
     }
 
     @Override

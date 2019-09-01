@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
 public class UniqueGearBlueprint extends GearBlueprint {
@@ -23,7 +23,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
 
     @Override
     public int getRarityRank() {
-        return new UniqueItem().Rank();
+        return new UniqueGear().Rank();
     }
 
     private String guid = "";

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.bases;
 
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.gearitems.bases.armor_materials.*;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
@@ -53,7 +53,7 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
             return new LegendaryMat();
         } else if (rarity == 5) {
             return new MythicalMat();
-        } else if (rarity == new UniqueItem().Rank()) {
+        } else if (rarity == new UniqueGear().Rank()) {
             return new UniqueMat();
         }
 

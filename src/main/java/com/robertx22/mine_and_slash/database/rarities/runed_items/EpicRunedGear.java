@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.rarities.runed_items;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.database.rarities.items.EpicItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.EpicGear;
 
-public class EpicRunedItem extends EpicItem {
+public class EpicRunedGear extends EpicGear {
 
     @Override
     public int Weight() {

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.blueprints;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.new_content_test.blueprints.requests.BlueprintDataItemRequest;
 import com.robertx22.mine_and_slash.new_content_test.blueprints.requests.BlueprintSimpleItemRequest;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
+public class BlueprintItemData implements ICommonDataItem<GearRarity> {
 
     @Store
     public List<BlueprintDataItemRequest> dataRequests = new ArrayList<>();
@@ -97,7 +97,7 @@ public class BlueprintItemData implements ICommonDataItem<ItemRarity> {
     }
 
     @Override
-    public ItemRarity getRarity() {
+    public GearRarity getRarity() {
         return Rarities.Items.get(rarity);
     }
 

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.rarities.runed_items;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.database.rarities.items.LegendaryItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.LegendaryGear;
 
-public class LegendaryRunedItem extends LegendaryItem {
+public class LegendaryRunedGear extends LegendaryGear {
 
     @Override
     public int Weight() {

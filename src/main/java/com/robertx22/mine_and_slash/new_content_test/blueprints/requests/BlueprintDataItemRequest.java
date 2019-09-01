@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.blueprints.requests;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -37,7 +37,7 @@ public class BlueprintDataItemRequest extends BaseBlueprintRequest {
     // public abstract BaseBlueprintItemRequest random(BlueprintItemData data);
 
     @Override
-    public void random(ItemRarity rar) {
+    public void random(GearRarity rar) {
 
     }
 

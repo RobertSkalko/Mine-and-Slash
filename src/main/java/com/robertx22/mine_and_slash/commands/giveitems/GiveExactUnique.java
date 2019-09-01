@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.UniqueGearsSuggestions;
-import com.robertx22.mine_and_slash.database.rarities.items.UniqueItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
 import net.minecraft.command.CommandSource;
@@ -48,7 +48,7 @@ public class GiveExactUnique {
         }
 
         UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, 0, true);
-        blueprint.setSpecificRarity(new UniqueItem().Rank());
+        blueprint.setSpecificRarity(new UniqueGear().Rank());
         blueprint.setSpecificID(id);
         blueprint.LevelRange = false;
 

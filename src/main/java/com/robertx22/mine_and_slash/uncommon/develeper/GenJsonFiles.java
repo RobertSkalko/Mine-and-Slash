@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 
 import java.io.File;
@@ -28,7 +28,7 @@ public class GenJsonFiles {
 
         for (String name : names) {
 
-            for (ItemRarity rarity : Rarities.Items.rarities()) {
+            for (GearRarity rarity : Rarities.Items.rarities()) {
 
                 String finalname = name + rarity.Rank();
 

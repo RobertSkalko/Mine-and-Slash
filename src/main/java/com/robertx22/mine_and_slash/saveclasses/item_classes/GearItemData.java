@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class GearItemData implements ICommonDataItem<ItemRarity>, IInstability {
+public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     @Store
     public boolean isUnique = false;
@@ -84,7 +84,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity>, IInstability {
     }
 
     @Override
-    public ItemRarity getRarity() {
+    public GearRarity getRarity() {
         return Rarities.Items.get(this.Rarity);
     }
 
@@ -300,7 +300,7 @@ public class GearItemData implements ICommonDataItem<ItemRarity>, IInstability {
             tip.add(new StringTextComponent(""));
         }
 
-        ItemRarity rarity = getRarity();
+        GearRarity rarity = getRarity();
         tip.add(TooltipUtils.rarity(rarity));
 
         if (!this.isSalvagable) {

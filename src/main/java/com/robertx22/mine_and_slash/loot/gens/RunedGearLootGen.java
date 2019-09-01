@@ -35,7 +35,7 @@ public class RunedGearLootGen extends BaseLootGen {
 
         GearItemData gear = Gear.Load(stack);
 
-        return LootUtils.RandomDamagedGear(stack, gear.getRarity());
+        return LootUtils.RandomDamagedGear(stack, gear.getRarity(), gear.level);
 
     }
 

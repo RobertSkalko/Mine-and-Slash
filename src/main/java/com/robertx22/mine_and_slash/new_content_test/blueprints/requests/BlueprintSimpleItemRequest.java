@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.blueprints.requests;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -35,7 +35,7 @@ public class BlueprintSimpleItemRequest extends BaseBlueprintRequest {
     }
 
     @Override
-    public void random(ItemRarity rar) {
+    public void random(GearRarity rar) {
 
         int raramount = (int) rar.powerMultiplier();
         this.amount = RandomUtils.RandomRange(raramount, raramount * 2);

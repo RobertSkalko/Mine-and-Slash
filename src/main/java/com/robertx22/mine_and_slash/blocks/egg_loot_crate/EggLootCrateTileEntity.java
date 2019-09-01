@@ -3,13 +3,13 @@ package com.robertx22.mine_and_slash.blocks.egg_loot_crate;
 import com.robertx22.mine_and_slash.blocks.conditions.IConditionalLootCrate;
 import com.robertx22.mine_and_slash.blocks.conditions.LootCrateCondition;
 import com.robertx22.mine_and_slash.blocks.conditions.NoMobAroundCondition;
-import com.robertx22.mine_and_slash.database.rarities.items.MythicalItem;
+import com.robertx22.mine_and_slash.database.rarities.gears.MythicalGear;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
-import com.robertx22.mine_and_slash.saveclasses.PlayerOncePerMapData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.saveclasses.PlayerOncePerMapData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.item.FireworkRocketEntity;
@@ -124,7 +124,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
     }
 
     private Rarity getRarity() {
-        return new MythicalItem();
+        return new MythicalGear();
     }
 
     @Override

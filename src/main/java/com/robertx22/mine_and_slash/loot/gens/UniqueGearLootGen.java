@@ -42,7 +42,7 @@ public class UniqueGearLootGen extends BaseLootGen {
         GearItemData gear = Gear.Load(stack);
 
         if (gear != null) {
-            return LootUtils.RandomDamagedGear(stack, gear.getRarity());
+            return LootUtils.RandomDamagedGear(stack, gear.getRarity(), gear.level);
         } else {
             return ItemStack.EMPTY;
         }

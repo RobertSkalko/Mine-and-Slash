@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.blueprints;
 
-import com.robertx22.mine_and_slash.database.rarities.ItemRarity;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
@@ -30,7 +30,7 @@ public class BlueprintBlueprint extends ItemBlueprint {
         List<BlueprintDataItemRequest> datas = new ArrayList<>();
         List<BlueprintSimpleItemRequest> simples = new ArrayList<>();
 
-        ItemRarity rar = Rarities.Items.get(this.getRarityRank());
+        GearRarity rar = Rarities.Items.get(this.getRarityRank());
 
         BlueprintDataItemRequest request = new BlueprintDataItemRequest();
         request.random(rar);

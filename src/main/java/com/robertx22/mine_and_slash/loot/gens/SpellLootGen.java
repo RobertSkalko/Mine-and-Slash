@@ -2,10 +2,11 @@ package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.rarities.SpellRarity;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.loot.LootInfo;
+import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -56,7 +57,7 @@ public class SpellLootGen extends BaseLootGen {
 
         Spell.Save(stack, data);
 
-        return stack;
+        return LootUtils.RandomDamagedGear(stack, data.getRarity(), data.level);
 
     }
 
