@@ -4,8 +4,7 @@ import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -60,17 +59,19 @@ public class TileGearRepair extends BaseTile {
     // returns the smelting result for the given stack. Returns null if the given
     // stack can not be smelted
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
-        GearItemData gear = Gear.Load(stack);
-        if (gear != null) {
-            ItemStack copy = stack.copy();
-            int dmg = copy.getDamage() - fuel;
+        if (stack.getItem().isDamageable()) {
+            ICommonDataItem data = ICommonDataItem.load(stack);
+            if (data != null) {
+                ItemStack copy = stack.copy();
+                int dmg = copy.getDamage() - fuel;
 
-            if (dmg < 0) {
-                dmg = 0;
+                if (dmg < 0) {
+                    dmg = 0;
+                }
+                copy.setDamage(dmg);
+
+                return copy;
             }
-            copy.setDamage(dmg);
-
-            return copy;
         }
         return ItemStack.EMPTY;
 

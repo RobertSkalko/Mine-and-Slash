@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.bases;
 
+import com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -15,7 +16,8 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
 
     public BaseBaublesItem(int rar) {
 
-        super(new Properties().maxStackSize(1));
+        super(new Properties().maxStackSize(1)
+                .maxDamage(new RarityItemTier(rar).getMaxUses()));
         this.rarity = rar;
     }
 

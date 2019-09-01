@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.entity.damage;
 
+import com.robertx22.mine_and_slash.a_libraries.curios.MyCurioUtils;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
@@ -10,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
@@ -18,7 +20,24 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
+import java.util.List;
+
 public class LivingHurtUtils {
+
+    public static void damageCurioItems(LivingHurtEvent event) {
+
+        if (event.getEntityLiving() instanceof PlayerEntity) {
+
+            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+
+            List<ItemStack> curios = MyCurioUtils.getAllSlots(player);
+
+            curios.forEach(x -> x.damageItem(1, player, (entity) -> {
+                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+            }));
+
+        }
+    }
 
     public static void onAttack(LivingHurtEvent event) {
 

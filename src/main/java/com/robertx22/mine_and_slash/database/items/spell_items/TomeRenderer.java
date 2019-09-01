@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.spell_items;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
@@ -12,7 +13,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.concurrent.Callable;
 
-//EnchantmentTableTileEntityRenderer
 @OnlyIn(Dist.CLIENT)
 public class TomeRenderer extends ItemStackTileEntityRenderer implements Callable<ItemStackTileEntityRenderer> {
     public final ItemStackTileEntityRenderer instance;
@@ -36,11 +36,9 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             float scale = 1.2F;
             float rotation = 290;
 
-            if (stack.hasTag() == false) {
-                stack.setTag(new CompoundNBT());
-            }
+            CompoundNBT nbt = mc.player.getEntityData();
 
-            float openPercent = stack.getTag().getFloat("openPercent");
+            float openPercent = nbt.getFloat(Ref.MODID + ":openPercent");
 
             float changeOpenPercent = (float) 1 / (float) item.getUseDuration(stack) / 3.5F;
 
@@ -60,8 +58,8 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
 
             openPercent = MathHelper.clamp(openPercent, 0, 1);
 
-            stack.getTag().putFloat("openPercent", openPercent);
-
+            nbt.putFloat(Ref.MODID + ":openPercent", openPercent);
+       
             float ticks = mc.getRenderPartialTicks() + mc.player.ticksExisted;
 
             tomeModel.render(ticks, 0, 0, openPercent, 0.0F, 0.0625F);

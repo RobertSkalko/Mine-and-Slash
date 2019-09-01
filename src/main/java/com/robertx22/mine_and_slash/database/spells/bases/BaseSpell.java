@@ -120,19 +120,16 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
                 if (data.level > unit.getLevel()) {
                     caster.sendMessage(Chats.You_are_too_low_level.locName());
-
                     return false;
                 }
 
                 if (unit.hasEnoughMana(data.GetManaCost())) {
                     unit.consumeMana(data.GetManaCost());
-
                     return true;
 
                 } else {
                     if (caster instanceof ServerPlayerEntity) {
                         MMORPG.sendToClient(new NoEnergyPacket(), (ServerPlayerEntity) caster);
-
                     }
 
                 }

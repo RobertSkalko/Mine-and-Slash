@@ -148,7 +148,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             Heal();
             RestoreMana();
 
-            if ((int) number > 0 && source instanceof ServerPlayerEntity) {
+            if (dmg > 0 && source instanceof ServerPlayerEntity && info.highestDmgElement != null) {
 
                 ServerPlayerEntity player = (ServerPlayerEntity) source;
                 DmgNumPacket packet = new DmgNumPacket(target, info.highestDmgElement, NumberUtils

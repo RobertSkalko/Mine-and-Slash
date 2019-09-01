@@ -2,11 +2,13 @@ package com.robertx22.mine_and_slash.items.gearitems.weapons;
 
 import com.google.common.collect.Multimap;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.items.gearitems.bases.BaseWeaponItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
+import com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.SwordWeaponMechanic;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,14 +18,30 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 
 import java.util.HashMap;
 
-public class ItemSword extends BaseWeaponItem implements IWeapon {
+public class ItemSword extends SwordItem implements IWeapon, IAutoLocName, IGearItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemSword(int rar) {
-        super(rar);
+        super(new RarityItemTier(rar), 5 + (rar + 1), -2.4F, (new Item.Properties()));
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Gear_Items;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
+    }
+
+    @Override
+    public String GUID() {
+        return "";
     }
 
     @Override
@@ -31,6 +49,8 @@ public class ItemSword extends BaseWeaponItem implements IWeapon {
         Rarity rar = Rarities.Items.get(rarity);
         return rar.textFormatColor() + "Sword";
     }
+
+    public int rarity = 0;
 
     @Override
     public WeaponMechanic mechanic() {

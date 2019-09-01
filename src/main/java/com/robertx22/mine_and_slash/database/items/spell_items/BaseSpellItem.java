@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -55,7 +56,7 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
     public static Item.Properties getSpellItemProp() {
 
-        Properties prop = new Properties().maxStackSize(0).defaultMaxDamage(0);
+        Properties prop = new Properties().maxStackSize(0).defaultMaxDamage(500);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             prop.setTEISR(TomeRenderer::new);
@@ -94,6 +95,13 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName {
 
                 if (Spell().CanCast((PlayerEntity) playerIn, data)) {
                     Spell().cast(worldIn, (PlayerEntity) playerIn, playerIn.getActiveHand(), 5, data);
+
+                    stack.damageItem(1, playerIn, (entity) -> {
+                        if (entity != null) {
+                            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                        }
+                    });
+
                 }
 
             } catch (Exception e) {

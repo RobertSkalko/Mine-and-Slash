@@ -24,3 +24,9 @@ fixed weakness making weapons unusable (will still happen on some compatible wea
 removed config for instant attack speed.
 reduced player hp regen at lvl 1
 default non mod dmg is now 0. Should prevent weirdness like lvl 1 players able to kill lvl 100 mobs. (was 3% before)
+added durability to jewerly and spells
+swords now work like vanilla ones and do aoe
+
+
+TODO
+reduce durability items spawn in at higher lvls
