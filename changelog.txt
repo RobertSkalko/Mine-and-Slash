@@ -13,6 +13,7 @@ And to stop the gameplay of farming currencies at endgame to just reroll your ex
 * COMBAT OVERHAUL! 
 there is no longer many dmg numbers for every element you do, it's all combined into 1 now.
 i changed internal code of it, could be buggy
+swords now work like vanilla ones and do aoe
 
 Other more minor changes:
 reduced droprates a bit (config change, i feel there's a bit too much drops cus i kept adding more and more types of loot)
@@ -25,7 +26,6 @@ removed config for instant attack speed.
 reduced player hp regen at lvl 1
 default non mod dmg is now 0. Should prevent weirdness like lvl 1 players able to kill lvl 100 mobs. (was 3% before)
 added durability to jewerly and spells
-swords now work like vanilla ones and do aoe
-made rarities rarer
+made rarities rarer (finding mythics will be much harder now, use currencies wisely)
 items drop with less current durability now
 reduce durability items spawn in at higher lvls but increases at lower lvls

@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -23,6 +24,11 @@ import java.util.Set;
 public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAutoLocName, IGearItem {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
+
+    @Override
+    public void setDamage(ItemStack stack, int damage) {
+        RepairUtils.setDamageOverride(stack, damage);
+    }
 
     public BaseWeaponItem(int rar) {
 

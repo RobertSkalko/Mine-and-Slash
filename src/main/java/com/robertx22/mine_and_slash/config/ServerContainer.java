@@ -11,6 +11,7 @@ public class ServerContainer {
     public BooleanValue GET_STARTER_ITEMS;
     public BooleanValue RESET_MAP_DIMENSIONS_ON_LOAD;
     public BooleanValue DISABLE_DEATH_IN_MAPS;
+    public BooleanValue ONLY_REPAIR_IN_STATION;
 
     public BooleanValue ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS;
     public BooleanValue ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM;
@@ -49,6 +50,9 @@ public class ServerContainer {
         DISABLE_DEATH_IN_MAPS = builder.comment(".")
                 .translation("mmorpg.word")
                 .define("DISABLE_DEATH_IN_MAPS", true);
+
+        ONLY_REPAIR_IN_STATION = builder.comment(".")
+                .define("ONLY_REPAIR_IN_STATION", true);
 
         GET_STARTER_ITEMS = builder.comment(".")
                 .translation("mmorpg.word")

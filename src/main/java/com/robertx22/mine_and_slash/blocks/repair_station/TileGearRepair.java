@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -68,7 +69,8 @@ public class TileGearRepair extends BaseTile {
                 if (dmg < 0) {
                     dmg = 0;
                 }
-                copy.setDamage(dmg);
+
+                RepairUtils.setDamage(copy, dmg);
 
                 return copy;
             }

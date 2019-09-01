@@ -25,6 +25,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -331,6 +332,9 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
                             .appendSibling(new StringTextComponent("Power Level: " + getPowerLevel())));
 
             if (this.usesInstability()) {
+
+                Tooltip.add("", event.getToolTip());
+
                 event.getToolTip()
                         .add(Styles.REDCOMP()
                                 .appendText("Instability: " + getInstability() + "/" + getMaxInstability()));
@@ -341,6 +345,9 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
                                     .appendText("Break chance: " + getBreakChance() + "%"));
 
                 }
+
+                Tooltip.add("", event.getToolTip());
+
             }
 
             event.getToolTip()

@@ -109,7 +109,7 @@ public class StatModData implements ITooltipString {
     }
 
     private static float getMultiplier(int lvl) {
-        return MathHelper.clamp(0.5F + (float) lvl / 100, 0.5F, 1.5F);
+        return MathHelper.clamp(0.5F + (float) lvl / 50, 0.5F, 1.5F);
     }
 
     public String printValue(int level) {
