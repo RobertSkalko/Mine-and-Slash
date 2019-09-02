@@ -146,7 +146,6 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent(""));
         list.add(new StringTextComponent(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Restoration"));
         if (moreInfo) {
             list.add(new StringTextComponent(color() + "Restores Mana/Energy Based on Missing Amount"));

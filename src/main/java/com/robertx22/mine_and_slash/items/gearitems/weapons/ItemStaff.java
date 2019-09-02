@@ -106,7 +106,6 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent(""));
         list.add(new StringTextComponent(color() + "" + TextFormatting.BOLD + "[Active]: " + "Magic Projectile"));
         if (moreInfo) {
             list.add(new StringTextComponent(color() + "Casts an orb that damages first enemy hit"));

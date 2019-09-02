@@ -6,8 +6,8 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ShieldItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShieldItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -66,7 +66,6 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent(""));
         list.add(new StringTextComponent(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
         if (moreInfo) {
             list.add(new StringTextComponent(color() + "DMG Reduced Based on Block Strength"));

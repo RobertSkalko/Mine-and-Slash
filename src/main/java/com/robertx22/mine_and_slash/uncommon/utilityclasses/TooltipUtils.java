@@ -22,6 +22,32 @@ public class TooltipUtils {
 
     }
 
+    public static List<String> cutIfTooLong(String str) {
+
+        List<String> list = new ArrayList<>();
+
+        int start = 0;
+        int i = 0;
+        for (Character c : str.toCharArray()) {
+
+            if (i == str.length() - 1) {
+                list.add(str.substring(start));
+            } else if (i - start > 25 && c == ' ') {
+                String cut = str.substring(start, i);
+                if (start > 0) {
+                    cut = cut.substring(1);
+                }
+
+                list.add(cut);
+
+                start = i;
+            }
+            i++;
+        }
+
+        return list;
+    }
+
     public static ITextComponent lvlReq(int lvl, EntityCap.UnitData player) {
 
         ITextComponent comp;

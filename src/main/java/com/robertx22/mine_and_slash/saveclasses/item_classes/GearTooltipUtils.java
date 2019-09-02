@@ -98,11 +98,6 @@ public class GearTooltipUtils {
         if (gear.isUnique) {
             IUnique unique = gear.uniqueStats.getUniqueItem();
 
-            tip.add(Styles.GREENCOMP()
-                    .appendSibling(new StringTextComponent("'"))
-                    .appendSibling(unique.locDesc())
-                    .appendText("'"));
-
             tip.add(new StringTextComponent(""));
 
             tip.add(TooltipUtils.tier(unique.Tier()));
@@ -132,9 +127,7 @@ public class GearTooltipUtils {
         tip.addAll(tool);
 
         if (Screen.hasShiftDown() == false) {
-            event.getToolTip()
-                    .add(Styles.BLUECOMP()
-                            .appendSibling(CLOC.tooltip("press_shift_more_info")));
+
         } else {
             event.getToolTip()
                     .add(Styles.GOLDCOMP()
@@ -171,6 +164,37 @@ public class GearTooltipUtils {
         if (stack.getItem() instanceof IEffectItem) {
             IEffectItem effect = (IEffectItem) stack.getItem();
             event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
+        }
+
+        if (gear.isUnique) {
+            IUnique unique = gear.uniqueStats.getUniqueItem();
+
+            List<String> lores = TooltipUtils.cutIfTooLong(CLOC.translate(unique.locDesc()));
+            tip.add(new StringTextComponent(""));
+
+            int i = 0;
+            for (String desc : lores) {
+                ITextComponent comp = Styles.GREENCOMP();
+
+                if (i == 0) {
+                    comp.appendText("'");
+                }
+                comp.appendText(desc);
+
+                if (i == lores.size() - 1) {
+                    comp.appendText("'");
+                }
+                i++;
+                tip.add(comp);
+
+            }
+        }
+        tip.add(new StringTextComponent(""));
+
+        if (Screen.hasShiftDown() == false) {
+            event.getToolTip()
+                    .add(Styles.BLUECOMP()
+                            .appendSibling(CLOC.tooltip("press_shift_more_info")));
         }
 
     }
