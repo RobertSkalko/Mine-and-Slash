@@ -5,8 +5,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;
@@ -48,14 +46,20 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
+        /*
         list.add(Styles.GRAYCOMP()
                 .appendSibling(Words.Primary_Stats.locName().appendText(":")));
+
+         */
+
+        info.usePrettyStatSymbols = true;
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {
                 list.addAll(data.GetTooltipString(info));
             }
         }
+        info.usePrettyStatSymbols = false;
 
         return list;
 

@@ -2,34 +2,24 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
-import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -177,6 +167,20 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     }
 
+    public List<ITextComponent> getMergedStatsTooltip(
+            List<IStatsContainer.LevelAndStats> lvlstats, TooltipInfo info) {
+        List<ITextComponent> list = new ArrayList<ITextComponent>();
+
+        for (IStatsContainer.LevelAndStats part : lvlstats) {
+            for (StatModData data : part.mods) {
+                list.addAll(data.GetTooltipString(info.withLevel(part.level)));
+            }
+        }
+
+        return list;
+
+    }
+
     public ITextComponent GetDisplayName(ItemStack stack) {
 
         ITextComponent text = new StringTextComponent(this.getRarity()
@@ -242,127 +246,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     @Override
     public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
                              UnitData data) {
-
-        List<ITextComponent> tip = event.getToolTip();
-
-        TooltipInfo info = new TooltipInfo(data, getRarity().StatPercents(), this.level);
-
-        tip.clear();
-
-        tip.add(GetDisplayName(stack));
-
-        tip.add(TooltipUtils.level(level));
-
-        tip.add(new StringTextComponent(""));
-
-        List<ITooltipList> list = new ArrayList<ITooltipList>();
-
-        if (uniqueStats != null) {
-            tip.addAll(uniqueStats.GetTooltipString(info));
-        }
-        if (primaryStats != null) {
-            tip.addAll(primaryStats.GetTooltipString(info));
-        }
-        if (runes != null) {
-            tip.addAll(runes.GetTooltipString(info));
-        }
-
-        tip.add(new StringTextComponent(""));
-
-        list.add(secondaryStats);
-        list.add(prefix);
-        list.add(suffix);
-
-        list.add(chaosStats);
-        list.add(infusion);
-        list.add(set);
-
-        for (ITooltipList part : list) {
-
-            if (part != null) {
-                tip.addAll(part.GetTooltipString(info));
-                tip.add(new StringTextComponent(""));
-            }
-
-        }
-
-        if (isUnique) {
-            IUnique unique = this.uniqueStats.getUniqueItem();
-
-            tip.add(Styles.GREENCOMP()
-                    .appendSibling(new StringTextComponent("'"))
-                    .appendSibling(unique.locDesc())
-                    .appendText("'"));
-
-            tip.add(new StringTextComponent(""));
-
-            tip.add(TooltipUtils.tier(unique.Tier()));
-
-            tip.add(new StringTextComponent(""));
-        }
-
-        GearRarity rarity = getRarity();
-        tip.add(TooltipUtils.rarity(rarity));
-
-        if (!this.isSalvagable) {
-            tip.add(Styles.REDCOMP().appendSibling(Words.Unsalvagable.locName()));
-        }
-
-        if (this.GetBaseGearType() instanceof IWeapon) {
-            IWeapon iwep = (IWeapon) this.GetBaseGearType();
-            tip.add(new StringTextComponent(""));
-            tip.add(Styles.GREENCOMP()
-                    .appendSibling(new Energy().locName()
-                            .appendText(": " + iwep.mechanic().GetEnergyCost())));
-            tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep.mechanic()
-                    .tooltipDesc()));
-        }
-
-        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, 25);
-        tip.clear();
-        tip.addAll(tool);
-
-        if (Screen.hasShiftDown() == false) {
-            event.getToolTip()
-                    .add(Styles.BLUECOMP()
-                            .appendSibling(CLOC.tooltip("press_shift_more_info")));
-        } else {
-            event.getToolTip()
-                    .add(Styles.GOLDCOMP()
-                            .appendSibling(new StringTextComponent("Power Level: " + getPowerLevel())));
-
-            if (this.usesInstability()) {
-
-                Tooltip.add("", event.getToolTip());
-
-                event.getToolTip()
-                        .add(Styles.REDCOMP()
-                                .appendSibling(Words.Instability.locName()
-                                        .appendText(": " + getInstability() + "/" + getMaxInstability())));
-
-                if (this.usesBreakChance()) {
-                    event.getToolTip()
-                            .add(Styles.REDCOMP()
-                                    .appendSibling(Words.BreakChance.locName()
-                                            .appendText(": " + getBreakChance() + "%")));
-
-                }
-
-                Tooltip.add("", event.getToolTip());
-
-            }
-
-            event.getToolTip()
-                    .add(Styles.BLUECOMP()
-                            .appendSibling(new StringTextComponent("[Alt]: Show Detailed Stat Descriptions")));
-
-        }
-
-        if (stack.getItem() instanceof IEffectItem) {
-            IEffectItem effect = (IEffectItem) stack.getItem();
-            event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
-        }
-
+        GearTooltipUtils.BuildTooltip(this, stack, event, unit, data);
     }
 
     public List<IRerollable> GetAllRerollable() {

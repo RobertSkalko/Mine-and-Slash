@@ -23,6 +23,7 @@ public class TooltipInfo implements Cloneable {
     public MinMax minmax;
     public int level;
     public boolean isSet = false;
+    public boolean usePrettyStatSymbols = false;
 
     public TooltipInfo withLevel(int level) {
 

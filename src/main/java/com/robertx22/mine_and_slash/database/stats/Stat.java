@@ -113,7 +113,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     public int BaseFlat = 0;
 
-    private String printValue(StatModData data, int level) {
+    public String printValue(StatModData data, int level) {
 
         float val = data.GetActualVal(level);
 
@@ -168,6 +168,10 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     @OnlyIn(Dist.CLIENT)
     public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
+
+        if (true) {
+            return StatTooltipUtils.getTooltipList(this, info, data);
+        }
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
         StatMod mod = data.getStatMod();

@@ -17,6 +17,23 @@ public interface IStatsContainer {
         public int level = 1;
 
         public List<StatModData> mods = new ArrayList();
+/*
+        public static List<LevelAndStats> mergeDuplicates(
+                List<LevelAndStats> duplicates) {
+
+            List<LevelAndStats> list = new ArrayList<>();
+
+            for (LevelAndStats lvlstats : duplicates) {
+
+                if (list.contains())
+
+            }
+
+            return list;
+
+        }
+
+ */
 
     }
 
