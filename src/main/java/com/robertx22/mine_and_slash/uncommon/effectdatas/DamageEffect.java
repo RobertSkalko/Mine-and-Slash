@@ -126,9 +126,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             DmgByElement info = getDmgByElement();
 
-            int dmg = (int) ((getEventDmg() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI
-                    .get()
-                    .floatValue()) + info.totalDmg);
+            float dmg = info.totalDmg;
+            dmg += getEventDmg() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI.get()
+                    .floatValue();
 
             if (event != null) {
                 event.setAmount(dmg);
@@ -183,21 +183,27 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     static class DmgByElement {
 
-        public HashMap<Elements, Integer> dmgmap = new HashMap<>();
+        public HashMap<Elements, Float> dmgmap = new HashMap<>();
         public Elements highestDmgElement;
         public float highestDmgValue;
         public float totalDmg = 0;
 
         public void addDmg(float dmg, Elements element) {
 
-            int total = (int) (dmgmap.getOrDefault(element, 0) + dmg);
+            Elements ele = element;
 
-            dmgmap.put(element, total);
+            if (ele == null) {
+                ele = Elements.Physical;
+            }
+
+            float total = (dmgmap.getOrDefault(element, 0F) + dmg);
+
+            dmgmap.put(ele, total);
 
             totalDmg += dmg;
 
             if (total > highestDmgValue) {
-                highestDmgElement = element;
+                highestDmgElement = ele;
                 highestDmgValue = total;
             }
 

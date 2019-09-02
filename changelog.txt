@@ -22,6 +22,8 @@ I made it cus too many mods add OP repair options and that makes any kind of bal
 
 * TOOLTIP REWORK!
 Prettier tooltips while still retaining the old ones on Shift click for more clarity
+many stats are now merged so no duplicates
+unique item lores are now cut over multiple lines if they are too long.
 
 Other more minor changes:
 reduced droprates a bit (config change, i feel there's a bit too much drops cus i kept adding more and more types of loot)

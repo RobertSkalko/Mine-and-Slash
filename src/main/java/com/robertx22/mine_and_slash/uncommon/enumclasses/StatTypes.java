@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public enum StatTypes {
 
@@ -17,7 +18,7 @@ public enum StatTypes {
 
     }
 
-    public static ITextComponent getSuffix(StatMod mod) {
+    public static ITextComponent getNumberSuffix(StatMod mod) {
 
         ITextComponent text = new StringTextComponent("");
 
@@ -31,8 +32,20 @@ public enum StatTypes {
             text.appendText("%");
 
         } else {
-            text.appendText("% ").appendSibling(Words.Multi.locName());
+            text.appendText("%");
         }
+        return text;
+    }
+
+    public static ITextComponent getSuffix(StatMod mod) {
+
+        ITextComponent text = new StringTextComponent("");
+
+        if (mod.Type() == StatTypes.Multi) {
+            text.appendText(TextFormatting.GRAY + " ")
+                    .appendSibling(Words.Multi.locName());
+        }
+
         return text;
     }
 

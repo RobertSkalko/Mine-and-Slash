@@ -21,7 +21,8 @@ public class NormalStatTooltipUtils {
         StatMod mod = info.mod;
         Stat basestat = mod.GetBaseStat();
         ITextComponent text = getValueComp(info).appendText(" ")
-                .appendSibling(getStatComp(info));
+                .appendSibling(getStatComp(info))
+                .appendSibling(StatTypes.getSuffix(mod));
 
         if (Screen.hasShiftDown() && info.tooltipInfo.isSet == false) {
 
@@ -76,9 +77,15 @@ public class NormalStatTooltipUtils {
         float val = info.amount;
         String minusplus = val > 0 ? "+" : "";
 
+        TextFormatting color = TextFormatting.GREEN;
+
+        if (val < 0) {
+            color = TextFormatting.RED;
+        }
+
         ITextComponent comp = new StringTextComponent("");
-        comp.appendText(TextFormatting.GREEN + minusplus + info.stat.printValue(info.amount));
-        comp.appendSibling(StatTypes.getSuffix(info.mod));
+        comp.appendText(color + minusplus + info.stat.printValue(info.amount));
+        comp.appendSibling(StatTypes.getNumberSuffix(info.mod));
         comp.appendText(TextFormatting.RESET + "");
         return comp;
 
