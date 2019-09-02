@@ -33,9 +33,14 @@ public class BootsWater extends BaseUniqueBoots {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Sword), new ElementalSpellToAttackDMGFlat(Elements.Water)
+        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Sword), new ElementalSpellToAttackDMGFlat(Elements.Water)
                 .multi(2), new CriticalDamagePercent(), new ElementalResistFlat(Elements.Water), new CrippleLifestealPercent());
 
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

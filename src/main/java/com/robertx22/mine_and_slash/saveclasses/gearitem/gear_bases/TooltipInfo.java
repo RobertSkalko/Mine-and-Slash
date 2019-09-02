@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import net.minecraft.client.gui.screen.Screen;
 
 public class TooltipInfo implements Cloneable {
 
@@ -9,6 +10,11 @@ public class TooltipInfo implements Cloneable {
         this.minmax = minmax;
         this.level = level;
         this.unitdata = unitdata;
+
+        if (Screen.hasShiftDown()) {
+            verbose = true;
+        }
+
     }
 
     public TooltipInfo() {
@@ -24,7 +30,7 @@ public class TooltipInfo implements Cloneable {
     public int level;
     public boolean isSet = false;
     public boolean usePrettyStatSymbols = false;
-    public boolean verbose = true;
+    public boolean verbose = false;
 
     public TooltipInfo withLevel(int level) {
 

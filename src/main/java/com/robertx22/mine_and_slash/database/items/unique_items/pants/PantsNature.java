@@ -32,8 +32,13 @@ public class PantsNature extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AllTraitMods(new LowDodgeAddArmor()), new HealthFlat(), new ElementalResistFlat(Elements.Nature)
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddArmor()), new ElementalResistFlat(Elements.Nature)
                 .multi(2), new ElementalTransferFlat(Elements.Fire, Elements.Nature), new CrippleLifeOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

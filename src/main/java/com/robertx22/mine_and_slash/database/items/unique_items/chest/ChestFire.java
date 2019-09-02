@@ -33,7 +33,12 @@ public class ChestFire extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new ElementalResistFlat(Elements.Fire), new ElementalSpellDamageFlat(Elements.Fire), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent(), new CrippleLifestealPercent());
+        return Arrays.asList(new ElementalResistFlat(Elements.Fire), new ElementalSpellDamageFlat(Elements.Fire), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent(), new CrippleLifestealPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

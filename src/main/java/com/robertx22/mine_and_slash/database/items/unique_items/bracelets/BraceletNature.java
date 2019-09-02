@@ -31,7 +31,12 @@ public class BraceletNature extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Nature), new ElementalResistFlat(Elements.Nature), new HealthFlat(), new HealthRegenPercent(), new CrippleCriticalDamagePercent());
+        return Arrays.asList(new ElementalResistFlat(Elements.Nature), new HealthFlat(), new HealthRegenPercent(), new CrippleCriticalDamagePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Nature));
     }
 
     @Override

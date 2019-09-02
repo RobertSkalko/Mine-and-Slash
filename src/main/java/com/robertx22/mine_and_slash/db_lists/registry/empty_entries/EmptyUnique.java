@@ -23,6 +23,11 @@ public class EmptyUnique implements IUnique {
     }
 
     @Override
+    public List<StatMod> primaryStats() {
+        return null;
+    }
+
+    @Override
     public String locDescLangFileGUID() {
         return "";
     }

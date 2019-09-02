@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -31,7 +31,12 @@ public class NecklaceEnergy extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ManaToEnergyConvFlat(), new EnergyRegenFlat(), new HealthRegenFlat(), new CriticalDamagePercent(), new HealthPercent(), new CrippleDodgePercent());
+        return Arrays.asList(new ManaToEnergyConvFlat(), new EnergyRegenFlat(), new HealthRegenFlat(), new CriticalDamagePercent(), new CrippleDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat().multi(0.2F));
     }
 
     @Override

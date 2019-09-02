@@ -33,7 +33,12 @@ public class HelmetMana extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new ManaFlat(), new MajorManaRegenFlat(), new ManaRegenPercent(), new MajorDodgeFlat(), new ArmorFlat(), new WeaponDamageFlat(WeaponTypes.Staff));
+        return Arrays.asList(new ManaFlat(), new MajorManaRegenFlat(), new ManaRegenPercent(), new MajorDodgeFlat(), new ArmorFlat(), new WeaponDamageFlat(WeaponTypes.Staff));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

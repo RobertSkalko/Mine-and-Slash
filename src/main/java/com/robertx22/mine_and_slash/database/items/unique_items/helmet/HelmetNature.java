@@ -33,7 +33,12 @@ public class HelmetNature extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new ElementalSpellDamageFlat(Elements.Nature), new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessManaOnHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessManaOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Nature));
     }
 
     @Override

@@ -33,7 +33,12 @@ public class BraceletSetDrop extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new SpellDamageFlat(), new LootTypeBonusFlat(LootType.UniqueItem));
+        return Arrays.asList(new LootTypeBonusFlat(LootType.UniqueItem));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new SpellDamageFlat());
     }
 
     @Override

@@ -10,6 +10,16 @@ public class Health extends Stat {
     public static String GUID = "Health";
 
     @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.RED;
+    }
+
+    @Override
+    public String getIcon() {
+        return "\u2764";
+    }
+
+    @Override
     public int iconSpriteNumber() {
         return 1;
     }
@@ -25,7 +35,6 @@ public class Health extends Stat {
     }
 
     public Health() {
-        this.tooltipIcon = TextFormatting.RED + "\u2764" + " ";
     }
 
     @Override

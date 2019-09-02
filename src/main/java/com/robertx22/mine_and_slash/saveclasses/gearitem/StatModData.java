@@ -83,6 +83,10 @@ public class StatModData implements ITooltipString {
     @Store
     private String baseModName;
 
+    public boolean canBeMerged(StatModData mod) {
+        return type == mod.type && multiplier == mod.multiplier && baseModName == mod.baseModName;
+    }
+
     public StatMod getStatMod() {
 
         return SlashRegistry.StatMods().get(baseModName).multi(multiplier);

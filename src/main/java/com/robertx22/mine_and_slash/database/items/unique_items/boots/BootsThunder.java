@@ -33,7 +33,12 @@ public class BootsThunder extends BaseUniqueBoots {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Hammer), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalDamagePercent(), new ElementalResistFlat(Elements.Thunder), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Hammer), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalDamagePercent(), new ElementalResistFlat(Elements.Thunder), new CrippleLifeOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

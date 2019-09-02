@@ -17,6 +17,7 @@ public class ElementalBonusDmgOnBasic extends Stat implements IElementalGenerate
 
     public ElementalBonusDmgOnBasic(Elements element) {
         this.element = element;
+
     }
 
     @Override

@@ -31,7 +31,12 @@ public class StaffWater extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Water), new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Water), new ElementalPenePercent(Elements.Water));
+        return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Water), new ElementalPenePercent(Elements.Water));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Water));
     }
 
     @Override

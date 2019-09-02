@@ -17,6 +17,7 @@ public class ElementalFocus extends Stat implements IElementalGenerated<Stat>, I
 
     public ElementalFocus(Elements element) {
         this.element = element;
+
     }
 
     @Override

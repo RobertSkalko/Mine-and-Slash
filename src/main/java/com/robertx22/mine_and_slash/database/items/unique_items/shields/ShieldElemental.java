@@ -26,8 +26,7 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new BlockStrengthFlat(), new BlockReflectFlat(element), new ElementalAffinityFlat(element)
-                .multi(0.5F), new ElementalResistFlat(element));
+        return Arrays.asList(new ElementalAffinityFlat(element).multi(0.5F), new ElementalResistFlat(element));
     }
 
     @Override
@@ -38,6 +37,11 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
     @Override
     public String locNameForLangFile() {
         return TextFormatting.YELLOW + "Shield of " + element.dmgName + " Thorns";
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new BlockStrengthFlat(), new BlockReflectFlat(element));
     }
 
     @Override

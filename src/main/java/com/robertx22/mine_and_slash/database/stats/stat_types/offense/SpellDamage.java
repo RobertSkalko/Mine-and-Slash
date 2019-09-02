@@ -15,6 +15,16 @@ public class SpellDamage extends Stat implements IStatEffects {
     public static String GUID = "spell_damage";
 
     @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.AQUA;
+    }
+
+    @Override
+    public String getIcon() {
+        return "\u262F";
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Increases DMG of all spells no matter the element";
     }
@@ -25,7 +35,7 @@ public class SpellDamage extends Stat implements IStatEffects {
     }
 
     public SpellDamage() {
-        this.tooltipIcon = TextFormatting.AQUA + "\u262F" + " ";
+
     }
 
     @Override

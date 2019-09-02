@@ -25,8 +25,13 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IElementalUniqu
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.25F), new ElementalSpellToAttackDMGFlat(element)
-                .multi(2), new ElementalSpellToAttackDMGPercent(element).multi(5F), new CompletePhysDispersionFlat());
+        return Arrays.asList(new ElementalSpellToAttackDMGFlat(element).multi(2), new ElementalSpellToAttackDMGPercent(element)
+                .multi(5F), new CompletePhysDispersionFlat());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.25F));
     }
 
     @Override

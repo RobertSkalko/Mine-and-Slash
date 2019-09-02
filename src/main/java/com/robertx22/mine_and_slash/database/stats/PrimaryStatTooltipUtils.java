@@ -31,7 +31,7 @@ public class PrimaryStatTooltipUtils {
 
         if (info.isSet == false) {
             return Styles.REDCOMP()
-                    .appendSibling(new StringTextComponent(" " + basestat.tooltipIcon + " ")
+                    .appendSibling(new StringTextComponent(" " + basestat.getFormattedIcon() + " ")
                             .appendSibling(str)
                             .appendText(": "));
         } else {

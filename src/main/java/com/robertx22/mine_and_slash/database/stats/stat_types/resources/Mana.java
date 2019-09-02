@@ -2,9 +2,20 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.FillableStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import net.minecraft.util.text.TextFormatting;
 
 public class Mana extends FillableStat {
     public static String GUID = "Mana";
+
+    @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.AQUA;
+    }
+
+    @Override
+    public String getIcon() {
+        return "\u25CE";
+    }
 
     @Override
     public int iconSpriteNumber() {

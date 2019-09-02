@@ -32,7 +32,12 @@ public class NecklaceWater extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Water), new ElementalSpellDamagePercent(Elements.Water), new ArmorFlat(), new ArmorPercent(), new ElementalResistFlat(Elements.Water), new CrippleDodgePercent());
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Water), new ArmorFlat(), new ArmorPercent(), new ElementalResistFlat(Elements.Water), new CrippleDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Water));
     }
 
     @Override

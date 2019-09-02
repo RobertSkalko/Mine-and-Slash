@@ -25,9 +25,13 @@ public class ElementalSaber extends BaseUniqueSword implements IElementalUnique 
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.5F), new CriticalHitFlat()
-                .multi(2), new CriticalDamagePercent(), new ElementalSpellToAttackDMGPercent(element)
+        return Arrays.asList(new CriticalHitFlat().multi(2), new CriticalDamagePercent(), new ElementalSpellToAttackDMGPercent(element)
                 .multi(3));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.5F));
     }
 
     @Override

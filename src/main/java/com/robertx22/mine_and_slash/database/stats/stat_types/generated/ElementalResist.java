@@ -21,6 +21,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
     public ElementalResist(Elements element) {
         super(element);
         this.minimumValue = 0;
+
     }
 
     @Override

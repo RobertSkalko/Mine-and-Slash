@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.SpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.MajorCriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.MajorCriticalHitPercent;
@@ -30,6 +31,11 @@ public class RingCrit extends BaseUniqueRing {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new MajorCriticalHitPercent().multi(2), new MajorCriticalDamagePercent()
                 .multi(2), new EnergyRegenFlat());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new SpellDamageFlat().multi(0.2F));
     }
 
     @Override

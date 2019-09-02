@@ -33,7 +33,12 @@ public class PantsFire extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new HealthFlat(), new ElementalAffinityFlat(Elements.Fire), new ArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new ElementalAffinityFlat(Elements.Fire), new ArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Fire), new CrippleLifeOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

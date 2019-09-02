@@ -20,7 +20,7 @@ public class ElementalAttackDamage extends ElementalStat implements IStatEffects
 
     public ElementalAttackDamage(Elements element) {
         super(element);
-        this.tooltipIcon = element.format + element.icon + " ";
+
     }
 
     @Override

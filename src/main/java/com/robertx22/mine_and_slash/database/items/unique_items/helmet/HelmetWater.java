@@ -32,7 +32,12 @@ public class HelmetWater extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Water), new ManaFlat(), new ManaRegenFlat(), new EnergyRegenPercent(), new ElementalResistFlat(Elements.Water), new LessCriticalHitPercent());
+        return Arrays.asList(new ElementalResistFlat(Elements.Water), new ManaFlat(), new ManaRegenFlat(), new EnergyRegenPercent(), new LessCriticalHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Water));
     }
 
     @Override

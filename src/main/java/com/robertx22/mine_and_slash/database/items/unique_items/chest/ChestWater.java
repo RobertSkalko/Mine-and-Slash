@@ -31,8 +31,13 @@ public class ChestWater extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new ElementalPeneFlat(Elements.Water).multi(2), new MajorArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Water)
+        return Arrays.asList(new ElementalPeneFlat(Elements.Water).multi(2), new MajorArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Water)
                 .multi(2), new LessDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

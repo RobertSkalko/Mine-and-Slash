@@ -33,7 +33,12 @@ public class NecklaceNature extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Nature), new HealthFlat(), new HealthRegenFlat(), new ElementalTransferFlat(Elements.Fire, Elements.Nature), new ElementalResistFlat(Elements.Fire), new HealthPercent(), new CrippleDodgePercent());
+        return Arrays.asList(new HealthFlat(), new HealthRegenFlat(), new ElementalTransferFlat(Elements.Fire, Elements.Nature), new ElementalResistFlat(Elements.Fire), new HealthPercent(), new CrippleDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Nature));
     }
 
     @Override

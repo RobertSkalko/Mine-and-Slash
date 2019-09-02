@@ -29,8 +29,12 @@ public class ShieldWisdom extends BaseUniqueShield implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new BlockStrengthFlat(), new WisdomFlat().multi(1.5F), new ManaFlat()
-                .multi(2));
+        return Arrays.asList(new WisdomFlat().multi(1.5F), new ManaFlat().multi(2));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new BlockStrengthFlat());
     }
 
     @Override

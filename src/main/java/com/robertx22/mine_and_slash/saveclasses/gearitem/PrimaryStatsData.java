@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +27,18 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         this.Mods = new ArrayList<StatModData>();
 
-        StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().PrimaryStats());
+        if (gear.isUnique()) {
+            for (StatMod mod : gear.uniqueStats.getUniqueItem().primaryStats()) {
+                StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
+                this.Mods.add(moddata);
+            }
 
-        StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
-
-        this.Mods.add(moddata);
-
+        } else {
+            StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
+                    .PrimaryStats());
+            StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
+            this.Mods.add(moddata);
+        }
     }
 
     @Override
@@ -48,8 +55,13 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(Styles.GRAYCOMP()
-                .appendSibling(Words.Primary_Stats.locName().appendText(":")));
+        if (info.verbose) {
+            list.add(Styles.GRAYCOMP()
+                    .appendSibling(Words.Primary_Stats.locName().appendText(":")));
+
+        }
+
+        list.add(new StringTextComponent(" "));
 
         info.usePrettyStatSymbols = true;
 

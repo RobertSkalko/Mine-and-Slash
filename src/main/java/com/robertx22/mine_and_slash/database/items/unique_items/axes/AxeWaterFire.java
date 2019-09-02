@@ -31,8 +31,13 @@ public class AxeWaterFire extends BaseUniqueAxe {
 
     @Override
     public List<StatMod> uniqueStats() {
+        return Arrays.asList(new CrippleCriticalDamagePercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
         return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire).multi(multi), new ElementalAttackDamageFlat(Elements.Water)
-                .multi(multi), new CrippleCriticalDamagePercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
+                .multi(multi));
     }
 
     @Override

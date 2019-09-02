@@ -32,7 +32,12 @@ public class CharmNature extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Nature).multi(2), new HealthRegenPercent(), new ElementalPenePercent(Elements.Nature), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessCriticalDamagePercent());
+        return Arrays.asList(new HealthFlat(), new HealthRegenPercent(), new ElementalPenePercent(Elements.Nature), new ElementalResistFlat(Elements.Nature), new LessCriticalDamagePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Nature).multi(2));
     }
 
     @Override

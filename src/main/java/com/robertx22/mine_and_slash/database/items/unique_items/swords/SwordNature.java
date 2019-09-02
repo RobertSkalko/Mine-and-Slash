@@ -30,7 +30,12 @@ public class SwordNature extends BaseUniqueSword {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Nature), new LifestealFlat(), new LifestealPercent(), new HealthRegenFlat(), new CrippleCriticalDamagePercent());
+        return Arrays.asList(new LifestealFlat(), new LifestealPercent(), new HealthRegenFlat(), new CrippleCriticalDamagePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Nature));
     }
 
     @Override

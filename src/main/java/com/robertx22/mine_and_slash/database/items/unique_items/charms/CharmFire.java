@@ -32,7 +32,12 @@ public class CharmFire extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new ManaRegenPercent(), new ElementalPeneFlat(Elements.Fire), new CriticalHitFlat(), new ElementalResistFlat(Elements.Fire), new CrippleDodgePercent());
+        return Arrays.asList(new ManaRegenPercent(), new ElementalPeneFlat(Elements.Fire), new CriticalHitFlat(), new ElementalResistFlat(Elements.Fire), new CrippleDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire));
     }
 
     @Override

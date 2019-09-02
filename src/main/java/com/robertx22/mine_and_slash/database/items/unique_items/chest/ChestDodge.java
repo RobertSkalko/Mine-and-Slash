@@ -34,7 +34,12 @@ public class ChestDodge extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new MajorDodgeFlat(), new DodgePercent(), new WeaponDamageFlat(WeaponTypes.Bow), new ElementalResistFlat(Elements.Nature), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new MajorDodgeFlat(), new DodgePercent(), new WeaponDamageFlat(WeaponTypes.Bow), new ElementalResistFlat(Elements.Nature), new CrippleLifeOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

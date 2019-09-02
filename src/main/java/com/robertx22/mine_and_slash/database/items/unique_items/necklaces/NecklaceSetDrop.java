@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.AllAttributesFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.SpellDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -32,6 +33,11 @@ public class NecklaceSetDrop extends BaseUniqueNecklace {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new AllAttributesFlat());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new SpellDamageFlat().multi(0.2F));
     }
 
     @Override

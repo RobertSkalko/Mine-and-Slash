@@ -33,8 +33,13 @@ public class ChestNature extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new HealthRegenFlat().multi(2), new ArmorFlat(), new ElementalResistFlat(Elements.Nature), new ElementalTransferFlat(Elements.Water, Elements.Nature)
+        return Arrays.asList(new HealthRegenFlat().multi(2), new ArmorFlat(), new ElementalResistFlat(Elements.Nature), new ElementalTransferFlat(Elements.Water, Elements.Nature)
                 .multi(2), new CrippleDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

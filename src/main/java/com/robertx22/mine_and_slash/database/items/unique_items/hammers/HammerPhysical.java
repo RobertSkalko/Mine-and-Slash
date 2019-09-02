@@ -31,7 +31,12 @@ public class HammerPhysical extends BaseUniqueHammer {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new PhysicalDamageFlat(), new ElementalPeneFlat(Elements.Physical), new CriticalHitPercent(), new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new LessManaOnHitPercent());
+        return Arrays.asList(new ElementalPeneFlat(Elements.Physical), new CriticalHitPercent(), new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new LessManaOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new PhysicalDamageFlat());
     }
 
     @Override

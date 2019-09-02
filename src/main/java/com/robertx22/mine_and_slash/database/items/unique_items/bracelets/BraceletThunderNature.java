@@ -31,7 +31,12 @@ public class BraceletThunderNature extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new ElementalResistFlat(Elements.Nature), new ElementalResistFlat(Elements.Thunder), new ManaFlat(), new LessCriticalHitPercent(), new LessDodgePercent());
+        return Arrays.asList(new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new ManaFlat(), new LessCriticalHitPercent(), new LessDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalResistFlat(Elements.Nature), new ElementalResistFlat(Elements.Thunder));
     }
 
     @Override

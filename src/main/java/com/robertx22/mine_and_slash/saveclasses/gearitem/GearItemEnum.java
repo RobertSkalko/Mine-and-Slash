@@ -116,7 +116,7 @@ public enum GearItemEnum implements IWeighted {
 
         @Override
         public boolean canGetPrimaryStats() {
-            return false;
+            return true;
         }
 
         @Override

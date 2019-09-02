@@ -16,6 +16,7 @@ public class BlockReflect extends ElementalStat implements IStatEffects {
 
     public BlockReflect(Elements element) {
         super(element);
+
     }
 
     @Override

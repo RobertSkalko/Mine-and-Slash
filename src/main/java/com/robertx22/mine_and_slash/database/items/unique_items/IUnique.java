@@ -25,6 +25,8 @@ public interface IUnique extends IWeighted, IRarity, IGearSlotType, ITiered, IGU
 
     List<StatMod> uniqueStats();
 
+    List<StatMod> primaryStats();
+
     @Override
     public default int getRarityRank() {
         return IRarity.Uncommon;

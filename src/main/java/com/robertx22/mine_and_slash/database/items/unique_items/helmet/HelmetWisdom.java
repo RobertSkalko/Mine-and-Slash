@@ -34,8 +34,12 @@ public class HelmetWisdom extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new WisdomFlat(), new ArmorFlat(), new ManaOnHitFlat()
-                .multi(2));
+        return Arrays.asList(new WisdomFlat(), new ArmorFlat(), new ManaOnHitFlat().multi(2));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

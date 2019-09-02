@@ -32,8 +32,13 @@ public class BootsFire extends BaseUniqueBoots {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new WeaponDamageFlat(WeaponTypes.Axe), new ElementalSpellToAttackDMGFlat(Elements.Fire), new CriticalDamagePercent(), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Axe), new ElementalSpellToAttackDMGFlat(Elements.Fire), new CriticalDamagePercent(), new CrippleLifeOnHitPercent());
 
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

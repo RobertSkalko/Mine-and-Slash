@@ -20,6 +20,7 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
     public ElementalPene(Elements element) {
         super(element);
         this.minimumValue = 0;
+
     }
 
     @Override

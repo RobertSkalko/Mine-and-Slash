@@ -31,7 +31,12 @@ public class BraceletWater extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Water), new ElementalTransferFlat(Elements.Fire, Elements.Water), new EnergyRegenFlat(), new ElementalResistFlat(Elements.Water), new ElementalResistFlat(Elements.Fire), new CrippleDodgePercent());
+        return Arrays.asList(new ElementalTransferFlat(Elements.Fire, Elements.Water), new EnergyRegenFlat(), new ElementalResistFlat(Elements.Water), new ElementalResistFlat(Elements.Fire), new CrippleDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Water));
     }
 
     @Override

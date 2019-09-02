@@ -30,7 +30,12 @@ public class StaffFire extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire), new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Fire), new LifeOnHitFlat());
+        return Arrays.asList(new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Fire), new LifeOnHitFlat());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire));
     }
 
     @Override

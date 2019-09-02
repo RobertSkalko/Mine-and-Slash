@@ -32,9 +32,14 @@ public class PantsWater extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new MajorArmorFlat(), new ElementalResistFlat(Elements.Water)
+        return Arrays.asList(new MajorArmorFlat(), new ElementalResistFlat(Elements.Water)
                 .multi(2), new ElementalTransferFlat(Elements.Fire, Elements.Water), new ElementalSpellDamagePercent(Elements.Water), new LessDodgePercent());
 
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

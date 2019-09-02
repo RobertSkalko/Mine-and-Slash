@@ -24,8 +24,13 @@ public class BowElemental extends BaseUniqueBow implements IElementalUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element), new DexterityFlat().multi(1.5F), new ElementalSpellToAttackDMGFlat(element), new CriticalHitPercent()
+        return Arrays.asList(new DexterityFlat().multi(1.5F), new ElementalSpellToAttackDMGFlat(element), new CriticalHitPercent()
                 .multi(2));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(element));
     }
 
     @Override

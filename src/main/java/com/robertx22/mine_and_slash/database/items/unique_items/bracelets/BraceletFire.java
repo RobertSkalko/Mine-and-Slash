@@ -31,7 +31,12 @@ public class BraceletFire extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new ElementalSpellToAttackDMGFlat(Elements.Fire), new ElementalResistFlat(Elements.Fire), new LessCriticalDamagePercent(), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Fire), new ElementalResistFlat(Elements.Fire), new LessCriticalDamagePercent(), new CrippleLifeOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire));
     }
 
     @Override

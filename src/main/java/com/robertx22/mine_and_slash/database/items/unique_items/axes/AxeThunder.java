@@ -29,8 +29,13 @@ public class AxeThunder extends BaseUniqueAxe {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Thunder), new CriticalHitPercent()
-                .multi(2.5F), new CriticalDamagePercent().multi(2.5F), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new CriticalHitPercent().multi(2.5F), new CriticalDamagePercent()
+                .multi(2.5F), new CrippleLifeOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Thunder));
     }
 
     @Override

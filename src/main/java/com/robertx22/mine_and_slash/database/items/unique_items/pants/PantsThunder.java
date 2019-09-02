@@ -32,7 +32,12 @@ public class PantsThunder extends BaseUniquePants {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new ElementalSpellDamageFlat(Elements.Fire), new DodgeFlat(), new ElementalResistFlat(Elements.Fire), new ElementalTransferFlat(Elements.Fire, Elements.Thunder), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new DodgeFlat(), new ElementalResistFlat(Elements.Fire), new ElementalTransferFlat(Elements.Fire, Elements.Thunder), new CrippleLifeOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

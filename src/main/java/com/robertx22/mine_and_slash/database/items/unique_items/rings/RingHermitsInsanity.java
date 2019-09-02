@@ -31,8 +31,12 @@ public class RingHermitsInsanity extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LessHealthMap(), new ElementalPeneFlat(Elements.Elemental)
-                .multi(3), new CriticalDamagePercent().multi(7));
+        return Arrays.asList(new LessHealthMap(), new CriticalDamagePercent().multi(7));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalPeneFlat(Elements.Elemental).multi(3));
     }
 
     @Override

@@ -21,6 +21,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -34,10 +35,28 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     // 14 per 14
 
+    public TextFormatting getIconFormat() {
+        if (this.Element() != null) {
+            return this.Element().format;
+        } else {
+            return Elements.Physical.format;
+        }
+    }
+
+    public String getIcon() {
+        if (this.Element() != null) {
+            return this.Element().icon;
+        } else {
+            return Elements.Physical.icon;
+        }
+    }
+
+    public String getFormattedIcon() {
+        return getIconFormat() + getIcon();
+    }
+
     static final int rows = 13;
     static final int spriteSize = 18;
-
-    public String tooltipIcon = " * ";
 
     @Override
     public int Tier() {

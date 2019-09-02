@@ -32,8 +32,13 @@ public class NecklaceThunder extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Thunder), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new ElementalTransferFlat(Elements.Nature, Elements.Thunder), new ElementalResistFlat(Elements.Nature), new EnergyRegenFlat(), new LessHealthRegenFlat());
+        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Thunder), new ElementalTransferFlat(Elements.Nature, Elements.Thunder), new ElementalResistFlat(Elements.Nature), new EnergyRegenFlat(), new LessHealthRegenFlat());
 
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Thunder));
     }
 
     @Override

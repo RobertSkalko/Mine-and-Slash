@@ -26,8 +26,13 @@ public class MagesLuckyAmulet extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new ElementalResistFlat(Elements.Elemental)
-                .multi(0.5F), new ArmorFlat(), new ManaFlat().multi(2));
+        return Arrays.asList(new ElementalResistFlat(Elements.Elemental).multi(0.5F), new ArmorFlat(), new ManaFlat()
+                .multi(2));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

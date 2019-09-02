@@ -31,7 +31,12 @@ public class StaffThunder extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Thunder), new CriticalDamageFlat(), new ElementalPenePercent(Elements.Thunder), new DodgeFlat(), new ManaOnHitFlat());
+        return Arrays.asList(new CriticalDamageFlat(), new ElementalPenePercent(Elements.Thunder), new DodgeFlat(), new ManaOnHitFlat());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Thunder));
     }
 
     @Override

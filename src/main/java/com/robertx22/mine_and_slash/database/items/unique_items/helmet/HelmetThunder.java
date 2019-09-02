@@ -33,7 +33,12 @@ public class HelmetThunder extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new EnergyRegenFlat(), new ElementalAffinityFlat(Elements.Thunder), new ArmorFlat(), new LessLifeOnHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new EnergyRegenFlat(), new ArmorFlat(), new LessLifeOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAffinityFlat(Elements.Thunder));
     }
 
     @Override

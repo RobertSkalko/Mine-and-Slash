@@ -76,7 +76,7 @@ public class NormalStatTooltipUtils {
                                               StatModData data) {
 
         float val = data.GetActualVal(info.level);
-        String minusplus = val > 0 ? "+" : "-";
+        String minusplus = val > 0 ? "+" : "";
 
         ITextComponent comp = new StringTextComponent("");
         comp.appendText(TextFormatting.GREEN + minusplus + stat.printValue(data, info.level));

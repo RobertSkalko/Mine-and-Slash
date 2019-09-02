@@ -31,7 +31,12 @@ public class StaffLifesteal extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new PhysicalDamageFlat(), new LifestealPercent(), new LifestealFlat(), new LifeOnHitFlat(), new HealthRegenFlat(), new CrippleManaOnHitPercent());
+        return Arrays.asList(new LifestealPercent(), new LifestealFlat(), new LifeOnHitFlat(), new HealthRegenFlat(), new CrippleManaOnHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new PhysicalDamageFlat());
     }
 
     @Override

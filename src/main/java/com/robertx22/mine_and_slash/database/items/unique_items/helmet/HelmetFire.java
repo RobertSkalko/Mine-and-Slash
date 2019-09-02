@@ -33,7 +33,12 @@ public class HelmetFire extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AllTraitMods(new LowDodgeAddArmor()), new ElementalSpellDamageFlat(Elements.Fire), new EnergyRegenFlat(), new MajorArmorFlat(), new ElementalResistFlat(Elements.Fire), new LessCriticalHitPercent());
+        return Arrays.asList(new AllTraitMods(new LowDodgeAddArmor()), new ElementalSpellDamageFlat(Elements.Fire), new EnergyRegenFlat(), new ElementalResistFlat(Elements.Fire), new LessCriticalHitPercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new MajorArmorFlat());
     }
 
     @Override

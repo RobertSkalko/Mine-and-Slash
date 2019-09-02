@@ -32,7 +32,12 @@ public class CharmWater extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ManaToEnergyConvFlat(), new ArmorFlat(), new ElementalPeneFlat(Elements.Water), new ElementalPenePercent(Elements.Water), new ElementalResistFlat(Elements.Water), new CrippleDodgePercent());
+        return Arrays.asList(new ManaToEnergyConvFlat(), new ArmorFlat(), new ElementalPenePercent(Elements.Water), new ElementalResistFlat(Elements.Water), new CrippleDodgePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalPeneFlat(Elements.Water));
     }
 
     @Override

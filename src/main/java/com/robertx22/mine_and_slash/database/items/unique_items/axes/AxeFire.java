@@ -29,8 +29,12 @@ public class AxeFire extends BaseUniqueAxe {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire), new CriticalHitPercent()
-                .multi(2), new CriticalDamagePercent(), new ElementalPeneFlat(Elements.Fire));
+        return Arrays.asList(new CriticalHitPercent().multi(2), new CriticalDamagePercent(), new ElementalPeneFlat(Elements.Fire));
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire));
     }
 
     @Override

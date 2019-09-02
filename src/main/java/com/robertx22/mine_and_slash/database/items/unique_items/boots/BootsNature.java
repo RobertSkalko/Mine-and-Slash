@@ -32,9 +32,14 @@ public class BootsNature extends BaseUniqueBoots {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new HealthPercent(), new HealthRegenFlat(), new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new ElementalResistFlat(Elements.Nature)
+        return Arrays.asList(new HealthPercent(), new HealthRegenFlat(), new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new ElementalResistFlat(Elements.Nature)
                 .multi(2), new CrippleDodgePercent());
 
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new HealthFlat());
     }
 
     @Override

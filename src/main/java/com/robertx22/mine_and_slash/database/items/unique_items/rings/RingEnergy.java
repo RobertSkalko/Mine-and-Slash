@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.SpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.EnergyRegenPercent;
@@ -29,7 +30,12 @@ public class RingEnergy extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent().multi(3), new ManaRegenFlat(), new CrippleCriticalDamagePercent());
+        return Arrays.asList(new EnergyRegenFlat(), new EnergyRegenPercent().multi(2.5F), new ManaRegenFlat(), new CrippleCriticalDamagePercent());
+    }
+
+    @Override
+    public List<StatMod> primaryStats() {
+        return Arrays.asList(new SpellDamageFlat().multi(0.2F));
     }
 
     @Override
