@@ -18,6 +18,8 @@ public class PhysicalDamage extends Stat {
 
     public PhysicalDamage() {
         this.BaseFlat = 1;
+        this.tooltipIcon = Elements.Physical.format + Elements.Physical.icon + " ";
+
     }
 
     @Override

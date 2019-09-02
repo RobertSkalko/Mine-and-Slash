@@ -7,32 +7,33 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class HealthFlat extends StatMod {
 
-	public HealthFlat() {
-	}
+    public HealthFlat() {
 
-	@Override
-	public String GUID() {
-		return "HealthFlat";
-	}
+    }
 
-	@Override
-	public float Min() {
-		return 5;
-	}
+    @Override
+    public String GUID() {
+        return "HealthFlat";
+    }
 
-	@Override
-	public float Max() {
-		return 15;
-	}
+    @Override
+    public float Min() {
+        return 5;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Flat;
-	}
+    @Override
+    public float Max() {
+        return 15;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new Health();
-	}
+    @Override
+    public StatTypes Type() {
+        return StatTypes.Flat;
+    }
+
+    @Override
+    public Stat GetBaseStat() {
+        return new Health();
+    }
 
 }

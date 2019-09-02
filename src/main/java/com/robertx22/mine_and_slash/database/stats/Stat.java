@@ -18,7 +18,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -26,7 +25,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, IAutoLocDesc, ISlashRegistryEntry {
@@ -38,6 +36,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     static final int rows = 13;
     static final int spriteSize = 18;
+
+    public String tooltipIcon = " * ";
 
     @Override
     public int Tier() {
@@ -169,56 +169,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     @OnlyIn(Dist.CLIENT)
     public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
 
-        if (true) {
-            return StatTooltipUtils.getTooltipList(this, info, data);
-        }
-
-        List<ITextComponent> list = new ArrayList<ITextComponent>();
-        StatMod mod = data.getStatMod();
-        Stat basestat = mod.GetBaseStat();
-        ITextComponent text = NameAndValueText(info, data);
-
-        if (mod.Type() == StatTypes.Flat) {
-
-            if (basestat.IsPercent()) {
-                text.appendText("%");
-            }
-
-        } else if (mod.Type() == StatTypes.Percent) {
-            text.appendText("%");
-
-            if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
-                if (data.GetActualVal(info.level) > 0) {
-                    text.appendText(" ").appendSibling(Words.Increased.locName());
-                } else {
-                    text.appendText(" ").appendSibling(Words.Decreased.locName());
-                }
-            }
-
+        if (info.usePrettyStatSymbols) {
+            return PrimaryStatTooltipUtils.getTooltipList(this, info, data);
         } else {
-            text.appendText("% ").appendSibling(Words.Multi.locName());
+            return NormalStatTooltipUtils.getTooltipList(this, info, data);
         }
-
-        if (Screen.hasShiftDown() && info.isSet == false) {
-
-            StatModData min = StatModData.Load(data.getStatMod(), info.minmax.Min);
-            StatModData max = StatModData.Load(data.getStatMod(), info.minmax.Max);
-
-            ITextComponent extraInfo = Styles.GREENCOMP()
-                    .appendSibling(new StringTextComponent(" (" + min.printValue(info.level) + " - " + max
-                            .printValue(info.level) + ")"));
-
-            text.appendSibling(extraInfo);
-        }
-
-        list.add(text);
-        if (Screen.hasAltDown()) {
-            list.add(Styles.BLUECOMP()
-                    .appendText(" [")
-                    .appendSibling(this.locDesc().appendText("]")));
-        }
-        return list;
-
     }
 
     public void CalcVal(StatData data, UnitData Source) {

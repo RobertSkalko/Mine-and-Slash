@@ -82,10 +82,10 @@ public abstract class BaseTrait extends Stat {
             if (basestat instanceof Trait) {
                 Trait trait = (Trait) basestat;
 
-                for (StatModData motdata : trait.getStatsMods()) {
+                for (StatModData moddata : trait.getStatsMods()) {
                     TooltipInfo newinfo = info.withLevel(info.unitdata.getLevel());
                     newinfo.minmax = new MinMax(trait.percent(), trait.percent());
-                    list.addAll(motdata.GetTooltipString(newinfo));
+                    list.addAll(moddata.GetTooltipString(newinfo));
                 }
             }
         }

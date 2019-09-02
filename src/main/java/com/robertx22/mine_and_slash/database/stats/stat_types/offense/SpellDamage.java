@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_effects.offense.AllSpell
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +25,7 @@ public class SpellDamage extends Stat implements IStatEffects {
     }
 
     public SpellDamage() {
-
+        this.tooltipIcon = TextFormatting.AQUA + "\u262F" + " ";
     }
 
     @Override

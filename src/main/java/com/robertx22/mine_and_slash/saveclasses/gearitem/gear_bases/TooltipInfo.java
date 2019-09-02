@@ -24,6 +24,7 @@ public class TooltipInfo implements Cloneable {
     public int level;
     public boolean isSet = false;
     public boolean usePrettyStatSymbols = false;
+    public boolean verbose = true;
 
     public TooltipInfo withLevel(int level) {
 

@@ -10,19 +10,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Elements implements IColor {
-    Physical(0, new RGB(0, 0, 0), false, "Physical", TextFormatting.GRAY, Items.COAL, "Annihilation", "physical"),
-    Fire(1, new RGB(255, 0, 0), true, "Flame", TextFormatting.RED, Items.MAGMA_CREAM, "Firestorms", "fire"),
-    Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.BLUE, Items.SNOWBALL, "Blizzards", "water"),
-    Thunder(3, new RGB(255, 255, 0), true, "Lightning", TextFormatting.YELLOW, Items.GLOWSTONE_DUST, "Thunderstorms", "thunder"),
-    Nature(4, new RGB(0, 204, 0), true, "Venom", TextFormatting.GREEN, Items.SLIME_BALL, "Earthquakes", "nature"),
-    Elemental(5, new RGB(0, 0, 0), false, "Elemental", TextFormatting.GOLD, Items.EMERALD, "Element Eruption", "elemental");
+    Physical(0, new RGB(0, 0, 0), false, "Physical", TextFormatting.GOLD, Items.COAL, "Annihilation", "physical", "\u2726"),
+    Fire(1, new RGB(255, 0, 0), true, "Flame", TextFormatting.RED, Items.MAGMA_CREAM, "Firestorms", "fire", "\u2600"),
+    Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.BLUE, Items.SNOWBALL, "Blizzards", "water", "\u2749"),
+    Thunder(3, new RGB(255, 255, 0), true, "Lightning", TextFormatting.YELLOW, Items.GLOWSTONE_DUST, "Thunderstorms", "thunder", "\u2605"),
+    Nature(4, new RGB(0, 204, 0), true, "Venom", TextFormatting.DARK_GREEN, Items.SLIME_BALL, "Earthquakes", "nature", "\u273F"),
+    Elemental(5, new RGB(0, 0, 0), false, "Elemental", TextFormatting.GOLD, Items.EMERALD, "Element Eruption", "elemental", "\u269C");
 
     public boolean isSingleElement = true;
     public Item projectileItem;
     private RGB color;
 
     Elements(int i, RGB color, boolean isSingleElement, String dmgname,
-             TextFormatting format, Item item, String disasterName, String guidname) {
+             TextFormatting format, Item item, String disasterName, String guidname,
+             String icon) {
         this.disasterName = disasterName;
         this.i = i;
         this.color = color;
@@ -31,13 +32,14 @@ public enum Elements implements IColor {
         this.format = format;
         this.projectileItem = item;
         this.guidName = guidname;
-
+        this.icon = icon;
     }
 
     public String disasterName;
     public String dmgName;
     public String guidName;
     public int i = 0;
+    public String icon;
 
     public TextFormatting format;
 

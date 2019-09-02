@@ -9,6 +9,7 @@ public class ElementalSpellDamage extends ElementalStat {
 
     public ElementalSpellDamage(Elements element) {
         super(element);
+        this.tooltipIcon = element.format + element.icon + " ";
     }
 
     @Override

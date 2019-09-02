@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatTooltipUtils {
+public class NormalStatTooltipUtils {
 
     public static List<ITextComponent> getTooltipList(Stat stat, TooltipInfo info,
                                                       StatModData data) {
