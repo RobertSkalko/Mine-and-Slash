@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -16,9 +16,9 @@ import java.util.List;
 
 public class PrimaryStatTooltipUtils {
 
-    public static ITextComponent NameText(TooltipInfo info, StatModData data) {
+    public static ITextComponent NameText(TooltipStatInfo info) {
 
-        StatMod mod = data.getStatMod();
+        StatMod mod = info.mod;
         Stat basestat = mod.GetBaseStat();
 
         ITextComponent str = new StringTextComponent("");
@@ -29,7 +29,7 @@ public class PrimaryStatTooltipUtils {
 
         str.appendSibling(basestat.locName());
 
-        if (info.isSet == false) {
+        if (info.tooltipInfo.isSet == false) {
             return Styles.REDCOMP()
                     .appendSibling(new StringTextComponent(" " + basestat.getFormattedIcon() + " ")
                             .appendSibling(str)
@@ -40,24 +40,22 @@ public class PrimaryStatTooltipUtils {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static ITextComponent NameAndValueText(Stat stat, TooltipInfo info,
-                                                  StatModData data) {
+    public static ITextComponent NameAndValueText(TooltipStatInfo info) {
 
-        float val = data.GetActualVal(info.level);
+        float val = info.amount;
 
         String minusplus = val > 0 ? "+" : "";
 
-        return NameText(info, data).appendText(minusplus + stat.printValue(data, info.level));
+        return NameText(info).appendText(minusplus + info.stat.printValue(info.amount));
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static List<ITextComponent> getTooltipList(Stat stat, TooltipInfo info,
-                                                      StatModData data) {
+    public static List<ITextComponent> getTooltipList(TooltipStatInfo info) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-        StatMod mod = data.getStatMod();
+        StatMod mod = info.mod;
         Stat basestat = mod.GetBaseStat();
-        ITextComponent text = NameAndValueText(stat, info, data);
+        ITextComponent text = NameAndValueText(info);
 
         if (mod.Type() == StatTypes.Flat) {
 
@@ -69,7 +67,7 @@ public class PrimaryStatTooltipUtils {
             text.appendText("%");
 
             if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
-                if (data.GetActualVal(info.level) > 0) {
+                if (info.modData.GetActualVal(info.level) > 0) {
                     text.appendText(" ").appendSibling(Words.Increased.locName());
                 } else {
                     text.appendText(" ").appendSibling(Words.Decreased.locName());
@@ -80,10 +78,10 @@ public class PrimaryStatTooltipUtils {
             text.appendText("% ").appendSibling(Words.Multi.locName());
         }
 
-        if (Screen.hasShiftDown() && info.isSet == false) {
+        if (Screen.hasShiftDown() && info.tooltipInfo.isSet == false) {
 
-            StatModData min = StatModData.Load(data.getStatMod(), info.minmax.Min);
-            StatModData max = StatModData.Load(data.getStatMod(), info.minmax.Max);
+            StatModData min = StatModData.Load(mod, info.minmax.Min);
+            StatModData max = StatModData.Load(mod, info.minmax.Max);
 
             ITextComponent extraInfo = Styles.GREENCOMP()
                     .appendSibling(new StringTextComponent(" (" + min.printValue(info.level) + " - " + max
@@ -96,7 +94,7 @@ public class PrimaryStatTooltipUtils {
         if (Screen.hasAltDown()) {
             list.add(Styles.BLUECOMP()
                     .appendText(" [")
-                    .appendSibling(stat.locDesc().appendText("]")));
+                    .appendSibling(info.stat.locDesc().appendText("]")));
         }
         return list;
 

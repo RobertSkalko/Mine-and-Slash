@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.MergedStats;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -76,7 +77,7 @@ public class GearTooltipUtils {
                 tip.addAll(gear.uniqueStats.GetTooltipString(info));
             }
 
-            MergedStats merged = new MergedStats(lvlstatsmerged);
+            MergedStats merged = new MergedStats(lvlstatsmerged, info);
             list.add(merged);
 
         }

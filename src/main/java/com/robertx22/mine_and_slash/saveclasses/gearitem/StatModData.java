@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipString;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
@@ -138,7 +139,8 @@ public class StatModData implements ITooltipString {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         try {
-            return getStatMod().GetBaseStat().getTooltipList(info, this);
+            return getStatMod().GetBaseStat()
+                    .getTooltipList(new TooltipStatInfo(this, info));
         } catch (Exception e) {
             e.printStackTrace();
         }

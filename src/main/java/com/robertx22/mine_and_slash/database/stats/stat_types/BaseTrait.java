@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcan
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.client.gui.screen.Screen;
@@ -50,8 +51,8 @@ public abstract class BaseTrait extends Stat {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public ITextComponent TraitText(StatModData data) {
-        StatMod mod = data.getStatMod();
+    public ITextComponent TraitText(TooltipStatInfo info) {
+        StatMod mod = info.mod;
         Stat basestat = mod.GetBaseStat();
         ITextComponent comp = Styles.GREENCOMP()
                 .appendSibling(new StringTextComponent(" * ").appendSibling(basestat.locName()));
@@ -68,13 +69,13 @@ public abstract class BaseTrait extends Stat {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
+    public List<ITextComponent> getTooltipList(TooltipStatInfo info) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-        StatMod mod = data.getStatMod();
+        StatMod mod = info.mod;
         Stat basestat = mod.GetBaseStat();
         ITextComponent text = new StringTextComponent("");
 
-        text = TraitText(data);
+        text = TraitText(info);
 
         list.add(text);
 
@@ -83,7 +84,8 @@ public abstract class BaseTrait extends Stat {
                 Trait trait = (Trait) basestat;
 
                 for (StatModData moddata : trait.getStatsMods()) {
-                    TooltipInfo newinfo = info.withLevel(info.unitdata.getLevel());
+                    TooltipInfo newinfo = info.tooltipInfo.withLevel(info.tooltipInfo.unitdata
+                            .getLevel());
                     newinfo.minmax = new MinMax(trait.percent(), trait.percent());
                     list.addAll(moddata.GetTooltipString(newinfo));
                 }

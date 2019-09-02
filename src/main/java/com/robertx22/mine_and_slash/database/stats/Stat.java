@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
@@ -135,6 +135,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public String printValue(StatModData data, int level) {
 
         float val = data.GetActualVal(level);
+        return printValue(val);
+
+    }
+
+    public String printValue(float val) {
 
         DecimalFormat format = new DecimalFormat();
 
@@ -153,9 +158,9 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     }
 
     @OnlyIn(Dist.CLIENT)
-    public ITextComponent NameText(TooltipInfo info, StatModData data) {
+    public ITextComponent NameText(TooltipStatInfo info) {
 
-        StatMod mod = data.getStatMod();
+        StatMod mod = info.mod;
         Stat basestat = mod.GetBaseStat();
 
         ITextComponent str = new StringTextComponent("");
@@ -166,7 +171,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         str.appendSibling(basestat.locName());
 
-        if (info.isSet == false) {
+        if (info.tooltipInfo.isSet == false) {
             return Styles.REDCOMP()
                     .appendSibling(new StringTextComponent(" * ").appendSibling(str)
                             .appendText(": "));
@@ -176,22 +181,22 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     }
 
     @OnlyIn(Dist.CLIENT)
-    public ITextComponent NameAndValueText(TooltipInfo info, StatModData data) {
+    public ITextComponent NameAndValueText(TooltipStatInfo info) {
 
-        float val = data.GetActualVal(info.level);
+        float val = info.amount;
 
         String minusplus = val > 0 ? "+" : "";
 
-        return NameText(info, data).appendText(minusplus + printValue(data, info.level));
+        return NameText(info).appendText(minusplus + printValue(info.modData, info.tooltipInfo.level));
     }
 
     @OnlyIn(Dist.CLIENT)
-    public List<ITextComponent> getTooltipList(TooltipInfo info, StatModData data) {
+    public List<ITextComponent> getTooltipList(TooltipStatInfo info) {
 
-        if (info.usePrettyStatSymbols) {
-            return PrimaryStatTooltipUtils.getTooltipList(this, info, data);
+        if (info.tooltipInfo.usePrettyStatSymbols) {
+            return PrimaryStatTooltipUtils.getTooltipList(info);
         } else {
-            return NormalStatTooltipUtils.getTooltipList(this, info, data);
+            return NormalStatTooltipUtils.getTooltipList(info);
         }
     }
 

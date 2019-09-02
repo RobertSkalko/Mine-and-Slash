@@ -20,6 +20,9 @@ This makes it so items from my mod can only be repaired with other items from my
 because i think too many people would be asking why their mending enchant doesn't work or why they can't repair their gear with x method.
 I made it cus too many mods add OP repair options and that makes any kind of balance impossible without days of tweaking and disabling items/features of other mods.
 
+* TOOLTIP REWORK!
+Prettier tooltips while still retaining the old ones on Shift click for more clarity
+
 Other more minor changes:
 reduced droprates a bit (config change, i feel there's a bit too much drops cus i kept adding more and more types of loot)
 added bonus droprate for loot of lvl 5 and less if player is also lvl 5 or less
