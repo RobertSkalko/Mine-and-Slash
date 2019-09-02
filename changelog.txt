@@ -11,7 +11,7 @@ And to stop the gameplay of farming currencies at endgame to just reroll your ex
 (this will likely lead to bugs! Beware of weirdness in stats and battle)
 
 * COMBAT OVERHAUL! 
-there is no longer many dmg numbers for every element you do, it's all combined into 1 now.
+there is no longer many dmg numbers for every element you do, it's all combined into 1 now. (highest dmg element is shown)
 i changed internal code of it, could be buggy
 swords now work like vanilla ones and do aoe
 
@@ -39,3 +39,4 @@ added durability to jewerly and spells
 made rarities rarer (finding mythics will be much harder now, use currencies wisely)
 items drop with less current durability now
 reduce durability items spawn in at higher lvls but increases at lower lvls
+updated to latest forge and curios version
