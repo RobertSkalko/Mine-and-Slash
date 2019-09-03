@@ -108,8 +108,10 @@ public class LootInfo {
                     .getStat(new LootTypeBonus(LootType.All))
                     .getMultiplier();
 
-            if (playerData.getLevel() < 5 && mobData.getLevel() < 5) {
-                chance *= 2; // new player bonus droprate
+            if (mobData != null) {
+                if (playerData.getLevel() < 5 && mobData.getLevel() < 5) {
+                    chance *= 2; // new player bonus droprate
+                }
             }
 
         }

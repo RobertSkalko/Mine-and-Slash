@@ -1,3 +1,5 @@
+2.6.1
+fixed a crash on loot generation
 2.6.0
 This could be called the hardcore update! I know a lot of you won't like any of this so i kept most of it configurable:
 
