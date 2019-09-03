@@ -39,6 +39,16 @@ public class LivingHurtUtils {
         }
     }
 
+    public static void damageArmorItems(LivingHurtEvent event) {
+
+        event.getEntityLiving()
+                .getArmorInventoryList()
+                .forEach(x -> x.damageItem(1, event.getEntityLiving(), (entity) -> {
+                    entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                }));
+
+    }
+
     public static void onAttack(LivingHurtEvent event) {
 
         LivingEntity target = event.getEntityLiving();
@@ -159,6 +169,7 @@ public class LivingHurtUtils {
 
         if (DmgSourceUtils.isMyDmgSource(event.getSource())) {
             DmgSourceUtils.removeSourceMarker(event.getSource());
+            LivingHurtUtils.damageArmorItems(event);
             return;
         }
 

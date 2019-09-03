@@ -1,3 +1,5 @@
+2.6.2 
+fixed armor not getting damaged.
 2.6.1
 fixed a crash on loot generation
 2.6.0

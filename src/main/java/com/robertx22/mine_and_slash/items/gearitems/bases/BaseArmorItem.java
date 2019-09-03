@@ -22,10 +22,6 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
         return "";
     }
 
-    public static int MAX_GEAR_DURABILITY = 1000;
-
-    static int Enchantability = 10;
-
     public abstract String Name();
 
     @Override
