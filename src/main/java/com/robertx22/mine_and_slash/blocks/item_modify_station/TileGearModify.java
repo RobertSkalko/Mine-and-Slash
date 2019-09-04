@@ -58,14 +58,16 @@ public class TileGearModify extends BaseTile {
                         IInstability insta = (IInstability) data;
                         IAddsInstability addsInta = (IAddsInstability) context.Currency.getItem();
 
-                        if (insta.isInstabilityCapReached()) {
+                        if (insta.isInstabilityCapReached() && !addsInta.canBeUsedAtFullInstability()) {
                             copy = ItemStack.EMPTY;
                         } else {
                             boolean broke = false;
                             if (insta.usesBreakChance()) {
-                                if (RandomUtils.roll(insta.getBreakChance())) {
-                                    copy = new ItemStack(Items.GUNPOWDER);
-                                    broke = true;
+                                if (addsInta.activatesBreakRoll()) {
+                                    if (RandomUtils.roll(insta.getBreakChance())) {
+                                        copy = new ItemStack(Items.GUNPOWDER);
+                                        broke = true;
+                                    }
                                 }
                             }
                             if (broke == false) {

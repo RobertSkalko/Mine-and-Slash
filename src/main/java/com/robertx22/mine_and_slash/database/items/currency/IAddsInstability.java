@@ -12,4 +12,8 @@ public interface IAddsInstability {
         return true;
     }
 
+    default boolean canBeUsedAtFullInstability() {
+        return !activatesBreakRoll() && instabilityAddAmount() <= 0;
+    }
+
 }

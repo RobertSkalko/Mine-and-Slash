@@ -60,7 +60,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = false;
+    public static boolean RUN_DEV_TOOLS = true;
 
     public static void devToolsLog(String string) {
         if (RUN_DEV_TOOLS) {
@@ -109,6 +109,9 @@ public class MMORPG {
         if (MAP_WORLD_SEED == 0) {
             MAP_WORLD_SEED = org.apache.commons.lang3.RandomUtils.nextLong();
         }
+
+        // BrewingRecipeRegistry.addRecipe(Ingredient.fromItems(Items.GLASS_BOTTLE), Ingredient
+        //       .fromItems(Items.DIAMOND), new ItemStack(Items.GOLD_BLOCK));
 
     }
 

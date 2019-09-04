@@ -72,4 +72,10 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, I
     public int instabilityAddAmount() {
         return -25;
     }
+
+    @Override
+    public boolean activatesBreakRoll() {
+        return false;
+    }
+
 }

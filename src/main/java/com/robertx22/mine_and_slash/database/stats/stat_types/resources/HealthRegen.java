@@ -1,9 +1,20 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.resources;
 
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import net.minecraft.util.text.TextFormatting;
 
 public class HealthRegen extends BaseRegenClass {
     public static String GUID = "Health Regen";
+
+    @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.RED;
+    }
+
+    @Override
+    public String getIcon() {
+        return "\u0E51";
+    }
 
     @Override
     public StatGroup statGroup() {

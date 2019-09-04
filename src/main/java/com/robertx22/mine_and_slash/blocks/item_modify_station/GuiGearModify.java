@@ -89,20 +89,32 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                 }
             }
 
-            if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS.get()) {
+            if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM.get()) {
                 if (context.Currency.getItem() instanceof IAddsInstability) {
                     IAddsInstability insta = (IAddsInstability) context.Currency.getItem();
-                    if (insta.activatesBreakRoll()) {
-                        if (context.data instanceof IInstability) {
-                            IInstability i = (IInstability) context.data;
 
-                            if (i.getBreakChance() > 0) {
-                                String breaktxt = Words.BreakChance.translate() + ": " + String
-                                        .format("%.1f", i.getBreakChance()) + "%";
-                                font.drawString(breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y, Color.red
-                                        .getRGB());
-                                y += font.FONT_HEIGHT;
+                    if (context.data instanceof IInstability) {
+                        IInstability i = (IInstability) context.data;
 
+                        if (i.isInstabilityCapReached()) {
+                            String breaktxt = Words.InstabilityLimitReached.translate();
+                            font.drawString(breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y, Color.red
+                                    .getRGB());
+                            y += font.FONT_HEIGHT;
+
+                        } else {
+                            if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS
+                                    .get()) {
+                                if (insta.activatesBreakRoll()) {
+                                    if (i.getBreakChance() > 0) {
+                                        String breaktxt = Words.BreakChance.translate() + ": " + String
+                                                .format("%.1f", i.getBreakChance()) + "%";
+                                        font.drawString(breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y, Color.red
+                                                .getRGB());
+                                        y += font.FONT_HEIGHT;
+
+                                    }
+                                }
                             }
                         }
                     }
