@@ -1,5 +1,6 @@
 2.6.3
 made chaos orbs not activate instability break chance
+made all base player stats (by config) scale normally again
 2.6.2 
 fixed armor not getting damaged.
 2.6.1

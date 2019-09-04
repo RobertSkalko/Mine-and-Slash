@@ -31,48 +31,50 @@ public class PlayerStatUtils {
 
     public static void AddPlayerBaseStats(UnitData data, Unit unit) {
 
-        int lvl = data.getLevel();
+        addScalingStat(data, SpellDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.spell_damage
+                .get(), ModConfig.INSTANCE.PlayerBaseStats.spell_damage_per_level.get());
 
-        unit.getStat(PhysicalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.physical_damage
-                .get() + StatModData.calculateStatGrowth(ModConfig.INSTANCE.PlayerBaseStats.physical_damage_per_level
-                .get()
-                .floatValue(), lvl));
+        addScalingStat(data, PhysicalDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.physical_damage
+                .get(), ModConfig.INSTANCE.PlayerBaseStats.physical_damage_per_level.get());
 
-        // TODO IM LAZY
+        addScalingStat(data, HealthRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.health_regen
+                .get(), ModConfig.INSTANCE.PlayerBaseStats.health_regen_per_level.get());
 
-        unit.getStat(Mana.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana.get() + data
-                .getLevel() * ModConfig.INSTANCE.PlayerBaseStats.mana_per_level.get());
-
-        unit.getStat(Energy.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.energy_per_level.get());
-
-        unit.getStat(ManaRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.mana_regen
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.mana_regen_per_level.get());
-
-        unit.getStat(EnergyRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.energy_regen
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.energy_regen_per_level.get());
-
-        unit.getStat(HealthRegen.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health_regen
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.health_regen_per_level.get());
-
-        unit.getStat(Armor.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.armor.get() + data
-                .getLevel() * ModConfig.INSTANCE.PlayerBaseStats.armor_per_level.get());
-
-        unit.getStat(Health.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.health
-                .get() + StatModData.calculateStatGrowth(ModConfig.INSTANCE.PlayerBaseStats.health_per_level
-                .get()
-                .floatValue(), lvl));
-
-        unit.getStat(CriticalHit.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_hit
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.critical_hit_per_level.get());
-
-        unit.getStat(CriticalDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.critical_damage
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.critical_damage_per_level
+        addScalingStat(data, Armor.GUID, ModConfig.INSTANCE.PlayerBaseStats.armor.get(), ModConfig.INSTANCE.PlayerBaseStats.armor_per_level
                 .get());
 
-        unit.getStat(SpellDamage.GUID).Flat += (int) (ModConfig.INSTANCE.PlayerBaseStats.spell_damage
-                .get() + lvl * ModConfig.INSTANCE.PlayerBaseStats.spell_damage_per_level.get());
+        addScalingStat(data, Health.GUID, ModConfig.INSTANCE.PlayerBaseStats.health.get(), ModConfig.INSTANCE.PlayerBaseStats.health_per_level
+                .get());
 
+        addStat(data, CriticalHit.GUID, ModConfig.INSTANCE.PlayerBaseStats.critical_hit.get(), ModConfig.INSTANCE.PlayerBaseStats.critical_hit_per_level
+                .get());
+
+        addStat(data, CriticalDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.critical_damage
+                .get(), ModConfig.INSTANCE.PlayerBaseStats.critical_damage_per_level.get());
+
+        addStat(data, ManaRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.mana_regen.get(), ModConfig.INSTANCE.PlayerBaseStats.mana_regen_per_level
+                .get());
+
+        addStat(data, EnergyRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.energy_regen.get(), ModConfig.INSTANCE.PlayerBaseStats.energy_regen_per_level
+                .get());
+
+        addStat(data, Energy.GUID, ModConfig.INSTANCE.PlayerBaseStats.energy.get(), ModConfig.INSTANCE.PlayerBaseStats.energy_per_level
+                .get());
+
+        addStat(data, Mana.GUID, ModConfig.INSTANCE.PlayerBaseStats.mana.get(), ModConfig.INSTANCE.PlayerBaseStats.mana_per_level
+                .get());
+
+    }
+
+    private static void addScalingStat(UnitData data, String stat, double base,
+                                       double lvl) {
+        data.getUnit()
+                .getStat(stat).Flat += base + StatModData.calculateStatGrowth((float) lvl, data
+                .getLevel());
+    }
+
+    private static void addStat(UnitData data, String stat, double base, double lvl) {
+        data.getUnit().getStat(stat).Flat += base + lvl * data.getLevel();
     }
 
     public static List<GearItemData> getEquipsExcludingWeapon(LivingEntity entity) {
