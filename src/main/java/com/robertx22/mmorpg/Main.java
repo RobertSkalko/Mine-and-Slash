@@ -156,12 +156,12 @@ public class Main {
     proxy.postInit(event);
     RabbitGui.proxy.postInit();
     Serialization.generateConfigTut(event);
-    MinecraftForge.EVENT_BUS.register(new vanilla());
+    new vanilla();
     if (Loader.isModLoaded("iceandfire")) {
-    	MinecraftForge.EVENT_BUS.register(new fireice());
+    	new fireice();
     }
     if (Loader.isModLoaded("ebwizardry")) {
-    	MinecraftForge.EVENT_BUS.register(new ebwizardry());
+    	new ebwizardry();
     }
 
   }
