@@ -12,10 +12,6 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerMapDevice extends BaseTileContainer {
 
-    // These store cache values, used by the server to only update the client side
-    // tile entity when values have changed
-    private int[] cachedFields;
-
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
