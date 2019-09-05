@@ -1,14 +1,14 @@
 {
     "textures": {
-        "particle": "blocks/portal",
-        "portal": "blocks/portal"
+        "particle": "mmorpg:blocks/portal",
+        "portal": "mmorpg:blocks/portal"
     },
     "elements": [
-        {   "from": [ 6, 0, 0 ],
-            "to": [ 10, 16, 16 ],
+        {   "from": [ 0, 0, 6 ],
+            "to": [ 16, 16, 10 ],
             "faces": {
-                "east": { "uv": [ 0, 0, 16, 16 ], "texture": "#portal" },
-                "west": { "uv": [ 0, 0, 16, 16 ], "texture": "#portal" }
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#portal" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#portal" }
             }
         }
     ]
