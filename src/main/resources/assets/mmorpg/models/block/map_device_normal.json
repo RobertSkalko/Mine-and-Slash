@@ -1,6 +1,6 @@
 {   "parent": "block/block",
     "textures": {
-        "particle": "blocks/enchanting_table_bottom",
+        "particle": "mmorpg:blocks/map_bottom",
         "bottom": "mmorpg:blocks/map_bottom",
         "top": "mmorpg:blocks/map_top",
         "side": "mmorpg:blocks/map_side"
