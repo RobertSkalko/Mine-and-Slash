@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_5;
 
+import com.robertx22.mine_and_slash.database.items.runes.*;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
@@ -7,8 +9,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.Critic
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.HomingTrait;
-import com.robertx22.mine_and_slash.database.items.runes.*;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +17,8 @@ public class RuneWordHoming extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new AllTraitMods(new HomingTrait()), new CriticalHitFlat(), new CriticalDamageFlat(), new HealthFlat());
+        return Arrays.asList(new AllTraitMods(new HomingTrait()), new CriticalHitFlat(), new CriticalDamageFlat(), new HealthFlat()
+                .multi(0.7F));
     }
 
     @Override

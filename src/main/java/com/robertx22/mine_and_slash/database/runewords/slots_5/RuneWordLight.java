@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_5;
 
+import com.robertx22.mine_and_slash.database.items.runes.*;
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
@@ -7,8 +9,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.Heal
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.LightTrait;
-import com.robertx22.mine_and_slash.database.items.runes.*;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -18,7 +18,8 @@ public class RuneWordLight extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new AllTraitMods(new LightTrait()), new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Fire));
+        return Arrays.asList(new AllTraitMods(new LightTrait()), new HealthRegenFlat(), new HealthFlat()
+                .multi(0.7f), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override

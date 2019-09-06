@@ -1,6 +1,8 @@
 2.6.3
 made chaos orbs not activate instability break chance
 made all base player stats (by config) scale normally again
+made mob leveling in maps much slower over distance, so it's harder to cheat map lvls
+reduced flat hp of some affixes and runewords
 2.6.2 
 fixed armor not getting damaged.
 2.6.1

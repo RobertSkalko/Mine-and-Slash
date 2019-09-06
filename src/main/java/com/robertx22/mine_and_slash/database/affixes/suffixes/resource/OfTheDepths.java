@@ -25,7 +25,7 @@ public class OfTheDepths extends Suffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new ManaFlat(), new EnergyFlat(), new HealthFlat());
+        return Arrays.asList(new ManaFlat(), new EnergyFlat(), new HealthFlat().multi(0.3F));
     }
 
     @Override

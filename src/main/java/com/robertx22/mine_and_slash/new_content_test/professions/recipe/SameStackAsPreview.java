@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.recipe;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class SameStackAsPreview extends BasePreviewItem {
@@ -8,6 +9,10 @@ public class SameStackAsPreview extends BasePreviewItem {
 
     public SameStackAsPreview(ItemStack stack) {
         this.stack = stack;
+    }
+
+    public SameStackAsPreview(Item item) {
+        this.stack = new ItemStack(item);
     }
 
     @Override

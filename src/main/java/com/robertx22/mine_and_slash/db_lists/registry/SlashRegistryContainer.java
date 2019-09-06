@@ -120,6 +120,16 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return map.containsKey(guid);
     }
 
+    public void registerOverride(C c) {
+
+        if (isRegistered(c)) {
+            System.out.println("[Mine and Slash Registry Note]: Overriding: " + c.GUID());
+        }
+
+        map.put(c.GUID(), c);
+
+    }
+
     public void register(C c) {
 
         if (isRegistered(c)) {

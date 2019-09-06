@@ -7,19 +7,15 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -40,6 +36,13 @@ public class MapManager {
                     moddim.setRegistryName(iwp.getResourceLoc());
                 }
 
+                /*
+                DimensionConfig config = new DimensionConfig(5000, 50, 1, 100);
+                config.GUID = moddim.getRegistryName().toString();
+                config.registerToSlashRegistry();
+                // while it does work. it would make multiplayer harder to play together..
+                 */
+
                 event.getRegistry().register(moddim);
 
                 iwp.setModDimension(moddim);
@@ -49,6 +52,8 @@ public class MapManager {
         }
 
     }
+
+    /*
 
     @Mod.EventBusSubscriber
     public static class EventDim {
@@ -77,6 +82,8 @@ public class MapManager {
         }
     }
 
+
+     */
     public static DimensionType getDimensionType(ResourceLocation res) {
 
         return DimensionType.byName(res);
