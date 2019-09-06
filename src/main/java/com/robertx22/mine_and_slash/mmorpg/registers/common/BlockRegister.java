@@ -34,6 +34,11 @@ public class BlockRegister {
     public static final String MAP_PORTAL_BLOCK_ID = Ref.MODID + ":map_portal_block";
 
     // NEW BLOCK
+    @ObjectHolder(ContainerTypeRegisters.ALCHEMY_BLOCK_ID)
+    public static TileEntityType<?> ALCHEMY_TILE;
+    @ObjectHolder(ContainerTypeRegisters.ALCHEMY_BLOCK_ID)
+    public static Block ALCHEMY_BLOCK;
+    // NEW BLOCK
     @ObjectHolder(EGG_LOOT_CRATE_ID)
     public static TileEntityType<?> EGG_LOOT_CRATE;
     @ObjectHolder(EGG_LOOT_CRATE_ID)
@@ -112,6 +117,8 @@ public class BlockRegister {
         reg.register(new BlockItem(BLOCK_GEAR_SALVAGE, stationProp).setRegistryName(GEAR_SALVAGE_ID));
         reg.register(new BlockItem(ATTUNEMENT_ALTAR_BLOCK, stationProp).setRegistryName(ATTUNEMENT_ALTAR_ID));
         reg.register(new BlockItem(EGG_LOOT_CRATE_BLOCK, stationProp).setRegistryName(EGG_LOOT_CRATE_ID));
+
+        reg.register(new BlockItem(ALCHEMY_BLOCK, stationProp).setRegistryName(ContainerTypeRegisters.ALCHEMY_BLOCK_ID));
 
         ItemOre.RegisterItems(event);
     }

@@ -1,8 +1,10 @@
-package com.robertx22.mine_and_slash.new_content_test.professions.blocks;
+package com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy;
 
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionRecipesTile;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.recipes.TestRecipe;
-import net.minecraft.tileentity.TileEntityType;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.recipes.TestRecipe2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ public class AlchemyTile extends ProfessionRecipesTile {
         recipestest = new ArrayList<>();
 
         for (int i = 0; i < 500; i++) {
-            recipestest.add(new TestRecipe());
+            recipestest.add(new TestRecipe2());
 
         }
         recipestest.set(5, new TestRecipe());
@@ -25,8 +27,8 @@ public class AlchemyTile extends ProfessionRecipesTile {
 
     }
 
-    public AlchemyTile(TileEntityType<?> type) {
-        super(type);
+    public AlchemyTile() {
+        super(BlockRegister.ALCHEMY_TILE);
 
         this.scrollToRow(0);
 

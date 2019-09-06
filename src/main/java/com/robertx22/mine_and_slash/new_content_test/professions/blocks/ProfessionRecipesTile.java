@@ -18,7 +18,7 @@ public abstract class ProfessionRecipesTile extends TileEntity implements ITicka
 
     public ProfessionRecipesTile(TileEntityType<?> type) {
         super(type);
-        recipeStacks = new ItemStack[ProfessionRecipesContainer.size];
+        recipeStacks = new ItemStack[ProfessionContainer.size];
     }
 
     @Override
@@ -29,7 +29,7 @@ public abstract class ProfessionRecipesTile extends TileEntity implements ITicka
     public abstract List<BaseRecipe> recipes();
 
     public void scrollToRow(int row) {
-        for (int i = row * 9; i < row * 9 + ProfessionRecipesContainer.size; i++) {
+        for (int i = row * 9; i < row * 9 + ProfessionContainer.size; i++) {
             this.recipeStacks[i] = recipes().get(i).getOutput(this).getPreview();
         }
     }

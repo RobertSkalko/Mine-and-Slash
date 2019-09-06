@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nullable;
 
-public abstract class ProfessionRecipesContainer extends Container {
+public abstract class ProfessionContainer extends Container {
 
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -23,7 +23,7 @@ public abstract class ProfessionRecipesContainer extends Container {
 
     public BlockPos pos;
 
-    protected ProfessionRecipesContainer(@Nullable ContainerType<?> type, int id) {
+    protected ProfessionContainer(@Nullable ContainerType<?> type, int id) {
         super(type, id);
     }
 

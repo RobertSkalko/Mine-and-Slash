@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy.AlchemyContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
@@ -25,6 +26,10 @@ public class ContainerTypeRegisters {
     static final String MAP_BAG_ID = Ref.MODID + ":" + "map_bag";
     static final String CURRENCY_BAG_ID = Ref.MODID + ":" + "currency_bag";
     static final String MASTER_BAG_ID = Ref.MODID + ":" + "master_bag";
+    static final String ALCHEMY_BLOCK_ID = Ref.MODID + ":" + "alchemy_station";
+
+    @ObjectHolder(ALCHEMY_BLOCK_ID)
+    public static final ContainerType<AlchemyContainer> ALCHEMY_STATION = null;
 
     @ObjectHolder(BlockRegister.GEAR_FACTORY_ID)
     public static final ContainerType<ContainerGearFactory> GEAR_FACTORY = null;
@@ -50,6 +55,9 @@ public class ContainerTypeRegisters {
             final RegistryEvent.Register<ContainerType<?>> event) {
 
         IForgeRegistry<ContainerType<?>> r = event.getRegistry();
+
+        r.register(IForgeContainerType.create(AlchemyContainer::new)
+                .setRegistryName(ALCHEMY_BLOCK_ID));
 
         r.register(IForgeContainerType.create(ContainerGearFactory::new)
                 .setRegistryName(BlockRegister.GEAR_FACTORY_ID));
