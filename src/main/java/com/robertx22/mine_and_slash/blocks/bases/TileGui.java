@@ -11,7 +11,6 @@ import net.minecraft.util.text.ITextComponent;
 public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile> extends ContainerScreen<T> {
 
     public Tile tile;
-
     Minecraft mc;
 
     public TileGui(T cont, PlayerInventory inv, ITextComponent text, Class<Tile> token) {

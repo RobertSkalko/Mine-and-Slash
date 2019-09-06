@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.blocks;
 
+import com.robertx22.mine_and_slash.blocks.bases.BaseTileContainer;
 import com.robertx22.mine_and_slash.items.bags.BaseInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nullable;
 
-public abstract class ProfessionContainer extends Container {
+public abstract class ProfessionContainer extends BaseTileContainer {
 
     private final int HOTBAR_SLOT_COUNT = 9;
     private final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -24,7 +24,7 @@ public abstract class ProfessionContainer extends Container {
     public BlockPos pos;
 
     protected ProfessionContainer(@Nullable ContainerType<?> type, int id) {
-        super(type, id);
+        super(size, type, id);
     }
 
     public void renderInventory(BaseInventory inventory, PlayerInventory playerInv) {

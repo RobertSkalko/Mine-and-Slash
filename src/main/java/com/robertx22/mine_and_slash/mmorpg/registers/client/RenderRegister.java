@@ -29,9 +29,6 @@ public class RenderRegister {
     //@SubscribeEvent
     public static void regRenders(/*ModelRegistryEvent evt*/) {
 
-        //RenderingRegistry.registerEntityRenderingHandler(EntityFireBolt.class, (EntityRendererManager entityRendererManager) -> new spellRenderer(entityRendererManager)
-        //      .build(spellRenderer.FIRE_TEX, new firebolt()));
-
         RenderingRegistry.registerEntityRenderingHandler(EntityFireBolt.class, newRenFac());
         RenderingRegistry.registerEntityRenderingHandler(EntityFireBomb.class, newRenFac());
         RenderingRegistry.registerEntityRenderingHandler(EntityFlameExplosion.class, newRenFac());
