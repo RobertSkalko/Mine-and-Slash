@@ -5,7 +5,13 @@ import com.robertx22.mine_and_slash.new_content_test.professions.blocks.Professi
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.recipes.TestRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.recipes.TestRecipe2;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,4 +45,15 @@ public class AlchemyTile extends ProfessionRecipesTile {
         return recipestest;
     }
 
+    @Override
+    public ITextComponent getDisplayName() {
+        return new StringTextComponent("");
+    }
+
+    @Nullable
+    @Override
+    public Container createMenu(int i, PlayerInventory playerInventory,
+                                PlayerEntity playerEntity) {
+        return new AlchemyContainer(i, playerInventory, this, this.getPos());
+    }
 }

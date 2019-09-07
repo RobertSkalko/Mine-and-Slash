@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.blocks;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTileContainer;
-import com.robertx22.mine_and_slash.items.bags.BaseInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nullable;
@@ -27,7 +27,7 @@ public abstract class ProfessionContainer extends BaseTileContainer {
         super(size, type, id);
     }
 
-    public void renderInventory(BaseInventory inventory, PlayerInventory playerInv) {
+    public void renderInventory(ItemStackHandler inventory, PlayerInventory playerInv) {
 
         int i = (this.numRows - 4) * 18;
 

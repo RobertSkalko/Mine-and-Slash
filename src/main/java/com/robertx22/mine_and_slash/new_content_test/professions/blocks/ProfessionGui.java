@@ -6,6 +6,8 @@ import com.robertx22.mine_and_slash.network.RequestTilePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -16,9 +18,17 @@ public abstract class ProfessionGui<T extends ProfessionContainer, Tile extends 
     public Tile tile;
     Minecraft mc;
 
+    public static final int bagXSize = 176;
+    public static final int bagYSize = 207;
+    static int x = 199;
+    static int y = 222;
+
     public ProfessionGui(T cont, PlayerInventory inv, ITextComponent text,
                          Class<Tile> token) {
         super(cont, inv, text);
+
+        this.xSize = x;
+        this.ySize = y;
 
         this.mc = Minecraft.getInstance();
 
@@ -30,6 +40,26 @@ public abstract class ProfessionGui<T extends ProfessionContainer, Tile extends 
                 }
             }
         }
+    }
+
+    @Override
+    public boolean mouseClicked(double x, double y, int ticks) {
+
+        Slot slot = this.getSelectedSlot(x, y);
+
+        if (slot != null) {
+
+            ItemStack stack = slot.getStack();
+
+            System.out.println("click works");
+
+            //  this.playerInventory.player.openContainer(.....);
+
+            ///clickedSlot.getStack()
+            // etc this.playerInventory.player.openContainer
+        }
+        return super.mouseClicked(x, y, ticks);
+
     }
 
     @Override

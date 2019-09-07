@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy.AlchemyBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -101,6 +102,8 @@ public class BlockRegister {
         reg.register(new AttunementBlock().setRegistryName(ATTUNEMENT_ALTAR_ID));
         reg.register(new MapPortalBlock().setRegistryName(MAP_PORTAL_BLOCK_ID));
         reg.register(new EggLootCrateBlock().setRegistryName(EGG_LOOT_CRATE_ID));
+
+        reg.register(new AlchemyBlock().setRegistryName(ContainerTypeRegisters.ALCHEMY_BLOCK_ID));
 
         ItemOre.RegisterBlocks(event);
     }
