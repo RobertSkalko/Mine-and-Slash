@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ProfessionBlock extends BaseInventoryBlock {
+public abstract class ProfessionBlock extends BaseInventoryBlock {
 
     public ProfessionBlock() {
         super(Properties.create(Material.ROCK).hardnessAndResistance(5F));

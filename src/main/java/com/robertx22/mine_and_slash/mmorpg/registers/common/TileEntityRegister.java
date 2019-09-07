@@ -26,7 +26,7 @@ public class TileEntityRegister {
 
         r.register(TileEntityType.Builder.create(AlchemyTile::new, BlockRegister.ALCHEMY_BLOCK)
                 .build(null)
-                .setRegistryName(ContainerTypeRegisters.ALCHEMY_BLOCK_ID));
+                .setRegistryName(BlockRegister.ALCHEMY_BLOCK_ID));
 
         r.register(TileEntityType.Builder.create(TileMapPortal::new, BlockRegister.PORTAL_BLOCK)
                 .build(null)

@@ -19,7 +19,7 @@ import com.robertx22.mine_and_slash.items.bags.map_bag.GuiMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.GuiMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy.AlchemyRecipeGui;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionRecipeGui;
 import net.minecraft.client.gui.ScreenManager;
 
 public class ContainerGuiRegisters {
@@ -40,7 +40,7 @@ public class ContainerGuiRegisters {
         ScreenManager.<ContainerCurrencyBag, GuiCurrencyBag>registerFactory(ContainerTypeRegisters.CURRENCY_BAG, GuiCurrencyBag::new);
         ScreenManager.<ContainerMasterBag, GuiMasterBag>registerFactory(ContainerTypeRegisters.MASTER_BAG, GuiMasterBag::new);
 
-        ScreenManager.registerFactory(ContainerTypeRegisters.ALCHEMY_STATION, AlchemyRecipeGui::new);
+        ScreenManager.registerFactory(ContainerTypeRegisters.PROFESSION_RECIPE_CONTAINER, ProfessionRecipeGui::new);
 
     }
 

@@ -15,9 +15,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
-public abstract class ProfessionRecipeGui<T extends ProfessionRecipeContainer, Tile extends ProfessionTile> extends ContainerScreen<T> {
+public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContainer> {
 
-    public Tile tile;
+    public ProfessionTile tile;
     Minecraft mc;
 
     ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/recipes_list.png");
@@ -25,8 +25,8 @@ public abstract class ProfessionRecipeGui<T extends ProfessionRecipeContainer, T
     static int x = 199;
     static int y = 222;
 
-    public ProfessionRecipeGui(T cont, PlayerInventory inv, ITextComponent text,
-                               Class<Tile> token) {
+    public ProfessionRecipeGui(ProfessionRecipeContainer cont, PlayerInventory inv,
+                               ITextComponent text) {
         super(cont, inv, text);
 
         this.xSize = x;
@@ -36,12 +36,14 @@ public abstract class ProfessionRecipeGui<T extends ProfessionRecipeContainer, T
 
         if (cont.pos != null) {
             TileEntity en = Minecraft.getInstance().world.getTileEntity(cont.pos);
-            if (en != null) {
-                if (token.isAssignableFrom(en.getClass())) {
-                    this.tile = (Tile) en;
-                }
+            if (en instanceof ProfessionTile) {
+                this.tile = (ProfessionTile) en;
+
+                MMORPG.sendToServer(new ScrollPacket(this.currentRow, tile.getPos()));
+
             }
         }
+
     }
 
     @Override
@@ -85,7 +87,7 @@ public abstract class ProfessionRecipeGui<T extends ProfessionRecipeContainer, T
     public boolean mouseScrolled(double num1, double num2, double num3) {
 
         this.currentRow -= num3;
-        this.currentRow = MathHelper.clamp(currentRow, 0, tile.recipes().size() / 9);
+        this.currentRow = MathHelper.clamp(currentRow, 0, tile.profession.recipes.size() / 9);
 
         MMORPG.sendToServer(new ScrollPacket(this.currentRow, tile.getPos()));
         MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
@@ -102,6 +104,8 @@ public abstract class ProfessionRecipeGui<T extends ProfessionRecipeContainer, T
 
     }
 
-    public abstract void drawExtraGuiStuff(float partialTicks, int x, int y);
+    public void drawExtraGuiStuff(float partialTicks, int x, int y) {
+
+    }
 
 }

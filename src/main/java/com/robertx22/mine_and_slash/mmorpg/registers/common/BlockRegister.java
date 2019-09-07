@@ -34,10 +34,12 @@ public class BlockRegister {
     public static final String EGG_LOOT_CRATE_ID = Ref.MODID + ":egg_loot_crate";
     public static final String MAP_PORTAL_BLOCK_ID = Ref.MODID + ":map_portal_block";
 
+    static final String ALCHEMY_BLOCK_ID = Ref.MODID + ":" + "alchemy_station";
+
     // NEW BLOCK
-    @ObjectHolder(ContainerTypeRegisters.ALCHEMY_BLOCK_ID)
+    @ObjectHolder(ALCHEMY_BLOCK_ID)
     public static TileEntityType<?> ALCHEMY_TILE;
-    @ObjectHolder(ContainerTypeRegisters.ALCHEMY_BLOCK_ID)
+    @ObjectHolder(ALCHEMY_BLOCK_ID)
     public static Block ALCHEMY_BLOCK;
     // NEW BLOCK
     @ObjectHolder(EGG_LOOT_CRATE_ID)
@@ -103,7 +105,7 @@ public class BlockRegister {
         reg.register(new MapPortalBlock().setRegistryName(MAP_PORTAL_BLOCK_ID));
         reg.register(new EggLootCrateBlock().setRegistryName(EGG_LOOT_CRATE_ID));
 
-        reg.register(new AlchemyBlock().setRegistryName(ContainerTypeRegisters.ALCHEMY_BLOCK_ID));
+        reg.register(new AlchemyBlock().setRegistryName(ALCHEMY_BLOCK_ID));
 
         ItemOre.RegisterBlocks(event);
     }
@@ -121,7 +123,7 @@ public class BlockRegister {
         reg.register(new BlockItem(ATTUNEMENT_ALTAR_BLOCK, stationProp).setRegistryName(ATTUNEMENT_ALTAR_ID));
         reg.register(new BlockItem(EGG_LOOT_CRATE_BLOCK, stationProp).setRegistryName(EGG_LOOT_CRATE_ID));
 
-        reg.register(new BlockItem(ALCHEMY_BLOCK, stationProp).setRegistryName(ContainerTypeRegisters.ALCHEMY_BLOCK_ID));
+        reg.register(new BlockItem(ALCHEMY_BLOCK, stationProp).setRegistryName(ALCHEMY_BLOCK_ID));
 
         ItemOre.RegisterItems(event);
     }
