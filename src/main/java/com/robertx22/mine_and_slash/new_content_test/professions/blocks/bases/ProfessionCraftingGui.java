@@ -16,10 +16,10 @@ public class ProfessionCraftingGui extends ContainerScreen<ProfessionRecipeConta
     public ProfessionTile tile;
     Minecraft mc;
 
-    ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/recipes_list.png");
+    ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/profession_station.png");
 
-    static int x = 199;
-    static int y = 222;
+    static int x = 256;
+    static int y = 207;
 
     public ProfessionCraftingGui(ProfessionRecipeContainer cont, PlayerInventory inv,
                                  ITextComponent text) {
@@ -59,7 +59,7 @@ public class ProfessionCraftingGui extends ContainerScreen<ProfessionRecipeConta
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
-      
+
     }
 
 }

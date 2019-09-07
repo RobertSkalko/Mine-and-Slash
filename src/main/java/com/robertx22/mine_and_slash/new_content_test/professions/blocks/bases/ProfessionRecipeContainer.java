@@ -15,6 +15,7 @@ import net.minecraftforge.items.ItemStackHandler;
 public class ProfessionRecipeContainer extends BaseTileContainer {
 
     public int numRows = 6;
+    public static int size = 6 * 9;
 
     Professions profession = Professions.ALCHEMY;
 

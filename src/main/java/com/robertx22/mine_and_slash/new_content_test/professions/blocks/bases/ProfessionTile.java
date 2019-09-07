@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -17,6 +18,8 @@ import javax.annotation.Nullable;
 public abstract class ProfessionTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
     public Professions profession = Professions.ALCHEMY;
+
+    public BaseRecipe currentRecipe;
 
     public NonNullList<ItemStack> recipeStacks;
 
@@ -57,6 +60,12 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory,
                                 PlayerEntity playerEntity) {
-        return new ProfessionRecipeContainer(i, this, this.getPos(), playerInventory);
+
+        if (currentRecipe == null) {
+            return new ProfessionRecipeContainer(i, this, this.getPos(), playerInventory);
+        } else {
+            return new ProfessionCraftingContainer(i, this, this.getPos(), playerInventory);
+        }
+
     }
 }

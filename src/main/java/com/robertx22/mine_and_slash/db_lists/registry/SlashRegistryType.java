@@ -20,6 +20,7 @@ public enum SlashRegistryType {
     MOD_ENTITY_CONFIGS(),
     CURRENCY_ITEMS(),
     UNIQUE_RUNES(),
-    COMPATIBLE_ITEM();
+    COMPATIBLE_ITEM(),
+    RECIPE();
 
 }

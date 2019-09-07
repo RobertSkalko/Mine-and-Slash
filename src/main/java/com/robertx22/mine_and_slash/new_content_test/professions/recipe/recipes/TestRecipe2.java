@@ -9,6 +9,10 @@ import java.util.List;
 
 public class TestRecipe2 extends BaseRecipe {
 
+    public TestRecipe2() {
+        super("test2");
+    }
+
     @Override
     public List<BaseMaterial> getMaterials() {
         return Arrays.asList(new SimpleMaterial(Items.EMERALD), new SimpleMaterial(Items.GOLD_BLOCK));

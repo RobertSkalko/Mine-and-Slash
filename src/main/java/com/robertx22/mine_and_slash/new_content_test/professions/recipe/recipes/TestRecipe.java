@@ -9,6 +9,10 @@ import java.util.List;
 
 public class TestRecipe extends BaseRecipe {
 
+    public TestRecipe() {
+        super("test");
+    }
+
     @Override
     public List<BaseMaterial> getMaterials() {
         return Arrays.asList(new SimpleMaterial(Items.EMERALD), new SimpleMaterial(Items.GOLD_BLOCK));
@@ -18,4 +22,5 @@ public class TestRecipe extends BaseRecipe {
     public BasePreviewItem getOutput(ProfessionTile tile) {
         return new SameStackAsPreview(Items.DIAMOND);
     }
+
 }
