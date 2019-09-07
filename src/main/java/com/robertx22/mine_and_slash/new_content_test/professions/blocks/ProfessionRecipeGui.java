@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.new_content_test.professions.blocks;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.RequestTilePacket;
+import com.robertx22.mine_and_slash.network.ScrollPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -10,21 +12,21 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
-public abstract class ProfessionGui<T extends ProfessionContainer, Tile extends ProfessionRecipesTile> extends ContainerScreen<T> {
+public abstract class ProfessionRecipeGui<T extends ProfessionRecipeContainer, Tile extends ProfessionTile> extends ContainerScreen<T> {
 
-    ProfessionScreenType screenType = ProfessionScreenType.RECIPES;
     public Tile tile;
     Minecraft mc;
 
-    public static final int bagXSize = 176;
-    public static final int bagYSize = 207;
+    ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/recipes_list.png");
+
     static int x = 199;
     static int y = 222;
 
-    public ProfessionGui(T cont, PlayerInventory inv, ITextComponent text,
-                         Class<Tile> token) {
+    public ProfessionRecipeGui(T cont, PlayerInventory inv, ITextComponent text,
+                               Class<Tile> token) {
         super(cont, inv, text);
 
         this.xSize = x;
@@ -77,9 +79,23 @@ public abstract class ProfessionGui<T extends ProfessionContainer, Tile extends 
 
     }
 
+    int currentRow = 0;
+
+    @Override
+    public boolean mouseScrolled(double num1, double num2, double num3) {
+
+        this.currentRow -= num3;
+        this.currentRow = MathHelper.clamp(currentRow, 0, tile.recipes().size() / 9);
+
+        MMORPG.sendToServer(new ScrollPacket(this.currentRow, tile.getPos()));
+        MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
+
+        return false;
+    }
+
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
-        Minecraft.getInstance().getTextureManager().bindTexture(getCurrentGuiTexture());
+        Minecraft.getInstance().getTextureManager().bindTexture(texture);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
         drawExtraGuiStuff(partialTicks, x, y);
@@ -87,26 +103,5 @@ public abstract class ProfessionGui<T extends ProfessionContainer, Tile extends 
     }
 
     public abstract void drawExtraGuiStuff(float partialTicks, int x, int y);
-
-    public ResourceLocation getCurrentGuiTexture() {
-
-        if (screenType == ProfessionScreenType.CRAFTING) {
-            return this.getCraftingTexture();
-        }
-        if (screenType == ProfessionScreenType.MODIFYING) {
-            return this.getModifyingTexture();
-        }
-        if (screenType == ProfessionScreenType.RECIPES) {
-            return this.getRecipeTexture();
-        }
-
-        return null;
-    }
-
-    public abstract ResourceLocation getRecipeTexture();
-
-    public abstract ResourceLocation getCraftingTexture();
-
-    public abstract ResourceLocation getModifyingTexture();
 
 }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.recipe.recipes;
 
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionRecipesTile;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionTile;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.*;
 import net.minecraft.item.Items;
 
@@ -15,7 +15,7 @@ public class TestRecipe2 extends BaseRecipe {
     }
 
     @Override
-    public BasePreviewItem getOutput(ProfessionRecipesTile tile) {
+    public BasePreviewItem getOutput(ProfessionTile tile) {
         return new SameStackAsPreview(Items.EMERALD);
     }
 }

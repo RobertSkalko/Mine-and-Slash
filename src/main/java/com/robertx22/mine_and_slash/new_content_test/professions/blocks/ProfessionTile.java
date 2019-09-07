@@ -10,7 +10,7 @@ import net.minecraft.util.NonNullList;
 
 import java.util.List;
 
-public abstract class ProfessionRecipesTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+public abstract class ProfessionTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
     public NonNullList<ItemStack> recipeStacks;
 
@@ -18,7 +18,7 @@ public abstract class ProfessionRecipesTile extends TileEntity implements ITicka
 
     ItemStack[] outputStacks;
 
-    public ProfessionRecipesTile(TileEntityType<?> type) {
+    public ProfessionTile(TileEntityType<?> type) {
         super(type);
         recipeStacks = NonNullList.withSize(6 * 9, ItemStack.EMPTY);
     }
@@ -31,8 +31,12 @@ public abstract class ProfessionRecipesTile extends TileEntity implements ITicka
     public abstract List<BaseRecipe> recipes();
 
     public void scrollToRow(int row) {
-        for (int i = row * 9; i < row * 9 + ProfessionContainer.size; i++) {
-            this.recipeStacks.set(i, recipes().get(i).getOutput(this).getPreview());
+        int x = 0;
+        for (int i = row * 9; i < row * 9 + ProfessionRecipeContainer.size; i++) {
+            if (recipes().size() > i) {
+                this.recipeStacks.set(x, recipes().get(i).getOutput(this).getPreview());
+                x++;
+            }
         }
     }
 

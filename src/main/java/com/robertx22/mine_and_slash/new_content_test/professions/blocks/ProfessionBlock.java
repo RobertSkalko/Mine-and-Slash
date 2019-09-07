@@ -29,7 +29,7 @@ public class ProfessionBlock extends BaseInventoryBlock {
 
         TileEntity tile = world.getTileEntity(pos);
 
-        if (tile instanceof ProfessionRecipesTile) {
+        if (tile instanceof ProfessionTile) {
             NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tile, extraData -> {
                 extraData.writeBlockPos(tile.getPos());
             });

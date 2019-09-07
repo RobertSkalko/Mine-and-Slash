@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionRecipesTile;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionTile;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.recipes.TestRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.recipes.TestRecipe2;
@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlchemyTile extends ProfessionRecipesTile {
+public class AlchemyTile extends ProfessionTile {
 
     static List<BaseRecipe> recipestest = new ArrayList<>();
 
@@ -30,6 +30,7 @@ public class AlchemyTile extends ProfessionRecipesTile {
         recipestest.set(15, new TestRecipe());
         recipestest.set(55, new TestRecipe());
         recipestest.set(65, new TestRecipe());
+        recipestest.set(155, new TestRecipe());
 
     }
 
@@ -54,6 +55,6 @@ public class AlchemyTile extends ProfessionRecipesTile {
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory,
                                 PlayerEntity playerEntity) {
-        return new AlchemyContainer(i, playerInventory, this, this.getPos());
+        return new AlchemyRecipeContainer(i, playerInventory, this, this.getPos());
     }
 }
