@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionRecipeContainer;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionRecipeContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;

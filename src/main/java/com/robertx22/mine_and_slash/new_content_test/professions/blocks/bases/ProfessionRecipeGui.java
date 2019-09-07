@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test.professions.blocks;
+package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;

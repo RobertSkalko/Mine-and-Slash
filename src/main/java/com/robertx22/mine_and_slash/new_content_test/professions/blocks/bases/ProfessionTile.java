@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test.professions.blocks;
+package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import net.minecraft.entity.player.PlayerEntity;

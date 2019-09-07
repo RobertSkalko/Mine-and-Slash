@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy;
 
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionBlock;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;

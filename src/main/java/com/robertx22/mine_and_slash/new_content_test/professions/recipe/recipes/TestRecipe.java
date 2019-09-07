@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.recipe.recipes;
 
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.ProfessionTile;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionTile;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.*;
 import net.minecraft.item.Items;
 
