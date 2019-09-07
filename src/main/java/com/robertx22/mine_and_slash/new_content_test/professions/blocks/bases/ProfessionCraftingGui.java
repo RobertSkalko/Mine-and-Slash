@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class ProfessionCraftingGui extends ContainerScreen<ProfessionRecipeContainer> {
+public class ProfessionCraftingGui extends ContainerScreen<ProfessionCraftingContainer> {
 
     public ProfessionTile tile;
     Minecraft mc;
@@ -21,7 +21,7 @@ public class ProfessionCraftingGui extends ContainerScreen<ProfessionRecipeConta
     static int x = 256;
     static int y = 207;
 
-    public ProfessionCraftingGui(ProfessionRecipeContainer cont, PlayerInventory inv,
+    public ProfessionCraftingGui(ProfessionCraftingContainer cont, PlayerInventory inv,
                                  ITextComponent text) {
         super(cont, inv, text);
 

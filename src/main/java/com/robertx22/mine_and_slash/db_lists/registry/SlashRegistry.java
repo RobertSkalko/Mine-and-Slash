@@ -24,6 +24,7 @@ import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffe
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
+import com.robertx22.mine_and_slash.db_lists.initializers.profession_recipes.AlchemyRecipes;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
@@ -196,6 +197,10 @@ public class SlashRegistry {
         new ItemModifications().registerAll();
         new CurrencyItems().registerAll();
         new UniqueRunes().registerAll();
+
+        // professions
+        new AlchemyRecipes().registerAll();
+
     }
 
     private static void createRegistries() {

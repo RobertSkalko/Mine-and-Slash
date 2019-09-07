@@ -4,19 +4,25 @@ import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Pr
 
 import java.util.List;
 
-public class SimpleRecipe extends BaseRecipe {
+public class SimpleAlchemyRecipe extends AlchemyRecipe {
 
-    public SimpleRecipe(String guid) {
+    public SimpleAlchemyRecipe(String guid, List<BaseMaterial> materials,
+                               BasePreviewItem output) {
         super(guid);
+        this.materials = materials;
+        this.output = output;
     }
+
+    List<BaseMaterial> materials;
+    BasePreviewItem output;
 
     @Override
     public List<BaseMaterial> getMaterials() {
-        return null;
+        return materials;
     }
 
     @Override
     public BasePreviewItem getOutput(ProfessionTile tile) {
-        return null;
+        return output;
     }
 }

@@ -26,7 +26,7 @@ public class ProfessionCraftingContainer extends BaseTileContainer {
 
     protected ProfessionCraftingContainer(int id, ProfessionTile tile, BlockPos pos,
                                           PlayerInventory invPlayer) {
-        super(6 * 9, ContainerTypeRegisters.PROFESSION_RECIPE_CONTAINER, id);
+        super(6 * 9, ContainerTypeRegisters.PROFESSION_CRAFTING_CONTAINER, id);
         this.profession = tile.profession;
         this.pos = pos;
 
@@ -52,7 +52,7 @@ public class ProfessionCraftingContainer extends BaseTileContainer {
 
         for (int l = 0; l < 3; ++l) {
             for (int j1 = 0; j1 < 9; ++j1) {
-                this.addSlot(new Slot(playerInv, j1 + l * 9 + 9, 8 + j1 * 18, 103 + l * 18 + i));
+                this.addSlot(new Slot(playerInv, j1 + l * 9 + 9, 8 + j1 * 18, ProfessionCraftingGui.y / 2 + l * 18 + i));
             }
         }
 

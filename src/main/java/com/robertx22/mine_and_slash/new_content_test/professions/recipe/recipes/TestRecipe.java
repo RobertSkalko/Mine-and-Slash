@@ -7,7 +7,7 @@ import net.minecraft.item.Items;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestRecipe extends BaseRecipe {
+public class TestRecipe extends AlchemyRecipe {
 
     public TestRecipe() {
         super("test");

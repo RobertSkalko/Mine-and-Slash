@@ -3,13 +3,15 @@ package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.network.OpenProfessionCraftingPacket;
 import com.robertx22.mine_and_slash.network.RequestTilePacket;
 import com.robertx22.mine_and_slash.network.ScrollPacket;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.RecipeItemData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Recipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -53,14 +55,14 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         if (slot != null) {
 
-            ItemStack stack = slot.getStack();
+            RecipeItemData data = Recipe.Load(slot.getStack());
+
+            if (data != null) {
+                MMORPG.sendToServer(new OpenProfessionCraftingPacket(tile.getPos(), data.getRecipe()));
+            }
 
             System.out.println("click works");
 
-            //  this.playerInventory.player.openContainer(.....);
-
-            ///clickedSlot.getStack()
-            // etc this.playerInventory.player.openContainer
         }
         return super.mouseClicked(x, y, ticks);
 
@@ -87,7 +89,8 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     public boolean mouseScrolled(double num1, double num2, double num3) {
 
         this.currentRow -= num3;
-        this.currentRow = MathHelper.clamp(currentRow, 0, tile.profession.recipes.size() / 9);
+        this.currentRow = MathHelper.clamp(currentRow, 0, tile.profession.recipes()
+                .size() / 9);
 
         MMORPG.sendToServer(new ScrollPacket(this.currentRow, tile.getPos()));
         MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));

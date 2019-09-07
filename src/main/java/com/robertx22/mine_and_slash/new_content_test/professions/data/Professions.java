@@ -1,20 +1,26 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.data;
 
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import net.minecraft.tileentity.TileEntityType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public enum Professions {
-    ALCHEMY(AlchemyRecipes.ALL, BlockRegister.ALCHEMY_TILE);
+    ALCHEMY(BaseRecipe.Type.ALCHEMY, BlockRegister.ALCHEMY_TILE);
 
-    Professions(List<BaseRecipe> recipes, TileEntityType<?> tileEntityType) {
-        this.recipes = recipes;
+    Professions(BaseRecipe.Type recipeType, TileEntityType<?> tileEntityType) {
         this.tileEntityType = tileEntityType;
+        this.recipeType = recipeType;
     }
 
-    public List<BaseRecipe> recipes = new ArrayList<>();
+    public BaseRecipe.Type recipeType;
+
+    public List<BaseRecipe> recipes() {
+        return SlashRegistry.Recipes()
+                .getFiltered(x -> x.recipeType().equals(recipeType));
+    }
+
     public TileEntityType<?> tileEntityType;
 }

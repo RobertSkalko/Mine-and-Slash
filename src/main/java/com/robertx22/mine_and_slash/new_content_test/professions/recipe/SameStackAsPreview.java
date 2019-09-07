@@ -13,6 +13,7 @@ public class SameStackAsPreview extends BasePreviewItem {
 
     public SameStackAsPreview(Item item) {
         this.stack = new ItemStack(item);
+
     }
 
     @Override
