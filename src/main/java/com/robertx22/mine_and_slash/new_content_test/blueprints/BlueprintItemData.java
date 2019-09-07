@@ -4,9 +4,8 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.new_content_test.blueprints.requests.BlueprintDataItemRequest;
 import com.robertx22.mine_and_slash.new_content_test.blueprints.requests.BlueprintSimpleItemRequest;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Blueprint;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -15,7 +14,6 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,9 +71,8 @@ public class BlueprintItemData implements ICommonDataItem<GearRarity> {
     }
 
     @Override
-    public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
-                             EntityCap.UnitData data) {
-        List<ITextComponent> tooltip = event.getToolTip();
+    public void BuildTooltip(TooltipContext ctx) {
+        List<ITextComponent> tooltip = ctx.event.getToolTip();
 
         TooltipInfo info = new TooltipInfo();
 

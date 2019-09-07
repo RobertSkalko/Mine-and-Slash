@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
@@ -22,7 +22,6 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.List;
 
@@ -112,12 +111,11 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
     }
 
     @Override
-    public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
-                             EntityCap.UnitData data) {
+    public void BuildTooltip(TooltipContext ctx) {
 
-        List<ITextComponent> tooltip = event.getToolTip();
+        List<ITextComponent> tooltip = ctx.event.getToolTip();
 
-        RuneItemData rune = Rune.Load(stack);
+        RuneItemData rune = Rune.Load(ctx.stack);
 
         if (rune != null) {
 

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -58,6 +59,8 @@ public class OnTooltip {
                 return;
             }
 
+            TooltipContext ctx = new TooltipContext(stack, event, unitdata);
+
             if (stack.getItem() instanceof ItemMapBackPortal) {
 
                 try {
@@ -68,7 +71,7 @@ public class OnTooltip {
 
                     MapItemData map = Load.playerMapData(event.getEntityPlayer())
                             .getMap();
-                    map.BuildTooltip(stack, event, unit, unitdata);
+                    map.BuildTooltip(ctx);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -84,7 +87,7 @@ public class OnTooltip {
             ICommonDataItem data = ICommonDataItem.load(stack);
 
             if (data != null) {
-                data.BuildTooltip(stack, event, unit, unitdata);
+                data.BuildTooltip(ctx);
             } else {
                 if (stack.getItem().getRegistryName() != null) {
                     if (SlashRegistry.CompatibleItems()

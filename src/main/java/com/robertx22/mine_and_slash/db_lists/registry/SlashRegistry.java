@@ -26,6 +26,7 @@ import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.IWorld;
@@ -72,6 +73,10 @@ public class SlashRegistry {
 
         return EntityConfigs().getDefault();
 
+    }
+
+    public static SlashRegistryContainer<BaseRecipe> Recipes() {
+        return getRegistry(SlashRegistryType.RECIPE);
     }
 
     public static SlashRegistryContainer<CurrencyItem> CurrencyItems() {
@@ -210,6 +215,7 @@ public class SlashRegistry {
         map.put(SlashRegistryType.WORLD_PROVIDER, new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new BirchForestIWP(null, null)));
         map.put(SlashRegistryType.ITEM_MODIFICATION, new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
         map.put(SlashRegistryType.CURRENCY_ITEMS, new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new ItemOrbOfTransmutation()));
+        map.put(SlashRegistryType.RECIPE, new SlashRegistryContainer<BaseRecipe>(SlashRegistryType.RECIPE, null));
         map.put(SlashRegistryType.COMPATIBLE_ITEM, new SlashRegistryContainer<ConfigItem>(SlashRegistryType.COMPATIBLE_ITEM, new ConfigItem())
                 .dontErrorIfEmpty()
                 .logAdditions());

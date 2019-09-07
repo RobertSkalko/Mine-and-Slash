@@ -9,8 +9,8 @@ import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -38,7 +38,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -239,12 +238,11 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     }
 
     @Override
-    public void BuildTooltip(ItemStack stack, ItemTooltipEvent event, Unit unit,
-                             UnitData unitdata) {
+    public void BuildTooltip(TooltipContext ctx) {
 
-        if (unitdata != null) {
+        if (ctx.data != null) {
 
-            List<ITextComponent> tooltip = event.getToolTip();
+            List<ITextComponent> tooltip = ctx.event.getToolTip();
 
             GearRarity rarity = Rarities.Items.get(this.rarity);
 
