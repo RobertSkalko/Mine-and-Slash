@@ -15,7 +15,7 @@ public class TestRecipe extends AlchemyRecipe {
 
     @Override
     public List<BaseMaterial> getMaterials() {
-        return Arrays.asList(new SimpleMaterial(Items.EMERALD), new SimpleMaterial(Items.GOLD_BLOCK));
+        return Arrays.asList(new SimpleMaterial(Items.DIAMOND).amount(3), new SimpleMaterial(Items.GOLD_BLOCK));
     }
 
     @Override

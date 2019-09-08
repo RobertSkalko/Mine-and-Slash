@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.new_content_test.professions.data.Profession
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.items.ItemStackHandler;
@@ -44,21 +43,26 @@ public class ProfessionCraftingContainer extends BaseTileContainer {
         int i = 0;
         int x = 47;
 
-        for (ItemStack material : tile.materialStacks) {
-            this.addSlot(new SlotItemHandler(new ItemStackHandler(tile.materialStacks), i, x, y));
-            y += 18;
+        ItemStackHandler matHandler = new ItemStackHandler(tile.materialStacks);
+        ItemStackHandler outputHandler = new ItemStackHandler(tile.outputStacks);
+
+        for (int matNum = 0; matNum < tile.materialStacks.size(); matNum++) {
+
+            this.addSlot(new SlotItemHandler(matHandler, matNum, x, y));
+
             i++;
+            y += 18;
 
         }
 
-        i = 0;
         y = ProfessionCraftingGui.y / 2 - 79;
         x = 191;
 
-        for (ItemStack output : tile.outputStacks) {
-            this.addSlot(new SlotItemHandler(new ItemStackHandler(tile.outputStacks), i, x, y));
+        for (int outputNum = 0; outputNum < tile.outputStacks.size(); outputNum++) {
+            this.addSlot(new SlotItemHandler(outputHandler, outputNum, x, y));
             y += 18;
             i++;
+
         }
     }
 

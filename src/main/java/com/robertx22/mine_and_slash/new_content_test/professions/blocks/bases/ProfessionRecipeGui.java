@@ -58,10 +58,9 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             RecipeItemData data = Recipe.Load(slot.getStack());
 
             if (data != null) {
+                MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
                 MMORPG.sendToServer(new OpenProfessionCraftingPacket(tile.getPos(), data.getRecipe()));
             }
-
-            System.out.println("click works");
 
         }
         return super.mouseClicked(x, y, ticks);
@@ -80,6 +79,8 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         this.renderBackground();
         super.render(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+
+        // drawItemStack
 
     }
 

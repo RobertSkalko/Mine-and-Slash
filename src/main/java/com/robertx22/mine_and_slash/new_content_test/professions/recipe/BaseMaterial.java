@@ -15,6 +15,12 @@ public abstract class BaseMaterial extends BasePreviewItem {
         return this;
     }
 
+    public void consume(ItemStack stack) {
+
+        stack.shrink(this.stack.getCount());
+
+    }
+
     public abstract boolean isStackValidMaterial(ItemStack stack);
 
     @Override

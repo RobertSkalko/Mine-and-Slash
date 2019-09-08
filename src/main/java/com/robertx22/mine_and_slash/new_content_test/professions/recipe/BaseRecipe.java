@@ -23,6 +23,8 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
 
     public String guid;
 
+    public int professionLevelReq = 1;
+
     public abstract Type recipeType();
 
     public abstract List<BaseMaterial> getMaterials();

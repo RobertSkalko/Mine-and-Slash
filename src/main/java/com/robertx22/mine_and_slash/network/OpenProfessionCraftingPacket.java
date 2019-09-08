@@ -26,6 +26,12 @@ public class OpenProfessionCraftingPacket {
 
     }
 
+    public OpenProfessionCraftingPacket(BlockPos pos) {
+        this.pos = pos;
+        this.recipeGUID = "";
+
+    }
+
     public static OpenProfessionCraftingPacket decode(PacketBuffer buf) {
 
         OpenProfessionCraftingPacket newpkt = new OpenProfessionCraftingPacket();
@@ -56,12 +62,14 @@ public class OpenProfessionCraftingPacket {
                     TileEntity tile = player.world.getTileEntity(pkt.pos);
 
                     if (tile instanceof ProfessionTile) {
-                        BaseRecipe recipe = SlashRegistry.Recipes().get(pkt.recipeGUID);
 
-                        if (recipe != null) {
-                            ProfessionTile prof = (ProfessionTile) tile;
-                            prof.openCraftingForRecipe(player, recipe);
-                        }
+                        BaseRecipe recipe = pkt.recipeGUID.isEmpty() ? null : SlashRegistry
+                                .Recipes()
+                                .get(pkt.recipeGUID);
+
+                        ProfessionTile prof = (ProfessionTile) tile;
+                        prof.openCraftingForRecipe(player, recipe);
+
                     }
 
                 }
