@@ -10,6 +10,8 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class ProfessionCraftingContainer extends BaseTileContainer {
 
@@ -37,12 +39,26 @@ public class ProfessionCraftingContainer extends BaseTileContainer {
 
     public void renderContainerInventory(ProfessionTile tile) {
 
-        for (ItemStack materail : tile.materialStacks) {
+        int y = ProfessionCraftingGui.y / 2 - 79;
+
+        int i = 0;
+        int x = 47;
+
+        for (ItemStack material : tile.materialStacks) {
+            this.addSlot(new SlotItemHandler(new ItemStackHandler(tile.materialStacks), i, x, y));
+            y += 18;
+            i++;
 
         }
 
-        for (ItemStack materail : tile.outputStacks) {
+        i = 0;
+        y = ProfessionCraftingGui.y / 2 - 79;
+        x = 191;
 
+        for (ItemStack output : tile.outputStacks) {
+            this.addSlot(new SlotItemHandler(new ItemStackHandler(tile.outputStacks), i, x, y));
+            y += 18;
+            i++;
         }
     }
 

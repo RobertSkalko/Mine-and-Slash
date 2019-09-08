@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/RobertSkalko/Mine-and-Slash/issues"
 logoFile="logo.png"
 [[mods]]
 modId="mmorpg"
-version="2.4.13"
+version="2.6.3"
 displayName="Mine and Slash"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/mine-and-slash-reloaded"
 authors="robertx22(main author), matpac(artist)"
@@ -14,7 +14,7 @@ Turn Minecraft Into a hack and slash looter!
 [[dependencies.mmorpg]]
     modId="forge"
     mandatory=true
-    versionRange="[28.0.45,)"
+    versionRange="[28.0.100,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.mmorpg]]
