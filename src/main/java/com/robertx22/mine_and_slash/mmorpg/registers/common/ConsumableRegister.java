@@ -13,6 +13,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ConsumableRegister {
 
+    public static final String RESTORE_HEALTH_ID = Ref.MODID + ":consumable/restore_health_potion";
+
     public static final String RESTORE_MANA_ID = Ref.MODID + ":consumable/restore_mana_item";
     public static final String RESTORE_ENERGY_ID = Ref.MODID + ":consumable/restore_energy_item";
     public static final String GIVE_MANA_REGEN_BUFF_ID = Ref.MODID + ":consumable/give_mana_regen_buff";

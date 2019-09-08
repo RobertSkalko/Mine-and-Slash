@@ -28,7 +28,8 @@ public interface IBaseAutoLoc extends IGUID {
         Currency_Items,
         Advancement_titles,
         Advancement_descriptions,
-        Potions
+        Potions,
+        Alchemy,
 
     }
 

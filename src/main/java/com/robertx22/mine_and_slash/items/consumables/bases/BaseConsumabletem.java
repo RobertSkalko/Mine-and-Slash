@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -23,11 +24,21 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class BaseConsumabletem extends Item implements IGUID {
+public abstract class BaseConsumabletem extends Item implements IGUID, IAutoLocName {
 
     public BaseConsumabletem() {
         super(new Properties().maxStackSize(64).group(CreativeTabs.MyModTab));
         this.setRegistryName(new ResourceLocation(GUID()));
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Alchemy;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return this.getRegistryName().toString();
     }
 
     public abstract ITextComponent tooltip();
