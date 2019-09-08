@@ -25,8 +25,6 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, PlayerMapPacket.class, PlayerMapPacket::encode, PlayerMapPacket::decode, PlayerMapPacket::handle);
 
-        MMORPG.Network.registerMessage(index++, ScrollPacket.class, ScrollPacket::encode, ScrollPacket::decode, ScrollPacket::handle);
-
         MMORPG.Network.registerMessage(index++, OpenProfessionCraftingPacket.class, OpenProfessionCraftingPacket::encode, OpenProfessionCraftingPacket::decode, OpenProfessionCraftingPacket::handle);
 
     }

@@ -22,4 +22,8 @@ public class GiveManaRegenBuffItem extends BaseGiveBuffItem {
         return ConsumableRegister.GIVE_MANA_REGEN_BUFF_ID;
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Mana Regen Buff";
+    }
 }

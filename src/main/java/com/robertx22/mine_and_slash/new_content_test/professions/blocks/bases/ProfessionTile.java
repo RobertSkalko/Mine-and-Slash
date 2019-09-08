@@ -31,14 +31,12 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
 
     public BaseRecipe currentRecipe;
 
-    public NonNullList<ItemStack> recipeStacks;
-
     public NonNullList<ItemStack> materialStacks;
     public NonNullList<ItemStack> outputStacks;
 
     public ProfessionTile(Professions proff) {
         super(proff.tileEntityType);
-        recipeStacks = NonNullList.withSize(6 * 9, ItemStack.EMPTY);
+
         materialStacks = NonNullList.withSize(5, ItemStack.EMPTY);
         outputStacks = NonNullList.withSize(5, ItemStack.EMPTY);
         this.profession = proff;
@@ -105,18 +103,6 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
             this.markDirty();
         }
 
-    }
-
-    public void scrollToRow(int row) {
-        List<BaseRecipe> recipes = this.profession.recipes();
-
-        int x = 0;
-        for (int i = row * 9; i < row * 9 + ProfessionRecipeContainer.size; i++) {
-            if (recipes.size() > i) {
-                this.recipeStacks.set(x, recipes.get(i).getPreviewRecipeStack(this));
-                x++;
-            }
-        }
     }
 
     public void openCraftingForRecipe(ServerPlayerEntity player, BaseRecipe recipe) {
