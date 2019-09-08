@@ -38,4 +38,9 @@ public class RestoreManaItem extends BaseConsumabletem implements IAmount {
     public float amount() {
         return 20;
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "ugh";
+    }
 }

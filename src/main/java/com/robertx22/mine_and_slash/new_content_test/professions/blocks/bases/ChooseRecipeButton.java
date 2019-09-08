@@ -30,7 +30,7 @@ public class ChooseRecipeButton extends ImageButton {
 
         ItemStackHandler handler = new ItemStackHandler(1);
         handler.setStackInSlot(0, output);
-        slot = new RecipeSlot(handler, 0, x, y);
+        slot = new RecipeSlot(handler, 0, x + xSize - 16 - 16 / 2, y + ySize / 2 - 16 / 2);
         this.pos = pos;
         this.recipe = recipe;
     }
@@ -38,19 +38,19 @@ public class ChooseRecipeButton extends ImageButton {
     @Override
     public void onClick(double x, double y) {
         super.onClick(x, y);
-
-        MMORPG.sendToServer(new RequestTilePacket(pos));
-        MMORPG.sendToServer(new OpenProfessionCraftingPacket(pos, recipe));
+        if (isInside((int) x, (int) y)) {
+            MMORPG.sendToServer(new RequestTilePacket(pos));
+            MMORPG.sendToServer(new OpenProfessionCraftingPacket(pos, recipe));
+        }
     }
 
-    @Override
-    public void renderButton(int x, int y, float f) {
-        super.renderButton(x, y, f);
+    public boolean isInside(int x, int y) {
+        return isInRect(this.x, this.y, xSize, ySize, x, y);
+    }
 
-        if (this.isHovered()) {
-
-        }
-
+    public static boolean isInRect(int x, int y, int xSize, int ySize, int mouseX,
+                                   int mouseY) {
+        return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
     }
 
 }

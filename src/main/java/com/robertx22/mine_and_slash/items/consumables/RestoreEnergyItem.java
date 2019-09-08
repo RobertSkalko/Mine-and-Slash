@@ -38,4 +38,9 @@ public class RestoreEnergyItem extends BaseConsumabletem implements IAmount {
     public float amount() {
         return 20;
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Ene";
+    }
 }
