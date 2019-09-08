@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.saveclasses.professions.ProfessionData;
 import com.robertx22.mine_and_slash.saveclasses.professions.ProfessionListData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
@@ -39,6 +40,10 @@ public class ProfessionsCap {
         int getExpToReachNextLevel(Professions prof);
 
         void gainExp(int exp, Professions prof, ServerPlayerEntity player);
+
+        float getSucessChanceMultiplier(Professions prof);
+
+        boolean canCraftRecipe(BaseRecipe recipe);
 
     }
 
@@ -126,6 +131,17 @@ public class ProfessionsCap {
             }
 
         }
+
+        @Override
+        public float getSucessChanceMultiplier(Professions prof) {
+            return 1 + this.getLevel(prof) * 0.01F;
+        }
+
+        @Override
+        public boolean canCraftRecipe(BaseRecipe recipe) {
+            return getLevel(recipe.profession()) >= recipe.professionLevelReq;
+        }
+
     }
 
     public static class Storage extends BaseStorage<IProfessionsData> {

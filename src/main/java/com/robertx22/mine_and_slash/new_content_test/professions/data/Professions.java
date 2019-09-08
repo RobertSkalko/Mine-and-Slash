@@ -8,18 +8,15 @@ import net.minecraft.tileentity.TileEntityType;
 import java.util.List;
 
 public enum Professions {
-    ALCHEMY(BaseRecipe.Type.ALCHEMY, BlockRegister.ALCHEMY_TILE);
+    ALCHEMY(BlockRegister.ALCHEMY_TILE);
 
-    Professions(BaseRecipe.Type recipeType, TileEntityType<?> tileEntityType) {
+    Professions(TileEntityType<?> tileEntityType) {
         this.tileEntityType = tileEntityType;
-        this.recipeType = recipeType;
+
     }
 
-    public BaseRecipe.Type recipeType;
-
     public List<BaseRecipe> recipes() {
-        return SlashRegistry.Recipes()
-                .getFiltered(x -> x.recipeType().equals(recipeType));
+        return SlashRegistry.Recipes().getFiltered(x -> x.profession().equals(this));
     }
 
     public TileEntityType<?> tileEntityType;
