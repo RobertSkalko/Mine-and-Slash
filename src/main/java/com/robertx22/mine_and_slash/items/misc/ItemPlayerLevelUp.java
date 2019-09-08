@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
@@ -50,8 +50,9 @@ public class ItemPlayerLevelUp extends BaseItem {
 
                     if (Load.Unit(player).LevelUp((ServerPlayerEntity) player)) {
 
-                        return new ActionResult<ItemStack>(ActionResultType.PASS, EmptyOrDecrease(player
-                                .getHeldItem(handIn), req));
+                        player.getHeldItem(handIn).shrink(req);
+
+                        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(handIn));
 
                     }
                 } else {

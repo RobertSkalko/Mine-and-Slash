@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.items.ItemDefault;
-import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
@@ -257,8 +257,9 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
                     GiveItems(playerIn, lvl);
 
-                    return new ActionResult<ItemStack>(ActionResultType.PASS, EmptyOrDecrease(playerIn
-                            .getHeldItem(handIn)));
+                    playerIn.getHeldItem(handIn).shrink(1);
+
+                    return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
 
                 }
             } catch (Exception e) {

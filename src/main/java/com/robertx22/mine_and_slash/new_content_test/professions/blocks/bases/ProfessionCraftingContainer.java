@@ -48,16 +48,20 @@ public class ProfessionCraftingContainer extends BaseTileContainer {
 
     public void renderPlayerInventory(PlayerInventory playerInv) {
 
-        int i = (this.numRows - 4) * 18;
+        int addY = 22;
+        int addX = 39;
 
-        for (int l = 0; l < 3; ++l) {
-            for (int j1 = 0; j1 < 9; ++j1) {
-                this.addSlot(new Slot(playerInv, j1 + l * 9 + 9, 8 + j1 * 18, ProfessionCraftingGui.y / 2 + l * 18 + i));
+        for (int row = 0; row < 3; ++row) {
+            for (int column = 0; column < 9; ++column) {
+                int index = column + row * 9 + 9;
+                int x = 8 + column * 18 + addX;
+                int y = ProfessionCraftingGui.y / 2 + row * 18 + addY;
+                this.addSlot(new Slot(playerInv, index, x, y));
             }
         }
 
-        for (int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new Slot(playerInv, i1, 8 + i1 * 18, 161 + i));
+        for (int index = 0; index < 9; ++index) {
+            this.addSlot(new Slot(playerInv, index, 8 + index * 18 + addX, 161 + addY));
         }
 
     }

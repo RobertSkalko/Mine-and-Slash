@@ -537,6 +537,7 @@ public class EntityCap {
                     .get());
 
             this.equipsChanged = true;
+            this.shouldSync = true;
 
             if (entity instanceof ServerPlayerEntity) {
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) entity, this);
@@ -861,7 +862,7 @@ public class EntityCap {
                 return false;
             } else {
                 rarity = rarity + 1;
-
+                this.shouldSync = true;
                 return true;
 
             }
@@ -874,7 +875,7 @@ public class EntityCap {
                 return false;
             } else {
                 rarity = rarity - 1;
-
+                this.shouldSync = true;
                 return true;
 
             }

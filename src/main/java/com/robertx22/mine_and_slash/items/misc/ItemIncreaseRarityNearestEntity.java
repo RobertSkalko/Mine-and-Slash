@@ -49,6 +49,8 @@ public class ItemIncreaseRarityNearestEntity extends Item {
 
                             player.getHeldItem(hand).shrink(1);
 
+                            data.trySync(en);
+
                             return new ActionResult<ItemStack>(ActionResultType.PASS, player
                                     .getHeldItem(hand));
                         } else {

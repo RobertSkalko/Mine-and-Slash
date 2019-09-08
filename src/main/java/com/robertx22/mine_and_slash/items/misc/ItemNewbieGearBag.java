@@ -66,10 +66,12 @@ public class ItemNewbieGearBag extends BaseItem {
                     ItemStack stack = GearLootGen.CreateStack(data);
 
                     playerIn.dropItem(stack, false, true);
+
                 }
 
-                return new ActionResult<ItemStack>(ActionResultType.PASS, EmptyOrDecrease(playerIn
-                        .getHeldItem(handIn)));
+                playerIn.getHeldItem(handIn).shrink(1);
+
+                return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
 
             } catch (Exception e) {
                 e.printStackTrace();
