@@ -77,6 +77,11 @@ public class ProfessionCraftingGui extends ContainerScreen<ProfessionCraftingCon
         super.render(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
 
+        renderPreviewItemsAndTooltips(mouseX, mouseY);
+
+    }
+
+    public void renderPreviewItemsAndTooltips(int mouseX, int mouseY) {
         if (tile != null) {
             if (tile.currentRecipe != null) {
 
@@ -119,7 +124,6 @@ public class ProfessionCraftingGui extends ContainerScreen<ProfessionCraftingCon
             }
 
         }
-
     }
 
     // Returns true if the given x,y coordinates are within the given rectangle
