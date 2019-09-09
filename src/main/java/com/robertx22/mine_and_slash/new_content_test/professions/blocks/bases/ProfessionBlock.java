@@ -5,7 +5,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -30,10 +29,17 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
         TileEntity tile = world.getTileEntity(pos);
 
         if (tile instanceof ProfessionTile) {
-            NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tile, extraData -> {
-                extraData.writeBlockPos(tile.getPos());
-            });
+            ProfessionTile prof = (ProfessionTile) tile;
 
+            if (prof.canPlayerOpen((ServerPlayerEntity) player)) {
+
+                prof.onOpenByPlayer((ServerPlayerEntity) player);
+
+                NetworkHooks.openGui((ServerPlayerEntity) player, prof, extraData -> {
+                    extraData.writeBlockPos(tile.getPos());
+
+                });
+            }
         }
 
         return true;

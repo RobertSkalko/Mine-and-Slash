@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -34,12 +36,39 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     public NonNullList<ItemStack> materialStacks;
     public NonNullList<ItemStack> outputStacks;
 
+    public int playerProfLevel = 1;
+    public int expEarned = 0;
+    public String playerID = "";
+
     public ProfessionTile(Professions proff) {
         super(proff.tileEntityType);
 
         materialStacks = NonNullList.withSize(5, ItemStack.EMPTY);
         outputStacks = NonNullList.withSize(5, ItemStack.EMPTY);
         this.profession = proff;
+    }
+
+    public boolean canPlayerOpen(ServerPlayerEntity player) {
+        return this.playerID.isEmpty() || player.getUniqueID()
+                .toString()
+                .equals(this.playerID);
+
+    }
+
+    public void onOpenByPlayer(ServerPlayerEntity player) {
+
+        ProfessionsCap.IProfessionsData cap = Load.professions(player);
+        this.playerProfLevel = cap.getLevel(this.profession);
+
+        if (this.playerID.isEmpty()) {
+            this.playerID = player.getUniqueID().toString();
+        }
+
+        if (expEarned > 0) {
+            cap.gainExp(this.expEarned, this.profession, player);
+            this.expEarned = 0;
+        }
+
     }
 
     public boolean hasEnoughMaterials() {
@@ -57,9 +86,17 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
 
     }
 
+    public boolean playerMeetsLvlReq() {
+        return this.playerProfLevel >= this.currentRecipe.professionLevelReq;
+    }
+
     public boolean tryCraft() {
 
         if (this.currentRecipe == null) {
+            return false;
+        }
+
+        if (!playerMeetsLvlReq()) {
             return false;
         }
 
@@ -145,6 +182,10 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
             if (this.currentRecipe != null) {
                 nbt.putString("recipe", this.currentRecipe.GUID());
             }
+            nbt.putInt("exp", expEarned);
+            nbt.putInt("lvl", playerProfLevel);
+            nbt.putString("player_id", this.playerID);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -157,6 +198,9 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
 
         try {
             this.currentRecipe = SlashRegistry.Recipes().get(nbt.getString("recipe"));
+            this.playerProfLevel = nbt.getInt("lvl");
+            this.expEarned = nbt.getInt("exp");
+            this.playerID = nbt.getString("player_id");
 
             final byte NBT_TYPE_COMPOUND = 10;
             addStacksToListFromNbt(nbt.getList("materials", NBT_TYPE_COMPOUND), this.materialStacks, "materials");
