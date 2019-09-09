@@ -37,10 +37,10 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     static int maxRowMembers = 3;
     static int maxRows = 5;
 
-    ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/recipes_list.png");
+    ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/profession/villager.png");
 
-    static int x = 256;
-    static int y = 222;
+    static int x = 318;
+    static int y = 235;
 
     public ProfessionRecipeGui(ProfessionRecipeContainer cont, PlayerInventory inv,
                                ITextComponent text) {
@@ -61,6 +61,19 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         this.proffs = Load.professions(mc.player);
 
     }
+
+    /*
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
+        int xpos = (this.width - this.xSize) / 2;
+        int ypos = (this.height - this.ySize) / 2;
+        blit(xpos, ypos, this.blitOffset, 0.0F, 0.0F, this.xSize, this.ySize, 256, 512);
+
+    }
+
+     */
 
     @Override
     public boolean mouseClicked(double x, double y, int ticks) {
@@ -269,10 +282,9 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
-        Minecraft.getInstance().getTextureManager().bindTexture(texture);
+        Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(guiLeft, guiTop, 0, 0, xSize, ySize);
-
+        blit(guiLeft, guiTop, this.blitOffset, 0.0F, 0.0F, this.xSize, this.ySize, 256, 512);
     }
 
 }
