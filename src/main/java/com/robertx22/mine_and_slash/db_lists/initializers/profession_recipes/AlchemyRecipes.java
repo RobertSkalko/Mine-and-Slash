@@ -26,7 +26,8 @@ public class AlchemyRecipes implements ISlashRegistryInit {
         all.add(new TestRecipe4());
 
         for (int i = 0; i < 500; i++) {
-            all.add(new SimpleAlchemyRecipe(i + "alchemytest", Arrays.asList(Items.GLASS, Items.EMERALD, Items.GOLD_INGOT), Items.EXPERIENCE_BOTTLE));
+            all.add(new SimpleAlchemyRecipe(i + "alchemytest", Arrays.asList(Items.GLASS, Items.EMERALD, Items.GOLD_INGOT), Items.EXPERIENCE_BOTTLE)
+                    .levelReq(i));
         }
 
         all.forEach(x -> x.registerToSlashRegistry());

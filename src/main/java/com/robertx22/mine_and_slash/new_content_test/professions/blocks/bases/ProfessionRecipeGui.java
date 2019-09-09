@@ -5,6 +5,8 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.RequestTilePacket;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -19,6 +21,7 @@ import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContainer> implements IGuiEventListener {
 
@@ -26,8 +29,10 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     public ProfessionTile tile;
     List<ChooseRecipeButton> displayedRecipeButtons = new ArrayList<>();
     List<BaseRecipe> filteredRecipes = new ArrayList<>();
+    ProfessionsCap.IProfessionsData proffs;
 
     private TextFieldWidget searchBar;
+    private OnlyLvlMetCheckBox onlyLvlMetCheckbox;
 
     ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/recipes_list.png");
 
@@ -50,6 +55,8 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             }
         }
 
+        this.proffs = Load.professions(mc.player);
+
     }
 
     @Override
@@ -57,6 +64,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         this.displayedRecipeButtons.forEach(button -> button.onClick(x, y));
         this.searchBar.mouseClicked(x, y, ticks);
+        this.onlyLvlMetCheckbox.mouseClicked(x, y, ticks);
         return super.mouseClicked(x, y, ticks);
 
     }
@@ -102,7 +110,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         this.filteredRecipes.addAll(recipes);
 
         int x = this.guiLeft + 5;
-        int y = this.guiTop + 20;
+        int y = this.guiTop + 30;
         int xOffset = 0;
 
         int count = 0;
@@ -126,7 +134,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
             xOffset = n * (ChooseRecipeButton.xSize + 2);
 
-            ChooseRecipeButton button = new ChooseRecipeButton(recipe, output, x + xOffset, y, tile
+            ChooseRecipeButton button = new ChooseRecipeButton(proffs.getLevel(recipe.profession()), recipe, output, x + xOffset, y, tile
                     .getPos());
 
             this.displayedRecipeButtons.add(button);
@@ -160,6 +168,11 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             this.searchBar.setText(s);
         }
 
+        if (onlyLvlMetCheckbox == null) {
+
+            this.onlyLvlMetCheckbox = new OnlyLvlMetCheckBox(this.guiLeft + xSize - 25, this.guiTop + 10, 150);
+        }
+
         if (tile != null) {
             if (mc.player.ticksExisted % 20 == 0) {
                 MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
@@ -178,6 +191,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 
+        this.onlyLvlMetCheckbox.render(mouseX, mouseY, partialTicks);
         this.searchBar.render(mouseX, mouseY, partialTicks);
 
         this.displayedRecipeButtons.forEach(x -> {
@@ -231,6 +245,19 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             }
             recipes = list;
 
+        }
+
+        ProfessionsCap.IProfessionsData profs = Load.professions(mc.player);
+
+        if (this.onlyLvlMetCheckbox.checked == OnlyLvlMetCheckBox.PickedRecipes.LVL_MET) {
+            recipes = recipes.stream()
+                    .filter(x -> x.professionLevelReq <= profs.getLevel(x.profession()))
+                    .collect(Collectors.toList());
+        }
+        if (this.onlyLvlMetCheckbox.checked == OnlyLvlMetCheckBox.PickedRecipes.LVL_NOT_MET) {
+            recipes = recipes.stream()
+                    .filter(x -> x.professionLevelReq > profs.getLevel(x.profession()))
+                    .collect(Collectors.toList());
         }
 
         return recipes;

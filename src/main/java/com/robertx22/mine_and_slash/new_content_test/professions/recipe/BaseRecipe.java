@@ -7,8 +7,10 @@ import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Pr
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RecipeItemData;
+import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Recipe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
 
@@ -21,6 +23,15 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
     public String guid;
 
     public int professionLevelReq = 1;
+
+    public BaseRecipe levelReq(int lvl) {
+        this.professionLevelReq = MathHelper.clamp(lvl, 1, 100);
+        return this;
+    }
+
+    public boolean meetsLvlReq(ProfessionsCap.IProfessionsData cap) {
+        return cap.getLevel(this.profession()) >= this.professionLevelReq;
+    }
 
     public abstract Professions profession();
 

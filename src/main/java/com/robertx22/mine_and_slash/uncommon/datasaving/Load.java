@@ -1,9 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
-import com.robertx22.mine_and_slash.uncommon.capability.MapCap;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerCapBackupCap;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.*;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
@@ -17,6 +14,17 @@ public class Load {
             return provider.getCapability(EntityCap.Data).isPresent();
         }
         return false;
+    }
+
+    public static ProfessionsCap.IProfessionsData professions(PlayerEntity provider) {
+
+        if (provider != null) {
+
+            return provider.getCapability(ProfessionsCap.Data)
+                    .orElse(new ProfessionsCap.DefaultImpl());
+
+        }
+        return null;
     }
 
     public static MapCap.IMapData mapData(ICapabilityProvider provider) {
