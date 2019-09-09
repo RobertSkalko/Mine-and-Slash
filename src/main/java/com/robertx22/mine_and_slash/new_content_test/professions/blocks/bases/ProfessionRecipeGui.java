@@ -112,8 +112,8 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         this.filteredRecipes.clear();
         this.filteredRecipes.addAll(recipes);
 
-        int x = this.guiLeft + 5;
-        int y = this.guiTop + 45;
+        int x = this.guiLeft + 10;
+        int y = this.guiTop + 42;
         int xOffset = 0;
 
         int count = 0;
@@ -135,7 +135,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
                 n = 0;
             }
 
-            xOffset = n * (ChooseRecipeButton.xSize + 2);
+            xOffset = n * (ChooseRecipeButton.xSize + 1);
 
             ChooseRecipeButton button = new ChooseRecipeButton(proffs.getLevel(recipe.profession()), recipe, output, x + xOffset, y, tile
                     .getPos());
@@ -162,7 +162,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         if (this.searchBar == null) {
             String s = this.searchBar != null ? this.searchBar.getText() : "";
-            this.searchBar = new TextFieldWidget(this.mc.fontRenderer, this.guiLeft + 5, this.guiTop + 5, 80, 9 + 5, I18n
+            this.searchBar = new TextFieldWidget(this.mc.fontRenderer, this.guiLeft + 30, this.guiTop + 15, 80, 9 + 5, I18n
                     .format("itemGroup.search"));
             this.searchBar.setMaxStringLength(50);
             this.searchBar.setEnableBackgroundDrawing(false);
@@ -173,7 +173,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         if (onlyLvlMetCheckbox == null) {
 
-            this.onlyLvlMetCheckbox = new OnlyLvlMetCheckBox(this.guiLeft + xSize - 25, this.guiTop + 10, 150);
+            this.onlyLvlMetCheckbox = new OnlyLvlMetCheckBox(this.guiLeft + xSize - 27, this.guiTop + 12, 150);
         }
 
         if (tile != null) {

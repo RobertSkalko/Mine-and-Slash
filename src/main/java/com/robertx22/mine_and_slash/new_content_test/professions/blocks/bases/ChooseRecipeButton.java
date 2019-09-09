@@ -17,7 +17,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class ChooseRecipeButton extends ImageButton {
 
-    static int xSize = 80;
+    static int xSize = 75;
     static int ySize = 29;
     static ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/choose_recipe_button.png");
     int playerProfLvl;
