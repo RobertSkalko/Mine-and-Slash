@@ -75,9 +75,8 @@ public class ProfessionCraftingGui extends ContainerScreen<ProfessionCraftingCon
 
         this.renderBackground();
         super.render(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
-
         renderPreviewItemsAndTooltips(mouseX, mouseY);
+        this.renderHoveredToolTip(mouseX, mouseY);
 
     }
 

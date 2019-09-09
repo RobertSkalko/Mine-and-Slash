@@ -34,6 +34,9 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     private TextFieldWidget searchBar;
     private OnlyLvlMetCheckBox onlyLvlMetCheckbox;
 
+    static int maxRowMembers = 3;
+    static int maxRows = 5;
+
     ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/recipes_list.png");
 
     static int x = 256;
@@ -110,16 +113,16 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         this.filteredRecipes.addAll(recipes);
 
         int x = this.guiLeft + 5;
-        int y = this.guiTop + 30;
+        int y = this.guiTop + 45;
         int xOffset = 0;
 
         int count = 0;
         int n = 0;
-        for (int i = getCurrentRow() * 3; i < recipes.size(); i++) {
+        for (int i = getCurrentRow() * maxRowMembers; i < recipes.size(); i++) {
 
             count++;
 
-            if (count > 5 * 3) {
+            if (count > maxRows * maxRowMembers) {
                 return;
             }
 
@@ -127,7 +130,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
             ItemStack output = recipe.getOutput(tile).getPreview();
 
-            if (n == 3) {
+            if (n == maxRowMembers) {
                 y += ChooseRecipeButton.ySize + 3;
                 n = 0;
             }
@@ -146,11 +149,11 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
     public int getCurrentRow() {
 
-        if (this.filteredRecipes.size() < 5 * 3) {
+        if (this.filteredRecipes.size() < 5 * maxRowMembers) {
             return 0;
         }
 
-        return MathHelper.clamp(this.currentRow, 0, this.filteredRecipes.size() / 3);
+        return MathHelper.clamp(this.currentRow, 0, this.filteredRecipes.size() / maxRowMembers);
 
     }
 
