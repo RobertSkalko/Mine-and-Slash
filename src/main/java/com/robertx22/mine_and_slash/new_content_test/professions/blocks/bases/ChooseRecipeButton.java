@@ -6,31 +6,37 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.OpenProfessionCraftingPacket;
 import com.robertx22.mine_and_slash.network.RequestTilePacket;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.items.ItemStackHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChooseRecipeButton extends ImageButton {
 
-    static int xSize = 75;
-    static int ySize = 29;
-    static ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/choose_recipe_button.png");
+    static int xSize = 135;
+    static int ySize = 20;
+    static ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/profession/choose_recipe_button.png");
     int playerProfLvl;
     RecipeSlot slot;
     BlockPos pos;
     BaseRecipe recipe;
     boolean meetsReq;
 
-    static int expImgY = 60;
-    static int NOImgY = 70;
-    static int YESImgY = 78;
+    List<RecipeSlot> materialSlots = new ArrayList<>();
 
-    static int YESNOSize = 7;
+    static int expImgY = 60;
+    static int NOImgY = 50;
+    static int YESImgY = 40;
+
+    static int YESNOSize = 10;
     static int expSize = 9;
 
     public ChooseRecipeButton(int playerProfLvl, BaseRecipe recipe, ItemStack output,
@@ -45,6 +51,16 @@ public class ChooseRecipeButton extends ImageButton {
         this.recipe = recipe;
         this.playerProfLvl = playerProfLvl;
         this.meetsReq = playerProfLvl >= recipe.professionLevelReq;
+
+        int xOffsetItem = 0;
+
+        for (BaseMaterial mat : recipe.getMaterials()) {
+            handler = new ItemStackHandler(1);
+            handler.setStackInSlot(0, mat.getPreview());
+            this.materialSlots.add(new RecipeSlot(handler, 0, x + 5 + xOffsetItem, y + ySize / 2 - 16 / 2));
+            xOffsetItem += 17;
+        }
+
     }
 
     @Override
@@ -54,6 +70,11 @@ public class ChooseRecipeButton extends ImageButton {
             MMORPG.sendToServer(new RequestTilePacket(pos));
             MMORPG.sendToServer(new OpenProfessionCraftingPacket(pos, recipe));
         }
+    }
+
+    public boolean isInsideSlot(Slot slot, int x, int y) {
+        return this.isInRect(slot.xPos, slot.yPos, 16, 16, x, y);
+
     }
 
     public boolean isInside(int x, int y) {
@@ -74,16 +95,22 @@ public class ChooseRecipeButton extends ImageButton {
 
         int offsetY = 0;
         if (this.isHovered()) {
-            offsetY += ySize + 1;
+            offsetY += ySize;
         }
-
         int offsetX = 0;
-        if (this.recipe.professionLevelReq > playerProfLvl) {
-            offsetX = xSize + 1;
-        }
 
         blit(this.x, this.y, (float) offsetX, (float) offsetY, this.width, this.height, 256, 256);
 
+        int xArrowPos = this.x + xSize - 35;
+        int yArrowPos = this.y + ySize / 2 - YESNOSize / 2 + 1;
+
+        if (this.meetsReq) {
+            blit(xArrowPos, yArrowPos, 0, YESImgY, YESNOSize, YESNOSize, 256, 256);
+        } else {
+            blit(xArrowPos, yArrowPos, 0, NOImgY, YESNOSize, YESNOSize, 256, 256);
+        }
+
+        /*
         int xPos = this.x + xSize / 2 - 30;
         int yPos = this.y + ySize / 2 - expSize / 2;
 
@@ -99,6 +126,7 @@ public class ChooseRecipeButton extends ImageButton {
 
         mc.fontRenderer.drawString(this.recipe.professionLevelReq + "", xTextPos, yPos + 1, TextFormatting.YELLOW
                 .getColor());
+        */
 
         GlStateManager.enableDepthTest();
     }

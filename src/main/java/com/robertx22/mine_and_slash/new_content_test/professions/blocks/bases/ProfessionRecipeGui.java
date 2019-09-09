@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.RequestTilePacket;
@@ -34,13 +35,13 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     private TextFieldWidget searchBar;
     private OnlyLvlMetCheckBox onlyLvlMetCheckbox;
 
-    static int maxRowMembers = 3;
-    static int maxRows = 5;
+    static int maxRowMembers = 1;
+    static int maxRows = 10;
 
     ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/profession/villager.png");
 
     static int x = 318;
-    static int y = 235;
+    static int y = 237;
 
     public ProfessionRecipeGui(ProfessionRecipeContainer cont, PlayerInventory inv,
                                ITextComponent text) {
@@ -88,7 +89,10 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     @Override
     public boolean keyPressed(int x, int y, int i) {
 
+        searchBar.setFocused2(true);
+
         if (x == 256 == false) { // if escape key
+
             if (searchBar.isFocused()) {
                 return searchBar.keyPressed(x, y, i);
             }
@@ -125,8 +129,8 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         this.filteredRecipes.clear();
         this.filteredRecipes.addAll(recipes);
 
-        int x = this.guiLeft + 10;
-        int y = this.guiTop + 42;
+        int x = this.guiLeft + 4;
+        int y = this.guiTop + 19;
         int xOffset = 0;
 
         int count = 0;
@@ -144,7 +148,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             ItemStack output = recipe.getOutput(tile).getPreview();
 
             if (n == maxRowMembers) {
-                y += ChooseRecipeButton.ySize + 3;
+                y += ChooseRecipeButton.ySize;
                 n = 0;
             }
 
@@ -175,7 +179,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         if (this.searchBar == null) {
             String s = this.searchBar != null ? this.searchBar.getText() : "";
-            this.searchBar = new TextFieldWidget(this.mc.fontRenderer, this.guiLeft + 30, this.guiTop + 15, 80, 9 + 5, I18n
+            this.searchBar = new TextFieldWidget(this.mc.fontRenderer, this.guiLeft + 20, this.guiTop + 5, 80, 9 + 5, I18n
                     .format("itemGroup.search"));
             this.searchBar.setMaxStringLength(50);
             this.searchBar.setEnableBackgroundDrawing(false);
@@ -200,6 +204,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         }
 
         this.renderBackground();
+
         super.render(mouseX, mouseY, partialTicks);
 
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1F);
@@ -207,21 +212,30 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 
-        this.onlyLvlMetCheckbox.render(mouseX, mouseY, partialTicks);
-        this.searchBar.render(mouseX, mouseY, partialTicks);
-
         this.displayedRecipeButtons.forEach(x -> {
             x.render(mouseX, mouseY, partialTicks);
             this.drawSlot(x.slot);
-
+            x.materialSlots.forEach(slot -> this.drawSlot(slot));
         });
+
+        this.onlyLvlMetCheckbox.render(mouseX, mouseY, partialTicks);
+        this.searchBar.render(mouseX, mouseY, partialTicks);
 
         this.renderHoveredToolTip(mouseX, mouseY);
 
-        this.displayedRecipeButtons.forEach(x -> {
-            if (x.isInside(mouseX, mouseY)) {
-                this.renderTooltip(x.slot.getStack(), mouseX, mouseY);
+        this.displayedRecipeButtons.forEach(button -> {
+
+            if (button.isInsideSlot(button.slot, mouseX, mouseY)) {
+                this.renderTooltip(button.slot.getStack(), mouseX, mouseY);
             }
+            for (RecipeSlot slot : button.materialSlots) {
+
+                if (button.isInsideSlot(slot, mouseX, mouseY)) {
+                    this.renderTooltip(slot.getStack(), mouseX, mouseY);
+                }
+
+            }
+
         });
 
     }

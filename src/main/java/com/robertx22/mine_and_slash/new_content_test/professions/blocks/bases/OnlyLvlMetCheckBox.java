@@ -23,7 +23,7 @@ public class OnlyLvlMetCheckBox extends AbstractButton {
 
     }
 
-    private static final ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/checkbox.png");
+    private static final ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/profession/checkbox.png");
     PickedRecipes checked = PickedRecipes.ALL;
 
     public OnlyLvlMetCheckBox(int x, int y, int p_i51140_3_) {
