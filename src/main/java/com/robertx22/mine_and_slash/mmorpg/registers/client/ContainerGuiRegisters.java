@@ -19,7 +19,6 @@ import com.robertx22.mine_and_slash.items.bags.map_bag.GuiMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.GuiMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionCraftingGui;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionRecipeGui;
 import net.minecraft.client.gui.ScreenManager;
 
@@ -42,7 +41,6 @@ public class ContainerGuiRegisters {
         ScreenManager.<ContainerMasterBag, GuiMasterBag>registerFactory(ContainerTypeRegisters.MASTER_BAG, GuiMasterBag::new);
 
         ScreenManager.registerFactory(ContainerTypeRegisters.PROFESSION_RECIPE_CONTAINER, ProfessionRecipeGui::new);
-        ScreenManager.registerFactory(ContainerTypeRegisters.PROFESSION_CRAFTING_CONTAINER, ProfessionCraftingGui::new);
 
     }
 

@@ -11,30 +11,30 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class OpenProfessionCraftingPacket {
+public class ProfessionRecipePacket {
 
     public BlockPos pos;
     public String recipeGUID;
 
-    public OpenProfessionCraftingPacket() {
+    public ProfessionRecipePacket() {
 
     }
 
-    public OpenProfessionCraftingPacket(BlockPos pos, BaseRecipe recipe) {
+    public ProfessionRecipePacket(BlockPos pos, BaseRecipe recipe) {
         this.pos = pos;
         this.recipeGUID = recipe.GUID();
 
     }
 
-    public OpenProfessionCraftingPacket(BlockPos pos) {
+    public ProfessionRecipePacket(BlockPos pos) {
         this.pos = pos;
         this.recipeGUID = "";
 
     }
 
-    public static OpenProfessionCraftingPacket decode(PacketBuffer buf) {
+    public static ProfessionRecipePacket decode(PacketBuffer buf) {
 
-        OpenProfessionCraftingPacket newpkt = new OpenProfessionCraftingPacket();
+        ProfessionRecipePacket newpkt = new ProfessionRecipePacket();
 
         newpkt.pos = buf.readBlockPos();
         newpkt.recipeGUID = buf.readString();
@@ -43,14 +43,14 @@ public class OpenProfessionCraftingPacket {
 
     }
 
-    public static void encode(OpenProfessionCraftingPacket packet, PacketBuffer tag) {
+    public static void encode(ProfessionRecipePacket packet, PacketBuffer tag) {
 
         tag.writeBlockPos(packet.pos);
         tag.writeString(packet.recipeGUID);
 
     }
 
-    public static void handle(final OpenProfessionCraftingPacket pkt,
+    public static void handle(final ProfessionRecipePacket pkt,
                               Supplier<NetworkEvent.Context> ctx) {
 
         ctx.get().enqueueWork(() -> {
@@ -68,7 +68,7 @@ public class OpenProfessionCraftingPacket {
                                 .get(pkt.recipeGUID);
 
                         ProfessionTile prof = (ProfessionTile) tile;
-                        prof.openCraftingForRecipe(player, recipe);
+                        prof.currentRecipe = recipe;
 
                     }
 

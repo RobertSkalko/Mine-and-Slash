@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionCraftingContainer;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionRecipeContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -29,12 +28,9 @@ public class ContainerTypeRegisters {
     static final String MASTER_BAG_ID = Ref.MODID + ":" + "master_bag";
 
     static final String PROFESSION_RECIPE_CONTAINER_ID = Ref.MODID + ":" + "profession_recipe_container";
-    static final String PROFESSION_CRAFTING_CONTAINER_ID = Ref.MODID + ":" + "profession_crafting_container";
 
     @ObjectHolder(PROFESSION_RECIPE_CONTAINER_ID)
     public static final ContainerType<ProfessionRecipeContainer> PROFESSION_RECIPE_CONTAINER = null;
-    @ObjectHolder(PROFESSION_CRAFTING_CONTAINER_ID)
-    public static final ContainerType<ProfessionCraftingContainer> PROFESSION_CRAFTING_CONTAINER = null;
 
     @ObjectHolder(BlockRegister.GEAR_FACTORY_ID)
     public static final ContainerType<ContainerGearFactory> GEAR_FACTORY = null;
@@ -63,9 +59,7 @@ public class ContainerTypeRegisters {
 
         r.register(IForgeContainerType.create(ProfessionRecipeContainer::new)
                 .setRegistryName(PROFESSION_RECIPE_CONTAINER_ID));
-        r.register(IForgeContainerType.create(ProfessionCraftingContainer::new)
-                .setRegistryName(PROFESSION_CRAFTING_CONTAINER_ID));
-
+    
         r.register(IForgeContainerType.create(ContainerGearFactory::new)
                 .setRegistryName(BlockRegister.GEAR_FACTORY_ID));
         r.register(IForgeContainerType.create(ContainerGearModify::new)

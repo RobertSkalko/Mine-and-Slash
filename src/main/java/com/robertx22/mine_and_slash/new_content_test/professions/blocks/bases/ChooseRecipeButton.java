@@ -2,10 +2,7 @@ package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.OpenProfessionCraftingPacket;
-import com.robertx22.mine_and_slash.network.RequestTilePacket;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import net.minecraft.client.Minecraft;
@@ -67,8 +64,9 @@ public class ChooseRecipeButton extends ImageButton {
     public void onClick(double x, double y) {
         super.onClick(x, y);
         if (isInside((int) x, (int) y)) {
-            MMORPG.sendToServer(new RequestTilePacket(pos));
-            MMORPG.sendToServer(new OpenProfessionCraftingPacket(pos, recipe));
+
+            System.out.println("TRY GATHER ITEMS");
+
         }
     }
 

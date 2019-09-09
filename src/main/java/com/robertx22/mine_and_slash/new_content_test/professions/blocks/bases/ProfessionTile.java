@@ -21,7 +21,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
@@ -142,18 +141,6 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
 
     }
 
-    public void openCraftingForRecipe(ServerPlayerEntity player, BaseRecipe recipe) {
-
-        currentRecipe = recipe;
-
-        this.markDirty();
-
-        NetworkHooks.openGui(player, this, extraData -> {
-            extraData.writeBlockPos(this.getPos());
-        });
-
-    }
-
     @Override
     public ITextComponent getDisplayName() {
         return new StringTextComponent("");
@@ -163,13 +150,7 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory,
                                 PlayerEntity playerEntity) {
-
-        if (currentRecipe == null) {
-            return new ProfessionRecipeContainer(i, this, this.getPos(), playerInventory);
-        } else {
-            return new ProfessionCraftingContainer(i, this, this.getPos(), playerInventory);
-        }
-
+        return new ProfessionRecipeContainer(i, this, this.getPos(), playerInventory);
     }
 
     @Override
