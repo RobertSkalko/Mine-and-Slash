@@ -19,13 +19,14 @@ import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContainer> implements IGuiEventListener {
 
     Minecraft mc;
     public ProfessionTile tile;
-    List<ChooseRecipeButton> recipeButtons = new ArrayList<>();
+    List<ChooseRecipeButton> displayedRecipeButtons = new ArrayList<>();
+    List<BaseRecipe> filteredRecipes = new ArrayList<>();
+
     private TextFieldWidget searchBar;
 
     ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/recipes_list.png");
@@ -48,73 +49,72 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
                 this.tile = (ProfessionTile) en;
             }
         }
-        String s = this.searchBar != null ? this.searchBar.getText() : "";
-        this.searchBar = new TextFieldWidget(this.mc.fontRenderer, this.guiLeft + 5, this.guiTop + 5, 80, 9 + 5, I18n
-                .format("itemGroup.search"));
-        this.searchBar.setMaxStringLength(50);
-        this.searchBar.setEnableBackgroundDrawing(false);
-        this.searchBar.setVisible(true);
-        this.searchBar.setTextColor(16777215);
-        this.searchBar.setText(s);
 
     }
 
     @Override
     public boolean mouseClicked(double x, double y, int ticks) {
 
-        this.recipeButtons.forEach(button -> button.onClick(x, y));
+        this.displayedRecipeButtons.forEach(button -> button.onClick(x, y));
         this.searchBar.mouseClicked(x, y, ticks);
         return super.mouseClicked(x, y, ticks);
 
     }
 
+    @Override
     public boolean keyPressed(int x, int y, int i) {
 
-        boolean bool = super.keyPressed(x, y, i);
-
-        if (searchBar.isFocused()) {
-            searchBar.keyPressed(x, y, i);
+        if (x == 256 == false) { // if escape key
+            if (searchBar.isFocused()) {
+                return searchBar.keyPressed(x, y, i);
+            }
         }
 
-        return bool;
+        return super.keyPressed(x, y, i);
+
+    }
+
+    @Override
+    public boolean shouldCloseOnEsc() {
+        return true;
     }
 
     @Override
     public boolean charTyped(char c, int i) {
         if (this.searchBar.charTyped(c, i)) {
-
+            this.currentRow = 0;
             this.updateRecipeButtons();
 
             return true;
         } else {
-            /*
-            if (this.searchBar.getText().length() > 1) {
-                this.searchBar.setText(this.searchBar.getText()
-                        .substring(0, this.searchBar.getText().length() - 2));
-            } else {
-                searchBar.setText("");
-            }
-            this.updateRecipeButtons();
-
-
-             */
-            return false; //IGuiEventListener.super.charTyped(c, i);
+            return false;
         }
 
     }
 
     public void updateRecipeButtons() {
 
-        recipeButtons.clear();
+        displayedRecipeButtons.clear();
 
         List<BaseRecipe> recipes = this.getCurrentRecipes();
+
+        this.filteredRecipes.clear();
+        this.filteredRecipes.addAll(recipes);
 
         int x = this.guiLeft + 5;
         int y = this.guiTop + 20;
         int xOffset = 0;
 
+        int count = 0;
         int n = 0;
-        for (int i = this.currentRow * 3; i < recipes.size(); i++) {
+        for (int i = getCurrentRow() * 3; i < recipes.size(); i++) {
+
+            count++;
+
+            if (count > 5 * 3) {
+                return;
+            }
+
             BaseRecipe recipe = recipes.get(i);
 
             ItemStack output = recipe.getOutput(tile).getPreview();
@@ -129,15 +129,36 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             ChooseRecipeButton button = new ChooseRecipeButton(recipe, output, x + xOffset, y, tile
                     .getPos());
 
-            this.recipeButtons.add(button);
+            this.displayedRecipeButtons.add(button);
 
             n++;
         }
 
     }
 
+    public int getCurrentRow() {
+
+        if (this.filteredRecipes.size() < 5 * 3) {
+            return 0;
+        }
+
+        return MathHelper.clamp(this.currentRow, 0, this.filteredRecipes.size() / 3);
+
+    }
+
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
+
+        if (this.searchBar == null) {
+            String s = this.searchBar != null ? this.searchBar.getText() : "";
+            this.searchBar = new TextFieldWidget(this.mc.fontRenderer, this.guiLeft + 5, this.guiTop + 5, 80, 9 + 5, I18n
+                    .format("itemGroup.search"));
+            this.searchBar.setMaxStringLength(50);
+            this.searchBar.setEnableBackgroundDrawing(false);
+            this.searchBar.setVisible(true);
+            this.searchBar.setTextColor(16777215);
+            this.searchBar.setText(s);
+        }
 
         if (tile != null) {
             if (mc.player.ticksExisted % 20 == 0) {
@@ -145,7 +166,9 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             }
         }
 
-        updateRecipeButtons();
+        if (mc.player.ticksExisted % 5 == 0) {
+            updateRecipeButtons();
+        }
 
         this.renderBackground();
         super.render(mouseX, mouseY, partialTicks);
@@ -157,7 +180,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         this.searchBar.render(mouseX, mouseY, partialTicks);
 
-        this.recipeButtons.forEach(x -> {
+        this.displayedRecipeButtons.forEach(x -> {
             x.render(mouseX, mouseY, partialTicks);
             this.drawSlot(x.slot);
 
@@ -165,7 +188,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         this.renderHoveredToolTip(mouseX, mouseY);
 
-        this.recipeButtons.forEach(x -> {
+        this.displayedRecipeButtons.forEach(x -> {
             if (x.isInside(mouseX, mouseY)) {
                 this.renderTooltip(x.slot.getStack(), mouseX, mouseY);
             }
@@ -179,26 +202,34 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     public boolean mouseScrolled(double num1, double num2, double num3) {
 
         this.currentRow -= num3;
-        this.currentRow = MathHelper.clamp(currentRow, 0, this.getCurrentRecipes()
-                .size() / 9);
+        this.currentRow = this.getCurrentRow();
+
+        this.updateRecipeButtons();
 
         return false;
     }
 
-    public List<BaseRecipe> getCurrentRecipes() { // TODO
+    public List<BaseRecipe> getCurrentRecipes() {
 
         List<BaseRecipe> recipes = tile.profession.recipes();
 
         if (this.searchBar.getText().isEmpty() == false) {
 
-            recipes = recipes.stream()
-                    .filter(x -> x.getOutput(tile)
-                            .getPreview()
-                            .getDisplayName()
-                            .getFormattedText()
-                            .toLowerCase()
-                            .contains(this.searchBar.getText().toLowerCase()))
-                    .collect(Collectors.toList());
+            List<BaseRecipe> list = new ArrayList<>();
+
+            for (BaseRecipe recipe : recipes) {
+
+                String s = recipe.getOutput(tile)
+                        .getPreview()
+                        .getDisplayName()
+                        .getFormattedText()
+                        .toLowerCase();
+
+                if (s.contains(this.searchBar.getText().toLowerCase())) {
+                    list.add(recipe);
+                }
+            }
+            recipes = list;
 
         }
 
@@ -211,11 +242,6 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
-        drawExtraGuiStuff(partialTicks, x, y);
-
-    }
-
-    public void drawExtraGuiStuff(float partialTicks, int x, int y) {
 
     }
 
