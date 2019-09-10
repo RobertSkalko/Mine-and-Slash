@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.consumables;
 
-import com.robertx22.mine_and_slash.items.consumables.bases.BaseConsumabletem;
+import com.robertx22.mine_and_slash.items.consumables.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.items.consumables.bases.IAmount;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConsumableRegister;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class RestoreManaItem extends BaseConsumabletem implements IAmount {
+public class RestoreManaItem extends BaseInstantPotion implements IAmount {
 
     @Override
     public ITextComponent tooltip() {

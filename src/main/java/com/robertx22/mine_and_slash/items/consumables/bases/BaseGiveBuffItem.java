@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public abstract class BaseGiveBuffItem extends BaseConsumabletem {
+public abstract class BaseGiveBuffItem extends BaseInstantPotion {
 
     @Override
     public ITextComponent tooltip() {

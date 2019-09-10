@@ -23,9 +23,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class BaseConsumabletem extends Item implements IGUID, IAutoLocName {
+public abstract class BaseInstantPotion extends Item implements IGUID, IAutoLocName {
 
-    public BaseConsumabletem() {
+    public BaseInstantPotion() {
         super(new Properties().maxStackSize(64).group(CreativeTabs.MyModTab));
     }
 
@@ -59,7 +59,7 @@ public abstract class BaseConsumabletem extends Item implements IGUID, IAutoLocN
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.EAT;
+        return UseAction.DRINK;
     }
 
     @Override

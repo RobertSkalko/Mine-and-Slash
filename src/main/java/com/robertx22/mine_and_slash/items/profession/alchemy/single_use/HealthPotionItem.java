@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
-import com.robertx22.mine_and_slash.items.consumables.bases.BaseConsumabletem;
+import com.robertx22.mine_and_slash.items.consumables.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.items.consumables.bases.IAmount;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHasRecipe, ILvlRecipeGen {
+public class HealthPotionItem extends BaseInstantPotion implements IAmount, IHasRecipe, ILvlRecipeGen {
 
     public static HashMap<Professions.Levels, HealthPotionItem> ITEMS = new HashMap<>();
 
@@ -46,7 +46,7 @@ public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHas
 
     @Override
     public String GUID() {
-        return "instant_health_potion_lvl_" + level.number;
+        return "alchemy/instant/health/potion_lvl_" + level.number;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHas
 
     @Override
     public String locNameForLangFile() {
-        return level.color + level.name + " " + " Instant Health Potion";
+        return level.color + level.name + " " + "Instant Health Potion";
     }
 
     @Override
@@ -71,7 +71,7 @@ public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHas
     }
 
     @Override
-    public BaseConsumabletem newInstance(Professions.Levels lvl) {
+    public BaseInstantPotion newInstance(Professions.Levels lvl) {
         return new HealthPotionItem(lvl);
     }
 }
