@@ -5,8 +5,6 @@ import com.robertx22.mine_and_slash.items.consumables.bases.IAmount;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConsumableRegister;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleMaterial;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleOutputItem;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -65,10 +63,10 @@ public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHas
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create("health_pot_lvl_" + this.level.number, Professions.ALCHEMY)
-                .addMaterial(new SimpleMaterial(Items.APPLE).amount((2 * this.level.materialCostMulti)))
-                .addMaterial(new SimpleMaterial(Items.GLISTERING_MELON_SLICE).amount(1 * level.materialCostMulti))
+                .addMaterial(Items.APPLE, 2 * this.level.materialCostMulti)
+                .addMaterial(Items.GLISTERING_MELON_SLICE, 1 * level.materialCostMulti)
                 .buildMaterials()
-                .setOutput(new SimpleOutputItem(this))
+                .setOutput(this)
                 .build();
 
     }
