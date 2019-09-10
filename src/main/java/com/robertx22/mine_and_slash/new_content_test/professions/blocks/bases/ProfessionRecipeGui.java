@@ -41,7 +41,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/profession/villager.png");
 
     static int x = 318;
-    static int y = 237;
+    static int y = 232;
 
     public ProfessionRecipeGui(ProfessionRecipeContainer cont, PlayerInventory inv,
                                ITextComponent text) {

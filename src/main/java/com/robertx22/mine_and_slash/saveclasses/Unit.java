@@ -330,8 +330,6 @@ public class Unit {
 
     public void RecalculateStats(LivingEntity entity, UnitData data, int level) {
 
-        entity.world.getProfiler().startSection(Ref.MODID + ":stat_calculation");
-
         data.setEquipsChanged(false);
 
         if (data.getUnit() == null) {
@@ -430,7 +428,6 @@ public class Unit {
             MMORPG.sendToTracking(new EntityUnitPacket(entity, data), entity);
         }
 
-        entity.world.getProfiler().endSection();
     }
 
     // gear check works on everything but the weapon.

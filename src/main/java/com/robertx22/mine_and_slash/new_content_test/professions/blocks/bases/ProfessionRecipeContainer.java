@@ -11,6 +11,8 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class ProfessionRecipeContainer extends BaseTileContainer {
 
@@ -34,13 +36,40 @@ public class ProfessionRecipeContainer extends BaseTileContainer {
         this.tile = tile;
 
         renderPlayerInventory(invPlayer);
+        renderContainerInventory(tile);
+    }
+
+    public void renderContainerInventory(ProfessionTile tile) {
+
+        int addX = 142 + 44;
+        int addY = ProfessionRecipeGui.y / 2 + 9;
+
+        ItemStackHandler handler = new ItemStackHandler(tile.outputStacks.size());
+
+        for (int i = 0; i < tile.outputStacks.size(); i++) {
+            handler.setStackInSlot(i, tile.outputStacks.get(i));
+            this.addSlot(new SlotItemHandler(handler, i, addX, addY));
+            addX += 18;
+
+        }
+
+        addX = 142 + 44;
+        addY -= 52; // for mat slots
+
+        handler = new ItemStackHandler(tile.materialStacks.size());
+        for (int i = 0; i < tile.materialStacks.size(); i++) {
+            handler.setStackInSlot(i, tile.materialStacks.get(i));
+            this.addSlot(new SlotItemHandler(handler, i, addX, addY));
+            addX += 18;
+
+        }
 
     }
 
     public void renderPlayerInventory(PlayerInventory playerInv) {
 
         int addX = 142;
-        int addY = ProfessionRecipeGui.y / 2 + 37;
+        int addY = ProfessionRecipeGui.y / 2 + 35;
 
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 9; ++column) {
