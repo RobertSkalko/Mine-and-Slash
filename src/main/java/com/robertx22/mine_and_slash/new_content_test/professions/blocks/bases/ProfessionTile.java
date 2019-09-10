@@ -132,11 +132,15 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
 
     }
 
+    int ticks = 0;
+
     @Override
     public void tick() {
 
-        if (tryCraft()) {
-            this.markDirty();
+        if (ticks++ % 20 == 0) {
+            if (tryCraft()) {
+                this.markDirty();
+            }
         }
 
     }

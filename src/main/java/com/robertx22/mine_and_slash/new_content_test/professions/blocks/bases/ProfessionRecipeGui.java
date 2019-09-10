@@ -14,6 +14,8 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -34,6 +36,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
     private TextFieldWidget searchBar;
     private OnlyLvlMetCheckBox onlyLvlMetCheckbox;
+    int currentRow = 0;
 
     static int maxRowMembers = 1;
     static int maxRows = 10;
@@ -63,19 +66,6 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
     }
 
-    /*
-    @Override
-    protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
-        int xpos = (this.width - this.xSize) / 2;
-        int ypos = (this.height - this.ySize) / 2;
-        blit(xpos, ypos, this.blitOffset, 0.0F, 0.0F, this.xSize, this.ySize, 256, 512);
-
-    }
-
-     */
-
     @Override
     public boolean mouseClicked(double x, double y, int ticks) {
 
@@ -88,8 +78,6 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
     @Override
     public boolean keyPressed(int x, int y, int i) {
-
-        searchBar.setFocused2(true);
 
         if (x == 256 == false) { // if escape key
 
@@ -109,14 +97,15 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
     @Override
     public boolean charTyped(char c, int i) {
-        if (this.searchBar.charTyped(c, i)) {
-            this.currentRow = 0;
-            this.updateRecipeButtons();
+        if (this.searchBar.isFocused()) {
+            if (this.searchBar.charTyped(c, i)) {
+                this.currentRow = 0;
+                this.updateRecipeButtons();
 
-            return true;
-        } else {
-            return false;
+                return true;
+            }
         }
+        return false;
 
     }
 
@@ -174,6 +163,8 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
     }
 
+    Slot currentOutput;
+
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
 
@@ -191,6 +182,11 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
         if (onlyLvlMetCheckbox == null) {
 
             this.onlyLvlMetCheckbox = new OnlyLvlMetCheckBox(this.guiLeft + xSize - 27, this.guiTop + 12, 150);
+        }
+
+        if (this.onlyLvlMetCheckbox.changed) {
+            this.onlyLvlMetCheckbox.changed = false;
+            this.currentRow = 0;
         }
 
         if (tile != null) {
@@ -218,6 +214,14 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             x.materialSlots.forEach(slot -> this.drawSlot(slot));
         });
 
+        if (this.tile.currentRecipe != null) {
+            int x = this.guiLeft + 217 + 5;
+            int y = this.guiTop + 19 + 5;
+            currentOutput = new Slot(new Inventory(tile.currentRecipe.getOutput(tile)
+                    .getPreview()), 0, x, y);
+            this.drawSlot(currentOutput);
+        }
+
         this.onlyLvlMetCheckbox.render(mouseX, mouseY, partialTicks);
         this.searchBar.render(mouseX, mouseY, partialTicks);
 
@@ -238,9 +242,10 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         });
 
+        if (ChooseRecipeButton.isInRect(currentOutput.xPos, currentOutput.yPos, 16, 16, mouseX, mouseY)) {
+            this.renderTooltip(currentOutput.getStack(), mouseX, mouseY);
+        }
     }
-
-    int currentRow = 0;
 
     @Override
     public boolean mouseScrolled(double num1, double num2, double num3) {

@@ -67,6 +67,7 @@ public class ChooseRecipeButton extends ImageButton {
         super.onClick(x, y);
         if (isInside((int) x, (int) y)) {
             MMORPG.sendToServer(new ProfessionRecipePacket(pos, recipe));
+
         }
     }
 

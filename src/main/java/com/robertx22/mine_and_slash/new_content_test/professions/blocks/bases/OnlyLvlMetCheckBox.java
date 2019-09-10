@@ -25,22 +25,25 @@ public class OnlyLvlMetCheckBox extends AbstractButton {
 
     private static final ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/profession/checkbox.png");
     PickedRecipes checked = PickedRecipes.ALL;
+    boolean changed = false;
 
     public OnlyLvlMetCheckBox(int x, int y, int p_i51140_3_) {
         super(x, y, p_i51140_3_, 15, "");
 
     }
 
+    @Override
     public void onPress() {
 
         if (this.checked == PickedRecipes.ALL) {
             this.checked = PickedRecipes.LVL_MET;
+
         } else if (this.checked == PickedRecipes.LVL_MET) {
             this.checked = PickedRecipes.LVL_NOT_MET;
         } else {
             this.checked = PickedRecipes.ALL;
         }
-
+        this.changed = true;
     }
 
     @Override

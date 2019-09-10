@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.network;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionRecipeContainer;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionTile;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -69,6 +71,15 @@ public class ProfessionRecipePacket {
 
                         ProfessionTile prof = (ProfessionTile) tile;
                         prof.currentRecipe = recipe;
+
+                        Container container = player.openContainer;
+
+                        if (container instanceof ProfessionRecipeContainer) {
+                            ProfessionRecipeContainer profcont = (ProfessionRecipeContainer) container;
+
+                            profcont.onRecipeChoosen(recipe);
+
+                        }
 
                     }
 
