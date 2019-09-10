@@ -42,22 +42,23 @@ public class OnContainerCompatibleItem {
 
                         ConfigItem config = SlashRegistry.CompatibleItems().get(reg);
 
-                        PlayerEntity player = event.getEntityPlayer();
+                        if (config.statsAddedOnlyOnDrop == false) {
+                            PlayerEntity player = event.getEntityPlayer();
 
-                        if (Load.hasUnit(player)) {
-                            if (data == null) {
-                                data = Load.Unit(player);
-                            }
+                            if (Load.hasUnit(player)) {
+                                if (data == null) {
+                                    data = Load.Unit(player);
+                                }
 
-                            // slow check to make absolutely sure it doesnt have stats
-                            GearItemData gear = Gear.Load(stack);
-                            if (gear == null) {
-                                stack = config.create(stack, data.getLevel());
-                                event.getEntityPlayer().inventory.markDirty();
+                                // slow check to make absolutely sure it doesnt have stats
+                                GearItemData gear = Gear.Load(stack);
+                                if (gear == null) {
+                                    stack = config.create(stack, data.getLevel());
+                                    event.getEntityPlayer().inventory.markDirty();
+                                }
                             }
                         }
                     }
-
                 }
             }
 

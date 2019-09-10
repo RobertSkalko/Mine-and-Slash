@@ -20,8 +20,7 @@ public class ThunderAtronach extends Trait implements IAffectsOtherStats {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new ElementalSpellDamageMulti(Elements.Nature));
-
+        return Arrays.asList(new ElementalSpellDamageMulti(Elements.Thunder));
     }
 
     @Override

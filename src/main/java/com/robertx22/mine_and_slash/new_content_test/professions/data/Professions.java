@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
@@ -26,23 +27,23 @@ public enum Professions {
     public TileEntityType<?> tileEntityType;
 
     public enum Levels {
-        ONE(1, 1),
-        FIVE(5, 1.05F),
-        TEN(10, 1.1F),
-        TWENTY_FIVE(25, 1.2F),
-        FOURTY(40, 1.3F),
-        FIFTY(50, 1.5F),
-        SIXTY(60, 1.7F),
-        SEVENTY_FIVE(75, 2F),
-        NINETY(90, 2.5F),
-        HUNDRED(100, 3F);
+        ONE(1, 1, "Minor", TextFormatting.GRAY),
+        TEN(10, 1.1F, "Lesser", TextFormatting.GREEN),
+        TWENTY_FIVE(25, 1.2F, "Medium", TextFormatting.YELLOW),
+        FIFTY(50, 1.5F, "Greater", TextFormatting.BLUE),
+        SEVENTY_FIVE(75, 2F, "Major", TextFormatting.GOLD),
+        HUNDRED(100, 3F, "Miraculous", TextFormatting.LIGHT_PURPLE);
 
-        Levels(int num, float cost) {
+        Levels(int num, float cost, String name, TextFormatting color) {
             this.number = num;
             this.materialCostMulti = cost;
+            this.name = name;
+            this.color = color;
 
         }
 
+        public TextFormatting color;
+        public String name;
         public int number;
         public float materialCostMulti = 1;
     }

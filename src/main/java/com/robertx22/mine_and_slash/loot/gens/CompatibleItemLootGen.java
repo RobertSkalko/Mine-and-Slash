@@ -52,7 +52,7 @@ public class CompatibleItemLootGen extends BaseLootGen {
             ConfigItem config = RandomUtils.weightedRandom(SlashRegistry.CompatibleItems()
                     .getList()
                     .stream()
-                    .filter(x -> x.statsAddedOnlyOnDrop == false && x.dropsAsLoot)
+                    .filter(x -> x.dropsAsLoot)
                     .collect(Collectors.toList()));
 
             if (config != null) {

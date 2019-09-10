@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHasAlchemyRecipe {
+public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHasRecipe, ILvlRecipeGen {
 
     public static HashMap<Professions.Levels, HealthPotionItem> ITEMS = new HashMap<>();
 
@@ -69,5 +69,10 @@ public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHas
                 .setOutput(this)
                 .build();
 
+    }
+
+    @Override
+    public BaseConsumabletem newInstance(Professions.Levels lvl) {
+        return new HealthPotionItem(lvl);
     }
 }
