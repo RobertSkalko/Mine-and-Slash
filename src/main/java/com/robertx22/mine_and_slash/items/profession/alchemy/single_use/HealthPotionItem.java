@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
 import com.robertx22.mine_and_slash.items.consumables.bases.BaseConsumabletem;
 import com.robertx22.mine_and_slash.items.consumables.bases.IAmount;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ConsumableRegister;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
@@ -47,7 +46,7 @@ public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHas
 
     @Override
     public String GUID() {
-        return ConsumableRegister.RESTORE_ENERGY_ID + "_lvl_" + level.number;
+        return "instant_health_potion_lvl_" + level.number;
     }
 
     @Override
@@ -57,7 +56,7 @@ public class HealthPotionItem extends BaseConsumabletem implements IAmount, IHas
 
     @Override
     public String locNameForLangFile() {
-        return "Lvl: " + level.number + " " + "Health Potion";
+        return level.color + level.name + " " + " Instant Health Potion";
     }
 
     @Override

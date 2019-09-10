@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.config.compatible_items.ConfigItemsSerializa
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.HealthPotionItem;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
@@ -24,10 +25,12 @@ import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.DirUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
@@ -52,6 +55,14 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -162,11 +173,58 @@ public class MMORPG {
             CreateLangFile.create();
             GenerateCurioDataJsons.generate();
 
+            for (Item item : ForgeRegistries.ITEMS) {
+
+                if (item instanceof HealthPotionItem) {
+
+                    ResourceLocation loc = item.getRegistryName();
+                    String path = loc.getPath();
+
+                    String modelpath = DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\models\\item\\" + path + ".json";
+                    String texturepath = DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\textures\\items" + path + ".png";
+
+                    File model = new File(modelpath);
+                    File texture = new File(texturepath);
+
+                    if (!Files.exists(Paths.get(model.getParent()))) {
+                        try {
+                            Files.createDirectory(Paths.get(model.getParent()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (!Files.exists(Paths.get(texture.getParent()))) {
+                        try {
+                            Files.createDirectory(Paths.get(texture.getParent()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if (!Files.exists(Paths.get(model.getPath()))) {
+                        try {
+                            Path created = Files.createFile(Paths.get(model.getPath()));
+
+                            FileWriter fw = new FileWriter(created.toFile());
+                            fw.write(DEFAULT_MODEL.replace("REPLACE", path));
+                            fw.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+
+            }
+
         }
 
     }
 
+    static String DEFAULT_MODEL = "\"{\\n    \\\"parent\\\": \\\"item/generated\\\",\\n    \\\"textures\\\": {\\n        \\\"layer0\\\": \\\"mmorpg:REPLACE\\\"\\n    }\\n}\\n\"";
+
     @SubscribeEvent
+
     public static void onServerStop(FMLServerStoppedEvent event) {
 
     }

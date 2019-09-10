@@ -15,7 +15,6 @@ import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,7 +27,6 @@ public abstract class BaseConsumabletem extends Item implements IGUID, IAutoLocN
 
     public BaseConsumabletem() {
         super(new Properties().maxStackSize(64).group(CreativeTabs.MyModTab));
-        this.setRegistryName(new ResourceLocation(GUID()));
     }
 
     @Override

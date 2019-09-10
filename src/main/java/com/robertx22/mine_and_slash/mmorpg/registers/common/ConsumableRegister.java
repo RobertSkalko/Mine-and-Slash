@@ -1,8 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.items.consumables.GiveManaRegenBuffItem;
-import com.robertx22.mine_and_slash.items.consumables.RestoreEnergyItem;
-import com.robertx22.mine_and_slash.items.consumables.RestoreManaItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -23,9 +20,9 @@ public class ConsumableRegister {
     public static void register(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> reg = event.getRegistry();
 
-        reg.register(new RestoreEnergyItem());
-        reg.register(new RestoreManaItem());
-        reg.register(new GiveManaRegenBuffItem());
+        //  reg.register(new RestoreEnergyItem());
+        //reg.register(new RestoreManaItem());
+        //reg.register(new GiveManaRegenBuffItem());
     }
 
 }

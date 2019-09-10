@@ -32,6 +32,7 @@ import com.robertx22.mine_and_slash.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.mine_and_slash.items.level_incentives.Hearthstone;
 import com.robertx22.mine_and_slash.items.misc.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items.AlchemyItemRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;
@@ -60,10 +61,14 @@ public class ItemRegister {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-
         putInLists();
         registerSingles(event);
         registerLists(event);
+        regProfessionItems(event);
+    }
+
+    private static void regProfessionItems(RegistryEvent.Register<Item> event) {
+        AlchemyItemRegister.register(event);
     }
 
     private static void putInLists() {
