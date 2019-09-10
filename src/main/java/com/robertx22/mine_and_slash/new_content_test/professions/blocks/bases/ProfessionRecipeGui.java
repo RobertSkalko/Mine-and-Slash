@@ -97,7 +97,7 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
     @Override
     public boolean charTyped(char c, int i) {
-        if (this.searchBar.isFocused()) {
+        if (this.searchBar != null && this.searchBar.isFocused()) {
             if (this.searchBar.charTyped(c, i)) {
                 this.currentRow = 0;
                 this.updateRecipeButtons();

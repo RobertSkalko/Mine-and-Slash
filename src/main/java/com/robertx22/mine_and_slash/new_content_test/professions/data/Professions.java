@@ -26,22 +26,24 @@ public enum Professions {
     public TileEntityType<?> tileEntityType;
 
     public enum Levels {
-        ONE(1),
-        FIVE(5),
-        TEN(10),
-        TWENTY_FIVE(25),
-        FOURTY(40),
-        FIFTY(50),
-        SIXTY(60),
-        SEVENTY_FIVE(75),
-        NINETY(90),
-        HUNDRED(100);
+        ONE(1, 1),
+        FIVE(5, 1.05F),
+        TEN(10, 1.1F),
+        TWENTY_FIVE(25, 1.2F),
+        FOURTY(40, 1.3F),
+        FIFTY(50, 1.5F),
+        SIXTY(60, 1.7F),
+        SEVENTY_FIVE(75, 2F),
+        NINETY(90, 2.5F),
+        HUNDRED(100, 3F);
 
-        Levels(int num) {
+        Levels(int num, float cost) {
             this.number = num;
+            this.materialCostMulti = cost;
+
         }
 
         public int number;
-
+        public float materialCostMulti = 1;
     }
 }

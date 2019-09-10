@@ -15,6 +15,11 @@ public abstract class BaseMaterial extends BasePreviewItem {
         return this;
     }
 
+    public BaseMaterial amount(float amount) {
+        this.stack.setCount((int) amount);
+        return this;
+    }
+
     public void consume(ItemStack stack) {
 
         stack.shrink(this.stack.getCount());
