@@ -21,7 +21,7 @@ public class ProfessionContainer extends BaseTileContainer {
 
     public static int size = 6 * 9;
 
-    ProfessionTile tile;
+    public ProfessionTile tile;
     Professions profession = Professions.ALCHEMY;
 
     public BlockPos pos;

@@ -86,6 +86,9 @@ public class OnTickLogic {
 
                     if (player.openContainer instanceof ProfessionContainer) {
                         MMORPG.sendToClient(new PlayerSendProfessionPacket(player), player);
+                        ProfessionContainer prof = (ProfessionContainer) player.openContainer;
+                        prof.tile.onOpenByPlayer(player);
+
                     }
 
                 }

@@ -7,11 +7,16 @@ import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 public class ProfessionLvlBar extends ImageButton {
     public static ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/profession/level_bar.png");
     public static int xSize = 102;
     public static int ySize = 5;
+
+    static int lvlOrbStartY = 16;
+    static int lvlOrbSize = 11;
+
     ProfessionsCap.IProfessionsData data;
     Professions prof;
 
@@ -31,14 +36,26 @@ public class ProfessionLvlBar extends ImageButton {
         mc.getTextureManager().bindTexture(img);
         GlStateManager.disableDepthTest();
 
-        int max = data.getExpToReachNextLevel(prof);
-        int current = data.getCurrentExp(prof);
+        float max = data.getExpToReachNextLevel(prof);
+        float current = data.getCurrentExp(prof);
 
-        int percent = (int) ((float) data.getCurrentExp(prof) / (float) data.getExpToReachNextLevel(prof) * (float) xSize);
+        int percent = (int) (current / max * xSize);
 
         blit(this.x, this.y, 0, 0, this.width, this.height, 256, 256);
-        blit(this.x, this.y, 0, 0 + ySize, this.width, this.height, 256, 256);
+        blit(this.x, this.y, 0, ySize, this.width, this.height, 256, 256);
         blit(this.x, this.y, 0, ySize * 2, percent, this.height, 256, 256);
+
+        int lvl = data.getLevel(prof);
+
+        int orbX = this.x + xSize / 2 - lvlOrbSize / 2;
+        int orbY = this.y - lvlOrbSize - ySize;
+
+        blit(orbX, orbY, this.y - lvlOrbSize + 2, 0, lvlOrbStartY, lvlOrbSize, lvlOrbSize, 256, 256);
+
+        String text = lvl + "";
+
+        mc.fontRenderer.drawString(text, orbX + lvlOrbSize + 3, orbY + mc.fontRenderer.FONT_HEIGHT / 2 - 2, TextFormatting.YELLOW
+                .getColor());
 
         GlStateManager.enableDepthTest();
     }
