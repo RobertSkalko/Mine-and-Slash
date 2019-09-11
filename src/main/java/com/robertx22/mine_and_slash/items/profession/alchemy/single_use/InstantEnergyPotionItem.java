@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BasePotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IAmount;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
@@ -39,13 +40,13 @@ public class InstantEnergyPotionItem extends BaseInstantPotion implements IAmoun
     }
 
     @Override
-    public String GUID() {
-        return "alchemy/instant/energy/potion_lvl_" + level.number;
+    public float amount() {
+        return StatModData.roundNumber(level.effectMultiplier * lvl_1_amount);
     }
 
     @Override
-    public float amount() {
-        return StatModData.roundNumber(level.effectMultiplier * lvl_1_amount);
+    public String GUID() {
+        return "alchemy/instant/energy/potion_lvl_" + level.number;
     }
 
     @Override
@@ -74,7 +75,7 @@ public class InstantEnergyPotionItem extends BaseInstantPotion implements IAmoun
     }
 
     @Override
-    public BaseInstantPotion newInstance(Professions.Levels lvl) {
+    public BasePotion newInstance(Professions.Levels lvl) {
         return new InstantEnergyPotionItem(lvl);
     }
 }

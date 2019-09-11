@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.ICoreSt
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.IPreCoreStat;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.potion_effects.IStatGivingPotion;
+import com.robertx22.mine_and_slash.potion_effects.IStatPotion;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
@@ -35,6 +36,10 @@ public class CommonStatUtils {
             if (instance.getPotion() instanceof IStatGivingPotion) {
                 IStatGivingPotion pot = (IStatGivingPotion) instance.getPotion();
                 pot.getStats(instance).forEach(x -> x.useOnPlayer(data));
+            }
+            if (instance.getPotion() instanceof IStatPotion) {
+                IStatPotion stat = (IStatPotion) instance.getPotion();
+                stat.applyStats(data);
             }
         }
     }

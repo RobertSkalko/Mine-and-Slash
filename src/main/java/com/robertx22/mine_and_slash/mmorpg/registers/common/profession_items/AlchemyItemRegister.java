@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items;
 
-import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BasePotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.ILvlRecipeGen;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantEnergyPotionItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantHealthPotionItem;
@@ -29,7 +29,7 @@ public class AlchemyItemRegister {
         list.add(new InstantEnergyPotionItem(Professions.Levels.ONE));
 
         for (ILvlRecipeGen gen : list) {
-            List<BaseInstantPotion> vars = gen.generateAllPossibleStatVariations();
+            List<BasePotion> vars = gen.generateAllPossibleStatVariations();
             vars.forEach(x -> r.register(x.setRegistryName(x.GUID())));
 
         }

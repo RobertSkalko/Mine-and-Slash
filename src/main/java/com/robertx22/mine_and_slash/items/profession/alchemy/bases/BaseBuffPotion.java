@@ -1,9 +1,15 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.bases;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
+import com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs.BaseAlchemyEffect;
+import com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs.BaseEffect;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -11,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -22,10 +29,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class BaseInstantPotion extends BasePotion implements IAmount {
+public abstract class BaseBuffPotion extends BasePotion {
 
-    public BaseInstantPotion(Professions.Levels lvl) {
+    public BaseBuffPotion(Professions.Levels lvl) {
         super(lvl);
+
+    }
+
+    public int durationInMinutes() {
+        return (int) (level.effectMultiplier * 10);
     }
 
     @Override
@@ -38,24 +50,46 @@ public abstract class BaseInstantPotion extends BasePotion implements IAmount {
         return this.getRegistryName().toString();
     }
 
-    public abstract ITextComponent tooltip();
-
     public int useDurationInTicks() {
-        return 30;
+        return 50;
     }
 
-    public abstract void onFinish(ItemStack stack, World world, LivingEntity player,
-                                  EntityCap.UnitData unitdata);
+    public BaseEffect createEffect() {
+        return new BaseAlchemyEffect(this);
+    }
+
+    public void onFinish(ItemStack stack, World world, LivingEntity player,
+                         EntityCap.UnitData unitdata) {
+
+        if (!hasAlchemyPotion(player)) {
+            EffectInstance instance = new EffectInstance(createEffect(), durationInMinutes() * 20 * 60, 1, false, false);
+            player.addPotionEffect(instance);
+        }
+    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(Styles.GREENCOMP().appendSibling(tooltip()));
+        TooltipInfo info = new TooltipInfo(null, new MinMax(100, 100), level.number);
+        info.usePrettyStatSymbols = true;
+
+        tooltip.add(Styles.GREENCOMP().appendText("Stats: "));
+
+        for (StatModData mod : mods()) {
+            tooltip.addAll(mod.GetTooltipString(info));
+        }
+
+        Tooltip.addEmpty(tooltip);
+
+        tooltip.add(Styles.BLUECOMP()
+                .appendText("Duration: " + durationInMinutes() + " Minutes"));
         tooltip.add(TooltipUtils.level(this.level.number));
 
     }
+
+    public abstract List<StatModData> mods();
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
@@ -81,12 +115,21 @@ public abstract class BaseInstantPotion extends BasePotion implements IAmount {
         return stack;
     }
 
+    public boolean hasAlchemyPotion(LivingEntity en) {
+
+        return en.getActivePotionEffects()
+                .stream()
+                .anyMatch(x -> x.getPotion() instanceof BaseAlchemyEffect);
+
+    }
+
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
                                                     Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
 
-        if (Load.Unit(player).getLevel() >= this.level.number) {
+        if (Load.Unit(player)
+                .getLevel() >= this.level.number && !hasAlchemyPotion(player)) {
             player.setActiveHand(handIn);
             return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
         } else {
@@ -95,3 +138,4 @@ public abstract class BaseInstantPotion extends BasePotion implements IAmount {
     }
 
 }
+

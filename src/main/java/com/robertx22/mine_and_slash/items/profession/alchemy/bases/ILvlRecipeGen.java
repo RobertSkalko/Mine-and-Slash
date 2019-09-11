@@ -6,13 +6,13 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface ILvlRecipeGen extends IGenerated<BaseInstantPotion> {
+public interface ILvlRecipeGen extends IGenerated<BasePotion> {
 
-    BaseInstantPotion newInstance(Professions.Levels lvl);
+    BasePotion newInstance(Professions.Levels lvl);
 
     @Override
-    default List<BaseInstantPotion> generateAllPossibleStatVariations() {
-        List<BaseInstantPotion> list = new ArrayList<>();
+    default List<BasePotion> generateAllPossibleStatVariations() {
+        List<BasePotion> list = new ArrayList<>();
         for (Professions.Levels value : Professions.Levels.values()) {
             list.add(newInstance(value));
         }
