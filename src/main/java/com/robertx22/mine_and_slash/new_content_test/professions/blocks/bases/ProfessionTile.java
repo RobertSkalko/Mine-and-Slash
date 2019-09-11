@@ -165,6 +165,7 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
 
         if (ticks++ % 20 == 0) {
             if (tryCraft()) {
+                this.expEarned += this.currentRecipe.expGiven;
                 this.markDirty();
             }
         }

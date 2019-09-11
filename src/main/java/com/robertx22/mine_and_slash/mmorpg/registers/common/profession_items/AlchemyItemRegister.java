@@ -9,11 +9,15 @@ import com.robertx22.mine_and_slash.new_content_test.professions.data.Profession
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AlchemyItemRegister {
+
+    @ObjectHolder("mmorpg:alchemy/instant/health/potion_lvl_100")
+    public static final Item LVL_100_HP_POT = null;
 
     public static void register(RegistryEvent.Register<Item> event) {
 

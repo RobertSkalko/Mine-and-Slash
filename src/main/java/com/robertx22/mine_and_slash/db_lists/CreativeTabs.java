@@ -2,9 +2,8 @@ package com.robertx22.mine_and_slash.db_lists;
 
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.items.misc.ItemLootbox;
-import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantHealthPotionItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items.AlchemyItemRegister;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -31,7 +30,7 @@ public class CreativeTabs {
 
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(new InstantHealthPotionItem(Professions.Levels.HUNDRED));
+            return new ItemStack(AlchemyItemRegister.LVL_100_HP_POT);
         }
     };
 

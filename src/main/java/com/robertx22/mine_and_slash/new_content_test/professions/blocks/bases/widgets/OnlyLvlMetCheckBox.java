@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
+package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.widgets;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.Minecraft;
@@ -24,8 +24,8 @@ public class OnlyLvlMetCheckBox extends AbstractButton {
     }
 
     private static final ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/profession/checkbox.png");
-    PickedRecipes checked = PickedRecipes.ALL;
-    boolean changed = false;
+    public PickedRecipes checked = PickedRecipes.ALL;
+    public boolean changed = false;
 
     public OnlyLvlMetCheckBox(int x, int y, int p_i51140_3_) {
         super(x, y, p_i51140_3_, 15, "");

@@ -4,6 +4,9 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.EnergyRe
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.network.PlayerSendProfessionPacket;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -80,6 +83,11 @@ public class OnTickLogic {
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
                     data.playerSyncTick = 0;
                     Load.Unit(player).syncToClient(player);
+
+                    if (player.openContainer instanceof ProfessionContainer) {
+                        MMORPG.sendToClient(new PlayerSendProfessionPacket(player), player);
+                    }
+
                 }
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;

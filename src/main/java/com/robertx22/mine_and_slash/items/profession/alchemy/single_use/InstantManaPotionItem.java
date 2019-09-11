@@ -65,7 +65,11 @@ public class InstantManaPotionItem extends BaseInstantPotion implements IAmount 
             mats.addMaterial(Items.ENDER_PEARL, 2 * level.materialCostMulti);
         }
 
-        return mats.buildMaterials().setOutput(this).build().levelReq(level.number);
+        return mats.buildMaterials()
+                .setOutput(this)
+                .build()
+                .levelReq(level.number)
+                .expGiven(level.number * 5);
 
     }
 

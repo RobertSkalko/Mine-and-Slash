@@ -5,6 +5,9 @@ import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.RequestTilePacket;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.widgets.ChooseRecipeButton;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.widgets.OnlyLvlMetCheckBox;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.widgets.ProfessionLvlBar;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -12,6 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -37,6 +41,8 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
     private TextFieldWidget searchBar;
     private OnlyLvlMetCheckBox onlyLvlMetCheckbox;
+    private ProfessionLvlBar lvlbar;
+
     int currentRow = 0;
 
     static int maxRowMembers = 1;
@@ -80,7 +86,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
     @Override
     public boolean keyPressed(int x, int y, int i) {
 
-        if (x == 256 == false) { // if escape key
+        if (x == 256 == false) { // if isnt escape key
 
             if (searchBar.isFocused()) {
                 return searchBar.keyPressed(x, y, i);
@@ -156,7 +162,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
     public int getCurrentRow() {
 
-        if (this.filteredRecipes.size() < 5 * maxRowMembers) {
+        if (this.filteredRecipes.size() < maxRows) {
             return 0;
         }
 
@@ -168,6 +174,10 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
+
+        if (this.lvlbar == null) {
+            this.lvlbar = new ProfessionLvlBar(tile.profession, proffs, guiLeft + 229 - ProfessionLvlBar.xSize / 2, guiTop + 70 - ProfessionLvlBar.ySize);
+        }
 
         if (this.searchBar == null) {
             String s = this.searchBar != null ? this.searchBar.getText() : "";
@@ -195,7 +205,6 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
                 MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
             }
         }
-
         if (mc.player.ticksExisted % 5 == 0) {
             updateRecipeButtons();
         }
@@ -205,14 +214,27 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
         super.render(mouseX, mouseY, partialTicks);
 
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1F);
-        GlStateManager.enableBlend();
-        GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        RenderHelper.disableStandardItemLighting();
+        renderItemIcons(mouseX, mouseY, partialTicks);
 
+        this.onlyLvlMetCheckbox.render(mouseX, mouseY, partialTicks);
+        this.searchBar.render(mouseX, mouseY, partialTicks);
+        this.lvlbar.render(mouseX, mouseY, partialTicks);
+
+        renderTooltips(mouseX, mouseY, partialTicks);
+
+    }
+
+    public void renderItemIcons(int mouseX, int mouseY, float partialTicks) {
         this.displayedRecipeButtons.forEach(x -> {
+            RenderHelper.disableStandardItemLighting();
             x.render(mouseX, mouseY, partialTicks);
+            RenderHelper.disableStandardItemLighting();
             this.drawSlot(x.slot);
-            x.materialSlots.forEach(slot -> this.drawSlot(slot));
+            x.materialSlots.forEach(slot -> {
+                RenderHelper.disableStandardItemLighting();
+                this.drawSlot(slot);
+            });
         });
 
         if (this.tile.currentRecipe != null) {
@@ -222,10 +244,9 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
                     .getPreview()), 0, x, y);
             this.drawSlot(currentOutput);
         }
+    }
 
-        this.onlyLvlMetCheckbox.render(mouseX, mouseY, partialTicks);
-        this.searchBar.render(mouseX, mouseY, partialTicks);
-
+    public void renderTooltips(int mouseX, int mouseY, float partialTicks) {
         this.renderHoveredToolTip(mouseX, mouseY);
 
         this.displayedRecipeButtons.forEach(button -> {
@@ -253,7 +274,10 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
     @Override
     public boolean mouseScrolled(double num1, double num2, double num3) {
 
-        this.currentRow -= num3;
+        if (this.displayedRecipeButtons.size() < this.currentRow && num3 < 0) {
+        } else {
+            this.currentRow -= num3;
+        }
         this.currentRow = this.getCurrentRow();
 
         this.updateRecipeButtons();

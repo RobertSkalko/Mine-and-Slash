@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
+package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.widgets;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;
@@ -20,16 +20,16 @@ import java.util.List;
 
 public class ChooseRecipeButton extends ImageButton {
 
-    static int xSize = 135;
-    static int ySize = 20;
+    public static int xSize = 135;
+    public static int ySize = 20;
     static ResourceLocation img = new ResourceLocation(Ref.MODID, "textures/gui/profession/choose_recipe_button.png");
-    int playerProfLvl;
-    RecipeSlot slot;
-    BlockPos pos;
-    BaseRecipe recipe;
-    boolean meetsReq;
+    public int playerProfLvl;
+    public RecipeSlot slot;
+    public BlockPos pos;
+    public BaseRecipe recipe;
+    public boolean meetsReq;
 
-    List<RecipeSlot> materialSlots = new ArrayList<>();
+    public List<RecipeSlot> materialSlots = new ArrayList<>();
 
     static int expImgY = 60;
     static int NOImgY = 50;
@@ -108,25 +108,6 @@ public class ChooseRecipeButton extends ImageButton {
         } else {
             blit(xArrowPos, yArrowPos, 0, NOImgY, YESNOSize, YESNOSize, 256, 256);
         }
-
-        /*
-        int xPos = this.x + xSize / 2 - 30;
-        int yPos = this.y + ySize / 2 - expSize / 2;
-
-        if (this.meetsReq) {
-            blit(xPos, yPos + 1, 0, YESImgY, YESNOSize, YESNOSize, 256, 256);
-        } else {
-            blit(xPos, yPos + 1, 0, NOImgY, YESNOSize, YESNOSize, 256, 256);
-        }
-
-        blit(xPos + YESNOSize + 3, yPos, 0, expImgY, expSize, expSize, 256, 256);
-
-        int xTextPos = xPos + YESNOSize + expSize + 6;
-
-        mc.fontRenderer.drawString(this.recipe.professionLevelReq + "", xTextPos, yPos + 1, TextFormatting.YELLOW
-                .getColor());
-        */
-
         GlStateManager.enableDepthTest();
     }
 

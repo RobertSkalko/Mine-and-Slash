@@ -27,6 +27,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, ProfessionRecipePacket.class, ProfessionRecipePacket::encode, ProfessionRecipePacket::decode, ProfessionRecipePacket::handle);
 
+        MMORPG.Network.registerMessage(index++, PlayerSendProfessionPacket.class, PlayerSendProfessionPacket::encode, PlayerSendProfessionPacket::decode, PlayerSendProfessionPacket::handle);
+
     }
 }
 

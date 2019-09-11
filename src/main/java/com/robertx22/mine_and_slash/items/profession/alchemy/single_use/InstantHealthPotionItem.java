@@ -16,11 +16,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-import java.util.HashMap;
-
 public class InstantHealthPotionItem extends BaseInstantPotion {
-
-    public static HashMap<Professions.Levels, InstantHealthPotionItem> ITEMS = new HashMap<>();
 
     public InstantHealthPotionItem(Professions.Levels lvl) {
 
@@ -70,7 +66,11 @@ public class InstantHealthPotionItem extends BaseInstantPotion {
             mats.addMaterial(Items.BEETROOT, 5 * level.materialCostMulti);
         }
 
-        return mats.buildMaterials().setOutput(this).build().levelReq(level.number);
+        return mats.buildMaterials()
+                .setOutput(this)
+                .build()
+                .levelReq(level.number)
+                .expGiven(level.number * 5);
 
     }
 
