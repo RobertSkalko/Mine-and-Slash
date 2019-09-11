@@ -90,7 +90,7 @@ public class ProfessionsCap {
 
         @Override
         public void setNBT(CompoundNBT nbt) {
-            ProfessionSaving.Load(nbt);
+            this.data = ProfessionSaving.Load(nbt);
         }
 
         @Override
@@ -125,7 +125,10 @@ public class ProfessionsCap {
 
             pdata.exp += exp;
 
-            if (pdata.exp > this.getExpToReachNextLevel(prof) && MAX_LEVEL > pdata.level) {
+            int expReq = this.getExpToReachNextLevel(prof);
+
+            if (pdata.exp > expReq && MAX_LEVEL > pdata.level) {
+                pdata.exp -= expReq;
                 pdata.level++;
                 player.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 1, 1);
             }

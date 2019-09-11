@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "mmorpg:items/alchemy/buff/hp_regen/potion_lvl_100"
+    }
+}

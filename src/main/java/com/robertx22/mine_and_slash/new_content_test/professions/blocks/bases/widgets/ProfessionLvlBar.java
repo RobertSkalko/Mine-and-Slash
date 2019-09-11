@@ -31,9 +31,14 @@ public class ProfessionLvlBar extends ImageButton {
         mc.getTextureManager().bindTexture(img);
         GlStateManager.disableDepthTest();
 
+        int max = data.getExpToReachNextLevel(prof);
+        int current = data.getCurrentExp(prof);
+
+        int percent = (int) ((float) data.getCurrentExp(prof) / (float) data.getExpToReachNextLevel(prof) * (float) xSize);
+
         blit(this.x, this.y, 0, 0, this.width, this.height, 256, 256);
         blit(this.x, this.y, 0, 0 + ySize, this.width, this.height, 256, 256);
-        blit(this.x, this.y, 0, ySize * 2, data.getCurrentExp(prof) / data.getExpToReachNextLevel(prof) * xSize, this.height, 256, 256);
+        blit(this.x, this.y, 0, ySize * 2, percent, this.height, 256, 256);
 
         GlStateManager.enableDepthTest();
     }

@@ -36,7 +36,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -576,14 +575,6 @@ public class EntityCap {
                 MMORPG.sendToTracking(new EntityUnitPacket(entity), entity);
             }
 
-        }
-
-        public static float getCooldownPeriod(LivingEntity entity) {
-
-            double atkSpeed = entity.getAttribute(SharedMonsterAttributes.ATTACK_SPEED)
-                    .getValue();
-
-            return (float) (1.0D / atkSpeed * 20.0D);
         }
 
         @Override

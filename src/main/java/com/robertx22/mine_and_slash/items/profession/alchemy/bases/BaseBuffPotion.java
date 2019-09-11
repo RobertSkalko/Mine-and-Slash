@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.bases;
 
 import com.robertx22.mine_and_slash.database.MinMax;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs.BaseAlchemyEffect;
 import com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs.BaseEffect;
@@ -21,10 +22,12 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -58,13 +61,22 @@ public abstract class BaseBuffPotion extends BasePotion {
         return new BaseAlchemyEffect(this);
     }
 
+    public BaseEffect getEffect() {
+        return (BaseEffect) ForgeRegistries.POTIONS.getValue(new ResourceLocation(Ref.MODID, GUID()));
+    }
+
     public void onFinish(ItemStack stack, World world, LivingEntity player,
                          EntityCap.UnitData unitdata) {
 
-        if (!hasAlchemyPotion(player)) {
-            EffectInstance instance = new EffectInstance(createEffect(), durationInMinutes() * 20 * 60, 1, false, false);
-            player.addPotionEffect(instance);
-        }
+        player.getActivePotionEffects()
+                .stream()
+                .filter(x -> x.getPotion() instanceof BaseAlchemyEffect)
+                .findFirst()
+                .ifPresent(x -> player.removePotionEffect(x.getPotion()));
+
+        EffectInstance instance = new EffectInstance(getEffect(), durationInMinutes() * 20 * 60, 1, false, false);
+        player.addPotionEffect(instance);
+
     }
 
     @Override
@@ -128,8 +140,7 @@ public abstract class BaseBuffPotion extends BasePotion {
                                                     Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
 
-        if (Load.Unit(player)
-                .getLevel() >= this.level.number && !hasAlchemyPotion(player)) {
+        if (Load.Unit(player).getLevel() >= this.level.number) {
             player.setActiveHand(handIn);
             return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
         } else {
