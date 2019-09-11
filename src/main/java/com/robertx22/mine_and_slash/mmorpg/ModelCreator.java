@@ -49,8 +49,7 @@ public class ModelCreator {
                     try {
                         Path created = Files.createFile(Paths.get(model.getPath()));
 
-                        System.out.println("Creating file at: " + created.getFileName()
-                                .toString());
+                        System.out.println("Creating file at: " + model.getPath());
 
                         FileWriter fw = new FileWriter(created.toFile());
                         fw.write(DEFAULT_MODEL.replace("REPLACE", "items/" + path));

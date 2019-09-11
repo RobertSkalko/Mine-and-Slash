@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.items.consumables.bases;
 
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
+import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -11,6 +13,10 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 public abstract class BaseGiveBuffItem extends BaseInstantPotion {
+
+    public BaseGiveBuffItem(Professions.Levels lvl) {
+        super(lvl);
+    }
 
     @Override
     public ITextComponent tooltip() {

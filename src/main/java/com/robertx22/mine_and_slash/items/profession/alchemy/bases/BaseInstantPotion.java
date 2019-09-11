@@ -1,16 +1,19 @@
-package com.robertx22.mine_and_slash.items.consumables.bases;
+package com.robertx22.mine_and_slash.items.profession.alchemy.bases;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
+import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -23,10 +26,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class BaseInstantPotion extends Item implements IGUID, IAutoLocName {
+public abstract class BaseInstantPotion extends Item implements IGUID, IAutoLocName, IAmount, IHasRecipe, ILvlRecipeGen {
 
-    public BaseInstantPotion() {
-        super(new Properties().maxStackSize(64).group(CreativeTabs.MyModTab));
+    public Professions.Levels level = Professions.Levels.ONE;
+
+    public BaseInstantPotion(Professions.Levels lvl) {
+        super(new Properties().maxStackSize(64).group(CreativeTabs.Alchemy));
+        this.level = lvl;
     }
 
     @Override
@@ -54,6 +60,7 @@ public abstract class BaseInstantPotion extends Item implements IGUID, IAutoLocN
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         tooltip.add(Styles.GREENCOMP().appendSibling(tooltip()));
+        tooltip.add(TooltipUtils.level(this.level.number));
 
     }
 
@@ -72,6 +79,12 @@ public abstract class BaseInstantPotion extends Item implements IGUID, IAutoLocN
 
         onFinish(stack, world, player, Load.Unit(player));
         stack.shrink(1);
+
+        if (player instanceof PlayerEntity) {
+            PlayerEntity p = (PlayerEntity) player;
+            p.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+        }
+
         return stack;
     }
 
@@ -79,8 +92,13 @@ public abstract class BaseInstantPotion extends Item implements IGUID, IAutoLocN
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
                                                     Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
-        player.setActiveHand(handIn);
-        return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+
+        if (Load.Unit(player).getLevel() >= this.level.number) {
+            player.setActiveHand(handIn);
+            return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+        } else {
+            return new ActionResult<>(ActionResultType.FAIL, itemstack);
+        }
     }
 
 }

@@ -23,10 +23,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContainer> implements IGuiEventListener {
+public class ProfessionGui extends ContainerScreen<ProfessionContainer> implements IGuiEventListener {
 
     Minecraft mc;
     public ProfessionTile tile;
@@ -46,8 +47,8 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
     static int x = 318;
     static int y = 232;
 
-    public ProfessionRecipeGui(ProfessionRecipeContainer cont, PlayerInventory inv,
-                               ITextComponent text) {
+    public ProfessionGui(ProfessionContainer cont, PlayerInventory inv,
+                         ITextComponent text) {
         super(cont, inv, text);
 
         this.xSize = x;
@@ -242,8 +243,10 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
 
         });
 
-        if (ChooseRecipeButton.isInRect(currentOutput.xPos, currentOutput.yPos, 16, 16, mouseX, mouseY)) {
-            this.renderTooltip(currentOutput.getStack(), mouseX, mouseY);
+        if (currentOutput != null) {
+            if (ChooseRecipeButton.isInRect(currentOutput.xPos, currentOutput.yPos, 16, 16, mouseX, mouseY)) {
+                this.renderTooltip(currentOutput.getStack(), mouseX, mouseY);
+            }
         }
     }
 
@@ -293,6 +296,13 @@ public class ProfessionRecipeGui extends ContainerScreen<ProfessionRecipeContain
             recipes = recipes.stream()
                     .filter(x -> x.professionLevelReq > profs.getLevel(x.profession()))
                     .collect(Collectors.toList());
+        }
+
+        if (recipes.size() > 1) {
+            recipes = recipes.stream()
+                    .sorted((Comparator.comparingInt(BaseRecipe::getLevelReq)))
+                    .collect(Collectors.toList());
+
         }
 
         return recipes;

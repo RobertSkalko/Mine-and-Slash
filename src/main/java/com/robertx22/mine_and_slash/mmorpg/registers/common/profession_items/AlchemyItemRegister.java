@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items;
 
-import com.robertx22.mine_and_slash.items.consumables.bases.BaseInstantPotion;
-import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.HealthPotionItem;
-import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.ILvlRecipeGen;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.ILvlRecipeGen;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantEnergyPotionItem;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantHealthPotionItem;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantManaPotionItem;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -18,7 +20,9 @@ public class AlchemyItemRegister {
         IForgeRegistry<Item> r = event.getRegistry();
         List<ILvlRecipeGen> list = new ArrayList<>();
 
-        list.add(new HealthPotionItem(Professions.Levels.ONE));
+        list.add(new InstantHealthPotionItem(Professions.Levels.ONE));
+        list.add(new InstantManaPotionItem(Professions.Levels.ONE));
+        list.add(new InstantEnergyPotionItem(Professions.Levels.ONE));
 
         for (ILvlRecipeGen gen : list) {
             List<BaseInstantPotion> vars = gen.generateAllPossibleStatVariations();

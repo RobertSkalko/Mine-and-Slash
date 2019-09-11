@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
-import com.robertx22.mine_and_slash.items.consumables.bases.BaseInstantPotion;
-import com.robertx22.mine_and_slash.items.consumables.bases.IAmount;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.builders.SimpleRecipeBuilders;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
@@ -18,16 +18,16 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-public class HealthPotionItem extends BaseInstantPotion implements IAmount, IHasRecipe, ILvlRecipeGen {
+public class InstantHealthPotionItem extends BaseInstantPotion {
 
-    public static HashMap<Professions.Levels, HealthPotionItem> ITEMS = new HashMap<>();
+    public static HashMap<Professions.Levels, InstantHealthPotionItem> ITEMS = new HashMap<>();
 
-    public HealthPotionItem(Professions.Levels lvl) {
-        this.level = lvl;
+    public InstantHealthPotionItem(Professions.Levels lvl) {
+
+        super(lvl);
     }
 
     float lvl_1_amount = 50;
-    Professions.Levels level = Professions.Levels.ONE;
 
     @Override
     public ITextComponent tooltip() {
@@ -51,7 +51,7 @@ public class HealthPotionItem extends BaseInstantPotion implements IAmount, IHas
 
     @Override
     public float amount() {
-        return StatModData.calculateStatGrowth(lvl_1_amount, level.number);
+        return StatModData.calculateStatGrowthAndRound(lvl_1_amount * level.effectMultiplier, level.number);
     }
 
     @Override
@@ -61,17 +61,21 @@ public class HealthPotionItem extends BaseInstantPotion implements IAmount, IHas
 
     @Override
     public BaseRecipe getRecipe() {
-        return SimpleRecipe.Builder.create("health_pot_lvl_" + this.level.number, Professions.ALCHEMY)
+        SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
+                .addMaterial(Items.GLASS_BOTTLE, 1)
                 .addMaterial(Items.APPLE, 2 * this.level.materialCostMulti)
-                .addMaterial(Items.GLISTERING_MELON_SLICE, 1 * level.materialCostMulti)
-                .buildMaterials()
-                .setOutput(this)
-                .build();
+                .addMaterial(Items.GLISTERING_MELON_SLICE, 1 * level.materialCostMulti);
+
+        if (level.number >= Professions.Levels.FIFTY.number) {
+            mats.addMaterial(Items.BEETROOT, 5 * level.materialCostMulti);
+        }
+
+        return mats.buildMaterials().setOutput(this).build().levelReq(level.number);
 
     }
 
     @Override
     public BaseInstantPotion newInstance(Professions.Levels lvl) {
-        return new HealthPotionItem(lvl);
+        return new InstantHealthPotionItem(lvl);
     }
 }

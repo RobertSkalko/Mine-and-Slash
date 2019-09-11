@@ -139,6 +139,9 @@ public class MMORPG {
         ConfigItemsSerialization.INSTANCE.generateConfigTutorials();
         ConfigRegister.regConfigsWhichNeedMyRegistry();
         ConfigRegister.regConfigsWhichDontNeedMyRegistry(); // still need after reg is inited
+
+        RegisterProfessionRecipesFromItems.register();
+
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {

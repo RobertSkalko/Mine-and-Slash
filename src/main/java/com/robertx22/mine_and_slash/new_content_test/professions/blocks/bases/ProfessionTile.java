@@ -102,6 +102,15 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
         if (hasEnoughMaterials()) {
 
             ItemStack output = this.currentRecipe.getOutput(this).getItemStack();
+
+            if (output.isEmpty()) {
+                return false;
+            }
+
+            if (!canOutput(output)) {
+                return false;
+            }
+
             // get output before materials are consumed
 
             int i = 0;
@@ -118,8 +127,10 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
             ItemStackHandler handler = new ItemStackHandler(this.outputStacks);
 
             for (int s = 0; s < handler.getSlots(); s++) {
+
                 if (handler.insertItem(s, output, true) == ItemStack.EMPTY) {
                     handler.insertItem(s, output, false);
+                    this.markDirty();
                     return true;
                 }
             }
@@ -130,6 +141,21 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
 
         return false;
 
+    }
+
+    public boolean canOutput(ItemStack stack) {
+
+        ItemStackHandler handler = new ItemStackHandler(this.outputStacks);
+
+        for (int s = 0; s < handler.getSlots(); s++) {
+
+            if (handler.insertItem(s, stack, true) == ItemStack.EMPTY) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     int ticks = 0;
@@ -154,7 +180,7 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory,
                                 PlayerEntity playerEntity) {
-        return new ProfessionRecipeContainer(i, this, this.getPos(), playerInventory);
+        return new ProfessionContainer(i, this, this.getPos(), playerInventory);
     }
 
     @Override

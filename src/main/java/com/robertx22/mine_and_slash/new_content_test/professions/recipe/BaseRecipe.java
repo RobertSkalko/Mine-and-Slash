@@ -36,6 +36,10 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
         return this;
     }
 
+    public int getLevelReq() {
+        return this.professionLevelReq;
+    }
+
     public boolean meetsLvlReq(ProfessionsCap.IProfessionsData cap) {
         return cap.getLevel(this.profession()) >= this.professionLevelReq;
     }

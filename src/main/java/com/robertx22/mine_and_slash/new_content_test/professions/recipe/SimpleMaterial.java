@@ -21,6 +21,6 @@ public class SimpleMaterial extends BaseMaterial {
 
     @Override
     public ItemStack getItemStack() {
-        return stack;
+        return stack.copy();
     }
 }

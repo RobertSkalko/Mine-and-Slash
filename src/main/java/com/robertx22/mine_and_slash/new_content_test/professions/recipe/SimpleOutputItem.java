@@ -19,11 +19,11 @@ public class SimpleOutputItem extends BaseOutputItem {
 
     @Override
     public ItemStack getPreview() {
-        return output;
+        return output.copy();
     }
 
     @Override
     public ItemStack getItemStack() {
-        return output;
+        return output.copy();
     }
 }

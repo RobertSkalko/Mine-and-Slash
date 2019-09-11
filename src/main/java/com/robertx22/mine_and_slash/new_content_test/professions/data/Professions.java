@@ -27,18 +27,20 @@ public enum Professions {
     public TileEntityType<?> tileEntityType;
 
     public enum Levels {
-        ONE(1, 1, "Minor", TextFormatting.GRAY),
-        TEN(10, 1.1F, "Lesser", TextFormatting.GREEN),
-        TWENTY_FIVE(25, 1.2F, "Medium", TextFormatting.YELLOW),
-        FIFTY(50, 1.5F, "Greater", TextFormatting.BLUE),
-        SEVENTY_FIVE(75, 2F, "Major", TextFormatting.GOLD),
-        HUNDRED(100, 3F, "Miraculous", TextFormatting.LIGHT_PURPLE);
+        ONE(1, 1, "Minor", TextFormatting.GRAY, 1),
+        TEN(10, 1.1F, "Lesser", TextFormatting.GREEN, 1.2F),
+        TWENTY_FIVE(25, 1.2F, "Medium", TextFormatting.YELLOW, 1.4F),
+        FIFTY(50, 1.5F, "Greater", TextFormatting.BLUE, 2F),
+        SEVENTY_FIVE(75, 2F, "Major", TextFormatting.GOLD, 3F),
+        HUNDRED(100, 3F, "Miraculous", TextFormatting.LIGHT_PURPLE, 5F);
 
-        Levels(int num, float cost, String name, TextFormatting color) {
+        Levels(int num, float cost, String name, TextFormatting color,
+               float effectMultiplier) {
             this.number = num;
             this.materialCostMulti = cost;
             this.name = name;
             this.color = color;
+            this.effectMultiplier = effectMultiplier;
 
         }
 
@@ -46,5 +48,6 @@ public enum Professions {
         public String name;
         public int number;
         public float materialCostMulti = 1;
+        public float effectMultiplier = 1;
     }
 }
