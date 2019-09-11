@@ -23,7 +23,7 @@ public class EpicMob extends BaseEpic implements MobRarity {
 
     @Override
     public float LootMultiplier() {
-        return 2.2F;
+        return 2.5F;
     }
 
     @Override

@@ -1,6 +1,8 @@
 2.6.4
+fixed map dimensions
 fixed ThunderAtronach stat
 compatible item option statsAddedOnlyOnDrop now actually works
+increased loot drops of higher rarity mobs
 2.6.3
 updated to latest forge v100 
 made chaos orbs not activate instability break chance
