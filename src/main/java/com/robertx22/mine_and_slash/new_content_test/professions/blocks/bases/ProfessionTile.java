@@ -19,6 +19,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.items.ItemStackHandler;
@@ -49,13 +50,38 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
         this.profession = proff;
     }
 
+    public float getCookTimeCompleted() {
+
+        if (this.hasEnoughMaterials() == false) {
+            return 0;
+        }
+
+        return currentRecipe != null ? MathHelper.clamp((float) ticks / currentRecipe.getCookTimeTicks(), 0, 1) : 0;
+    }
+
     @Override
     public void tick() {
 
-        if (ticks++ % 50 == 0) {
-            if (tryCraft()) {
-                this.expEarned += this.currentRecipe.expGiven;
-                this.markDirty();
+        if (world != null && this.world.isRemote) {
+
+            // this.world.addParticle();
+
+        }
+
+        if (this.currentRecipe == null) {
+            this.ticks = 0;
+            if (!this.hasEnoughMaterials()) {
+                this.ticks = 0;
+            }
+
+        } else {
+            if (ticks++ >= this.currentRecipe.getCookTimeTicks()) {
+                if (tryCraft()) {
+                    this.expEarned += this.currentRecipe.expGiven;
+                    this.ticks = 0;
+                    this.markDirty();
+                }
+
             }
         }
 
@@ -85,6 +111,10 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     }
 
     public boolean hasEnoughMaterials() {
+
+        if (this.currentRecipe == null) {
+            return false;
+        }
 
         int i = 0;
         for (BaseMaterial mat : currentRecipe.getMaterials()) {

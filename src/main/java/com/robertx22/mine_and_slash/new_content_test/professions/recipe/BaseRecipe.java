@@ -21,9 +21,7 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
     }
 
     public String guid;
-
     public int professionLevelReq = 1;
-
     public int expGiven = 1;
 
     public BaseRecipe expGiven(int exp) {
@@ -34,6 +32,10 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
     public BaseRecipe levelReq(int lvl) {
         this.professionLevelReq = MathHelper.clamp(lvl, 1, 100);
         return this;
+    }
+
+    public int getCookTimeTicks() {
+        return 100;
     }
 
     public int getLevelReq() {

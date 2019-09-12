@@ -201,7 +201,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
         }
 
         if (tile != null) {
-            if (mc.player.ticksExisted % 20 == 0) {
+            if (mc.player.ticksExisted % 10 == 0) {
                 MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
             }
         }
@@ -342,6 +342,11 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
         Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, this.blitOffset, 0.0F, 0.0F, this.xSize, this.ySize, 256, 512);
+
+        // the cook time arrow
+        float cooktime = tile.getCookTimeCompleted();
+        blit(guiLeft + 222, guiTop + 95, 324, 324, 0.0F, 16, (int) (22 * cooktime), 256, 512);
+
     }
 
 }
