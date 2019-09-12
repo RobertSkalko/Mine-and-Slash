@@ -208,19 +208,25 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
         if (mc.player.ticksExisted % 5 == 0) {
             updateRecipeButtons();
         }
-
+        RenderHelper.disableStandardItemLighting();
         this.renderBackground();
-
+        RenderHelper.disableStandardItemLighting();
         super.render(mouseX, mouseY, partialTicks);
 
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1F);
         RenderHelper.disableStandardItemLighting();
         renderItemIcons(mouseX, mouseY, partialTicks);
 
+        RenderHelper.disableStandardItemLighting();
         this.onlyLvlMetCheckbox.render(mouseX, mouseY, partialTicks);
+
+        RenderHelper.disableStandardItemLighting();
         this.searchBar.render(mouseX, mouseY, partialTicks);
+
+        RenderHelper.disableStandardItemLighting();
         this.lvlbar.render(mouseX, mouseY, partialTicks);
 
+        RenderHelper.disableStandardItemLighting();
         renderTooltips(mouseX, mouseY, partialTicks);
 
     }
@@ -274,10 +280,8 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
     @Override
     public boolean mouseScrolled(double num1, double num2, double num3) {
 
-        if (this.displayedRecipeButtons.size() < this.currentRow && num3 < 0) {
-        } else {
-            this.currentRow -= num3;
-        }
+        this.currentRow -= num3;
+
         this.currentRow = this.getCurrentRow();
 
         this.updateRecipeButtons();

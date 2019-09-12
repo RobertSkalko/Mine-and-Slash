@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -42,23 +41,22 @@ public class OnContainerCompatibleItem {
 
                         ConfigItem config = SlashRegistry.CompatibleItems().get(reg);
 
-                        if (config.statsAddedOnlyOnDrop == false) {
-                            PlayerEntity player = event.getEntityPlayer();
+                        if (config.statsAddedOnlyOnDrop) {
+                        } else {
 
-                            if (Load.hasUnit(player)) {
-                                if (data == null) {
-                                    data = Load.Unit(player);
-                                }
+                            if (data == null) {
+                                data = Load.Unit(event.getEntityPlayer());
+                            }
 
-                                // slow check to make absolutely sure it doesnt have stats
-                                GearItemData gear = Gear.Load(stack);
-                                if (gear == null) {
-                                    stack = config.create(stack, data.getLevel());
-                                    event.getEntityPlayer().inventory.markDirty();
-                                }
+                            // slow check to make absolutely sure it doesnt have stats
+                            GearItemData gear = Gear.Load(stack);
+                            if (gear == null) {
+                                stack = config.create(stack, data.getLevel());
+                                event.getEntityPlayer().inventory.markDirty();
                             }
                         }
                     }
+
                 }
             }
 

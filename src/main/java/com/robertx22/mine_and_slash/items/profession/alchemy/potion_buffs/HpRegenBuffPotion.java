@@ -40,7 +40,7 @@ public class HpRegenBuffPotion extends BaseBuffPotion {
                 .setOutput(this)
                 .build()
                 .levelReq(level.number)
-                .expGiven(level.number * 10);
+                .expGiven(level.number * 15);
 
     }
 

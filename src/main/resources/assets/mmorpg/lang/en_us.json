@@ -104,12 +104,24 @@
 
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
+	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "§7Minor Energy Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_10": "§aLesser Energy Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_100": "§dMiraculous Energy Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_25": "§eMedium Energy Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_50": "§9Greater Energy Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_75": "§6Major Energy Regen Buff Potion ",
 	"item.mmorpg.alchemy.buff.hp_regen.potion_lvl_1": "§7Minor Health Regen Buff Potion ",
 	"item.mmorpg.alchemy.buff.hp_regen.potion_lvl_10": "§aLesser Health Regen Buff Potion ",
 	"item.mmorpg.alchemy.buff.hp_regen.potion_lvl_100": "§dMiraculous Health Regen Buff Potion ",
 	"item.mmorpg.alchemy.buff.hp_regen.potion_lvl_25": "§eMedium Health Regen Buff Potion ",
 	"item.mmorpg.alchemy.buff.hp_regen.potion_lvl_50": "§9Greater Health Regen Buff Potion ",
 	"item.mmorpg.alchemy.buff.hp_regen.potion_lvl_75": "§6Major Health Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.mana_regen.potion_lvl_1": "§7Minor Mana Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.mana_regen.potion_lvl_10": "§aLesser Mana Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.mana_regen.potion_lvl_100": "§dMiraculous Mana Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.mana_regen.potion_lvl_25": "§eMedium Mana Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.mana_regen.potion_lvl_50": "§9Greater Mana Regen Buff Potion ",
+	"item.mmorpg.alchemy.buff.mana_regen.potion_lvl_75": "§6Major Mana Regen Buff Potion ",
 	"item.mmorpg.alchemy.instant.energy.potion_lvl_1": "§7Minor Instant Energy Potion",
 	"item.mmorpg.alchemy.instant.energy.potion_lvl_10": "§aLesser Instant Energy Potion",
 	"item.mmorpg.alchemy.instant.energy.potion_lvl_100": "§dMiraculous Instant Energy Potion",
@@ -195,26 +207,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7Common Big Currency Treasure Box",
@@ -273,6 +265,26 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§dMythical Small Spell Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -1012,28 +1024,6 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_1": "§7Minor Health Regen Buff Potion ",
-	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_10": "§aLesser Health Regen Buff Potion ",
-	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_100": "§dMiraculous Health Regen Buff Potion ",
-	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_25": "§eMedium Health Regen Buff Potion ",
-	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_50": "§9Greater Health Regen Buff Potion ",
-	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_75": "§6Major Health Regen Buff Potion ",
-	"effect.mmorpg.aoe_regen": "Aoe Regen",
-	"effect.mmorpg.bonus_flame_dmg": "+ Flame Dmg",
-	"effect.mmorpg.bonus_frost_dmg": "+ Frost Dmg",
-	"effect.mmorpg.bonus_lightning_dmg": "+ Lightning Dmg",
-	"effect.mmorpg.bonus_venom_dmg": "+ Venom Dmg",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.energy_regen": "Regen Energy",
-	"effect.mmorpg.mana_regen": "Regen Mana",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1134,6 +1124,40 @@
 	"item.mmorpg.torch.torch5": "§dTorch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_10": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_100": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_25": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_50": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_75": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_1": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_10": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_100": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_25": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_50": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.hp_regen.potion_lvl_75": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.mana_regen.potion_lvl_1": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.mana_regen.potion_lvl_10": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.mana_regen.potion_lvl_100": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.mana_regen.potion_lvl_25": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.mana_regen.potion_lvl_50": "Alchemy Buff",
+	"effect.mmorpg.alchemy.buff.mana_regen.potion_lvl_75": "Alchemy Buff",
+	"effect.mmorpg.aoe_regen": "Aoe Regen",
+	"effect.mmorpg.bonus_flame_dmg": "+ Flame Dmg",
+	"effect.mmorpg.bonus_frost_dmg": "+ Frost Dmg",
+	"effect.mmorpg.bonus_lightning_dmg": "+ Lightning Dmg",
+	"effect.mmorpg.bonus_venom_dmg": "+ Venom Dmg",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.energy_regen": "Regen Energy",
+	"effect.mmorpg.mana_regen": "Regen Mana",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

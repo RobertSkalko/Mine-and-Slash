@@ -74,7 +74,7 @@ public abstract class BaseBuffPotion extends BasePotion {
                 .findFirst()
                 .ifPresent(x -> player.removePotionEffect(x.getPotion()));
 
-        EffectInstance instance = new EffectInstance(getEffect(), durationInMinutes() * 20 * 60, 1, false, false);
+        EffectInstance instance = new EffectInstance(getEffect(), durationInMinutes() * 20 * 60, 0, false, false);
         player.addPotionEffect(instance);
 
     }

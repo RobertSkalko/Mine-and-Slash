@@ -1,3 +1,5 @@
+2.6.5
+
 2.6.4
 fixed map dimensions
 fixed ThunderAtronach stat

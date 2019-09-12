@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items;
 
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BasePotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.ILvlRecipeGen;
+import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.EneRegenBuffPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.HpRegenBuffPotion;
+import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.ManaRegenBuffPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantEnergyPotionItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantHealthPotionItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantManaPotionItem;
@@ -29,6 +31,8 @@ public class AlchemyItemRegister {
         list.add(new InstantManaPotionItem(Professions.Levels.ONE));
         list.add(new InstantEnergyPotionItem(Professions.Levels.ONE));
         list.add(new HpRegenBuffPotion(Professions.Levels.ONE));
+        list.add(new ManaRegenBuffPotion(Professions.Levels.ONE));
+        list.add(new EneRegenBuffPotion(Professions.Levels.ONE));
 
         for (ILvlRecipeGen gen : list) {
             List<BasePotion> vars = gen.generateAllPossibleStatVariations();

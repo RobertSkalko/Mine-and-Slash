@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.new_content_test.professions.data.Profession
 public class BaseAlchemyEffect extends BaseEffect {
 
     public BaseAlchemyEffect(BaseBuffPotion pot) {
-        super(pot.GUID(), pot.locNameForLangFile(), pot.level.number, pot.mods());
+        super(pot.GUID(), "Alchemy Buff", pot.level.number, pot.mods());
     }
 
     @Override
