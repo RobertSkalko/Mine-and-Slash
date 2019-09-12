@@ -39,12 +39,26 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     public int expEarned = 0;
     public String playerID = "";
 
+    int ticks = 0;
+
     public ProfessionTile(Professions proff) {
         super(proff.tileEntityType);
 
         materialStacks = NonNullList.withSize(5, ItemStack.EMPTY);
         outputStacks = NonNullList.withSize(5, ItemStack.EMPTY);
         this.profession = proff;
+    }
+
+    @Override
+    public void tick() {
+
+        if (ticks++ % 50 == 0) {
+            if (tryCraft()) {
+                this.expEarned += this.currentRecipe.expGiven;
+                this.markDirty();
+            }
+        }
+
     }
 
     public boolean canPlayerOpen(ServerPlayerEntity player) {
@@ -158,20 +172,6 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
         return false;
     }
 
-    int ticks = 0;
-
-    @Override
-    public void tick() {
-
-        if (ticks++ % 20 == 0) {
-            if (tryCraft()) {
-                this.expEarned += this.currentRecipe.expGiven;
-                this.markDirty();
-            }
-        }
-
-    }
-
     @Override
     public ITextComponent getDisplayName() {
         return new StringTextComponent("");
@@ -197,6 +197,7 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
             nbt.putInt("exp", expEarned);
             nbt.putInt("lvl", playerProfLevel);
             nbt.putString("player_id", this.playerID);
+            nbt.putInt("ticks", this.ticks);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -212,6 +213,7 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
             this.currentRecipe = SlashRegistry.Recipes().get(nbt.getString("recipe"));
             this.playerProfLevel = nbt.getInt("lvl");
             this.expEarned = nbt.getInt("exp");
+            this.ticks = nbt.getInt("ticks");
             this.playerID = nbt.getString("player_id");
 
             final byte NBT_TYPE_COMPOUND = 10;
