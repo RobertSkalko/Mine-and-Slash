@@ -1,0 +1,23 @@
+{
+    "multipart": [
+        {   "apply": { "model": "mmorpg:block/alchemy_station" }},
+        {   "when": { "enabled": "true" },
+            "apply": { "model": "mmorpg:block/brewing_stand_bottle0" }
+        },
+        {   "when": { "enabled": "true" },
+            "apply": { "model": "mmorpg:block/brewing_stand_bottle1" }
+        },
+        {   "when": { "enabled": "true" },
+            "apply": { "model": "mmorpg:block/brewing_stand_bottle2" }
+        },
+        {   "when": { "enabled": "false" },
+            "apply": { "model": "mmorpg:block/brewing_stand_empty0" }
+        },
+        {   "when": { "enabled": "false" },
+            "apply": { "model": "mmorpg:block/brewing_stand_empty1" }
+        },
+        {   "when": { "enabled": "false" },
+            "apply": { "model": "mmorpg:block/brewing_stand_empty2" }
+        }
+    ]
+}

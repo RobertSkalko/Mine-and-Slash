@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseMate
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -62,16 +63,27 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     public void tick() {
 
         if (world != null && !world.isRemote) {
+
+            BlockState state = this.getBlockState();
+
             if (this.currentRecipe == null) {
                 this.ticks = 0;
                 this.markDirty();
+                state = state.with(ProfessionBlock.ENABLED, false);
+                this.world.setBlockState(this.pos, state);
 
             } else if (!this.hasEnoughMaterials()) {
                 this.ticks = 0;
                 this.markDirty();
+                state = state.with(ProfessionBlock.ENABLED, false);
+                this.world.setBlockState(this.pos, state);
+
             } else {
 
                 ticks++;
+
+                state = state.with(ProfessionBlock.ENABLED, true);
+                this.world.setBlockState(this.pos, state);
 
                 if (ticks >= this.currentRecipe.getCookTimeTicks()) {
                     if (tryCraft()) {

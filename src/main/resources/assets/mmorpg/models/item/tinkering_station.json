@@ -1,6 +1,3 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "mmorpg:items/tinkering_station"
-    }
+    "parent": "mmorpg:block/tinkering_station"
 }

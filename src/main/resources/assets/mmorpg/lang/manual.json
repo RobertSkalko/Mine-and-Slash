@@ -1,10 +1,3 @@
-    "item.mmorpg.hearthstone.0": "Common Hearthstone",
-    "item.mmorpg.hearthstone.1": "Uncommon Hearthstone",
-    "item.mmorpg.hearthstone.2": "Rare Hearthstone",
-    "item.mmorpg.hearthstone.3": "Epic Hearthstone",
-    "item.mmorpg.hearthstone.4": "Legendary Hearthstone",
-    "item.mmorpg.hearthstone.5": "Mythical Hearthstone",	
-
 	"block.mmorpg.egg_loot_crate": "Loot Crate",
 
     "block.mmorpg.ore_block0": "Common Ore Block",
@@ -14,13 +7,12 @@
     "block.mmorpg.ore_block4": "Legendary Ore Block",
     "block.mmorpg.ore_block5": "Mythical Ore Block",
 
-	"block.mmorpg.attunement_altar": "Attunement Altar",
-
     "_comment": "# CREATIVE TAB",
     "itemGroup.mmorpg_main": "Mine and Slash",
     "itemGroup.mmorpg_uniques": "Unique Gear",
     "itemGroup.mmorpg_currency": "Crafting Items",
     "itemGroup.mmorpg_lootboxes": "LootBoxes",
+	"itemGroup.mmorpg_alchemy": "Alchemy",
 
     "_comment": "STATIONS",
     "block.mmorpg.modify_station": "Gear Modify Station",
@@ -28,6 +20,8 @@
     "block.mmorpg.gear_factory_station": "Gear Craft Station",
     "block.mmorpg.salvage_station": "Gear Salvage Station",
     "block.mmorpg.map_device": "Map Device",
+	"block.mmorpg.alchemy_station": "Alchemy Station",
+	"block.mmorpg.tinkering_station": "Tinkering Station",
 
     "_comment": "ITEM TOOLTIPS",
 	"mmorpg.tooltip.item_modifiable_in_station": "Can be used inside Gear Modify Station",

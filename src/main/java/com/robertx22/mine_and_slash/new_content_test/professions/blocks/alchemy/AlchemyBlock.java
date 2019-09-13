@@ -23,18 +23,21 @@ public class AlchemyBlock extends ProfessionBlock {
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos,
                             Random rand) {
 
-        double d0 = (double) ((float) pos.getX() + 0.4F + rand.nextFloat() * 0.2F);
-        double d1 = (double) ((float) pos.getY() + 0.7F + rand.nextFloat() * 0.3F);
-        double d2 = (double) ((float) pos.getZ() + 0.4F + rand.nextFloat() * 0.2F);
+        if (stateIn.get(ProfessionBlock.ENABLED).booleanValue()) {
 
-        worldIn.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            double d0 = (double) ((float) pos.getX() + 0.4F + rand.nextFloat() * 0.2F);
+            double d1 = (double) ((float) pos.getY() + 0.7F + rand.nextFloat() * 0.3F);
+            double d2 = (double) ((float) pos.getZ() + 0.4F + rand.nextFloat() * 0.2F);
 
-        for (int i = 0; i < 5; i++) {
-            d0 = (double) ((float) pos.getX() + 0.4F + rand.nextFloat() * 0.2F);
-            d1 = (double) ((float) pos.getY() + 0.7F + rand.nextFloat() * 0.3F);
-            d2 = (double) ((float) pos.getZ() + 0.4F + rand.nextFloat() * 0.2F);
+            worldIn.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 
-            worldIn.addParticle(ParticleTypes.PORTAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            for (int i = 0; i < 5; i++) {
+                d0 = (double) ((float) pos.getX() + 0.4F + rand.nextFloat() * 0.2F);
+                d1 = (double) ((float) pos.getY() + 0.7F + rand.nextFloat() * 0.3F);
+                d2 = (double) ((float) pos.getZ() + 0.4F + rand.nextFloat() * 0.2F);
+
+                worldIn.addParticle(ParticleTypes.PORTAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            }
         }
     }
 }
