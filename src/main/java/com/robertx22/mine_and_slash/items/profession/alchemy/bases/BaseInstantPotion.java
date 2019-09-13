@@ -52,7 +52,10 @@ public abstract class BaseInstantPotion extends BasePotion implements IAmount {
     public void addInformation(ItemStack stack, @Nullable World worldIn,
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(Styles.GREENCOMP().appendSibling(tooltip()));
+        if (tooltip() != null) {
+            tooltip.add(Styles.GREENCOMP().appendSibling(tooltip()));
+        }
+
         tooltip.add(TooltipUtils.level(this.level.number));
 
     }

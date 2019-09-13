@@ -29,7 +29,6 @@ import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ItemMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ItemMasterBag;
-import com.robertx22.mine_and_slash.items.level_incentives.Hearthstone;
 import com.robertx22.mine_and_slash.items.misc.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items.AlchemyItemRegister;
@@ -75,7 +74,6 @@ public class ItemRegister {
 
         for (GearRarity x : Rarities.Items.rarities()) {
             AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
-            Hearthstone.Items.put(x.Rank(), new Hearthstone(x.Rank()));
             ItemCapacitor.Items.put(x.Rank(), new ItemCapacitor(x.Rank()));
 
             for (GearRarity rarity : Rarities.Items.rarities()) {
@@ -97,7 +95,6 @@ public class ItemRegister {
         IForgeRegistry<Item> r = event.getRegistry();
 
         AutoSalvageBag.Items.values().forEach((x) -> r.register(x));
-        Hearthstone.Items.values().forEach((x) -> r.register(x));
         ItemCapacitor.Items.values().forEach((x) -> r.register(x));
         ItemLootbox.Items.values().forEach((x) -> r.register(x));
 

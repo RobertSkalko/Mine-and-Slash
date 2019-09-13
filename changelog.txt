@@ -1,7 +1,11 @@
 2.6.5
-updated to Release Build of forge 28.1.0
+updated to Release Build of forge 28.1.1 
+updated curios build
 renamed SINGLEPLAYER_MOB_SCALING  to SCALE_MOB_LEVEL_TO_NEAREST_PLAYER . Please update your configs
 homing projectile now checks for alive entities only
+removed hearthstone and attunement block. I feel all they added was confusion.
+removed crafting recipes of currencies, they are now made by profession called Tinkering.
+added recall potion to alchemy
 2.6.4
 fixed map dimensions
 fixed ThunderAtronach stat

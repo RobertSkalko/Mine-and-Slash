@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.BlockMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.BlockGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.BlockGearSalvage;
-import com.robertx22.mine_and_slash.blocks.simple.AttunementBlock;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
@@ -58,11 +57,7 @@ public class BlockRegister {
     public static Block PORTAL_BLOCK;
     @ObjectHolder(MAP_PORTAL_BLOCK_ID)
     public static TileEntityType<?> TILE_PORTAL_BLOCK;
-    // NEW BLOCK
-    @ObjectHolder(ATTUNEMENT_ALTAR_ID)
-    public static Block ATTUNEMENT_ALTAR_BLOCK;
-    @ObjectHolder(ATTUNEMENT_ALTAR_ID)
-    public static BlockItem ATTUNEMENT_ALTAR;
+
     // NEW BLOCK
     @ObjectHolder(GEAR_FACTORY_ID)
     public static TileEntityType<?> GEAR_FACTORY;
@@ -108,7 +103,6 @@ public class BlockRegister {
         reg.register(new BlockGearSalvage().setRegistryName(GEAR_SALVAGE_ID));
         reg.register(new BlockGearRepair().setRegistryName(GEAR_REPAIR_ID));
         reg.register(new BlockGearModify().setRegistryName(GEAR_MODIFY_ID));
-        reg.register(new AttunementBlock().setRegistryName(ATTUNEMENT_ALTAR_ID));
         reg.register(new MapPortalBlock().setRegistryName(MAP_PORTAL_BLOCK_ID));
         reg.register(new EggLootCrateBlock().setRegistryName(EGG_LOOT_CRATE_ID));
 
@@ -128,7 +122,6 @@ public class BlockRegister {
         reg.register(new BlockItem(BLOCK_GEAR_MODIFY, stationProp).setRegistryName(GEAR_MODIFY_ID));
         reg.register(new BlockItem(BLOCK_MAP_DEVICE, stationProp).setRegistryName(MAP_DEVICE_ID));
         reg.register(new BlockItem(BLOCK_GEAR_SALVAGE, stationProp).setRegistryName(GEAR_SALVAGE_ID));
-        reg.register(new BlockItem(ATTUNEMENT_ALTAR_BLOCK, stationProp).setRegistryName(ATTUNEMENT_ALTAR_ID));
         reg.register(new BlockItem(EGG_LOOT_CRATE_BLOCK, stationProp).setRegistryName(EGG_LOOT_CRATE_ID));
 
         reg.register(new BlockItem(ALCHEMY_BLOCK, stationProp).setRegistryName(ALCHEMY_BLOCK_ID));

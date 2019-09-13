@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.ManaRe
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantEnergyPotionItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantHealthPotionItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantManaPotionItem;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.LesserRecallPotionItem;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -41,6 +42,8 @@ public class AlchemyItemRegister {
             vars.forEach(x -> r.register(x.setRegistryName(x.GUID())));
         }
 
+        r.register(new LesserRecallPotionItem().setRegistryName(new LesserRecallPotionItem()
+                .GUID()));
     }
 
 }

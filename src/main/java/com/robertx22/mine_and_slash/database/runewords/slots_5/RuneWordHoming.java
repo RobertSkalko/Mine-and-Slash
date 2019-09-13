@@ -18,7 +18,7 @@ public class RuneWordHoming extends RuneWord {
     @Override
     public List<StatMod> mods() {
         return Arrays.asList(new AllTraitMods(new HomingTrait()), new CriticalHitFlat(), new CriticalDamageFlat(), new HealthFlat()
-                .multi(0.7F));
+                .multi(0.5F));
     }
 
     @Override
