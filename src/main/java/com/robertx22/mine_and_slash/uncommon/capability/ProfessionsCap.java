@@ -26,7 +26,6 @@ import net.minecraftforge.fml.common.Mod;
 public class ProfessionsCap {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "professions");
-    static final int MAX_LEVEL = 100;
 
     @CapabilityInject(IProfessionsData.class)
     public static final Capability<IProfessionsData> Data = null;
@@ -127,7 +126,7 @@ public class ProfessionsCap {
 
             int expReq = this.getExpToReachNextLevel(prof);
 
-            if (pdata.exp > expReq && MAX_LEVEL > pdata.level) {
+            if (pdata.exp > expReq && Professions.MAX_LEVEL > pdata.level) {
                 pdata.exp -= expReq;
                 pdata.level++;
                 player.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 1, 1);

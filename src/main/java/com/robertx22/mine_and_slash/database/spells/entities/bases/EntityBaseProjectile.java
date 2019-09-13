@@ -29,11 +29,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public abstract class EntityBaseProjectile extends Entity implements IProjectile, IMyRenderAsItem, IBuffableSpell, IShootableProjectile {
 
     Entity homindTarget = null;
-    boolean setHomingTarget = false;
 
     public float shootSpeed = 1.3F;
 
@@ -414,8 +414,11 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
                 double seekingRange = 3.0d;
 
-                if (setHomingTarget == false) {
-                    List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(seekingRange, this.posX, this.posY, this.posZ, this.world);
+                if (homindTarget == null) {
+                    List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(seekingRange, this.posX, this.posY, this.posZ, this.world)
+                            .stream()
+                            .filter(x -> x.isAlive())
+                            .collect(Collectors.toList());
 
                     for (Entity possibleTarget : entities) {
                         // Decides if current entity should be replaced.
@@ -424,7 +427,6 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
                             if (Load.hasUnit(possibleTarget) && !possibleTarget.equals(this
                                     .getThrower())) {
                                 homindTarget = possibleTarget;
-                                setHomingTarget = true;
                                 this.setNoGravity(true);
 
                                 this.setMotion(getMotion().x / 5, getMotion().y / 5, getMotion().z / 5);

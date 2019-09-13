@@ -7,6 +7,11 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+
+import java.util.List;
 
 @Storable
 public class RecipeItemData implements ITooltip, IGUID {
@@ -33,6 +38,15 @@ public class RecipeItemData implements ITooltip, IGUID {
 
     @Override
     public void BuildTooltip(TooltipContext ctx) {
+
+        List<ITextComponent> t = ctx.event.getToolTip();
+
+        t.add(new StringTextComponent(""));
+        t.add(new StringTextComponent(TextFormatting.GREEN + "[Exp] Gained: " + this.getRecipe()
+                .getExpGained()));
+        t.add(new StringTextComponent(TextFormatting.YELLOW + "[Level] Required " + this.getRecipe()
+                .getLevelReq()));
+        t.add(new StringTextComponent(""));
 
     }
 }

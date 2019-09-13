@@ -51,7 +51,7 @@ public class SimpleRecipeBuilders {
         }
 
         public SimpleRecipeLevelReqBuilder setOutput(Item output) {
-            this.recipe.output = new SimpleOutputItem(output);
+            this.recipe.output = new SimpleOutputItem(output, recipe);
             return new SimpleRecipeLevelReqBuilder(recipe);
 
         }

@@ -2,8 +2,12 @@ package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseMaterial;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseOutputItem;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.text.TextFormatting;
 
@@ -20,12 +24,48 @@ public enum Professions {
 
     }
 
+    public static int MAX_LEVEL = 1000;
+    public static int MAX_LEVEL_OF_RECIPES = 100;
+
     public List<BaseRecipe> recipes() {
         return SlashRegistry.Recipes().getFiltered(x -> x.profession().equals(this));
     }
 
     public Words word;
     public TileEntityType<?> tileEntityType;
+
+    public float getReduceMatConsumptionChance(int lvl) {
+        return (float) 20 / MAX_LEVEL * lvl;
+    }
+
+    public float getBonusOutputChance(int lvl) {
+        return (float) 20 / MAX_LEVEL * lvl;
+    }
+
+    public int getOutputAmount(ProfessionTile tile, BaseOutputItem output, int lvl) {
+        ItemStack stack = output.generateStack(tile);
+
+        if (stack.getMaxStackSize() > 1) {
+            float chance = this.getBonusOutputChance(lvl);
+            if (RandomUtils.roll(chance)) {
+                return stack.getCount() * 2;
+            }
+        }
+        return stack.getCount();
+    }
+
+    public int tryReduceMaterialRequirement(ProfessionTile tile, BaseMaterial mat,
+                                            int lvl) {
+
+        if (mat.getItemStack().getCount() > 1) {
+            float chance = this.getReduceMatConsumptionChance(lvl);
+            if (RandomUtils.roll(chance)) {
+                return mat.getItemStack().getCount() / 2;
+            }
+        }
+
+        return mat.getItemStack().getCount();
+    }
 
     public enum Levels {
         ONE(1, 1, "Minor", TextFormatting.GRAY, 0.75F),
@@ -49,6 +89,8 @@ public enum Professions {
         public String name;
         public int number;
         public float materialCostMulti = 1;
+
         public float effectMultiplier = 1;
+
     }
 }

@@ -3,9 +3,16 @@ package com.robertx22.mine_and_slash.database.items.currency.infusions;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.items.currency.ItemAddSecondaryStat;
+import com.robertx22.mine_and_slash.database.items.currency.ItemOrbOfTransmutation;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.InfusionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -13,12 +20,13 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class BaseInfusionItem extends CurrencyItem implements ICurrencyItemEffect {
+public abstract class BaseInfusionItem extends CurrencyItem implements ICurrencyItemEffect, IHasRecipe {
 
     public BaseInfusionItem(String name) {
         super(name);
@@ -92,6 +100,21 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     @Override
     public List<String> loreLines() {
         return Arrays.asList("Luck is Etheral and yet affects everything.");
+    }
+
+    @Override
+    public BaseRecipe getRecipe() {
+        return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
+                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 3)
+                .addMaterial(new ItemAddSecondaryStat().getFromForgeRegistry(), 5)
+                .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 5)
+                .addMaterial(Items.IRON_INGOT, 10)
+                .buildMaterials()
+                .setOutput(this)
+                .levelReq(25)
+                .expGained(15)
+                .build();
+
     }
 
 }

@@ -24,14 +24,13 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
     public int professionLevelReq = 1;
     public int expGiven = 1;
 
-    public BaseRecipe expGivenAtLvl1(int exp) {
-        this.expGiven = MathHelper.clamp(exp * this.professionLevelReq, 1, 100000);
-        return this;
-    }
-
     public BaseRecipe levelReq(int lvl) {
         this.professionLevelReq = MathHelper.clamp(lvl, 1, 100);
         return this;
+    }
+
+    public int getExpGained() {
+        return this.expGiven;
     }
 
     public int getCookTimeTicks() {
@@ -63,7 +62,7 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
 
     }
 
-    public abstract BasePreviewItem getOutput(
+    public abstract BaseOutputItem getOutput(
             ProfessionTile tile); // needs the instance for some recipes that modify existing items
 
     @Override

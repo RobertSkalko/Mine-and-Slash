@@ -6,8 +6,10 @@ import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.RecipeItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Recipe;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -80,7 +82,6 @@ public class OnTooltip {
             }
 
             if (!stack.hasTag()) {
-
                 return;
             }
 
@@ -99,6 +100,12 @@ public class OnTooltip {
                     }
                 }
             }
+
+            RecipeItemData recipe = Recipe.Load(stack);
+            if (recipe != null) {
+                recipe.BuildTooltip(ctx);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

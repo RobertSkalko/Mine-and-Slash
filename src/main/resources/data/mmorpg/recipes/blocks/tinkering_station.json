@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BAB",
+    "CCC"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:crafting_table"
+    }, 
+	"A": {
+      "item": "mmorpg:currency/orb_of_transmutation"
+    }, 
+	"B": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "item": "mmorpg:tinkering_station"
+  }
+}

@@ -9,7 +9,7 @@ import java.util.List;
 public class SimpleAlchemyRecipe extends AlchemyRecipe {
 
     List<BaseMaterial> materials = new ArrayList<>();
-    BasePreviewItem output;
+    BaseOutputItem output;
 
     public SimpleAlchemyRecipe(String guid, List<Item> mats, Item output) {
         super(guid);
@@ -23,7 +23,7 @@ public class SimpleAlchemyRecipe extends AlchemyRecipe {
     }
 
     public SimpleAlchemyRecipe(String guid, List<BaseMaterial> materials,
-                               BasePreviewItem output) {
+                               BaseOutputItem output) {
         super(guid);
         this.materials = materials;
         this.output = output;
@@ -35,7 +35,7 @@ public class SimpleAlchemyRecipe extends AlchemyRecipe {
     }
 
     @Override
-    public BasePreviewItem getOutput(ProfessionTile tile) {
+    public BaseOutputItem getOutput(ProfessionTile tile) {
         return output;
     }
 }

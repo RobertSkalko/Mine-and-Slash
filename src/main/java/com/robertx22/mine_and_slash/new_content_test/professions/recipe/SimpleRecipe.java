@@ -11,7 +11,7 @@ import java.util.List;
 public class SimpleRecipe extends BaseRecipe {
 
     public List<BaseMaterial> materials = new ArrayList<>();
-    public BasePreviewItem output;
+    public BaseOutputItem output;
     public Professions profession;
 
     public SimpleRecipe(String guid, List<Item> mats, Item output) {
@@ -26,7 +26,7 @@ public class SimpleRecipe extends BaseRecipe {
     }
 
     public SimpleRecipe(String guid, List<BaseMaterial> materials,
-                        BasePreviewItem output) {
+                        BaseOutputItem output) {
         super(guid);
         this.materials = materials;
         this.output = output;
@@ -48,7 +48,7 @@ public class SimpleRecipe extends BaseRecipe {
     }
 
     @Override
-    public BasePreviewItem getOutput(ProfessionTile tile) {
+    public BaseOutputItem getOutput(ProfessionTile tile) {
         return output;
     }
 

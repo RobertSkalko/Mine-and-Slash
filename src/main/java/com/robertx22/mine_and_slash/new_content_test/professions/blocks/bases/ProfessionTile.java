@@ -144,7 +144,8 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
 
         if (hasEnoughMaterials()) {
 
-            ItemStack output = this.currentRecipe.getOutput(this).getItemStack();
+            ItemStack output = this.currentRecipe.getOutput(this).generateStack(this);
+            output.setCount(this.profession.getOutputAmount(this, currentRecipe.getOutput(this), this.playerProfLevel));
 
             if (output.isEmpty()) {
                 return false;
@@ -161,7 +162,7 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
                 ItemStack stack = materialStacks.get(i);
 
                 if (mat.isStackValidMaterial(stack)) {
-                    mat.consume(stack); // consume materials
+                    mat.consume(stack, this); // consume materials
                 }
 
                 i++;

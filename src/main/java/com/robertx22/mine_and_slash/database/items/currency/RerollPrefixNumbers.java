@@ -89,12 +89,11 @@ public class RerollPrefixNumbers extends CurrencyItem implements ICurrencyItemEf
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
                 .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 8)
-                .addMaterial(new ItemRandomizePrefix().getFromForgeRegistry(), 1)
-                .addMaterial(new ItemRandomizeSuffix().getFromForgeRegistry(), 1)
-                .addMaterial(Items.COAL, 5)
+                .addMaterial(new ItemRandomizePrefix().getFromForgeRegistry(), 2)
+                .addMaterial(Items.IRON_INGOT, 5)
                 .buildMaterials()
                 .setOutput(this)
-                .levelReq(1)
+                .levelReq(10)
                 .expGained(10)
                 .build();
 
