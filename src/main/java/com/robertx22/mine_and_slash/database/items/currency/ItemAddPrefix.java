@@ -23,7 +23,7 @@ public class ItemAddPrefix extends CurrencyItem implements ICurrencyItemEffect, 
 
     @Override
     public String GUID() {
-        return "add_prefix";
+        return "currency/add_prefix";
     }
 
     @Override

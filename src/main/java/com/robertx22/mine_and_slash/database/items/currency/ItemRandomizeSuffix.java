@@ -16,7 +16,7 @@ import java.util.List;
 public class ItemRandomizeSuffix extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
-        return "randomize_suffix";
+        return "currency/randomize_suffix";
     }
 
     private static final String name = Ref.MODID + ":currency/randomize_suffix";

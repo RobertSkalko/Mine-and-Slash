@@ -16,7 +16,7 @@ import java.util.List;
 public class ItemRandomizePrefix extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
-        return "randomize_prefix";
+        return "currency/randomize_prefix";
     }
 
     private static final String name = Ref.MODID + ":currency/randomize_prefix";

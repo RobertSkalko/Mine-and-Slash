@@ -17,7 +17,7 @@ import java.util.List;
 public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
-        return "stone_of_hope";
+        return "currency/stone_of_hope";
     }
 
     public static final String ID = Ref.MODID + ":currency/stone_of_hope";

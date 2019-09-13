@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
@@ -62,26 +61,26 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     @Override
     public void tick() {
 
-        if (world != null && this.world.isRemote) {
-
-            // this.world.addParticle();
-
-        }
-
-        if (this.currentRecipe == null) {
-            this.ticks = 0;
-            if (!this.hasEnoughMaterials()) {
+        if (world != null && !world.isRemote) {
+            if (this.currentRecipe == null) {
                 this.ticks = 0;
-            }
+                this.markDirty();
 
-        } else {
-            if (ticks++ >= this.currentRecipe.getCookTimeTicks()) {
-                if (tryCraft()) {
-                    this.expEarned += this.currentRecipe.expGiven;
-                    this.ticks = 0;
-                    this.markDirty();
+            } else if (!this.hasEnoughMaterials()) {
+                this.ticks = 0;
+                this.markDirty();
+            } else {
+
+                ticks++;
+
+                if (ticks >= this.currentRecipe.getCookTimeTicks()) {
+                    if (tryCraft()) {
+                        this.expEarned += this.currentRecipe.expGiven;
+                        this.ticks = 0;
+                        this.markDirty();
+                    }
+
                 }
-
             }
         }
 

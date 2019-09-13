@@ -21,7 +21,7 @@ public class ItemAddSecondaryStat extends CurrencyItem implements ICurrencyItemE
 
     @Override
     public String GUID() {
-        return name;
+        return "currency/add_secondary_stat";
     }
 
     private static final String name = Ref.MODID + ":currency/add_secondary_stat";

@@ -15,7 +15,7 @@ import java.util.List;
 public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
-        return "item_levelup";
+        return "currency/item_levelup";
     }
 
     private static final String name = Ref.MODID + ":currency/item_levelup";

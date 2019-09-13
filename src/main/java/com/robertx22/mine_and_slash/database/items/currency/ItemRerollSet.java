@@ -18,7 +18,7 @@ public class ItemRerollSet extends CurrencyItem implements ICurrencyItemEffect {
 
     @Override
     public String GUID() {
-        return "reroll_set";
+        return "currency/reroll_set";
     }
 
     private static final String name = Ref.MODID + ":currency/reroll_set";

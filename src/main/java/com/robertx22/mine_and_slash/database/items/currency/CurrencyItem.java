@@ -42,9 +42,7 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
 
     public CurrencyItem(String name) {
         super(new ItemDefault().maxStackSize(64));
-
         RegisterItemUtils.RegisterItemName(this, name);
-
     }
 
     @Override

@@ -17,7 +17,7 @@ import java.util.List;
 public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
-        return "orb_of_transmutation";
+        return "currency/orb_of_transmutation";
     }
 
     public static final String ID = Ref.MODID + ":currency/orb_of_transmutation";

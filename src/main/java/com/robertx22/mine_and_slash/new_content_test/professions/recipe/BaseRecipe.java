@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionTile;
-import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RecipeItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;

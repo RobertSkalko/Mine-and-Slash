@@ -15,7 +15,7 @@ public class ItemClearRunes extends CurrencyItem implements ICurrencyItemEffect 
 
     @Override
     public String GUID() {
-        return name;
+        return "currency/clear_runes";
     }
 
     private static final String name = Ref.MODID + ":currency/clear_runes";

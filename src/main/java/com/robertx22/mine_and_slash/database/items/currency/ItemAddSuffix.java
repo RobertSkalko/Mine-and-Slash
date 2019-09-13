@@ -23,7 +23,7 @@ public class ItemAddSuffix extends CurrencyItem implements ICurrencyItemEffect, 
 
     @Override
     public String GUID() {
-        return "add_suffix";
+        return "currency/add_suffix";
     }
 
     public static final String ID = Ref.MODID + ":currency/add_suffix";

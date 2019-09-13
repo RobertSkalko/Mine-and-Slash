@@ -17,7 +17,7 @@ public class LevelUtils {
 
         int lvl = 1;
 
-        if (config.SINGLEPLAYER_MOB_SCALING) {
+        if (config.SCALE_MOB_LEVEL_TO_NEAREST_PLAYER) {
             PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), (double) 3000, EntityPredicates.NOT_SPECTATING);
 
             if (player != null) {

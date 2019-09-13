@@ -15,7 +15,7 @@ import java.util.List;
 public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
-        return "reroll_unique_numbers";
+        return "currency/reroll_unique_numbers";
     }
 
     private static final String name = Ref.MODID + ":currency/reroll_unique_numbers";

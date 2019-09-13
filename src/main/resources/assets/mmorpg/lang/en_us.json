@@ -102,34 +102,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
-	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
-	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
-	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
-	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
-	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
-	"item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
-	"item.mmorpg.spell_frost_nova": "§cFrost Nova",
-	"item.mmorpg.spell_frostbolt": "§cFrost Bolt",
-	"item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
-	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
-	"item.mmorpg.spell_instantheal": "§cInstant Heal",
-	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
-	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
-	"item.mmorpg.spell_self_regen": "§cRegenerate",
-	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
-	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
-	"item.mmorpg.spell_thunderbolt": "§cLightning Bolt",
-	"item.mmorpg.spells.extra_flame_dmg": "§cExtra Flame Damage",
-	"item.mmorpg.spells.extra_frost_dmg": "§cExtra Frost Damage",
-	"item.mmorpg.spells.extra_lightning_dmg": "§cExtra Lightning Damage",
-	"item.mmorpg.spells.extra_venom_dmg": "§cExtra Venom Damage",
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "§7Minor Energy Regen Buff Potion ",
@@ -178,6 +150,34 @@
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
+	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
+	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
+	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
+	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
+	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
+	"item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
+	"item.mmorpg.spell_frost_nova": "§cFrost Nova",
+	"item.mmorpg.spell_frostbolt": "§cFrost Bolt",
+	"item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
+	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
+	"item.mmorpg.spell_instantheal": "§cInstant Heal",
+	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
+	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
+	"item.mmorpg.spell_self_regen": "§cRegenerate",
+	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
+	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
+	"item.mmorpg.spell_thunderbolt": "§cLightning Bolt",
+	"item.mmorpg.spells.extra_flame_dmg": "§cExtra Flame Damage",
+	"item.mmorpg.spells.extra_frost_dmg": "§cExtra Frost Damage",
+	"item.mmorpg.spells.extra_lightning_dmg": "§cExtra Lightning Damage",
+	"item.mmorpg.spells.extra_venom_dmg": "§cExtra Venom Damage",
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -211,26 +211,6 @@
 	"mmorpg.set.wisdom_of_the_elders": "Wisdom of the Elders",
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
-
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
@@ -291,6 +271,26 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§dMythical Small Spell Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -630,6 +630,7 @@
 	"mmorpg.word.stats": "Stats",
 	"mmorpg.word.suffix": "Suffix",
 	"mmorpg.word.tier": "Tier",
+	"mmorpg.word.tinkering": "Tinkering",
 	"mmorpg.word.to": "To",
 	"mmorpg.word.took": "Took",
 	"mmorpg.word.type": "Type",
@@ -1406,28 +1407,28 @@
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - LORE LINES",
 
-	"lore_0_item.add_group_map": "What you can't do alone..",
-	"lore_0_item.add_prefix": "Unchart your potential.",
-	"lore_0_item.add_set": "Become one.",
-	"lore_0_item.add_suffix": "And soar to the skies.",
 	"lore_0_item.attack_infusion": "Luck is Etheral and yet affects everything.",
-	"lore_0_item.chaos_orb": "Do not gamble what you are not willing to lose.",
-	"lore_0_item.create_new_unique": "Don't want it? Transform it!",
+	"lore_0_item.currency.add_group_map": "What you can't do alone..",
+	"lore_0_item.currency.add_prefix": "Unchart your potential.",
+	"lore_0_item.currency.add_secondary_stat": "More power is always good, right?",
+	"lore_0_item.currency.add_set": "Become one.",
+	"lore_0_item.currency.add_suffix": "And soar to the skies.",
+	"lore_0_item.currency.chaos_orb": "Do not gamble what you are not willing to lose.",
+	"lore_0_item.currency.clear_runes": "If only we could re-write the past.",
+	"lore_0_item.currency.create_new_unique": "Don't want it? Transform it!",
+	"lore_0_item.currency.item_levelup": "Who said your sword can't level with you?",
+	"lore_0_item.currency.number_reroll": "Hopefully works better than the last time.",
+	"lore_0_item.currency.orb_of_transmutation": "Turn trash into treasure!",
+	"lore_0_item.currency.randomize_prefix": "There is always a better choice",
+	"lore_0_item.currency.randomize_suffix": "There is always a better choice",
+	"lore_0_item.currency.reroll_prefix_numbers": "I command you to change!",
+	"lore_0_item.currency.reroll_set": "Become one again.",
+	"lore_0_item.currency.reroll_suffix_numbers": "I command you to change!",
+	"lore_0_item.currency.reroll_unique_numbers": "Anything can change.",
+	"lore_0_item.currency.stone_of_hope": "When there is hope, there is a way.",
 	"lore_0_item.defense_infusion": "Luck is Etheral and yet affects everything.",
-	"lore_0_item.item_levelup": "Who said your sword can't level with you?",
-	"lore_0_item.mmorpg.currency.add_secondary_stat": "More power is always good, right?",
-	"lore_0_item.mmorpg.currency.clear_runes": "If only we could re-write the past.",
 	"lore_0_item.normal_upgrade_infusion": "You start to feel the essence of Luck.",
-	"lore_0_item.number_reroll": "Hopefully works better than the last time.",
-	"lore_0_item.orb_of_transmutation": "Turn trash into treasure!",
-	"lore_0_item.randomize_prefix": "There is always a better choice",
-	"lore_0_item.randomize_suffix": "There is always a better choice",
-	"lore_0_item.reroll_prefix_numbers": "I command you to change!",
-	"lore_0_item.reroll_set": "Become one again.",
-	"lore_0_item.reroll_suffix_numbers": "I command you to change!",
-	"lore_0_item.reroll_unique_numbers": "Anything can change.",
 	"lore_0_item.resource_infusion": "Luck is Etheral and yet affects everything.",
-	"lore_0_item.stone_of_hope": "When there is hope, there is a way.",
 	"lore_0_item.superior_upgrade_infusion": "Your understanding of luck deepens.",
 	"lore_0_item.wondrous_upgrade_infusion": "Grasp Luck with your own hands.",
 

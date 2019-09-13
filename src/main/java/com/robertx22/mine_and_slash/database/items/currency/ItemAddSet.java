@@ -18,7 +18,7 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect {
 
     @Override
     public String GUID() {
-        return "add_set";
+        return "currency/add_set";
     }
 
     private static final String name = Ref.MODID + ":currency/add_set";

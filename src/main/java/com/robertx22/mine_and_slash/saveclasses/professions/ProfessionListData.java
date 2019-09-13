@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.professions;
 
-import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 

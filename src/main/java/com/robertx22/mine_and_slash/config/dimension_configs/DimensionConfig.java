@@ -54,7 +54,7 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
 
     public int LEVEL_FOR_MOBS_TO_BE_MYTHICAL = 20;
 
-    public boolean SINGLEPLAYER_MOB_SCALING = false;
+    public boolean SCALE_MOB_LEVEL_TO_NEAREST_PLAYER = false;
 
     public boolean DROPS_UNIQUE_ITEMS = false;
 

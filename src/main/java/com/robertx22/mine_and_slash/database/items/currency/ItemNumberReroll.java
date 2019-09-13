@@ -16,7 +16,7 @@ import java.util.List;
 public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
     @Override
     public String GUID() {
-        return "number_reroll";
+        return "currency/number_reroll";
     }
 
     private static final String name = Ref.MODID + ":currency/number_reroll";

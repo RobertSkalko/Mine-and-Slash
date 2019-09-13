@@ -110,9 +110,6 @@ public class MMORPG {
             MAP_WORLD_SEED = org.apache.commons.lang3.RandomUtils.nextLong();
         }
 
-        // BrewingRecipeRegistry.addRecipe(Ingredient.fromItems(Items.GLASS_BOTTLE), Ingredient
-        //       .fromItems(Items.DIAMOND), new ItemStack(Items.GOLD_BLOCK));
-
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
@@ -165,6 +162,7 @@ public class MMORPG {
             CreateLangFile.create();
             GenerateCurioDataJsons.generate();
             ModelCreator.createDefaultModelsAndDirs();
+            ValidateGuids.validate();
         }
 
     }

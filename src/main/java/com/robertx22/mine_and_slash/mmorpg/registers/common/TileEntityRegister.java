@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.blocks.salvage_station.TileGearSalvage;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy.AlchemyTile;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.tinkering.TinkeringTile;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,6 +28,10 @@ public class TileEntityRegister {
         r.register(TileEntityType.Builder.create(AlchemyTile::new, BlockRegister.ALCHEMY_BLOCK)
                 .build(null)
                 .setRegistryName(BlockRegister.ALCHEMY_BLOCK_ID));
+
+        r.register(TileEntityType.Builder.create(TinkeringTile::new, BlockRegister.TINKERING_BLOCK)
+                .build(null)
+                .setRegistryName(BlockRegister.TINKERING_BLOCK_ID));
 
         r.register(TileEntityType.Builder.create(TileMapPortal::new, BlockRegister.PORTAL_BLOCK)
                 .build(null)

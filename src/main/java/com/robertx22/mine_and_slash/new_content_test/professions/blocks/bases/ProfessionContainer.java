@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.blocks.bases.BaseTileContainer;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.MaterialSlot;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy.AlchemyTile;
-import com.robertx22.mine_and_slash.new_content_test.professions.data.Professions;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import net.minecraft.entity.player.PlayerEntity;

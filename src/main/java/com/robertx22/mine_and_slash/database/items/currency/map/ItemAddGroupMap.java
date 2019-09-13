@@ -18,7 +18,7 @@ public class ItemAddGroupMap extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public String GUID() {
-        return "add_group_map";
+        return "currency/add_group_map";
     }
 
     private static final String name = Ref.MODID + ":currency/add_group_map";

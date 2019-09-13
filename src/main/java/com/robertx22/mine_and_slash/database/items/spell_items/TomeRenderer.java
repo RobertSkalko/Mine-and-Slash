@@ -36,7 +36,7 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             float scale = 1.2F;
             float rotation = 290;
 
-            CompoundNBT nbt = mc.player.getPersistantData();
+            CompoundNBT nbt = mc.player.getPersistentData();
 
             float openPercent = nbt.getFloat(Ref.MODID + ":openPercent");
 

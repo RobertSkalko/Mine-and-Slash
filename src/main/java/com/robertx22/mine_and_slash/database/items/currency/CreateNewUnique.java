@@ -3,9 +3,14 @@ package com.robertx22.mine_and_slash.database.items.currency;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.builders.SimpleRecipeBuilders;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
@@ -16,7 +21,7 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IAutoLocMultiLore {
+public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IAutoLocMultiLore, IHasRecipe {
 
     private static final String GUID = Ref.MODID + ":currency/create_new_unique";
 
@@ -27,7 +32,7 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public String GUID() {
-        return "create_new_unique";
+        return "currency/create_new_unique";
     }
 
     public CreateNewUnique() {
@@ -93,5 +98,16 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     @Override
     public int instabilityAddAmount() {
         return 0;
+    }
+
+    @Override
+    public BaseRecipe getRecipe() {
+        SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
+                .addMaterial(new ItemStoneOfHope().getFromForgeRegistry(), 3)
+                .addMaterial(new RerollPrefixNumbers().getFromForgeRegistry(), 2)
+                .addMaterial(new RerollSuffixNumbers().getFromForgeRegistry(), 2);
+
+        return mats.buildMaterials().setOutput(this).build().levelReq(1).expGiven(250);
+
     }
 }

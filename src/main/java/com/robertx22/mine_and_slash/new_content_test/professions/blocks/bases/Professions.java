@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test.professions.data;
+package com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
@@ -11,7 +11,8 @@ import java.util.List;
 
 public enum Professions {
 
-    ALCHEMY(Words.Alchemy, BlockRegister.ALCHEMY_TILE);
+    ALCHEMY(Words.Alchemy, BlockRegister.ALCHEMY_TILE),
+    TINKERERING(Words.Tinkering, BlockRegister.TINKERING_TILE);
 
     Professions(Words word, TileEntityType<?> tileEntityType) {
         this.tileEntityType = tileEntityType;

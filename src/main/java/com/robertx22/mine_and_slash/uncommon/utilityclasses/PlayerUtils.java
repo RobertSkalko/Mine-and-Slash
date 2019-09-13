@@ -175,7 +175,7 @@ public class PlayerUtils {
 
         try {
 
-            INBT basenbt = player.getPersistantData();
+            INBT basenbt = player.getPersistentData();
 
             if (basenbt != null) {
                 nbt = (CompoundNBT) basenbt;
@@ -195,7 +195,7 @@ public class PlayerUtils {
 
     public static void setPestistentNBT(PlayerEntity player, CompoundNBT nbt) {
 
-        player.getPersistantData().put(PlayerEntity.PERSISTED_NBT_TAG, nbt);
+        player.getPersistentData().put(PlayerEntity.PERSISTED_NBT_TAG, nbt);
     }
 
 }

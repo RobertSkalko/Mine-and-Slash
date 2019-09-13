@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.alchemy.AlchemyBlock;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.tinkering.TinkeringBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -35,7 +36,13 @@ public class BlockRegister {
     public static final String MAP_PORTAL_BLOCK_ID = Ref.MODID + ":map_portal_block";
 
     static final String ALCHEMY_BLOCK_ID = Ref.MODID + ":" + "alchemy_station";
+    static final String TINKERING_BLOCK_ID = Ref.MODID + ":" + "tinkering_station";
 
+    // NEW BLOCK
+    @ObjectHolder(TINKERING_BLOCK_ID)
+    public static TileEntityType<?> TINKERING_TILE;
+    @ObjectHolder(TINKERING_BLOCK_ID)
+    public static Block TINKERING_BLOCK;
     // NEW BLOCK
     @ObjectHolder(ALCHEMY_BLOCK_ID)
     public static TileEntityType<?> ALCHEMY_TILE;
@@ -106,6 +113,7 @@ public class BlockRegister {
         reg.register(new EggLootCrateBlock().setRegistryName(EGG_LOOT_CRATE_ID));
 
         reg.register(new AlchemyBlock().setRegistryName(ALCHEMY_BLOCK_ID));
+        reg.register(new TinkeringBlock().setRegistryName(TINKERING_BLOCK_ID));
 
         ItemOre.RegisterBlocks(event);
     }
@@ -124,6 +132,7 @@ public class BlockRegister {
         reg.register(new BlockItem(EGG_LOOT_CRATE_BLOCK, stationProp).setRegistryName(EGG_LOOT_CRATE_ID));
 
         reg.register(new BlockItem(ALCHEMY_BLOCK, stationProp).setRegistryName(ALCHEMY_BLOCK_ID));
+        reg.register(new BlockItem(TINKERING_BLOCK, stationProp).setRegistryName(TINKERING_BLOCK_ID));
 
         ItemOre.RegisterItems(event);
     }
