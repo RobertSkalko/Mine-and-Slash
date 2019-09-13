@@ -34,6 +34,8 @@ public class ProfessionsCap {
 
         int getLevel(Professions prof);
 
+        int setLevel(Professions prof, int lvl);
+
         int getCurrentExp(Professions prof);
 
         int getExpToReachNextLevel(Professions prof);
@@ -95,6 +97,11 @@ public class ProfessionsCap {
         @Override
         public int getLevel(Professions prof) {
             return data.getProfessionData(prof).level;
+        }
+
+        @Override
+        public int setLevel(Professions prof, int lvl) {
+            return this.data.getProfessionData(prof).level = lvl;
         }
 
         @Override

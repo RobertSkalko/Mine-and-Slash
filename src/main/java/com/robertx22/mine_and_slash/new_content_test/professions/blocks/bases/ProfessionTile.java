@@ -96,6 +96,12 @@ public abstract class ProfessionTile extends TileEntity implements ITickableTile
     public void onOpenByPlayer(ServerPlayerEntity player) {
 
         ProfessionsCap.IProfessionsData cap = Load.professions(player);
+
+        if (this.playerProfLevel > cap.getLevel(this.profession)) {
+            // backup in case player somehow loses lvl data
+            cap.setLevel(this.profession, this.playerProfLevel);
+        }
+
         this.playerProfLevel = cap.getLevel(this.profession);
 
         if (this.playerID.isEmpty()) {

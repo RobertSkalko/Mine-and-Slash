@@ -30,8 +30,7 @@ public class LesserRecallPotionItem extends BaseInstantPotion implements IAmount
 
     @Override
     public ITextComponent tooltip() {
-        ITextComponent comp = null;
-        return comp;
+        return null;
     }
 
     @Override

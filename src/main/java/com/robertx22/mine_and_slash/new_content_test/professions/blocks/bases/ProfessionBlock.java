@@ -9,6 +9,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -39,6 +41,8 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
                     extraData.writeBlockPos(tile.getPos());
 
                 });
+            } else {
+                player.sendMessage(new StringTextComponent(TextFormatting.RED + "You can't use someone else's Profession Station."));
             }
         }
 
