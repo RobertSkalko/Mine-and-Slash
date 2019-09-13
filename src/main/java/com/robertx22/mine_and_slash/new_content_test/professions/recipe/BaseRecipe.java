@@ -24,8 +24,8 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
     public int professionLevelReq = 1;
     public int expGiven = 1;
 
-    public BaseRecipe expGiven(int exp) {
-        this.expGiven = MathHelper.clamp(exp, 1, 100000);
+    public BaseRecipe expGivenAtLvl1(int exp) {
+        this.expGiven = MathHelper.clamp(exp * this.professionLevelReq, 1, 100000);
         return this;
     }
 

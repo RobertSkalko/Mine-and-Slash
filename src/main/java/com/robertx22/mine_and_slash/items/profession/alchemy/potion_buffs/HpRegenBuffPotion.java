@@ -38,9 +38,9 @@ public class HpRegenBuffPotion extends BaseBuffPotion {
 
         return mats.buildMaterials()
                 .setOutput(this)
-                .build()
                 .levelReq(level.number)
-                .expGiven(level.number * 15);
+                .expGained(15)
+                .build();
 
     }
 

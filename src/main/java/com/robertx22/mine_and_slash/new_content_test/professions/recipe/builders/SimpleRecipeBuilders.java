@@ -50,11 +50,41 @@ public class SimpleRecipeBuilders {
 
         }
 
-        public SimpleRecipeFinishBuilder setOutput(Item output) {
+        public SimpleRecipeLevelReqBuilder setOutput(Item output) {
             this.recipe.output = new SimpleOutputItem(output);
+            return new SimpleRecipeLevelReqBuilder(recipe);
+
+        }
+    }
+
+    public static class SimpleRecipeLevelReqBuilder {
+        SimpleRecipe recipe;
+
+        public SimpleRecipeLevelReqBuilder(SimpleRecipe recipe) {
+            this.recipe = recipe;
+
+        }
+
+        public SimpleRecipeExpBuilder levelReq(int lvl) {
+            recipe.professionLevelReq = lvl;
+            return new SimpleRecipeExpBuilder(recipe);
+        }
+
+    }
+
+    public static class SimpleRecipeExpBuilder {
+        SimpleRecipe recipe;
+
+        public SimpleRecipeExpBuilder(SimpleRecipe recipe) {
+            this.recipe = recipe;
+        }
+
+        public SimpleRecipeFinishBuilder expGained(int exp) {
+            recipe.expGiven = exp;
             return new SimpleRecipeFinishBuilder(recipe);
 
         }
+
     }
 
     public static class SimpleRecipeFinishBuilder {

@@ -68,9 +68,9 @@ public class InstantHealthPotionItem extends BaseInstantPotion {
 
         return mats.buildMaterials()
                 .setOutput(this)
-                .build()
                 .levelReq(level.number)
-                .expGiven(level.number * 5);
+                .expGained(5)
+                .build();
 
     }
 

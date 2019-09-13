@@ -2,19 +2,25 @@ package com.robertx22.mine_and_slash.database.items.currency;
 
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
+public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IHasRecipe {
     @Override
     public String GUID() {
         return "currency/orb_of_transmutation";
@@ -92,4 +98,20 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
     public int instabilityAddAmount() {
         return 0;
     }
+
+    @Override
+    public BaseRecipe getRecipe() {
+        return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
+                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 2)
+                .addMaterial(Items.GOLD_INGOT, 1)
+                .addMaterial(Items.COAL, 2)
+                .addMaterial(Items.REDSTONE, 3)
+                .buildMaterials()
+                .setOutput(this)
+                .levelReq(1)
+                .expGained(5)
+                .build();
+
+    }
+
 }

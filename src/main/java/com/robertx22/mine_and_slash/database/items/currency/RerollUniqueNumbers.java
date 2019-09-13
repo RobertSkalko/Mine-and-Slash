@@ -2,17 +2,23 @@ package com.robertx22.mine_and_slash.database.items.currency;
 
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
+public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IHasRecipe {
     @Override
     public String GUID() {
         return "currency/reroll_unique_numbers";
@@ -76,5 +82,20 @@ public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEf
     @Override
     public int instabilityAddAmount() {
         return 10;
+    }
+
+    @Override
+    public BaseRecipe getRecipe() {
+        return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
+                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
+                .addMaterial(new ItemNumberReroll().getFromForgeRegistry(), 5)
+                .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 2)
+                .addMaterial(Items.DIAMOND, 1)
+                .buildMaterials()
+                .setOutput(this)
+                .levelReq(50)
+                .expGained(50)
+                .build();
+
     }
 }
