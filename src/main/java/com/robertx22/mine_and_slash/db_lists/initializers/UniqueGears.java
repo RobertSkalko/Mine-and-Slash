@@ -50,6 +50,7 @@ public class UniqueGears implements ISlashRegistryInit {
         add(new ShieldElemental(Elements.Physical));
         add(new BowElemental(Elements.Physical));
         add(new EleSpellDmgStaff(Elements.Physical));
+        add(new RingElemental(Elements.Physical));
 
         add(new RingHermitsInsanity());
         add(new MagesLuckyAmulet());

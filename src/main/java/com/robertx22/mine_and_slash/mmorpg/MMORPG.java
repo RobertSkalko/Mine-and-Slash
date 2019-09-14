@@ -21,6 +21,8 @@ import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.network.PlayerMapPacket;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
+import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
+import com.robertx22.mine_and_slash.tests.ValidateGuids;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
@@ -163,6 +165,8 @@ public class MMORPG {
             GenerateCurioDataJsons.generate();
             ModelCreator.createDefaultModelsAndDirs();
             ValidateGuids.validate();
+            CountUniqueGearTypes.count();
+
         }
 
     }
