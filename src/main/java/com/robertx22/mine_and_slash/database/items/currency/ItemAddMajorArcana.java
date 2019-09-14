@@ -79,12 +79,12 @@ public class ItemAddMajorArcana extends CurrencyItem implements ICurrencyItemEff
 
     @Override
     public float additionalBreakChance() {
-        return 3;
+        return 20;
     }
 
     @Override
     public float breakChanceMulti() {
-        return 2;
+        return 0.5F;
     }
 
     @Override

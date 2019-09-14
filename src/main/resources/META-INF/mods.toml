@@ -26,7 +26,7 @@ Turn Minecraft Into a hack and slash looter!
 [[dependencies.mmorpg]]
     modId="curios" 
     mandatory=true 
-    versionRange="[0,)" 
+    versionRange="[FORGE-1.14.4-1.0,)" 
     ordering="NONE"
     side="BOTH"
 	

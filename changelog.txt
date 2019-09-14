@@ -2,6 +2,8 @@
 fixed bonus weapon dmg spell
 nerfed major arcana chaos stats a bit, they had too many stats.
 added a new currency item that gives great chaos stats, but is rare and gives large break chance.
+added curios min version requirement. not sure if works
+added max instability config and increased default value to 500 from 250
 2.7.0
 
 ADDED PROFESSIONS!

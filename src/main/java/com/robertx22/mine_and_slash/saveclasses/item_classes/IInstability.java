@@ -8,7 +8,7 @@ public interface IInstability {
     int getInstability();
 
     default int getMaxInstability() {
-        return 250;
+        return ModConfig.INSTANCE.Server.MAXIMUM_ITEM_INSTABILITY.get();
     }
 
     default boolean usesInstability() {

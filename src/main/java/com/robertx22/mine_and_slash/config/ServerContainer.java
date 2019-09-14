@@ -21,6 +21,7 @@ public class ServerContainer {
     public IntValue MAPS_DROP_AFTER_LEVEL;
     public IntValue CURRENCY_DROP_AFTER_LEVEL;
     public IntValue MAXIMUM_PLAYER_LEVEL;
+    public IntValue MAXIMUM_ITEM_INSTABILITY;
 
     public DoubleValue NON_MOD_DAMAGE_MULTI;
     public DoubleValue MOB_ENVIRONMENT_DAMAGE_MULTI;
@@ -85,6 +86,10 @@ public class ServerContainer {
         MAPS_DROP_AFTER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("MAPS_DROP_AFTER_LEVEL", 10, 0, Integer.MAX_VALUE);
+
+        MAXIMUM_ITEM_INSTABILITY = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("MAXIMUM_ITEM_INSTABILITY", 500, 0, Integer.MAX_VALUE);
 
         CURRENCY_DROP_AFTER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
