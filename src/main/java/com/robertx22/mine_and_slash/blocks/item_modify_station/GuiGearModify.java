@@ -106,9 +106,13 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                             if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS
                                     .get()) {
                                 if (insta.activatesBreakRoll()) {
-                                    if (i.getBreakChance() > 0) {
+
+                                    float breakChance = (insta.additionalBreakChance() + i
+                                            .getBreakChance()) * insta.breakChanceMulti();
+
+                                    if (breakChance > 0) {
                                         String breaktxt = Words.BreakChance.translate() + ": " + String
-                                                .format("%.1f", i.getBreakChance()) + "%";
+                                                .format("%.1f", breakChance) + "%";
                                         font.drawString(breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y, Color.red
                                                 .getRGB());
                                         y += font.FONT_HEIGHT;

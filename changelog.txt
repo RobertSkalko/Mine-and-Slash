@@ -1,3 +1,7 @@
+2.7.1
+fixed bonus weapon dmg spell
+nerfed major arcana chaos stats a bit, they had too many stats.
+added a new currency item that gives great chaos stats, but is rare and gives large break chance.
 2.7.0
 
 ADDED PROFESSIONS!

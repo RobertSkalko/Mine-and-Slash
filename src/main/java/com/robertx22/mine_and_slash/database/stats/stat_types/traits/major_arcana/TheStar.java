@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthRegenPercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class TheStar extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new HealthRegenFlat(), new HealthRegenPercent(), new ElementalResistFlat(Elements.Thunder), new BonusExpFlat());
+        return Arrays.asList(new HealthRegenFlat().multi(2), new ElementalResistFlat(Elements.Thunder), new BonusExpFlat());
     }
 
     @Override

@@ -8,6 +8,14 @@ public interface IAddsInstability {
 
     int instabilityAddAmount();
 
+    default float breakChanceMulti() {
+        return 1;
+    }
+
+    default float additionalBreakChance() {
+        return 0;
+    }
+
     default boolean activatesBreakRoll() {
         return true;
     }

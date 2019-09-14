@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.VitalityFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class TheWorld extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Nature), new VitalityFlat(), new ArmorPercent(), new WisdomFlat());
+        return Arrays.asList(new ElementalResistFlat(Elements.Nature), new VitalityFlat(), new WisdomFlat());
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.DexterityFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class TheFool extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new DexterityFlat(), new CriticalHitFlat(), new HealthPercent(), new ElementalSpellDamageFlat(Elements.Thunder));
+        return Arrays.asList(new DexterityFlat(), new CriticalHitFlat(), new ElementalSpellDamageFlat(Elements.Thunder));
     }
 
     @Override

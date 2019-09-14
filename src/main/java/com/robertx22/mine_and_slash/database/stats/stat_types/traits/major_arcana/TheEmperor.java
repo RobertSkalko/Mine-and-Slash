@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
@@ -22,7 +21,7 @@ public class TheEmperor extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new WisdomFlat(), new HealthPercent(), new WeaponDamageFlat(WeaponTypes.Staff), new ElementalSpellToAttackDMGFlat(Elements.Fire));
+        return Arrays.asList(new WisdomFlat(), new WeaponDamageFlat(WeaponTypes.Staff), new ElementalSpellToAttackDMGFlat(Elements.Fire));
     }
 
     @Override

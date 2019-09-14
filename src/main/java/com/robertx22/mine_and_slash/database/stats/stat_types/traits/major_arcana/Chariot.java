@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arca
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.IntelligenceFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.StrengthFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.VitalityFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
@@ -21,7 +20,7 @@ public class Chariot extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new IntelligenceFlat(), new StrengthFlat(), new VitalityFlat(), new ElementalSpellToAttackDMGFlat(Elements.Water));
+        return Arrays.asList(new IntelligenceFlat(), new StrengthFlat(), new ElementalSpellToAttackDMGFlat(Elements.Water));
     }
 
     @Override

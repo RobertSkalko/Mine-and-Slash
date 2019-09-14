@@ -96,34 +96,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
-	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
-	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
-	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
-	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
-	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
-	"item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
-	"item.mmorpg.spell_frost_nova": "§cFrost Nova",
-	"item.mmorpg.spell_frostbolt": "§cFrost Bolt",
-	"item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
-	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
-	"item.mmorpg.spell_instantheal": "§cInstant Heal",
-	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
-	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
-	"item.mmorpg.spell_self_regen": "§cRegenerate",
-	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
-	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
-	"item.mmorpg.spell_thunderbolt": "§cLightning Bolt",
-	"item.mmorpg.spells.extra_flame_dmg": "§cExtra Flame Damage",
-	"item.mmorpg.spells.extra_frost_dmg": "§cExtra Frost Damage",
-	"item.mmorpg.spells.extra_lightning_dmg": "§cExtra Lightning Damage",
-	"item.mmorpg.spells.extra_venom_dmg": "§cExtra Venom Damage",
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "§7Minor Energy Regen Buff Potion ",
@@ -171,6 +143,34 @@
 	"item.mmorpg.alchemy.instant.misc.lesser_recall_potion": "§eMedium Recall Potion",
 
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
+	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
+	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
+	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
+	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
+	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
+	"item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
+	"item.mmorpg.spell_frost_nova": "§cFrost Nova",
+	"item.mmorpg.spell_frostbolt": "§cFrost Bolt",
+	"item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
+	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
+	"item.mmorpg.spell_instantheal": "§cInstant Heal",
+	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
+	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
+	"item.mmorpg.spell_self_regen": "§cRegenerate",
+	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
+	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
+	"item.mmorpg.spell_thunderbolt": "§cLightning Bolt",
+	"item.mmorpg.spells.extra_flame_dmg": "§cExtra Flame Damage",
+	"item.mmorpg.spells.extra_frost_dmg": "§cExtra Frost Damage",
+	"item.mmorpg.spells.extra_lightning_dmg": "§cExtra Lightning Damage",
+	"item.mmorpg.spells.extra_venom_dmg": "§cExtra Venom Damage",
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
 
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
@@ -402,6 +402,7 @@
 	"item.mmorpg.currency.reroll_suffix_numbers": "§cOrb Of Suffix Blessing",
 	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
 	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+	"item.mmorpg.currency.whisp_of_chaos": "§cChaotic Wisp",
 	"item.mmorpg.defense_infusion": "§cDefense Infusion",
 	"item.mmorpg.normal_upgrade_infusion": "§cNormal Infusion Upgrade",
 	"item.mmorpg.resource_infusion": "§cResource Infusion",
@@ -1336,6 +1337,7 @@
 	"item.mmorpg.currency.reroll_suffix_numbers.desc": "Re-rolls numbers of a suffix",
 	"item.mmorpg.currency.reroll_unique_numbers.desc": "Re-rolls unique stat numbers",
 	"item.mmorpg.currency.stone_of_hope.desc": "Transform any rarity gear into higher rarity",
+	"item.mmorpg.currency.whisp_of_chaos.desc": "Adds a Major Arcana Chaos Stat",
 	"item.mmorpg.defense_infusion.desc": "Infuses an item with Defense Modifiers",
 	"item.mmorpg.normal_upgrade_infusion.desc": "Used when attempting Infusion Upgrading",
 	"item.mmorpg.resource_infusion.desc": "Infuses an item with Resource Modifiers",
@@ -1437,6 +1439,7 @@
 	"lore_0_item.currency.reroll_suffix_numbers": "I command you to change!",
 	"lore_0_item.currency.reroll_unique_numbers": "Anything can change.",
 	"lore_0_item.currency.stone_of_hope": "When there is hope, there is a way.",
+	"lore_0_item.currency.whisp_of_chaos": "High Expectations, strong disappointment.",
 	"lore_0_item.defense_infusion": "Luck is Etheral and yet affects everything.",
 	"lore_0_item.normal_upgrade_infusion": "You start to feel the essence of Luck.",
 	"lore_0_item.resource_infusion": "Luck is Etheral and yet affects everything.",

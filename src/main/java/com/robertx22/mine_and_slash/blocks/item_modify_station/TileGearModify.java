@@ -64,7 +64,9 @@ public class TileGearModify extends BaseTile {
                             boolean broke = false;
                             if (insta.usesBreakChance()) {
                                 if (addsInta.activatesBreakRoll()) {
-                                    if (RandomUtils.roll(insta.getBreakChance())) {
+                                    float breakChance = (addsInta.additionalBreakChance() + insta
+                                            .getBreakChance()) * addsInta.breakChanceMulti();
+                                    if (RandomUtils.roll(breakChance)) {
                                         copy = new ItemStack(Items.GUNPOWDER);
                                         broke = true;
                                     }

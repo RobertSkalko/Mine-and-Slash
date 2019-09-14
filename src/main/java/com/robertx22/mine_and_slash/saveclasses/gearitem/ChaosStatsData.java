@@ -19,8 +19,6 @@ import java.util.List;
 @Storable
 public class ChaosStatsData extends StatGroupData implements ICreateSpecific<StatMod>, Serializable, ITooltipList, IRerollable {
 
-    private static final long serialVersionUID = -8272316157157669116L;
-
     public ChaosStatsData() {
 
     }

@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arca
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.StaminaFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.StrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -21,7 +20,7 @@ public class StrengthArcana extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new StaminaFlat(), new StrengthFlat(), new EnergyRegenFlat(), new ElementalSpellDamagePercent(Elements.Fire));
+        return Arrays.asList(new StaminaFlat().multi(2), new EnergyRegenFlat(), new ElementalSpellDamagePercent(Elements.Fire));
     }
 
     @Override

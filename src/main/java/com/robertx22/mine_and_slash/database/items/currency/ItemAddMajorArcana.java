@@ -3,6 +3,9 @@ package com.robertx22.mine_and_slash.database.items.currency;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana.BaseMajorArcana;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -12,38 +15,33 @@ import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRe
 import com.robertx22.mine_and_slash.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IHasRecipe {
+public class ItemAddMajorArcana extends CurrencyItem implements ICurrencyItemEffect, IHasRecipe {
+
     @Override
     public String GUID() {
-        return "currency/chaos_orb";
+        return "currency/whisp_of_chaos";
     }
 
-    public static final String ID = Ref.MODID + ":currency/chaos_orb";
-
-    @Override
-    public List<String> oldNames() {
-        return Arrays.asList(Ref.MODID + ":chaos_orb");
-    }
-
-    public ItemChaosOrb() {
-
-        super(ID);
-
+    public ItemAddMajorArcana() {
+        super(Ref.MODID + ":" + "currency/whisp_of_chaos");
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
+        StatMod mod = SlashRegistry.StatMods()
+                .getFilterWrapped(x -> x.GetBaseStat() instanceof BaseMajorArcana)
+                .random();
         gear.chaosStats = new ChaosStatsData();
-        gear.chaosStats.RerollFully(gear);
+        gear.chaosStats.create(gear, mod);
         Gear.Save(stack, gear);
 
         return stack;
@@ -56,45 +54,55 @@ public class ItemChaosOrb extends CurrencyItem implements ICurrencyItemEffect, I
 
     @Override
     public int Tier() {
-        return 3;
+        return 15;
     }
 
     @Override
     public List<String> loreLines() {
-        return Arrays.asList("Do not gamble what you are not willing to lose.");
+        return Arrays.asList("High Expectations, strong disappointment.");
     }
 
     @Override
     public String locNameForLangFile() {
-        return nameColor + "Chaos Orb";
+        return nameColor + "Chaotic Wisp";
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Permanently adds a Chaos stat";
+        return "Adds a Major Arcana Chaos Stat";
     }
 
     @Override
     public int instabilityAddAmount() {
-        return -25;
+        return 15;
     }
 
     @Override
-    public boolean activatesBreakRoll() {
-        return false;
+    public float additionalBreakChance() {
+        return 3;
+    }
+
+    @Override
+    public float breakChanceMulti() {
+        return 2;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return IRarity.Mythic;
     }
 
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 3)
-                .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 2)
-                .addMaterial(Items.GOLD_INGOT, 1)
-                .addMaterial(Items.REDSTONE, 5)
+                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 20)
+                .addMaterial(new ItemChaosOrb().getFromForgeRegistry(), 10)
+                .addMaterial(Items.BLAZE_POWDER, 2)
+                .addMaterial(Items.GLOWSTONE_DUST, 5)
                 .buildMaterials()
                 .setOutput(this)
-                .levelReq(10)
-                .expGained(5)
+                .levelReq(75)
+                .expGained(50)
                 .build();
 
     }

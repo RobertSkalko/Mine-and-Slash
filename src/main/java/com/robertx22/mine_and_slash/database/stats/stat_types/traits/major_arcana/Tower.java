@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.VitalityFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class Tower extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new VitalityFlat(), new MajorArmorFlat(), new ElementalResistFlat(Elements.Fire), new HealthPercent());
+        return Arrays.asList(new VitalityFlat(), new MajorArmorFlat(), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override

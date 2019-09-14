@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.IntelligenceFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthRegenPercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class HighPriestess extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new WisdomFlat(), new HealthRegenPercent(), new IntelligenceFlat(), new ElementalSpellToAttackDMGFlat(Elements.Water));
+        return Arrays.asList(new WisdomFlat(), new IntelligenceFlat().multi(2), new ElementalSpellToAttackDMGFlat(Elements.Water));
     }
 
     @Override

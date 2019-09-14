@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.StrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDamageFlat;
@@ -22,7 +21,8 @@ public class Justice extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new StrengthFlat(), new WeaponDamageFlat(WeaponTypes.Sword), new ElementalPeneFlat(Elements.Physical), new ElementalSpellToAttackDMGFlat(Elements.Water));
+        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Sword), new ElementalPeneFlat(Elements.Physical)
+                .multi(2), new ElementalSpellToAttackDMGFlat(Elements.Water));
     }
 
     @Override

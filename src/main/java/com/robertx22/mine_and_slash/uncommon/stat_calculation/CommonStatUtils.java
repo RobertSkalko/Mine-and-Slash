@@ -39,7 +39,7 @@ public class CommonStatUtils {
             }
             if (instance.getPotion() instanceof IStatPotion) {
                 IStatPotion stat = (IStatPotion) instance.getPotion();
-                stat.applyStats(data);
+                stat.applyStats(data, instance);
             }
         }
     }

@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.multi.defense.CriticalHitMulti;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class WheelOfFortune extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new CriticalHitFlat(), new CriticalDamageFlat(), new CriticalHitMulti(), new ElementalPeneFlat(Elements.Fire));
+        return Arrays.asList(new CriticalHitFlat().multi(2), new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Fire));
     }
 
     @Override

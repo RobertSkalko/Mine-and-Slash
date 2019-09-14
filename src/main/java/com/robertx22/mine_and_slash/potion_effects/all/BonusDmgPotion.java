@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
-import com.robertx22.mine_and_slash.database.stats.stat_mods.PotionBonusDmgAmountFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalBonusDmgOnBasic;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.potion_effects.IStatGivingPotion;
+import com.robertx22.mine_and_slash.potion_effects.IStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import net.minecraft.entity.Entity;
@@ -14,11 +14,10 @@ import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class BonusDmgPotion extends SpellPotionBase implements IGenerated<BonusDmgPotion>, IStatGivingPotion {
+public class BonusDmgPotion extends SpellPotionBase implements IStatPotion, IGenerated<BonusDmgPotion> {
 
     public static final BonusDmgPotion INSTANCE = new BonusDmgPotion(Elements.Physical);
 
@@ -78,8 +77,9 @@ public class BonusDmgPotion extends SpellPotionBase implements IGenerated<BonusD
     }
 
     @Override
-    public List<StatModData> getStats(EffectInstance instance) {
-        return Arrays.asList(StatModData.Load(new PotionBonusDmgAmountFlat(element), instance
-                .getAmplifier()));
+    public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
+        data.getUnit()
+                .getStat(new ElementalBonusDmgOnBasic(element)).Flat += instance.getAmplifier();
+
     }
 }
