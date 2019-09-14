@@ -103,10 +103,10 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
-                .addMaterial(new ItemStoneOfHope().getFromForgeRegistry(), 2)
-                .addMaterial(new RerollPrefixNumbers().getFromForgeRegistry(), 1)
-                .addMaterial(new RerollSuffixNumbers().getFromForgeRegistry(), 1)
+                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 25)
+                .addMaterial(new ItemStoneOfHope().getFromForgeRegistry(), 3)
+                .addMaterial(new RerollPrefixNumbers().getFromForgeRegistry(), 2)
+                .addMaterial(new RerollSuffixNumbers().getFromForgeRegistry(), 2)
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(25)
