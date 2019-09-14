@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.charms.CharmNatu
 import com.robertx22.mine_and_slash.database.items.unique_items.charms.CharmThunder;
 import com.robertx22.mine_and_slash.database.items.unique_items.charms.CharmWater;
 import com.robertx22.mine_and_slash.database.items.unique_items.chest.*;
+import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerElemental;
 import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerPhysical;
 import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerThunder;
 import com.robertx22.mine_and_slash.database.items.unique_items.helmet.*;
@@ -51,6 +52,7 @@ public class UniqueGears implements ISlashRegistryInit {
         add(new BowElemental(Elements.Physical));
         add(new EleSpellDmgStaff(Elements.Physical));
         add(new RingElemental(Elements.Physical));
+        add(new HammerElemental(Elements.Physical));
 
         add(new RingHermitsInsanity());
         add(new MagesLuckyAmulet());

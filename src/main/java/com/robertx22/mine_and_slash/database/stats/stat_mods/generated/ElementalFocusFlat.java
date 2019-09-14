@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_mods.generated;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.ElementalStatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalPene;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalFocus;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
@@ -15,7 +15,7 @@ public class ElementalFocusFlat extends ElementalStatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new ElementalPene(this.element);
+        return new ElementalFocus(this.element);
     }
 
     @Override

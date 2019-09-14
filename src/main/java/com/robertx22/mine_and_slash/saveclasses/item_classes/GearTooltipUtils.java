@@ -60,10 +60,15 @@ public class GearTooltipUtils {
             list.add(gear.secondaryStats);
             list.add(gear.prefix);
             list.add(gear.suffix);
+            list.add(gear.infusion);
         } else {
 
             List<IStatsContainer.LevelAndStats> lvlstatsmerged = new ArrayList<>();
 
+            if (gear.uniqueStats != null) {
+                tip.add(gear.uniqueStats.getHeader());
+                lvlstatsmerged.addAll(gear.uniqueStats.GetAllStats(gear.level));
+            }
             if (gear.secondaryStats != null) {
                 lvlstatsmerged.addAll(gear.secondaryStats.GetAllStats(gear.level));
             }
@@ -73,8 +78,8 @@ public class GearTooltipUtils {
             if (gear.prefix != null) {
                 lvlstatsmerged.addAll(gear.prefix.GetAllStats(gear.level));
             }
-            if (gear.uniqueStats != null) {
-                tip.addAll(gear.uniqueStats.GetTooltipString(info));
+            if (gear.infusion != null) {
+                lvlstatsmerged.addAll(gear.infusion.GetAllStats(gear.level));
             }
 
             MergedStats merged = new MergedStats(lvlstatsmerged, info);
@@ -83,7 +88,6 @@ public class GearTooltipUtils {
         }
 
         list.add(gear.chaosStats);
-        list.add(gear.infusion);
         list.add(gear.set);
 
         for (ITooltipList part : list) {

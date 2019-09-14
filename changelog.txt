@@ -25,7 +25,11 @@ removed hearthstone and attunement block. I feel all they added was confusion.
 removed crafting recipes of currencies, they are now made by profession called Tinkering.
 added recall potion to alchemy
 removed some old potions, added many more new ones
+fixed elemental focus stat
+added 4 new super rare unique hammers.
 added 4 new super rare unique rings.
+fixed tooltips a bit. Infusions are now merged stats too, same with unique stats
+
 2.6.4
 fixed map dimensions
 fixed ThunderAtronach stat

@@ -52,14 +52,18 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatsContain
 
     }
 
+    public ITextComponent getHeader() {
+        return new StringTextComponent(Styles.YELLOW + "").appendSibling(Words.Unique_Stats
+                .locName()
+                .appendText(":"));
+    }
+
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(new StringTextComponent(Styles.YELLOW + "").appendSibling(Words.Unique_Stats
-                .locName()
-                .appendText(":")));
+        list.add(getHeader());
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
 
