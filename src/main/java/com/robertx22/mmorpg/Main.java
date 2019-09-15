@@ -8,7 +8,6 @@ import com.robertx22.blocks.repair_station.StartupRepair;
 import com.robertx22.blocks.salvage_station.StartupSalvage;
 import com.robertx22.compat.ebwizardry;
 import com.robertx22.compat.fireice;
-import com.robertx22.compat.vanilla;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.non_mine_items.Serialization;
 import com.robertx22.dimensions.ChestGenerator;
@@ -156,7 +155,6 @@ public class Main {
     proxy.postInit(event);
     RabbitGui.proxy.postInit();
     Serialization.generateConfigTut(event);
-    new vanilla();
     if (Loader.isModLoaded("iceandfire")) {
     	new fireice();
     }
