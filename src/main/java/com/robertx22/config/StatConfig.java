@@ -33,7 +33,7 @@ public class StatConfig {
 
     @Config.Name("Mana Per Level")
     @Config.LangKey("mmorpg.stat.mana_per_level")
-    public float mana_per_level = 0;
+    public float mana_per_level = 0.3F;
 
     @Config.Name("Dodge")
     @Config.LangKey("mmorpg.stat.dodge")
@@ -49,7 +49,7 @@ public class StatConfig {
 
     @Config.Name("Energy Per Level")
     @Config.LangKey("mmorpg.stat.energy_per_level")
-    public float energy_per_level = 0;
+    public float energy_per_level = 0.3F;
 
     @Config.Name("Spell Fire Damage")
     @Config.LangKey("mmorpg.stat.spell_fire_damage")
