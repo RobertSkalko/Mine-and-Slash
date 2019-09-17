@@ -13,6 +13,10 @@ import java.util.List;
 
 public class OfBalance extends Suffix {
 
+    public OfBalance() {
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20()));
+    }
+
     @Override
     public String GUID() {
         return "of_balance";
@@ -21,11 +25,6 @@ public class OfBalance extends Suffix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new ManaFlat(), new EnergyFlat());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20());
     }
 
     @Override

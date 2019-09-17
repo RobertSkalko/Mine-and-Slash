@@ -1,13 +1,12 @@
 package com.robertx22.mine_and_slash.database.sets.uniques;
 
-import com.robertx22.mine_and_slash.database.items.unique_items.helmet.HelmetWisdom;
-import com.robertx22.mine_and_slash.database.items.unique_items.shields.ShieldWisdom;
 import com.robertx22.mine_and_slash.database.requirements.ExactUniquesRequierement;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
+import com.robertx22.mine_and_slash.instances.UniqueGears;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.Arrays;
@@ -40,7 +39,7 @@ public class WisdomOfTheElders extends Set {
     @Override
     public Requirements requirements() {
         return new Requirements(LevelRequirement.fromLVL50(), new ExactUniquesRequierement(Arrays
-                .asList(new HelmetWisdom(), new ShieldWisdom())));
+                .asList(UniqueGears.HELMETWISDOM0, UniqueGears.SHIELD_WISDOM0)));
     }
 
     @Override

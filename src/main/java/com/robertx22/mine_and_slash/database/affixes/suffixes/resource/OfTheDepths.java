@@ -16,6 +16,7 @@ import java.util.List;
 public class OfTheDepths extends Suffix {
 
     public OfTheDepths() {
+        super(new Requirements(new SlotRequirement(new Necklace())));
     }
 
     @Override
@@ -31,11 +32,6 @@ public class OfTheDepths extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Necklace()));
     }
 
     @Override

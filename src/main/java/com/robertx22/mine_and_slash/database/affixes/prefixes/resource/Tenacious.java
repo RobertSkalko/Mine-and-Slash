@@ -11,6 +11,10 @@ import java.util.List;
 
 public class Tenacious extends Prefix {
 
+    public Tenacious() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
+    }
+
     @Override
     public String GUID() {
         return "tenacious";
@@ -19,11 +23,6 @@ public class Tenacious extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new StaminaFlat());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

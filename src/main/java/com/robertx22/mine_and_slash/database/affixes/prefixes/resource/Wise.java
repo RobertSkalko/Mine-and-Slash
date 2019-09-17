@@ -11,6 +11,10 @@ import java.util.List;
 
 public class Wise extends Prefix {
 
+    public Wise() {
+        super(new Requirements(SlotRequirement.jewerlyOnly()));
+    }
+
     @Override
     public String GUID() {
         return "Wise";
@@ -19,11 +23,6 @@ public class Wise extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new WisdomFlat());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly());
     }
 
     @Override

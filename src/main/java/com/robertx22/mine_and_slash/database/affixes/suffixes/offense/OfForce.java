@@ -15,6 +15,7 @@ import java.util.List;
 public class OfForce extends Suffix {
 
     public OfForce() {
+        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL10()));
     }
 
     @Override
@@ -30,11 +31,6 @@ public class OfForce extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL10());
     }
 
     @Override

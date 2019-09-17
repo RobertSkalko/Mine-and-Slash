@@ -19,7 +19,7 @@ import java.util.List;
 public class ElementThornsMastery extends ElementalPrefix {
 
     public ElementThornsMastery(Elements element) {
-        super(element);
+        super(new Requirements(new ExactUniquesRequierement(new ShieldElemental(element))), element);
     }
 
     @Override
@@ -40,11 +40,6 @@ public class ElementThornsMastery extends ElementalPrefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new StatDoublePercent(new BlockReflect(element)).multi(0.5F), new ElementalResistFlat(element));
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new ExactUniquesRequierement(new ShieldElemental(element)));
     }
 
     @Override

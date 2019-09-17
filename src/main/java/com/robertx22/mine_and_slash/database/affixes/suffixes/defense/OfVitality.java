@@ -12,6 +12,7 @@ import java.util.List;
 public class OfVitality extends Suffix {
 
     public OfVitality() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
     }
 
     @Override
@@ -24,11 +25,6 @@ public class OfVitality extends Suffix {
 
         return Arrays.asList(new HealthPercent());
 
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

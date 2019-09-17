@@ -12,6 +12,7 @@ import java.util.List;
 public class OfCriticalHits extends Suffix {
 
     public OfCriticalHits() {
+        super(new Requirements(SlotRequirement.weaponsOnly()));
     }
 
     @Override
@@ -24,11 +25,6 @@ public class OfCriticalHits extends Suffix {
 
         return Arrays.asList(new CriticalHitFlat());
 
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly());
     }
 
     @Override

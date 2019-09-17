@@ -15,6 +15,10 @@ import java.util.List;
 
 public class Arcanists extends Prefix {
 
+    public Arcanists() {
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20()));
+    }
+
     @Override
     public String GUID() {
         return "arcanists";
@@ -28,11 +32,6 @@ public class Arcanists extends Prefix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20());
     }
 
     @Override

@@ -15,6 +15,7 @@ import java.util.List;
 public class OfElementResist extends Suffix {
 
     public OfElementResist() {
+        super(new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL20()));
     }
 
     @Override
@@ -32,11 +33,6 @@ public class OfElementResist extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL20());
     }
 
     @Override

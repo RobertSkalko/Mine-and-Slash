@@ -17,6 +17,10 @@ import java.util.List;
 
 public class OfGodhood extends Suffix {
 
+    public OfGodhood() {
+        super(new Requirements(new SlotRequirement(new Helmet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)));
+    }
+
     @Override
     public String GUID() {
         return "of_godhood";
@@ -32,11 +36,6 @@ public class OfGodhood extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Helmet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
+import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IElementalGenerated;
 
@@ -10,7 +11,8 @@ public abstract class ElementalSuffix extends Suffix implements IElementalGenera
 
     public Elements element;
 
-    public ElementalSuffix(Elements element) {
+    public ElementalSuffix(Requirements req, Elements element) {
+        super(req);
         this.element = element;
 
     }

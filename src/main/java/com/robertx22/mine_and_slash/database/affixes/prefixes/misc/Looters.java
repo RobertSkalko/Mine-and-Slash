@@ -15,14 +15,13 @@ import java.util.List;
 
 public class Looters extends Prefix {
 
-    @Override
-    public int getRarityRank() {
-        return IRarity.Legendary;
+    public Looters() {
+        super(new Requirements(new SlotRequirement(new Bracelet()), LevelRequirement.fromLVL50()));
     }
 
     @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Bracelet()), LevelRequirement.fromLVL50());
+    public int getRarityRank() {
+        return IRarity.Legendary;
     }
 
     @Override

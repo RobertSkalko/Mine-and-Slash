@@ -12,6 +12,7 @@ import java.util.List;
 public class OfManaRegen extends Suffix {
 
     public OfManaRegen() {
+        super(new Requirements(SlotRequirement.jewerlyOnly()));
     }
 
     @Override
@@ -22,11 +23,6 @@ public class OfManaRegen extends Suffix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new ManaRegenPercent());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly());
     }
 
     @Override

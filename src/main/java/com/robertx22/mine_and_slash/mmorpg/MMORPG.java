@@ -22,6 +22,7 @@ import com.robertx22.mine_and_slash.network.PlayerMapPacket;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
+import com.robertx22.mine_and_slash.tests.CreateInstances;
 import com.robertx22.mine_and_slash.tests.ValidateGuids;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.gui.player_overlays.BarsGUI;
@@ -62,7 +63,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = false;
+    public static boolean RUN_DEV_TOOLS = true;
 
     public static void devToolsLog(String string) {
         if (RUN_DEV_TOOLS) {
@@ -166,7 +167,7 @@ public class MMORPG {
             ModelCreator.createDefaultModelsAndDirs();
             ValidateGuids.validate();
             CountUniqueGearTypes.count();
-
+            CreateInstances.createall();
         }
 
     }

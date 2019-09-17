@@ -17,7 +17,7 @@ import java.util.List;
 public class OfDissonance extends ElementalSuffix {
 
     public OfDissonance(Elements element) {
-        super(element);
+        super(new Requirements(LevelRequirement.fromLVL50(), SlotRequirement.jewerlyOnly()), element);
     }
 
     @Override
@@ -38,11 +38,6 @@ public class OfDissonance extends ElementalSuffix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new CriticalDamageFlat(), new ElementalResistFlat(element).multi(0.4F));
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(LevelRequirement.fromLVL50(), SlotRequirement.jewerlyOnly());
     }
 
     @Override

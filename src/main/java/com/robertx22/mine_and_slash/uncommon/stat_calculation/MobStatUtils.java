@@ -33,7 +33,7 @@ public class MobStatUtils {
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
-        for (StatData data : unit.hgetStats()
+        for (StatData data : unit.getStats()
                 .values()
                 .stream()
                 .filter(x -> x.GetStat().IsPercent() == false)

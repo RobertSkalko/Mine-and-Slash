@@ -17,6 +17,7 @@ import java.util.List;
 public class OfRockPiercing extends Suffix {
 
     public OfRockPiercing() {
+        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL50()));
     }
 
     @Override
@@ -32,11 +33,6 @@ public class OfRockPiercing extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL50());
     }
 
     @Override

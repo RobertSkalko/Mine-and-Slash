@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
+import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
@@ -10,7 +11,8 @@ public abstract class WeaponSuffix extends Suffix implements IGenerated<Suffix> 
 
     public WeaponTypes type;
 
-    public WeaponSuffix(WeaponTypes type) {
+    public WeaponSuffix(Requirements req, WeaponTypes type) {
+        super(req);
         this.type = type;
     }
 

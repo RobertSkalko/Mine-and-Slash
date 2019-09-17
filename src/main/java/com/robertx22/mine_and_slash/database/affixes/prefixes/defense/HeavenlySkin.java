@@ -14,6 +14,7 @@ import java.util.List;
 public class HeavenlySkin extends Prefix {
 
     public HeavenlySkin() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
     }
 
     @Override
@@ -31,11 +32,6 @@ public class HeavenlySkin extends Prefix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

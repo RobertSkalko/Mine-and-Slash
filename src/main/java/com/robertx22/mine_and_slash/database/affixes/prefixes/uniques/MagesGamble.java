@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.database.affixes.prefixes.uniques;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.mine_and_slash.database.items.unique_items.necklaces.MagesLuckyAmulet;
 import com.robertx22.mine_and_slash.database.requirements.ExactUniquesRequierement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.BonusSpecificSpellFlat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.instances.UniqueGears;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
@@ -21,6 +21,7 @@ public class MagesGamble extends Prefix implements IGenerated<Prefix> {
     public BaseSpell spell;
 
     public MagesGamble(BaseSpell spell) {
+        super(new Requirements(new ExactUniquesRequierement(UniqueGears.NECKLACEGAMBLER0)));
         this.spell = spell;
     }
 
@@ -42,11 +43,6 @@ public class MagesGamble extends Prefix implements IGenerated<Prefix> {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new BonusSpecificSpellFlat(spell));
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new ExactUniquesRequierement(new MagesLuckyAmulet()));
     }
 
     @Override

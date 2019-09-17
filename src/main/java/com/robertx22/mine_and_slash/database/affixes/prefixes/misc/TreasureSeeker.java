@@ -14,14 +14,13 @@ import java.util.List;
 
 public class TreasureSeeker extends Prefix {
 
-    @Override
-    public int getRarityRank() {
-        return IRarity.Rare;
+    public TreasureSeeker() {
+        super(new Requirements(new SlotRequirement(new Bracelet())));
     }
 
     @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Bracelet()));
+    public int getRarityRank() {
+        return IRarity.Rare;
     }
 
     @Override

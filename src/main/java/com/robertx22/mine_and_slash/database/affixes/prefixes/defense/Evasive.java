@@ -12,6 +12,7 @@ import java.util.List;
 public class Evasive extends Prefix {
 
     public Evasive() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
     }
 
     @Override
@@ -22,11 +23,6 @@ public class Evasive extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new DodgeFlat());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

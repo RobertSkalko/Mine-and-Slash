@@ -18,7 +18,7 @@ import java.util.List;
 public class OfMajorAffinity extends ElementalSuffix {
 
     public OfMajorAffinity(Elements element) {
-        super(element);
+        super(new Requirements(new SlotRequirement(new Ring()), LevelRequirement.fromLVL50()), element);
     }
 
     @Override
@@ -39,11 +39,6 @@ public class OfMajorAffinity extends ElementalSuffix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new ElementalAffinityFlat(element), new ElementalSpellToAttackDMGFlat(element));
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Ring()), LevelRequirement.fromLVL50());
     }
 
     @Override

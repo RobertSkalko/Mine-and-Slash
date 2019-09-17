@@ -17,17 +17,12 @@ import java.util.List;
 public class EleShieldPrefix extends ElementalPrefix {
 
     public EleShieldPrefix(Elements element) {
-        super(element);
+        super(new Requirements(SlotRequirement.armorsOnly()), element);
     }
 
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

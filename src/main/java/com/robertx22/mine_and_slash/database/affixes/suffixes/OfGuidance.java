@@ -12,6 +12,10 @@ import java.util.List;
 
 public class OfGuidance extends Suffix {
 
+    public OfGuidance() {
+        super(new Requirements(new SlotRequirement(new Helmet())));
+    }
+
     @Override
     public String GUID() {
         return "of_guidance";
@@ -20,11 +24,6 @@ public class OfGuidance extends Suffix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new BonusExpFlat());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Helmet()));
     }
 
     @Override

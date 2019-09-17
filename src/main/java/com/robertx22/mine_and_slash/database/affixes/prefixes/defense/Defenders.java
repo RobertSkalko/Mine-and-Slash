@@ -13,6 +13,7 @@ import java.util.List;
 public class Defenders extends Prefix {
 
     public Defenders() {
+        super(new Requirements((new SlotRequirement(new Shield()))));
     }
 
     @Override
@@ -23,11 +24,6 @@ public class Defenders extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new BlockStrengthPercent());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements((new SlotRequirement(new Shield())));
     }
 
     @Override

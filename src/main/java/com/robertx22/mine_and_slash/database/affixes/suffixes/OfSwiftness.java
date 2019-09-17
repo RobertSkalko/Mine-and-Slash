@@ -11,6 +11,10 @@ import java.util.List;
 
 public class OfSwiftness extends Suffix {
 
+    public OfSwiftness() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
+    }
+
     @Override
     public String GUID() {
         return "of_swiftness";
@@ -19,11 +23,6 @@ public class OfSwiftness extends Suffix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new DexterityFlat());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

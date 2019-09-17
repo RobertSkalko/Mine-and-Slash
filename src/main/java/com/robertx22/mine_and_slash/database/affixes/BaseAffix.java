@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
@@ -13,10 +14,19 @@ import java.util.List;
 
 public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity {
 
-    public BaseAffix() {
+    public BaseAffix(Requirements requirements) {
+        this.requirements = requirements;
     }
 
     public abstract String GUID();
+
+    Requirements requirements;
+
+    @Override
+    public final Requirements requirements() {
+        return requirements;
+
+    }
 
     @Override
     public int Weight() {

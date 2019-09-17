@@ -14,6 +14,7 @@ import java.util.List;
 public class OfImmortality extends Suffix {
 
     public OfImmortality() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
     }
 
     @Override
@@ -31,11 +32,6 @@ public class OfImmortality extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

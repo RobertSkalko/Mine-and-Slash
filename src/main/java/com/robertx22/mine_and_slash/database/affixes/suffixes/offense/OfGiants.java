@@ -15,6 +15,7 @@ import java.util.List;
 public class OfGiants extends Suffix {
 
     public OfGiants() {
+        super(new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL10()));
     }
 
     @Override
@@ -32,11 +33,6 @@ public class OfGiants extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Rare;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL10());
     }
 
     @Override

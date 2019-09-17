@@ -6,8 +6,8 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 
 public abstract class BaseDamagePercentPrefix extends Prefix {
 
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
+    public BaseDamagePercentPrefix() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
     }
+
 }

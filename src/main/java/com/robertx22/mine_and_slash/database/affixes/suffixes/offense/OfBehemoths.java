@@ -15,6 +15,7 @@ import java.util.List;
 public class OfBehemoths extends Suffix {
 
     public OfBehemoths() {
+        super(new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL50()));
     }
 
     @Override
@@ -30,11 +31,6 @@ public class OfBehemoths extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL50());
     }
 
     @Override

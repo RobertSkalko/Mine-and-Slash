@@ -17,17 +17,12 @@ import java.util.List;
 public class OfEleStorms extends ElementalSuffix {
 
     public OfEleStorms(Elements element) {
-        super(element);
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20()), element);
     }
 
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20());
     }
 
     @Override

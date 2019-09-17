@@ -14,6 +14,10 @@ import java.util.List;
 
 public class Gatekeepers extends Prefix {
 
+    public Gatekeepers() {
+        super(new Requirements(new SlotRequirement(new Shield())));
+    }
+
     @Override
     public String GUID() {
         return "gatekeepers";
@@ -27,11 +31,6 @@ public class Gatekeepers extends Prefix {
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Shield()));
     }
 
     @Override

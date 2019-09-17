@@ -13,6 +13,10 @@ import java.util.List;
 
 public class HeavenlyStrikes extends Prefix {
 
+    public HeavenlyStrikes() {
+        super(new Requirements(SlotRequirement.weaponsOnly()));
+    }
+
     @Override
     public String GUID() {
         return "Heavenly Strikes";
@@ -28,11 +32,6 @@ public class HeavenlyStrikes extends Prefix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly());
     }
 
     @Override

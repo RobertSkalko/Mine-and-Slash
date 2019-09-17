@@ -17,7 +17,7 @@ import java.util.List;
 public class Heretics extends ElementalPrefix {
 
     public Heretics(Elements element) {
-        super(element);
+        super(new Requirements(LevelRequirement.fromLVL50(), SlotRequirement.jewerlyOnly()), element);
     }
 
     @Override
@@ -39,11 +39,6 @@ public class Heretics extends ElementalPrefix {
     public List<StatMod> StatMods() {
         return Arrays.asList(new CriticalDamageFlat().multi(1.5F), new ElementalAffinityFlat(element)
                 .multi(0.25F));
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(LevelRequirement.fromLVL50(), SlotRequirement.jewerlyOnly());
     }
 
     @Override

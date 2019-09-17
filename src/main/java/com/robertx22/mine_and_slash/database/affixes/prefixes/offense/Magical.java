@@ -14,6 +14,10 @@ import java.util.List;
 
 public class Magical extends Prefix {
 
+    public Magical() {
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL10()));
+    }
+
     @Override
     public String GUID() {
         return "magical";
@@ -27,11 +31,6 @@ public class Magical extends Prefix {
     @Override
     public int getRarityRank() {
         return IRarity.Rare;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL10());
     }
 
     @Override

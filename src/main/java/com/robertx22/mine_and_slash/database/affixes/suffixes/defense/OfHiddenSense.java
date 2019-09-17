@@ -14,6 +14,7 @@ import java.util.List;
 public class OfHiddenSense extends Suffix {
 
     public OfHiddenSense() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
     }
 
     @Override
@@ -31,11 +32,6 @@ public class OfHiddenSense extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

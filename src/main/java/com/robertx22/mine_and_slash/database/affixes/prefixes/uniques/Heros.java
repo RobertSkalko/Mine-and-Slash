@@ -16,6 +16,7 @@ import java.util.List;
 public class Heros extends Prefix {
 
     public Heros() {
+        super(new Requirements((new SlotRequirement(new Shield())), new UniqueTierRequirement(7)));
     }
 
     @Override
@@ -31,11 +32,6 @@ public class Heros extends Prefix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements((new SlotRequirement(new Shield())), new UniqueTierRequirement(7));
     }
 
     @Override

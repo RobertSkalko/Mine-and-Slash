@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
+import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 
 public abstract class Prefix extends BaseAffix implements ISlashRegistryEntry<Prefix> {
 
-    public Prefix() {
-
+    public Prefix(Requirements req) {
+        super(req);
     }
 
     @Override

@@ -12,6 +12,7 @@ import java.util.List;
 public class Energetic extends Prefix {
 
     public Energetic() {
+        super(new Requirements(SlotRequirement.jewerlyOnly()));
     }
 
     @Override
@@ -22,11 +23,6 @@ public class Energetic extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new EnergyRegenPercent());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly());
     }
 
     @Override

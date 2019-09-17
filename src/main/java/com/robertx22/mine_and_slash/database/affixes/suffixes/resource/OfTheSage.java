@@ -14,6 +14,7 @@ import java.util.List;
 public class OfTheSage extends Suffix {
 
     public OfTheSage() {
+        super(new Requirements(SlotRequirement.jewerlyOnly()));
     }
 
     @Override
@@ -29,11 +30,6 @@ public class OfTheSage extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Epic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly());
     }
 
     @Override

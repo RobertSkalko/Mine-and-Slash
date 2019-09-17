@@ -16,6 +16,10 @@ import java.util.List;
 
 public class OfTheHydra extends Suffix {
 
+    public OfTheHydra() {
+        super(new Requirements(new SlotRequirement(new Helmet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)));
+    }
+
     @Override
     public String GUID() {
         return "of_the_hydra";
@@ -32,11 +36,6 @@ public class OfTheHydra extends Suffix {
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Helmet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10));
     }
 
     @Override

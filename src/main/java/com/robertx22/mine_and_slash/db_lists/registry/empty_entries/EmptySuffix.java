@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmptySuffix extends Suffix {
+    public EmptySuffix() {
+        super(new Requirements(LevelRequirement.fromLVL50()));
+    }
+
     @Override
     public String GUID() {
         return "";
@@ -17,11 +21,6 @@ public class EmptySuffix extends Suffix {
     @Override
     public List<StatMod> StatMods() {
         return new ArrayList<>();
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(LevelRequirement.fromLVL50());
     }
 
     @Override

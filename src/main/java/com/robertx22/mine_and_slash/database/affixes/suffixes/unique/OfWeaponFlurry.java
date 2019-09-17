@@ -19,7 +19,7 @@ import java.util.List;
 public class OfWeaponFlurry extends WeaponSuffix {
 
     public OfWeaponFlurry(WeaponTypes type) {
-        super(type);
+        super(new Requirements(new SlotRequirement(new Bracelet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)), type);
     }
 
     @Override
@@ -35,11 +35,6 @@ public class OfWeaponFlurry extends WeaponSuffix {
     @Override
     public int getRarityRank() {
         return IRarity.Mythic;
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(new SlotRequirement(new Bracelet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10));
     }
 
     @Override

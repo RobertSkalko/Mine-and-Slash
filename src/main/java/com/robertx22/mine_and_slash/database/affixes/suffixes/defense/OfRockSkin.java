@@ -12,6 +12,7 @@ import java.util.List;
 public class OfRockSkin extends Suffix {
 
     public OfRockSkin() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
     }
 
     @Override
@@ -24,11 +25,6 @@ public class OfRockSkin extends Suffix {
 
         return Arrays.asList(new ArmorPercent());
 
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

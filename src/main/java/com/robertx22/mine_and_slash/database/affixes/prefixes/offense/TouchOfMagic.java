@@ -11,6 +11,10 @@ import java.util.List;
 
 public class TouchOfMagic extends Prefix {
 
+    public TouchOfMagic() {
+        super(new Requirements(SlotRequirement.jewerlyOnly()));
+    }
+
     @Override
     public String GUID() {
         return "touch_of_magic";
@@ -21,11 +25,6 @@ public class TouchOfMagic extends Prefix {
 
         return Arrays.asList(new SpellDamagePercent());
 
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly());
     }
 
     @Override

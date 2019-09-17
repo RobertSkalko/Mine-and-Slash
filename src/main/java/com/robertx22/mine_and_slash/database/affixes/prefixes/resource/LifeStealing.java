@@ -12,6 +12,7 @@ import java.util.List;
 public class LifeStealing extends Prefix {
 
     public LifeStealing() {
+        super(new Requirements(SlotRequirement.weaponsOnly()));
     }
 
     @Override
@@ -23,11 +24,6 @@ public class LifeStealing extends Prefix {
     public List<StatMod> StatMods() {
 
         return Arrays.asList(new LifestealPercent());
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly());
     }
 
     @Override

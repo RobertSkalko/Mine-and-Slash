@@ -12,6 +12,7 @@ import java.util.List;
 public class Hardened extends Prefix {
 
     public Hardened() {
+        super(new Requirements(SlotRequirement.armorsOnly()));
     }
 
     @Override
@@ -24,11 +25,6 @@ public class Hardened extends Prefix {
 
         return Arrays.asList(new ArmorPercent());
 
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly());
     }
 
     @Override

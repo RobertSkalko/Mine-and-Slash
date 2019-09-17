@@ -12,6 +12,7 @@ import java.util.List;
 public class HardHitting extends Prefix {
 
     public HardHitting() {
+        super(new Requirements(SlotRequirement.weaponsOnly()));
     }
 
     @Override
@@ -24,11 +25,6 @@ public class HardHitting extends Prefix {
 
         return Arrays.asList(new CriticalDamageFlat());
 
-    }
-
-    @Override
-    public Requirements requirements() {
-        return new Requirements(SlotRequirement.weaponsOnly());
     }
 
     @Override
