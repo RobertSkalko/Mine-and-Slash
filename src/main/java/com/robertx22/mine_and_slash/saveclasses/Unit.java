@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -53,6 +52,15 @@ public class Unit {
     @Store
     private HashMap<String, StatData> MyStats = null;
 
+    @Store
+    public WornSetsContainerData wornSets = new WornSetsContainerData();
+
+    @Store
+    public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
+
+    @Store
+    public String GUID = UUID.randomUUID().toString();
+
     @Nonnull
     public HashMap<String, StatData> getStats() {
 
@@ -89,15 +97,6 @@ public class Unit {
             return data;
         }
     }
-
-    @Store
-    public WornSetsContainerData wornSets = new WornSetsContainerData();
-
-    @Store
-    public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
-
-    @Store
-    public String GUID = UUID.randomUUID().toString();
 
     public Unit() {
 
@@ -161,20 +160,20 @@ public class Unit {
 
     // Stat shortcuts
     public Health health() {
-        return (Health) getStat(new Health()).GetStat();
+        return (Health) getStat(Health.GUID).GetStat();
     }
 
     public Mana mana() {
-        return (Mana) getStat(new Mana()).GetStat();
+        return (Mana) getStat(Mana.GUID).GetStat();
     }
 
     public Energy energy() {
-        return (Energy) getStat(new Energy()).GetStat();
+        return (Energy) getStat(Energy.GUID).GetStat();
     }
 
     public StatData healthData() {
         try {
-            return getStat(new Health());
+            return getStat(Health.GUID);
         } catch (Exception e) {
         }
         return null;
@@ -182,7 +181,7 @@ public class Unit {
 
     public StatData manaData() {
         try {
-            return getStat(new Mana());
+            return getStat(Mana.GUID);
         } catch (Exception e) {
 
         }
@@ -191,7 +190,7 @@ public class Unit {
 
     public StatData energyData() {
         try {
-            return getStat(new Energy());
+            return getStat(Energy.GUID);
         } catch (Exception e) {
 
         }

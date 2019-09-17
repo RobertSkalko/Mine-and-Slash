@@ -446,7 +446,7 @@ public class EntityCap {
 
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
 
-            i *= (double) this.getUnit().getStat(new BonusExp()).Value / 100 + 1;
+            i *= (double) this.getUnit().getStat(BonusExp.GUID).Value / 100 + 1;
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(killed, player, this, i));
 

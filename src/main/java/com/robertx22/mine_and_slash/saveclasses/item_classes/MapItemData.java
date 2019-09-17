@@ -49,6 +49,10 @@ import java.util.UUID;
 @Storable
 public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti, Cloneable {
 
+    public MapItemData() {
+
+    }
+
     @Store
     public int minutes = 30; // default
     @Store

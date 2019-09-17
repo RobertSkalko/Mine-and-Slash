@@ -4,6 +4,9 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class BonusExp extends Stat {
+
+    public static String GUID = "bonusexpflat";
+
     @Override
     public String locDescForLangFile() {
         return "Increases exp gained";
@@ -16,7 +19,7 @@ public class BonusExp extends Stat {
 
     @Override
     public String GUID() {
-        return "bonusexpflat";
+        return GUID;
     }
 
     @Override

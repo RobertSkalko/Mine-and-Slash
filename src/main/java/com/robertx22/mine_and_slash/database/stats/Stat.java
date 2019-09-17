@@ -181,16 +181,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     }
 
     @OnlyIn(Dist.CLIENT)
-    public ITextComponent NameAndValueText(TooltipStatInfo info) {
-
-        float val = info.amount;
-
-        String minusplus = val > 0 ? "+" : "";
-
-        return NameText(info).appendText(minusplus + printValue(info.modData, info.tooltipInfo.level));
-    }
-
-    @OnlyIn(Dist.CLIENT)
     public List<ITextComponent> getTooltipList(TooltipStatInfo info) {
 
         if (info.tooltipInfo.usePrettyStatSymbols) {

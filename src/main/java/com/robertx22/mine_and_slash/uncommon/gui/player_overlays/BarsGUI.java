@@ -1,12 +1,10 @@
 package com.robertx22.mine_and_slash.uncommon.gui.player_overlays;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
-import com.robertx22.mine_and_slash.uncommon.gui.NewOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -21,7 +19,6 @@ public class BarsGUI extends AbstractGui {
     BottomMiddleCornersOverlay bottomMiddleCorners = new BottomMiddleCornersOverlay();
     TopLeftOverlay topleft = new TopLeftOverlay();
     MiddleOverlay middle = new MiddleOverlay();
-    NewOverlay neww = new NewOverlay();
 
     public BarsGUI(Minecraft mc) {
         super();
@@ -81,22 +78,16 @@ public class BarsGUI extends AbstractGui {
                 return;
             }
 
-            if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(PlayerGUIs.Top_Left)) {
-                topleft.Draw(this, mc, mc.player, event, unit, data);
-            } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(PlayerGUIs.Bottom_Middle)) {
-                bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
-            } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(PlayerGUIs.Bottom_Middle_Corners)) {
-                bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
-            } else if (ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
-                    .equals(PlayerGUIs.Middle)) {
-                middle.Draw(this, mc, mc.player, event, unit, data);
-            }
+            PlayerGUIs guiType = ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get();
 
-            if (MMORPG.RUN_DEV_TOOLS) {
-                neww.Draw(this, mc, mc.player, event, unit, data);
+            if (guiType.equals(PlayerGUIs.Top_Left)) {
+                topleft.Draw(this, mc, mc.player, event, unit, data);
+            } else if (guiType.equals(PlayerGUIs.Bottom_Middle)) {
+                bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
+            } else if (guiType.equals(PlayerGUIs.Bottom_Middle_Corners)) {
+                bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
+            } else if (guiType.equals(PlayerGUIs.Middle)) {
+                middle.Draw(this, mc, mc.player, event, unit, data);
             }
 
         } catch (Exception e) {
