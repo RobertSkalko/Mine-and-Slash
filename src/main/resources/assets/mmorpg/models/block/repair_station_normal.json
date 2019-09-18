@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench/ Nevrax SARL / Winch Gate Properties Ltd. Ryzom. https://atys.wiki.ryzom.com/wiki/Ryzom_Commons:About",
 	"textures": {
-		"3": "mmorpg:blocks/repair/vehlengback",
+		"3": "mmorpg:blocks/repair/f_tapis_carre",
 		"4": "mmorpg:blocks/repair/g_tonneau_1",
 		"5": "mmorpg:blocks/repair/g_tonneau",
 		"6": "mmorpg:blocks/repair/agorabasrelief",
