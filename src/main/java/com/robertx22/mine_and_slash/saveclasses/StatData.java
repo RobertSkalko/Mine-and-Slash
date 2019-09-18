@@ -19,13 +19,8 @@ public class StatData {
         this.Name = stat.GUID();
     }
 
-    transient Stat stat;
-
     public Stat GetStat() {
-        if (stat == null) {
-            stat = SlashRegistry.Stats().get(Name);
-        }
-        return stat;
+        return SlashRegistry.Stats().get(Name); // testing if this is better
     }
 
     @Store

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.gearitems.bases.armor_materials.*;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
@@ -31,7 +32,7 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
 
     public BaseArmorItem(int rarity, EquipmentSlotType slot) {
 
-        super(GetMat(rarity), slot, new Properties());
+        super(GetMat(rarity), slot, ItemUtils.getDefaultGearProperties());
         this.rarity = rarity;
     }
 

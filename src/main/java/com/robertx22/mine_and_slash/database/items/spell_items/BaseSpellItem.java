@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -57,7 +58,9 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName, MyForg
 
     public static Item.Properties getSpellItemProp() {
 
-        Properties prop = new Properties().maxStackSize(0).defaultMaxDamage(500);
+        Properties prop = ItemUtils.getDefaultGearProperties()
+                .maxStackSize(0)
+                .defaultMaxDamage(500);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             prop.setTEISR(TomeRenderer::new);

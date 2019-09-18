@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.items.gearitems.bases;
 
 import com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,9 +18,21 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
 
     public BaseBaublesItem(int rar) {
 
-        super(new Properties().maxStackSize(1)
+        super(ItemUtils.getDefaultGearProperties()
+                .maxStackSize(1)
                 .maxDamage(new RarityItemTier(rar).getMaxUses()));
         this.rarity = rar;
+    }
+
+    @Override
+    public int getItemEnchantability() {
+        return 9 + this.rarity;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack,
+                                             net.minecraft.enchantment.Enchantment enchantment) {
+        return enchantment == Enchantments.UNBREAKING;
     }
 
     @Override

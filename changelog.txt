@@ -1,3 +1,13 @@
+2.7.3
+* if repair only in station is set true in config, mod's items won't be able to be combined in craft, repaired in anvil or in other vanilla blocks. 
+This is a fix to items being combinable in craft grid, but is probably it'll stop repair from other mods too. Either way it suits the config name.
+updated to forge 28.1.10
+added xp penalty on death (configurable)
+buffed regenerate to heal twice as fast. This is a 100% buff, i'll probably have to nerf it a bit
+jewerly can now be enchanted with unbreaking
+2.7.2
+attempting performance improvements
+updated to forge 28.1.6
 2.7.1
 fixed bonus weapon dmg spell
 nerfed major arcana chaos stats a bit, they had too many stats.

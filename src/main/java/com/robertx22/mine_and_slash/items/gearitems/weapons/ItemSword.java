@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.SwordWeapon
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -26,7 +27,7 @@ public class ItemSword extends SwordItem implements IWeapon, IAutoLocName, IGear
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemSword(int rar) {
-        super(new RarityItemTier(rar), 5 + (rar + 1), -2.4F, (new Item.Properties()));
+        super(new RarityItemTier(rar), 5 + (rar + 1), -2.4F, (ItemUtils.getDefaultGearProperties()));
         this.rarity = rar;
     }
 

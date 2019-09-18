@@ -85,6 +85,8 @@ public class EntityCap {
 
     public interface UnitData extends ICommonCapability {
 
+        void onDeath(LivingEntity en);
+
         void setType(LivingEntity en);
 
         EntityTypeUtils.EntityType getType();
@@ -556,6 +558,16 @@ public class EntityCap {
         @Override
         public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
 
+        }
+
+        @Override
+        public void onDeath(LivingEntity en) {
+
+            int expLoss = (int) (exp * ModConfig.INSTANCE.Server.XP_LOSS_ON_DEATH.get());
+
+            if (expLoss > 0) {
+                this.exp = MathHelper.clamp(exp - expLoss, 0, this.GetExpRequiredForLevelUp());
+            }
         }
 
         @Override

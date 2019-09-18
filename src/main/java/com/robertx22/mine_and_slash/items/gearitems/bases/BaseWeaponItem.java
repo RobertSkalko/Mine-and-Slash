@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -26,7 +27,8 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
 
     public BaseWeaponItem(int rar) {
 
-        super(new RarityItemTier(rar), new Properties().defaultMaxDamage(1000));
+        super(new RarityItemTier(rar), ItemUtils.getDefaultGearProperties()
+                .defaultMaxDamage(1000));
         this.rarity = rar;
     }
 

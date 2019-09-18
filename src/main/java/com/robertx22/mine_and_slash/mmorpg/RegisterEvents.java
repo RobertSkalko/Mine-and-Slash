@@ -25,7 +25,7 @@ public class RegisterEvents {
     private static void registerPlayerEvents() {
 
         register(GiveExpSub.class);
-        register(OnDeathInMap.class);
+        register(OnDeath.class);
         register(OnPlayerClone.class);
         register(OnLogin.class);
         register(OnLogout.class);

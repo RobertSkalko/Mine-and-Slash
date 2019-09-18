@@ -13,7 +13,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class OnDeathInMap {
+public class OnDeath {
 
     // this is needed cus otherwise it crashes with removing ticking entity
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -56,6 +56,8 @@ public class OnDeathInMap {
             if (living instanceof PlayerEntity) {
 
                 PlayerEntity player = (PlayerEntity) living;
+
+                Load.Unit(player).onDeath(player);
 
                 if (WorldUtils.isMapWorld(living.world)) {
 

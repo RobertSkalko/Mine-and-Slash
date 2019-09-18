@@ -24,6 +24,7 @@ public class ServerContainer {
     public IntValue MAXIMUM_ITEM_INSTABILITY;
 
     public DoubleValue NON_MOD_DAMAGE_MULTI;
+    public DoubleValue XP_LOSS_ON_DEATH;
     public DoubleValue MOB_ENVIRONMENT_DAMAGE_MULTI;
     public DoubleValue NON_MOD_HEAL_MULTI;
     public DoubleValue EXPERIENCE_MULTIPLIER;
@@ -37,6 +38,10 @@ public class ServerContainer {
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("PLAYER_HEART_TO_HEALTH_CONVERSION", 1D, 0D, 100D);
+
+        XP_LOSS_ON_DEATH = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("XP_LOSS_ON_DEATH", 0.25D, 0D, 1D);
 
         ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS = builder.comment(".")
                 .define("ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS", true);
