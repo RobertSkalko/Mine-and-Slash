@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,7 +33,9 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public MyTorch(int rar) {
-        super(new Properties().maxStackSize(1).defaultMaxDamage(1000));
+        super(ItemUtils.getDefaultGearProperties()
+                .maxStackSize(1)
+                .defaultMaxDamage(1000));
         this.rarity = rar;
     }
 

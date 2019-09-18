@@ -17,6 +17,7 @@ import com.robertx22.mine_and_slash.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.*;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.RegistryEvent;
@@ -37,7 +38,8 @@ public class GearItemRegisters {
 
         for (GearRarity rarity : Rarities.Items.rarities()) {
 
-            Item.Properties shieldprop = new Item.Properties().defaultMaxDamage(750);
+            Item.Properties shieldprop = ItemUtils.getDefaultGearProperties()
+                    .defaultMaxDamage(750);
 
             DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
                 shieldprop.setTEISR(ShieldRenderer::new);
