@@ -18,153 +18,153 @@ import net.minecraft.util.text.TextFormatting;
 
 public abstract class Stat implements IGUID {
 
-    public Stat() {
-    }
+	public Stat() {
+	}
 
-    @Override
-    public String GUID() {
-	return Guid();
-    }
+	@Override
+	public String GUID() {
+		return Guid();
+	}
 
-    public abstract String unlocString();
+	public abstract String unlocString();
 
-    public String localizedString() {
-	return CLOC.stat(unlocString().toLowerCase().replaceAll(" ", "_"));
-    }
+	public String localizedString() {
+		return CLOC.stat(unlocString().toLowerCase().replaceAll(" ", "_"));
+	}
 
-    public int MaximumPercent = 0;
+	public int MaximumPercent = 0;
 
-    public int MinimumAmount = 0;
+	public int MinimumAmount = 0;
 
-    public boolean hasMinimumAmount = true;
+	public boolean hasMinimumAmount = true;
 
-    public int StatMinimum = 0;
+	public int StatMinimum = 0;
 
-    public abstract boolean IsPercent();
+	public abstract boolean IsPercent();
 
-    public abstract String Guid();
+	public abstract String Guid();
 
-    public abstract boolean ScalesToLevel();
+	public abstract boolean ScalesToLevel();
 
-    public abstract Elements Element();
+	public abstract Elements Element();
 
-    public int BaseFlat = 0;
+	public int BaseFlat = 0;
 
-    private String printValue(StatModData data, int level) {
+	private String printValue(StatModData data, int level) {
 
-	float val = data.GetActualVal(level);
+		float val = data.GetActualVal(level);
 
-	DecimalFormat format = new DecimalFormat();
+		DecimalFormat format = new DecimalFormat();
 
-	if (val < 10) {
-	    format.setMaximumFractionDigits(1);
+		if (val < 10) {
+			format.setMaximumFractionDigits(1);
 
-	    return format.format(val);
+			return format.format(val);
 
-	} else {
+		} else {
 
-	    int intval = (int) val;
-	    return intval + "";
+			int intval = (int) val;
+			return intval + "";
+
+		}
 
 	}
 
-    }
+	public static String STAT_PREFIX = " * ";
 
-    public static String STAT_PREFIX = " * ";
+	public String NameText(boolean IsSet, StatModData data) {
+		StatMod mod = data.GetBaseMod();
+		Stat basestat = mod.GetBaseStat();
 
-    public String NameText(boolean IsSet, StatModData data) {
-	StatMod mod = data.GetBaseMod();
-	Stat basestat = mod.GetBaseStat();
+		String str = basestat.localizedString();
 
-	String str = basestat.localizedString();
+		if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
+			str += " " + CLOC.word("percent");
+		}
 
-	if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
-	    str += " " + CLOC.word("percent");
+		if (IsSet) {
+			return TextFormatting.RED + STAT_PREFIX + str + ": ";
+		} else {
+			return TextFormatting.RED + str + ": ";
+		}
 	}
 
-	if (IsSet) {
-	    return TextFormatting.RED + STAT_PREFIX + str + ": ";
-	} else {
-	    return TextFormatting.RED + str + ": ";
-	}
-    }
+	public String NameAndValueText(StatModData data, int level, boolean IsSet) {
 
-    public String NameAndValueText(StatModData data, int level, boolean IsSet) {
+		float val = data.GetActualVal(level);
 
-	float val = data.GetActualVal(level);
+		String minusplus = val > 0 ? "+" : "";
 
-	String minusplus = val > 0 ? "+" : "";
-
-	return NameText(IsSet, data) + minusplus + printValue(data, level);
-    }
-
-    public List<String> getTooltipList(MinMax minmax, StatModData data, int level, boolean IsNotSet) {
-
-	List<String> list = new ArrayList<String>();
-	StatMod mod = data.GetBaseMod();
-	Stat basestat = mod.GetBaseStat();
-	String text = NameAndValueText(data, level, IsNotSet);
-
-	if (mod.Type() == StatTypes.Flat) {
-
-	    if (basestat.IsPercent()) {
-		text += "%";
-	    }
-
-	} else if (mod.Type() == StatTypes.Percent) {
-	    text += "%";
-	} else {
-	    text += "% " + CLOC.word("multi");
+		return NameText(IsSet, data) + minusplus + printValue(data, level);
 	}
 
-	if (GuiScreen.isShiftKeyDown() && IsNotSet) {
+	public List<String> getTooltipList(MinMax minmax, StatModData data, int level, boolean IsNotSet) {
 
-	    StatModData min = StatModData.Load(data.GetBaseMod(), minmax.Min);
-	    StatModData max = StatModData.Load(data.GetBaseMod(), minmax.Max);
+		List<String> list = new ArrayList<String>();
+		StatMod mod = data.GetBaseMod();
+		Stat basestat = mod.GetBaseStat();
+		String text = NameAndValueText(data, level, IsNotSet);
 
-	    text += TextFormatting.BLUE + " (" + min.printValue(level) + " - " + max.printValue(level) + ")";
+		if (mod.Type() == StatTypes.Flat) {
+
+			if (basestat.IsPercent()) {
+				text += "%";
+			}
+
+		} else if (mod.Type() == StatTypes.Percent) {
+			text += "%";
+		} else {
+			text += "% " + CLOC.word("multi");
+		}
+
+		if (GuiScreen.isShiftKeyDown() && IsNotSet) {
+
+			StatModData min = StatModData.Load(data.GetBaseMod(), minmax.Min);
+			StatModData max = StatModData.Load(data.GetBaseMod(), minmax.Max);
+
+			text += TextFormatting.BLUE + " (" + min.printValue(level) + " - " + max.printValue(level) + ")";
+		}
+
+		list.add(text);
+
+		return list;
+
 	}
 
-	list.add(text);
+	public int CalcVal(StatData data, UnitData Source) {
 
-	return list;
+		float finalValue = 0 + BaseFlat;
 
-    }
+		finalValue += StatMinimum;
 
-    public int CalcVal(StatData data, UnitData Source) {
+		if (ScalesToLevel()) {
+			finalValue *= Source.getLevel();
+		}
 
-	float finalValue = 0 + BaseFlat;
+		finalValue += data.Flat;
 
-	finalValue += StatMinimum;
+		finalValue *= 1 + data.Percent / 100;
 
-	if (ScalesToLevel()) {
-	    finalValue *= Source.getLevel();
+		finalValue *= 1 + data.Multi / 100;
+
+		if (hasMinimumAmount && finalValue < this.MinimumAmount) {
+			finalValue = this.MinimumAmount;
+		}
+
+		if (this.IsPercent() && MaximumPercent > 0 && finalValue > MaximumPercent) {
+			finalValue = MaximumPercent;
+		}
+
+		data.Value = finalValue;
+
+		return (int) finalValue;
+
 	}
 
-	finalValue += data.Flat;
+	public ArrayList<IStatEffect> Effects;
 
-	finalValue *= 1 + data.Percent / 100;
-
-	finalValue *= 1 + data.Multi / 100;
-
-	if (hasMinimumAmount && finalValue < this.MinimumAmount) {
-	    finalValue = this.MinimumAmount;
+	public boolean IsShownOnTooltip() {
+		return true;
 	}
-
-	if (this.IsPercent() && MaximumPercent > 0 && finalValue > MaximumPercent) {
-	    finalValue = MaximumPercent;
-	}
-
-	data.Value = finalValue;
-
-	return (int) finalValue;
-
-    }
-
-    public ArrayList<IStatEffect> Effects;
-
-    public boolean IsShownOnTooltip() {
-	return true;
-    }
 
 }

@@ -7,7 +7,7 @@ public class SwordWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost() {
-	return 4;
+	return 3;
     }
 
     @Override
