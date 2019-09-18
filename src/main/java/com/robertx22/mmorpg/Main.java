@@ -6,8 +6,11 @@ import com.robertx22.blocks.item_modify_station.StartupModify;
 import com.robertx22.blocks.map_device.StartupMap;
 import com.robertx22.blocks.repair_station.StartupRepair;
 import com.robertx22.blocks.salvage_station.StartupSalvage;
+import com.robertx22.compat.Vanilla;
 import com.robertx22.compat.ebwizardry;
 import com.robertx22.compat.fireice;
+import com.robertx22.compat.techreborn;
+import com.robertx22.compat.thermalfoundation;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.non_mine_items.Serialization;
 import com.robertx22.dimensions.ChestGenerator;
@@ -53,164 +56,171 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber
-@Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME,
-    dependencies = "required-after:baubles;required-after:patchouli")
+@Mod(modid = Ref.MODID, version = Ref.VERSION, name = Ref.NAME, dependencies = "required-after:baubles;required-after:patchouli")
 public class Main {
 
-  @SidedProxy(clientSide = "com.robertx22.mmorpg.proxy.ClientProxy",
-      serverSide = "com.robertx22.mmorpg.proxy.ServerProxy")
-  public static IProxy proxy;
+	@SidedProxy(clientSide = "com.robertx22.mmorpg.proxy.ClientProxy", serverSide = "com.robertx22.mmorpg.proxy.ServerProxy")
+	public static IProxy proxy;
 
-  @Instance(value = Ref.MODID)
-  public static Main instance;
+	@Instance(value = Ref.MODID)
+	public static Main instance;
 
-  public static final SimpleNetworkWrapper Network =
-      NetworkRegistry.INSTANCE.newSimpleChannel(Ref.MODID);
+	public static final SimpleNetworkWrapper Network = NetworkRegistry.INSTANCE.newSimpleChannel(Ref.MODID);
 
-  @EventHandler
-  public void preInit(FMLPreInitializationEvent event) {
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
 
+		Serialization.generateConfig(event);
+		Serialization.loadConfig(event);
 
+		UniqueItemRegister.registerAll();
 
-    Serialization.generateConfig(event);
-    Serialization.loadConfig(event);
+		GameRegistry.registerTileEntity(TileMapPortal.class, new ResourceLocation(Ref.MODID, "map_portal_tile"));
 
+		proxy.preInit(event);
 
+		proxy.registerRenders();
 
-    UniqueItemRegister.registerAll();
+		GearItemRegisters.register();
 
-    GameRegistry.registerTileEntity(TileMapPortal.class,
-        new ResourceLocation(Ref.MODID, "map_portal_tile"));
+		ItemOre.Register();
+		StartupRepair.preInitCommon(event);
+		StartupSalvage.preInitCommon(event);
+		StartupModify.preInitCommon(event);
+		StartupGearFactory.preInitCommon(event);
+		StartupMap.preInitCommon(event);
 
-    proxy.preInit(event);
+		MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());
+		MinecraftForge.EVENT_BUS.register(new EntityUnitPackage());
+		MinecraftForge.EVENT_BUS.register(new DamageNumberPackage());
+		MinecraftForge.EVENT_BUS.register(new ParticlePackage());
+		MinecraftForge.EVENT_BUS.register(new WorldPackage());
 
-    proxy.registerRenders();
+		Network.registerMessage(PlayerUnitPackage.Handler.class, PlayerUnitPackage.class, 0, Side.CLIENT);
+		Network.registerMessage(EntityUnitPackage.Handler.class, EntityUnitPackage.class, 1, Side.CLIENT);
+		Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2, Side.CLIENT);
+		Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Side.CLIENT);
+		Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Side.CLIENT);
+		Network.registerMessage(MessagePackage.Handler.class, MessagePackage.class, 5, Side.CLIENT);
 
-    GearItemRegisters.register();
+		CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(),
+				EntityData.DefaultImpl.class);
 
-    ItemOre.Register();
-    StartupRepair.preInitCommon(event);
-    StartupSalvage.preInitCommon(event);
-    StartupModify.preInitCommon(event);
-    StartupGearFactory.preInitCommon(event);
-    StartupMap.preInitCommon(event);
+		CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),
+				WorldData.DefaultImpl.class);
 
-    MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());
-    MinecraftForge.EVENT_BUS.register(new EntityUnitPackage());
-    MinecraftForge.EVENT_BUS.register(new DamageNumberPackage());
-    MinecraftForge.EVENT_BUS.register(new ParticlePackage());
-    MinecraftForge.EVENT_BUS.register(new WorldPackage());
+		CapabilityManager.INSTANCE.register(PlayerDeathItems.IPlayerDrops.class, new PlayerDeathItems.Storage(),
+				PlayerDeathItems.DefaultImpl.class);
 
-    Network.registerMessage(PlayerUnitPackage.Handler.class, PlayerUnitPackage.class, 0,
-        Side.CLIENT);
-    Network.registerMessage(EntityUnitPackage.Handler.class, EntityUnitPackage.class, 1,
-        Side.CLIENT);
-    Network.registerMessage(DamageNumberPackage.Handler.class, DamageNumberPackage.class, 2,
-        Side.CLIENT);
-    Network.registerMessage(ParticlePackage.Handler.class, ParticlePackage.class, 3, Side.CLIENT);
-    Network.registerMessage(WorldPackage.Handler.class, WorldPackage.class, 4, Side.CLIENT);
-    Network.registerMessage(MessagePackage.Handler.class, MessagePackage.class, 5, Side.CLIENT);
+		ModMetadata modMeta = event.getModMetadata();
 
-    CapabilityManager.INSTANCE.register(EntityData.UnitData.class, new EntityData.Storage(),
-        EntityData.DefaultImpl.class);
+	}
 
-    CapabilityManager.INSTANCE.register(WorldData.IWorldData.class, new WorldData.Storage(),
-        WorldData.DefaultImpl.class);
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
 
-    CapabilityManager.INSTANCE.register(PlayerDeathItems.IPlayerDrops.class,
-        new PlayerDeathItems.Storage(), PlayerDeathItems.DefaultImpl.class);
+		RabbitGui.proxy.init();
+		proxy.init(event);
 
-    ModMetadata modMeta = event.getModMetadata();
+		TestManager.RunAllTests();
 
-  }
+		// RegisterBiomes.initBiomeManagerAndDictionary();
 
-  @EventHandler
-  public void init(FMLInitializationEvent event) {
+		if (ModConfig.Server.GENERATE_ORES) {
+			int chance = 6;
+			int amount = 7;
 
-    RabbitGui.proxy.init();
-    proxy.init(event);
+			for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
+				GameRegistry.registerWorldGenerator(new OreGen(ItemOre.Blocks.get(i), amount - i, 10, 75, chance - i),
+						0);
+			}
 
-    TestManager.RunAllTests();
+		}
 
-    // RegisterBiomes.initBiomeManagerAndDictionary();
+		GameRegistry.registerWorldGenerator(new ChestGenerator(), 5);
 
-    if (ModConfig.Server.GENERATE_ORES) {
-      int chance = 6;
-      int amount = 7;
+	}
 
-      for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
-        GameRegistry.registerWorldGenerator(
-            new OreGen(ItemOre.Blocks.get(i), amount - i, 10, 75, chance - i), 0);
-      }
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
 
-    }
+		proxy.postInit(event);
+		RabbitGui.proxy.postInit();
+		Serialization.generateConfigTut(event);
+		if (ModConfig.Server.AUTOCOMPATIBILITY_ICEFIREITEMS) {
+			if (Loader.isModLoaded("iceandfire")) {
+				new fireice();
+			}
+			else {}
+		}
+		if (ModConfig.Server.AUTOCOMPATIBILITY_EBWIZARDRYITEMS) {
+			if (Loader.isModLoaded("ebwizardry")) {
+				new ebwizardry();
+			}
+			else {}
+		}
+		if (ModConfig.Server.AUTOCOMPATIBILITY_TECHREBORNITEMS) {
+			if (Loader.isModLoaded("techreborn")) {
+				new techreborn();
+			}
+			else {}
+		}
+		if (ModConfig.Server.AUTOCOMPATIBILITY_THERMALITEMS) {
+			if (Loader.isModLoaded("thermalfoundation")) {
+				new thermalfoundation();
+			}
+			else {}
+		}
+		if (ModConfig.Server.AUTOCOMPATIBILITY_VANILLAITEMS) {
+			new Vanilla();
+		}
+	}
 
-    GameRegistry.registerWorldGenerator(new ChestGenerator(), 5);
+	@EventHandler
+	public void start(FMLServerStartingEvent event) {
 
-  }
+		registerDims(event);
 
-  @EventHandler
-  public void postInit(FMLPostInitializationEvent event) {
+		proxy.serverStarting(event);
 
-    proxy.postInit(event);
-    RabbitGui.proxy.postInit();
-    Serialization.generateConfigTut(event);
-    if (Loader.isModLoaded("iceandfire")) {
-    	new fireice();
-    }
-    if (Loader.isModLoaded("ebwizardry")) {
-    	new ebwizardry();
-    }
+		CommandRegisters.Register(event);
 
-  }
+	}
 
-  @EventHandler
-  public void start(FMLServerStartingEvent event) {
+	@EventHandler
+	public void stop(FMLServerStoppedEvent event) {
+		MapDatas.unregisterDimensions(); // every save game has it's own dimensions, otherwise when you
+											// switch saves you
+		// also get dimensions from your last save, which isn't nice
 
-    registerDims(event);
+	}
 
-    proxy.serverStarting(event);
+	@EventHandler
+	public void stopping(FMLServerStoppingEvent event) {
 
-    CommandRegisters.Register(event);
+	}
 
-  }
+	private void registerDims(FMLServerStartingEvent event) {
 
-  @EventHandler
-  public void stop(FMLServerStoppedEvent event) {
-    MapDatas.unregisterDimensions(); // every save game has it's own dimensions, otherwise when you
-                                     // switch saves you
-    // also get dimensions from your last save, which isn't nice
+		String name = MapDatas.getLoc();
+		MapDatas data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class, name);
+		if (data == null) {
+			event.getServer().worlds[0].getMapStorage().setData(name, new MapDatas(name));
+			data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class, name);
+		}
 
-  }
+		data.registerDimensions();
+	}
 
-  @EventHandler
-  public void stopping(FMLServerStoppingEvent event) {
+	@EventHandler
+	public static void onWorldLoad(FMLServerStartedEvent event) {
+		WorldServer world = DimensionManager.getWorld(0); // default world
 
-  }
+		if (world != null) {
+			if (ModConfig.Server.DISABLE_VANILLA_HP_REGEN) {
+				world.getGameRules().setOrCreateGameRule("naturalRegeneration", "false");
+			}
+		}
 
-  private void registerDims(FMLServerStartingEvent event) {
-
-    String name = MapDatas.getLoc();
-    MapDatas data =
-        (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class, name);
-    if (data == null) {
-      event.getServer().worlds[0].getMapStorage().setData(name, new MapDatas(name));
-      data = (MapDatas) event.getServer().worlds[0].getMapStorage().getOrLoadData(MapDatas.class,
-          name);
-    }
-
-    data.registerDimensions();
-  }
-
-  @EventHandler
-  public static void onWorldLoad(FMLServerStartedEvent event) {
-    WorldServer world = DimensionManager.getWorld(0); // default world
-
-    if (world != null) {
-      if (ModConfig.Server.DISABLE_VANILLA_HP_REGEN) {
-        world.getGameRules().setOrCreateGameRule("naturalRegeneration", "false");
-      }
-    }
-
-  }
+	}
 }
