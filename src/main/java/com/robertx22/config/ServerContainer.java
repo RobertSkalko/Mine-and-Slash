@@ -10,29 +10,29 @@ public class ServerContainer {
 	@Config.Comment("This enables adding stats to items not from my mod automatically if they are added to my mod's config file inside the folder")
 	public boolean USE_COMPATIBILITY_ITEMS = true;
 
-	@Config.Name("Auto Enable Default Item Stats")
+	@Config.Name("Auto Enable Vanilla Items Stats")
 	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from EB Wizardry, Ice and Fire, Tech Reborn and Thermal Foundation")
+	@Config.Comment("This enables auto adding stats to vanilla items")
 	public boolean AUTOCOMPATIBILITY_VANILLAITEMS = true;
 
-	@Config.Name("Auto Enable Default Item Stats")
+	@Config.Name("Auto Enable EB Wizadry Item Stats")
 	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from EB Wizardry, Ice and Fire, Tech Reborn and Thermal Foundation")
+	@Config.Comment("This enables auto adding stats to items from EB Wizardry")
 	public boolean AUTOCOMPATIBILITY_EBWIZARDRYITEMS = true;
 
-	@Config.Name("Auto Enable Default Item Stats")
+	@Config.Name("Auto Enable Ice and Fire Item Stats")
 	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from EB Wizardry, Ice and Fire, Tech Reborn and Thermal Foundation")
+	@Config.Comment("This enables auto adding stats to items from Ice and Fire")
 	public boolean AUTOCOMPATIBILITY_ICEFIREITEMS = true;
 
-	@Config.Name("Auto Enable Default Item Stats")
+	@Config.Name("Auto Enable Tech Reborn Item Stats")
 	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from EB Wizardry, Ice and Fire, Tech Reborn and Thermal Foundation")
+	@Config.Comment("This enables auto adding stats to items from Tech Reborn")
 	public boolean AUTOCOMPATIBILITY_TECHREBORNITEMS = true;
 
-	@Config.Name("Auto Enable Default Item Stats")
+	@Config.Name("Auto Enable Thermal Foundation Item Stats")
 	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from EB Wizardry, Ice and Fire, Tech Reborn and Thermal Foundation")
+	@Config.Comment("This enables auto adding stats to items from Thermal Foundation")
 	public boolean AUTOCOMPATIBILITY_THERMALITEMS = true;
 
 	@Config.Name("Disable Vanilla Hp Regen")
@@ -87,7 +87,7 @@ public class ServerContainer {
 
 	@Config.Name("STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT")
 	@Config.LangKey("mmorpg.config")
-	@Config.Comment("")
+	@Config.Comment("Stops any loot from dropping if a non-player does 50% damage to a mob. #NoMobFarms")
 	public float STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT = 0.5F;
 
 	@Config.Name("PLAYER_HEART_TO_HEALTH_CONVERSION")
@@ -112,7 +112,7 @@ public class ServerContainer {
 
 	@Config.Name("Max Players Per Map")
 	@Config.LangKey("mmorpg.config.max_players_in_map")
-	@Config.Comment("")
+	@Config.Comment("Sets how many players can be in the same map")
 	public int MAX_PLAYERS_PER_MAP = 5;
 
 	@Config.Name("Entities Under System")
