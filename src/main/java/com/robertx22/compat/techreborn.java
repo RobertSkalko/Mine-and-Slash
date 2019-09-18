@@ -22,8 +22,6 @@ public class techreborn {
 	
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	private static final List<String> AXE = ImmutableList.of("bronzeaxe", "rubyaxe", "peridotaxe", "sapphireaxe");
-
 	private static final List<String> SWORD = ImmutableList.of("bronzesword", "sapphiresword", "rubysword", "peridotsword", "nanosaber");
 
 	private static final List<String> Helmet = ImmutableList.of("peridothelmet", "rubyhelmet", "sapphirehelmet", "bronzehelmet");
@@ -35,10 +33,6 @@ public class techreborn {
 	private static final List<String> Boots = ImmutableList.of("peridotboots", "rubyboots", "sapphireboots", "bronzeboots");
 
 	public techreborn() {
-		for (String s : AXE) {
-			MineAndSlashAPI.addCompatibleItem("techreborn:" + s, new ConfigItem().setType(new Axe()));
-			LOGGER.debug("Registered Axes");
-		}
 		for (String s : SWORD) {
 			MineAndSlashAPI.addCompatibleItem("techreborn:" + s, new ConfigItem().setType(new Sword()));
 			LOGGER.debug("Registered Swords");
