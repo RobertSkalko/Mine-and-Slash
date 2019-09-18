@@ -47,10 +47,13 @@ public class ProfessionContainer extends BaseTileContainer {
         addTileSlots(tile);
     }
 
+    static int x = 318;
+    static int y = 232;
+
     public void addTileSlots(ProfessionTile tile) {
 
         int addX = 142 + 44;
-        int addY = ProfessionGui.y / 2 + 9;
+        int addY = y / 2 + 9;
 
         ItemStackHandler outputhandler = new ItemStackHandler(tile.outputStacks);
 
@@ -75,7 +78,7 @@ public class ProfessionContainer extends BaseTileContainer {
     public void addPlayerSlots(PlayerInventory playerInv) {
 
         int addX = 142;
-        int addY = ProfessionGui.y / 2 + 35;
+        int addY = y / 2 + 35;
 
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 9; ++column) {

@@ -1,3 +1,5 @@
+2.7.4
+try fix server crash on profession block loading client side class
 2.7.3
 * if repair only in station is set true in config, mod's items won't be able to be combined in craft, repaired in anvil or in other vanilla blocks. 
 This is a fix to items being combinable in craft grid, but is probably it'll stop repair from other mods too. Either way it suits the config name.
