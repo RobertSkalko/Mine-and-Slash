@@ -18,7 +18,8 @@ import com.robertx22.mine_and_slash.mmorpg.registers.client.RenderRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.SpecialRenderRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.*;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
-import com.robertx22.mine_and_slash.network.PlayerMapPacket;
+import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
@@ -239,7 +240,7 @@ public class MMORPG {
 
     public static <MSG> void syncMapData(ServerPlayerEntity p) {
         if (p != null) {
-            sendToClient(new PlayerMapPacket(p), p);
+            sendToClient(new SyncCapabilityToClient(p, CapTypes.MAP_DATA), p);
         }
     }
 

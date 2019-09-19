@@ -5,7 +5,8 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.HealthRe
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.PlayerSendProfessionPacket;
+import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -85,10 +86,9 @@ public class OnTickLogic {
                     Load.Unit(player).syncToClient(player);
 
                     if (player.openContainer instanceof ProfessionContainer) {
-                        MMORPG.sendToClient(new PlayerSendProfessionPacket(player), player);
+                        MMORPG.sendToClient(new SyncCapabilityToClient(player, CapTypes.PROFESSIONS), player);
                         ProfessionContainer prof = (ProfessionContainer) player.openContainer;
                         prof.tile.onOpenByPlayer(player);
-
                     }
 
                 }

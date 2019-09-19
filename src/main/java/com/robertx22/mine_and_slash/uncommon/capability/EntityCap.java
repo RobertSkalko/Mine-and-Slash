@@ -15,7 +15,8 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
-import com.robertx22.mine_and_slash.network.PlayerUnitPacket;
+import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
 import com.robertx22.mine_and_slash.saveclasses.CustomStatsData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -592,8 +593,8 @@ public class EntityCap {
         @Override
         public void syncToClient(PlayerEntity player) {
             if (unit != null) {
-                PlayerUnitPacket packet = new PlayerUnitPacket(this.getNBT());
                 ServerPlayerEntity mp = (ServerPlayerEntity) player;
+                SyncCapabilityToClient packet = new SyncCapabilityToClient(mp, CapTypes.ENTITY_DATA);
                 MMORPG.sendToClient(packet, mp);
             }
         }

@@ -1,7 +1,6 @@
-package com.robertx22.mine_and_slash.network;
+package com.robertx22.mine_and_slash.network.sync_cap;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -10,41 +9,44 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class PlayerSendProfessionPacket {
+public class SyncCapabilityToClient {
 
-    public PlayerSendProfessionPacket() {
+    public SyncCapabilityToClient() {
 
     }
 
     private CompoundNBT nbt;
+    private CapTypes type;
 
-    public PlayerSendProfessionPacket(ServerPlayerEntity p) {
-        this.nbt = Load.professions(p).getNBT();
+    public SyncCapabilityToClient(ServerPlayerEntity p, CapTypes type) {
+        this.nbt = type.getCap(p).getNBT();
+        this.type = type;
     }
 
-    public static PlayerSendProfessionPacket decode(PacketBuffer buf) {
+    public static SyncCapabilityToClient decode(PacketBuffer buf) {
 
-        PlayerSendProfessionPacket newpkt = new PlayerSendProfessionPacket();
+        SyncCapabilityToClient newpkt = new SyncCapabilityToClient();
         newpkt.nbt = buf.readCompoundTag();
+        newpkt.type = buf.readEnumValue(CapTypes.class);
         return newpkt;
     }
 
-    public static void encode(PlayerSendProfessionPacket packet, PacketBuffer tag) {
+    public static void encode(SyncCapabilityToClient packet, PacketBuffer tag) {
 
         tag.writeCompoundTag(packet.nbt);
+        tag.writeEnumValue(packet.type);
 
     }
 
-    public static void handle(final PlayerSendProfessionPacket pkt,
+    public static void handle(final SyncCapabilityToClient pkt,
                               Supplier<NetworkEvent.Context> ctx) {
 
         ctx.get().enqueueWork(() -> {
             try {
-
                 final PlayerEntity player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
 
                 if (player != null) {
-                    Load.professions(player).setNBT(pkt.nbt);
+                    pkt.type.getCap(player).setNBT(pkt.nbt);
                 }
 
             } catch (Exception e) {
@@ -57,3 +59,4 @@ public class PlayerSendProfessionPacket {
     }
 
 }
+

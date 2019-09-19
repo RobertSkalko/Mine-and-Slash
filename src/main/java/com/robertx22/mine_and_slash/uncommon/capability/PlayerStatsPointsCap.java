@@ -32,9 +32,13 @@ public class PlayerStatsPointsCap {
 
         public SingleStatPointData getStatData(String statmodguid);
 
+        public void addPoint(String statmodguid, EntityCap.UnitData data);
+
         int getAvailablePoints(EntityCap.UnitData data);
 
         boolean hasAvailablePoints(EntityCap.UnitData data);
+
+        void resetStats();
 
         PlayerStatPointsData getData();
 
@@ -97,6 +101,11 @@ public class PlayerStatsPointsCap {
         }
 
         @Override
+        public void resetStats() {
+            data.getAllStatDatas().forEach(x -> x.points = 0);
+        }
+
+        @Override
         public PlayerStatPointsData getData() {
             return data;
         }
@@ -114,6 +123,13 @@ public class PlayerStatsPointsCap {
             }
 
             return null;
+        }
+
+        @Override
+        public void addPoint(String statmodguid, EntityCap.UnitData data) {
+            if (this.hasAvailablePoints(data)) {
+                getStatData(statmodguid).points++;
+            }
         }
 
     }

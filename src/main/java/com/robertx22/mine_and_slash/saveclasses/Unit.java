@@ -392,6 +392,11 @@ public class Unit {
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
 
+            Load.statPoints((PlayerEntity) entity)
+                    .getData()
+                    .GetAllStats(level)
+                    .forEach(x -> x.mods.forEach(y -> y.useOnPlayer(data, level)));
+
         } else {
             MobStatUtils.AddMobcStats(data, data.getLevel());
             MobStatUtils.worldMultiplierStats(entity.world, this);
