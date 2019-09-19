@@ -103,41 +103,10 @@ public class StatModData implements ITooltipString {
         float val = mod.GetFloatByPercent(percent);
 
         if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
-            val = calculateStatGrowth(val, level);
+            val = stat.calculateScalingStatGrowth(val, level);
         }
 
         return val;
-    }
-
-    public static float calculateStatGrowth(float stat, int lvl) {
-        return stat * (float) Math.pow(lvl, getMultiplier(lvl));
-    }
-
-    private static float getMultiplier(int lvl) {
-        return MathHelper.clamp(0.5F + (float) lvl / 50, 0.5F, 1.5F);
-    }
-
-    public static float calculateStatGrowthAndRound(float stat, int lvl) {
-        return roundNumber(stat * (float) Math.pow(lvl, getMultiplier(lvl)));
-    }
-
-    public static float roundNumber(float n) {
-
-        if (n < 10) {
-
-        } else if (n < 100) {
-            n = ((int) n / 2) * 2;
-        } else if (n < 1000) {
-            n = ((int) n / 50) * 50;
-        } else if (n < 10000) {
-            n = ((int) n / 500) * 500;
-        } else if (n < 100000) {
-            n = ((int) n / 1000) * 1000;
-        } else {
-            n = ((int) n / 5000) * 5000;
-        }
-        return n;
-
     }
 
     public String printValue(int level) {

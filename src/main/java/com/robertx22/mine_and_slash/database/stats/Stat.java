@@ -18,6 +18,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -137,6 +138,14 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         float val = data.GetActualVal(level);
         return printValue(val);
 
+    }
+
+    public float calculateScalingStatGrowth(float stat, int lvl) {
+        return StatUtils.calculateNormalScalingStatGrowth(stat, lvl);
+    }
+
+    public float roundScalingStatGrowth(float stat, int lvl) {
+        return StatUtils.roundNumber(this.calculateScalingStatGrowth(stat, lvl));
     }
 
     public String printValue(float val) {

@@ -67,10 +67,8 @@ public class PlayerStatUtils {
     }
 
     private static void addScalingStat(UnitData data, String stat, double base,
-                                       double lvl) {
-        data.getUnit()
-                .getStat(stat).Flat += base + StatModData.calculateStatGrowth((float) lvl, data
-                .getLevel());
+                                       double perlvl) {
+        data.getUnit().getStat(stat).addFlat((float) (base + perlvl), data.getLevel());
     }
 
     private static void addStat(UnitData data, String stat, double base, double lvl) {

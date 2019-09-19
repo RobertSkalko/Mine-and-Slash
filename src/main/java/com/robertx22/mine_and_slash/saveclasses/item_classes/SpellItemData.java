@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
@@ -15,6 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataIt
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -70,7 +70,7 @@ public class SpellItemData implements ICommonDataItem {
     }
 
     public int GetBaseValue() {
-        return (int) StatModData.calculateStatGrowth(2 + GetSpell().BaseValue() * baseEffectPercent / 100, level);
+        return (int) StatUtils.calculateNormalScalingStatGrowth(2 + GetSpell().BaseValue() * baseEffectPercent / 100, level);
     }
 
     public float GetScalingValue() {
@@ -86,12 +86,12 @@ public class SpellItemData implements ICommonDataItem {
     }
 
     private int MinBase() {
-        return (int) StatModData.calculateStatGrowth((1 + (float) GetSpell().BaseValue() * getRarity()
+        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) GetSpell().BaseValue() * getRarity()
                 .SpellBasePercents().Min / 100), level);
     }
 
     private int MaxBase() {
-        return (int) StatModData.calculateStatGrowth((1 + (float) GetSpell().BaseValue() * getRarity()
+        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) GetSpell().BaseValue() * getRarity()
                 .SpellBasePercents().Max / 100), level);
     }
 

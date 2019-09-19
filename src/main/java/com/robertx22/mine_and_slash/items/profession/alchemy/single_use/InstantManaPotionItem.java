@@ -6,8 +6,8 @@ import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Pr
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.builders.SimpleRecipeBuilders;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -45,7 +45,7 @@ public class InstantManaPotionItem extends BaseInstantPotion implements IAmount 
 
     @Override
     public float amount() {
-        return StatModData.roundNumber(level.effectMultiplier * lvl_1_amount);
+        return StatUtils.roundNumber(level.effectMultiplier * lvl_1_amount);
     }
 
     @Override

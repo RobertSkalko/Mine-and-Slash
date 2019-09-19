@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.util.math.MathHelper;
 
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
@@ -22,7 +23,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     @Override
     public boolean ScalesToLevel() {
-        return true;
+        return false;
     }
 
     @Override
@@ -35,11 +36,14 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         return 10;
     }
 
+    public float calculateScalingStatGrowth(float stat, int lvl) {
+        return StatUtils.calculateBaseStatScalingStatGrowth(stat, lvl);
+    }
+
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
 
-        float percent = data.Value / (StatModData.calculateStatGrowth(this.amountToReach100Percent(), unitdata
-                .getLevel())) * 100;
+        float percent = data.Value / this.amountToReach100Percent() * 100;
 
         percent = MathHelper.clamp(percent, 0, 1000000);
 

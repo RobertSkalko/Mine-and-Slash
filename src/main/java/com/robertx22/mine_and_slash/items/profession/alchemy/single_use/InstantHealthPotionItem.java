@@ -5,9 +5,9 @@ import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Pr
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.builders.SimpleRecipeBuilders;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -47,7 +47,7 @@ public class InstantHealthPotionItem extends BaseInstantPotion {
 
     @Override
     public float amount() {
-        return StatModData.calculateStatGrowthAndRound(lvl_1_amount * level.effectMultiplier, level.number);
+        return StatUtils.calculateNormalScalingStatGrowth(lvl_1_amount * level.effectMultiplier, level.number);
     }
 
     @Override
