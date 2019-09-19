@@ -34,6 +34,15 @@ public class StatData {
     @Store
     public float Value = 0;
 
+    public void add(StatData data) {
+        if (data.Name.equals(this.Name)) {
+            this.Flat += data.Flat;
+            this.Percent += data.Percent;
+            this.Multi += data.Multi;
+        }
+
+    }
+
     public void addFlat(float val, int lvl) {
         if (this.GetStat().ScalesToLevel()) {
             this.Flat += this.GetStat().calculateScalingStatGrowth(val, lvl);

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.MergedStats;
@@ -63,7 +63,7 @@ public class GearTooltipUtils {
             list.add(gear.infusion);
         } else {
 
-            List<IStatsContainer.LevelAndStats> lvlstatsmerged = new ArrayList<>();
+            List<IStatModsContainer.LevelAndStats> lvlstatsmerged = new ArrayList<>();
 
             if (gear.uniqueStats != null) {
                 tip.add(gear.uniqueStats.getHeader());

@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.WornSetsContainerData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -129,8 +129,8 @@ public class PlayerStatUtils {
 
             } else {
 
-                List<IStatsContainer.LevelAndStats> levelstats = gear.GetAllStats(gear.level);
-                for (IStatsContainer.LevelAndStats datas : levelstats) {
+                List<IStatModsContainer.LevelAndStats> levelstats = gear.GetAllStats(gear.level);
+                for (IStatModsContainer.LevelAndStats datas : levelstats) {
                     for (StatModData data : datas.mods) {
 
                         StatMod mod = data.getStatMod();

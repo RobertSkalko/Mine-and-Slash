@@ -394,8 +394,8 @@ public class Unit {
 
             Load.statPoints((PlayerEntity) entity)
                     .getData()
-                    .GetAllStats(level)
-                    .forEach(x -> x.mods.forEach(y -> y.useOnPlayer(data, level)));
+                    .getAllStatDatas()
+                    .forEach(x -> x.applyStats(data));
 
         } else {
             MobStatUtils.AddMobcStats(data, data.getLevel());

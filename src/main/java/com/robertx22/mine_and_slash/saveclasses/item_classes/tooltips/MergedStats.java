@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer.LevelAndStats;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer.LevelAndStats;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.util.text.ITextComponent;

@@ -1,22 +1,21 @@
 package com.robertx22.mine_and_slash.saveclasses.player_stat_points;
 
-import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.BaseCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Storable
 
 public class SingleStatPointData implements IStatsContainer {
 
-    public SingleStatPointData(StatMod mod) {
-        this.statmod = mod.GUID();
+    public SingleStatPointData(Stat stat) {
+        this.stat = stat.GUID();
     }
 
     public SingleStatPointData() {
@@ -27,16 +26,17 @@ public class SingleStatPointData implements IStatsContainer {
     public int points = 0;
 
     @Store
-    public String statmod = "";
+    public String stat = "";
 
-    public StatMod getMod() {
-        return SlashRegistry.StatMods().get(statmod);
+    public Stat getStat() {
+        return SlashRegistry.Stats().get(stat);
     }
 
     @Override
-    public List<LevelAndStats> GetAllStats(int level) {
-        List<LevelAndStats> list = new ArrayList<>();
-        list.add(new LevelAndStats(StatModData.Load(getMod(), points * 100 / BaseCoreStatFlat.max), level));
-        return list;
+    public List<StatData> GetAllStats(int level) {
+        StatData data = new StatData(getStat());
+        data.Flat += points;
+        return Arrays.asList(data);
     }
+
 }

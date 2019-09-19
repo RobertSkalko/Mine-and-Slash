@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public abstract class AffixData implements IStatsContainer, IRerollable {
+public abstract class AffixData implements IStatModsContainer, IRerollable {
 
     @Store
     public List<Integer> percents = new ArrayList<Integer>();

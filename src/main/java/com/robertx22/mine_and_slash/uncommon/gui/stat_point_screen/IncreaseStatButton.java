@@ -31,7 +31,7 @@ public class IncreaseStatButton extends ImageButton {
         });
 
         this.data = data;
-        this.statmod = statData.statmod;
+        this.statmod = statData.stat;
 
     }
 
@@ -59,7 +59,7 @@ public class IncreaseStatButton extends ImageButton {
 
         SingleStatPointData single = data.getStatData(statmod);
 
-        Stat stat = single.getMod().GetBaseStat();
+        Stat stat = single.getStat();
 
         String str = CLOC.translate(stat.locName()) + ": " + single.points;
 

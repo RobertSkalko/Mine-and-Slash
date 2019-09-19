@@ -115,7 +115,7 @@ public class PlayerStatsPointsCap {
 
             Optional<SingleStatPointData> opt = data.getAllStatDatas()
                     .stream()
-                    .filter(x -> x.statmod.equals(statmodguid))
+                    .filter(x -> x.stat.equals(statmodguid))
                     .findFirst();
 
             if (opt.isPresent()) {

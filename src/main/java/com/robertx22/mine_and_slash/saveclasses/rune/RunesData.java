@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.rune;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class RunesData implements ITooltipList, IStatsContainer {
+public class RunesData implements ITooltipList, IStatModsContainer {
 
     @Store
     public List<InsertedRuneData> runes = new ArrayList<InsertedRuneData>();

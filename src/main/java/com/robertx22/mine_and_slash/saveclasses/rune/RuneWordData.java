@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import info.loenwind.autosave.annotations.Storable;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class RuneWordData implements IStatsContainer, ITooltipList {
+public class RuneWordData implements IStatModsContainer, ITooltipList {
 
     @Store
     public String name;
