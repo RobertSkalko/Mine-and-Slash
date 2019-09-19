@@ -1,5 +1,6 @@
 2.7.5
 core stats like dexterity now dont scale anymore. (code rewrite, bugs possible)
+fixed player base stats scale value applying to lvl 1 value
 2.7.4
 try fix server crash on profession block loading client side class
 2.7.3

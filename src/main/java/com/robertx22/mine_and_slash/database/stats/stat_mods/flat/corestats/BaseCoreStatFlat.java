@@ -6,6 +6,8 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 public abstract class BaseCoreStatFlat extends StatMod {
 
+    public static int max = 5;
+
     @Override
     public int getRarityRank() {
         return IRarity.Legendary;
@@ -18,7 +20,7 @@ public abstract class BaseCoreStatFlat extends StatMod {
 
     @Override
     public float Max() {
-        return 5;
+        return max;
     }
 
     @Override

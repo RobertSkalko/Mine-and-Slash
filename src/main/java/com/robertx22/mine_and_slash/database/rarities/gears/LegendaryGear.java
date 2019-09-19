@@ -19,7 +19,7 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
 
     @Override
     public int SetChance() {
-        return 60;
+        return 50;
     }
 
     @Override

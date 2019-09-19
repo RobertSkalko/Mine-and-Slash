@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
@@ -32,7 +31,8 @@ public class NecklaceWater extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Water), new ArmorFlat(), new ArmorPercent(), new ElementalResistFlat(Elements.Water), new CrippleDodgePercent());
+        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Water), new ArmorPercent()
+                .multi(2), new ElementalResistFlat(Elements.Water), new CrippleDodgePercent());
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.player_stat_points;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.BaseCoreStatFlat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
@@ -35,7 +36,7 @@ public class SingleStatPointData implements IStatsContainer {
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
         List<LevelAndStats> list = new ArrayList<>();
-        list.add(new LevelAndStats(StatModData.Load(getMod(), points * 25), level));
+        list.add(new LevelAndStats(StatModData.Load(getMod(), points * 100 / BaseCoreStatFlat.max), level));
         return list;
     }
 }

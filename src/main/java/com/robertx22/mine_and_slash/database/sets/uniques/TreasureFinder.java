@@ -1,11 +1,12 @@
 package com.robertx22.mine_and_slash.database.sets.uniques;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.bracelets.BraceletSetDrop;
+import com.robertx22.mine_and_slash.database.items.unique_items.necklaces.NecklaceSetDrop;
 import com.robertx22.mine_and_slash.database.requirements.ExactUniquesRequierement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.LootTypeBonusFlat;
-import com.robertx22.mine_and_slash.instances.UniqueGears;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
@@ -38,7 +39,7 @@ public class TreasureFinder extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(new ExactUniquesRequierement(Arrays.asList(UniqueGears.NECKLACESETDROP0, UniqueGears.BRACELETSETDROP0)));
+        return new Requirements(new ExactUniquesRequierement(Arrays.asList(new NecklaceSetDrop(), new BraceletSetDrop())));
     }
 
     @Override
