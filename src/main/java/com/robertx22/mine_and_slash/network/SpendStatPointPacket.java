@@ -1,29 +1,23 @@
 package com.robertx22.mine_and_slash.network;
 
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
 public class SpendStatPointPacket {
-    public BlockPos pos;
-    public String statmodguid;
+
+    public LvlPointStat stat;
 
     public SpendStatPointPacket() {
 
     }
 
-    public SpendStatPointPacket(String statmodguid) {
-        this.statmodguid = statmodguid;
-
-    }
-
-    public SpendStatPointPacket(BlockPos pos) {
-        this.pos = pos;
-        this.statmodguid = "";
+    public SpendStatPointPacket(LvlPointStat stat) {
+        this.stat = stat;
 
     }
 
@@ -31,7 +25,7 @@ public class SpendStatPointPacket {
 
         SpendStatPointPacket newpkt = new SpendStatPointPacket();
 
-        newpkt.statmodguid = buf.readString();
+        newpkt.stat = buf.readEnumValue(LvlPointStat.class);
 
         return newpkt;
 
@@ -39,7 +33,7 @@ public class SpendStatPointPacket {
 
     public static void encode(SpendStatPointPacket packet, PacketBuffer tag) {
 
-        tag.writeString(packet.statmodguid);
+        tag.writeEnumValue(packet.stat);
 
     }
 
@@ -50,7 +44,7 @@ public class SpendStatPointPacket {
             try {
                 ServerPlayerEntity player = ctx.get().getSender();
                 if (player != null) {
-                    Load.statPoints(player).addPoint(pkt.statmodguid, Load.Unit(player));
+                    Load.statPoints(player).addPoint(pkt.stat, Load.Unit(player));
                 }
 
             } catch (Exception e) {

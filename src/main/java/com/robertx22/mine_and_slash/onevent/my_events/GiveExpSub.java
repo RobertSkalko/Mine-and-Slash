@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.onevent.player;
+package com.robertx22.mine_and_slash.onevent.my_events;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

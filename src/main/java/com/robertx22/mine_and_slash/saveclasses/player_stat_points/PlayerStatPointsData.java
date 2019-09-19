@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.saveclasses.player_stat_points;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -15,17 +14,17 @@ public class PlayerStatPointsData {
     }
 
     @Store
-    public SingleStatPointData dexterity = new SingleStatPointData(new Dexterity());
+    public SingleStatPointData dexterity = new SingleStatPointData(LvlPointStat.DEXTERITY);
     @Store
-    public SingleStatPointData intelligence = new SingleStatPointData(new Intelligence());
+    public SingleStatPointData intelligence = new SingleStatPointData(LvlPointStat.INTELLIGENCE);
     @Store
-    public SingleStatPointData vitality = new SingleStatPointData(new Vitality());
+    public SingleStatPointData vitality = new SingleStatPointData(LvlPointStat.VITALITY);
     @Store
-    public SingleStatPointData strength = new SingleStatPointData(new Strength());
+    public SingleStatPointData strength = new SingleStatPointData(LvlPointStat.STRENGTH);
     @Store
-    public SingleStatPointData wisdom = new SingleStatPointData(new Wisdom());
+    public SingleStatPointData wisdom = new SingleStatPointData(LvlPointStat.WISDOM);
     @Store
-    public SingleStatPointData stamina = new SingleStatPointData(new Stamina());
+    public SingleStatPointData stamina = new SingleStatPointData(LvlPointStat.STAMINA);
 
     public int getCurrentlyAllocatedPointAmount() {
         return getAllStatDatas().stream().mapToInt(x -> x.points).sum();

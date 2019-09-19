@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.SpendStatPointPacket;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.RequestSyncCapToClient;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerStatsPointsCap;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -23,7 +24,7 @@ public class IncreaseStatButton extends ImageButton {
 
     FontRenderer font = Minecraft.getInstance().fontRenderer;
     PlayerStatsPointsCap.IPlayerStatPointsData data;
-    String statmod;
+    LvlPointStat stat;
 
     public IncreaseStatButton(PlayerStatsPointsCap.IPlayerStatPointsData data,
                               SingleStatPointData statData, int xPos, int yPos) {
@@ -31,7 +32,7 @@ public class IncreaseStatButton extends ImageButton {
         });
 
         this.data = data;
-        this.statmod = statData.stat;
+        this.stat = statData.stat;
 
     }
 
@@ -39,7 +40,7 @@ public class IncreaseStatButton extends ImageButton {
     public void onClick(double x, double y) {
         super.onClick(x, y);
         if (isInside((int) x, (int) y)) {
-            MMORPG.sendToServer(new SpendStatPointPacket(this.statmod));
+            MMORPG.sendToServer(new SpendStatPointPacket(this.stat));
             MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.STAT_POINTS));
         }
     }
@@ -57,7 +58,7 @@ public class IncreaseStatButton extends ImageButton {
     public void renderButton(int x, int y, float f) {
         super.renderButton(x, y, f);
 
-        SingleStatPointData single = data.getStatData(statmod);
+        SingleStatPointData single = data.getStatData(stat);
 
         Stat stat = single.getStat();
 

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.PlayerStatPointsData;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
@@ -30,9 +31,9 @@ public class PlayerStatsPointsCap {
 
     public interface IPlayerStatPointsData extends ICommonCapability {
 
-        public SingleStatPointData getStatData(String statmodguid);
+        public SingleStatPointData getStatData(LvlPointStat stat);
 
-        public void addPoint(String statmodguid, EntityCap.UnitData data);
+        public void addPoint(LvlPointStat stat, EntityCap.UnitData data);
 
         int getAvailablePoints(EntityCap.UnitData data);
 
@@ -111,24 +112,24 @@ public class PlayerStatsPointsCap {
         }
 
         @Override
-        public SingleStatPointData getStatData(String statmodguid) {
+        public SingleStatPointData getStatData(LvlPointStat stat) {
 
             Optional<SingleStatPointData> opt = data.getAllStatDatas()
                     .stream()
-                    .filter(x -> x.stat.equals(statmodguid))
+                    .filter(x -> x.stat.equals(stat))
                     .findFirst();
 
             if (opt.isPresent()) {
                 return opt.get();
             }
 
-            return null;
+            return new SingleStatPointData();
         }
 
         @Override
-        public void addPoint(String statmodguid, EntityCap.UnitData data) {
+        public void addPoint(LvlPointStat stat, EntityCap.UnitData data) {
             if (this.hasAvailablePoints(data)) {
-                getStatData(statmodguid).points++;
+                getStatData(stat).points++;
             }
         }
 

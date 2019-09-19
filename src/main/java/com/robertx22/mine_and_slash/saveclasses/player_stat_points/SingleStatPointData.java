@@ -14,8 +14,8 @@ import java.util.List;
 
 public class SingleStatPointData implements IStatsContainer {
 
-    public SingleStatPointData(Stat stat) {
-        this.stat = stat.GUID();
+    public SingleStatPointData(LvlPointStat stat) {
+        this.stat = stat;
     }
 
     public SingleStatPointData() {
@@ -26,10 +26,10 @@ public class SingleStatPointData implements IStatsContainer {
     public int points = 0;
 
     @Store
-    public String stat = "";
+    public LvlPointStat stat = LvlPointStat.VITALITY;
 
     public Stat getStat() {
-        return SlashRegistry.Stats().get(stat);
+        return SlashRegistry.Stats().get(stat.statguid);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
-import com.robertx22.mine_and_slash.a_libraries.curios.MyCurioUtils;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -17,14 +16,10 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerStatUtils {
@@ -70,35 +65,6 @@ public class PlayerStatUtils {
                                        double perlvl) {
         data.getUnit().getStat(stat).Flat += base;
         data.getUnit().getStat(stat).addFlat((float) (perlvl), data.getLevel());
-    }
-
-    public static List<GearItemData> getEquipsExcludingWeapon(LivingEntity entity) {
-
-        List<ItemStack> list = new ArrayList<ItemStack>();
-
-        for (ItemStack stack : entity.getArmorInventoryList()) {
-            if (stack != null) {
-                list.add(stack);
-            }
-        }
-
-        if (entity instanceof PlayerEntity) {
-
-            list.addAll(MyCurioUtils.getAllSlots((PlayerEntity) entity));
-
-        }
-        List<GearItemData> gearitems = new ArrayList<GearItemData>();
-
-        for (ItemStack stack : list) {
-            GearItemData gear = Gear.Load(stack);
-            if (gear != null) {
-                gearitems.add(gear);
-            }
-
-        }
-
-        return gearitems;
-
     }
 
     public static void CountWornSets(Entity entity, List<GearItemData> gears, Unit unit) {

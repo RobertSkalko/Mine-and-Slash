@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
+import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
@@ -18,7 +18,6 @@ import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
@@ -31,10 +30,10 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -338,35 +337,11 @@ public class Unit {
 
         DirtyCheck old = getDirtyCheck();
 
-        List<GearItemData> gears = PlayerStatUtils.getEquipsExcludingWeapon(entity); // slow but required
+        List<GearItemData> gears = new ArrayList<>();
+
+        MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.CollectGearStacksEvent(entity, gears));
 
         boolean gearIsValid = this.isGearCombinationValid(gears, entity);
-
-        ItemStack weapon = entity.getHeldItemMainhand();
-        if (weapon != null) {
-            GearItemData wep = Gear.Load(weapon);
-            if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
-                    .slotType()
-                    .equals(GearItemSlot.GearSlotType.Weapon)) {
-                gears.add(wep);
-            }
-
-        }
-
-        ItemStack offhand = entity.getHeldItemOffhand();
-        if (offhand != null) {
-            GearItemData off = Gear.Load(offhand);
-            if (off != null && off.GetBaseGearType() != null && off.GetBaseGearType()
-                    .slotType()
-                    .equals(GearItemSlot.GearSlotType.OffHand)) {
-                gears.add(off);
-            } else if (off != null && off.GetBaseGearType()
-                    .slotType()
-                    .equals(GearItemSlot.GearSlotType.Weapon)) {
-                entity.sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
-            }
-
-        }
 
         Unit copy = this.Clone();
 
@@ -419,11 +394,16 @@ public class Unit {
         CommonStatUtils.AddStatusEffectStats(this, level);
 
         if (isMapWorld) {
+
             CommonStatUtils.AddMapAffixStats(mapdata, this, level, entity);
+
         }
 
         CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
+
         CommonStatUtils.CalcTraitsAndCoreStats(data); // has to be at end for the conditionals like if crit higher than x
+
+        MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnStatCalculation(entity, data));
 
         CalcStats(data);
 

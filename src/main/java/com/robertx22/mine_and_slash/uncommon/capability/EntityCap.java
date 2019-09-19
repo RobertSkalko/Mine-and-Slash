@@ -673,6 +673,7 @@ public class EntityCap {
             if (needsToRecalcStats()) {
                 unit.RecalculateStats(entity, this, level);
             }
+
         }
 
         @Override
