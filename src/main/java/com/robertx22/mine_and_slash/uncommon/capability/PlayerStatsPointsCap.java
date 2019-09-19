@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.PlayerStatPointsData;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
@@ -16,6 +17,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Optional;
+
 @Mod.EventBusSubscriber
 public class PlayerStatsPointsCap {
 
@@ -26,6 +29,8 @@ public class PlayerStatsPointsCap {
     public static final Capability<IPlayerStatPointsData> Data = null;
 
     public interface IPlayerStatPointsData extends ICommonCapability {
+
+        public SingleStatPointData getStatData(String statmodguid);
 
         int getAvailablePoints(EntityCap.UnitData data);
 
@@ -95,6 +100,22 @@ public class PlayerStatsPointsCap {
         public PlayerStatPointsData getData() {
             return data;
         }
+
+        @Override
+        public SingleStatPointData getStatData(String statmodguid) {
+
+            Optional<SingleStatPointData> opt = data.getAllStatDatas()
+                    .stream()
+                    .filter(x -> x.statmod.equals(statmodguid))
+                    .findFirst();
+
+            if (opt.isPresent()) {
+                return opt.get();
+            }
+
+            return null;
+        }
+
     }
 
     public static class Storage extends BaseStorage<IPlayerStatPointsData> {

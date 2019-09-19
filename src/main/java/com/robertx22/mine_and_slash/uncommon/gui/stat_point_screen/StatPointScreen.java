@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerStatsPointsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -15,7 +17,7 @@ public class StatPointScreen extends Screen {
     int sizeY = 220;
     int sizeX = 215;
 
-    protected StatPointScreen() {
+    public StatPointScreen() {
         super(new StringTextComponent(""));
     }
 
@@ -25,14 +27,42 @@ public class StatPointScreen extends Screen {
 
     @Override
     public void render(int mouseX, int mouseY, float ticks) {
+        super.render(mouseX, mouseY, ticks);
 
         if (!addedButtons) {
-            for (SingleStatPointData single : data.getData().getAllStatDatas()) {
 
+            int y = 0;
+
+            for (SingleStatPointData single : data.getData().getAllStatDatas()) {
+                this.buttons.add(new IncreaseStatButton(data, single, this.width / 2, minecraft.mainWindow
+                        .getScaledHeight() / 2 - this.sizeY / 2 + y));
+                y += IncreaseStatButton.sizeY + 3;
             }
 
             addedButtons = true;
         }
+
+        drawGuiBackgroundLayer(ticks, mouseX, mouseY);
+
+    }
+
+    @Override
+    public boolean mouseClicked(double x, double y, int ticks) {
+
+        for (Widget button : this.buttons) {
+            button.onClick(x, y);
+        }
+
+        return true;
+
+    }
+
+    protected void drawGuiBackgroundLayer(float partialTicks, int x, int y) {
+
+        minecraft.getTextureManager().bindTexture(TEXTURE);
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.blit(minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, minecraft.mainWindow
+                .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY);
 
     }
 }

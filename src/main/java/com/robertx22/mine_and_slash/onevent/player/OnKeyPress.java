@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mine_and_slash.uncommon.gui.StatGUI;
+import com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen.StatPointScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,6 +19,8 @@ public class OnKeyPress {
 
             if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
                 Minecraft.getInstance().displayGuiScreen(new StatGUI());
+            } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
+                Minecraft.getInstance().displayGuiScreen(new StatPointScreen());
             }
         }
 

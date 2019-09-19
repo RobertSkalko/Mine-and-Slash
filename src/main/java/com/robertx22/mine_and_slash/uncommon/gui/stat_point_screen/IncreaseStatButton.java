@@ -10,8 +10,6 @@ import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.Optional;
-
 public class IncreaseStatButton extends ImageButton {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/button.png");
@@ -34,32 +32,15 @@ public class IncreaseStatButton extends ImageButton {
 
     }
 
-    public SingleStatPointData statData() {
-
-        Optional<SingleStatPointData> opt = data.getData()
-                .getAllStatDatas()
-                .stream()
-                .filter(x -> x.statmod.equals(this.statmod))
-                .findFirst();
-
-        if (opt.isPresent()) {
-            return opt.get();
-        }
-
-        return new SingleStatPointData();
-    }
-
-    public int points() {
-        return statData().points;
-    }
-
     @Override
     public void renderButton(int x, int y, float f) {
         super.renderButton(x, y, f);
 
-        Stat stat = statData().getMod().GetBaseStat();
+        SingleStatPointData single = data.getStatData(statmod);
 
-        String str = CLOC.translate(stat.locName()) + ": " + points();
+        Stat stat = single.getMod().GetBaseStat();
+
+        String str = CLOC.translate(stat.locName()) + ": " + single.points;
 
         Minecraft.getInstance().fontRenderer.drawString(str, this.x - sizeX - 5 - Minecraft
                 .getInstance().fontRenderer.getStringWidth(str), this.y - sizeY / 2, TextFormatting.GRAY

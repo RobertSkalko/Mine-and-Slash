@@ -18,5 +18,8 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(ProfessionsCap.IProfessionsData.class, new ProfessionsCap.Storage(), ProfessionsCap.DefaultImpl::new);
 
+        CapabilityManager.INSTANCE.register(PlayerStatsPointsCap.IPlayerStatPointsData.class, new PlayerStatsPointsCap.Storage(), PlayerStatsPointsCap.DefaultImpl::new);
+
     }
+
 }
