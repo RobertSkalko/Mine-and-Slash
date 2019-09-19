@@ -16,6 +16,18 @@ public class Load {
         return false;
     }
 
+    public static PlayerStatsPointsCap.IPlayerStatPointsData statPoints(
+            PlayerEntity provider) {
+
+        if (provider != null) {
+
+            return provider.getCapability(PlayerStatsPointsCap.Data)
+                    .orElse(new PlayerStatsPointsCap.DefaultImpl());
+
+        }
+        return null;
+    }
+
     public static ProfessionsCap.IProfessionsData professions(PlayerEntity provider) {
 
         if (provider != null) {

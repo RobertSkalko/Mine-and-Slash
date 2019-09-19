@@ -9,31 +9,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class PlayerStatsData implements IStatsContainer {
+public class PlayerStatPointsData implements IStatsContainer {
 
-    public PlayerStatsData() {
+    public PlayerStatPointsData() {
 
     }
 
     @Store
-    public SingleStatData dexterity = new SingleStatData(new DexterityFlat());
+    public SingleStatPointData dexterity = new SingleStatPointData(new DexterityFlat());
     @Store
-    public SingleStatData intelligence = new SingleStatData(new IntelligenceFlat());
+    public SingleStatPointData intelligence = new SingleStatPointData(new IntelligenceFlat());
     @Store
-    public SingleStatData vitality = new SingleStatData(new VitalityFlat());
+    public SingleStatPointData vitality = new SingleStatPointData(new VitalityFlat());
     @Store
-    public SingleStatData strength = new SingleStatData(new StrengthFlat());
+    public SingleStatPointData strength = new SingleStatPointData(new StrengthFlat());
     @Store
-    public SingleStatData wisdom = new SingleStatData(new WisdomFlat());
+    public SingleStatPointData wisdom = new SingleStatPointData(new WisdomFlat());
     @Store
-    public SingleStatData stamina = new SingleStatData(new StaminaFlat());
+    public SingleStatPointData stamina = new SingleStatPointData(new StaminaFlat());
 
     public int getCurrentlyAllocatedPointAmount() {
         return getAllStatDatas().stream().mapToInt(x -> x.points).sum();
     }
 
-    public List<SingleStatData> getAllStatDatas() {
-        List<SingleStatData> list = new ArrayList<>();
+    public List<SingleStatPointData> getAllStatDatas() {
+        List<SingleStatPointData> list = new ArrayList<>();
 
         list.add(vitality);
         list.add(strength);

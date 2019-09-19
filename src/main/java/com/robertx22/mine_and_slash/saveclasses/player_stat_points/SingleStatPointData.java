@@ -12,13 +12,13 @@ import java.util.List;
 
 @Storable
 
-public class SingleStatData implements IStatsContainer {
+public class SingleStatPointData implements IStatsContainer {
 
-    public SingleStatData(StatMod mod) {
+    public SingleStatPointData(StatMod mod) {
         this.statmod = mod.GUID();
     }
 
-    public SingleStatData() {
+    public SingleStatPointData() {
 
     }
 
@@ -28,11 +28,14 @@ public class SingleStatData implements IStatsContainer {
     @Store
     public String statmod = "";
 
+    public StatMod getMod() {
+        return SlashRegistry.StatMods().get(statmod);
+    }
+
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
         List<LevelAndStats> list = new ArrayList<>();
-        list.add(new LevelAndStats(StatModData.Load(SlashRegistry.StatMods()
-                .get(statmod), points * 25), level));
+        list.add(new LevelAndStats(StatModData.Load(getMod(), points * 25), level));
         return list;
     }
 }
