@@ -6,6 +6,10 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseLegendary;
 
 public class LegendaryGear extends BaseLegendary implements GearRarity {
+    @Override
+    public float requirementMulti() {
+        return 0.8F;
+    }
 
     @Override
     public int AffixChance() {

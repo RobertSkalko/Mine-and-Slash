@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.datasaving;
 
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
+import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
@@ -35,9 +36,17 @@ public class Gear {
             stack.setTag(new CompoundNBT());
         }
         if (gear != null) {
+            colorItem(stack, gear);
             LoadSave.Save(gear, stack.getTag(), LOC);
         }
 
+    }
+
+    public static void colorItem(ItemStack stack, GearItemData data) {
+        if (stack.getItem() instanceof IDyeableArmorItem) {
+            IDyeableArmorItem dye = (IDyeableArmorItem) stack.getItem();
+            dye.setColor(stack, data.getRarity().textFormatColor().getColor());
+        }
     }
 
 }

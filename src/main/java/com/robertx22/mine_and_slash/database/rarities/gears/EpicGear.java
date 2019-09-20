@@ -10,6 +10,11 @@ public class EpicGear extends BaseEpic implements GearRarity {
     }
 
     @Override
+    public float requirementMulti() {
+        return 0.6F;
+    }
+
+    @Override
     public int AffixChance() {
         return 60;
     }

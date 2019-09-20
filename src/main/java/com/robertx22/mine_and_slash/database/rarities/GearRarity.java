@@ -16,4 +16,5 @@ public interface GearRarity extends Rarity, SalvagableItem {
 
     float powerMultiplier();
 
+    float requirementMulti();
 }

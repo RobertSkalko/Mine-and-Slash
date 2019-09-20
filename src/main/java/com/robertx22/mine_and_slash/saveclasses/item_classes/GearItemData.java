@@ -39,7 +39,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     public boolean meetsRequirements(EntityCap.UnitData data) {
         if (data.getLevel() >= this.getLevel()) {
-            if (requirements == null || requirements.meetsRequirements(data)) {
+            if (requirements == null || requirements.meetsRequirements(data, this)) {
                 return true;
             }
         }

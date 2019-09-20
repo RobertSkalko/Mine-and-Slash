@@ -50,7 +50,7 @@ public class GearTooltipUtils {
         tip.add(TooltipUtils.lvlReq(gear.level, data));
 
         if (gear.requirements != null) {
-            tip.addAll(gear.requirements.GetTooltipString(info));
+            tip.addAll(gear.requirements.GetTooltipString(info, gear));
         }
 
         if (gear.runes != null) {

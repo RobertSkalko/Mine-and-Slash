@@ -6,6 +6,10 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseCommon;
 
 public class CommonGear extends BaseCommon implements GearRarity {
+    @Override
+    public float requirementMulti() {
+        return 0.3F;
+    }
 
     @Override
     public int AffixChance() {
@@ -46,4 +50,5 @@ public class CommonGear extends BaseCommon implements GearRarity {
     public float powerMultiplier() {
         return 1F;
     }
+
 }

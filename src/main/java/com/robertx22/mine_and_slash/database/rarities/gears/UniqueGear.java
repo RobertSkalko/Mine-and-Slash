@@ -5,6 +5,10 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseUnique;
 
 public class UniqueGear extends BaseUnique implements GearRarity {
+    @Override
+    public float requirementMulti() {
+        return 1F;
+    }
 
     @Override
     public int Weight() {
