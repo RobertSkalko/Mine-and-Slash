@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -10,6 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PlateBoots extends BaseBoots {
+    public static GearItemSlot INSTANCE = new PlateBoots();
+
+    private PlateBoots() {
+
+    }
 
     public List<Stat> statRequirements() {
         return plateRequirements();

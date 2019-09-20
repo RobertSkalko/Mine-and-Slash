@@ -14,6 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Bracelet extends GearItemSlot {
+    public static GearItemSlot INSTANCE = new Bracelet();
+
+    private Bracelet() {
+
+    }
 
     @Override
     public String GUID() {

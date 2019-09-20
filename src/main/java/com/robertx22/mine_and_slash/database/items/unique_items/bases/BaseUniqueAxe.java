@@ -30,6 +30,6 @@ public abstract class BaseUniqueAxe extends ItemAxe implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Axe();
+        return Axe.INSTANCE;
     }
 }

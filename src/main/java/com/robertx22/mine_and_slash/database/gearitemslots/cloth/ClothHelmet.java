@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -10,6 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ClothHelmet extends BaseHelmet {
+    public static GearItemSlot INSTANCE = new ClothHelmet();
+
+    private ClothHelmet() {
+
+    }
+
     public List<Stat> statRequirements() {
         return clothRequirements();
     }

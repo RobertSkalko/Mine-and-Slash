@@ -20,7 +20,7 @@ public abstract class BaseUniqueStaff extends ItemStaff implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Staff();
+        return Staff.INSTANCE;
     }
 
     @Override

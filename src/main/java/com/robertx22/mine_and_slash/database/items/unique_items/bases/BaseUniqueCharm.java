@@ -14,7 +14,7 @@ public abstract class BaseUniqueCharm extends ItemCharm implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Charm();
+        return Charm.INSTANCE;
     }
 
     @Override

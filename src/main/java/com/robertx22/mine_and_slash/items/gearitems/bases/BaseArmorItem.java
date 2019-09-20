@@ -97,7 +97,7 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
                 return new UniqueClothMat();
             }
         }
-        
+
         return new CommonMat();
 
     }

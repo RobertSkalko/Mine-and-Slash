@@ -16,7 +16,7 @@ public abstract class BaseUniqueHelmet extends PlateHelmetItem implements IUniqu
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new PlateHelmet();
+        return PlateHelmet.INSTANCE;
     }
 
     @Override

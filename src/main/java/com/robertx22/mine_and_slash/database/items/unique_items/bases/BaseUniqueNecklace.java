@@ -14,7 +14,7 @@ public abstract class BaseUniqueNecklace extends ItemNecklace implements IUnique
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Necklace();
+        return Necklace.INSTANCE;
     }
 
     @Override

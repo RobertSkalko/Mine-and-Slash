@@ -11,6 +11,12 @@ import java.util.HashMap;
 
 public class Bow extends BaseWeapon {
 
+    public static Bow INSTANCE = new Bow();
+
+    private Bow() {
+
+    }
+
     @Override
     public String GUID() {
         return "Bow";

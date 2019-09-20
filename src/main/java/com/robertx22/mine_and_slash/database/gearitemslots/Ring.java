@@ -18,6 +18,12 @@ import java.util.List;
 
 public class Ring extends GearItemSlot {
 
+    public static GearItemSlot INSTANCE = new Ring();
+
+    private Ring() {
+
+    }
+
     @Override
     public String GUID() {
         return "Ring";

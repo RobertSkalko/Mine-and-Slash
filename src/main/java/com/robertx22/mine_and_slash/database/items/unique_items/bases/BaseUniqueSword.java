@@ -19,7 +19,7 @@ public abstract class BaseUniqueSword extends ItemSword implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Sword();
+        return Sword.INSTANCE;
     }
 
     @Override

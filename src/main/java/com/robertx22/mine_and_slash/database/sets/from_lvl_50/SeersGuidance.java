@@ -1,8 +1,5 @@
 package com.robertx22.mine_and_slash.database.sets.from_lvl_50;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Charm;
-import com.robertx22.mine_and_slash.database.gearitemslots.Necklace;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
@@ -11,7 +8,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.misc.BonusExpFlat;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class SeersGuidance extends Set {
@@ -37,7 +33,7 @@ public class SeersGuidance extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(new SlotRequirement(Arrays.asList(new PlateHelmet(), new Necklace(), new Charm())), LevelRequirement
+        return new Requirements(SlotRequirement.helmetCharmAndNecklace(), LevelRequirement
                 .fromLVL50());
     }
 

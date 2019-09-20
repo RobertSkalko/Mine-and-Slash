@@ -1,9 +1,15 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.*;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BasePants;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,11 +17,11 @@ public class SlotRequirement extends BaseRequirement {
 
     public List<GearItemSlot> slots = new ArrayList<>();
 
-    public SlotRequirement(GearItemSlot slot) {
+    private SlotRequirement(GearItemSlot slot) {
         this.slots.add(slot);
     }
 
-    public SlotRequirement(List<GearItemSlot> slots) {
+    private SlotRequirement(List<GearItemSlot> slots) {
         this.slots.addAll(slots);
     }
 
@@ -29,6 +35,86 @@ public class SlotRequirement extends BaseRequirement {
         }
         return false;
 
+    }
+
+    public static SlotRequirement ChestAndShield() {
+        SlotRequirement req = new SlotRequirement(SlotRequirement.chest().slots);
+        req.slots.add(Shield.INSTANCE);
+        return req;
+
+    }
+
+    public static SlotRequirement helmetCharmAndNecklace() {
+        SlotRequirement req = new SlotRequirement(SlotRequirement.helmet().slots);
+        req.slots.add(Necklace.INSTANCE);
+        req.slots.add(Charm.INSTANCE);
+
+        return req;
+
+    }
+
+    public static SlotRequirement ring() {
+        return new SlotRequirement(Ring.INSTANCE);
+    }
+
+    public static SlotRequirement slots(GearItemSlot... slots) {
+        return new SlotRequirement(Arrays.asList(slots));
+    }
+
+    public static SlotRequirement necklace() {
+        return new SlotRequirement(Necklace.INSTANCE);
+    }
+
+    public static SlotRequirement charm() {
+        return new SlotRequirement(Charm.INSTANCE);
+    }
+
+    public static SlotRequirement shield() {
+        return new SlotRequirement(Shield.INSTANCE);
+    }
+
+    public static SlotRequirement staff() {
+        return new SlotRequirement(Staff.INSTANCE);
+    }
+
+    public static SlotRequirement bracelet() {
+        return new SlotRequirement(Bracelet.INSTANCE);
+    }
+
+    public static SlotRequirement chest() {
+        return new SlotRequirement(SlashRegistry.GearTypes()
+                .getAll()
+                .values()
+                .stream()
+                .filter(x -> x instanceof BaseChest)
+                .collect(Collectors.toList()));
+    }
+
+    public static SlotRequirement pants() {
+        return new SlotRequirement(SlashRegistry.GearTypes()
+                .getAll()
+                .values()
+                .stream()
+                .filter(x -> x instanceof BasePants)
+                .collect(Collectors.toList()));
+    }
+
+    public static SlotRequirement boots() {
+        return new SlotRequirement(SlashRegistry.GearTypes()
+                .getAll()
+                .values()
+                .stream()
+                .filter(x -> x instanceof BaseBoots)
+                .collect(Collectors.toList()));
+    }
+
+    public static SlotRequirement helmet() {
+        return new SlotRequirement(SlashRegistry.GearTypes()
+                .getAll()
+                .values()
+                .stream()
+                .filter(x -> x instanceof BaseHelmet)
+                .collect(Collectors.toList()));
     }
 
     public static SlotRequirement weaponsOnly() {

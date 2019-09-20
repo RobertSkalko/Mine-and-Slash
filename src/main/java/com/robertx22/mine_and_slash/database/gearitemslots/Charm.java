@@ -14,6 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Charm extends GearItemSlot {
+    public static GearItemSlot INSTANCE = new Charm();
+
+    private Charm() {
+
+    }
 
     @Override
     public String GUID() {

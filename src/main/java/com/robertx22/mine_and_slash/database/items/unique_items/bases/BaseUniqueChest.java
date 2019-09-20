@@ -16,7 +16,7 @@ public abstract class BaseUniqueChest extends PlateChestItem implements IUnique 
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new PlateChest();
+        return PlateChest.INSTANCE;
     }
 
     @Override

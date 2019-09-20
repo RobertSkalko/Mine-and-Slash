@@ -29,6 +29,6 @@ public abstract class BaseUniqueBow extends ItemBow implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Bow();
+        return Bow.INSTANCE;
     }
 }

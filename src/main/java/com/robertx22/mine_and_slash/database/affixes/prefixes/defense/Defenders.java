@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.affixes.prefixes.defense;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.mine_and_slash.database.gearitemslots.Shield;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -13,7 +12,7 @@ import java.util.List;
 public class Defenders extends Prefix {
 
     public Defenders() {
-        super(new Requirements((new SlotRequirement(new Shield()))));
+        super(new Requirements(SlotRequirement.shield()));
     }
 
     @Override

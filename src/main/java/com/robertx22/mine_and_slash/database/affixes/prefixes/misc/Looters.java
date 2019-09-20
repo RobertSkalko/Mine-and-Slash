@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.affixes.prefixes.misc;
 
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.mine_and_slash.database.gearitemslots.Bracelet;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
@@ -16,7 +15,7 @@ import java.util.List;
 public class Looters extends Prefix {
 
     public Looters() {
-        super(new Requirements(new SlotRequirement(new Bracelet()), LevelRequirement.fromLVL50()));
+        super(new Requirements(SlotRequirement.bracelet(), LevelRequirement.fromLVL50()));
     }
 
     @Override

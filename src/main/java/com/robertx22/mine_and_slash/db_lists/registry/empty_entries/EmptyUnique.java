@@ -59,7 +59,7 @@ public class EmptyUnique implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new PlateBoots();
+        return PlateBoots.INSTANCE;
     }
 
     @Override

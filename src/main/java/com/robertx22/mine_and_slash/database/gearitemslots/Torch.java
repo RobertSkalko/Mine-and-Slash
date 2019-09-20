@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
@@ -12,6 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Torch extends BaseOffHand {
+    public static GearItemSlot INSTANCE = new Torch();
+
+    private Torch() {
+
+    }
 
     @Override
     public String GUID() {

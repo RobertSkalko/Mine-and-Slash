@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.affixes.suffixes;
 
 import com.robertx22.mine_and_slash.database.affixes.ElementalSuffix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
-import com.robertx22.mine_and_slash.database.gearitemslots.Ring;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
@@ -18,7 +17,7 @@ import java.util.List;
 public class OfMajorAffinity extends ElementalSuffix {
 
     public OfMajorAffinity(Elements element) {
-        super(new Requirements(new SlotRequirement(new Ring()), LevelRequirement.fromLVL50()), element);
+        super(new Requirements(SlotRequirement.ring(), LevelRequirement.fromLVL50()), element);
     }
 
     @Override

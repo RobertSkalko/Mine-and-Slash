@@ -26,7 +26,7 @@ public abstract class BaseUniqueShield extends ShieldItem implements IUnique, IE
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Shield();
+        return Shield.INSTANCE;
     }
 
     @Override

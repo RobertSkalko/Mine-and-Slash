@@ -19,7 +19,7 @@ public abstract class BaseUniqueRing extends ItemRing implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Ring();
+        return Ring.INSTANCE;
     }
 
     @Override

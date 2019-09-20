@@ -27,33 +27,33 @@ public class GearTypes implements ISlashRegistryInit {
             {
                 {
 
-                    add(new LeatherChest());
-                    add(new LeatherHelmet());
-                    add(new LeatherPants());
-                    add(new LeatherBoots());
+                    add(LeatherChest.INSTANCE);
+                    add(LeatherHelmet.INSTANCE);
+                    add(LeatherPants.INSTANCE);
+                    add(LeatherBoots.INSTANCE);
 
-                    add(new ClothChest());
-                    add(new ClothHelmet());
-                    add(new ClothPants());
-                    add(new ClothBoots());
+                    add(ClothChest.INSTANCE);
+                    add(ClothHelmet.INSTANCE);
+                    add(ClothPants.INSTANCE);
+                    add(ClothBoots.INSTANCE);
 
-                    add(new PlateBoots());
-                    add(new PlatePants());
-                    add(new PlateHelmet());
-                    add(new PlateChest());
+                    add(PlateBoots.INSTANCE);
+                    add(PlatePants.INSTANCE);
+                    add(PlateHelmet.INSTANCE);
+                    add(PlateChest.INSTANCE);
 
-                    add(new Ring());
-                    add(new Sword());
-                    add(new Necklace());
-                    add(new Bracelet());
-                    add(new Bow());
-                    add(new Charm());
-                    add(new Hammer());
-                    add(new Staff());
-                    add(new Axe());
-                    add(new Shield());
-                    add(new Torch());
-                    add(new CrossBow());
+                    add(Ring.INSTANCE);
+                    add(Sword.INSTANCE);
+                    add(Necklace.INSTANCE);
+                    add(Bracelet.INSTANCE);
+                    add(Bow.INSTANCE);
+                    add(Charm.INSTANCE);
+                    add(Hammer.INSTANCE);
+                    add(Staff.INSTANCE);
+                    add(Axe.INSTANCE);
+                    add(Shield.INSTANCE);
+                    add(Torch.INSTANCE);
+                    add(CrossBow.INSTANCE);
 
                 }
 

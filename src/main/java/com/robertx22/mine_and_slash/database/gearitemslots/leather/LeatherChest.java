@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -10,6 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LeatherChest extends BaseChest {
+    public static GearItemSlot INSTANCE = new LeatherChest();
+
+    private LeatherChest() {
+
+    }
 
     public List<Stat> statRequirements() {
         return leatherRequirements();

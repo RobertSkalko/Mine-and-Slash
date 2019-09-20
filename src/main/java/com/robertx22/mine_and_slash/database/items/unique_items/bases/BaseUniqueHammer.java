@@ -15,7 +15,7 @@ public abstract class BaseUniqueHammer extends ItemHammer implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Hammer();
+        return Hammer.INSTANCE;
     }
 
     @Override

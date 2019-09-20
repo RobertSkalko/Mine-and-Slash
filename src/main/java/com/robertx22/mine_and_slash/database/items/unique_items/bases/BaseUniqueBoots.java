@@ -32,6 +32,6 @@ public abstract class BaseUniqueBoots extends PlateBootsItem implements IUnique 
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new PlateBoots();
+        return PlateBoots.INSTANCE;
     }
 }

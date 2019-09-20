@@ -30,6 +30,6 @@ public abstract class BaseUniqueBracelet extends ItemBracelet implements IUnique
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Bracelet();
+        return Bracelet.INSTANCE;
     }
 }

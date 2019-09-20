@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -10,8 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PlateChest extends BaseChest {
+    public static GearItemSlot INSTANCE = new PlateChest();
 
-    public PlateChest() {
+    private PlateChest() {
+
     }
 
     public List<Stat> statRequirements() {

@@ -16,7 +16,7 @@ public abstract class BaseUniquePantsItem extends PlatePantsItem implements IUni
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new PlatePants();
+        return PlatePants.INSTANCE;
     }
 
     @Override

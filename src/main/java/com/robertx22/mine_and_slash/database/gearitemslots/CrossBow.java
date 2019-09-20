@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
@@ -17,6 +18,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CrossBow extends BaseWeapon {
+    public static GearItemSlot INSTANCE = new CrossBow();
+
+    private CrossBow() {
+
+    }
 
     @Override
     public String GUID() {

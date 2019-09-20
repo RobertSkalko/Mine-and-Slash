@@ -14,6 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Necklace extends GearItemSlot {
+    public static GearItemSlot INSTANCE = new Necklace();
+
+    private Necklace() {
+
+    }
 
     @Override
     public String GUID() {

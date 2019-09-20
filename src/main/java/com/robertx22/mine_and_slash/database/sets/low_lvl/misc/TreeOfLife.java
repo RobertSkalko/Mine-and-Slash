@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class TreeOfLife extends Set {
@@ -35,7 +34,7 @@ public class TreeOfLife extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(new SlotRequirement(Arrays.asList(new Ring(), new Charm())), LevelRequirement
+        return new Requirements(SlotRequirement.slots(Ring.INSTANCE, Charm.INSTANCE), LevelRequirement
                 .lowLVLOnly());
     }
 

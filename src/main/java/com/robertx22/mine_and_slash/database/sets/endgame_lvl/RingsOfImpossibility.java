@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.sets.endgame_lvl;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Ring;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
@@ -43,6 +42,6 @@ public class RingsOfImpossibility extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(LevelRequirement.endgameLVLOnly(), new SlotRequirement(new Ring()));
+        return new Requirements(LevelRequirement.endgameLVLOnly(), SlotRequirement.ring());
     }
 }
