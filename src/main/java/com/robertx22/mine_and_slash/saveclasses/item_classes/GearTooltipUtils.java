@@ -120,19 +120,18 @@ public class GearTooltipUtils {
             tip.add(Styles.REDCOMP().appendSibling(Words.Unsalvagable.locName()));
         }
 
-        if (gear.GetBaseGearType() instanceof IWeapon) {
-            IWeapon iwep = (IWeapon) gear.GetBaseGearType();
-            tip.add(new StringTextComponent(""));
-            tip.add(Styles.GREENCOMP()
-                    .appendSibling(new Energy().locName()
-                            .appendText(": " + iwep.mechanic().GetEnergyCost())));
-            tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep.mechanic()
-                    .tooltipDesc()));
+        if (Screen.hasShiftDown()) {
+            if (gear.GetBaseGearType() instanceof IWeapon) {
+                IWeapon iwep = (IWeapon) gear.GetBaseGearType();
+                tip.add(new StringTextComponent(""));
+                tip.add(Styles.GREENCOMP()
+                        .appendSibling(new Energy().locName()
+                                .appendText(": " + iwep.mechanic().GetEnergyCost())));
+                tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep
+                        .mechanic()
+                        .tooltipDesc()));
+            }
         }
-
-        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, 35);
-        tip.clear();
-        tip.addAll(tool);
 
         if (Screen.hasShiftDown() == false) {
 
@@ -169,9 +168,11 @@ public class GearTooltipUtils {
 
         }
 
-        if (stack.getItem() instanceof IEffectItem) {
-            IEffectItem effect = (IEffectItem) stack.getItem();
-            event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
+        if (Screen.hasShiftDown()) {
+            if (stack.getItem() instanceof IEffectItem) {
+                IEffectItem effect = (IEffectItem) stack.getItem();
+                event.getToolTip().addAll(effect.getEffectTooltip(Screen.hasShiftDown()));
+            }
         }
 
         if (gear.isUnique) {
@@ -204,6 +205,10 @@ public class GearTooltipUtils {
                     .add(Styles.BLUECOMP()
                             .appendSibling(CLOC.tooltip("press_shift_more_info")));
         }
+
+        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, 33);
+        tip.clear();
+        tip.addAll(tool);
 
     }
 }

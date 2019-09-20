@@ -30,15 +30,66 @@ public class StatRequirementsData implements ITooltipList {
 
         if (amount > 0) {
             if (data.isUnique()) {
-
+                unique(data);
             } else {
-                Stat stat = RandomUtils.weightedRandom(data.GetBaseGearType()
-                        .statRequirements());
-                this.requirements.put(stat.GUID(), amount);
+                List<Stat> possibleReq = data.GetBaseGearType().statRequirements();
+
+                if (possibleReq != null) {
+                    if (possibleReq.size() > 0) {
+                        if (possibleReq.size() > 1) {
+                            if (RandomUtils.roll(50)) {
+                                doubleStat(data);
+                            } else {
+                                singleStat(data);
+                            }
+                        } else {
+                            singleStat(data);
+                        }
+                    }
+                }
 
             }
 
         }
+    }
+
+    public int getAmount(GearItemData data) {
+        return MathHelper.clamp(data.getLevel() - (data.getLevel() / 4) - 10, 0, 100000);
+    }
+
+    private void singleStat(GearItemData data) {
+        List<Stat> possibleReq = data.GetBaseGearType().statRequirements();
+        Stat stat = RandomUtils.weightedRandom(possibleReq);
+        this.requirements.put(stat.GUID(), getAmount(data));
+
+    }
+
+    private void doubleStat(GearItemData data) {
+        int amount = getAmount(data);
+        List<Stat> possibleReq = data.GetBaseGearType().statRequirements();
+        List<Stat> stats = RandomUtils.uniqueWightedRandoms(possibleReq, 2);
+
+        int i = 0;
+
+        for (Stat stat : stats) {
+
+            int r = 0;
+
+            if (i == stats.size() - 1) {
+                r = amount; // if last, take all the available
+            } else {
+                r = RandomUtils.RandomRange(amount / 5, (int) (amount / 1.5F));
+            }
+
+            this.requirements.put(stat.GUID(), r);
+            amount -= r;
+
+            i++;
+        }
+    }
+
+    private void unique(GearItemData data) {
+
     }
 
     public boolean meetsRequirements(UnitData data) {

@@ -4,8 +4,10 @@ Added armor types! Cloth, Leather, Plate!
 
 All old items will be plate. Still not sure what to do as their ID is "chest" instead of "plate_chest", might fix it with a breaking change when an expansion happens or 1.15 port.
 
-
-
+some perf improvements
+weapon tooltips are now less informative by default, but shift shows all the previously available info
+gear tooltips now remove empty lines if there's more than 33 lines.
+gear no longer break, they remain at 1 durability (but i cant assure you that so try not to keep them at 1 dura)
 gears now don't add stats if they have only 1 or 2 durability. This is a fix for mods that prevent items from being broken and keep them at 1 durability.
 They should be now useless as they are supposed to.
 added on stat calculation event. You can use this to add stats from your own sources, or remove them lol

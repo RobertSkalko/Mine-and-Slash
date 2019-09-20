@@ -57,8 +57,36 @@ public class RandomUtils {
         return false;
     }
 
-    public static <T extends IWeighted> T weightedRandom(Collection<T> coll) {
+    public static <T extends IWeighted> List<T> uniqueWightedRandoms(Collection<T> coll,
+                                                                     int amount) {
 
+        if (coll == null || coll.isEmpty()) {
+            return null;
+        }
+
+        if (coll.size() <= amount) {
+            return new ArrayList<>(coll);
+        }
+
+        List<T> list = new ArrayList<>();
+
+        int tries = 0;
+        while (list.size() < amount && tries < 15) {
+            tries++;
+
+            T t = (T) WeightedRandom(CollectionToList(coll));
+
+            if (!list.contains(t)) {
+                list.add(t);
+            }
+
+        }
+
+        return list;
+
+    }
+
+    public static <T extends IWeighted> T weightedRandom(Collection<T> coll) {
         if (coll == null || coll.isEmpty()) {
             return null;
         }

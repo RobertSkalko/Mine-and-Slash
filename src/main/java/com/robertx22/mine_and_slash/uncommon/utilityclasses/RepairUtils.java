@@ -9,13 +9,15 @@ public class RepairUtils {
     static final String IS_BEING_REPAIRED = Ref.MODID + "is_being_repaired";
 
     public static void setDamageOverride(ItemStack stack, int damage) {
+
         if (damage < stack.getDamage() && ModConfig.INSTANCE.Server.ONLY_REPAIR_IN_STATION
                 .get()) {
             if (stack.getOrCreateTag().getBoolean(IS_BEING_REPAIRED)) {
                 stack.getOrCreateTag().putInt("Damage", Math.max(0, damage));
             }
         } else {
-            stack.getOrCreateTag().putInt("Damage", Math.max(0, damage));
+            stack.getOrCreateTag()
+                    .putInt("Damage", Math.max(1, damage)); // dont ever break, just make them useless in combat
         }
     }
 
