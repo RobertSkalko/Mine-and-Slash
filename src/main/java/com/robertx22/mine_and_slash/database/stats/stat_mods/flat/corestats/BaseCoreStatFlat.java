@@ -30,7 +30,7 @@ public abstract class BaseCoreStatFlat extends StatMod {
 
     @Override
     public int Weight() {
-        return super.Weight() / 5;
+        return super.Weight();
     }
 
 }

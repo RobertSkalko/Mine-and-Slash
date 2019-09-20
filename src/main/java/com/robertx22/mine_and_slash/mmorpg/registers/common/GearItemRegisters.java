@@ -3,6 +3,10 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.database.items.runes.*;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothChestItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothHelmetItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothPantsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherBootsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherChestItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherHelmetItem;
@@ -121,6 +125,16 @@ public class GearItemRegisters {
             regRarities(new LeatherHelmetItem(rank), LeatherHelmetItem.Items, "helmet/leather/helmet", rarity
                     .Rank());
             regRarities(new LeatherPantsItem(rank), LeatherPantsItem.Items, "pants/leather/pants", rarity
+                    .Rank());
+
+            //CLOTH
+            regRarities(new ClothBootsItem(rank), ClothBootsItem.Items, "boots/cloth/boots", rarity
+                    .Rank());
+            regRarities(new ClothChestItem(rank), ClothChestItem.Items, "chest/cloth/chest", rarity
+                    .Rank());
+            regRarities(new ClothHelmetItem(rank), ClothHelmetItem.Items, "helmet/cloth/helmet", rarity
+                    .Rank());
+            regRarities(new ClothPantsItem(rank), ClothPantsItem.Items, "pants/cloth/pants", rarity
                     .Rank());
 
             // misc

@@ -1,5 +1,9 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothChestItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothHelmetItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothPantsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherBootsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherChestItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherHelmetItem;
@@ -22,10 +26,18 @@ public class ItemDyeRegister {
     public static void colorRegister(ColorHandlerEvent.Item evt) {
 
         List<IItemProvider> list = new ArrayList<>();
+
+        // LEATHER
         list.addAll(LeatherHelmetItem.Items.values());
         list.addAll(LeatherPantsItem.Items.values());
         list.addAll(LeatherChestItem.Items.values());
         list.addAll(LeatherBootsItem.Items.values());
+
+        //CLOTH
+        list.addAll(ClothHelmetItem.Items.values());
+        list.addAll(ClothPantsItem.Items.values());
+        list.addAll(ClothChestItem.Items.values());
+        list.addAll(ClothBootsItem.Items.values());
 
         evt.getItemColors()
                 .register((stack, color) -> getColor(stack, color), list.toArray(new IItemProvider[]{}));

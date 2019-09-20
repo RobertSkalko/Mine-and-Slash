@@ -2,6 +2,10 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.*;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothBoots;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothChest;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothPants;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherHelmet;
@@ -28,10 +32,16 @@ public class GearTypes implements ISlashRegistryInit {
                     add(new LeatherPants());
                     add(new LeatherBoots());
 
+                    add(new ClothChest());
+                    add(new ClothHelmet());
+                    add(new ClothPants());
+                    add(new ClothBoots());
+
                     add(new PlateBoots());
                     add(new PlatePants());
                     add(new PlateHelmet());
                     add(new PlateChest());
+
                     add(new Ring());
                     add(new Sword());
                     add(new Necklace());
