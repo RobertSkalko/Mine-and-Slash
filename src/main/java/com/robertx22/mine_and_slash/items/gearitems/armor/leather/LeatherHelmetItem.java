@@ -11,6 +11,16 @@ import java.util.HashMap;
 public class LeatherHelmetItem extends BaseArmorItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
+    /*
+    @Override
+    public int getColor(ItemStack stack) {
+        CompoundNBT compoundnbt = stack.getChildTag("display");
+        return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : TextFormatting.RED
+                .getColor();
+    }
+
+     */
+
     public LeatherHelmetItem(int rarity) {
         super(Type.LEATHER, rarity, EquipmentSlotType.HEAD);
 

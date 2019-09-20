@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.ItemStack;
 
 public class GearLootGen extends BaseLootGen {
@@ -132,6 +133,7 @@ public class GearLootGen extends BaseLootGen {
 
         GearItemData data = CreateData(schema);
         ItemStack stack = new ItemStack(data.getItem());
+        colorItem(stack, data);
         Gear.Save(stack, data);
         return stack;
 
@@ -140,9 +142,17 @@ public class GearLootGen extends BaseLootGen {
     public static ItemStack CreateStack(GearItemData data) {
 
         ItemStack stack = new ItemStack(data.getItem());
+        colorItem(stack, data);
         Gear.Save(stack, data);
         return stack;
 
+    }
+
+    public static void colorItem(ItemStack stack, GearItemData data) {
+        if (stack.getItem() instanceof IDyeableArmorItem) {
+            IDyeableArmorItem dye = (IDyeableArmorItem) stack.getItem();
+            dye.setColor(stack, data.getRarity().textFormatColor().getColor());
+        }
     }
 
 }
