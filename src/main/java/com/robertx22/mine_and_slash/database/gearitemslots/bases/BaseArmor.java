@@ -11,6 +11,11 @@ import java.util.List;
 public abstract class BaseArmor extends GearItemSlot {
 
     @Override
+    public final int Weight() {
+        return super.Weight() / 3;
+    }
+
+    @Override
     public List<StatMod> PrimaryStats() {
         return Arrays.asList(new HealthFlat());
     }

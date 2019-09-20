@@ -4,10 +4,10 @@ import com.robertx22.mine_and_slash.database.gearitemslots.Helmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
-import com.robertx22.mine_and_slash.items.gearitems.armor.ItemHelmet;
+import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateHelmetItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 
-public abstract class BaseUniqueHelmet extends ItemHelmet implements IUnique {
+public abstract class BaseUniqueHelmet extends PlateHelmetItem implements IUnique {
 
     public BaseUniqueHelmet() {
         super(new UniqueGear().Rank());

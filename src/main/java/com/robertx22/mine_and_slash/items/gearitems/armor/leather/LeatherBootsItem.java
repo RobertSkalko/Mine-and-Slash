@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.items.gearitems.armor;
+package com.robertx22.mine_and_slash.items.gearitems.armor.leather;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.bases.BaseArmorItem;
@@ -8,17 +8,18 @@ import net.minecraft.item.Item;
 
 import java.util.HashMap;
 
-public class ItemPants extends BaseArmorItem {
+public class LeatherBootsItem extends BaseArmorItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    public ItemPants(int rarity) {
-        super(rarity, EquipmentSlotType.LEGS);
+    public LeatherBootsItem(int rarity) {
+        super(Type.LEATHER, rarity, EquipmentSlotType.FEET);
 
     }
 
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Items.get(rarity);
-        return rar.textFormatColor() + "Pants";
+        return rar.textFormatColor() + "Leather Boots";
     }
 }
+

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseArmor;
-import com.robertx22.mine_and_slash.items.gearitems.armor.ItemChest;
+import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateChestItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
@@ -26,12 +26,12 @@ public class Chest extends BaseArmor {
 
     @Override
     public Item DefaultItem() {
-        return ItemChest.Items.get(0);
+        return PlateChestItem.Items.get(0);
     }
 
     @Override
     public HashMap<Integer, Item> ItemsForRarities() {
-        return ItemChest.Items;
+        return PlateChestItem.Items;
     }
 
     @Override

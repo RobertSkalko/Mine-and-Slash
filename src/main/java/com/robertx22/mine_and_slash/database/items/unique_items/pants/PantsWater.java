@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePants;
+import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class PantsWater extends BaseUniquePants {
+public class PantsWater extends BaseUniquePantsItem {
 
     public PantsWater() {
 

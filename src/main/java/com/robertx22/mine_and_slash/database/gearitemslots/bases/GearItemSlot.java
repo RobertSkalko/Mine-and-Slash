@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,7 +73,9 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public abstract List<StatMod> PossibleSecondaryStats();
 
-    public abstract Item DefaultItem();
+    public Item DefaultItem() {
+        return Items.AIR;
+    }
 
     public abstract HashMap<Integer, Item> ItemsForRarities();
 

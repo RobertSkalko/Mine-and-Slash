@@ -1,7 +1,7 @@
-package com.robertx22.mine_and_slash.database.gearitemslots;
+package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.LeatherArmor;
-import com.robertx22.mine_and_slash.items.gearitems.armor.ItemChest;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherChestItem;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -9,13 +9,8 @@ import java.util.HashMap;
 public class LeatherChest extends LeatherArmor {
 
     @Override
-    public Item DefaultItem() {
-        return ItemChest.Items.get(0);
-    }
-
-    @Override
     public HashMap<Integer, Item> ItemsForRarities() {
-        return ItemChest.Items;
+        return LeatherChestItem.Items;
     }
 
     @Override

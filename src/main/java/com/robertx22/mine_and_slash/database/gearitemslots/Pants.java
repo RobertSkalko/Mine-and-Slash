@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseArmor;
-import com.robertx22.mine_and_slash.items.gearitems.armor.ItemPants;
+import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlatePantsItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
@@ -17,7 +17,7 @@ public class Pants extends BaseArmor {
 
     @Override
     public Item DefaultItem() {
-        return ItemPants.Items.get(0);
+        return PlatePantsItem.Items.get(0);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Pants extends BaseArmor {
 
     @Override
     public HashMap<Integer, Item> ItemsForRarities() {
-        return ItemPants.Items;
+        return PlatePantsItem.Items;
     }
 
     @Override

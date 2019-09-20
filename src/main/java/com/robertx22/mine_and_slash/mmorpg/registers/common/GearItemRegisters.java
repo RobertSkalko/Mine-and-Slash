@@ -3,10 +3,14 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.database.items.runes.*;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.items.gearitems.armor.ItemBoots;
-import com.robertx22.mine_and_slash.items.gearitems.armor.ItemChest;
-import com.robertx22.mine_and_slash.items.gearitems.armor.ItemHelmet;
-import com.robertx22.mine_and_slash.items.gearitems.armor.ItemPants;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherBootsItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherChestItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherHelmetItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherPantsItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateBootsItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateChestItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateHelmetItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlatePantsItem;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemNecklace;
@@ -100,10 +104,24 @@ public class GearItemRegisters {
                     .Rank());
 
             // armors
-            regRarities(new ItemBoots(rank), ItemBoots.Items, "boots/boots", rarity.Rank());
-            regRarities(new ItemChest(rank), ItemChest.Items, "chest/chest", rarity.Rank());
-            regRarities(new ItemHelmet(rank), ItemHelmet.Items, "helmet/helmet", rarity.Rank());
-            regRarities(new ItemPants(rank), ItemPants.Items, "pants/pants", rarity.Rank());
+            regRarities(new PlateBootsItem(rank), PlateBootsItem.Items, "boots/boots", rarity
+                    .Rank());
+            regRarities(new PlateChestItem(rank), PlateChestItem.Items, "chest/chest", rarity
+                    .Rank());
+            regRarities(new PlateHelmetItem(rank), PlateHelmetItem.Items, "helmet/helmet", rarity
+                    .Rank());
+            regRarities(new PlatePantsItem(rank), PlatePantsItem.Items, "pants/pants", rarity
+                    .Rank());
+
+            //LEATHER
+            regRarities(new LeatherBootsItem(rank), LeatherBootsItem.Items, "boots/leather/boots", rarity
+                    .Rank());
+            regRarities(new LeatherChestItem(rank), LeatherChestItem.Items, "chest/leather/chest", rarity
+                    .Rank());
+            regRarities(new LeatherHelmetItem(rank), LeatherHelmetItem.Items, "helmet/leather/helmet", rarity
+                    .Rank());
+            regRarities(new LeatherPantsItem(rank), LeatherPantsItem.Items, "pants/leather/pants", rarity
+                    .Rank());
 
             // misc
             regRarities(new ItemMap(rank), ItemMap.Items, "map/map", rarity.Rank()); // not gearitem but yeah

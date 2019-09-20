@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "mmorpg:items/helmet/leather/helmet",
+		"layer1": "mmorpg:items/helmet/leather/overlay2"		
+    }
+}
