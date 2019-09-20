@@ -28,4 +28,9 @@ public abstract class BaseCoreStatFlat extends StatMod {
         return StatTypes.Flat;
     }
 
+    @Override
+    public int Weight() {
+        return super.Weight() / 5;
+    }
+
 }

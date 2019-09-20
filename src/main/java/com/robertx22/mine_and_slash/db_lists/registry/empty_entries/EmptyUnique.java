@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Boots;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import net.minecraft.block.BlockState;
@@ -59,7 +59,7 @@ public class EmptyUnique implements IUnique {
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Boots();
+        return new PlateBoots();
     }
 
     @Override

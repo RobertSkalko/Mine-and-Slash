@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.affixes.suffixes.unique;
 
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
-import com.robertx22.mine_and_slash.database.gearitemslots.Helmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
@@ -17,7 +17,7 @@ import java.util.List;
 public class OfTheHydra extends Suffix {
 
     public OfTheHydra() {
-        super(new Requirements(new SlotRequirement(new Helmet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)));
+        super(new Requirements(new SlotRequirement(new PlateHelmet()), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)));
     }
 
     @Override

@@ -1,12 +1,19 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.LeatherArmor;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BasePants;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherPantsItem;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class LeatherPants extends LeatherArmor {
+public class LeatherPants extends BasePants {
+
+    @Override
+    public List<StatMod> PossibleSecondaryStats() {
+        return this.leatherArmorStats();
+    }
 
     @Override
     public HashMap<Integer, Item> ItemsForRarities() {

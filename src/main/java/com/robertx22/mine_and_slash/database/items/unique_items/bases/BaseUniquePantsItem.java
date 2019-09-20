@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.bases;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Pants;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlatePantsItem;
@@ -16,7 +16,7 @@ public abstract class BaseUniquePantsItem extends PlatePantsItem implements IUni
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Pants();
+        return new PlatePants();
     }
 
     @Override

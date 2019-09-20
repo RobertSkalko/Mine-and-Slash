@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.bases;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Boots;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateBootsItem;
@@ -32,6 +32,6 @@ public abstract class BaseUniqueBoots extends PlateBootsItem implements IUnique 
 
     @Override
     public GearItemSlot getGearSlot() {
-        return new Boots();
+        return new PlateBoots();
     }
 }

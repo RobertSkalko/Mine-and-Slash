@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.affixes.suffixes;
 
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
-import com.robertx22.mine_and_slash.database.gearitemslots.Helmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -13,7 +13,7 @@ import java.util.List;
 public class OfGuidance extends Suffix {
 
     public OfGuidance() {
-        super(new Requirements(new SlotRequirement(new Helmet())));
+        super(new Requirements(new SlotRequirement(new PlateHelmet())));
     }
 
     @Override

@@ -1,6 +1,13 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.*;
+import com.robertx22.mine_and_slash.database.gearitemslots.Bracelet;
+import com.robertx22.mine_and_slash.database.gearitemslots.Necklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.Ring;
+import com.robertx22.mine_and_slash.database.gearitemslots.Sword;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.spells.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
@@ -70,13 +77,13 @@ public class OnLogin {
         print.setSpecificRarity(0);
 
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(new Boots().GUID());
+        print.SetSpecificType(new PlateBoots().GUID());
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(new Chest().GUID());
+        print.SetSpecificType(new PlateChest().GUID());
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(new Helmet().GUID());
+        print.SetSpecificType(new PlateHelmet().GUID());
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(new Pants().GUID());
+        print.SetSpecificType(new PlatePants().GUID());
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
 
         print.SetSpecificType(new Ring().GUID());

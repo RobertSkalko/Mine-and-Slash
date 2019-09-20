@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.sets.mid_lvl;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Chest;
 import com.robertx22.mine_and_slash.database.gearitemslots.Shield;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
@@ -34,7 +34,7 @@ public class TheProtector extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(new SlotRequirement(Arrays.asList(new Shield(), new Chest())), LevelRequirement
+        return new Requirements(new SlotRequirement(Arrays.asList(new Shield(), new PlateChest())), LevelRequirement
                 .midLVLOnly());
     }
 

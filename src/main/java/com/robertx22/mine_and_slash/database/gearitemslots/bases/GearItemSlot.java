@@ -2,7 +2,10 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -31,6 +34,18 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public boolean isGearOfThisType(Item item) {
         return false;
+    }
+
+    public List<StatMod> leatherArmorStats() {
+        return Arrays.asList(new ArmorFlat().multi(0.75F), new DodgeFlat(), new StaminaFlat(), new DexterityFlat());
+    }
+
+    public List<StatMod> plateArmorStats() {
+        return Arrays.asList(new ArmorFlat(), new VitalityFlat(), new StrengthFlat());
+    }
+
+    public List<StatMod> clothArmorStats() {
+        return Arrays.asList(new ArmorFlat().multi(0.5F), new ManaFlat().multi(1.5F), new IntelligenceFlat(), new WisdomFlat());
     }
 
     @Override

@@ -1,14 +1,19 @@
-package com.robertx22.mine_and_slash.database.gearitemslots;
+package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseArmor;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateHelmetItem;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class Helmet extends BaseArmor {
+public class PlateHelmet extends BaseHelmet {
+
+    @Override
+    public List<StatMod> PossibleSecondaryStats() {
+        return this.plateArmorStats();
+    }
 
     @Override
     public String GUID() {
@@ -21,18 +26,12 @@ public class Helmet extends BaseArmor {
     }
 
     @Override
-    public boolean isGearOfThisType(Item item) {
-        return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
-                .equals(EquipmentSlotType.HEAD);
-    }
-
-    @Override
     public HashMap<Integer, Item> ItemsForRarities() {
         return PlateHelmetItem.Items;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Helmet";
+        return "Plate Helm";
     }
 }

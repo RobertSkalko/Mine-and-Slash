@@ -128,7 +128,7 @@ public class TileGearModify extends BaseTile {
     public static final int FIRST_INPUT_SLOT = 0;
     public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
 
-    private static final short COOK_TIME_FOR_COMPLETION = 150; // vanilla value is 200 = 10 seconds
+    private static final short COOK_TIME_FOR_COMPLETION = 120; // vanilla value is 200 = 10 seconds
 
     public TileGearModify() {
         super(BlockRegister.GEAR_MODIFY);
