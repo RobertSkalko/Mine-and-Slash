@@ -1,6 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/pants/leather/pants3"
+        "layer0": "mmorpg:items/pants/leather/pants",
+		"layer1": "mmorpg:items/pants/leather/overlay"		
     }
 }

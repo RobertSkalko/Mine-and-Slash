@@ -10,9 +10,8 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.IDyeableArmorItem;
 
-public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, IGearItem, IDyeableArmorItem {
+public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, IGearItem {
 
     public enum Type {
         CLOTH,
@@ -66,7 +65,6 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
 
         } else if (type.equals(Type.CLOTH)) {
             return new CommonClothMat(); // TEMP TODO
-
         }
 
         return new CommonMat();

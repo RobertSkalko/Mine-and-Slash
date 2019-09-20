@@ -13,11 +13,11 @@ public class LevelUtils {
 
     public static int determineLevel(World world, BlockPos pos) {
 
-        DimensionConfig config = SlashRegistry.getDimensionConfig(world);
+        DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(world);
 
         int lvl = 1;
 
-        if (config.SCALE_MOB_LEVEL_TO_NEAREST_PLAYER) {
+        if (dimConfig.SCALE_MOB_LEVEL_TO_NEAREST_PLAYER) {
             PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), (double) 3000, EntityPredicates.NOT_SPECTATING);
 
             if (player != null) {
@@ -25,10 +25,10 @@ public class LevelUtils {
             }
 
         } else {
-            lvl = determineLevelPerDistanceFromSpawn(world, pos, config);
+            lvl = determineLevelPerDistanceFromSpawn(world, pos, dimConfig);
         }
 
-        lvl = MathHelper.clamp(lvl, config.MINIMUM_MOB_LEVEL, config.MAXIMUM_MOB_LEVEL);
+        lvl = MathHelper.clamp(lvl, dimConfig.MINIMUM_MOB_LEVEL, dimConfig.MAXIMUM_MOB_LEVEL);
 
         return lvl;
     }

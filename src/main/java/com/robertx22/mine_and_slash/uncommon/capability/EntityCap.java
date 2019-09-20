@@ -404,11 +404,11 @@ public class EntityCap {
         public void SetMobLevelAtSpawn(LivingEntity entity) {
 
             this.setMobStats = true;
-            ModEntityConfig config = SlashRegistry.getEntityConfig(entity, this);
+            ModEntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, this);
 
-            int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition()) + config.LEVEL_MODIFIER;
+            int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition()) + entityConfig.LEVEL_MODIFIER;
 
-            this.level = MathHelper.clamp(lvl, config.MIN_LEVEL, config.MAX_LEVEL);
+            this.level = MathHelper.clamp(lvl, entityConfig.MIN_LEVEL, entityConfig.MAX_LEVEL);
 
         }
 
