@@ -10,6 +10,9 @@ import java.util.HashMap;
 
 public class Chest extends BaseArmor {
 
+    public Chest() {
+    }
+
     @Override
     public String GUID() {
         return "Chest";

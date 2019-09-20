@@ -17,11 +17,6 @@ public class ItemBoots extends BaseArmorItem {
     }
 
     @Override
-    public String Name() {
-        return "Boots";
-    }
-
-    @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Items.get(rarity);
         return rar.textFormatColor() + "Boots";

@@ -3,7 +3,7 @@ gears now don't add stats if they have only 1 or 2 durability. This is a fix for
 They should be now useless as they are supposed to.
 added on stat calculation event. You can use this to add stats from your own sources, or remove them lol
 added collect gear event. This should allow a bit more addon support. 
-core stats like dexterity now dont scale anymore. (code rewrite, bugs possible)
+core stats like dexterity now scale a lot slower. (code rewrite, bugs possible)
 fixed player base stats scale value applying to lvl 1 value
 2.7.4
 try fix server crash on profession block loading client side class

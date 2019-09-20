@@ -28,12 +28,6 @@ public class ProfessionRecipePacket {
 
     }
 
-    public ProfessionRecipePacket(BlockPos pos) {
-        this.pos = pos;
-        this.recipeGUID = "";
-
-    }
-
     public static ProfessionRecipePacket decode(PacketBuffer buf) {
 
         ProfessionRecipePacket newpkt = new ProfessionRecipePacket();

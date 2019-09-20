@@ -23,7 +23,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     @Override
     public boolean ScalesToLevel() {
-        return false;
+        return true;
     }
 
     @Override
@@ -33,7 +33,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     @Override
     public float amountToReach100Percent() {
-        return 15;
+        return 20;
     }
 
     public float calculateScalingStatGrowth(float stat, int lvl) {
@@ -43,7 +43,8 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
 
-        float percent = data.Value / this.amountToReach100Percent() * 100;
+        float percent = data.Value / calculateScalingStatGrowth(this.amountToReach100Percent(), unitdata
+                .getLevel()) * 100;
 
         percent = MathHelper.clamp(percent, 0, 1000000);
 

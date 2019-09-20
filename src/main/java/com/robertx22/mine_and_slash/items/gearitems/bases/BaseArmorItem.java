@@ -23,8 +23,6 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
         return "";
     }
 
-    public abstract String Name();
-
     @Override
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Gear_Items;

@@ -14,6 +14,9 @@ public class GearTypes implements ISlashRegistryInit {
         List<GearItemSlot> All = new ArrayList<GearItemSlot>() {
             {
                 {
+
+                    add(new LeatherChest());
+
                     add(new Boots());
                     add(new Pants());
                     add(new Helmet());

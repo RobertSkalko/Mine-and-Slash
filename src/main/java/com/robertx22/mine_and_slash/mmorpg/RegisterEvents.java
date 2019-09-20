@@ -63,7 +63,7 @@ public class RegisterEvents {
         register(OnMissingMappings.class);
         register(OnPickupInsertIntoBag.class);
         register(OnPickUpSalvage.class);
-        register(OnItemDroppedSound.class);
+        //register(OnItemDroppedSound.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnTooltip.class);

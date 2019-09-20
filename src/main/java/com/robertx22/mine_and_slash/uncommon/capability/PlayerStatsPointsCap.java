@@ -89,11 +89,14 @@ public class PlayerStatsPointsCap {
 
         @Override
         public int getAvailablePoints(EntityCap.UnitData data) {
-            return getPointsForLevel(data.getLevel()) - this.data.getCurrentlyAllocatedPointAmount();
+
+            int avail = getPointsForLevel(data.getLevel());
+
+            return avail - this.data.getCurrentlyAllocatedPointAmount();
         }
 
         public int getPointsForLevel(int lvl) {
-            return 1 * lvl;
+            return lvl;
         }
 
         @Override

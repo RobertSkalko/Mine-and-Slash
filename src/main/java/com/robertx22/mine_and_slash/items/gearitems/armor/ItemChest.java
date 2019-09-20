@@ -17,11 +17,6 @@ public class ItemChest extends BaseArmorItem {
     }
 
     @Override
-    public String Name() {
-        return "Chest";
-    }
-
-    @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Items.get(rarity);
         return rar.textFormatColor() + "Chest";
