@@ -14,7 +14,7 @@ public enum Chats implements IAutoLocName {
     Not_enough_time("Not enough time"),
     Infusion_Failed("Infusion Failed"),
     Infusion_was_incredibly_Successful("Infusion was incredibly Successful"),
-    A_Piece_of_gear_is_too_high_level_for_you("A Piece of gear is too high level for you"),
+    A_Piece_of_gear_is_too_high_level_for_you("You Don't meet requirements of a piece of current gear."),
     Map_time_penalty_activated("Map time penalty activated"),
     Player_died_in_a_map_world("Player died in a map world"),
     You_have_ran_out_of_time("You have ran out of time"),

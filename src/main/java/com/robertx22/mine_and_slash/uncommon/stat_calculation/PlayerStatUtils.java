@@ -84,13 +84,13 @@ public class PlayerStatUtils {
 
     }
 
-    public static void AddAllGearStats(Entity entity, List<GearItemData> gears, Unit unit,
-                                       int level) {
+    public static void AddAllGearStats(Entity entity, List<GearItemData> gears,
+                                       UnitData unitdata, int level) {
 
         boolean gearTooHighLevel = false;
 
         for (GearItemData gear : gears) {
-            if (gear.level > level) {
+            if (!gear.meetsRequirements(unitdata)) {
                 gearTooHighLevel = true;
 
             } else {
@@ -107,7 +107,7 @@ public class PlayerStatUtils {
                             Stat stat = data.getStatMod().GetBaseStat();
 
                             if (stat != null) {
-                                StatData statdata = unit.getStat(stat);
+                                StatData statdata = unitdata.getUnit().getStat(stat);
                                 if (statdata != null) {
                                     data.Add(statdata, datas.level);
                                 }

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherHelmetItem;
 import net.minecraft.item.Item;
@@ -9,6 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LeatherHelmet extends BaseHelmet {
+
+    public List<Stat> statRequirements() {
+        return leatherRequirements();
+    }
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {

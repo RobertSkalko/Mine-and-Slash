@@ -85,6 +85,9 @@ public class GearLootGen extends BaseLootGen {
             }
         }
 
+        data.requirements = new StatRequirementsData();
+        data.requirements.create(data);
+
         if (type.canGetPrimaryStats()) {
             data.primaryStats = new PrimaryStatsData();
             data.primaryStats.RerollFully(data);

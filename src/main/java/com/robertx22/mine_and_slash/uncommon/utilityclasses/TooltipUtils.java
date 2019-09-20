@@ -48,18 +48,23 @@ public class TooltipUtils {
         return list;
     }
 
-    public static ITextComponent lvlReq(int lvl, EntityCap.UnitData player) {
+    public static ITextComponent requirement(ITextComponent text, int stat, int req) {
 
         ITextComponent comp;
 
-        if (player.getLevel() >= lvl) {
+        if (stat >= req) {
             comp = new StringTextComponent(CHECKMARK);
         } else {
             comp = new StringTextComponent(X);
         }
 
-        return comp.appendSibling(new StringTextComponent(TextFormatting.GRAY + " ").appendText("Lvl Req: " + lvl));
+        return comp.appendSibling(new StringTextComponent(TextFormatting.GRAY + " ").appendSibling(text)
+                .appendText(": " + req));
 
+    }
+
+    public static ITextComponent lvlReq(int lvl, EntityCap.UnitData player) {
+        return requirement(new StringTextComponent("Lvl Req"), player.getLevel(), lvl);
     }
 
     public static List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list,

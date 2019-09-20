@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -36,16 +38,32 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return false;
     }
 
-    public List<StatMod> leatherArmorStats() {
+    public static List<StatMod> leatherArmorStats() {
         return Arrays.asList(new ArmorFlat().multi(0.75F), new DodgeFlat(), new StaminaFlat(), new DexterityFlat());
     }
 
-    public List<StatMod> plateArmorStats() {
+    public static List<StatMod> plateArmorStats() {
         return Arrays.asList(new ArmorFlat(), new VitalityFlat(), new StrengthFlat());
     }
 
-    public List<StatMod> clothArmorStats() {
+    public static List<StatMod> clothArmorStats() {
         return Arrays.asList(new ArmorFlat().multi(0.5F), new ManaFlat().multi(1.5F), new IntelligenceFlat(), new WisdomFlat());
+    }
+
+    public List<Stat> statRequirements() {
+        return Arrays.asList();
+    }
+
+    public static List<Stat> plateRequirements() {
+        return Arrays.asList(new Strength(), new Vitality());
+    }
+
+    public static List<Stat> clothRequirements() {
+        return Arrays.asList(new Intelligence(), new Wisdom());
+    }
+
+    public static List<Stat> leatherRequirements() {
+        return Arrays.asList(new Dexterity(), new Stamina());
     }
 
     @Override

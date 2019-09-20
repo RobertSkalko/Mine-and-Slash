@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsCon
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -32,6 +33,18 @@ import java.util.List;
 
 @Storable
 public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
+
+    @Store
+    public StatRequirementsData requirements = null;
+
+    public boolean meetsRequirements(EntityCap.UnitData data) {
+        if (data.getLevel() >= this.getLevel()) {
+            if (requirements == null || requirements.meetsRequirements(data)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Store
     public boolean isUnique = false;

@@ -386,7 +386,7 @@ public class Unit {
 
         if (gearIsValid) {
             PlayerStatUtils.CountWornSets(entity, gears, this);
-            PlayerStatUtils.AddAllGearStats(entity, gears, this, level);
+            PlayerStatUtils.AddAllGearStats(entity, gears, data, level);
             PlayerStatUtils.AddAllSetStats(entity, data, this, level);
 
         }
