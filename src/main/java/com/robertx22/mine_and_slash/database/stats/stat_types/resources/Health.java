@@ -9,6 +9,12 @@ import net.minecraft.util.text.TextFormatting;
 public class Health extends Stat {
     public static String GUID = "Health";
 
+    public static Health INSTANCE = new Health();
+
+    private Health() {
+
+    }
+
     @Override
     public TextFormatting getIconFormat() {
         return TextFormatting.RED;
@@ -32,9 +38,6 @@ public class Health extends Stat {
     @Override
     public String locDescForLangFile() {
         return "Allows you to take more damage from mobs";
-    }
-
-    public Health() {
     }
 
     @Override

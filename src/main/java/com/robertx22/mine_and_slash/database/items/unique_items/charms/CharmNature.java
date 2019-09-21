@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.charms;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPenePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthRegenPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.less.LessCriticalDamagePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -18,6 +18,13 @@ public class CharmNature extends BaseUniqueCharm {
 
     public CharmNature() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.STRENGTH, StatReq.Size.MEDIUM);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -32,7 +39,8 @@ public class CharmNature extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new HealthRegenPercent(), new ElementalPenePercent(Elements.Nature), new ElementalResistFlat(Elements.Nature), new LessCriticalDamagePercent());
+        return Arrays.asList(new HealthFlat(), new ElementalPenePercent(Elements.Nature), new ElementalResistFlat(Elements.Nature)
+                .multi(2));
     }
 
     @Override

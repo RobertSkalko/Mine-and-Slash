@@ -18,6 +18,8 @@ import java.util.List;
 
 public interface IUnique extends IWeighted, IRarity, IGearSlotType, ITiered, IGUID, IAutoLocName, IAutoLocDesc, IGearItem, ISlashRegistryEntry<IUnique> {
 
+    StatReq getRequirements();
+
     @Override
     public default int Weight() {
         return this.getRarity().Weight();

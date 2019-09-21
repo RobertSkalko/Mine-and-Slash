@@ -1,12 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalTransferFlat;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -17,6 +18,13 @@ public class NecklaceFire extends BaseUniqueNecklace {
 
     public NecklaceFire() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -31,7 +39,7 @@ public class NecklaceFire extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Fire), new ElementalTransferFlat(Elements.Water, Elements.Fire), new ElementalResistFlat(Elements.Water), new LessHealthRegenFlat());
+        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Fire), new ElementalTransferFlat(Elements.Water, Elements.Fire), new ElementalResistFlat(Elements.Water));
 
     }
 

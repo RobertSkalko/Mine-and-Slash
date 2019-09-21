@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.chest;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorArmorFlat;
@@ -7,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.Heal
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -18,6 +19,13 @@ public class ChestThunder extends BaseUniqueChest {
 
     public ChestThunder() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -32,7 +40,7 @@ public class ChestThunder extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Thunder), new MajorArmorFlat(), new ElementalSpellDamageFlat(Elements.Thunder), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CrippleLifestealPercent());
+        return Arrays.asList(new ElementalResistFlat(Elements.Thunder), new MajorArmorFlat(), new ElementalSpellDamageFlat(Elements.Thunder), new ElementalSpellToAttackDMGFlat(Elements.Thunder));
     }
 
     @Override

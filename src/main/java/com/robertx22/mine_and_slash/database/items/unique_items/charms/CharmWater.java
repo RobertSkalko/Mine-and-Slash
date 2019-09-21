@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.charms;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPenePercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -18,6 +18,13 @@ public class CharmWater extends BaseUniqueCharm {
 
     public CharmWater() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -32,12 +39,12 @@ public class CharmWater extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ManaToEnergyConvFlat(), new ArmorFlat(), new ElementalPenePercent(Elements.Water), new ElementalResistFlat(Elements.Water), new CrippleDodgePercent());
+        return Arrays.asList(new ManaToEnergyConvFlat(), new ArmorFlat().multi(1.5F), new ElementalPenePercent(Elements.Water));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Water));
+        return Arrays.asList(new ElementalPeneFlat(Elements.Water).multi(2));
     }
 
     @Override

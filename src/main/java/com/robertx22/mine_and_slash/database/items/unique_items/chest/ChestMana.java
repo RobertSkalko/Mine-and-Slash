@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.chest;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
@@ -7,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.Heal
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.conversions.EnergyToManaConvFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -18,6 +19,13 @@ public class ChestMana extends BaseUniqueChest {
 
     public ChestMana() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -33,7 +41,7 @@ public class ChestMana extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new EnergyToManaConvFlat(), new ManaFlat(), new EnergyRegenFlat(), new WeaponDamageFlat(WeaponTypes.Staff), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new EnergyToManaConvFlat(), new ManaFlat(), new EnergyRegenFlat(), new WeaponDamageFlat(WeaponTypes.Staff));
     }
 
     @Override

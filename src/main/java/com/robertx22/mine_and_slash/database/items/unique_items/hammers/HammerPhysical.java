@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.hammers;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHammer;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.less.LessManaOnHitPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.CriticalHitPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -17,6 +17,13 @@ import java.util.List;
 public class HammerPhysical extends BaseUniqueHammer {
     public HammerPhysical() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -31,7 +38,7 @@ public class HammerPhysical extends BaseUniqueHammer {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Physical), new CriticalHitPercent(), new CriticalDamagePercent(), new CrippleLifeOnHitPercent(), new LessManaOnHitPercent());
+        return Arrays.asList(new ElementalPeneFlat(Elements.Physical), new CriticalHitPercent(), new CriticalDamagePercent());
     }
 
     @Override

@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.charms;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ManaRegenPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -18,6 +18,13 @@ public class CharmFire extends BaseUniqueCharm {
 
     public CharmFire() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -32,7 +39,7 @@ public class CharmFire extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ManaRegenPercent(), new ElementalPeneFlat(Elements.Fire), new CriticalHitFlat(), new ElementalResistFlat(Elements.Fire), new CrippleDodgePercent());
+        return Arrays.asList(new ManaRegenPercent(), new ElementalPeneFlat(Elements.Fire).multi(2), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override

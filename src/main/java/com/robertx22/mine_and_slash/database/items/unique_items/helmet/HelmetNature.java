@@ -1,14 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.less.LessManaOnHitPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_types.traits.low_dodge.LowDodgeAddCritHit;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -19,6 +18,13 @@ public class HelmetNature extends BaseUniqueHelmet {
 
     public HelmetNature() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -33,7 +39,7 @@ public class HelmetNature extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AllTraitMods(new LowDodgeAddCritHit()), new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Nature), new LessManaOnHitPercent());
+        return Arrays.asList(new HealthRegenFlat(), new HealthPercent().multi(2), new ElementalResistFlat(Elements.Nature));
     }
 
     @Override

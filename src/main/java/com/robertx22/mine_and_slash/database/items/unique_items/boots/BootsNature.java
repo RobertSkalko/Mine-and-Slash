@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.boots;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleDodgePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -18,6 +18,13 @@ public class BootsNature extends BaseUniqueBoots {
 
     public BootsNature() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.MEDIUM);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -32,8 +39,8 @@ public class BootsNature extends BaseUniqueBoots {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthPercent(), new HealthRegenFlat(), new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new ElementalResistFlat(Elements.Nature)
-                .multi(2), new CrippleDodgePercent());
+        return Arrays.asList(new HealthPercent().multi(2), new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new ElementalResistFlat(Elements.Nature)
+                .multi(2));
 
     }
 

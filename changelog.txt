@@ -2,8 +2,15 @@
 
 Added armor types! Cloth, Leather, Plate! 
 
+* cloth needs int, wis, leather needs dex, sta, plate needs vit str
+* normal items randomly get either 1 stat as requirement, or both at half the value
+* unique items have unique requirements :thonK: 
+* higher gear rarities have higher stat requirements
+
 All old items will be plate. Still not sure what to do as their ID is "chest" instead of "plate_chest", might fix it with a breaking change when an expansion happens or 1.15 port.
 
+
+trimmed down unique stats a bit. Less stats, stronger stats
 some perf improvements
 weapon tooltips are now less informative by default, but shift shows all the previously available info
 gear tooltips now remove empty lines if there's more than 33 lines.

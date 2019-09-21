@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.EnergyRegenPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.less.LessCriticalHitPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -18,6 +18,13 @@ public class HelmetWater extends BaseUniqueHelmet {
 
     public HelmetWater() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -32,7 +39,7 @@ public class HelmetWater extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Water), new ManaFlat(), new ManaRegenFlat(), new EnergyRegenPercent(), new LessCriticalHitPercent());
+        return Arrays.asList(new ElementalResistFlat(Elements.Water), new ManaRegenFlat(), new EnergyRegenFlat());
     }
 
     @Override

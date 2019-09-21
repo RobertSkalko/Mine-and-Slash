@@ -1,14 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.less.LessCriticalHitPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_types.traits.low_dodge.LowDodgeAddArmor;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -19,6 +18,13 @@ public class HelmetFire extends BaseUniqueHelmet {
 
     public HelmetFire() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -33,12 +39,12 @@ public class HelmetFire extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new AllTraitMods(new LowDodgeAddArmor()), new ElementalSpellDamageFlat(Elements.Fire), new EnergyRegenFlat(), new ElementalResistFlat(Elements.Fire), new LessCriticalHitPercent());
+        return Arrays.asList(new MajorArmorFlat(), new EnergyRegenFlat().multi(1.5F), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new MajorArmorFlat());
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire));
     }
 
     @Override

@@ -22,7 +22,7 @@ public class StatRequirementsData {
 
     @Store
     private List<String> stats = new ArrayList<>();
-    
+
     private HashMap<String, Integer> getReqs(GearItemData data) {
         HashMap<String, Integer> map = new HashMap<>();
 

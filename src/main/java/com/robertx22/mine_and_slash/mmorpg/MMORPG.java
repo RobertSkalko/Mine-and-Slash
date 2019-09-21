@@ -23,7 +23,6 @@ import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
-import com.robertx22.mine_and_slash.tests.CreateInstances;
 import com.robertx22.mine_and_slash.tests.ValidateGuids;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.gui.player_overlays.BarsGUI;
@@ -168,7 +167,9 @@ public class MMORPG {
             ModelCreator.createDefaultModelsAndDirs();
             ValidateGuids.validate();
             CountUniqueGearTypes.count();
-            CreateInstances.createall();
+            //CreateInstances.createall();
+
+            // todo look for unique items with more than 4 stats?
         }
 
     }

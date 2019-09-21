@@ -1,12 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.chest;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalTransferFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.less.LessDodgePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -17,6 +18,13 @@ public class ChestWater extends BaseUniqueChest {
 
     public ChestWater() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -32,7 +40,7 @@ public class ChestWater extends BaseUniqueChest {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new ElementalPeneFlat(Elements.Water).multi(2), new MajorArmorFlat(), new ElementalTransferFlat(Elements.Nature, Elements.Water)
-                .multi(2), new LessDodgePercent());
+                .multi(2));
     }
 
     @Override
