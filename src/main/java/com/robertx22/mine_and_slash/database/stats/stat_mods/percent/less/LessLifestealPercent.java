@@ -12,28 +12,28 @@ public class LessLifestealPercent extends StatMod {
 
     @Override
     public String GUID() {
-	return "LessLifestealPercent";
+        return "LessLifestealPercent";
 
     }
 
     @Override
     public float Min() {
-	return -10;
+        return -10;
     }
 
     @Override
     public float Max() {
-	return -20;
+        return -20;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Percent;
+        return StatTypes.Percent;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new Lifesteal();
+        return Lifesteal.INSTANCE;
     }
 
 }

@@ -7,32 +7,32 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class ManaFlat extends StatMod {
 
-	public ManaFlat() {
-	}
+    public ManaFlat() {
+    }
 
-	@Override
-	public String GUID() {
-		return "ManaFlat";
-	}
+    @Override
+    public String GUID() {
+        return "ManaFlat";
+    }
 
-	@Override
-	public float Min() {
-		return 10;
-	}
+    @Override
+    public float Min() {
+        return 10;
+    }
 
-	@Override
-	public float Max() {
-		return 25;
-	}
+    @Override
+    public float Max() {
+        return 25;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Flat;
-	}
+    @Override
+    public StatTypes Type() {
+        return StatTypes.Flat;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new Mana();
-	}
+    @Override
+    public Stat GetBaseStat() {
+        return Mana.INSTANCE;
+    }
 
 }

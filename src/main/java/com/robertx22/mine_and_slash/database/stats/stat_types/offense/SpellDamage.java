@@ -12,6 +12,12 @@ import java.util.List;
 
 public class SpellDamage extends Stat implements IStatEffects {
 
+    public static Stat INSTANCE = new SpellDamage();
+
+    private SpellDamage() {
+
+    }
+
     public static String GUID = "spell_damage";
 
     @Override
@@ -32,10 +38,6 @@ public class SpellDamage extends Stat implements IStatEffects {
     @Override
     public StatGroup statGroup() {
         return StatGroup.SpellDamage;
-    }
-
-    public SpellDamage() {
-
     }
 
     @Override

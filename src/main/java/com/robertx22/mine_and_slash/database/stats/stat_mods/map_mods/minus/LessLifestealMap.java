@@ -32,7 +32,7 @@ public class LessLifestealMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new Lifesteal();
+        return Lifesteal.INSTANCE;
     }
 
 }

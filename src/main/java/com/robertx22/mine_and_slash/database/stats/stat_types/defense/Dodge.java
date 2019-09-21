@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Dodge extends Stat implements IStatEffects {
+
+    public static Stat INSTANCE = new Dodge();
     public static String GUID = "Dodge";
 
     @Override
@@ -27,7 +29,7 @@ public class Dodge extends Stat implements IStatEffects {
         return Arrays.asList(new DodgeEffect());
     }
 
-    public Dodge() {
+    private Dodge() {
         maximumValue = 75;
     }
 

@@ -33,7 +33,7 @@ public class MajorCriticalDamagePercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new CriticalDamage();
+        return CriticalDamage.INSTANCE;
     }
 
 }

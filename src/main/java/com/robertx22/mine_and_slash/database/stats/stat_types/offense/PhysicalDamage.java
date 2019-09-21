@@ -4,6 +4,9 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class PhysicalDamage extends Stat {
+
+    public static Stat INSTANCE = new PhysicalDamage();
+
     public static String GUID = "Physical Damage";
 
     @Override
@@ -16,7 +19,7 @@ public class PhysicalDamage extends Stat {
         return "How much DMG your basic attacks do";
     }
 
-    public PhysicalDamage() {
+    private PhysicalDamage() {
         this.BaseFlat = 1;
 
     }

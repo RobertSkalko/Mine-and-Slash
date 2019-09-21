@@ -54,7 +54,7 @@ public class Charm extends GearItemSlot {
 
     @Override
     public int Weight() {
-        return 1000;
+        return 1200;
     }
 
     @Override

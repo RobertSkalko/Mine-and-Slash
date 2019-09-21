@@ -9,27 +9,27 @@ public class ManaMulti extends StatMod {
 
     @Override
     public String GUID() {
-	return "ManaMulti";
+        return "ManaMulti";
     }
 
     @Override
     public float Min() {
-	return 5;
+        return 5;
     }
 
     @Override
     public float Max() {
-	return 20;
+        return 20;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Multi;
+        return StatTypes.Multi;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new Mana();
+        return Mana.INSTANCE;
     }
 
 }

@@ -12,27 +12,27 @@ public class MajorDodgeFlat extends StatMod {
 
     @Override
     public String GUID() {
-	return "MajorDodgeFlat";
+        return "MajorDodgeFlat";
     }
 
     @Override
     public float Min() {
-	return 3;
+        return 3;
     }
 
     @Override
     public float Max() {
-	return 15;
+        return 15;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new Dodge();
+        return Dodge.INSTANCE;
     }
 
 }

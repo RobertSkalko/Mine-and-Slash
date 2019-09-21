@@ -12,27 +12,27 @@ public class EnergyFlat extends StatMod {
 
     @Override
     public String GUID() {
-	return "EnergyFlat";
+        return "EnergyFlat";
     }
 
     @Override
     public float Min() {
-	return 10;
+        return 10;
     }
 
     @Override
     public float Max() {
-	return 25;
+        return 25;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new Energy();
+        return Energy.INSTANCE;
     }
 
 }

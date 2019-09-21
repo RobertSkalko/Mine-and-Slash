@@ -23,7 +23,7 @@ public class LeatherChest extends BaseChest {
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return this.leatherArmorStats();
+        return leatherArmorStats();
     }
 
     @Override

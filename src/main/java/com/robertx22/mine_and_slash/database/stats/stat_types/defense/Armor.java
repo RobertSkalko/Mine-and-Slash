@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Armor extends Stat implements IStatEffects, IUsableStat {
 
+    public static Stat INSTANCE = new Armor();
+
     @Override
     public StatGroup statGroup() {
         return StatGroup.Defenses;
@@ -29,7 +31,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
 
     public static String GUID = "Armor";
 
-    public Armor() {
+    private Armor() {
         this.minimumValue = 0;
     }
 

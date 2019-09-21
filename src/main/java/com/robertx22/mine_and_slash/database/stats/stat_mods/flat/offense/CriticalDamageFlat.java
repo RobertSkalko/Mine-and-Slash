@@ -34,7 +34,7 @@ public class CriticalDamageFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new CriticalDamage();
+        return CriticalDamage.INSTANCE;
     }
 
 }

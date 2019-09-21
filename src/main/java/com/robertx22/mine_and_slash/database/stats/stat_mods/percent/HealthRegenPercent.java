@@ -12,27 +12,27 @@ public class HealthRegenPercent extends StatMod {
 
     @Override
     public String GUID() {
-	return "HealthRegenPercent";
+        return "HealthRegenPercent";
     }
 
     @Override
     public float Min() {
-	return 5;
+        return 5;
     }
 
     @Override
     public float Max() {
-	return 15;
+        return 15;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Percent;
+        return StatTypes.Percent;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new HealthRegen();
+        return HealthRegen.INSTANCE;
     }
 
 }

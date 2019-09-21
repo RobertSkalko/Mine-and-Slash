@@ -7,32 +7,32 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class MajorDodgeMulti extends StatMod {
 
-	public MajorDodgeMulti() {
-	}
+    public MajorDodgeMulti() {
+    }
 
-	@Override
-	public String GUID() {
-		return "MajorDodgeMulti";
-	}
+    @Override
+    public String GUID() {
+        return "MajorDodgeMulti";
+    }
 
-	@Override
-	public float Min() {
-		return 20;
-	}
+    @Override
+    public float Min() {
+        return 20;
+    }
 
-	@Override
-	public float Max() {
-		return 50;
-	}
+    @Override
+    public float Max() {
+        return 50;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Multi;
-	}
+    @Override
+    public StatTypes Type() {
+        return StatTypes.Multi;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new Dodge();
-	}
+    @Override
+    public Stat GetBaseStat() {
+        return Dodge.INSTANCE;
+    }
 
 }

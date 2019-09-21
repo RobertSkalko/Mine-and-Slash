@@ -12,29 +12,29 @@ public class DodgePercent extends StatMod {
 
     @Override
     public String GUID() {
-	return "DodgePercent";
+        return "DodgePercent";
 
     }
 
     @Override
     public float Min() {
-	return 10;
+        return 10;
 
     }
 
     @Override
     public float Max() {
-	return 25;
+        return 25;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Percent;
+        return StatTypes.Percent;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new Dodge();
+        return Dodge.INSTANCE;
     }
 
 }

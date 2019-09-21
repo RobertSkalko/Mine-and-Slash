@@ -12,27 +12,27 @@ public class MajorArmorFlat extends StatMod {
 
     @Override
     public String GUID() {
-	return "MajorArmorFlat";
+        return "MajorArmorFlat";
     }
 
     @Override
     public float Min() {
-	return 6;
+        return 6;
     }
 
     @Override
     public float Max() {
-	return 25;
+        return 25;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new Armor();
+        return Armor.INSTANCE;
     }
 
 }

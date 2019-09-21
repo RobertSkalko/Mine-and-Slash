@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LifeOnHit extends Stat implements IStatEffects {
+
+    public static Stat INSTANCE = new LifeOnHit();
     public static String GUID = "Life On Hit";
 
     @Override
@@ -27,7 +29,7 @@ public class LifeOnHit extends Stat implements IStatEffects {
         return Arrays.asList(new LifeOnHitEffect());
     }
 
-    public LifeOnHit() {
+    private LifeOnHit() {
     }
 
     @Override

@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CriticalHit extends Stat implements IStatEffects {
+    public static Stat INSTANCE = new CriticalHit();
+
     public static String GUID = "Critical Hit";
 
     @Override
@@ -27,7 +29,7 @@ public class CriticalHit extends Stat implements IStatEffects {
         return Arrays.asList(new CriticalHitEffect());
     }
 
-    public CriticalHit() {
+    private CriticalHit() {
         this.BaseFlat = 1;
         this.maximumValue = 100;
     }

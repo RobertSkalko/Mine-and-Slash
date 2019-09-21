@@ -7,32 +7,32 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class DodgeFlat extends StatMod {
 
-	public DodgeFlat() {
-	}
+    public DodgeFlat() {
+    }
 
-	@Override
-	public String GUID() {
-		return "DodgeFlat";
-	}
+    @Override
+    public String GUID() {
+        return "DodgeFlat";
+    }
 
-	@Override
-	public float Min() {
-		return 1;
-	}
+    @Override
+    public float Min() {
+        return 1;
+    }
 
-	@Override
-	public float Max() {
-		return 7;
-	}
+    @Override
+    public float Max() {
+        return 7;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Flat;
-	}
+    @Override
+    public StatTypes Type() {
+        return StatTypes.Flat;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new Dodge();
-	}
+    @Override
+    public Stat GetBaseStat() {
+        return Dodge.INSTANCE;
+    }
 
 }

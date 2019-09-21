@@ -32,7 +32,7 @@ public class EnergyRegenFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new EnergyRegen();
+        return EnergyRegen.INSTANCE;
     }
 
 }

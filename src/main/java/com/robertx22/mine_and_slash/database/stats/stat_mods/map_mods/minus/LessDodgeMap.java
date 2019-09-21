@@ -32,7 +32,7 @@ public class LessDodgeMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new Dodge();
+        return Dodge.INSTANCE;
     }
 
 }

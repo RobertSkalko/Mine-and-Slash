@@ -9,7 +9,6 @@ Added armor types! Cloth, Leather, Plate!
 
 All old items will be plate. Still not sure what to do as their ID is "chest" instead of "plate_chest", might fix it with a breaking change when an expansion happens or 1.15 port.
 
-
 trimmed down unique stats a bit. Less stats, stronger stats
 some perf improvements
 weapon tooltips are now less informative by default, but shift shows all the previously available info

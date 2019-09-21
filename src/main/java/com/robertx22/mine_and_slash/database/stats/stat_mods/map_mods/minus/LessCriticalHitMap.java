@@ -32,7 +32,7 @@ public class LessCriticalHitMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new CriticalHit();
+        return CriticalHit.INSTANCE;
     }
 
 }

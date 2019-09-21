@@ -32,7 +32,7 @@ public class LifestealFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new Lifesteal();
+        return Lifesteal.INSTANCE;
     }
 
 }

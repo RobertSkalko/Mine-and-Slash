@@ -32,7 +32,7 @@ public class PhysicalDamagePercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new PhysicalDamage();
+        return PhysicalDamage.INSTANCE;
     }
 
 }

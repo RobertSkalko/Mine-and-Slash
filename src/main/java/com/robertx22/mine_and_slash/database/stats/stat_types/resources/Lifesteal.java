@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Lifesteal extends Stat implements IStatEffects {
+    public static Stat INSTANCE = new Lifesteal();
     public static String GUID = "Lifesteal";
 
     @Override
@@ -27,7 +28,7 @@ public class Lifesteal extends Stat implements IStatEffects {
         return Arrays.asList(new LifestealEffect());
     }
 
-    public Lifesteal() {
+    private Lifesteal() {
     }
 
     @Override

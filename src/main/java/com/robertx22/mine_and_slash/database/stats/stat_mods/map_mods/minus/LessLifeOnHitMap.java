@@ -32,7 +32,7 @@ public class LessLifeOnHitMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new LifeOnHit();
+        return LifeOnHit.INSTANCE;
     }
 
 }

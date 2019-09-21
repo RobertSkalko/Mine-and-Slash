@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.resources;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
 public class HealthRegen extends BaseRegenClass {
+    public static Stat INSTANCE = new HealthRegen();
     public static String GUID = "Health Regen";
 
     @Override
@@ -21,7 +23,7 @@ public class HealthRegen extends BaseRegenClass {
         return StatGroup.Main;
     }
 
-    public HealthRegen() {
+    private HealthRegen() {
 
     }
 

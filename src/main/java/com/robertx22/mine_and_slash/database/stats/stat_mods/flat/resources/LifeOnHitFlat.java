@@ -32,7 +32,7 @@ public class LifeOnHitFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new LifeOnHit();
+        return LifeOnHit.INSTANCE;
     }
 
 }

@@ -9,27 +9,27 @@ public class LessHealthRegenMulti extends StatMod {
 
     @Override
     public String GUID() {
-	return "LessHealthRegenMulti";
+        return "LessHealthRegenMulti";
     }
 
     @Override
     public float Min() {
-	return -5;
+        return -5;
     }
 
     @Override
     public float Max() {
-	return -10;
+        return -10;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Multi;
+        return StatTypes.Multi;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new HealthRegen();
+        return HealthRegen.INSTANCE;
     }
 
 }

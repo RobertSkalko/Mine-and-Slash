@@ -23,7 +23,7 @@ public class LeatherBoots extends BaseBoots {
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return this.leatherArmorStats();
+        return leatherArmorStats();
     }
 
     @Override

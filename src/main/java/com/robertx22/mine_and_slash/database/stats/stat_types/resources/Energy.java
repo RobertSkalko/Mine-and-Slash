@@ -1,10 +1,14 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.FillableStat;
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
 public class Energy extends FillableStat {
+
+    public static Stat INSTANCE = new Energy();
+
     public static String GUID = "Energy";
 
     @Override
@@ -32,7 +36,7 @@ public class Energy extends FillableStat {
         return "Energy is used to do basic attacks";
     }
 
-    public Energy() {
+    private Energy() {
 
     }
 

@@ -32,7 +32,7 @@ public class HealthRegenFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new HealthRegen();
+        return HealthRegen.INSTANCE;
     }
 
 }

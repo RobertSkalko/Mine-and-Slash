@@ -125,7 +125,7 @@ public class GearTooltipUtils {
                 IWeapon iwep = (IWeapon) gear.GetBaseGearType();
                 tip.add(new StringTextComponent(""));
                 tip.add(Styles.GREENCOMP()
-                        .appendSibling(new Energy().locName()
+                        .appendSibling(Energy.INSTANCE.locName()
                                 .appendText(": " + iwep.mechanic().GetEnergyCost())));
                 tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep
                         .mechanic()

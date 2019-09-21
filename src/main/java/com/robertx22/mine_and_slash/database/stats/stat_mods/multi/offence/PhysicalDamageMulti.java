@@ -9,27 +9,27 @@ public class PhysicalDamageMulti extends StatMod {
 
     @Override
     public String GUID() {
-	return "PhysicalDamageMulti";
+        return "PhysicalDamageMulti";
     }
 
     @Override
     public float Min() {
-	return 5;
+        return 5;
     }
 
     @Override
     public float Max() {
-	return 15;
+        return 15;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Multi;
+        return StatTypes.Multi;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new PhysicalDamage();
+        return PhysicalDamage.INSTANCE;
     }
 
 }

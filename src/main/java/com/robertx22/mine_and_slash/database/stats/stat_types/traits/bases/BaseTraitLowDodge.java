@@ -7,7 +7,7 @@ public abstract class BaseTraitLowDodge extends ConditionalTrait {
 
     @Override
     public Stat stat() {
-        return new Dodge();
+        return Dodge.INSTANCE;
     }
 
     @Override

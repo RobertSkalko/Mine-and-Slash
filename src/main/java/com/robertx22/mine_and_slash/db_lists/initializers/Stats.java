@@ -84,7 +84,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new AllAttributes());
                     add(new AllEleDmg());
                     add(new AllEleSpellDmg());
-                    add(new SpellDamage());
+                    add(SpellDamage.INSTANCE);
                     // major arcana tarot
                     add(new Judgement());
                     add(new StrengthArcana());
@@ -153,22 +153,22 @@ public class Stats implements ISlashRegistryInit {
 
                     // Resources
                     add(Health.INSTANCE);
-                    add(new HealthRegen());
-                    add(new Lifesteal());
-                    add(new LifeOnHit());
-                    add(new Mana());
+                    add(HealthRegen.INSTANCE);
+                    add(Lifesteal.INSTANCE);
+                    add(LifeOnHit.INSTANCE);
+                    add(Mana.INSTANCE);
                     add(new ManaRegen());
                     add(new ManaOnHit());
-                    add(new Energy());
-                    add(new EnergyRegen());
+                    add(Energy.INSTANCE);
+                    add(EnergyRegen.INSTANCE);
                     // Resources
 
                     add(new BlockStrength());
-                    add(new Armor());
-                    add(new CriticalDamage());
-                    add(new CriticalHit());
-                    add(new PhysicalDamage());
-                    add(new Dodge());
+                    add(Armor.INSTANCE);
+                    add(CriticalDamage.INSTANCE);
+                    add(CriticalHit.INSTANCE);
+                    add(PhysicalDamage.INSTANCE);
+                    add(Dodge.INSTANCE);
                     add(new SpellDodge());
 
                     // traits

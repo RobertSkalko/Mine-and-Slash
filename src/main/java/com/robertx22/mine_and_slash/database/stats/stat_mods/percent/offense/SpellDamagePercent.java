@@ -29,7 +29,7 @@ public class SpellDamagePercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new SpellDamage();
+        return SpellDamage.INSTANCE;
     }
 
 }

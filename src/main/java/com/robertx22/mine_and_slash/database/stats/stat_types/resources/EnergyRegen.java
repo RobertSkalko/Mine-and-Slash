@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.resources;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import net.minecraft.util.text.TextFormatting;
 
 public class EnergyRegen extends BaseRegenClass {
+    public static Stat INSTANCE = new EnergyRegen();
     public static String GUID = "Energy Regen";
 
     @Override
@@ -20,7 +22,7 @@ public class EnergyRegen extends BaseRegenClass {
         return StatGroup.Main;
     }
 
-    public EnergyRegen() {
+    private EnergyRegen() {
 
     }
 

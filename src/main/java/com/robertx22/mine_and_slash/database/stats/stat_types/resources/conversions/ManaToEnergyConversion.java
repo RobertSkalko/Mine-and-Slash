@@ -14,7 +14,7 @@ public class ManaToEnergyConversion extends Stat implements IStatConversion {
 
     @Override
     public List<ConversionMethod> conversion() {
-        return Arrays.asList(new ConversionMethod(new ManaRegen(), new EnergyRegen()));
+        return Arrays.asList(new ConversionMethod(new ManaRegen(), EnergyRegen.INSTANCE));
 
     }
 

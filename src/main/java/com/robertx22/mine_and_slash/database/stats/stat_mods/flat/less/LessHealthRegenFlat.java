@@ -12,27 +12,27 @@ public class LessHealthRegenFlat extends StatMod {
 
     @Override
     public String GUID() {
-	return "LessHealthRegenFlat";
+        return "LessHealthRegenFlat";
     }
 
     @Override
     public float Min() {
-	return -2;
+        return -2;
     }
 
     @Override
     public float Max() {
-	return -5;
+        return -5;
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Flat;
+        return StatTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new HealthRegen();
+        return HealthRegen.INSTANCE;
     }
 
 }
