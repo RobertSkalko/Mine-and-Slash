@@ -3,6 +3,7 @@ package com.robertx22.onevent.ontick;
 import java.util.HashMap;
 import java.util.UUID;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.stat_types.resources.EnergyRegen;
 import com.robertx22.database.stat_types.resources.HealthRegen;
 import com.robertx22.database.stat_types.resources.ManaRegen;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 public class OnTickLogic {
 
     static final int TicksToUpdatePlayer = 18;
-    static final int TicksToRegen = 100;
+    static final int TicksToRegen = ModConfig.BasePlayerStats.ticks_regen;
     static final int TicksToGiveMapPortal = 400;
     static final int TicksToUpdateWorld = 120;
 
