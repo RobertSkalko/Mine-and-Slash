@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.unique_items;
 
+import com.robertx22.mine_and_slash.saveclasses.gearitem.StatRequirementsData;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 
 import java.util.HashMap;
@@ -36,7 +37,8 @@ public class StatReq {
         HashMap<String, Integer> hashmap = new HashMap<>();
 
         for (Map.Entry<String, Size> entry : map.entrySet()) {
-            hashmap.put(entry.getKey(), (int) (entry.getValue().multi * lvl));
+            hashmap.put(entry.getKey(), (int) (entry.getValue().multi * StatRequirementsData
+                    .getAmount(lvl)));
         }
 
         return hashmap;

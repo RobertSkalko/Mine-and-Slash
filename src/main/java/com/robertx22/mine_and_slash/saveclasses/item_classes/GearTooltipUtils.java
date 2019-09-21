@@ -206,7 +206,7 @@ public class GearTooltipUtils {
                             .appendSibling(CLOC.tooltip("press_shift_more_info")));
         }
 
-        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, 33);
+        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, 35);
         tip.clear();
         tip.addAll(tool);
 

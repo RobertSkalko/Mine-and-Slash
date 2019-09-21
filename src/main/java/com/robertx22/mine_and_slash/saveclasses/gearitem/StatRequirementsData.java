@@ -24,17 +24,28 @@ public class StatRequirementsData {
     private List<String> stats = new ArrayList<>();
 
     private HashMap<String, Integer> getReqs(GearItemData data) {
-        HashMap<String, Integer> map = new HashMap<>();
-
-        float requirementMulti = data.getRarity().requirementMulti();
-
-        for (String str : stats) {
-            if (SlashRegistry.Stats().isRegistered(str)) {
-                map.put(str, (int) (this.getAmount(data) / stats.size() * requirementMulti));
+        if (data.isUnique()) {
+            try {
+                return data.uniqueStats.getUniqueItem()
+                        .getRequirements()
+                        .getRequirements(data.level);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new HashMap<>();
             }
+
+        } else {
+            HashMap<String, Integer> map = new HashMap<>();
+            float requirementMulti = data.getRarity().requirementMulti();
+
+            for (String str : stats) {
+                if (SlashRegistry.Stats().isRegistered(str)) {
+                    map.put(str, (int) (this.getAmount(data) / stats.size() * requirementMulti));
+                }
+            }
+            return map;
         }
 
-        return map;
     }
 
     public void create(GearItemData data) {
@@ -64,8 +75,12 @@ public class StatRequirementsData {
         }
     }
 
-    public int getAmount(GearItemData data) {
-        return MathHelper.clamp(data.getLevel() - (data.getLevel() / 4) - 10, 0, 100000);
+    public static int getAmount(GearItemData data) {
+        return getAmount(data.getLevel());
+    }
+
+    public static int getAmount(int lvl) {
+        return MathHelper.clamp(lvl - (lvl / 4) - 10, 0, 100000);
     }
 
     private void singleStat(GearItemData data) {

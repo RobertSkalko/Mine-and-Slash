@@ -83,11 +83,13 @@ public class TooltipUtils {
                 newt.add(list.get(i));
             } else {
 
-                if (lastIsEmpty || alwaysRemoveEmpty) {
+                if ((lastIsEmpty || alwaysRemoveEmpty)) {
 
                 } else {
                     newt.add(list.get(i));
+
                 }
+
                 lastIsEmpty = true;
 
             }
