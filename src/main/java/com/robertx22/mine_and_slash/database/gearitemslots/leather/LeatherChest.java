@@ -17,6 +17,7 @@ public class LeatherChest extends BaseChest {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return leatherRequirements();
     }

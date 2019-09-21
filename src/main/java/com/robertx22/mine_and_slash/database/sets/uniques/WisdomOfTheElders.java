@@ -40,7 +40,7 @@ public class WisdomOfTheElders extends Set {
     @Override
     public Requirements requirements() {
         return new Requirements(LevelRequirement.fromLVL50(), new ExactUniquesRequierement(Arrays
-                .asList(new HelmetWisdom(), new ShieldWisdom())));
+                .asList(HelmetWisdom.INSTANCE, ShieldWisdom.INSTANCE)));
     }
 
     @Override

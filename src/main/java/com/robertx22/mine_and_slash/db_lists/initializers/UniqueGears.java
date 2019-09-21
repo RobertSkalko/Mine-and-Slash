@@ -57,8 +57,8 @@ public class UniqueGears implements ISlashRegistryInit {
         add(new RingHermitsInsanity());
         add(new MagesLuckyAmulet());
 
-        add(new HelmetWisdom());
-        add(new ShieldWisdom());
+        add(HelmetWisdom.INSTANCE);
+        add(ShieldWisdom.INSTANCE);
 
         add(new ShieldEleResist());
         // bows

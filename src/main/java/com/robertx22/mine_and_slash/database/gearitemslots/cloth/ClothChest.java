@@ -18,6 +18,7 @@ public class ClothChest extends BaseChest {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return clothRequirements();
     }

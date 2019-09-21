@@ -18,6 +18,7 @@ public class ClothBoots extends BaseBoots {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return clothRequirements();
     }

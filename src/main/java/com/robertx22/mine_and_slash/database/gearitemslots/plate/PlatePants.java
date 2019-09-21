@@ -17,6 +17,7 @@ public class PlatePants extends BasePants {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return plateRequirements();
     }

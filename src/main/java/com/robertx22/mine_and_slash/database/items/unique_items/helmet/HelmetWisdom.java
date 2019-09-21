@@ -15,7 +15,9 @@ import java.util.List;
 
 public class HelmetWisdom extends BaseUniqueHelmet {
 
-    public HelmetWisdom() {
+    public static HelmetWisdom INSTANCE = new HelmetWisdom();
+
+    private HelmetWisdom() {
 
     }
 

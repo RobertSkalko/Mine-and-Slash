@@ -17,6 +17,7 @@ public class PlateBoots extends BaseBoots {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return plateRequirements();
     }

@@ -17,6 +17,7 @@ public class PlateChest extends BaseChest {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return plateRequirements();
     }

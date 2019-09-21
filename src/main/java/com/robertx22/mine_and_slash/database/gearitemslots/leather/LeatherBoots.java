@@ -17,6 +17,7 @@ public class LeatherBoots extends BaseBoots {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return leatherRequirements();
     }

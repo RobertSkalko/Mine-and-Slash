@@ -17,6 +17,7 @@ public class ClothHelmet extends BaseHelmet {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return clothRequirements();
     }

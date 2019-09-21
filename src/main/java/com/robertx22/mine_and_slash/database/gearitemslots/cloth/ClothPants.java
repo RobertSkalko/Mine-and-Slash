@@ -17,6 +17,7 @@ public class ClothPants extends BasePants {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return clothRequirements();
     }

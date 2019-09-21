@@ -15,10 +15,12 @@ import java.util.List;
 
 public class ShieldWisdom extends BaseUniqueShield implements IUnique {
 
-    public ShieldWisdom() {
+    public static ShieldWisdom INSTANCE = new ShieldWisdom();
+
+    private ShieldWisdom() {
         super();
     }
-
+    
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.BIG);
 
     @Override

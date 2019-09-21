@@ -17,6 +17,7 @@ public class PlateHelmet extends BaseHelmet {
 
     }
 
+    @Override
     public List<Stat> statRequirements() {
         return plateRequirements();
     }
