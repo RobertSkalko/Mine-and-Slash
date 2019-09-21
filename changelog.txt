@@ -12,13 +12,20 @@ Added armor types! Cloth, Leather, Plate!
 * at early lvls requirements will be 0 but at lvl 10 or so they will slowly start and increase till max lvl.
 * core stats (vit, dex etc) will become much more important in gearing and you should probably focus on getting those on your gear to fulfil the requirements
 
+The way stat requirements on gear work is:
+- your stats are calculated even if you don't current meet the stat requirement
+- at the end of stat calculation, if you don't meet the requirement, you get a hefty penalty on your stats.
+- each unmet gear requirement adds additional penalty up to a max.
+- this means if gear gives you + 10 stamina and requires 50 stamina while you have 40. You won't get a penalty because after calculation, you have 50 stamina.
+
 All old items will be plate. Still not sure what to do as their ID is "chest" instead of "plate_chest", might fix it with a breaking change when an expansion happens or 1.15 port.
 
+books can't be used with 1 durability
 trimmed down unique stats a bit. Less stats, stronger stats
 some perf improvements
 weapon tooltips are now less informative by default, but shift shows all the previously available info
-gear tooltips now remove empty lines if there's more than 33 lines.
-gear no longer break, they remain at 1 durability (but i cant assure you that so try not to keep them at 1 dura)
+gear tooltips now remove empty lines if there's more than 30 or so lines.
+gear no longer breaks, they remain at 1 durability (but i cant assure you that so try not to keep them at 1 dura)
 gears now don't add stats if they have only 1 or 2 durability. This is a fix for mods that prevent items from being broken and keep them at 1 durability.
 They should be now useless as they are supposed to.
 added on stat calculation event. You can use this to add stats from your own sources, or remove them lol

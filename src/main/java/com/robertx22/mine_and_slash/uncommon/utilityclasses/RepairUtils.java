@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 public class RepairUtils {
 
@@ -16,8 +17,10 @@ public class RepairUtils {
                 stack.getOrCreateTag().putInt("Damage", Math.max(0, damage));
             }
         } else {
-            stack.getOrCreateTag()
-                    .putInt("Damage", Math.max(1, damage)); // dont ever break, just make them useless in combat
+            // TODO THIS DOESNT WORK COMPLETELY
+            int dmg = MathHelper.clamp(damage, 0, stack.getMaxDamage() - 1);
+            stack.getOrCreateTag().putInt("Damage", dmg);
+            // dont ever break, just make them useless in combat
         }
     }
 

@@ -19,8 +19,10 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
+import java.util.Map;
 
 public class PlayerStatUtils {
 
@@ -84,13 +86,40 @@ public class PlayerStatUtils {
 
     }
 
+    // if at end of stat calculation you still don't meet the gear requirements, apply penalty
+    public static void applyRequirementsUnmetPenalty(Entity en, UnitData data,
+                                                     List<GearItemData> gears) {
+
+        float penalty = 1;
+        for (GearItemData gear : gears) {
+            if (!gear.meetsRequirements(data)) {
+                penalty -= 0.1F;
+            }
+        }
+
+        penalty = MathHelper.clamp(penalty, 0.25F, 1);
+
+        if (penalty < 1) {
+
+            for (Map.Entry<String, StatData> entry : data.getUnit()
+                    .getStats()
+                    .entrySet()) {
+                if (entry.getValue().Value > 0) {
+                    entry.getValue().Value *= penalty;
+                }
+            }
+
+        }
+
+    }
+
     public static void AddAllGearStats(Entity entity, List<GearItemData> gears,
                                        UnitData unitdata, int level) {
 
         boolean gearTooHighLevel = false;
 
         for (GearItemData gear : gears) {
-            if (!gear.meetsRequirements(unitdata)) {
+            if (gear.level > unitdata.getLevel()) {
                 gearTooHighLevel = true;
 
             } else {

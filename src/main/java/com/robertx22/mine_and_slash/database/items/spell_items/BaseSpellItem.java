@@ -120,7 +120,13 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName, MyForg
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
                                                     Hand handIn) {
+
         ItemStack itemstack = player.getHeldItem(handIn);
+
+        if (itemstack.getDamage() > itemstack.getMaxDamage() - 2) {
+            return new ActionResult<>(ActionResultType.FAIL, itemstack);
+        }
+
         player.setActiveHand(handIn);
         return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
     }
