@@ -10,6 +10,10 @@ import java.util.List;
 
 public class Strength extends BaseCoreStat {
 
+    public Strength() {
+
+    }
+
     @Override
     public int iconSpriteNumber() {
         return 16;
@@ -27,7 +31,7 @@ public class Strength extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new PhysicalDamagePercent(), new CriticalDamageFlat(), new PhysicalDamageMulti()
+        return Arrays.asList(new PhysicalDamagePercent(), new CriticalDamageFlat().multi(2), new PhysicalDamageMulti()
                 .multi(0.5F));
     }
 

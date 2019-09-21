@@ -27,7 +27,7 @@ public class Dexterity extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new CriticalHitFlat(), new DodgeFlat(), new ArmorFlat());
+        return Arrays.asList(new CriticalHitFlat().multi(1.5F), new DodgeFlat(), new ArmorFlat());
     }
 
     @Override

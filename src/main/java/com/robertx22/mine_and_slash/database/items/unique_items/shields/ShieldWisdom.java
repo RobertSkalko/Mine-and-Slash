@@ -20,7 +20,7 @@ public class ShieldWisdom extends BaseUniqueShield implements IUnique {
     private ShieldWisdom() {
         super();
     }
-    
+
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.BIG);
 
     @Override

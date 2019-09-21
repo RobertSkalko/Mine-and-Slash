@@ -2,25 +2,28 @@ package com.robertx22.mine_and_slash.database.gearitemslots;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
-import java.util.List;
 
-public class Staff extends BaseWeapon {
+public class Staff extends BaseWeapon implements ISpecificStatReq {
     public static GearItemSlot INSTANCE = new Staff();
 
     private Staff() {
 
     }
 
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+
     @Override
-    public List<Stat> statRequirements() {
-        return clothRequirements();
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override

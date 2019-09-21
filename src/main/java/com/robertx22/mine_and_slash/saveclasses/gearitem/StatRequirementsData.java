@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -28,22 +29,30 @@ public class StatRequirementsData {
             try {
                 return data.uniqueStats.getUniqueItem()
                         .getRequirements()
-                        .getRequirements(data.level);
+                        .getRequirements(data.level, data.getRarity());
             } catch (Exception e) {
                 e.printStackTrace();
                 return new HashMap<>();
             }
 
         } else {
-            HashMap<String, Integer> map = new HashMap<>();
-            float requirementMulti = data.getRarity().requirementMulti();
 
-            for (String str : stats) {
-                if (SlashRegistry.Stats().isRegistered(str)) {
-                    map.put(str, (int) (this.getAmount(data) / stats.size() * requirementMulti));
+            if (data.GetBaseGearType() instanceof ISpecificStatReq) {
+
+                ISpecificStatReq specific = (ISpecificStatReq) data.GetBaseGearType();
+                return specific.getRequirements()
+                        .getRequirements(data.getLevel(), data.getRarity());
+            } else {
+                HashMap<String, Integer> map = new HashMap<>();
+                float requirementMulti = data.getRarity().requirementMulti();
+
+                for (String str : stats) {
+                    if (SlashRegistry.Stats().isRegistered(str)) {
+                        map.put(str, (int) (this.getAmount(data) / stats.size() * requirementMulti));
+                    }
                 }
+                return map;
             }
-            return map;
         }
 
     }
@@ -80,7 +89,7 @@ public class StatRequirementsData {
     }
 
     public static int getAmount(int lvl) {
-        return MathHelper.clamp(lvl - (lvl / 4) - 10, 0, 100000);
+        return MathHelper.clamp(lvl - (lvl / 4) - 15, 0, 100000);
     }
 
     private void singleStat(GearItemData data) {

@@ -44,7 +44,7 @@ public class SpendStatPointPacket {
             try {
                 ServerPlayerEntity player = ctx.get().getSender();
                 if (player != null) {
-                    Load.statPoints(player).addPoint(pkt.stat, Load.Unit(player));
+                    Load.statPoints(player).addPoint(player, pkt.stat, Load.Unit(player));
                 }
 
             } catch (Exception e) {

@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,6 +45,11 @@ public class AllAttributes extends Stat implements IPreCoreStat {
     @Override
     public List<StatMod> coreStatsThatBenefit() {
         return Arrays.asList(new StrengthFlat(), new StaminaFlat(), new IntelligenceFlat(), new WisdomFlat(), new DexterityFlat(), new VitalityFlat());
+    }
+
+    @Override
+    public float calculateScalingStatGrowth(float stat, int lvl) {
+        return StatUtils.calculateBaseStatScalingStatGrowth(stat, lvl);
     }
 
     @Override

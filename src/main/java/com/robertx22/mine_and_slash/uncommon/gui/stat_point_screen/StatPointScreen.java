@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerStatsPointsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
@@ -28,6 +29,8 @@ public class StatPointScreen extends Screen {
     boolean addedButtons = false;
 
     PlayerStatsPointsCap.IPlayerStatPointsData data = Load.statPoints(Minecraft.getInstance().player);
+
+    EntityCap.UnitData unitdata = Load.Unit(Minecraft.getInstance().player);
 
     int guiLeft = 0;
     int guiTop = 0;
@@ -53,7 +56,7 @@ public class StatPointScreen extends Screen {
             int y = 0;
 
             for (SingleStatPointData single : data.getData().getAllStatDatas()) {
-                this.buttons.add(new IncreaseStatButton(data, single, guiLeft + sizeX / 2 + 25, guiTop + 40 + y));
+                this.buttons.add(new IncreaseStatButton(unitdata, data, single, guiLeft + sizeX / 2 + 50, guiTop + 40 + y));
                 y += IncreaseStatButton.sizeY + 3;
             }
 

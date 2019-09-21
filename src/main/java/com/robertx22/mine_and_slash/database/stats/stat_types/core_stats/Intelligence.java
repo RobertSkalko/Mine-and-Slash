@@ -26,7 +26,7 @@ public class Intelligence extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new ManaRegenFlat(), new ManaFlat(), new AllEleDmgFlat());
+        return Arrays.asList(new ManaRegenFlat(), new ManaFlat().multi(2), new AllEleDmgFlat());
     }
 
     @Override

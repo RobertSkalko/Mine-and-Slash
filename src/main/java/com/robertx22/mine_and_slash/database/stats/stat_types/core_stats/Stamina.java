@@ -27,7 +27,7 @@ public class Stamina extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new EnergyFlat(), new ArmorFlat(), new ArmorPercent());
+        return Arrays.asList(new EnergyFlat().multi(2), new ArmorFlat(), new ArmorPercent());
     }
 
     @Override

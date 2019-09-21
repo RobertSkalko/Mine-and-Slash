@@ -33,9 +33,10 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     @Override
     public float amountToReach100Percent() {
-        return 20;
+        return 10;
     }
 
+    @Override
     public float calculateScalingStatGrowth(float stat, int lvl) {
         return StatUtils.calculateBaseStatScalingStatGrowth(stat, lvl);
     }

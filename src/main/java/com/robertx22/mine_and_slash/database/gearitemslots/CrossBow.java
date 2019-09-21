@@ -2,12 +2,15 @@ package com.robertx22.mine_and_slash.database.gearitemslots;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.CrossBowWeaponMechanic;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
@@ -17,11 +20,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class CrossBow extends BaseWeapon {
+public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     public static GearItemSlot INSTANCE = new CrossBow();
 
     private CrossBow() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override

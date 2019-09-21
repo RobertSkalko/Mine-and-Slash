@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.unique_items;
 
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatRequirementsData;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 
@@ -33,12 +34,13 @@ public class StatReq {
 
     private HashMap<String, Size> map = new HashMap<>();
 
-    public HashMap<String, Integer> getRequirements(int lvl) {
+    public HashMap<String, Integer> getRequirements(int lvl, GearRarity rar) {
         HashMap<String, Integer> hashmap = new HashMap<>();
 
         for (Map.Entry<String, Size> entry : map.entrySet()) {
-            hashmap.put(entry.getKey(), (int) (entry.getValue().multi * StatRequirementsData
-                    .getAmount(lvl)));
+            int val = (int) ((entry.getValue().multi * StatRequirementsData.getAmount(lvl)) * rar
+                    .requirementMulti());
+            hashmap.put(entry.getKey(), val);
         }
 
         return hashmap;

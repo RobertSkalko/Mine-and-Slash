@@ -33,7 +33,8 @@ public class PlayerStatsPointsCap {
 
         public SingleStatPointData getStatData(LvlPointStat stat);
 
-        public void addPoint(LvlPointStat stat, EntityCap.UnitData data);
+        public void addPoint(PlayerEntity player, LvlPointStat stat,
+                             EntityCap.UnitData data);
 
         int getAvailablePoints(EntityCap.UnitData data);
 
@@ -130,9 +131,13 @@ public class PlayerStatsPointsCap {
         }
 
         @Override
-        public void addPoint(LvlPointStat stat, EntityCap.UnitData data) {
+        public void addPoint(PlayerEntity player, LvlPointStat stat,
+                             EntityCap.UnitData data) {
             if (this.hasAvailablePoints(data)) {
                 getStatData(stat).points++;
+                data.setEquipsChanged(true);
+                data.recalculateStats(player);
+                data.syncToClient(player);
             }
         }
 
