@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
+import com.robertx22.mine_and_slash.commands.OpenPickStatsGui;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
@@ -46,6 +47,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -509,8 +512,11 @@ public class EntityCap {
 
                 this.setLevel(level + 1, player);
                 setExp(getRemainingExp());
-                player.sendMessage(Chats.You_have_leveled_up.locName());
+                player.sendMessage(new StringTextComponent(TextFormatting.YELLOW + "" + TextFormatting.BOLD)
+                        .appendSibling(Chats.You_have_leveled_up.locName())
+                        .appendText("!"));
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
+                onLvlPostStatPickMsg(player);
 
                 try {
                     Load.playersCapBackup(MapManager.getWorld(DimensionType.OVERWORLD))
@@ -523,6 +529,18 @@ public class EntityCap {
                 return true;
             }
             return false;
+        }
+
+        public void onLvlPostStatPickMsg(LivingEntity en) {
+
+            int points = Load.statPoints((PlayerEntity) en).getAvailablePoints(this);
+
+            if (points > 0) {
+                ITextComponent msg = new StringTextComponent(TextFormatting.GREEN + "You have " + points + " Unspent Stat points." + TextFormatting.ITALIC + " Click to Open Gui");
+                msg.setStyle(msg.getStyle()
+                        .setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + OpenPickStatsGui.COMMAND)));
+                en.sendMessage(msg);
+            }
         }
 
         @Override

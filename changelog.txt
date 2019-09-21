@@ -1,11 +1,16 @@
 2.8.0
 
+Added stats on lvl up! These stats are now much more important as gear has requirements for them.
+
 Added armor types! Cloth, Leather, Plate! 
 
 * cloth needs int, wis, leather needs dex, sta, plate needs vit str
 * normal items randomly get either 1 stat as requirement, or both at half the value
 * unique items have unique requirements :thonK: 
 * higher gear rarities have higher stat requirements
+* to reset your allocated stat points you need alchemy to craft a regret potion
+* at early lvls requirements will be 0 but at lvl 10 or so they will slowly start and increase till max lvl.
+* core stats (vit, dex etc) will become much more important in gearing and you should probably focus on getting those on your gear to fulfil the requirements
 
 All old items will be plate. Still not sure what to do as their ID is "chest" instead of "plate_chest", might fix it with a breaking change when an expansion happens or 1.15 port.
 

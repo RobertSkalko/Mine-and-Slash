@@ -31,6 +31,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, SpendStatPointPacket.class, SpendStatPointPacket::encode, SpendStatPointPacket::decode, SpendStatPointPacket::handle);
 
+        MMORPG.Network.registerMessage(index++, OpenPickStatsGuiPacket.class, OpenPickStatsGuiPacket::encode, OpenPickStatsGuiPacket::decode, OpenPickStatsGuiPacket::handle);
+
     }
 
 }

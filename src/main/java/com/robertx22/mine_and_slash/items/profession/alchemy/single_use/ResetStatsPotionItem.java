@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
-import com.robertx22.mine_and_slash.database.items.currency.ItemClearRunes;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BasePotion;
@@ -22,7 +21,7 @@ import net.minecraft.world.World;
 public class ResetStatsPotionItem extends BaseInstantPotion {
 
     public ResetStatsPotionItem() {
-        super(Professions.Levels.TWENTY_FIVE);
+        super(Professions.Levels.TEN);
     }
 
     @Override
@@ -56,9 +55,9 @@ public class ResetStatsPotionItem extends BaseInstantPotion {
 
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
                 .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(new ItemClearRunes().getFromForgeRegistry(), 1)
-                .addMaterial(ItemOre.ItemOres.get(IRarity.Mythic), 5)
-                .addMaterial(Items.EMERALD, 3);
+                .addMaterial(Items.GOLDEN_CARROT, 2)
+                .addMaterial(Items.NETHER_WART, 25)
+                .addMaterial(ItemOre.ItemOres.get(IRarity.Mythic), 5);
 
         return mats.buildMaterials()
                 .setOutput(this)
