@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.api;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -76,9 +77,7 @@ public class MineAndSlashEvents {
             }
 
             if (stack.isDamageable()) {
-                if (stack.getDamage() > stack.getMaxDamage() - 2) {
-                    return false; // if durability is very low, disable stats
-                }
+                return RepairUtils.isItemBroken(stack) == false;
             }
 
             return true;

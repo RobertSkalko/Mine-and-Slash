@@ -68,6 +68,7 @@ public class LootUtils {
             dmgMulti = MathHelper.clamp(dmgMulti, 0, 0.95F);
 
             stack.setDamage((int) (dmgMulti * stack.getMaxDamage()));
+
         }
 
         return stack;

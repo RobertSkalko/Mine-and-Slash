@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -121,14 +122,14 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName, MyForg
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
                                                     Hand handIn) {
 
-        ItemStack itemstack = player.getHeldItem(handIn);
+        ItemStack stack = player.getHeldItem(handIn);
 
-        if (itemstack.getDamage() > itemstack.getMaxDamage() - 2) {
-            return new ActionResult<>(ActionResultType.FAIL, itemstack);
+        if (RepairUtils.isItemBroken(stack)) {
+            return new ActionResult<>(ActionResultType.FAIL, stack);
         }
 
         player.setActiveHand(handIn);
-        return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+        return new ActionResult<>(ActionResultType.SUCCESS, stack);
     }
 
 }

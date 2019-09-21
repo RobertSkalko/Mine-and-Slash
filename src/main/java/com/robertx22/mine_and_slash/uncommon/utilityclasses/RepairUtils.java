@@ -9,6 +9,10 @@ public class RepairUtils {
 
     static final String IS_BEING_REPAIRED = Ref.MODID + "is_being_repaired";
 
+    public static boolean isItemBroken(ItemStack stack) {
+        return stack.getDamage() >= stack.getMaxDamage() - 10;
+    }
+
     public static void setDamageOverride(ItemStack stack, int damage) {
 
         if (damage < stack.getDamage() && ModConfig.INSTANCE.Server.ONLY_REPAIR_IN_STATION
@@ -18,8 +22,12 @@ public class RepairUtils {
             }
         } else {
             // TODO THIS DOESNT WORK COMPLETELY
-            int dmg = MathHelper.clamp(damage, 0, stack.getMaxDamage() - 1);
-            stack.getOrCreateTag().putInt("Damage", dmg);
+            int dmg = MathHelper.clamp(damage, 0, stack.getMaxDamage() - 5);
+
+            if (dmg >= stack.getMaxDamage()) {
+            } else {
+                stack.getOrCreateTag().putInt("Damage", dmg);
+            }
             // dont ever break, just make them useless in combat
         }
     }
