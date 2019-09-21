@@ -332,23 +332,23 @@ public class StatConfig {
     public float lifesteal_per_level = 0;
     
     @Config.Name("Sword Energy Cost")
-    @Config.LangKey("mmorpg.stat.lifesteal_per_level")
+    @Config.LangKey("mmorpg.stat.sword_energy_cost")
     public float sword_energy_cost = 3;
     
     @Config.Name("Axe Energy Cost")
-    @Config.LangKey("mmorpg.stat.lifesteal_per_level")
+    @Config.LangKey("mmorpg.stat.axe_energy_cost")
     public float axe_energy_cost = 8.5F;
     
     @Config.Name("Bow Energy Cost")
-    @Config.LangKey("mmorpg.stat.lifesteal_per_level")
+    @Config.LangKey("mmorpg.stat.bow_energy_cost")
     public float bow_energy_cost = 9;
     
     @Config.Name("Hammer Energy Cost")
-    @Config.LangKey("mmorpg.stat.lifesteal_per_level")
+    @Config.LangKey("mmorpg.stat.hammer_energy_cost")
     public float hammer_energy_cost = 10;
     
     @Config.Name("Staff Energy Cost")
-    @Config.LangKey("mmorpg.stat.lifesteal_per_level")
+    @Config.LangKey("mmorpg.stat.staff_energy_cost")
     public float staff_energy_cost = 9;
 
 }
