@@ -17,56 +17,60 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class OnItemPickupGiveStatsWhitelist {
 
-  @SubscribeEvent
-  public static void onItemCraftAddStats(PlayerContainerEvent event) {
+	@SubscribeEvent
+	public static void onContainerCompatibleItem(PlayerContainerEvent event) {
 
-    try {
-      if (event.getEntityPlayer().world.isRemote) {
-        return;
-      }
+		try {
+			if (event.getEntityPlayer().world.isRemote) {
+				return;
+			}
 
-      if (ModConfig.Server.USE_COMPATIBILITY_ITEMS == false) {
-        return;
-      }
+			if (ModConfig.Server.USE_COMPATIBILITY_ITEMS == false) {
+				return;
+			}
 
-      UnitData data = null;
+			UnitData data = null;
 
-      for (ItemStack stack : event.getEntityPlayer().inventory.mainInventory) {
+			for (ItemStack stack : event.getEntityPlayer().inventory.mainInventory) {
 
-        if (stack.isEmpty()) {
-          continue;
-        }
+				if (stack.isEmpty()) {
+					continue;
+				}
 
-        GearItemData test = Gear.Load(stack);
+				GearItemData test = Gear.Load(stack);
 
-        if (test == null) {
+				if (test == null) {
 
-          String reg = stack.getItem().getRegistryName().toString();
+					String reg = stack.getItem().getRegistryName().toString();
 
-          if (ConfigItems.INSTANCE.map.containsKey(reg)) {
+					if (ConfigItems.INSTANCE.map.containsKey(reg)) {
 
-            ConfigItem config = ConfigItems.INSTANCE.map.get(reg);
+						ConfigItem config = ConfigItems.INSTANCE.map.get(reg);
 
-            EntityPlayer player = event.getEntityPlayer();
+						EntityPlayer player = event.getEntityPlayer();
 
-            if (player.hasCapability(EntityData.Data, null)) {
-              if (data == null) {
-                data = Load.Unit(player);
-              }
+						if (config.statsAddedOnlyOnDrop) {
+						} else {
 
-              stack = config.create(stack, data.getLevel());
+							if (player.hasCapability(EntityData.Data, null)) {
+								if (data == null) {
+									data = Load.Unit(player);
+								}
 
-              event.getEntityPlayer().inventory.markDirty();
+								stack = config.create(stack, data.getLevel());
 
-            }
-          }
+								event.getEntityPlayer().inventory.markDirty();
 
-        }
-      }
+							}
+						}
+					}
 
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+				}
+			}
 
-  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }
