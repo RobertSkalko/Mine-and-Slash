@@ -7,7 +7,7 @@
   "mcversion": "${mcversion}",
   "url": "https://minecraft.curseforge.com/projects/mine-and-slash-reloaded",
   "updateUrl": "",
-  "authorList": ["robertx22"],
+  "authorList": ["robertx22, AzureDoom (1.12.2 only)"],
   "credits": "Vazkii, Traverse Team, Dom_codes",
   "logoFile": "logo",
   "screenshots": [],

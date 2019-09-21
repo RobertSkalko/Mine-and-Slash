@@ -17,7 +17,7 @@ import com.robertx22.database.gearitemslots.Chest;
 import com.robertx22.database.gearitemslots.Pants;
 import com.robertx22.database.gearitemslots.Boots;
 
-public class vanilla {
+public class Vanilla {
 
 	private static final Logger LOGGER = LogManager.getLogger();
 
@@ -36,15 +36,8 @@ public class vanilla {
 	private static final List<String> SWORD = ImmutableList.of("iron_sword", "wooden_sword", "stone_sword",
 			"diamond_sword", "golden_sword");
 
-	private static final List<String> AXE = ImmutableList.of("iron_axe", "wooden_axe", "stone_axe", "diamond_axe",
-			"golden_axe");
+	public Vanilla() {
 
-	public vanilla() {
-
-		for (String s : AXE) {
-			MineAndSlashAPI.addCompatibleItem("minecraft:" + s, new ConfigItem().setType(new Axe()));
-			LOGGER.debug("Registered Axes");
-		}
 		MineAndSlashAPI.addCompatibleItem("minecraft:bow", new ConfigItem().setType(new Bow()));
 		LOGGER.debug("Registered Bow");
 		for (String s : SWORD) {

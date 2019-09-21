@@ -26,9 +26,6 @@ public class fireice {
 	private static final List<String> STAFF = ImmutableList.of("dragon_stick", "myrmex_desert_staff",
 			"myrmex_jungle_staff");
 
-	private static final List<String> AXE = ImmutableList.of("dragonsteel_fire_axe", "dragonsteel_ice_axe",
-			"troll_weapon.axe", "silver_axe", "dragonbone_axe", "myrmex_desert_axe", "myrmex_jungle_axe");
-
 	private static final List<String> HAMMER = ImmutableList.of("troll_weapon.trunk_frost", "troll_weapon.trunk",
 			"troll_weapon.hammer", "troll_weapon.column", "troll_weapon.column_frost", "troll_weapon.column_forest");
 
@@ -72,10 +69,6 @@ public class fireice {
 		for (String s : STAFF) {
 			MineAndSlashAPI.addCompatibleItem("iceandfire:" + s, new ConfigItem().setType(new Staff()));
 			LOGGER.debug("Registered Staffs");
-		}
-		for (String s : AXE) {
-			MineAndSlashAPI.addCompatibleItem("iceandfire:" + s, new ConfigItem().setType(new Axe()));
-			LOGGER.debug("Registered Axes");
 		}
 		for (String s : HAMMER) {
 			MineAndSlashAPI.addCompatibleItem("iceandfire:" + s, new ConfigItem().setType(new Hammer()));

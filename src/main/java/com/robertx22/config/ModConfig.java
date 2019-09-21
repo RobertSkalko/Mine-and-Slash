@@ -70,6 +70,33 @@ public class ModConfig {
 	    list.add(extra7);
 	    list.add(extra8);
 	    list.add(extra9);
+	    list.add(extra10);
+	    list.add(extra10);
+	    list.add(extra12);
+	    list.add(extra13);
+	    list.add(extra14);
+	    list.add(extra15);
+	    list.add(extra16);
+	    list.add(extra17);
+	    list.add(extra18);
+	    list.add(extra19);
+	    list.add(extra20);
+	    list.add(extra21);
+	    list.add(extra22);
+	    list.add(extra23);
+	    list.add(extra24);
+	    list.add(extra25);
+	    list.add(extra26);
+	    list.add(extra27);
+	    list.add(extra28);
+	    list.add(extra29);
+	    list.add(extra30);
+	    list.add(extra31);
+	    list.add(extra32);
+	    list.add(extra33);
+	    list.add(extra34);
+	    list.add(extra35);
+	    list.add(extra36);
 
 	    return new DimensionsContainer(list);
 
@@ -139,6 +166,141 @@ public class ModConfig {
 	@Config.LangKey("")
 	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
 	public DimensionConfigs extra9 = DimensionConfigs.DefaultExtra();
+	
+	@Config.Name("Extra 10")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra10 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 11")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra11 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 12")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra12 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 13")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra13 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 14")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra14 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 15")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra15 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 16")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra16 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 17")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra17 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 18")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra18 = DimensionConfigs.DefaultExtra();
+	
+	@Config.Name("Extra 19")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra19 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 20")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra20 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 21")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra21 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 22")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra22 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 23")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra23 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 24")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra24 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 25")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra25 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 26")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra26 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 27")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra27 = DimensionConfigs.DefaultExtra();
+	
+	@Config.Name("Extra 28")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra28 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 29")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra29 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 30")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra30 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 31")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra31 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 32")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra32 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 33")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra33 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 34")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra34 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 35")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra35 = DimensionConfigs.DefaultExtra();
+
+	@Config.Name("Extra 36")
+	@Config.LangKey("")
+	@Config.Comment("Here you can add extra mod dimensions to the config too! Say you want aether to have mobs start at lvl 50.")
+	public DimensionConfigs extra36 = DimensionConfigs.DefaultExtra();
 
     }
 

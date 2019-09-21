@@ -15,39 +15,38 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemSword extends BaseWeaponItem implements IWeapon {
-    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    public ItemSword() {
+	public ItemSword() {
 
-    }
-
-    @Override
-    public String Name() {
-	return "Sword";
-    }
-
-    @Override
-    public WeaponMechanic mechanic() {
-	return new SwordWeaponMechanic();
-    }
-
-    /**
-     * Check whether this Item can harvest the given Block
-     */
-    public boolean canHarvestBlock(IBlockState blockIn) {
-	return blockIn.getBlock() == Blocks.WEB;
-    }
-
-    public float getDestroySpeed(ItemStack stack, IBlockState state) {
-	Block block = state.getBlock();
-
-	if (block == Blocks.WEB) {
-	    return 15.0F;
-	} else {
-	    Material material = state.getMaterial();
-	    return material != Material.PLANTS && material != Material.VINE && material != Material.CORAL
-		    && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
 	}
-    }
 
+	@Override
+	public String Name() {
+		return "Sword";
+	}
+
+	@Override
+	public WeaponMechanic mechanic() {
+		return new SwordWeaponMechanic();
+	}
+
+	/**
+	 * Check whether this Item can harvest the given Block
+	 */
+	public boolean canHarvestBlock(IBlockState blockIn) {
+		return blockIn.getBlock() == Blocks.WEB;
+	}
+
+	public float getDestroySpeed(ItemStack stack, IBlockState state) {
+		Block block = state.getBlock();
+
+		if (block == Blocks.WEB) {
+			return 15.0F;
+		} else {
+			Material material = state.getMaterial();
+			return material != Material.PLANTS && material != Material.VINE && material != Material.CORAL
+					&& material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
+		}
+	}
 }
