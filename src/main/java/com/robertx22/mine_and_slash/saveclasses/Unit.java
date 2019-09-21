@@ -22,7 +22,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.PlayerStatUtils;
-import com.robertx22.mine_and_slash.uncommon.testing.Watch;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -408,11 +407,9 @@ public class Unit {
 
         CalcStats(data);
 
-        Watch watch = new Watch();
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.applyRequirementsUnmetPenalty(entity, data, gears);
         }
-        watch.print("penalty");
 
         DirtyCheck newcheck = getDirtyCheck();
 
