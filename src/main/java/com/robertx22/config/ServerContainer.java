@@ -54,6 +54,11 @@ public class ServerContainer {
 	@Config.LangKey("mmorpg.config.")
 	@Config.Comment("")
 	public boolean GENERATE_ORES = true;
+	
+	@Config.Name("Give Starter Gear")
+	@Config.LangKey("mmorpg.config.")
+	@Config.Comment("True gives starter gear, false gives no gear")
+	public boolean GENERATE_GEAR = true;
 
 	@Config.Name("Unarmed Energy Cost")
 	@Config.LangKey("mmorpg.config.unarmed_energy_cost")
