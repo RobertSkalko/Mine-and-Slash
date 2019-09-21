@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalConversionFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -14,6 +16,13 @@ public class RingWaterFire extends BaseUniqueRing {
 
     public RingWaterFire() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM, LvlPointStat.STRENGTH, StatReq.Size.MEDIUM);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class HealthFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new Health();
+        return Health.INSTANCE;
     }
 
 }

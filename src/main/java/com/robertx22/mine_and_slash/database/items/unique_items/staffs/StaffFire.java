@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -16,6 +18,13 @@ public class StaffFire extends BaseUniqueStaff {
 
     public StaffFire() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM, LvlPointStat.STRENGTH, StatReq.Size.SMALL);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override

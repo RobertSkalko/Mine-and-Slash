@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.swords;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueSword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalTransferFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleLifestealPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -17,6 +17,13 @@ import java.util.List;
 public class SwordWater extends BaseUniqueSword {
     public SwordWater() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM, LvlPointStat.WISDOM, StatReq.Size.MEDIUM);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -31,7 +38,7 @@ public class SwordWater extends BaseUniqueSword {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalTransferFlat(Elements.Thunder, Elements.Water), new ManaRegenFlat(), new ManaOnHitFlat(), new EnergyRegenFlat(), new CrippleLifestealPercent());
+        return Arrays.asList(new ElementalTransferFlat(Elements.Thunder, Elements.Water), new ManaRegenFlat(), new ManaOnHitFlat());
     }
 
     @Override

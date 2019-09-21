@@ -152,7 +152,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new UnknownStat());
 
                     // Resources
-                    add(new Health());
+                    add(Health.INSTANCE);
                     add(new HealthRegen());
                     add(new Lifesteal());
                     add(new LifeOnHit());

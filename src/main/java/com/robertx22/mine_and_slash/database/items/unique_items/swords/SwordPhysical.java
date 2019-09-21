@@ -1,11 +1,12 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.swords;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueSword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.MajorCriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.MajorCriticalHitPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -14,6 +15,13 @@ import java.util.List;
 public class SwordPhysical extends BaseUniqueSword {
     public SwordPhysical() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -29,7 +37,7 @@ public class SwordPhysical extends BaseUniqueSword {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new MajorCriticalHitPercent().multi(2), new MajorCriticalDamagePercent()
-                .multi(2), new LessHealthRegenFlat());
+                .multi(2));
     }
 
     @Override

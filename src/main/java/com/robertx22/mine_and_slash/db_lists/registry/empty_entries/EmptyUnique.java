@@ -3,7 +3,9 @@ package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,6 +19,12 @@ import java.util.List;
 import java.util.Set;
 
 public class EmptyUnique implements IUnique {
+
+    @Override
+    public StatReq getRequirements() {
+        return new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.MEDIUM);
+    }
+
     @Override
     public List<StatMod> uniqueStats() {
         return new ArrayList<>();

@@ -2,12 +2,14 @@ package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CompletePhysDispersionFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ElementalSpellToAttackDMGPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.TextFormatting;
@@ -21,6 +23,13 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IElementalUniqu
 
     public EleSpellDmgStaff(Elements element) {
         this.element = element;
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override

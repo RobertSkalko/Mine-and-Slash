@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.swords;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueSword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifestealFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.LifestealPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleCriticalDamagePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -16,6 +16,13 @@ import java.util.List;
 public class SwordNature extends BaseUniqueSword {
     public SwordNature() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -30,7 +37,7 @@ public class SwordNature extends BaseUniqueSword {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LifestealFlat(), new LifestealPercent(), new HealthRegenFlat(), new CrippleCriticalDamagePercent());
+        return Arrays.asList(new LifestealFlat(), new LifestealPercent());
     }
 
     @Override

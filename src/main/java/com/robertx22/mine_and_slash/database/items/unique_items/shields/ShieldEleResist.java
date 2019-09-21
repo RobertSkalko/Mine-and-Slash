@@ -1,12 +1,14 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.shields;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.StaminaFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.VitalityFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
@@ -22,6 +24,13 @@ public class ShieldEleResist extends BaseUniqueShield implements IUnique {
     @Override
     public String locDescForLangFile() {
         return "Fear no elements.";
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override

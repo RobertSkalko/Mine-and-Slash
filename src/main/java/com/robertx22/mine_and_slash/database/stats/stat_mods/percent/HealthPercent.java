@@ -7,32 +7,32 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class HealthPercent extends StatMod {
 
-	public HealthPercent() {
-	}
+    public HealthPercent() {
+    }
 
-	@Override
-	public String GUID() {
-		return "HealthPercent";
-	}
+    @Override
+    public String GUID() {
+        return "HealthPercent";
+    }
 
-	@Override
-	public float Min() {
-		return 2;
-	}
+    @Override
+    public float Min() {
+        return 2;
+    }
 
-	@Override
-	public float Max() {
-		return 8;
-	}
+    @Override
+    public float Max() {
+        return 8;
+    }
 
-	@Override
-	public StatTypes Type() {
-		return StatTypes.Percent;
-	}
+    @Override
+    public StatTypes Type() {
+        return StatTypes.Percent;
+    }
 
-	@Override
-	public Stat GetBaseStat() {
-		return new Health();
-	}
+    @Override
+    public Stat GetBaseStat() {
+        return Health.INSTANCE;
+    }
 
 }

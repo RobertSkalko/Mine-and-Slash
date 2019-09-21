@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
@@ -7,6 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.Heal
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.DodgePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -19,6 +21,13 @@ public class RingDodge extends BaseUniqueRing {
 
     public RingDodge() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override

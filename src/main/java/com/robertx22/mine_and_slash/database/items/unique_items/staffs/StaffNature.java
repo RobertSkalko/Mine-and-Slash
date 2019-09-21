@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPenePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -16,6 +18,13 @@ public class StaffNature extends BaseUniqueStaff {
 
     public StaffNature() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM, LvlPointStat.VITALITY, StatReq.Size.SMALL);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override

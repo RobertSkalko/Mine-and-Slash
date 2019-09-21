@@ -1,13 +1,12 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifestealFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.LifestealPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleManaOnHitPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -17,6 +16,13 @@ public class StaffLifesteal extends BaseUniqueStaff {
 
     public StaffLifesteal() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -31,7 +37,7 @@ public class StaffLifesteal extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LifestealPercent(), new LifestealFlat(), new LifeOnHitFlat(), new HealthRegenFlat(), new CrippleManaOnHitPercent());
+        return Arrays.asList(new LifestealFlat().multi(2), new LifeOnHitFlat());
     }
 
     @Override

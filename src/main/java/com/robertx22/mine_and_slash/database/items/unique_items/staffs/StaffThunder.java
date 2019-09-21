@@ -1,12 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPenePercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -17,6 +18,13 @@ public class StaffThunder extends BaseUniqueStaff {
 
     public StaffThunder() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -31,7 +39,8 @@ public class StaffThunder extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalDamageFlat(), new ElementalPenePercent(Elements.Thunder), new DodgeFlat(), new ManaOnHitFlat());
+        return Arrays.asList(new CriticalDamageFlat(), new ElementalPenePercent(Elements.Thunder), new ManaOnHitFlat()
+                .multi(1.5F));
     }
 
     @Override

@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalTransferFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.CrippleLifeOnHitPercent;
+import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -18,6 +18,13 @@ public class PantsThunder extends BaseUniquePantsItem {
 
     public PantsThunder() {
 
+    }
+
+    static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.BIG);
+
+    @Override
+    public StatReq getRequirements() {
+        return req;
     }
 
     @Override
@@ -32,12 +39,12 @@ public class PantsThunder extends BaseUniquePantsItem {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire), new DodgeFlat(), new ElementalResistFlat(Elements.Fire), new ElementalTransferFlat(Elements.Fire, Elements.Thunder), new CrippleLifeOnHitPercent());
+        return Arrays.asList(new DodgeFlat().multi(4), new ElementalResistFlat(Elements.Fire), new ElementalTransferFlat(Elements.Fire, Elements.Thunder));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat());
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire));
     }
 
     @Override
