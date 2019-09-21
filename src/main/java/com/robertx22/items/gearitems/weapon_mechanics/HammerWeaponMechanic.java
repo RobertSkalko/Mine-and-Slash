@@ -3,6 +3,7 @@ package com.robertx22.items.gearitems.weapon_mechanics;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
@@ -18,7 +19,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost() {
-	return 10;
+	return ModConfig.BasePlayerStats.hammer_energy_cost;
     }
 
     @Override

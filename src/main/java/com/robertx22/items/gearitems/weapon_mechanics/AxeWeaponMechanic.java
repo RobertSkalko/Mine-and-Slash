@@ -1,5 +1,6 @@
 package com.robertx22.items.gearitems.weapon_mechanics;
 
+import com.robertx22.config.ModConfig;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -10,7 +11,7 @@ public class AxeWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost() {
-	return 8.5F;
+	return ModConfig.BasePlayerStats.axe_energy_cost;
     }
 
     @Override
