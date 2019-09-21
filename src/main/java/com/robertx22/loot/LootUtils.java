@@ -11,7 +11,7 @@ import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.item.ItemStack;
 
 public class LootUtils {
-  static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 5;
+  static final int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = ModConfig.Server.LEVEL_DISTANCE_PUNISHMENT_ACTIVATION;
 
   // prevents lvl 50 players farming lvl 1 mobs
   public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {

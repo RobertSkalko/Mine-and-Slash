@@ -49,6 +49,11 @@ public class ServerContainer {
 	@Config.LangKey("mmorpg.config.")
 	@Config.Comment("This should always be disabled because otherwise with my mod's nerfed vanilla healing, the hp regen spends way too much hunger. Also you have hp regen from my mod")
 	public boolean DISABLE_VANILLA_HP_REGEN = true;
+	
+	@Config.Name("Sets the level difference needed to trigger the punishment. Stops level 50's from grinding low level mobs.")
+	@Config.LangKey("mmorpg.config.")
+	@Config.Comment("")
+	public int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 10;
 
 	@Config.Name("Maximum Worn Runed Items")
 	@Config.LangKey("mmorpg.config.")
