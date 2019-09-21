@@ -68,7 +68,7 @@ public class ServerContainer {
 	@Config.Name("Maps Start Dropping At Level")
 	@Config.LangKey("mmorpg.config.maps_start_drop")
 	@Config.Comment("If you don't want newbies to have their inventory spammed with maps before they even craft a map bag :3.")
-	public int MAPS_DROP_AFTER_LEVEL = 20;
+	public int MAPS_DROP_AFTER_LEVEL = 10;
 
 	@Config.Name("Currency Start Dropping At Level")
 	@Config.LangKey("mmorpg.config.currency_start_drop")
