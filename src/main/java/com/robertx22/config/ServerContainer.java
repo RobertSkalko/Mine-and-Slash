@@ -13,7 +13,7 @@ public class ServerContainer {
 	@Config.Name("Stats Added Only on Drop")
 	@Config.LangKey("mmorpg.config.")
 	@Config.Comment("Stats are only added to mob drops, crafted items will no longer get stats")
-	public boolean STATS_ADDED_ONLY_ON_DROP = true;
+	public boolean STATS_ADDED_ONLY_ON_DROP = false;
 	
 	@Config.Name("Compatible Items Salvagable or not")
 	@Config.LangKey("mmorpg.config.")
