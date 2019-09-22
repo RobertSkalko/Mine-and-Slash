@@ -15,41 +15,41 @@ import net.minecraftforge.common.DimensionManager;
 
 public class DeleteDimension extends CommandBase {
 
-    @Override
-    public String getName() {
-	return "delete";
-    }
-
-    @Override
-    public String getUsage(ICommandSender sender) {
-	return "/delete number_id";
-    }
-
-    public static DimensionType testDimensionType;
-
-    @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-
-	try {
-	    int id = Integer.valueOf(args[0]);
-	    // EntityPlayer player = (EntityPlayer) sender;
-
-	    if (DimensionManager.isDimensionRegistered(id)) {
-
-		World world = DimensionManager.getWorld(id);
-
-		IWorldData data = world.getCapability(WorldData.Data, null);
-
-		if (data != null && data.isMapWorld()) {
-		    data.setDelete(true, world);
-		    Main.Network.sendToAll(new WorldPackage(data));
-
-		}
-
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
+	@Override
+	public String getName() {
+		return "delete";
 	}
 
-    }
+	@Override
+	public String getUsage(ICommandSender sender) {
+		return "/delete number_id";
+	}
+
+	public static DimensionType testDimensionType;
+
+	@Override
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+
+		try {
+			int id = Integer.valueOf(args[0]);
+			// EntityPlayer player = (EntityPlayer) sender;
+
+			if (DimensionManager.isDimensionRegistered(id)) {
+
+				World world = DimensionManager.getWorld(id);
+
+				IWorldData data = world.getCapability(WorldData.Data, null);
+
+				if (data != null && data.isMapWorld()) {
+					data.setDelete(true, world);
+					Main.Network.sendToAll(new WorldPackage(data));
+
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }

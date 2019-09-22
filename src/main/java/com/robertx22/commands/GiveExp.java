@@ -13,29 +13,30 @@ import net.minecraft.server.MinecraftServer;
 
 public class GiveExp extends CommandBase {
 
-    @Override
-    public String getName() {
-	return "givexp";
-    }
+	@Override
+	public String getName() {
+		return "givexp";
+	}
 
-    @Override
-    public String getUsage(ICommandSender sender) {
-	return "/givexp (player) (exp)";
-    }
+	@Override
+	public String getUsage(ICommandSender sender) {
+		return "/givexp (player) (exp)";
+	}
 
-    @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+	@Override
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-    	if (args.length < 2) throw new WrongUsageException("/givexp (player) (exp)");
+		if (args.length < 2)
+			throw new WrongUsageException("/givexp (player) (exp)");
 
-        int exp = parseInt(args[1], 0);
-        EntityPlayer player = getPlayer(server, sender, args[0]);
+		int exp = parseInt(args[1], 0);
+		EntityPlayer player = getPlayer(server, sender, args[0]);
 
-        try {
-            Load.Unit(player).GiveExp(player, exp);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
+		try {
+			Load.Unit(player).GiveExp(player, exp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
