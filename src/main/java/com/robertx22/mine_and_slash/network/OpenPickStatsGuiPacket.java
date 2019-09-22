@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.network;
 
-import com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen.StatPointScreen;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -29,8 +29,10 @@ public class OpenPickStatsGuiPacket {
 
         ctx.get().enqueueWork(() -> {
             try {
-
-                Minecraft.getInstance().displayGuiScreen(new StatPointScreen());
+                // so it doesnt crash
+                DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+                    OpenPickStatsProxy.open();
+                });
 
             } catch (Exception e) {
                 e.printStackTrace();

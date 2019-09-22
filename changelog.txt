@@ -1,3 +1,8 @@
+2.8.4 
+fixed another server crash
+2.8.3
+fix another server crash
+added chinese and taiwanese lang translations by yt0535 
 2.8.2
 fixed server side crash
 increased jewerly durability max values

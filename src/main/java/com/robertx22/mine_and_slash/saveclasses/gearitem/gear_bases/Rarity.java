@@ -10,6 +10,8 @@ import net.minecraft.util.text.TextFormatting;
 
 public interface Rarity extends IWeighted, IAutoLocName, IColor {
 
+    int colorInt();
+
     MinMax SpawnDurabilityHit();
 
     String GUID();

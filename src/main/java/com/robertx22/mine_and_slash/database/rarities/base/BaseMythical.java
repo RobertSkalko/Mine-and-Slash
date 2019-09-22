@@ -7,6 +7,10 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class BaseMythical implements Rarity {
+    @Override
+    public int colorInt() {
+        return 16733695;
+    }
 
     @Override
     public String GUID() {

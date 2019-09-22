@@ -6,6 +6,10 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class BaseRare implements Rarity {
+    @Override
+    public int colorInt() {
+        return 16777045;
+    }
 
     @Override
     public String GUID() {

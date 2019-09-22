@@ -41,11 +41,11 @@ public class Gear {
         }
 
     }
-
+    
     public static void colorItem(ItemStack stack, GearItemData data) {
         if (stack.getItem() instanceof IDyeableArmorItem) {
             IDyeableArmorItem dye = (IDyeableArmorItem) stack.getItem();
-            dye.setColor(stack, data.getRarity().textFormatColor().getColor());
+            dye.setColor(stack, data.getRarity().colorInt());
         }
     }
 

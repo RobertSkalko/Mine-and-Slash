@@ -8,6 +8,11 @@ import net.minecraft.util.text.TextFormatting;
 public abstract class BaseCommon implements Rarity {
 
     @Override
+    public int colorInt() {
+        return 11184810;
+    }
+
+    @Override
     public String GUID() {
         return "Common";
     }
