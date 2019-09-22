@@ -9,55 +9,55 @@ import net.minecraft.entity.passive.IAnimals;
 
 public class EntityTypeUtils {
 
-    public static float getLootMulti(Entity en) {
+	public static float getLootMulti(Entity en) {
 
-	if (isMob(en)) {
-	    return ModConfig.EntityTypeConfig.MOB_CONFIG.LOOT_MULTI;
-	} else if (isNPC(en)) {
-	    return ModConfig.EntityTypeConfig.NPC_CONFIG.LOOT_MULTI;
-	} else if (isAnimal(en)) {
-	    return ModConfig.EntityTypeConfig.ANIMAL_CONFIG.LOOT_MULTI;
-	} else {
-	    return ModConfig.EntityTypeConfig.OTHER_CONFIG.LOOT_MULTI;
+		if (isMob(en)) {
+			return ModConfig.EntityTypeConfig.MOB_CONFIG.LOOT_MULTI;
+		} else if (isNPC(en)) {
+			return ModConfig.EntityTypeConfig.NPC_CONFIG.LOOT_MULTI;
+		} else if (isAnimal(en)) {
+			return ModConfig.EntityTypeConfig.ANIMAL_CONFIG.LOOT_MULTI;
+		} else {
+			return ModConfig.EntityTypeConfig.OTHER_CONFIG.LOOT_MULTI;
+		}
+
 	}
 
-    }
+	public static float getExpMulti(Entity en) {
 
-    public static float getExpMulti(Entity en) {
+		if (isMob(en)) {
+			return ModConfig.EntityTypeConfig.MOB_CONFIG.EXP_MULTI;
+		} else if (isNPC(en)) {
+			return ModConfig.EntityTypeConfig.NPC_CONFIG.EXP_MULTI;
+		} else if (isAnimal(en)) {
+			return ModConfig.EntityTypeConfig.ANIMAL_CONFIG.EXP_MULTI;
+		} else {
+			return ModConfig.EntityTypeConfig.OTHER_CONFIG.EXP_MULTI;
+		}
 
-	if (isMob(en)) {
-	    return ModConfig.EntityTypeConfig.MOB_CONFIG.EXP_MULTI;
-	} else if (isNPC(en)) {
-	    return ModConfig.EntityTypeConfig.NPC_CONFIG.EXP_MULTI;
-	} else if (isAnimal(en)) {
-	    return ModConfig.EntityTypeConfig.ANIMAL_CONFIG.EXP_MULTI;
-	} else {
-	    return ModConfig.EntityTypeConfig.OTHER_CONFIG.EXP_MULTI;
 	}
 
-    }
+	public static boolean isMob(Entity en) {
 
-    public static boolean isMob(Entity en) {
+		return en instanceof IMob;
 
-	return en instanceof IMob;
+	}
 
-    }
+	public static boolean isAnimal(Entity en) {
 
-    public static boolean isAnimal(Entity en) {
+		return en instanceof IAnimals;
 
-	return en instanceof IAnimals;
+	}
 
-    }
+	/**
+	 * has to be checked first because inpc extends ianimals
+	 * 
+	 * @param en
+	 * @return
+	 */
+	public static boolean isNPC(Entity en) {
 
-    /**
-     * has to be checked first because inpc extends ianimals
-     * 
-     * @param en
-     * @return
-     */
-    public static boolean isNPC(Entity en) {
+		return en instanceof INpc;
 
-	return en instanceof INpc;
-
-    }
+	}
 }

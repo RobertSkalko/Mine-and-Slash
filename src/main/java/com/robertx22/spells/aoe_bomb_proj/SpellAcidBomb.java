@@ -13,46 +13,46 @@ import net.minecraft.world.World;
 
 public class SpellAcidBomb extends BaseBombSpell {
 
-    public SpellAcidBomb() {
-	super();
-    }
+	public SpellAcidBomb() {
+		super();
+	}
 
-    static public class EntityAcidBomb extends EntityBombProjectile {
+	static public class EntityAcidBomb extends EntityBombProjectile {
 
-	public EntityAcidBomb(World worldIn) {
-	    super(worldIn);
+		public EntityAcidBomb(World worldIn) {
+			super(worldIn);
 
+		}
+
+		@Override
+		public Elements element() {
+			return Elements.Nature;
+		}
 	}
 
 	@Override
-	public Elements element() {
-	    return Elements.Nature;
+	public EffectCalculation ScalingValue() {
+		return new EffectCalculation(new SpellNatureDamage().Guid(), this.damageScaling);
 	}
-    }
 
-    @Override
-    public EffectCalculation ScalingValue() {
-	return new EffectCalculation(new SpellNatureDamage().Guid(), this.damageScaling);
-    }
+	@Override
+	public Elements Element() {
+		return Elements.Nature;
+	}
 
-    @Override
-    public Elements Element() {
-	return Elements.Nature;
-    }
+	@Override
+	public Item SpellItem() {
+		return ItemAcidBomb.ITEM;
+	}
 
-    @Override
-    public Item SpellItem() {
-	return ItemAcidBomb.ITEM;
-    }
+	@Override
+	public String GUID() {
+		return "AcidBomb";
+	}
 
-    @Override
-    public String GUID() {
-	return "AcidBomb";
-    }
-
-    @Override
-    public EntityElementalBolt projectile(World world) {
-	return new EntityAcidBomb(world);
-    }
+	@Override
+	public EntityElementalBolt projectile(World world) {
+		return new EntityAcidBomb(world);
+	}
 
 }
