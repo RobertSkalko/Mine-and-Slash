@@ -44,4 +44,9 @@ public class ClientContainer {
 	@Config.LangKey("mmorpg.config.player_gui_overlay_type")
 	@Config.Comment("Choose different Gui styles for hp mana etc overlay")
 	public Player_GUIs PLAYER_GUI_TYPE = Player_GUIs.Bottom_Middle_Corners;
+	
+	@Config.Name("Mob GUI Overlay Toggle")
+	@Config.LangKey("mmorpg.config.mob_gui_overlay")
+	@Config.Comment("Choose whether or not to show the overhead GUI on mobs showing Level, Rarity, and Health.")
+	public boolean SHOW_MOB_GUI = true;
 }
