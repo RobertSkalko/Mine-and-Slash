@@ -1,3 +1,7 @@
+2.8.5
+updated the modified neat integration to have configs, they are in mmorpg-client file.
+wisdom now gives less regens but also gives elemental resists
+stamina now gives bit of ene regen too
 2.8.4 
 fixed another server crash
 2.8.3

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,9 +18,9 @@ public class RandomUtils {
             return min;
         }
 
-        int result = ran.nextInt(max - min);
+        int result = ran.nextInt(max - min + 1);
 
-        return result + min;
+        return MathHelper.clamp(result + min, min, max);
 
     }
 

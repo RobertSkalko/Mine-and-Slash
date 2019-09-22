@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.config;
 
+import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
@@ -20,6 +21,8 @@ public class ClientContainer {
 
     }
 
+    public NeatConfig neatConfig;
+
     public BooleanValue SHOW_AFFIXED_NAME;
     public BooleanValue RENDER_FLOATING_DAMAGE;
     public BooleanValue RENDER_MOB_HEALTH_GUI;
@@ -31,6 +34,8 @@ public class ClientContainer {
 
     ClientContainer(ForgeConfigSpec.Builder builder) {
         builder.comment("Client Settings").push(NAME);
+
+        neatConfig = builder.configure(NeatConfig::new).getLeft();
 
         SHOW_AFFIXED_NAME = builder.comment(".")
                 .translation("mmorpg.config.show_item_affixes")

@@ -1,33 +1,60 @@
 package com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay;
 
-import java.util.ArrayList;
+import com.google.common.collect.ImmutableList;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+
 import java.util.List;
 
 public class NeatConfig {
 
     public static boolean draw = true;
 
-    public static int maxDistance = 15;
-    public static boolean renderInF1 = false;
-    public static double heightAbove = 0.6;
-    public static boolean drawBackground = true;
-    public static int backgroundPadding = 2;
-    public static int backgroundHeight = 6;
-    public static int barHeight = 4;
-    public static int plateSize = 25;
-    public static int plateSizeBoss = 50;
-    public static boolean colorByType = false;
-    public static int hpTextHeight = 14;
-    public static boolean showMaxHP = true;
-    public static boolean showCurrentHP = true;
-    public static boolean showPercentage = true;
-    public static boolean showOnPlayers = true;
-    public static boolean showOnBosses = true;
-    public static boolean showOnlyFocused = true;
-    public static boolean enableDebugInfo = true;
+    public ConfigValue<Integer> maxDistance;
+    public ConfigValue<Boolean> renderInF1;
+    public ConfigValue<Double> heightAbove;
+    public ConfigValue<Boolean> drawBackground;
+    public ConfigValue<Integer> backgroundPadding;
+    public ConfigValue<Integer> backgroundHeight;
+    public ConfigValue<Integer> barHeight;
+    public ConfigValue<Integer> plateSize;
+    public ConfigValue<Integer> plateSizeBoss;
+    public ConfigValue<Boolean> colorByType;
+    public ConfigValue<Integer> hpTextHeight;
+    public ConfigValue<Boolean> showMaxHP;
+    public ConfigValue<Boolean> showCurrentHP;
+    public ConfigValue<Boolean> showPercentage;
+    public ConfigValue<Boolean> showOnPlayers;
+    public ConfigValue<Boolean> showOnBosses;
+    public ConfigValue<Boolean> showOnlyFocused;
+    public ConfigValue<Boolean> enableDebugInfo;
+    public ConfigValue<List<? extends String>> blacklist;
 
-    public static List<String> blacklist = new ArrayList();
+    public NeatConfig(ForgeConfigSpec.Builder builder) {
+        builder.push("NEAT_CONFIG");
 
-    // public static Configuration config;
+        maxDistance = builder.define("Max Distance", 24);
+        renderInF1 = builder.define("Render with Interface Disabled (F1)", false);
+        heightAbove = builder.define("Height Above Mob", 0.6D);
+        drawBackground = builder.define("Draw Background", true);
+        backgroundPadding = builder.define("Background Padding", 2);
+        backgroundHeight = builder.define("Background Height", 6);
+        barHeight = builder.define("Health Bar Height", 4);
+        plateSize = builder.define("Plate Size", 25);
+        plateSizeBoss = builder.define("Plate Size (Boss)", 50);
+        colorByType = builder.define("Color Health Bar by Type (instead of health percentage)", false);
+        hpTextHeight = builder.define("HP Text Height", 14);
+        showMaxHP = builder.define("Show Max HP", true);
+        showCurrentHP = builder.define("Show Current HP", true);
+        showPercentage = builder.define("Show HP Percentage", true);
+        showOnPlayers = builder.define("Display on Players", true);
+        showOnBosses = builder.define("Display on Bosses", true);
+        showOnlyFocused = builder.define("Only show the health bar for the entity looked at", true);
+        enableDebugInfo = builder.define("Show Debug Info with F3", true);
+        blacklist = builder.comment("Blacklist uses entity IDs, not their display names. Use F3 to see them in the Neat bar.")
+                .defineList("Blacklist", ImmutableList.of("minecraft:shulker", "minecraft:armor_stand", "minecraft:cod", "minecraft:salmon", "minecraft:pufferfish", "minecraft:tropical_fish"), a -> true);
+
+        builder.pop();
+    }
 
 }

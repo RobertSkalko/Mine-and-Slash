@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
+import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mine_and_slash.uncommon.gui.StatGUI;
 import com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen.StatPointScreen;
@@ -8,6 +9,8 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class OnKeyPress {
+
+    static boolean down;
 
     // they said i should use clienttickevent but idk how
     @SubscribeEvent
@@ -22,6 +25,12 @@ public class OnKeyPress {
             } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
                 Minecraft.getInstance().displayGuiScreen(new StatPointScreen());
             }
+
+            boolean wasDown = down;
+            down = KeybindsRegister.disableNeatOverlay.isKeyDown();
+            if (Minecraft.getInstance().isGameFocused() && down && !wasDown)
+                NeatConfig.draw = !NeatConfig.draw;
+
         }
 
     }

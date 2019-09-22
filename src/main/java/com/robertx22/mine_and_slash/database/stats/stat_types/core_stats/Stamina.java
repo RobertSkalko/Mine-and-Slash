@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.core_stats;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ArmorPercent;
 
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class Stamina extends BaseCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases Energy, Armor and Armor Percent";
+        return "Increases Energy, Energy Regen, Armor and Armor Percent";
     }
 
     @Override
@@ -27,7 +28,8 @@ public class Stamina extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new EnergyFlat().multi(2), new ArmorFlat(), new ArmorPercent());
+        return Arrays.asList(new EnergyRegenFlat().multi(0.4F), new EnergyFlat().multi(1.25F), new ArmorFlat()
+                .multi(0.75F), new ArmorPercent());
     }
 
     @Override

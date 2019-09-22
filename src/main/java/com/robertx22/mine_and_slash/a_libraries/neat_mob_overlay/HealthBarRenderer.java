@@ -1,10 +1,12 @@
 package com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -15,10 +17,10 @@ import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.*;
@@ -30,9 +32,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
+import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 
 @EventBusSubscriber(Dist.CLIENT)
@@ -43,11 +48,13 @@ public class HealthBarRenderer {
         try {
             Minecraft mc = Minecraft.getInstance();
 
-            if ((!NeatConfig.renderInF1 && !Minecraft.isGuiEnabled()) || !NeatConfig.draw)
+            if ((!ClientContainer.INSTANCE.neatConfig.renderInF1.get() && !Minecraft.isGuiEnabled()) || !NeatConfig.draw)
                 return;
 
             Entity cameraEntity = mc.getRenderViewEntity();
             Frustum frustum = new Frustum();
+
+            BlockPos renderingVector = cameraEntity.getPosition();
 
             float partialTicks = event.getPartialTicks();
             double viewX = cameraEntity.lastTickPosX + (cameraEntity.posX - cameraEntity.lastTickPosX) * partialTicks;
@@ -55,10 +62,23 @@ public class HealthBarRenderer {
             double viewZ = cameraEntity.lastTickPosZ + (cameraEntity.posZ - cameraEntity.lastTickPosZ) * partialTicks;
             frustum.setPosition(viewX, viewY, viewZ);
 
-            if (NeatConfig.showOnlyFocused) {
+            if (ClientContainer.INSTANCE.neatConfig.showOnlyFocused.get()) {
                 Entity focused = getEntityLookedAt(mc.player);
+
                 if (focused != null && focused instanceof LivingEntity && focused.isAlive())
                     renderHealthBar((LivingEntity) focused, partialTicks, cameraEntity);
+            } else {
+                ClientWorld client = mc.world;
+                Int2ObjectMap<Entity> entitiesById = ObfuscationReflectionHelper.getPrivateValue(ClientWorld.class, client, "entitiesById");
+                for (Entity entity : entitiesById.values()) {
+                    if (entity != null && entity instanceof LivingEntity && entity != mc.player && entity
+                            .isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(), renderingVector
+                                    .getZ()) && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity
+                            .getBoundingBox())) && entity.isAlive() && entity.getRecursivePassengers()
+                            .isEmpty())
+                        renderHealthBar((LivingEntity) entity, partialTicks, cameraEntity);
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,18 +119,18 @@ public class HealthBarRenderer {
             boolean boss = !entity.isNonBoss();
 
             String entityID = entity.getEntityString();
-            if (NeatConfig.blacklist.contains(entityID))
+            if (ClientContainer.INSTANCE.neatConfig.blacklist.get().contains(entityID))
                 continue;
 
             processing:
             {
                 float distance = passedEntity.getDistance(viewPoint);
-                if (distance > NeatConfig.maxDistance || !passedEntity.canEntityBeSeen(viewPoint) || entity
-                        .isInvisible())
+                if (distance > ClientContainer.INSTANCE.neatConfig.maxDistance.get() || !passedEntity
+                        .canEntityBeSeen(viewPoint) || entity.isInvisible())
                     break processing;
-                if (!NeatConfig.showOnBosses && !boss)
+                if (!ClientContainer.INSTANCE.neatConfig.showOnBosses.get() && !boss)
                     break processing;
-                if (!NeatConfig.showOnPlayers && entity instanceof PlayerEntity)
+                if (!ClientContainer.INSTANCE.neatConfig.showOnPlayers.get() && entity instanceof PlayerEntity)
                     break processing;
 
                 double x = passedEntity.lastTickPosX + (passedEntity.posX - passedEntity.lastTickPosX) * partialTicks;
@@ -132,7 +152,7 @@ public class HealthBarRenderer {
 
                 GlStateManager.pushMatrix();
                 GlStateManager.translatef((float) (x - renderManager.renderPosX), (float) (y - renderManager.renderPosY + passedEntity
-                        .getHeight() + NeatConfig.heightAbove), (float) (z - renderManager.renderPosZ));
+                        .getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get()), (float) (z - renderManager.renderPosZ));
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
                 GlStateManager.rotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
@@ -147,16 +167,17 @@ public class HealthBarRenderer {
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder buffer = tessellator.getBuffer();
 
-                float padding = NeatConfig.backgroundPadding;
-                int bgHeight = NeatConfig.backgroundHeight;
-                int barHeight = NeatConfig.barHeight;
-                float size = NeatConfig.plateSize;
+                float padding = ClientContainer.INSTANCE.neatConfig.backgroundPadding.get();
+                int bgHeight = ClientContainer.INSTANCE.neatConfig.backgroundHeight.get();
+                int barHeight = ClientContainer.INSTANCE.neatConfig.barHeight.get();
+                float size = boss ? ClientContainer.INSTANCE.neatConfig.plateSizeBoss.get() : ClientContainer.INSTANCE.neatConfig.plateSize
+                        .get();
 
                 int r = 0;
                 int g = 255;
                 int b = 0;
 
-                boolean useHue = !NeatConfig.colorByType;
+                boolean useHue = !ClientContainer.INSTANCE.neatConfig.colorByType.get();
                 if (useHue) {
                     float hue = Math.max(0F, (health / maxHealth) / 3F - 0.07F);
                     Color color = Color.getHSBColor(hue, 1F, 1F);
@@ -183,7 +204,7 @@ public class HealthBarRenderer {
                 float healthSize = size * (health / maxHealth);
 
                 // Background
-                if (NeatConfig.drawBackground) {
+                if (ClientContainer.INSTANCE.neatConfig.drawBackground.get()) {
                     buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
                     buffer.pos(-size - padding, -bgHeight, 0.0D)
                             .color(0, 0, 0, 64)
@@ -231,7 +252,7 @@ public class HealthBarRenderer {
                 float s1 = 0.75F;
                 GlStateManager.scalef(s1, s1, s1);
 
-                int h = NeatConfig.hpTextHeight;
+                int h = ClientContainer.INSTANCE.neatConfig.hpTextHeight.get();
                 String maxHpStr = TextFormatting.BOLD + "" + Math.round(maxHealth * 100.0) / 100.0;
                 String hpStr = "" + Math.round(health * 100.0) / 100.0;
                 String percStr = (int) percent + "%";
@@ -241,15 +262,15 @@ public class HealthBarRenderer {
                 if (hpStr.endsWith(".0"))
                     hpStr = hpStr.substring(0, hpStr.length() - 2);
 
-                if (NeatConfig.showCurrentHP)
+                if (ClientContainer.INSTANCE.neatConfig.showCurrentHP.get())
                     mc.fontRenderer.drawString(hpStr, 2, h, 0xFFFFFF);
-                if (NeatConfig.showMaxHP)
+                if (ClientContainer.INSTANCE.neatConfig.showMaxHP.get())
                     mc.fontRenderer.drawString(maxHpStr, (int) (size / (s * s1) * 2) - 2 - mc.fontRenderer
                             .getStringWidth(maxHpStr), h, 0xFFFFFF);
-                if (NeatConfig.showPercentage)
+                if (ClientContainer.INSTANCE.neatConfig.showPercentage.get())
                     mc.fontRenderer.drawString(percStr, (int) (size / (s * s1)) - mc.fontRenderer
                             .getStringWidth(percStr) / 2, h, 0xFFFFFFFF);
-                if (NeatConfig.enableDebugInfo && mc.gameSettings.showDebugInfo)
+                if (ClientContainer.INSTANCE.neatConfig.enableDebugInfo.get() && mc.gameSettings.showDebugInfo)
                     mc.fontRenderer.drawString("GEAR_FACTORY_ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
                 GlStateManager.popMatrix();
 
@@ -330,28 +351,56 @@ public class HealthBarRenderer {
     }
 
     public static Entity getEntityLookedAt(Entity e) {
-        Entity foundEntity = Minecraft.getInstance().pointedEntity;
+        Entity foundEntity = null;
 
-        if (foundEntity == null) {
+        final double finalDistance = 32;
+        double distance = finalDistance;
+        RayTraceResult pos = raycast(e, finalDistance);
 
-            int distance = NeatConfig.maxDistance;
+        Vec3d positionVector = e.getPositionVector();
+        if (e instanceof PlayerEntity)
+            positionVector = positionVector.add(0, e.getEyeHeight(), 0);
 
-            Vec3d vec3d = e.getEyePosition(1);
-            Vec3d vec3d1 = e.getLook(1.0F);
-            Vec3d vec3d2 = vec3d.add(vec3d1.x * distance, vec3d1.y * distance, vec3d1.z * distance);
+        if (pos != null)
+            distance = pos.getHitVec().distanceTo(positionVector);
 
-            AxisAlignedBB axisalignedbb = e.getBoundingBox()
-                    .expand(vec3d1.scale(distance))
-                    .grow(1.0D, 1.0D, 1.0D);
-            EntityRayTraceResult entityraytraceresult = ProjectileHelper.func_221273_a(e, vec3d, vec3d2, axisalignedbb, (lookedEntity) -> {
-                return lookedEntity.canBeCollidedWith();
-            }, distance);
+        Vec3d lookVector = e.getLookVec();
+        Vec3d reachVector = positionVector.add(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance);
 
-            if (entityraytraceresult != null && entityraytraceresult.getEntity() != null) {
-                foundEntity = entityraytraceresult.getEntity();
+        Entity lookedEntity = null;
+        List<Entity> entitiesInBoundingBox = e.getEntityWorld()
+                .getEntitiesWithinAABBExcludingEntity(e, e.getBoundingBox()
+                        .grow(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
+                        .expand(1F, 1F, 1F));
+        double minDistance = distance;
+
+        for (Entity entity : entitiesInBoundingBox) {
+            if (entity.canBeCollidedWith()) {
+                float collisionBorderSize = entity.getCollisionBorderSize();
+                AxisAlignedBB hitbox = entity.getBoundingBox()
+                        .expand(collisionBorderSize, collisionBorderSize, collisionBorderSize);
+                Optional<Vec3d> interceptPosition = hitbox.rayTrace(positionVector, reachVector);
+                Vec3d interceptVec = interceptPosition.orElse(null);
+
+                if (hitbox.contains(positionVector)) {
+                    if (0.0D < minDistance || minDistance == 0.0D) {
+                        lookedEntity = entity;
+                        minDistance = 0.0D;
+                    }
+                } else if (interceptVec != null) {
+                    double distanceToEntity = positionVector.distanceTo(interceptVec);
+
+                    if (distanceToEntity < minDistance || minDistance == 0.0D) {
+                        lookedEntity = entity;
+                        minDistance = distanceToEntity;
+                    }
+                }
             }
 
+            if (lookedEntity != null && (minDistance < distance || pos == null))
+                foundEntity = lookedEntity;
         }
+
         return foundEntity;
     }
 
@@ -364,14 +413,13 @@ public class HealthBarRenderer {
         if (look == null)
             return null;
 
-        return raycast(e.getEntityWorld(), vec, look, len, e);
+        return raycast(e.getEntityWorld(), vec, look, e, len);
     }
 
-    public static RayTraceResult raycast(World world, Vec3d origin, Vec3d ray, double len,
-                                         Entity entity) {
+    public static RayTraceResult raycast(World world, Vec3d origin, Vec3d ray, Entity e,
+                                         double len) {
         Vec3d end = origin.add(ray.normalize().scale(len));
-
-        RayTraceResult pos = world.rayTraceBlocks(new RayTraceContext(origin, end, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, entity));
+        RayTraceResult pos = world.rayTraceBlocks(new RayTraceContext(origin, end, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, e));
         return pos;
     }
 }
