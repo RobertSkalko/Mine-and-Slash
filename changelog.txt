@@ -1,0 +1,26 @@
+1.7.6
+- Fixes the default setting for drop only setting.
+1.7.5
+- Adds configurable options to add stats on only dropped items and if compatible items can be salvaged.
+- Added min and max levels configs for compatible items. This replaces itemIsPlayerLevel and itemLevelIfDoesntUsePlayerLevel. You will need to update your configs.
+- Made the min levels needed to trigger punishment configurable.
+1.7.4
+- Made all Weapon energy costs configured per type. (Sword, Axe, Hammer, Staff, and Bow)
+- Made the event of giving of Starter Gear to new players configurable. 
+- Fixes the Modify texture in the Inventory. 
+- Made maps start dropping at level 10 by default, this is still configurable. 
+1.7.3
+- Removes Axes from all compats. Fixes https://github.com/kreezxil/World-of-Dragons/issues/334
+1.7.2
+- Fixes the Repair block texture. Not sure why it didn't update before.
+1.7.1
+- Allows up to 36 dims to be configured. 
+- Made all auto compatible items lists I've made configurable on or off. (Look under the Server section of the mmorpg config file)
+- Added Tech Reborn and Thermal Foundations auto compatible lists so they gain stats if installed with Mine and Slash.
+- Reworked all the stations, no more anvils! (These are for 1.12 only currently, I am open to feed back on the new stations!)
+1.7.0
+THIS IS A PR BY AZUREZHEN FOR THE 1.12.2 MC VERSION:
+I've fixed the portal code a bit for multiplayer. Doesn't spawn you in the earth anymore.
+Back-ported your new Salvage and Modify stations. (Fire of the salvage was being too glitchy so I've disabled the fire for now)
+Added default compatible for Vanilla (#70), Ice and Fire, and EB Wizardry items. More to come as I get more requests. Vanilla items will always gain stats, the code for Ice and Fire/EB Wizardry will only load if those mods are found.
+Fixed the arrows though wall bug. (#72) I've made them normal bows again and require arrows. The infinite arrow thing is honestly broken balance wise.
