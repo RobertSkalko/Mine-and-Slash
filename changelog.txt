@@ -1,3 +1,6 @@
+2.8.2
+fixed server side crash
+increased jewerly durability max values
 2.8.1
 fixed picked stats capability and professions cap not saving over death
 fixed no command found error on lvl up

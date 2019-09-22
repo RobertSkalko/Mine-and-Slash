@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.items.gearitems.bases;
 
-import com.robertx22.mine_and_slash.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -20,7 +20,8 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
 
         super(ItemUtils.getDefaultGearProperties()
                 .maxStackSize(1)
-                .maxDamage(new RarityItemTier(rar).getMaxUses()));
+                .maxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
+                        .getDurability(EquipmentSlotType.CHEST)));
         this.rarity = rar;
     }
 

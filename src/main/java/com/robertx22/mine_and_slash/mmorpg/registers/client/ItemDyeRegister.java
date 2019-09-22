@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.mmorpg.registers.common;
+package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothChestItem;
@@ -8,18 +8,15 @@ import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherBootsIt
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherChestItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherHelmetItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherPantsItem;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemDyeRegister {
 
     @SubscribeEvent

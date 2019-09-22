@@ -42,7 +42,7 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
         this.rarity = rarity;
     }
 
-    private static IArmorMaterial GetMat(Type type, int rarity) {
+    public static IArmorMaterial GetMat(Type type, int rarity) {
 
         if (type.equals(Type.PLATE)) {
             if (rarity == 0) {
