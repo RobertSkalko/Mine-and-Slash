@@ -26,6 +26,17 @@ public class OnPlayerClone {
             e.printStackTrace();
         }
 
+        try {
+            Load.statPoints(current).setNBT(Load.statPoints(original).getNBT());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Load.professions(current).setNBT(Load.professions(original).getNBT());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

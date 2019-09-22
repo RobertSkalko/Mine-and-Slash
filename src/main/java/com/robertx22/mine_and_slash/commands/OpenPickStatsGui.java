@@ -10,10 +10,10 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 public class OpenPickStatsGui {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(Commands.literal(COMMAND)
-                .requires(e -> e.hasPermissionLevel(2))
+                .requires(e -> e.hasPermissionLevel(0))
                 .executes(ctx -> run(ctx.getSource())));
     }
-
+    
     public static final String COMMAND = "openpickstatsgui";
 
     private static int run(CommandSource source) {
