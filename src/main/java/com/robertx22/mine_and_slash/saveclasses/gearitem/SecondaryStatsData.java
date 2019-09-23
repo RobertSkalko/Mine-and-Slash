@@ -33,7 +33,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
         this.Mods = new ArrayList<StatModData>();
 
-        int Stats = RandomUtils.RandomRange(1, 3);
+        int Stats = RandomUtils.RandomRange(1, 2);
 
         while (Stats > 0) {
             StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()

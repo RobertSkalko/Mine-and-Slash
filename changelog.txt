@@ -1,3 +1,5 @@
+2.8.7
+fixed items generating with 3 secondary stats
 2.8.6
 should fix the server crash on profession gui
 buffed wisdom ele resist bonus
