@@ -18,7 +18,12 @@ public class StaffWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost() {
-        return 9;
+        return 6;
+    }
+
+    @Override
+    public float GetManaCost() {
+        return 3;
     }
 
     @Override

@@ -1,3 +1,5 @@
+2.8.9
+staffs now cost mana too but less energy
 2.8.8
 staffs now work like bows
 projectiles now no longer randomly miss as they work like arrows

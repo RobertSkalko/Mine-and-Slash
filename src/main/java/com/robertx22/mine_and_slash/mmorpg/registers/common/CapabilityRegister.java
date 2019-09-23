@@ -20,6 +20,8 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(PlayerStatsPointsCap.IPlayerStatPointsData.class, new PlayerStatsPointsCap.Storage(), PlayerStatsPointsCap.DefaultImpl::new);
 
+        CapabilityManager.INSTANCE.register(WeaponSpeedCap.IWeaponSpeedCap.class, new WeaponSpeedCap.Storage(), WeaponSpeedCap.DefaultImpl::new);
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
+import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemWand;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ItemDyeRegister;
 import com.robertx22.mine_and_slash.onevent.entity.*;
 import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
@@ -8,6 +9,7 @@ import com.robertx22.mine_and_slash.onevent.my_events.CollectGearEvent;
 import com.robertx22.mine_and_slash.onevent.my_events.GiveExpSub;
 import com.robertx22.mine_and_slash.onevent.ontick.OnTickLogic;
 import com.robertx22.mine_and_slash.onevent.player.*;
+import com.robertx22.mine_and_slash.uncommon.capability.WeaponSpeedCap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -28,6 +30,7 @@ public class RegisterEvents {
 
     private static void registerPlayerEvents() {
 
+        register(WeaponSpeedCap.class);
         register(GiveExpSub.class);
         register(OnDeath.class);
         register(OnPlayerClone.class);
@@ -61,11 +64,11 @@ public class RegisterEvents {
 
     private static void registerItemEvents() {
 
+        register(ItemWand.class);
         register(OnContainerCompatibleItem.class);
         register(OnMissingMappings.class);
         register(OnPickupInsertIntoBag.class);
         register(OnPickUpSalvage.class);
-        //register(OnItemDroppedSound.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnTooltip.class);

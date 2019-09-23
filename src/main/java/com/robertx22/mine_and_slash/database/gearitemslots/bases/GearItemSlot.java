@@ -34,6 +34,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         OffHand
     }
 
+    public int cooldownTicks() {
+        return 20;
+    }
+
     public boolean isGearOfThisType(Item item) {
         return false;
     }
