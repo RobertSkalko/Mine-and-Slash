@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
+import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Mana;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -124,9 +125,17 @@ public class GearTooltipUtils {
             if (gear.GetBaseGearType() instanceof IWeapon) {
                 IWeapon iwep = (IWeapon) gear.GetBaseGearType();
                 tip.add(new StringTextComponent(""));
-                tip.add(Styles.GREENCOMP()
-                        .appendSibling(Energy.INSTANCE.locName()
-                                .appendText(": " + iwep.mechanic().GetEnergyCost())));
+                if (iwep.mechanic().GetEnergyCost() > 0) {
+                    tip.add(Styles.GREENCOMP()
+                            .appendSibling(Energy.INSTANCE.locName()
+                                    .appendText(": " + iwep.mechanic().GetEnergyCost())));
+                }
+                if (iwep.mechanic().GetManaCost() > 0) {
+                    tip.add(Styles.BLUECOMP()
+                            .appendSibling(Mana.INSTANCE.locName()
+                                    .appendText(": " + iwep.mechanic().GetManaCost())));
+                }
+
                 tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep
                         .mechanic()
                         .tooltipDesc()));

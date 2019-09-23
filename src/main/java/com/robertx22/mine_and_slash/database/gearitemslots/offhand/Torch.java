@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.gearitemslots;
+package com.robertx22.mine_and_slash.database.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;

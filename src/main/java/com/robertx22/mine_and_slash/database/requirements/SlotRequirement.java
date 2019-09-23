@@ -1,11 +1,16 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.*;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BasePants;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
 import java.util.ArrayList;

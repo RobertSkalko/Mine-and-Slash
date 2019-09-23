@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Bracelet;
-import com.robertx22.mine_and_slash.database.gearitemslots.Necklace;
-import com.robertx22.mine_and_slash.database.gearitemslots.Ring;
-import com.robertx22.mine_and_slash.database.gearitemslots.Sword;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.database.spells.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;

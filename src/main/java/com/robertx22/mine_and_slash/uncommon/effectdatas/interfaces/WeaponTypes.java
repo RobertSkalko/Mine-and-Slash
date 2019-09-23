@@ -11,7 +11,8 @@ public enum WeaponTypes {
     Bow(true),
     Sword(true),
     CrossBow(true),
-    Staff(true);
+    Staff(true),
+    Wand(true);
 
     WeaponTypes(boolean bool) {
         this.isSingleType = bool;

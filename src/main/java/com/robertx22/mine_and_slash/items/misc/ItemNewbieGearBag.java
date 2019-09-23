@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.misc;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Sword;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.bases;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Shield;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import net.minecraft.item.ShieldItem;

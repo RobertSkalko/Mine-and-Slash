@@ -1,64 +1,54 @@
-package com.robertx22.mine_and_slash.database.gearitemslots;
+package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.SpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemRing;
+import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
 import net.minecraft.item.Item;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class Ring extends GearItemSlot {
+public class Bracelet extends GearItemSlot {
+    public static GearItemSlot INSTANCE = new Bracelet();
 
-    public static GearItemSlot INSTANCE = new Ring();
-
-    private Ring() {
+    private Bracelet() {
 
     }
 
     @Override
     public String GUID() {
-        return "Ring";
+        return "Bracelet";
     }
 
     @Override
     public List<StatMod> PrimaryStats() {
-
         return ListUtils.newList(new ElementalSpellDamageFlat(Elements.Physical).allSingleElementVariations(), new SpellDamageFlat());
 
     }
 
     @Override
+    public boolean isGearOfThisType(Item item) {
+        return false;
+    }
+
+    @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return Arrays.asList(new EnergyRegenFlat(), new ManaRegenFlat(), new ManaFlat());
+        return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
     }
 
     @Override
     public Item DefaultItem() {
-        return ItemRing.Items.get(0);
+        return ItemBracelet.Items.get(0);
     }
 
     @Override
     public HashMap<Integer, Item> ItemsForRarities() {
-        return ItemRing.Items;
-    }
-
-    @Override
-    public int Weight() {
-        return 1500;
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return false;
+        return ItemBracelet.Items;
     }
 
     @Override
@@ -68,6 +58,6 @@ public class Ring extends GearItemSlot {
 
     @Override
     public String locNameForLangFile() {
-        return "Ring";
+        return "Bracelet";
     }
 }

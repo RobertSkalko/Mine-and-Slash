@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.gearitemslots;
+package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;

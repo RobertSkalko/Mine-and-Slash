@@ -15,6 +15,10 @@ public abstract class WeaponMechanic {
 
     public abstract float GetEnergyCost();
 
+    public float GetManaCost() {
+        return 0;
+    }
+
     public abstract WeaponTypes weaponType();
 
     public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,

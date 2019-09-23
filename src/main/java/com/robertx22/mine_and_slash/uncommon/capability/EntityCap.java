@@ -729,14 +729,21 @@ public class EntityCap {
                     IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
                     float energyCost = iwep.mechanic().GetEnergyCost();
+                    float manaCost = iwep.mechanic().GetManaCost();
 
                     if (hasEnoughEnergy(energyCost) == false) {
                         AttackUtils.NoEnergyMessage(source);
                         return false;
 
                     } else {
+
+                        if (hasEnoughMana(manaCost) == false) {
+                            AttackUtils.NoEnergyMessage(source);
+                            return false;
+                        }
+
                         consumeEnergy(energyCost);
-                        //weapon.damageItem(1, source);
+                        consumeMana(manaCost);
 
                         return true;
 

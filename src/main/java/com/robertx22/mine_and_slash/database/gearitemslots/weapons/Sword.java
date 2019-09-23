@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.gearitemslots;
+package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;

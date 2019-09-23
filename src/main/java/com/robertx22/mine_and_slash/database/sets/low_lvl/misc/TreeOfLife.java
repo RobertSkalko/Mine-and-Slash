@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.sets.low_lvl.misc;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.Charm;
-import com.robertx22.mine_and_slash.database.gearitemslots.Ring;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
