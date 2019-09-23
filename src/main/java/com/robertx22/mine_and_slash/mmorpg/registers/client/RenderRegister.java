@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityStaffProjectile;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityWandProjectile;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.IMyRenderAsItem;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.MySpriteRenderer;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.aoe.EntityAcidExplosion;
@@ -46,6 +47,7 @@ public class RenderRegister {
         RenderingRegistry.registerEntityRenderingHandler(EntityAcidBomb.class, newRenFac());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityStaffProjectile.class, newRenFac());
+        RenderingRegistry.registerEntityRenderingHandler(EntityWandProjectile.class, newRenFac());
 
     }
 

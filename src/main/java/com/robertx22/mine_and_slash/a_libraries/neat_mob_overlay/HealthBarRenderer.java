@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.LookUtils;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
@@ -23,11 +24,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -36,8 +36,6 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
-import java.util.List;
-import java.util.Optional;
 import java.util.Stack;
 
 @EventBusSubscriber(Dist.CLIENT)
@@ -63,7 +61,7 @@ public class HealthBarRenderer {
             frustum.setPosition(viewX, viewY, viewZ);
 
             if (ClientContainer.INSTANCE.neatConfig.showOnlyFocused.get()) {
-                Entity focused = getEntityLookedAt(mc.player);
+                Entity focused = LookUtils.getEntityLookedAt(mc.player);
 
                 if (focused != null && focused instanceof LivingEntity && focused.isAlive())
                     renderHealthBar((LivingEntity) focused, partialTicks, cameraEntity);
@@ -350,76 +348,4 @@ public class HealthBarRenderer {
         }
     }
 
-    public static Entity getEntityLookedAt(Entity e) {
-        Entity foundEntity = null;
-
-        final double finalDistance = 32;
-        double distance = finalDistance;
-        RayTraceResult pos = raycast(e, finalDistance);
-
-        Vec3d positionVector = e.getPositionVector();
-        if (e instanceof PlayerEntity)
-            positionVector = positionVector.add(0, e.getEyeHeight(), 0);
-
-        if (pos != null)
-            distance = pos.getHitVec().distanceTo(positionVector);
-
-        Vec3d lookVector = e.getLookVec();
-        Vec3d reachVector = positionVector.add(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance);
-
-        Entity lookedEntity = null;
-        List<Entity> entitiesInBoundingBox = e.getEntityWorld()
-                .getEntitiesWithinAABBExcludingEntity(e, e.getBoundingBox()
-                        .grow(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
-                        .expand(1F, 1F, 1F));
-        double minDistance = distance;
-
-        for (Entity entity : entitiesInBoundingBox) {
-            if (entity.canBeCollidedWith()) {
-                float collisionBorderSize = entity.getCollisionBorderSize();
-                AxisAlignedBB hitbox = entity.getBoundingBox()
-                        .expand(collisionBorderSize, collisionBorderSize, collisionBorderSize);
-                Optional<Vec3d> interceptPosition = hitbox.rayTrace(positionVector, reachVector);
-                Vec3d interceptVec = interceptPosition.orElse(null);
-
-                if (hitbox.contains(positionVector)) {
-                    if (0.0D < minDistance || minDistance == 0.0D) {
-                        lookedEntity = entity;
-                        minDistance = 0.0D;
-                    }
-                } else if (interceptVec != null) {
-                    double distanceToEntity = positionVector.distanceTo(interceptVec);
-
-                    if (distanceToEntity < minDistance || minDistance == 0.0D) {
-                        lookedEntity = entity;
-                        minDistance = distanceToEntity;
-                    }
-                }
-            }
-
-            if (lookedEntity != null && (minDistance < distance || pos == null))
-                foundEntity = lookedEntity;
-        }
-
-        return foundEntity;
-    }
-
-    public static RayTraceResult raycast(Entity e, double len) {
-        Vec3d vec = new Vec3d(e.posX, e.posY, e.posZ);
-        if (e instanceof PlayerEntity)
-            vec = vec.add(new Vec3d(0, e.getEyeHeight(), 0));
-
-        Vec3d look = e.getLookVec();
-        if (look == null)
-            return null;
-
-        return raycast(e.getEntityWorld(), vec, look, e, len);
-    }
-
-    public static RayTraceResult raycast(World world, Vec3d origin, Vec3d ray, Entity e,
-                                         double len) {
-        Vec3d end = origin.add(ray.normalize().scale(len));
-        RayTraceResult pos = world.rayTraceBlocks(new RayTraceContext(origin, end, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, e));
-        return pos;
-    }
 }

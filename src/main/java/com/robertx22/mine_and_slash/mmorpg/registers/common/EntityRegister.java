@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityStaffProjectile;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityWandProjectile;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.aoe.EntityAcidExplosion;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.aoe.EntityFlameExplosion;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.aoe.EntityFrostExplosion;
@@ -57,6 +58,7 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> THUNDEREXPLOSION;
 
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
+    public static final EntityType<? extends Entity> WANDPROJECTILE;
 
     static {
 
@@ -76,6 +78,7 @@ public class EntityRegister {
         THUNDERBOMB = newType(EntityThunderBomb.class, EntityThunderBomb::new, EntityThunderBomb::new, "entity_thunder_bomb");
 
         STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
+        WANDPROJECTILE = newType(EntityWandProjectile.class, EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
 
     }
 
