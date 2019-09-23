@@ -17,7 +17,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
@@ -34,7 +33,7 @@ import java.util.stream.Collectors;
 
 public abstract class EntityBaseProjectile extends AbstractArrowEntity implements IProjectile, IMyRenderAsItem, IBuffableSpell, IShootableProjectile {
 
-    Entity homindTarget = null;
+    Entity homingTarget = null;
 
     public float shootSpeed = 1.3F;
 
@@ -64,7 +63,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     @Override
     protected void registerData() {
-
+        super.registerData();
     }
 
     @Override
@@ -85,6 +84,11 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     @Override
     public void setBuff(SpellBuffType buff) {
         this.buff = buff;
+    }
+
+    @Override
+    protected ItemStack getArrowStack() {
+        return ItemStack.EMPTY;
     }
 
     protected boolean onExpireProc(LivingEntity caster) {
@@ -207,53 +211,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     }
 
     /**
-     * Sets throwable heading based on an entity that's throwing it
-     */
-    public void shoot(Entity entityThrower, float rotationPitchIn, float rotationYawIn,
-                      float pitchOffset, float velocity, float inaccuracy) {
-        float f = -MathHelper.sin(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);
-        float f1 = -MathHelper.sin((rotationPitchIn + pitchOffset) * 0.017453292F);
-        float f2 = MathHelper.cos(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);
-        this.shoot((double) f, (double) f1, (double) f2, velocity, inaccuracy);
-        this.setMotion(getMotion().x + entityThrower.getMotion().x, getMotion().y, getMotion().z + entityThrower
-                .getMotion().z);
-
-        if (entityThrower instanceof LivingEntity) {
-            this.thrower = (LivingEntity) entityThrower;
-        }
-        if (!entityThrower.onGround) {
-            this.setMotion(this.getMotion().add(0, entityThrower.getMotion().y, 0));
-
-        }
-    }
-
-    /**
-     * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
-     * direction.
-     */
-    public void shoot(double x, double y, double z, float velocity, float inaccuracy) {
-        float f = MathHelper.sqrt(x * x + y * y + z * z);
-        x = x / (double) f;
-        y = y / (double) f;
-        z = z / (double) f;
-        x = x + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-        y = y + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-        z = z + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-        x = x * (double) velocity;
-        y = y * (double) velocity;
-        z = z * (double) velocity;
-
-        this.setMotion(x, y, z);
-
-        float f1 = MathHelper.sqrt(x * x + z * z);
-        this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-        this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D / Math.PI));
-        this.prevRotationYaw = this.rotationYaw;
-        this.prevRotationPitch = this.rotationPitch;
-        this.ticksInGround = 0;
-    }
-
-    /**
      * Updates the entity motion clientside, called by packets from the server
      */
     @OnlyIn(Dist.CLIENT)
@@ -276,111 +233,22 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     public void tick() {
         super.tick();
 
-        this.lastTickPosX = this.posX;
-        this.lastTickPosY = this.posY;
-        this.lastTickPosZ = this.posZ;
-        super.tick();
-
-        if (this.throwableShake > 0) {
-            --this.throwableShake;
-        }
-
-        if (this.inGround) {
-            if (this.world.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile))
-                    .getBlock() == this.inTile) {
-                ++this.ticksInGround;
-
-                if (this.ticksInGround == 1200) {
-                    this.remove();
-                }
-                return;
-            }
-
-            this.inGround = false;
-
-            this.setMotion(getMotion().x * this.rand.nextFloat() * 0.2F, getMotion().y * this.rand
-                    .nextFloat() * 0.2F, getMotion().z * this.rand.nextFloat() * 0.2F);
-
-            this.ticksInGround = 0;
-            this.ticksInAir = 0;
-        } else {
-            ++this.ticksInAir;
-        }
-
-        this.posX += this.getMotion().x;
-        this.posY += this.getMotion().y;
-        this.posZ += this.getMotion().z;
-
-        checkIfImpact();
-
-        this.rotationYaw = (float) (MathHelper.atan2(this.getMotion().x, this.getMotion().z) * (180D / Math.PI));
-
-        while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
-            this.prevRotationPitch += 360.0F;
-        }
-
-        while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
-            this.prevRotationYaw -= 360.0F;
-        }
-
-        while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
-            this.prevRotationYaw += 360.0F;
-        }
-
-        this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-        float f1 = 0.99F;
-        float f2 = this.getGravityVelocity();
-
-        if (world.isRemote && this.isInWater()) {
-            for (int j = 0; j < 4; ++j) {
-                this.world.addParticle(ParticleTypes.BUBBLE, true, this.posX - this.getMotion().x * 0.25D, this.posY - this
-                        .getMotion().y * 0.25D, this.posZ - this.getMotion().z * 0.25D, this
-                        .getMotion().x, this.getMotion().y, this.getMotion().z);
-            }
-            f1 = 0.8F;
-        }
-
-        this.setMotion(this.getMotion().x * f1, this.getMotion().y * f1, this.getMotion().z * f1);
-
-        if (!this.hasNoGravity()) {
-            this.setMotion(this.getMotion().subtract(new Vec3d(0D, (double) f2, 0D)));
-        }
-
-        this.setPosition(this.posX, this.posY, this.posZ);
-
         checkHoming();
 
     }
 
-    public void checkIfImpact() {
+    @Nullable
+    protected EntityRayTraceResult func_213866_a(Vec3d pos, Vec3d posPlusMotion) {
 
-        Vec3d motion = this.getMotion();
-        Vec3d pos = new Vec3d(this.posX, this.posY, this.posZ);
-        Vec3d posPlusMotion = pos.add(motion);
-
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(pos, posPlusMotion, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
-        if (raytraceresult.getType() != RayTraceResult.Type.MISS) {
-            posPlusMotion = raytraceresult.getHitVec();
-        }
-
-        EntityRayTraceResult entityraytraceresult = ProjectileHelper.func_221271_a(this.world, this, pos, posPlusMotion, this
-                .getBoundingBox()
+        return ProjectileHelper.func_221271_a(this.world, this, pos, posPlusMotion, this.getBoundingBox()
                 .expand(this.getMotion())
                 .grow(1D), (e) -> {
             return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.thrower && e != this.ignoreEntity;
         });
 
-        if (entityraytraceresult != null) {
-            raytraceresult = entityraytraceresult;
-        }
-
-        if (raytraceresult != null) {
-            onHit(raytraceresult);
-        }
-
     }
 
+    @Override
     protected void onHit(RayTraceResult raytraceResultIn) {
         RayTraceResult.Type raytraceresult$type = raytraceResultIn.getType();
         if (raytraceresult$type == RayTraceResult.Type.ENTITY) {
@@ -411,9 +279,9 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
             if (!this.collided && !this.world.isRemote) {
 
-                double seekingRange = 3.0d;
+                double seekingRange = 5.0d;
 
-                if (homindTarget == null) {
+                if (homingTarget == null || !homingTarget.isAlive()) {
                     List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(seekingRange, this.posX, this.posY, this.posZ, this.world)
                             .stream()
                             .filter(x -> x.isAlive())
@@ -421,11 +289,11 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
                     for (Entity possibleTarget : entities) {
                         // Decides if current entity should be replaced.
-                        if (homindTarget == null || this.getDistance(homindTarget) > this.getDistance(possibleTarget)) {
+                        if (homingTarget == null || this.getDistance(homingTarget) > this.getDistance(possibleTarget)) {
                             // Decides if new entity is a valid target.
                             if (Load.hasUnit(possibleTarget) && !possibleTarget.equals(this
                                     .getThrower())) {
-                                homindTarget = possibleTarget;
+                                homingTarget = possibleTarget;
                                 this.setNoGravity(true);
 
                                 this.setMotion(getMotion().x / 5, getMotion().y / 5, getMotion().z / 5);
@@ -435,24 +303,17 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
                     }
                 }
 
-                if (homindTarget != null && Math.abs(this.getMotion().x) < 5 && Math.abs(this
+                if (homingTarget != null && Math.abs(this.getMotion().x) < 5 && Math.abs(this
                         .getMotion().y) < 5 && Math.abs(this.getMotion().z) < 5) {
 
-                    this.addVelocity((homindTarget.posX - this.posX) / 30, (homindTarget.posY + homindTarget
-                            .getHeight() / 2 - this.posY) / 30, (homindTarget.posZ - this.posZ) / 30);
+                    this.addVelocity((homingTarget.posX - this.posX) / 30, (homingTarget.posY + homingTarget
+                            .getHeight() / 2 - this.posY) / 30, (homingTarget.posZ - this.posZ) / 30);
 
                     // this.getMotion().y += (target.posY + target.height - this.posY) / 30;
 
                 }
             }
         }
-    }
-
-    /**
-     * Gets the amount of gravity to apply to the thrown entity with each tick.
-     */
-    protected float getGravityVelocity() {
-        return 0.03F;
     }
 
     /**

@@ -1,5 +1,8 @@
 2.8.8
 staffs now work like bows
+projectiles now no longer randomly miss as they work like arrows
+buffed homing
+could be buggy
 2.8.7
 fixed items generating with 3 secondary stats
 2.8.6

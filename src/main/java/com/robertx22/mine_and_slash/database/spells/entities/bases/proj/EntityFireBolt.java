@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases.proj;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
@@ -28,4 +28,5 @@ public class EntityFireBolt extends EntityElementalBolt {
     public Elements element() {
         return Elements.Fire;
     }
+
 }
