@@ -1,3 +1,11 @@
+2.8.6
+should fix the server crash on profession gui
+buffed wisdom ele resist bonus
+buffed armor values and made the difference between plate, leather and cloth less
+fixed armor scaling
+increased stat requirements by a bit
+made it easier to get armor and ele resist %
+slimes now give less exp
 2.8.5
 updated the modified neat integration to have configs, they are in mmorpg-client file.
 wisdom now gives less regens but also gives elemental resists

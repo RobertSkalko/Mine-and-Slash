@@ -39,15 +39,15 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public static List<StatMod> leatherArmorStats() {
-        return Arrays.asList(new ArmorFlat().multi(0.75F), new DodgeFlat(), new StaminaFlat(), new DexterityFlat());
+        return Arrays.asList(new ArmorFlat().multi(1F), new DodgeFlat(), new StaminaFlat(), new DexterityFlat());
     }
 
     public static List<StatMod> plateArmorStats() {
-        return Arrays.asList(new ArmorFlat(), new VitalityFlat(), new StrengthFlat());
+        return Arrays.asList(new ArmorFlat().multi(1.25F), new VitalityFlat(), new StrengthFlat());
     }
 
     public static List<StatMod> clothArmorStats() {
-        return Arrays.asList(new ArmorFlat().multi(0.5F), new ManaFlat().multi(1.5F), new IntelligenceFlat(), new WisdomFlat());
+        return Arrays.asList(new ArmorFlat().multi(0.75F), new ManaFlat().multi(1.75F), new IntelligenceFlat(), new WisdomFlat());
     }
 
     public List<Stat> statRequirements() {

@@ -89,7 +89,7 @@ public class StatRequirementsData {
     }
 
     public static int getAmount(int lvl) {
-        return MathHelper.clamp(lvl - (lvl / 4) - 15, 0, 100000);
+        return MathHelper.clamp(lvl - (lvl / 4) - 10, 0, 100000);
     }
 
     private void singleStat(GearItemData data) {

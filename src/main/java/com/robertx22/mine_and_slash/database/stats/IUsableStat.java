@@ -12,21 +12,25 @@ public interface IUsableStat {
     /**
      * Used to get usable value. So 5000 armor turns into 50% armor reduction
      */
-    public int AverageStat();
+    public float AverageStat();
 
     public default float GetUsableValue(int Level, int value) {
 
-        int AvgStat = this.AverageStat();
+        if (this instanceof Stat) {
+            Stat stat = (Stat) this;
 
-        float number = (float) value / ((float) Level * (float) AvgStat);
+            float AvgStat = this.AverageStat();
 
-        if (number < 0) {
-            number = 0;
+            float number = (float) value / stat.calculateScalingStatGrowth(AvgStat, Level);
+
+            if (number < 0) {
+                number = 0;
+            }
+
+            float finalval = (float) (MaximumPercent() * (float) number / ((float) number + (float) 10));
+
+            return MathHelper.clamp(finalval, 0, MaximumPercent());
         }
-
-        float finalval = (float) (MaximumPercent() * (float) number / ((float) number + (float) 10));
-
-        return MathHelper.clamp(finalval, 0, MaximumPercent());
-
+        return 0;
     }
 }

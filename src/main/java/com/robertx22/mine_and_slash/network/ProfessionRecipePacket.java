@@ -33,7 +33,7 @@ public class ProfessionRecipePacket {
         ProfessionRecipePacket newpkt = new ProfessionRecipePacket();
 
         newpkt.pos = buf.readBlockPos();
-        newpkt.recipeGUID = buf.readString();
+        newpkt.recipeGUID = buf.readString(50);
 
         return newpkt;
 

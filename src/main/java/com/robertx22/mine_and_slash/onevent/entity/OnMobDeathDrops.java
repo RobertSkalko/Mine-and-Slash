@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -90,6 +91,10 @@ public class OnMobDeathDrops {
                 .ExpOnKill() * multi);
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
+
+        if (victim instanceof SlimeEntity) {
+            exp /= 10;
+        }
 
         exp = player.PostGiveExpEvent(victim, (PlayerEntity) entity, exp);
 

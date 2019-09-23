@@ -27,7 +27,7 @@ public class Wisdom extends BaseCoreStat {
     }
 
     static float regenMulti = 0.3F;
-    static float resistMulti = 0.1F;
+    static float resistMulti = 0.5F;
 
     @Override
     public List<StatMod> statsThatBenefit() {

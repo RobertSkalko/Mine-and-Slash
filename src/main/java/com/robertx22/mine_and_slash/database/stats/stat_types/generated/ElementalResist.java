@@ -55,8 +55,8 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
     }
 
     @Override
-    public int AverageStat() {
-        return 3;
+    public float AverageStat() {
+        return 2.5F;
     }
 
     @Override
