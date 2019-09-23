@@ -5,18 +5,20 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -26,12 +28,11 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public abstract class EntityBaseProjectile extends Entity implements IProjectile, IMyRenderAsItem, IBuffableSpell, IShootableProjectile {
+public abstract class EntityBaseProjectile extends AbstractArrowEntity implements IProjectile, IMyRenderAsItem, IBuffableSpell, IShootableProjectile {
 
     Entity homindTarget = null;
 
@@ -146,7 +147,7 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
     }
 
     public EntityBaseProjectile(EntityType<? extends Entity> type, World worldIn) {
-        super(type, worldIn);
+        super((EntityType<? extends AbstractArrowEntity>) type, worldIn);
         this.xTile = -1;
         this.yTile = -1;
         this.zTile = -1;
@@ -273,6 +274,8 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
      */
     @Override
     public void tick() {
+        super.tick();
+
         this.lastTickPosX = this.posX;
         this.lastTickPosY = this.posY;
         this.lastTickPosZ = this.posZ;
@@ -352,58 +355,54 @@ public abstract class EntityBaseProjectile extends Entity implements IProjectile
 
     public void checkIfImpact() {
 
-        AxisAlignedBB axisalignedbb = this.getBoundingBox()
-                .expand(this.getMotion())
-                .grow(1.5D);
+        Vec3d motion = this.getMotion();
+        Vec3d pos = new Vec3d(this.posX, this.posY, this.posZ);
+        Vec3d posPlusMotion = pos.add(motion);
 
-        RayTraceResult raytraceresult = ProjectileHelper.func_221267_a(this, axisalignedbb, (e) -> {
-            return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.thrower && e != this.ignoreEntity;
-        }, RayTraceContext.BlockMode.OUTLINE, true);
-
-        Entity entity = null;
-
-        if (raytraceresult instanceof BlockRayTraceResult) {
-
-            Block block = this.world.getBlockState(new BlockPos(raytraceresult.getHitVec()))
-                    .getBlock();
-
-            Material mat = block.getMaterial(block.getDefaultState());
-
-            if (mat.blocksMovement() == false) {
-                return;
-            }
-
-            if (block.isAir(block.getDefaultState(), this.world, ((BlockRayTraceResult) raytraceresult)
-                    .getPos())) {
-                return;
-            }
-
-            this.inGround = true;
-            this.onImpact(raytraceresult);
-            if (this.onExpireProc(this.getThrower())) {
-                this.remove();
-                return;
-            }
-
+        RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(pos, posPlusMotion, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
+        if (raytraceresult.getType() != RayTraceResult.Type.MISS) {
+            posPlusMotion = raytraceresult.getHitVec();
         }
 
-        if (entity != null) {
-            raytraceresult = new EntityRayTraceResult(entity);
+        EntityRayTraceResult entityraytraceresult = ProjectileHelper.func_221271_a(this.world, this, pos, posPlusMotion, this
+                .getBoundingBox()
+                .expand(this.getMotion())
+                .grow(1D), (e) -> {
+            return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.thrower && e != this.ignoreEntity;
+        });
+
+        if (entityraytraceresult != null) {
+            raytraceresult = entityraytraceresult;
         }
 
         if (raytraceresult != null) {
-
-            if (raytraceresult instanceof EntityRayTraceResult) {
-                if (((EntityRayTraceResult) raytraceresult).getEntity() != this.getThrower()) {
-
-                    this.onImpact(raytraceresult);
-                }
-            }
+            onHit(raytraceresult);
         }
 
     }
 
-    public static final List<Material> materialToIngore = Arrays.asList(Material.AIR, Material.PLANTS, Material.LEAVES, Material.SNOW, Material.WATER, Material.TALL_PLANTS);
+    protected void onHit(RayTraceResult raytraceResultIn) {
+        RayTraceResult.Type raytraceresult$type = raytraceResultIn.getType();
+        if (raytraceresult$type == RayTraceResult.Type.ENTITY) {
+            this.onImpact((EntityRayTraceResult) raytraceResultIn);
+            this.playSound(SoundEvents.ENTITY_SHULKER_BULLET_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+        } else if (raytraceresult$type == RayTraceResult.Type.BLOCK) {
+            BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceResultIn;
+            BlockState blockstate = this.world.getBlockState(blockraytraceresult.getPos());
+
+            Vec3d vec3d = blockraytraceresult.getHitVec()
+                    .subtract(this.posX, this.posY, this.posZ);
+            this.setMotion(vec3d);
+            Vec3d vec3d1 = vec3d.normalize().scale((double) 0.05F);
+            this.posX -= vec3d1.x;
+            this.posY -= vec3d1.y;
+            this.posZ -= vec3d1.z;
+            this.inGround = true;
+            blockstate.onProjectileCollision(this.world, blockstate, blockraytraceresult, this);
+            this.remove();
+        }
+
+    }
 
     public void checkHoming() {
 

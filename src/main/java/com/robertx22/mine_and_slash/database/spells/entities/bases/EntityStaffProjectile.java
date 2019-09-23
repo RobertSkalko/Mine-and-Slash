@@ -113,13 +113,18 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
     public void SpawnAndShoot(BaseSpellEffect effect, DamageData data,
                               LivingEntity caster) {
+        SpawnAndShoot(effect, data, caster, 1.5F);
+    }
+
+    public void SpawnAndShoot(BaseSpellEffect effect, DamageData data,
+                              LivingEntity caster, float vel) {
 
         this.ignoreEntity = caster;
         this.thrower = caster;
 
         SetReady(caster.getHeldItemMainhand());
         this.setPos(caster);
-        shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, 1.5F, 1.0F);
+        shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, vel, 1.0F);
 
         WorldUtils.spawnEntity(world, this);
     }

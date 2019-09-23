@@ -85,7 +85,7 @@ public class EntityRegister {
 
         EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC)
                 .setCustomClientFactory(bif)
-                .size(0.25F, 0.25F)
+                .size(0.5F, 0.5F)
                 .build(Ref.MODID + ":" + id.toLowerCase());
 
         type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));

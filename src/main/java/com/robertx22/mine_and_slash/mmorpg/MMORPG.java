@@ -63,7 +63,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = false;
+    public static boolean RUN_DEV_TOOLS = true;
 
     public static void devToolsLog(String string) {
         if (RUN_DEV_TOOLS) {
@@ -167,9 +167,6 @@ public class MMORPG {
             ModelCreator.createDefaultModelsAndDirs();
             ValidateGuids.validate();
             CountUniqueGearTypes.count();
-            //CreateInstances.createall();
-
-            // todo look for unique items with more than 4 stats?
         }
 
     }

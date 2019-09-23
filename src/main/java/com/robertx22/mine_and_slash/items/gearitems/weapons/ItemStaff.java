@@ -47,16 +47,17 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.NONE;
+        return UseAction.BOW;
     }
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 12;
+        return 25000;
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity player) {
+    public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity player,
+                                     int timeLeft) {
 
         try {
 
@@ -68,9 +69,13 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
                 if (data.tryUseWeapon(weapondata, player)) {
 
+                    int charge = this.getUseDuration(stack) - timeLeft;
+
+                    float velocity = getArrowVelocity(charge);
+
                     EntityStaffProjectile projectile = new EntityStaffProjectile(world);
                     projectile.SetReady(stack);
-                    projectile.SpawnAndShoot(null, null, player);
+                    projectile.SpawnAndShoot(null, null, player, velocity * 3F);
 
                     stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
 
@@ -79,13 +84,21 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
                 }
 
             }
-        } catch (
 
-                Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return stack;
+    }
+
+    public static float getArrowVelocity(int charge) {
+        float f = (float) charge / 20.0F;
+        f = (f * f + f * 2.0F) / 3.0F;
+        if (f > 1.0F) {
+            f = 1.0F;
+        }
+
+        return f;
     }
 
     @Override
