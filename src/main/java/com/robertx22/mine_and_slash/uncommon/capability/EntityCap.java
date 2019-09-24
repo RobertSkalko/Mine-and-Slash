@@ -169,6 +169,8 @@ public class EntityCap {
 
         boolean tryUseWeapon(GearItemData gear, LivingEntity entity);
 
+        boolean tryUseWeapon(GearItemData gear, LivingEntity entity, float multi);
+
         void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData gear,
                               LivingEntity source, LivingEntity target,
                               UnitData targetdata);
@@ -721,6 +723,12 @@ public class EntityCap {
 
         @Override
         public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source) {
+            return tryUseWeapon(weaponData, source, 1);
+        }
+
+        @Override
+        public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source,
+                                    float multi) {
 
             try {
 
@@ -728,8 +736,8 @@ public class EntityCap {
 
                     IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
-                    float energyCost = iwep.mechanic().GetEnergyCost();
-                    float manaCost = iwep.mechanic().GetManaCost();
+                    float energyCost = iwep.mechanic().GetEnergyCost() * multi;
+                    float manaCost = iwep.mechanic().GetManaCost() * multi;
 
                     if (hasEnoughEnergy(energyCost) == false) {
                         AttackUtils.NoEnergyMessage(source);

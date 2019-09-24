@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.database.spells.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
@@ -76,7 +77,7 @@ public class OnLogin {
         print.setSpecificRarity(0);
 
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(PlateBoots.INSTANCE.GUID());
+        print.SetSpecificType(PlatePants.INSTANCE.GUID());
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
         print.SetSpecificType(PlateChest.INSTANCE.GUID());
         player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));

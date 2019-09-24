@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.spells.entities.bases;
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpellEffect;
 import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
-import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -51,22 +50,16 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
         LivingEntity entity = getEntityHit(result, 0.5D);
 
-        if (!world.isRemote && entity != null && staff == null) {
-            System.out.println("TEST");
-        }
-
         if (entity != null && staff != null) {
 
             if (!world.isRemote) {
                 try {
 
-                    ItemStaff staffclass = (ItemStaff) staff.getItem();
-
                     UnitData sourcedata = Load.Unit(this.thrower);
                     UnitData targetdata = Load.Unit(entity);
 
-                    staffclass.mechanic()
-                            .Attack(null, this.getThrower(), entity, sourcedata, targetdata);
+                    StaffWeaponMechanic.INSTANCE.powerAttack(null, this.getThrower(), entity, sourcedata, targetdata, this.charge);
+
                 } catch (Exception e) {
                     e.printStackTrace();
 

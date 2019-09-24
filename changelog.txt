@@ -1,3 +1,6 @@
+2.8.10
+staff right click attack now multiplies dmg more but costs more too
+bolt spells now cost twice as much but do twice as much dmg
 2.8.9
 added wands! (thanks tom for the textures!) balance still wonky. will adjust probably
 staffs now cost mana too but less energy

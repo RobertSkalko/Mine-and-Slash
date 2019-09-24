@@ -11,6 +11,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class StaffWeaponMechanic extends WeaponMechanic {
 
+    public static StaffWeaponMechanic INSTANCE = new StaffWeaponMechanic();
+
     @Override
     public ITextComponent tooltipDesc() {
         return new StringTextComponent(Styles.GREEN + "Double Damage");
@@ -29,6 +31,14 @@ public class StaffWeaponMechanic extends WeaponMechanic {
     @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.Staff;
+    }
+
+    public boolean powerAttack(LivingHurtEvent event, LivingEntity source,
+                               LivingEntity target, UnitData unitsource,
+                               UnitData targetUnit, float multi) {
+        super.multiplyDamage(event, source, target, unitsource, targetUnit, 2 * multi);
+
+        return true;
     }
 
     @Override

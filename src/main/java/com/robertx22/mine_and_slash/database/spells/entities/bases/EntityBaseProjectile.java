@@ -37,6 +37,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     public float shootSpeed = 1.3F;
 
+    public float charge = 0;
     private int xTile;
     private int yTile;
     private int zTile;
@@ -341,6 +342,8 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         compound.putInt("yTile", this.yTile);
         compound.putInt("zTile", this.zTile);
 
+        compound.putFloat("charge", this.charge);
+
         compound.putByte("shake", (byte) this.throwableShake);
         compound.putByte("inGround", (byte) (this.inGround ? 1 : 0));
 
@@ -363,6 +366,8 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         this.xTile = compound.getInt("xTile");
         this.yTile = compound.getInt("yTile");
         this.zTile = compound.getInt("zTile");
+
+        this.charge = compound.getFloat("charge");
 
         this.throwableShake = compound.getByte("shake") & 255;
         this.inGround = compound.getByte("inGround") == 1;
