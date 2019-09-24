@@ -121,7 +121,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
                     particle = ParticleTypes.COMPOSTER;
                 }
 
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 2; i++) {
                     this.world.addParticle(particle, true, this.posX + rand.nextFloat() * 0.2 - 0.1, this.posY + this
                             .getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1, this.posZ + rand
                             .nextFloat() * 0.2 - 0.1, 0, 0, 0);

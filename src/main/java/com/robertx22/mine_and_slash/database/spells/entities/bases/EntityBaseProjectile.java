@@ -255,10 +255,12 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     @Override
     protected void onHit(RayTraceResult raytraceResultIn) {
+
         RayTraceResult.Type raytraceresult$type = raytraceResultIn.getType();
         if (raytraceresult$type == RayTraceResult.Type.ENTITY) {
-            this.onImpact((EntityRayTraceResult) raytraceResultIn);
+            this.onImpact(raytraceResultIn);
             this.playSound(SoundEvents.ENTITY_SHULKER_BULLET_HIT, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+
         } else if (raytraceresult$type == RayTraceResult.Type.BLOCK) {
             BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceResultIn;
             BlockState blockstate = this.world.getBlockState(blockraytraceresult.getPos());
@@ -275,7 +277,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
             this.onImpact(blockraytraceresult);
 
             blockstate.onProjectileCollision(this.world, blockstate, blockraytraceresult, this);
-
         }
 
     }

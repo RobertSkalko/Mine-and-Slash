@@ -6,7 +6,9 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -29,7 +31,15 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
     protected void onImpact(RayTraceResult result) {
 
         if (world.isRemote) {
-            SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.4F, 0.5F);
+
+            if (result instanceof EntityRayTraceResult) {
+                EntityRayTraceResult eray = (EntityRayTraceResult) result;
+                if (eray.getEntity() instanceof PlayerEntity == false) {
+                    SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.4F, 0.5F);
+                }
+            } else {
+                SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.4F, 0.5F);
+            }
 
         } else {
             SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.4F, 0.5F);

@@ -1,7 +1,8 @@
 2.8.9
-added wands! (thanks tom for the textures!)
+added wands! (thanks tom for the textures!) balance still wonky. will adjust probably
 staffs now cost mana too but less energy
 fixed bomb and explosion spells. woops.
+added a few particles to spells
 2.8.8
 staffs now work like bows
 projectiles now no longer randomly miss as they work like arrows
