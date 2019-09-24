@@ -235,6 +235,11 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
         checkHoming();
 
+        if (this.ticksExisted >= this.getDeathTime()) {
+            onExpireProc(this.getThrower());
+            this.remove();
+        }
+
     }
 
     @Nullable
@@ -266,8 +271,11 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
             this.posY -= vec3d1.y;
             this.posZ -= vec3d1.z;
             this.inGround = true;
+
+            this.onImpact(blockraytraceresult);
+
             blockstate.onProjectileCollision(this.world, blockstate, blockraytraceresult, this);
-            this.remove();
+
         }
 
     }

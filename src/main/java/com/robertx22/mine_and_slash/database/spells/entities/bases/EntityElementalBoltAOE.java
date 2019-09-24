@@ -17,6 +17,7 @@ public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
     public EntityElementalBoltAOE(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
         this.shootSpeed = 1.3F;
+
     }
 
     @Override

@@ -82,13 +82,20 @@ public class EntityWandProjectile extends EntityBaseProjectile {
     @Override
     public void tick() {
 
+        //ParticleTypes.BUBBLE_POP water,ParticleTypes.ITEM_SNOWBALL water,
+        // ParticleTypes.FIRE fire,
+        // ParticleTypes.COMPOSTER nature,
+        // ParticleTypes.WITCH thunder
+
         super.tick();
 
         if (world.isRemote) {
-            for (int i = 0; i < 10; i++) {
-                this.world.addParticle(ParticleTypes.ENCHANTED_HIT, true, this.posX + rand
-                        .nextFloat() * 0.2 - 0.1, this.posY + this.getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1, this.posZ + rand
-                        .nextFloat() * 0.2 - 0.1, 0, 0, 0);
+            if (this.ticksExisted > 2) {
+                for (int i = 0; i < 10; i++) {
+                    this.world.addParticle(ParticleTypes.ENCHANTED_HIT, true, this.posX + rand
+                            .nextFloat() * 0.2 - 0.1, this.posY + this.getHeight() / 2 + rand
+                            .nextFloat() * 0.2 - 0.1, this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
+                }
             }
         }
 

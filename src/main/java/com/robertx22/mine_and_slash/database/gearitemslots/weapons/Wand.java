@@ -19,6 +19,11 @@ public class Wand extends BaseWeapon implements ISpecificStatReq {
 
     }
 
+    @Override
+    public int cooldownTicks() {
+        return 40;
+    }
+
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM);
 
     @Override

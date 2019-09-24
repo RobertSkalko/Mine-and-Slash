@@ -38,9 +38,7 @@ public abstract class WeaponMechanic {
 
         int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
         DamageEffect dmg = new DamageEffect(event, source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK, weaponType());
-
         dmg.setMultiplier(multiplier);
-
         dmg.Activate();
 
         return true;

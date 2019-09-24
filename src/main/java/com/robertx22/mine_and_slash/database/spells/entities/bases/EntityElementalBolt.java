@@ -11,6 +11,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -103,6 +105,35 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     public void tick() {
 
         super.tick();
+
+        if (world.isRemote) {
+            if (this.ticksExisted > 2) {
+
+                BasicParticleType particle = ParticleTypes.ENCHANTED_HIT;
+
+                if (element().equals(Elements.Water)) {
+                    particle = ParticleTypes.BUBBLE_POP;
+                } else if (element().equals(Elements.Fire)) {
+                    particle = ParticleTypes.FLAME;
+                } else if (element().equals(Elements.Thunder)) {
+                    particle = ParticleTypes.WITCH;
+                } else if (element().equals(Elements.Nature)) {
+                    particle = ParticleTypes.COMPOSTER;
+                }
+
+                for (int i = 0; i < 3; i++) {
+                    this.world.addParticle(particle, true, this.posX + rand.nextFloat() * 0.2 - 0.1, this.posY + this
+                            .getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1, this.posZ + rand
+                            .nextFloat() * 0.2 - 0.1, 0, 0, 0);
+                }
+            }
+
+            //ParticleTypes.BUBBLE_POP water,ParticleTypes.ITEM_SNOWBALL water,
+            // ParticleTypes.FIRE fire,
+            // ParticleTypes.COMPOSTER nature,
+            // ParticleTypes.WITCH thunder
+
+        }
 
         ticks++;
         if (ticks > 1) {
