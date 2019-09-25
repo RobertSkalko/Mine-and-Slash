@@ -55,11 +55,13 @@ public class EntityWandProjectile extends EntityBaseProjectile {
             if (!world.isRemote) {
                 try {
 
-                    UnitData sourcedata = Load.Unit(this.thrower);
-                    UnitData targetdata = Load.Unit(entity);
+                    LivingEntity caster = this.getThrower();
+                    if (caster != null) {
+                        UnitData sourcedata = Load.Unit(caster);
+                        UnitData targetdata = Load.Unit(entity);
 
-                    WandWeaponMechanic.INSTANCE.powerAttack(null, this.getThrower(), entity, sourcedata, targetdata, this.charge);
-
+                        WandWeaponMechanic.INSTANCE.powerAttack(null, caster, entity, sourcedata, targetdata, this.charge);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
 
