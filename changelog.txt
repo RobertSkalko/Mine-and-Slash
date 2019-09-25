@@ -1,3 +1,10 @@
+2.8.11
+wands now use right click too
+increased gear droprate a bit cus of added gear types
+wands and staffs now need a minimum of 20% charge on right click to shoot
+shield secondary armor stat is now much higher
+increased max armor and ele resist % from 75% to 80%
+added a new currency item
 2.8.10
 staff right click attack now multiplies dmg more but costs more too
 bolt spells now cost twice as much but do twice as much dmg

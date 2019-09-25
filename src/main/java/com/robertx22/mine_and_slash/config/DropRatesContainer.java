@@ -38,11 +38,11 @@ public class DropRatesContainer {
 
         MAP_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.map_droprate")
-                .defineInRange("MAP_DROPRATE", 0.7F, 0, Integer.MAX_VALUE);
+                .defineInRange("MAP_DROPRATE", 0.8F, 0, Integer.MAX_VALUE);
 
         GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.gear_droprate")
-                .defineInRange("GEAR_DROPRATE", 7F, 0, Integer.MAX_VALUE);
+                .defineInRange("GEAR_DROPRATE", 8F, 0, Integer.MAX_VALUE);
 
         UNIQUE_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.unique_droprate")

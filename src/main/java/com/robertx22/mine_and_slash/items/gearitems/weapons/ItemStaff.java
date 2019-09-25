@@ -68,23 +68,26 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
                 GearItemData weapondata = data.getWeaponData(player);
 
                 int charge = this.getUseDuration(stack) - timeLeft;
+
                 float velocity = getArrowVelocity(charge);
 
-                float multi = 1 + velocity;
+                if (velocity > 0.4F) {
 
-                if (data.tryUseWeapon(weapondata, player, multi)) {
+                    float multi = 1 + velocity;
 
-                    EntityStaffProjectile projectile = new EntityStaffProjectile(world);
-                    projectile.SetReady(stack);
-                    projectile.charge = multi;
-                    projectile.SpawnAndShoot(null, null, player, velocity * 3F);
+                    if (data.tryUseWeapon(weapondata, player, multi)) {
 
-                    stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
+                        EntityStaffProjectile projectile = new EntityStaffProjectile(world);
+                        projectile.SetReady(stack);
+                        projectile.charge = multi;
+                        projectile.SpawnAndShoot(null, null, player, velocity * 3F);
 
-                    SoundUtils.playSoundAtPlayer((PlayerEntity) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
+                        stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
 
+                        SoundUtils.playSoundAtPlayer((PlayerEntity) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
+
+                    }
                 }
-
             }
 
         } catch (Exception e) {

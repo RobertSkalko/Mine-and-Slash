@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemWand;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ItemDyeRegister;
 import com.robertx22.mine_and_slash.onevent.entity.*;
 import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
@@ -64,7 +63,6 @@ public class RegisterEvents {
 
     private static void registerItemEvents() {
 
-        register(ItemWand.class);
         register(OnContainerCompatibleItem.class);
         register(OnMissingMappings.class);
         register(OnPickupInsertIntoBag.class);

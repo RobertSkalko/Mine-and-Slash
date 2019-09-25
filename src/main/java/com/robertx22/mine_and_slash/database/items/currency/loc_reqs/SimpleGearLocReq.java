@@ -42,6 +42,8 @@ public class SimpleGearLocReq extends BaseLocRequirement {
             .locName());
     public static final BaseLocRequirement HAS_SET = new SimpleGearLocReq(x -> x.set != null, Words.hasSet
             .locName());
+    public static final BaseLocRequirement HAS_PRIMARY_STATS = new SimpleGearLocReq(x -> x.primaryStats != null, Words.hasSet
+            .locName());
     public static final BaseLocRequirement HAS_UNIQUE_STATS = new SimpleGearLocReq(x -> x.uniqueStats != null, Words.hasUniqueStats
             .locName());
     public static final BaseLocRequirement CAN_UPGRADE_INFUSION = new SimpleGearLocReq(x -> x.infusion != null && x.infusion

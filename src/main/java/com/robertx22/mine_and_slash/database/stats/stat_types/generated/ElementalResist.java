@@ -51,7 +51,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
 
     @Override
     public float MaximumPercent() {
-        return 0.75F;
+        return 0.8F;
     }
 
     @Override

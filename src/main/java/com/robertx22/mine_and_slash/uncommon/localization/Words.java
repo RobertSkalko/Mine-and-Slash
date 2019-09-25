@@ -24,6 +24,7 @@ public enum Words implements IAutoLocName {
     NoDuplicateRunes("No duplicate runes of same type"),
     hasUniqueStats("Has Unique stats"),
     hasSet("Has Set"),
+    hasPrimaryStats("Has Primary Stats"),
     hasSuffix("Has Suffix"),
     hasPrefix("Has Prefix"),
     isNotUnique("Is Not Unique"),

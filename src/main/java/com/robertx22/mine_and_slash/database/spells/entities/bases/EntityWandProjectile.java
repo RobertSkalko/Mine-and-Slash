@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpellEffect;
 import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
-import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemWand;
+import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.WandWeaponMechanic;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -55,16 +55,11 @@ public class EntityWandProjectile extends EntityBaseProjectile {
             if (!world.isRemote) {
                 try {
 
-                    if (weapon.getItem() instanceof ItemWand) {
-                        ItemWand staffclass = (ItemWand) weapon.getItem();
+                    UnitData sourcedata = Load.Unit(this.thrower);
+                    UnitData targetdata = Load.Unit(entity);
 
-                        UnitData sourcedata = Load.Unit(this.thrower);
-                        UnitData targetdata = Load.Unit(entity);
+                    WandWeaponMechanic.INSTANCE.powerAttack(null, this.getThrower(), entity, sourcedata, targetdata, this.charge);
 
-                        staffclass.mechanic()
-                                .Attack(null, this.getThrower(), entity, sourcedata, targetdata);
-
-                    }
                 } catch (Exception e) {
                     e.printStackTrace();
 
@@ -81,11 +76,6 @@ public class EntityWandProjectile extends EntityBaseProjectile {
 
     @Override
     public void tick() {
-
-        //ParticleTypes.BUBBLE_POP water,ParticleTypes.ITEM_SNOWBALL water,
-        // ParticleTypes.FIRE fire,
-        // ParticleTypes.COMPOSTER nature,
-        // ParticleTypes.WITCH thunder
 
         super.tick();
 

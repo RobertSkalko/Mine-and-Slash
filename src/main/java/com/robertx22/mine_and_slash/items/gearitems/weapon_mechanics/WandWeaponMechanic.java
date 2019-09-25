@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
 
 public class WandWeaponMechanic extends WeaponMechanic {
 
+    public static WandWeaponMechanic INSTANCE = new WandWeaponMechanic();
+
     @Override
     public ITextComponent tooltipDesc() {
         return new StringTextComponent(Styles.GREEN + "Normal Damage");
@@ -34,7 +36,7 @@ public class WandWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetManaCost() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -42,9 +44,9 @@ public class WandWeaponMechanic extends WeaponMechanic {
         return WeaponTypes.Wand;
     }
 
-    @Override
-    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
-                          UnitData unitsource, UnitData targetUnit) {
+    public boolean powerAttack(LivingHurtEvent event, LivingEntity source,
+                               LivingEntity target, UnitData unitsource,
+                               UnitData targetUnit, float multi) {
 
         double RANGE = 3;
 
@@ -53,19 +55,11 @@ public class WandWeaponMechanic extends WeaponMechanic {
                 .filter(x -> x.equals(source) == false && x.equals(target) == false)
                 .collect(Collectors.toList());
 
-        if (entities.size() == 0) {
-
-        } else if (entities.size() > 0) {
-            float costMulti = 1 + entities.size() * 0.3F;
-
-            unitsource.consumeMana(this.GetManaCost() * costMulti);
-            unitsource.consumeEnergy(this.GetEnergyCost() * costMulti);
-            ElementalParticleUtils.SpawnNovaParticle(Elements.Physical, target, RANGE, 200);
-        }
+        ElementalParticleUtils.SpawnNovaParticle(Elements.Physical, target, RANGE, 200);
 
         int val = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
         DamageEffect dmg1 = new DamageEffect(event, source, target, val, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, weaponType());
-        dmg1.setMultiplier(1);
+        dmg1.setMultiplier(multi);
         dmg1.Activate();
 
         for (LivingEntity entity : entities) {
@@ -73,10 +67,21 @@ public class WandWeaponMechanic extends WeaponMechanic {
 
             int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
             DamageEffect dmg = new DamageEffect(null, source, entity, num, unitsource, targetdata, EffectData.EffectTypes.SPELL, weaponType());
-            dmg.setMultiplier(1);
+            dmg.setMultiplier(multi);
             dmg.Activate();
-
         }
+
+        return true;
+    }
+
+    @Override
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
+                          UnitData unitsource, UnitData targetUnit) {
+
+        int val = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
+        DamageEffect dmg1 = new DamageEffect(event, source, target, val, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, weaponType());
+        dmg1.setMultiplier(1);
+        dmg1.Activate();
 
         return true;
 
