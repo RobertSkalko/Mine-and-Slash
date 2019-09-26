@@ -95,7 +95,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(1)
-                .expGained(10)
+                .expGained(25)
                 .build();
 
     }

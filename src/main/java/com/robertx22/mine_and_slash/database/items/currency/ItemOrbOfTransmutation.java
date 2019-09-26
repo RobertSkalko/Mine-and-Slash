@@ -109,7 +109,7 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(1)
-                .expGained(5)
+                .expGained(25)
                 .build();
 
     }

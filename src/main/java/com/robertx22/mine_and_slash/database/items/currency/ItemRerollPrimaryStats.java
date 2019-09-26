@@ -87,7 +87,7 @@ public class ItemRerollPrimaryStats extends CurrencyItem implements ICurrencyIte
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(25)
-                .expGained(10)
+                .expGained(15)
                 .build();
 
     }

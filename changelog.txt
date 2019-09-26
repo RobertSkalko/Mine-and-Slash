@@ -1,3 +1,9 @@
+2.8.12
+more map loot bonus, higher rarity maps will now be a lot more rewarding to play!
+charms now have higher primary stat numbers
+made professions a bit easier to lvl
+added more logging to map teleports, maybe it helps in debugging the random tp problems
+fixed profession stations eating items if you have more than 1 stack
 2.8.11
 wands now use right click too
 increased gear droprate a bit cus of added gear types (config change)

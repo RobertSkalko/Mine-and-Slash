@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -25,10 +24,13 @@ public class Charm extends GearItemSlot {
         return "Charm";
     }
 
+    static float multi = 2;
+
     @Override
     public List<StatMod> PrimaryStats() {
-
-        return ListUtils.newList(new ElementalPeneFlat(Elements.Physical).allSingleElementVariations(), new ElementalPeneFlat(Elements.Physical));
+        return Arrays.asList(new ElementalPeneFlat(Elements.Fire).multi(multi), new ElementalPeneFlat(Elements.Water)
+                .multi(multi), new ElementalPeneFlat(Elements.Thunder).multi(multi), new ElementalPeneFlat(Elements.Nature)
+                .multi(multi), new ElementalPeneFlat(Elements.Physical).multi(multi));
 
     }
 

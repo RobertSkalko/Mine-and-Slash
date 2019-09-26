@@ -22,7 +22,7 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    ResourceLocation resource = new ResourceLocation("");
+    public ResourceLocation resource = new ResourceLocation("");
 
     public NormalShield(int rarity, Properties prop, String name) {
 

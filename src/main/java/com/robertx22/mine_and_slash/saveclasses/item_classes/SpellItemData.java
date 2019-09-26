@@ -228,7 +228,8 @@ public class SpellItemData implements ICommonDataItem {
 
             GearRarity rarity = Rarities.Items.get(this.rarity);
 
-            tooltip.add(TooltipUtils.level(level));
+            tooltip.add(TooltipUtils.lvlReq(level, ctx.data));
+
             Tooltip.add("", tooltip);
 
             boolean moreInfo = Screen.hasShiftDown();

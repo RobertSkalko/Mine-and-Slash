@@ -41,10 +41,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
@@ -103,6 +100,8 @@ public class MMORPG {
         bus.addListener(this::commonSetupEvent);
         bus.addListener(this::interModProcessEvent);
         bus.addListener(this::interModEnqueue);
+        bus.addListener(this::onloadComplete);
+
         bus.addListener(new OnGatherData()::onGatherData);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
@@ -245,6 +244,12 @@ public class MMORPG {
     public static <MSG> void sendToServer(MSG msg) {
 
         Network.sendToServer(msg);
+    }
+
+    public void onloadComplete(FMLLoadCompleteEvent evt) {
+
+        //RegisterModelLayers.reg();
+
     }
 
 }

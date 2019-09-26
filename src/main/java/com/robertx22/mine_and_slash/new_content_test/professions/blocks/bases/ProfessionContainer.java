@@ -158,18 +158,20 @@ public class ProfessionContainer extends BaseTileContainer {
 
                 if (this.tile.currentRecipe.getMaterials().size() > num) {
 
+                    ItemStackHandler handler = new ItemStackHandler(tile.materialStacks);
+
                     BaseMaterial mat = this.tile.currentRecipe.getMaterials().get(num);
 
                     if (mat.isStackValidMaterial(itemstack)) {
 
                         ItemStack copy = itemstack.copy();
-                        itemstack.shrink(itemstack.getCount());
-                        ItemStackHandler handler = new ItemStackHandler(tile.materialStacks);
+
                         if (handler.insertItem(num, copy, true) == ItemStack.EMPTY) {
                             handler.insertItem(num, copy, false);
+                            itemstack.shrink(itemstack.getCount());
                         }
-
                     }
+
                 }
             }
 

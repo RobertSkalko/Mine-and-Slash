@@ -13,6 +13,7 @@ public class SimpleRecipe extends BaseRecipe {
     public List<BaseMaterial> materials = new ArrayList<>();
     public BaseOutputItem output;
     public Professions profession;
+    //  public Professions.Levels lvl = Professions.Levels.ONE;
 
     public SimpleRecipe(String guid, List<Item> mats, Item output) {
         super(guid);

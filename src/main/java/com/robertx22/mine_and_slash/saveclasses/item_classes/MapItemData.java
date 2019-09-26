@@ -20,6 +20,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.AffectedEntities;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -105,7 +106,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     @Override
     public float getBonusLootMulti() {
 
-        return 1 * getTotalPercents() * getPermaDeathMultiplier();
+        return 0.1F + (1 * getAffixMulti() * getPermaDeathMultiplier());
 
     }
 
@@ -130,7 +131,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         int tier = this.tier + i;
 
-        if (tier > 20) {
+        if (tier > ITiered.MAX_TIER) {
             return false;
         }
 
@@ -139,9 +140,9 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         return true;
     }
 
-    private float getTotalPercents() {
+    private float getAffixMulti() {
 
-        float total = 1;
+        float total = 1F;
         for (MapAffixData affix : affixes) {
             total += affix.getBonusLootMultiplier();
         }
@@ -190,6 +191,13 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
                 list.add(data);
             }
         }
+
+        for (MapAffixData data : this.getIWP().getMapAffixes()) {
+            if (data.affectedEntities.equals(affected)) {
+                list.add(data);
+            }
+        }
+
         return list;
     }
 
@@ -329,9 +337,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
                                               AffectedEntities affected) {
 
         List<MapAffixData> affixes = new ArrayList<>(data.getAllAffixesThatAffect(affected));
-
-        affixes.addAll(MapItemData.getAllAffixesThatAffect(data.getIWP()
-                .getMapAffixes(), affected));
 
         if (affixes.size() == 0) {
             return;

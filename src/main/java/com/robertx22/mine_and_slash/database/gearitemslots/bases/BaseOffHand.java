@@ -10,6 +10,11 @@ import java.util.List;
 public abstract class BaseOffHand extends GearItemSlot {
 
     @Override
+    public final int Weight() {
+        return super.Weight() / 2;
+    }
+
+    @Override
     public List<StatMod> PrimaryStats() {
         return Arrays.asList(new BlockStrengthFlat());
     }

@@ -26,6 +26,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Optional;
+
 @Mod.EventBusSubscriber
 public class PlayerMapCap {
 
@@ -109,13 +111,13 @@ public class PlayerMapCap {
 
             CompoundNBT nbt = new CompoundNBT();
 
-            if (mapdata != null) {
-                Map.Save(nbt, mapdata);
-            }
-
             nbt.putLong(POS_OBJ, mapDevicePos);
             nbt.putInt(MIN_PASSED, minutesPassed);
             nbt.putBoolean("isdead", isDead);
+
+            if (mapdata != null) {
+                Map.Save(nbt, mapdata);
+            }
 
             if (this.originalDimension != null) {
                 nbt.putString(ORIGINAL_DIM, MapManager.getResourceLocation(originalDimension)
@@ -129,10 +131,11 @@ public class PlayerMapCap {
         @Override
         public void setNBT(CompoundNBT nbt) {
 
-            mapdata = Map.Load(nbt);
             this.mapDevicePos = nbt.getLong(POS_OBJ);
             this.minutesPassed = nbt.getInt(MIN_PASSED);
             this.isDead = nbt.getBoolean("isdead");
+
+            mapdata = Map.Load(nbt);
 
             if (nbt.contains(ORIGINAL_DIM)) {
                 this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
@@ -278,26 +281,46 @@ public class PlayerMapCap {
             return originalDimension;
         }
 
+        private static void error(String str) {
+            System.out.println("[Mine and Slash Map Error]: " + str);
+        }
+
         @Override
         public void teleportPlayerBack(PlayerEntity player) {
 
             if (WorldUtils.isMapWorld(player.world)) {
 
                 if (this.originalDimension == null) {
+                    error("Original Dimension is null");
                     this.originalDimension = DimensionType.OVERWORLD;
-
                 }
 
                 BlockPos pos = getMapDevicePos();
 
                 if (pos == null) {
+                    error("Map device pos is null");
+
                     pos = player.getBedLocation();
+
+                    if (pos == null) {
+                        error("Bed location attempt:1 is null");
+                    }
+
+                    try {
+                        Optional<BlockPos> opt = player.getBedPosition();
+                        if (opt.isPresent()) {
+                            pos = opt.get();
+                        }
+                    } catch (Exception e) {
+                        error("Bed location attempt:2 is null");
+                    }
                 }
                 if (pos == null) {
                     try {
                         pos = MapManager.getWorld(DimensionType.OVERWORLD)
                                 .getSpawnPoint();
                     } catch (Exception e) {
+                        error("Last safeguard failed, can't even get spawn point of overworld");
                         e.printStackTrace();
                         pos = new BlockPos(0, 90, 0);
                     }

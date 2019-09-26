@@ -121,7 +121,7 @@ public class ProfessionsCap {
         }
 
         private static float getMultiplier(int lvl) {
-            return MathHelper.clamp(0.5F + (float) lvl / 50, 0.5F, 1.5F);
+            return MathHelper.clamp(0.4F + (float) lvl / 50, 0.4F, 1.4F);
         }
 
         @Override

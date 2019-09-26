@@ -80,7 +80,12 @@ public class SimpleRecipeBuilders {
         }
 
         public SimpleRecipeFinishBuilder expGained(int exp) {
-            recipe.expGiven = exp;
+
+            if (recipe.getLevelReq() == 1) {
+                recipe.expGiven = exp * 5; // easier start of lvling
+            } else {
+                recipe.expGiven = exp * recipe.getLevelReq();
+            }
             return new SimpleRecipeFinishBuilder(recipe);
 
         }
