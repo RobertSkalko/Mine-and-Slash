@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -48,10 +47,12 @@ public class SetData implements ITooltipList {
 
             for (Map.Entry<Integer, StatMod> entry : GetSet().AllMods().entrySet()) {
 
+                boolean has = false;
+
                 TextFormatting color = null;
                 if (info.unitdata.getUnit().wornSets.get(baseSet).count >= entry.getKey()) {
                     color = TextFormatting.GREEN;
-
+                    has = true;
                 } else {
                     color = TextFormatting.DARK_GREEN;
                 }
@@ -65,10 +66,14 @@ public class SetData implements ITooltipList {
                 for (ITextComponent str : StatModData.Load(entry.getValue(), GetSet().StatPercent)
                         .GetTooltipString(setInfo)) {
 
-                    ITextComponent comp = new StringTextComponent(color + "").appendSibling(new StringTextComponent(entry
-                            .getKey() + " ").appendSibling(Words.Set.locName()
-                            .appendText(": ")
-                            .appendSibling(str)));
+                    ITextComponent comp = new StringTextComponent(color + "").appendSibling(new StringTextComponent("(" + entry
+                            .getKey() + ")"));
+
+                    if (has) {
+                        comp.appendText(": ").appendSibling(str);
+                    } else {
+                        comp.appendText(": ").appendText("Locked");
+                    }
 
                     list.add(comp);
                 }
