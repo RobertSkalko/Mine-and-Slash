@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
     Tinkering("Tinkering"),
+    Broken("Broken"),
     Alchemy("Alchemy"),
     InstabilityLimitReached("Instability Limit Reached"),
     BreakChance("Break Chance"),

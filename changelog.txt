@@ -1,3 +1,7 @@
+2.8.13
+offhand now gets damaged by attacks too
+added a currency item
+items now show on tooltip if they are considered broken
 2.8.12
 more map loot bonus, higher rarity maps will now be a lot more rewarding to play!
 charms now have higher primary stat numbers

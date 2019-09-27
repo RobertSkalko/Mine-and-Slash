@@ -20,6 +20,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LivingHurtUtils {
@@ -41,11 +42,14 @@ public class LivingHurtUtils {
 
     public static void damageArmorItems(LivingHurtEvent event) {
 
-        event.getEntityLiving()
-                .getArmorInventoryList()
-                .forEach(x -> x.damageItem(1, event.getEntityLiving(), (entity) -> {
-                    entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                }));
+        List<ItemStack> stacks = new ArrayList<>();
+
+        event.getEntityLiving().getArmorInventoryList().forEach(x -> stacks.add(x));
+        stacks.add(event.getEntityLiving().getHeldItemOffhand());
+
+        stacks.forEach(x -> x.damageItem(1, event.getEntityLiving(), (entity) -> {
+            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        }));
 
     }
 

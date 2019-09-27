@@ -34,7 +34,7 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        gear.level++;
+        gear.setLevel(gear.level + 1);
         gear.timesLeveledUp++;
         Gear.Save(stack, gear);
 

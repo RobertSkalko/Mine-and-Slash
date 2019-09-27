@@ -16,6 +16,7 @@ public class CurrencyItems implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        add(new ItemCheapGearLvl());
         add(new ItemRerollPrimaryStats());
         add(new ItemAddMajorArcana());
         add(new ItemAddSet());

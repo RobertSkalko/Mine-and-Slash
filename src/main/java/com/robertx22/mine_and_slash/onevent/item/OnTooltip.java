@@ -13,8 +13,10 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Recipe;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -104,6 +106,11 @@ public class OnTooltip {
             RecipeItemData recipe = Recipe.Load(stack);
             if (recipe != null) {
                 recipe.BuildTooltip(ctx);
+            }
+
+            ITextComponent broken = TooltipUtils.itemBrokenText(stack, data);
+            if (broken != null) {
+                event.getToolTip().add(broken);
             }
 
         } catch (Exception e) {

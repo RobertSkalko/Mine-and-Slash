@@ -2,8 +2,10 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -46,6 +48,21 @@ public class TooltipUtils {
         }
 
         return list;
+    }
+
+    public static ITextComponent itemBrokenText(ItemStack stack, ICommonDataItem data) {
+
+        if (data != null) {
+
+            if (RepairUtils.isItemBroken(stack)) {
+                ITextComponent comp = new StringTextComponent(X + " ").appendSibling(Words.Broken
+                        .locName());
+                return comp;
+            }
+
+        }
+
+        return null;
     }
 
     public static ITextComponent requirement(ITextComponent text, int stat, int req) {
