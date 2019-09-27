@@ -16,9 +16,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
@@ -116,11 +114,8 @@ public class PlayerStatUtils {
     public static void AddAllGearStats(Entity entity, List<GearItemData> gears,
                                        UnitData unitdata, int level) {
 
-        boolean gearTooHighLevel = false;
-
         for (GearItemData gear : gears) {
             if (gear.level > unitdata.getLevel()) {
-                gearTooHighLevel = true;
 
             } else {
 
@@ -145,12 +140,6 @@ public class PlayerStatUtils {
                     }
 
                 }
-            }
-        }
-
-        if (gearTooHighLevel) {
-            if (entity instanceof PlayerEntity) {
-                entity.sendMessage(Chats.A_Piece_of_gear_is_too_high_level_for_you.locName());
             }
         }
 

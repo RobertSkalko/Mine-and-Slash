@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.a_libraries.curios.CurioClientSetup;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRenderer;
+import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItemsSerialization;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
@@ -25,6 +26,7 @@ import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
 import com.robertx22.mine_and_slash.tests.ValidateGuids;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
+import com.robertx22.mine_and_slash.uncommon.gui.gear_overlay.GearOverlayGUI;
 import com.robertx22.mine_and_slash.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.client.Minecraft;
@@ -148,6 +150,11 @@ public class MMORPG {
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);
         MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
+
+        if (ClientContainer.INSTANCE.SHOW_UNMET_GEAR_REQUIREMENTS_GUI.get()) {
+            MinecraftForge.EVENT_BUS.register(new GearOverlayGUI(Minecraft.getInstance()));
+        }
+
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
         KeybindsRegister.register();
         ContainerGuiRegisters.reg();

@@ -29,6 +29,7 @@ public class ClientContainer {
     public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
     public BooleanValue SHOW_FLOATING_EXP;
     public BooleanValue SHOW_VANILLA_HEARTS;
+    public BooleanValue SHOW_UNMET_GEAR_REQUIREMENTS_GUI;
 
     public EnumValue<PlayerGUIs> PLAYER_GUI_TYPE;
 
@@ -40,6 +41,10 @@ public class ClientContainer {
         SHOW_AFFIXED_NAME = builder.comment(".")
                 .translation("mmorpg.config.show_item_affixes")
                 .define("SHOW_AFFIXED_NAME", true);
+
+        SHOW_UNMET_GEAR_REQUIREMENTS_GUI = builder.comment(".")
+                .translation("mmorpg.config.")
+                .define("SHOW_UNMET_GEAR_REQUIREMENTS_GUI", true);
 
         SHOW_VANILLA_HEARTS = builder.comment(".")
                 .translation("mmorpg.config.show_vanilla_hearts")

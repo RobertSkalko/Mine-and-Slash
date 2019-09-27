@@ -1,3 +1,5 @@
+2.8.14
+not meeting gear requirements now no longer spams your chat, but does show gui on the right
 2.8.13
 offhand now gets damaged by attacks too
 added a currency item
