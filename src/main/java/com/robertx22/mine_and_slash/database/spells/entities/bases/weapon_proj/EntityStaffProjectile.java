@@ -1,7 +1,8 @@
-package com.robertx22.mine_and_slash.database.spells.entities.bases;
+package com.robertx22.mine_and_slash.database.spells.entities.bases.weapon_proj;
 
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpellEffect;
 import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -64,17 +65,6 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
                     e.printStackTrace();
 
                 }
-            }
-        } else {
-            if (world.isRemote == false) {
-
-                try {
-                    Load.Unit(this.thrower)
-                            .restoreEnergy(new StaffWeaponMechanic().GetEnergyCost() / 2);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
             }
         }
 

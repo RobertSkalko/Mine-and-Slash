@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -72,7 +73,7 @@ public class SetData implements ITooltipList {
                     if (has) {
                         comp.appendText(": ").appendSibling(str);
                     } else {
-                        comp.appendText(": ").appendText("Locked");
+                        comp.appendText(": ").appendSibling(Words.Locked.locName());
                     }
 
                     list.add(comp);

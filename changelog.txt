@@ -1,5 +1,7 @@
 2.8.15
 sets now only show stats if you have them equipped, fixes 0 set stat tooltip bug
+updated chinese lang files
+staffs no longer restore half energy on missed projectile
 2.8.14
 not meeting gear requirements now no longer spams your chat, but does show gui on the right
 2.8.13

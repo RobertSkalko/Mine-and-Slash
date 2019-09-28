@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityStaffProjectile;
-import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityWandProjectile;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.aoe.EntityAcidExplosion;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.aoe.EntityFlameExplosion;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.aoe.EntityFrostExplosion;
@@ -14,6 +12,8 @@ import com.robertx22.mine_and_slash.database.spells.entities.bases.proj.EntityAc
 import com.robertx22.mine_and_slash.database.spells.entities.bases.proj.EntityFireBolt;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.proj.EntityFrostBolt;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.proj.EntityThunderBolt;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.weapon_proj.EntityStaffProjectile;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.weapon_proj.EntityWandProjectile;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;

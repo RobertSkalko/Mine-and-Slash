@@ -2,7 +2,7 @@
 #              语言文件 - 简体中文(zh-CN)                          # 
 #          简体中文语言文件译者：'MCBBS-天空树'                    # 
 #              翻译反馈请联系QQ：1182193284                        # 
-#    本语言文件的最后一次更新由 '天空树' 在 '2019年9月22日' 进行   # 
+#    本语言文件的最后一次更新由 '天空树' 在 '2019年9月28日' 进行   # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ##  
 
 {
@@ -103,6 +103,34 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"item.mmorpg.spell_acid_bomb": "§c毒液炸弹",
+	"item.mmorpg.spell_acidbolt": "§c毒液弹",
+	"item.mmorpg.spell_acidexplosion": "§c毒液爆炸",
+	"item.mmorpg.spell_fire_bomb": "§c火焰炸弹",
+	"item.mmorpg.spell_fire_nova": "§c火焰新星",
+	"item.mmorpg.spell_firebolt": "§c火焰弹",
+	"item.mmorpg.spell_flameexplosion": "§c火焰爆炸",
+	"item.mmorpg.spell_frost_nova": "§c冰霜新星",
+	"item.mmorpg.spell_frostbolt": "§c冰霜弹",
+	"item.mmorpg.spell_frostexplosion": "§c冰霜爆炸",
+	"item.mmorpg.spell_ice_bomb": "§c冰霜炸弹",
+	"item.mmorpg.spell_instantheal": "§c瞬间治疗",
+	"item.mmorpg.spell_lightningexplosion": "§c闪电爆炸",
+	"item.mmorpg.spell_poison_nova": "§c毒液新星",
+	"item.mmorpg.spell_self_regen": "§c再生",
+	"item.mmorpg.spell_thunder_bomb": "§c闪电炸弹",
+	"item.mmorpg.spell_thunder_nova": "§c闪电新星",
+	"item.mmorpg.spell_thunderbolt": "§c闪电弹",
+	"item.mmorpg.spells.extra_flame_dmg": "§c额外火焰伤害",
+	"item.mmorpg.spells.extra_frost_dmg": "§c额外冰霜伤害",
+	"item.mmorpg.spells.extra_lightning_dmg": "§c额外闪电伤害",
+	"item.mmorpg.spells.extra_venom_dmg": "§c额外毒液伤害",
+	
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "§7凡品能量持续回复药",
@@ -153,34 +181,6 @@
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-	"item.mmorpg.spell_acid_bomb": "§c毒液炸弹",
-	"item.mmorpg.spell_acidbolt": "§c毒液弹",
-	"item.mmorpg.spell_acidexplosion": "§c毒液爆炸",
-	"item.mmorpg.spell_fire_bomb": "§c火焰炸弹",
-	"item.mmorpg.spell_fire_nova": "§c火焰新星",
-	"item.mmorpg.spell_firebolt": "§c火焰弹",
-	"item.mmorpg.spell_flameexplosion": "§c火焰爆炸",
-	"item.mmorpg.spell_frost_nova": "§c冰霜新星",
-	"item.mmorpg.spell_frostbolt": "§c冰霜弹",
-	"item.mmorpg.spell_frostexplosion": "§c冰霜爆炸",
-	"item.mmorpg.spell_ice_bomb": "§c冰霜炸弹",
-	"item.mmorpg.spell_instantheal": "§c瞬间治疗",
-	"item.mmorpg.spell_lightningexplosion": "§c闪电爆炸",
-	"item.mmorpg.spell_poison_nova": "§c毒液新星",
-	"item.mmorpg.spell_self_regen": "§c再生",
-	"item.mmorpg.spell_thunder_bomb": "§c闪电炸弹",
-	"item.mmorpg.spell_thunder_nova": "§c闪电新星",
-	"item.mmorpg.spell_thunderbolt": "§c闪电弹",
-	"item.mmorpg.spells.extra_flame_dmg": "§c额外火焰伤害",
-	"item.mmorpg.spells.extra_frost_dmg": "§c额外冰霜伤害",
-	"item.mmorpg.spells.extra_lightning_dmg": "§c额外闪电伤害",
-	"item.mmorpg.spells.extra_venom_dmg": "§c额外毒液伤害",
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "法师长袍",
@@ -214,26 +214,6 @@
 	"mmorpg.set.wisdom_of_the_elders": "长者的智慧",
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
-
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "添加词缀",
-	"mmorpg.advancement.title.currencybag": "通货袋",
-	"mmorpg.advancement.title.factorystation": "锻造台",
-	"mmorpg.advancement.title.firstadventuremap": "第一个冒险地图!",
-	"mmorpg.advancement.title.level": "等级",
-	"mmorpg.advancement.title.levelpenalty": "等级惩罚",
-	"mmorpg.advancement.title.lootbag": "战利品袋",
-	"mmorpg.advancement.title.mapbag": "地图袋",
-	"mmorpg.advancement.title.mapdevice": "地图装置",
-	"mmorpg.advancement.title.masterbag": "大师袋",
-	"mmorpg.advancement.title.modifystation": "强化台",
-	"mmorpg.advancement.title.repairstation": "修理台",
-	"mmorpg.advancement.title.salvagestation": "回收台",
-	"mmorpg.advancement.title.welcomemineandslash": "欢迎来到挖矿与砍杀!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
@@ -296,6 +276,26 @@
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "添加词缀",
+	"mmorpg.advancement.title.currencybag": "通货袋",
+	"mmorpg.advancement.title.factorystation": "锻造台",
+	"mmorpg.advancement.title.firstadventuremap": "第一个冒险地图!",
+	"mmorpg.advancement.title.level": "等级",
+	"mmorpg.advancement.title.levelpenalty": "等级惩罚",
+	"mmorpg.advancement.title.lootbag": "战利品袋",
+	"mmorpg.advancement.title.mapbag": "地图袋",
+	"mmorpg.advancement.title.mapdevice": "地图装置",
+	"mmorpg.advancement.title.masterbag": "大师袋",
+	"mmorpg.advancement.title.modifystation": "强化台",
+	"mmorpg.advancement.title.repairstation": "修理台",
+	"mmorpg.advancement.title.salvagestation": "回收台",
+	"mmorpg.advancement.title.welcomemineandslash": "欢迎来到挖矿与砍杀!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
 
 	"mmorpg.word.attuned": "适应",
@@ -338,7 +338,7 @@
 
 "_comment": " [CATEGORY]: PREFIXES - NAMES",
 
-	"mmorpg.prefix.arcanists": "秘术师的",
+	"mmorpg.prefix.arcanists": "秘术师",
 	"mmorpg.prefix.archaeologists": "考古家的",
 	"mmorpg.prefix.bonusfirereflectprefix": "火焰荆棘精通",
 	"mmorpg.prefix.bonusnaturereflectprefix": "毒液荆棘精通",
@@ -398,6 +398,7 @@
 	"item.mmorpg.currency.add_set": "§c联合宝石",
 	"item.mmorpg.currency.add_suffix": "§c后缀发掘剂",
 	"item.mmorpg.currency.chaos_orb": "§c混沌宝珠",
+	"item.mmorpg.currency.cheap_gear_lvl": "§c腐化之石",
 	"item.mmorpg.currency.clear_runes": "§c遗忘宝珠",
 	"item.mmorpg.currency.create_new_unique": "§c王者级天堂宝石",
 	"item.mmorpg.currency.item_levelup": "§c上升水晶",
@@ -406,6 +407,7 @@
 	"item.mmorpg.currency.randomize_prefix": "§c千变万化的前缀宝珠",
 	"item.mmorpg.currency.randomize_suffix": "§c千变万化的后缀宝珠",
 	"item.mmorpg.currency.reroll_prefix_numbers": "§c前缀祝福宝珠",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§c变革之叶",
 	"item.mmorpg.currency.reroll_set": "§c曙光宝石",
 	"item.mmorpg.currency.reroll_suffix_numbers": "§c后缀祝福宝珠",
 	"item.mmorpg.currency.reroll_unique_numbers": "§c王者级祝福宝珠",
@@ -518,6 +520,7 @@
 	"mmorpg.word.bonus_salvage_chance": "奖励回收几率",
 	"mmorpg.word.bonus_success_rate": "奖励成功几率",
 	"mmorpg.word.breakchance": "破碎几率",
+	"mmorpg.word.broken": "只能使用一次",
 	"mmorpg.word.by": "强化",
 	"mmorpg.word.canonlyuse10times": "只能使用10次",
 	"mmorpg.word.canonlyuseonce": "只能使用1次",
@@ -533,7 +536,7 @@
 	"mmorpg.word.decreased": "缩小",
 	"mmorpg.word.defenses": "防御",
 	"mmorpg.word.distance": "距离",
-	"mmorpg.word.doesnthaveset": "没有套装",
+	"mmorpg.word.doesnthaveset": "不能有套装",
 	"mmorpg.word.donotbuildinmaps": "不要在地图里建造!",
 	"mmorpg.word.elemental_attack_damage": "元素攻击伤害",
 	"mmorpg.word.empty": "空",
@@ -546,6 +549,7 @@
 	"mmorpg.word.hasinfusion": "有注入属性",
 	"mmorpg.word.hasmatchingrunes": "装备匹配装备",
 	"mmorpg.word.hasprefix": "需要有前缀",
+	"mmorpg.word.hasprimarystats": "Has Primary Stats",
 	"mmorpg.word.hasset": "需要有套装",
 	"mmorpg.word.hassuffix": "需要有后缀",
 	"mmorpg.word.hasuniquestats": "有王者级属性",
@@ -579,15 +583,15 @@
 	"mmorpg.word.misc": "杂项",
 	"mmorpg.word.mob": "怪物",
 	"mmorpg.word.mob_affixes": "怪物词缀",
-	"mmorpg.word.multi": "多人",
+	"mmorpg.word.multi": "【多人时】",
 	"mmorpg.word.needsgearwithrunesinserted": "符文需要插入装备",
 	"mmorpg.word.nochaosstats": "不能有混沌属性",
 	"mmorpg.word.noduplicaterunes": "相同型式不重复的符文",
-	"mmorpg.word.nogroupaffix": "没有团队地图词缀",
+	"mmorpg.word.nogroupaffix": "不能有团队地图词缀",
 	"mmorpg.word.none": "无",
-	"mmorpg.word.noprefix": "没有前缀",
+	"mmorpg.word.noprefix": "不能有前缀",
 	"mmorpg.word.normal_gear": "普通装备",
-	"mmorpg.word.nosuffix": "没有后缀",
+	"mmorpg.word.nosuffix": "不能有后缀",
 	"mmorpg.word.not_a_map_world": "不是地图世界",
 	"mmorpg.word.notallowedon": "不允许: ",
 	"mmorpg.word.npc": "Npc",
@@ -844,6 +848,7 @@
 	"mmorpg.stat.tower": "塔",
 	"mmorpg.stat.venombonus_basic_atk_dmg_spell_power": "§c额外毒液威力",
 	"mmorpg.stat.vitality": "体力",
+	"mmorpg.stat.wand_damage": "魔杖伤害",
 	"mmorpg.stat.water_affinity": "水亲和",
 	"mmorpg.stat.water_bonus_dmg_on_basic": "额外水基础伤害",
 	"mmorpg.stat.water_focus": "水专注",
@@ -898,6 +903,7 @@
 	"mmorpg.suffix.of_the_sage": "之智者",
 	"mmorpg.suffix.of_thunderstorms": "之雷暴",
 	"mmorpg.suffix.of_vitality": "之生命",
+	"mmorpg.suffix.of_wand_flurry": "之快杖",
 	"mmorpg.suffix.offorce": "之力量",
 	"mmorpg.suffix.ofhiddensense": "之隐藏意识",
 	"mmorpg.suffix.ofrockpiercing": "之岩穿",
@@ -907,8 +913,8 @@
 	"mmorpg.suffix.water_of_dissonance": "之闪电失调",
 	
 "_comment": " [CATEGORY]: SUFFIXES - NAMES",
-
-
+	
+	
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 	"mmorpg.advancement.desc.addaffix": "王者级装备获得词缀的几率较低, 这就是为什么通货如此重要",
@@ -1047,6 +1053,7 @@
 	"mmorpg.gear_type.staff": "法杖",
 	"mmorpg.gear_type.sword": "剑",
 	"mmorpg.gear_type.torch": "火炬",
+	"mmorpg.gear_type.wand": "魔杖",
 	
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
@@ -1197,6 +1204,12 @@
 	"item.mmorpg.torch.torch3": "§9火炬",
 	"item.mmorpg.torch.torch4": "§6火炬",
 	"item.mmorpg.torch.torch5": "§d火炬",
+	"item.mmorpg.wand.wand0": "§7魔杖",
+	"item.mmorpg.wand.wand1": "§a魔杖",
+	"item.mmorpg.wand.wand2": "§e魔杖",
+	"item.mmorpg.wand.wand3": "§9魔杖",
+	"item.mmorpg.wand.wand4": "§6魔杖",
+	"item.mmorpg.wand.wand5": "§d魔杖",
 	
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
@@ -1319,16 +1332,16 @@
 	"item.mmorpg.uniques.chest.chestdodge0.desc": "来啊, 打我啊!",
 	"item.mmorpg.uniques.chest.chestfire0.desc": "What can't kill me only makes me glow brighter.",
 	"item.mmorpg.uniques.chest.chestmana0.desc": "The process of multiplying energy has just begun!",
-	"item.mmorpg.uniques.chest.chestnature0.desc": "Do not try move me.",
-	"item.mmorpg.uniques.chest.chestthunder0.desc": "Those who dared to follow had long since died.",
-	"item.mmorpg.uniques.chest.chestwater0.desc": "I am a Fortress of pure Ice.",
-	"item.mmorpg.uniques.hammer.fire_ele_hammer0.desc": "I can feel it at my fingertips.",
-	"item.mmorpg.uniques.hammer.hammerphysical0.desc": "Not even mountains can bar my path!",
-	"item.mmorpg.uniques.hammer.hammerthunder0.desc": "I will be safe when my enemies are dead.",
-	"item.mmorpg.uniques.hammer.nature_ele_hammer0.desc": "I can feel it at my fingertips.",
-	"item.mmorpg.uniques.hammer.thunder_ele_hammer0.desc": "I can feel it at my fingertips.",
-	"item.mmorpg.uniques.hammer.water_ele_hammer0.desc": "I can feel it at my fingertips.",
-	"item.mmorpg.uniques.helmet.helmetfire0.desc": "I see flames all around me.",
+	"item.mmorpg.uniques.chest.chestnature0.desc": "不要试图撼动我.",
+	"item.mmorpg.uniques.chest.chestthunder0.desc": "那些敢于追随的人早就死了.",
+	"item.mmorpg.uniques.chest.chestwater0.desc": "我是一个纯净的冰堡垒.",
+	"item.mmorpg.uniques.hammer.fire_ele_hammer0.desc": "我能感觉到它在我的指尖.",
+	"item.mmorpg.uniques.hammer.hammerphysical0.desc": "连山都挡不住我的路!",
+	"item.mmorpg.uniques.hammer.hammerthunder0.desc": "当我的敌人都死去我会感觉很安全.",
+	"item.mmorpg.uniques.hammer.nature_ele_hammer0.desc": "我能感觉到它在我的指尖.",
+	"item.mmorpg.uniques.hammer.thunder_ele_hammer0.desc": "我能感觉到它在我的指尖.",
+	"item.mmorpg.uniques.hammer.water_ele_hammer0.desc": "我能感觉到它在我的指尖.",
+	"item.mmorpg.uniques.helmet.helmetfire0.desc": "我看到周围都是火焰.",
 	"item.mmorpg.uniques.helmet.helmetmana0.desc": "流向我.",
 	"item.mmorpg.uniques.helmet.helmetnature0.desc": "自然会帮助我.",
 	"item.mmorpg.uniques.helmet.helmetthunder0.desc": "我看到周围有火花.",
@@ -1386,9 +1399,10 @@
 	"item.mmorpg.currency.add_group_map.desc": "将地图转化为团队地图.",
 	"item.mmorpg.currency.add_prefix.desc": "添加一个前缀",
 	"item.mmorpg.currency.add_secondary_stat.desc": "增加一个副属性",
-	"item.mmorpg.currency.add_set.desc": "添加一个套装到物品",
+	"item.mmorpg.currency.add_set.desc": "随机添加一个套装属性到物品上",
 	"item.mmorpg.currency.add_suffix.desc": "添加一个后缀",
 	"item.mmorpg.currency.chaos_orb.desc": "永久添加一个随机的混沌属性",
+	"item.mmorpg.currency.cheap_gear_lvl.desc": "装备等级提高5级",
 	"item.mmorpg.currency.clear_runes.desc": "清除物品上的符文和符文之语.",
 	"item.mmorpg.currency.create_new_unique.desc": "转化为王者级 (同样的品级)",
 	"item.mmorpg.currency.item_levelup.desc": "提高装备等级,最多10次",
@@ -1397,6 +1411,7 @@
 	"item.mmorpg.currency.randomize_prefix.desc": "重新刷新前缀",
 	"item.mmorpg.currency.randomize_suffix.desc": "重新刷新后缀",
 	"item.mmorpg.currency.reroll_prefix_numbers.desc": "重新刷新前缀属性的数值",
+	"item.mmorpg.currency.reroll_primary_stats_numbers.desc": "重新刷新主属性的数值",
 	"item.mmorpg.currency.reroll_set.desc": "重新刷新套装.",
 	"item.mmorpg.currency.reroll_suffix_numbers.desc": "重新刷新后缀属性的数值",
 	"item.mmorpg.currency.reroll_unique_numbers.desc": "重新刷新王者级属性的数值",
@@ -1491,6 +1506,7 @@
 	"lore_0_item.currency.add_set": "合二为一.",
 	"lore_0_item.currency.add_suffix": "翱翔天际.",
 	"lore_0_item.currency.chaos_orb": "不要赌你不愿意失去的东西.",
+	"lore_0_item.currency.cheap_gear_lvl": "没有耐心只会导致失败.",
 	"lore_0_item.currency.clear_runes": "如果我们可以改写过去.",
 	"lore_0_item.currency.create_new_unique": "不喜欢这个? 换一个!",
 	"lore_0_item.currency.item_levelup": "谁说装备不能与你一起升级?",
@@ -1499,6 +1515,7 @@
 	"lore_0_item.currency.randomize_prefix": "总有一个更好的选择",
 	"lore_0_item.currency.randomize_suffix": "总有一个更好的选择",
 	"lore_0_item.currency.reroll_prefix_numbers": "我命令你改变!",
+	"lore_0_item.currency.reroll_primary_stats_numbers": "让变革之风吹来.",
 	"lore_0_item.currency.reroll_set": "新的套装和属性.",
 	"lore_0_item.currency.reroll_suffix_numbers": "我命令你改变!",
 	"lore_0_item.currency.reroll_unique_numbers": "任何事都可以改变.",
