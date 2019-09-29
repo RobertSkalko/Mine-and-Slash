@@ -26,7 +26,7 @@
 
     "_comment": "ITEM TOOLTIPS",
 	"mmorpg.tooltip.item_modifiable_in_station": "Can be used inside Gear Modify Station",
-	"mmorpg.tooltip.lootbox": "What could be inside?",   
+	"mmorpg.tooltip.lootbox": "What could be inside?",
     "mmorpg.tooltip.player_levelup": "If your experience bar is full, use this item to levelup!",
     "mmorpg.tooltip.newbie_gear_bag": "Creates a pack of level one gear.",
     "mmorpg.lore.newbie_gear_bag1": "Three Furnaces below, five iron wills above,",
@@ -36,7 +36,7 @@
     "mmorpg.tooltip.socketable_item": "This Gem can be inserted into a Socket slot",
 
     "_comment": "RARITY ITEM NAMES",
-	
+
     "_comment": "MISC ITEMS",
     "item.mmorpg.player_levelup": "Player Level Up Token",
     "item.mmorpg.loot_bag": "Gear Loot Bag",
@@ -47,7 +47,7 @@
     "item.mmorpg.map_back_portal": "Map Leave Pearl",
     "item.mmorpg.level_nearest_entity": "Level Nearest Entity",
     "item.mmorpg.increase_rarity_nearest_entity": "Increase Rarity Nearest Entity",
-    "item.mmorpg.awaken_runeword": "Awaken RuneWord",   
+    "item.mmorpg.awaken_runeword": "Awaken RuneWord",
 
     "_comment": "SPELL TOOLTIPS",
     "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",
@@ -56,7 +56,7 @@
     "mmorpg.tooltip.aoe_bomb_spell": "Leaves out a bomb that explodes later for Aoe Damage.",
     "mmorpg.tooltip.spell_self_regen": "Heals the caster over time.",
     "mmorpg.tooltip.aoe_spell_nova": "Damages everyone around you.",
-	"mmorpg.tooltip.ele_bonus_atk_dmg_spell": "Gives buff, deal bonus dmg at cost of mana.",	
+	"mmorpg.tooltip.ele_bonus_atk_dmg_spell": "Gives buff, deal bonus dmg at cost of mana.",
 
     "_comment": "REPAIR CAPACITORS",
     "item.mmorpg.capacitor0": "Common Capacitor",
@@ -67,14 +67,14 @@
     "item.mmorpg.capacitor5": "Mythical Capacitor",
 
     "_comment": "ITEM TOOLTIPS",
-    
+
     "_comment": "MAPS",
     "mmorpg.name.map": "Adventure Map",
     "mmorpg.tooltip.put_in_mapdevice": "Put in Map Device to Use",
 
     "mmorpg.tooltip.press_shift_more_info": "[Shift]: Info, [Ctrl]: Show Enchants",
     "mmorpg.tooltip.affix_rarity_lootbonus": "Affix Rarity Loot Bonus",
-	
+
 	"curios.identifier.salvage_bag": "Salvage Bag",
 	"curios.identifier.bracelet": "Bracelet",
 "_comment": " [CATEGORY]: MISC - NAMES",

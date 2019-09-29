@@ -46,7 +46,7 @@ public class DropRatesContainer {
 
         UNIQUE_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.unique_droprate")
-                .defineInRange("UNIQUE_DROPRATE", 0.15F, 0, Integer.MAX_VALUE);
+                .defineInRange("UNIQUE_DROPRATE", 0.2F, 0, Integer.MAX_VALUE);
 
         SPELL_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.spell_droprate")

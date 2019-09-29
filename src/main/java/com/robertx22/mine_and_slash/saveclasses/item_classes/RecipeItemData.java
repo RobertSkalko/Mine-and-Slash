@@ -42,7 +42,8 @@ public class RecipeItemData implements ITooltip, IGUID {
         List<ITextComponent> t = ctx.event.getToolTip();
 
         t.add(new StringTextComponent(""));
-        t.add(new StringTextComponent(TextFormatting.GREEN + "[Exp] Gained: " + this.getRecipe()
+        t.add(new StringTextComponent(TextFormatting.GREEN + "[Exp] Profession Gained: " + this
+                .getRecipe()
                 .getExpGained()));
         t.add(new StringTextComponent(TextFormatting.YELLOW + "[Level] Required: " + this.getRecipe()
                 .getLevelReq()));

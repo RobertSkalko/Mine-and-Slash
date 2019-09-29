@@ -22,12 +22,11 @@ public class ClientContainer {
     }
 
     public NeatConfig neatConfig;
+    public DmgParticleConfig dmgParticleConfig;
 
     public BooleanValue SHOW_AFFIXED_NAME;
-    public BooleanValue RENDER_FLOATING_DAMAGE;
     public BooleanValue RENDER_MOB_HEALTH_GUI;
     public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
-    public BooleanValue SHOW_FLOATING_EXP;
     public BooleanValue SHOW_VANILLA_HEARTS;
     public BooleanValue SHOW_UNMET_GEAR_REQUIREMENTS_GUI;
 
@@ -37,6 +36,7 @@ public class ClientContainer {
         builder.comment("Client Settings").push(NAME);
 
         neatConfig = builder.configure(NeatConfig::new).getLeft();
+        dmgParticleConfig = builder.configure(DmgParticleConfig::new).getLeft();
 
         SHOW_AFFIXED_NAME = builder.comment(".")
                 .translation("mmorpg.config.show_item_affixes")
@@ -50,10 +50,6 @@ public class ClientContainer {
                 .translation("mmorpg.config.show_vanilla_hearts")
                 .define("SHOW_VANILLA_HEARTS", true);
 
-        RENDER_FLOATING_DAMAGE = builder.comment(".")
-                .translation("mmorpg.config.floating_damage_numbers")
-                .define("RENDER_FLOATING_DAMAGE", true);
-
         RENDER_MOB_HEALTH_GUI = builder.comment(".")
                 .translation("mmorpg.config.mob_health_bar")
                 .define("RENDER_MOB_HEALTH_GUI", true);
@@ -61,10 +57,6 @@ public class ClientContainer {
         SHOW_LOW_ENERGY_MANA_WARNING = builder.comment(".")
                 .translation("mmorpg.config.low_resource_warnings")
                 .define("SHOW_LOW_ENERGY_MANA_WARNING", true);
-
-        SHOW_FLOATING_EXP = builder.comment(".")
-                .translation("mmorpg.config.floating_exp")
-                .define("SHOW_FLOATING_EXP", true);
 
         PLAYER_GUI_TYPE = builder.comment(".")
                 .translation("mmorpg.config.player_gui_overlay_type")

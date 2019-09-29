@@ -5,6 +5,11 @@ staffs no longer restore half energy on missed projectile
 maps no longer say broken
 torches take more time to use but restore more
 fix configs like energy regen per lvl not scaling per lvl
+configs added: STAT_POINTS_PER_LEVEL, STAT_REQUIREMENTS_MULTI
+increased unique dropchance a bit
+dmg particles are a bit slower now
+dmg paticles have configs now
+moved configs to dmg particle configs
 2.8.14
 not meeting gear requirements now no longer spams your chat, but does show gui on the right
 2.8.13

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
+import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -89,7 +90,9 @@ public class StatRequirementsData {
     }
 
     public static int getAmount(int lvl) {
-        return MathHelper.clamp(lvl - (lvl / 4) - 10, 0, 100000);
+        int req = (int) ((lvl - (lvl / 4) - 10) * ModConfig.INSTANCE.Server.STAT_REQUIREMENTS_MULTI
+                .get());
+        return MathHelper.clamp(req, 0, 100000);
     }
 
     private void singleStat(GearItemData data) {

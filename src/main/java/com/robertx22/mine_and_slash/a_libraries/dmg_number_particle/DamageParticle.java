@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.a_libraries.dmg_number_particle;
 
 import com.mojang.blaze3d.platform.GLX;
+import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -17,17 +18,11 @@ import org.lwjgl.opengl.GL11;
 @OnlyIn(Dist.CLIENT)
 public class DamageParticle extends Particle {
 
-    protected static final float GRAVITY = 0.15F;
-    protected static final float SIZE = 1.0F;
-    protected static final int LIFESPAN = 12;
-    protected static final double BOUNCE_STRENGTH = 1.3F;
-
     protected String text;
     protected boolean shouldOnTop = true;
-    protected boolean grow = true;
     protected float scale = 0.7F;
-
     Elements element;
+    public boolean grow = true;
 
     public DamageParticle(Elements element, String str, World world, double parX,
                           double parY, double parZ, double parMotionX, double parMotionY,
@@ -36,11 +31,12 @@ public class DamageParticle extends Particle {
 
         //particleTextureJitterX = 0.0F;
         //particleTextureJitterY = 0.0F;
-        particleGravity = GRAVITY;
-        scale = SIZE;
-        this.maxAge = LIFESPAN;
+        particleGravity = ClientContainer.INSTANCE.dmgParticleConfig.GRAVITY.get()
+                .floatValue();
+        scale = ClientContainer.INSTANCE.dmgParticleConfig.START_SIZE.get().floatValue();
+        this.maxAge = ClientContainer.INSTANCE.dmgParticleConfig.LIFESPAN.get()
+                .intValue();
         this.text = str;
-
         this.element = element;
     }
 
@@ -51,9 +47,11 @@ public class DamageParticle extends Particle {
             float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
             float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
-            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * x - interpPosX));
-            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * y - interpPosY));
-            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * z - interpPosZ));
+            float speed = 0.75F;
+
+            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * x - interpPosX)) * speed;
+            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * y - interpPosY)) * speed;
+            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * z - interpPosZ)) * speed;
 
             GL11.glPushMatrix();
             if (this.shouldOnTop) {
@@ -90,13 +88,16 @@ public class DamageParticle extends Particle {
             GL11.glDepthFunc(515);
 
             GL11.glPopMatrix();
-            if (this.grow) {
-                this.scale *= 1.08F;
-                if (this.scale > SIZE * 3.0D) {
-                    this.grow = false;
+            if (ClientContainer.INSTANCE.dmgParticleConfig.GROWS.get()) {
+                if (this.grow) {
+                    this.scale *= 1.08F;
+                    if (this.scale > ClientContainer.INSTANCE.dmgParticleConfig.MAX_SIZE.get()
+                            .floatValue()) {
+                        this.grow = false;
+                    }
+                } else {
+                    this.scale *= 0.96F;
                 }
-            } else {
-                this.scale *= 0.96F;
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -68,9 +68,10 @@ public class DmgNumPacket {
         ctx.get().enqueueWork(() -> {
             try {
 
-                if (pkt.isExp && ClientContainer.INSTANCE.SHOW_FLOATING_EXP.get()) {
+                if (pkt.isExp && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_EXP
+                        .get()) {
                     OnDisplayDamage.displayParticle(pkt);
-                } else if (pkt.isExp == false && ClientContainer.INSTANCE.RENDER_FLOATING_DAMAGE
+                } else if (pkt.isExp == false && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG
                         .get()) {
                     OnDisplayDamage.displayParticle(pkt);
                 }

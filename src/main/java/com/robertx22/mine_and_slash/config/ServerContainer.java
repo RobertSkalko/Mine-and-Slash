@@ -23,6 +23,7 @@ public class ServerContainer {
     public IntValue MAXIMUM_PLAYER_LEVEL;
     public IntValue MAXIMUM_ITEM_INSTABILITY;
 
+    public DoubleValue STAT_POINTS_PER_LEVEL;
     public DoubleValue NON_MOD_DAMAGE_MULTI;
     public DoubleValue XP_LOSS_ON_DEATH;
     public DoubleValue MOB_ENVIRONMENT_DAMAGE_MULTI;
@@ -31,13 +32,22 @@ public class ServerContainer {
     public DoubleValue UNARMED_ENERGY_COST;
     public DoubleValue STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT;
     public DoubleValue PLAYER_HEART_TO_HEALTH_CONVERSION;
+    public DoubleValue STAT_REQUIREMENTS_MULTI;
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
 
+        STAT_POINTS_PER_LEVEL = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("STAT_POINTS_PER_LEVEL", 1D, 0, 100);
+
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("PLAYER_HEART_TO_HEALTH_CONVERSION", 1D, 0D, 100D);
+
+        STAT_REQUIREMENTS_MULTI = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("STAT_REQUIREMENTS_MULTI", 1D, 0D, 100D);
 
         XP_LOSS_ON_DEATH = builder.comment(".")
                 .translation("mmorpg.word.")

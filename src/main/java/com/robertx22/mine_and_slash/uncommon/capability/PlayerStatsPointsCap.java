@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
+import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.PlayerStatPointsData;
@@ -97,7 +98,7 @@ public class PlayerStatsPointsCap {
         }
 
         public int getPointsForLevel(int lvl) {
-            return lvl;
+            return (int) (lvl * ModConfig.INSTANCE.Server.STAT_POINTS_PER_LEVEL.get());
         }
 
         @Override
