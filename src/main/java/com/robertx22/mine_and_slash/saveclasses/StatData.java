@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -34,7 +35,17 @@ public class StatData {
     @Store
     public float Value = 0;
 
-    public void add(StatData data) {
+    public void addExact(StatTypes type, float value) {
+        if (type == StatTypes.Flat) {
+            this.Flat += value;
+        } else if (type == StatTypes.Percent) {
+            this.Percent += value;
+        } else {
+            this.Multi += value;
+        }
+    }
+
+    public void addExact(StatData data) {
         if (data.Name.equals(this.Name)) {
             this.Flat += data.Flat;
             this.Percent += data.Percent;

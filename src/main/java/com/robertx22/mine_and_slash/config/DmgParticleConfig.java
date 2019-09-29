@@ -12,6 +12,7 @@ public class DmgParticleConfig {
     public ConfigValue<Double> START_SIZE;
     public ConfigValue<Double> MAX_SIZE;
     public ConfigValue<Double> LIFESPAN;
+    public ConfigValue<Double> SPEED;
 
     public ConfigValue<Boolean> GROWS;
 
@@ -22,6 +23,7 @@ public class DmgParticleConfig {
         START_SIZE = builder.define("START_SIZE", 1D);
         MAX_SIZE = builder.define("MAX_SIZE", 2D);
         LIFESPAN = builder.define("LIFESPAN", 12D);
+        SPEED = builder.define("SPEED", 0.5D);
 
         GROWS = builder.define("GROWS", true);
 

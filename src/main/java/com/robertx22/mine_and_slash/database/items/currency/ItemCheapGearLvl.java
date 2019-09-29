@@ -78,6 +78,7 @@ public class ItemCheapGearLvl extends CurrencyItem implements ICurrencyItemEffec
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
+                .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 3)
                 .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 3)
                 .addMaterial(Items.COAL, 5)
                 .addMaterial(Items.GOLDEN_CARROT, 1)

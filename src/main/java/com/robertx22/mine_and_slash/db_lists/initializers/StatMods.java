@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
@@ -46,10 +47,8 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.less.*;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.much_less.*;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.BaseTrait;
-import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
@@ -84,7 +83,6 @@ public class StatMods implements ISlashRegistryInit {
                     add(new ElementalPeneFlat(Elements.Physical));
                     add(new ElementalPenePercent(Elements.Physical));
                     add(new ElementalFocusFlat(Elements.Physical));
-                    add(new StatDoublePercent(new UnknownStat()));
                     add(new BlockReflectFlat(Elements.Physical));
                     add(new BonusSpecificSpellFlat(new SpellAcidBolt()));
 

@@ -31,7 +31,7 @@ public class RemoveStat {
 
                 EntityCap.UnitData data = Load.Unit(en);
 
-                data.getCustomStats().remove(GUID);
+                data.getCustomExactStats().remove(GUID);
 
             }
 

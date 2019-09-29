@@ -31,9 +31,15 @@ public class CommandRegister {
         GiveUniqueGear.register(dispatcher);
         SetEntityLevel.register(dispatcher);
         SetEntityRarity.register(dispatcher);
+
+        GiveStatMod.register(dispatcher);
+        RemoveStatMod.register(dispatcher);
+        ClearStatMods.register(dispatcher);
+
         GiveStat.register(dispatcher);
         RemoveStat.register(dispatcher);
         ClearStats.register(dispatcher);
+
         ReloadConfigs.register(dispatcher);
         ModifyItem.register(dispatcher);
         GiveBlueprint.register(dispatcher);

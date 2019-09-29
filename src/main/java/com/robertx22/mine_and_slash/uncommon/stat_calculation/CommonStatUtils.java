@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.IPreCor
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.potion_effects.IStatGivingPotion;
 import com.robertx22.mine_and_slash.potion_effects.IStatPotion;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
@@ -27,6 +28,12 @@ public class CommonStatUtils {
     public static void addCustomStats(UnitData data, Unit unit, int level) {
         for (StatModData stat : data.getCustomStats().stats.values()) {
             stat.useOnPlayer(data);
+        }
+    }
+
+    public static void addExactCustomStats(UnitData data) {
+        for (ExactStatData stat : data.getCustomExactStats().stats.values()) {
+            stat.applyStats(data);
         }
     }
 

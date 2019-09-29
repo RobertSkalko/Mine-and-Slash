@@ -10,6 +10,7 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -29,14 +30,12 @@ public class DamageParticle extends Particle {
                           double parMotionZ) {
         super(world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
 
-        //particleTextureJitterX = 0.0F;
-        //particleTextureJitterY = 0.0F;
         particleGravity = ClientContainer.INSTANCE.dmgParticleConfig.GRAVITY.get()
                 .floatValue();
         scale = ClientContainer.INSTANCE.dmgParticleConfig.START_SIZE.get().floatValue();
         this.maxAge = ClientContainer.INSTANCE.dmgParticleConfig.LIFESPAN.get()
                 .intValue();
-        this.text = str;
+        this.text = element.format + element.icon + TextFormatting.GRAY + str;
         this.element = element;
     }
 
@@ -47,7 +46,8 @@ public class DamageParticle extends Particle {
             float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
             float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
-            float speed = 0.75F;
+            float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get()
+                    .floatValue();
 
             final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * x - interpPosX)) * speed;
             final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * y - interpPosY)) * speed;

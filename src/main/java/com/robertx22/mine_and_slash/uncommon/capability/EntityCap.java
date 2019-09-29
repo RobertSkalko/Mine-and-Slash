@@ -19,16 +19,14 @@ import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
+import com.robertx22.mine_and_slash.saveclasses.CustomExactStatsData;
 import com.robertx22.mine_and_slash.saveclasses.CustomStatsData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
-import com.robertx22.mine_and_slash.uncommon.datasaving.CustomStats;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.datasaving.UnitNbt;
+import com.robertx22.mine_and_slash.uncommon.datasaving.*;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.*;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
@@ -223,6 +221,8 @@ public class EntityCap {
         float getDMGMultiplierIncreaseByTier();
 
         CustomStatsData getCustomStats();
+
+        CustomExactStatsData getCustomExactStats();
     }
 
     @EventBusSubscriber
@@ -277,6 +277,7 @@ public class EntityCap {
         float mana;
 
         CustomStatsData customStats = new CustomStatsData();
+        CustomExactStatsData customExactStats = new CustomExactStatsData();
 
         @Override
         public CompoundNBT getNBT() {
@@ -301,6 +302,10 @@ public class EntityCap {
 
             if (customStats != null) {
                 CustomStats.Save(nbt, customStats);
+            }
+
+            if (customExactStats != null) {
+                CustomExactStats.Save(nbt, customExactStats);
             }
 
             if (unit != null) {
@@ -337,17 +342,18 @@ public class EntityCap {
                 //if no nbt, set to default. Then at spawn, set correctly
             }
 
-            CustomStatsData newstats = CustomStats.Load(nbt);
-            if (newstats != null) {
-                this.customStats = newstats;
-            } else {
+            this.customStats = CustomStats.Load(nbt);
+            if (this.customStats == null) {
                 this.customStats = new CustomStatsData();
             }
 
-            Unit newunit = UnitNbt.Load(nbt);
-            if (newunit != null) {
-                this.unit = newunit;
-            } else {
+            this.customExactStats = CustomExactStats.Load(nbt);
+            if (this.customExactStats == null) {
+                this.customExactStats = new CustomExactStatsData();
+            }
+
+            this.unit = UnitNbt.Load(nbt);
+            if (this.unit == null) {
                 this.unit = new Unit();
             }
 
@@ -994,6 +1000,11 @@ public class EntityCap {
         @Override
         public CustomStatsData getCustomStats() {
             return this.customStats;
+        }
+
+        @Override
+        public CustomExactStatsData getCustomExactStats() {
+            return this.customExactStats;
         }
 
         @Override

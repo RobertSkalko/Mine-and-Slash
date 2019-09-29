@@ -363,6 +363,7 @@ public class Unit {
 
         CommonStatUtils.addPotionStats(entity, data);
         CommonStatUtils.addCustomStats(data, this, level);
+        CommonStatUtils.addExactCustomStats(data);
 
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);

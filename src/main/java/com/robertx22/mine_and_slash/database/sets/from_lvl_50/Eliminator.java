@@ -5,8 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.StatDoublePercent;
-import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.Dexterity;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.DexterityFlat;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.HashMap;
@@ -29,7 +28,7 @@ public class Eliminator extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(4, new StatDoublePercent(new Dexterity()));
+                    put(4, new DexterityFlat().multi(4));
                 }
             }
         };

@@ -11,13 +11,12 @@ import net.minecraft.entity.LivingEntity;
 
 import javax.annotation.Nullable;
 
-public class ClearStats {
+public class ClearStatMods {
 
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
-        commandDispatcher.register(Commands.literal("clearstats")
+        commandDispatcher.register(Commands.literal("clearstatsmods")
                 .requires(e -> e.hasPermissionLevel(2))
                 .then(Commands.argument("target", EntityArgument.entity())
-
                         .executes(ctx -> run(EntityArgument.getPlayer(ctx, "target")))));
     }
 
@@ -27,7 +26,7 @@ public class ClearStats {
 
             if (en instanceof LivingEntity) {
                 EntityCap.UnitData data = Load.Unit(en);
-                data.getCustomExactStats().stats.clear();
+                data.getCustomStats().stats.clear();
 
             }
 
