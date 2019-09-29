@@ -10,6 +10,9 @@ public class RepairUtils {
     static final String IS_BEING_REPAIRED = Ref.MODID + "is_being_repaired";
 
     public static boolean isItemBroken(ItemStack stack) {
+        if (!stack.isDamageable()) {
+            return true;
+        }
         return stack.getDamage() >= stack.getMaxDamage() - 10;
     }
 

@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHi
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.*;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.WornSetsContainerData;
@@ -64,7 +65,11 @@ public class PlayerStatUtils {
     private static void addScalingStat(UnitData data, String stat, double base,
                                        double perlvl) {
         data.getUnit().getStat(stat).Flat += base;
-        data.getUnit().getStat(stat).addFlat((float) (perlvl), data.getLevel());
+        if (SlashRegistry.Stats().get(stat).ScalesToLevel()) {
+            data.getUnit().getStat(stat).addFlat((float) (perlvl), data.getLevel());
+        } else {
+            data.getUnit().getStat(stat).Flat += (float) (perlvl) * data.getLevel();
+        }
     }
 
     public static void CountWornSets(Entity entity, List<GearItemData> gears, Unit unit) {

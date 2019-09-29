@@ -79,7 +79,6 @@ public class EntityRegister {
 
         STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
         WANDPROJECTILE = newType(EntityWandProjectile.class, EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
-
     }
 
     private static <T extends Entity> EntityType<T> newType(

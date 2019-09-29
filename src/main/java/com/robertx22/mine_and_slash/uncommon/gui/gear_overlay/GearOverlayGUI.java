@@ -80,6 +80,10 @@ public class GearOverlayGUI extends AbstractGui {
                 return;
             }
 
+            if (mc.player.ticksExisted < 50) {
+                return;
+            }
+
             int x = mc.mainWindow.getScaledWidth() - 20;
             int y = mc.mainWindow.getScaledHeight() / 2 - elementsToRender.size() / 2 * 16;
 

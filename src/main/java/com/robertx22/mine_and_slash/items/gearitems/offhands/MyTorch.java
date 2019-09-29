@@ -69,7 +69,7 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 20;
+        return 40;
     }
 
     @Override
@@ -137,7 +137,7 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
         float missing = max - current;
 
         if (missing > 20) {
-            missing /= 20;
+            missing /= 10;
             return missing;
         }
         return 0;

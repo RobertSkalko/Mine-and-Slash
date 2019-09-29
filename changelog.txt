@@ -2,6 +2,9 @@
 sets now only show stats if you have them equipped, fixes 0 set stat tooltip bug
 updated chinese lang files
 staffs no longer restore half energy on missed projectile
+maps no longer say broken
+torches take more time to use but restore more
+fix configs like energy regen per lvl not scaling per lvl
 2.8.14
 not meeting gear requirements now no longer spams your chat, but does show gui on the right
 2.8.13
