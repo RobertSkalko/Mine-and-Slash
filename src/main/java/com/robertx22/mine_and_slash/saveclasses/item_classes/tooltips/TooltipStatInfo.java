@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -35,6 +36,13 @@ public class TooltipStatInfo implements ITooltipList {
         this.type = data.getStatMod().Type();
         this.tooltipInfo = info;
         this.statRange = new StatRangeContext(data, info.minmax, info.level);
+    }
+
+    public TooltipStatInfo(ExactStatData data, TooltipInfo info) {
+        this.stat = data.getStat();
+        this.amount = data.getValue();
+        this.type = data.getType();
+        this.tooltipInfo = info;
 
     }
 

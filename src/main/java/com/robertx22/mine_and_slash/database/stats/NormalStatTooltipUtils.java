@@ -51,11 +51,9 @@ public class NormalStatTooltipUtils {
         StatModData min = StatModData.Load(data.getStatMod(), minmax.Min);
         StatModData max = StatModData.Load(data.getStatMod(), minmax.Max);
 
-        ITextComponent extraInfo = Styles.GREENCOMP()
+        return Styles.GREENCOMP()
                 .appendSibling(new StringTextComponent(" (" + min.printValue(level) + " - " + max
                         .printValue(level) + ")"));
-
-        return extraInfo;
 
     }
 

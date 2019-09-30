@@ -5,12 +5,12 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +37,18 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
     @Store
     private String statGUID = "";
 
+    public float getValue() {
+        return value;
+    }
+
+    public StatTypes getType() {
+        return type;
+    }
+
+    public Stat getStat() {
+        return SlashRegistry.Stats().get(statGUID);
+    }
+
     @Override
     public void applyStats(EntityCap.UnitData data) {
         data.getUnit().getStat(statGUID).addExact(type, value);
@@ -44,12 +56,9 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
-        List<ITextComponent> list = new ArrayList<>();
+        Stat stat = getStat();
+        TooltipStatInfo statInfo = new TooltipStatInfo(this, info);
+        return new ArrayList<>(stat.getTooltipList(statInfo));
 
-        Stat stat = SlashRegistry.Stats().get(statGUID);
-
-        ITextComponent comp = new StringTextComponent(stat.getFormattedIcon());
-
-        return list;
     }
 }
