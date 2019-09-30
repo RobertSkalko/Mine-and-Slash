@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.StatRangeContext;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -25,7 +26,9 @@ public class NormalStatTooltipUtils {
                 .appendSibling(StatTypes.getSuffix(info.type));
 
         if (Screen.hasShiftDown() && info.tooltipInfo.isSet == false) {
-            text.appendSibling(getNumberRanges(info.modData, info.minmax, info.level));
+            if (info.statRange != null) {
+                text.appendSibling(getNumberRanges(info.statRange));
+            }
         }
 
         list.add(text);
@@ -39,8 +42,12 @@ public class NormalStatTooltipUtils {
 
     }
 
-    public static ITextComponent getNumberRanges(StatModData data, MinMax minmax,
-                                                 int level) {
+    public static ITextComponent getNumberRanges(StatRangeContext ctx) {
+
+        MinMax minmax = ctx.minmax;
+        StatModData data = ctx.modData;
+        int level = ctx.level;
+
         StatModData min = StatModData.Load(data.getStatMod(), minmax.Min);
         StatModData max = StatModData.Load(data.getStatMod(), minmax.Max);
 
@@ -54,12 +61,11 @@ public class NormalStatTooltipUtils {
 
     public static ITextComponent getStatComp(TooltipStatInfo info) {
 
-        StatMod mod = info.mod;
-        Stat basestat = mod.GetBaseStat();
+        Stat stat = info.stat;
 
         ITextComponent str = new StringTextComponent("");
 
-        if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
+        if (info.type.equals(StatTypes.Percent) && stat.IsPercent()) {
             if (info.amount > 0) {
                 str.appendSibling(Words.Increased.locName());
             } else {
@@ -69,7 +75,7 @@ public class NormalStatTooltipUtils {
             str.appendText(" ");
         }
 
-        str.appendSibling(basestat.locName());
+        str.appendSibling(stat.locName());
 
         if (info.tooltipInfo.isSet == false) {
             return Styles.GRAYCOMP().appendSibling(str);

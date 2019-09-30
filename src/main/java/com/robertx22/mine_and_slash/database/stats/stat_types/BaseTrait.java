@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.stats.stat_types;
 
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana.INameSuffix;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
@@ -52,8 +51,7 @@ public abstract class BaseTrait extends Stat {
 
     @OnlyIn(Dist.CLIENT)
     public ITextComponent TraitText(TooltipStatInfo info) {
-        StatMod mod = info.mod;
-        Stat basestat = mod.GetBaseStat();
+        Stat basestat = info.stat;
         ITextComponent comp = Styles.GREENCOMP()
                 .appendSibling(new StringTextComponent(" * ").appendSibling(basestat.locName()));
 
@@ -71,8 +69,7 @@ public abstract class BaseTrait extends Stat {
     @Override
     public List<ITextComponent> getTooltipList(TooltipStatInfo info) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-        StatMod mod = info.mod;
-        Stat basestat = mod.GetBaseStat();
+        Stat basestat = info.stat;
         ITextComponent text = new StringTextComponent("");
 
         text = TraitText(info);

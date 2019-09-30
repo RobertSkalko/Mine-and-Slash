@@ -1,50 +1,60 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips;
 
-import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class TooltipStatInfo implements ITooltipList {
 
+    @Nullable
+    public StatRangeContext statRange;
+
+    @Nonnull
+    public Stat stat;
+
+    public float amount;
+
+    @Nonnull
+    public StatTypes type;
+
+    @Nonnull
+    public TooltipInfo tooltipInfo;
+
     public TooltipStatInfo(StatModData data, TooltipInfo info) {
-        this.mod = data.getStatMod();
         this.stat = data.getStatMod().GetBaseStat();
         this.amount = data.GetActualVal(info.level);
         this.type = data.getStatMod().Type();
-        this.minmax = info.minmax;
         this.tooltipInfo = info;
-        this.modData = data;
-        this.level = info.level;
+        this.statRange = new StatRangeContext(data, info.minmax, info.level);
+
     }
 
     public void combine(TooltipStatInfo another) {
         this.amount += another.amount;
-        this.minmax.Min += another.minmax.Min;
-        this.minmax.Max += another.minmax.Max;
+        if (this.statRange != null && another.statRange != null) {
+            this.statRange.minmax.Min += another.statRange.minmax.Min;
+            this.statRange.minmax.Max += another.statRange.minmax.Max;
+        }
     }
 
     public boolean canBeCombined(TooltipStatInfo another) {
-
+        if (another.statRange == null && this.statRange != null) {
+            return false;
+        }
+        if (another.statRange != null && this.statRange == null) {
+            return false;
+        }
         return stat.GUID().equals(another.stat.GUID()) && type.equals(another.type);
     }
-
-    public StatModData modData;
-    public StatMod mod;
-    public Stat stat;
-    public float amount;
-    public StatTypes type;
-    public MinMax minmax;
-    public TooltipInfo tooltipInfo;
-    public int level;
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {

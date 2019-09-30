@@ -11,17 +11,14 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -164,29 +161,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         }
 
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public ITextComponent NameText(TooltipStatInfo info) {
-
-        StatMod mod = info.mod;
-        Stat basestat = mod.GetBaseStat();
-
-        ITextComponent str = new StringTextComponent("");
-
-        if (mod.Type().equals(StatTypes.Flat) && basestat.IsPercent()) {
-            str.appendSibling(Words.Flat.locName()).appendText(" ");
-        }
-
-        str.appendSibling(basestat.locName());
-
-        if (info.tooltipInfo.isSet == false) {
-            return Styles.REDCOMP()
-                    .appendSibling(new StringTextComponent(" * ").appendSibling(str)
-                            .appendText(": "));
-        } else {
-            return Styles.GREENCOMP().appendSibling(str.appendText(": "));
-        }
     }
 
     @OnlyIn(Dist.CLIENT)

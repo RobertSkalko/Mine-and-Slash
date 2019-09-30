@@ -17,20 +17,19 @@ public class PrimaryStatTooltipUtils {
 
     public static ITextComponent NameText(TooltipStatInfo info) {
 
-        StatMod mod = info.mod;
-        Stat basestat = mod.GetBaseStat();
+        Stat stat = info.stat;
 
         ITextComponent str = new StringTextComponent("");
 
-        if (mod.Type().equals(StatTypes.Flat) && basestat.IsPercent()) {
+        if (info.type.equals(StatTypes.Flat) && stat.IsPercent()) {
             str.appendSibling(Words.Flat.locName()).appendText(" ");
         }
 
-        str.appendSibling(basestat.locName());
+        str.appendSibling(stat.locName());
 
         if (info.tooltipInfo.isSet == false) {
             return Styles.REDCOMP()
-                    .appendSibling(new StringTextComponent(" " + basestat.getFormattedIcon() + " ")
+                    .appendSibling(new StringTextComponent(" " + stat.getFormattedIcon() + " ")
                             .appendSibling(str)
                             .appendText(": "));
         } else {
@@ -52,21 +51,22 @@ public class PrimaryStatTooltipUtils {
     public static List<ITextComponent> getTooltipList(TooltipStatInfo info) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-        StatMod mod = info.mod;
-        Stat basestat = mod.GetBaseStat();
+
+        StatTypes type = info.type;
+        Stat stat = info.stat;
         ITextComponent text = NameAndValueText(info);
 
-        if (mod.Type() == StatTypes.Flat) {
+        if (type == StatTypes.Flat) {
 
-            if (basestat.IsPercent()) {
+            if (stat.IsPercent()) {
                 text.appendText("%");
             }
 
-        } else if (mod.Type() == StatTypes.Percent) {
+        } else if (type == StatTypes.Percent) {
             text.appendText("%");
 
-            if (mod.Type().equals(StatTypes.Percent) && basestat.IsPercent()) {
-                if (info.modData.GetActualVal(info.level) > 0) {
+            if (type.equals(StatTypes.Percent) && stat.IsPercent()) {
+                if (info.amount > 0) {
                     text.appendText(" ").appendSibling(Words.Increased.locName());
                 } else {
                     text.appendText(" ").appendSibling(Words.Decreased.locName());
@@ -78,9 +78,8 @@ public class PrimaryStatTooltipUtils {
         }
 
         if (Screen.hasShiftDown() && info.tooltipInfo.isSet == false) {
-
-            if (info.mod != null) {
-                text.appendSibling(NormalStatTooltipUtils.getNumberRanges(info.modData, info.minmax, info.level));
+            if (info.statRange != null) {
+                text.appendSibling(NormalStatTooltipUtils.getNumberRanges(info.statRange));
             }
         }
 
