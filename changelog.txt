@@ -3,6 +3,7 @@ mob bonus dmg status effect nerfed
 /givestat -> /give statmod
 new command /givestat
 dmg particles now include element icon
+updated to latest forge v26
 2.8.15
 sets now only show stats if you have them equipped, fixes 0 set stat tooltip bug
 updated chinese lang files

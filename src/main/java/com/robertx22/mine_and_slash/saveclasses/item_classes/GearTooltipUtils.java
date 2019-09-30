@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
+import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
@@ -215,7 +216,8 @@ public class GearTooltipUtils {
                             .appendSibling(CLOC.tooltip("press_shift_more_info")));
         }
 
-        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, 35);
+        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, ClientContainer.INSTANCE.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES
+                .get());
         tip.clear();
         tip.addAll(tool);
 

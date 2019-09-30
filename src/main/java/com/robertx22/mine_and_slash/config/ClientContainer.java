@@ -29,6 +29,7 @@ public class ClientContainer {
     public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
     public BooleanValue SHOW_VANILLA_HEARTS;
     public BooleanValue SHOW_UNMET_GEAR_REQUIREMENTS_GUI;
+    public ForgeConfigSpec.IntValue REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES;
 
     public EnumValue<PlayerGUIs> PLAYER_GUI_TYPE;
 
@@ -37,6 +38,9 @@ public class ClientContainer {
 
         neatConfig = builder.configure(NeatConfig::new).getLeft();
         dmgParticleConfig = builder.configure(DmgParticleConfig::new).getLeft();
+
+        REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES = builder.comment(".")
+                .defineInRange("REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES", 35, 0, 1000);
 
         SHOW_AFFIXED_NAME = builder.comment(".")
                 .translation("mmorpg.config.show_item_affixes")
