@@ -19,7 +19,6 @@ public class NormalStatTooltipUtils {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
         StatMod mod = info.mod;
-        Stat basestat = mod.GetBaseStat();
         ITextComponent text = getValueComp(info).appendText(" ")
                 .appendSibling(getStatComp(info))
                 .appendSibling(StatTypes.getSuffix(mod));

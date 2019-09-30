@@ -20,7 +20,6 @@ public class GearOverlayGUI extends AbstractGui {
     public GearOverlayGUI(Minecraft mc) {
         super();
         this.mc = mc;
-
     }
 
     Unit unit;

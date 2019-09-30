@@ -32,4 +32,5 @@ public class ExactStatData implements IApplyableStats {
     public void applyStats(EntityCap.UnitData data) {
         data.getUnit().getStat(statGUID).addExact(type, value);
     }
+
 }
