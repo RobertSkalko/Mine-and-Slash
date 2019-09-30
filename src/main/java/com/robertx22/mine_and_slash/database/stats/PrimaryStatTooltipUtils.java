@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.stats;
 
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -80,14 +79,9 @@ public class PrimaryStatTooltipUtils {
 
         if (Screen.hasShiftDown() && info.tooltipInfo.isSet == false) {
 
-            StatModData min = StatModData.Load(mod, info.minmax.Min);
-            StatModData max = StatModData.Load(mod, info.minmax.Max);
-
-            ITextComponent extraInfo = Styles.GREENCOMP()
-                    .appendSibling(new StringTextComponent(" (" + min.printValue(info.level) + " - " + max
-                            .printValue(info.level) + ")"));
-
-            text.appendSibling(extraInfo);
+            if (info.mod != null) {
+                text.appendSibling(NormalStatTooltipUtils.getNumberRanges(info.modData, info.minmax, info.level));
+            }
         }
 
         list.add(text);

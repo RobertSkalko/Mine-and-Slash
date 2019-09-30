@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
@@ -18,30 +19,36 @@ public class NormalStatTooltipUtils {
     public static List<ITextComponent> getTooltipList(TooltipStatInfo info) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-        StatMod mod = info.mod;
+
         ITextComponent text = getValueComp(info).appendText(" ")
                 .appendSibling(getStatComp(info))
-                .appendSibling(StatTypes.getSuffix(mod));
+                .appendSibling(StatTypes.getSuffix(info.type));
 
         if (Screen.hasShiftDown() && info.tooltipInfo.isSet == false) {
-
-            StatModData min = StatModData.Load(mod, info.minmax.Min);
-            StatModData max = StatModData.Load(mod, info.minmax.Max);
-
-            ITextComponent extraInfo = Styles.GREENCOMP()
-                    .appendSibling(new StringTextComponent(" (" + min.printValue(info.level) + " - " + max
-                            .printValue(info.level) + ")"));
-
-            text.appendSibling(extraInfo);
+            text.appendSibling(getNumberRanges(info.modData, info.minmax, info.level));
         }
 
         list.add(text);
+
         if (Screen.hasAltDown()) {
             list.add(Styles.BLUECOMP()
                     .appendText(" [")
                     .appendSibling(info.stat.locDesc().appendText("]")));
         }
         return list;
+
+    }
+
+    public static ITextComponent getNumberRanges(StatModData data, MinMax minmax,
+                                                 int level) {
+        StatModData min = StatModData.Load(data.getStatMod(), minmax.Min);
+        StatModData max = StatModData.Load(data.getStatMod(), minmax.Max);
+
+        ITextComponent extraInfo = Styles.GREENCOMP()
+                .appendSibling(new StringTextComponent(" (" + min.printValue(level) + " - " + max
+                        .printValue(level) + ")"));
+
+        return extraInfo;
 
     }
 
@@ -84,7 +91,7 @@ public class NormalStatTooltipUtils {
 
         ITextComponent comp = new StringTextComponent("");
         comp.appendText(color + minusplus + info.stat.printValue(info.amount));
-        comp.appendSibling(StatTypes.getNumberSuffix(info.mod));
+        comp.appendSibling(StatTypes.getNumberSuffix(info.type, info.stat));
         comp.appendText(TextFormatting.RESET + "");
         return comp;
 

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.enumclasses;
 
-import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -18,17 +18,17 @@ public enum StatTypes {
 
     }
 
-    public static ITextComponent getNumberSuffix(StatMod mod) {
+    public static ITextComponent getNumberSuffix(StatTypes type, Stat stat) {
 
         ITextComponent text = new StringTextComponent("");
 
-        if (mod.Type() == StatTypes.Flat) {
+        if (type == StatTypes.Flat) {
 
-            if (mod.GetBaseStat().IsPercent()) {
+            if (stat.IsPercent()) {
                 text.appendText("%");
             }
 
-        } else if (mod.Type() == StatTypes.Percent) {
+        } else if (type == StatTypes.Percent) {
             text.appendText("%");
 
         } else {
@@ -37,11 +37,11 @@ public enum StatTypes {
         return text;
     }
 
-    public static ITextComponent getSuffix(StatMod mod) {
+    public static ITextComponent getSuffix(StatTypes type) {
 
         ITextComponent text = new StringTextComponent("");
 
-        if (mod.Type() == StatTypes.Multi) {
+        if (type == StatTypes.Multi) {
             text.appendText(TextFormatting.GRAY + " ")
                     .appendSibling(Words.Multi.locName());
         }
