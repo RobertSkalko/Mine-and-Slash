@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree.gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoints;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
@@ -33,15 +34,12 @@ public class TalentScreen extends Screen {
     public void init(Minecraft mc, int x, int y) {
         super.init(mc, x, y);
 
-        /*
-        this.addButton(new TalentPointButton(new TalentPoint(0, 0, Items.COAL), data));
-        this.addButton(new TalentPointButton(new TalentPoint(5, 0, Items.EMERALD), data));
-        this.addButton(new TalentPointButton(new TalentPoint(0, 5, Items.SLIME_BALL), data));
-        this.addButton(new TalentPointButton(new TalentPoint(10, 0, Items.GLOWSTONE), data));
-        this.addButton(new TalentPointButton(new TalentPoint(0, 30, Items.BEETROOT), data));
+        this.addButton(new TalentPointButton(TalentPoints.CRIT_HIT0, data));
+        this.addButton(new TalentPointButton(TalentPoints.CRIT_HIT1, data));
 
+        this.addButton(new TalentPointButton(TalentPoints.CRIT_DMG0, data));
+        this.addButton(new TalentPointButton(TalentPoints.CRIT_DMG1, data));
 
-         */
     }
 
     @Override

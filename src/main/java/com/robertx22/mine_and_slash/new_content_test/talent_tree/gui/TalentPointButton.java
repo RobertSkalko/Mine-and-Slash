@@ -51,15 +51,17 @@ public class TalentPointButton extends ImageButton {
         }
     }
 
+    static int SPACING = 30;
+
     private int getX(int scrollX) {
 
-        int pos = this.talentPoint.x * 20 + scrollX;
+        int pos = this.talentPoint.x * SPACING + scrollX;
 
         return pos;
     }
 
     private int getY(int scrollY) {
-        int pos = this.talentPoint.y * 20 + scrollY;
+        int pos = this.talentPoint.y * SPACING + scrollY;
 
         return pos;
     }

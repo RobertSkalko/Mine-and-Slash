@@ -37,6 +37,12 @@ public class TalentPointBuilder {
             return new Render(talent, item);
         }
 
+        public Connections copy(TalentPoint other) {
+            return this.setRender(other.renderStack.getItem())
+                    .setEffect(other.effect)
+                    .finish();
+        }
+
     }
 
     public static class Render {
