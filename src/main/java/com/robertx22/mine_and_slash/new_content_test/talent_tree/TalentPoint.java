@@ -23,6 +23,21 @@ public class TalentPoint implements IGUID {
         return this.effect.type;
     }
 
+    public void connectTo(TalentPoint other) {
+        if (this.connections.contains(other) == false) {
+            this.connections.add(other);
+        } else {
+            System.out.println(this.GUID() + " can't connect if already connected");
+        }
+
+        if (other.connections.contains(this) == false) {
+            other.connections.add(this);
+        } else {
+            System.out.println(other.GUID() + " can't connect if already connected");
+        }
+
+    }
+
     public boolean isConnectedTo(TalentPoint talent) {
         for (TalentPoint con : connections) {
             if (con.GUID().equals(talent.GUID())) {

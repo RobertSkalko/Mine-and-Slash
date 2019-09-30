@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Mana;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -29,7 +28,7 @@ import java.util.List;
 public class GearTooltipUtils {
 
     public static void BuildTooltip(GearItemData gear, ItemStack stack,
-                                    ItemTooltipEvent event, Unit unit, UnitData data) {
+                                    ItemTooltipEvent event, UnitData data) {
 
         List<ITextComponent> tip = event.getToolTip();
 

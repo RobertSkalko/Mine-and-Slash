@@ -263,7 +263,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void BuildTooltip(TooltipContext ctx) {
-        GearTooltipUtils.BuildTooltip(this, ctx.stack, ctx.event, ctx.data.getUnit(), ctx.data);
+        GearTooltipUtils.BuildTooltip(this, ctx.stack, ctx.event, ctx.data);
     }
 
     public List<IRerollable> GetAllRerollable() {

@@ -5,43 +5,85 @@ import net.minecraft.item.ItemStack;
 
 public class TalentPointBuilder {
 
-    public static ID create(String id) {
-        return new ID(id);
+    public static Guid create(String id) {
+        return new Guid(id);
     }
 
-    public static class ID {
+    public static class Guid {
 
-        TalentPoint talent;
+        private TalentPoint talent;
 
-        public ID(String guid) {
+        public Guid(String guid) {
             talent = new TalentPoint(guid);
         }
 
-        public POS setPos(int x, int y) {
-            return new POS(talent, x, y);
+        public Position setPos(int x, int y) {
+            return new Position(talent, x, y);
         }
 
     }
 
-    public static class POS {
+    public static class Position {
 
-        TalentPoint talent;
+        private TalentPoint talent;
 
-        public POS(TalentPoint talent, int x, int y) {
+        public Position(TalentPoint talent, int x, int y) {
             this.talent = talent;
             this.talent.x = x;
             this.talent.y = y;
         }
 
+        public Render setRender(Item item) {
+            return new Render(talent, item);
+        }
+
     }
 
-    public static class RENDER {
+    public static class Render {
 
-        TalentPoint talent;
+        private TalentPoint talent;
 
-        public RENDER(TalentPoint talent, Item item) {
+        public Render(TalentPoint talent, Item item) {
             this.talent = talent;
             this.talent.renderStack = new ItemStack(item);
+        }
+
+        public Effect setEffect(TalentPointEffect effect) {
+            return new Effect(talent, effect);
+        }
+
+    }
+
+    public static class Effect {
+
+        private TalentPoint talent;
+
+        public Effect(TalentPoint talent, TalentPointEffect effect) {
+            this.talent = talent;
+            talent.effect = effect;
+        }
+
+        public Connections finish() {
+            return new Connections(talent);
+        }
+
+    }
+
+    public static class Connections {
+
+        private TalentPoint talent;
+
+        public Connections(TalentPoint talent) {
+            this.talent = talent;
+        }
+
+        public Connections addConnection(TalentPoint other) {
+            this.talent.connectTo(other);
+            return this;
+        }
+
+        public TalentPoint build() {
+            return talent;
         }
 
     }
