@@ -16,7 +16,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
@@ -151,25 +150,7 @@ public class GearTooltipUtils {
                             .appendSibling(new StringTextComponent("Power Level: " + gear.getPowerLevel())));
 
             if (gear.usesInstability()) {
-
-                Tooltip.add("", event.getToolTip());
-
-                event.getToolTip()
-                        .add(Styles.REDCOMP()
-                                .appendSibling(Words.Instability.locName()
-                                        .appendText(": " + gear.getInstability() + "/" + gear
-                                                .getMaxInstability())));
-
-                if (gear.usesBreakChance()) {
-                    event.getToolTip()
-                            .add(Styles.REDCOMP()
-                                    .appendSibling(Words.BreakChance.locName()
-                                            .appendText(": " + gear.getBreakChance() + "%")));
-
-                }
-
-                Tooltip.add("", event.getToolTip());
-
+                event.getToolTip().add(TooltipUtils.instability(gear));
             }
 
             event.getToolTip()

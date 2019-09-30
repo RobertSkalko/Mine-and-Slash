@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -17,6 +18,25 @@ public class TooltipUtils {
 
     public static String CHECKMARK = TextFormatting.GREEN + "\u2714";
     public static String X = TextFormatting.RED + "\u2716";
+
+    public static ITextComponent instability(IInstability insta) {
+        ITextComponent comp;
+
+        comp = Styles.REDCOMP()
+                .appendSibling(Words.Instability.locName()
+                        .appendText(": " + insta.getInstability() + "/" + insta.getMaxInstability()));
+
+        if (insta.usesBreakChance()) {
+            comp.appendText(" ")
+                    .appendSibling((Styles.REDCOMP()
+                            .appendSibling(Words.BreakChance.locName()
+                                    .appendText(": " + insta.getBreakChance() + "%"))));
+
+        }
+
+        return comp;
+
+    }
 
     public static ITextComponent level(int lvl) {
         return new StringTextComponent(TextFormatting.YELLOW + "").appendSibling(Words.Level

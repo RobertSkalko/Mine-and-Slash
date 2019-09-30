@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipString;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class StatModData implements ITooltipString {
+public class StatModData implements ITooltipList {
 
     public StatModData() {
 
