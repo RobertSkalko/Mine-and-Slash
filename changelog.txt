@@ -1,3 +1,8 @@
+2.8.17
+EMPTY YOUR BAGS BEFORE UPDATE, CONTENTS WILL BE DELETED OTHERWISE
+
+i changed bags to use nbt instead of capabilities because of a dupe bug.
+
 2.8.16
 mob bonus dmg status effect nerfed
 /givestat -> /give statmod

@@ -2,11 +2,11 @@ package com.robertx22.mine_and_slash.items.bags;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -15,7 +15,7 @@ public abstract class BaseContainer extends Container {
 
     public BaseInventory inventory;
 
-    public abstract BaseSlot slot(IItemHandler inv, int index, int x, int y);
+    public abstract BaseSlot slot(Inventory inv, int index, int x, int y);
 
     public static int size = 9 * 6;
     public static int numRows = 6;
@@ -27,7 +27,7 @@ public abstract class BaseContainer extends Container {
         super(type, id);
 
         this.inventory = basebag;
-        this.bagHash = basebag.bag.hashCode();
+        this.bagHash = basebag.getStack().hashCode();
 
         int i = (this.numRows - 4) * 18;
 
@@ -50,11 +50,19 @@ public abstract class BaseContainer extends Container {
     }
 
     @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+
+        inventory.writeItemStack();
+
+    }
+
+    @Override
     public boolean canInteractWith(@Nonnull PlayerEntity player) {
         ItemStack held = player.getHeldItemMainhand();
 
-        return held == this.inventory.bag && this.inventory.bag.isEmpty() == false && held
-                .hashCode() == this.bagHash && held.getItem() instanceof BaseBagItem;
+        return held == this.inventory.getStack() && this.inventory.getStack()
+                .isEmpty() == false && held.hashCode() == this.bagHash && held.getItem() instanceof BaseBagItem;
     }
 
     @Nonnull

@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.items.bags.currency_bag;
 
-import com.robertx22.mine_and_slash.blocks.slots.handlerslots.CurrencySlotHandler;
+import com.robertx22.mine_and_slash.blocks.slots.handlerslots.CurrencySlot;
 import com.robertx22.mine_and_slash.items.bags.BaseContainer;
 import com.robertx22.mine_and_slash.items.bags.BaseInventory;
 import com.robertx22.mine_and_slash.items.bags.BaseSlot;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
 
 public class ContainerCurrencyBag extends BaseContainer {
 
@@ -22,8 +22,8 @@ public class ContainerCurrencyBag extends BaseContainer {
     }
 
     @Override
-    public BaseSlot slot(IItemHandler inv, int index, int x, int y) {
-        return new CurrencySlotHandler(inv, index, x, y);
+    public BaseSlot slot(Inventory inv, int index, int x, int y) {
+        return new CurrencySlot(inv, index, x, y);
     }
 
 }

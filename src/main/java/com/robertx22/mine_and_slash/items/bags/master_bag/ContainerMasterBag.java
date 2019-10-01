@@ -1,16 +1,15 @@
 package com.robertx22.mine_and_slash.items.bags.master_bag;
 
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.SlotHandler;
-import com.robertx22.mine_and_slash.items.bags.BaseSlot;
-import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
+import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 
@@ -51,7 +50,7 @@ public class ContainerMasterBag extends Container {
                               InventoryMasterBag basebag, ItemType type) {
         super(ContainerTypeRegisters.MASTER_BAG, num);
 
-        bagHash = basebag.bag.hashCode();
+        bagHash = basebag.getStack().hashCode();
 
         this.numRows = 6;
         this.size *= ItemType.values().length;
@@ -80,7 +79,7 @@ public class ContainerMasterBag extends Container {
 
     }
 
-    public BaseSlot slot(IItemHandler inv, int index, int x, int y) {
+    public SlotHandler slot(Inventory inv, int index, int x, int y) {
         return new SlotHandler(inv, index, x, y, type.filter);
     }
 
@@ -93,8 +92,16 @@ public class ContainerMasterBag extends Container {
     public boolean canInteractWith(@Nonnull PlayerEntity player) {
         ItemStack held = player.getHeldItemMainhand();
 
-        return held == this.inventory.bag && this.inventory.bag.isEmpty() == false && held
-                .hashCode() == this.bagHash && held.getItem() instanceof ItemMasterBag;
+        return held == this.inventory.getStack() && this.inventory.getStack()
+                .isEmpty() == false && held.hashCode() == this.bagHash && held.getItem() instanceof ItemMasterBag;
+    }
+
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+
+        inventory.writeItemStack();
+
     }
 
     @Nonnull

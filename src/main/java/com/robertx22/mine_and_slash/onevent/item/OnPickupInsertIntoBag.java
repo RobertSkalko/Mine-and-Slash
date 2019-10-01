@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
 import com.robertx22.mine_and_slash.items.bags.BaseBagItem;
+import com.robertx22.mine_and_slash.items.bags.BaseInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SCollectItemPacket;
@@ -10,6 +11,7 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class OnPickupInsertIntoBag {
 
@@ -25,14 +27,16 @@ public class OnPickupInsertIntoBag {
             ItemStack bag = event.getEntityPlayer().inventory.getStackInSlot(i);
             if (!bag.isEmpty() && bag.getItem() instanceof BaseBagItem) {
                 BaseBagItem basebag = (BaseBagItem) bag.getItem();
-                IItemHandler bagInv = basebag.getInventory(bag, stack);
+                BaseInventory bagInv = basebag.getInventory(bag, stack);
 
                 if (bagInv == null) {
                     continue;
                 }
 
-                stack = loopItems(bagInv, event, stack, true); // once try merge into existing
-                stack = loopItems(bagInv, event, stack, false); // second merge even into empty
+                InvWrapper handler = new InvWrapper(bagInv);
+
+                stack = loopItems(bagInv, handler, event, stack, true); // once try merge into existing
+                stack = loopItems(bagInv, handler, event, stack, false); // second merge even into empty
 
             }
 
@@ -40,25 +44,29 @@ public class OnPickupInsertIntoBag {
 
     }
 
-    private static ItemStack loopItems(IItemHandler bagInv, EntityItemPickupEvent event,
-                                       ItemStack stack, boolean searchSame) {
+    private static ItemStack loopItems(BaseInventory baseInv, IItemHandler handler,
+                                       EntityItemPickupEvent event, ItemStack stack,
+                                       boolean searchSame) {
 
         if (stack.isEmpty()) {
             return stack;
         }
 
-        for (int x = 0; x < bagInv.getSlots(); x++) {
+        for (int x = 0; x < handler.getSlots(); x++) {
 
             if (searchSame) {
-                if (ItemHandlerHelper.canItemStacksStack(stack, bagInv.getStackInSlot(x)) == false) {
+                if (ItemHandlerHelper.canItemStacksStack(stack, handler.getStackInSlot(x)) == false) {
                     continue;
                 }
             }
 
-            ItemStack result = bagInv.insertItem(x, stack, false);
+            ItemStack result = handler.insertItem(x, stack, false);
             int numPickedUp = stack.getCount() - result.getCount();
 
             if (numPickedUp > 0) {
+
+                baseInv.writeItemStack();
+
                 event.getItem().setItem(result);
 
                 event.setCanceled(true);

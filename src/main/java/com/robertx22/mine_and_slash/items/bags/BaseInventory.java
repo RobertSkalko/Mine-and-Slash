@@ -1,58 +1,56 @@
 package com.robertx22.mine_and_slash.items.bags;
 
+import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.NonNullList;
 
-import javax.annotation.Nonnull;
+public class BaseInventory extends Inventory {
 
-public class BaseInventory implements IItemHandlerModifiable {
+    protected final ItemStack stack;
 
-    public final IItemHandlerModifiable bagInv;
-    final public ItemStack bag;
-
-    public BaseInventory(ItemStack bag) {
-        this.bag = bag;
-        bagInv = (IItemHandlerModifiable) bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-                .orElse(null);
-
+    public BaseInventory(ItemStack stack) {
+        super(9 * 6);
+        this.stack = stack;
+        setup();
     }
 
-    @Override
-    public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
-        bagInv.setStackInSlot(slot, stack);
+    public void setup() {
+        readItemStack();
     }
 
-    @Override
-    public boolean isItemValid(int slot, ItemStack stack) {
-        return bagInv.isItemValid(slot, stack);
+    public ItemStack getStack() {
+        return stack;
     }
 
-    @Override
-    public int getSlots() {
-        return bagInv.getSlots();
+    public void readItemStack() {
+        if (stack.getTag() != null) {
+            readNBT(stack.getTag());
+        }
     }
 
-    @Nonnull
-    @Override
-    public ItemStack getStackInSlot(int slot) {
-        return bagInv.getStackInSlot(slot);
+    public void writeItemStack() {
+        if (isEmpty()) {
+            stack.removeChildTag("Items");
+        } else {
+            writeNBT(stack.getOrCreateTag());
+        }
     }
 
-    @Nonnull
-    @Override
-    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-        return bagInv.insertItem(slot, stack, simulate);
+    private void readNBT(CompoundNBT compound) {
+        final NonNullList<ItemStack> list = NonNullList.<ItemStack>withSize(getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(compound, list);
+        for (int i = 0; i < list.size(); i++) {
+            setInventorySlotContents(i, list.get(i));
+        }
     }
 
-    @Nonnull
-    @Override
-    public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return bagInv.extractItem(slot, amount, simulate);
-    }
-
-    @Override
-    public int getSlotLimit(int slot) {
-        return bagInv.getSlotLimit(slot);
+    private void writeNBT(CompoundNBT compound) {
+        final NonNullList<ItemStack> list = NonNullList.<ItemStack>withSize(getSizeInventory(), ItemStack.EMPTY);
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, getStackInSlot(i));
+        }
+        ItemStackHelper.saveAllItems(compound, list, false);
     }
 }

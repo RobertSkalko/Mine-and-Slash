@@ -6,8 +6,8 @@ import com.robertx22.mine_and_slash.items.bags.BaseInventory;
 import com.robertx22.mine_and_slash.items.bags.BaseSlot;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
 
 public class ContainerMapBag extends BaseContainer {
 
@@ -20,7 +20,7 @@ public class ContainerMapBag extends BaseContainer {
     }
 
     @Override
-    public BaseSlot slot(IItemHandler inv, int index, int x, int y) {
+    public BaseSlot slot(Inventory inv, int index, int x, int y) {
         return new MapSlot(inv, index, x, y);
     }
 

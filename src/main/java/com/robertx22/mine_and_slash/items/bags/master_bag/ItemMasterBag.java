@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.items.bags.master_bag;
 
 import com.robertx22.mine_and_slash.items.bags.BaseBagItem;
+import com.robertx22.mine_and_slash.items.bags.BaseInventory;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.uncommon.capability.MasterLootBagCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +16,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
@@ -36,17 +35,14 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
     }
 
     @Override
-    public IItemHandler getInventory(ItemStack bag, ItemStack stack) {
+    public BaseInventory getInventory(ItemStack bag, ItemStack stack) {
 
         if (stack.getCount() > 0 && filterGroup().anyMatchesFilter(stack)) {
-            MasterLootBagCap.IMasterLootBagData capa = bag.getCapability(MasterLootBagCap.Data)
-                    .orElse(null);
 
-            if (capa != null) {
-                ContainerMasterBag.ItemType type = getItemType(stack);
+            ContainerMasterBag.ItemType type = getItemType(stack);
 
-                return capa.getInventory(type);
-            }
+            return new InventoryMasterBag(bag, type);
+
         }
         return null;
 

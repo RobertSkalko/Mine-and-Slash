@@ -45,7 +45,7 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public int getRarityRank() {
-        return IRarity.Rare;
+        return IRarity.Epic;
     }
 
     @Override

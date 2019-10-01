@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.items.bags;
 
+import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
-public abstract class BaseSlot extends SlotItemHandler {
+public abstract class BaseSlot extends Slot {
 
-    public BaseSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
-        super(itemHandler, index, xPosition, yPosition);
+    public BaseSlot(Inventory inv, int index, int xPosition, int yPosition) {
+        super(inv, index, xPosition, yPosition);
 
     }
 

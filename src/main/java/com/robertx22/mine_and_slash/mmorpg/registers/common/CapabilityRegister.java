@@ -12,8 +12,6 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(MapCap.IMapData.class, new MapCap.Storage(), MapCap.DefaultImpl::new);
 
-        CapabilityManager.INSTANCE.register(MasterLootBagCap.IMasterLootBagData.class, new MasterLootBagCap.Storage(), MasterLootBagCap.DefaultImpl::new);
-
         CapabilityManager.INSTANCE.register(PlayerCapBackupCap.IPlayerCapBackupData.class, new PlayerCapBackupCap.Storage(), PlayerCapBackupCap.DefaultImpl::new);
 
         CapabilityManager.INSTANCE.register(ProfessionsCap.IProfessionsData.class, new ProfessionsCap.Storage(), ProfessionsCap.DefaultImpl::new);
