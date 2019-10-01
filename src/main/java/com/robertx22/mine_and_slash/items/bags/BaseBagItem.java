@@ -89,7 +89,6 @@ public abstract class BaseBagItem extends Item {
         // MOVE OVER ITEM FROM OLD CAPABILITY SYSTEM
         if (nbt != null && nbt.contains("Parent")) {
             nbt.put("Items", nbt.get("Parent"));
-            nbt.remove("Parent");
             stack.setTag(nbt);
         }
         return null;
