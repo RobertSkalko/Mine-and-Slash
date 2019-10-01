@@ -2,6 +2,7 @@
 EMPTY YOUR BAGS BEFORE UPDATE, CONTENTS WILL BE DELETED OTHERWISE
 
 i changed bags to use nbt instead of capabilities because of a dupe bug.
+i think this could also fix bags clearing in creative cus i use pure nbt instead of capabilities
 
 2.8.16
 mob bonus dmg status effect nerfed

@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -80,6 +81,18 @@ public abstract class BaseBagItem extends Item {
         }
         return null;
 
+    }
+
+    @Override
+    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(
+            ItemStack stack, @Nullable CompoundNBT nbt) {
+        // MOVE OVER ITEM FROM OLD CAPABILITY SYSTEM
+        if (nbt != null && nbt.contains("Parent")) {
+            nbt.put("Items", nbt.get("Parent"));
+            nbt.remove("Parent");
+            stack.setTag(nbt);
+        }
+        return null;
     }
 
     public BaseInventory newInventory(ItemStack bag) {

@@ -26,8 +26,9 @@ public class InventoryMasterBag extends BaseInventory {
     }
 
     public void readItemStack() {
-        if (stack.getTag() != null) {
-            readNBT(stack.getTag().getCompound(type.name()));
+        if (stack.getTag() != null && stack.getTag().contains(ItemMasterBag.NBT_ID)) {
+            CompoundNBT nbt = (CompoundNBT) stack.getTag().get(ItemMasterBag.NBT_ID);
+            readNBT((CompoundNBT) nbt.get(type.name()));
         }
     }
 
@@ -37,14 +38,20 @@ public class InventoryMasterBag extends BaseInventory {
         if (stack.hasTag() == false) {
             stack.setTag(new CompoundNBT());
         }
+        if (stack.getTag().contains(ItemMasterBag.NBT_ID) == false) {
+            stack.getTag().put(ItemMasterBag.NBT_ID, new CompoundNBT());
+        }
 
         if (isEmpty()) {
-            stack.getTag().put(type.name(), new CompoundNBT());
+            CompoundNBT nbt = (CompoundNBT) stack.getTag().get(ItemMasterBag.NBT_ID);
+            nbt.put(type.name(), new CompoundNBT());
         } else {
             if (!stack.getTag().contains(type.name())) {
-                stack.getTag().put(type.name(), new CompoundNBT());
+                CompoundNBT nbt = (CompoundNBT) stack.getTag().get(ItemMasterBag.NBT_ID);
+                nbt.put(type.name(), new CompoundNBT());
             }
-            writeNBT(stack.getTag().getCompound(type.name()));
+            CompoundNBT nbt = (CompoundNBT) stack.getTag().get(ItemMasterBag.NBT_ID);
+            writeNBT(nbt.getCompound(type.name()));
         }
     }
 

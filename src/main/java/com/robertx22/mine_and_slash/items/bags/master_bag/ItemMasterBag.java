@@ -10,6 +10,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -19,6 +20,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
 
@@ -106,6 +108,18 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
     @Override
     public String GUID() {
         return "master_bag";
+    }
+
+    public static String NBT_ID = "mmorpg:master_loot_bag_data";
+
+    @Override
+    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(
+            ItemStack stack, @Nullable CompoundNBT nbt) {
+        // TO TRANSFER TO NEW NBT SYSTEM WITHOUT LOSING ITEMS
+        if (nbt != null && nbt.contains(NBT_ID)) {
+            stack.setTag(nbt);
+        }
+        return null;
     }
 
 }
