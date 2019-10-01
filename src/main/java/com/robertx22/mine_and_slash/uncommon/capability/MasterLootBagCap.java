@@ -90,6 +90,8 @@ public class MasterLootBagCap {
 
                 CompoundNBT tag = nbt.getCompound(type.toString());
 
+                this.items.clear();
+
                 if (tag != null) {
                     ItemStackHandler handler = new ItemStackHandler(6 * 9);
                     handler.deserializeNBT(tag);

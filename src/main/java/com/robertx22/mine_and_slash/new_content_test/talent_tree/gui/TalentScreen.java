@@ -11,6 +11,10 @@ import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class TalentScreen extends Screen {
 
     Minecraft mc;
@@ -57,11 +61,37 @@ public class TalentScreen extends Screen {
 
         drawBackGround();
 
-        for (Widget widget : this.buttons) {
-            if (widget instanceof TalentPointButton) {
-                TalentPointButton but = (TalentPointButton) widget;
-                but.renderButton(x, y, ticks, (int) scrollX, (int) scrollY);
+        List<TalentPointButton> list = new ArrayList<>();
+        for (Widget w : this.buttons) {
+            if (w instanceof TalentPointButton) {
+                list.add((TalentPointButton) w);
             }
+        }
+
+        for (TalentPointButton but : list) {
+
+            but.renderButton(x, y, ticks, (int) scrollX, (int) scrollY);
+
+            if (but.shouldRender((int) scrollX, (int) scrollY)) {
+
+                for (TalentPointButton con : list.stream()
+                        .filter(button -> button.talentPoint.isConnectedTo(but.talentPoint))
+                        .collect(Collectors.toList())) {
+                    if (con.shouldRender((int) scrollX, (int) scrollY)) {
+
+                        int x1 = but.getPosX((int) scrollX);
+
+                        int y1 = but.getPosY((int) scrollY);
+
+                        int x2 = con.getPosX((int) scrollX);
+
+                        int y2 = con.getPosY((int) scrollY);
+
+                    }
+                }
+
+            }
+
         }
 
     }

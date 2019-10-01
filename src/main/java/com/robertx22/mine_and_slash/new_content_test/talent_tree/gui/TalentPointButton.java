@@ -10,6 +10,7 @@ public class TalentPointButton extends ImageButton {
 
     TalentPoint talentPoint;
     EntityCap.UnitData data;
+    Minecraft mc;
 
     public TalentPointButton(TalentPoint talentPoint, EntityCap.UnitData data) {
         super(0, 0, talentPoint.getPerkType().sizeX, talentPoint.getPerkType().sizeY, 0, 0, talentPoint
@@ -18,6 +19,7 @@ public class TalentPointButton extends ImageButton {
 
         this.talentPoint = talentPoint;
         this.data = data;
+        this.mc = Minecraft.getInstance();
     }
 
     @Override
@@ -26,7 +28,7 @@ public class TalentPointButton extends ImageButton {
     }
 
     public void renderButton(int x, int y, float ticks, int scrollX, int scrollY) {
-        if (shouldRender(x, y, scrollX, scrollY)) {
+        if (shouldRender(scrollX, scrollY)) {
             Minecraft mc = Minecraft.getInstance();
             mc.getTextureManager().bindTexture(this.talentPoint.getPerkType().TEXTURE);
             GlStateManager.disableDepthTest();
@@ -36,11 +38,8 @@ public class TalentPointButton extends ImageButton {
             }
             float xstart = 0;
 
-            int offsetX = mc.mainWindow.getScaledWidth() / 2 - TalentScreen.sizeX / 2;
-            int offsetY = mc.mainWindow.getScaledHeight() / 2 - TalentScreen.sizeY / 2;
-
-            int finalX = getX(scrollX) + offsetX;
-            int finalY = getY(scrollY) + offsetY;
+            int finalX = getPosX(scrollX);
+            int finalY = getPosY(scrollY);
 
             blit(finalX, finalY, xstart, (float) yStart, this.width, this.height, 256, 256);
             GlStateManager.enableDepthTest();
@@ -53,20 +52,30 @@ public class TalentPointButton extends ImageButton {
 
     static int SPACING = 30;
 
-    private int getX(int scrollX) {
+    public int getPosX(int scrollX) {
+        int offsetX = mc.mainWindow.getScaledWidth() / 2 - TalentScreen.sizeX / 2;
+        return getX(scrollX) + offsetX;
+    }
+
+    public int getPosY(int scrollY) {
+        int offsetY = mc.mainWindow.getScaledHeight() / 2 - TalentScreen.sizeY / 2;
+        return getY(scrollY) + offsetY;
+    }
+
+    public int getX(int scrollX) {
 
         int pos = this.talentPoint.x * SPACING + scrollX;
 
         return pos;
     }
 
-    private int getY(int scrollY) {
+    public int getY(int scrollY) {
         int pos = this.talentPoint.y * SPACING + scrollY;
 
         return pos;
     }
 
-    public boolean shouldRender(int x, int y, int scrollX, int scrollY) {
+    public boolean shouldRender(int scrollX, int scrollY) {
 
         int xpos = getX(scrollX);
         int ypos = getY(scrollY);

@@ -30,14 +30,14 @@ public class TalentPoints {
                 .build();
 
         CRIT_DMG0 = TalentPointBuilder.create("crit_dmg0")
-                .setPos(5, 1)
+                .setPos(5, -5)
                 .setRender(Items.REDSTONE)
                 .setEffect(TalentEffects.SMALL_CRIT_DMG)
                 .finish()
                 .build();
 
         CRIT_DMG1 = TalentPointBuilder.create("crit_dmg1")
-                .setPos(5, 2)
+                .setPos(5, -2)
                 .copy(CRIT_DMG0)
                 .addConnection(CRIT_DMG0)
                 .build();
