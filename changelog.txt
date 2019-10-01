@@ -1,8 +1,13 @@
 2.8.17
-EMPTY YOUR BAGS BEFORE UPDATE, CONTENTS WILL BE DELETED OTHERWISE
+BACKUP YOUR WORLD JUST IN CASE
 
 i changed bags to use nbt instead of capabilities because of a dupe bug.
 i think this could also fix bags clearing in creative cus i use pure nbt instead of capabilities
+i also made a system that copies from old system to new, so your items should still be in bags.
+BUT this isn't 100% sure, so backup please.
+
+the transfer system tho may be a way to dupe, so please report any
+
 
 2.8.16
 mob bonus dmg status effect nerfed

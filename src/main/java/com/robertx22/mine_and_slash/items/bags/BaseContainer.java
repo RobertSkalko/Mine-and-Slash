@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.items.bags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
@@ -47,6 +48,19 @@ public abstract class BaseContainer extends Container {
             this.addSlot(new Slot(playerInv, i1, 8 + i1 * 18, 161 + i));
         }
 
+    }
+
+    @Override
+    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn,
+                               PlayerEntity player) {
+        try {
+            if (this.getSlot(slotId).getStack().getItem() instanceof BaseBagItem) {
+                return ItemStack.EMPTY;
+            }
+        } catch (Exception e) {
+        }
+
+        return super.slotClick(slotId, dragType, clickTypeIn, player);
     }
 
     @Override

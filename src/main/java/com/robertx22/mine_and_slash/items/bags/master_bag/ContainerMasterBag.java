@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.items.bags.master_bag;
 
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.SlotHandler;
+import com.robertx22.mine_and_slash.items.bags.BaseBagItem;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
 import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -102,6 +104,19 @@ public class ContainerMasterBag extends Container {
 
         inventory.writeItemStack();
 
+    }
+
+    @Override
+    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn,
+                               PlayerEntity player) {
+        try {
+            if (this.getSlot(slotId).getStack().getItem() instanceof BaseBagItem) {
+                return ItemStack.EMPTY;
+            }
+        } catch (Exception e) {
+        }
+
+        return super.slotClick(slotId, dragType, clickTypeIn, player);
     }
 
     @Nonnull

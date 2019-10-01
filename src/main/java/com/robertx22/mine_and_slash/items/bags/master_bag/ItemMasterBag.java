@@ -118,7 +118,9 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
         // TO TRANSFER TO NEW NBT SYSTEM WITHOUT LOSING ITEMS
         if (nbt != null && nbt.contains(NBT_ID)) {
             stack.setTag(nbt);
+            nbt.remove(NBT_ID);
         }
+
         return null;
     }
 
