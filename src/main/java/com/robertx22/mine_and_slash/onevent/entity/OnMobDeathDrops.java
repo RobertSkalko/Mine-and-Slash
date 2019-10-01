@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,20 +34,20 @@ public class OnMobDeathDrops {
             }
 
             if (!(entity instanceof PlayerEntity)) {
-                if (event.getSource().getTrueSource() instanceof PlayerEntity) {
+                if (event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
                     if (Load.hasUnit(entity)) {
 
-                        PlayerEntity player = (PlayerEntity) event.getSource()
+                        ServerPlayerEntity player = (ServerPlayerEntity) event.getSource()
                                 .getTrueSource();
 
                         UnitData victim = Load.Unit(entity);
-                        UnitData killer = Load.Unit(event.getSource().getTrueSource());
+                        UnitData killer = Load.Unit(player);
 
                         if (victim.shouldDropLoot() == false) {
                             return;
                         }
 
-                        CriteriaRegisters.DROP_LVL_PENALTY_TRIGGER.trigger((ServerPlayerEntity) player, killer, victim);
+                        CriteriaRegisters.DROP_LVL_PENALTY_TRIGGER.trigger(player, killer, victim);
 
                         ModEntityConfig config = SlashRegistry.getEntityConfig(entity, victim);
 
@@ -54,23 +55,18 @@ public class OnMobDeathDrops {
                         float exp_multi = (float) config.EXP_MULTI;
 
                         if (loot_multi > 0) {
-
                             MasterLootGen.genAndDrop(victim, killer, entity, player);
-
                         }
 
                         if (exp_multi > 0) {
-                            int exp = GiveExp(entity, (LivingEntity) event.getSource()
-                                    .getTrueSource(), killer, victim, exp_multi);
+                            int exp = GiveExp(entity, player, killer, victim, exp_multi);
 
-                            DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature, "+" + NumberUtils
-                                    .formatNumber(exp) + " Exp!");
-                            packet.isExp = true;
-
-                            ServerPlayerEntity mp = (ServerPlayerEntity) event.getSource()
-                                    .getTrueSource();
-
-                            MMORPG.sendToClient(packet, mp);
+                            if (exp > 0) {
+                                DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature, "+" + NumberUtils
+                                        .formatNumber(exp) + " Exp!");
+                                packet.isExp = true;
+                                MMORPG.sendToClient(packet, player);
+                            }
                         }
                     }
                 }
@@ -84,7 +80,7 @@ public class OnMobDeathDrops {
 
     }
 
-    private static int GiveExp(LivingEntity victim, LivingEntity entity, UnitData player,
+    private static int GiveExp(LivingEntity victim, PlayerEntity entity, UnitData player,
                                UnitData mob, float multi) {
 
         int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity())
@@ -96,7 +92,11 @@ public class OnMobDeathDrops {
             exp /= 10;
         }
 
-        exp = player.PostGiveExpEvent(victim, (PlayerEntity) entity, exp);
+        if (WorldUtils.isMapWorldClass(victim.world)) {
+            exp *= Load.playerMapData(entity).getExpMultiplier();
+        }
+
+        exp = player.PostGiveExpEvent(victim, entity, exp);
 
         return exp;
 

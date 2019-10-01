@@ -46,6 +46,8 @@ public class PlayerMapCap {
 
         float getLootMultiplier(PlayerEntity player);
 
+        float getExpMultiplier();
+
         String getLastMapGUID();
 
         boolean hasTimeForMap();
@@ -237,6 +239,11 @@ public class PlayerMapCap {
             } else {
                 return 1;
             }
+        }
+
+        @Override
+        public float getExpMultiplier() {
+            return 1 + getMap().tier * 0.05F;
         }
 
         @Override
