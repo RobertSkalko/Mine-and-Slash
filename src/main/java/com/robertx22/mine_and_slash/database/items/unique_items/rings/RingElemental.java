@@ -25,7 +25,7 @@ public class RingElemental extends BaseUniqueRing implements IElementalUnique {
         this.element = element;
     }
 
-    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

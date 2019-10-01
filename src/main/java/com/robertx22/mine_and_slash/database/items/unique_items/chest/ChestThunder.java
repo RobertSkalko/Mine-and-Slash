@@ -21,7 +21,7 @@ public class ChestThunder extends BaseUniqueChest {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

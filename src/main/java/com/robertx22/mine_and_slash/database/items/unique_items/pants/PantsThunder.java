@@ -20,7 +20,7 @@ public class PantsThunder extends BaseUniquePantsItem {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

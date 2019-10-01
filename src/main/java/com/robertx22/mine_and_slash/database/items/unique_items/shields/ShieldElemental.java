@@ -26,7 +26,7 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
         this.element = element;
     }
 
-    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

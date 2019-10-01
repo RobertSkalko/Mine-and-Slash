@@ -19,7 +19,7 @@ public class RingEnergy extends BaseUniqueRing {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

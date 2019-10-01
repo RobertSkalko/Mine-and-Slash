@@ -25,7 +25,7 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IElementalUniqu
         this.element = element;
     }
 
-    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MAJOR);
 
     @Override
     public StatReq getRequirements() {

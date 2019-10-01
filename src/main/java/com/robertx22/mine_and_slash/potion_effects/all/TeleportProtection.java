@@ -49,24 +49,26 @@ public class TeleportProtection extends SpellPotionBase {
 
             if (entity.world.isRemote == false && entity instanceof ServerPlayerEntity) {
 
-                int tries = 0;
+                if (entity.ticksExisted > 10) {
+                    int tries = 0;
 
-                while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
+                    while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
 
-                    tries++;
+                        tries++;
 
-                    if (entity.posY >= entity.world.getHeight()) {
-                        break;
+                        if (entity.posY >= entity.world.getHeight()) {
+                            break;
+                        }
+
+                        if (tries > 5) {
+                            break;
+                        }
+
+                        goUpward((ServerPlayerEntity) entity);
+
                     }
-
-                    if (tries > 5) {
-                        break;
-                    }
-
-                    goUpward((ServerPlayerEntity) entity);
 
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();

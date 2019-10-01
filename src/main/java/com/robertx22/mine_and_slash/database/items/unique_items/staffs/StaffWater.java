@@ -20,7 +20,7 @@ public class StaffWater extends BaseUniqueStaff {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

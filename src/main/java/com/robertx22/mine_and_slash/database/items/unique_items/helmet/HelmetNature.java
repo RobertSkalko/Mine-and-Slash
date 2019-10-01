@@ -20,7 +20,7 @@ public class HelmetNature extends BaseUniqueHelmet {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

@@ -210,7 +210,7 @@ public class Unit {
             }
         }
 
-        endata.SetMobLevelAtSpawn(entity);
+        endata.SetMobLevelAtSpawn(entity, nearestPlayer);
         endata.setRarity(randomRarity(entity, endata.getLevel()));
 
         MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));

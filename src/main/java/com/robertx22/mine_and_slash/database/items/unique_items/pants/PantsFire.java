@@ -19,7 +19,7 @@ public class PantsFire extends BaseUniquePantsItem {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.BIG, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
+    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.NORMAL, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {

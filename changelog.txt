@@ -8,6 +8,10 @@ BUT this isn't 100% sure, so backup please.
 
 the transfer system tho may be a way to dupe, so please report any
 
+mobs that spawn in map worlds are now based on map lvl of nearest player. No more changing lvl by running far
+might cause weird stuff if 2 players join each other with different lvls. But they should use group maps anyway
+attempt at fixing map teleport bugs
+gear requirement penalty is now much harsher if unmet
 
 2.8.16
 mob bonus dmg status effect nerfed

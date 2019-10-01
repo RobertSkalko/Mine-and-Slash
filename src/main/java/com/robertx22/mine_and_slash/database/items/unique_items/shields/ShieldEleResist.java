@@ -26,7 +26,7 @@ public class ShieldEleResist extends BaseUniqueShield implements IUnique {
         return "Fear no elements.";
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

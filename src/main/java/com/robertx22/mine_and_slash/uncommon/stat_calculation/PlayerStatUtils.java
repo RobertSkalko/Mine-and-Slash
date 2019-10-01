@@ -96,11 +96,11 @@ public class PlayerStatUtils {
         float penalty = 1;
         for (GearItemData gear : gears) {
             if (!gear.meetsRequirements(data)) {
-                penalty -= 0.1F;
+                penalty -= 0.25F;
             }
         }
 
-        penalty = MathHelper.clamp(penalty, 0.25F, 1);
+        penalty = MathHelper.clamp(penalty, 0.1F, 1);
 
         if (penalty < 1) {
 

@@ -34,6 +34,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
@@ -141,7 +142,7 @@ public class EntityCap {
 
         boolean CheckLevelCap();
 
-        void SetMobLevelAtSpawn(LivingEntity entity);
+        void SetMobLevelAtSpawn(LivingEntity entity, PlayerEntity player);
 
         Unit getUnit();
 
@@ -412,15 +413,25 @@ public class EntityCap {
         }
 
         @Override
-        public void SetMobLevelAtSpawn(LivingEntity entity) {
-
+        public void SetMobLevelAtSpawn(LivingEntity entity, PlayerEntity player) {
             this.setMobStats = true;
+
+            if (WorldUtils.isMapWorldClass(entity.world)) {
+                if (player != null) {
+                    this.level = Load.playerMapData(player).getLevel();
+                } else {
+                    setMobLvlNormally(entity);
+                }
+
+            } else {
+                setMobLvlNormally(entity);
+            }
+        }
+
+        private void setMobLvlNormally(LivingEntity entity) {
             ModEntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, this);
-
             int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition()) + entityConfig.LEVEL_MODIFIER;
-
             this.level = MathHelper.clamp(lvl, entityConfig.MIN_LEVEL, entityConfig.MAX_LEVEL);
-
         }
 
         @Override

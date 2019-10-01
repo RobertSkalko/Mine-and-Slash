@@ -17,7 +17,7 @@ public class NecklaceSetDrop extends BaseUniqueNecklace {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.BIG, LvlPointStat.STAMINA, StatReq.Size.TINY);
+    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.NORMAL, LvlPointStat.STAMINA, StatReq.Size.TINY);
 
     @Override
     public StatReq getRequirements() {

@@ -30,7 +30,7 @@ public class BowElemental extends BaseUniqueBow implements IElementalUnique {
                 .multi(2));
     }
 
-    static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

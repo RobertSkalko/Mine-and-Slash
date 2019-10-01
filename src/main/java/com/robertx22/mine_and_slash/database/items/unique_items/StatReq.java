@@ -22,7 +22,8 @@ public class StatReq {
         TINY(0.25F),
         SMALL(0.5F),
         MEDIUM(0.75F),
-        BIG(1F),
+        NORMAL(1F),
+        MAJOR(1.25F),
         HUGE(1.5F);
 
         public float multi;

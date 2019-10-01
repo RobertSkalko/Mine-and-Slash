@@ -18,7 +18,7 @@ public class SwordNature extends BaseUniqueSword {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

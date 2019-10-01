@@ -18,7 +18,7 @@ public class StaffLifesteal extends BaseUniqueStaff {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.BIG);
+    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {

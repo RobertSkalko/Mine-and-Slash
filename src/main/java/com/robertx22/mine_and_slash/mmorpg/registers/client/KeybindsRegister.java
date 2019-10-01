@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -16,7 +17,10 @@ public class KeybindsRegister {
         ClientRegistry.registerKeyBinding(Player_Stats);
         ClientRegistry.registerKeyBinding(Player_Stat_Points);
         ClientRegistry.registerKeyBinding(disableNeatOverlay);
-        ClientRegistry.registerKeyBinding(Talent_Tree);
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            ClientRegistry.registerKeyBinding(Talent_Tree);
+        }
     }
 
 }
