@@ -37,7 +37,7 @@ public class TalentPoints {
                 .build();
 
         CRIT_DMG1 = TalentPointBuilder.create("crit_dmg1")
-                .setPos(5, -2)
+                .setPos(3, -2)
                 .copy(CRIT_DMG0)
                 .addConnection(CRIT_DMG0)
                 .build();

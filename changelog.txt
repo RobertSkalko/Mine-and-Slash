@@ -1,4 +1,4 @@
-2.8.17
+2.8.18
 BACKUP YOUR WORLD JUST IN CASE
 
 i changed bags to use nbt instead of capabilities because of a dupe bug.
