@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.ProfessionRecipePacket;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.inventory.container.Slot;
@@ -72,17 +73,12 @@ public class ChooseRecipeButton extends ImageButton {
     }
 
     public boolean isInsideSlot(Slot slot, int x, int y) {
-        return this.isInRect(slot.xPos, slot.yPos, 16, 16, x, y);
+        return GuiUtils.isInRect(slot.xPos, slot.yPos, 16, 16, x, y);
 
     }
 
     public boolean isInside(int x, int y) {
-        return isInRect(this.x, this.y, xSize, ySize, x, y);
-    }
-
-    public static boolean isInRect(int x, int y, int xSize, int ySize, int mouseX,
-                                   int mouseY) {
-        return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
+        return GuiUtils.isInRect(this.x, this.y, xSize, ySize, x, y);
     }
 
     @Override

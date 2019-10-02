@@ -3,8 +3,11 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree.gui;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
+
+import java.awt.*;
 
 public class TalentPointButton extends ImageButton {
 
@@ -44,13 +47,26 @@ public class TalentPointButton extends ImageButton {
             blit(finalX, finalY, xstart, (float) yStart, this.width, this.height, 256, 256);
             GlStateManager.enableDepthTest();
 
+            int itemX = finalX - 8 + talentPoint.getPerkType().sizeX / 2;
+            int itemY = finalY - 8 + talentPoint.getPerkType().sizeY / 2;
+
             mc.getItemRenderer()
-                    .renderItemAndEffectIntoGUI(talentPoint.renderStack, finalX, finalY);
+                    .renderItemAndEffectIntoGUI(talentPoint.renderStack, itemX, itemY);
 
         }
     }
 
-    static int SPACING = 30;
+    public int getSpacing() {
+        return 40;
+    }
+
+    public int getMiddleX(int scrollX) {
+        return getPosX(scrollX) + talentPoint.getPerkType().sizeX / 2;
+    }
+
+    public int getMiddleY(int scrollY) {
+        return getPosY(scrollY) + talentPoint.getPerkType().sizeY / 2;
+    }
 
     public int getPosX(int scrollX) {
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - TalentScreen.sizeX / 2;
@@ -64,13 +80,13 @@ public class TalentPointButton extends ImageButton {
 
     public int getX(int scrollX) {
 
-        int pos = this.talentPoint.x * SPACING + scrollX;
+        int pos = this.talentPoint.x * getSpacing() + scrollX;
 
         return pos;
     }
 
     public int getY(int scrollY) {
-        int pos = this.talentPoint.y * SPACING + scrollY;
+        int pos = this.talentPoint.y * getSpacing() + scrollY;
 
         return pos;
     }
@@ -87,6 +103,16 @@ public class TalentPointButton extends ImageButton {
         }
 
         return false;
+
+    }
+
+    public boolean isInsideSlot(float scrollX, float scrollY, int mouseX, int mouseY) {
+
+        Point guipos = new Point(getPosX((int) scrollX), getPosY((int) scrollY));
+        Point mousePos = new Point(mouseX, mouseY);
+        Point size = new Point(talentPoint.getPerkType().sizeX, talentPoint.getPerkType().sizeY);
+
+        return GuiUtils.isInRectPoints(guipos, size, mousePos);
 
     }
 

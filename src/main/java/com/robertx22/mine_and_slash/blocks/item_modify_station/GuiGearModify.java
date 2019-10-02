@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -135,7 +136,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         List<String> hoveringText = new ArrayList<String>();
 
         // If the mouse is over the progress bar add the progress bar hovering text
-        if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
+        if (GuiUtils.isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
             hoveringText.add(Words.Progress.translate() + ": ");
             int cookPercentage = (int) (this.tile.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
@@ -148,9 +149,4 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         }
     }
 
-    // Returns true if the given x,y coordinates are within the given rectangle
-    public static boolean isInRect(int x, int y, int xSize, int ySize, int mouseX,
-                                   int mouseY) {
-        return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
-    }
 }

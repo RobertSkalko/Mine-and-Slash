@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.blocks.bases.TileGui;
 import com.robertx22.mine_and_slash.uncommon.Res;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -87,7 +88,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         List<String> hoveringText = new ArrayList<String>();
 
         // If the mouse is over the progress bar add the progress bar hovering text
-        if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
+        if (GuiUtils.isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
             hoveringText.add(Words.Progress.translate() + ": ");
             int cookPercentage = (int) (tile.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");
@@ -96,7 +97,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         // If the mouse is over one of the burn time indicator add the burn time
         // indicator hovering text
         for (int i = 0; i < TileGearRepair.FUEL_SLOTS_COUNT; ++i) {
-            if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
+            if (GuiUtils.isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
                 // hoveringText.add("Fuel Time:");
                 hoveringText.add(Words.Fuel.translate() + ": " + tile.fuel);
             }
@@ -109,9 +110,4 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
 
     }
 
-    // Returns true if the given x,y coordinates are within the given rectangle
-    public static boolean isInRect(int x, int y, int xSize, int ySize, int mouseX,
-                                   int mouseY) {
-        return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
-    }
 }

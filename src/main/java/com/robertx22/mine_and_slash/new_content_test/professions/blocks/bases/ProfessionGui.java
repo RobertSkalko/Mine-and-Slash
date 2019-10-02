@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.wi
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -271,7 +272,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
         });
 
         if (currentOutput != null) {
-            if (ChooseRecipeButton.isInRect(currentOutput.xPos, currentOutput.yPos, 16, 16, mouseX, mouseY)) {
+            if (GuiUtils.isInRect(currentOutput.xPos, currentOutput.yPos, 16, 16, mouseX, mouseY)) {
                 this.renderTooltip(currentOutput.getStack(), mouseX, mouseY);
             }
         }

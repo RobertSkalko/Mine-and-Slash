@@ -2,17 +2,17 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree.gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentGuiUtils;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoints;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils.PointF;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,14 +73,27 @@ public class TalentScreen extends Screen {
             }
         }
 
-        renderConnections(list, x, y);
+        renderConnections(list);
 
         for (TalentPointButton but : list) {
             but.renderButton(x, y, ticks, (int) scrollX, (int) scrollY);
         }
+
+        renderTooltips(list, x, y);
     }
 
-    private void renderConnections(List<TalentPointButton> list, int x, int y) {
+    public void renderTooltips(List<TalentPointButton> list, int mouseX, int mouseY) {
+
+        list.forEach(button -> {
+
+            if (button.isInsideSlot(scrollX, scrollY, mouseX, mouseY)) {
+                this.renderTooltip(button.talentPoint.renderStack, mouseX, mouseY);
+            }
+        });
+
+    }
+
+    private void renderConnections(List<TalentPointButton> list) {
         for (TalentPointButton but : list) {
 
             if (but.shouldRender((int) scrollX, (int) scrollY)) {
@@ -90,21 +103,22 @@ public class TalentScreen extends Screen {
                         .collect(Collectors.toList())) {
                     if (con.shouldRender((int) scrollX, (int) scrollY)) {
 
-                        int x1 = but.getPosX((int) scrollX);
-                        int y1 = but.getPosY((int) scrollY);
+                        int x1 = but.getMiddleX((int) scrollX);
+                        int y1 = but.getMiddleY((int) scrollY);
 
-                        int x2 = con.getPosX((int) scrollX);
-                        int y2 = con.getPosY((int) scrollY);
+                        int x2 = con.getMiddleX((int) scrollX);
+                        int y2 = con.getMiddleY((int) scrollY);
 
-                        List<Point> points = TalentGuiUtils.getPointsBetween(x1, y1, x2, y2);
+                        int size = 5;
 
-                        for (Point point : points) {
+                        List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 100f, size + 2, true);
+
+                        for (PointF point : points) {
                             Minecraft.getInstance()
                                     .getTextureManager()
                                     .bindTexture(LINES);
                             GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                            blit(point.x, point.y, 0, 0.0F, 0.0F, 4, 4, 256, 256);
-
+                            blit((int) (point.x - ((float) size / 2)), (int) (point.y - ((float) size / 2)), 0, 0.0F, 0.0F, size, size, 256, 256);
                         }
 
                     }

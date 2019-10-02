@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerStatsPointsCap;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -49,12 +50,7 @@ public class IncreaseStatButton extends ImageButton {
     }
 
     public boolean isInside(int x, int y) {
-        return isInRect(this.x, this.y, sizeX, sizeY, x, y);
-    }
-
-    public static boolean isInRect(int x, int y, int xSize, int ySize, int mouseX,
-                                   int mouseY) {
-        return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
+        return GuiUtils.isInRect(this.x, this.y, sizeX, sizeY, x, y);
     }
 
     @Override

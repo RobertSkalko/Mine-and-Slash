@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -41,11 +42,6 @@ public class StatGUI extends Screen {
 
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/stats_screen.png");
     private static final ResourceLocation icons = new ResourceLocation(Ref.MODID, "textures/gui/stat_icons.png");
-
-    // Returns true if the given x,y coordinates are within the given rectangle
-    public boolean isInRect(int x, int y, int xSize, int ySize, int mouseX, int mouseY) {
-        return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
-    }
 
     float textScale = 0.8F;
 
@@ -257,7 +253,7 @@ public class StatGUI extends Screen {
                 int x = group.X() + this.getGUIStartX();
                 int y = group.Y + this.getGUIStartY();
 
-                if (isInRect(x, y, group.width, group.height, (int) X, (int) Y)) {
+                if (GuiUtils.isInRect(x, y, group.width, group.height, (int) X, (int) Y)) {
 
                     this.currentElement = 0;
                     this.statgroup = group;
