@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree.gui;
 
+import com.google.common.collect.Lists;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoints;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
@@ -11,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.awt.geom.Point2D;
@@ -59,6 +62,17 @@ public class TalentScreen extends Screen {
 
     }
 
+    List<TalentPointButton> getTalentButtons() {
+        List<TalentPointButton> list = new ArrayList<>();
+        for (Widget w : this.buttons) {
+            if (w instanceof TalentPointButton) {
+                list.add((TalentPointButton) w);
+            }
+        }
+        return list;
+
+    }
+
     @Override
     public void render(int x, int y, float ticks) {
 
@@ -66,12 +80,7 @@ public class TalentScreen extends Screen {
 
         drawBackGround();
 
-        List<TalentPointButton> list = new ArrayList<>();
-        for (Widget w : this.buttons) {
-            if (w instanceof TalentPointButton) {
-                list.add((TalentPointButton) w);
-            }
-        }
+        List<TalentPointButton> list = getTalentButtons();
 
         renderConnections(list);
 
@@ -84,13 +93,32 @@ public class TalentScreen extends Screen {
 
     public void renderTooltips(List<TalentPointButton> list, int mouseX, int mouseY) {
 
+        TooltipInfo info = new TooltipInfo();
+
         list.forEach(button -> {
 
             if (button.isInsideSlot(scrollX, scrollY, mouseX, mouseY)) {
-                this.renderTooltip(button.talentPoint.renderStack, mouseX, mouseY);
+                this.renderTooltip(compsToStrings(button.talentPoint.effect.GetTooltipString(info)), mouseX, mouseY, mc.fontRenderer);
             }
         });
 
+    }
+
+    @Override
+    public boolean mouseClicked(double x, double y, int ticks) {
+        getTalentButtons().forEach(t -> t.onClick(scrollX, scrollY, (int) x, (int) y));
+        return super.mouseClicked(x, y, ticks);
+
+    }
+
+    public List<String> compsToStrings(List<ITextComponent> list) {
+        List<String> list1 = Lists.newArrayList();
+
+        for (ITextComponent itextcomponent : list) {
+            list1.add(itextcomponent.getFormattedText());
+        }
+
+        return list1;
     }
 
     private void renderConnections(List<TalentPointButton> list) {

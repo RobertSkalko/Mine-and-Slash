@@ -15,54 +15,6 @@ public class GuiUtils {
         return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
     }
 
-    public static java.util.List<Point> getPointsBetween(int x, int y, int x2, int y2) {
-        List<Point> points = new ArrayList<>();
-
-        boolean finished = false;
-        int tries = 0;
-
-        int posx = x;
-        int posy = y;
-
-        int finalx = x2;
-        int finaly = y2;
-
-        boolean growX = x < x2;
-        boolean growY = y < y2;
-
-        while (!finished && tries < 5000) {
-            tries++;
-
-            boolean grows = false;
-
-            if (posx != finalx) {
-                if (growX) {
-                    posx++;
-                } else {
-                    posx--;
-                }
-                grows = true;
-            }
-            if (posy != finaly) {
-                if (growY) {
-                    posy++;
-                } else {
-                    posy--;
-                }
-                grows = true;
-            }
-
-            if (!grows) {
-                finished = true;
-            } else {
-                points.add(new Point(posx, posy));
-            }
-
-        }
-
-        return points;
-    }
-
     public static class PointF {
 
         public float x, y;

@@ -89,6 +89,7 @@ public class TalentPointBuilder {
         }
 
         public TalentPoint build() {
+            TalentPoints.all.add(talent);
             return talent;
         }
 

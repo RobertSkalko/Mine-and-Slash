@@ -2,19 +2,16 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
 import net.minecraft.item.Items;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TalentPoints {
 
-    public static TalentPoint CRIT_HIT0;
-    public static TalentPoint CRIT_HIT1;
+    public static List<TalentPoint> all = new ArrayList<>();
 
-    public static TalentPoint CRIT_DMG0;
-    public static TalentPoint CRIT_DMG1;
+    public final static TalentPoint CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1;
 
     static {
-        create();
-    }
-
-    public static void create() {
 
         CRIT_HIT0 = TalentPointBuilder.create("crit_hit0")
                 .setPos(0, 0)

@@ -106,6 +106,14 @@ public class TalentPointButton extends ImageButton {
 
     }
 
+    public void onClick(float scrollX, float scrollY, int mouseX, int mouseY) {
+
+        if (isInsideSlot(scrollX, scrollY, mouseX, mouseY)) {
+            System.out.println(this.talentPoint.GUID());
+        }
+
+    }
+
     public boolean isInsideSlot(float scrollX, float scrollY, int mouseX, int mouseY) {
 
         Point guipos = new Point(getPosX((int) scrollX), getPosY((int) scrollY));

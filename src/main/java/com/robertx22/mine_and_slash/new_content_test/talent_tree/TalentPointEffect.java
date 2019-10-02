@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.util.text.ITextComponent;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,7 +31,9 @@ public class TalentPointEffect implements ITooltipList, IApplyableStats {
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
-        return null;
+        List<ITextComponent> list = new ArrayList<>();
+        this.exactStats.stream().forEach(x -> list.addAll(x.GetTooltipString(info)));
+        return list;
     }
 
     @Override
