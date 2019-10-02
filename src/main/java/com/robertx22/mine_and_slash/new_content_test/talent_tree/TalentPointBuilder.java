@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
+import com.robertx22.mine_and_slash.db_lists.initializers.TalentPoints;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

@@ -1,11 +1,15 @@
-package com.robertx22.mine_and_slash.new_content_test.talent_tree;
+package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentEffects;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPointBuilder;
 import net.minecraft.item.Items;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalentPoints {
+public class TalentPoints implements ISlashRegistryInit {
 
     public static List<TalentPoint> all = new ArrayList<>();
 
@@ -41,4 +45,8 @@ public class TalentPoints {
 
     }
 
+    @Override
+    public void registerAll() {
+        all.forEach(x -> x.registerToSlashRegistry());
+    }
 }

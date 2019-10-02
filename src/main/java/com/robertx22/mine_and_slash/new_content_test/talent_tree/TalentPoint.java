@@ -1,12 +1,15 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
-import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalentPoint implements IGUID {
+public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
 
     public TalentPoint(String guid) {
         this.guid = guid;
@@ -18,6 +21,13 @@ public class TalentPoint implements IGUID {
     private String guid;
     public int x;
     public int y;
+
+    public boolean isStart = false;
+
+    public TalentPoint setAsStart() {
+        this.isStart = true;
+        return this;
+    }
 
     public PerkType getPerkType() {
         return this.effect.type;
@@ -52,4 +62,28 @@ public class TalentPoint implements IGUID {
         return guid;
     }
 
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.TALENT;
+    }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return 0;
+    }
+
+    @Override
+    public Rarity getRarity() {
+        return Rarities.Items.get(getRarityRank());
+    }
+
+    @Override
+    public int Tier() {
+        return 0;
+    }
 }

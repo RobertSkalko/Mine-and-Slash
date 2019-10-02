@@ -28,6 +28,7 @@ import com.robertx22.mine_and_slash.db_lists.initializers.profession_recipes.Alc
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.IWorld;
@@ -74,6 +75,10 @@ public class SlashRegistry {
 
         return EntityConfigs().getDefault();
 
+    }
+
+    public static SlashRegistryContainer<TalentPoint> Talents() {
+        return getRegistry(SlashRegistryType.TALENT);
     }
 
     public static SlashRegistryContainer<BaseRecipe> Recipes() {
@@ -200,6 +205,7 @@ public class SlashRegistry {
 
         // professions
         new AlchemyRecipes().registerAll();
+        new TalentPoints().registerAll();
 
     }
 
@@ -228,6 +234,7 @@ public class SlashRegistry {
                 .DefaultExtra()).logAdditions().dontErrorMissingEntriesOnAccess());
         map.put(SlashRegistryType.MOD_ENTITY_CONFIGS, new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS)
                 .logAdditions());
+        map.put(SlashRegistryType.TALENT, new SlashRegistryContainer<TalentPoint>(SlashRegistryType.TALENT, TalentPoints.CRIT_DMG0));
 
     }
 

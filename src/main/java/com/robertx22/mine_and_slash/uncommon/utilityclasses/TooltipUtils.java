@@ -13,11 +13,18 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TooltipUtils {
 
     public static String CHECKMARK = TextFormatting.GREEN + "\u2714";
     public static String X = TextFormatting.RED + "\u2716";
+
+    public static List<String> compsToStrings(List<ITextComponent> list) {
+        return list.stream()
+                .map(ITextComponent::getFormattedText)
+                .collect(Collectors.toList());
+    }
 
     public static ITextComponent instability(IInstability insta) {
         ITextComponent comp;

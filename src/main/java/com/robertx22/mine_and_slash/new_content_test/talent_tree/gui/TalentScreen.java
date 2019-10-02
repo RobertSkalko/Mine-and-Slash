@@ -1,22 +1,20 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree.gui;
 
-import com.google.common.collect.Lists;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.robertx22.mine_and_slash.db_lists.initializers.TalentPoints;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoints;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils.PointF;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -98,7 +96,7 @@ public class TalentScreen extends Screen {
         list.forEach(button -> {
 
             if (button.isInsideSlot(scrollX, scrollY, mouseX, mouseY)) {
-                this.renderTooltip(compsToStrings(button.talentPoint.effect.GetTooltipString(info)), mouseX, mouseY, mc.fontRenderer);
+                this.renderTooltip(TooltipUtils.compsToStrings(button.talentPoint.effect.GetTooltipString(info)), mouseX, mouseY, mc.fontRenderer);
             }
         });
 
@@ -109,16 +107,6 @@ public class TalentScreen extends Screen {
         getTalentButtons().forEach(t -> t.onClick(scrollX, scrollY, (int) x, (int) y));
         return super.mouseClicked(x, y, ticks);
 
-    }
-
-    public List<String> compsToStrings(List<ITextComponent> list) {
-        List<String> list1 = Lists.newArrayList();
-
-        for (ITextComponent itextcomponent : list) {
-            list1.add(itextcomponent.getFormattedText());
-        }
-
-        return list1;
     }
 
     private void renderConnections(List<TalentPointButton> list) {
@@ -156,19 +144,6 @@ public class TalentScreen extends Screen {
 
         }
 
-    }
-
-    public static double calculateAngle(double x1, double y1, double x2, double y2) {
-        double angle = Math.toDegrees(Math.atan2(x2 - x1, y2 - y1));
-        // Keep angle between 0 and 360
-        angle = angle + Math.ceil(-angle / 360) * 360;
-
-        return angle;
-    }
-
-    public double calcDistanceBetween(double x1, double y1, double x2, double y2) {
-
-        return Point2D.distance(x1, y1, x2, y2);
     }
 
     protected void drawBackGround() {
