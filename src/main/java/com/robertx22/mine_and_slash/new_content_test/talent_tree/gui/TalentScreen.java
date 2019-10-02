@@ -28,6 +28,7 @@ public class TalentScreen extends Screen {
     public float scrollY = 0;
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/talents/talent_frame.png");
+    private static final ResourceLocation SPACE = new ResourceLocation(Ref.MODID, "textures/gui/talents/space.png");
     private static final ResourceLocation LINES = new ResourceLocation(Ref.MODID, "textures/gui/talents/lines.png");
 
     public static int sizeX = 318;
@@ -76,7 +77,7 @@ public class TalentScreen extends Screen {
 
         super.render(x, y, ticks);
 
-        drawBackGround();
+        drawSpace();
 
         List<TalentPointButton> list = getTalentButtons();
 
@@ -85,6 +86,8 @@ public class TalentScreen extends Screen {
         for (TalentPointButton but : list) {
             but.renderButton(x, y, ticks, (int) scrollX, (int) scrollY);
         }
+
+        drawBorders();
 
         renderTooltips(list, x, y);
     }
@@ -125,15 +128,16 @@ public class TalentScreen extends Screen {
                         int x2 = con.getMiddleX((int) scrollX);
                         int y2 = con.getMiddleY((int) scrollY);
 
-                        int size = 5;
+                        int size = 6;
 
-                        List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 100f, size + 2, true);
+                        float spacing = size + size / 2;
+                        
+                        List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 100f, spacing, true);
+
+                        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                        Minecraft.getInstance().getTextureManager().bindTexture(LINES);
 
                         for (PointF point : points) {
-                            Minecraft.getInstance()
-                                    .getTextureManager()
-                                    .bindTexture(LINES);
-                            GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
                             blit((int) (point.x - ((float) size / 2)), (int) (point.y - ((float) size / 2)), 0, 0.0F, 0.0F, size, size, 256, 256);
                         }
 
@@ -146,15 +150,21 @@ public class TalentScreen extends Screen {
 
     }
 
-    protected void drawBackGround() {
-
-        Minecraft.getInstance().getTextureManager().bindTexture(TEXTURE);
+    protected void drawSpace() {
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
         int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
+        Minecraft.getInstance().getTextureManager().bindTexture(SPACE);
+        blit(offsetX + 3, offsetY + 3, this.blitOffset, 0.0F, 0.0F, sizeX - 6, sizeY - 6, 2048, 2048);
+    }
 
+    protected void drawBorders() {
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
+        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
+        Minecraft.getInstance().getTextureManager().bindTexture(TEXTURE);
         blit(offsetX, offsetY, this.blitOffset, 0.0F, 0.0F, sizeX, sizeY, 256, 512);
 
     }
+
 }

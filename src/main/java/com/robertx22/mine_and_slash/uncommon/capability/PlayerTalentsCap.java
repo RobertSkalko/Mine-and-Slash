@@ -38,6 +38,7 @@ public class PlayerTalentsCap {
                 event.addCapability(RESOURCE, new Provider());
             }
         }
+
     }
 
     public static class Provider extends BaseProvider<IPlayerTalentsData> {

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
+import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.database.stats.stat_effects.defense.BlockEffect;
@@ -14,6 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.HashMap;
@@ -76,11 +78,14 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public boolean isDodged = false;
 
     public boolean isBlocked() {
-
         if (isFullyBlocked || isPartiallyBlocked) {
             return true;
         }
         return false;
+    }
+
+    public boolean isDmgAllowed() {
+        return !isFullyBlocked && !isDodged;
     }
 
     public float getActualDamage() {
@@ -120,7 +125,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             dmgsource.setDamageBypassesArmor();
         }
 
-        if (this.isFullyBlocked == false) {
+        if (isDmgAllowed()) {
+
+            MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnDmgDoneEvent(this.source, this));
 
             this.sourceData.onAttackEntity(source, target);
 
@@ -162,14 +169,14 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     }
 
-    private void RestoreMana() {
+    public void RestoreMana() {
         int restored = (int) manaRestored;
         if (restored > 0) {
             this.sourceData.restoreMana(restored);
         }
     }
 
-    private void Heal() {
+    public void Heal() {
         int healed = (int) healthHealed;
         if (healed > 0) {
             sourceData.heal(new HealData(source, sourceData, healed));
@@ -181,7 +188,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return this;
     }
 
-    static class DmgByElement {
+    public static class DmgByElement {
 
         public HashMap<Elements, Float> dmgmap = new HashMap<>();
         public Elements highestDmgElement;
@@ -211,7 +218,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     }
 
-    private DmgByElement getDmgByElement() {
+    public DmgByElement getDmgByElement() {
         DmgByElement info = new DmgByElement();
 
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {

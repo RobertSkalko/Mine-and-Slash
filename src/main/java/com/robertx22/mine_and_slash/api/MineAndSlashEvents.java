@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.api;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,6 +34,27 @@ public class MineAndSlashEvents {
 
     }
 
+    public static class OnDmgDoneEvent extends LivingEvent {
+
+        public DamageEffect data;
+
+        public OnDmgDoneEvent(LivingEntity entity, DamageEffect data) {
+            super(entity);
+            this.data = data;
+        }
+
+        public float getTotalDamage() {
+            if (data.isDmgAllowed()) {
+                DamageEffect.DmgByElement info = data.getDmgByElement();
+                return info.totalDmg;
+            } else {
+                return 0;
+            }
+
+        }
+
+    }
+
     // called right before stats are calculated.
     public static class OnStatCalculation extends LivingEvent {
 
@@ -43,6 +65,7 @@ public class MineAndSlashEvents {
             super(entity);
             this.data = data;
         }
+
     }
 
     // called before stat calculation to gather all the gears. Add it here if you say use a different jewerly mod that isn't compatible with one i use
