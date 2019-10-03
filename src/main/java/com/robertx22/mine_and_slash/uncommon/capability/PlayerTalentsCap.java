@@ -1,6 +1,9 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentConnection;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
 import com.robertx22.mine_and_slash.saveclasses.talents.PlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -16,6 +19,9 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Mod.EventBusSubscriber
 public class PlayerTalentsCap {
 
@@ -27,7 +33,7 @@ public class PlayerTalentsCap {
     public static final Capability<IPlayerTalentsData> Data = null;
 
     public interface IPlayerTalentsData extends ICommonCapability {
-
+        Set<TalentConnection> getConnections();
     }
 
     @Mod.EventBusSubscriber
@@ -70,6 +76,33 @@ public class PlayerTalentsCap {
             this.data = LoadSave.Load(PlayerTalentsData.class, new PlayerTalentsData(), nbt, LOC);
         }
 
+        @Override
+        public Set<TalentConnection> getConnections() {
+
+            HashSet<TalentConnection> set = new HashSet<>();
+
+            for (TalentPoint talent : SlashRegistry.Talents().getList()) {
+
+                TalentConnection.Allocation status = TalentConnection.Allocation.CANT_ALLOCATE;
+
+                if (this.data.isAllocated(talent.GUID())) {
+                    status = TalentConnection.Allocation.ALLOCATED;
+                } else {
+                    for (TalentPoint con : talent.connections) {
+                        if (this.data.isAllocated(con.GUID())) {
+                            status = TalentConnection.Allocation.CAN_ALLOCATE;
+                        }
+                    }
+
+                }
+
+                TalentConnection tc = new TalentConnection();
+
+            }
+
+            return set;
+
+        }
     }
 
     public static class Storage extends BaseStorage<IPlayerTalentsData> {

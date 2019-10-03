@@ -16,7 +16,7 @@ public class PlayerTalentsData {
     @Store
     private HashMap<String, Boolean> map = new HashMap<>();
 
-    public boolean has(String guid) {
+    public boolean isAllocated(String guid) {
         return map.getOrDefault(guid, false);
     }
 

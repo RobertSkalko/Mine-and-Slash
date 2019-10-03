@@ -131,7 +131,7 @@ public class TalentScreen extends Screen {
                         int size = 6;
 
                         float spacing = size + size / 2;
-                        
+
                         List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 100f, spacing, true);
 
                         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);

@@ -37,7 +37,15 @@ public class OnPlayerClone {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            Load.talents(current).setNBT(Load.talents(original).getNBT());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 
 
     /*

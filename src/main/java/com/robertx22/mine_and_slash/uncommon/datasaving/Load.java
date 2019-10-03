@@ -28,6 +28,16 @@ public class Load {
         return null;
     }
 
+    public static PlayerTalentsCap.IPlayerTalentsData talents(PlayerEntity provider) {
+
+        if (provider != null) {
+
+            return provider.getCapability(PlayerTalentsCap.Data)
+                    .orElse(new PlayerTalentsCap.DefaultImpl());
+        }
+        return null;
+    }
+
     public static WeaponSpeedCap.IWeaponSpeedCap weaponSpeed(PlayerEntity provider) {
 
         if (provider != null) {
