@@ -205,7 +205,7 @@ public class SlashRegistry {
 
         // professions
         new AlchemyRecipes().registerAll();
-        new TalentPoints().registerAll();
+        new Perks().registerAll();
 
     }
 
@@ -234,7 +234,7 @@ public class SlashRegistry {
                 .DefaultExtra()).logAdditions().dontErrorMissingEntriesOnAccess());
         map.put(SlashRegistryType.MOD_ENTITY_CONFIGS, new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS)
                 .logAdditions());
-        map.put(SlashRegistryType.TALENT, new SlashRegistryContainer<Perk>(SlashRegistryType.TALENT, TalentPoints.CRIT_DMG0));
+        map.put(SlashRegistryType.TALENT, new SlashRegistryContainer<Perk>(SlashRegistryType.TALENT, Perks.CRIT_DMG0));
 
     }
 

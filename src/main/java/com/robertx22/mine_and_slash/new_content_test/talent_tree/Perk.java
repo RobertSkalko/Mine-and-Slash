@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.TalentPoints;
+import com.robertx22.mine_and_slash.db_lists.initializers.Perks;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -88,7 +88,7 @@ public class Perk implements ISlashRegistryEntry<Perk> {
     }
 
     public static List<Perk> getStarts() {
-        return Arrays.asList(TalentPoints.CRIT_DMG0);
+        return Arrays.asList(Perks.CRIT_DMG0);
 
     }
 

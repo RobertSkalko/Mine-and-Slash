@@ -9,7 +9,7 @@ import net.minecraft.item.Items;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalentPoints implements ISlashRegistryInit {
+public class Perks implements ISlashRegistryInit {
 
     public static List<Perk> all = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class TalentPoints implements ISlashRegistryInit {
         CRIT_HIT0 = PerkBuilder.create("crit_hit0")
                 .setPos(1, 0)
                 .setRender(Items.GLOWSTONE_DUST)
-                .setEffect(PerkEffects.SMALL_CRIT_HIT)
+                .setEffect(PerkEffects.CRIT_HIT.small())
                 .connections()
                 .addConnection(START0)
                 .build();
@@ -58,7 +58,7 @@ public class TalentPoints implements ISlashRegistryInit {
         CRIT_DMG0 = PerkBuilder.create("crit_dmg0")
                 .setPos(4, -4)
                 .setRender(Items.REDSTONE)
-                .setEffect(PerkEffects.SMALL_CRIT_DMG)
+                .setEffect(PerkEffects.CRIT_DMG.small())
                 .connections()
                 .build();
 

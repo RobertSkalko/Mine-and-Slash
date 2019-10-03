@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
-import com.robertx22.mine_and_slash.db_lists.initializers.TalentPoints;
+import com.robertx22.mine_and_slash.db_lists.initializers.Perks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -90,7 +90,7 @@ public class PerkBuilder {
         }
 
         public Perk build() {
-            TalentPoints.all.add(talent);
+            Perks.all.add(talent);
             return talent;
         }
 

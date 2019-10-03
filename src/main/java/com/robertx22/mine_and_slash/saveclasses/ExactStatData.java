@@ -22,10 +22,26 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
 
     }
 
+    public ExactStatData(ExactStatData other) {
+        this.value = other.value;
+        this.type = other.type;
+        this.statGUID = other.statGUID;
+    }
+
     public ExactStatData(float value, StatTypes type, String statGUID) {
         this.value = value;
         this.type = type;
         this.statGUID = statGUID;
+    }
+
+    public ExactStatData(float value, StatTypes type, Stat stat) {
+        this.value = value;
+        this.type = type;
+        this.statGUID = stat.GUID();
+    }
+
+    public void setValue(float val) {
+        this.value = val;
     }
 
     @Store

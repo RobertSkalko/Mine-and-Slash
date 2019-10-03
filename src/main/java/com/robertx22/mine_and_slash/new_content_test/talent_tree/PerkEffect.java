@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableSt
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class PerkEffect implements ITooltipList, IApplyableStats {
 
     public PerkType type = PerkType.SMALL;
     public List<ExactStatData> exactStats;
+    private Words word;
 
     public PerkEffect(List<ExactStatData> exactStats) {
         this.exactStats = exactStats;
@@ -27,6 +29,10 @@ public class PerkEffect implements ITooltipList, IApplyableStats {
     public PerkEffect type(PerkType type) {
         this.type = type;
         return this;
+    }
+
+    public ITextComponent getName() {
+        return null;
     }
 
     @Override

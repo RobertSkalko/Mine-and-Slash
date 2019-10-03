@@ -100,16 +100,14 @@ public class PerkTreeScreen extends Screen {
 
         List<PerkButton> list = getTalentButtons();
 
-        renderInsides(x, y, ticks, list);
+        renderZoomables(x, y, ticks, list);
 
         drawBorders();
 
         renderTooltips(list, x, y);
     }
 
-    public void renderInsides(int x, int y, float ticks, List<PerkButton> list) {
-
-        //  zoom = 0.5F;
+    public void renderZoomables(int x, int y, float ticks, List<PerkButton> list) {
 
         GL11.glScalef(zoom, zoom, zoom);
 
