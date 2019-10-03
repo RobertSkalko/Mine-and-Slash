@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.RequestSyncCapToClient;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.ScreenContext;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentConnection;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -19,7 +20,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
+import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,7 @@ public class TalentScreen extends Screen {
 
     public float scrollX = 0;
     public float scrollY = 0;
+    public float zoom = 1;
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/talents/talent_frame.png");
     private static final ResourceLocation SPACE = new ResourceLocation(Ref.MODID, "textures/gui/talents/space.png");
@@ -96,15 +100,44 @@ public class TalentScreen extends Screen {
 
         List<TalentPointButton> list = getTalentButtons();
 
-        renderConnections(list);
-
-        for (TalentPointButton but : list) {
-            but.renderButton(x, y, ticks, (int) scrollX, (int) scrollY);
-        }
+        renderInsides(x, y, ticks, list);
 
         drawBorders();
 
         renderTooltips(list, x, y);
+    }
+
+    public void renderInsides(int x, int y, float ticks, List<TalentPointButton> list) {
+
+        //  zoom = 0.5F;
+
+        GL11.glScalef(zoom, zoom, zoom);
+
+        renderConnections(list);
+
+        for (TalentPointButton but : list) {
+            but.renderButton(x, y, new ScreenContext(this));
+        }
+
+        float reset = 1 / zoom;
+        GL11.glScalef(reset, reset, reset);
+
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
+
+        if (scroll < 0) {
+            this.zoom -= 0.1F;
+        }
+        if (scroll > 0) {
+            this.zoom += 0.1F;
+        }
+
+        this.zoom = MathHelper.clamp(zoom, 0.4F, 1);
+
+        return true;
+
     }
 
     public void renderTooltips(List<TalentPointButton> list, int mouseX, int mouseY) {
@@ -113,7 +146,7 @@ public class TalentScreen extends Screen {
 
         list.forEach(button -> {
 
-            if (button.isInsideSlot(scrollX, scrollY, mouseX, mouseY)) {
+            if (button.isInsideSlot(new ScreenContext(this), mouseX, mouseY)) {
                 this.renderTooltip(TooltipUtils.compsToStrings(button.talentPoint.effect.GetTooltipString(info)), mouseX, mouseY, mc.fontRenderer);
             }
         });
@@ -122,7 +155,7 @@ public class TalentScreen extends Screen {
 
     @Override
     public boolean mouseClicked(double x, double y, int ticks) {
-        getTalentButtons().forEach(t -> t.onClick(scrollX, scrollY, (int) x, (int) y));
+        getTalentButtons().forEach(t -> t.onClick(new ScreenContext(this), (int) x, (int) y));
         return super.mouseClicked(x, y, ticks);
 
     }
@@ -150,13 +183,15 @@ public class TalentScreen extends Screen {
 
     }
 
-    private boolean shouldRender(int x, int y) {
+    public static boolean shouldRender(int x, int y, ScreenContext ctx) {
 
-        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
+        int offsetX = (int) (Minecraft.getInstance().mainWindow.getScaledWidth() * ctx.getZoomMulti() / 2 - sizeX * ctx
+                .getZoomMulti() / 2);
+        int offsetY = (int) (Minecraft.getInstance().mainWindow.getScaledHeight() * ctx.getZoomMulti() / 2 - sizeY * ctx
+                .getZoomMulti() / 2);
 
-        if (x >= offsetX && x < offsetX + sizeX - 6) {
-            if (y >= offsetY && y < offsetY + sizeY - 6) {
+        if (x >= offsetX + 10 && x < offsetX + sizeX * ctx.getZoomMulti() - 20) {
+            if (y >= offsetY + 10 && y < offsetY + sizeY * ctx.getZoomMulti() - 20) {
                 return true;
             }
         }
@@ -168,11 +203,13 @@ public class TalentScreen extends Screen {
     private void renderConnection(TalentPointButton one, TalentPointButton two,
                                   TalentConnection connection) {
 
-        int x1 = one.getMiddleX((int) scrollX);
-        int y1 = one.getMiddleY((int) scrollY);
+        ScreenContext ctx = new ScreenContext(this);
 
-        int x2 = two.getMiddleX((int) scrollX);
-        int y2 = two.getMiddleY((int) scrollY);
+        int x1 = one.getMiddleX(ctx);
+        int y1 = one.getMiddleY(ctx);
+
+        int x2 = two.getMiddleX(ctx);
+        int y2 = two.getMiddleY(ctx);
 
         int size = 6;
 
@@ -188,7 +225,7 @@ public class TalentScreen extends Screen {
             int x = (int) (point.x - ((float) size / 2));
             int y = (int) (point.y - ((float) size / 2));
 
-            if (shouldRender(x, y)) {
+            if (shouldRender(x, y, ctx)) {
                 blit(x, y, 0, connection.allocationStatus.spriteOffsetX, 0.0F, size, size, 256, 256);
             }
         }

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree.gui;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.AllocateTalentPacket;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.ScreenContext;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
@@ -32,8 +33,12 @@ public class TalentPointButton extends ImageButton {
 
     }
 
-    public void renderButton(int x, int y, float ticks, int scrollX, int scrollY) {
-        if (shouldRender(scrollX, scrollY)) {
+    public void renderButton(int x, int y, ScreenContext ctx) {
+
+        int finalX = getPosX(ctx);
+        int finalY = getPosY(ctx);
+
+        if (TalentScreen.shouldRender(finalX, finalY, ctx)) {
             Minecraft mc = Minecraft.getInstance();
             mc.getTextureManager().bindTexture(this.talentPoint.getPerkType().TEXTURE);
             GlStateManager.disableDepthTest();
@@ -42,9 +47,6 @@ public class TalentPointButton extends ImageButton {
                 yStart += talentPoint.getPerkType().sizeY;
             }
             float xstart = 0;
-
-            int finalX = getPosX(scrollX);
-            int finalY = getPosY(scrollY);
 
             blit(finalX, finalY, xstart, (float) yStart, this.width, this.height, 256, 256);
             GlStateManager.enableDepthTest();
@@ -62,55 +64,44 @@ public class TalentPointButton extends ImageButton {
         return 40;
     }
 
-    public int getMiddleX(int scrollX) {
-        return getPosX(scrollX) + talentPoint.getPerkType().sizeX / 2;
+    public int getMiddleX(ScreenContext ctx) {
+        return (int) (getPosX(ctx) + talentPoint.getPerkType().sizeX / 2);
     }
 
-    public int getMiddleY(int scrollY) {
-        return getPosY(scrollY) + talentPoint.getPerkType().sizeY / 2;
+    public int getMiddleY(ScreenContext ctx) {
+        return (int) (getPosY(ctx) + talentPoint.getPerkType().sizeY / 2);
     }
 
-    public int getPosX(int scrollX) {
-        int offsetX = mc.mainWindow.getScaledWidth() / 2 - TalentScreen.sizeX / 2;
-        return getX(scrollX) + offsetX;
+    public int getPosX(ScreenContext ctx) {
+        int offsetX = mc.mainWindow.getScaledWidth() / 2;
+        offsetX *= ctx.getZoomMulti();
+        offsetX -= TalentScreen.sizeX * ctx.zoom / 2;
+        return getX(ctx) + offsetX;
     }
 
-    public int getPosY(int scrollY) {
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - TalentScreen.sizeY / 2;
-        return getY(scrollY) + offsetY;
+    public int getPosY(ScreenContext ctx) {
+        int offsetY = mc.mainWindow.getScaledHeight() / 2;
+        offsetY *= ctx.getZoomMulti();
+        offsetY -= TalentScreen.sizeY * ctx.zoom / 2;
+        return getY(ctx) + offsetY;
     }
 
-    public int getX(int scrollX) {
+    public int getX(ScreenContext ctx) {
 
-        int pos = this.talentPoint.x * getSpacing() + scrollX;
+        int pos = (int) (this.talentPoint.x * getSpacing() + ctx.scrollX * ctx.zoom);
 
         return pos;
     }
 
-    public int getY(int scrollY) {
-        int pos = this.talentPoint.y * getSpacing() + scrollY;
+    public int getY(ScreenContext ctx) {
+        int pos = (int) (this.talentPoint.y * getSpacing() + ctx.scrollY * ctx.zoom);
 
         return pos;
     }
 
-    public boolean shouldRender(int scrollX, int scrollY) {
+    public void onClick(ScreenContext ctx, int mouseX, int mouseY) {
 
-        int xpos = getX(scrollX);
-        int ypos = getY(scrollY);
-
-        if (xpos >= 0 && xpos < TalentScreen.sizeX - talentPoint.getPerkType().sizeX) {
-            if (ypos >= 0 && ypos < TalentScreen.sizeY - talentPoint.getPerkType().sizeY) {
-                return true;
-            }
-        }
-
-        return false;
-
-    }
-
-    public void onClick(float scrollX, float scrollY, int mouseX, int mouseY) {
-
-        if (isInsideSlot(scrollX, scrollY, mouseX, mouseY)) {
+        if (isInsideSlot(ctx, mouseX, mouseY)) {
             MMORPG.sendToServer(new AllocateTalentPacket(this.talentPoint));
 
             System.out.println(this.talentPoint.GUID());
@@ -118,11 +109,16 @@ public class TalentPointButton extends ImageButton {
 
     }
 
-    public boolean isInsideSlot(float scrollX, float scrollY, int mouseX, int mouseY) {
+    public boolean isInsideSlot(ScreenContext ctx, int mouseX, int mouseY) {
 
-        Point guipos = new Point(getPosX((int) scrollX), getPosY((int) scrollY));
-        Point mousePos = new Point(mouseX, mouseY);
-        Point size = new Point(talentPoint.getPerkType().sizeX, talentPoint.getPerkType().sizeY);
+        Point guipos = new Point(getPosX(ctx), getPosY(ctx));
+        Point mousePos = new Point((int) (mouseX * ctx.getZoomMulti()), (int) (mouseY * ctx
+                .getZoomMulti()));
+
+        int xEnd = (int) (talentPoint.getPerkType().sizeX * ctx.zoom);
+        int yEnd = (int) (talentPoint.getPerkType().sizeY * ctx.zoom);
+
+        Point size = new Point(xEnd, yEnd);
 
         return GuiUtils.isInRectPoints(guipos, size, mousePos);
 
