@@ -45,6 +45,8 @@ public class PlayerTalentsCap {
 
         int getAllocatedPoints();
 
+        void reset();
+
         PlayerTalentsData getData();
     }
 
@@ -126,7 +128,25 @@ public class PlayerTalentsCap {
 
         @Override
         public boolean canAllocatePoint(TalentPoint talent, EntityCap.UnitData data) {
-            return this.getFreePoints(data) > 0;
+
+            if (getFreePoints(data) > 0 == false) {
+                return false;
+            }
+
+            if (talent.isStart) {
+                return true;
+            }
+            
+            boolean can = false;
+            for (TalentPoint con : talent.connections) {
+                if (this.data.isAllocated(con)) {
+                    can = true;
+                    break;
+                }
+            }
+
+            return can;
+
         }
 
         @Override
@@ -146,6 +166,11 @@ public class PlayerTalentsCap {
         @Override
         public int getAllocatedPoints() {
             return this.data.getAllocatedTalents();
+        }
+
+        @Override
+        public void reset() {
+            this.data.reset();
         }
 
         @Override

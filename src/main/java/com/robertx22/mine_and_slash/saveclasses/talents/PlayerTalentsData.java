@@ -41,6 +41,10 @@ public class PlayerTalentsData {
         return talents;
     }
 
+    public void reset() {
+        this.map.clear();
+    }
+
     public List<TalentPoint> getAllCurrentTalents() {
         List<TalentPoint> list = new ArrayList<>();
 

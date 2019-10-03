@@ -46,6 +46,7 @@ public class CommandRegister {
         GiveUniqueRune.register(dispatcher);
         SayMapInfo.register(dispatcher);
         OpenPickStatsGui.register(dispatcher);
+        ResetTalents.register(dispatcher);
 
     }
 }
