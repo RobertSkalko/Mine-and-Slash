@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
-import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,12 +19,16 @@ public class Perk implements ISlashRegistryEntry<Perk> {
 
     public List<Perk> connections = new ArrayList<>();
     public PerkEffect effect;
-    public ItemStack renderStack;
     private String guid;
     public int x;
     public int y;
 
     public boolean isStart = false;
+
+    public void render(int x, int y) {
+
+        this.effect.render(x, y);
+    }
 
     public Perk setAsStart() {
         this.isStart = true;

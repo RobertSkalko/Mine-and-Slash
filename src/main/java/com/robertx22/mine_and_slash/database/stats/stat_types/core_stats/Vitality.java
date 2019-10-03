@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Vitality extends BaseCoreStat {
 
+    public static final String GUID = "Vitality";
+
     @Override
     public String locDescForLangFile() {
         return "Increases Health, Health percent and Health Regen";
@@ -17,7 +19,7 @@ public class Vitality extends BaseCoreStat {
 
     @Override
     public String GUID() {
-        return "Vitality";
+        return GUID;
     }
 
     @Override

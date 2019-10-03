@@ -11,6 +11,8 @@ import java.util.List;
 
 public class Stamina extends BaseCoreStat {
 
+    public static final String GUID = "Stamina";
+
     @Override
     public int iconSpriteNumber() {
         return 17;
@@ -23,7 +25,7 @@ public class Stamina extends BaseCoreStat {
 
     @Override
     public String GUID() {
-        return "Stamina";
+        return GUID;
     }
 
     @Override

@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Dexterity extends BaseCoreStat {
 
+    public static final String GUID = "Dexterity";
+
     @Override
     public int iconSpriteNumber() {
         return 13;
@@ -22,7 +24,7 @@ public class Dexterity extends BaseCoreStat {
 
     @Override
     public String GUID() {
-        return "Dexterity";
+        return GUID;
     }
 
     @Override

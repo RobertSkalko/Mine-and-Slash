@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Strength extends BaseCoreStat {
 
+    public static final String GUID = "Strength";
+
     public Strength() {
 
     }
@@ -26,7 +28,7 @@ public class Strength extends BaseCoreStat {
 
     @Override
     public String GUID() {
-        return "Strength";
+        return GUID;
     }
 
     @Override

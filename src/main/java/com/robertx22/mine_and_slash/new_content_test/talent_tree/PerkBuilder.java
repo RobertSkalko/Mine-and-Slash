@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
 import com.robertx22.mine_and_slash.db_lists.initializers.Perks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class PerkBuilder {
 
@@ -18,7 +16,7 @@ public class PerkBuilder {
             talent = new Perk(guid);
         }
 
-        public Position setPos(int x, int y) {
+        public Position pos(int x, int y) {
             return new Position(talent, x, y);
         }
 
@@ -34,29 +32,12 @@ public class PerkBuilder {
             this.talent.y = y;
         }
 
-        public Render setRender(Item item) {
-            return new Render(talent, item);
+        public Effect effect(PerkEffect effect) {
+            return new Effect(talent, effect);
         }
 
         public Connections copy(Perk other) {
-            return this.setRender(other.renderStack.getItem())
-                    .setEffect(other.effect)
-                    .connections();
-        }
-
-    }
-
-    public static class Render {
-
-        private Perk talent;
-
-        public Render(Perk talent, Item item) {
-            this.talent = talent;
-            this.talent.renderStack = new ItemStack(item);
-        }
-
-        public Effect setEffect(PerkEffect effect) {
-            return new Effect(talent, effect);
+            return this.effect(other.effect).connections();
         }
 
     }
@@ -84,7 +65,7 @@ public class PerkBuilder {
             this.talent = talent;
         }
 
-        public Connections addConnection(Perk other) {
+        public Connections add(Perk other) {
             this.talent.connectTo(other);
             return this;
         }

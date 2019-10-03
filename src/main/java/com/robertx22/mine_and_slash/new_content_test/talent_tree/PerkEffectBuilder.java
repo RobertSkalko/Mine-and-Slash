@@ -9,11 +9,11 @@ import java.util.List;
 
 public class PerkEffectBuilder {
 
-    public static PerkEffectsWrapper build(ExactStatData stat) {
-        return build(Arrays.asList(stat));
+    public static PerkEffectsWrapper build(String id, ExactStatData stat) {
+        return build(id, Arrays.asList(stat));
     }
 
-    public static PerkEffectsWrapper build(List<ExactStatData> list) {
+    public static PerkEffectsWrapper build(String id, List<ExactStatData> list) {
         HashMap<PerkType, PerkEffect> map = new HashMap<>();
 
         for (PerkType type : PerkType.values()) {
@@ -26,7 +26,7 @@ public class PerkEffectBuilder {
                 stats.add(stat);
             }
 
-            PerkEffect neww = new PerkEffect(stats).type(type);
+            PerkEffect neww = new PerkEffect(stats, id).type(type);
 
             map.put(type, neww);
 

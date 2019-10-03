@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Wisdom extends BaseCoreStat {
+    public static final String GUID = "Wisdom";
+
     @Override
     public int iconSpriteNumber() {
         return 14;
@@ -23,7 +25,7 @@ public class Wisdom extends BaseCoreStat {
 
     @Override
     public String GUID() {
-        return "Wisdom";
+        return GUID;
     }
 
     static float regenMulti = 0.3F;

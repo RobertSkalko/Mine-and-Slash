@@ -59,8 +59,7 @@ public class PerkButton extends ImageButton {
             int itemX = finalX - 8 + perk.getPerkType().sizeX / 2;
             int itemY = finalY - 8 + perk.getPerkType().sizeY / 2;
 
-            mc.getItemRenderer()
-                    .renderItemAndEffectIntoGUI(perk.renderStack, itemX, itemY);
+            this.perk.render(itemX, itemY);
 
         }
     }
