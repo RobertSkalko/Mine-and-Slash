@@ -13,7 +13,7 @@ public class TalentPoints implements ISlashRegistryInit {
 
     public static List<TalentPoint> all = new ArrayList<>();
 
-    public final static TalentPoint CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1, CRIT_DMG2, START0;
+    public final static TalentPoint CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1, CRIT_DMG2, START0, BIG_INT0, MAJOR_INT0;
 
     static {
 
@@ -24,6 +24,22 @@ public class TalentPoints implements ISlashRegistryInit {
                 .connections()
                 .build()
                 .setAsStart();
+
+        BIG_INT0 = TalentPointBuilder.create("BIG_INT0")
+                .setPos(-1, 0)
+                .setRender(Items.LAPIS_LAZULI)
+                .setEffect(TalentEffects.BIG_INT)
+                .connections()
+                .addConnection(START0)
+                .build();
+
+        MAJOR_INT0 = TalentPointBuilder.create("MAJOR_INT0")
+                .setPos(-2, 0)
+                .setRender(Items.LAPIS_LAZULI)
+                .setEffect(TalentEffects.MAJOR_INT)
+                .connections()
+                .addConnection(BIG_INT0)
+                .build();
 
         CRIT_HIT0 = TalentPointBuilder.create("crit_hit0")
                 .setPos(1, 0)

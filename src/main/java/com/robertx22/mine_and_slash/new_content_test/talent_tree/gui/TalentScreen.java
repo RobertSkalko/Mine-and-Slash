@@ -61,7 +61,7 @@ public class TalentScreen extends Screen {
         super.init(mc, x, y);
 
         for (TalentPoint talent : SlashRegistry.Talents().getList()) {
-            this.addButton(new TalentPointButton(talent, data));
+            this.addButton(new TalentPointButton(talents, talent, data));
         }
 
     }

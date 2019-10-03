@@ -4,8 +4,10 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.AllocateTalentPacket;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.ScreenContext;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentConnection;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -17,8 +19,10 @@ public class TalentPointButton extends ImageButton {
     TalentPoint talentPoint;
     EntityCap.UnitData data;
     Minecraft mc;
+    PlayerTalentsCap.IPlayerTalentsData talents;
 
-    public TalentPointButton(TalentPoint talentPoint, EntityCap.UnitData data) {
+    public TalentPointButton(PlayerTalentsCap.IPlayerTalentsData talents,
+                             TalentPoint talentPoint, EntityCap.UnitData data) {
         super(0, 0, talentPoint.getPerkType().sizeX, talentPoint.getPerkType().sizeY, 0, 0, talentPoint
                 .getPerkType().sizeY, talentPoint.getPerkType().TEXTURE, (button) -> {
         });
@@ -26,6 +30,7 @@ public class TalentPointButton extends ImageButton {
         this.talentPoint = talentPoint;
         this.data = data;
         this.mc = Minecraft.getInstance();
+        this.talents = talents;
     }
 
     @Override
@@ -42,11 +47,11 @@ public class TalentPointButton extends ImageButton {
             Minecraft mc = Minecraft.getInstance();
             mc.getTextureManager().bindTexture(this.talentPoint.getPerkType().TEXTURE);
             GlStateManager.disableDepthTest();
-            int yStart = 0;
-            if (this.isHovered()) {
-                yStart += talentPoint.getPerkType().sizeY;
-            }
-            float xstart = 0;
+
+            TalentConnection.Allocation status = talentPoint.getStatus(talents);
+
+            float xstart = talentPoint.getPerkType().getOffsetX();
+            int yStart = talentPoint.getPerkType().getOffsetY(status);
 
             blit(finalX, finalY, xstart, (float) yStart, this.width, this.height, 256, 256);
             GlStateManager.enableDepthTest();
@@ -115,8 +120,8 @@ public class TalentPointButton extends ImageButton {
         Point mousePos = new Point((int) (mouseX * ctx.getZoomMulti()), (int) (mouseY * ctx
                 .getZoomMulti()));
 
-        int xEnd = (int) (talentPoint.getPerkType().sizeX * ctx.zoom);
-        int yEnd = (int) (talentPoint.getPerkType().sizeY * ctx.zoom);
+        int xEnd = (int) (talentPoint.getPerkType().sizeX);
+        int yEnd = (int) (talentPoint.getPerkType().sizeY);
 
         Point size = new Point(xEnd, yEnd);
 

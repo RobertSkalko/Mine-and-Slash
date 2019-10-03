@@ -50,13 +50,17 @@ public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
         }
 
     }
-    
+
     public TalentConnection.Allocation getStatus(
             PlayerTalentsCap.IPlayerTalentsData data) {
 
         if (data.getData().isAllocated(this)) {
             return TalentConnection.Allocation.ALLOCATED;
         } else {
+
+            if (this.isStart) {
+                return TalentConnection.Allocation.CAN_ALLOCATE;
+            }
 
             boolean hascon = false;
             for (TalentPoint con : this.connections) {

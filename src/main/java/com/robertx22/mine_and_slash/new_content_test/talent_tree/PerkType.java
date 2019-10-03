@@ -5,19 +5,36 @@ import net.minecraft.util.ResourceLocation;
 
 public enum PerkType {
 
-    SMALL(22, 22, new ResourceLocation(Ref.MODID, "textures/gui/talents/small_perk.png")),
-    BIG(22, 26, new ResourceLocation(Ref.MODID, "textures/gui/talents/big_perk.png")),
-    MAJOR(26, 26, new ResourceLocation(Ref.MODID, "textures/gui/talents/major_perk.png"));
+    SMALL(24, 24, 0),
+    BIG(22, 26, 59),
+    MAJOR(26, 26, 28);
 
-    PerkType(int x, int y, ResourceLocation loc) {
+    PerkType(int x, int y, int offsetX) {
         this.sizeX = x;
         this.sizeY = y;
-        this.TEXTURE = loc;
+        this.offsetX = offsetX;
+
     }
 
     public int sizeX;
     public int sizeY;
+    public int offsetX;
 
-    public ResourceLocation TEXTURE;
+    public int getOffsetY(TalentConnection.Allocation status) {
+        if (status == TalentConnection.Allocation.CAN_ALLOCATE) {
+            return 0;
+        }
+        if (status == TalentConnection.Allocation.ALLOCATED) {
+            return 32;
+        } else {
+            return 63;
+        }
+    }
+
+    public int getOffsetX() {
+        return this.offsetX;
+    }
+
+    public ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/talents/perks.png");
 
 }

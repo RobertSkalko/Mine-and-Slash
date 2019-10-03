@@ -47,6 +47,8 @@ public class PlayerTalentsCap {
 
         void reset();
 
+        void applyStats(EntityCap.UnitData data, PlayerEntity player);
+
         PlayerTalentsData getData();
     }
 
@@ -171,6 +173,11 @@ public class PlayerTalentsCap {
         @Override
         public void reset() {
             this.data.reset();
+        }
+
+        @Override
+        public void applyStats(EntityCap.UnitData data, PlayerEntity player) {
+            this.data.applyStats(data);
         }
 
         @Override

@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Intelligence extends BaseCoreStat {
+
+    public static String GUID = "Intelligence";
+
     @Override
     public int iconSpriteNumber() {
         return 15;
@@ -21,7 +24,7 @@ public class Intelligence extends BaseCoreStat {
 
     @Override
     public String GUID() {
-        return "Intelligence";
+        return GUID;
     }
 
     @Override
