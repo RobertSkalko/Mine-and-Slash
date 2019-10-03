@@ -15,9 +15,15 @@ public class TalentConnection {
     public Allocation allocationStatus = Allocation.CANT_ALLOCATE;
 
     public enum Allocation {
-        CAN_ALLOCATE,
-        CANT_ALLOCATE,
-        ALLOCATED
+        CAN_ALLOCATE(0),
+        CANT_ALLOCATE(12),
+        ALLOCATED(6);
+
+        Allocation(int spriteOffsetX) {
+            this.spriteOffsetX = spriteOffsetX;
+        }
+
+        public int spriteOffsetX;
     }
 
     private String getCombinedGuid() {

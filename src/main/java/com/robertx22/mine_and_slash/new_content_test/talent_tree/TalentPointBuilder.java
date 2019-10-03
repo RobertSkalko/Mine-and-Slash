@@ -41,7 +41,7 @@ public class TalentPointBuilder {
         public Connections copy(TalentPoint other) {
             return this.setRender(other.renderStack.getItem())
                     .setEffect(other.effect)
-                    .finish();
+                    .connections();
         }
 
     }
@@ -70,7 +70,7 @@ public class TalentPointBuilder {
             talent.effect = effect;
         }
 
-        public Connections finish() {
+        public Connections connections() {
             return new Connections(talent);
         }
 

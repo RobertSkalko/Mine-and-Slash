@@ -28,6 +28,19 @@ public class PlayerTalentsData {
         map.put(guid, true);
     }
 
+    public int getAllocatedTalents() {
+
+        int talents = 0;
+        for (Map.Entry<String, Boolean> entry : map.entrySet()) {
+            if (entry.getValue()) {
+                if (SlashRegistry.Talents().isRegistered(entry.getKey())) {
+                    talents++;
+                }
+            }
+        }
+        return talents;
+    }
+
     public List<TalentPoint> getAllCurrentTalents() {
         List<TalentPoint> list = new ArrayList<>();
 

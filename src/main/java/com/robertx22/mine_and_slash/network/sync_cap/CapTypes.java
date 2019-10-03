@@ -24,6 +24,12 @@ public enum CapTypes {
             return Load.professions(player);
         }
     },
+    TALENTS {
+        @Override
+        public ICommonCapability getCap(PlayerEntity player) {
+            return Load.talents(player);
+        }
+    },
     STAT_POINTS {
         @Override
         public ICommonCapability getCap(PlayerEntity player) {

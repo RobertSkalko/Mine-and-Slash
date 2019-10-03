@@ -21,20 +21,20 @@ public class TalentPoints implements ISlashRegistryInit {
                 .setPos(0, 0)
                 .setRender(Items.LANTERN)
                 .setEffect(TalentEffects.NOTHING)
-                .finish()
+                .connections()
                 .build()
                 .setAsStart();
 
         CRIT_HIT0 = TalentPointBuilder.create("crit_hit0")
-                .setPos(0, 0)
+                .setPos(1, 0)
                 .setRender(Items.GLOWSTONE_DUST)
                 .setEffect(TalentEffects.SMALL_CRIT_HIT)
-                .finish()
+                .connections()
                 .addConnection(START0)
                 .build();
 
         CRIT_HIT1 = TalentPointBuilder.create("crit_hit1")
-                .setPos(1, 0)
+                .setPos(2, 0)
                 .copy(CRIT_HIT0)
                 .addConnection(CRIT_HIT0)
                 .build();
@@ -43,7 +43,8 @@ public class TalentPoints implements ISlashRegistryInit {
                 .setPos(4, -4)
                 .setRender(Items.REDSTONE)
                 .setEffect(TalentEffects.SMALL_CRIT_DMG)
-                .finish()
+                .connections()
+                .addConnection(CRIT_HIT0)
                 .build();
 
         CRIT_DMG1 = TalentPointBuilder.create("crit_dmg1")

@@ -6,6 +6,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
+import javax.annotation.Nonnull;
+
 public class Load {
 
     public static boolean hasUnit(
@@ -28,14 +30,11 @@ public class Load {
         return null;
     }
 
+    @Nonnull
     public static PlayerTalentsCap.IPlayerTalentsData talents(PlayerEntity provider) {
 
-        if (provider != null) {
-
-            return provider.getCapability(PlayerTalentsCap.Data)
-                    .orElse(new PlayerTalentsCap.DefaultImpl());
-        }
-        return null;
+        return provider.getCapability(PlayerTalentsCap.Data)
+                .orElse(new PlayerTalentsCap.DefaultImpl());
     }
 
     public static WeaponSpeedCap.IWeaponSpeedCap weaponSpeed(PlayerEntity provider) {

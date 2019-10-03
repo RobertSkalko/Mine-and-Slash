@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree.gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.network.AllocateTalentPacket;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
@@ -109,6 +111,8 @@ public class TalentPointButton extends ImageButton {
     public void onClick(float scrollX, float scrollY, int mouseX, int mouseY) {
 
         if (isInsideSlot(scrollX, scrollY, mouseX, mouseY)) {
+            MMORPG.sendToServer(new AllocateTalentPacket(this.talentPoint));
+
             System.out.println(this.talentPoint.GUID());
         }
 

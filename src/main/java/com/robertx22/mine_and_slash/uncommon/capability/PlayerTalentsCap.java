@@ -36,6 +36,16 @@ public class PlayerTalentsCap {
 
     public interface IPlayerTalentsData extends ICommonCapability {
         Set<TalentConnection> getConnections();
+
+        boolean canAllocatePoint(TalentPoint talent, EntityCap.UnitData data);
+
+        void allocate(TalentPoint talent);
+
+        int getFreePoints(EntityCap.UnitData data);
+
+        int getAllocatedPoints();
+
+        PlayerTalentsData getData();
     }
 
     @Mod.EventBusSubscriber
@@ -76,6 +86,10 @@ public class PlayerTalentsCap {
         @Override
         public void setNBT(CompoundNBT nbt) {
             this.data = LoadSave.Load(PlayerTalentsData.class, new PlayerTalentsData(), nbt, LOC);
+
+            if (data == null) {
+                data = new PlayerTalentsData();
+            }
         }
 
         @Override
@@ -108,6 +122,35 @@ public class PlayerTalentsCap {
 
             return set;
 
+        }
+
+        @Override
+        public boolean canAllocatePoint(TalentPoint talent, EntityCap.UnitData data) {
+            return this.getFreePoints(data) > 0;
+        }
+
+        @Override
+        public void allocate(TalentPoint talent) {
+            this.data.allocate(talent.GUID());
+        }
+
+        @Override
+        public int getFreePoints(EntityCap.UnitData data) {
+            return getAllowedPoints(data) - this.getAllocatedPoints();
+        }
+
+        public int getAllowedPoints(EntityCap.UnitData data) {
+            return data.getLevel();
+        }
+
+        @Override
+        public int getAllocatedPoints() {
+            return this.data.getAllocatedTalents();
+        }
+
+        @Override
+        public PlayerTalentsData getData() {
+            return data;
         }
     }
 

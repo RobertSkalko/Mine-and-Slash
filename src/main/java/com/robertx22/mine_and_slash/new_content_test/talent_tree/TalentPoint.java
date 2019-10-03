@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.initializers.TalentPoints;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -46,6 +47,30 @@ public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
             other.connections.add(this);
         } else {
             System.out.println(other.GUID() + " can't connect if already connected");
+        }
+
+    }
+    
+    public TalentConnection.Allocation getStatus(
+            PlayerTalentsCap.IPlayerTalentsData data) {
+
+        if (data.getData().isAllocated(this)) {
+            return TalentConnection.Allocation.ALLOCATED;
+        } else {
+
+            boolean hascon = false;
+            for (TalentPoint con : this.connections) {
+                if (data.getData().isAllocated(con)) {
+                    hascon = true;
+                }
+            }
+
+            if (hascon) {
+                return TalentConnection.Allocation.CAN_ALLOCATE;
+            } else {
+                return TalentConnection.Allocation.CANT_ALLOCATE;
+            }
+
         }
 
     }
