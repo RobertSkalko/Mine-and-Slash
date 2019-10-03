@@ -2,16 +2,16 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
 import java.util.Objects;
 
-public class TalentConnection {
+public class PerkConnection {
 
-    public TalentConnection(Allocation status, TalentPoint one, TalentPoint two) {
+    public PerkConnection(Allocation status, Perk one, Perk two) {
         this.allocationStatus = status;
         this.one = one;
         this.two = two;
 
     }
 
-    public TalentPoint one, two;
+    public Perk one, two;
     public Allocation allocationStatus = Allocation.CANT_ALLOCATE;
 
     public enum Allocation {
@@ -35,7 +35,7 @@ public class TalentConnection {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof TalentConnection)) {
+        if (!(o instanceof PerkConnection)) {
             return false;
         }
         return this.hashCode() == o.hashCode();

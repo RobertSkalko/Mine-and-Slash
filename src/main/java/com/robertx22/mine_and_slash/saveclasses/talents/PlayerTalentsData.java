@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.talents;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import info.loenwind.autosave.annotations.Storable;
@@ -22,7 +22,7 @@ public class PlayerTalentsData implements IApplyableStats {
         return map.getOrDefault(guid, false);
     }
 
-    public boolean isAllocated(TalentPoint point) {
+    public boolean isAllocated(Perk point) {
         return isAllocated(point.GUID());
     }
 
@@ -47,8 +47,8 @@ public class PlayerTalentsData implements IApplyableStats {
         this.map.clear();
     }
 
-    public List<TalentPoint> getAllCurrentTalents() {
-        List<TalentPoint> list = new ArrayList<>();
+    public List<Perk> getAllCurrentTalents() {
+        List<Perk> list = new ArrayList<>();
 
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {
             if (entry.getValue()) {
@@ -61,7 +61,7 @@ public class PlayerTalentsData implements IApplyableStats {
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
-        for (TalentPoint talent : getAllCurrentTalents()) {
+        for (Perk talent : getAllCurrentTalents()) {
             talent.effect.applyStats(data);
         }
     }

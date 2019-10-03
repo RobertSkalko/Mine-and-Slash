@@ -6,9 +6,9 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.RequestSyncCapToClient;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.ScreenContext;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentConnection;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap.IPlayerTalentsData;
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class TalentScreen extends Screen {
+public class PerkTreeScreen extends Screen {
 
     Minecraft mc;
     EntityCap.UnitData data;
@@ -47,7 +47,7 @@ public class TalentScreen extends Screen {
     public static int sizeX = 318;
     public static int sizeY = 233;
 
-    public TalentScreen() {
+    public PerkTreeScreen() {
         super(new StringTextComponent(""));
         this.mc = Minecraft.getInstance();
         this.data = Load.Unit(mc.player);
@@ -60,8 +60,8 @@ public class TalentScreen extends Screen {
     public void init(Minecraft mc, int x, int y) {
         super.init(mc, x, y);
 
-        for (TalentPoint talent : SlashRegistry.Talents().getList()) {
-            this.addButton(new TalentPointButton(talents, talent, data));
+        for (Perk talent : SlashRegistry.Talents().getList()) {
+            this.addButton(new PerkButton(talents, talent, data));
         }
 
     }
@@ -75,11 +75,11 @@ public class TalentScreen extends Screen {
 
     }
 
-    List<TalentPointButton> getTalentButtons() {
-        List<TalentPointButton> list = new ArrayList<>();
+    List<PerkButton> getTalentButtons() {
+        List<PerkButton> list = new ArrayList<>();
         for (Widget w : this.buttons) {
-            if (w instanceof TalentPointButton) {
-                list.add((TalentPointButton) w);
+            if (w instanceof PerkButton) {
+                list.add((PerkButton) w);
             }
         }
         return list;
@@ -98,7 +98,7 @@ public class TalentScreen extends Screen {
 
         drawSpace();
 
-        List<TalentPointButton> list = getTalentButtons();
+        List<PerkButton> list = getTalentButtons();
 
         renderInsides(x, y, ticks, list);
 
@@ -107,7 +107,7 @@ public class TalentScreen extends Screen {
         renderTooltips(list, x, y);
     }
 
-    public void renderInsides(int x, int y, float ticks, List<TalentPointButton> list) {
+    public void renderInsides(int x, int y, float ticks, List<PerkButton> list) {
 
         //  zoom = 0.5F;
 
@@ -115,7 +115,7 @@ public class TalentScreen extends Screen {
 
         renderConnections(list);
 
-        for (TalentPointButton but : list) {
+        for (PerkButton but : list) {
             but.renderButton(x, y, new ScreenContext(this));
         }
 
@@ -140,14 +140,14 @@ public class TalentScreen extends Screen {
 
     }
 
-    public void renderTooltips(List<TalentPointButton> list, int mouseX, int mouseY) {
+    public void renderTooltips(List<PerkButton> list, int mouseX, int mouseY) {
 
         TooltipInfo info = new TooltipInfo();
 
         list.forEach(button -> {
 
             if (button.isInsideSlot(new ScreenContext(this), mouseX, mouseY)) {
-                this.renderTooltip(TooltipUtils.compsToStrings(button.talentPoint.effect.GetTooltipString(info)), mouseX, mouseY, mc.fontRenderer);
+                this.renderTooltip(TooltipUtils.compsToStrings(button.perk.effect.GetTooltipString(info)), mouseX, mouseY, mc.fontRenderer);
             }
         });
 
@@ -160,20 +160,18 @@ public class TalentScreen extends Screen {
 
     }
 
-    private void renderConnections(List<TalentPointButton> list) {
+    private void renderConnections(List<PerkButton> list) {
 
-        Set<TalentConnection> connections = this.talents.getConnections();
+        Set<PerkConnection> connections = this.talents.getConnections();
 
-        for (TalentConnection connection : connections) {
+        for (PerkConnection connection : connections) {
 
-            Optional<TalentPointButton> but1 = list.stream()
-                    .filter(button -> button.talentPoint.GUID()
-                            .equals(connection.one.GUID()))
+            Optional<PerkButton> but1 = list.stream()
+                    .filter(button -> button.perk.GUID().equals(connection.one.GUID()))
                     .findAny();
 
-            Optional<TalentPointButton> but2 = list.stream()
-                    .filter(button -> button.talentPoint.GUID()
-                            .equals(connection.two.GUID()))
+            Optional<PerkButton> but2 = list.stream()
+                    .filter(button -> button.perk.GUID().equals(connection.two.GUID()))
                     .findAny();
 
             if (but1.isPresent() && but2.isPresent()) {
@@ -200,8 +198,8 @@ public class TalentScreen extends Screen {
 
     }
 
-    private void renderConnection(TalentPointButton one, TalentPointButton two,
-                                  TalentConnection connection) {
+    private void renderConnection(PerkButton one, PerkButton two,
+                                  PerkConnection connection) {
 
         ScreenContext ctx = new ScreenContext(this);
 

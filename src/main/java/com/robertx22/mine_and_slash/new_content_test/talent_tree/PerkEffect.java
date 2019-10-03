@@ -11,20 +11,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TalentPointEffect implements ITooltipList, IApplyableStats {
+public class PerkEffect implements ITooltipList, IApplyableStats {
 
     public PerkType type = PerkType.SMALL;
     public List<ExactStatData> exactStats;
 
-    public TalentPointEffect(List<ExactStatData> exactStats) {
+    public PerkEffect(List<ExactStatData> exactStats) {
         this.exactStats = exactStats;
     }
 
-    public TalentPointEffect(ExactStatData exactStat) {
+    public PerkEffect(ExactStatData exactStat) {
         this.exactStats = Arrays.asList(exactStat);
     }
 
-    public TalentPointEffect type(PerkType type) {
+    public PerkEffect type(PerkType type) {
         this.type = type;
         return this;
     }

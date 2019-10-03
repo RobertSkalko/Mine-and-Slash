@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentConnection;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.saveclasses.talents.PlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentConnection.Allocation.*;
+import static com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkConnection.Allocation.*;
 
 @Mod.EventBusSubscriber
 public class PlayerTalentsCap {
@@ -35,11 +35,11 @@ public class PlayerTalentsCap {
     public static final Capability<IPlayerTalentsData> Data = null;
 
     public interface IPlayerTalentsData extends ICommonCapability {
-        Set<TalentConnection> getConnections();
+        Set<PerkConnection> getConnections();
 
-        boolean canAllocatePoint(TalentPoint talent, EntityCap.UnitData data);
+        boolean canAllocatePoint(Perk talent, EntityCap.UnitData data);
 
-        void allocate(TalentPoint talent);
+        void allocate(Perk talent);
 
         int getFreePoints(EntityCap.UnitData data);
 
@@ -97,27 +97,27 @@ public class PlayerTalentsCap {
         }
 
         @Override
-        public Set<TalentConnection> getConnections() {
+        public Set<PerkConnection> getConnections() {
 
-            HashSet<TalentConnection> set = new HashSet<>();
+            HashSet<PerkConnection> set = new HashSet<>();
 
-            for (TalentPoint talent : SlashRegistry.Talents().getList()) {
+            for (Perk talent : SlashRegistry.Talents().getList()) {
 
                 if (data.isAllocated(talent)) {
-                    for (TalentPoint con : talent.connections) {
+                    for (Perk con : talent.connections) {
                         if (data.isAllocated(con)) {
-                            set.add(new TalentConnection(ALLOCATED, talent, con));
+                            set.add(new PerkConnection(ALLOCATED, talent, con));
                         } else {
-                            set.add(new TalentConnection(CAN_ALLOCATE, talent, con));
+                            set.add(new PerkConnection(CAN_ALLOCATE, talent, con));
                         }
                     }
 
                 } else {
-                    for (TalentPoint con : talent.connections) {
+                    for (Perk con : talent.connections) {
                         if (data.isAllocated(con)) {
-                            set.add(new TalentConnection(CAN_ALLOCATE, talent, con));
+                            set.add(new PerkConnection(CAN_ALLOCATE, talent, con));
                         } else {
-                            set.add(new TalentConnection(CANT_ALLOCATE, talent, con));
+                            set.add(new PerkConnection(CANT_ALLOCATE, talent, con));
                         }
                     }
                 }
@@ -129,7 +129,7 @@ public class PlayerTalentsCap {
         }
 
         @Override
-        public boolean canAllocatePoint(TalentPoint talent, EntityCap.UnitData data) {
+        public boolean canAllocatePoint(Perk talent, EntityCap.UnitData data) {
 
             if (getFreePoints(data) > 0 == false) {
                 return false;
@@ -140,7 +140,7 @@ public class PlayerTalentsCap {
             }
 
             boolean can = false;
-            for (TalentPoint con : talent.connections) {
+            for (Perk con : talent.connections) {
                 if (this.data.isAllocated(con)) {
                     can = true;
                     break;
@@ -152,7 +152,7 @@ public class PlayerTalentsCap {
         }
 
         @Override
-        public void allocate(TalentPoint talent) {
+        public void allocate(Perk talent) {
             this.data.allocate(talent.GUID());
         }
 

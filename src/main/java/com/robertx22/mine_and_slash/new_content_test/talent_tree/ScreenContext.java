@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.gui.TalentScreen;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.gui.PerkTreeScreen;
 
 public class ScreenContext {
 
@@ -12,7 +12,7 @@ public class ScreenContext {
         this.scrollY = scrollY;
     }
 
-    public ScreenContext(TalentScreen screen) {
+    public ScreenContext(PerkTreeScreen screen) {
         this.zoom = screen.zoom;
         this.scrollX = screen.scrollX;
         this.scrollY = screen.scrollY;

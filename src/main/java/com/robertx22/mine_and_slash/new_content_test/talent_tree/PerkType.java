@@ -20,11 +20,11 @@ public enum PerkType {
     public int sizeY;
     public int offsetX;
 
-    public int getOffsetY(TalentConnection.Allocation status) {
-        if (status == TalentConnection.Allocation.CAN_ALLOCATE) {
+    public int getOffsetY(PerkConnection.Allocation status) {
+        if (status == PerkConnection.Allocation.CAN_ALLOCATE) {
             return 0;
         }
-        if (status == TalentConnection.Allocation.ALLOCATED) {
+        if (status == PerkConnection.Allocation.ALLOCATED) {
             return 32;
         } else {
             return 63;

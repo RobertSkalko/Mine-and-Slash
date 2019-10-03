@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
+public class Perk implements ISlashRegistryEntry<Perk> {
 
-    public TalentPoint(String guid) {
+    public Perk(String guid) {
         this.guid = guid;
     }
 
-    public List<TalentPoint> connections = new ArrayList<>();
-    public TalentPointEffect effect;
+    public List<Perk> connections = new ArrayList<>();
+    public PerkEffect effect;
     public ItemStack renderStack;
     private String guid;
     public int x;
@@ -27,7 +27,7 @@ public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
 
     public boolean isStart = false;
 
-    public TalentPoint setAsStart() {
+    public Perk setAsStart() {
         this.isStart = true;
         return this;
     }
@@ -36,7 +36,7 @@ public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
         return this.effect.type;
     }
 
-    public void connectTo(TalentPoint other) {
+    public void connectTo(Perk other) {
         if (this.connections.contains(other) == false) {
             this.connections.add(other);
         } else {
@@ -51,36 +51,35 @@ public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
 
     }
 
-    public TalentConnection.Allocation getStatus(
-            PlayerTalentsCap.IPlayerTalentsData data) {
+    public PerkConnection.Allocation getStatus(PlayerTalentsCap.IPlayerTalentsData data) {
 
         if (data.getData().isAllocated(this)) {
-            return TalentConnection.Allocation.ALLOCATED;
+            return PerkConnection.Allocation.ALLOCATED;
         } else {
 
             if (this.isStart) {
-                return TalentConnection.Allocation.CAN_ALLOCATE;
+                return PerkConnection.Allocation.CAN_ALLOCATE;
             }
 
             boolean hascon = false;
-            for (TalentPoint con : this.connections) {
+            for (Perk con : this.connections) {
                 if (data.getData().isAllocated(con)) {
                     hascon = true;
                 }
             }
 
             if (hascon) {
-                return TalentConnection.Allocation.CAN_ALLOCATE;
+                return PerkConnection.Allocation.CAN_ALLOCATE;
             } else {
-                return TalentConnection.Allocation.CANT_ALLOCATE;
+                return PerkConnection.Allocation.CANT_ALLOCATE;
             }
 
         }
 
     }
 
-    public boolean isConnectedTo(TalentPoint talent) {
-        for (TalentPoint con : connections) {
+    public boolean isConnectedTo(Perk talent) {
+        for (Perk con : connections) {
             if (con.GUID().equals(talent.GUID())) {
                 return true;
             }
@@ -88,7 +87,7 @@ public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
         return false;
     }
 
-    public static List<TalentPoint> getStarts() {
+    public static List<Perk> getStarts() {
         return Arrays.asList(TalentPoints.CRIT_DMG0);
 
     }

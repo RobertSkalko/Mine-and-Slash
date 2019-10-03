@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentPoint;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -22,7 +22,7 @@ public class AllocateTalentPacket {
 
     }
 
-    public AllocateTalentPacket(TalentPoint talent) {
+    public AllocateTalentPacket(Perk talent) {
         this.guid = talent.GUID();
     }
 
@@ -52,7 +52,7 @@ public class AllocateTalentPacket {
 
                 PlayerTalentsCap.IPlayerTalentsData talents = Load.talents(player);
 
-                TalentPoint talent = SlashRegistry.Talents().get(pkt.guid);
+                Perk talent = SlashRegistry.Talents().get(pkt.guid);
 
                 if (talent != null) {
 

@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.db_lists.initializers.TalentPoints;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class TalentPointBuilder {
+public class PerkBuilder {
 
     public static Guid create(String id) {
         return new Guid(id);
@@ -12,10 +12,10 @@ public class TalentPointBuilder {
 
     public static class Guid {
 
-        private TalentPoint talent;
+        private Perk talent;
 
         public Guid(String guid) {
-            talent = new TalentPoint(guid);
+            talent = new Perk(guid);
         }
 
         public Position setPos(int x, int y) {
@@ -26,9 +26,9 @@ public class TalentPointBuilder {
 
     public static class Position {
 
-        private TalentPoint talent;
+        private Perk talent;
 
-        public Position(TalentPoint talent, int x, int y) {
+        public Position(Perk talent, int x, int y) {
             this.talent = talent;
             this.talent.x = x;
             this.talent.y = y;
@@ -38,7 +38,7 @@ public class TalentPointBuilder {
             return new Render(talent, item);
         }
 
-        public Connections copy(TalentPoint other) {
+        public Connections copy(Perk other) {
             return this.setRender(other.renderStack.getItem())
                     .setEffect(other.effect)
                     .connections();
@@ -48,14 +48,14 @@ public class TalentPointBuilder {
 
     public static class Render {
 
-        private TalentPoint talent;
+        private Perk talent;
 
-        public Render(TalentPoint talent, Item item) {
+        public Render(Perk talent, Item item) {
             this.talent = talent;
             this.talent.renderStack = new ItemStack(item);
         }
 
-        public Effect setEffect(TalentPointEffect effect) {
+        public Effect setEffect(PerkEffect effect) {
             return new Effect(talent, effect);
         }
 
@@ -63,9 +63,9 @@ public class TalentPointBuilder {
 
     public static class Effect {
 
-        private TalentPoint talent;
+        private Perk talent;
 
-        public Effect(TalentPoint talent, TalentPointEffect effect) {
+        public Effect(Perk talent, PerkEffect effect) {
             this.talent = talent;
             talent.effect = effect;
         }
@@ -78,18 +78,18 @@ public class TalentPointBuilder {
 
     public static class Connections {
 
-        private TalentPoint talent;
+        private Perk talent;
 
-        public Connections(TalentPoint talent) {
+        public Connections(Perk talent) {
             this.talent = talent;
         }
 
-        public Connections addConnection(TalentPoint other) {
+        public Connections addConnection(Perk other) {
             this.talent.connectTo(other);
             return this;
         }
 
-        public TalentPoint build() {
+        public Perk build() {
             TalentPoints.all.add(talent);
             return talent;
         }

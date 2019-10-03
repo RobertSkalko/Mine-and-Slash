@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.onevent.player;
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.gui.TalentScreen;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.gui.PerkTreeScreen;
 import com.robertx22.mine_and_slash.uncommon.gui.StatGUI;
 import com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen.StatPointScreen;
 import net.minecraft.client.Minecraft;
@@ -30,7 +30,7 @@ public class OnKeyPress {
             }
             if (MMORPG.RUN_DEV_TOOLS) {
                 if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
-                    Minecraft.getInstance().displayGuiScreen(new TalentScreen());
+                    Minecraft.getInstance().displayGuiScreen(new PerkTreeScreen());
                 }
             }
 
