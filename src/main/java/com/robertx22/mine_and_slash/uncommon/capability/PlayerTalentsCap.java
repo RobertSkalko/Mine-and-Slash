@@ -136,7 +136,7 @@ public class PlayerTalentsCap {
             if (talent.isStart) {
                 return true;
             }
-            
+
             boolean can = false;
             for (TalentPoint con : talent.connections) {
                 if (this.data.isAllocated(con)) {

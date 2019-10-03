@@ -150,38 +150,49 @@ public class TalentScreen extends Screen {
 
     }
 
+    private boolean shouldRender(int x, int y) {
+
+        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
+        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
+
+        if (x >= offsetX && x < offsetX + sizeX - 6) {
+            if (y >= offsetY && y < offsetY + sizeY - 6) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
     private void renderConnection(TalentPointButton one, TalentPointButton two,
                                   TalentConnection connection) {
-        if (one.shouldRender((int) scrollX, (int) scrollY)) {
 
-            if (two.shouldRender((int) scrollX, (int) scrollY)) {
+        int x1 = one.getMiddleX((int) scrollX);
+        int y1 = one.getMiddleY((int) scrollY);
 
-                int x1 = one.getMiddleX((int) scrollX);
-                int y1 = one.getMiddleY((int) scrollY);
+        int x2 = two.getMiddleX((int) scrollX);
+        int y2 = two.getMiddleY((int) scrollY);
 
-                int x2 = two.getMiddleX((int) scrollX);
-                int y2 = two.getMiddleY((int) scrollY);
+        int size = 6;
 
-                int size = 6;
+        float spacing = size + size / 2;
 
-                float spacing = size + size / 2;
+        List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 100f, spacing, true);
 
-                List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 100f, spacing, true);
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        Minecraft.getInstance().getTextureManager().bindTexture(LINES);
 
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                Minecraft.getInstance().getTextureManager().bindTexture(LINES);
+        for (PointF point : points) {
 
-                for (PointF point : points) {
+            int x = (int) (point.x - ((float) size / 2));
+            int y = (int) (point.y - ((float) size / 2));
 
-                    int x = (int) (point.x - ((float) size / 2));
-                    int y = (int) (point.y - ((float) size / 2));
-
-                    blit(x, y, 0, connection.allocationStatus.spriteOffsetX, 0.0F, size, size, 256, 256);
-                }
-
+            if (shouldRender(x, y)) {
+                blit(x, y, 0, connection.allocationStatus.spriteOffsetX, 0.0F, size, size, 256, 256);
             }
-
         }
+
     }
 
     protected void drawSpace() {

@@ -13,7 +13,7 @@ public class TalentPoints implements ISlashRegistryInit {
 
     public static List<TalentPoint> all = new ArrayList<>();
 
-    public final static TalentPoint CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1, START0;
+    public final static TalentPoint CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1, CRIT_DMG2, START0;
 
     static {
 
@@ -51,6 +51,13 @@ public class TalentPoints implements ISlashRegistryInit {
                 .copy(CRIT_DMG0)
                 .addConnection(CRIT_DMG0)
                 .addConnection(CRIT_HIT1)
+                .build();
+
+        CRIT_DMG2 = TalentPointBuilder.create("crit_dmg2")
+                .setPos(3, -3)
+                .copy(CRIT_DMG0)
+                .addConnection(CRIT_DMG0)
+                .addConnection(CRIT_DMG1)
                 .build();
 
     }
