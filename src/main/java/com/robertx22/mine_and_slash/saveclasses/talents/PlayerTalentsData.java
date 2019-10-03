@@ -20,6 +20,10 @@ public class PlayerTalentsData {
         return map.getOrDefault(guid, false);
     }
 
+    public boolean isAllocated(TalentPoint point) {
+        return isAllocated(point.GUID());
+    }
+
     public void allocate(String guid) {
         map.put(guid, true);
     }

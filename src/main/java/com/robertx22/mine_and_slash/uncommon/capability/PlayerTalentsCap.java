@@ -22,6 +22,8 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.robertx22.mine_and_slash.new_content_test.talent_tree.TalentConnection.Allocation.*;
+
 @Mod.EventBusSubscriber
 public class PlayerTalentsCap {
 
@@ -83,20 +85,24 @@ public class PlayerTalentsCap {
 
             for (TalentPoint talent : SlashRegistry.Talents().getList()) {
 
-                TalentConnection.Allocation status = TalentConnection.Allocation.CANT_ALLOCATE;
-
-                if (this.data.isAllocated(talent.GUID())) {
-                    status = TalentConnection.Allocation.ALLOCATED;
-                } else {
+                if (data.isAllocated(talent)) {
                     for (TalentPoint con : talent.connections) {
-                        if (this.data.isAllocated(con.GUID())) {
-                            status = TalentConnection.Allocation.CAN_ALLOCATE;
+                        if (data.isAllocated(con)) {
+                            set.add(new TalentConnection(ALLOCATED, talent, con));
+                        } else {
+                            set.add(new TalentConnection(CAN_ALLOCATE, talent, con));
                         }
                     }
 
+                } else {
+                    for (TalentPoint con : talent.connections) {
+                        if (data.isAllocated(con)) {
+                            set.add(new TalentConnection(CAN_ALLOCATE, talent, con));
+                        } else {
+                            set.add(new TalentConnection(CANT_ALLOCATE, talent, con));
+                        }
+                    }
                 }
-
-                TalentConnection tc = new TalentConnection();
 
             }
 

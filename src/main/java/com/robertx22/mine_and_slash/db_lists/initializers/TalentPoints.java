@@ -13,15 +13,24 @@ public class TalentPoints implements ISlashRegistryInit {
 
     public static List<TalentPoint> all = new ArrayList<>();
 
-    public final static TalentPoint CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1;
+    public final static TalentPoint CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1, START0;
 
     static {
+
+        START0 = TalentPointBuilder.create("start0")
+                .setPos(0, 0)
+                .setRender(Items.LANTERN)
+                .setEffect(TalentEffects.NOTHING)
+                .finish()
+                .build()
+                .setAsStart();
 
         CRIT_HIT0 = TalentPointBuilder.create("crit_hit0")
                 .setPos(0, 0)
                 .setRender(Items.GLOWSTONE_DUST)
                 .setEffect(TalentEffects.SMALL_CRIT_HIT)
                 .finish()
+                .addConnection(START0)
                 .build();
 
         CRIT_HIT1 = TalentPointBuilder.create("crit_hit1")
@@ -31,7 +40,7 @@ public class TalentPoints implements ISlashRegistryInit {
                 .build();
 
         CRIT_DMG0 = TalentPointBuilder.create("crit_dmg0")
-                .setPos(5, -5)
+                .setPos(4, -4)
                 .setRender(Items.REDSTONE)
                 .setEffect(TalentEffects.SMALL_CRIT_DMG)
                 .finish()

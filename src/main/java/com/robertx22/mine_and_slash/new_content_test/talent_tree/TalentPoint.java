@@ -1,12 +1,14 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.initializers.TalentPoints;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
@@ -55,6 +57,11 @@ public class TalentPoint implements ISlashRegistryEntry<TalentPoint> {
             }
         }
         return false;
+    }
+
+    public static List<TalentPoint> getStarts() {
+        return Arrays.asList(TalentPoints.CRIT_DMG0);
+
     }
 
     @Override
