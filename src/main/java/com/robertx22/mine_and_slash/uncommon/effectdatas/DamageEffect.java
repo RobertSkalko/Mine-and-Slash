@@ -95,7 +95,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     public float getActualDamage() {
         float dmg = this.number * damageMultiplier; // this way axes can do double damage instead of doing double attacks
-        dmg = HealthUtils.DamageToMinecraftHealth(dmg + 1, target, targetData);
+
+        if (dmg <= 0) {
+            return 0;
+        }
+
+        dmg = HealthUtils.DamageToMinecraftHealth(dmg, target, targetData);
+
         return dmg;
     }
 
@@ -235,7 +241,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 DamageEffect bonus = new DamageEffect(null, source, target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;
-
+                bonus.calculateEffects();
                 info.addDmg(bonus.getActualDamage(), bonus.element);
 
             }

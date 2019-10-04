@@ -46,6 +46,7 @@ public class ResourcesData {
             this.spell = spell;
             return this;
         }
+
     }
 
     public enum Type {
@@ -83,6 +84,15 @@ public class ResourcesData {
         return data.getUnit().health().CurrentValue(entity, data.getUnit());
     }
 
+    public float getModifiedValue(Context ctx) {
+        if (ctx.use == Use.RESTORE) {
+            return get(ctx) + ctx.amount;
+        } else {
+            return get(ctx) - ctx.amount;
+        }
+
+    }
+
     private float get(Context ctx) {
         if (ctx.type == Type.ENERGY) {
             return energy;
@@ -99,24 +109,23 @@ public class ResourcesData {
 
     }
 
-    private void set(Context ctx) {
+    private void modifyBy(Context ctx) {
+
         if (ctx.type == Type.ENERGY) {
-            energy = MathHelper.clamp(ctx.amount, 0, ctx.targetData.getUnit()
+            energy = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                     .energyData().Value);
         } else if (ctx.type == Type.MANA) {
-            mana = MathHelper.clamp(ctx.amount, 0, ctx.targetData.getUnit()
+            mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                     .manaData().Value);
         } else if (ctx.type == Type.MAGIC_SHIELD) {
-            magicShield = MathHelper.clamp(ctx.amount, 0, ctx.targetData.getUnit()
+            magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                     .magicShieldData().Value);
         } else if (ctx.type == Type.HEALTH) {
 
-            float current = get(ctx);
-
-            if (ctx.amount > current) {
+            if (ctx.use == Use.RESTORE) {
                 heal(ctx);
             } else {
-                ctx.target.setHealth(HealthUtils.DamageToMinecraftHealth(ctx.amount, ctx.target, ctx.targetData));
+                ctx.target.setHealth(HealthUtils.DamageToMinecraftHealth(getModifiedValue(ctx), ctx.target, ctx.targetData));
             }
         }
     }
@@ -140,21 +149,7 @@ public class ResourcesData {
     }
 
     public void modify(Context ctx) {
-        if (ctx.use == Use.RESTORE) {
-            restore(ctx);
-        } else {
-            consume(ctx);
-        }
-    }
-
-    private void consume(Context ctx) {
-        ctx.amount = get(ctx) - ctx.amount;
-        set(ctx);
-    }
-
-    private void restore(Context ctx) {
-        ctx.amount = get(ctx) + ctx.amount;
-        set(ctx);
+        modifyBy(ctx);
     }
 
 }

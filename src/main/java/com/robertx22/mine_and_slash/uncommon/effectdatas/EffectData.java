@@ -120,17 +120,20 @@ public abstract class EffectData {
 
     public void Activate() {
 
+        calculateEffects();
+
+        if (this.canceled != true) {
+            activate();
+        }
+
+    }
+
+    public void calculateEffects() {
         if (source == null || target == null || canceled == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null)
             return;
 
         TryApplyEffects(this.GetSource());
         TryApplyEffects(this.GetTarget());
-
-        if (this.canceled != true) {
-
-            activate();
-
-        }
 
     }
 

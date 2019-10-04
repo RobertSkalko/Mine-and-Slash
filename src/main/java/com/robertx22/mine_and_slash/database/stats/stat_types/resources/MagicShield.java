@@ -1,10 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.stat_effects.defense.MagicShieldEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import net.minecraft.util.text.TextFormatting;
 
-public class MagicShield extends Stat {
+public class MagicShield extends Stat implements IStatEffects {
     public static String GUID = "magic_shield";
 
     public static MagicShield INSTANCE = new MagicShield();
@@ -57,4 +60,10 @@ public class MagicShield extends Stat {
     public String locNameForLangFile() {
         return "Magic Shield";
     }
+
+    @Override
+    public IStatEffect getEffect() {
+        return MagicShieldEffect.INSTANCE;
+    }
+
 }

@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LookUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
@@ -251,8 +252,8 @@ public class HealthBarRenderer {
                 GlStateManager.scalef(s1, s1, s1);
 
                 int h = ClientContainer.INSTANCE.neatConfig.hpTextHeight.get();
-                String maxHpStr = TextFormatting.BOLD + "" + Math.round(maxHealth * 100.0) / 100.0;
-                String hpStr = "" + Math.round(health * 100.0) / 100.0;
+                String maxHpStr = TextFormatting.BOLD + NumberUtils.formatNumber((int) maxHealth);
+                String hpStr = NumberUtils.formatNumber((int) health);
                 String percStr = (int) percent + "%";
 
                 if (maxHpStr.endsWith(".0"))

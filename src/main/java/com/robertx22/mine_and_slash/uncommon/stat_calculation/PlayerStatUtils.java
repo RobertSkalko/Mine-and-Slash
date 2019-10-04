@@ -45,6 +45,12 @@ public class PlayerStatUtils {
         addScalingStat(data, Health.GUID, ModConfig.INSTANCE.PlayerBaseStats.health.get(), ModConfig.INSTANCE.PlayerBaseStats.health_per_level
                 .get());
 
+        addScalingStat(data, MagicShield.GUID, ModConfig.INSTANCE.PlayerBaseStats.magic_shield
+                .get(), ModConfig.INSTANCE.PlayerBaseStats.magic_shield_per_level.get());
+
+        addScalingStat(data, MagicShieldRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.magic_shield_regen
+                .get(), ModConfig.INSTANCE.PlayerBaseStats.magic_shield_regen_per_level.get());
+
         addScalingStat(data, CriticalHit.GUID, ModConfig.INSTANCE.PlayerBaseStats.critical_hit
                 .get(), ModConfig.INSTANCE.PlayerBaseStats.critical_hit_per_level.get());
 

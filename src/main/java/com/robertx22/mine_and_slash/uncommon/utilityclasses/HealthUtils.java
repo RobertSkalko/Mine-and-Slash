@@ -21,9 +21,8 @@ public class HealthUtils {
             e.printStackTrace();
         }
         return 0;
-
     }
-
+    
     public static float vanillaHealthToActualHealth(float dmg, LivingEntity entity,
                                                     UnitData data) {
 

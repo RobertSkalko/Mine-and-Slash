@@ -21,6 +21,12 @@ public class StatConfig {
     public DoubleValue armor_per_level;
     public DoubleValue health;
     public DoubleValue health_per_level;
+
+    public DoubleValue magic_shield;
+    public DoubleValue magic_shield_per_level;
+    public DoubleValue magic_shield_regen;
+    public DoubleValue magic_shield_regen_per_level;
+
     public DoubleValue critical_hit;
     public DoubleValue critical_hit_per_level;
     public DoubleValue energy_regen;
@@ -61,6 +67,19 @@ public class StatConfig {
                 .defineInRange("health", 100F, 0, Integer.MAX_VALUE);
         health_per_level = builder.translation("mmorpg.stat.health_per_level")
                 .defineInRange("health_per_level", 5F, 0, Integer.MAX_VALUE);
+
+        magic_shield = builder.translation("mmorpg.stat.magic_shield")
+                .defineInRange("magic_shield", 0D, 0, Integer.MAX_VALUE);
+
+        magic_shield_per_level = builder.translation("mmorpg.stat.magic_shield_per_level")
+                .defineInRange("magic_shield_per_level", 0D, 0, Integer.MAX_VALUE);
+
+        magic_shield_regen = builder.translation("mmorpg.stat.magic_shield_regen")
+                .defineInRange("magic_shield_regen", 3D, 0, Integer.MAX_VALUE);
+
+        magic_shield_regen_per_level = builder.translation("mmorpg.stat.magic_shield_regen_per_level")
+                .defineInRange("magic_shield_regen_per_level", 1D, 0, Integer.MAX_VALUE);
+
         critical_hit = builder.translation("mmorpg.stat.critical_hit")
                 .defineInRange("critical_hit", 1F, 0, Integer.MAX_VALUE);
         critical_hit_per_level = builder.translation("mmorpg.stat.critical_hit_per_level")
