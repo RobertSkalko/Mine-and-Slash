@@ -174,11 +174,12 @@ public abstract class EffectData {
         if (unit != null) {
 
             for (IStatEffects stateffects : Stats.allPreGenMapStatLists.get(IStatEffects.class)) {
+
                 StatData stat = unit.getStat((Stat) stateffects);
                 if (stat.Value != 0) {
-                    for (IStatEffect stateffect : stateffects.GetEffects()) {
-                        effects.add(new EffectUnitStat(stateffect, unit, stat));
-                    }
+
+                    effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));
+
                 }
 
             }

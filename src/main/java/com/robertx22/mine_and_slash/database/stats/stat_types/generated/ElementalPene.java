@@ -8,9 +8,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class ElementalPene extends ElementalStat implements IStatEffects {
     @Override
     public Stat.StatGroup statGroup() {
@@ -60,8 +57,8 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new ElementalPeneEffect());
+    public IStatEffect getEffect() {
+        return new ElementalPeneEffect();
     }
 
 }

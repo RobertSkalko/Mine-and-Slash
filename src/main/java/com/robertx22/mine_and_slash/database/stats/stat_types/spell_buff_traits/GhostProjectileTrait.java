@@ -4,9 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.stat_effects.spell_buffs.Ghos
 import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.base.SpellBuffTrait;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class GhostProjectileTrait extends SpellBuffTrait {
 
     public static String GUID = "Ghost Projectile";
@@ -17,8 +14,8 @@ public class GhostProjectileTrait extends SpellBuffTrait {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new GhostProjectileBuff());
+    public IStatEffect getEffect() {
+        return new GhostProjectileBuff();
     }
 
     @Override

@@ -7,9 +7,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Armor extends Stat implements IStatEffects, IUsableStat {
 
     public static Stat INSTANCE = new Armor();
@@ -66,8 +63,8 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new ArmorEffect());
+    public IStatEffect getEffect() {
+        return new ArmorEffect();
     }
 
     @Override

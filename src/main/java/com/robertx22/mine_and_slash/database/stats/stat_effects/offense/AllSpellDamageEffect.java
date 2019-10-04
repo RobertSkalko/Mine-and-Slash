@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
 public class AllSpellDamageEffect implements IStatEffect {
+    public static final AllSpellDamageEffect INSTANCE = new AllSpellDamageEffect();
 
     @Override
     public int GetPriority() {

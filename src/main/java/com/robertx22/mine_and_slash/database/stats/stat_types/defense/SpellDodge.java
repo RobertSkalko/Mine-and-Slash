@@ -6,9 +6,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class SpellDodge extends Stat implements IStatEffects {
     public static String GUID = "Spell Dodge";
 
@@ -18,8 +15,8 @@ public class SpellDodge extends Stat implements IStatEffects {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new SpellDodgeEffect());
+    public IStatEffect getEffect() {
+        return new SpellDodgeEffect();
     }
 
     public SpellDodge() {

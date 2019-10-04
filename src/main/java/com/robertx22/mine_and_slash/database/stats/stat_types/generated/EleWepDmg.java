@@ -8,9 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class EleWepDmg extends Stat implements IStatEffects {
 
@@ -52,8 +50,8 @@ public class EleWepDmg extends Stat implements IStatEffects {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(EleWepDmgEffect.INSTANCE);
+    public IStatEffect getEffect() {
+        return EleWepDmgEffect.INSTANCE;
     }
 
     @Override

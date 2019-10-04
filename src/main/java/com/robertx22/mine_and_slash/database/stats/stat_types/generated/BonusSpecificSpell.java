@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BonusSpecificSpell extends Stat implements IStatEffects, IGenerated<Stat> {
@@ -59,8 +58,8 @@ public class BonusSpecificSpell extends Stat implements IStatEffects, IGenerated
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new BonusSpecificSpellEffect(this.spell));
+    public IStatEffect getEffect() {
+        return new BonusSpecificSpellEffect(this.spell);
     }
 
     @Override

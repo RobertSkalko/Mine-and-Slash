@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
+import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect.EffectSides;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -110,10 +110,7 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
         if (unit != null) {
             for (StatData stat : unit.getStats().values()) {
                 if (stat.GetStat() instanceof IStatEffects) {
-                    for (IStatEffect effect : ((IStatEffects) stat.GetStat()).GetEffects()) {
-                        effects.add(new EffectUnitStat(effect, unit, stat));
-                    }
-
+                    effects.add(new EffectUnitStat(((IStatEffects) stat.GetStat()).getEffect(), unit, stat));
                 }
 
             }

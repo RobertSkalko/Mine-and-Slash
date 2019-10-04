@@ -6,9 +6,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class PhysicalDispersion extends Stat implements IStatEffects {
 
     public PhysicalDispersion() {
@@ -47,11 +44,9 @@ public class PhysicalDispersion extends Stat implements IStatEffects {
         return true;
     }
 
-    static final PhysicalToHighestEle effect = new PhysicalToHighestEle();
-
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(effect);
+    public IStatEffect getEffect() {
+        return PhysicalToHighestEle.INSTANCE;
     }
 
     @Override

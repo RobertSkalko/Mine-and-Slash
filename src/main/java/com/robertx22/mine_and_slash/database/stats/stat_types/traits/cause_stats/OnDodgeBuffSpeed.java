@@ -9,9 +9,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import net.minecraft.potion.Effects;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class OnDodgeBuffSpeed extends BaseTrait implements IStatEffects {
 
     @Override
@@ -35,7 +32,9 @@ public class OnDodgeBuffSpeed extends BaseTrait implements IStatEffects {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new OnCauseDoEffect(new OnAttackDodgedCause(), 100, IStatEffect.EffectSides.Target, new GivePotionEffect(Effects.SPEED, 5), IStatEffect.EffectSides.Target));
+    public IStatEffect getEffect() {
+        return new OnCauseDoEffect(new OnAttackDodgedCause(), 100, IStatEffect.EffectSides.Target, new GivePotionEffect(Effects.SPEED, 5), IStatEffect.EffectSides.Target);
     }
 }
+
+

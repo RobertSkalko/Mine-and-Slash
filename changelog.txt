@@ -1,6 +1,7 @@
 2.8.19
 added ondmgevent
 added ele wep dmg stat. unused for now
+some optimizations
 
 2.8.18
 BACKUP YOUR WORLD JUST IN CASE

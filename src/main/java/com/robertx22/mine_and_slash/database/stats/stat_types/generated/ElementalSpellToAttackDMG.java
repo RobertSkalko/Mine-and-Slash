@@ -8,9 +8,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEffects {
 
     public ElementalSpellToAttackDMG(Elements element) {
@@ -33,8 +30,8 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new SpellToBasicDamageEffect());
+    public IStatEffect getEffect() {
+        return new SpellToBasicDamageEffect();
     }
 
     @Override

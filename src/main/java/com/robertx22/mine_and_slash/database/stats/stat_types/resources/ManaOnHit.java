@@ -6,9 +6,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class ManaOnHit extends Stat implements IStatEffects {
     public static String GUID = "Mana On Hit";
 
@@ -23,8 +20,8 @@ public class ManaOnHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new ManaOnHitEffect());
+    public IStatEffect getEffect() {
+        return new ManaOnHitEffect();
     }
 
     public ManaOnHit() {

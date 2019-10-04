@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BlockReflect extends ElementalStat implements IStatEffects {
@@ -66,7 +65,7 @@ public class BlockReflect extends ElementalStat implements IStatEffects {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new BlockReflectEffect(element));
+    public IStatEffect getEffect() {
+        return new BlockReflectEffect(element);
     }
 }

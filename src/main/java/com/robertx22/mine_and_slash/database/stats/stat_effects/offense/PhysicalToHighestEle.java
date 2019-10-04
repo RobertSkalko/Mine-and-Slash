@@ -10,6 +10,8 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
 public class PhysicalToHighestEle implements IStatEffect {
 
+    public static final PhysicalToHighestEle INSTANCE = new PhysicalToHighestEle();
+
     @Override
     public int GetPriority() {
         return Priority.Third.priority;

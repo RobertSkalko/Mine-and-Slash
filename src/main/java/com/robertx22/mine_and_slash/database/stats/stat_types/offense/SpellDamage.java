@@ -7,9 +7,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class SpellDamage extends Stat implements IStatEffects {
 
     public static Stat INSTANCE = new SpellDamage();
@@ -60,11 +57,9 @@ public class SpellDamage extends Stat implements IStatEffects {
         return false;
     }
 
-    static final AllSpellDamageEffect effect = new AllSpellDamageEffect();
-
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(effect);
+    public IStatEffect getEffect() {
+        return AllSpellDamageEffect.INSTANCE;
     }
 
     @Override

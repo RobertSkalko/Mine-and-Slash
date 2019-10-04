@@ -8,9 +8,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class AllElementalDamage extends ElementalStat implements IStatEffects {
 
     public AllElementalDamage(Elements element) {
@@ -48,8 +45,8 @@ public class AllElementalDamage extends ElementalStat implements IStatEffects {
     }
 
     @Override
-    public List<IStatEffect> GetEffects() {
-        return Arrays.asList(new AllEleDmgEffectIfElement());
+    public IStatEffect getEffect() {
+        return new AllEleDmgEffectIfElement();
     }
 
     @Override
