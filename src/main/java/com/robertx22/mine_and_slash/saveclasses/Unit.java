@@ -170,6 +170,16 @@ public class Unit {
         return (Energy) getStat(Energy.GUID).GetStat();
     }
 
+    public float getEffectiveHealth() {
+
+        float hp = healthData().Value;
+
+        // TODO add ene shield
+        
+        return hp;
+
+    }
+
     public StatData healthData() {
         try {
             return getStat(Health.GUID);

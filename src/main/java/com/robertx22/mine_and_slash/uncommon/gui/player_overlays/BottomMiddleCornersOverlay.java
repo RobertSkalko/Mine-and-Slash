@@ -26,13 +26,13 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
         int x = width / 2 + this.TEXTURE_WIDTH - offsetx;
         int y = height - 16 - this.TEXTURE_HEIGHT;
 
-        this.DrawBar(mc, gui, unit, energytexturepath, data.getCurrentEnergy(), unit.energyData().Value, false, data, x, y);
+        this.DrawBar(mc, gui, energytexturepath, data.getCurrentEnergy(), unit.energyData().Value, Type.ENE, data, x, y);
 
         // MANA
         x = width / 2 + this.TEXTURE_WIDTH - offsetx;
         y = height - 15;
 
-        this.DrawBar(mc, gui, unit, manatexturepath, data.getCurrentMana(), unit.manaData().Value, false, data, x, y);
+        this.DrawBar(mc, gui, manatexturepath, data.getCurrentMana(), unit.manaData().Value, Type.MANA, data, x, y);
 
         // MANA
 
@@ -40,8 +40,8 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
         x = width / 2 - this.TEXTURE_WIDTH * 2 + offsetx;
         y = height - 16 - this.TEXTURE_HEIGHT;
 
-        this.DrawBar(mc, gui, unit, healthtexturepath, unit.health()
-                .CurrentValue(entity, unit), unit.healthData().Value, false, data, x, y);
+        this.DrawBar(mc, gui, healthtexturepath, unit.health()
+                .CurrentValue(entity, unit), unit.healthData().Value, Type.HP, data, x, y);
 
         // HEALTH
 
@@ -49,7 +49,7 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
         x = width / 2 - this.TEXTURE_WIDTH * 2 + offsetx;
         y = height - 15;
 
-        this.DrawBar(mc, gui, unit, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), true, data, x, y);
+        this.DrawBar(mc, gui, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, x, y);
 
         // EXP
     }

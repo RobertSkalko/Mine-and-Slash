@@ -20,28 +20,28 @@ public class MiddleOverlay extends BasePlayerOverlay {
         int x = width / 2 + 5;
         int y = height - 53;
 
-        this.DrawBar(mc, gui, unit, energytexturepath, data.getCurrentEnergy(), unit.energyData().Value, false, data, x, y);
+        this.DrawBar(mc, gui, energytexturepath, data.getCurrentEnergy(), unit.energyData().Value, Type.ENE, data, x, y);
         // ENERGY
 
         // MANA
         x = width / 2 + 5;
         y = height - 65;
-        this.DrawBar(mc, gui, unit, manatexturepath, data.getCurrentMana(), unit.manaData().Value, false, data, x, y);
+        this.DrawBar(mc, gui, manatexturepath, data.getCurrentMana(), unit.manaData().Value, Type.MANA, data, x, y);
         // MANA
 
         // HEALTH
         x = width / 2 - this.TEXTURE_WIDTH;
         y = height - 65;
 
-        this.DrawBar(mc, gui, unit, healthtexturepath, unit.health()
-                .CurrentValue(entity, unit), unit.healthData().Value, false, data, x, y);
+        this.DrawBar(mc, gui, healthtexturepath, unit.health()
+                .CurrentValue(entity, unit), unit.healthData().Value, Type.HP, data, x, y);
         // HEALTH
 
         // EXP
 
         x = width / 2 - this.TEXTURE_WIDTH;
         y = height - 53;
-        this.DrawBar(mc, gui, unit, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), true, data, x, y);
+        this.DrawBar(mc, gui, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, x, y);
         // EXP
     }
 }
