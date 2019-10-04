@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_effects;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_effects.defense.BlockEffect;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -43,9 +44,11 @@ public class BlockReflectEffect implements IStatEffect {
 
                 if (dmgeffect.isBlocked()) {
 
-                    if (Effect.targetData.hasEnoughEnergy(energyCost)) {
+                    ResourcesData.Context ctx = new ResourcesData.Context(Effect.targetData, Effect.target, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
 
-                        Effect.targetData.consumeEnergy(energyCost);
+                    if (Effect.targetData.getResources().hasEnough(ctx)) {
+
+                        Effect.targetData.getResources().modify(ctx);
 
                         float dmg = data.Value;
 

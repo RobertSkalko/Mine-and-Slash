@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -46,7 +47,10 @@ public class ManaRegenPotion extends SpellPotionBase {
                 ParticleUtils.spawnManaRestoreParticles(entity, 5);
             } else {
                 UnitData data = Load.Unit(entity);
-                data.restoreMana(amplifier);
+
+                ResourcesData.Context cost = new ResourcesData.Context(data, entity, ResourcesData.Type.MANA, amplifier, ResourcesData.Use.RESTORE);
+
+                data.getResources().modify(cost);
 
             }
         } catch (Exception e) {

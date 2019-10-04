@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.stat_effects.potion_effects;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -34,8 +35,10 @@ public class PotionBonusDmgEffect implements IStatEffect {
 
                 if (dmg.getEffectType() == EffectData.EffectTypes.BASIC_ATTACK) {
 
-                    if (dmg.sourceData.hasEnoughMana(manaCost)) {
-                        dmg.sourceData.consumeMana(manaCost);
+                    ResourcesData.Context ctx = new ResourcesData.Context(Effect.sourceData, Effect.source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
+
+                    if (dmg.sourceData.getResources().hasEnough(ctx)) {
+                        dmg.sourceData.getResources().modify(ctx);
 
                     } else {
                         return Effect;

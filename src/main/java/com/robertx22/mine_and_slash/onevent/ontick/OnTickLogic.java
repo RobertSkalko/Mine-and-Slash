@@ -8,10 +8,10 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionContainer;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -57,13 +57,16 @@ public class OnTickLogic {
                         Unit unit = unit_capa.getUnit();
 
                         int manarestored = (int) unit.getStat(ManaRegen.GUID).Value;
-                        unit_capa.restoreMana(manarestored);
+                        ResourcesData.Context mana = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.MANA, manarestored, ResourcesData.Use.RESTORE);
+                        unit_capa.getResources().modify(mana);
 
                         int energyrestored = (int) unit.getStat(EnergyRegen.GUID).Value;
-                        unit_capa.restoreEnergy(energyrestored);
+                        ResourcesData.Context ene = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.ENERGY, energyrestored, ResourcesData.Use.RESTORE);
+                        unit_capa.getResources().modify(ene);
 
                         int healthrestored = (int) unit.getStat(HealthRegen.GUID).Value;
-                        unit_capa.heal(new HealData(player, unit_capa, healthrestored));
+                        ResourcesData.Context hp = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.HEALTH, healthrestored, ResourcesData.Use.RESTORE);
+                        unit_capa.getResources().modify(hp);
 
                     }
                 }

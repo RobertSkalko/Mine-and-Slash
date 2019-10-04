@@ -4,10 +4,10 @@ import com.robertx22.mine_and_slash.database.items.spell_items.self.ItemInstantH
 import com.robertx22.mine_and_slash.database.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.database.spells.bases.SpellBuffCheck;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -58,18 +58,17 @@ public class SpellInstantHeal extends BaseSpellHeal {
 
     @Override
     public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
-                        SpellItemData data) {
+                        SpellItemData spellData) {
 
         try {
 
             if (!world.isRemote) {
 
-                UnitData unit = Load.Unit(caster);
+                UnitData data = Load.Unit(caster);
 
-                HealData healData = new HealData(caster, unit, data.GetDamage(unit.getUnit()))
-                        .bySpell(this);
-
-                unit.heal(healData);
+                data.getResources()
+                        .modify(new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH, spellData
+                                .GetDamage(data.getUnit()), ResourcesData.Use.RESTORE).bySpell(this));
 
                 SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
                 // spell buffs

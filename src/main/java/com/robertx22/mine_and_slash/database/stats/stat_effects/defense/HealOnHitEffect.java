@@ -1,12 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.stat_effects.defense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
 public class HealOnHitEffect implements IStatEffect {
@@ -27,8 +26,10 @@ public class HealOnHitEffect implements IStatEffect {
 
         try {
             if (Effect instanceof DamageEffect) {
-                new HealEffect(new HealData(Effect.target, Effect.targetData, (int) data.Value))
-                        .Activate();
+
+                Effect.targetData.getResources()
+                        .modify(new ResourcesData.Context(Effect.targetData, Effect.target, ResourcesData.Type.HEALTH, data.Value, ResourcesData.Use.RESTORE));
+
             }
 
         } catch (Exception e) {

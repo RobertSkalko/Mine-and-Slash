@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Pr
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.builders.SimpleRecipeBuilders;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -36,7 +36,8 @@ public class InstantHealthPotionItem extends BaseInstantPotion {
     public void onFinish(ItemStack stack, World world, LivingEntity player,
                          EntityCap.UnitData unitdata) {
 
-        unitdata.heal(new HealData(player, unitdata, (int) amount()));
+        unitdata.getResources()
+                .modify(new ResourcesData.Context(unitdata, player, ResourcesData.Type.HEALTH, amount(), ResourcesData.Use.RESTORE));
 
     }
 

@@ -1,17 +1,18 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 
 public class HealEffect extends EffectData {
 
-    public HealData healData;
+    public ResourcesData.Context healData;
 
-    public HealEffect(HealData data) {
+    public HealEffect(ResourcesData.Context data) {
 
         super(data.source, data.target, data.sourceData, data.targetData);
 
-        this.number = data.number;
+        this.number = data.amount;
         this.healData = data;
     }
 

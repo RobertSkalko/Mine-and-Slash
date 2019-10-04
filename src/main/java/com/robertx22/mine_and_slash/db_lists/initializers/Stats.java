@@ -161,6 +161,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new ManaOnHit());
                     add(Energy.INSTANCE);
                     add(EnergyRegen.INSTANCE);
+                    add(MagicShield.INSTANCE);
                     // Resources
 
                     add(new BlockStrength());

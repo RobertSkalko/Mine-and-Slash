@@ -21,13 +21,16 @@ import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
 import com.robertx22.mine_and_slash.saveclasses.CustomExactStatsData;
 import com.robertx22.mine_and_slash.saveclasses.CustomStatsData;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.mine_and_slash.uncommon.datasaving.*;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.*;
+import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -73,20 +76,20 @@ public class EntityCap {
     private static final String EXP = "exp";
     private static final String UUID = "uuid";
     private static final String MOB_SAVED_ONCE = "mob_saved_once";
-    private static final String MANA = "current_mana";
-    private static final String ENERGY = "current_energy";
     private static final String CURRENT_MAP_ID = "current_map_resource_loc";
     private static final String SET_MOB_STATS = "set_mob_stats";
     private static final String NEWBIE_STATUS = "is_a_newbie";
     private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
     private static final String TIER = "TIER";
-    private static final String LAST_ATTACK_TICK = "LAST_ATTACK_TICK";
     private static final String PREVENT_LOOT = "PREVENT_LOOT";
     private static final String SHOULD_SYNC = "SHOULD_SYNC";
     private static final String ENTITY_TYPE = "ENTITY_TYPE";
+    private static final String RESOURCES_LOC = "RESOURCES_LOC";
 
     public interface UnitData extends ICommonCapability {
+
+        void modifyResource(ResourcesData.Context ctx);
 
         void onDeath(LivingEntity en);
 
@@ -176,28 +179,6 @@ public class EntityCap {
 
         void onLogin(PlayerEntity player);
 
-        float getCurrentMana();
-
-        float getCurrentEnergy();
-
-        void setCurrentEnergy(float i);
-
-        void setCurrentMana(float i);
-
-        boolean hasEnoughMana(float i);
-
-        boolean hasEnoughEnergy(float i);
-
-        void restoreMana(float i);
-
-        void restoreEnergy(float i);
-
-        void consumeMana(float i);
-
-        void consumeEnergy(float i);
-
-        void heal(HealData data);
-
         String getCurrentMapId();
 
         void setCurrentMapId(String res);
@@ -224,6 +205,12 @@ public class EntityCap {
         CustomStatsData getCustomStats();
 
         CustomExactStatsData getCustomExactStats();
+
+        ResourcesData getResources();
+
+        float getCurrentEnergy();
+
+        float getCurrentMana();
     }
 
     @EventBusSubscriber
@@ -274,8 +261,7 @@ public class EntityCap {
 
         float dmgByNonPlayers = 0;
 
-        float energy;
-        float mana;
+        ResourcesData resources = new ResourcesData();
 
         CustomStatsData customStats = new CustomStatsData();
         CustomExactStatsData customExactStats = new CustomExactStatsData();
@@ -284,8 +270,6 @@ public class EntityCap {
         public CompoundNBT getNBT() {
             CompoundNBT nbt = new CompoundNBT();
 
-            nbt.putFloat(MANA, mana);
-            nbt.putFloat(ENERGY, energy);
             nbt.putFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
             nbt.putInt(LEVEL, level);
             nbt.putInt(EXP, exp);
@@ -313,6 +297,9 @@ public class EntityCap {
                 UnitNbt.Save(nbt, unit);
             }
 
+            if (resources != null) {
+                LoadSave.Save(resources, nbt, RESOURCES_LOC);
+            }
             return nbt;
 
         }
@@ -325,15 +312,22 @@ public class EntityCap {
             this.rarity = nbt.getInt(RARITY);
             this.tier = nbt.getInt(TIER);
             this.uuid = nbt.getString(UUID);
-            this.energy = nbt.getFloat(ENERGY);
             this.dmgByNonPlayers = nbt.getFloat(DMG_DONE_BY_NON_PLAYERS);
-            this.mana = nbt.getFloat(MANA);
             this.currentMapResourceLoc = nbt.getString(CURRENT_MAP_ID);
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
             this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
             this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
             this.preventLoot = nbt.getBoolean(PREVENT_LOOT);
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
+
+            try {
+                this.resources = LoadSave.Load(ResourcesData.class, new ResourcesData(), nbt, RESOURCES_LOC);
+                if (resources == null) {
+                    resources = new ResourcesData();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             try {
                 String typestring = nbt.getString(ENTITY_TYPE);
@@ -599,6 +593,11 @@ public class EntityCap {
         }
 
         @Override
+        public void modifyResource(ResourcesData.Context ctx) {
+            this.resources.modify(ctx);
+        }
+
+        @Override
         public void onDeath(LivingEntity en) {
 
             int expLoss = (int) (exp * ModConfig.INSTANCE.Server.XP_LOSS_ON_DEATH.get());
@@ -756,19 +755,22 @@ public class EntityCap {
                     float energyCost = iwep.mechanic().GetEnergyCost() * multi;
                     float manaCost = iwep.mechanic().GetManaCost() * multi;
 
-                    if (hasEnoughEnergy(energyCost) == false) {
+                    ResourcesData.Context ene = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
+                    ResourcesData.Context mana = new ResourcesData.Context(this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
+
+                    if (getResources().hasEnough(ene) == false) {
                         AttackUtils.NoEnergyMessage(source);
                         return false;
 
                     } else {
 
-                        if (hasEnoughMana(manaCost) == false) {
+                        if (getResources().hasEnough(mana) == false) {
                             AttackUtils.NoEnergyMessage(source);
                             return false;
                         }
 
-                        consumeEnergy(energyCost);
-                        consumeMana(manaCost);
+                        getResources().modify(ene);
+                        getResources().modify(mana);
 
                         return true;
 
@@ -824,93 +826,6 @@ public class EntityCap {
         }
 
         @Override
-        public float getCurrentMana() {
-            return mana;
-        }
-
-        @Override
-        public float getCurrentEnergy() {
-            return energy;
-        }
-
-        @Override
-        public void setCurrentEnergy(float i) {
-            energy = i;
-
-        }
-
-        @Override
-        public void setCurrentMana(float i) {
-            mana = i;
-
-        }
-
-        @Override
-        public boolean hasEnoughMana(float i) {
-            return mana >= i;
-        }
-
-        @Override
-        public boolean hasEnoughEnergy(float i) {
-            return energy >= i;
-        }
-
-        @Override
-        public void restoreMana(float i) {
-            float max = unit.manaData().Value;
-
-            mana += i;
-            if (mana > max) {
-                mana = (int) max;
-            }
-
-        }
-
-        @Override
-        public void restoreEnergy(float i) {
-            float max = unit.energyData().Value;
-
-            energy += i;
-            if (energy > max) {
-                energy = (int) max;
-            }
-
-        }
-
-        @Override
-        public void consumeMana(float i) {
-            mana -= i;
-            if (mana < 0) {
-                mana = 0;
-            }
-
-        }
-
-        @Override
-        public void consumeEnergy(float i) {
-            energy -= i;
-            if (energy < 0) {
-                energy = 0;
-            }
-
-        }
-
-        @Override
-        public void heal(HealData data) {
-            if (data.target.isAlive()) {
-
-                if (data.spell != null) {
-                    SpellHealEffect effect = new SpellHealEffect(data);
-                    effect.Activate();
-
-                } else {
-                    HealEffect effect = new HealEffect(data);
-                    effect.Activate();
-                }
-            }
-        }
-
-        @Override
         public boolean increaseRarity(LivingEntity entity) {
 
             if (rarity == 5) {
@@ -962,9 +877,10 @@ public class EntityCap {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
-            if (this.hasEnoughEnergy(cost)) {
+            ResourcesData.Context energy = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
 
-                this.consumeEnergy(cost);
+            if (this.getResources().hasEnough(energy)) {
+                this.getResources().modify(energy);
                 int num = (int) unit.getStat(PhysicalDamage.GUID).Value;
                 DamageEffect dmg = new DamageEffect(event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
@@ -1016,6 +932,21 @@ public class EntityCap {
         @Override
         public CustomExactStatsData getCustomExactStats() {
             return this.customExactStats;
+        }
+
+        @Override
+        public ResourcesData getResources() {
+            return this.resources;
+        }
+
+        @Override
+        public float getCurrentEnergy() {
+            return this.resources.getEnergy();
+        }
+
+        @Override
+        public float getCurrentMana() {
+            return this.resources.getMana();
         }
 
         @Override

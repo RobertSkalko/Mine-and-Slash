@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.DmgNumPacket;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -176,14 +177,18 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public void RestoreMana() {
         int restored = (int) manaRestored;
         if (restored > 0) {
-            this.sourceData.restoreMana(restored);
+
+            sourceData.getResources()
+                    .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MANA, restored, ResourcesData.Use.RESTORE));
+
         }
     }
 
     public void Heal() {
         int healed = (int) healthHealed;
         if (healed > 0) {
-            sourceData.heal(new HealData(source, sourceData, healed));
+            sourceData.getResources()
+                    .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.HEALTH, healed, ResourcesData.Use.RESTORE));
         }
     }
 

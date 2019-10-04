@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
 import com.robertx22.mine_and_slash.database.items.spell_items.BaseSpellItem;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -98,22 +99,26 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
 
             EntityCap.UnitData data = Load.Unit(player);
 
-            float manarestored = restoreBasedOnMissing(data.getCurrentMana(), data.getUnit()
+            float manarestored = restoreBasedOnMissing(data.getResources().getMana(), data
+                    .getUnit()
                     .manaData().Value);
 
-            float energyrestored = restoreBasedOnMissing(data.getCurrentEnergy(), data.getUnit()
-                    .energyData().Value);
+            float energyrestored = restoreBasedOnMissing(data.getResources()
+                    .getEnergy(), data.getUnit().energyData().Value);
+
+            ResourcesData.Context mana = new ResourcesData.Context(data, player, ResourcesData.Type.MANA, manarestored, ResourcesData.Use.RESTORE);
+            ResourcesData.Context ene = new ResourcesData.Context(data, player, ResourcesData.Type.ENERGY, energyrestored, ResourcesData.Use.RESTORE);
 
             boolean restored = false;
 
             if (manarestored > energyrestored) {
                 if (manarestored > 0) {
-                    data.restoreMana(manarestored);
+                    data.modifyResource(mana);
                     restored = true;
                 }
             } else {
                 if (energyrestored > 0) {
-                    data.restoreEnergy(energyrestored);
+                    data.modifyResource(ene);
                     restored = true;
                 }
             }

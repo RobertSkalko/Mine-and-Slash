@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
+import com.robertx22.mine_and_slash.database.stats.stat_types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -175,7 +176,7 @@ public class Unit {
         float hp = healthData().Value;
 
         // TODO add ene shield
-        
+
         return hp;
 
     }
@@ -184,6 +185,15 @@ public class Unit {
         try {
             return getStat(Health.GUID);
         } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public StatData magicShieldData() {
+        try {
+            return getStat(MagicShield.GUID);
+        } catch (Exception e) {
+
         }
         return null;
     }

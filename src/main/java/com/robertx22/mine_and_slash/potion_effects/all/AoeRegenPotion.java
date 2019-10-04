@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -46,9 +46,9 @@ public class AoeRegenPotion extends SpellPotionBase {
 
                 int healed = (int) data.getUnit().healthData().Value / 50;
 
-                HealData healData = new HealData(entity, data, en, Load.Unit(en), healed);
+                ResourcesData.Context ctx = new ResourcesData.Context(data, en, ResourcesData.Type.MANA, healed, ResourcesData.Use.RESTORE);
 
-                Load.Unit(en).heal(healData);
+                Load.Unit(en).getResources().modify(ctx);
 
             }
         }

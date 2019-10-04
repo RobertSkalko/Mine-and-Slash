@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -40,7 +41,10 @@ public class EnergyRegenPotion extends SpellPotionBase {
                 ParticleUtils.spawnEnergyRestoreParticles(entity, 5);
             } else {
                 UnitData data = Load.Unit(entity);
-                data.restoreEnergy(amplifier);
+
+                ResourcesData.Context energy = new ResourcesData.Context(data, entity, ResourcesData.Type.ENERGY, amplifier, ResourcesData.Use.RESTORE);
+
+                data.getResources().modify(energy);
             }
         } catch (Exception e) {
             e.printStackTrace();

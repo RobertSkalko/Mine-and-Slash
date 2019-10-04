@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Pr
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.builders.SimpleRecipeBuilders;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.entity.LivingEntity;
@@ -35,7 +36,8 @@ public class InstantEnergyPotionItem extends BaseInstantPotion implements IAmoun
     public void onFinish(ItemStack stack, World world, LivingEntity player,
                          EntityCap.UnitData unitdata) {
 
-        unitdata.restoreEnergy(amount());
+        ResourcesData.Context ctx = new ResourcesData.Context(unitdata, player, ResourcesData.Type.ENERGY, amount(), ResourcesData.Use.RESTORE);
+        unitdata.modifyResource(ctx);
 
     }
 

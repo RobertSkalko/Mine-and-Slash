@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 import com.robertx22.mine_and_slash.database.spells.self.SpellSelfRegen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -44,7 +44,10 @@ public class HealthRegenPotion extends SpellPotionBase {
             } else {
                 UnitData data = Load.Unit(entity);
 
-                data.heal(new HealData(entity, data, amplifier).bySpell(new SpellSelfRegen()));
+                ResourcesData.Context hp = new ResourcesData.Context(data, entity, ResourcesData.Type.HEALTH, amplifier, ResourcesData.Use.RESTORE)
+                        .bySpell(new SpellSelfRegen());
+
+                data.modifyResource(hp);
 
             }
         } catch (Exception e) {
