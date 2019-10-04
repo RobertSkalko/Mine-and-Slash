@@ -201,8 +201,9 @@ public class Stats implements ISlashRegistryInit {
             } else {
                 All.add(stat);
             }
-
         }
+
+        EleWepDmg.register();
 
         All.forEach(x -> x.registerToSlashRegistry());
 

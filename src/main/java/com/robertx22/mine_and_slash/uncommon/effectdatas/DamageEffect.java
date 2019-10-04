@@ -37,6 +37,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
 
+    public boolean isElemental() {
+        return this.element != null && this.element != Elements.Physical;
+    }
+
     public Elements getHighestBonusElementalDamageElement() {
 
         int highest = 0;
