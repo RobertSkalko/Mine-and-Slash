@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.core_stats;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
 
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class Dexterity extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new CriticalHitFlat().multi(1.5F), new DodgeFlat(), new ArmorFlat());
+        return Arrays.asList(new CriticalHitFlat().multi(1.5F), new DodgeRatingFlat(), new ArmorFlat());
     }
 
     @Override

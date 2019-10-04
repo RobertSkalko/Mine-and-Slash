@@ -15,7 +15,7 @@ public abstract class WeaponMechanic {
 
     public abstract float GetEnergyCost();
 
-    public float GetManaCost() {
+    public float GetManaCost(int lvl) {
         return 0;
     }
 

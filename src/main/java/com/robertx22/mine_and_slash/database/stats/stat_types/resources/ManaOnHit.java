@@ -34,7 +34,7 @@ public class ManaOnHit extends Stat implements IStatEffects {
 
     @Override
     public boolean ScalesToLevel() {
-        return false;
+        return true;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDamageFlat;
@@ -42,7 +42,7 @@ public class RingDodge extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new DodgeFlat(), new DodgePercent(), new ElementalResistFlat(Elements.Nature), new WeaponDamageFlat(WeaponTypes.Bow));
+        return Arrays.asList(new DodgeRatingFlat(), new DodgePercent(), new ElementalResistFlat(Elements.Nature), new WeaponDamageFlat(WeaponTypes.Bow));
     }
 
     @Override

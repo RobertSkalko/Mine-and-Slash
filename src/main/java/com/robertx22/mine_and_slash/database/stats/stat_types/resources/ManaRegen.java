@@ -31,7 +31,7 @@ public class ManaRegen extends BaseRegenClass {
 
     @Override
     public boolean ScalesToLevel() {
-        return false;
+        return true;
     }
 
     @Override

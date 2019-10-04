@@ -129,10 +129,11 @@ public class GearTooltipUtils {
                             .appendSibling(Energy.INSTANCE.locName()
                                     .appendText(": " + iwep.mechanic().GetEnergyCost())));
                 }
-                if (iwep.mechanic().GetManaCost() > 0) {
+                if (iwep.mechanic().GetManaCost(info.unitdata.getLevel()) > 0) {
                     tip.add(Styles.BLUECOMP()
                             .appendSibling(Mana.INSTANCE.locName()
-                                    .appendText(": " + iwep.mechanic().GetManaCost())));
+                                    .appendText(": " + (int) iwep.mechanic()
+                                            .GetManaCost(info.unitdata.getLevel()))));
                 }
 
                 tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep

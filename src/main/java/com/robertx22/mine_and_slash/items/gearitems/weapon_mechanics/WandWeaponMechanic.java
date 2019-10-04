@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
@@ -35,8 +36,8 @@ public class WandWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public float GetManaCost() {
-        return 2;
+    public float GetManaCost(int lvl) {
+        return StatUtils.calculateNormalScalingStatGrowth(2, lvl);
     }
 
     @Override

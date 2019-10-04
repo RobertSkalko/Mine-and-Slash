@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.runes;
 
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthRegenPercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.CriticalHitPercent;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class BerItem extends BaseRuneItem {
 
     @Override
     public List<StatMod> armorStat() {
-        return Arrays.asList(new DodgeFlat());
+        return Arrays.asList(new DodgeRatingFlat());
     }
 
     @Override

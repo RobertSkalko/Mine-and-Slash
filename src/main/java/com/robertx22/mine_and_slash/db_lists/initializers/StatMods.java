@@ -181,7 +181,7 @@ public class StatMods implements ISlashRegistryInit {
                     // Resources
 
                     add(new ArmorPercent());
-                    add(new DodgeFlat());
+                    add(new DodgeRatingFlat());
 
                     // bonus dmg
 

@@ -1,7 +1,12 @@
-2.8.19
+2.9.0
 added ondmgevent
 added ele wep dmg stat. unused for now
 some optimizations
+dodge transformed into dodge rating. now scales to lvl
+added magic shield stat
+mana and mana regen now scales to lvl. This is in preparation for cool stuff like "your mana takes dmg instead of your hp"
+mana costs scale based on player lvl, not item/spell lvl. This might sound weird but otherwise you could spam your lvl 1 spell that uses % of your spell dmg and never run out of mana.
+good news is this is another stat that scales to lvl, meaning finding new higher lvl gear will be much more rewarding!
 
 2.8.18
 BACKUP YOUR WORLD JUST IN CASE

@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.traits.bases;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Dodge;
+import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRating;
 
 public abstract class BaseTraitLowDodge extends ConditionalTrait {
 
     @Override
     public Stat stat() {
-        return Dodge.INSTANCE;
+        return DodgeRating.INSTANCE;
     }
 
     @Override

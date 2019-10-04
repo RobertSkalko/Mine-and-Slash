@@ -24,10 +24,11 @@ public abstract class BasePlayerOverlay {
         EXP
     }
 
-    public final ResourceLocation manatexturepath = new ResourceLocation("mmorpg", "textures/gui/mana_bar.png");
-    public final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar.png");
-    public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/health_bar.png");
-    public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/experience_bar.png");
+    public final ResourceLocation manatexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/mana_bar.png");
+    public final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/energy_bar.png");
+    public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/health_bar.png");
+    public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/experience_bar.png");
+    public final ResourceLocation magicshieldpath = new ResourceLocation("mmorpg", "textures/gui/overlay/magic_shield_bar.png");
 
     public abstract void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
                               RenderGameOverlayEvent event, Unit unit, UnitData level);
@@ -54,7 +55,7 @@ public abstract class BasePlayerOverlay {
             if (curMS > 0) {
                 int enebar = (int) ((curMS / data.getUnit()
                         .magicShieldData().Value * 100));
-                mc.getTextureManager().bindTexture(manatexturepath);
+                mc.getTextureManager().bindTexture(magicshieldpath);
                 gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, enebar, 5);
             }
         }

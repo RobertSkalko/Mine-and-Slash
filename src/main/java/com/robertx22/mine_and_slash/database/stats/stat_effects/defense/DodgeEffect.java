@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.stat_effects.defense;
 
+import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -26,10 +27,14 @@ public class DodgeEffect implements IStatEffect {
                                       Stat stat) {
 
         try {
-            if (Effect instanceof DamageEffect && Effect.getEffectType()
-                    .equals(EffectTypes.SPELL) == false) {
+            if (Effect instanceof DamageEffect && !Effect.getEffectType()
+                    .equals(EffectTypes.SPELL)) {
 
-                if (RandomUtils.roll(data.Value)) {
+                IUsableStat usable = (IUsableStat) stat;
+
+                float chance = usable.GetUsableValue(Effect.targetData.getLevel(), (int) data.Value) * 100;
+
+                if (RandomUtils.roll(chance)) {
                     DamageEffect dmgeffect = (DamageEffect) Effect;
 
                     Effect.number = 0;

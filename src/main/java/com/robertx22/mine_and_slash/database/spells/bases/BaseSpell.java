@@ -125,7 +125,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
                 }
 
                 ResourcesData.Context ctx = new ResourcesData.Context(unit, caster, ResourcesData.Type.MANA, data
-                        .GetManaCost(), ResourcesData.Use.SPEND);
+                        .GetManaCost(unit), ResourcesData.Use.SPEND);
 
                 if (unit.getResources().hasEnough(ctx)) {
                     unit.getResources().modify(ctx);

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.BlockStrength;
-import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Dodge;
+import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.SpellDodge;
 import com.robertx22.mine_and_slash.database.stats.stat_types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.stat_types.elementals.all_damage.AllEleSpellDmg;
@@ -170,7 +170,7 @@ public class Stats implements ISlashRegistryInit {
                     add(CriticalDamage.INSTANCE);
                     add(CriticalHit.INSTANCE);
                     add(PhysicalDamage.INSTANCE);
-                    add(Dodge.INSTANCE);
+                    add(DodgeRating.INSTANCE);
                     add(new SpellDodge());
 
                     // traits

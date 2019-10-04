@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_mods.map_mods.minus;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Dodge;
+import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class LessDodgeMap extends StatMod {
@@ -32,7 +32,7 @@ public class LessDodgeMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Dodge.INSTANCE;
+        return DodgeRating.INSTANCE;
     }
 
 }

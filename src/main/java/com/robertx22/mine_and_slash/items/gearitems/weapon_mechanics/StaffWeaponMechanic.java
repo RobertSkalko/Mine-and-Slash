@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -24,8 +25,8 @@ public class StaffWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public float GetManaCost() {
-        return 3;
+    public float GetManaCost(int lvl) {
+        return StatUtils.calculateNormalScalingStatGrowth(3, lvl);
     }
 
     @Override

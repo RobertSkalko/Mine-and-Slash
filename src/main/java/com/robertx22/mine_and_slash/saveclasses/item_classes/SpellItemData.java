@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -65,8 +66,9 @@ public class SpellItemData implements ICommonDataItem {
         return this.spellGUID;
     }
 
-    public int GetManaCost() {
-        return this.GetSpell().ManaCost() * this.manaCostPercent / 100;
+    public int GetManaCost(EntityCap.UnitData data) {
+        return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
+                .ManaCost() * this.manaCostPercent / 100, data.getLevel());
     }
 
     public int GetBaseValue() {
@@ -95,12 +97,14 @@ public class SpellItemData implements ICommonDataItem {
                 .SpellBasePercents().Max / 100), level);
     }
 
-    private int MinMana() {
-        return this.GetSpell().ManaCost() * MIN_MANA_COST_PERCENT / 100;
+    private int MinMana(EntityCap.UnitData data) {
+        return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
+                .ManaCost() * MIN_MANA_COST_PERCENT / 100, data.getLevel());
     }
 
-    private int MaxMana() {
-        return this.GetSpell().ManaCost() * MAX_MANA_COST_PERCENT / 100;
+    private int MaxMana(EntityCap.UnitData data) {
+        return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
+                .ManaCost() * MAX_MANA_COST_PERCENT / 100, data.getLevel());
     }
 
     @Override
@@ -154,13 +158,13 @@ public class SpellItemData implements ICommonDataItem {
         return text;
     }
 
-    public ITextComponent GetManaDesc(boolean moreInfo) {
+    public ITextComponent GetManaDesc(EntityCap.UnitData data, boolean moreInfo) {
 
         ITextComponent text = Words.Mana_Cost.locName()
-                .appendText(": " + this.GetManaCost());
+                .appendText(": " + this.GetManaCost(data));
 
         if (moreInfo) {
-            text.appendText(" (" + MinMana() + "-" + MaxMana() + ")");
+            text.appendText(" (" + MinMana(data) + "-" + MaxMana(data) + ")");
         }
 
         return text;
@@ -237,7 +241,7 @@ public class SpellItemData implements ICommonDataItem {
             Tooltip.add(Styles.GREENCOMP()
                     .appendSibling(Words.Stats.locName().appendText(": ")), tooltip);
 
-            Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetManaDesc(moreInfo)), tooltip);
+            Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetManaDesc(ctx.data, moreInfo)), tooltip);
 
             Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetBaseDesc(moreInfo)), tooltip);
 

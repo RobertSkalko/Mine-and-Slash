@@ -753,7 +753,7 @@ public class EntityCap {
                     IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
                     float energyCost = iwep.mechanic().GetEnergyCost() * multi;
-                    float manaCost = iwep.mechanic().GetManaCost() * multi;
+                    float manaCost = iwep.mechanic().GetManaCost(getLevel()) * multi;
 
                     ResourcesData.Context ene = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
                     ResourcesData.Context mana = new ResourcesData.Context(this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);

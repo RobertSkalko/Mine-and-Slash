@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
@@ -43,7 +43,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public static List<StatMod> leatherArmorStats() {
-        return Arrays.asList(new ArmorFlat().multi(1F), new DodgeFlat(), new StaminaFlat(), new DexterityFlat());
+        return Arrays.asList(new DodgeRatingFlat(), new DodgeRatingFlat(), new StaminaFlat(), new DexterityFlat());
     }
 
     public static List<StatMod> plateArmorStats() {

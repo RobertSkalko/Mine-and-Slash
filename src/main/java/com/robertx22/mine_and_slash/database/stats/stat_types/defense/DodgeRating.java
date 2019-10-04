@@ -1,14 +1,15 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.defense;
 
+import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_effects.defense.DodgeEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class Dodge extends Stat implements IStatEffects {
+public class DodgeRating extends Stat implements IStatEffects, IUsableStat {
 
-    public static Stat INSTANCE = new Dodge();
+    public static Stat INSTANCE = new DodgeRating();
     public static String GUID = "Dodge";
 
     @Override
@@ -26,8 +27,8 @@ public class Dodge extends Stat implements IStatEffects {
         return new DodgeEffect();
     }
 
-    private Dodge() {
-        maximumValue = 75;
+    private DodgeRating() {
+
     }
 
     @Override
@@ -37,7 +38,7 @@ public class Dodge extends Stat implements IStatEffects {
 
     @Override
     public boolean ScalesToLevel() {
-        return false;
+        return true;
     }
 
     @Override
@@ -47,11 +48,21 @@ public class Dodge extends Stat implements IStatEffects {
 
     @Override
     public boolean IsPercent() {
-        return true;
+        return false;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Dodge";
+        return "Dodge Rating";
+    }
+
+    @Override
+    public float MaximumPercent() {
+        return 0.9F;
+    }
+
+    @Override
+    public float AverageStat() {
+        return 8;
     }
 }
