@@ -5,6 +5,10 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BasePants;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothBoots;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothChest;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothPants;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
@@ -136,6 +140,20 @@ public class SlotRequirement extends BaseRequirement {
 
     public static SlotRequirement jewerlyOnly() {
         return new SlotRequirement(jewerlySlots());
+    }
+
+    public static SlotRequirement clothArmorOnly() {
+        return new SlotRequirement(clothArmors());
+    }
+
+    static List<GearItemSlot> clothArmors() {
+        List<GearItemSlot> list = new ArrayList<>();
+        list.add(ClothBoots.INSTANCE);
+        list.add(ClothHelmet.INSTANCE);
+        list.add(ClothChest.INSTANCE);
+        list.add(ClothPants.INSTANCE);
+        return list;
+
     }
 
     static List<GearItemSlot> weaponSlots() {

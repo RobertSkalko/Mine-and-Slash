@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import java.awt.*;
@@ -53,8 +54,13 @@ public abstract class BasePlayerOverlay {
 
             float curMS = data.getResources().getMagicShield();
             if (curMS > 0) {
-                int enebar = (int) ((curMS / data.getUnit()
-                        .magicShieldData().Value * 100));
+
+                float hp = data.getUnit().healthData().Value;
+
+                float maxperc = MathHelper.clamp(curMS / hp, 0, 1);
+
+                int enebar = (int) ((int) ((curMS / data.getUnit()
+                        .magicShieldData().Value * 100)) * maxperc);
                 mc.getTextureManager().bindTexture(magicshieldpath);
                 gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, enebar, 5);
             }

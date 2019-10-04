@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.sets.Set;
+import com.robertx22.mine_and_slash.database.sets.endgame_lvl.ArchmageArmor;
 import com.robertx22.mine_and_slash.database.sets.endgame_lvl.AscensionOfElement;
 import com.robertx22.mine_and_slash.database.sets.endgame_lvl.RingsOfImpossibility;
 import com.robertx22.mine_and_slash.database.sets.from_lvl_50.*;
@@ -45,6 +46,7 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
             {
                 {
 
+                    add(ArchmageArmor.INSTANCE);
                     add(new AscensionOfElement(Elements.Physical));
                     add(new RoyalThiefAdornments());
                     add(new RingsOfImpossibility());

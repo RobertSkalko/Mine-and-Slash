@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MajorManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.WeaponDamageFlat;
@@ -44,7 +44,7 @@ public class HelmetMana extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat());
+        return Arrays.asList(new MagicShieldFlat());
     }
 
     @Override

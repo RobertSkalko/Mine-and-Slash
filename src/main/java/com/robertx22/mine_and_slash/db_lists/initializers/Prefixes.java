@@ -6,19 +6,16 @@ import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.El
 import com.robertx22.mine_and_slash.database.affixes.prefixes.misc.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.damage_percents.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.Energetic;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.LifeStealing;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.Tenacious;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.Wise;
+import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.BraveHeart;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.Heros;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.MagesGamble;
+import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
@@ -34,6 +31,10 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
         List<Prefix> allPrefixes = new ArrayList<Prefix>() {
             {
                 {
+
+                    add(new EnduringField());
+                    add(new EternalField());
+                    add(new UnendingField());
 
                     add(new Heros());
                     add(new Defenders());

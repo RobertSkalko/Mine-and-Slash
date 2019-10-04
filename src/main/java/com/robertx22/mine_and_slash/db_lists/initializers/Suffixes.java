@@ -37,6 +37,8 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
         List<Suffix> allSuffixes = new ArrayList<Suffix>() {
             {
                 {
+                    add(new OfMagicShield());
+
                     add(new OfTheHydra());
                     add(new OfGiants());
                     add(new OfBehemoths());

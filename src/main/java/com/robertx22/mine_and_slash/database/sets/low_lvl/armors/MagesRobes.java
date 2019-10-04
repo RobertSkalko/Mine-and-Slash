@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ManaRegenPercent;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldRegenFlat;
 
 import java.util.HashMap;
 
@@ -23,7 +23,7 @@ public class MagesRobes extends Set {
             {
                 {
 
-                    put(2, new ManaRegenPercent());
+                    put(2, new MagicShieldRegenFlat());
 
                 }
             }

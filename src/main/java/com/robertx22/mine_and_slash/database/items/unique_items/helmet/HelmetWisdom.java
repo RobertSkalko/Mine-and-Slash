@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUnique
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -50,7 +50,7 @@ public class HelmetWisdom extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat());
+        return Arrays.asList(new MagicShieldFlat());
     }
 
     @Override

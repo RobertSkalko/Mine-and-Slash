@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.stat_types.core_stats;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -20,7 +21,7 @@ public class Wisdom extends BaseCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases Both Mana-Health-Energy Regens and elemental resists";
+        return "Increases Both Mana-Health-Energy-Magic Shield Regens and elemental resists";
     }
 
     @Override
@@ -29,11 +30,12 @@ public class Wisdom extends BaseCoreStat {
     }
 
     static float regenMulti = 0.3F;
-    static float resistMulti = 0.5F;
+    static float resistMulti = 0.4F;
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new ManaRegenFlat().multi(regenMulti), new EnergyRegenFlat().multi(regenMulti), new HealthRegenFlat()
+        return Arrays.asList(new MagicShieldRegenFlat().multi(regenMulti), new ManaRegenFlat()
+                .multi(regenMulti), new EnergyRegenFlat().multi(regenMulti), new HealthRegenFlat()
                 .multi(regenMulti), new ElementalResistFlat(Elements.Nature).multi(resistMulti), new ElementalResistFlat(Elements.Fire)
                 .multi(resistMulti), new ElementalResistFlat(Elements.Thunder).multi(resistMulti), new ElementalResistFlat(Elements.Water)
                 .multi(resistMulti)

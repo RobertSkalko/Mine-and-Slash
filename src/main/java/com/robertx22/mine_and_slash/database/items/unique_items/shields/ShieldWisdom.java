@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUnique
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.MagicShieldPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.util.text.TextFormatting;
 
@@ -40,7 +40,7 @@ public class ShieldWisdom extends BaseUniqueShield implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new WisdomFlat().multi(1.5F), new ManaFlat().multi(2));
+        return Arrays.asList(new WisdomFlat().multi(1.5F), new MagicShieldPercent().multi(4));
     }
 
     @Override
