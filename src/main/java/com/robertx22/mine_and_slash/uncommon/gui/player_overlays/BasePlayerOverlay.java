@@ -47,15 +47,18 @@ public abstract class BasePlayerOverlay {
 
         gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, barwidth, 5); // inner fill texture
 
-        /*
-        //RENDER ENERGY SHIELD LIKE THIS?
+        //RENDER ENERGY SHIELD LIKE
         if (type == Type.HP) {
-            barwidth = 30;
-            mc.getTextureManager().bindTexture(manatexturepath);
-            gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, barwidth, 5);
+
+            float curMS = data.getResources().getMagicShield();
+            if (curMS > 0) {
+                int enebar = (int) ((curMS / data.getUnit()
+                        .magicShieldData().Value * 100));
+                mc.getTextureManager().bindTexture(manatexturepath);
+                gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, enebar, 5);
+            }
         }
-        // ENE SHIELD
-        */
+        //RENDER ENERGY SHIELD LIKE
 
         String now = NumberUtils.formatNumber((int) current);
         String maximum = NumberUtils.formatNumber((int) max);

@@ -171,11 +171,16 @@ public class Unit {
         return (Energy) getStat(Energy.GUID).GetStat();
     }
 
+    public float getCurrentEffectiveHealth(LivingEntity entity, UnitData data) {
+        float curhp = health().CurrentValue(entity, this);
+        curhp += data.getResources().getMagicShield();
+        return curhp;
+
+    }
+
     public float getEffectiveHealth() {
-
         float hp = healthData().Value;
-
-        // TODO add ene shield
+        hp += magicShieldData().Value;
 
         return hp;
 

@@ -162,6 +162,7 @@ public class Stats implements ISlashRegistryInit {
                     add(Energy.INSTANCE);
                     add(EnergyRegen.INSTANCE);
                     add(MagicShield.INSTANCE);
+                    add(MagicShieldRegen.INSTANCE);
                     // Resources
 
                     add(new BlockStrength());
