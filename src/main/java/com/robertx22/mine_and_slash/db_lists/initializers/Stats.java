@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRatin
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.SpellDodge;
 import com.robertx22.mine_and_slash.database.stats.stat_types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.stat_types.elementals.all_damage.AllEleSpellDmg;
+import com.robertx22.mine_and_slash.database.stats.stat_types.game_changers.ManaBattery;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.*;
@@ -62,6 +63,10 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+
+                    // GAME CHANGERS
+                    add(ManaBattery.INSTANCE);
+
                     add(new ElementalBonusDmgOnBasic(Elements.Physical));
                     add(new ElementalConversion(Elements.Physical, Elements.Physical));
                     add(new ElementalTransfer(Elements.Physical, Elements.Physical));

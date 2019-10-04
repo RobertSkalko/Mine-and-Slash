@@ -54,7 +54,7 @@ public class OnTickLogic {
                     if (player.isAlive()) {
 
                         UnitData unit_capa = Load.Unit(player);
-                        unit_capa.forceRecalculateStats(player); // has to do this cus curios doesnt call equipsChanged event
+                        unit_capa.forceRecalculateStats(player); // has to do this cus curios doesnt call equipsChanged event - actually there's one, but i fear  bugs
                         Unit unit = unit_capa.getUnit();
 
                         int manarestored = (int) unit.getStat(ManaRegen.GUID).Value;
