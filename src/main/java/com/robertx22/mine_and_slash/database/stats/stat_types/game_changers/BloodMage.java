@@ -13,7 +13,7 @@ public class BloodMage extends BaseGameChangerTrait implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Your mana is transformed into blood. Your blood regens whenever you regen your hp or any lifesteal you do";
+        return "Your mana is transformed into blood. You replenish blood with any non spell related health restoration method like hp regen or lifesteal.";
     }
 
     @Override

@@ -129,18 +129,24 @@ public abstract class EffectData {
 
     }
 
-    public void calculateEffects() {
-        if (source == null || target == null || canceled == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null)
-            return;
+    boolean effectsCalculated = false;
 
-        TryApplyEffects(this.GetSource());
-        TryApplyEffects(this.GetTarget());
+    public void calculateEffects() {
+        if (!effectsCalculated) {
+            effectsCalculated = true;
+            if (source == null || target == null || canceled == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null)
+                return;
+
+            TryApplyEffects(this.GetSource(), EffectSides.Source);
+            TryApplyEffects(this.GetTarget(), EffectSides.Target);
+
+        }
 
     }
 
     protected abstract void activate();
 
-    protected EffectData TryApplyEffects(Unit unit) {
+    protected EffectData TryApplyEffects(Unit unit, EffectSides side) {
 
         if (this.canceled) {
             return this;
@@ -148,7 +154,7 @@ public abstract class EffectData {
 
         List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
 
-        Effects = AddEffects(Effects, unit);
+        Effects = AddEffects(Effects, unit, side);
 
         Effects.sort(new EffectUnitStat());
 
@@ -166,24 +172,34 @@ public abstract class EffectData {
 
     public boolean AffectsThisUnit(IStatEffect effect, EffectData data, Unit source) {
 
+        boolean affects = false;
+
         if (effect.Side().equals(EffectSides.Target)) {
-            return source.equals(data.targetUnit);
+            affects = source.equals(data.targetUnit);
 
         } else {
-            return source.equals(data.sourceUnit);
+            affects = source.equals(data.sourceUnit);
         }
+
+        if (affects == false) {
+            System.out.println("works");
+        }
+
+        return affects;
     }
 
-    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit) {
+    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit,
+                                            EffectSides side) {
         if (unit != null) {
 
             for (IStatEffects stateffects : Stats.allPreGenMapStatLists.get(IStatEffects.class)) {
 
-                StatData stat = unit.getStat((Stat) stateffects);
-                if (stat.Value != 0) {
+                if (stateffects.getEffect().Side().equals(side)) {
+                    StatData stat = unit.getStat((Stat) stateffects);
 
-                    effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));
-
+                    if (stat.Value != 0) {
+                        effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));
+                    }
                 }
 
             }

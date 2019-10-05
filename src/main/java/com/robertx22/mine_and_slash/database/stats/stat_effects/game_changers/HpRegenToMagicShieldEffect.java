@@ -8,13 +8,13 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.ModifyResourceEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class BloodMageEffect implements IStatEffect {
+public class HpRegenToMagicShieldEffect implements IStatEffect {
 
-    public static final BloodMageEffect INSTANCE = new BloodMageEffect();
+    public static final HpRegenToMagicShieldEffect INSTANCE = new HpRegenToMagicShieldEffect();
 
     @Override
     public int GetPriority() {
-        return Priority.Last.priority;
+        return Priority.First.priority;
     }
 
     @Override
@@ -31,22 +31,10 @@ public class BloodMageEffect implements IStatEffect {
 
                 ModifyResourceEffect eff = (ModifyResourceEffect) Effect;
 
-                if (eff.ctx.use == ResourcesData.Use.SPEND) {
-                    if (eff.ctx.amount > 0) {
-                        if (eff.ctx.type == ResourcesData.Type.MANA) {
-                            eff.ctx.type = ResourcesData.Type.BLOOD;
-                        }
-                    }
-                }
-
                 if (eff.ctx.use == ResourcesData.Use.RESTORE) {
                     if (eff.ctx.amount > 0) {
                         if (eff.ctx.type == ResourcesData.Type.HEALTH) {
-                            if (eff.ctx.spell == null) {
-                                float bloodrestored = eff.ctx.amount / 2;
-                                ResourcesData.Context blood = new ResourcesData.Context(eff.ctx.targetData, eff.ctx.target, ResourcesData.Type.BLOOD, bloodrestored, ResourcesData.Use.RESTORE);
-                                eff.ctx.targetData.getResources().modify(blood);
-                            }
+                            eff.ctx.type = ResourcesData.Type.MAGIC_SHIELD;
                         }
                     }
                 }
@@ -61,4 +49,3 @@ public class BloodMageEffect implements IStatEffect {
     }
 
 }
-

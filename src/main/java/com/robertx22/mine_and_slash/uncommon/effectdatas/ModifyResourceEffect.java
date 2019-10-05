@@ -14,13 +14,7 @@ public class ModifyResourceEffect extends EffectData {
 
     @Override
     protected void activate() {
-
-        if (this.canceled) {
-            return;
-        }
-
-        this.calculateEffects();
-
+        // already done elsewhere
     }
 
 }

@@ -32,6 +32,8 @@ public class ResourcesData {
         public float amount;
         public Use use;
 
+        public boolean statsCalculated = false;
+
         public Context(UnitData data, LivingEntity entity, Type type, float amount,
                        Use use, BaseSpell spell) {
             this.targetData = data;
@@ -58,7 +60,9 @@ public class ResourcesData {
         }
 
         private void calculateStats() {
-            new ModifyResourceEffect(this).Activate();
+            if (!statsCalculated) {
+                new ModifyResourceEffect(this).Activate();
+            }
         }
 
     }
