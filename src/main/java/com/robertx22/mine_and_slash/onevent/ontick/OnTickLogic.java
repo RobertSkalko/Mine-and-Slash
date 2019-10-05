@@ -69,6 +69,10 @@ public class OnTickLogic {
                         ResourcesData.Context hp = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.HEALTH, healthrestored, ResourcesData.Use.RESTORE);
                         unit_capa.getResources().modify(hp);
 
+                        int bloodrestored = healthrestored / 2;
+                        ResourcesData.Context blood = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.BLOOD, bloodrestored, ResourcesData.Use.RESTORE);
+                        unit_capa.getResources().modify(blood);
+
                         int magicshieldrestored = (int) unit.getStat(MagicShieldRegen.GUID).Value;
                         ResourcesData.Context ms = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.MAGIC_SHIELD, magicshieldrestored, ResourcesData.Use.RESTORE);
                         unit_capa.getResources().modify(ms);

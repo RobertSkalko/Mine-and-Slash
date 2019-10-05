@@ -93,6 +93,10 @@ public class ResourcesData {
         return mana;
     }
 
+    public float getBlood() {
+        return blood;
+    }
+
     public float getMagicShield() {
         return magicShield;
     }
@@ -117,6 +121,8 @@ public class ResourcesData {
             return mana;
         } else if (ctx.type == Type.MAGIC_SHIELD) {
             return magicShield;
+        } else if (ctx.type == Type.BLOOD) {
+            return blood;
         } else if (ctx.type == Type.HEALTH) {
             return ctx.targetData.getUnit()
                     .health()
@@ -137,8 +143,10 @@ public class ResourcesData {
         } else if (ctx.type == Type.MAGIC_SHIELD) {
             magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                     .magicShieldData().Value);
+        } else if (ctx.type == Type.BLOOD) {
+            blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
+                    .getMaximumBlood());
         } else if (ctx.type == Type.HEALTH) {
-
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);
             } else {

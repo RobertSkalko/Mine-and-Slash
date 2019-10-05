@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityCon
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
+import com.robertx22.mine_and_slash.database.stats.stat_types.game_changers.BloodMage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.MagicShield;
@@ -184,6 +185,17 @@ public class Unit {
 
         return hp;
 
+    }
+
+    public boolean isBloodMage() {
+        return this.getStat(BloodMage.INSTANCE).Value > 0;
+    }
+
+    public float getMaximumBlood() {
+        if (this.getStat(BloodMage.INSTANCE).Value > 0) {
+            return healthData().Value / 2;
+        }
+        return 0;
     }
 
     public StatData healthData() {

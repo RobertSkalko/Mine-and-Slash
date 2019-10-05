@@ -30,6 +30,7 @@ public abstract class BasePlayerOverlay {
     public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/health_bar.png");
     public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/experience_bar.png");
     public final ResourceLocation magicshieldpath = new ResourceLocation("mmorpg", "textures/gui/overlay/magic_shield_bar.png");
+    public final ResourceLocation bloodpath = new ResourceLocation("mmorpg", "textures/gui/overlay/blood_bar.png");
 
     public abstract void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
                               RenderGameOverlayEvent event, Unit unit, UnitData level);
@@ -40,6 +41,12 @@ public abstract class BasePlayerOverlay {
 
         GlStateManager.color4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(res);
+
+        if (type == Type.MANA && data.getUnit().isBloodMage()) {
+            mc.getTextureManager().bindTexture(bloodpath);
+            current = data.getResources().getBlood();
+            max = data.getUnit().getMaximumBlood();
+        }
 
         gui.blit(x, y, 0, 0, TEXTURE_WIDTH, this.TEXTURE_HEIGHT); // the bar
         int barwidth = (int) (((float) current / max * 100));
@@ -64,6 +71,7 @@ public abstract class BasePlayerOverlay {
                 mc.getTextureManager().bindTexture(magicshieldpath);
                 gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, enebar, 5);
             }
+
         }
         //RENDER ENERGY SHIELD LIKE
 
