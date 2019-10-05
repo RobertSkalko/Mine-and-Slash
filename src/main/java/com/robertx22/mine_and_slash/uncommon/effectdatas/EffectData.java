@@ -107,6 +107,7 @@ public abstract class EffectData {
         BASIC_ATTACK,
         BONUS_ATTACK,
         REFLECT,
+        DOT_DMG,
     }
 
     public Unit GetSource() {

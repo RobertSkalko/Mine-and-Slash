@@ -119,6 +119,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     }
 
+    boolean removeKnockback = false;
+
+    public void removeKnockback() {
+        removeKnockback = true;
+    }
+
     @Override
     protected void activate() {
 
@@ -131,6 +137,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         MyDamageSource dmgsource = new MyDamageSource(dmgSourceName, this.source, element, (int) number);
+
+        if (this.removeKnockback) {
+            BlockEffect.applyKnockbackResist(target);
+        }
 
         if (this.isPartiallyBlocked) {
             dmgsource.setDamageBypassesArmor();

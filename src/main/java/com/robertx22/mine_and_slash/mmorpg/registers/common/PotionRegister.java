@@ -24,6 +24,7 @@ public class PotionRegister {
         reg.register(HealthRegenPotion.INSTANCE);
         reg.register(ManaRegenPotion.INSTANCE);
         reg.register(TeleportProtection.INSTANCE);
+        reg.register(BleedPotion.INSTANCE);
 
         for (BonusDmgPotion pot : BonusDmgPotion.INSTANCE.generateAllPossibleStatVariations()) {
             reg.register(pot);

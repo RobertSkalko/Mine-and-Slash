@@ -46,10 +46,15 @@ public class PerkEffects {
     public static PerkEffectsWrapper ENERGY_REGEN_PERCENT = PerkEffectBuilder.build(EnergyRegen.INSTANCE, new ExactStatData(5, StatTypes.Percent, EnergyRegen.GUID));
     public static PerkEffectsWrapper MAGIC_SHIELD_REGEN_PERCENT = PerkEffectBuilder.build(MagicShieldRegen.INSTANCE, new ExactStatData(5, StatTypes.Percent, MagicShieldRegen.GUID));
 
-    public static PerkEffectsWrapper WAND_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Wand), new ExactStatData(2, StatTypes.Percent, new WeaponDamage(WeaponTypes.Wand)
-            .GUID()));
-    public static PerkEffectsWrapper STAFF_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Staff), new ExactStatData(2, StatTypes.Percent, new WeaponDamage(WeaponTypes.Staff)
-            .GUID()));
+    private static float wepDmg = 2;
+
+    public static PerkEffectsWrapper WAND_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Wand), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.Wand)));
+    public static PerkEffectsWrapper STAFF_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Staff), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.Staff)));
+    public static PerkEffectsWrapper AXE_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Axe), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.Axe)));
+    public static PerkEffectsWrapper HAMMER_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Hammer), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.Hammer)));
+    public static PerkEffectsWrapper BOW_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Bow), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.Bow)));
+    public static PerkEffectsWrapper CROSSBOW_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.CrossBow), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.CrossBow)));
+    public static PerkEffectsWrapper SWORD_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Sword), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.Sword)));
 
     // COMBINED EFFECTS
     public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT = PerkEffectBuilder
