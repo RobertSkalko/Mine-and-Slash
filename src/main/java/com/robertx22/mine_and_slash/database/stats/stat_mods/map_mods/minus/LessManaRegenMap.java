@@ -32,7 +32,7 @@ public class LessManaRegenMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new ManaRegen();
+        return ManaRegen.INSTANCE;
     }
 
 }

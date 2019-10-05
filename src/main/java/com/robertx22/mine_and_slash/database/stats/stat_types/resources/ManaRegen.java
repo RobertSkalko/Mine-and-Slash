@@ -5,6 +5,8 @@ import net.minecraft.util.text.TextFormatting;
 public class ManaRegen extends BaseRegenClass {
     public static String GUID = "Mana Regen";
 
+    public static final ManaRegen INSTANCE = new ManaRegen();
+
     @Override
     public TextFormatting getIconFormat() {
         return TextFormatting.AQUA;
@@ -16,11 +18,16 @@ public class ManaRegen extends BaseRegenClass {
     }
 
     @Override
+    public String getIconPath() {
+        return "regen/mana_regen";
+    }
+
+    @Override
     public StatGroup statGroup() {
         return StatGroup.Main;
     }
 
-    public ManaRegen() {
+    private ManaRegen() {
 
     }
 

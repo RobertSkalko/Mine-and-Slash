@@ -12,9 +12,15 @@ public class Dexterity extends BaseCoreStat {
 
     public static final String GUID = "Dexterity";
 
+    public static final Dexterity INSTANCE = new Dexterity();
+
+    private Dexterity() {
+
+    }
+
     @Override
-    public int iconSpriteNumber() {
-        return 13;
+    public String getIconPath() {
+        return "core/dex";
     }
 
     @Override

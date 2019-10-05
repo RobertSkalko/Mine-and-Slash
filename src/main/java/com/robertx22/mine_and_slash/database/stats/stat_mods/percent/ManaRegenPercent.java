@@ -12,28 +12,28 @@ public class ManaRegenPercent extends StatMod {
 
     @Override
     public String GUID() {
-	return "ManaRegenPercent";
+        return "ManaRegenPercent";
     }
 
     @Override
     public float Min() {
-	return 2;
+        return 2;
     }
 
     @Override
     public float Max() {
-	return 10;
+        return 10;
 
     }
 
     @Override
     public StatTypes Type() {
-	return StatTypes.Percent;
+        return StatTypes.Percent;
     }
 
     @Override
     public Stat GetBaseStat() {
-	return new ManaRegen();
+        return ManaRegen.INSTANCE;
     }
 
 }

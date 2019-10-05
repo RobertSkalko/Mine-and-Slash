@@ -1,17 +1,13 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class PerkEffectBuilder {
-
-    public static PerkEffectsWrapper build(String id, ExactStatData stat) {
-        return build(id, Arrays.asList(stat));
-    }
 
     public static PerkEffectsWrapper build(String id, PerkEffect... effects) {
         List<ExactStatData> stats = new ArrayList<>();
@@ -19,6 +15,22 @@ public class PerkEffectBuilder {
             stats.addAll(effect.exactStats);
         }
         return build(id, stats);
+    }
+
+    public static PerkEffectsWrapper build(Stat stat, ExactStatData data) {
+        HashMap<PerkType, PerkEffect> map = new HashMap<>();
+
+        for (PerkType type : PerkType.values()) {
+
+            ExactStatData data2 = new ExactStatData(data);
+            data2.setValue(data2.getValue() * type.statMulti);
+
+            PerkEffect neww = new PerkEffect(data2, stat).type(type);
+
+            map.put(type, neww);
+
+        }
+        return new PerkEffectsWrapper(map);
     }
 
     public static PerkEffectsWrapper build(String id, List<ExactStatData> list) {

@@ -26,8 +26,8 @@ public class Health extends Stat {
     }
 
     @Override
-    public int iconSpriteNumber() {
-        return 1;
+    public String getIconPath() {
+        return "resource/hp";
     }
 
     @Override

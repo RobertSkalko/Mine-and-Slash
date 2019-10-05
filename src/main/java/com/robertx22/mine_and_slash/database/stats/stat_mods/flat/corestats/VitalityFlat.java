@@ -11,7 +11,7 @@ public class VitalityFlat extends BaseCoreStatFlat {
 
     @Override
     public Stat GetBaseStat() {
-        return new Vitality();
+        return Vitality.INSTANCE;
     }
 
     @Override

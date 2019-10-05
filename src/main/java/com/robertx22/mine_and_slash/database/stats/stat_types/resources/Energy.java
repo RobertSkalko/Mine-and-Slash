@@ -22,8 +22,8 @@ public class Energy extends FillableStat {
     }
 
     @Override
-    public int iconSpriteNumber() {
-        return 3;
+    public String getIconPath() {
+        return "resource/energy";
     }
 
     @Override

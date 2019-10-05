@@ -18,6 +18,11 @@ public class SpellDamage extends Stat implements IStatEffects {
     public static String GUID = "spell_damage";
 
     @Override
+    public String getIconPath() {
+        return "spell_dmg";
+    }
+
+    @Override
     public TextFormatting getIconFormat() {
         return TextFormatting.AQUA;
     }

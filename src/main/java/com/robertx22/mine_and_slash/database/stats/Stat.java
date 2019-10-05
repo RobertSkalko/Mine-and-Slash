@@ -17,6 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -53,9 +54,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return getIconFormat() + getIcon();
     }
 
-    static final int rows = 13;
-    static final int spriteSize = 18;
-
     @Override
     public int Tier() {
         return 0;
@@ -82,19 +80,17 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return SlashRegistryType.STAT;
     }
 
-    public int getSpriteX() {
-        int placeX = this.iconSpriteNumber() % rows;
-        return 1 + placeX * spriteSize;
+    public String getIconPath() {
+        return "";
     }
 
-    public int getSpriteY() {
-        int placeY = this.iconSpriteNumber() / rows;
+    public ResourceLocation getIconLocation() {
+        if (getIconPath().isEmpty()) {
+            return new ResourceLocation(Ref.MODID, "textures/gui/stat_icons/default.png");
+        } else {
+            return new ResourceLocation(Ref.MODID, "textures/gui/stat_icons/" + getIconPath() + ".png");
+        }
 
-        return 1 + placeY * spriteSize;
-    }
-
-    public int iconSpriteNumber() {
-        return 0;
     }
 
     @Override

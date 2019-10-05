@@ -19,6 +19,11 @@ public class HealthRegen extends BaseRegenClass {
     }
 
     @Override
+    public String getIconPath() {
+        return "regen/hp_regen";
+    }
+
+    @Override
     public StatGroup statGroup() {
         return StatGroup.Main;
     }

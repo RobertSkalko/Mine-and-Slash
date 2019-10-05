@@ -11,14 +11,15 @@ import java.util.List;
 public class Strength extends BaseCoreStat {
 
     public static final String GUID = "Strength";
+    public static final Strength INSTANCE = new Strength();
 
-    public Strength() {
+    private Strength() {
 
     }
 
     @Override
-    public int iconSpriteNumber() {
-        return 16;
+    public String getIconPath() {
+        return "core/str";
     }
 
     @Override

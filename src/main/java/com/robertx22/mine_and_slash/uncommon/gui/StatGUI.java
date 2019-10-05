@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.stat_types.UnknownStat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
@@ -160,15 +161,9 @@ public class StatGUI extends Screen {
 
                 if (added < this.sizeY - 50) {
 
-                    // so i can use icons from spritesheet
-                    minecraft.getTextureManager()
-                            .deleteTexture(icons); // seems i need to delete and then
-                    minecraft.getTextureManager()
-                            .bindTexture(icons); // add it or else it wont works
-                    GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    ResourceLocation res = stat.getIconLocation();
 
-                    blit(x - 22, y + added - this.getHeightSpacing() / 4, stat.getSpriteX(), stat
-                            .getSpriteY(), 16, 16);
+                    RenderUtils.renderPerkIcon(res, x - 22, y + added - getHeightSpacing() / 4);
 
                     added += this.drawAndIncreaseSpacing(x, y + added, str);
 

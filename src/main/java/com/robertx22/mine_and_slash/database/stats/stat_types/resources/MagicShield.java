@@ -17,6 +17,11 @@ public class MagicShield extends Stat implements IStatEffects {
     }
 
     @Override
+    public String getIconPath() {
+        return "resource/magic_shield";
+    }
+
+    @Override
     public TextFormatting getIconFormat() {
         return TextFormatting.BLUE;
     }

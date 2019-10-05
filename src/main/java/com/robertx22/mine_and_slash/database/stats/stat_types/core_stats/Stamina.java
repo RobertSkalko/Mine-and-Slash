@@ -12,10 +12,15 @@ import java.util.List;
 public class Stamina extends BaseCoreStat {
 
     public static final String GUID = "Stamina";
+    public static Stamina INSTANCE = new Stamina();
+
+    private Stamina() {
+
+    }
 
     @Override
-    public int iconSpriteNumber() {
-        return 17;
+    public String getIconPath() {
+        return "core/sta";
     }
 
     @Override

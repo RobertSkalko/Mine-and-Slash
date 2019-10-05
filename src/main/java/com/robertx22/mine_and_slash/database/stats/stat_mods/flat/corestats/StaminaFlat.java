@@ -11,7 +11,7 @@ public class StaminaFlat extends BaseCoreStatFlat {
 
     @Override
     public Stat GetBaseStat() {
-        return new Stamina();
+        return Stamina.INSTANCE;
     }
 
     @Override

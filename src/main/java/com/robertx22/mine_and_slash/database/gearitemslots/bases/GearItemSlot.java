@@ -59,15 +59,15 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public static List<Stat> plateRequirements() {
-        return Arrays.asList(new Strength(), new Vitality());
+        return Arrays.asList(Strength.INSTANCE, Vitality.INSTANCE);
     }
 
     public static List<Stat> clothRequirements() {
-        return Arrays.asList(new Intelligence(), new Wisdom());
+        return Arrays.asList(Intelligence.INSTANCE, Wisdom.INSTANCE);
     }
 
     public static List<Stat> leatherRequirements() {
-        return Arrays.asList(new Dexterity(), new Stamina());
+        return Arrays.asList(Dexterity.INSTANCE, Stamina.INSTANCE);
     }
 
     @Override

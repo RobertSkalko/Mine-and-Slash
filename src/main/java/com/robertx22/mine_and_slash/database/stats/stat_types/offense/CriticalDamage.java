@@ -22,6 +22,11 @@ public class CriticalDamage extends Stat implements IStatEffects {
     }
 
     @Override
+    public String getIconPath() {
+        return "crit_dmg";
+    }
+
+    @Override
     public IStatEffect getEffect() {
         return new CriticalDamageEffect();
     }

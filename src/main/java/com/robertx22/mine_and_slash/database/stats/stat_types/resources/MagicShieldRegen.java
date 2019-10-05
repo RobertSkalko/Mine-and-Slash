@@ -13,6 +13,11 @@ public class MagicShieldRegen extends BaseRegenClass {
     }
 
     @Override
+    public String getIconPath() {
+        return "regen/magic_shield_regen";
+    }
+
+    @Override
     public TextFormatting getIconFormat() {
         return TextFormatting.BLUE;
     }

@@ -11,7 +11,7 @@ public class IntelligenceFlat extends BaseCoreStatFlat {
 
     @Override
     public Stat GetBaseStat() {
-        return new Intelligence();
+        return Intelligence.INSTANCE;
     }
 
     @Override

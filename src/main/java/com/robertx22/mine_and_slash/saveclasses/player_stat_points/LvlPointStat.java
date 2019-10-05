@@ -6,12 +6,12 @@ import net.minecraft.util.text.TextFormatting;
 
 public enum LvlPointStat {
 
-    DEXTERITY(new Dexterity(), "DEX", TextFormatting.DARK_GREEN),
-    VITALITY(new Vitality(), "VIT", TextFormatting.RED),
-    WISDOM(new Wisdom(), "WIS", TextFormatting.AQUA),
-    STAMINA(new Stamina(), "STA", TextFormatting.GREEN),
-    STRENGTH(new Strength(), "STR", TextFormatting.GOLD),
-    INTELLIGENCE(new Intelligence(), "INT", TextFormatting.BLUE);
+    DEXTERITY(Dexterity.INSTANCE, "DEX", TextFormatting.DARK_GREEN),
+    VITALITY(Vitality.INSTANCE, "VIT", TextFormatting.RED),
+    WISDOM(Wisdom.INSTANCE, "WIS", TextFormatting.AQUA),
+    STAMINA(Stamina.INSTANCE, "STA", TextFormatting.GREEN),
+    STRENGTH(Strength.INSTANCE, "STR", TextFormatting.GOLD),
+    INTELLIGENCE(Intelligence.INSTANCE, "INT", TextFormatting.BLUE);
 
     LvlPointStat(Stat stat, String shortname, TextFormatting format) {
         this.formatting = format;

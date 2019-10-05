@@ -11,7 +11,7 @@ public class DexterityFlat extends BaseCoreStatFlat {
 
     @Override
     public Stat GetBaseStat() {
-        return new Dexterity();
+        return Dexterity.INSTANCE;
     }
 
     @Override

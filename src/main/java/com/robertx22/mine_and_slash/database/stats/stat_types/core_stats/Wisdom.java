@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.stat_types.core_stats;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
@@ -13,10 +14,15 @@ import java.util.List;
 
 public class Wisdom extends BaseCoreStat {
     public static final String GUID = "Wisdom";
+    public static final Stat INSTANCE = new Wisdom();
+
+    private Wisdom() {
+
+    }
 
     @Override
-    public int iconSpriteNumber() {
-        return 14;
+    public String getIconPath() {
+        return "core/wis";
     }
 
     @Override

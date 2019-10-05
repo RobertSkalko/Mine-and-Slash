@@ -18,6 +18,11 @@ public class EnergyRegen extends BaseRegenClass {
     }
 
     @Override
+    public String getIconPath() {
+        return "regen/energy_regen";
+    }
+
+    @Override
     public StatGroup statGroup() {
         return StatGroup.Main;
     }

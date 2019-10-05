@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -29,10 +30,16 @@ public class PerkEffect implements ITooltipList, IApplyableStats {
         setupTexture(render);
     }
 
-    public PerkEffect(ExactStatData exactStat, String render) {
+    public PerkEffect(ExactStatData exactStat, Stat stat) {
         this.exactStats = Arrays.asList(exactStat);
-        setupTexture(render);
+        if (stat != null) {
+            setupTexture(stat);
+        }
+    }
 
+    private void setupTexture(Stat stat) {
+        this.TEXTURE = stat.getIconLocation();
+        this.hasTexture = true;
     }
 
     private void setupTexture(String id) {

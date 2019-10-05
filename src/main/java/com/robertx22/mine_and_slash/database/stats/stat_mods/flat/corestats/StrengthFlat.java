@@ -11,7 +11,7 @@ public class StrengthFlat extends BaseCoreStatFlat {
 
     @Override
     public Stat GetBaseStat() {
-        return new Strength();
+        return Strength.INSTANCE;
     }
 
     @Override

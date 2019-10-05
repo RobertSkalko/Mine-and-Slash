@@ -11,6 +11,16 @@ import java.util.List;
 public class Vitality extends BaseCoreStat {
 
     public static final String GUID = "Vitality";
+    public static final Vitality INSTANCE = new Vitality();
+
+    private Vitality() {
+
+    }
+
+    @Override
+    public String getIconPath() {
+        return "core/vit";
+    }
 
     @Override
     public String locDescForLangFile() {

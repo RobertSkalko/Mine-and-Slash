@@ -114,12 +114,12 @@ public class Stats implements ISlashRegistryInit {
                     add(new TheStar());
                     // major arcana tarot
 
-                    add(new Strength());
-                    add(new Dexterity());
-                    add(new Wisdom());
-                    add(new Intelligence());
-                    add(new Stamina());
-                    add(new Vitality());
+                    add(Strength.INSTANCE);
+                    add(Dexterity.INSTANCE);
+                    add(Wisdom.INSTANCE);
+                    add(Intelligence.INSTANCE);
+                    add(Stamina.INSTANCE);
+                    add(Vitality.INSTANCE);
                     add(new BonusExp());
 
                     // spell buffs
@@ -162,7 +162,7 @@ public class Stats implements ISlashRegistryInit {
                     add(Lifesteal.INSTANCE);
                     add(LifeOnHit.INSTANCE);
                     add(Mana.INSTANCE);
-                    add(new ManaRegen());
+                    add(ManaRegen.INSTANCE);
                     add(new ManaOnHit());
                     add(Energy.INSTANCE);
                     add(EnergyRegen.INSTANCE);

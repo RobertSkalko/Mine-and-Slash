@@ -11,7 +11,7 @@ public class WisdomFlat extends BaseCoreStatFlat {
 
     @Override
     public Stat GetBaseStat() {
-        return new Wisdom();
+        return Wisdom.INSTANCE;
     }
 
     @Override

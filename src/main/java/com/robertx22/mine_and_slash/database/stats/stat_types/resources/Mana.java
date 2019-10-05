@@ -20,8 +20,8 @@ public class Mana extends FillableStat {
     }
 
     @Override
-    public int iconSpriteNumber() {
-        return 2;
+    public String getIconPath() {
+        return "resource/mana";
     }
 
     @Override

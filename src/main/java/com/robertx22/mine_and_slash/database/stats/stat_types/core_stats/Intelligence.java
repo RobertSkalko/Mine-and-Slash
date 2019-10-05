@@ -11,11 +11,16 @@ import java.util.List;
 
 public class Intelligence extends BaseCoreStat {
 
+    private Intelligence() {
+
+    }
+
+    public static final Intelligence INSTANCE = new Intelligence();
     public static String GUID = "Intelligence";
 
     @Override
-    public int iconSpriteNumber() {
-        return 15;
+    public String getIconPath() {
+        return "core/int";
     }
 
     @Override
