@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkBuilder;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffects;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.PerkEffects;
 
 import java.util.ArrayList;
 import java.util.List;

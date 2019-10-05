@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content_test.talent_tree;
+package com.robertx22.mine_and_slash.new_content_test.talent_tree.data;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
@@ -8,6 +8,9 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDa
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.*;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffect;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffectBuilder;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffectsWrapper;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;

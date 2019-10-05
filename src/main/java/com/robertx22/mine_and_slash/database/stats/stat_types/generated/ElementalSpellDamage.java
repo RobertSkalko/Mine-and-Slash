@@ -18,6 +18,11 @@ public class ElementalSpellDamage extends ElementalStat {
     }
 
     @Override
+    public String getIconPath() {
+        return "spell_dmg/" + element.guidName;
+    }
+
+    @Override
     public Stat newGeneratedInstance(Elements element) {
         return new ElementalSpellDamage(element);
     }

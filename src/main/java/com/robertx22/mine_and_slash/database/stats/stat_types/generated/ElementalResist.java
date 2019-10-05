@@ -27,6 +27,11 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
     }
 
     @Override
+    public String getIconPath() {
+        return "ele_res/" + element.guidName;
+    }
+
+    @Override
     public String GUID() {
         return this.Element().name() + " Resist";
     }
