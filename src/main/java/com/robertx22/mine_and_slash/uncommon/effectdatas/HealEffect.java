@@ -9,9 +9,7 @@ public class HealEffect extends EffectData {
     public ResourcesData.Context healData;
 
     public HealEffect(ResourcesData.Context data) {
-
         super(data.source, data.target, data.sourceData, data.targetData);
-
         this.number = data.amount;
         this.healData = data;
     }
@@ -22,6 +20,8 @@ public class HealEffect extends EffectData {
         if (this.canceled) {
             return;
         }
+
+        this.calculateEffects();
 
         this.target.heal(getNumber());
 

@@ -68,7 +68,7 @@ public class SpellInstantHeal extends BaseSpellHeal {
 
                 data.getResources()
                         .modify(new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH, spellData
-                                .GetDamage(data.getUnit()), ResourcesData.Use.RESTORE).bySpell(this));
+                                .GetDamage(data.getUnit()), ResourcesData.Use.RESTORE, this));
 
                 SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
                 // spell buffs

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.ModifyResourceEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -32,6 +33,19 @@ public class ResourcesData {
         public Use use;
 
         public Context(UnitData data, LivingEntity entity, Type type, float amount,
+                       Use use, BaseSpell spell) {
+            this.targetData = data;
+            this.target = entity;
+            this.sourceData = data;
+            this.source = entity;
+            this.type = type;
+            this.amount = amount;
+            this.use = use;
+            this.spell = spell;
+            calculateStats();
+        }
+
+        public Context(UnitData data, LivingEntity entity, Type type, float amount,
                        Use use) {
             this.targetData = data;
             this.target = entity;
@@ -40,11 +54,11 @@ public class ResourcesData {
             this.type = type;
             this.amount = amount;
             this.use = use;
+            calculateStats();
         }
 
-        public Context bySpell(BaseSpell spell) {
-            this.spell = spell;
-            return this;
+        private void calculateStats() {
+            new ModifyResourceEffect(this).Activate();
         }
 
     }
@@ -53,7 +67,8 @@ public class ResourcesData {
         HEALTH,
         MANA,
         ENERGY,
-        MAGIC_SHIELD
+        MAGIC_SHIELD,
+        BLOOD
     }
 
     public enum Use {
@@ -67,6 +82,8 @@ public class ResourcesData {
     private float mana = 0;
     @Store
     private float magicShield = 0;
+    @Store
+    private float blood = 0;
 
     public float getEnergy() {
         return energy;

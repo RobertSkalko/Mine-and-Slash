@@ -44,8 +44,7 @@ public class HealthRegenPotion extends SpellPotionBase {
             } else {
                 UnitData data = Load.Unit(entity);
 
-                ResourcesData.Context hp = new ResourcesData.Context(data, entity, ResourcesData.Type.HEALTH, amplifier, ResourcesData.Use.RESTORE)
-                        .bySpell(new SpellSelfRegen());
+                ResourcesData.Context hp = new ResourcesData.Context(data, entity, ResourcesData.Type.HEALTH, amplifier, ResourcesData.Use.RESTORE, new SpellSelfRegen());
 
                 data.modifyResource(hp);
 
