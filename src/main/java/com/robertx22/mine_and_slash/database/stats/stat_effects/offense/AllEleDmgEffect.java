@@ -31,7 +31,9 @@ public class AllEleDmgEffect implements IStatEffect {
 
                 if (dmgeffect.element.equals(Elements.Physical) == false) {
 
-                    dmgeffect.number *= data.getMultiplier();
+                    float multi = data.getMultiplier();
+
+                    dmgeffect.number *= multi;
 
                 }
             }

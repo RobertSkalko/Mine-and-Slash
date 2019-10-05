@@ -49,10 +49,8 @@ public abstract class BasePlayerOverlay {
         }
 
         gui.blit(x, y, 0, 0, TEXTURE_WIDTH, this.TEXTURE_HEIGHT); // the bar
-        int barwidth = (int) (((float) current / max * 100));
-        if (barwidth > 100) {
-            barwidth = 100;
-        }
+
+        int barwidth = MathHelper.clamp((int) (((float) current / max * 100)), 0, 100);
 
         gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, barwidth, 5); // inner fill texture
 

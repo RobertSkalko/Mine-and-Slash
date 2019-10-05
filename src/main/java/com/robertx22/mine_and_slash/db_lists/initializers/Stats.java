@@ -10,10 +10,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRatin
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.SpellDodge;
 import com.robertx22.mine_and_slash.database.stats.stat_types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.stat_types.elementals.all_damage.AllEleSpellDmg;
-import com.robertx22.mine_and_slash.database.stats.stat_types.game_changers.BleedMastery;
-import com.robertx22.mine_and_slash.database.stats.stat_types.game_changers.BloodMage;
-import com.robertx22.mine_and_slash.database.stats.stat_types.game_changers.ManaBattery;
-import com.robertx22.mine_and_slash.database.stats.stat_types.game_changers.RefreshingBreeze;
+import com.robertx22.mine_and_slash.database.stats.stat_types.game_changers.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.*;
@@ -72,6 +69,7 @@ public class Stats implements ISlashRegistryInit {
                     add(BleedMastery.INSTANCE);
                     add(RefreshingBreeze.INSTANCE);
                     add(BloodMage.INSTANCE);
+                    add(Harmony.INSTANCE);
 
                     add(new ElementalBonusDmgOnBasic(Elements.Physical));
                     add(new ElementalConversion(Elements.Physical, Elements.Physical));

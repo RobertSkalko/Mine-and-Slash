@@ -8,9 +8,9 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.ModifyResourceEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class HpRegenToMagicShieldEffect implements IStatEffect {
+public class HarmonyEffect implements IStatEffect {
 
-    public static final HpRegenToMagicShieldEffect INSTANCE = new HpRegenToMagicShieldEffect();
+    public static final HarmonyEffect INSTANCE = new HarmonyEffect();
 
     @Override
     public int GetPriority() {
@@ -34,7 +34,14 @@ public class HpRegenToMagicShieldEffect implements IStatEffect {
                 if (eff.ctx.use == ResourcesData.Use.RESTORE) {
                     if (eff.ctx.amount > 0) {
                         if (eff.ctx.type == ResourcesData.Type.HEALTH) {
-                            eff.ctx.type = ResourcesData.Type.MAGIC_SHIELD;
+
+                            eff.ctx.amount /= 2;
+
+                            float restored = eff.ctx.amount / 2;
+
+                            ResourcesData.Context ctx = new ResourcesData.Context(eff.ctx.sourceData, eff.ctx.source, ResourcesData.Type.MAGIC_SHIELD, restored, ResourcesData.Use.RESTORE);
+                            eff.ctx.sourceData.getResources().modify(ctx);
+
                         }
                     }
                 }
