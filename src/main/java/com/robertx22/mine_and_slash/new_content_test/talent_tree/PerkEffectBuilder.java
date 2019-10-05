@@ -13,6 +13,14 @@ public class PerkEffectBuilder {
         return build(id, Arrays.asList(stat));
     }
 
+    public static PerkEffectsWrapper build(String id, PerkEffect... effects) {
+        List<ExactStatData> stats = new ArrayList<>();
+        for (PerkEffect effect : effects) {
+            stats.addAll(effect.exactStats);
+        }
+        return build(id, stats);
+    }
+
     public static PerkEffectsWrapper build(String id, List<ExactStatData> list) {
         HashMap<PerkType, PerkEffect> map = new HashMap<>();
 

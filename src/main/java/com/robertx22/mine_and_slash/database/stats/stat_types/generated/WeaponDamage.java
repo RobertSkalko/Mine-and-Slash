@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Stat> {
+public class WeaponDamage extends Stat implements IStatEffects, IGenerated<WeaponDamage> {
 
     private WeaponTypes weaponType;
 
@@ -66,8 +66,8 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Stat>
     }
 
     @Override
-    public List<Stat> generateAllPossibleStatVariations() {
-        List<Stat> list = new ArrayList<>();
+    public List<WeaponDamage> generateAllPossibleStatVariations() {
+        List<WeaponDamage> list = new ArrayList<>();
         WeaponTypes.getAll().forEach(x -> list.add(new WeaponDamage(x)));
         return list;
 

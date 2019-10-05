@@ -136,6 +136,14 @@ public class PlayerTalentsCap {
             }
 
             if (talent.isStart) {
+                if (this.getData()
+                        .getAllCurrentTalents()
+                        .stream()
+                        .anyMatch(x -> x.isStart)) {
+                    // if player already picked a starting point, dont allow to pick other start points
+                    return false;
+                }
+
                 return true;
             }
 
