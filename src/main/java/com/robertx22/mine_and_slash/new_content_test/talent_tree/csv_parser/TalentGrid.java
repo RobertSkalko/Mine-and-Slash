@@ -4,11 +4,7 @@ import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkBuilder;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.PerkEffects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class TalentGrid {
 
@@ -41,145 +37,74 @@ public class TalentGrid {
 
     public void createConnections() {
 
-        for (List<GridPoint> list : grid) {
+        List<GridPoint> talents = new ArrayList<>();
 
+        for (List<GridPoint> list : grid) {
             for (GridPoint point : list) {
                 if (point.isTalent()) {
-
-                    HashMap<GridPoint, List<GridPoint>> toCheck = new HashMap<>();
-
-                    for (GridPoint check : getSurroundingPoints(point)) {
-
-                        if (check.isTalent()) {
-                            System.out.println("Error, can't have 2 talents together, they must have a connector");
-                            System.out.println(check.x + " - " + check.y);
-                        }
-
-                        if (check.isConnector()) {
-                            toCheck.put(check, getSurroundingPoints(check));
-                        }
-
-                    }
-
-                    HashMap<GridPoint, List<GridPoint>> toCheckAlso = new HashMap<>();
-
-                    int checks = 0;
-
-                    while (toCheck.size() > 0 && checks < 10000) {
-
-                        checks++;
-
-                        //toCheckAlso.clear();
-
-                        for (Map.Entry<GridPoint, List<GridPoint>> entry : toCheck.entrySet()) {
-
-                            boolean checkConnections = true;
-
-                            for (GridPoint check : entry.getValue()) {
-
-                                if (check.isTalent()) {
-                                    Perk perk = point.getPerk();
-                                    Perk checkPerk = check.getPerk();
-
-                                    boolean connected = perk.tryConnectTo(checkPerk);
-
-                                    toCheckAlso.put(check, new ArrayList<>());
-
-                                    if (perk != checkPerk || connected) {
-                                        // disable searching this tree
-                                        checkConnections = false;
-                                    }
-
-                                }
-
-                            }
-
-                            if (checkConnections) {
-                                for (GridPoint check : entry.getValue()) {
-                                    if (check.isConnector()) {
-                                        toCheckAlso.put(entry.getKey(), getSurroundingPoints(check));
-                                    }
-                                }
-
-                            }
-                        }
-
-                        toCheck.clear();
-
-                        for (Map.Entry<GridPoint, List<GridPoint>> e : toCheckAlso.entrySet()) {
-                            toCheck.put(e.getKey(), e.getValue());
-                        }
-
-                    }
-
+                    talents.add(point);
                 }
-
             }
 
         }
 
-    }
+        for (GridPoint one : talents) {
+            for (GridPoint two : talents) {
+                if (hasPath(one, two)) {
+                    one.getPerk().tryConnectTo(two.getPerk());
+                }
+            }
+        }
 
-    List<GridPoint> getAllConnectors(GridPoint point) {
-        return getSurroundingPoints(point).stream()
-                .filter(x -> x.isConnector())
-                .collect(Collectors.toList());
+    }
+    
+    boolean hasPath(GridPoint start, GridPoint end) {
+        Queue<GridPoint> openSet = new ArrayDeque<>();
+        openSet.add(start);
+
+        Set<GridPoint> closedSet = new HashSet<>();
+
+        while (!openSet.isEmpty()) {
+            GridPoint current = openSet.poll();
+
+            if (current.equals(end)) {
+                return true;
+            }
+
+            if (!closedSet.add(current)) {
+                continue; // we already visited it
+            }
+
+            if (current.isTalent() && current != start) {
+                continue; // skip exploring this path
+            }
+
+            openSet.addAll(getSurroundingPoints(current));
+        }
+
+        return false;
     }
 
     public List<GridPoint> getSurroundingPoints(GridPoint p) {
-
         List<GridPoint> list = new ArrayList<>();
-
-        int x = p.x + 1;
+        int x = p.x;
         int y = p.y;
-        if (isInRange(x, y)) {
-            list.add(get(x, y));
-        }
 
-        x = p.x;
-        y = p.y + 1;
-        if (isInRange(x, y)) {
-            list.add(get(x, y));
-        }
-
-        x = p.x + 1;
-        y = p.y + 1;
-        if (isInRange(x, y)) {
-            list.add(get(x, y));
-        }
-
-        x = p.x - 1;
-        y = p.y - 1;
-        if (isInRange(x, y)) {
-            list.add(get(x, y));
-        }
-
-        x = p.x - 1;
-        y = p.y;
-        if (isInRange(x, y)) {
-            list.add(get(x, y));
-        }
-
-        x = p.x;
-        y = p.y - 1;
-        if (isInRange(x, y)) {
-            list.add(get(x, y));
-        }
-
-        x = p.x + 1;
-        y = p.y - 1;
-        if (isInRange(x, y)) {
-            list.add(get(x, y));
-        }
-
-        x = p.x - 1;
-        y = p.y + 1;
-        if (isInRange(x, y)) {
-            list.add(get(x, y));
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                if (dx == 0 && dy == 0) {
+                    continue;
+                }
+                if (isInRange(x + dx, y + dy)) {
+                    GridPoint point = get(x + dx, y + dy);
+                    if (point.isTalent() || point.isConnector()) {
+                        list.add(point);
+                    }
+                }
+            }
         }
 
         return list;
-
     }
 
     public boolean isInRange(int x, int y) {
