@@ -213,7 +213,7 @@ public class StatGUI extends Screen {
                 .getAll()
                 .values()
                 .stream()
-                .filter(stat -> stat.IsShownOnTooltip() && stat.statGroup()
+                .filter(stat -> stat.IsShownOnStatGui() && stat.statGroup()
                         .equals(statgroup))
                 .collect(Collectors.toList());
 

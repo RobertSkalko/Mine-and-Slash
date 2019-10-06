@@ -25,7 +25,7 @@ public class LootTypeBonus extends Stat implements IGenerated<Stat> {
     }
 
     @Override
-    public boolean IsShownOnTooltip() {
+    public boolean IsShownOnStatGui() {
         return false;
     }
 

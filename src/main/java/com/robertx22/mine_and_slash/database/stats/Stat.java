@@ -187,7 +187,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     }
 
-    public boolean IsShownOnTooltip() {
+    public boolean IsShownOnStatGui() {
         return true;
     }
 

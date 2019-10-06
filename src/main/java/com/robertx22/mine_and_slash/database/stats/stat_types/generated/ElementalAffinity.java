@@ -22,7 +22,7 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
     }
 
     @Override
-    public boolean IsShownOnTooltip() {
+    public boolean IsShownOnStatGui() {
         return false;
     }
 

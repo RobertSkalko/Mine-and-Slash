@@ -23,7 +23,7 @@ public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated
     }
 
     @Override
-    public boolean IsShownOnTooltip() {
+    public boolean IsShownOnStatGui() {
         return false;
     }
 

@@ -27,7 +27,7 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
     }
 
     @Override
-    public boolean IsShownOnTooltip() {
+    public boolean IsShownOnStatGui() {
         return false;
     }
 

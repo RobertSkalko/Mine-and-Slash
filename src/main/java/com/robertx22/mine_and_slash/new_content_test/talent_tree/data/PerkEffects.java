@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree.data;
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRating;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.EleWepDmg;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHit;
@@ -55,6 +56,28 @@ public class PerkEffects {
     public static PerkEffectsWrapper BOW_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Bow), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.Bow)));
     public static PerkEffectsWrapper CROSSBOW_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.CrossBow), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.CrossBow)));
     public static PerkEffectsWrapper SWORD_DMG_PERCENT = PerkEffectBuilder.build(new WeaponDamage(WeaponTypes.Sword), new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(WeaponTypes.Sword)));
+
+    public static PerkEffectsWrapper WAND_ELE_DMG_PERCENT = PerkEffectBuilder.build(EleWepDmg.MAP
+            .get(WeaponTypes.Wand), new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP
+            .get(WeaponTypes.Wand)));
+    public static PerkEffectsWrapper STAFF_ELE_DMG_PERCENT = PerkEffectBuilder.build(EleWepDmg.MAP
+            .get(WeaponTypes.Staff), new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP
+            .get(WeaponTypes.Staff)));
+    public static PerkEffectsWrapper AXE_ELE_DMG_PERCENT = PerkEffectBuilder.build(EleWepDmg.MAP
+            .get(WeaponTypes.Axe), new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP
+            .get(WeaponTypes.Axe)));
+    public static PerkEffectsWrapper HAMMER_ELE_DMG_PERCENT = PerkEffectBuilder.build(EleWepDmg.MAP
+            .get(WeaponTypes.Hammer), new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP
+            .get(WeaponTypes.Hammer)));
+    public static PerkEffectsWrapper BOW_ELE_DMG_PERCENT = PerkEffectBuilder.build(EleWepDmg.MAP
+            .get(WeaponTypes.Bow), new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP
+            .get(WeaponTypes.Bow)));
+    public static PerkEffectsWrapper CROSSBOW_ELE_DMG_PERCENT = PerkEffectBuilder.build(EleWepDmg.MAP
+            .get(WeaponTypes.CrossBow), new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP
+            .get(WeaponTypes.CrossBow)));
+    public static PerkEffectsWrapper SWORD_ELE_DMG_PERCENT = PerkEffectBuilder.build(EleWepDmg.MAP
+            .get(WeaponTypes.Sword), new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP
+            .get(WeaponTypes.Sword)));
 
     // COMBINED EFFECTS
     public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT = PerkEffectBuilder

@@ -80,7 +80,7 @@ public class BonusSpecificSpell extends Stat implements IStatEffects, IGenerated
 
     }
 
-    public boolean IsShownOnTooltip() {
+    public boolean IsShownOnStatGui() {
         return false;
     }
 

@@ -33,7 +33,7 @@ public abstract class BaseTrait extends Stat {
     }
 
     @Override
-    public boolean IsShownOnTooltip() {
+    public boolean IsShownOnStatGui() {
         return false;
     }
 

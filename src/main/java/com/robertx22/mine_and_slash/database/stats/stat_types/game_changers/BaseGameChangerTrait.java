@@ -15,6 +15,16 @@ public abstract class BaseGameChangerTrait extends BaseTrait {
         return 0; // NEVER DROP, these should be from talent tree only
     }
 
+    @Override
+    public boolean IsShownOnStatGui() {
+        return true;
+    }
+
+    @Override
+    public StatGroup statGroup() {
+        return StatGroup.Misc;
+    }
+
 }
 
 

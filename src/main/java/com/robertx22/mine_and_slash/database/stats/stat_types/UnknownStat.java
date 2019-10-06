@@ -11,7 +11,7 @@ public class UnknownStat extends Stat {
     }
 
     @Override
-    public boolean IsShownOnTooltip() {
+    public boolean IsShownOnStatGui() {
         return false;
     }
 
