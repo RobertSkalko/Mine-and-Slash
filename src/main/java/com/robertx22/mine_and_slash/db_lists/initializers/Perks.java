@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkBuilder;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.PerkEffects;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.StartPerkEffects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,13 @@ public class Perks implements ISlashRegistryInit {
 
     public static List<Perk> all = new ArrayList<>();
 
-    public final static Perk CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1, CRIT_DMG2, START0, SMALL_INT0, BIG_INT0;
+    public static Perk CRIT_HIT0, CRIT_HIT1, CRIT_DMG0, CRIT_DMG1, CRIT_DMG2, START0, SMALL_INT0, BIG_INT0;
 
-    static {
+    public static void create() {
 
         START0 = PerkBuilder.create("start0")
                 .pos(0, 0)
-                .effect(PerkEffects.NOTHING)
+                .effect(StartPerkEffects.MAGE)
                 .connections()
                 .build()
                 .setAsStart();
@@ -37,9 +38,12 @@ public class Perks implements ISlashRegistryInit {
                 .add(SMALL_INT0)
                 .build();
 
-        CRIT_HIT0 = PerkBuilder.create("crit_hit0").pos(1, 0)
-
-                .effect(PerkEffects.CRIT_HIT.small()).connections().add(START0).build();
+        CRIT_HIT0 = PerkBuilder.create("crit_hit0")
+                .pos(1, 0)
+                .effect(PerkEffects.CRIT_HIT.small())
+                .connections()
+                .add(START0)
+                .build();
 
         CRIT_HIT1 = PerkBuilder.create("crit_hit1")
                 .pos(2, 0)
@@ -71,6 +75,11 @@ public class Perks implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        PerkEffects.create();
+        PerkEffects.createCombined();
+        Perks.create();
+
         all.forEach(x -> x.registerToSlashRegistry());
     }
 }

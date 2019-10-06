@@ -15,5 +15,5 @@ public class TraitPerkEffects {
     public static final PerkEffect REFRESHING_BREEZE = PerkEffectBuilder.trait(RefreshingBreeze.INSTANCE, PerkType.MAJOR);
     public static final PerkEffect STEADY_HAND = PerkEffectBuilder.trait(SteadyHand.INSTANCE, PerkType.MAJOR);
     public static final PerkEffect TRUE_HIT = PerkEffectBuilder.trait(TrueHit.INSTANCE, PerkType.MAJOR);
-    
+
 }

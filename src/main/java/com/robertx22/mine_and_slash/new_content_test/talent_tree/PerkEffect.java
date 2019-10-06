@@ -37,6 +37,13 @@ public class PerkEffect implements ITooltipList, IApplyableStats {
         }
     }
 
+    public PerkEffect(ExactStatData exactStat, String render) {
+        this.exactStats = Arrays.asList(exactStat);
+        if (render != null) {
+            setupTexture(render);
+        }
+    }
+
     private void setupTexture(Stat stat) {
         this.TEXTURE = stat.getIconLocation();
         this.hasTexture = true;
