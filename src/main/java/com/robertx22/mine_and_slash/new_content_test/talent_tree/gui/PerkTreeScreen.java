@@ -97,8 +97,8 @@ public class PerkTreeScreen extends Screen {
     @Override
     public boolean mouseDragged(double x, double y, int ticks, double dragX,
                                 double dragY) {
-        this.scrollX -= dragX;
-        this.scrollY -= dragY;
+        this.scrollX -= dragX * 1 / zoom;
+        this.scrollY -= dragY * 1 / zoom;
         return true;
 
     }
@@ -239,7 +239,7 @@ public class PerkTreeScreen extends Screen {
 
         float spacing = size + size / 2;
 
-        List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 100f, spacing, true);
+        List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 360f, spacing, true);
 
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         Minecraft.getInstance().getTextureManager().bindTexture(LINES);
