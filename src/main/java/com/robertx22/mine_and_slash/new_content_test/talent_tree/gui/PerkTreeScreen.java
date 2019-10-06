@@ -40,7 +40,7 @@ public class PerkTreeScreen extends Screen {
     public float scrollY = 0;
     public float zoom = 1;
 
-    public static int CENTER_X = 504;
+    public static int CENTER_X = 500;
     public static int CENTER_Y = 500;
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/talents/talent_frame.png");
@@ -67,6 +67,8 @@ public class PerkTreeScreen extends Screen {
             this.addButton(new PerkButton(talents, talent, data));
         }
 
+        returnToCenter();
+
     }
 
     @Override
@@ -85,19 +87,18 @@ public class PerkTreeScreen extends Screen {
         this.scrollX = PerkButton.getSpacing() * CENTER_X;
         this.scrollY = PerkButton.getSpacing() * CENTER_Y;
 
-        this.scrollX = PerkButton.getSpacing() * 0; // TODO UNTIL I IMPLEMENT FULL TREE
-        this.scrollY = PerkButton.getSpacing() * 0;
+        this.scrollX -= sizeX / 2;
+        this.scrollY -= sizeY / 2;
 
-        this.scrollX += sizeX / 2;
-        this.scrollY += sizeY / 2;
+        this.zoom = 0.6F;
 
     }
 
     @Override
     public boolean mouseDragged(double x, double y, int ticks, double dragX,
                                 double dragY) {
-        this.scrollX += dragX;
-        this.scrollY += dragY;
+        this.scrollX -= dragX;
+        this.scrollY -= dragY;
         return true;
 
     }

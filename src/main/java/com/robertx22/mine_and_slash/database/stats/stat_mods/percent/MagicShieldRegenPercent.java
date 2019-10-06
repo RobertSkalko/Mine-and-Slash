@@ -12,7 +12,7 @@ public class MagicShieldRegenPercent extends StatMod {
 
     @Override
     public String GUID() {
-        return "MagicShieldPercent";
+        return "MagicShieldRegenPercent";
     }
 
     @Override

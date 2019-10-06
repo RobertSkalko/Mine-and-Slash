@@ -92,13 +92,13 @@ public class PerkButton extends ImageButton {
 
     public int getX(ScreenContext ctx) {
 
-        int pos = (int) (this.perk.x * getSpacing() + ctx.scrollX * ctx.zoom);
+        int pos = (int) ((this.perk.x * getSpacing() - ctx.scrollX) * ctx.zoom);
 
         return pos;
     }
 
     public int getY(ScreenContext ctx) {
-        int pos = (int) (this.perk.y * getSpacing() + ctx.scrollY * ctx.zoom);
+        int pos = (int) ((this.perk.y * getSpacing() - ctx.scrollY) * ctx.zoom);
 
         return pos;
     }

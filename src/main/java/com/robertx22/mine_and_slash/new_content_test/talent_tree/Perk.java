@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.initializers.Perks;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.perks.StartPerks;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 
@@ -24,6 +24,17 @@ public class Perk implements ISlashRegistryEntry<Perk> {
     public int y;
 
     public boolean isStart = false;
+
+    // this ensures no perk overrrites the other without me knowing
+    public void setVariable(Perk perk) {
+        if (perk == null) {
+            perk = this;
+        } else {
+            System.out.println("ERROR YOU ARE OVERRWRITING ONE PERK WITH ANOTHER!!!");
+            System.out.println(this.GUID());
+        }
+
+    }
 
     public void render(int x, int y) {
 
@@ -91,8 +102,7 @@ public class Perk implements ISlashRegistryEntry<Perk> {
     }
 
     public static List<Perk> getStarts() {
-        return Arrays.asList(Perks.CRIT_DMG0);
-
+        return Arrays.asList(StartPerks.GUARDIAN, StartPerks.MAGE, StartPerks.THIEF, StartPerks.WARRIOR);
     }
 
     @Override

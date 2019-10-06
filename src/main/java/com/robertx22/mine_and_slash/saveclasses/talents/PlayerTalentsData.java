@@ -52,7 +52,11 @@ public class PlayerTalentsData implements IApplyableStats {
 
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {
             if (entry.getValue()) {
-                list.add(SlashRegistry.Talents().get(entry.getKey()));
+
+                Perk perk = SlashRegistry.Talents().get(entry.getKey());
+                if (perk != null) {
+                    list.add(perk);
+                }
             }
         }
         return list;
@@ -62,7 +66,9 @@ public class PlayerTalentsData implements IApplyableStats {
     @Override
     public void applyStats(EntityCap.UnitData data) {
         for (Perk talent : getAllCurrentTalents()) {
-            talent.effect.applyStats(data);
+            if (talent.effect != null) {
+                talent.effect.applyStats(data);
+            }
         }
     }
 }
