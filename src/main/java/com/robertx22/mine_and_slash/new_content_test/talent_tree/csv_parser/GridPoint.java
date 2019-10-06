@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree.csv_parser;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class GridPoint {
 
@@ -13,6 +15,16 @@ public class GridPoint {
         this.x = x;
         this.y = y;
         this.str = str;
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this, false);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj, false);
     }
 
     public Perk getPerk() {

@@ -25,17 +25,6 @@ public class Perk implements ISlashRegistryEntry<Perk> {
 
     public boolean isStart = false;
 
-    // this ensures no perk overrrites the other without me knowing
-    public void setVariable(Perk perk) {
-        if (perk == null) {
-            perk = this;
-        } else {
-            System.out.println("ERROR YOU ARE OVERRWRITING ONE PERK WITH ANOTHER!!!");
-            System.out.println(this.GUID());
-        }
-
-    }
-
     public void render(int x, int y) {
 
         this.effect.render(x, y);

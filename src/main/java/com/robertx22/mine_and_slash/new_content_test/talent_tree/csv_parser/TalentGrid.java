@@ -5,7 +5,10 @@ import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkBuilder;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.PerkEffects;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TalentGrid {
 
@@ -37,69 +40,90 @@ public class TalentGrid {
     }
 
     public void createConnections() {
-        int x = 0;
+
         for (List<GridPoint> list : grid) {
-            int y = 0;
+
             for (GridPoint point : list) {
                 if (point.isTalent()) {
 
-                    List<GridPoint> alreadyChecked = new ArrayList<>();
-                    List<GridPoint> toCheck = new ArrayList<>();
-                    alreadyChecked.add(point);
-                    toCheck.addAll(getSurroundingPoints(point));
+                    HashMap<GridPoint, List<GridPoint>> toCheck = new HashMap<>();
 
-                    List<GridPoint> toCheckAlso = new ArrayList<>();
+                    for (GridPoint check : getSurroundingPoints(point)) {
+
+                        if (check.isTalent()) {
+                            System.out.println("Error, can't have 2 talents together, they must have a connector");
+                            System.out.println(check.x + " - " + check.y);
+                        }
+
+                        if (check.isConnector()) {
+                            toCheck.put(check, getSurroundingPoints(check));
+                        }
+
+                    }
+
+                    HashMap<GridPoint, List<GridPoint>> toCheckAlso = new HashMap<>();
 
                     int checks = 0;
 
-                    while (toCheck.size() > 0 && checks < 50) {
+                    while (toCheck.size() > 0 && checks < 10000) {
 
                         checks++;
 
-                        toCheckAlso.clear();
-                        boolean checkConnections = true;
+                        //toCheckAlso.clear();
 
-                        for (GridPoint check : toCheck) {
-                            if (!alreadyChecked.contains(check)) {
+                        for (Map.Entry<GridPoint, List<GridPoint>> entry : toCheck.entrySet()) {
+
+                            boolean checkConnections = true;
+
+                            for (GridPoint check : entry.getValue()) {
 
                                 if (check.isTalent()) {
                                     Perk perk = point.getPerk();
                                     Perk checkPerk = check.getPerk();
 
-                                    alreadyChecked.add(check);
-
                                     boolean connected = perk.tryConnectTo(checkPerk);
 
+                                    toCheckAlso.put(check, new ArrayList<>());
+
+                                    if (perk != checkPerk || connected) {
+                                        // disable searching this tree
+                                        checkConnections = false;
+                                    }
+
                                 }
+
                             }
 
-                        }
-
-                        if (checkConnections) {
-                            for (GridPoint check : toCheck) {
-                                if (!alreadyChecked.contains(check)) {
-                                    alreadyChecked.add(check);
+                            if (checkConnections) {
+                                for (GridPoint check : entry.getValue()) {
                                     if (check.isConnector()) {
-                                        toCheckAlso.addAll(getSurroundingPoints(check));
+                                        toCheckAlso.put(entry.getKey(), getSurroundingPoints(check));
                                     }
                                 }
 
                             }
-
                         }
 
                         toCheck.clear();
-                        toCheck.addAll(toCheckAlso);
+
+                        for (Map.Entry<GridPoint, List<GridPoint>> e : toCheckAlso.entrySet()) {
+                            toCheck.put(e.getKey(), e.getValue());
+                        }
 
                     }
 
                 }
-                y++;
+
             }
-            x++;
 
         }
 
+    }
+
+    List<GridPoint> getAllConnectors(GridPoint point) {
+        return getSurroundingPoints(point).stream()
+                .filter(x -> x.isConnector())
+                .collect(Collectors.toList());
     }
 
     public List<GridPoint> getSurroundingPoints(GridPoint p) {
@@ -159,6 +183,10 @@ public class TalentGrid {
     }
 
     public boolean isInRange(int x, int y) {
+
+        if (y < 2) {
+            return false;
+        }
 
         try {
             return get(x, y) != null;
