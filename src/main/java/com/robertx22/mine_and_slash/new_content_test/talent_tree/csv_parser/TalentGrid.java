@@ -57,7 +57,7 @@ public class TalentGrid {
         }
 
     }
-    
+
     boolean hasPath(GridPoint start, GridPoint end) {
         Queue<GridPoint> openSet = new ArrayDeque<>();
         openSet.add(start);
@@ -79,13 +79,14 @@ public class TalentGrid {
                 continue; // skip exploring this path
             }
 
-            openSet.addAll(getSurroundingPoints(current));
+            openSet.addAll(getSurroundingPoints(start, current));
         }
 
         return false;
     }
 
-    public List<GridPoint> getSurroundingPoints(GridPoint p) {
+    public List<GridPoint> getSurroundingPoints(GridPoint start, GridPoint p) {
+
         List<GridPoint> list = new ArrayList<>();
         int x = p.x;
         int y = p.y;
@@ -97,6 +98,13 @@ public class TalentGrid {
                 }
                 if (isInRange(x + dx, y + dy)) {
                     GridPoint point = get(x + dx, y + dy);
+
+                    if (Math.abs(dx) == 1 && Math.abs(dy) == 1) { // we are discovering a diagonal
+                        if (get(x + dx, y).isTalent() || get(x, y + dy).isTalent()) {
+                            continue; // skip this diagonal, it crosses a talent
+                        }
+                    }
+
                     if (point.isTalent() || point.isConnector()) {
                         list.add(point);
                     }
