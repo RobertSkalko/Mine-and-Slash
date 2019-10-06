@@ -21,7 +21,8 @@ public enum SlashRegistryType {
     CURRENCY_ITEMS(),
     UNIQUE_RUNES(),
     COMPATIBLE_ITEM(),
-    TALENT(),
+    PERK(),
+    PERK_EFFECT(),
     RECIPE();
 
 }

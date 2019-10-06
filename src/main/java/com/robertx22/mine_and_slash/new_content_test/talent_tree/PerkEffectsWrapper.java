@@ -21,4 +21,5 @@ public class PerkEffectsWrapper {
     public PerkEffect major() {
         return map.get(PerkType.MAJOR);
     }
+
 }

@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree.csv_parser;
 
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkBuilder;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.PerkEffects;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffect;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.StartPerkEffects;
 
 import java.util.*;
 
@@ -58,7 +60,7 @@ public class TalentGrid {
 
     }
 
-    boolean hasPath(GridPoint start, GridPoint end) {
+    private boolean hasPath(GridPoint start, GridPoint end) {
         Queue<GridPoint> openSet = new ArrayDeque<>();
         openSet.add(start);
 
@@ -79,13 +81,13 @@ public class TalentGrid {
                 continue; // skip exploring this path
             }
 
-            openSet.addAll(getSurroundingPoints(start, current));
+            openSet.addAll(getEligibleSurroundingPoints(current));
         }
 
         return false;
     }
 
-    public List<GridPoint> getSurroundingPoints(GridPoint start, GridPoint p) {
+    public List<GridPoint> getEligibleSurroundingPoints(GridPoint p) {
 
         List<GridPoint> list = new ArrayList<>();
         int x = p.x;
@@ -135,16 +137,34 @@ public class TalentGrid {
             for (GridPoint point : list) {
 
                 if (point.isTalent()) {
+
+                    String id = point.effectID;
+
+                    if (!SlashRegistry.PerkEffects().isRegistered(id)) {
+                        id = id.toLowerCase();
+                        if (!SlashRegistry.PerkEffects().isRegistered(id)) {
+                            id = id.toUpperCase();
+                        }
+                    }
+
+                    PerkEffect effect = null;
+
+                    if (SlashRegistry.PerkEffects().isRegistered(id)) {
+                        effect = SlashRegistry.PerkEffects().get(id);
+                    }
+                    if (effect == null) {
+                        effect = StartPerkEffects.WARRIOR;
+                    }
+
                     Perk perk = PerkBuilder.create(point.getID())
                             .pos(point.x, point.y)
-                            .effect(PerkEffects.MAGIC_SHIELD_PERCENT.small())
+                            .effect(effect)
                             .connections()
                             .build();
 
                     perk.registerToSlashRegistry();
 
                 }
-
             }
 
         }

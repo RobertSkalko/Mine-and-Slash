@@ -3,12 +3,10 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.perks.StartPerks;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Perk implements ISlashRegistryEntry<Perk> {
@@ -97,10 +95,6 @@ public class Perk implements ISlashRegistryEntry<Perk> {
         return false;
     }
 
-    public static List<Perk> getStarts() {
-        return Arrays.asList(StartPerks.GUARDIAN, StartPerks.MAGE, StartPerks.THIEF, StartPerks.WARRIOR);
-    }
-
     @Override
     public String GUID() {
         return guid;
@@ -108,7 +102,7 @@ public class Perk implements ISlashRegistryEntry<Perk> {
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.TALENT;
+        return SlashRegistryType.PERK;
     }
 
     @Override

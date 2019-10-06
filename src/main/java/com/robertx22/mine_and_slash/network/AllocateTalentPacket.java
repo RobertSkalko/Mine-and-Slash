@@ -52,7 +52,7 @@ public class AllocateTalentPacket {
 
                 PlayerTalentsCap.IPlayerTalentsData talents = Load.talents(player);
 
-                Perk talent = SlashRegistry.Talents().get(pkt.guid);
+                Perk talent = SlashRegistry.Perks().get(pkt.guid);
 
                 if (talent != null) {
 

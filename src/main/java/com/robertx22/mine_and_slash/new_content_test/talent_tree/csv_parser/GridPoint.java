@@ -9,12 +9,12 @@ public class GridPoint {
 
     public int x;
     public int y;
-    public String str;
+    public String effectID;
 
     public GridPoint(int x, int y, String str) {
         this.x = x;
         this.y = y;
-        this.str = str;
+        this.effectID = str;
     }
 
     @Override
@@ -28,15 +28,25 @@ public class GridPoint {
     }
 
     public Perk getPerk() {
-        return SlashRegistry.Talents().get(this.getID());
+        // handle both caps and lowercase
+        String id = getID();
+
+        if (!SlashRegistry.Perks().isRegistered(id)) {
+            id = id.toLowerCase();
+            if (!SlashRegistry.Perks().isRegistered(id)) {
+                id = id.toUpperCase();
+            }
+        }
+
+        return SlashRegistry.Perks().get(id);
     }
 
     public boolean isTalent() {
-        return str.length() > 1;
+        return effectID.length() > 1;
     }
 
     public boolean isConnector() {
-        return str.equals("O") || str.equals("o");
+        return effectID.equals("O") || effectID.equals("o");
     }
 
     public String getID() {

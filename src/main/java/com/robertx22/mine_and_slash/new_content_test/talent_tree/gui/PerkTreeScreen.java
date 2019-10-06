@@ -74,7 +74,7 @@ public class PerkTreeScreen extends Screen {
     public void init(Minecraft mc, int x, int y) {
         super.init(mc, x, y);
 
-        for (Perk talent : SlashRegistry.Talents().getList()) {
+        for (Perk talent : SlashRegistry.Perks().getList()) {
             this.addButton(new PerkButton(talents, talent, data));
         }
 

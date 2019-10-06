@@ -101,7 +101,7 @@ public class PlayerTalentsCap {
 
             HashSet<PerkConnection> set = new HashSet<>();
 
-            for (Perk talent : SlashRegistry.Talents().getList()) {
+            for (Perk talent : SlashRegistry.Perks().getList()) {
 
                 if (data.isAllocated(talent)) {
                     for (Perk con : talent.connections) {

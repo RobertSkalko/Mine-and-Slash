@@ -18,21 +18,22 @@ public class PerkEffectBuilder {
         return build(id, stats);
     }
 
-    public static PerkEffect trait(Stat stat, PerkType type) {
+    public static PerkEffect trait(String guid, Stat stat, PerkType type) {
 
         ExactStatData data = new ExactStatData(100, StatTypes.Flat, stat.GUID());
 
-        return new PerkEffect(data, stat).type(type);
+        return new PerkEffect(guid, data, stat).type(type);
 
     }
 
-    public static PerkEffectsWrapper build(Stat stat, float num, StatTypes type) {
+    public static PerkEffectsWrapper build(String guid, Stat stat, float num,
+                                           StatTypes type) {
         ExactStatData statdata = new ExactStatData(num, type, stat);
-        return build(stat, statdata);
+        return build(guid, stat, statdata);
 
     }
 
-    public static PerkEffectsWrapper build(Stat stat, ExactStatData data) {
+    public static PerkEffectsWrapper build(String guid, Stat stat, ExactStatData data) {
         HashMap<PerkType, PerkEffect> map = new HashMap<>();
 
         for (PerkType type : PerkType.values()) {
@@ -40,7 +41,9 @@ public class PerkEffectBuilder {
             ExactStatData data2 = new ExactStatData(data);
             data2.setValue(data2.getValue() * type.statMulti);
 
-            PerkEffect neww = new PerkEffect(data2, stat).type(type);
+            String id = guid + "_" + type.name().toLowerCase();
+
+            PerkEffect neww = new PerkEffect(id, data2, stat).type(type);
 
             map.put(type, neww);
 
@@ -48,7 +51,7 @@ public class PerkEffectBuilder {
         return new PerkEffectsWrapper(map);
     }
 
-    public static PerkEffectsWrapper build(String id, List<ExactStatData> list) {
+    public static PerkEffectsWrapper build(String guid, List<ExactStatData> list) {
         HashMap<PerkType, PerkEffect> map = new HashMap<>();
 
         for (PerkType type : PerkType.values()) {
@@ -60,8 +63,9 @@ public class PerkEffectBuilder {
                 stat.setValue(stat.getValue() * type.statMulti);
                 stats.add(stat);
             }
+            String id = guid + "_" + type.name().toLowerCase();
 
-            PerkEffect neww = new PerkEffect(stats, id).type(type);
+            PerkEffect neww = new PerkEffect(id, stats, id).type(type);
 
             map.put(type, neww);
 

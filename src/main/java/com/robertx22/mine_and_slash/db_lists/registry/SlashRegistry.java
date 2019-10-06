@@ -29,7 +29,8 @@ import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.perks.StartPerks;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffect;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.data.StartPerkEffects;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.IWorld;
@@ -78,8 +79,12 @@ public class SlashRegistry {
 
     }
 
-    public static SlashRegistryContainer<Perk> Talents() {
-        return getRegistry(SlashRegistryType.TALENT);
+    public static SlashRegistryContainer<PerkEffect> PerkEffects() {
+        return getRegistry(SlashRegistryType.PERK_EFFECT);
+    }
+
+    public static SlashRegistryContainer<Perk> Perks() {
+        return getRegistry(SlashRegistryType.PERK);
     }
 
     public static SlashRegistryContainer<BaseRecipe> Recipes() {
@@ -206,6 +211,7 @@ public class SlashRegistry {
 
         // professions
         new AlchemyRecipes().registerAll();
+
         new Perks().registerAll();
 
     }
@@ -235,7 +241,8 @@ public class SlashRegistry {
                 .DefaultExtra()).logAdditions().dontErrorMissingEntriesOnAccess());
         map.put(SlashRegistryType.MOD_ENTITY_CONFIGS, new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS)
                 .logAdditions());
-        map.put(SlashRegistryType.TALENT, new SlashRegistryContainer<Perk>(SlashRegistryType.TALENT, StartPerks.MAGE));
+        map.put(SlashRegistryType.PERK, new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
+        map.put(SlashRegistryType.PERK_EFFECT, new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
 
     }
 

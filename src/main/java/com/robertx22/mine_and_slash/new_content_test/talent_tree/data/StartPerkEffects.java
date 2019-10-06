@@ -7,9 +7,17 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class StartPerkEffects {
 
-    public static PerkEffect MAGE = new PerkEffect(new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/mage");
-    public static PerkEffect THIEF = new PerkEffect(new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/thief");
-    public static PerkEffect GUARDIAN = new PerkEffect(new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/guardian");
-    public static PerkEffect WARRIOR = new PerkEffect(new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/warrior");
+    public static PerkEffect MAGE;
+    public static PerkEffect THIEF;
+    public static PerkEffect GUARDIAN;
+    public static PerkEffect WARRIOR;
+
+    public static void create() {
+        MAGE = new PerkEffect("mage", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/mage");
+        MAGE = new PerkEffect("thief", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/thief");
+        GUARDIAN = new PerkEffect("guardian", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/guardian");
+        WARRIOR = new PerkEffect("warrior", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/warrior");
+
+    }
 
 }

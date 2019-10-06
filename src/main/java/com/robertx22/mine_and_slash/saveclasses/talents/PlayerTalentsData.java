@@ -35,7 +35,7 @@ public class PlayerTalentsData implements IApplyableStats {
         int talents = 0;
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {
             if (entry.getValue()) {
-                if (SlashRegistry.Talents().isRegistered(entry.getKey())) {
+                if (SlashRegistry.Perks().isRegistered(entry.getKey())) {
                     talents++;
                 }
             }
@@ -53,7 +53,7 @@ public class PlayerTalentsData implements IApplyableStats {
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {
             if (entry.getValue()) {
 
-                Perk perk = SlashRegistry.Talents().get(entry.getKey());
+                Perk perk = SlashRegistry.Perks().get(entry.getKey());
                 if (perk != null) {
                     list.add(perk);
                 }
