@@ -65,6 +65,7 @@ public class PerkEffects {
 
     // COMBINED EFFECTS
     public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT;
+    public static PerkEffectsWrapper INT_WIS;
 
     public static void create() {
 
@@ -133,6 +134,8 @@ public class PerkEffects {
 
         MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT = PerkEffectBuilder.build("", MAGIC_SHIELD_PERCENT
                 .small(), MANA_PERCENT.small());
+
+        INT_WIS = PerkEffectBuilder.build("", INTELLIGENCE.small(), WISDOM.small());
 
     }
 
