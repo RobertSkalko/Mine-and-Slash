@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsCon
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatConversion;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatTransfer;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -90,6 +91,12 @@ public class CommonStatUtils {
             StatData statdata = theunit.getStat(trait.GUID());
             if (statdata.Value > 0) {
                 trait.TryAffectOtherStats(unit, statdata);
+            }
+        }
+        for (IAffectsStats trait : Stats.allPreGenMapStatLists.get(IAffectsStats.class)) {
+            StatData statdata = theunit.getStat(trait.GUID());
+            if (statdata.Value > 0) {
+                trait.affectStats(unit, statdata);
             }
         }
 

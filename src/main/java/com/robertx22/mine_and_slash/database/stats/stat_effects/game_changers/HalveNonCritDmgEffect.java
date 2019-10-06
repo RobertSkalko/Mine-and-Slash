@@ -1,18 +1,19 @@
-package com.robertx22.mine_and_slash.database.stats.stat_effects.offense;
+package com.robertx22.mine_and_slash.database.stats.stat_effects.game_changers;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.ICrittable;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
-public class CriticalHitEffect implements IStatEffect {
+public class HalveNonCritDmgEffect implements IStatEffect {
+
+    public static final HalveNonCritDmgEffect INSTANCE = new HalveNonCritDmgEffect();
 
     @Override
     public int GetPriority() {
-        return Priority.First.priority;
+        return Priority.Last.priority;
     }
 
     @Override
@@ -25,19 +26,23 @@ public class CriticalHitEffect implements IStatEffect {
                                       Stat stat) {
 
         try {
-            if (Effect instanceof ICrittable) {
+            if (Effect instanceof DamageEffect) {
 
-                ICrittable icrit = (ICrittable) Effect;
+                DamageEffect dmg = (DamageEffect) Effect;
 
-                if (RandomUtils.roll(data.Value)) {
-                    icrit.setCrit(true);
+                if (!dmg.isCriticalHit()) {
+                    if (Effect.number > 0) {
+                        Effect.number /= 2;
+                    }
                 }
 
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return Effect;
     }
+
 }

@@ -34,6 +34,7 @@ public class CriticalHit extends Stat implements IStatEffects {
     private CriticalHit() {
         this.BaseFlat = 1;
         this.maximumValue = 100;
+        this.minimumValue = 0;
     }
 
     @Override

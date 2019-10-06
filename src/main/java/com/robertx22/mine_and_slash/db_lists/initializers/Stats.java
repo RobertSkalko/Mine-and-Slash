@@ -70,6 +70,10 @@ public class Stats implements ISlashRegistryInit {
                     add(RefreshingBreeze.INSTANCE);
                     add(BloodMage.INSTANCE);
                     add(Harmony.INSTANCE);
+                    add(MagicalLife.INSTANCE);
+                    add(SteadyHand.INSTANCE);
+                    add(RecklessBlows.INSTANCE);
+                    add(TrueHit.INSTANCE);
 
                     add(new ElementalBonusDmgOnBasic(Elements.Physical));
                     add(new ElementalConversion(Elements.Physical, Elements.Physical));

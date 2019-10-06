@@ -301,12 +301,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public boolean crit = false;
 
     @Override
-    public void SetCrit(boolean bool) {
+    public void setCrit(boolean bool) {
         crit = bool;
     }
 
     @Override
-    public boolean GetCrit() {
+    public boolean isCriticalHit() {
         return crit;
     }
 
