@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils.PointF;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
@@ -50,6 +51,10 @@ public class PerkTreeScreen extends Screen {
     public static int sizeX = 318;
     public static int sizeY = 233;
 
+    Set<PerkConnection> connections;
+
+    Set<PerkConnectionRender> buttonConnections;
+
     public PerkTreeScreen() {
         super(new StringTextComponent(""));
         this.mc = Minecraft.getInstance();
@@ -57,6 +62,12 @@ public class PerkTreeScreen extends Screen {
 
         MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
         this.talents = Load.talents(mc.player);
+
+    }
+
+    public void refreshConnections() {
+        connections = this.talents.getConnections();
+        this.buttonConnections = getButtonConnections();
     }
 
     @Override
@@ -68,6 +79,8 @@ public class PerkTreeScreen extends Screen {
         }
 
         returnToCenter();
+
+        refreshConnections();
 
     }
 
@@ -117,7 +130,7 @@ public class PerkTreeScreen extends Screen {
     @Override
     public void render(int x, int y, float ticks) {
 
-        if (mc.player.ticksExisted % 50 == 0) {
+        if (mc.player.ticksExisted % 100 == 0) {
             MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
             this.talents = Load.talents(mc.player);
         }
@@ -137,12 +150,14 @@ public class PerkTreeScreen extends Screen {
 
     public void renderZoomables(int x, int y, float ticks, List<PerkButton> list) {
 
+        ScreenContext ctx = new ScreenContext(this);
+
         GL11.glScalef(zoom, zoom, zoom);
 
         renderConnections(list);
 
         for (PerkButton but : list) {
-            but.renderButton(x, y, new ScreenContext(this));
+            but.renderButton(x, y, ctx);
         }
 
         float reset = 1 / zoom;
@@ -170,9 +185,11 @@ public class PerkTreeScreen extends Screen {
 
         TooltipInfo info = new TooltipInfo();
 
+        ScreenContext ctx = new ScreenContext(this);
+
         list.forEach(button -> {
 
-            if (button.isInsideSlot(new ScreenContext(this), mouseX, mouseY)) {
+            if (button.isInsideSlot(ctx, mouseX, mouseY)) {
                 this.renderTooltip(TooltipUtils.compsToStrings(button.perk.effect.GetTooltipString(info)), mouseX, mouseY, mc.fontRenderer);
             }
         });
@@ -181,14 +198,21 @@ public class PerkTreeScreen extends Screen {
 
     @Override
     public boolean mouseClicked(double x, double y, int ticks) {
-        getTalentButtons().forEach(t -> t.onClick(new ScreenContext(this), (int) x, (int) y));
+        ScreenContext ctx = new ScreenContext(this);
+
+        getTalentButtons().forEach(t -> t.onClick(ctx, (int) x, (int) y));
+
+        refreshConnections();
+
         return super.mouseClicked(x, y, ticks);
 
     }
 
-    private void renderConnections(List<PerkButton> list) {
+    private Set<PerkConnectionRender> getButtonConnections() {
 
-        Set<PerkConnection> connections = this.talents.getConnections();
+        Set<PerkConnectionRender> conns = new ObjectArraySet<>();
+
+        List<PerkButton> list = getTalentButtons();
 
         for (PerkConnection connection : connections) {
 
@@ -201,21 +225,29 @@ public class PerkTreeScreen extends Screen {
                     .findAny();
 
             if (but1.isPresent() && but2.isPresent()) {
-                renderConnection(but1.get(), but2.get(), connection);
+                conns.add(new PerkConnectionRender(but1.get(), but2.get(), connection));
             }
+        }
+        return conns;
+    }
+
+    private void renderConnections(List<PerkButton> list) {
+
+        ScreenContext ctx = new ScreenContext(this);
+
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        Minecraft.getInstance().getTextureManager().bindTexture(LINES);
+
+        for (PerkConnectionRender c : this.buttonConnections) {
+            renderConnection(c.perk1, c.perk2, c.connection, ctx);
         }
 
     }
 
     public static boolean shouldRender(int x, int y, ScreenContext ctx) {
 
-        int offsetX = (int) (Minecraft.getInstance().mainWindow.getScaledWidth() * ctx.getZoomMulti() / 2 - sizeX * ctx
-                .getZoomMulti() / 2);
-        int offsetY = (int) (Minecraft.getInstance().mainWindow.getScaledHeight() * ctx.getZoomMulti() / 2 - sizeY * ctx
-                .getZoomMulti() / 2);
-
-        if (x >= offsetX + 10 && x < offsetX + sizeX * ctx.getZoomMulti() - 20) {
-            if (y >= offsetY + 10 && y < offsetY + sizeY * ctx.getZoomMulti() - 20) {
+        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + sizeX * ctx.getZoomMulti() - 20) {
+            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + sizeY * ctx.getZoomMulti() - 20) {
                 return true;
             }
         }
@@ -225,9 +257,7 @@ public class PerkTreeScreen extends Screen {
     }
 
     private void renderConnection(PerkButton one, PerkButton two,
-                                  PerkConnection connection) {
-
-        ScreenContext ctx = new ScreenContext(this);
+                                  PerkConnection connection, ScreenContext ctx) {
 
         int x1 = one.getMiddleX(ctx);
         int y1 = one.getMiddleY(ctx);
@@ -240,9 +270,6 @@ public class PerkTreeScreen extends Screen {
         float spacing = size + size / 2;
 
         List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 360f, spacing, true);
-
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        Minecraft.getInstance().getTextureManager().bindTexture(LINES);
 
         for (PointF point : points) {
 

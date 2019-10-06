@@ -35,6 +35,6 @@ public class Perks implements ISlashRegistryInit {
 
          */
 
-        all.forEach(x -> x.registerToSlashRegistry());
+        //all.forEach(x -> x.registerToSlashRegistry()); no need cus i register from the parser
     }
 }

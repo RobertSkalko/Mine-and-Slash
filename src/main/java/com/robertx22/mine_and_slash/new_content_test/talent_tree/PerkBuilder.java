@@ -66,7 +66,7 @@ public class PerkBuilder {
         }
 
         public Connections add(Perk other) {
-            this.talent.connectTo(other);
+            this.talent.tryConnectTo(other);
             return this;
         }
 

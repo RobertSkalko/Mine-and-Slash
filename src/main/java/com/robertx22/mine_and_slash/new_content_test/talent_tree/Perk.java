@@ -50,18 +50,25 @@ public class Perk implements ISlashRegistryEntry<Perk> {
         return this.effect.type;
     }
 
-    public void connectTo(Perk other) {
+    public boolean tryConnectTo(Perk other) {
+
+        if (this.equals(other)) {
+            return false;
+        }
+
+        boolean added = false;
+
         if (this.connections.contains(other) == false) {
             this.connections.add(other);
-        } else {
-            System.out.println(this.GUID() + " can't connect if already connected");
+            added = true;
         }
 
         if (other.connections.contains(this) == false) {
             other.connections.add(this);
-        } else {
-            System.out.println(other.GUID() + " can't connect if already connected");
+            added = true;
         }
+
+        return added;
 
     }
 
