@@ -50,10 +50,13 @@ public class TalentGrid {
 
                     List<GridPoint> toCheckAlso = new ArrayList<>();
 
-                    while (toCheck.size() > 0) {
+                    int checks = 0;
+
+                    while (toCheck.size() > 0 && checks < 50) {
+
+                        checks++;
 
                         toCheckAlso.clear();
-
                         boolean checkConnections = true;
 
                         for (GridPoint check : toCheck) {
@@ -66,10 +69,6 @@ public class TalentGrid {
                                     alreadyChecked.add(check);
 
                                     boolean connected = perk.tryConnectTo(checkPerk);
-                                    
-                                    if (connected) {
-                                        checkConnections = false;
-                                    }
 
                                 }
                             }
