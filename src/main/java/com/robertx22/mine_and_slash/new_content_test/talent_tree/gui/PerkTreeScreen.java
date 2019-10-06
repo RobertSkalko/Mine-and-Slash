@@ -40,6 +40,9 @@ public class PerkTreeScreen extends Screen {
     public float scrollY = 0;
     public float zoom = 1;
 
+    public static int CENTER_X = 504;
+    public static int CENTER_Y = 500;
+
     private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/talents/talent_frame.png");
     private static final ResourceLocation SPACE = new ResourceLocation(Ref.MODID, "textures/gui/talents/space.png");
     private static final ResourceLocation LINES = new ResourceLocation(Ref.MODID, "textures/gui/talents/lines.png");
@@ -63,6 +66,30 @@ public class PerkTreeScreen extends Screen {
         for (Perk talent : SlashRegistry.Talents().getList()) {
             this.addButton(new PerkButton(talents, talent, data));
         }
+
+    }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        boolean bool = super.keyPressed(keyCode, scanCode, modifiers);
+
+        if (keyCode == 32) { // SPACE BAR
+            returnToCenter();
+        }
+
+        return bool;
+
+    }
+
+    private void returnToCenter() {
+        this.scrollX = PerkButton.getSpacing() * CENTER_X;
+        this.scrollY = PerkButton.getSpacing() * CENTER_Y;
+
+        this.scrollX = PerkButton.getSpacing() * 0; // TODO UNTIL I IMPLEMENT FULL TREE
+        this.scrollY = PerkButton.getSpacing() * 0;
+
+        this.scrollX += sizeX / 2;
+        this.scrollY += sizeY / 2;
 
     }
 

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.EleWepDmg;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHit;
@@ -13,6 +14,7 @@ import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffectBuild
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffectsWrapper;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class PerkEffects {
@@ -27,6 +29,7 @@ public class PerkEffects {
     public static PerkEffectsWrapper DEXTERITY;
     public static PerkEffectsWrapper VITALITY;
     public static PerkEffectsWrapper STRENGTH;
+
     public static PerkEffectsWrapper MAGIC_SHIELD_PERCENT;
     public static PerkEffectsWrapper MANA_PERCENT;
     public static PerkEffectsWrapper HEALTH_PERCENT;
@@ -38,6 +41,12 @@ public class PerkEffects {
     public static PerkEffectsWrapper ENERGY_REGEN_PERCENT;
     public static PerkEffectsWrapper MAGIC_SHIELD_REGEN_PERCENT;
 
+    public static PerkEffectsWrapper WATER_RESISTANCE;
+    public static PerkEffectsWrapper FIRE_RESISTANCE;
+    public static PerkEffectsWrapper THUNDER_RESISTANCE;
+    public static PerkEffectsWrapper NATURE_RESISTANCE;
+    public static PerkEffectsWrapper ELEMENTAL_RESISTANCE;
+
     public static PerkEffectsWrapper WAND_DMG_PERCENT;
     public static PerkEffectsWrapper STAFF_DMG_PERCENT;
     public static PerkEffectsWrapper AXE_DMG_PERCENT;
@@ -45,6 +54,7 @@ public class PerkEffects {
     public static PerkEffectsWrapper BOW_DMG_PERCENT;
     public static PerkEffectsWrapper CROSSBOW_DMG_PERCENT;
     public static PerkEffectsWrapper SWORD_DMG_PERCENT;
+
     public static PerkEffectsWrapper WAND_ELE_DMG_PERCENT;
     public static PerkEffectsWrapper STAFF_ELE_DMG_PERCENT;
     public static PerkEffectsWrapper AXE_ELE_DMG_PERCENT;
@@ -109,6 +119,13 @@ public class PerkEffects {
                 .get(WeaponTypes.CrossBow)));
         SWORD_ELE_DMG_PERCENT = PerkEffectBuilder.build(EleWepDmg.MAP.get(WeaponTypes.Sword), new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP
                 .get(WeaponTypes.Sword)));
+
+        float eleRes = 5;
+        WATER_RESISTANCE = PerkEffectBuilder.build(new ElementalResist(Elements.Water), eleRes, StatTypes.Percent);
+        FIRE_RESISTANCE = PerkEffectBuilder.build(new ElementalResist(Elements.Fire), eleRes, StatTypes.Percent);
+        THUNDER_RESISTANCE = PerkEffectBuilder.build(new ElementalResist(Elements.Thunder), eleRes, StatTypes.Percent);
+        NATURE_RESISTANCE = PerkEffectBuilder.build(new ElementalResist(Elements.Nature), eleRes, StatTypes.Percent);
+        ELEMENTAL_RESISTANCE = PerkEffectBuilder.build(new ElementalResist(Elements.Elemental), eleRes, StatTypes.Percent);
 
     }
 

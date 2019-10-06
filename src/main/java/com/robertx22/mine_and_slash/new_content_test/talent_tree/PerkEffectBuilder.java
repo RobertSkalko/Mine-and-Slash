@@ -26,6 +26,12 @@ public class PerkEffectBuilder {
 
     }
 
+    public static PerkEffectsWrapper build(Stat stat, float num, StatTypes type) {
+        ExactStatData statdata = new ExactStatData(num, type, stat);
+        return build(stat, statdata);
+
+    }
+
     public static PerkEffectsWrapper build(Stat stat, ExactStatData data) {
         HashMap<PerkType, PerkEffect> map = new HashMap<>();
 

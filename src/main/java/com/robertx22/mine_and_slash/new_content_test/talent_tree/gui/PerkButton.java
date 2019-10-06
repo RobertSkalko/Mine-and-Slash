@@ -64,7 +64,7 @@ public class PerkButton extends ImageButton {
         }
     }
 
-    public int getSpacing() {
+    public static int getSpacing() {
         return 40;
     }
 
