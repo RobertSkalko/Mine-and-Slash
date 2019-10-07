@@ -18,9 +18,9 @@ public class TalentGrid {
 
     public TalentGrid(String str) {
 
-        int x = 0;
+        int y = 0;
         for (String line : str.split("\n")) {
-            int y = 0;
+            int x = 0;
             for (String s : line.split(",")) {
 
                 if (grid.size() <= x) {
@@ -29,11 +29,11 @@ public class TalentGrid {
 
                 grid.get(x).add(new GridPoint(x, y, s));
 
-                y++;
+                x++;
 
             }
 
-            x++;
+            y++;
         }
     }
 

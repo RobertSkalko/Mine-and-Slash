@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRatin
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHit;
+import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.stat_types.resources.*;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkEffectBuilder;
@@ -40,6 +41,7 @@ public class PerkEffects {
     public static PerkEffectsWrapper HEALTH_REGEN_PERCENT;
     public static PerkEffectsWrapper ENERGY_REGEN_PERCENT;
     public static PerkEffectsWrapper MAGIC_SHIELD_REGEN_PERCENT;
+    public static PerkEffectsWrapper PHYSICAL_DMG;
 
     // COMBINED EFFECTS
     public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT;
@@ -55,6 +57,7 @@ public class PerkEffects {
 
     public static void create() {
 
+        PHYSICAL_DMG = PerkEffectBuilder.build("phys_dmg", PhysicalDamage.INSTANCE, new ExactStatData(2, StatTypes.Percent, PhysicalDamage.GUID));
         SPELL_DMG = PerkEffectBuilder.build("spell_dmg", SpellDamage.INSTANCE, new ExactStatData(2, StatTypes.Flat, SpellDamage.GUID));
         CRIT_HIT = PerkEffectBuilder.build("crit_hit", CriticalHit.INSTANCE, new ExactStatData(2, StatTypes.Flat, CriticalHit.GUID));
         CRIT_DMG = PerkEffectBuilder.build("crit_dmg", CriticalDamage.INSTANCE, new ExactStatData(3, StatTypes.Flat, CriticalDamage.GUID));
