@@ -212,6 +212,7 @@ public class SlashRegistry {
         // professions
         new AlchemyRecipes().registerAll();
 
+        new PerkEffectsInit().registerAll();
         new Perks().registerAll();
 
     }

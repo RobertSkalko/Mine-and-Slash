@@ -108,7 +108,7 @@ public class PerkEffects {
             ATTACK_DAMAGE_PERCENT_MAP.put(ele, PerkEffectBuilder.build(ele.name()
                     .toLowerCase() + "_attack_dmg", new ElementalAttackDamage(ele), new ExactStatData(elenum, StatTypes.Percent, new ElementalAttackDamage(ele))));
             SPELL_TO_ATK_DAMAGE_MAP.put(ele, PerkEffectBuilder.build(ele.name()
-                    .toLowerCase() + "_spell_to_attack_dmg", new ElementalSpellToAttackDMG(ele), new ExactStatData(elenum, StatTypes.Percent, new ElementalSpellToAttackDMG(ele))));
+                    .toLowerCase() + "_spell_to_attack_dmg", new ElementalSpellToAttackDMG(ele), new ExactStatData(elenum, StatTypes.Flat, new ElementalSpellToAttackDMG(ele))));
 
         }
 

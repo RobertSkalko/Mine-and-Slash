@@ -138,7 +138,7 @@ public class TalentGrid {
 
                 if (point.isTalent()) {
 
-                    String id = point.effectID;
+                    String id = point.getEffectID();
 
                     if (!SlashRegistry.PerkEffects().isRegistered(id)) {
                         id = id.toLowerCase();
@@ -154,6 +154,8 @@ public class TalentGrid {
                     }
                     if (effect == null) {
                         effect = StartPerkEffects.WARRIOR;
+
+                        System.out.println(point.getID() + " is a broken talent.");
                     }
 
                     Perk perk = PerkBuilder.create(point.getID())

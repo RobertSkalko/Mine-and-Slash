@@ -9,7 +9,11 @@ public class GridPoint {
 
     public int x;
     public int y;
-    public String effectID;
+    private String effectID;
+
+    public String getEffectID() {
+        return effectID.toLowerCase();
+    }
 
     public GridPoint(int x, int y, String str) {
         this.x = x;
