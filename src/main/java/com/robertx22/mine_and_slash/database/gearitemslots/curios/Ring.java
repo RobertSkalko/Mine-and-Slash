@@ -25,6 +25,11 @@ public class Ring extends GearItemSlot {
     }
 
     @Override
+    public String resourceID() {
+        return "ring";
+    }
+
+    @Override
     public String GUID() {
         return "Ring";
     }

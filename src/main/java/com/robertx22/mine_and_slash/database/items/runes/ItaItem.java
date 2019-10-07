@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.runes;
 
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ArmorPercent;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.PhysicalDamagePercent;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -30,7 +31,7 @@ public class ItaItem extends BaseRuneItem {
 
     @Override
     public List<StatMod> armorStat() {
-        return Arrays.asList(new ArmorPercent());
+        return Arrays.asList(new ArmorPercent(), new DodgeRatingFlat());
     }
 
     @Override

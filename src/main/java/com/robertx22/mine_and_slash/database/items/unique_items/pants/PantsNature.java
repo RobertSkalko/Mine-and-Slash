@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.VitalityFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalTransferFlat;
@@ -38,7 +39,7 @@ public class PantsNature extends BaseUniquePantsItem {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Nature).multi(2), new ElementalTransferFlat(Elements.Fire, Elements.Nature)
+        return Arrays.asList(new VitalityFlat(), new ElementalResistFlat(Elements.Nature).multi(2), new ElementalTransferFlat(Elements.Fire, Elements.Nature)
                 .multi(2));
     }
 

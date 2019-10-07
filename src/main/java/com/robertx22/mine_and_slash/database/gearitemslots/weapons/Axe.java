@@ -23,6 +23,11 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
     static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.SMALL);
 
     @Override
+    public String resourceID() {
+        return "axe";
+    }
+
+    @Override
     public StatReq getRequirements() {
         return req;
     }

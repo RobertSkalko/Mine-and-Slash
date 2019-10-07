@@ -20,6 +20,11 @@ public class Wand extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
+    public String resourceID() {
+        return "wand";
+    }
+
+    @Override
     public int cooldownTicks() {
         return 40;
     }

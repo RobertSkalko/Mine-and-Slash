@@ -23,6 +23,11 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
     }
 
     @Override
+    public String resourceID() {
+        return "shield";
+    }
+
+    @Override
     public List<StatMod> PossibleSecondaryStats() {
         return Arrays.asList(new ArmorFlat().multi(2));
     }

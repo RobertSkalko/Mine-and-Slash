@@ -21,6 +21,11 @@ public class EmptyGearType extends GearItemSlot {
     }
 
     @Override
+    public String resourceID() {
+        return "";
+    }
+
+    @Override
     public List<StatMod> PossibleSecondaryStats() {
         return new ArrayList<>();
     }

@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.runes;
 
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldRegenFlat;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -30,7 +31,7 @@ public class MosItem extends BaseRuneItem {
 
     @Override
     public List<StatMod> armorStat() {
-        return Arrays.asList(new ArmorFlat());
+        return Arrays.asList(new ArmorFlat(), new MagicShieldRegenFlat());
     }
 
     @Override

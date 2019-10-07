@@ -42,6 +42,8 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return false;
     }
 
+    public abstract String resourceID();
+
     public static List<StatMod> leatherArmorStats() {
         return Arrays.asList(new DodgeRatingFlat(), new DodgeRatingFlat(), new StaminaFlat(), new DexterityFlat());
     }

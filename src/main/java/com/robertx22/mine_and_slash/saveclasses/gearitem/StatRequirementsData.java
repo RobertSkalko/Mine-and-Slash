@@ -90,7 +90,7 @@ public class StatRequirementsData {
     }
 
     public static int getAmount(int lvl) {
-        int req = (int) ((lvl - (lvl / 4) - 10) * ModConfig.INSTANCE.Server.STAT_REQUIREMENTS_MULTI
+        int req = (int) ((lvl - ((float) lvl / 3.5F) - 5) * ModConfig.INSTANCE.Server.STAT_REQUIREMENTS_MULTI
                 .get());
         return MathHelper.clamp(req, 0, 100000);
     }

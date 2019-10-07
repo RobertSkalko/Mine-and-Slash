@@ -8,6 +8,11 @@ import net.minecraft.item.Item;
 public abstract class BaseBoots extends BaseArmor {
 
     @Override
+    public String resourceID() {
+        return "boots";
+    }
+
+    @Override
     public boolean isGearOfThisType(Item item) {
         return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
                 .equals(EquipmentSlotType.FEET);

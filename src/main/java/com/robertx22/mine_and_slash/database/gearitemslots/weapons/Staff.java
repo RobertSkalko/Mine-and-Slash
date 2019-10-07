@@ -19,6 +19,11 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
 
     }
 
+    @Override
+    public String resourceID() {
+        return "staff";
+    }
+
     static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override

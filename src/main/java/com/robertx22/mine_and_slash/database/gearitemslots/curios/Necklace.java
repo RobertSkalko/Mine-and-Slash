@@ -21,6 +21,11 @@ public class Necklace extends GearItemSlot {
     }
 
     @Override
+    public String resourceID() {
+        return "necklace";
+    }
+
+    @Override
     public String GUID() {
         return "Necklace";
     }

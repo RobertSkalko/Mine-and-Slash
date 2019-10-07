@@ -19,6 +19,11 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
 
     }
 
+    @Override
+    public String resourceID() {
+        return "hammer";
+    }
+
     static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.VITALITY, StatReq.Size.SMALL);
 
     @Override

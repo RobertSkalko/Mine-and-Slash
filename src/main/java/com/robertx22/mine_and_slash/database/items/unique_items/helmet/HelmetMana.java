@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -30,6 +32,11 @@ public class HelmetMana extends BaseUniqueHelmet {
     @Override
     public int Tier() {
         return 17;
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return ClothHelmet.INSTANCE;
     }
 
     @Override

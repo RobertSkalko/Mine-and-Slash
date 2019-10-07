@@ -20,6 +20,11 @@ public class Charm extends GearItemSlot {
     }
 
     @Override
+    public String resourceID() {
+        return "charm";
+    }
+
+    @Override
     public String GUID() {
         return "Charm";
     }

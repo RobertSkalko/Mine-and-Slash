@@ -20,6 +20,11 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
 
     }
 
+    @Override
+    public String resourceID() {
+        return "bow";
+    }
+
     static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.MEDIUM);
 
     @Override

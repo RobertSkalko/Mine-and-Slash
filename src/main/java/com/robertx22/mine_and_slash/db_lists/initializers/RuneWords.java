@@ -50,6 +50,9 @@ public class RuneWords implements ISlashRegistryInit {
                     add(new RuneWordProfoundSea());
                     add(new RuneWordLimitless());
 
+                    add(new RuneWordUndyingMagic());
+                    add(new RuneWordMagic());
+
                 }
             }
         };

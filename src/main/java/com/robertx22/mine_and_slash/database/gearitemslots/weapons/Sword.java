@@ -19,6 +19,11 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
 
     }
 
+    @Override
+    public String resourceID() {
+        return "sword";
+    }
+
     static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.TINY);
 
     @Override

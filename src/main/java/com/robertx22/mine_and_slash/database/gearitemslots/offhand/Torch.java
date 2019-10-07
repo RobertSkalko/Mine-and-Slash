@@ -22,6 +22,11 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
 
     }
 
+    @Override
+    public String resourceID() {
+        return "torch";
+    }
+
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM);
 
     @Override
