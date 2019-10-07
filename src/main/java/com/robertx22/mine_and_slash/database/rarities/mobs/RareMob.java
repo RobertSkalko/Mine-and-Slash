@@ -8,7 +8,7 @@ public class RareMob extends BaseRare implements MobRarity {
 
     @Override
     public float StatMultiplier() {
-        return 1.4F;
+        return 1.5F;
     }
 
     @Override

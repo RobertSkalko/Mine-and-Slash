@@ -8,6 +8,9 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ElementalAttackDamage extends ElementalStat implements IStatEffects {
 
     @Override
@@ -64,4 +67,12 @@ public class ElementalAttackDamage extends ElementalStat implements IStatEffects
     public String GUID() {
         return "Attack " + Element().name() + " Damage";
     }
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = new ArrayList<>();
+        Elements.getAllSingleElements().forEach(x -> list.add(newGeneratedInstance(x)));
+        return list;
+    }
+
 }

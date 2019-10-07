@@ -44,7 +44,7 @@ public class ServerContainer {
 
         TALENT_POINTS_PER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("TALENT_POINTS_PER_LEVEL", 1D, 0, 100);
+                .defineInRange("TALENT_POINTS_PER_LEVEL", 1.25D, 0, 100);
 
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
                 .translation("mmorpg.word.")

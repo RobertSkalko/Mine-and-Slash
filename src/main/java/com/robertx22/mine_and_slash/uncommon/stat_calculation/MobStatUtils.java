@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class MobStatUtils {
 
-    static int spelldmg = 10;
+    static int spelldmg = 12;
     static int elePene = 8;
     static int spellresist = 3;
 
@@ -76,9 +76,9 @@ public class MobStatUtils {
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 
-        unit.getStat(Armor.GUID).addFlat(10 * rar.StatMultiplier(), level);
+        unit.getStat(Armor.GUID).addFlat(11 * rar.StatMultiplier(), level);
         unit.getStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
-        unit.getStat(CriticalDamage.GUID).Flat += 10 * rar.DamageMultiplier();
+        unit.getStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
 
         for (Elements element : Elements.getAllSingleElements()) {
 

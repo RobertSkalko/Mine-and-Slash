@@ -171,7 +171,7 @@ public class PlayerTalentsCap {
         }
 
         public int getAllowedPoints(EntityCap.UnitData data) {
-            return (int) (data.getLevel() * ModConfig.INSTANCE.Server.TALENT_POINTS_PER_LEVEL
+            return (int) ((float) data.getLevel() * ModConfig.INSTANCE.Server.TALENT_POINTS_PER_LEVEL
                     .get());
         }
 

@@ -930,7 +930,7 @@ public class EntityCap {
 
         @Override
         public float getStatMultiplierIncreaseByTier() {
-            return 1 + tier * 0.13F;
+            return 1 + tier * 0.15F;
         }
 
         @Override

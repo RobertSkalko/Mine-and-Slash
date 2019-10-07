@@ -8,6 +8,9 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEffects {
 
     public ElementalSpellToAttackDMG(Elements element) {
@@ -67,4 +70,12 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
     public String GUID() {
         return Element().name() + " Spell to Attack DMG";
     }
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = new ArrayList<>();
+        Elements.getAllSingleElements().forEach(x -> list.add(newGeneratedInstance(x)));
+        return list;
+    }
+
 }

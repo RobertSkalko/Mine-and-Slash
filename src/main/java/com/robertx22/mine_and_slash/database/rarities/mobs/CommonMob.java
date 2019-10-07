@@ -8,7 +8,7 @@ public class CommonMob extends BaseCommon implements MobRarity {
 
     @Override
     public float StatMultiplier() {
-        return 0.7F;
+        return 0.75F;
     }
 
     @Override

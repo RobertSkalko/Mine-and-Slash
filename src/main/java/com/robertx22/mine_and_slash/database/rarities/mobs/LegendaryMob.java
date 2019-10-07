@@ -8,7 +8,7 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
 
     @Override
     public float StatMultiplier() {
-        return 3;
+        return 3.2F;
     }
 
     @Override
