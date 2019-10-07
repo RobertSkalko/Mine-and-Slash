@@ -46,7 +46,7 @@ public class PerkEffects {
     public static PerkEffectsWrapper PHYSICAL_DMG;
 
     // COMBINED EFFECTS
-    public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT;
+    public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT, CRIT_HIT_CRIT_DMG;
     public static PerkEffectsWrapper INT_WIS, STR_CRIT_DMG, ENE_ENE_REGEN, STA_DEX, DODGE_ENE_REGEN, DODGE_ENE;
     public static PerkEffectsWrapper HP_HP_REGEN, PHYS_DMG_CRIT_DMG, PHYS_DMG_CRIT_HIT;
 
@@ -81,7 +81,7 @@ public class PerkEffects {
 
         MAGIC_SHIELD_PERCENT = PerkEffectBuilder.build("ms_percent", MagicShield.INSTANCE, new ExactStatData(4, StatTypes.Percent, MagicShield.GUID));
         MANA_PERCENT = PerkEffectBuilder.build("mana_percent", Mana.INSTANCE, new ExactStatData(5, StatTypes.Percent, Mana.GUID));
-        HEALTH_PERCENT = PerkEffectBuilder.build("hp_percent", Health.INSTANCE, new ExactStatData(4, StatTypes.Percent, Health.GUID));
+        HEALTH_PERCENT = PerkEffectBuilder.build("hp_percent", Health.INSTANCE, new ExactStatData(3, StatTypes.Percent, Health.GUID));
         ENERGY_PERCENT = PerkEffectBuilder.build("energy_percent", Energy.INSTANCE, new ExactStatData(5, StatTypes.Percent, Energy.GUID));
         DODGE_PERCENT = PerkEffectBuilder.build("dodge_percent", DodgeRating.INSTANCE, new ExactStatData(5, StatTypes.Percent, DodgeRating.GUID));
         ARMOR_PERCENT = PerkEffectBuilder.build("armor_percent", Armor.INSTANCE, new ExactStatData(5, StatTypes.Percent, Armor.GUID));
@@ -143,6 +143,9 @@ public class PerkEffects {
 
         PHYS_DMG_CRIT_HIT = PerkEffectBuilder.build("phys_dmg_crit_hit", PHYSICAL_DMG.small(), CRIT_HIT
                 .small());
+        CRIT_HIT_CRIT_DMG = PerkEffectBuilder.build("crit_hit_crit_dmg", CRIT_DMG.small(), CRIT_HIT
+                .small());
+
         STR_CRIT_DMG = PerkEffectBuilder.build("str_crit_dmg", STRENGTH.small(), CRIT_DMG.small());
         DODGE_ENE_REGEN = PerkEffectBuilder.build("dodge_ene_regen", DODGE_PERCENT.small(), ENERGY_REGEN_PERCENT
                 .small());

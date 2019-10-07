@@ -46,7 +46,7 @@ public class GridPoint {
     }
 
     public boolean isTalent() {
-        return effectID.length() > 1;
+        return !effectID.isEmpty() && effectID.length() > 2;
     }
 
     public boolean isConnector() {

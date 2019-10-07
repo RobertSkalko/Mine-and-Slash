@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree.csv_parser;
 
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.DirUtils;
 import org.apache.commons.io.FileUtils;
 
@@ -21,7 +22,8 @@ public class TalentParser {
 
             grid.createConnections();
 
-            System.out.println("didnt crahs");
+            System.out.println("Registered all" + SlashRegistry.Perks()
+                    .getSize() + " perks to the talent tree!");
 
         } catch (IOException e) {
             e.printStackTrace();
