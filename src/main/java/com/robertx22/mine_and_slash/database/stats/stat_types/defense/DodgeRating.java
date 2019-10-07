@@ -23,6 +23,11 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat {
     }
 
     @Override
+    public String getIconPath() {
+        return "dodge";
+    }
+
+    @Override
     public IStatEffect getEffect() {
         return new DodgeEffect();
     }

@@ -22,6 +22,11 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
     }
 
     @Override
+    public String getIconPath() {
+        return "armor";
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Decreases damage taken by a percent";
     }

@@ -21,6 +21,11 @@ public class BlockStrength extends Stat implements IStatEffects {
     }
 
     @Override
+    public String getIconPath() {
+        return "block";
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Blocks part of DMG when blocking, if all damage is blocked, attack is canceled";
     }

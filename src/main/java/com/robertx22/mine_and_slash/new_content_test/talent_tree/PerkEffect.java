@@ -69,6 +69,7 @@ public class PerkEffect implements ITooltipList, IApplyableStats, ISlashRegistry
     private void setupTexture(Stat stat) {
         this.TEXTURE = stat.getIconLocation();
         this.hasTexture = true;
+
     }
 
     private void setupTexture(String id) {

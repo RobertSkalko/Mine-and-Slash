@@ -47,7 +47,7 @@ public class PerkEffects {
 
     // COMBINED EFFECTS
     public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT;
-    public static PerkEffectsWrapper INT_WIS, STR_CRIT_DMG;
+    public static PerkEffectsWrapper INT_WIS, STR_CRIT_DMG, ENE_ENE_REGEN, STA_DEX, DODGE_ENE_REGEN;
     public static PerkEffectsWrapper HP_HP_REGEN, PHYS_DMG_CRIT_DMG, PHYS_DMG_CRIT_HIT;
 
     public static HashMap<WeaponTypes, PerkEffectsWrapper> WEP_DMG_MAP = new HashMap<>();
@@ -58,6 +58,7 @@ public class PerkEffects {
     public static HashMap<Elements, PerkEffectsWrapper> ATTACK_DAMAGE_PERCENT_MAP = new HashMap<>();
     public static HashMap<Elements, PerkEffectsWrapper> SPELL_TO_ATK_DAMAGE_MAP = new HashMap<>();
     public static HashMap<Elements, PerkEffectsWrapper> All_ELE_DMG_MAP = new HashMap<>();
+    public static HashMap<Elements, PerkEffectsWrapper> ELE_PENE_PERCENT_MAP = new HashMap<>();
 
     public static void create() {
 
@@ -108,8 +109,13 @@ public class PerkEffects {
 
             ELE_RES_PERCENT_MAP.put(ele, PerkEffectBuilder.build(ele.name()
                     .toLowerCase() + "_res", new ElementalResist(ele), new ExactStatData(elenum, StatTypes.Percent, new ElementalResist(ele))));
+
             SPELL_DMG_PERCENT_MAP.put(ele, PerkEffectBuilder.build(ele.name()
                     .toLowerCase() + "_spell_dmg", new ElementalSpellDamage(ele), new ExactStatData(elenum, StatTypes.Percent, new ElementalSpellDamage(ele))));
+
+            ELE_PENE_PERCENT_MAP.put(ele, PerkEffectBuilder.build(ele.name()
+                    .toLowerCase() + "_pene", new ElementalPene(ele), new ExactStatData(elenum, StatTypes.Percent, new ElementalPene(ele))));
+
             ATTACK_DAMAGE_PERCENT_MAP.put(ele, PerkEffectBuilder.build(ele.name()
                     .toLowerCase() + "_attack_dmg", new ElementalAttackDamage(ele), new ExactStatData(elenum, StatTypes.Percent, new ElementalAttackDamage(ele))));
             SPELL_TO_ATK_DAMAGE_MAP.put(ele, PerkEffectBuilder.build(ele.name()
@@ -123,11 +129,14 @@ public class PerkEffects {
 
     public static void createCombined() {
 
-        MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT = PerkEffectBuilder.build("", MAGIC_SHIELD_PERCENT
+        MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT = PerkEffectBuilder.build("mana_ms_percent", MAGIC_SHIELD_PERCENT
                 .small(), MANA_PERCENT.small());
 
         INT_WIS = PerkEffectBuilder.build("int_wis", INTELLIGENCE.small(), WISDOM.small());
+        STA_DEX = PerkEffectBuilder.build("sta_dex", STAMINA.small(), DEXTERITY.small());
         HP_HP_REGEN = PerkEffectBuilder.build("hp_hp_regen", HEALTH_PERCENT.small(), HEALTH_REGEN_PERCENT
+                .small());
+        ENE_ENE_REGEN = PerkEffectBuilder.build("ene_ene_regen", ENERGY_REGEN_PERCENT.small(), ENERGY_PERCENT
                 .small());
         PHYS_DMG_CRIT_DMG = PerkEffectBuilder.build("phys_dmg_crit_dmg", PHYSICAL_DMG.small(), CRIT_DMG
                 .small());
@@ -135,6 +144,8 @@ public class PerkEffects {
         PHYS_DMG_CRIT_HIT = PerkEffectBuilder.build("phys_dmg_crit_hit", PHYSICAL_DMG.small(), CRIT_HIT
                 .small());
         STR_CRIT_DMG = PerkEffectBuilder.build("str_crit_dmg", STRENGTH.small(), CRIT_DMG.small());
+        DODGE_ENE_REGEN = PerkEffectBuilder.build("dodge_ene_regen", DODGE_PERCENT.small(), ENERGY_REGEN_PERCENT
+                .small());
 
     }
 
