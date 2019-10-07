@@ -7,6 +7,9 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class BlockStrength extends Stat implements IStatEffects {
+
+    public static final BlockStrength INSTANCE = new BlockStrength();
+
     @Override
     public StatGroup statGroup() {
         return StatGroup.Defenses;

@@ -46,7 +46,7 @@ public class PerkButton extends ImageButton {
         int checkX = finalX;
         int checkY = finalY;
 
-        if (PerkTreeScreen.shouldRender(checkX, checkY, ctx)) {
+        if (PerkTreeScreen.shouldRender(checkX, checkY, ctx, perk.getPerkType())) {
             Minecraft mc = Minecraft.getInstance();
             mc.getTextureManager().bindTexture(this.perk.getPerkType().TEXTURE);
             GlStateManager.disableDepthTest();

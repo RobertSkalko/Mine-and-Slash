@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkConnection;
+import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkType;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.ScreenContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -244,10 +245,13 @@ public class PerkTreeScreen extends Screen {
 
     }
 
-    public static boolean shouldRender(int x, int y, ScreenContext ctx) {
+    public static boolean shouldRender(int x, int y, ScreenContext ctx, PerkType type) {
 
-        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + sizeX * ctx.getZoomMulti() - 10) {
-            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + sizeY * ctx.getZoomMulti() - 10) {
+        int perkX = type == null ? 20 : type.sizeX / 2;
+        int perkY = type == null ? 20 : type.sizeY / 2;
+
+        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + sizeX * ctx.getZoomMulti() - perkX) {
+            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + sizeY * ctx.getZoomMulti() - perkY) {
                 return true;
             }
         }
@@ -276,7 +280,7 @@ public class PerkTreeScreen extends Screen {
             int x = (int) (point.x - ((float) size / 2));
             int y = (int) (point.y - ((float) size / 2));
 
-            if (shouldRender(x, y, ctx)) {
+            if (shouldRender(x, y, ctx, null)) {
                 blit(x, y, 0, connection.allocationStatus.spriteOffsetX, 0.0F, size, size, 256, 256);
             }
         }

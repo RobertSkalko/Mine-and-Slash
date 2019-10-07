@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.new_content_test.talent_tree.data;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
+import com.robertx22.mine_and_slash.database.stats.stat_types.defense.BlockStrength;
 import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.stat_types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDamage;
@@ -33,6 +34,7 @@ public class PerkEffects {
 
     public static PerkEffectsWrapper MAGIC_SHIELD_PERCENT;
     public static PerkEffectsWrapper MANA_PERCENT;
+    public static PerkEffectsWrapper BLOCK_PERCENT;
     public static PerkEffectsWrapper HEALTH_PERCENT;
     public static PerkEffectsWrapper ENERGY_PERCENT;
     public static PerkEffectsWrapper DODGE_PERCENT;
@@ -45,7 +47,8 @@ public class PerkEffects {
 
     // COMBINED EFFECTS
     public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT;
-    public static PerkEffectsWrapper INT_WIS;
+    public static PerkEffectsWrapper INT_WIS, STR_CRIT_DMG;
+    public static PerkEffectsWrapper HP_HP_REGEN, PHYS_DMG_CRIT_DMG, PHYS_DMG_CRIT_HIT;
 
     public static HashMap<WeaponTypes, PerkEffectsWrapper> WEP_DMG_MAP = new HashMap<>();
     public static HashMap<WeaponTypes, PerkEffectsWrapper> WEP_ELE_DMG_MAP = new HashMap<>();
@@ -54,6 +57,7 @@ public class PerkEffects {
     public static HashMap<Elements, PerkEffectsWrapper> SPELL_DMG_PERCENT_MAP = new HashMap<>();
     public static HashMap<Elements, PerkEffectsWrapper> ATTACK_DAMAGE_PERCENT_MAP = new HashMap<>();
     public static HashMap<Elements, PerkEffectsWrapper> SPELL_TO_ATK_DAMAGE_MAP = new HashMap<>();
+    public static HashMap<Elements, PerkEffectsWrapper> All_ELE_DMG_MAP = new HashMap<>();
 
     public static void create() {
 
@@ -61,6 +65,7 @@ public class PerkEffects {
         SPELL_DMG = PerkEffectBuilder.build("spell_dmg", SpellDamage.INSTANCE, new ExactStatData(2, StatTypes.Flat, SpellDamage.GUID));
         CRIT_HIT = PerkEffectBuilder.build("crit_hit", CriticalHit.INSTANCE, new ExactStatData(2, StatTypes.Flat, CriticalHit.GUID));
         CRIT_DMG = PerkEffectBuilder.build("crit_dmg", CriticalDamage.INSTANCE, new ExactStatData(3, StatTypes.Flat, CriticalDamage.GUID));
+        BLOCK_PERCENT = PerkEffectBuilder.build("block_percent", BlockStrength.INSTANCE, new ExactStatData(3, StatTypes.Percent, BlockStrength.GUID));
 
         int core_amount = 2;
 
@@ -109,6 +114,8 @@ public class PerkEffects {
                     .toLowerCase() + "_attack_dmg", new ElementalAttackDamage(ele), new ExactStatData(elenum, StatTypes.Percent, new ElementalAttackDamage(ele))));
             SPELL_TO_ATK_DAMAGE_MAP.put(ele, PerkEffectBuilder.build(ele.name()
                     .toLowerCase() + "_spell_to_attack_dmg", new ElementalSpellToAttackDMG(ele), new ExactStatData(elenum, StatTypes.Flat, new ElementalSpellToAttackDMG(ele))));
+            All_ELE_DMG_MAP.put(ele, PerkEffectBuilder.build(ele.name()
+                    .toLowerCase() + "_all_dmg", new AllElementalDamage(ele), new ExactStatData(elenum, StatTypes.Flat, new AllElementalDamage(ele))));
 
         }
 
@@ -119,7 +126,15 @@ public class PerkEffects {
         MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT = PerkEffectBuilder.build("", MAGIC_SHIELD_PERCENT
                 .small(), MANA_PERCENT.small());
 
-        INT_WIS = PerkEffectBuilder.build("", INTELLIGENCE.small(), WISDOM.small());
+        INT_WIS = PerkEffectBuilder.build("int_wis", INTELLIGENCE.small(), WISDOM.small());
+        HP_HP_REGEN = PerkEffectBuilder.build("hp_hp_regen", HEALTH_PERCENT.small(), HEALTH_REGEN_PERCENT
+                .small());
+        PHYS_DMG_CRIT_DMG = PerkEffectBuilder.build("phys_dmg_crit_dmg", PHYSICAL_DMG.small(), CRIT_DMG
+                .small());
+
+        PHYS_DMG_CRIT_HIT = PerkEffectBuilder.build("phys_dmg_crit_hit", PHYSICAL_DMG.small(), CRIT_HIT
+                .small());
+        STR_CRIT_DMG = PerkEffectBuilder.build("str_crit_dmg", STRENGTH.small(), CRIT_DMG.small());
 
     }
 
