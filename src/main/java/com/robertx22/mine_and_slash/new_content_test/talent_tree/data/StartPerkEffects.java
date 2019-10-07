@@ -14,7 +14,7 @@ public class StartPerkEffects {
 
     public static void create() {
         MAGE = new PerkEffect("mage", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/mage");
-        MAGE = new PerkEffect("thief", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/thief");
+        THIEF = new PerkEffect("thief", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/thief");
         GUARDIAN = new PerkEffect("guardian", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/guardian");
         WARRIOR = new PerkEffect("warrior", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/warrior");
 

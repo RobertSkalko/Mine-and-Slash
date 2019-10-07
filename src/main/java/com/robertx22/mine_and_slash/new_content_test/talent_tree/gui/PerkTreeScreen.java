@@ -250,8 +250,8 @@ public class PerkTreeScreen extends Screen {
         int perkX = type == null ? 20 : type.sizeX / 2;
         int perkY = type == null ? 20 : type.sizeY / 2;
 
-        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + sizeX * ctx.getZoomMulti() - perkX) {
-            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + sizeY * ctx.getZoomMulti() - perkY) {
+        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + (sizeX - perkX) * ctx.getZoomMulti()) {
+            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + (sizeY - perkY) * ctx.getZoomMulti()) {
                 return true;
             }
         }
