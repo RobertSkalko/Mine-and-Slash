@@ -39,7 +39,9 @@ public class PerkEffect implements ITooltipList, IApplyableStats, ISlashRegistry
     public PerkEffect(String guid, List<ExactStatData> exactStats, String render) {
         this.exactStats = exactStats;
         this.guid = guid;
-        setupTexture(render);
+
+        //setupTexture(render); ENABLE LATER WHEN I MAKE ALL COMBO ICONS
+
         this.registerToSlashRegistry();
     }
 

@@ -65,7 +65,7 @@ public class PerkEffectBuilder {
             }
             String id = guid + "_" + type.name().toLowerCase();
 
-            PerkEffect neww = new PerkEffect(guid, stats, id).type(type);
+            PerkEffect neww = new PerkEffect(id, stats, guid).type(type);
 
             map.put(type, neww);
 

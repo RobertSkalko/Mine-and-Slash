@@ -47,7 +47,7 @@ public class PerkEffects {
 
     // COMBINED EFFECTS
     public static PerkEffectsWrapper MANA_PERC_PLUS_MAGIC_SHIELD_PERCENT;
-    public static PerkEffectsWrapper INT_WIS, STR_CRIT_DMG, ENE_ENE_REGEN, STA_DEX, DODGE_ENE_REGEN;
+    public static PerkEffectsWrapper INT_WIS, STR_CRIT_DMG, ENE_ENE_REGEN, STA_DEX, DODGE_ENE_REGEN, DODGE_ENE;
     public static PerkEffectsWrapper HP_HP_REGEN, PHYS_DMG_CRIT_DMG, PHYS_DMG_CRIT_HIT;
 
     public static HashMap<WeaponTypes, PerkEffectsWrapper> WEP_DMG_MAP = new HashMap<>();
@@ -145,6 +145,8 @@ public class PerkEffects {
                 .small());
         STR_CRIT_DMG = PerkEffectBuilder.build("str_crit_dmg", STRENGTH.small(), CRIT_DMG.small());
         DODGE_ENE_REGEN = PerkEffectBuilder.build("dodge_ene_regen", DODGE_PERCENT.small(), ENERGY_REGEN_PERCENT
+                .small());
+        DODGE_ENE = PerkEffectBuilder.build("dodge_ene", DODGE_PERCENT.small(), ENERGY_PERCENT
                 .small());
 
     }
