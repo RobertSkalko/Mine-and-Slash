@@ -19,6 +19,11 @@ public class RefreshingBreeze extends BaseGameChangerTrait implements IStatEffec
     }
 
     @Override
+    public String getIconPath() {
+        return "game_changers/breeze";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Refreshing Breeze";
     }

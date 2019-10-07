@@ -246,8 +246,8 @@ public class PerkTreeScreen extends Screen {
 
     public static boolean shouldRender(int x, int y, ScreenContext ctx) {
 
-        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + sizeX * ctx.getZoomMulti() - 20) {
-            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + sizeY * ctx.getZoomMulti() - 20) {
+        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + sizeX * ctx.getZoomMulti() - 10) {
+            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + sizeY * ctx.getZoomMulti() - 10) {
                 return true;
             }
         }

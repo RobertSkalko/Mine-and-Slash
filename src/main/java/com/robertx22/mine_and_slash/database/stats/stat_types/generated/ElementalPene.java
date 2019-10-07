@@ -27,6 +27,11 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
     }
 
     @Override
+    public String getIconPath() {
+        return "pene/" + element.guidName;
+    }
+
+    @Override
     public String GUID() {
         return this.Element().name() + " Penetration";
     }

@@ -28,7 +28,13 @@ public class PerkEffect implements ITooltipList, IApplyableStats, ISlashRegistry
     boolean hasTexture = false;
     private String guid;
 
+    public boolean isGameChanger = false;
     private ResourceLocation TEXTURE;
+
+    public PerkEffect setGameChanger() {
+        this.isGameChanger = true;
+        return this;
+    }
 
     public PerkEffect(String guid, List<ExactStatData> exactStats, String render) {
         this.exactStats = exactStats;
@@ -54,6 +60,10 @@ public class PerkEffect implements ITooltipList, IApplyableStats, ISlashRegistry
         }
 
         this.registerToSlashRegistry();
+    }
+
+    public boolean isGameChanger() {
+        return isGameChanger;
     }
 
     private void setupTexture(Stat stat) {

@@ -31,6 +31,11 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Weapo
     }
 
     @Override
+    public String getIconPath() {
+        return "wep_dmg/" + weaponType.id;
+    }
+
+    @Override
     public String GUID() {
         return this.weaponType.name() + " Damage";
     }

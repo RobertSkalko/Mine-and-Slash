@@ -6,8 +6,8 @@ import net.minecraft.util.ResourceLocation;
 public enum PerkType {
 
     SMALL(24, 24, 0, 1),
-    BIG(22, 26, 59, 2.5F),
-    MAJOR(26, 26, 28, 5);
+    BIG(30, 36, 47, 2.5F),
+    MAJOR(50, 50, 101, 5);
 
     PerkType(int x, int y, int offsetX, float statMulti) {
         this.sizeX = x;
@@ -27,9 +27,9 @@ public enum PerkType {
             return 0;
         }
         if (status == PerkConnection.Allocation.ALLOCATED) {
-            return 32;
+            return 130;
         } else {
-            return 63;
+            return 66;
         }
     }
 

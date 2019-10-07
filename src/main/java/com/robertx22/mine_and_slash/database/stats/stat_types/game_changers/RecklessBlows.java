@@ -21,6 +21,11 @@ public class RecklessBlows extends BaseGameChangerTrait implements IAffectsStats
     }
 
     @Override
+    public String getIconPath() {
+        return "game_changers/reckless_blows";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Reckless Blows";
     }

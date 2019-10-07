@@ -24,6 +24,11 @@ public class SteadyHand extends BaseGameChangerTrait implements IStatEffects, IA
     }
 
     @Override
+    public String getIconPath() {
+        return "game_changers/steady_hand";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Steady Hand";
     }

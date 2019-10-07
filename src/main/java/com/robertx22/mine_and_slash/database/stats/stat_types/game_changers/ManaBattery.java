@@ -18,6 +18,11 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects {
     }
 
     @Override
+    public String getIconPath() {
+        return "game_changers/mana_battery";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Mana Battery";
     }

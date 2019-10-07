@@ -26,6 +26,11 @@ public class ElementalAttackDamage extends ElementalStat implements IStatEffects
     }
 
     @Override
+    public String getIconPath() {
+        return "ele_atk_dmg/" + element.guidName;
+    }
+
+    @Override
     public boolean ScalesToLevel() {
         return true;
     }

@@ -17,6 +17,11 @@ public class Harmony extends BaseGameChangerTrait implements IStatEffects {
     }
 
     @Override
+    public String getIconPath() {
+        return "game_changers/harmony";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Harmony";
     }

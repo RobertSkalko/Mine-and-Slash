@@ -25,6 +25,11 @@ public class EleWepDmg extends Stat implements IStatEffects {
         return "Increases elemental damage of x weapon";
     }
 
+    @Override
+    public String getIconPath() {
+        return "ele_wep_dmg/" + weaponType.id;
+    }
+    
     public WeaponTypes weaponType() {
         return this.weaponType;
     }

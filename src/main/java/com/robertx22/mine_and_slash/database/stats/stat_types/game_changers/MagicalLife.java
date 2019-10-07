@@ -23,6 +23,11 @@ public class MagicalLife extends BaseGameChangerTrait implements IStatTransfer {
     }
 
     @Override
+    public String getIconPath() {
+        return "game_changers/magical_life";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Magical Life";
     }

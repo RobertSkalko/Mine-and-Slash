@@ -17,6 +17,11 @@ public class BloodMage extends BaseGameChangerTrait implements IStatEffects {
     }
 
     @Override
+    public String getIconPath() {
+        return "game_changers/blood_mage";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Blood Mage";
     }

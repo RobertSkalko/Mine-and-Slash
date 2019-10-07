@@ -43,7 +43,10 @@ public class PerkButton extends ImageButton {
         int finalX = getPosX(ctx);
         int finalY = getPosY(ctx);
 
-        if (PerkTreeScreen.shouldRender(finalX, finalY, ctx)) {
+        int checkX = finalX;
+        int checkY = finalY;
+
+        if (PerkTreeScreen.shouldRender(checkX, checkY, ctx)) {
             Minecraft mc = Minecraft.getInstance();
             mc.getTextureManager().bindTexture(this.perk.getPerkType().TEXTURE);
             GlStateManager.disableDepthTest();
@@ -80,6 +83,7 @@ public class PerkButton extends ImageButton {
         int offsetX = mc.mainWindow.getScaledWidth() / 2;
         offsetX *= ctx.getZoomMulti();
         offsetX -= PerkTreeScreen.sizeX * ctx.zoom / 2;
+
         return getX(ctx) + offsetX;
     }
 
@@ -92,13 +96,13 @@ public class PerkButton extends ImageButton {
 
     public int getX(ScreenContext ctx) {
 
-        int pos = (int) ((this.perk.x * getSpacing() - ctx.scrollX) * ctx.zoom);
+        int pos = (int) ((this.perk.x * getSpacing() - ctx.scrollX) * ctx.zoom) - perk.getPerkType().sizeX / 2;
 
         return pos;
     }
 
     public int getY(ScreenContext ctx) {
-        int pos = (int) ((this.perk.y * getSpacing() - ctx.scrollY) * ctx.zoom);
+        int pos = (int) ((this.perk.y * getSpacing() - ctx.scrollY) * ctx.zoom) - perk.getPerkType().sizeY / 2;
 
         return pos;
     }

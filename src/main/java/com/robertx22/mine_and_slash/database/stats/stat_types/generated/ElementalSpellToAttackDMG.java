@@ -25,6 +25,11 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
     }
 
     @Override
+    public String getIconPath() {
+        return "spell_to_atk_dmg/" + element.guidName;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Adds a % of your spell DMG as DMG to your every weapon hit";
     }

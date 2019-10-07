@@ -25,6 +25,11 @@ public class AllElementalDamage extends ElementalStat implements IStatEffects {
     }
 
     @Override
+    public String getIconPath() {
+        return "all_ele_dmg/" + element.guidName;
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Increases All DMG of that element, both spells and attacks";
     }

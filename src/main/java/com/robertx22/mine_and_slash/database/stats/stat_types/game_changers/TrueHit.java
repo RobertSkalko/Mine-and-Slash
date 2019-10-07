@@ -21,6 +21,11 @@ public class TrueHit extends BaseGameChangerTrait implements IStatEffects, IAffe
     }
 
     @Override
+    public String getIconPath() {
+        return "game_changers/true_hit";
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "True Hit";
     }

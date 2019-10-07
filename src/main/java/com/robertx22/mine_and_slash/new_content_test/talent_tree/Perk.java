@@ -34,6 +34,16 @@ public class Perk implements ISlashRegistryEntry<Perk> {
     }
 
     public PerkType getPerkType() {
+
+        // make major stats only lookk major if they are gamechangers. i agree i didnt think this one through
+        if (effect.type == PerkType.MAJOR) {
+            if (effect.isGameChanger()) {
+                return effect.type;
+            } else {
+                return PerkType.BIG;
+            }
+        }
+
         return this.effect.type;
     }
 

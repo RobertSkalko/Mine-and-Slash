@@ -12,6 +12,11 @@ public class BleedMastery extends BaseGameChangerTrait implements IStatEffects {
     public static final BleedMastery INSTANCE = new BleedMastery();
 
     @Override
+    public String getIconPath() {
+        return "game_changers/bleed_mastery";
+    }
+
+    @Override
     public String locDescForLangFile() {
         return "Your phys basic attacks inflict % of your phys dmg as bleed on targets";
     }
