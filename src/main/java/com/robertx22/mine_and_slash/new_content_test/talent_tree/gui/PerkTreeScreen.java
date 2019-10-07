@@ -176,7 +176,7 @@ public class PerkTreeScreen extends Screen {
             this.zoom += 0.1F;
         }
 
-        this.zoom = MathHelper.clamp(zoom, 0.4F, 1);
+        this.zoom = MathHelper.clamp(zoom, 0.25F, 1);
 
         return true;
 
@@ -247,8 +247,8 @@ public class PerkTreeScreen extends Screen {
 
     public static boolean shouldRender(int x, int y, ScreenContext ctx, PerkType type) {
 
-        int perkX = type == null ? 20 : type.sizeX / 2;
-        int perkY = type == null ? 20 : type.sizeY / 2;
+        int perkX = type == null ? 5 : type.sizeX / 2;
+        int perkY = type == null ? 5 : type.sizeY / 2;
 
         if (x >= ctx.offsetX + 10 && x < ctx.offsetX + (sizeX - perkX) * ctx.getZoomMulti()) {
             if (y >= ctx.offsetY + 10 && y < ctx.offsetY + (sizeY - perkY) * ctx.getZoomMulti()) {
