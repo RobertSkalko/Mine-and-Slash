@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.commands.OpenPickStatsGui;
+import com.robertx22.mine_and_slash.commands.OpenTalentsGui;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
@@ -530,6 +531,7 @@ public class EntityCap {
                         .appendText("!"));
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
                 onLvlPostStatPickMsg(player);
+                onLvlPostTalentsMsg(player);
 
                 try {
                     Load.playersCapBackup(MapManager.getWorld(DimensionType.OVERWORLD))
@@ -542,6 +544,18 @@ public class EntityCap {
                 return true;
             }
             return false;
+        }
+
+        public void onLvlPostTalentsMsg(LivingEntity en) {
+
+            int points = Load.talents((PlayerEntity) en).getFreePoints(this);
+
+            if (points > 0) {
+                ITextComponent msg = new StringTextComponent(TextFormatting.BLUE + "You have " + points + " Unspent Talent points." + TextFormatting.ITALIC + " Click to Open Talents");
+                msg.setStyle(msg.getStyle()
+                        .setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + OpenTalentsGui.COMMAND)));
+                en.sendMessage(msg);
+            }
         }
 
         public void onLvlPostStatPickMsg(LivingEntity en) {

@@ -1,4 +1,21 @@
 2.9.0
+
+Added TALENTS!
+
+Pressing *J* opens the talent tree. You can pick 4 locations to start with, which determine your speciality.
+I call them mage, thief, guardian and warrior.
+
+The tree is huge and every start point branches to the other. Although you need to spend some points to traverse it.
+
+Mages specialize in mana, spell dmg and magic shield.
+Thiefs in dodge, energy and penetration.
+Guardians in hp and defenses.
+Warrior in phys dmg and crits.
+
+To go along the big talent update, i added a few cool trait stats. Stuff like blood mage, which transforms your mana bar into a blood bar and such.
+
+
+updated many stats to have icons for stat gui and talents gui.
 added ondmgevent
 added ele wep dmg stat. unused for now
 some optimizations

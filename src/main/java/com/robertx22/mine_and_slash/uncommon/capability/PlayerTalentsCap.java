@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
+import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
@@ -170,7 +171,8 @@ public class PlayerTalentsCap {
         }
 
         public int getAllowedPoints(EntityCap.UnitData data) {
-            return data.getLevel();
+            return (int) (data.getLevel() * ModConfig.INSTANCE.Server.TALENT_POINTS_PER_LEVEL
+                    .get());
         }
 
         @Override

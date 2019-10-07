@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.network;
 
-import com.robertx22.mine_and_slash.network.proxies.OpenPickStatsProxy;
+import com.robertx22.mine_and_slash.network.proxies.OpenTalentsProxy;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
@@ -8,31 +8,31 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class OpenPickStatsGuiPacket {
+public class OpenTalentsGuiPacket {
 
-    public OpenPickStatsGuiPacket() {
+    public OpenTalentsGuiPacket() {
     }
 
-    public static OpenPickStatsGuiPacket decode(PacketBuffer buf) {
+    public static OpenTalentsGuiPacket decode(PacketBuffer buf) {
 
-        OpenPickStatsGuiPacket newpkt = new OpenPickStatsGuiPacket();
+        OpenTalentsGuiPacket newpkt = new OpenTalentsGuiPacket();
 
         return newpkt;
 
     }
 
-    public static void encode(OpenPickStatsGuiPacket packet, PacketBuffer tag) {
+    public static void encode(OpenTalentsGuiPacket packet, PacketBuffer tag) {
 
     }
 
-    public static void handle(final OpenPickStatsGuiPacket pkt,
+    public static void handle(final OpenTalentsGuiPacket pkt,
                               Supplier<NetworkEvent.Context> ctx) {
 
         ctx.get().enqueueWork(() -> {
             try {
                 // so it doesnt crash
                 DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-                    OpenPickStatsProxy.open();
+                    OpenTalentsProxy.open();
                 });
 
             } catch (Exception e) {

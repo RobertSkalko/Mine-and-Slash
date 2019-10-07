@@ -42,6 +42,8 @@ public class AlchemyItemRegister {
         r.register(new LesserRecallPotionItem().setRegistryName(new LesserRecallPotionItem()
                 .GUID()));
         r.register(new ResetStatsPotionItem().setRegistryName(new ResetStatsPotionItem().GUID()));
+        r.register(new ResetTalentsPotionItem().setRegistryName(new ResetTalentsPotionItem()
+                .GUID()));
 
     }
 

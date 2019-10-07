@@ -24,6 +24,7 @@ import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -134,6 +135,7 @@ public class PerkTreeScreen extends Screen {
         if (mc.player.ticksExisted % 100 == 0) {
             MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
             this.talents = Load.talents(mc.player);
+            refreshConnections();
         }
 
         super.render(x, y, ticks);
@@ -145,6 +147,8 @@ public class PerkTreeScreen extends Screen {
         renderZoomables(x, y, ticks, list);
 
         drawBorders();
+
+        drawPointsLeftNumber();
 
         renderTooltips(list, x, y);
     }
@@ -176,7 +180,7 @@ public class PerkTreeScreen extends Screen {
             this.zoom += 0.1F;
         }
 
-        this.zoom = MathHelper.clamp(zoom, 0.25F, 1);
+        this.zoom = MathHelper.clamp(zoom, 0.23F, 1);
 
         return true;
 
@@ -250,8 +254,8 @@ public class PerkTreeScreen extends Screen {
         int perkX = type == null ? 5 : type.sizeX / 2;
         int perkY = type == null ? 5 : type.sizeY / 2;
 
-        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + (sizeX - perkX) * ctx.getZoomMulti()) {
-            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + (sizeY - perkY) * ctx.getZoomMulti()) {
+        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + (sizeX - perkX) * ctx.getZoomMulti() - 10) {
+            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + (sizeY - perkY) * ctx.getZoomMulti() - 10) {
                 return true;
             }
         }
@@ -284,6 +288,18 @@ public class PerkTreeScreen extends Screen {
                 blit(x, y, 0, connection.allocationStatus.spriteOffsetX, 0.0F, size, size, 256, 256);
             }
         }
+
+    }
+
+    protected void drawPointsLeftNumber() {
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
+        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
+
+        String str = "Points: " + this.talents.getFreePoints(data);
+
+        mc.fontRenderer.drawStringWithShadow(str, offsetX + 10, offsetY + 10, TextFormatting.GREEN
+                .getColor());
 
     }
 

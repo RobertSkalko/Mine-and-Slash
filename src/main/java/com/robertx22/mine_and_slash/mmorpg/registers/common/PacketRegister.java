@@ -35,6 +35,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, AllocateTalentPacket.class, AllocateTalentPacket::encode, AllocateTalentPacket::decode, AllocateTalentPacket::handle);
 
+        MMORPG.Network.registerMessage(index++, OpenTalentsGuiPacket.class, OpenTalentsGuiPacket::encode, OpenTalentsGuiPacket::decode, OpenTalentsGuiPacket::handle);
+
     }
 
 }

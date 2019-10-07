@@ -76,7 +76,9 @@ public class Perk implements ISlashRegistryEntry<Perk> {
         } else {
 
             if (this.isStart) {
-                return PerkConnection.Allocation.CAN_ALLOCATE;
+                if (data.getAllocatedPoints() == 0) { // only 1 start
+                    return PerkConnection.Allocation.CAN_ALLOCATE;
+                }
             }
 
             boolean hascon = false;

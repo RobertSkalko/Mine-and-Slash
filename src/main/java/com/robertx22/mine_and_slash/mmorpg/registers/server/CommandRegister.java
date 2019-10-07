@@ -1,10 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.robertx22.mine_and_slash.commands.ModifyItem;
-import com.robertx22.mine_and_slash.commands.OpenPickStatsGui;
-import com.robertx22.mine_and_slash.commands.ReloadConfigs;
-import com.robertx22.mine_and_slash.commands.RestoreLevel;
+import com.robertx22.mine_and_slash.commands.*;
 import com.robertx22.mine_and_slash.commands.entity.*;
 import com.robertx22.mine_and_slash.commands.giveitems.*;
 import net.minecraft.command.CommandSource;
@@ -47,6 +44,7 @@ public class CommandRegister {
         SayMapInfo.register(dispatcher);
         OpenPickStatsGui.register(dispatcher);
         ResetTalents.register(dispatcher);
+        OpenTalentsGui.register(dispatcher);
 
     }
 }
