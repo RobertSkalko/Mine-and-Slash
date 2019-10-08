@@ -16,6 +16,11 @@ public class SimpleOutputItem extends BaseOutputItem {
         this.recipe = recipe;
     }
 
+    public SimpleOutputItem setAmount(int amount) {
+        this.output.setCount(amount);
+        return this;
+    }
+
     @Override
     public ItemStack getPreview() {
         ItemStack copy = output.copy();

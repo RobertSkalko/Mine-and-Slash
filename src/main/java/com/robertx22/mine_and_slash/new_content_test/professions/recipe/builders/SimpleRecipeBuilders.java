@@ -50,11 +50,16 @@ public class SimpleRecipeBuilders {
 
         }
 
+        public SimpleRecipeLevelReqBuilder setOutput(Item output, int amount) {
+            this.recipe.output = new SimpleOutputItem(output, recipe).setAmount(amount);
+            return new SimpleRecipeLevelReqBuilder(recipe);
+        }
+
         public SimpleRecipeLevelReqBuilder setOutput(Item output) {
             this.recipe.output = new SimpleOutputItem(output, recipe);
             return new SimpleRecipeLevelReqBuilder(recipe);
-
         }
+
     }
 
     public static class SimpleRecipeLevelReqBuilder {

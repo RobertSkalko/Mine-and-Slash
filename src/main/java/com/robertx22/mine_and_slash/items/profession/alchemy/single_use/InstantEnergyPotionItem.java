@@ -69,7 +69,7 @@ public class InstantEnergyPotionItem extends BaseInstantPotion implements IAmoun
         }
 
         return mats.buildMaterials()
-                .setOutput(this)
+                .setOutput(this, 3)
                 .levelReq(level.number)
                 .expGained(10)
                 .build();

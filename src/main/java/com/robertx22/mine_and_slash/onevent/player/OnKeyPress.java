@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.gui.PerkTreeScreen;
 import com.robertx22.mine_and_slash.uncommon.gui.StatGUI;
@@ -26,12 +25,8 @@ public class OnKeyPress {
                 Minecraft.getInstance().displayGuiScreen(new StatGUI());
             } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
                 Minecraft.getInstance().displayGuiScreen(new StatPointScreen());
-
-            }
-            if (MMORPG.RUN_DEV_TOOLS) {
-                if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
-                    Minecraft.getInstance().displayGuiScreen(new PerkTreeScreen());
-                }
+            } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
+                Minecraft.getInstance().displayGuiScreen(new PerkTreeScreen());
             }
 
             boolean wasDown = down;

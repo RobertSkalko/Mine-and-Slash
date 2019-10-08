@@ -15,6 +15,8 @@ Warrior in phys dmg and crits.
 To go along the big talent update, i added a few cool trait stats. Stuff like blood mage, which transforms your mana bar into a blood bar and such.
 
 
+updated to latest forge and curios. v40 and v1.02
+
 updated many stats to have icons for stat gui and talents gui.
 added ondmgevent
 added ele wep dmg stat.
@@ -28,3 +30,4 @@ made mobs a tiny bit stronger cus players now have 125 talent points at max lvl.
 as talents introduced a lot more stats, stat requirements now scale harder a bit
 runes now have magic shield and dodge as chance for their stats
 added 2 new runewords for magic shield users
+alchemy single use potions now give 3 pots per craft instead of 1

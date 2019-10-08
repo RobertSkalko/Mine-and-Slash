@@ -68,7 +68,7 @@ public class InstantManaPotionItem extends BaseInstantPotion implements IAmount 
         }
 
         return mats.buildMaterials()
-                .setOutput(this)
+                .setOutput(this, 3)
                 .levelReq(level.number)
                 .expGained(10)
                 .build();
