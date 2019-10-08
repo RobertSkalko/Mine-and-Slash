@@ -35,7 +35,7 @@ public class Mana extends FillableStat {
     }
 
     private Mana() {
-
+        this.minimumValue = 0;
     }
 
     @Override

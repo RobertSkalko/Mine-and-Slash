@@ -28,7 +28,7 @@ public class ManaRegen extends BaseRegenClass {
     }
 
     private ManaRegen() {
-
+        this.minimumValue = 0;
     }
 
     @Override

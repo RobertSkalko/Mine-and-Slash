@@ -215,7 +215,7 @@ public class EntityCap {
 
         float getCurrentMana();
 
-        int getAverageGearLevel();
+        int getAverageGearLevelForCosts();
 
         void setAverageGearLevel(int lvl);
     }
@@ -777,9 +777,9 @@ public class EntityCap {
                     IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
                     float energyCost = iwep.mechanic()
-                            .GetEnergyCost(getAverageGearLevel()) * multi;
+                            .GetEnergyCost(getAverageGearLevelForCosts()) * multi;
                     float manaCost = iwep.mechanic()
-                            .GetManaCost(getAverageGearLevel()) * multi;
+                            .GetManaCost(getAverageGearLevelForCosts()) * multi;
 
                     ResourcesData.Context ene = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
                     ResourcesData.Context mana = new ResourcesData.Context(this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
@@ -903,8 +903,8 @@ public class EntityCap {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
-            cost = Energy.INSTANCE.calculateScalingStatGrowth(cost, getAverageGearLevel());
-            
+            cost = Energy.INSTANCE.calculateScalingStatGrowth(cost, getAverageGearLevelForCosts());
+
             ResourcesData.Context energy = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
 
             if (this.getResources().hasEnough(energy)) {
@@ -978,8 +978,11 @@ public class EntityCap {
         }
 
         @Override
-        public int getAverageGearLevel() {
-            return this.averageGearLevel;
+        public int getAverageGearLevelForCosts() {
+            int min = MathHelper.clamp(getLevel() / 2 - 5, 1, getLevel());
+            int max = getLevel();
+
+            return MathHelper.clamp(this.averageGearLevel, min, max);
         }
 
         @Override

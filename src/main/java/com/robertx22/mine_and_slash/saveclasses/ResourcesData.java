@@ -174,7 +174,11 @@ public class ResourcesData {
     }
 
     public boolean hasEnough(Context ctx) {
-        return get(ctx) > ctx.amount;
+        if (ctx.amount <= 0) {
+            return true;
+        }
+
+        return get(ctx) >= ctx.amount;
     }
 
     public void modify(Context ctx) {
