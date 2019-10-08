@@ -1,22 +1,34 @@
 package com.robertx22.mine_and_slash.new_content_test.talent_tree.csv_parser;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.DirUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.InputStream;
 
 public class TalentParser {
 
     public static void parse() {
 
         try {
-            File file = new File(DirUtils.talentsCSV());
+            String path = SerializationUtils.CONFIG_PATH + "talents.csv";
 
-            String str = FileUtils.readFileToString(file, "utf-8");
+            InputStream input = TalentParser.class.getClassLoader()
+                    .getResourceAsStream("assets\\mmorpg\\talents.csv");
 
-            TalentGrid grid = new TalentGrid(str);
+            String s = IOUtils.toString(input, "utf-8");
+
+            File file = new File(path);
+
+            if (file.exists()) {
+                s = FileUtils.readFileToString(file, "utf-8");
+            } else {
+                FileUtils.writeStringToFile(file, s, "utf-8");
+            }
+
+            TalentGrid grid = new TalentGrid(s);
 
             grid.createPerks();
 
@@ -25,7 +37,7 @@ public class TalentParser {
             System.out.println("Registered all" + SlashRegistry.Perks()
                     .getSize() + " perks to the talent tree!");
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

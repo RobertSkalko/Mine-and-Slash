@@ -15,10 +15,6 @@ public class DirUtils {
         return modDir() + "/main/resources/assets/mmorpg/lang/";
     }
 
-    public static String talentsCSV() {
-        return modDir() + "/main/resources/assets/mmorpg/talents.csv";
-    }
-
     public static String langFilePath() {
         return langFolderDir() + "en_us.json";
     }

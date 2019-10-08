@@ -25,6 +25,7 @@ dodge transformed into dodge rating. now scales to lvl
 added magic shield stat
 mana and mana regen now scales to lvl. This is in preparation for cool stuff like "your mana takes dmg instead of your hp"
 mana and energy costs now scale to average worn gear lvl, not item/spell lvl. This might sound weird but otherwise you could spam your lvl 1 spell that uses % of your spell dmg and never run out of mana.
+they also have a minimum of half your player lvl. 
 this was i think the best of the 3 options i had.
 Scaling costs to player lvl would make players with low lvl gear suffer a bunch.
 Scaling to weapon lvl, would allow cheese builds like % spell to attack dmg rings and lvl 1 weapons.
