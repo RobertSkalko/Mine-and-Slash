@@ -39,6 +39,24 @@ public class StatConfig {
     StatConfig(ForgeConfigSpec.Builder builder) {
         builder.push("PLAYER_BASE_STATS");
 
+        energy = builder.translation("mmorpg.stat.energy")
+                .defineInRange("energy", 125F, 0, Integer.MAX_VALUE);
+        energy_per_level = builder.translation("mmorpg.stat.energy_per_level")
+                .defineInRange("energy_per_level", 120F, 0, Integer.MAX_VALUE);
+        energy_regen = builder.translation("mmorpg.stat.energy_regen")
+                .defineInRange("energy_regen", 7F, 0, Integer.MAX_VALUE);
+        energy_regen_per_level = builder.translation("mmorpg.stat.energy_regen_per_level")
+                .defineInRange("energy_regen_per_level", 5F, 0, Integer.MAX_VALUE);
+
+        mana = builder.translation("mmorpg.stat.mana")
+                .defineInRange("mana", 70F, 0, Integer.MAX_VALUE);
+        mana_per_level = builder.translation("mmorpg.stat.mana_per_level")
+                .defineInRange("mana_per_level", 75F, 0, Integer.MAX_VALUE);
+        mana_regen = builder.translation("mmorpg.stat.mana_regen")
+                .defineInRange("mana_regen", 3F, 0, Integer.MAX_VALUE);
+        mana_regen_per_level = builder.translation("mmorpg.stat.mana_regen_per_level")
+                .defineInRange("mana_regen_per_level", 2F, 0, Integer.MAX_VALUE);
+
         physical_damage = builder.translation("mmorpg.stat.physical_damage")
                 .defineInRange("physical_damage", 3F, 0, Integer.MAX_VALUE);
         physical_damage_per_level = builder.translation("mmorpg.stat.physical_damage_per_level")
@@ -46,15 +64,7 @@ public class StatConfig {
         mana = builder.translation("mmorpg.stat.mana")
                 .defineInRange("mana", 75F, 0, Integer.MAX_VALUE);
         mana_per_level = builder.translation("mmorpg.stat.mana_per_level")
-                .defineInRange("mana_per_level", 0F, 0, Integer.MAX_VALUE);
-        energy = builder.translation("mmorpg.stat.energy")
-                .defineInRange("energy", 150F, 0, Integer.MAX_VALUE);
-        energy_per_level = builder.translation("mmorpg.stat.energy_per_level")
-                .defineInRange("energy_per_level", 0F, 0, Integer.MAX_VALUE);
-        mana_regen = builder.translation("mmorpg.stat.mana_regen")
-                .defineInRange("mana_regen", 3F, 0, Integer.MAX_VALUE);
-        mana_regen_per_level = builder.translation("mmorpg.stat.mana_regen_per_level")
-                .defineInRange("mana_regen_per_level", 0.01F, 0, Integer.MAX_VALUE);
+                .defineInRange("mana_per_level", 50F, 0, Integer.MAX_VALUE);
         health_regen = builder.translation("mmorpg.stat.health_regen")
                 .defineInRange("health_regen", 4F, 0, Integer.MAX_VALUE);
         health_regen_per_level = builder.translation("mmorpg.stat.health_regen_per_level")
@@ -84,10 +94,6 @@ public class StatConfig {
                 .defineInRange("critical_hit", 1F, 0, Integer.MAX_VALUE);
         critical_hit_per_level = builder.translation("mmorpg.stat.critical_hit_per_level")
                 .defineInRange("critical_hit_per_level", 0F, 0, Integer.MAX_VALUE);
-        energy_regen = builder.translation("mmorpg.stat.energy_regen")
-                .defineInRange("energy_regen", 7F, 0, Integer.MAX_VALUE);
-        energy_regen_per_level = builder.translation("mmorpg.stat.energy_regen_per_level")
-                .defineInRange("energy_regen_per_level", 0.01F, 0, Integer.MAX_VALUE);
         critical_damage = builder.translation("mmorpg.stat.critical_damage")
                 .defineInRange("critical_damage", 0F, 0, Integer.MAX_VALUE);
         critical_damage_per_level = builder.translation("mmorpg.stat.critical_damage_per_level")

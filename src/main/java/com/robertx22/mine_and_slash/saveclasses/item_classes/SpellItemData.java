@@ -174,16 +174,14 @@ public class SpellItemData implements ICommonDataItem {
 
     public int GetDamage(Unit unit) {
 
-        BaseSpell spell = GetSpell();
+        //        BaseSpell spell = GetSpell();
 
-        int basedmg = spell.BaseValue() * baseEffectPercent / 100 * level;
-        int scalingdmg = spell.ScalingValue().GetValue(unit) * scalingEffectPercent / 100;
+        int basedmg = GetBaseValue();
+        int scalingdmg = (int) GetScalingValue();
 
         int total = basedmg + scalingdmg;
 
-        int finalrandom = RandomUtils.RandomRange(1 + (int) (total / SPELL_DMG_RANDOMNESS), (int) (2 + total + total / SPELL_DMG_RANDOMNESS));
-
-        return finalrandom;
+        return total;
 
     }
 

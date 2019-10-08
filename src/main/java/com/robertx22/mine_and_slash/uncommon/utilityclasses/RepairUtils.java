@@ -11,7 +11,7 @@ public class RepairUtils {
 
     public static boolean isItemBroken(ItemStack stack) {
         if (!stack.isDamageable()) {
-            return true;
+            return false;
         }
         return stack.getDamage() >= stack.getMaxDamage() - 10;
     }

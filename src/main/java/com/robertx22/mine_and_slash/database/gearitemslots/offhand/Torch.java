@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.MyTorch;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -53,7 +54,8 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
 
     @Override
     public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new ManaRegenFlat().multi(multi), new EnergyRegenFlat().multi(multi));
+        return Arrays.asList(new ManaRegenFlat().multi(multi), new EnergyRegenFlat().multi(multi), new MagicShieldRegenFlat()
+                .multi(multi));
     }
 
     @Override
