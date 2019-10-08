@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityCon
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.stat_types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
+import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
@@ -87,6 +88,7 @@ public class EntityCap {
     private static final String SHOULD_SYNC = "SHOULD_SYNC";
     private static final String ENTITY_TYPE = "ENTITY_TYPE";
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
+    private static final String AVG_GEAR_LVL = "AVG_GEAR_LVL";
 
     public interface UnitData extends ICommonCapability {
 
@@ -212,6 +214,10 @@ public class EntityCap {
         float getCurrentEnergy();
 
         float getCurrentMana();
+
+        int getAverageGearLevel();
+
+        void setAverageGearLevel(int lvl);
     }
 
     @EventBusSubscriber
@@ -260,6 +266,8 @@ public class EntityCap {
         boolean shouldSync = false;
         EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
 
+        int averageGearLevel = 1;
+
         float dmgByNonPlayers = 0;
 
         ResourcesData resources = new ResourcesData();
@@ -275,6 +283,7 @@ public class EntityCap {
             nbt.putInt(LEVEL, level);
             nbt.putInt(EXP, exp);
             nbt.putInt(RARITY, rarity);
+            nbt.putInt(AVG_GEAR_LVL, averageGearLevel);
             nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
@@ -312,6 +321,7 @@ public class EntityCap {
             this.exp = nbt.getInt(EXP);
             this.rarity = nbt.getInt(RARITY);
             this.tier = nbt.getInt(TIER);
+            this.averageGearLevel = nbt.getInt(AVG_GEAR_LVL);
             this.uuid = nbt.getString(UUID);
             this.dmgByNonPlayers = nbt.getFloat(DMG_DONE_BY_NON_PLAYERS);
             this.currentMapResourceLoc = nbt.getString(CURRENT_MAP_ID);
@@ -766,8 +776,10 @@ public class EntityCap {
 
                     IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
-                    float energyCost = iwep.mechanic().GetEnergyCost() * multi;
-                    float manaCost = iwep.mechanic().GetManaCost(getLevel()) * multi;
+                    float energyCost = iwep.mechanic()
+                            .GetEnergyCost(getAverageGearLevel()) * multi;
+                    float manaCost = iwep.mechanic()
+                            .GetManaCost(getAverageGearLevel()) * multi;
 
                     ResourcesData.Context ene = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
                     ResourcesData.Context mana = new ResourcesData.Context(this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
@@ -891,6 +903,8 @@ public class EntityCap {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
+            cost = Energy.INSTANCE.calculateScalingStatGrowth(cost, getAverageGearLevel());
+            
             ResourcesData.Context energy = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
 
             if (this.getResources().hasEnough(energy)) {
@@ -961,6 +975,16 @@ public class EntityCap {
         @Override
         public float getCurrentMana() {
             return this.resources.getMana();
+        }
+
+        @Override
+        public int getAverageGearLevel() {
+            return this.averageGearLevel;
+        }
+
+        @Override
+        public void setAverageGearLevel(int lvl) {
+            averageGearLevel = lvl;
         }
 
         @Override

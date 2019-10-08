@@ -124,16 +124,17 @@ public class GearTooltipUtils {
             if (gear.GetBaseGearType() instanceof IWeapon) {
                 IWeapon iwep = (IWeapon) gear.GetBaseGearType();
                 tip.add(new StringTextComponent(""));
-                if (iwep.mechanic().GetEnergyCost() > 0) {
+                if (iwep.mechanic().GetEnergyCost(data.getAverageGearLevel()) > 0) {
                     tip.add(Styles.GREENCOMP()
                             .appendSibling(Energy.INSTANCE.locName()
-                                    .appendText(": " + iwep.mechanic().GetEnergyCost())));
+                                    .appendText(": " + (int) iwep.mechanic()
+                                            .GetEnergyCost(data.getAverageGearLevel()))));
                 }
-                if (iwep.mechanic().GetManaCost(info.unitdata.getLevel()) > 0) {
+                if (iwep.mechanic().GetManaCost(data.getAverageGearLevel()) > 0) {
                     tip.add(Styles.BLUECOMP()
                             .appendSibling(Mana.INSTANCE.locName()
                                     .appendText(": " + (int) iwep.mechanic()
-                                            .GetManaCost(info.unitdata.getLevel()))));
+                                            .GetManaCost(data.getAverageGearLevel()))));
                 }
 
                 tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep

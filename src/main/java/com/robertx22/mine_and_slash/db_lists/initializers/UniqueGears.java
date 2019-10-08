@@ -57,6 +57,7 @@ public class UniqueGears implements ISlashRegistryInit {
         add(new RingHermitsInsanity());
         add(new MagesLuckyAmulet());
 
+        add(RingMagicShield.INSTANCE);
         add(HelmetWisdom.INSTANCE);
         add(ShieldWisdom.INSTANCE);
 
@@ -130,6 +131,7 @@ public class UniqueGears implements ISlashRegistryInit {
         add(new NecklaceThunder());
         add(new NecklaceEnergy());
         add(new NecklaceSetDrop());
+        add(NecklaceMagicShield.INSTANCE);
 
         // staffs
         add(new StaffFire());

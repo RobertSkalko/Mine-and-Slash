@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
 
 import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
+import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -25,8 +26,10 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public float GetEnergyCost() {
-        return 10;
+    public float GetEnergyCost(int lvl) {
+
+        return Energy.INSTANCE.calculateScalingStatGrowth(10, lvl);
+
     }
 
     @Override

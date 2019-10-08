@@ -42,6 +42,10 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         }
     }
 
+    public boolean hasSameLevelScaling(Stat other) {
+        return (other.ScalesToLevel() && ScalesToLevel()) || (other.ScalesToLevel() && !ScalesToLevel());
+    }
+
     public String getIcon() {
         if (this.Element() != null) {
             return this.Element().icon;

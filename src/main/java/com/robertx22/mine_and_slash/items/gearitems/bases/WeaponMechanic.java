@@ -13,7 +13,7 @@ public abstract class WeaponMechanic {
 
     public abstract ITextComponent tooltipDesc();
 
-    public abstract float GetEnergyCost();
+    public abstract float GetEnergyCost(int lvl);
 
     public float GetManaCost(int lvl) {
         return 0;

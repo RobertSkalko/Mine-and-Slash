@@ -16,7 +16,6 @@ public interface IStatConversion extends IGUID {
         for (ConversionMethod stat : this.conversion()) {
 
             float val = copy.getStat(stat.converted).Flat * data.Value /* percent */ / 100;
-
             unit.getStat(stat.statThatBenefits).Flat += val;
 
         }

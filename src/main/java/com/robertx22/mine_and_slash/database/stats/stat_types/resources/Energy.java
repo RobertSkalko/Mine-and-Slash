@@ -47,7 +47,7 @@ public class Energy extends FillableStat {
 
     @Override
     public boolean ScalesToLevel() {
-        return false;
+        return true;
     }
 
     @Override

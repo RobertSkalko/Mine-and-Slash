@@ -96,6 +96,34 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
+	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
+	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
+	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
+	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
+	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
+	"item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
+	"item.mmorpg.spell_frost_nova": "§cFrost Nova",
+	"item.mmorpg.spell_frostbolt": "§cFrost Bolt",
+	"item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
+	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
+	"item.mmorpg.spell_instantheal": "§cInstant Heal",
+	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
+	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
+	"item.mmorpg.spell_self_regen": "§cRegenerate",
+	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
+	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
+	"item.mmorpg.spell_thunderbolt": "§cLightning Bolt",
+	"item.mmorpg.spells.extra_flame_dmg": "§cExtra Flame Damage",
+	"item.mmorpg.spells.extra_frost_dmg": "§cExtra Frost Damage",
+	"item.mmorpg.spells.extra_lightning_dmg": "§cExtra Lightning Damage",
+	"item.mmorpg.spells.extra_venom_dmg": "§cExtra Venom Damage",
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "§7Minor Energy Regen Buff Potion ",
@@ -145,34 +173,6 @@
 	"item.mmorpg.alchemy.instant.misc.reset_talents": "§7Minor Potion of Reset Talents",
 
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
-	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
-	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
-	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
-	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
-	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
-	"item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
-	"item.mmorpg.spell_frost_nova": "§cFrost Nova",
-	"item.mmorpg.spell_frostbolt": "§cFrost Bolt",
-	"item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
-	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
-	"item.mmorpg.spell_instantheal": "§cInstant Heal",
-	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
-	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
-	"item.mmorpg.spell_self_regen": "§cRegenerate",
-	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
-	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
-	"item.mmorpg.spell_thunderbolt": "§cLightning Bolt",
-	"item.mmorpg.spells.extra_flame_dmg": "§cExtra Flame Damage",
-	"item.mmorpg.spells.extra_frost_dmg": "§cExtra Frost Damage",
-	"item.mmorpg.spells.extra_lightning_dmg": "§cExtra Lightning Damage",
-	"item.mmorpg.spells.extra_venom_dmg": "§cExtra Venom Damage",
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
 
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
@@ -956,6 +956,37 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.boots": "Plate Boots",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.chest": "Plate Chest",
+	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
+	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
+	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
+	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
+	"mmorpg.gear_type.crossbow": "Crossbow",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.helmet": "Plate Helm",
+	"mmorpg.gear_type.leather_boots": "Leather Boots",
+	"mmorpg.gear_type.leather_chest": "Leather Chest",
+	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
+	"mmorpg.gear_type.leather_pants": "Leather Pants",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.pants": "Plate Greaves",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+	"mmorpg.gear_type.wand": "Staff",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -997,6 +1028,7 @@
 	"item.mmorpg.uniques.helmet.helmetthunder0": "§eThunder Atronach Helmet",
 	"item.mmorpg.uniques.helmet.helmetwater0": "§eIce Seer Eyes",
 	"item.mmorpg.uniques.helmet.helmetwisdom0": "§eHelmet of Wisdom",
+	"item.mmorpg.uniques.necklace.necklace_magic_shield0": "§eAmulet of Mental Fortitude",
 	"item.mmorpg.uniques.necklace.necklaceenergy0": "§eInner Spirit Amulet",
 	"item.mmorpg.uniques.necklace.necklacefire0": "§eBurning Man Amulet",
 	"item.mmorpg.uniques.necklace.necklacegambler0": "§eMage's Lucky Amulet",
@@ -1011,6 +1043,7 @@
 	"item.mmorpg.uniques.ring.fire_ele_ring0": "§eRing of Firestorms",
 	"item.mmorpg.uniques.ring.nature_ele_ring0": "§eRing of Earthquakes",
 	"item.mmorpg.uniques.ring.ring_hermit_insanity": "§eHermit's Ring of Insanity",
+	"item.mmorpg.uniques.ring.ring_magic_shield0": "§eTower of Will",
 	"item.mmorpg.uniques.ring.ringcrit0": "§eRing of Precision",
 	"item.mmorpg.uniques.ring.ringdodge0": "§eRing of Swiftness",
 	"item.mmorpg.uniques.ring.ringenergy0": "§eRing of Unlimited Endurance",
@@ -1041,37 +1074,6 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.boots": "Plate Boots",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.chest": "Plate Chest",
-	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
-	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
-	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
-	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
-	"mmorpg.gear_type.crossbow": "Crossbow",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.helmet": "Plate Helm",
-	"mmorpg.gear_type.leather_boots": "Leather Boots",
-	"mmorpg.gear_type.leather_chest": "Leather Chest",
-	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
-	"mmorpg.gear_type.leather_pants": "Leather Pants",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.pants": "Plate Greaves",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-	"mmorpg.gear_type.wand": "Staff",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1364,6 +1366,7 @@
 	"item.mmorpg.uniques.helmet.helmetthunder0.desc": "I see sparks all around me.",
 	"item.mmorpg.uniques.helmet.helmetwater0.desc": "What mortals can't see belongs to me.",
 	"item.mmorpg.uniques.helmet.helmetwisdom0.desc": "True wisdom is knowing you know nothing.",
+	"item.mmorpg.uniques.necklace.necklace_magic_shield0.desc": "Preserve, prevail.",
 	"item.mmorpg.uniques.necklace.necklaceenergy0.desc": "One becomes two, two becomes four!",
 	"item.mmorpg.uniques.necklace.necklacefire0.desc": "I will take down my enemies with me, in flames.",
 	"item.mmorpg.uniques.necklace.necklacegambler0.desc": "One more bet!",
@@ -1378,6 +1381,7 @@
 	"item.mmorpg.uniques.ring.fire_ele_ring0.desc": "I summon Flame in my name!",
 	"item.mmorpg.uniques.ring.nature_ele_ring0.desc": "I summon Venom in my name!",
 	"item.mmorpg.uniques.ring.ring_hermit_insanity.desc": "Stop! Don't approach me..",
+	"item.mmorpg.uniques.ring.ring_magic_shield0.desc": "Will is an unshakeable fortress.",
 	"item.mmorpg.uniques.ring.ringcrit0.desc": "Strike with Accuracy, strike once.",
 	"item.mmorpg.uniques.ring.ringdodge0.desc": "Swift as the Wind.",
 	"item.mmorpg.uniques.ring.ringenergy0.desc": "I will pay any price to continue!",

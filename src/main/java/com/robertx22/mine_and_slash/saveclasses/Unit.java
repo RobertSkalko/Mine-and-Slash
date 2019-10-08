@@ -364,6 +364,18 @@ public class Unit {
         return hpadded;
     }
 
+    private void setAverageGearLvl(List<GearItemData> gears, UnitData data) {
+        int total = gears.stream().mapToInt(x -> x.getLevel()).sum();
+
+        int avg = 1;
+
+        if (total >= 0 && gears.size() > 0) {
+            avg = total / gears.size();
+        }
+
+        data.setAverageGearLevel(avg);
+    }
+
     public void RecalculateStats(LivingEntity entity, UnitData data, int level) {
 
         data.setEquipsChanged(false);
@@ -377,6 +389,8 @@ public class Unit {
         List<GearItemData> gears = new ArrayList<>();
 
         MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.CollectGearStacksEvent(entity, gears));
+
+        setAverageGearLvl(gears, data);
 
         boolean gearIsValid = this.isGearCombinationValid(gears, entity);
 

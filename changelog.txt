@@ -24,10 +24,14 @@ some optimizations
 dodge transformed into dodge rating. now scales to lvl
 added magic shield stat
 mana and mana regen now scales to lvl. This is in preparation for cool stuff like "your mana takes dmg instead of your hp"
-mana costs scale based on player lvl, not item/spell lvl. This might sound weird but otherwise you could spam your lvl 1 spell that uses % of your spell dmg and never run out of mana.
+mana and energy costs now scale to average worn gear lvl, not item/spell lvl. This might sound weird but otherwise you could spam your lvl 1 spell that uses % of your spell dmg and never run out of mana.
 good news is this is another stat that scales to lvl, meaning finding new higher lvl gear will be much more rewarding!
 made mobs a tiny bit stronger cus players now have 125 talent points at max lvl.
 as talents introduced a lot more stats, stat requirements now scale harder a bit
 runes now have magic shield and dodge as chance for their stats
 added 2 new runewords for magic shield users
 alchemy single use potions now give 3 pots per craft instead of 1
+energy now scales to lvl like mana
+
+Warning though, i bet there will be bugs, and balance problems.
+There will also be a lack of mage related unique items and affixes. Which i intend to fill in soon.

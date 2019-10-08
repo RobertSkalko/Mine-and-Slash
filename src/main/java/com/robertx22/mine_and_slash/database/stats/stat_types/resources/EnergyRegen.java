@@ -30,7 +30,7 @@ public class EnergyRegen extends BaseRegenClass {
     private EnergyRegen() {
 
     }
-
+    
     @Override
     public String GUID() {
         return GUID;
@@ -38,7 +38,7 @@ public class EnergyRegen extends BaseRegenClass {
 
     @Override
     public boolean ScalesToLevel() {
-        return false;
+        return true;
     }
 
     @Override
