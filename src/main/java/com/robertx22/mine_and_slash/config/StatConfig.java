@@ -57,38 +57,32 @@ public class StatConfig {
         mana_regen_per_level = builder.translation("mmorpg.stat.mana_regen_per_level")
                 .defineInRange("mana_regen_per_level", 3.25F, 0, Integer.MAX_VALUE);
 
-        physical_damage = builder.translation("mmorpg.stat.physical_damage")
-                .defineInRange("physical_damage", 3F, 0, Integer.MAX_VALUE);
-        physical_damage_per_level = builder.translation("mmorpg.stat.physical_damage_per_level")
-                .defineInRange("physical_damage_per_level", 0.3F, 0, Integer.MAX_VALUE);
-        mana = builder.translation("mmorpg.stat.mana")
-                .defineInRange("mana", 75F, 0, Integer.MAX_VALUE);
-        mana_per_level = builder.translation("mmorpg.stat.mana_per_level")
-                .defineInRange("mana_per_level", 50F, 0, Integer.MAX_VALUE);
-        health_regen = builder.translation("mmorpg.stat.health_regen")
-                .defineInRange("health_regen", 4F, 0, Integer.MAX_VALUE);
-        health_regen_per_level = builder.translation("mmorpg.stat.health_regen_per_level")
-                .defineInRange("health_regen_per_level", 1F, 0, Integer.MAX_VALUE);
-        armor = builder.translation("mmorpg.stat.armor")
-                .defineInRange("armor", 10F, 0, Integer.MAX_VALUE);
-        armor_per_level = builder.translation("mmorpg.stat.armor_per_level")
-                .defineInRange("armor_per_level", 5F, 0, Integer.MAX_VALUE);
         health = builder.translation("mmorpg.stat.health")
                 .defineInRange("health", 100F, 0, Integer.MAX_VALUE);
         health_per_level = builder.translation("mmorpg.stat.health_per_level")
                 .defineInRange("health_per_level", 5F, 0, Integer.MAX_VALUE);
+        health_regen = builder.translation("mmorpg.stat.health_regen")
+                .defineInRange("health_regen", 4F, 0, Integer.MAX_VALUE);
+        health_regen_per_level = builder.translation("mmorpg.stat.health_regen_per_level")
+                .defineInRange("health_regen_per_level", 1F, 0, Integer.MAX_VALUE);
 
         magic_shield = builder.translation("mmorpg.stat.magic_shield")
                 .defineInRange("magic_shield", 0D, 0, Integer.MAX_VALUE);
-
         magic_shield_per_level = builder.translation("mmorpg.stat.magic_shield_per_level")
                 .defineInRange("magic_shield_per_level", 0D, 0, Integer.MAX_VALUE);
-
         magic_shield_regen = builder.translation("mmorpg.stat.magic_shield_regen")
                 .defineInRange("magic_shield_regen", 3D, 0, Integer.MAX_VALUE);
-
         magic_shield_regen_per_level = builder.translation("mmorpg.stat.magic_shield_regen_per_level")
                 .defineInRange("magic_shield_regen_per_level", 1D, 0, Integer.MAX_VALUE);
+
+        physical_damage = builder.translation("mmorpg.stat.physical_damage")
+                .defineInRange("physical_damage", 3F, 0, Integer.MAX_VALUE);
+        physical_damage_per_level = builder.translation("mmorpg.stat.physical_damage_per_level")
+                .defineInRange("physical_damage_per_level", 0.3F, 0, Integer.MAX_VALUE);
+        armor = builder.translation("mmorpg.stat.armor")
+                .defineInRange("armor", 10F, 0, Integer.MAX_VALUE);
+        armor_per_level = builder.translation("mmorpg.stat.armor_per_level")
+                .defineInRange("armor_per_level", 5F, 0, Integer.MAX_VALUE);
 
         critical_hit = builder.translation("mmorpg.stat.critical_hit")
                 .defineInRange("critical_hit", 1F, 0, Integer.MAX_VALUE);
@@ -98,6 +92,7 @@ public class StatConfig {
                 .defineInRange("critical_damage", 0F, 0, Integer.MAX_VALUE);
         critical_damage_per_level = builder.translation("mmorpg.stat.critical_damage_per_level")
                 .defineInRange("critical_damage_per_level", 0F, 0, Integer.MAX_VALUE);
+
         spell_damage = builder.translation("mmorpg.stat.spell_damage")
                 .defineInRange("spell_damage", 3F, 0, Integer.MAX_VALUE);
         spell_damage_per_level = builder.translation("mmorpg.stat.spell_damage_per_level")

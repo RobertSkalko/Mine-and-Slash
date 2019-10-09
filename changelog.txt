@@ -48,6 +48,7 @@ spell dmg is no longer randomized
 stat pick gui now shows what stats do
 spells are costlier but more efficient
 core stats now show exactly how much other stats they give currently
+wisdom no longer gives hp regen and energy regen
 
 Warning though, i bet there will be bugs, and balance problems.
 There will also be a lack of mage related unique items and affixes. Which i intend to fill in soon.

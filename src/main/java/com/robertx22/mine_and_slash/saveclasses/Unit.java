@@ -179,7 +179,7 @@ public class Unit {
 
     }
 
-    public float getEffectiveHealth() {
+    public float getMaxEffectiveHealth() {
         float hp = healthData().Value;
         hp += magicShieldData().Value;
 

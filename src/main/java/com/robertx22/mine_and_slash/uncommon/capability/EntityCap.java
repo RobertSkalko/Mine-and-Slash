@@ -214,7 +214,7 @@ public class EntityCap {
         float getCurrentEnergy();
 
         float getCurrentMana();
-
+        
         int getAverageGearLevelForCosts();
 
         void setAverageGearLevel(int lvl);

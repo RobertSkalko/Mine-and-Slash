@@ -77,6 +77,13 @@ public abstract class BasePlayerOverlay {
         String maximum = NumberUtils.formatNumber((int) max);
         String str = "";
 
+        if (type == Type.HP) { // show effective health only on numbers, but let bars each separate from hp and ms
+            now = NumberUtils.formatNumber((int) data.getUnit()
+                    .getCurrentEffectiveHealth(mc.player, data));
+            maximum = NumberUtils.formatNumber((int) data.getUnit()
+                    .getMaxEffectiveHealth());
+        }
+
         if (type != Type.EXP) {
             str = now + "/" + maximum;
         } else {

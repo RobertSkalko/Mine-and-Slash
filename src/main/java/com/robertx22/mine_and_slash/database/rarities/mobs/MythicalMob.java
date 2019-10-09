@@ -23,7 +23,7 @@ public class MythicalMob extends BaseMythical implements MobRarity {
 
     @Override
     public float LootMultiplier() {
-        return 12F;
+        return 13F;
     }
 
     @Override
