@@ -214,8 +214,8 @@ public class EntityCap {
         float getCurrentEnergy();
 
         float getCurrentMana();
-        
-        int getAverageGearLevelForCosts();
+
+        int getLvlForResourceCosts();
 
         void setAverageGearLevel(int lvl);
     }
@@ -777,9 +777,9 @@ public class EntityCap {
                     IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
                     float energyCost = iwep.mechanic()
-                            .GetEnergyCost(getAverageGearLevelForCosts()) * multi;
+                            .GetEnergyCost(getLvlForResourceCosts()) * multi;
                     float manaCost = iwep.mechanic()
-                            .GetManaCost(getAverageGearLevelForCosts()) * multi;
+                            .GetManaCost(getLvlForResourceCosts()) * multi;
 
                     ResourcesData.Context ene = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
                     ResourcesData.Context mana = new ResourcesData.Context(this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
@@ -903,7 +903,7 @@ public class EntityCap {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
-            cost = Energy.INSTANCE.calculateScalingStatGrowth(cost, getAverageGearLevelForCosts());
+            cost = Energy.INSTANCE.calculateScalingStatGrowth(cost, getLvlForResourceCosts());
 
             ResourcesData.Context energy = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
 
@@ -978,11 +978,17 @@ public class EntityCap {
         }
 
         @Override
-        public int getAverageGearLevelForCosts() {
-            int min = MathHelper.clamp(getLevel() / 2 - 5, 1, getLevel());
+        public int getLvlForResourceCosts() {
+
+            return this.getLevel();
+            /*
+
+            int min = MathHelper.clamp(getLevel() - 5, 1, getLevel());
             int max = getLevel();
 
             return MathHelper.clamp(this.averageGearLevel, min, max);
+
+             */
         }
 
         @Override

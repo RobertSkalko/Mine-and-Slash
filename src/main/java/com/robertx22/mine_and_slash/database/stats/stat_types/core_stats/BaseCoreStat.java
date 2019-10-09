@@ -67,7 +67,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     public List<StatModData> getMods(EntityCap.UnitData unitdata, StatData data) {
         return this.statsThatBenefit()
                 .stream()
-                .map(x -> StatModData.Load(x, (int) getPercent(unitdata, data)))
+                .map(x -> StatModData.Load(x, (int) getPercent(unitdata, data)).noMin())
                 .collect(Collectors.toList());
 
     }

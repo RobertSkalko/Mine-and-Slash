@@ -55,8 +55,13 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISlashRegist
         return this.GetBaseStat().GUID() + "_" + this.Type().name();
     }
 
-    public float GetFloatByPercent(int percent) {
+    public float getFloatByPercent(int percent) {
         return (Min() + (Max() - Min()) * percent / 100) * multiplier;
+    }
+
+    public float getFloatByPercentWithoutMin(int percent) {
+        return (Max() * percent / 100) * multiplier;
+
     }
 
     public StatMod multi(float multiplier) {

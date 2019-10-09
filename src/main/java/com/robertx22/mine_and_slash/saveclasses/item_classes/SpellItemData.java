@@ -68,7 +68,7 @@ public class SpellItemData implements ICommonDataItem {
 
     public int GetManaCost(EntityCap.UnitData data) {
         return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
-                .ManaCost() * this.manaCostPercent / 100, data.getAverageGearLevelForCosts());
+                .ManaCost() * this.manaCostPercent / 100, data.getLvlForResourceCosts());
     }
 
     public int GetBaseValue() {
@@ -99,12 +99,12 @@ public class SpellItemData implements ICommonDataItem {
 
     private int MinMana(EntityCap.UnitData data) {
         return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
-                .ManaCost() * MIN_MANA_COST_PERCENT / 100, data.getAverageGearLevelForCosts());
+                .ManaCost() * MIN_MANA_COST_PERCENT / 100, data.getLvlForResourceCosts());
     }
 
     private int MaxMana(EntityCap.UnitData data) {
         return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
-                .ManaCost() * MAX_MANA_COST_PERCENT / 100, data.getAverageGearLevelForCosts());
+                .ManaCost() * MAX_MANA_COST_PERCENT / 100, data.getLvlForResourceCosts());
     }
 
     @Override

@@ -10,7 +10,7 @@ I call them mage, thief, guardian and warrior.
 The tree is huge and every start point branches to the other. Although you need to spend some points to traverse it.
 
 Mages specialize in mana, spell dmg and magic shield.
-Thiefs in dodge, energy and penetration.
+Thiefs in dodge, crits, energy and penetration.
 Guardians in hp and defenses.
 Warrior in phys dmg and crits.
 
@@ -26,15 +26,6 @@ some optimizations
 dodge transformed into dodge rating. now scales to lvl
 added magic shield stat
 mana and mana regen now scales to lvl. This is in preparation for cool stuff like "your mana takes dmg instead of your hp"
-mana and energy costs now scale to average worn gear lvl, not item/spell lvl. This might sound weird but otherwise you could spam your lvl 1 spell that uses % of your spell dmg and never run out of mana.
-they also have a minimum of half your player lvl. 
-this was i think the best of the 3 options i had.
-Scaling costs to player lvl would make players with low lvl gear suffer a bunch.
-Scaling to weapon lvl, would allow cheese builds like % spell to attack dmg rings and lvl 1 weapons.
-Scaling to avg gear lvl though, neither of these are a problem anymore. You're still rewarded for increasing gear lvl.
-But the only downside is if you say replace a mythic lvl 5 piece with a common lvl 10 piece, you would be punished a bit. But that encourages getting good rarity gear instead of just latest gear for your lvl, 
-so maybe it's not a downside at all? Will see!
-
 good news is this is another stat that scales to lvl, meaning finding new higher lvl gear will be much more rewarding!
 made mobs a tiny bit stronger cus players now have 125 talent points at max lvl.
 as talents introduced a lot more stats, stat requirements now scale harder a bit

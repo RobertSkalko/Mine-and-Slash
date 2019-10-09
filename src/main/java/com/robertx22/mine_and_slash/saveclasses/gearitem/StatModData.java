@@ -84,6 +84,13 @@ public class StatModData implements ITooltipList {
     @Store
     private String baseModName;
 
+    public transient boolean useMinimum = true;
+
+    public StatModData noMin() {
+        this.useMinimum = false;
+        return this;
+    }
+
     public boolean canBeMerged(StatModData mod) {
         return type == mod.type && multiplier == mod.multiplier && baseModName == mod.baseModName;
     }
@@ -100,7 +107,13 @@ public class StatModData implements ITooltipList {
 
         Stat stat = mod.GetBaseStat();
 
-        float val = mod.GetFloatByPercent(percent);
+        float val;
+
+        if (useMinimum) {
+            val = mod.getFloatByPercent(percent);
+        } else {
+            val = mod.getFloatByPercentWithoutMin(percent);
+        }
 
         if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
             val = stat.calculateScalingStatGrowth(val, level);
