@@ -17,7 +17,7 @@ public class TrueHit extends BaseGameChangerTrait implements IStatEffects, IAffe
 
     @Override
     public String locDescForLangFile() {
-        return "Crit damage doubled, but non crit dmg is halved.";
+        return "+ 50% Crit Dmg Multi but non crit dmg is halved.";
     }
 
     @Override
@@ -37,7 +37,7 @@ public class TrueHit extends BaseGameChangerTrait implements IStatEffects, IAffe
 
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit().getStat(CriticalDamage.GUID).Flat *= 2;
+        data.getUnit().getStat(CriticalDamage.GUID).Multi += 50;
     }
 
     @Override

@@ -108,13 +108,9 @@ public class PerkButton extends ImageButton {
     }
 
     public void onClick(ScreenContext ctx, int mouseX, int mouseY) {
-
         if (isInsideSlot(ctx, mouseX, mouseY)) {
             MMORPG.sendToServer(new AllocateTalentPacket(this.perk));
-
-            System.out.println(this.perk.GUID());
         }
-
     }
 
     public boolean isInsideSlot(ScreenContext ctx, int mouseX, int mouseY) {
