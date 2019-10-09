@@ -103,11 +103,11 @@ public class PerkEffect implements ITooltipList, IApplyableStats, ISlashRegistry
     public void render(int x, int y) {
 
         if (hasTexture) {
-            RenderUtils.renderPerkIcon(this.TEXTURE, x, y);
+            RenderUtils.renderIcon(this.TEXTURE, x, y);
         } else {
 
             if (this.exactStats.size() > 1) {
-                RenderUtils.renderMoreThanOnePerk(exactStats, x, y);
+                RenderUtils.renderIcons(exactStats, x, y);
             }
 
         }

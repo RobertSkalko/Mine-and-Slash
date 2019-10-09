@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.gui;
+package com.robertx22.mine_and_slash.uncommon.gui.stats_gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
@@ -32,26 +32,22 @@ public class StatGUI extends Screen {
     public StatGUI() {
         super(new StringTextComponent("Stats Screen"));
 
-        genStatList();
-
     }
 
-    public static final String ID = Ref.MODID + ":stats_screen_gui";
+    @Override
+    public void init() {
+        genStatList();
+    }
 
     int sizeY = 220;
     int sizeX = 215;
 
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/stats_screen.png");
-    private static final ResourceLocation icons = new ResourceLocation(Ref.MODID, "textures/gui/stat_icons.png");
-
-    float textScale = 0.8F;
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
 
         super.render(mouseX, mouseY, partialTicks);
-
-        //this.drawDefaultBackground();
 
         minecraft.getTextureManager().bindTexture(texture);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -163,7 +159,7 @@ public class StatGUI extends Screen {
 
                     ResourceLocation res = stat.getIconLocation();
 
-                    RenderUtils.renderPerkIcon(res, x - 22, y + added - getHeightSpacing() / 4);
+                    RenderUtils.renderIcon(res, x - 22, y + added - getHeightSpacing() / 4);
 
                     added += this.drawAndIncreaseSpacing(x, y + added, str);
 

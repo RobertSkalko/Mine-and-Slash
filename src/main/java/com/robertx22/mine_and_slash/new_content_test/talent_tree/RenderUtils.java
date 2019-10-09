@@ -9,12 +9,12 @@ import java.util.List;
 
 public class RenderUtils {
 
-    public static void renderPerkIcon(ResourceLocation tex, int x, int y) {
+    public static void renderIcon(ResourceLocation tex, int x, int y) {
         Minecraft.getInstance().getTextureManager().bindTexture(tex);
         AbstractGui.blit(x, y, 0, 0, 16, 16, 16, 16);
     }
 
-    public static void renderMoreThanOnePerk(List<ExactStatData> list, int x, int y) {
+    public static void renderIcons(List<ExactStatData> list, int x, int y) {
 
         y -= 8;
 
