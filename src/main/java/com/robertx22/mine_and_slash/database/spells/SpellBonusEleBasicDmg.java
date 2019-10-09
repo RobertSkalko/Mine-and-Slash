@@ -79,7 +79,7 @@ public class SpellBonusEleBasicDmg extends BaseSpell implements IGenerated<BaseS
 
         int amp = data.GetDamage(Load.Unit(caster).getUnit());
 
-        caster.addPotionEffect(new EffectInstance(BonusDmgPotion.MAP.get(element), 45 * 20, amp));
+        caster.addPotionEffect(new EffectInstance(BonusDmgPotion.MAP.get(element), 120 * 20, amp));
 
         return true;
     }

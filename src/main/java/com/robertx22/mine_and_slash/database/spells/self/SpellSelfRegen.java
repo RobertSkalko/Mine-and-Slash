@@ -34,7 +34,7 @@ public class SpellSelfRegen extends BaseSpellHeal {
 
     @Override
     public int ManaCost() {
-        return 25;
+        return 50;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class SpellSelfRegen extends BaseSpellHeal {
                 int healed = (int) (data.GetBaseValue() + data.GetScalingValue() * unit.getUnit()
                         .healthData().Value / 100);
 
-                caster.addPotionEffect(new EffectInstance(HealthRegenPotion.INSTANCE, 400, healed));
+                caster.addPotionEffect(new EffectInstance(HealthRegenPotion.INSTANCE, 500, healed));
 
                 // spell buffs
                 SpellBuffCheck check = new SpellBuffCheck(this.Type());

@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mine_and_slash.new_content_test.talent_tree.gui.PerkTreeScreen;
 import com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen.StatPointScreen;
-import com.robertx22.mine_and_slash.uncommon.gui.stats_gui.StatGUI;
+import com.robertx22.mine_and_slash.uncommon.gui.stats_gui.StatOverviewGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,7 +22,7 @@ public class OnKeyPress {
         if (Minecraft.getInstance().currentScreen == null) { // public net.minecraft.client.gui.screen.Screen field_71462_r
 
             if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
-                Minecraft.getInstance().displayGuiScreen(new StatGUI());
+                Minecraft.getInstance().displayGuiScreen(new StatOverviewGUI());
             } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
                 Minecraft.getInstance().displayGuiScreen(new StatPointScreen());
             } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {

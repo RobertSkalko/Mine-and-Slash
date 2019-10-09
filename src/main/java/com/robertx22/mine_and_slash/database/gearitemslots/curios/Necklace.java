@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.misc.BonusExpFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -32,7 +33,7 @@ public class Necklace extends GearItemSlot {
 
     @Override
     public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new HealthRegenFlat(), new BonusExpFlat());
+        return Arrays.asList(new HealthRegenFlat(), new BonusExpFlat(), new MagicShieldRegenFlat());
     }
 
     @Override

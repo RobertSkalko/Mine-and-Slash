@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.spells.nova;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalResist;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.database.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.database.spells.bases.SpellEffectDamage;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalResist;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
@@ -22,12 +22,12 @@ import java.util.List;
 
 public abstract class BaseNovaSpell extends BaseSpell {
 
-    public float scaling = 0.3F;
+    public float scaling = 0.5F;
     public double radius = 4;
 
     @Override
     public int useTimeTicks() {
-        return 10;
+        return 15;
     }
 
     @Override
@@ -37,7 +37,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
     @Override
     public int ManaCost() {
-        return 15;
+        return 25;
     }
 
     @Override

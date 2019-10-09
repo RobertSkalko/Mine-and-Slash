@@ -19,7 +19,7 @@ public abstract class BaseBolt extends BaseSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 1F);
+        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 1.25F);
     }
 
     @Override
@@ -39,12 +39,12 @@ public abstract class BaseBolt extends BaseSpell {
 
     @Override
     public int ManaCost() {
-        return 20;
+        return 25;
     }
 
     @Override
     public int BaseValue() {
-        return 24;
+        return 25;
     }
 
     @Override

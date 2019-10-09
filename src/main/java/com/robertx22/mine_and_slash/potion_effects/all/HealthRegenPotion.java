@@ -57,7 +57,7 @@ public class HealthRegenPotion extends SpellPotionBase {
 
     @Override
     public int performEachXTicks() {
-        return 20;
+        return 30;
     }
 
     @Override

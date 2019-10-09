@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.spells.aoe_projectile;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.database.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.database.spells.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
+import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
@@ -16,7 +16,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
 
     @Override
     public int useTimeTicks() {
-        return 12;
+        return 15;
     }
 
     public BaseAoeSpellProjectile() {
@@ -46,7 +46,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 0.4F);
+        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 0.5F);
     }
 
 }

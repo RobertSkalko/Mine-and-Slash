@@ -30,13 +30,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @OnlyIn(Dist.CLIENT)
-public class StatGUI extends Screen {
+public class StatOverviewGUI extends Screen {
 
     Stat.StatGroup statgroup = Stat.StatGroup.Main;
     int currentElement = 0;
     HashMap<String, List<Stat>> statmap = new HashMap<>();
 
-    public StatGUI() {
+    public StatOverviewGUI() {
         super(new StringTextComponent("Stats Screen"));
 
     }
@@ -275,10 +275,13 @@ public class StatGUI extends Screen {
         public void renderToolTip(int x, int y) {
             if (isInside(x, y)) {
 
-                List<ITextComponent> tooltip = Arrays.asList(Styles.BLUECOMP()
-                        .appendSibling(stat.locDesc()));
+                List<ITextComponent> tooltip = new ArrayList<>();
 
-                StatGUI.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
+                tooltip.add(Styles.BLUECOMP().appendSibling(stat.locName()));
+
+                tooltip.add(Styles.GREENCOMP().appendSibling(stat.locDesc()));
+
+                StatOverviewGUI.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
                         .getInstance().fontRenderer);
 
             }
@@ -302,13 +305,14 @@ public class StatGUI extends Screen {
 
             if (!(stat instanceof UnknownStat)) {
 
-                String str = StatGUI.this.getStatString(stat, unitdata);
+                String str = StatOverviewGUI.this.getStatString(stat, unitdata);
 
                 ResourceLocation res = stat.getIconLocation();
 
                 RenderUtils.renderIcon(res, getIconX(), getIconY());
 
-                StatGUI.this.drawString(font, str, this.x, this.y, TextFormatting.GOLD.getColor());
+                StatOverviewGUI.this.drawString(font, str, this.x, this.y, TextFormatting.GOLD
+                        .getColor());
             }
         }
 

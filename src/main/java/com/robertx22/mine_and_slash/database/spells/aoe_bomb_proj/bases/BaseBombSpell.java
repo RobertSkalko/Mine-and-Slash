@@ -11,12 +11,12 @@ public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
     public int BaseValue() {
-        return 8;
+        return 10;
     }
 
     @Override
     public int useTimeTicks() {
-        return 18;
+        return 20;
     }
 
     @Override
@@ -37,9 +37,9 @@ public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
     public int ManaCost() {
-        return 30;
+        return 40;
     }
 
-    public float damageScaling = 0.5F;
+    public float damageScaling = 0.75F;
 
 }

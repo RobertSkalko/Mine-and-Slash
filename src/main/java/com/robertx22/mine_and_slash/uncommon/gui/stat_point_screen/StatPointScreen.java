@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.BaseCoreStat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -24,7 +25,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StatPointScreen extends BaseScreen {
@@ -121,10 +122,17 @@ public class StatPointScreen extends BaseScreen {
         @Override
         public void renderToolTip(int x, int y) {
             if (isInside(x, y)) {
-                List<ITextComponent> tooltip = Arrays.asList(Styles.BLUECOMP()
-                        .appendSibling(SlashRegistry.Stats()
-                                .get(this.stat.statguid)
-                                .locDesc()));
+                Stat stat = SlashRegistry.Stats().get(this.stat.statguid);
+
+                List<ITextComponent> tooltip = new ArrayList<>();
+
+                tooltip.add(Styles.BLUECOMP().appendSibling(stat.locName()));
+
+                if (stat instanceof BaseCoreStat) {
+                    BaseCoreStat core = (BaseCoreStat) stat;
+                    tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit()
+                            .getStat(stat)));
+                }
 
                 StatPointScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
                         .getInstance().fontRenderer);
