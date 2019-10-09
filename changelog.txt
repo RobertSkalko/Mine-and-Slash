@@ -1,5 +1,7 @@
 2.9.0
 
+WARNING: Please delete mmorpg-common config or just delete the base stats part, otherwise you'll have troubles playing
+
 Added TALENTS!
 
 Pressing *J* opens the talent tree. You can pick 4 locations to start with, which determine your speciality.

@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerStatsPointsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.gui.BaseScreen;
+import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.Minecraft;
@@ -120,9 +121,10 @@ public class StatPointScreen extends BaseScreen {
         @Override
         public void renderToolTip(int x, int y) {
             if (isInside(x, y)) {
-                List<ITextComponent> tooltip = Arrays.asList(SlashRegistry.Stats()
-                        .get(this.stat.statguid)
-                        .locDesc());
+                List<ITextComponent> tooltip = Arrays.asList(Styles.BLUECOMP()
+                        .appendSibling(SlashRegistry.Stats()
+                                .get(this.stat.statguid)
+                                .locDesc()));
 
                 StatPointScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
                         .getInstance().fontRenderer);

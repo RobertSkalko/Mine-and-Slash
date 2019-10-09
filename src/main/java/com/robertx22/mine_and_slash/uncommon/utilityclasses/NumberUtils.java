@@ -19,6 +19,10 @@ public class NumberUtils {
     static int MILLS = 1000000;
     static int THOUSANDS = 1000;
 
+    public static String formatNumber(float number) {
+        return formatNumber((int) number);
+    }
+
     public static String formatNumber(int number) {
 
         if (Math.abs(number / MILLS) >= 1) {
