@@ -48,5 +48,4 @@ public class EpicItem extends BaseEpic implements ItemRarity {
     public MinMax SpawnDurabilityHit() {
 	return new MinMax(70, 80);
     }
-
 }

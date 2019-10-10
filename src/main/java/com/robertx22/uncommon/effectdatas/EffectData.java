@@ -73,7 +73,7 @@ public abstract class EffectData {
 
     }
 
-    private EffectTypes effectType = EffectTypes.BASIC_ATTACK;
+    protected EffectTypes effectType = EffectTypes.BASIC_ATTACK;
 
     public EffectTypes getEffectType() {
 	return effectType;
@@ -87,11 +87,11 @@ public abstract class EffectData {
     public WeaponTypes weaponType = WeaponTypes.None;
 
     public enum EffectTypes {
-	NORMAL, SPELL, BASIC_ATTACK, BONUS_ATTACK
+	NORMAL, SPELL, BASIC_ATTACK, BONUS_ATTACK, REFLECT
     }
 
-    public UnitData sourceData;
-    public UnitData targetData;
+    public static UnitData sourceData;
+    public static UnitData targetData;
 
     public boolean canceled = false;
     public Unit sourceUnit;

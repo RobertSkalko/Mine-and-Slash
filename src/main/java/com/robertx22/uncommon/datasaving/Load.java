@@ -9,19 +9,19 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class Load {
 
-    public static UnitData Unit(ICapabilityProvider provider) {
-	if (provider != null) {
-	    return provider.getCapability(EntityData.Data, null);
+	public static UnitData Unit(ICapabilityProvider provider) {
+		if (provider != null) {
+			return provider.getCapability(EntityData.Data, null);
+		}
+		return null;
 	}
-	return null;
-    }
 
-    public static IWorldData World(ICapabilityProvider provider) {
+	public static IWorldData World(ICapabilityProvider provider) {
 
-	if (provider != null) {
-	    return provider.getCapability(WorldData.Data, null);
+		if (provider != null) {
+			return provider.getCapability(WorldData.Data, null);
 
+		}
+		return null;
 	}
-	return null;
-    }
 }

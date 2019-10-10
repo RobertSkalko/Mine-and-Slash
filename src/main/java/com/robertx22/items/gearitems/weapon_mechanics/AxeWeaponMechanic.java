@@ -6,6 +6,7 @@ import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class AxeWeaponMechanic extends WeaponMechanic {
 
@@ -20,11 +21,11 @@ public class AxeWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
+    public boolean Attack(LivingHurtEvent event,EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
 
 	// double attack :3
-	super.Attack(source, target, unitsource, targetUnit);
-	super.Attack(source, target, unitsource, targetUnit);
+	super.Attack(event, source, target, unitsource, targetUnit);
+	super.Attack(event, source, target, unitsource, targetUnit);
 
 	return true;
     }

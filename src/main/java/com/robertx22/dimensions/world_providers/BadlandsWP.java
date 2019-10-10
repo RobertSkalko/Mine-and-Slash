@@ -7,25 +7,25 @@ import net.minecraft.world.biome.BiomeProvider;
 
 public class BadlandsWP extends BaseWorldProvider {
 
-    public BadlandsWP() {
-	super(true);
-    }
+	public BadlandsWP() {
+		super(true);
+	}
 
-    private BiomeProvider biomeP = new BPBadlands(world);
+	private BiomeProvider biomeP = new BPBadlands(world);
 
-    @Override
-    public BiomeProvider getBiomeProvider() {
-	return biomeP;
-    }
+	@Override
+	public BiomeProvider getBiomeProvider() {
+		return biomeP;
+	}
 
-    @Override
-    public String GUID() {
-	return "BadlandsWP0";
-    }
+	@Override
+	public String GUID() {
+		return "BadlandsWP0";
+	}
 
-    @Override
-    public String unlocString() {
-	return "badlands";
-    }
+	@Override
+	public String unlocString() {
+		return "badlands";
+	}
 
 }

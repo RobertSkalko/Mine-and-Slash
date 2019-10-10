@@ -2,7 +2,6 @@ package com.robertx22.mmorpg.proxy;
 
 import com.robertx22.dimensions.blocks.RenderTileMapPortal;
 import com.robertx22.dimensions.blocks.TileMapPortal;
-import com.robertx22.items.gearitems.RenderMyArrow;
 import com.robertx22.items.gearitems.offhands.NormalShield;
 import com.robertx22.items.gearitems.offhands.ShieldRenderer;
 import com.robertx22.mmorpg.Keybinds;
@@ -89,16 +88,6 @@ public class ClientProxy implements IProxy {
 	}
 
 	public void regArrow(Item item, Class<? extends Entity> theclass, int id) {
-
-		EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, "arrow"), theclass, Ref.MODID + ":" + "arrow",
-				id, Main.instance, 64, 10, true);
-
-		RenderingRegistry.registerEntityRenderingHandler(theclass, new IRenderFactory() {
-			@Override
-			public Render createRenderFor(RenderManager manager) {
-				return new RenderMyArrow(manager);
-			}
-		});
 
 	}
 

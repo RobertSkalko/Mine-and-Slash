@@ -14,6 +14,7 @@ import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class HammerWeaponMechanic extends WeaponMechanic {
 
@@ -30,7 +31,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     float radius = 1.5F;
 
     @Override
-    public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
+    public boolean Attack(LivingHurtEvent event,EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
 
 	List<EntityLivingBase> entities = new ArrayList<EntityLivingBase>();
 
@@ -44,7 +45,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
 
 	for (EntityLivingBase entity : entities) {
 	    int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
-	    DamageEffect dmg = new DamageEffect(source, entity, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK,
+	    DamageEffect dmg = new DamageEffect(event, source, entity, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK,
 		    WeaponTypes.Hammer);
 	    dmg.Activate();
 	}

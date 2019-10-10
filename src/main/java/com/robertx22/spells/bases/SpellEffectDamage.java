@@ -24,7 +24,7 @@ public class SpellEffectDamage extends BaseSpellEffect {
 
     @Override
     public void Activate(DamageData dmgdata, EntityLivingBase target) {
-	DamageEffect dmg = new DamageEffect(dmgdata.caster, target, dmgdata.spellItem.GetDamage(dmgdata.casterUnit));
+	DamageEffect dmg = new DamageEffect(null, dmgdata.caster, target, dmgdata.spellItem.GetDamage(dmgdata.casterUnit), null, null, null, null);
 	dmg.Element = this.element;
 	dmg.setEffectType(EffectTypes.SPELL, WeaponTypes.None);
 	dmg.Activate();

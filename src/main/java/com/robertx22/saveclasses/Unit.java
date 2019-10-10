@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
+
+import javax.annotation.Nonnull;
+
 import com.robertx22.config.DimensionConfigs;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.gearitemslots.bases.GearItemSlot.GearSlotType;
 import com.robertx22.database.rarities.MobRarity;
+import com.robertx22.database.stat_types.UnknownStat;
 import com.robertx22.database.stat_types.offense.PhysicalDamage;
 import com.robertx22.database.stat_types.resources.Energy;
 import com.robertx22.database.stat_types.resources.Health;
@@ -28,6 +32,8 @@ import com.robertx22.uncommon.capability.bases.MobStatUtils;
 import com.robertx22.uncommon.capability.bases.PlayerStatUtils;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
+import com.robertx22.uncommon.effectdatas.EffectData;
+import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.utilityclasses.ListUtils;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -37,6 +43,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 @Storable
 public class Unit {
@@ -55,6 +62,17 @@ public class Unit {
 
   @Store
   public String GUID = UUID.randomUUID().toString();
+  
+  @Nonnull
+  public HashMap<String, StatData> getStats() {
+
+      if (MyStats == null) {
+          this.InitMobStats();
+      }
+
+      return MyStats;
+  }
+
 
   public Unit() {
 
@@ -135,18 +153,18 @@ public class Unit {
     return GUID.hashCode();
   }
 
-  public void MobBasicAttack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource,
-      float event_damage) {
+  public void MobBasicAttack(LivingHurtEvent event, EntityLivingBase source, EntityLivingBase target, UnitData sourcedata,
+          UnitData targetdata, float event_damage) {
 
-    MobRarity rar = Rarities.Mobs.get(unitsource.getRarity());
+    MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
 
-    float mystat = unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+    float mystat = sourcedata.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
 
-    float vanilla = event_damage * unitsource.getLevel();
+    float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getDMGMultiplierIncreaseByTier();
 
     float num = (mystat + vanilla) / 1.5F * rar.DamageMultiplier();
 
-    DamageEffect dmg = new DamageEffect(source, target, (int) num);
+    DamageEffect dmg = new DamageEffect(event, source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
 
     dmg.Activate();
 
