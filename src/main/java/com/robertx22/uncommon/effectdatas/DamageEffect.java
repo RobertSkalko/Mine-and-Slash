@@ -3,7 +3,6 @@ package com.robertx22.uncommon.effectdatas;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import com.robertx22.api.MineAndSlashEvents;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.stat_types.defense.BlockStrength;
 import com.robertx22.mmorpg.Main;
@@ -30,7 +29,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.MinecraftForge;
 
 public class DamageEffect extends EffectData
 		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
@@ -123,7 +121,6 @@ public class DamageEffect extends EffectData
 			}
 		}
 
-		MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.DamageEvent(Source, Target, Number, dmgsource, fullyblocked));
 	}
 
 	private void RestoreMana() {
