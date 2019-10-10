@@ -11,7 +11,7 @@ public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
     public int BaseValue() {
-        return 10;
+        return 15;
     }
 
     @Override

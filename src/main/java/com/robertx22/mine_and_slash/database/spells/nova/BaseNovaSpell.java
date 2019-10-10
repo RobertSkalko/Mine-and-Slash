@@ -42,7 +42,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
     @Override
     public int BaseValue() {
-        return 6;
+        return 10;
     }
 
     @Override
