@@ -28,7 +28,7 @@ public class BeachIWP extends BaseWorldProvider {
     public List<MapAffixData> getMapAffixes() {
         return Arrays.asList(new MapAffixData(new BonusThunderDamageAffix(), 100));
     }
-    
+
     @Override
     public BiomeColorTheme biomeTheme() {
         return BiomeColorTheme.DESERT;

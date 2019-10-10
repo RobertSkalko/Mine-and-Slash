@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.network.proxies;
 
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.gui.PerkTreeScreen;
+import com.robertx22.mine_and_slash.database.talent_tree.gui.PerkTreeScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 

@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.database.talent_tree.Perk;
+import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.saveclasses.talents.PlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.robertx22.mine_and_slash.new_content_test.talent_tree.PerkConnection.Allocation.*;
+import static com.robertx22.mine_and_slash.database.talent_tree.PerkConnection.Allocation.*;
 
 @Mod.EventBusSubscriber
 public class PlayerTalentsCap {

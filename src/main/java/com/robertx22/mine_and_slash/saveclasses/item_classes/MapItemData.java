@@ -281,27 +281,27 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
                     .appendSibling(Words.Tier.locName()
                             .appendText(": " + this.tier)), tooltip);
 
-            Tooltip.add("", tooltip);
+            //Tooltip.add("", tooltip);
             Tooltip.add(Styles.GREENCOMP()
                     .appendSibling(Words.Minutes.locName()
                             .appendText(": " + this.minutes)), tooltip);
 
-            Tooltip.add("", tooltip);
+            // Tooltip.add("", tooltip);
             Tooltip.add(Styles.YELLOWCOMP()
                     .appendSibling(Words.Bonus_Loot_Amount.locName()
                             .appendText(": " + this.getBonusLootAmountInPercent() + "%")), tooltip);
 
-            Tooltip.add("", tooltip);
+            //Tooltip.add("", tooltip);
             Tooltip.add(TooltipUtils.rarity(rarity), tooltip);
 
             if (this.isPermaDeath) {
-                Tooltip.add("", tooltip);
+                //    Tooltip.add("", tooltip);
                 Tooltip.add(Styles.REDCOMP()
                         .appendSibling(Words.Permadeath.locName()), tooltip);
             }
 
             if (this.groupPlay) {
-                Tooltip.add("", tooltip);
+                //  Tooltip.add("", tooltip);
                 Tooltip.add(Styles.GREENCOMP()
                         .appendSibling(Words.GroupPlay.locName()
                                 .appendText(", ")
@@ -309,11 +309,11 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
                                 .appendText(": " + this.maxPlayersInGroup)), tooltip);
             }
 
-            Tooltip.add("", tooltip);
+            //  Tooltip.add("", tooltip);
             Tooltip.add(Styles.BLUECOMP()
                     .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
 
-            Tooltip.add("", tooltip);
+            // Tooltip.add("", tooltip);
 
             tooltip.add(new StringTextComponent(TextFormatting.RED + "[*]").appendSibling(Words.MapWorldsAreResetOnGameReload
                     .locName()));

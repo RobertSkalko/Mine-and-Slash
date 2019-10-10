@@ -16,21 +16,26 @@ public class RarityDropratesConfig {
     RarityDropratesConfig(ForgeConfigSpec.Builder builder) {
         builder.push("RARITY_WEIGHT_CONTAINERS");
 
-        ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("ITEM", builder))
+        RarityWeight.DefaultConfig config = new RarityWeight.DefaultConfig();
+
+        ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("ITEM", builder, config))
                 .getLeft();
-        RUNED_ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNED_ITEMS", builder))
-                .getLeft();
-        RUNES = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNES", builder))
-                .getLeft();
-        MOBS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MOBS", builder))
-                .getLeft();
-        MAPS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MAPS", builder))
+        RUNED_ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNED_ITEMS", builder, new RarityWeight.DefaultConfig()))
                 .getLeft();
 
-        CURRENCY = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("CURRENCY", builder))
+        RUNES = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNES", builder, new RarityWeight.DefaultConfig()
+                .higherChanceByMulti(1.2F))).getLeft();
+
+        MOBS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MOBS", builder, new RarityWeight.DefaultConfig()))
                 .getLeft();
 
-        SPELLS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("SPELLS", builder))
+        MAPS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MAPS", builder, new RarityWeight.DefaultConfig()
+                .higherChanceByMulti(1.3F))).getLeft();
+
+        CURRENCY = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("CURRENCY", builder, new RarityWeight.DefaultConfig()))
+                .getLeft();
+
+        SPELLS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("SPELLS", builder, new RarityWeight.DefaultConfig()))
                 .getLeft();
 
         builder.pop();

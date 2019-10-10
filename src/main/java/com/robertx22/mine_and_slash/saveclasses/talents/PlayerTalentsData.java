@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.talents;
 
+import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import info.loenwind.autosave.annotations.Storable;

@@ -4,10 +4,10 @@ import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.Heal
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseBuffPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BasePotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantHealthPotionItem;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.builders.SimpleRecipeBuilders;
+import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
+import com.robertx22.mine_and_slash.professions.recipe.builders.SimpleRecipeBuilders;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import net.minecraft.item.Items;
 

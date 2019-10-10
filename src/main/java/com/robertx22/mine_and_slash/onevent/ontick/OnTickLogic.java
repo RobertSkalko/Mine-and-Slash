@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionContainer;
+import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;

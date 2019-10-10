@@ -9,7 +9,7 @@ public class MythicalMap extends BaseMythical implements MapRarity {
 
     @Override
     public MinMax AffixAmount() {
-        return new MinMax(5, 6);
+        return new MinMax(4, 5);
     }
 
     @Override

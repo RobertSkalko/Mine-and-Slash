@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.saveclasses.professions.ProfessionData;
 import com.robertx22.mine_and_slash.saveclasses.professions.ProfessionListData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;

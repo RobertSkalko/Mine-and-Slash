@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.network;
 
+import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
-import com.robertx22.mine_and_slash.new_content_test.talent_tree.Perk;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

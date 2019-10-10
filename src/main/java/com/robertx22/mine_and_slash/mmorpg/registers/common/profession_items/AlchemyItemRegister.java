@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.HpRege
 import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.LootBonusBuffPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.ManaRegenBuffPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.*;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import info.loenwind.autosave.annotations.Storable;

@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.items.profession.alchemy.bases;
 
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs.BaseAlchemyEffect;
 import com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs.BaseEffect;
+import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;

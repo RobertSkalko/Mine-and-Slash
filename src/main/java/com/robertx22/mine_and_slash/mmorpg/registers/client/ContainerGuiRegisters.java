@@ -19,7 +19,7 @@ import com.robertx22.mine_and_slash.items.bags.map_bag.GuiMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.GuiMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.ProfessionGui;
+import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionGui;
 import net.minecraft.client.gui.ScreenManager;
 
 public class ContainerGuiRegisters {

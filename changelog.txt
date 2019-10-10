@@ -41,6 +41,7 @@ spells are costlier but more efficient
 core stats now show exactly how much other stats they give currently
 wisdom no longer gives hp regen and energy regen
 new map types
+runes and maps should be more likely to drop in higher rarities now
 
 Warning though, i bet there will be bugs, and balance problems.
 There will also be a lack of mage related unique items and affixes. Which i intend to fill in soon.

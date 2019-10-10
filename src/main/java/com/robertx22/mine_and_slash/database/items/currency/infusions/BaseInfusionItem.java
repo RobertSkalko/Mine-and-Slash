@@ -10,9 +10,9 @@ import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLoc
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
-import com.robertx22.mine_and_slash.new_content_test.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.SimpleRecipe;
+import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.InfusionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;

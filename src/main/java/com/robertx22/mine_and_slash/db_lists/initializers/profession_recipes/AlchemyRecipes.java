@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.initializers.profession_recipes;
 
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.new_content_test.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
