@@ -79,7 +79,7 @@ public class GearOverlayGUI extends AbstractGui {
                 return;
             }
 
-            if (mc.player.ticksExisted < 50) {
+            if (mc.player.ticksExisted < 100) {
                 return;
             }
 

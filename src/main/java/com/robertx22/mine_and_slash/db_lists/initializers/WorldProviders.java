@@ -59,7 +59,8 @@ public class WorldProviders implements ISlashRegistryInit {
                     add(new BirchForestIWP(null, null));
                     add(new NetherIWP(null, null));
                     add(new SwampHillsIWP(null, null));
-
+                    add(new RedDesertIWP(null, null));
+                    add(new BeachIWP(null, null));
                 }
 
             }

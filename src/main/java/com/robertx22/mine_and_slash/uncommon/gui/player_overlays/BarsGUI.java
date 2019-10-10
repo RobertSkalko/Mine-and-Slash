@@ -77,6 +77,9 @@ public class BarsGUI extends AbstractGui {
             if (unit.energyData() == null || unit.manaData() == null || unit.healthData() == null) {
                 return;
             }
+            if (mc.player.ticksExisted < 80) {
+                return;
+            }
 
             PlayerGUIs guiType = ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get();
 

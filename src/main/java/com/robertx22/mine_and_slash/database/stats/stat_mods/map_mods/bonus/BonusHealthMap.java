@@ -17,7 +17,7 @@ public class BonusHealthMap extends StatMod {
 
     @Override
     public float Min() {
-        return 20;
+        return 0;
     }
 
     @Override

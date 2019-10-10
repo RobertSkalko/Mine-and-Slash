@@ -84,7 +84,7 @@ public class StatModData implements ITooltipList {
     @Store
     private String baseModName;
 
-    public transient boolean useMinimum = true;
+    private transient boolean useMinimum = true;
 
     public StatModData noMin() {
         this.useMinimum = false;

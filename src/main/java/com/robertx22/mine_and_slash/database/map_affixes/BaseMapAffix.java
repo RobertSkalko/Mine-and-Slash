@@ -37,6 +37,10 @@ public abstract class BaseMapAffix implements IWeighted, IGUID, IRarity, ISlashR
         return Rarities.Items.get(getRarityRank());
     }
 
+    public float lootMulti() {
+        return 1;
+    }
+
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.MAP_AFFIX;

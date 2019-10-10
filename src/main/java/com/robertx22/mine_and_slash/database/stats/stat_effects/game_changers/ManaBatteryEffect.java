@@ -35,7 +35,9 @@ public class ManaBatteryEffect implements IStatEffect {
 
                 if (currentMana / Effect.targetData.getUnit().manaData().Value > 0.25F) {
 
-                    float dmgReduced = MathHelper.clamp(Effect.number, 0, currentMana);
+                    float maxMana = Effect.targetData.getUnit().manaData().Value;
+
+                    float dmgReduced = MathHelper.clamp(Effect.number / 2, 0, currentMana - (maxMana * 0.25F));
 
                     if (dmgReduced > 0) {
 

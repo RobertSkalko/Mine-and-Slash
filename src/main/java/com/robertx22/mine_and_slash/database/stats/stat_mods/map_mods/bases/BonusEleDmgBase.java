@@ -7,7 +7,7 @@ public abstract class BonusEleDmgBase extends StatMod {
 
     @Override
     public float Min() {
-        return 25;
+        return 0;
     }
 
     @Override

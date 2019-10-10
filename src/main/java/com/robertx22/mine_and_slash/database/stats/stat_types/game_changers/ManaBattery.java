@@ -14,7 +14,7 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "If mana is above 25%, absorbs dmg instead of health";
+        return "While mana is above 25% absorb half of damage by spending mana.";
     }
 
     @Override

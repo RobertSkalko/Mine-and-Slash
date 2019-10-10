@@ -19,4 +19,9 @@ public class LessEnergyRegenAffix extends DetrimentalMapAffix {
         return Arrays.asList(StatModData.Load(new LessEnergyRegenMap(), percent));
     }
 
+    @Override
+    public float lootMulti() {
+        return 2;
+    }
+
 }

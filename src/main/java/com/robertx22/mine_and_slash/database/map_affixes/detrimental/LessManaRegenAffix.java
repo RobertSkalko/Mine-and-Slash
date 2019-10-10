@@ -19,4 +19,8 @@ public class LessManaRegenAffix extends DetrimentalMapAffix {
         return Arrays.asList(StatModData.Load(new LessManaRegenMap(), percent));
     }
 
+    @Override
+    public float lootMulti() {
+        return 2;
+    }
 }
