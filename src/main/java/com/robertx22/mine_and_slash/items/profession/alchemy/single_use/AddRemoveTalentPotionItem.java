@@ -18,15 +18,15 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class ResetTalentsPotionItem extends BaseInstantPotion {
+public class AddRemoveTalentPotionItem extends BaseInstantPotion {
 
-    public ResetTalentsPotionItem() {
+    public AddRemoveTalentPotionItem() {
         super(Professions.Levels.ONE);
     }
 
     @Override
     public ITextComponent tooltip() {
-        ITextComponent comp = new StringTextComponent("Resets all your talent points");
+        ITextComponent comp = new StringTextComponent("Gives you 1 remove talent point. Use by right clicking on talent screen.");
         return comp;
 
     }
@@ -36,18 +36,18 @@ public class ResetTalentsPotionItem extends BaseInstantPotion {
                          EntityCap.UnitData unitdata) {
 
         if (player instanceof PlayerEntity) {
-            Load.talents((PlayerEntity) player).reset();
+            Load.talents((PlayerEntity) player).addResetPoints(1);
         }
     }
 
     @Override
     public String GUID() {
-        return "alchemy/instant/misc/reset_talents";
+        return "alchemy/instant/misc/remove_talent";
     }
 
     @Override
     public String locNameForLangFile() {
-        return level.color + level.name + " " + "Potion of Reset Talents";
+        return level.color + " " + "Potion of Single Talent Removal";
     }
 
     @Override
@@ -55,17 +55,16 @@ public class ResetTalentsPotionItem extends BaseInstantPotion {
 
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
                 .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(Items.DIAMOND, 3)
-                .addMaterial(Items.GOLDEN_APPLE, 1)
-                .addMaterial(ItemOre.ItemOres.get(IRarity.Common), 10);
+                .addMaterial(Items.COAL, 3)
+                .addMaterial(ItemOre.ItemOres.get(IRarity.Common), 3);
 
-        return mats.buildMaterials().setOutput(this).levelReq(10).expGained(20).build();
+        return mats.buildMaterials().setOutput(this).levelReq(1).expGained(5).build();
 
     }
 
     @Override
     public BasePotion newInstance(Professions.Levels lvl) {
-        return new ResetTalentsPotionItem();
+        return new AddRemoveTalentPotionItem();
     }
 
     @Override

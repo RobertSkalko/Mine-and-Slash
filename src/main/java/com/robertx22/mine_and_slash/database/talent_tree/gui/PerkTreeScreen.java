@@ -294,11 +294,16 @@ public class PerkTreeScreen extends Screen {
     protected void drawPointsLeftNumber() {
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
+        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2 + 10;
 
-        String str = "Points: " + this.talents.getFreePoints(data);
+        String str2 = "Reset Points (RMB): " + this.talents.getData().resetPoints;
 
-        mc.fontRenderer.drawStringWithShadow(str, offsetX + 10, offsetY + 10, TextFormatting.GREEN
+        mc.fontRenderer.drawStringWithShadow(str2, offsetX + 10, offsetY, TextFormatting.GREEN
+                .getColor());
+
+        String str = "Points (LMB): " + this.talents.getFreePoints(data);
+
+        mc.fontRenderer.drawStringWithShadow(str, offsetX + 10, offsetY + mc.fontRenderer.FONT_HEIGHT + 5, TextFormatting.GREEN
                 .getColor());
 
     }

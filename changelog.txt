@@ -1,6 +1,7 @@
 2.9.2
 updated chinese lang
 updated some textures from clinton!
+new item in alchemy station adds reset talent points. Right clicking a talent removes them if you have points
 
 2.9.1
 should fix talents crashing on servers

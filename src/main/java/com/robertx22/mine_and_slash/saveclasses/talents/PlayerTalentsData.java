@@ -13,6 +13,9 @@ import java.util.*;
 public class PlayerTalentsData implements IApplyableStats {
 
     @Store
+    public int resetPoints = 0;
+
+    @Store
     private HashMap<String, Boolean> map = new HashMap<>();
 
     public boolean isAllocated(String guid) {
@@ -50,6 +53,9 @@ public class PlayerTalentsData implements IApplyableStats {
 
     public boolean canRemove(Perk toRemove) {
         if (!isAllocated(toRemove)) {
+            return false;
+        }
+        if (resetPoints <= 0) {
             return false;
         }
 

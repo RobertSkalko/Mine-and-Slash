@@ -45,6 +45,9 @@ public class AlchemyItemRegister {
         r.register(new ResetTalentsPotionItem().setRegistryName(new ResetTalentsPotionItem()
                 .GUID()));
 
+        r.register(new AddRemoveTalentPotionItem().setRegistryName(new AddRemoveTalentPotionItem()
+                .GUID()));
+
     }
 
 }

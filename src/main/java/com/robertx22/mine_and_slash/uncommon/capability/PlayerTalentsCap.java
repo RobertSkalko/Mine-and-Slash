@@ -54,6 +54,8 @@ public class PlayerTalentsCap {
 
         void applyStats(EntityCap.UnitData data, PlayerEntity player);
 
+        void addResetPoints(int amount);
+
         PlayerTalentsData getData();
     }
 
@@ -173,6 +175,7 @@ public class PlayerTalentsCap {
         public boolean tryRemovePoint(Perk talent) {
             if (getData().canRemove(talent)) {
                 this.getData().remove(talent.GUID());
+                this.getData().resetPoints--;
                 return true;
             }
             return false;
@@ -206,6 +209,11 @@ public class PlayerTalentsCap {
         @Override
         public void applyStats(EntityCap.UnitData data, PlayerEntity player) {
             this.data.applyStats(data);
+        }
+
+        @Override
+        public void addResetPoints(int amount) {
+            this.getData().resetPoints += amount;
         }
 
         @Override
