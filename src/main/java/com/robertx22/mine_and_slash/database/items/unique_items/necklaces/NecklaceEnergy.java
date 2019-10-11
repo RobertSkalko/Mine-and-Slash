@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.conversions.ManaToEnergyConvFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.conversions.ManaToEnergyConvFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 

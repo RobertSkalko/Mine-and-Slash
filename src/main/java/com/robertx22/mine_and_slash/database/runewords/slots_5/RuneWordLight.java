@@ -4,11 +4,11 @@ import com.robertx22.mine_and_slash.database.items.runes.*;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.LightTrait;
+import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.LightTrait;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

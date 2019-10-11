@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.items.runes.unique_runes;
 
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalFocusFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalFocusFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 

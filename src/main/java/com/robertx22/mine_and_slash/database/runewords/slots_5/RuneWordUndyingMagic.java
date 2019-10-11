@@ -8,8 +8,8 @@ import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.QARItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.MagicShieldPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
 
 import java.util.Arrays;
 import java.util.List;

@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.MajorArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;

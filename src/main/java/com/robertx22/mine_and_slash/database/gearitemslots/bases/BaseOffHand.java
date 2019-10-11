@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.BlockStrengthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.BlockStrengthFlat;
 
 import java.util.Arrays;
 import java.util.List;

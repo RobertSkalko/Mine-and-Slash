@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalBonusDmgOnBasic;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalBonusDmgOnBasic;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.IStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;

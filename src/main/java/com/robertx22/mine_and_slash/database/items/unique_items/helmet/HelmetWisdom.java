@@ -5,10 +5,10 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.WisdomFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 

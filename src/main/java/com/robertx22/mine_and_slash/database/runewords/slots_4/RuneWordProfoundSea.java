@@ -2,10 +2,10 @@ package com.robertx22.mine_and_slash.database.runewords.slots_4;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.BuffManaRegenTrait;
+import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.BuffManaRegenTrait;
 import com.robertx22.mine_and_slash.database.items.runes.AnoItem;
 import com.robertx22.mine_and_slash.database.items.runes.CenItem;
 import com.robertx22.mine_and_slash.database.items.runes.DosItem;

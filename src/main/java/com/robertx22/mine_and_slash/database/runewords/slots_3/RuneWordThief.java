@@ -6,8 +6,8 @@ import com.robertx22.mine_and_slash.database.items.runes.RahItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeRatingFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 
 import java.util.Arrays;
 import java.util.List;

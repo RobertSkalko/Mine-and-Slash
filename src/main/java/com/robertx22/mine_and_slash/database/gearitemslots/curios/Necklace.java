@@ -2,10 +2,10 @@ package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.misc.BonusExpFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.HealthRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.MagicShieldRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res;
 
 import com.robertx22.mine_and_slash.database.map_affixes.bases.BaseBeneficialEleAffix;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.map_mods.bonus.ele_res.BonusFireResistMap;
+import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_res.BonusFireResistMap;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 
 import java.util.Arrays;

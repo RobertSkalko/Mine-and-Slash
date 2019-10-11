@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.misc.BonusExpFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.LootTypeBonusFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.LootTypeBonusFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 
 import java.util.HashMap;

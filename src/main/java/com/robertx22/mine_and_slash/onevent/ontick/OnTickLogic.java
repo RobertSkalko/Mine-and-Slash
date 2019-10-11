@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.onevent.ontick;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.EnergyRegen;
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.HealthRegen;
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.MagicShieldRegen;
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.ManaRegen;
+import com.robertx22.mine_and_slash.database.stats.types.resources.EnergyRegen;
+import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
+import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
+import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;

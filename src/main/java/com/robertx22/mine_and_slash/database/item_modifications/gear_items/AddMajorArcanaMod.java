@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.item_modifications.gear_items;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseGearMod;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.ItemModType;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_types.traits.major_arcana.BaseMajorArcana;
+import com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana.BaseMajorArcana;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.ChaosStatsData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;

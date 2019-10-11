@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.currency.infusions;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeRatingFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.MajorArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.MajorArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ListUtils;

@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.SpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.MajorCriticalDamagePercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.MajorCriticalHitPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.SpellDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.MajorCriticalDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.MajorCriticalHitPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 

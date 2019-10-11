@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.affixes.prefixes.misc;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifestealFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;

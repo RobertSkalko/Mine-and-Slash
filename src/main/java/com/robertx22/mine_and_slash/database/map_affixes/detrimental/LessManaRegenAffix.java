@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.map_affixes.detrimental;
 
 import com.robertx22.mine_and_slash.database.map_affixes.DetrimentalMapAffix;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.map_mods.minus.LessManaRegenMap;
+import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.LessManaRegenMap;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 
 import java.util.Arrays;

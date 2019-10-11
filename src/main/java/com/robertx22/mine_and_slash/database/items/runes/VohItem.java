@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.items.runes;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import net.minecraft.item.Item;
 

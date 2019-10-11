@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs;
 
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.LootTypeBonusFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.LootTypeBonusFlat;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseBuffPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BasePotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantEnergyPotionItem;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.talent_tree.data;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHit;
+import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;

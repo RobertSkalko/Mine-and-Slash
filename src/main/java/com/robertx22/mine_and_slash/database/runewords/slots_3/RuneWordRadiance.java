@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.database.runewords.slots_3;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ManaRegenPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.ManaRegenPercent;
 import com.robertx22.mine_and_slash.database.items.runes.ItaItem;
 import com.robertx22.mine_and_slash.database.items.runes.MosItem;
 import com.robertx22.mine_and_slash.database.items.runes.RahItem;

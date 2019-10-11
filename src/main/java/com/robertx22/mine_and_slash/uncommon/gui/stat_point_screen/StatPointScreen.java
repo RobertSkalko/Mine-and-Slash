@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.BaseCoreStat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.BaseCoreStat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;

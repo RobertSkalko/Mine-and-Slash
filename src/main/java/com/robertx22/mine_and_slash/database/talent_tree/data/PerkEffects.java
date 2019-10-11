@@ -1,15 +1,15 @@
 package com.robertx22.mine_and_slash.database.talent_tree.data;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
-import com.robertx22.mine_and_slash.database.stats.stat_types.defense.Armor;
-import com.robertx22.mine_and_slash.database.stats.stat_types.defense.BlockStrength;
-import com.robertx22.mine_and_slash.database.stats.stat_types.defense.DodgeRating;
-import com.robertx22.mine_and_slash.database.stats.stat_types.generated.*;
-import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalDamage;
-import com.robertx22.mine_and_slash.database.stats.stat_types.offense.CriticalHit;
-import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.database.stats.stat_types.offense.SpellDamage;
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.*;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
+import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
+import com.robertx22.mine_and_slash.database.stats.types.defense.BlockStrength;
+import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
+import com.robertx22.mine_and_slash.database.stats.types.generated.*;
+import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
+import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
+import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffectBuilder;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffectsWrapper;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.bases;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;

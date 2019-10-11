@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.items.currency.infusions;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.*;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ObjectHolder;

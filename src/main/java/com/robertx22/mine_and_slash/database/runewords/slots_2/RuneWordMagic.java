@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.items.runes.MosItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.MagicShieldPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
 
 import java.util.Arrays;
 import java.util.List;

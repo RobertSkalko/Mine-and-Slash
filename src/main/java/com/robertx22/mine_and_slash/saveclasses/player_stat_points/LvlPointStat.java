@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.player_stat_points;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
 import net.minecraft.util.text.TextFormatting;
 
 public enum LvlPointStat {

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.status_effects;
 
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import net.minecraft.item.Items;

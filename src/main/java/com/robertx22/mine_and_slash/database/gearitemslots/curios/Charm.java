@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.generated.ElementalPeneFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.*;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;

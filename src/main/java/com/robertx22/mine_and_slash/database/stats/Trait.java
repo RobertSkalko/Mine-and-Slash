@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.BaseTrait;
+import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;

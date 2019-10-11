@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.self;
 import com.robertx22.mine_and_slash.database.items.spell_items.self.ItemSelfRegen;
 import com.robertx22.mine_and_slash.database.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.database.spells.bases.SpellBuffCheck;
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.HealthRegen;
+import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.potion_effects.all.HealthRegenPotion;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;

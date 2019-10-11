@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
 import com.robertx22.mine_and_slash.database.stats.Trait;
-import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.ICoreStat;
-import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.IPreCoreStat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.ICoreStat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.IPreCoreStat;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.potion_effects.IStatGivingPotion;
 import com.robertx22.mine_and_slash.potion_effects.IStatPotion;

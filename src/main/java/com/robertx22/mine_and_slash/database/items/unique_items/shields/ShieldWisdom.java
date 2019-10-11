@@ -4,9 +4,9 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.BlockStrengthFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.WisdomFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.MagicShieldPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.BlockStrengthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.WisdomFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.util.text.TextFormatting;
 

@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.PhysicalDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifeOnHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 

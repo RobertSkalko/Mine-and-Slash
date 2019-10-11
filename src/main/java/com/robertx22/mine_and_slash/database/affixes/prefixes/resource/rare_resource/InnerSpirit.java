@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.EnergyRegenPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.EnergyRegenPercent;
 
 import java.util.Arrays;
 import java.util.List;

@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.EnergyRegenPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.EnergyRegenPercent;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import net.minecraft.item.Item;

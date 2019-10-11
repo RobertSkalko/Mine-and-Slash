@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Energy;
-import com.robertx22.mine_and_slash.database.stats.stat_types.resources.Mana;
+import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;

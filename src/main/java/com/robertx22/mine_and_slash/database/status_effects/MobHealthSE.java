@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.status_effects;
 
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import net.minecraft.item.Items;

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.map_affixes.detrimental;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.DetrimentalMapAffix;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.map_mods.bases.LessWeaponDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bases.LessWeaponDamageFlat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.talent_tree.data;
 
-import com.robertx22.mine_and_slash.database.stats.stat_types.game_changers.*;
+import com.robertx22.mine_and_slash.database.stats.types.game_changers.*;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffectBuilder;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkType;

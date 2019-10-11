@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.PhysicalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.PhysicalDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifeOnHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 
 import java.util.Arrays;

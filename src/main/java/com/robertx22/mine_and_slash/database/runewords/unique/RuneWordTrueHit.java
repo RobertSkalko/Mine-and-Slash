@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.offense.CriticalHitPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;

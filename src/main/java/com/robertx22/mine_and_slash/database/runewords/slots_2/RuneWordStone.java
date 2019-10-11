@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.runewords.slots_2;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.ArmorPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.ArmorPercent;
 import com.robertx22.mine_and_slash.database.items.runes.AnoItem;
 import com.robertx22.mine_and_slash.database.items.runes.ItaItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;

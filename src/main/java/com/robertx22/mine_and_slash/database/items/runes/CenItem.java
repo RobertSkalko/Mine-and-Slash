@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.items.runes;
 
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.offense.CriticalHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.HealthPercent;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.MagicShieldPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;

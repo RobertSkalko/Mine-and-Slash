@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.map_affixes.beneficial;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BeneficialMapAffix;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.map_mods.bonus.BonusHealthMap;
+import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusHealthMap;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 
 import java.util.Arrays;

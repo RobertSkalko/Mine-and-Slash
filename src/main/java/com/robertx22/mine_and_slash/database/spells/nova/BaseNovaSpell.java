@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.bases.DamageData;
 import com.robertx22.mine_and_slash.database.spells.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.database.spells.bases.SpellEffectDamage;
-import com.robertx22.mine_and_slash.database.stats.stat_types.generated.ElementalResist;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;

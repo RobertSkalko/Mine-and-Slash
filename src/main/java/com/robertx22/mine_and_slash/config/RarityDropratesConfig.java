@@ -30,7 +30,7 @@ public class RarityDropratesConfig {
                 .getLeft();
 
         MAPS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MAPS", builder, new RarityWeight.DefaultConfig()
-                .higherChanceByMulti(1.3F))).getLeft();
+                .higherChanceByMulti(1.5F))).getLeft();
 
         CURRENCY = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("CURRENCY", builder, new RarityWeight.DefaultConfig()))
                 .getLeft();

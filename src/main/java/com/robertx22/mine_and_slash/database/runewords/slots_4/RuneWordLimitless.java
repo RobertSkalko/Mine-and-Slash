@@ -2,10 +2,10 @@ package com.robertx22.mine_and_slash.database.runewords.slots_4;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.percent.DodgePercent;
-import com.robertx22.mine_and_slash.database.stats.stat_types.spell_buff_traits.BuffEnergyRegenTrait;
+import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.DodgePercent;
+import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.BuffEnergyRegenTrait;
 import com.robertx22.mine_and_slash.database.items.runes.BerItem;
 import com.robertx22.mine_and_slash.database.items.runes.ItaItem;
 import com.robertx22.mine_and_slash.database.items.runes.VohItem;

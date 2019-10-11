@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.items.runes;
 
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.LifeOnHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaOnHitFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifeOnHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;

@@ -2,12 +2,12 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.AllTraitMods;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.DodgeRatingFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.corestats.*;
-import com.robertx22.mine_and_slash.database.stats.stat_mods.flat.resources.ManaFlat;
-import com.robertx22.mine_and_slash.database.stats.stat_types.core_stats.*;
+import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.*;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
