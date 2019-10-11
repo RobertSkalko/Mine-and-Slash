@@ -7,25 +7,25 @@ import net.minecraft.world.biome.BiomeProvider;
 
 public class CliffWP extends BaseWorldProvider {
 
-	private BiomeProvider biomeP = new BPCliffs(world);
+    private BiomeProvider biomeP = new BPCliffs(world);
 
-	public CliffWP() {
-		super(true);
-	}
+    public CliffWP() {
+	super(true);
+    }
 
-	@Override
-	public BiomeProvider getBiomeProvider() {
-		return biomeP;
-	}
+    @Override
+    public BiomeProvider getBiomeProvider() {
+	return biomeP;
+    }
 
-	@Override
-	public String GUID() {
-		return "CliffWP0";
-	}
+    @Override
+    public String GUID() {
+	return "CliffWP0";
+    }
 
-	@Override
-	public String unlocString() {
-		return "cliffs";
-	}
+    @Override
+    public String unlocString() {
+	return "cliffs";
+    }
 
 }

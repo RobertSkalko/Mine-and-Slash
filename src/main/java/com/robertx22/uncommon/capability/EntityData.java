@@ -1,6 +1,5 @@
 package com.robertx22.uncommon.capability;
 
-import java.util.Random;
 import java.util.UUID;
 import com.robertx22.api.MineAndSlashEvents;
 import com.robertx22.config.DimensionConfigs;
@@ -26,14 +25,11 @@ import com.robertx22.uncommon.capability.bases.ICommonCapability;
 import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.datasaving.Load;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
-import com.robertx22.uncommon.effectdatas.EffectData;
-import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.EntitySystemChoice;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 import info.loenwind.autosave.Reader;
 import info.loenwind.autosave.Writer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,7 +47,6 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -68,7 +63,6 @@ public class EntityData {
 	private static final String UUID = "uuid";
 	private static final String NAME = "name";
 	private static final String MOB_SAVED_ONCE = "mob_saved_once";
-	private static final String TIER = "TIER";
 	private static final String UNIT_OBJECT = "unit_object";
 	private static final String KILLS_OBJECT = "kils_object";
 	private static final String MANA = "current_mana";
@@ -127,10 +121,10 @@ public class EntityData {
 		void recalculateStats(EntityLivingBase entity, IWorldData world);
 
 		void forceSetUnit(Unit unit);
-		
-		boolean tryUseWeapon(GearItemData gear, EntityLivingBase entity);
 
-        boolean tryUseWeapon(GearItemData gear, EntityLivingBase entity, float multi);
+		boolean tryUseWeapon(EntityLivingBase entity, ItemStack weapon);
+
+		void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon);
 
 		void onMobKill(IWorldData world);
 
@@ -167,27 +161,12 @@ public class EntityData {
 		boolean hasCurrentMapId();
 
 		void clearCurrentMapId();
-		
-		void unarmedAttack(LivingHurtEvent event, EntityLivingBase source,
-				EntityLivingBase target, UnitData targetdata);
-		
-		void setTier(int tier);
+
+		void unarmedAttack(EntityLivingBase source, EntityLivingBase target);
 
 		boolean decreaseRarity(EntityLivingBase entity);
 
-		boolean isWeapon(GearItemData gear);
-
-		void onAttackEntity(EntityLivingBase attacker, EntityLivingBase victim);
-
-		float getDMGMultiplierIncreaseByTier();
-
-		GearItemData getWeaponData(EntityLivingBase entity);
-
-		void attackWithWeapon(LivingHurtEvent event, ItemStack heldItemMainhand, GearItemData weapondata,
-				EntityLivingBase source, EntityLivingBase target, UnitData targetData);
-
-		void mobBasicAttack(LivingHurtEvent event, EntityLivingBase source, EntityLivingBase target, UnitData sourceData,
-				UnitData targetData, float amount);
+		boolean isWeapon(ItemStack stack);
 	}
 
 	@Mod.EventBusSubscriber
@@ -273,8 +252,6 @@ public class EntityData {
 
 		float energy;
 		float mana;
-
-		int tier = 0;
 
 		@Override
 		public NBTTagCompound getNBT() {
@@ -551,11 +528,6 @@ public class EntityData {
 		public String getUUID() {
 			return uuid;
 		}
-		
-		@Override
-        public float getDMGMultiplierIncreaseByTier() {
-            return 1 + tier * 0.2F;
-        }
 
 		@Override
 		public void setUUID(UUID id) {
@@ -602,66 +574,51 @@ public class EntityData {
 		}
 
 		@Override
-        public boolean tryUseWeapon(GearItemData weaponData, EntityLivingBase source) {
-            return tryUseWeapon(weaponData, source, 1);
-        }
+		public boolean tryUseWeapon(EntityLivingBase source, ItemStack weapon) {
 
-        @Override
-        public boolean tryUseWeapon(GearItemData weaponData, EntityLivingBase source,
-                                    float multi) {
+			try {
+				GearItemData weaponData = Gear.Load(weapon);
 
-            try {
+				if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
 
-                if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
+					IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
-                    IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
+					float energyCost = iwep.mechanic().GetEnergyCost();
 
-                    float energyCost = iwep.mechanic().GetEnergyCost() * multi;
-                    float manaCost = iwep.mechanic().GetManaCost() * multi;
+					if (hasEnoughEnergy(energyCost) == false) {
+						AttackUtils.NoEnergyMessage(source);
+						return false;
 
-                    if (hasEnoughEnergy(energyCost) == false) {
-                        AttackUtils.NoEnergyMessage(source);
-                        return false;
+					} else {
+						consumeEnergy(energyCost);
+						weapon.damageItem(1, source);
 
-                    } else {
+						return true;
 
-                        if (hasEnoughMana(manaCost) == false) {
-                            AttackUtils.NoEnergyMessage(source);
-                            return false;
-                        }
+					}
 
-                        consumeEnergy(energyCost);
-                        consumeMana(manaCost);
+				}
+			} catch (Exception e) {
 
-                        return true;
+				e.printStackTrace();
+			}
+			return false;
+		}
 
-                    }
+		public void attackWithWeapon(EntityLivingBase source, EntityLivingBase target, ItemStack weapon) {
 
-                }
-            } catch (Exception e) {
+			UnitData targetData = Load.Unit(target);
 
-                e.printStackTrace();
-            }
-            return false;
-        }
+			GearItemData weaponData = Gear.Load(weapon);
 
-		@Override
-        public void attackWithWeapon(LivingHurtEvent event, ItemStack weapon,
-                                     GearItemData weaponData, EntityLivingBase source,
-                                     EntityLivingBase target, UnitData targetdata) {
+			if (weapon != null && !weapon.isEmpty() && weaponData.GetBaseGearType() instanceof IWeapon) {
 
-            if (weaponData.GetBaseGearType() instanceof IWeapon) {
+				IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
+				WeaponMechanic iWep = iwep.mechanic();
+				iWep.Attack(source, target, this, targetData);
 
-                if (weapon != null) {
-                    weapon.attemptDamageItem(1, new Random(), null);
-                }
-
-                IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
-                WeaponMechanic iWep = iwep.mechanic();
-                iWep.Attack(event, source, target, this, targetdata);
-
-            }
-        }
+			}
+		}
 
 		@Override
 		public void onMobKill(IWorldData world) {
@@ -801,7 +758,7 @@ public class EntityData {
 		@Override
 		public void heal(EntityLivingBase entity, int healthrestored) {
 			entity.heal(
-					HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.Server.NON_MOD_HEAL_MULTI, entity, null));
+					HealthUtils.DamageToMinecraftHealth(healthrestored / ModConfig.Server.NON_MOD_HEAL_MULTI, entity));
 		}
 
 		@Override
@@ -851,7 +808,7 @@ public class EntityData {
 		}
 
 		@Override
-		public void unarmedAttack(LivingHurtEvent event, EntityLivingBase source, EntityLivingBase target, UnitData targetdata) {
+		public void unarmedAttack(EntityLivingBase source, EntityLivingBase target) {
 
 			float cost = ModConfig.Server.UNARMED_ENERGY_COST;
 
@@ -859,26 +816,31 @@ public class EntityData {
 
 				this.consumeEnergy(cost);
 				int num = (int) unit.MyStats.get(PhysicalDamage.GUID).Value;
-				DamageEffect dmg = new DamageEffect(event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
+				DamageEffect dmg = new DamageEffect(source, target, num);
 
-                dmg.Activate();
+				dmg.Activate();
 			}
 		}
 
 		@Override
-		public boolean isWeapon(GearItemData gear) {
+		public boolean isWeapon(ItemStack stack) {
 			try {
 
-                if (gear == null) {
-                    return false;
-                }
-                if (gear.GetBaseGearType() instanceof IWeapon) {
-                    return true;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return false;
+				if (stack == null || stack.isEmpty()) {
+					return false;
+				}
+
+				GearItemData weaponData = Gear.Load(stack);
+
+				if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
+
+					return true;
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
 		}
 
 		@Override
@@ -903,38 +865,6 @@ public class EntityData {
 
 			return false;
 		}
-
-		@Override
-        public void onAttackEntity(EntityLivingBase attacker, EntityLivingBase victim) {
-
-        }
-		
-		@Override
-        public void setTier(int tier) {
-            this.tier = tier;
-        }
-
-		@Override
-		public GearItemData getWeaponData(EntityLivingBase entity) {
-			return Gear.Load(entity.getHeldItemMainhand());
-		}
-
-		@Override
-        public void mobBasicAttack(LivingHurtEvent event, EntityLivingBase source,
-        		EntityLivingBase target, UnitData sourcedata,
-                                   UnitData targetdata, float event_damage) {
-
-            MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
-
-            float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getDMGMultiplierIncreaseByTier();
-
-            float num = 1.1F * vanilla * rar.DamageMultiplier();
-
-            DamageEffect dmg = new DamageEffect(event, source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
-
-            dmg.Activate();
-
-        }
 	}
 
 }

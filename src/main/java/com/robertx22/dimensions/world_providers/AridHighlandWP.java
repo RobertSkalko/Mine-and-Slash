@@ -7,25 +7,25 @@ import net.minecraft.world.biome.BiomeProvider;
 
 public class AridHighlandWP extends BaseWorldProvider {
 
-	public AridHighlandWP() {
-		super(true);
-	}
+    public AridHighlandWP() {
+	super(true);
+    }
 
-	private BiomeProvider biomeP = new BPAridHighland(world);
+    private BiomeProvider biomeP = new BPAridHighland(world);
 
-	@Override
-	public BiomeProvider getBiomeProvider() {
-		return biomeP;
-	}
+    @Override
+    public BiomeProvider getBiomeProvider() {
+	return biomeP;
+    }
 
-	@Override
-	public String GUID() {
-		return "AridHighlandWP0";
-	}
+    @Override
+    public String GUID() {
+	return "AridHighlandWP0";
+    }
 
-	@Override
-	public String unlocString() {
-		return "arid_highland";
-	}
+    @Override
+    public String unlocString() {
+	return "arid_highland";
+    }
 
 }

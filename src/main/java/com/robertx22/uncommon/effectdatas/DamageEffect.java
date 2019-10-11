@@ -8,7 +8,6 @@ import com.robertx22.database.stat_types.defense.BlockStrength;
 import com.robertx22.mmorpg.Main;
 import com.robertx22.mmorpg.Ref;
 import com.robertx22.network.DamageNumberPackage;
-import com.robertx22.onevent.combat.damage.DmgSourceUtils;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.spells.bases.MyDamageSource;
 import com.robertx22.uncommon.CLOC;
@@ -23,7 +22,6 @@ import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.uncommon.enumclasses.Elements;
 import com.robertx22.uncommon.utilityclasses.HealthUtils;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -31,21 +29,24 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class DamageEffect extends EffectData
 		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
 
-	public DamageEffect(LivingHurtEvent event, EntityLivingBase source, EntityLivingBase target, int dmg, UnitData sourceData, UnitData targetData,
-            EffectTypes effectType, WeaponTypes weptype) {
-		super(source, target, sourceData, targetData);
+	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
+		super(source, target);
 
-		this.setEffectType(effectType, weaponType);
 		this.Number = dmg;
-		this.event = event;
+
 	}
 
-	LivingHurtEvent event;
+	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, UnitData sourceData,
+			UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
+		super(source, target, sourceData, targetData);
+
+		this.setEffectType(effectType, weptype);
+		this.Number = dmg;
+	}
 
 	public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
 
@@ -53,14 +54,9 @@ public class DamageEffect extends EffectData
 	public Elements Element = Elements.None;
 	public int ArmorPene;
 	public int ElementalPene;
-	
-	public float damageMultiplier = 1;
 
 	public float healthHealed;
 	public float manaRestored;
-	public boolean isFullyBlocked = false;
-	public boolean isPartiallyBlocked = false;
-	public boolean isDodged = false;
 
 	private boolean canBlockDamageSource(EntityLivingBase target, DamageSource damageSourceIn) {
 		if (!damageSourceIn.isUnblockable() && target.isActiveItemStackBlocking()) {
@@ -80,68 +76,48 @@ public class DamageEffect extends EffectData
 		return false;
 	}
 
-	public float getActualDamage() {
-		float dmg = this.Number * damageMultiplier; // this way axes can do double damage instead of doing double
-													// attacks
-		dmg = HealthUtils.DamageToMinecraftHealth(dmg + 1, Target, targetData);
-		return dmg;
-	}
-
-	public float getVisibleDamage() {
-		float dmg = this.Number * damageMultiplier; // this way axes can do double damage instead of doing double
-													// attacks
-		return dmg;
-	}
-
-	public float getEventDmg() {
-		if (event != null) {
-			return event.getAmount();
-		} else {
-			return 0;
-		}
-
-	}
-
 	@Override
 	protected void activate() {
 
-		 if (Target.getHealth() <= 0F || !Target.isEntityAlive()) {
-	            return;
-	        }
+		boolean fullyblocked = false;
 
-	        if (this.canceled) {
-	            return;
-	        }
+		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
+		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 
-	        MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
+		if (canBlockDamageSource(Target, dmgsource)) {
 
-	        if (this.isPartiallyBlocked) {
-	            dmgsource.setDamageBypassesArmor();
-	        }
+			float blockval = targetUnit.MyStats.get(BlockStrength.GUID).Value;
 
+			float afterblock = Number - blockval;
 
-		if (this.isFullyBlocked == false) {
-			
-			this.sourceData.onAttackEntity(Source, Target);
-
-			DmgByElement info = getDmgByElement();
-
-			float dmg1 = info.totalDmg;
-			dmg1 += getEventDmg() * ModConfig.Server.NON_MOD_DAMAGE_MULTI;
-
-			if (event != null) {
-				event.setAmount(dmg1);
-				event.getSource().setDamageBypassesArmor(); // this also sets it as unblockable.. AND STOPS ARMOR FROM
-															// BEING DAMAGED
-				event.getSource().setDamageIsAbsolute();
-				DmgSourceUtils.markSourceAsMine(event.getSource());
-
+			if (afterblock < 0) {
+				fullyblocked = true;
 			} else {
-				int hurtResistantTime = Target.hurtResistantTime;
-				Target.hurtResistantTime = 0;
-				Target.attackEntityFrom(dmgsource, dmg1);
-				Target.hurtResistantTime = hurtResistantTime;
+				dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) afterblock);
+			}
 
+			dmgsource.setDamageBypassesArmor();
+
+		} else {
+
+		}
+
+		if (fullyblocked == false) {
+			Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
+			Target.attackEntityFrom(dmgsource, dmg);
+
+			addBonusElementDamage();
+			Heal();
+			RestoreMana();
+
+			if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
+				LogCombat();
+			}
+
+			if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
+
+				Main.Network.sendTo(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
+						(EntityPlayerMP) Source);
 			}
 		}
 
@@ -160,46 +136,11 @@ public class DamageEffect extends EffectData
 			sourceData.heal(Source, healed);
 		}
 	}
-	
-	public DamageEffect setMultiplier(float multi) {
-        this.damageMultiplier = multi;
-        return this;
-    }
-	
-	static class DmgByElement {
-
-        public HashMap<Elements, Float> dmgmap = new HashMap<>();
-        public Elements highestDmgElement;
-        public float highestDmgValue;
-        public float totalDmg = 0;
-
-        public void addDmg(float dmg, Elements element) {
-
-            Elements ele = element;
-
-            if (ele == null) {
-                ele = Elements.Physical;
-            }
-
-            float total = (dmgmap.getOrDefault(element, 0F) + dmg);
-
-            dmgmap.put(ele, total);
-
-            totalDmg += dmg;
-
-            if (total > highestDmgValue) {
-                highestDmgElement = ele;
-                highestDmgValue = total;
-            }
-
-        }
-
-    }
 
 	private void addBonusElementDamage() {
 		for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
 			if (entry.getValue() > 0) {
-				DamageEffect bonus = new DamageEffect(null, Source, Target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
+				DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue());
 				bonus.setEffectType(EffectTypes.BONUS_ATTACK, this.weaponType);
 				bonus.Element = entry.getKey();
 				bonus.Activate();
@@ -293,25 +234,6 @@ public class DamageEffect extends EffectData
 		return str;
 
 	}
-	
-	private DmgByElement getDmgByElement() {
-        DmgByElement info = new DmgByElement();
-
-        for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
-            if (entry.getValue() > 0) {
-            	DamageEffect bonus = new DamageEffect(null, Source, Target, entry.getValue(), this.sourceData, this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType);
-                bonus.Element = entry.getKey();
-                bonus.damageMultiplier = this.damageMultiplier;
-
-                info.addDmg(bonus.getActualDamage(), bonus.Element);
-
-            }
-        }
-        info.addDmg(this.getActualDamage(), this.Element);
-
-        return info;
-
-    }
 
 	@Override
 	public EntityLivingBase Source() {
@@ -366,13 +288,5 @@ public class DamageEffect extends EffectData
 	public int GetElementalPenetration() {
 		return this.ElementalPene;
 	}
-
-	public boolean isBlocked() {
-
-        if (isFullyBlocked || isPartiallyBlocked) {
-            return true;
-        }
-        return false;
-    }
 
 }

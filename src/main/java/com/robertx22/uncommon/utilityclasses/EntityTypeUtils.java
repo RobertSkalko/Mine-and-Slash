@@ -6,29 +6,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.INpc;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.IAnimals;
-import net.minecraft.item.Item;
-import net.minecraft.init.Items;
 
 public class EntityTypeUtils {
 
-	public enum EntityType {
-        MOB(Items.SPAWN_EGG),
-        PLAYER(null),
-        ANIMAL(Items.WHEAT),
-        NPC(Items.EMERALD),
-        OTHER(null);
-
-        EntityType(Item item) {
-            this.itemDenotingType = item;
-        }
-        
-        public Item itemDenotingType;
-        
-        public boolean showsItem() {
-            return itemDenotingType != null;
-        }
-	}
-	
 	public static float getLootMulti(Entity en) {
 
 		if (isMob(en)) {

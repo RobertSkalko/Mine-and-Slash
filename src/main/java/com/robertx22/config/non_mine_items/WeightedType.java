@@ -5,18 +5,18 @@ import com.robertx22.uncommon.utilityclasses.IWeighted;
 
 public class WeightedType implements IWeighted {
 
-	public WeightedType(int weight, creationTypes type) {
-		this.weight = weight;
-		this.type = type;
-	}
+    public WeightedType(int weight, creationTypes type) {
+	this.weight = weight;
+	this.type = type;
+    }
 
-	public int weight;
+    public int weight;
 
-	public creationTypes type;
+    public creationTypes type;
 
-	@Override
-	public int Weight() {
-		return weight;
-	}
+    @Override
+    public int Weight() {
+	return weight;
+    }
 
 }

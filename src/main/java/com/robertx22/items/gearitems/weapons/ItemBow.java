@@ -2,6 +2,7 @@ package com.robertx22.items.gearitems.weapons;
 
 import java.util.HashMap;
 
+import com.robertx22.items.gearitems.MyEntityArrow;
 import com.robertx22.items.gearitems.bases.BaseWeaponItem;
 import com.robertx22.items.gearitems.bases.IWeapon;
 import com.robertx22.items.gearitems.bases.WeaponMechanic;

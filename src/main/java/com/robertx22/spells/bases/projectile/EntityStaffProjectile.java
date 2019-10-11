@@ -44,7 +44,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 		    UnitData sourcedata = Load.Unit(this.thrower);
 		    UnitData targetdata = Load.Unit(target);
 
-		    staffclass.mechanic().Attack(null, this.getThrower(), target, sourcedata, targetdata);
+		    staffclass.mechanic().Attack(this.getThrower(), target, sourcedata, targetdata);
 		} catch (Exception e) {
 		    e.printStackTrace();
 
