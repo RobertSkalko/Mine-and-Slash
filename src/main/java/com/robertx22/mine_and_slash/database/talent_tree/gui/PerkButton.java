@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.AllocateTalentPacket;
+import com.robertx22.mine_and_slash.network.TryRemoveTalentPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
@@ -107,9 +108,14 @@ public class PerkButton extends ImageButton {
         return pos;
     }
 
-    public void onClick(ScreenContext ctx, int mouseX, int mouseY) {
+    public void onClick(ScreenContext ctx, int mouseX, int mouseY, int click) {
         if (isInsideSlot(ctx, mouseX, mouseY)) {
-            MMORPG.sendToServer(new AllocateTalentPacket(this.perk));
+            if (click == 1) { // if right click
+                MMORPG.sendToServer(new TryRemoveTalentPacket(this.perk));
+            } else {
+
+                MMORPG.sendToServer(new AllocateTalentPacket(this.perk));
+            }
         }
     }
 

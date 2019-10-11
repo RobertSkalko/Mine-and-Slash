@@ -1,6 +1,13 @@
+2.9.2
+updated chinese lang
+updated some textures from clinton!
+
+2.9.1
+should fix talents crashing on servers
+
 2.9.0
 
-WARNING: Please delete mmorpg-common config or just delete the base stats part, otherwise you'll have troubles playing
+WARNING: Please delete mmorpg-common config or just delete the base stats and rarity droprates parts, otherwise you'll have troubles playing!
 
 Added TALENTS!
 

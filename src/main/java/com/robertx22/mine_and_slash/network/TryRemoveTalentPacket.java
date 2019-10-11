@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -14,32 +13,32 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class AllocateTalentPacket {
+public class TryRemoveTalentPacket {
 
     public String guid;
 
-    public AllocateTalentPacket() {
+    public TryRemoveTalentPacket() {
 
     }
 
-    public AllocateTalentPacket(Perk talent) {
+    public TryRemoveTalentPacket(Perk talent) {
         this.guid = talent.GUID();
     }
 
-    public static AllocateTalentPacket decode(PacketBuffer buf) {
+    public static TryRemoveTalentPacket decode(PacketBuffer buf) {
 
-        AllocateTalentPacket newpkt = new AllocateTalentPacket();
+        TryRemoveTalentPacket newpkt = new TryRemoveTalentPacket();
 
         newpkt.guid = buf.readString(50);
 
         return newpkt;
     }
-    
-    public static void encode(AllocateTalentPacket packet, PacketBuffer tag) {
+
+    public static void encode(TryRemoveTalentPacket packet, PacketBuffer tag) {
         tag.writeString(packet.guid, 50);
     }
 
-    public static void handle(final AllocateTalentPacket pkt,
+    public static void handle(final TryRemoveTalentPacket pkt,
                               Supplier<NetworkEvent.Context> ctx) {
 
         ctx.get().enqueueWork(() -> {
@@ -53,11 +52,7 @@ public class AllocateTalentPacket {
 
                 if (talent != null) {
 
-                    EntityCap.UnitData data = Load.Unit(player);
-
-                    if (talents.canAllocatePoint(talent, data)) {
-                        talents.allocate(talent);
-                    }
+                    talents.tryRemovePoint(talent);
 
                     MMORPG.sendToClient(new SyncCapabilityToClient(player, CapTypes.TALENTS), player);
                 }

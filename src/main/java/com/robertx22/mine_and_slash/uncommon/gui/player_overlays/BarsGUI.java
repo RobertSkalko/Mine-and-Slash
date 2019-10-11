@@ -77,7 +77,7 @@ public class BarsGUI extends AbstractGui {
             if (unit.energyData() == null || unit.manaData() == null || unit.healthData() == null) {
                 return;
             }
-            if (mc.player.ticksExisted < 80) {
+            if (mc.player.ticksExisted < 25) {
                 return;
             }
 

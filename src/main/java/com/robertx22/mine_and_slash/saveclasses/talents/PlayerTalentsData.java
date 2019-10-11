@@ -7,10 +7,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Storable
 public class PlayerTalentsData implements IApplyableStats {
@@ -30,6 +27,10 @@ public class PlayerTalentsData implements IApplyableStats {
         map.put(guid, true);
     }
 
+    public void remove(String guid) {
+        map.put(guid, false);
+    }
+
     public int getAllocatedTalents() {
 
         int talents = 0;
@@ -45,6 +46,50 @@ public class PlayerTalentsData implements IApplyableStats {
 
     public void reset() {
         this.map.clear();
+    }
+
+    public boolean canRemove(Perk toRemove) {
+        if (!isAllocated(toRemove)) {
+            return false;
+        }
+
+        for (Perk perk : toRemove.connections) {
+            if (isAllocated(perk)) {
+                if (hasPathToStart(perk, toRemove) == false) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private boolean hasPathToStart(Perk check, Perk toRemove) {
+        Queue<Perk> openSet = new ArrayDeque<>();
+
+        openSet.addAll(check.connections);
+
+        Set<Perk> closedSet = new HashSet<>();
+
+        while (!openSet.isEmpty()) {
+            Perk current = openSet.poll();
+
+            if (current == toRemove || !isAllocated(current)) {
+                continue; // skip exploring this path
+            }
+
+            if (current.isStart) {
+                return true;
+            }
+
+            if (!closedSet.add(current)) {
+                continue; // we already visited it
+            }
+
+            openSet.addAll(current.connections);
+        }
+
+        return false;
     }
 
     public List<Perk> getAllCurrentTalents() {

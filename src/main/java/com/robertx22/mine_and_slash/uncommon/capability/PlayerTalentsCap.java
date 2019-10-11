@@ -40,6 +40,10 @@ public class PlayerTalentsCap {
 
         boolean canAllocatePoint(Perk talent, EntityCap.UnitData data);
 
+        boolean hasPerk(Perk perk);
+
+        boolean tryRemovePoint(Perk talent);
+
         void allocate(Perk talent);
 
         int getFreePoints(EntityCap.UnitData data);
@@ -158,6 +162,20 @@ public class PlayerTalentsCap {
 
             return can;
 
+        }
+
+        @Override
+        public boolean hasPerk(Perk perk) {
+            return this.getData().isAllocated(perk);
+        }
+
+        @Override
+        public boolean tryRemovePoint(Perk talent) {
+            if (getData().canRemove(talent)) {
+                this.getData().remove(talent.GUID());
+                return true;
+            }
+            return false;
         }
 
         @Override

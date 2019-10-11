@@ -202,14 +202,14 @@ public class PerkTreeScreen extends Screen {
     }
 
     @Override
-    public boolean mouseReleased(double x, double y, int ticks) {
+    public boolean mouseReleased(double x, double y, int button) {
         ScreenContext ctx = new ScreenContext(this);
 
-        getTalentButtons().forEach(t -> t.onClick(ctx, (int) x, (int) y));
+        getTalentButtons().forEach(t -> t.onClick(ctx, (int) x, (int) y, button));
 
         refreshConnections();
 
-        return super.mouseReleased(x, y, ticks);
+        return super.mouseReleased(x, y, button);
 
     }
 
