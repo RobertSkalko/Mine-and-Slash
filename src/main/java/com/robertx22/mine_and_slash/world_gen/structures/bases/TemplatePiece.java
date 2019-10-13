@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.world_gen.structures.bases;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.StructureData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Mirror;
@@ -30,6 +28,8 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
     public boolean isLast = false;
     public String guid = "";
     public boolean canBeInWater = true;
+
+    public int surfaceHeight = 0;
 
     int lowerIntoGroundBy = 0;
 
@@ -60,6 +60,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
         this.iwp = SlashRegistry.WorldProviders().get(nbt.getString("iwp"));
         this.isFirst = nbt.getBoolean("isfirst");
         this.isLast = nbt.getBoolean("islast");
+        this.surfaceHeight = nbt.getInt("surfaceHeight");
         this.lowerIntoGroundBy = nbt.getInt("lowerby");
         this.guid = nbt.getString("guid");
         this.canBeInWater = nbt.getBoolean("canInWater");
@@ -106,6 +107,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
         nbt.putString("Template", this.resourceLocation.toString());
         nbt.putString("Rot", this.rotation.name());
         nbt.putInt("num", this.height);
+        nbt.putInt("surfaceHeight", this.surfaceHeight);
         nbt.putString("iwp", this.iwp.GUID());
         nbt.putBoolean("isfirst", isFirst);
         nbt.putBoolean("islast", isLast);
@@ -133,15 +135,14 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
                 }
             }
 
-            StructureData data = Load.mapData(iworld.getWorld())
-                    .getStructuresData()
-                    .getData(this);
-
-            int y = data.getY(iworld, pos);
+            if (this.surfaceHeight == 0) {
+                this.surfaceHeight = WorldUtils.getSurfaceCenterOfChunk(iworld, pos)
+                        .getY();
+            }
 
             BlockPos templatePosition = this.templatePosition;
 
-            this.templatePosition = this.templatePosition.add(0, y - 90 - this.lowerIntoGroundBy, 0);
+            this.templatePosition = this.templatePosition.add(0, surfaceHeight - 90 - this.lowerIntoGroundBy, 0);
 
             boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
 

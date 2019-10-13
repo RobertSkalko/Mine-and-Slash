@@ -1,3 +1,5 @@
+2.9.3
+fixed open gl error spam hopefully
 2.9.2
 updated chinese lang
 updated some textures from clinton!
