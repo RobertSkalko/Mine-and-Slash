@@ -1,5 +1,8 @@
 2.9.3
+updated to forge v1.61
 fixed open gl error spam hopefully
+tweaked structure world gen code in maps a bit
+updated chinese and korean lang
 2.9.2
 updated chinese lang
 updated some textures from clinton!

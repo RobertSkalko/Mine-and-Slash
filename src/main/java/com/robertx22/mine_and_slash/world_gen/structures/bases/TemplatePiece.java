@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.*;
@@ -24,24 +25,12 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
     public Rotation rotation;
     public int height = 0;
     public IWP iwp;
-    public boolean isFirst = false;
-    public boolean isLast = false;
     public String guid = "";
     public boolean canBeInWater = true;
 
     public int surfaceHeight = 0;
 
     int lowerIntoGroundBy = 0;
-
-    public TemplatePiece last() {
-        isLast = true;
-        return this;
-    }
-
-    public TemplatePiece first() {
-        isFirst = true;
-        return this;
-    }
 
     public abstract List<StructureProcessor> processors();
 
@@ -58,8 +47,6 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
         this.rotation = Rotation.valueOf(nbt.getString("Rot"));
         this.height = nbt.getInt("num");
         this.iwp = SlashRegistry.WorldProviders().get(nbt.getString("iwp"));
-        this.isFirst = nbt.getBoolean("isfirst");
-        this.isLast = nbt.getBoolean("islast");
         this.surfaceHeight = nbt.getInt("surfaceHeight");
         this.lowerIntoGroundBy = nbt.getInt("lowerby");
         this.guid = nbt.getString("guid");
@@ -109,8 +96,6 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
         nbt.putInt("num", this.height);
         nbt.putInt("surfaceHeight", this.surfaceHeight);
         nbt.putString("iwp", this.iwp.GUID());
-        nbt.putBoolean("isfirst", isFirst);
-        nbt.putBoolean("islast", isLast);
         nbt.putInt("lowerby", lowerIntoGroundBy);
         nbt.putString("guid", guid);
         nbt.putBoolean("canInWater", canBeInWater);
@@ -136,8 +121,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
             }
 
             if (this.surfaceHeight == 0) {
-                this.surfaceHeight = WorldUtils.getSurfaceCenterOfChunk(iworld, pos)
-                        .getY();
+                this.surfaceHeight = getAverageSurfaceHeight(iworld, template, templatePosition);
             }
 
             BlockPos templatePosition = this.templatePosition;
@@ -153,6 +137,22 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
 
         return false;
 
+    }
+
+    public static int getAverageSurfaceHeight(IWorld world, Template template,
+                                              BlockPos templatePosition) {
+        float height = 0;
+        BlockPos structureSize = templatePosition.add(template.getSize()
+                .getX() - 1, 0, template.getSize().getZ() - 1);
+
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(templatePosition, structureSize)) {
+            int k = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos.getX(), pos.getZ());
+            height += k;
+        }
+
+        height = height / (template.getSize().getX() * template.getSize().getZ()) - 1;
+
+        return (int) height;
     }
 
     @Override

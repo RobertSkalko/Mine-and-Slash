@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceEggFeature;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceTreasure;
-import com.robertx22.mine_and_slash.world_gen.structures.FloatingIslandStructure;
 import com.robertx22.mine_and_slash.world_gen.structures.Random1ChunkDunStructure;
 import com.robertx22.mine_and_slash.world_gen.structures.TowerStructure;
 import net.minecraft.util.registry.Registry;
@@ -37,7 +36,6 @@ public class WorldGenRegisters {
     public static final ConfiguredFeature smallRandomSurfaceTreasure = Biome.createDecoratedFeature(new RandomSurfaceTreasure(NoFeatureConfig::deserialize), IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(400));
 
     public static Structure<NoFeatureConfig> towerStructure = null;
-    public static Structure<NoFeatureConfig> floatingIslandStructure = null;
     public static Structure<NoFeatureConfig> dungeon0Structure = null;
 
     public static void register() {
@@ -64,9 +62,6 @@ public class WorldGenRegisters {
                 biome.addStructure(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG);
                 biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 
-                biome.addStructure(floatingIslandStructure, IFeatureConfig.NO_FEATURE_CONFIG);
-                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(floatingIslandStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-
                 biome.addStructure(dungeon0Structure, IFeatureConfig.NO_FEATURE_CONFIG);
                 biome.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, Biome.createDecoratedFeature(dungeon0Structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 
@@ -80,11 +75,9 @@ public class WorldGenRegisters {
     public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
 
         towerStructure = registerStructure(new TowerStructure(NoFeatureConfig::deserialize));
-        floatingIslandStructure = registerStructure(new FloatingIslandStructure(NoFeatureConfig::deserialize));
         dungeon0Structure = registerStructure(new Random1ChunkDunStructure(NoFeatureConfig::deserialize));
 
         event.getRegistry().register(towerStructure);
-        event.getRegistry().register(floatingIslandStructure);
         event.getRegistry().register(dungeon0Structure);
 
     }

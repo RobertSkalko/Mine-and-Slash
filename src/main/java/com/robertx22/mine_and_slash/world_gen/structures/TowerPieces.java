@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.world_gen.structures;
 
-import com.robertx22.mine_and_slash.world_gen.processors.BiomeProcessor;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.StructurePieceRegisters;
+import com.robertx22.mine_and_slash.world_gen.processors.BiomeProcessor;
 import com.robertx22.mine_and_slash.world_gen.processors.ChestProcessor;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.BasePieces;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.StructurePieceData;
@@ -37,7 +37,7 @@ public class TowerPieces extends BasePieces {
         data.lowerIntoGroundBy = FOUNDATION_HEIGHT;
 
         data.resource(FOUNDATION_LOC);
-        pieces.add(new TowerPiece(data).first());
+        pieces.add(new TowerPiece(data));
         data.height += height(data, FOUNDATION_LOC);
 
         data.resource(BOTTOM_LOC);
@@ -51,7 +51,7 @@ public class TowerPieces extends BasePieces {
         }
 
         data.resource(TOP_LOC);
-        pieces.add(new TowerPiece(data).last());
+        pieces.add(new TowerPiece(data));
 
     }
 

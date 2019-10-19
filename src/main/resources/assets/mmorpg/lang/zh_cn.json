@@ -2,7 +2,7 @@
 #              语言文件 - 简体中文(zh-CN)                          # 
 #          简体中文语言文件译者：'MCBBS-天空树'                    # 
 #              翻译反馈请联系QQ：1182193284                        # 
-#   本语言文件的最后一次更新由 '天空树' 在 '2019年10月12日' 进行   # 
+#   本语言文件的最后一次更新由 '天空树' 在 '2019年10月15日' 进行   # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ##  
 
 {
@@ -177,7 +177,8 @@
 	"item.mmorpg.alchemy.instant.mana.potion_lvl_75": "§6珍品法力快速回复药",
 	"item.mmorpg.alchemy.instant.misc.lesser_recall_potion": "§e中品回床药",
 	"item.mmorpg.alchemy.instant.misc.regret10": "§a下品后悔药",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "§7凡品天赋重置药",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "§7单体天赋重置药",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "§7整体天赋重置药",
 	
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
@@ -734,7 +735,7 @@
 	"mmorpg.stat.axe_damage": "斧伤害",
 	"mmorpg.stat.barbarian": "狂战士",
 	"mmorpg.stat.bleed_mastery_trait": "流血精通",
-	"mmorpg.stat.blockstrength": "盾牌强度",
+	"mmorpg.stat.blockstrength": "格挡强度",
 	"mmorpg.stat.blood_mage_trait": "血法师",
 	"mmorpg.stat.bonus_all_drops": "奖励所有掉落",
 	"mmorpg.stat.bonus_awakenruneword_drops": "奖励觉醒符文之语掉落",
@@ -882,7 +883,7 @@
 	"mmorpg.stat.spell_thunder_nova_power": "§c闪电新星威力",
 	"mmorpg.stat.spell_water_damage": "法术水伤害",
 	"mmorpg.stat.staff_damage": "法杖伤害",
-	"mmorpg.stat.stamina": "体力",
+	"mmorpg.stat.stamina": "耐力",
 	"mmorpg.stat.star": "星星",
 	"mmorpg.stat.steady_hand_trait": "平稳之手",
 	"mmorpg.stat.stealthy": "鬼鬼祟祟",
@@ -1437,7 +1438,7 @@
 	"item.mmorpg.currency.create_new_unique.desc": "转化为王者级 (同样的品级)",
 	"item.mmorpg.currency.item_levelup.desc": "提高装备等级,最多10次",
 	"item.mmorpg.currency.number_reroll.desc": "重新刷新装备上所有属性的数值",
-	"item.mmorpg.currency.orb_of_transmutation.desc": "将黑铁级升级为随机属性的青铜级",
+	"item.mmorpg.currency.orb_of_transmutation.desc": "将黑铁级转化为随机品级的装备",
 	"item.mmorpg.currency.randomize_prefix.desc": "重新刷新前缀",
 	"item.mmorpg.currency.randomize_suffix.desc": "重新刷新后缀",
 	"item.mmorpg.currency.reroll_prefix_numbers.desc": "重新刷新前缀属性的数值",

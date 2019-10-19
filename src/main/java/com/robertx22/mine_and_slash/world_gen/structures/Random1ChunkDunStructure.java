@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.world_gen.structures;
 
 import com.mojang.datafixers.Dynamic;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.StructurePieceData;
 import net.minecraft.util.Rotation;
@@ -66,7 +66,7 @@ public class Random1ChunkDunStructure extends ScatteredStructure<NoFeatureConfig
 
                 Rotation rotation = Rotation.NONE;
 
-                StructurePieceData data = new StructurePieceData(StructurePieceRegisters.FLOATING_ISLAND, templateManagerIn, blockpos, rotation, biomeIn);
+                StructurePieceData data = new StructurePieceData(StructurePieceRegisters.DUNGEON_0, templateManagerIn, blockpos, rotation, biomeIn);
 
                 Random1ChunkDunPieces.init(data, this.components, this.rand);
                 this.recalculateStructureSize();
