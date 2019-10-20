@@ -1,4 +1,4 @@
-package com.robertx22.onevent.ontick;
+package com.robertx22.onevent.tickevent;
 
 import java.util.HashMap;
 import java.util.UUID;

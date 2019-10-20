@@ -147,31 +147,31 @@ public class Main {
 		proxy.postInit(event);
 		RabbitGui.proxy.postInit();
 		Serialization.generateConfigTut(event);
-		if (ModConfig.Server.AUTOCOMPATIBILITY_ICEFIREITEMS) {
+		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_ICEFIREITEMS) {
 			if (Loader.isModLoaded("iceandfire")) {
 				new fireice();
 			}
 			else {}
 		}
-		if (ModConfig.Server.AUTOCOMPATIBILITY_EBWIZARDRYITEMS) {
+		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_EBWIZARDRYITEMS) {
 			if (Loader.isModLoaded("ebwizardry")) {
 				new ebwizardry();
 			}
 			else {}
 		}
-		if (ModConfig.Server.AUTOCOMPATIBILITY_TECHREBORNITEMS) {
+		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_TECHREBORNITEMS) {
 			if (Loader.isModLoaded("techreborn")) {
 				new techreborn();
 			}
 			else {}
 		}
-		if (ModConfig.Server.AUTOCOMPATIBILITY_THERMALITEMS) {
+		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_THERMALITEMS) {
 			if (Loader.isModLoaded("thermalfoundation")) {
 				new thermalfoundation();
 			}
 			else {}
 		}
-		if (ModConfig.Server.AUTOCOMPATIBILITY_VANILLAITEMS) {
+		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_VANILLAITEMS) {
 			new Vanilla();
 		}
 	}
