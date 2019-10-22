@@ -1,3 +1,6 @@
+1.8.5
+- Fixed the Auto Vanilla Compat
+- Updated the EB Wizardry and Ice and Fire Auto Compats to fall in line to the new system I'm basing off of Vanilla
 1.8.4
 - Updated zh_cn.lang (thanks gswvmware)
 1.8.3
