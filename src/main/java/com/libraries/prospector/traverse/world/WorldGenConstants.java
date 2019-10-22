@@ -49,6 +49,6 @@ public interface WorldGenConstants {
 
 	WorldGenFallenTree OAK_FALLEN_TREE_FEATURE = new WorldGenFallenTree(true);
 	WorldGenShrub OAK_SHRUB_FEATURE = new WorldGenShrub(OAK_LOG, OAK_LEAVES);
-	WorldGenTrees TALLER_OAK_TREE_FEATURE = new WorldGenTrees(false, 7, OAK_LOG, OAK_LEAVES, false);
+	WorldGenTrees TALLER_OAK_TREE_FEATURE = new WorldGenTrees(false, 21, OAK_LOG, OAK_LEAVES, false);
 	WorldGenSavannaTree ACACIA_TREE_FEATURE = new WorldGenSavannaTree(false);
 }
