@@ -131,7 +131,9 @@ item.mmorpg:newbie_gear_bag.name=新手装备袋
 item.mmorpg:tutorial_book.name=挖矿与砍杀指引
 item.mmorpg:map_back_portal.name=回程珍珠
 item.mmorpg:level_nearest_entity.name=提升最近实体等级
+item.mmorpg:level_down_nearest_entity.name=降低最近实体等级
 item.mmorpg:increase_rarity_nearest_entity.name=提升最近实体稀有度
+item.mmorpg:decrease_rarity_nearest_entity.name=降低最近实体稀有度
 item.mmorpg:awaken_runeword.name=§c唤醒符文之语
 
 
@@ -437,6 +439,7 @@ mmorpg.stat.physical_damage=物理伤害
 mmorpg.stat.armor_penetration=护甲穿透
 mmorpg.stat.critical_damage=暴击伤害
 mmorpg.stat.critical_hit=暴击率
+mmorpg.stat.bonusexpflat=额外经验
 
 mmorpg.stat.sword_damage=剑伤害
 mmorpg.stat.axe_damage=斧伤害
@@ -567,7 +570,7 @@ mmorpg.stat.purity=净化
 mmorpg.stat.buff_energy_regen=能量回复增益
 mmorpg.stat.buff_mana_regen=法力回复增益
 
-mmorpg.stat.block_strength=方块之力
+mmorpg.stat.block_strength=格挡强度
 
 # ITEM TOOLTIPS/物品提示信息
 
@@ -639,8 +642,10 @@ mmorpg.chat.player_died_mapworld=玩家死于地图世界:
 mmorpg.chat.activating_mapworld_time_penalty=地图时间惩罚已激活
 mmorpg.chat.too_high_level=你的一件装备等级过高，它不会为你增加任何属性。
 mmorpg.chat.minutes=分钟
-mmorpg.chat.you_leveledup_entity=你成功的提升了一个实体的等级！
+mmorpg.chat.you_leveledup_entity=你成功地提升了一个实体的等级！
+mmorpg.chat.you_leveleddown_entity=你成功地降低了一个实体的等级！
 mmorpg.chat.you_increased_rarity_entity=成功提升了一个实体的稀有度！
+mmorpg.chat.you_decreased_rarity_entity=成功降低了一个实体的稀有度！
 mmorpg.chat.no_targets_found=无法找到目标。
 mmorpg.chat.not_enough_experience=没有足够经验
 mmorpg.chat.cannot_over_maximum_level=不能高于最大等级！
