@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "BBB",
-    "BAB",
+    "BCB",
+    "BCB",
     "CCC"
   ],
   "key": {  
 	"C": {
       "item": "minecraft:furnace"
     }, 
-	"A": {
-      "item": "minecraft:tnt"
-    }, 
 	"B": {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:iron_ingot"
     }
   },
   "result": {
