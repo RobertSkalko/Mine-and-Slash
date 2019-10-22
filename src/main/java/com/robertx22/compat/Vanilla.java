@@ -49,38 +49,38 @@ public class Vanilla {
 		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_helmet",
 				new ConfigItem().setType(new Helmet()).setSalvagable(false).setMinLevel(50));
 		LOGGER.debug("Registered Helmet");
-		MineAndSlashAPI.addCompatibleItem("minecraft:leather_chestplate", new ConfigItem().setType(new Helmet())
+		MineAndSlashAPI.addCompatibleItem("minecraft:leather_chestplate", new ConfigItem().setType(new Chest())
 				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
 		MineAndSlashAPI.addCompatibleItem("minecraft:chainmail_chestplate",
-				new ConfigItem().setType(new Helmet()).setMinLevel(40));
-		MineAndSlashAPI.addCompatibleItem("minecraft:iron_chestplate", new ConfigItem().setType(new Helmet())
+				new ConfigItem().setType(new Chest()).setMinLevel(40));
+		MineAndSlashAPI.addCompatibleItem("minecraft:iron_chestplate", new ConfigItem().setType(new Chest())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
-		MineAndSlashAPI.addCompatibleItem("minecraft:golden_chestplate", new ConfigItem().setType(new Helmet())
+		MineAndSlashAPI.addCompatibleItem("minecraft:golden_chestplate", new ConfigItem().setType(new Chest())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_chestplate",
-				new ConfigItem().setType(new Helmet()).setSalvagable(false).setMinLevel(50));
+				new ConfigItem().setType(new Chest()).setSalvagable(false).setMinLevel(50));
 		LOGGER.debug("Registered Chestplate");
-		MineAndSlashAPI.addCompatibleItem("minecraft:leather_leggings", new ConfigItem().setType(new Helmet())
+		MineAndSlashAPI.addCompatibleItem("minecraft:leather_leggings", new ConfigItem().setType(new Pants())
 				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
 		MineAndSlashAPI.addCompatibleItem("minecraft:chainmail_leggings",
-				new ConfigItem().setType(new Helmet()).setMinLevel(40));
-		MineAndSlashAPI.addCompatibleItem("minecraft:iron_leggings", new ConfigItem().setType(new Helmet())
+				new ConfigItem().setType(new Pants()).setMinLevel(40));
+		MineAndSlashAPI.addCompatibleItem("minecraft:iron_leggings", new ConfigItem().setType(new Pants())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
-		MineAndSlashAPI.addCompatibleItem("minecraft:golden_leggings", new ConfigItem().setType(new Helmet())
+		MineAndSlashAPI.addCompatibleItem("minecraft:golden_leggings", new ConfigItem().setType(new Pants())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_leggings",
-				new ConfigItem().setType(new Helmet()).setSalvagable(false).setMinLevel(50));
+				new ConfigItem().setType(new Pants()).setSalvagable(false).setMinLevel(50));
 		LOGGER.debug("Registered Leggings");
-		MineAndSlashAPI.addCompatibleItem("minecraft:leather_boots", new ConfigItem().setType(new Helmet())
+		MineAndSlashAPI.addCompatibleItem("minecraft:leather_boots", new ConfigItem().setType(new Boots())
 				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
 		MineAndSlashAPI.addCompatibleItem("minecraft:chainmail_boots",
-				new ConfigItem().setType(new Helmet()).setMinLevel(40));
-		MineAndSlashAPI.addCompatibleItem("minecraft:iron_boots", new ConfigItem().setType(new Helmet())
+				new ConfigItem().setType(new Boots()).setMinLevel(40));
+		MineAndSlashAPI.addCompatibleItem("minecraft:iron_boots", new ConfigItem().setType(new Boots())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
-		MineAndSlashAPI.addCompatibleItem("minecraft:golden_boots", new ConfigItem().setType(new Helmet())
+		MineAndSlashAPI.addCompatibleItem("minecraft:golden_boots", new ConfigItem().setType(new Boots())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_boots",
-				new ConfigItem().setType(new Helmet()).setSalvagable(false).setMinLevel(50));
+				new ConfigItem().setType(new Boots()).setSalvagable(false).setMinLevel(50));
 		LOGGER.debug("Registered Boots");
 	}
 }
