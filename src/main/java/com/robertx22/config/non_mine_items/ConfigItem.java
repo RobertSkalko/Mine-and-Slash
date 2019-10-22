@@ -68,6 +68,16 @@ public class ConfigItem implements IWeighted {
 		this.randomUniqueUpToTier = tier;
 		return this;
 	}
+	
+	public ConfigItem setstatsAddedOnlyOnDrop(boolean bool) {
+		this.statsAddedOnlyOnDrop = bool;
+		return this;
+	}
+	
+	public ConfigItem setdropsAsLoot(boolean bool) {
+		this.dropsAsLoot = bool;
+		return this;
+	}
 
 	public ConfigItem setAlwaysNormal() {
 		this.normalItemWeight = 1;
