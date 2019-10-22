@@ -1,3 +1,5 @@
+1.8.4
+- Updated zh_cn.lang (thanks gswvmware)
 1.8.3
 - Made Thickets taller
 - Added new ConfigItem options for devs. (setstatsAddedOnlyOnDrops and setdropsAsLoot)
