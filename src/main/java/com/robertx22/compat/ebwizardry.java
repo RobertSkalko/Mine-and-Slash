@@ -24,10 +24,10 @@ public class ebwizardry {
 	private static final List<String> BASIC = ImmutableList.of("magic_wand", "novice_fire_wand", "novice_ice_wand",
 			"novice_lightning_wand", "novice_necromancy_wand");
 
-	private static final List<String> APPRENTICE = ImmutableList.of("apprentice_wand", 
-			"apprentice_earth_wand", "apprentice_sorcery_wand", "apprentice_healing_wand", "apprentice_fire_wand",
-			"apprentice_ice_wand", "apprentice_lightning_wand", "apprentice_necromancy_wand", "apprentice_earth_wand",
-			"apprentice_sorcery_wand", "apprentice_healing_wand" );
+	private static final List<String> APPRENTICE = ImmutableList.of("apprentice_wand", "apprentice_earth_wand",
+			"apprentice_sorcery_wand", "apprentice_healing_wand", "apprentice_fire_wand", "apprentice_ice_wand",
+			"apprentice_lightning_wand", "apprentice_necromancy_wand", "apprentice_earth_wand",
+			"apprentice_sorcery_wand", "apprentice_healing_wand");
 
 	private static final List<String> ADVANCED = ImmutableList.of("advanced_wand", "advanced_earth_wand",
 			"advanced_sorcery_wand", "advanced_healing_wand", "advanced_fire_wand", "advanced_ice_wand",
@@ -77,42 +77,46 @@ public class ebwizardry {
 	public ebwizardry() {
 
 		String modID = "ebwizardry:";
-		List<String> b = BASIC;
-		List<String> p = APPRENTICE;
-		List<String> a = ADVANCED;
-		List<String> m = MASTER;
 
-		MineAndSlashAPI.addCompatibleItem(modID + b, new ConfigItem().setType(new Staff()).setMaxLevel(10));
-		MineAndSlashAPI.addCompatibleItem(modID + p, new ConfigItem().setType(new Staff()).setMaxLevel(30));
-		MineAndSlashAPI.addCompatibleItem(modID + a, new ConfigItem().setType(new Staff()).setMaxLevel(50));
-		MineAndSlashAPI.addCompatibleItem(modID + m, new ConfigItem().setType(new Staff()).setMaxLevel(70));
+		for (String b : BASIC) {
+			MineAndSlashAPI.addCompatibleItem(modID + b, new ConfigItem().setType(new Staff()).setMaxLevel(10));
+		}
+		for (String p : APPRENTICE) {
+			MineAndSlashAPI.addCompatibleItem(modID + p, new ConfigItem().setType(new Staff()).setMinLevel(30));
+		}
+		for (String a : ADVANCED) {
+			MineAndSlashAPI.addCompatibleItem(modID + a, new ConfigItem().setType(new Staff()).setMinLevel(50));
+		}
+		for (String m : MASTER) {
+			MineAndSlashAPI.addCompatibleItem(modID + m, new ConfigItem().setType(new Staff()).setMinLevel(70));
+		}
 		LOGGER.debug("Registered Staffs");
 		for (String s : Helmet) {
 			MineAndSlashAPI.addCompatibleItem(modID + "wizard_hat", new ConfigItem().setType(new Helmet())
-					.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+					.setMaxRarity(2).setAlwaysNormal().setMaxLevel(10));
 			MineAndSlashAPI.addCompatibleItem(modID + s, new ConfigItem().setType(new Helmet()).setMaxRarity(2)
-					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+					.setAlwaysNormal().setMinLevel(30));
 			LOGGER.debug("Registered Helmet");
 		}
 		for (String s : Chestplate) {
 			MineAndSlashAPI.addCompatibleItem(modID + "wizard_robe", new ConfigItem().setType(new Chest())
-					.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+					.setMaxRarity(2).setAlwaysNormal().setMaxLevel(10));
 			MineAndSlashAPI.addCompatibleItem(modID + s, new ConfigItem().setType(new Chest()).setMaxRarity(2)
-					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+					.setAlwaysNormal().setMinLevel(30));
 			LOGGER.debug("Registered Chestplate");
 		}
 		for (String s : Leggings) {
 			MineAndSlashAPI.addCompatibleItem(modID + "wizard_leggings", new ConfigItem().setType(new Pants())
-					.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+					.setMaxRarity(2).setAlwaysNormal().setMaxLevel(10));
 			MineAndSlashAPI.addCompatibleItem(modID + s, new ConfigItem().setType(new Pants()).setMaxRarity(2)
-					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+					.setAlwaysNormal().setMinLevel(30));
 			LOGGER.debug("Registered Leggings");
 		}
 		for (String s : Boots) {
 			MineAndSlashAPI.addCompatibleItem(modID + "wizard_boots", new ConfigItem().setType(new Boots())
-					.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+					.setMaxRarity(2).setAlwaysNormal().setMaxLevel(10));
 			MineAndSlashAPI.addCompatibleItem(modID + s, new ConfigItem().setType(new Boots()).setMaxRarity(2)
-					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+					.setAlwaysNormal().setMinLevel(30));
 			LOGGER.debug("Registered Boots");
 		}
 		for (String s : Ring) {
