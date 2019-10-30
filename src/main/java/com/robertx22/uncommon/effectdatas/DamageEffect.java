@@ -3,6 +3,7 @@ package com.robertx22.uncommon.effectdatas;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import com.robertx22.api.MineAndSlashEvents;
 import com.robertx22.config.ModConfig;
 import com.robertx22.database.stat_types.defense.BlockStrength;
 import com.robertx22.mmorpg.Main;
@@ -29,264 +30,267 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.MinecraftForge;
 
 public class DamageEffect extends EffectData
-	implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
+		implements IArmorReducable, IPenetrable, IDamageEffect, IElementalResistable, IElementalPenetrable, ICrittable {
 
-    public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
-	super(source, target);
+	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg) {
+		super(source, target);
 
-	this.Number = dmg;
+		this.Number = dmg;
 
-    }
+	}
 
-    public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, UnitData sourceData,
-	    UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
-	super(source, target, sourceData, targetData);
+	public DamageEffect(EntityLivingBase source, EntityLivingBase target, int dmg, UnitData sourceData,
+			UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
+		super(source, target, sourceData, targetData);
 
-	this.setEffectType(effectType, weptype);
-	this.Number = dmg;
-    }
+		this.setEffectType(effectType, weptype);
+		this.Number = dmg;
+	}
 
-    public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
+	public HashMap<Elements, Integer> BonusElementDamageMap = new HashMap();
 
-    public static String DmgSourceName = Ref.MODID + ".custom_damage";
-    public Elements Element = Elements.None;
-    public int ArmorPene;
-    public int ElementalPene;
+	public static String DmgSourceName = Ref.MODID + ".custom_damage";
+	public Elements Element = Elements.None;
+	public int ArmorPene;
+	public int ElementalPene;
 
-    public float healthHealed;
-    public float manaRestored;
+	public float healthHealed;
+	public float manaRestored;
 
-    private boolean canBlockDamageSource(EntityLivingBase target, DamageSource damageSourceIn) {
-	if (!damageSourceIn.isUnblockable() && target.isActiveItemStackBlocking()) {
-	    Vec3d vec3d = damageSourceIn.getDamageLocation();
+	private boolean canBlockDamageSource(EntityLivingBase target, DamageSource damageSourceIn) {
+		if (!damageSourceIn.isUnblockable() && target.isActiveItemStackBlocking()) {
+			Vec3d vec3d = damageSourceIn.getDamageLocation();
 
-	    if (vec3d != null) {
-		Vec3d vec3d1 = target.getLook(1.0F);
-		Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(target.posX, target.posY, target.posZ)).normalize();
-		vec3d2 = new Vec3d(vec3d2.x, 0.0D, vec3d2.z);
+			if (vec3d != null) {
+				Vec3d vec3d1 = target.getLook(1.0F);
+				Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(target.posX, target.posY, target.posZ)).normalize();
+				vec3d2 = new Vec3d(vec3d2.x, 0.0D, vec3d2.z);
 
-		if (vec3d2.dotProduct(vec3d1) < 0.0D) {
-		    return true;
+				if (vec3d2.dotProduct(vec3d1) < 0.0D) {
+					return true;
+				}
+			}
 		}
-	    }
+
+		return false;
 	}
 
-	return false;
-    }
+	@Override
+	protected void activate() {
 
-    @Override
-    protected void activate() {
+		boolean fullyblocked = false;
 
-	boolean fullyblocked = false;
+		MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
+		float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
 
-	MyDamageSource dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) Number);
-	float dmg = HealthUtils.DamageToMinecraftHealth(Number + 1, Target);
+		if (canBlockDamageSource(Target, dmgsource)) {
 
-	if (canBlockDamageSource(Target, dmgsource)) {
+			float blockval = targetUnit.MyStats.get(BlockStrength.GUID).Value;
 
-	    float blockval = targetUnit.MyStats.get(BlockStrength.GUID).Value;
+			float afterblock = Number - blockval;
 
-	    float afterblock = Number - blockval;
+			if (afterblock < 0) {
+				fullyblocked = true;
+			} else {
+				dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) afterblock);
+			}
 
-	    if (afterblock < 0) {
-		fullyblocked = true;
-	    } else {
-		dmgsource = new MyDamageSource(DmgSourceName, this.Source, Element, (int) afterblock);
-	    }
+			dmgsource.setDamageBypassesArmor();
 
-	    dmgsource.setDamageBypassesArmor();
+		} else {
 
-	} else {
+		}
 
+		if (fullyblocked == false) {
+			Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
+			Target.attackEntityFrom(dmgsource, dmg);
+
+			addBonusElementDamage();
+			Heal();
+			RestoreMana();
+
+			if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
+				LogCombat();
+			}
+
+			if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
+
+				Main.Network.sendTo(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
+						(EntityPlayerMP) Source);
+			}
+		}
+
+		MinecraftForge.EVENT_BUS
+				.post(new MineAndSlashEvents.DamageEvent(Source, Target, Number, dmgsource, fullyblocked));
 	}
 
-	if (fullyblocked == false) {
-	    Target.hurtResistantTime = 0; // this allows to add bonus damages at the same second
-	    Target.attackEntityFrom(dmgsource, dmg);
-
-	    addBonusElementDamage();
-	    Heal();
-	    RestoreMana();
-
-	    if (ModConfig.Client.RENDER_CHAT_COMBAT_LOG) {
-		LogCombat();
-	    }
-
-	    if ((int) Number > 0 && Source instanceof EntityPlayerMP) {
-
-		Main.Network.sendTo(new DamageNumberPackage(Target, this.Element, FormatDamageNumber(this)),
-			(EntityPlayerMP) Source);
-	    }
+	private void RestoreMana() {
+		int restored = (int) manaRestored;
+		if (restored > 0) {
+			this.sourceData.restoreMana(restored);
+		}
 	}
 
-    }
-
-    private void RestoreMana() {
-	int restored = (int) manaRestored;
-	if (restored > 0) {
-	    this.sourceData.restoreMana(restored);
-	}
-    }
-
-    private void Heal() {
-	int healed = (int) healthHealed;
-	if (healed > 0) {
-	    sourceData.heal(Source, healed);
-	}
-    }
-
-    private void addBonusElementDamage() {
-	for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
-	    if (entry.getValue() > 0) {
-		DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue());
-		bonus.setEffectType(EffectTypes.BONUS_ATTACK, this.weaponType);
-		bonus.Element = entry.getKey();
-		bonus.Activate();
-	    }
-	}
-    }
-
-    private void LogCombat() {
-
-	if (this.getEffectType().equals(EffectTypes.BONUS_ATTACK)) { // don't spam chat with bonus damaages
-	    return;
+	private void Heal() {
+		int healed = (int) healthHealed;
+		if (healed > 0) {
+			sourceData.heal(Source, healed);
+		}
 	}
 
-	if (this.Source instanceof EntityPlayer) {
-
-	    String s = CLOC.word("dealt") + LogDamage() + CLOC.word("to") + " " + this.Target.getName() + " "
-		    + LogCurrentHP(this.Target, this.targetUnit);
-	    this.Source.sendMessage(new TextComponentString(s));
-
+	private void addBonusElementDamage() {
+		for (Entry<Elements, Integer> entry : BonusElementDamageMap.entrySet()) {
+			if (entry.getValue() > 0) {
+				DamageEffect bonus = new DamageEffect(Source, Target, entry.getValue());
+				bonus.setEffectType(EffectTypes.BONUS_ATTACK, this.weaponType);
+				bonus.Element = entry.getKey();
+				bonus.Activate();
+			}
+		}
 	}
 
-	if (this.Target instanceof EntityPlayer) {
+	private void LogCombat() {
 
-	    String s = CLOC.word("took") + LogDamage() + CLOC.word("from") + " " + this.Source.getName() + " "
-		    + LogCurrentHP(this.Target, this.targetUnit);
-	    this.Target.sendMessage(new TextComponentString(s));
+		if (this.getEffectType().equals(EffectTypes.BONUS_ATTACK)) { // don't spam chat with bonus damaages
+			return;
+		}
 
-	}
+		if (this.Source instanceof EntityPlayer) {
 
-    }
+			String s = CLOC.word("dealt") + LogDamage() + CLOC.word("to") + " " + this.Target.getName() + " "
+					+ LogCurrentHP(this.Target, this.targetUnit);
+			this.Source.sendMessage(new TextComponentString(s));
 
-    private String LogCurrentHP(EntityLivingBase entity, Unit unit) {
+		}
 
-	String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health().CurrentValue(entity, unit) + "/"
-		+ (int) unit.healthData().Value + "]";
+		if (this.Target instanceof EntityPlayer) {
 
-	return str;
+			String s = CLOC.word("took") + LogDamage() + CLOC.word("from") + " " + this.Source.getName() + " "
+					+ LogCurrentHP(this.Target, this.targetUnit);
+			this.Target.sendMessage(new TextComponentString(s));
 
-    }
-
-    public static String FormatNumber(int Number) {
-
-	String num = "";
-	if (Number > 1000) {
-	    int thousands = (int) (Number / 1000);
-
-	    int leftover = (int) ((Number - thousands * 1000) / 100);
-
-	    num = thousands + "." + leftover + "k";
-	} else {
-	    num = Number + "";
-	}
-
-	return num;
-    }
-
-    public static String FormatDamageNumber(DamageEffect data) {
-	String num = FormatNumber((int) data.Number);
-
-	if (data.crit) {
-	    num += "!";
+		}
 
 	}
 
-	return num;
-    }
+	private String LogCurrentHP(EntityLivingBase entity, Unit unit) {
 
-    private String LogDamage() {
+		String str = TextFormatting.LIGHT_PURPLE + "[" + unit.health().CurrentValue(entity, unit) + "/"
+				+ (int) unit.healthData().Value + "]";
 
-	String num = FormatDamageNumber(this);
+		return str;
 
-	String str = " " + num + " " + CLOC.word("damage") + " ";
-
-	if (Element == null || Element.equals(Elements.None)) {
-	    str = TextFormatting.GRAY + str;
-	} else {
-	    if (Element.equals(Elements.Fire)) {
-		str = TextFormatting.RED + str;
-	    }
-	    if (Element.equals(Elements.Water)) {
-		str = TextFormatting.BLUE + str;
-	    }
-	    if (Element.equals(Elements.Thunder)) {
-		str = TextFormatting.YELLOW + str;
-	    }
-	    if (Element.equals(Elements.Nature)) {
-		str = TextFormatting.GREEN + str;
-	    }
 	}
 
-	return str;
+	public static String FormatNumber(int Number) {
 
-    }
+		String num = "";
+		if (Number > 10000000) {
+			int tenmillions = (int) (Number / 10000000);
 
-    @Override
-    public EntityLivingBase Source() {
-	return Source;
-    }
+			int leftover = (int) ((Number - tenmillions * 10000000) / 1000000);
 
-    @Override
-    public EntityLivingBase Target() {
-	return Target;
-    }
+			num = tenmillions + "." + leftover + "k";
+		} else {
+			num = Number + "";
+		}
 
-    @Override
-    public float Number() {
-	return Number;
-    }
+		return num;
+	}
 
-    @Override
-    public Elements GetElement() {
-	return Element;
-    }
+	public static String FormatDamageNumber(DamageEffect data) {
+		String num = FormatNumber((int) data.Number);
 
-    @Override
-    public void SetArmorPenetration(int val) {
-	this.ArmorPene = val;
+		if (data.crit) {
+			num += "!";
 
-    }
+		}
 
-    @Override
-    public void SetElementalPenetration(int val) {
-	this.ElementalPene = val;
-    }
+		return num;
+	}
 
-    @Override
-    public int GetArmorPenetration() {
-	return this.ArmorPene;
-    }
+	private String LogDamage() {
 
-    public boolean crit = false;
+		String num = FormatDamageNumber(this);
 
-    @Override
-    public void SetCrit(boolean bool) {
-	crit = bool;
+		String str = " " + num + " " + CLOC.word("damage") + " ";
 
-    }
+		if (Element == null || Element.equals(Elements.None)) {
+			str = TextFormatting.GRAY + str;
+		} else {
+			if (Element.equals(Elements.Fire)) {
+				str = TextFormatting.RED + str;
+			}
+			if (Element.equals(Elements.Water)) {
+				str = TextFormatting.BLUE + str;
+			}
+			if (Element.equals(Elements.Thunder)) {
+				str = TextFormatting.YELLOW + str;
+			}
+			if (Element.equals(Elements.Nature)) {
+				str = TextFormatting.GREEN + str;
+			}
+		}
 
-    @Override
-    public boolean GetCrit() {
-	return crit;
-    }
+		return str;
 
-    @Override
-    public int GetElementalPenetration() {
-	return this.ElementalPene;
-    }
+	}
+
+	@Override
+	public EntityLivingBase Source() {
+		return Source;
+	}
+
+	@Override
+	public EntityLivingBase Target() {
+		return Target;
+	}
+
+	@Override
+	public float Number() {
+		return Number;
+	}
+
+	@Override
+	public Elements GetElement() {
+		return Element;
+	}
+
+	@Override
+	public void SetArmorPenetration(int val) {
+		this.ArmorPene = val;
+
+	}
+
+	@Override
+	public void SetElementalPenetration(int val) {
+		this.ElementalPene = val;
+	}
+
+	@Override
+	public int GetArmorPenetration() {
+		return this.ArmorPene;
+	}
+
+	public boolean crit = false;
+
+	@Override
+	public void SetCrit(boolean bool) {
+		crit = bool;
+
+	}
+
+	@Override
+	public boolean GetCrit() {
+		return crit;
+	}
+
+	@Override
+	public int GetElementalPenetration() {
+		return this.ElementalPene;
+	}
 
 }

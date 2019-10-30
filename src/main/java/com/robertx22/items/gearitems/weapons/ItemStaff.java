@@ -23,58 +23,58 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class ItemStaff extends BaseWeaponItem implements IWeapon {
-    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    public ItemStaff() {
+	public ItemStaff() {
 
-    }
-
-    @Override
-    public String Name() {
-	return "Staff";
-    }
-
-    @Nonnull
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-
-	player.swingArm(hand);
-
-	try {
-
-	    if (!world.isRemote) {
-
-	    }
-	    if (checkDurability(player, player.getHeldItem(hand))) {
-
-		UnitData data = Load.Unit(player);
-
-		data.recalculateStats(player, Load.World(player.world));
-
-		if (data.tryUseWeapon(player, player.getHeldItem(hand))) {
-
-		    EntityStaffProjectile projectile = new EntityStaffProjectile(world);
-		    projectile.SetReady(player.getHeldItem(hand));
-		    projectile.SpawnAndShoot(null, null, player);
-
-		    player.getHeldItem(hand).damageItem(1, player);
-
-		    SoundUtils.playSoundAtPlayer(player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
-
-		}
-
-	    }
-	} catch (
-
-	Exception e) {
-	    e.printStackTrace();
 	}
 
-	return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
-    }
+	@Override
+	public String Name() {
+		return "Staff";
+	}
 
-    @Override
-    public WeaponMechanic mechanic() {
-	return new StaffWeaponMechanic();
-    }
+	@Nonnull
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+
+		player.swingArm(hand);
+
+		try {
+
+			if (!world.isRemote) {
+
+			}
+			if (checkDurability(player, player.getHeldItem(hand))) {
+
+				UnitData data = Load.Unit(player);
+
+				data.recalculateStats(player, Load.World(player.world));
+
+				if (data.tryUseWeapon(player, player.getHeldItem(hand))) {
+
+					EntityStaffProjectile projectile = new EntityStaffProjectile(world);
+					projectile.SetReady(player.getHeldItem(hand));
+					projectile.SpawnAndShoot(null, null, player);
+
+					player.getHeldItem(hand).damageItem(1, player);
+
+					SoundUtils.playSoundAtPlayer(player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
+
+				}
+
+			}
+		} catch (
+
+		Exception e) {
+			e.printStackTrace();
+		}
+
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+	}
+
+	@Override
+	public WeaponMechanic mechanic() {
+		return new StaffWeaponMechanic();
+	}
 }

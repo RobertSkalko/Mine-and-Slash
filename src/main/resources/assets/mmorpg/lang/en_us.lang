@@ -131,7 +131,9 @@ item.mmorpg:newbie_gear_bag.name=Newbie Gear Bag
 item.mmorpg:tutorial_book.name=Mine and Slash Tutorial
 item.mmorpg:map_back_portal.name=Map Leave Pearl
 item.mmorpg:level_nearest_entity.name=Level Nearest Entity
-item.mmorpg:increase_rarity_nearest_entity.name=Increase Rarity Nearest Entity
+item.mmorpg:level_down_nearest_entity.name=Level Down Nearest Entity
+item.mmorpg:increase_rarity_nearest_entity.name=Increase Rarity of Nearest Entity
+item.mmorpg:decrease_rarity_nearest_entity.name=Decrease Rarity of Nearest Entity
 item.mmorpg:awaken_runeword.name=§cAwaken RuneWord
 
 
@@ -641,7 +643,9 @@ mmorpg.chat.activating_mapworld_time_penalty=Map Time penalty activated
 mmorpg.chat.too_high_level=A piece of gear is too high level for you, no stats added!
 mmorpg.chat.minutes=Minutes
 mmorpg.chat.you_leveledup_entity=You have successfully leveled up an entity!
+mmorpg.chat.you_leveleddown_entity=You have successfully leveled down an entity!
 mmorpg.chat.you_increased_rarity_entity=Successfully increased rarity of an entity!
+mmorpg.chat.you_decreased_rarity_entity=Successfully decreased rarity of an entity!
 mmorpg.chat.no_targets_found=No targets found
 mmorpg.chat.not_enough_experience=Not Enough Experience
 mmorpg.chat.cannot_over_maximum_level=Cannot be higher than maximum level!

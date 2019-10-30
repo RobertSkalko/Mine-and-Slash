@@ -15,6 +15,7 @@ import com.robertx22.uncommon.datasaving.Gear;
 import com.robertx22.uncommon.utilityclasses.IWeighted;
 import com.robertx22.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 
@@ -33,6 +34,8 @@ public class ConfigItem implements IWeighted {
 
 	// public String itemID = "modid:itemid";
 	public String itemType = "Sword";
+	
+	public boolean isSalvagable = ModConfig.Server.COMPATIBLE_ITEMS_SALVAGABLE;
 
 	public int dropWeight = 1000;
 	public int uniqueItemWeight = 0;
@@ -44,14 +47,16 @@ public class ConfigItem implements IWeighted {
 	public int minRarity = 0;
 	public int maxRarity = 5;
 
-	public boolean itemIsPlayerLevel = true;
-
-	public int itemLevelIfDoesntUsePlayerLevel = 1;
-
 	public int levelVariance = 0;
 
 	public String uniqueId = "";
 	public boolean uniqueIsRandom = true;
+	
+	public int minLevel = 1;
+    public int maxLevel = 100;
+
+    public boolean statsAddedOnlyOnDrop = ModConfig.Server.STATS_ADDED_ONLY_ON_DROP;
+    public boolean dropsAsLoot = true;
 
 	public ConfigItem setUniqueId(IUnique uniq) {
 		this.uniqueId = uniq.GUID();
@@ -61,6 +66,16 @@ public class ConfigItem implements IWeighted {
 
 	public ConfigItem setMaxUniqueTier(int tier) {
 		this.randomUniqueUpToTier = tier;
+		return this;
+	}
+	
+	public ConfigItem setstatsAddedOnlyOnDrop(boolean bool) {
+		this.statsAddedOnlyOnDrop = bool;
+		return this;
+	}
+	
+	public ConfigItem setdropsAsLoot(boolean bool) {
+		this.dropsAsLoot = bool;
 		return this;
 	}
 
@@ -114,6 +129,21 @@ public class ConfigItem implements IWeighted {
 
 	public ConfigItem setMaxRarity(int rar) {
 		this.maxRarity = rar;
+		return this;
+	}
+	
+	public ConfigItem setSalvagable(boolean bool) {
+        this.isSalvagable = bool;
+        return this;
+    }
+	
+	public ConfigItem setMinLevel(int rar) {
+		this.minLevel = rar;
+		return this;
+	}
+
+	public ConfigItem setMaxLevel(int rar) {
+		this.maxLevel = rar;
 		return this;
 	}
 
@@ -183,8 +213,8 @@ public class ConfigItem implements IWeighted {
 		return result.type;
 	}
 
-	private int getLevel(int level) {
-		return this.itemIsPlayerLevel ? level : this.itemLevelIfDoesntUsePlayerLevel;
+	private int getLevel(int playerlevel) {
+		return MathHelper.clamp(playerlevel, minLevel, maxLevel);
 	}
 
 	private ItemStack createNormal(ItemStack stack, int level) {
@@ -197,6 +227,7 @@ public class ConfigItem implements IWeighted {
 		blueprint.maxRarity = this.maxRarity;
 
 		GearItemData gear = GearGen.CreateData(blueprint);
+		gear.isSalvagable = this.isSalvagable;
 		gear.isNotFromMyMod = true;
 
 		Gear.Save(stack, gear);
@@ -217,6 +248,7 @@ public class ConfigItem implements IWeighted {
 		blueprint.LevelVariance = this.levelVariance;
 
 		GearItemData gear = UniqueGearGen.CreateData(blueprint);
+		gear.isSalvagable = this.isSalvagable;
 		gear.isNotFromMyMod = true;
 
 		if (gear.uniqueGUID == null || !IUnique.ITEMS.containsKey(gear.uniqueGUID)) {
@@ -239,6 +271,7 @@ public class ConfigItem implements IWeighted {
 		blueprint.maxRarity = this.maxRarity;
 
 		GearItemData gear = RunedGearGen.CreateData(blueprint);
+		gear.isSalvagable = this.isSalvagable;
 		gear.isNotFromMyMod = true;
 
 		Gear.Save(stack, gear);

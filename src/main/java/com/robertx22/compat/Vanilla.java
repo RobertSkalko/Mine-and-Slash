@@ -21,44 +21,66 @@ public class Vanilla {
 
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	private static final List<String> Helmet = ImmutableList.of("leather_helmet", "chainmail_helmet", "iron_helmet",
-			"diamond_helmet", "golden_helmet");
-
-	private static final List<String> Chestplate = ImmutableList.of("leather_chestplate", "chainmail_chestplate",
-			"iron_chestplate", "diamond_chestplate", "golden_chestplate");
-
-	private static final List<String> Leggings = ImmutableList.of("leather_leggings", "chainmail_leggings",
-			"iron_leggings", "diamond_leggings", "golden_leggings");
-
-	private static final List<String> Boots = ImmutableList.of("leather_boots", "chainmail_boots", "iron_boots",
-			"diamond_boots", "golden_boots");
-
-	private static final List<String> SWORD = ImmutableList.of("iron_sword", "wooden_sword", "stone_sword",
-			"diamond_sword", "golden_sword");
-
 	public Vanilla() {
 
-		MineAndSlashAPI.addCompatibleItem("minecraft:bow", new ConfigItem().setType(new Bow()));
+		MineAndSlashAPI.addCompatibleItem("minecraft:bow",
+				new ConfigItem().setType(new Bow()).setSalvagable(false).setMinLevel(5));
 		LOGGER.debug("Registered Bow");
-		for (String s : SWORD) {
-			MineAndSlashAPI.addCompatibleItem("minecraft:" + s, new ConfigItem().setType(new Sword()));
-			LOGGER.debug("Registered Swords");
-		}
-		for (String s : Helmet) {
-			MineAndSlashAPI.addCompatibleItem("minecraft:" + s, new ConfigItem().setType(new Helmet()));
-			LOGGER.debug("Registered Helmet");
-		}
-		for (String s : Chestplate) {
-			MineAndSlashAPI.addCompatibleItem("minecraft:" + s, new ConfigItem().setType(new Chest()));
-			LOGGER.debug("Registered Chestplate");
-		}
-		for (String s : Leggings) {
-			MineAndSlashAPI.addCompatibleItem("minecraft:" + s, new ConfigItem().setType(new Pants()));
-			LOGGER.debug("Registered Leggings");
-		}
-		for (String s : Boots) {
-			MineAndSlashAPI.addCompatibleItem("minecraft:" + s, new ConfigItem().setType(new Boots()));
-			LOGGER.debug("Registered Boots");
-		}
+		MineAndSlashAPI.addCompatibleItem("minecraft:wooden_sword", new ConfigItem().setType(new Sword())
+				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+		MineAndSlashAPI.addCompatibleItem("minecraft:stone_sword", new ConfigItem().setType(new Sword()).setMaxRarity(1)
+				.setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
+
+		MineAndSlashAPI.addCompatibleItem("minecraft:iron_sword", new ConfigItem().setType(new Sword()).setMaxRarity(2)
+				.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:golden_sword", new ConfigItem().setType(new Sword())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_sword",
+				new ConfigItem().setType(new Sword()).setSalvagable(false).setMinLevel(50));
+		LOGGER.debug("Registered Swords");
+		MineAndSlashAPI.addCompatibleItem("minecraft:leather_helmet", new ConfigItem().setType(new Helmet())
+				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+		MineAndSlashAPI.addCompatibleItem("minecraft:chainmail_helmet",
+				new ConfigItem().setType(new Helmet()).setMinLevel(40));
+		MineAndSlashAPI.addCompatibleItem("minecraft:iron_helmet", new ConfigItem().setType(new Helmet())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:golden_helmet", new ConfigItem().setType(new Helmet())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_helmet",
+				new ConfigItem().setType(new Helmet()).setSalvagable(false).setMinLevel(50));
+		LOGGER.debug("Registered Helmet");
+		MineAndSlashAPI.addCompatibleItem("minecraft:leather_chestplate", new ConfigItem().setType(new Chest())
+				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+		MineAndSlashAPI.addCompatibleItem("minecraft:chainmail_chestplate",
+				new ConfigItem().setType(new Chest()).setMinLevel(40));
+		MineAndSlashAPI.addCompatibleItem("minecraft:iron_chestplate", new ConfigItem().setType(new Chest())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:golden_chestplate", new ConfigItem().setType(new Chest())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_chestplate",
+				new ConfigItem().setType(new Chest()).setSalvagable(false).setMinLevel(50));
+		LOGGER.debug("Registered Chestplate");
+		MineAndSlashAPI.addCompatibleItem("minecraft:leather_leggings", new ConfigItem().setType(new Pants())
+				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+		MineAndSlashAPI.addCompatibleItem("minecraft:chainmail_leggings",
+				new ConfigItem().setType(new Pants()).setMinLevel(40));
+		MineAndSlashAPI.addCompatibleItem("minecraft:iron_leggings", new ConfigItem().setType(new Pants())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:golden_leggings", new ConfigItem().setType(new Pants())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_leggings",
+				new ConfigItem().setType(new Pants()).setSalvagable(false).setMinLevel(50));
+		LOGGER.debug("Registered Leggings");
+		MineAndSlashAPI.addCompatibleItem("minecraft:leather_boots", new ConfigItem().setType(new Boots())
+				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
+		MineAndSlashAPI.addCompatibleItem("minecraft:chainmail_boots",
+				new ConfigItem().setType(new Boots()).setMinLevel(40));
+		MineAndSlashAPI.addCompatibleItem("minecraft:iron_boots", new ConfigItem().setType(new Boots())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:golden_boots", new ConfigItem().setType(new Boots())
+				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
+		MineAndSlashAPI.addCompatibleItem("minecraft:diamond_boots",
+				new ConfigItem().setType(new Boots()).setSalvagable(false).setMinLevel(50));
+		LOGGER.debug("Registered Boots");
 	}
 }

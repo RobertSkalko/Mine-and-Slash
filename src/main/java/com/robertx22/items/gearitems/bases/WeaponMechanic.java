@@ -9,18 +9,18 @@ import com.robertx22.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.entity.EntityLivingBase;
 
 public abstract class WeaponMechanic {
-    public abstract float GetEnergyCost();
+	public abstract float GetEnergyCost();
 
-    public abstract WeaponTypes weaponType();
+	public abstract WeaponTypes weaponType();
 
-    public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
+	public boolean Attack(EntityLivingBase source, EntityLivingBase target, UnitData unitsource, UnitData targetUnit) {
 
-	int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
-	DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK,
-		weaponType());
+		int num = (int) unitsource.getUnit().MyStats.get(PhysicalDamage.GUID).Value;
+		DamageEffect dmg = new DamageEffect(source, target, num, unitsource, targetUnit, EffectTypes.BASIC_ATTACK,
+				weaponType());
 
-	dmg.Activate();
+		dmg.Activate();
 
-	return true;
-    }
+		return true;
+	}
 }

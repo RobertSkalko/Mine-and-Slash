@@ -1,4 +1,4 @@
-package com.robertx22.onevent.combat;
+package com.robertx22.onevent.combatevent;
 
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraftforge.event.entity.living.LivingEvent;

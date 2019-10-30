@@ -2,11 +2,13 @@ package com.robertx22.uncommon.gui.mobs;
 
 import java.util.List;
 
+import com.robertx22.config.ModConfig;
+
 import net.minecraftforge.common.config.Configuration;
 
 public class NeatConfig {
 
-	public static boolean draw = true;
+	public static boolean draw = ModConfig.Client.SHOW_MOB_GUI;
 
 	public static int maxDistance = 15;
 	public static boolean renderInF1 = false;

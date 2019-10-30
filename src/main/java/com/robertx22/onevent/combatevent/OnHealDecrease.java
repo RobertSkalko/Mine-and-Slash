@@ -1,4 +1,4 @@
-package com.robertx22.onevent.combat;
+package com.robertx22.onevent.combatevent;
 
 import com.robertx22.config.ModConfig;
 

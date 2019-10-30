@@ -43,111 +43,111 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
  * per mod.
  */
 public class GuiHandler implements IGuiHandler {
-    private static final int GUI_MMORPG = 750;
+	private static final int GUI_MMORPG = 750;
 
-    public static int getGuiID() {
-	return GUI_MMORPG;
-    }
-
-    // Gets the server side element for the given gui id this should return a
-    // container
-    @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-
-	ItemStack stack = player.getHeldItemMainhand();
-
-	BlockPos xyz = new BlockPos(x, y, z);
-	TileEntity tileEntity = world.getTileEntity(xyz);
-	if (tileEntity instanceof TileInventoryRepair) {
-	    TileInventoryRepair tileInventory = (TileInventoryRepair) tileEntity;
-	    return new ContainerInventoryRepair(player.inventory, tileInventory);
+	public static int getGuiID() {
+		return GUI_MMORPG;
 	}
 
-	if (tileEntity instanceof TileInventorySalvage) {
-	    TileInventorySalvage tile = (TileInventorySalvage) tileEntity;
-	    return new ContainerInventorySalvage(player.inventory, tile);
-	}
+	// Gets the server side element for the given gui id this should return a
+	// container
+	@Override
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
-	if (tileEntity instanceof TileInventoryModify) {
-	    TileInventoryModify tile = (TileInventoryModify) tileEntity;
-	    return new ContainerInventoryModify(player.inventory, tile);
-	}
+		ItemStack stack = player.getHeldItemMainhand();
 
-	if (tileEntity instanceof TileGearFactory) {
-	    TileGearFactory tile = (TileGearFactory) tileEntity;
-	    return new ContainerGearFactory(player.inventory, tile);
-	}
-	if (tileEntity instanceof TileMap) {
-	    TileMap tile = (TileMap) tileEntity;
-	    return new ContainerMap(player.inventory, tile);
-	}
-
-	if (stack != null && !stack.isEmpty()) {
-	    if (ID == ItemCurrencyBag.GUI_NUMBER) {
-		if (stack.getItem() instanceof ItemCurrencyBag)
-		    return new ContainerCurrencyBag(player.inventory, new InventoryCurrencyBag(stack));
-	    }
-	    if (ID == ItemLootBag.GUI_NUMBER) {
-		if (stack.getItem() instanceof ItemLootBag)
-		    return new ContainerLootBag(player.inventory, new InventoryLootBag(stack));
-	    }
-	    if (ID == ItemMapBag.GUI_NUMBER) {
-		if (stack.getItem() instanceof ItemMapBag)
-		    return new ContainerMapBag(player.inventory, new InventoryMapBag(stack));
-	    }
-
-	}
-	return null;
-    }
-
-    // Gets the client side element for the given gui id this should return a gui
-    @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-
-	ItemStack stack = player.getHeldItemMainhand();
-
-	BlockPos xyz = new BlockPos(x, y, z);
-	TileEntity tileEntity = world.getTileEntity(xyz);
-	if (tileEntity instanceof TileInventoryRepair) {
-	    TileInventoryRepair tileInventory = (TileInventoryRepair) tileEntity;
-	    return new GuiInventoryRepair(player.inventory, tileInventory);
-	}
-	if (tileEntity instanceof TileInventorySalvage) {
-	    TileInventorySalvage tileInventory = (TileInventorySalvage) tileEntity;
-	    return new GuiInventorySalvage(player.inventory, tileInventory);
-	}
-	if (tileEntity instanceof TileInventoryModify) {
-	    TileInventoryModify tileInventory = (TileInventoryModify) tileEntity;
-	    return new GuiInventoryModify(player.inventory, tileInventory);
-	}
-	if (tileEntity instanceof TileGearFactory) {
-	    TileGearFactory tileInventory = (TileGearFactory) tileEntity;
-	    return new GuiGearFactory(player.inventory, tileInventory);
-	}
-	if (tileEntity instanceof TileMap) {
-	    TileMap tileInventory = (TileMap) tileEntity;
-	    return new GuiMap(player.inventory, tileInventory);
-	}
-
-	if (stack != null && !stack.isEmpty()) {
-	    if (ID == ItemCurrencyBag.GUI_NUMBER) {
-		if (stack.getItem() instanceof ItemCurrencyBag) {
-		    return new GuiCurrencyBag(player.inventory, new InventoryCurrencyBag(stack));
+		BlockPos xyz = new BlockPos(x, y, z);
+		TileEntity tileEntity = world.getTileEntity(xyz);
+		if (tileEntity instanceof TileInventoryRepair) {
+			TileInventoryRepair tileInventory = (TileInventoryRepair) tileEntity;
+			return new ContainerInventoryRepair(player.inventory, tileInventory);
 		}
-	    }
-	    if (ID == ItemLootBag.GUI_NUMBER) {
-		if (stack.getItem() instanceof ItemLootBag) {
-		    return new GuiLootBag(player.inventory, new InventoryLootBag(stack));
+
+		if (tileEntity instanceof TileInventorySalvage) {
+			TileInventorySalvage tile = (TileInventorySalvage) tileEntity;
+			return new ContainerInventorySalvage(player.inventory, tile);
 		}
-	    }
-	    if (ID == ItemMapBag.GUI_NUMBER) {
-		if (stack.getItem() instanceof ItemMapBag) {
-		    return new GuiMapBag(player.inventory, new InventoryMapBag(stack));
+
+		if (tileEntity instanceof TileInventoryModify) {
+			TileInventoryModify tile = (TileInventoryModify) tileEntity;
+			return new ContainerInventoryModify(player.inventory, tile);
 		}
-	    }
+
+		if (tileEntity instanceof TileGearFactory) {
+			TileGearFactory tile = (TileGearFactory) tileEntity;
+			return new ContainerGearFactory(player.inventory, tile);
+		}
+		if (tileEntity instanceof TileMap) {
+			TileMap tile = (TileMap) tileEntity;
+			return new ContainerMap(player.inventory, tile);
+		}
+
+		if (stack != null && !stack.isEmpty()) {
+			if (ID == ItemCurrencyBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemCurrencyBag)
+					return new ContainerCurrencyBag(player.inventory, new InventoryCurrencyBag(stack));
+			}
+			if (ID == ItemLootBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemLootBag)
+					return new ContainerLootBag(player.inventory, new InventoryLootBag(stack));
+			}
+			if (ID == ItemMapBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemMapBag)
+					return new ContainerMapBag(player.inventory, new InventoryMapBag(stack));
+			}
+
+		}
+		return null;
 	}
 
-	return null;
-    }
+	// Gets the client side element for the given gui id this should return a gui
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+
+		ItemStack stack = player.getHeldItemMainhand();
+
+		BlockPos xyz = new BlockPos(x, y, z);
+		TileEntity tileEntity = world.getTileEntity(xyz);
+		if (tileEntity instanceof TileInventoryRepair) {
+			TileInventoryRepair tileInventory = (TileInventoryRepair) tileEntity;
+			return new GuiInventoryRepair(player.inventory, tileInventory);
+		}
+		if (tileEntity instanceof TileInventorySalvage) {
+			TileInventorySalvage tileInventory = (TileInventorySalvage) tileEntity;
+			return new GuiInventorySalvage(player.inventory, tileInventory);
+		}
+		if (tileEntity instanceof TileInventoryModify) {
+			TileInventoryModify tileInventory = (TileInventoryModify) tileEntity;
+			return new GuiInventoryModify(player.inventory, tileInventory);
+		}
+		if (tileEntity instanceof TileGearFactory) {
+			TileGearFactory tileInventory = (TileGearFactory) tileEntity;
+			return new GuiGearFactory(player.inventory, tileInventory);
+		}
+		if (tileEntity instanceof TileMap) {
+			TileMap tileInventory = (TileMap) tileEntity;
+			return new GuiMap(player.inventory, tileInventory);
+		}
+
+		if (stack != null && !stack.isEmpty()) {
+			if (ID == ItemCurrencyBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemCurrencyBag) {
+					return new GuiCurrencyBag(player.inventory, new InventoryCurrencyBag(stack));
+				}
+			}
+			if (ID == ItemLootBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemLootBag) {
+					return new GuiLootBag(player.inventory, new InventoryLootBag(stack));
+				}
+			}
+			if (ID == ItemMapBag.GUI_NUMBER) {
+				if (stack.getItem() instanceof ItemMapBag) {
+					return new GuiMapBag(player.inventory, new InventoryMapBag(stack));
+				}
+			}
+		}
+
+		return null;
+	}
 
 }

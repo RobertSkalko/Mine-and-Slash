@@ -9,36 +9,26 @@ public class ServerContainer {
 	@Config.LangKey("mmorpg.config.")
 	@Config.Comment("This enables adding stats to items not from my mod automatically if they are added to my mod's config file inside the folder")
 	public boolean USE_COMPATIBILITY_ITEMS = true;
-
-	@Config.Name("Auto Enable Vanilla Items Stats")
+	
+	@Config.Name("Stats Added Only on Drop")
 	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to vanilla items")
-	public boolean AUTOCOMPATIBILITY_VANILLAITEMS = true;
-
-	@Config.Name("Auto Enable EB Wizadry Item Stats")
+	@Config.Comment("Stats are only added to mob drops, crafted items will no longer get stats")
+	public boolean STATS_ADDED_ONLY_ON_DROP = false;
+	
+	@Config.Name("Compatible Items Salvagable or not")
 	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from EB Wizardry")
-	public boolean AUTOCOMPATIBILITY_EBWIZARDRYITEMS = true;
-
-	@Config.Name("Auto Enable Ice and Fire Item Stats")
-	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from Ice and Fire")
-	public boolean AUTOCOMPATIBILITY_ICEFIREITEMS = true;
-
-	@Config.Name("Auto Enable Tech Reborn Item Stats")
-	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from Tech Reborn")
-	public boolean AUTOCOMPATIBILITY_TECHREBORNITEMS = true;
-
-	@Config.Name("Auto Enable Thermal Foundation Item Stats")
-	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables auto adding stats to items from Thermal Foundation")
-	public boolean AUTOCOMPATIBILITY_THERMALITEMS = true;
+	@Config.Comment("Compatible items to be salvagable or not")
+	public boolean COMPATIBLE_ITEMS_SALVAGABLE = true;
 
 	@Config.Name("Disable Vanilla Hp Regen")
 	@Config.LangKey("mmorpg.config.")
 	@Config.Comment("This should always be disabled because otherwise with my mod's nerfed vanilla healing, the hp regen spends way too much hunger. Also you have hp regen from my mod")
 	public boolean DISABLE_VANILLA_HP_REGEN = true;
+	
+	@Config.Name("Sets the level difference needed to trigger the punishment. Stops level 50's from grinding low level mobs.")
+	@Config.LangKey("mmorpg.config.")
+	@Config.Comment("")
+	public int LEVEL_DISTANCE_PUNISHMENT_ACTIVATION = 10;
 
 	@Config.Name("Maximum Worn Runed Items")
 	@Config.LangKey("mmorpg.config.")

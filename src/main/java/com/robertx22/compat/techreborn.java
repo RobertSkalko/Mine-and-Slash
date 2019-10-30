@@ -19,39 +19,58 @@ import com.robertx22.database.gearitemslots.Staff;
 import com.robertx22.database.gearitemslots.Sword;
 
 public class techreborn {
-	
+
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	private static final List<String> SWORD = ImmutableList.of("bronzesword", "sapphiresword", "rubysword", "peridotsword", "nanosaber");
+	private static final List<String> SWORD = ImmutableList.of("bronzesword", "sapphiresword", "rubysword",
+			"peridotsword");
 
-	private static final List<String> Helmet = ImmutableList.of("peridothelmet", "rubyhelmet", "sapphirehelmet", "bronzehelmet");
+	private static final List<String> Helmet = ImmutableList.of("peridothelmet", "rubyhelmet", "bronzehelmet");
 
-	private static final List<String> Chestplate = ImmutableList.of("peridotchestplate", "rubychestplate", "sapphirechestplate", "bronzechestplate");
-	
-	private static final List<String> Leggings = ImmutableList.of("peridotleggings", "rubyleggings", "sapphireleggings", "bronzeleggings");
+	private static final List<String> Chestplate = ImmutableList.of("peridotchestplate", "rubychestplate",
+			"bronzechestplate");
 
-	private static final List<String> Boots = ImmutableList.of("peridotboots", "rubyboots", "sapphireboots", "bronzeboots");
+	private static final List<String> Leggings = ImmutableList.of("peridotleggings", "rubyleggings", "bronzeleggings");
+
+	private static final List<String> Boots = ImmutableList.of("peridotboots", "rubyboots", "bronzeboots");
 
 	public techreborn() {
+		String modID = "techreborn:";
+
+		MineAndSlashAPI.addCompatibleItem(modID + "nanosaber",
+				new ConfigItem().setType(new Sword()).setSalvagable(false).setMinLevel(85));
 		for (String s : SWORD) {
-			MineAndSlashAPI.addCompatibleItem("techreborn:" + s, new ConfigItem().setType(new Sword()));
-			LOGGER.debug("Registered Swords");
+			MineAndSlashAPI.addCompatibleItem(modID + s, new ConfigItem().setType(new Sword()).setMaxRarity(2)
+					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		}
-		for (String s : Helmet) {
-			MineAndSlashAPI.addCompatibleItem("techreborn:" + s, new ConfigItem().setType(new Helmet()));
-			LOGGER.debug("Registered Helmet");
+		LOGGER.debug("Registered Swords");
+		for (String h : Helmet) {
+			MineAndSlashAPI.addCompatibleItem(modID + h, new ConfigItem().setType(new Helmet()).setMaxRarity(2)
+					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		}
-		for (String s : Chestplate) {
-			MineAndSlashAPI.addCompatibleItem("techreborn:" + s, new ConfigItem().setType(new Chest()));
-			LOGGER.debug("Registered Chestplate");
+		MineAndSlashAPI.addCompatibleItem(modID + "sapphirehelmet",
+				new ConfigItem().setType(new Helmet()).setSalvagable(false).setMinLevel(55));
+		LOGGER.debug("Registered Helmet");
+		for (String c : Chestplate) {
+			MineAndSlashAPI.addCompatibleItem(modID + c, new ConfigItem().setType(new Chest()).setMaxRarity(2)
+					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		}
-		for (String s : Leggings) {
-			MineAndSlashAPI.addCompatibleItem("techreborn:" + s, new ConfigItem().setType(new Pants()));
-			LOGGER.debug("Registered Leggings");
+		MineAndSlashAPI.addCompatibleItem(modID + "sapphirechestplate",
+				new ConfigItem().setType(new Chest()).setSalvagable(false).setMinLevel(55));
+		LOGGER.debug("Registered Chestplate");
+		for (String l : Leggings) {
+			MineAndSlashAPI.addCompatibleItem(modID + l, new ConfigItem().setType(new Pants()).setMaxRarity(2)
+					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		}
-		for (String s : Boots) {
-			MineAndSlashAPI.addCompatibleItem("techreborn:" + s, new ConfigItem().setType(new Boots()));
-			LOGGER.debug("Registered Boots");
+		MineAndSlashAPI.addCompatibleItem(modID + "sapphireleggings",
+				new ConfigItem().setType(new Pants()).setSalvagable(false).setMinLevel(55));
+		LOGGER.debug("Registered Leggings");
+		for (String b : Boots) {
+			MineAndSlashAPI.addCompatibleItem(modID + b, new ConfigItem().setType(new Boots()).setMaxRarity(2)
+					.setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		}
+		MineAndSlashAPI.addCompatibleItem(modID + "sapphireboots",
+				new ConfigItem().setType(new Boots()).setSalvagable(false).setMinLevel(55));
+		LOGGER.debug("Registered Boots");
 	}
 }
