@@ -156,6 +156,16 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
         this.maxRarity = rar;
         return this;
     }
+	
+	public ConfigItem setstatsAddedOnlyOnDrop(boolean bool) {
+		this.statsAddedOnlyOnDrop = bool;
+		return this;
+	}
+	
+	public ConfigItem setdropsAsLoot(boolean bool) {
+		this.dropsAsLoot = bool;
+		return this;
+	}
 
     public boolean isValid() throws Exception {
 
