@@ -34,9 +34,9 @@ public class ebwizardry {
 			"advanced_lightning_wand", "advanced_necromancy_wand", "advanced_earth_wand", "advanced_sorcery_wand",
 			"advanced_healing_wand");
 
-	private static final List<String> MASTER = ImmutableList.of("magic_wand", "apprentice_wand", "advanced_wand",
-			"master_wand", "master_earth_wand", "master_sorcery_wand", "master_healing_wand", "master_fire_wand",
-			"master_ice_wand", "master_lightning_wand", "master_necromancy_wand", "master_earth_wand",
+	private static final List<String> MASTER = ImmutableList.of("master_wand", "master_earth_wand",
+			"master_sorcery_wand", "master_healing_wand", "master_fire_wand", "master_ice_wand",
+			"master_lightning_wand", "master_necromancy_wand", "master_earth_wand",
 			"master_sorcery_wand", "master_healing_wand");
 
 	private static final List<String> Helmet = ImmutableList.of("wizard_hat_fire", "wizard_hat_ice",

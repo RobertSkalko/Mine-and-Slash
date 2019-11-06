@@ -1,3 +1,5 @@
+1.8.7
+- Fixed EB Magic Wands
 1.8.6
 - Updated Tech Reborn Compat
 - Updated Thermal Foundation Compat
