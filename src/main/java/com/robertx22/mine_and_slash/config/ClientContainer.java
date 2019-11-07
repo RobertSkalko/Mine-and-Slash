@@ -29,6 +29,7 @@ public class ClientContainer {
     public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
     public BooleanValue SHOW_VANILLA_HEARTS;
     public BooleanValue SHOW_UNMET_GEAR_REQUIREMENTS_GUI;
+    public BooleanValue USE_AUTO_VANILLA_COMPATIBILITY;
     public ForgeConfigSpec.IntValue REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES;
 
     public EnumValue<PlayerGUIs> PLAYER_GUI_TYPE;
@@ -65,6 +66,10 @@ public class ClientContainer {
         PLAYER_GUI_TYPE = builder.comment(".")
                 .translation("mmorpg.config.player_gui_overlay_type")
                 .defineEnum("PLAYER_GUI_TYPE", PlayerGUIs.Bottom_Middle_Corners);
+        
+        USE_COMPATIBILITY_ITEMS = builder.comment(".")
+                .translation("mmorpg.config.")
+                .define("USE_AUTO_VANILLA_COMPATIBILITY", true);
 
         builder.pop();
     }

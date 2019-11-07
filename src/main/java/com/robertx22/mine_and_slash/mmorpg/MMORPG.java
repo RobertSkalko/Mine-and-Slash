@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.a_libraries.curios.CurioClientSetup;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRenderer;
+import com.robertx22.mine_and_slash.compat.VanillaCompat;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItemsSerialization;
@@ -142,6 +143,9 @@ public class MMORPG {
         ConfigRegister.regConfigsWhichDontNeedMyRegistry(); // still need after reg is inited
 
         RegisterProfessionRecipesFromItems.register();
+        if (ClientContainer.INSTANCE.USE_AUTO_VANILLA_COMPATIBILITY.get()) {
+        	MinecraftForge.EVENT_BUS.register(new VanillaCompat());
+        }
 
     }
 
