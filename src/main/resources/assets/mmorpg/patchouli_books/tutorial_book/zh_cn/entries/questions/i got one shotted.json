@@ -1,0 +1,14 @@
+{
+	"name": "我被秒了？！",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "你八成是遇到世界boss了。它是超稀有的极强怪物。如果它和你同一个等级，而且你有很棒的装备（大部分是神话），而你仍然被秒了，那么请报告这个问题。其他情况下遇到它还请多加小心！"
+		}
+		
+	]
+}

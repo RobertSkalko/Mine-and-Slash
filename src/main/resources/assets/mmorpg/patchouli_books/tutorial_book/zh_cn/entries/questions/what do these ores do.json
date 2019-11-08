@@ -1,0 +1,14 @@
+{
+	"name": "矿石是干什么用的？",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "他们是这个模组使用的资源。你可以用其在装备修理台作为燃料以维修装备，或者在装备锻造台作为燃料以制造新装备。也许以后还有其他的用途！"
+		}
+		
+	]
+}

@@ -1,0 +1,6 @@
+{
+	"name": "工作站",
+	"description": "工作站的合成表与简介",
+	"icon": "minecraft:textures/blocks/furnace_front_on.png",
+	"sortnum": 0
+}

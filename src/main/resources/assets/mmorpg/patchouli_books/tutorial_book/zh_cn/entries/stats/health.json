@@ -1,0 +1,14 @@
+{
+	"name": "生命值",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "生命值随着等级增长，提高你的生存能力。"
+		}
+		
+	]
+}

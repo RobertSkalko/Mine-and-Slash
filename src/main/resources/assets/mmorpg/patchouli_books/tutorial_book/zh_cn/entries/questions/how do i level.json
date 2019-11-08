@@ -1,0 +1,14 @@
+{
+	"name": "如何升级？！",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "进入制造物章节，点击升级令牌。这就是你要找的东西。有2个理由我没做自动升级的理由。1、你可能想留在某个等级刷装备。2、我喜欢大量消耗多余资源的设计。"
+		}
+		
+	]
+}

@@ -1,0 +1,6 @@
+{
+	"name": "强化物",
+	"description": "用来强化装备的物品",
+	"icon": "mmorpg:textures/items/currency/item_levelup.png",
+	"sortnum": 7
+}

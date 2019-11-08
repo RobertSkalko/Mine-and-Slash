@@ -1,0 +1,18 @@
+{
+	"name": "注意",
+	"icon": "minecraft:writable_book",
+	"category": "maps",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "注意聊天栏，每当地图即将结束时你都会收到通知。结束后就不能再进入地图。所以确保不要在结束前挂掉，否则装备就捡不回来了！（除非你改过保留物品栏设置）"
+		},
+		{
+			"type": "text",
+			"text": ""
+		}
+		
+	]
+}

@@ -1,0 +1,14 @@
+{
+	"name": "元素加赐",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "元素加赐在加成之前计算，比如10点水系伤害和10点火系伤害，加50%水至火加赐，会变成10点水系伤害和15点火系伤害。该属性同时对法术和攻击伤害起效。如果你有100%火系伤害加成，那么就会变成30点火系伤害。"
+		}
+		
+	]
+}

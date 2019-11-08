@@ -1,0 +1,14 @@
+{
+	"name": "命中回复法力",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "基础攻击时，恢复法力。"
+		}
+		
+	]
+}

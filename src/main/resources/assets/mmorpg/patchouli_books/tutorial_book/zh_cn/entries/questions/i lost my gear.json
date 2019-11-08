@@ -1,0 +1,14 @@
+{
+	"name": "我装备丢了，现在咋办",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "真是不幸。还好你可以制造一个新手装备袋，内含一些廉价材料！合成表可以在书中制造物章节找到。"
+		}
+		
+	]
+}

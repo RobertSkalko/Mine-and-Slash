@@ -1,0 +1,14 @@
+{
+	"name": "混沌属性起什么效果？",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "当光标停留在带有混沌属性的装备上时，按住shift查看详细信息。"
+		}
+		
+	]
+}

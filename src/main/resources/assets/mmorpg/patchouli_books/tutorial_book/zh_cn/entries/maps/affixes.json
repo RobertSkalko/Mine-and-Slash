@@ -1,0 +1,18 @@
+{
+	"name": "附属效果",
+	"icon": "minecraft:writable_book",
+	"category": "maps",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "所有地图在生成时都带有附属效果，使地图变得更难。怪物会造成额外伤害或者玩家会受到debuff影响。有时候还会有让全套配置废掉的恐怖debuff！不过没关系，如果你觉得你打不过，留着以后再打！"
+		},
+		{
+			"type": "text",
+			"text": "按特定按键可以查看地图信息，内含该地图能爆出什么稀世珍品及你的个人属性。到时一定要试试看。"
+		}
+		
+	]
+}

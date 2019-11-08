@@ -1,0 +1,50 @@
+{
+	"name": "装备修理台",
+	"icon": "mmorpg:repair_station",
+	"category": "stations",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:repair_station"
+        },
+		
+			{
+			"type": "text",
+			"text": "用矿石（普通、不寻常等）给修理台填充燃料，并把装备置于左方以修理装备。$(br)作为后期目标，你可以试着制造并升级可以降低修理台修理消耗的容器。$(br)容器置于修理台的中上方。$(br)（下一页有容器合成表）"
+		},
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:capacitor0"
+        },
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:capacitor1"
+        },
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:capacitor2"
+        },
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:capacitor3"
+        },
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:capacitor4"
+        },
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:capacitor5"
+        }
+	]
+}

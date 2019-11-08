@@ -1,0 +1,22 @@
+{
+	"name": "新手装备袋",
+	"icon": "mmorpg:newbie_gear_bag",
+	"category": "craftables",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:newbie_gear_bag"
+        },
+		
+			{
+			"type": "text",
+			"text": "如果你挂了还丢了装备，你可以制造一个新手一级装备袋重新起步。这个袋子包含至少1把武器和一些装备。"
+		}
+		 
+		
+	]
+}

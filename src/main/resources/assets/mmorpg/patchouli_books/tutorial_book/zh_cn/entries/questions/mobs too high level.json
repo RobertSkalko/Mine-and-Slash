@@ -1,0 +1,14 @@
+{
+	"name": "怪物等级太高了！",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "你离重生点太远了，走得越远，生成的怪物等级越高。等级没有上限。扎营并刷一些等级，然后就能轻松推进探索了！"
+		}
+		
+	]
+}

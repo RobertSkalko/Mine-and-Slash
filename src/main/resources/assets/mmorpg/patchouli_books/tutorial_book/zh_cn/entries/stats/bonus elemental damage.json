@@ -1,0 +1,14 @@
+{
+	"name": "额外元素伤害",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "将『元素』伤害的百分比增加到你的基础攻击中。这是个后期搭配方向，将每件元素装和词缀凑齐相当难，但是效果绝对超值。高玩甚至能让他们的基础攻击造成的元素伤害比物理伤害多。"
+		}
+		
+	]
+}
