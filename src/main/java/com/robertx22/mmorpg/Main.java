@@ -147,32 +147,20 @@ public class Main {
 		proxy.postInit(event);
 		RabbitGui.proxy.postInit();
 		Serialization.generateConfigTut(event);
-		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_ICEFIREITEMS) {
-			if (Loader.isModLoaded("iceandfire")) {
-				new fireice();
-			}
-			else {}
+		if (Loader.isModLoaded("iceandfire") && ModConfig.AutoCompat.AUTOCOMPATIBILITY_ICEFIREITEMS) {
+			MinecraftForge.EVENT_BUS.register(new fireice());
 		}
-		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_EBWIZARDRYITEMS) {
-			if (Loader.isModLoaded("ebwizardry")) {
-				new ebwizardry();
-			}
-			else {}
+		if (Loader.isModLoaded("ebwizardry") && ModConfig.AutoCompat.AUTOCOMPATIBILITY_EBWIZARDRYITEMS) {
+			MinecraftForge.EVENT_BUS.register(new ebwizardry());
 		}
-		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_TECHREBORNITEMS) {
-			if (Loader.isModLoaded("techreborn")) {
-				new techreborn();
-			}
-			else {}
+		if (Loader.isModLoaded("techreborn") && ModConfig.AutoCompat.AUTOCOMPATIBILITY_TECHREBORNITEMS) {
+			MinecraftForge.EVENT_BUS.register(new techreborn());
 		}
-		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_THERMALITEMS) {
-			if (Loader.isModLoaded("thermalfoundation")) {
-				new thermalfoundation();
-			}
-			else {}
+		if (Loader.isModLoaded("thermalfoundation") && ModConfig.AutoCompat.AUTOCOMPATIBILITY_THERMALITEMS) {
+			MinecraftForge.EVENT_BUS.register(new thermalfoundation());
 		}
 		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_VANILLAITEMS) {
-			new Vanilla();
+			MinecraftForge.EVENT_BUS.register(new Vanilla());
 		}
 	}
 
