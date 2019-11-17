@@ -73,7 +73,7 @@ public class fireice {
 		MineAndSlashAPI.addCompatibleItem(modID + "myrmex_jungle_helmet", new ConfigItem().setType(new Helmet())
 				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_silver_metal_helmet",
-				new ConfigItem().setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
+				new ConfigItem().setType(new Helmet()).setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_red_helmet", new ConfigItem().setType(new Helmet())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_bronze_helmet", new ConfigItem().setType(new Helmet())
@@ -128,7 +128,7 @@ public class fireice {
 		MineAndSlashAPI.addCompatibleItem(modID + "myrmex_jungle_boots", new ConfigItem().setType(new Boots())
 				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_silver_metal_boots",
-				new ConfigItem().setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
+				new ConfigItem().setType(new Boots()).setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_red_boots", new ConfigItem().setType(new Boots())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_bronze_boots", new ConfigItem().setType(new Boots())
@@ -148,7 +148,7 @@ public class fireice {
 		MineAndSlashAPI.addCompatibleItem(modID + "myrmex_jungle_chestplate", new ConfigItem().setType(new Chest())
 				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_silver_metal_chestplate",
-				new ConfigItem().setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
+				new ConfigItem().setType(new Boots()).setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_red_chestplate", new ConfigItem().setType(new Chest())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_bronze_chestplate", new ConfigItem().setType(new Chest())
@@ -203,7 +203,7 @@ public class fireice {
 		MineAndSlashAPI.addCompatibleItem(modID + "myrmex_jungle_leggings", new ConfigItem().setType(new Pants())
 				.setMaxRarity(0).setSalvagable(false).setAlwaysNormal().setMaxLevel(10));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_silver_metal_leggings",
-				new ConfigItem().setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
+				new ConfigItem().setType(new Pants()).setSalvagable(false).setAlwaysNormal().setMaxLevel(20));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_red_leggings", new ConfigItem().setType(new Pants())
 				.setMaxRarity(2).setSalvagable(false).setAlwaysNormal().setMaxLevel(30));
 		MineAndSlashAPI.addCompatibleItem(modID + "armor_bronze_leggings", new ConfigItem().setType(new Pants())
