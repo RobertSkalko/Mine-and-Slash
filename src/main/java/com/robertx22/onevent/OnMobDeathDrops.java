@@ -1,4 +1,4 @@
-package com.robertx22.onevent.loot;
+package com.robertx22.onevent;
 
 import com.robertx22.db_lists.Rarities;
 import com.robertx22.loot.LootUtils;
