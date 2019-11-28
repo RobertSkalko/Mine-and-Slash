@@ -6,11 +6,6 @@ import com.robertx22.blocks.item_modify_station.StartupModify;
 import com.robertx22.blocks.map_device.StartupMap;
 import com.robertx22.blocks.repair_station.StartupRepair;
 import com.robertx22.blocks.salvage_station.StartupSalvage;
-import com.robertx22.compat.Vanilla;
-import com.robertx22.compat.ebwizardry;
-import com.robertx22.compat.fireice;
-import com.robertx22.compat.techreborn;
-import com.robertx22.compat.thermalfoundation;
 import com.robertx22.config.ModConfig;
 import com.robertx22.config.non_mine_items.Serialization;
 import com.robertx22.dimensions.ChestGenerator;
@@ -147,21 +142,6 @@ public class Main {
 		proxy.postInit(event);
 		RabbitGui.proxy.postInit();
 		Serialization.generateConfigTut(event);
-		if (Loader.isModLoaded("iceandfire") && ModConfig.AutoCompat.AUTOCOMPATIBILITY_ICEFIREITEMS) {
-			MinecraftForge.EVENT_BUS.register(new fireice());
-		}
-		if (Loader.isModLoaded("ebwizardry") && ModConfig.AutoCompat.AUTOCOMPATIBILITY_EBWIZARDRYITEMS) {
-			MinecraftForge.EVENT_BUS.register(new ebwizardry());
-		}
-		if (Loader.isModLoaded("techreborn") && ModConfig.AutoCompat.AUTOCOMPATIBILITY_TECHREBORNITEMS) {
-			MinecraftForge.EVENT_BUS.register(new techreborn());
-		}
-		if (Loader.isModLoaded("thermalfoundation") && ModConfig.AutoCompat.AUTOCOMPATIBILITY_THERMALITEMS) {
-			MinecraftForge.EVENT_BUS.register(new thermalfoundation());
-		}
-		if (ModConfig.AutoCompat.AUTOCOMPATIBILITY_VANILLAITEMS) {
-			MinecraftForge.EVENT_BUS.register(new Vanilla());
-		}
 	}
 
 	@EventHandler

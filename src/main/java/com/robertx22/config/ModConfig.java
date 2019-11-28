@@ -51,10 +51,6 @@ public class ModConfig {
     @Config.Name("Droprates")
     @Config.LangKey("mmorpg.config.droprates")
     public static DropRatesContainer DropRates = new DropRatesContainer();
-    
-    @Config.Name("AutoCompat")
-    @Config.LangKey("mmorpg.config.autocompat")
-    public static CompatConfig AutoCompat = new CompatConfig();
 
     public static class DimensionsConfig {
 
