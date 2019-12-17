@@ -6,11 +6,15 @@ import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -45,16 +49,23 @@ public class LesserRecallPotionItem extends BaseInstantPotion implements IAmount
     }
 
     public int useDurationInTicks() {
-        return 150;
+        return 50;
     }
 
     @Override
     public void onFinish(ItemStack stack, World world, LivingEntity player,
                          EntityCap.UnitData unitdata) {
 
-        PlayerEntity p = (PlayerEntity) player;
-        BlockPos x = p.getBedLocation(p.world.getDimension().getType());
-        player.setPositionAndUpdate(x.getX(), x.getY(), x.getZ());
+        try {
+            PlayerEntity p = (PlayerEntity) player;
+
+            BlockPos pos = PlayerUtils.getBedLocation(p);
+
+            player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -90,5 +101,18 @@ public class LesserRecallPotionItem extends BaseInstantPotion implements IAmount
     @Override
     public BaseInstantPotion newInstance(Professions.Levels lvl) {
         return new LesserRecallPotionItem();
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
+                                                    Hand handIn) {
+        if (PlayerUtils.getBedLocation(player) != null) {
+            return super.onItemRightClick(worldIn, player, handIn);
+        } else {
+            ItemStack itemstack = player.getHeldItem(handIn);
+            return new ActionResult<>(ActionResultType.FAIL, itemstack);
+
+        }
+
     }
 }

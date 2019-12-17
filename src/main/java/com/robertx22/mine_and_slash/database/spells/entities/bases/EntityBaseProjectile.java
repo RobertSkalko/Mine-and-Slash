@@ -243,10 +243,12 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     }
 
+    @Override
     @Nullable
-    protected EntityRayTraceResult func_213866_a(Vec3d pos, Vec3d posPlusMotion) {
+    protected EntityRayTraceResult rayTraceEntities(Vec3d pos, Vec3d posPlusMotion) {
 
-        return ProjectileHelper.func_221271_a(this.world, this, pos, posPlusMotion, this.getBoundingBox()
+        return ProjectileHelper.rayTraceEntities(this.world, this, pos, posPlusMotion, this
+                .getBoundingBox()
                 .expand(this.getMotion())
                 .grow(1D), (e) -> {
             return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.thrower && e != this.ignoreEntity;
@@ -387,24 +389,30 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     @Nullable
     public LivingEntity getThrower() {
-        if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty()) {
+        try {
+            if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty()) {
 
-            if (((ServerWorld) this.world).getEntityByUuid(UUID.fromString(this.throwerName)) instanceof LivingEntity) {
-                this.thrower = (LivingEntity) ((ServerWorld) this.world).getEntityByUuid(UUID
-                        .fromString(this.throwerName));
-            }
+                UUID id = UUID.fromString(this.throwerName);
 
-            if (this.thrower == null && this.world instanceof ServerWorld) {
-                try {
-                    Entity entity = ((ServerWorld) this.world).getEntityByUuid(UUID.fromString(this.throwerName));
+                if (((ServerWorld) this.world).getEntityByUuid(id) instanceof LivingEntity) {
+                    this.thrower = (LivingEntity) ((ServerWorld) this.world).getEntityByUuid(UUID
+                            .fromString(this.throwerName));
+                }
 
-                    if (entity instanceof LivingEntity) {
-                        this.thrower = (LivingEntity) entity;
+                if (this.thrower == null && this.world instanceof ServerWorld) {
+                    try {
+                        Entity entity = ((ServerWorld) this.world).getEntityByUuid(UUID.fromString(this.throwerName));
+
+                        if (entity instanceof LivingEntity) {
+                            this.thrower = (LivingEntity) entity;
+                        }
+                    } catch (Throwable var2) {
+                        this.thrower = null;
                     }
-                } catch (Throwable var2) {
-                    this.thrower = null;
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return this.thrower;

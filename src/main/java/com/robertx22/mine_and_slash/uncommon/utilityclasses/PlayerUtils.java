@@ -23,6 +23,26 @@ import java.util.Optional;
 
 public class PlayerUtils {
 
+    public static BlockPos getBedLocation(PlayerEntity player) {
+
+        BlockPos pos = null;
+
+        if (pos == null) {
+            Optional<BlockPos> opt = player.getBedPosition();
+            if (opt.isPresent()) {
+                pos = opt.get();
+            }
+        }
+        if (pos == null) {
+            pos = player.getBedLocation(player.world.getDimension().getType());
+        }
+        if (pos == null) {
+            pos = player.getBedLocation();
+        }
+
+        return pos;
+    }
+
     public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos, String name) {
 
         if (MMORPG.RUN_DEV_TOOLS) {

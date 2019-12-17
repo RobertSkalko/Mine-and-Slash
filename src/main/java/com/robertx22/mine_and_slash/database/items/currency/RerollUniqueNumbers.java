@@ -88,7 +88,7 @@ public class RerollUniqueNumbers extends CurrencyItem implements ICurrencyItemEf
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
                 .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
-                .addMaterial(new ItemNumberReroll().getFromForgeRegistry(), 5)
+                .addMaterial(new ItemNumberReroll().getFromForgeRegistry(), 3)
                 .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 2)
                 .addMaterial(Items.DIAMOND, 1)
                 .buildMaterials()

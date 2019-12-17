@@ -98,7 +98,7 @@ public class ItemAddMajorArcana extends CurrencyItem implements ICurrencyItemEff
                 .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 20)
                 .addMaterial(new ItemChaosOrb().getFromForgeRegistry(), 10)
                 .addMaterial(Items.BLAZE_POWDER, 2)
-                .addMaterial(Items.GLOWSTONE_DUST, 5)
+                .addMaterial(Items.GLOWSTONE_DUST, 10)
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(75)

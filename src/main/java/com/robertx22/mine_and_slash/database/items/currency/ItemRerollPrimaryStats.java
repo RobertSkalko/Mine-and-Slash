@@ -83,7 +83,7 @@ public class ItemRerollPrimaryStats extends CurrencyItem implements ICurrencyIte
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
                 .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 6)
                 .addMaterial(new ItemNumberReroll().getFromForgeRegistry(), 3)
-                .addMaterial(Items.EMERALD, 5)
+                .addMaterial(Items.EMERALD, 3)
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(25)

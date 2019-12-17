@@ -102,7 +102,7 @@ public class OnTickLogic {
                 }
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
-                    if (WorldUtils.isMapWorld(player.world)) {
+                    if (WorldUtils.isMapWorldClass(player.world)) {
                         Load.playerMapData(player).onMinute(player);
                     }
                 }

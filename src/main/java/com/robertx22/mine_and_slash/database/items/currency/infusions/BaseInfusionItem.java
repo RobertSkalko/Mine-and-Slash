@@ -105,10 +105,10 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 3)
+                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
                 .addMaterial(new ItemAddSecondaryStat().getFromForgeRegistry(), 5)
                 .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 5)
-                .addMaterial(Items.IRON_INGOT, 10)
+                .addMaterial(Items.IRON_INGOT, 2)
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(25)

@@ -91,7 +91,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
                 .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 5)
                 .addMaterial(new ItemAddSecondaryStat().getFromForgeRegistry(), 2)
-                .addMaterial(Items.GOLD_INGOT, 3)
+                .addMaterial(Items.GOLD_INGOT, 2)
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(1)

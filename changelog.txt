@@ -1,8 +1,14 @@
+2.9.4
+try fix wand crash
+updated to latest forge
+fix bug where time counts out for dimensions if you set their map tier to more than 0
 2.9.3
-updated to forge v1.61
+updated to latest forge and curios
 fixed open gl error spam hopefully
 tweaked structure world gen code in maps a bit
 updated chinese and korean lang
+tweaked some profession costs
+fixed crash on recall potion
 2.9.2
 updated chinese lang
 updated some textures from clinton!

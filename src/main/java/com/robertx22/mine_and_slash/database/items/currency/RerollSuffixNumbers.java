@@ -90,7 +90,7 @@ public class RerollSuffixNumbers extends CurrencyItem implements ICurrencyItemEf
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
                 .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 8)
                 .addMaterial(new ItemRandomizeSuffix().getFromForgeRegistry(), 2)
-                .addMaterial(Items.IRON_INGOT, 5)
+                .addMaterial(Items.IRON_INGOT, 3)
                 .buildMaterials()
                 .setOutput(this)
                 .levelReq(10)

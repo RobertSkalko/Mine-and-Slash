@@ -53,7 +53,8 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public float func_220080_a(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn,
+                                               BlockPos pos) {
         return 1.0F;
     }
 
