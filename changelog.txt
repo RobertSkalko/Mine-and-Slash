@@ -2,6 +2,7 @@
 try fix wand crash
 updated to latest forge
 fix bug where time counts out for dimensions if you set their map tier to more than 0
+lang update
 2.9.3
 updated to latest forge and curios
 fixed open gl error spam hopefully

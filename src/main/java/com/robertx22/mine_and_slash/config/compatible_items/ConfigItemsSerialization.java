@@ -26,9 +26,6 @@ public class ConfigItemsSerialization implements ISerializedConfig {
         String json = gson.toJson(GenCompItemJsons.generate());
         SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
 
-        //AvgMat.ArmorValues avg = AvgMat.GetAvgArmorValues();
-        //GenAutoCompItems.getMap();
-
     }
 
     @Override
