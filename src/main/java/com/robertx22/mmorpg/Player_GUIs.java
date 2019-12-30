@@ -1,6 +1,6 @@
 package com.robertx22.mmorpg;
 
 public enum Player_GUIs {
-	Top_Left
+	Top_Left, Bottom_Middle, Bottom_Middle_Corners, Middle, Azure_Top_Left
 
 }
