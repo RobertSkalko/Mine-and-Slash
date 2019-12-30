@@ -62,7 +62,6 @@ public interface IUnique extends IWeighted, ITiered, IGUID, IGearItem {
   @SubscribeEvent
   public static void registerItems(RegistryEvent.Register<Item> event) {
     for (Item item : ITEMS.values()) {
-      item.setCreativeTab(CreativeTabList.UniqueItems);
       item.setMaxStackSize(1);
 
       if (item instanceof IBauble) {
