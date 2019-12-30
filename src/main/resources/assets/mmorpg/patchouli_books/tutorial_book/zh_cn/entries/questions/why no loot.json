@@ -1,0 +1,14 @@
+{
+	"name": "怪物什么都不掉？",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "有两种可能：1、你没有直接击杀，而是在使用某种刷怪机制。只有直接击杀才能获得掉落。2、如果你比你击杀的怪物等级高出过多，掉落的几率会降低。有少许最低几率，但是完全不值得。和与你等级相近的怪物作战以获得最佳掉落。"
+		}
+		
+	]
+}

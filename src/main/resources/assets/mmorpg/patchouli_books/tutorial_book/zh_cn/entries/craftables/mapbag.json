@@ -1,0 +1,22 @@
+{
+	"name": "地图袋",
+	"icon": "mmorpg:map_bag",
+	"category": "craftables",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:map_bag"
+        },
+		
+			{
+			"type": "text",
+			"text": "自动拾取本模组的地图物品。背包更整洁！用地图右击以制造怪物狩猎维度！"
+		}
+		 
+		
+	]
+}

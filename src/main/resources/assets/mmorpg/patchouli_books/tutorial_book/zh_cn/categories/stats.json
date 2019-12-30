@@ -1,0 +1,6 @@
+{
+	"name": "属性",
+	"description": "所有属性的详细描述。有三类属性：数值，百分比和倍率。作用顺序为先累加数值，再计算百分比，最后计算倍率。",
+	"icon": "minecraft:textures/items/diamond_sword.png",
+	"sortnum": 5
+}

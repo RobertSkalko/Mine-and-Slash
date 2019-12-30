@@ -1,0 +1,14 @@
+{
+	"name": "特性",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "特性是目前只能靠用混沌宝珠赌博获得的属性。每一个物品仅能用混沌宝珠尝试1次，之后再也不可改变。特性是独有属性，意为拥有多个同一种特质只会获得一个的效果。"
+		}
+		
+	]
+}

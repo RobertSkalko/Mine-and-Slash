@@ -1,0 +1,14 @@
+{
+	"name": "元素伤害",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "元素伤害主要用于法术，但也可用于增强基础攻击。"
+		}
+		
+	]
+}

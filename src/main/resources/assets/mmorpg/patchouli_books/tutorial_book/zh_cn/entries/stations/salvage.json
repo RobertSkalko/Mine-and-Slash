@@ -1,0 +1,21 @@
+{
+	"name": "装备回收台",
+	"icon": "mmorpg:salvage_station",
+	"category": "stations",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:salvage_station"
+        },
+		
+			{
+			"type": "text",
+			"text": "放入垃圾装备，回收矿石。有时候能回收到稀有制造材料！"
+		}
+		
+	]
+}

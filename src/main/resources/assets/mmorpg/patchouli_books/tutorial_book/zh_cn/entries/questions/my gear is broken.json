@@ -1,0 +1,14 @@
+{
+	"name": "我装备坏了！",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "别慌。去教程的工作站章节，制造一个装备修理台，放一些燃料进去修理装备。为了获取更多矿石，再造一个装备回收台。"
+		}
+		
+	]
+}

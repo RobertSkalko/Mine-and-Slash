@@ -1,0 +1,21 @@
+{
+	"name": "装备锻造台",
+	"icon": "mmorpg:gear_factory_station",
+	"category": "stations",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:gear_factory_station"
+        },
+		
+			{
+			"type": "text",
+			"text": "用矿石或稀有制造材料给锻造台填充燃料，并牺牲一件装备（普通品质也行！）。$(br)产出装备是一件随机装备，但很有可能与被牺牲装备为同一类型。$(br)如果你缺某种装备，收集普通品质的该装备并牺牲掉！$(br)燃料包括：普通、不寻常、稀有、史诗、传说和神话矿石，还有像钻石、金锭之类的原版物品。"
+		}
+		
+	]
+}

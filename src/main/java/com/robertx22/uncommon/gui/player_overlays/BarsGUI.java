@@ -16,7 +16,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class BarsGUI extends Gui {
 	private Minecraft mc;
 
+	BottomMiddleOverlay bottomMiddle = new BottomMiddleOverlay();
+	BottomMiddleCornersOverlay bottomMiddleCorners = new BottomMiddleCornersOverlay();
 	TopLeftOverlay topleft = new TopLeftOverlay();
+	MiddleOverlay middle = new MiddleOverlay();
+	AzureTopLeftOverlay azuretopleft = new AzureTopLeftOverlay();
 
 	public BarsGUI(Minecraft mc) {
 		super();
@@ -67,7 +71,18 @@ public class BarsGUI extends Gui {
 				return;
 			}
 
-			topleft.Draw(this, mc, mc.player, event, unit, data);
+			if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Top_Left)) {
+				topleft.Draw(this, mc, mc.player, event, unit, data);
+			} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle)) {
+				bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
+			} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Bottom_Middle_Corners)) {
+				bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
+			} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Middle)) {
+				middle.Draw(this, mc, mc.player, event, unit, data);
+			} else if (ModConfig.Client.PLAYER_GUI_TYPE.equals(Player_GUIs.Azure_Top_Left)) {
+				azuretopleft.Draw(this, mc, mc.player, event, unit, data);
+			}
+
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}

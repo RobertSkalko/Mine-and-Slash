@@ -1,0 +1,14 @@
+{
+	"name": "暴击率",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "按暴击伤害增加你的伤害的几率。"
+		}
+		
+	]
+}

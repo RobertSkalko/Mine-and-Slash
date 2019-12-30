@@ -1,0 +1,14 @@
+{
+	"name": "穿透",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "造成伤害时，这样起效：护甲-穿透=有效护甲值。有各种类型，护甲穿透，火系穿透等等。"
+		}
+		
+	]
+}

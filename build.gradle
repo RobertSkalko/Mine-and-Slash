@@ -10,7 +10,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.8.6"
+version = "1.9.0"
 
 group = "com.robertx22.mmorpg" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Mine and Slash-1.12.2"
@@ -32,7 +32,7 @@ repositories {
 		name = "jitpack"
 		url "https://jitpack.io" 
 	}
-	 maven { url = "http://maven2.tterrag.com" } // AutoSave
+	 maven { url = "https://maven2.tterrag.com" } // AutoSave
 	 maven { url 'https://maven.blamejared.com' }
 }
 
@@ -51,8 +51,8 @@ dependencies {
 	compile files("libs/Baubles-1.12-1.5.2.jar") // Rings, REQUIRED
 	shade 'net.objecthunter:exp4j:0.4.5' // Gui Stuff dependency, REQUIRED
 	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
-	compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.10" // Auto Nbt Saving, REQUIRED
-    embed "info.loenwind.autosave:AutoSave:1.12.2-1.0.10"
+	compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.11" // Auto Nbt Saving, REQUIRED
+    embed "info.loenwind.autosave:AutoSave:1.12.2-1.0.11"
 }
 
 processResources {

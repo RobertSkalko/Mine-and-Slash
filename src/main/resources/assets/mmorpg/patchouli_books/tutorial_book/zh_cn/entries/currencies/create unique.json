@@ -1,0 +1,21 @@
+{
+	"name": "珍品神圣宝石",
+	"icon": "mmorpg:create_new_unique",
+	"category": "currencies",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:create_new_unique"
+        },		
+		 {
+            "type": "crafting",
+            "text": "",
+            "recipe": ""
+        }
+		
+	]
+}

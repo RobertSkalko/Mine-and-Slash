@@ -703,6 +703,8 @@ mmorpg.config.rarity_weights=Rarity Weights
 mmorpg.config.map_id_start=Map ID Start
 mmorpg.config.map_id_reserved=Map IDs Reserved
 mmorpg.config.map_dimensions_config=Map Dimensions Config
+mmorpg.config.dimensions_config=Dimensions Config
+mmorpg.word.base_player_stats=Base Player Stats
 
 # CONFIG ENTITIES
 

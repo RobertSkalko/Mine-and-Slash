@@ -1,0 +1,14 @@
+{
+	"name": "暴击伤害",
+	"icon": "minecraft:writable_book",
+	"category": "stats",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "暴击成功时增加你的所有伤害。基础值很低，但只要有更多暴击伤害，暴击就会变得很痛！"
+		}
+		
+	]
+}

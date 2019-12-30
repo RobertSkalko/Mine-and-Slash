@@ -1,0 +1,14 @@
+{
+	"name": "我看不到物品强化效果",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "查看物品时按住ctrl"
+		}
+		
+	]
+}

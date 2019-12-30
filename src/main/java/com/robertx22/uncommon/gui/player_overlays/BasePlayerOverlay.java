@@ -18,11 +18,16 @@ public abstract class BasePlayerOverlay {
 	public int TEXTURE_WIDTH = 106;
 	public int TEXTURE_HEIGHT = 11;
 
+	public final ResourceLocation azuremanatexturepath = new ResourceLocation("mmorpg", "textures/gui/mana_bar_azure.png");
+	public final ResourceLocation azureenergytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar_azure.png");
+	public final ResourceLocation azurehealthtexturepath = new ResourceLocation("mmorpg", "textures/gui/health_bar_azure.png");
+	public final ResourceLocation azureexperiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/exp_bar_azure.png");
+	public final ResourceLocation azureleveltexturepath = new ResourceLocation("mmorpg", "textures/gui/level_ui_azure.png");
 	public final ResourceLocation manatexturepath = new ResourceLocation("mmorpg", "textures/gui/mana_bar.png");
-	public final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar.png");
-	public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/health_bar.png");
-	public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/exp_bar.png");
-	public final ResourceLocation leveltexturepath = new ResourceLocation("mmorpg", "textures/gui/level_ui.png");
+    public final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar.png");
+    public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/health_bar.png");
+    public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg",
+	    "textures/gui/experience_bar.png");
 
 	public abstract void Draw(Gui gui, Minecraft mc, EntityLivingBase entity, RenderGameOverlayEvent event, Unit unit,
 			UnitData level);

@@ -1,0 +1,14 @@
+{
+	"name": "我没能量了！",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "玩家开始就是一个弱者，没多少能量来杀怪。随着你的成长你可以获得增加能量回复的装备。现有的戒指能给你能量回复，但是也有其他的能量来源。这取决于你如何配置你的角色，用装备攒哪种属性。"
+		}
+		
+	]
+}

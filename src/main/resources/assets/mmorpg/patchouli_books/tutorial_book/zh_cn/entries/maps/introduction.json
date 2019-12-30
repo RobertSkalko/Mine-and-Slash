@@ -1,0 +1,18 @@
+{
+	"name": "介绍",
+	"icon": "minecraft:writable_book",
+	"category": "maps",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "欢迎来到冒险地图，Mine and Slash的后期内容！基本上，地图用来在地图装置生成临时维度，可以在其中与更强的怪物战斗，得到更好的物品，强化物甚至是稀世珍品！"
+		},
+		{
+			"type": "text",
+			"text": "地图以品质级别区分，每阶品质级别都让怪物都更难一点。品质级别越高，掉落的稀世珍品和强化物就越多。某些物品只在高品质级别的地图中掉落！"
+		}
+		
+	]
+}

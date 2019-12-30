@@ -1,0 +1,14 @@
+{
+	"name": "装备是怎么造出来的？",
+	"icon": "minecraft:writable_book",
+	"category": "questions",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+		{
+			"type": "text",
+			"text": "装备是随着怪物击杀掉落随机生成获取的。你也可以用装备锻造台自己造。一般不会再看到同一个装备。每一个属性都有数值范围，最终取决于你的运气好坏。有些属性永远不变，比如套装奖励或通过混沌宝珠改造获得的特性。"
+		}
+		
+	]
+}

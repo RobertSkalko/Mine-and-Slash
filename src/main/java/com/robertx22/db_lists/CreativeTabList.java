@@ -19,15 +19,6 @@ public class CreativeTabList {
 
 	};
 
-	public static final CreativeTabs UniqueItems = new CreativeTabs(Ref.MODID + "_uniques") {
-
-		@Override
-		public ItemStack createIcon() {
-			return new ItemStack(ItemSword.Items.get(2));
-		}
-
-	};
-
 	public static final CreativeTabs CurrencyTab = new CreativeTabs(Ref.MODID + "_currency") {
 
 		@Override

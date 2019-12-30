@@ -1,0 +1,6 @@
+{
+	"name": "合成物",
+	"description": "所有可合成物品",
+	"icon": "minecraft:textures/blocks/crafting_table_front.png",
+	"sortnum": 2
+}

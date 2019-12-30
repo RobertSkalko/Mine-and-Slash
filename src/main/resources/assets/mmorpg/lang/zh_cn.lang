@@ -126,7 +126,7 @@ item.mmorpg:map/map5.name=§d冒险地图
 item.mmorpg:player_levelup.name=升级令牌
 item.mmorpg:loot_bag.name=装备战利品袋
 item.mmorpg:map_bag.name=地图袋
-item.mmorpg:currency_bag.name=宝石袋
+item.mmorpg:currency_bag.name=强化物袋
 item.mmorpg:newbie_gear_bag.name=新手装备袋
 item.mmorpg:tutorial_book.name=挖矿与砍杀指引
 item.mmorpg:map_back_portal.name=回程珍珠
@@ -184,7 +184,7 @@ item.mmorpg:capacitor3.name=史诗容器
 item.mmorpg:capacitor4.name=传说容器
 item.mmorpg:capacitor5.name=神话容器
 
-# CURRENCIES/宝珠
+# CURRENCIES/强化物
 item.mmorpg:add_secondary_stat.name=§c传说水晶
 item.mmorpg:chaos_orb.name=§c混沌宝珠
 item.mmorpg:item_levelup.name=§c飞升宝珠
@@ -264,7 +264,7 @@ mmorpg.word.unique_stats=珍品属性
 mmorpg.word.level=等级
 mmorpg.word.rarity=稀有度
 mmorpg.word.unsalvagable=不可回收
-mmorpg.word.multi=多人
+mmorpg.word.multi=倍率
 mmorpg.word.tier=品质级别
 mmorpg.word.bonus_loot_amount=奖励战利品数目
 mmorpg.word.minutes=时间（分钟）
@@ -302,7 +302,7 @@ mmorpg.word.npc=NPC
 mmorpg.word.mob=生物
 mmorpg.word.animal=动物
 mmorpg.word.item=物品
-mmorpg.word.currency=宝石
+mmorpg.word.currency=强化物
 mmorpg.word.map=地图
 mmorpg.word.spell=法术
 mmorpg.word.socket=嵌槽
@@ -608,7 +608,7 @@ mmorpg.tooltip.number_reroll=随机刷新装备所有的属性数字
 mmorpg.tooltip.orb_of_transmutation=转化普通物品
 mmorpg.tooltip.randomize_prefix=随机刷新前缀
 mmorpg.tooltip.randomize_suffix=随机刷新后缀
-mmorpg.tooltip.stone_of_hope=将任意稀有度的装备提升等级
+mmorpg.tooltip.stone_of_hope=将任意稀有度的装备提升稀有度
 mmorpg.tooltip.reroll_prefix_numbers=随机刷新前缀属性的数值
 mmorpg.tooltip.reroll_suffix_numbers=随机刷新后缀属性的数值
 mmorpg.tooltip.reroll_unique_numbers=随机刷新珍品属性的数值
@@ -696,7 +696,7 @@ mmorpg.config.non_mod_heal_multi=非本Mod治疗增幅
 mmorpg.config.other_entity=其他实体
 mmorpg.config.maps_start_drop=地图开始掉落等级
 mmorpg.config.unarmed_energy_cost=无武器能量消耗
-mmorpg.config.currency_start_drop=宝石开始掉落等级
+mmorpg.config.currency_start_drop=强化物开始掉落等级
 
 
 mmorpg.config.rarity_weights=稀有度权重
@@ -710,7 +710,7 @@ mmorpg.config.loot_multi=战利品增幅
 mmorpg.config.exp_multi=经验值增幅
 
 # CONFIG DROPRATES/掉率配置
-mmorpg.config.currency_droprate=宝石掉落率
+mmorpg.config.currency_droprate=强化物掉落率
 mmorpg.config.spell_droprate=法术掉落率
 mmorpg.config.map_droprate=地图掉落率
 mmorpg.config.unique_droprate=珍品装备掉落率
@@ -910,7 +910,7 @@ mmorpg.tooltip.buff_mana_regen=用炸弹法术杀死目标可以让你的法力�
 
 mmorpg.tooltip.stats_on_weapon=武器属性
 mmorpg.tooltip.stats_on_armor=盔甲属性
-mmorpg.tooltip.stats_on_jewerly=宝珠属性
+mmorpg.tooltip.stats_on_jewerly=饰品属性
 
 mmorpg.tooltip.place_in_modify=把物品放入物品强化台
 mmorpg.tooltip.unlocks_runeword_combo=解锁符文之语组合

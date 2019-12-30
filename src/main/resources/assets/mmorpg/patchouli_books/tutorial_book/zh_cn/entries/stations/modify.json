@@ -1,0 +1,21 @@
+{
+	"name": "装备强化台",
+	"icon": "mmorpg:modify_station",
+	"category": "stations",
+	"priority": true,
+	"read_by_default": false,
+	"pages": [
+	
+		{
+            "type": "crafting",
+            "text": "",
+            "recipe": "mmorpg:modify_station"
+        },
+		
+			{
+			"type": "text",
+			"text": "把装备置于左方，并把强化物置于中间。装备会根据强化物产生变化！"
+		}
+		
+	]
+}
