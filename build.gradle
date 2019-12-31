@@ -98,7 +98,7 @@ repositories {
         url "https://jitpack.io"
     }
 
-    maven { url = "http://maven2.tterrag.com" } // AutoSave	
+    maven { url = "https://maven2.tterrag.com" } // AutoSave	
 
     maven { url = "https://maven.theillusivec4.top/" } // curios  
 
