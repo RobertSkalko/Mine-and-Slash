@@ -19,6 +19,7 @@ public class BarsGUI extends AbstractGui {
     BottomMiddleCornersOverlay bottomMiddleCorners = new BottomMiddleCornersOverlay();
     TopLeftOverlay topleft = new TopLeftOverlay();
     MiddleOverlay middle = new MiddleOverlay();
+    AzureTopLeftOverlay azuretopleft = new AzureTopLeftOverlay();
 
     public BarsGUI(Minecraft mc) {
         super();
@@ -91,6 +92,8 @@ public class BarsGUI extends AbstractGui {
                 bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
             } else if (guiType.equals(PlayerGUIs.Middle)) {
                 middle.Draw(this, mc, mc.player, event, unit, data);
+            } else if (guiType.equals(PlayerGUIs.Azure_Top_Left)) {
+            	azuretopleft.Draw(this, mc, mc.player, event, unit, data);
             }
 
         } catch (Exception e) {
