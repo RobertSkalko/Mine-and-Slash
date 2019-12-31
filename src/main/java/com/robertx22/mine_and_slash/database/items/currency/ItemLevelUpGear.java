@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.items.currency;
 
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -50,7 +51,7 @@ public class ItemLevelUpGear extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(SimpleGearLocReq.LVLED_LESS_THAN_10_TIMES, SimpleGearLocReq.LEVEL_ISNT_HIGHER_THAN_MAX);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.LVLED_LESS_THAN_10_TIMES, SimpleGearLocReq.LEVEL_ISNT_HIGHER_THAN_MAX);
     }
 
     @Override

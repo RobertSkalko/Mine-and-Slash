@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.items.currency;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana.BaseMajorArcana;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -49,7 +50,7 @@ public class ItemAddMajorArcana extends CurrencyItem implements ICurrencyItemEff
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearEnumLocReq.CAN_CHAOS_STATS, SimpleGearLocReq.NO_CHAOS_STATS);
+        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.CAN_CHAOS_STATS, SimpleGearLocReq.NO_CHAOS_STATS);
     }
 
     @Override

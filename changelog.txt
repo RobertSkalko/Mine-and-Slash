@@ -1,3 +1,6 @@
+2.9.5
+added azure's gui overlay option
+fix modify station tooltips a bit
 2.9.4
 try fix wand crash
 updated to latest forge

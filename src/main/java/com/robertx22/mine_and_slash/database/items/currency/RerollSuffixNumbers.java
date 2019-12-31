@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.items.currency;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -52,7 +53,7 @@ public class RerollSuffixNumbers extends CurrencyItem implements ICurrencyItemEf
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearEnumLocReq.AFFIXES, SimpleGearLocReq.HAS_SUFFIX);
+        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.AFFIXES, SimpleGearLocReq.HAS_SUFFIX);
     }
 
     @Override

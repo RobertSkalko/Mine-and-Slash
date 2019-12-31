@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.items.currency;
 
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.GearEnumLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -53,7 +54,7 @@ public class ItemNumberReroll extends CurrencyItem implements ICurrencyItemEffec
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearEnumLocReq.REROLL_NUMBERS);
+        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.REROLL_NUMBERS);
     }
 
     @Override

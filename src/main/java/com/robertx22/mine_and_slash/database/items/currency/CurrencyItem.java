@@ -55,7 +55,6 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
         for (BaseLocRequirement req : requirements()) {
             if (req.isNotAllowed(context)) {
                 return false;
-
             }
 
         }

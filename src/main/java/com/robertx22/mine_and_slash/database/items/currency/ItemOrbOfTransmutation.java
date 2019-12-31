@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.items.currency;
 
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
@@ -66,7 +67,7 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(SimpleGearLocReq.IS_COMMON);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_COMMON);
     }
 
     @Override
