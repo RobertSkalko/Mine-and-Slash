@@ -211,7 +211,6 @@ public class PlayerMapCap {
             this.mapdata = map.clone();
 
             MMORPG.syncMapData((ServerPlayerEntity) player);
-
         }
 
         private void onMinutePassAnnounce(PlayerEntity player) {

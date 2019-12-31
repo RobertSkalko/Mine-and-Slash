@@ -59,11 +59,12 @@ public class Load {
         return null;
     }
 
-    public static MapCap.IMapData mapData(ICapabilityProvider provider) {
+    public static PlayerMapCap.IPlayerMapData mapData(ICapabilityProvider provider) {
 
         if (provider != null) {
 
-            return provider.getCapability(MapCap.Data).orElse(new MapCap.DefaultImpl());
+            return provider.getCapability(PlayerMapCap.Data)
+                    .orElse(new PlayerMapCap.DefaultImpl());
 
         }
         return null;

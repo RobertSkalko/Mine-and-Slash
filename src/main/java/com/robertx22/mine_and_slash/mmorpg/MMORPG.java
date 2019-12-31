@@ -91,7 +91,6 @@ public class MMORPG {
         RegisterEvents.register();
 
         ConfigRegister.register(); // MUST BE IN MAIN CLASS
-        ConfigRegister.load();  // MUST BE IN MAIN CLASS
 
         OnStartResetMaps.OnStartResetMaps();
 

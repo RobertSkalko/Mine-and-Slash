@@ -108,6 +108,10 @@ public class PlayerUtils {
             }
 
             player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
+            player.lastExperience = -1;
+            player.lastHealth = -1.0F;
+            player.lastFoodLevel = -1;
+
             net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
             return player;
         }

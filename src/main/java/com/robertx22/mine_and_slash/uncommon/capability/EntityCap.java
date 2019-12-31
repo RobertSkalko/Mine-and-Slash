@@ -490,11 +490,8 @@ public class EntityCap {
 
             if (exp > this.GetExpRequiredForLevelUp()) {
 
-                if (ModConfig.INSTANCE.Server.LEVEL_UPS_COST_TOKEN.get() == false) {
-
-                    if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
-                        this.LevelUp(player);
-                    }
+                if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
+                    this.LevelUp(player);
                 }
 
                 return i;

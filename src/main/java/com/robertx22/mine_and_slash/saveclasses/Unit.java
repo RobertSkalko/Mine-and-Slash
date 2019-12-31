@@ -32,6 +32,7 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
@@ -478,17 +479,17 @@ public class Unit {
         int unique_items = countUniqueItems(gears);
 
         if (unique_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS.get()) {
-            if (en instanceof PlayerEntity) {
+            if (en instanceof ServerPlayerEntity) {
                 en.sendMessage(new StringTextComponent("Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
                         .get()));
             }
             return false;
         }
-
+        
         int runed_items = countRunedItems(gears);
 
         if (runed_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS.get()) {
-            if (en instanceof PlayerEntity) {
+            if (en instanceof ServerPlayerEntity) {
                 en.sendMessage(new StringTextComponent("Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
                         .get()));
             }

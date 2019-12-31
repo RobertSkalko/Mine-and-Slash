@@ -23,8 +23,6 @@ Now, how does this mod do this?
 
 - Player attacks require energy, spells require mana. Learn to kite mobs and not waste mana.
 
-- Players need to craft a player level up token to level up (and gain a full exp bar)
-
 
 Now let's get on to features, if you're here, you probably are fine with the drawbacks and want to play it!
 

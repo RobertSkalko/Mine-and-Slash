@@ -1,6 +1,10 @@
 2.9.5
 added azure's gui overlay option
 fix modify station tooltips a bit
+player lvl up token and config removed
+try fix player vanilla lvls being wrong after teleporting to maps
+changed config from common to server so it syncs automatically to clients. Transfered all configs to separate folder.
+
 2.9.4
 try fix wand crash
 updated to latest forge

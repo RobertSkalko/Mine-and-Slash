@@ -131,7 +131,6 @@ public class ItemRegister {
         list.add(new ItemLevelNearestEntity());
         list.add(new ItemMapBackPortal());
         list.add(new ItemNewbieGearBag());
-        list.add(new ItemPlayerLevelUp());
 
         list.add(new ItemAcidBolt());
         list.add(new ItemFireBolt());

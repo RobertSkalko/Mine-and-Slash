@@ -10,7 +10,7 @@ public class ModConfig {
     public DropRatesContainer DropRates;
     public StatConfig PlayerBaseStats;
 
-    public static final String NAME = "MAIN_CONFIG";
+    public static final String NAME = "SERVER";
     public static final ForgeConfigSpec spec;
     public static final ModConfig INSTANCE;
 

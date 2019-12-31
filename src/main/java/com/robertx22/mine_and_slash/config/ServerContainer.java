@@ -7,7 +7,6 @@ public class ServerContainer {
     public BooleanValue USE_COMPATIBILITY_ITEMS;
     public BooleanValue DISABLE_VANILLA_HP_REGEN;
     public BooleanValue GENERATE_ORES;
-    public BooleanValue LEVEL_UPS_COST_TOKEN;
     public BooleanValue GET_STARTER_ITEMS;
     public BooleanValue RESET_MAP_DIMENSIONS_ON_LOAD;
     public BooleanValue DISABLE_DEATH_IN_MAPS;
@@ -90,10 +89,6 @@ public class ServerContainer {
         GENERATE_ORES = builder.comment(".")
                 .translation("mmorpg.word.")
                 .define("GENERATE_ORES", true);
-
-        LEVEL_UPS_COST_TOKEN = builder.comment(".")
-                .translation("mmorpg.word.")
-                .define("LEVEL_UPS_COST_TOKEN", false);
 
         MAXIMUM_WORN_RUNED_ITEMS = builder.comment(".")
                 .translation("mmorpg.word.")
