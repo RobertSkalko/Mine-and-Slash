@@ -94,7 +94,7 @@ public abstract class BaseTrait extends Stat {
             }
         }
 
-        if (Screen.hasShiftDown()) {
+        if (Screen.hasAltDown()) {
             if (locDescForLangFile().isEmpty() == false) {
                 list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(this
                         .locDesc()).appendText("]"));

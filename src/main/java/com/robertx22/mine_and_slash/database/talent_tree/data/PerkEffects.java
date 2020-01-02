@@ -65,7 +65,7 @@ public class PerkEffects {
 
         PHYSICAL_DMG = PerkEffectBuilder.build("phys_dmg", PhysicalDamage.INSTANCE, new ExactStatData(2, StatTypes.Percent, PhysicalDamage.GUID));
         SPELL_DMG = PerkEffectBuilder.build("spell_dmg", SpellDamage.INSTANCE, new ExactStatData(2, StatTypes.Flat, SpellDamage.GUID));
-        CRIT_HIT = PerkEffectBuilder.build("crit_hit", CriticalHit.INSTANCE, new ExactStatData(2, StatTypes.Flat, CriticalHit.GUID));
+        CRIT_HIT = PerkEffectBuilder.build("crit_hit", CriticalHit.INSTANCE, new ExactStatData(1, StatTypes.Flat, CriticalHit.GUID));
         CRIT_DMG = PerkEffectBuilder.build("crit_dmg", CriticalDamage.INSTANCE, new ExactStatData(3, StatTypes.Flat, CriticalDamage.GUID));
         BLOCK_PERCENT = PerkEffectBuilder.build("block_percent", BlockStrength.INSTANCE, new ExactStatData(3, StatTypes.Percent, BlockStrength.GUID));
 

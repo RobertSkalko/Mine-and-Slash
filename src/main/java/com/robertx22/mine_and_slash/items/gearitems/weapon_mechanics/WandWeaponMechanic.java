@@ -52,7 +52,7 @@ public class WandWeaponMechanic extends WeaponMechanic {
                                LivingEntity target, UnitData unitsource,
                                UnitData targetUnit, float multi) {
 
-        double RANGE = 3;
+        double RANGE = 1.5F;
 
         List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(RANGE, target, LivingEntity.class)
                 .stream()

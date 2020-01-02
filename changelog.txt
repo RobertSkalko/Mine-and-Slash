@@ -4,6 +4,9 @@ fix modify station tooltips a bit
 player lvl up token and config removed
 try fix player vanilla lvls being wrong after teleporting to maps
 changed config from common to server so it syncs automatically to clients. Transfered all configs to separate folder.
+nerfed crit rate talents
+nerfed wand aoe 
+talent tree now reminds you which button to click to show more stat info
 
 2.9.4
 try fix wand crash

@@ -247,10 +247,7 @@ public class PlayerMapCap {
 
         @Override
         public String getLastMapGUID() {
-
-            return
-
-                    this.getMap().mapUUID;
+            return this.getMap().mapUUID;
         }
 
         @Override

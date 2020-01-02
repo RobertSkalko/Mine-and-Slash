@@ -12,8 +12,11 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -91,7 +94,18 @@ public class PerkEffect implements ITooltipList, IApplyableStats, ISlashRegistry
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
+
+        int before = list.size();
         this.exactStats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+        int after = list.size();
+
+        if (after > before) {
+            if (!Screen.hasAltDown()) {
+                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(Words.PressAltForStatInfo
+                        .locName()).appendText("]"));
+            }
+        }
+
         return list;
     }
 
