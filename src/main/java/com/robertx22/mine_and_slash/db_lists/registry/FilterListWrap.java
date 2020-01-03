@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
+import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.comparators.RarityComparator;
+import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IGearSlotType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
@@ -27,6 +29,13 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     public FilterListWrap<C> ofTierOrLess(int tier) {
         this.list = list.stream()
                 .filter(x -> ((ITiered) x).Tier() <= tier)
+                .collect(Collectors.toList());
+        return this;
+    }
+
+    public FilterListWrap<C> ofCurrencyUsableOnItemType(ItemType type) {
+        this.list = list.stream()
+                .filter(x -> ((CurrencyItem) x).itemTypesUsableOn == type)
                 .collect(Collectors.toList());
         return this;
     }

@@ -32,7 +32,7 @@ public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile
     public void render(int mouseX, int mouseY, float partialTicks) {
 
         if (tile != null) {
-            if (mc.player.ticksExisted % 20 == 0) {
+            if (mc.player.ticksExisted % 3 == 0) {
                 MMORPG.sendToServer(new RequestTilePacket(tile.getPos()));
             }
         }

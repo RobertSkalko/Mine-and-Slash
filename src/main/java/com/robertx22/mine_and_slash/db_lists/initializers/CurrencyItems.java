@@ -8,6 +8,8 @@ import com.robertx22.mine_and_slash.database.items.currency.infusions.upgrade.No
 import com.robertx22.mine_and_slash.database.items.currency.infusions.upgrade.SuperiorUpgradeInfusion;
 import com.robertx22.mine_and_slash.database.items.currency.infusions.upgrade.WondrousUpgradeInfusion;
 import com.robertx22.mine_and_slash.database.items.currency.map.ItemAddGroupMap;
+import com.robertx22.mine_and_slash.database.items.currency.map.ItemAddMapLevel;
+import com.robertx22.mine_and_slash.database.items.currency.map.ItemAddMapTier;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ItemRegister;
 
@@ -15,6 +17,9 @@ public class CurrencyItems implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        add(new ItemAddMapTier());
+        add(new ItemAddMapLevel());
 
         add(new ItemCheapGearLvl());
         add(new ItemRerollPrimaryStats());

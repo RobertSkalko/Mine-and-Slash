@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -309,6 +310,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
                 Item item = SlashRegistry.CurrencyItems()
                         .getWrapped()
+                        .ofCurrencyUsableOnItemType(ItemType.GEAR)
                         .ofTierRange(tier - 5, tier + 2)
                         .random();
 

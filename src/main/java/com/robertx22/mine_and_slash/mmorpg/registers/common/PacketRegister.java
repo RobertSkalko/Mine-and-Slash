@@ -39,6 +39,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, TryRemoveTalentPacket.class, TryRemoveTalentPacket::encode, TryRemoveTalentPacket::decode, TryRemoveTalentPacket::handle);
 
+        MMORPG.Network.registerMessage(index++, UseMapTicketPacket.class, UseMapTicketPacket::encode, UseMapTicketPacket::decode, UseMapTicketPacket::handle);
+
     }
 
 }

@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -201,6 +202,7 @@ public class SpellItemData implements ICommonDataItem {
 
             Item item = SlashRegistry.CurrencyItems()
                     .getWrapped()
+                    .ofCurrencyUsableOnItemType(ItemType.GEAR)
                     .ofTierOrLess(this.rarity * 3)
                     .random();
 

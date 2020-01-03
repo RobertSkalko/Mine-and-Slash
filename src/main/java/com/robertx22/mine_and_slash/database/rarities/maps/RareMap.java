@@ -19,7 +19,7 @@ public class RareMap extends BaseRare implements MapRarity {
 
     @Override
     public float specialItemChance() {
-        return 3.5F;
+        return 15F;
     }
 
     @Override

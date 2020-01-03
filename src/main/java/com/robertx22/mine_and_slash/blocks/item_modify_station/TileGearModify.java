@@ -154,7 +154,7 @@ public class TileGearModify extends BaseTile {
 
     @Override
     public int tickRate() {
-        return 10;
+        return 2;
     }
 
     @Override

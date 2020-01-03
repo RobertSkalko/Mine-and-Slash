@@ -66,13 +66,15 @@ public class ContainerTypeRegisters {
                 .setRegistryName(BlockRegister.GEAR_MODIFY_ID));
         r.register(IForgeContainerType.create(ContainerGearRepair::new)
                 .setRegistryName(BlockRegister.GEAR_REPAIR_ID));
+
         r.register(IForgeContainerType.create(ContainerGearSalvage::new)
                 .setRegistryName(BlockRegister.GEAR_SALVAGE_ID));
 
+        r.register(IForgeContainerType.create(ContainerMapDevice::new)
+                .setRegistryName(BlockRegister.MAP_DEVICE_ID));
+
         r.register(IForgeContainerType.create(ContainerMasterBag::new)
                 .setRegistryName(MASTER_BAG_ID));
-
-        r.register(new ContainerType<>(ContainerMapDevice::new).setRegistryName(BlockRegister.MAP_DEVICE_ID));
 
         r.register(new ContainerType<>(ContainerMapBag::new).setRegistryName(MAP_BAG_ID));
         r.register(new ContainerType<>(ContainerLootBag::new).setRegistryName(LOOT_BAG_ID));

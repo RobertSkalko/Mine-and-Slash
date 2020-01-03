@@ -19,7 +19,7 @@ public class CommonMap extends BaseCommon implements MapRarity {
 
     @Override
     public float specialItemChance() {
-        return 1.5F;
+        return 5F;
     }
 
     @Override

@@ -128,6 +128,6 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
 
     @Override
     public List<String> loreLines() {
-        return Arrays.asList("Precious Ingredient that can be used in many ways:", " * Crafting Currency Items", " * Repairing Gear", " * Crafting new Gear");
+        return Arrays.asList("Precious Ingredient.");
     }
 }

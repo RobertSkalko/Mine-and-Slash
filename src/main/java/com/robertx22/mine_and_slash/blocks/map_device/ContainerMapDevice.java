@@ -8,6 +8,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
 
 public class ContainerMapDevice extends BaseTileContainer {
 
@@ -19,13 +21,15 @@ public class ContainerMapDevice extends BaseTileContainer {
 
     public static final int MAP_DEVICE_SLOTS_COUNT = 4;
 
-    public ContainerMapDevice(int i, PlayerInventory playerInventory) {
-        this(i, playerInventory, new Inventory(TileMapDevice.size));
+    public ContainerMapDevice(int i, PlayerInventory playerInventory, PacketBuffer buf) {
+        this(i, playerInventory, new Inventory(TileMapDevice.size), buf.readBlockPos());
     }
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory,
-                              IInventory inventory) {
+                              IInventory inventory, BlockPos pos) {
         super(MAP_DEVICE_SLOTS_COUNT, ContainerTypeRegisters.MAP_DEVICE, i);
+
+        this.pos = pos;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;

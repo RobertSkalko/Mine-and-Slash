@@ -19,7 +19,7 @@ public class LegendaryMap extends BaseLegendary implements MapRarity {
 
     @Override
     public float specialItemChance() {
-        return 10.5F;
+        return 50;
     }
 
     @Override

@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.AffectedEntities;
@@ -37,7 +38,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -201,8 +201,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         return list;
     }
 
-    public DimensionType setupPlayerMapData(World ogworld, BlockPos pos,
-                                            PlayerEntity player) {
+    public DimensionType setupPlayerMapData(BlockPos pos, PlayerEntity player) {
 
         UnitData unit = Load.Unit(player);
 
@@ -226,7 +225,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
             Item item = SlashRegistry.CurrencyItems()
                     .getWrapped()
-                    .ofTierOrLess(tier)
+                    .ofCurrencyUsableOnItemType(ItemType.MAP)
                     .random();
 
             stack = new ItemStack(item);
