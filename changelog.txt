@@ -7,6 +7,9 @@ changed config from common to server so it syncs automatically to clients. Trans
 nerfed crit rate talents
 nerfed wand aoe 
 talent tree now reminds you which button to click to show more stat info
+map device no longer can increase tier or lvl of maps, its now done through currency items in modify station
+to sacrifice a map, just right click map device with the map
+map isnt used up anymore if there isn't enough space for portals
 
 2.9.4
 try fix wand crash

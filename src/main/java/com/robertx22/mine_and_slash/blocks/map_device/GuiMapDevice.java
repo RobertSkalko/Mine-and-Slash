@@ -30,6 +30,15 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
     }
 
     @Override
+    protected void init() {
+        super.init();
+        super.init();
+
+        this.addButton(new MapGetGroupMapButton(guiLeft + 10, guiTop + 95));
+
+    }
+
+    @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
 
         // Bind the image texture
@@ -49,30 +58,9 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
         font.drawString(Words.Map_Device.translate(), LABEL_XPOS, LABEL_YPOS, Color.darkGray
                 .getRGB());
 
-        final int TIER_XPOS = 35;
-        final int TIER_YPOS = 105;
-        String tier = Words.Tier.translate() + "+";
-        font.drawString(tier, TIER_XPOS - font.getStringWidth(tier) / 2, TIER_YPOS, Color.darkGray
-                .getRGB());
-
-        final int LEVEL_XPOS = 143;
-        final int LEVEL_YPOS = 105;
-        String level = Words.Level.translate() + "+";
-        font.drawString(level, LEVEL_XPOS - font.getStringWidth(level) / 2, LEVEL_YPOS, Color.darkGray
-                .getRGB());
-
-        final int MAP_XPOS = 90;
-        final int MAP_YPOS = 15;
-        String map = Words.Put_Map.translate();
-        font.drawString(map, MAP_XPOS - font.getStringWidth(map) / 2, MAP_YPOS, Color.darkGray
-                .getRGB());
-
-        final int START_XPOS = 88;
-        final int START_YPOS = 85;
-        String start = Words.Start.translate();
-        font.drawString(start, START_XPOS - font.getStringWidth(start) / 2, START_YPOS, Color.darkGray
-                .getRGB());
-
+        final int REM_XPOS = 5;
+        final int REM_YPOS = 15;
+        font.drawString("Remaining Map Tickets: 0", REM_XPOS, REM_YPOS, Color.darkGray.getRGB());
     }
 
 }

@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +13,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -24,11 +22,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.dimension.DimensionType;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class TileMapDevice extends BaseTile {
 
-    public static final int size = 4;
+    public static final int size = 0;
 
     @Override
     public boolean isAutomatable() {
@@ -38,18 +35,6 @@ public class TileMapDevice extends BaseTile {
     @Override
     public boolean isItemValidInput(ItemStack stack) {
         return false;
-    }
-
-    public ItemStack StartSlot() {
-        return itemStacks[3];
-    }
-
-    public ItemStack TierSlot() {
-        return itemStacks[0];
-    }
-
-    public ItemStack LevelSlot() {
-        return itemStacks[1];
     }
 
     public ItemStack MapSlot() {
@@ -97,129 +82,71 @@ public class TileMapDevice extends BaseTile {
     public void tick() {
         if (!this.world.isRemote) {
 
-            ticks++;
-            if (ticks > 20) {
-                ticks = 0;
-
-                doLogic();
-
-            }
         }
 
     }
 
-    private void doLogic() {
+    private boolean summonPortals(MapItemData map) {
 
         if (world == null || world.getDimension() == null || world.getDimension() instanceof IWP) {
-            return;
+            return false;
         }
 
-        ItemStack start = this.StartSlot();
+        BlockPos p = this.pos;
 
-        MapItemData map = Map.Load(this.MapSlot());
-        MapItemData level = Map.Load(this.LevelSlot());
-        MapItemData tier = Map.Load(this.TierSlot());
+        PlayerEntity player = this.getWorld()
+                .getClosestPlayer(p.getX(), p.getY(), p.getZ(), 20, EntityPredicates.IS_ALIVE);
 
-        if (map != null) {
+        if (player != null) {
 
-            if (level != null) {
+            world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.6f, 0);
+            world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
 
-                if (map.increaseLevel(level.rarity + 1)) {
-                    this.LevelSlot().shrink(1);
-                    Map.Save(this.MapSlot(), map);
+            try {
+
+                DimensionType type = MapManager.getDimensionType(map.getIWP()
+                        .getResourceLoc());
+
+                // start map
+
+                BlockPos pos = this.pos.north(4);
+                Boolean spawnedPortal1 = ItemMap.createMapPortal(type, pos, world, map);
+
+                BlockPos pos1 = this.pos.south(4);
+                Boolean spawnedPortal2 = ItemMap.createMapPortal(type, pos1, world, map);
+
+                BlockPos pos2 = this.pos.east(4);
+                Boolean spawnedPortal3 = ItemMap.createMapPortal(type, pos2, world, map);
+
+                BlockPos pos3 = this.pos.west(4);
+                Boolean spawnedPortal4 = ItemMap.createMapPortal(type, pos3, world, map);
+
+                if (!spawnedPortal1 && !spawnedPortal2 && !spawnedPortal3 && !spawnedPortal4) {
+                    AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(10);
+                    world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab)
+                            .forEach(x -> x.sendMessage(Chats.NoSpaceForPortal.locName()));
+                    return false;
                 }
 
-            }
-            if (tier != null) {
-
-                if (map.increaseTier(tier.rarity + 1)) {
-                    this.TierSlot().shrink(1);
-                    Map.Save(this.MapSlot(), map);
-                }
-            }
-
-            if (start != null && start.getItem().equals(Items.WHEAT_SEEDS)) {
-
-                BlockPos p = this.pos;
-
-                PlayerEntity player = this.getWorld()
-                        .getClosestPlayer(p.getX(), p.getY(), p.getZ(), 20, EntityPredicates.IS_ALIVE);
-
-                if (player != null) {
-
-                    world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.6f, 0);
-                    world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
-
-                    try {
-
-                        DimensionType type = MapManager.getDimensionType(map.getIWP()
-                                .getResourceLoc());
-
-                        MapItemData cloned = map.clone();
-
-                        if (map.groupPlay) {
-                            trySetupMapForGroup(cloned);
-
-                        } else {
-                            map.setupPlayerMapData(world, p, player);
-                        }
-
-                        // start map
-                        this.MapSlot().shrink(1);
-                        this.StartSlot().shrink(1);
-
-                        BlockPos pos = this.pos.north(4);
-                        Boolean spawnedPortal1 = ItemMap.createMapPortal(type, pos, world, map);
-
-                        BlockPos pos1 = this.pos.south(4);
-                        Boolean spawnedPortal2 = ItemMap.createMapPortal(type, pos1, world, map);
-
-                        BlockPos pos2 = this.pos.east(4);
-                        Boolean spawnedPortal3 = ItemMap.createMapPortal(type, pos2, world, map);
-
-                        BlockPos pos3 = this.pos.west(4);
-                        Boolean spawnedPortal4 = ItemMap.createMapPortal(type, pos3, world, map);
-
-                        if (!spawnedPortal1 && !spawnedPortal2 && !spawnedPortal3 && !spawnedPortal4) {
-                            AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(10);
-                            world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab)
-                                    .forEach(x -> x.sendMessage(Chats.NoSpaceForPortal.locName()));
-                        }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
             markDirty();
         }
 
+        return true;
+
     }
 
-    private void trySetupMapForGroup(MapItemData map) {
+    public void sacrificeMap(PlayerEntity player, MapItemData mapdata, ItemStack map) {
 
-        if (map.groupPlay) {
+        boolean summoned = summonPortals(mapdata);
 
-            AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(10);
-
-            List<ServerPlayerEntity> players = world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab);
-
-            int added = 0;
-
-            for (ServerPlayerEntity p : players) {
-                if (added < map.maxPlayersInGroup) {
-                    MapItemData cloned = map.clone();
-                    cloned.setupPlayerMapData(world, this.pos, p);
-                    added++;
-
-                }
-            }
-
+        if (summoned) {
+            mapdata.setupPlayerMapData(this.world, this.pos, player);
+            map.setCount(0);
         }
-
     }
 
     @Override
@@ -236,4 +163,5 @@ public class TileMapDevice extends BaseTile {
         return new ContainerMapDevice(i, playerInventory, this);
 
     }
+
 }
