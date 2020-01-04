@@ -11,7 +11,8 @@ public class BottomMiddleOverlay extends BasePlayerOverlay {
 
     @Override
     public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
-                     RenderGameOverlayEvent event, Unit unit, UnitData data) {
+                     RenderGameOverlayEvent event, UnitData data) {
+        Unit unit = data.getUnit();
 
         int height = mc.mainWindow.getScaledHeight();
         int width = mc.mainWindow.getScaledWidth();

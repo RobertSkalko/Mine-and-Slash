@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.gui.gear_overlay;
 
 import com.robertx22.mine_and_slash.onevent.my_events.CollectGearEvent;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
@@ -22,7 +21,6 @@ public class GearOverlayGUI extends AbstractGui {
         this.mc = mc;
     }
 
-    Unit unit;
     EntityCap.UnitData data;
     int ticks = 0;
 
@@ -61,21 +59,16 @@ public class GearOverlayGUI extends AbstractGui {
 
                 ticks = 0;
 
-                Unit newUnit = null;
-
                 if (newData != null) {
                     data = newData;
-                    if (newData.getUnit() != null) {
-                        newUnit = newData.getUnit();
+
+                    if (data.getUnit() != null) {
+                        setupElements();
                     }
-                    if (newUnit != null) {
-                        unit = newUnit;
-                    }
-                    setupElements();
                 }
             }
 
-            if (unit == null || data == null || mc == null || mc.player == null) {
+            if (data == null || data.getUnit() == null || data == null || mc == null || mc.player == null) {
                 return;
             }
 

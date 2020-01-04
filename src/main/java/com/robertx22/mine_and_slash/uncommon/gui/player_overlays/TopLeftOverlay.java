@@ -14,7 +14,10 @@ public class TopLeftOverlay extends BasePlayerOverlay {
 
     @Override
     public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
-                     RenderGameOverlayEvent event, Unit unit, UnitData data) {
+                     RenderGameOverlayEvent event, UnitData data) {
+
+        Unit unit = data.getUnit();
+
         yPos = 2;
 
         float scale = 1F;

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.gui.player_overlays;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
@@ -27,7 +26,6 @@ public class BarsGUI extends AbstractGui {
 
     }
 
-    Unit unit;
     UnitData data;
     int ticks = 0;
 
@@ -54,46 +52,36 @@ public class BarsGUI extends AbstractGui {
 
             ticks++;
 
-            if (ticks > 10) {
+            if (ticks > 3) {
                 UnitData newData = Load.Unit(mc.player);
 
                 ticks = 0;
 
-                Unit newUnit = null;
-
                 if (newData != null) {
                     data = newData;
-                    if (newData.getUnit() != null) {
-                        newUnit = newData.getUnit();
-                    }
-                    if (newUnit != null) {
-                        unit = newUnit;
-                    }
                 }
             }
 
-            if (unit == null || data == null || mc == null || mc.player == null) {
+            if (data.getUnit() == null || data == null || mc == null || mc.player == null) {
                 return;
             }
-            if (unit.energyData() == null || unit.manaData() == null || unit.healthData() == null) {
-                return;
-            }
-            if (mc.player.ticksExisted < 25) {
+            if (data.getUnit().energyData() == null || data.getUnit()
+                    .manaData() == null || data.getUnit().healthData() == null) {
                 return;
             }
 
             PlayerGUIs guiType = ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get();
 
             if (guiType.equals(PlayerGUIs.Top_Left)) {
-                topleft.Draw(this, mc, mc.player, event, unit, data);
+                topleft.Draw(this, mc, mc.player, event, data);
             } else if (guiType.equals(PlayerGUIs.Bottom_Middle)) {
-                bottomMiddle.Draw(this, mc, mc.player, event, unit, data);
+                bottomMiddle.Draw(this, mc, mc.player, event, data);
             } else if (guiType.equals(PlayerGUIs.Bottom_Middle_Corners)) {
-                bottomMiddleCorners.Draw(this, mc, mc.player, event, unit, data);
+                bottomMiddleCorners.Draw(this, mc, mc.player, event, data);
             } else if (guiType.equals(PlayerGUIs.Middle)) {
-                middle.Draw(this, mc, mc.player, event, unit, data);
+                middle.Draw(this, mc, mc.player, event, data);
             } else if (guiType.equals(PlayerGUIs.Azure_Top_Left)) {
-            	azuretopleft.Draw(this, mc, mc.player, event, unit, data);
+                azuretopleft.Draw(this, mc, mc.player, event, data);
             }
 
         } catch (Exception e) {

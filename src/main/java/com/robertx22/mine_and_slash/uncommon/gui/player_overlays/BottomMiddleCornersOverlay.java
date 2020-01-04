@@ -14,8 +14,9 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
 
     @Override
     public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
-                     RenderGameOverlayEvent event, Unit unit, UnitData data) {
+                     RenderGameOverlayEvent event, UnitData data) {
         // ENERGY
+        Unit unit = data.getUnit();
 
         int offsetx = entity.getHeldItemOffhand()
                 .isEmpty() ? X_OFFSET_NO_OFFHAND : X_OFFSET_OFFHAND;

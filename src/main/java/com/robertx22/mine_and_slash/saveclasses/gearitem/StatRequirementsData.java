@@ -118,15 +118,12 @@ public class StatRequirementsData {
 
     public boolean meetsRequirements(UnitData data, GearItemData gear) {
 
-        if (data != null) {
+        if (data != null && data.getUnit() != null) {
 
             for (Map.Entry<String, Integer> entry : getReqs(gear).entrySet()) {
                 if (SlashRegistry.Stats().isRegistered(entry.getKey())) {
-                    if (data.getUnit().getStat(entry.getKey()) != null) {
-                        if (data.getUnit()
-                                .getStat(entry.getKey()).Value < entry.getValue()) {
-                            return false;
-                        }
+                    if (data.getUnit().getStat(entry.getKey()).Value < entry.getValue()) {
+                        return false;
                     }
                 }
             }

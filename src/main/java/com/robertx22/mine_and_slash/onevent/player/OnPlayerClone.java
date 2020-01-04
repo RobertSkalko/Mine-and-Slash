@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -15,7 +16,9 @@ public class OnPlayerClone {
         PlayerEntity current = event.getEntityPlayer();
 
         try {
-            Load.Unit(current).setNBT(Load.Unit(original).getNBT());
+            EntityCap.UnitData data = Load.Unit(current);
+            data.setNBT(Load.Unit(original).getNBT());
+            data.syncToClient(current);
         } catch (Exception e) {
             e.printStackTrace();
         }

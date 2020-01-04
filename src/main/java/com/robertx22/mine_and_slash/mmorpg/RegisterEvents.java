@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.onevent.my_events.CollectGearEvent;
 import com.robertx22.mine_and_slash.onevent.my_events.GiveExpSub;
 import com.robertx22.mine_and_slash.onevent.ontick.OnTickLogic;
 import com.robertx22.mine_and_slash.onevent.player.*;
-import com.robertx22.mine_and_slash.onevent.testrender;
 import com.robertx22.mine_and_slash.uncommon.capability.WeaponSpeedCap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -57,7 +56,7 @@ public class RegisterEvents {
         register(OnMobSpawn.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            register(testrender.class);
+
         });
 
     }

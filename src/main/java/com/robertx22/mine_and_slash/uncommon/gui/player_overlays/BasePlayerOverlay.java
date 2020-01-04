@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.gui.player_overlays;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.client.Minecraft;
@@ -33,7 +32,7 @@ public abstract class BasePlayerOverlay {
     public final ResourceLocation bloodpath = new ResourceLocation("mmorpg", "textures/gui/overlay/blood_bar.png");
 
     public abstract void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
-                              RenderGameOverlayEvent event, Unit unit, UnitData level);
+                              RenderGameOverlayEvent event, UnitData level);
 
     public void DrawBar(Minecraft mc, AbstractGui gui, ResourceLocation res,
                         float current, float max, Type type, UnitData data, int x,

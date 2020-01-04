@@ -485,7 +485,7 @@ public class Unit {
             }
             return false;
         }
-        
+
         int runed_items = countRunedItems(gears);
 
         if (runed_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS.get()) {

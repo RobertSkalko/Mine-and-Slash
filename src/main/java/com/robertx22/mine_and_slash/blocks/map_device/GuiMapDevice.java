@@ -66,10 +66,10 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
 
             final int REM_XPOS = 5;
             final int REM_YPOS = 15;
-            font.drawString("Remaining Map Tickets: " + tile.mapDeviceData.getRemainingTickets(), REM_XPOS, REM_YPOS, Color.darkGray
+            font.drawString("Remaining Group Map Tickets: " + tile.mapDeviceData.getRemainingTickets(), REM_XPOS, REM_YPOS, Color.darkGray
                     .getRGB());
 
-            String text = "Retrieve Group Map Ticket";
+            String text = "Take Group Map Ticket";
 
             final int textx = 10 + (MapGetGroupMapButton.xSize / 2) - font.getStringWidth(text) / 2;
             final int texty = 100;
