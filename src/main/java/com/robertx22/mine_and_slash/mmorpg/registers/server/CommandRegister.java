@@ -46,5 +46,7 @@ public class CommandRegister {
         ResetTalents.register(dispatcher);
         OpenTalentsGui.register(dispatcher);
 
+        GiveCrate.register(dispatcher);
+
     }
 }

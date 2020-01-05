@@ -14,6 +14,8 @@ import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.loot_crates.LootCrate;
+import com.robertx22.mine_and_slash.database.loot_crates.UniqueCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
@@ -105,6 +107,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<BaseItemModification> ItemModifications() {
         return getRegistry(SlashRegistryType.ITEM_MODIFICATION);
+    }
+
+    public static SlashRegistryContainer<LootCrate> LootCrates() {
+        return getRegistry(SlashRegistryType.LOOT_CRATE);
     }
 
     public static SlashRegistryContainer<ConfigItem> CompatibleItems() {
@@ -214,7 +220,7 @@ public class SlashRegistry {
 
         new PerkEffectsInit().registerAll();
         new Perks().registerAll();
-
+        new LootCrates().registerAll();
     }
 
     private static void createRegistries() {
@@ -244,6 +250,7 @@ public class SlashRegistry {
                 .logAdditions());
         map.put(SlashRegistryType.PERK, new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
         map.put(SlashRegistryType.PERK_EFFECT, new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
+        map.put(SlashRegistryType.LOOT_CRATE, new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, new UniqueCrate()));
 
     }
 

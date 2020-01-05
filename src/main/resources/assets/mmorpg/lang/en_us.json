@@ -87,34 +87,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
-	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
-	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
-	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
-	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
-	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
-	"item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
-	"item.mmorpg.spell_frost_nova": "§cFrost Nova",
-	"item.mmorpg.spell_frostbolt": "§cFrost Bolt",
-	"item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
-	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
-	"item.mmorpg.spell_instantheal": "§cInstant Heal",
-	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
-	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
-	"item.mmorpg.spell_self_regen": "§cRegenerate",
-	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
-	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
-	"item.mmorpg.spell_thunderbolt": "§cLightning Bolt",
-	"item.mmorpg.spells.extra_flame_dmg": "§cExtra Flame Damage",
-	"item.mmorpg.spells.extra_frost_dmg": "§cExtra Frost Damage",
-	"item.mmorpg.spells.extra_lightning_dmg": "§cExtra Lightning Damage",
-	"item.mmorpg.spells.extra_venom_dmg": "§cExtra Venom Damage",
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "§7Minor Energy Regen Buff Potion ",
@@ -167,6 +139,34 @@
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"item.mmorpg.spell_acid_bomb": "§cVenom Bomb",
+	"item.mmorpg.spell_acidbolt": "§cVenom Bolt",
+	"item.mmorpg.spell_acidexplosion": "§cVenom Explosion",
+	"item.mmorpg.spell_fire_bomb": "§cFlame Bomb",
+	"item.mmorpg.spell_fire_nova": "§cFlame Nova",
+	"item.mmorpg.spell_firebolt": "§cFlame Bolt",
+	"item.mmorpg.spell_flameexplosion": "§cFlame Explosion",
+	"item.mmorpg.spell_frost_nova": "§cFrost Nova",
+	"item.mmorpg.spell_frostbolt": "§cFrost Bolt",
+	"item.mmorpg.spell_frostexplosion": "§cFrost Explosion",
+	"item.mmorpg.spell_ice_bomb": "§cFrost Bomb",
+	"item.mmorpg.spell_instantheal": "§cInstant Heal",
+	"item.mmorpg.spell_lightningexplosion": "§cLightning Explosion",
+	"item.mmorpg.spell_poison_nova": "§cVenom Nova",
+	"item.mmorpg.spell_self_regen": "§cRegenerate",
+	"item.mmorpg.spell_thunder_bomb": "§cLightning Bomb",
+	"item.mmorpg.spell_thunder_nova": "§cLightning Nova",
+	"item.mmorpg.spell_thunderbolt": "§cLightning Bolt",
+	"item.mmorpg.spells.extra_flame_dmg": "§cExtra Flame Damage",
+	"item.mmorpg.spells.extra_frost_dmg": "§cExtra Frost Damage",
+	"item.mmorpg.spells.extra_lightning_dmg": "§cExtra Lightning Damage",
+	"item.mmorpg.spells.extra_venom_dmg": "§cExtra Venom Damage",
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -201,6 +201,26 @@
 	"mmorpg.set.wisdom_of_the_elders": "Wisdom of the Elders",
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
@@ -261,26 +281,6 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§dMythical Small Spell Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",

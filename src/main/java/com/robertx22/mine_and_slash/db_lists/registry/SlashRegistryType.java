@@ -23,6 +23,7 @@ public enum SlashRegistryType {
     COMPATIBLE_ITEM(),
     PERK(),
     PERK_EFFECT(),
+    LOOT_CRATE,
     RECIPE();
 
 }

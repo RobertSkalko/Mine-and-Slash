@@ -30,6 +30,7 @@ import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ItemMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.mine_and_slash.items.misc.*;
+import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items.AlchemyItemRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -120,6 +121,8 @@ public class ItemRegister {
     private static void registerSingles(RegistryEvent.Register<Item> event) {
 
         IForgeRegistry<Item> r = event.getRegistry();
+
+        list.add(new MapLootCrateItem());
 
         list.add(new ItemCurrencyBag().setRegistryName(ItemCurrencyBag.ID));
         list.add(new ItemLootBag().setRegistryName(ItemLootBag.ID));
