@@ -62,7 +62,7 @@ public class BarsGUI extends AbstractGui {
                 }
             }
 
-            if (data.getUnit() == null || data == null || mc == null || mc.player == null) {
+            if (data == null || data.getUnit() == null || mc == null || mc.player == null) {
                 return;
             }
             if (data.getUnit().energyData() == null || data.getUnit()
@@ -85,7 +85,7 @@ public class BarsGUI extends AbstractGui {
             }
 
         } catch (Exception e) {
-            // e.printStackTrace();
+            e.printStackTrace();
         }
 
     }

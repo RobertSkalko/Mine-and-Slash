@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.blocks.gear_factory_station.ContainerGearFactory;
 import com.robertx22.mine_and_slash.blocks.item_modify_station.ContainerGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.ContainerMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.ContainerGearRepair;
@@ -32,8 +31,6 @@ public class ContainerTypeRegisters {
     @ObjectHolder(PROFESSION_RECIPE_CONTAINER_ID)
     public static final ContainerType<ProfessionContainer> PROFESSION_RECIPE_CONTAINER = null;
 
-    @ObjectHolder(BlockRegister.GEAR_FACTORY_ID)
-    public static final ContainerType<ContainerGearFactory> GEAR_FACTORY = null;
     @ObjectHolder(BlockRegister.GEAR_MODIFY_ID)
     public static final ContainerType<ContainerGearModify> GEAR_MODIFY = null;
     @ObjectHolder(BlockRegister.GEAR_REPAIR_ID)
@@ -60,8 +57,6 @@ public class ContainerTypeRegisters {
         r.register(IForgeContainerType.create(ProfessionContainer::new)
                 .setRegistryName(PROFESSION_RECIPE_CONTAINER_ID));
 
-        r.register(IForgeContainerType.create(ContainerGearFactory::new)
-                .setRegistryName(BlockRegister.GEAR_FACTORY_ID));
         r.register(IForgeContainerType.create(ContainerGearModify::new)
                 .setRegistryName(BlockRegister.GEAR_MODIFY_ID));
         r.register(IForgeContainerType.create(ContainerGearRepair::new)

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.blocks.egg_loot_crate.EggLootCrateTileEntity;
-import com.robertx22.mine_and_slash.blocks.gear_factory_station.TileGearFactory;
 import com.robertx22.mine_and_slash.blocks.item_modify_station.TileGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.TileMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.TileGearRepair;
@@ -52,10 +51,6 @@ public class TileEntityRegister {
         r.register(TileEntityType.Builder.create(TileMapDevice::new, BlockRegister.BLOCK_MAP_DEVICE)
                 .build(null)
                 .setRegistryName(BlockRegister.MAP_DEVICE_ID));
-
-        r.register(TileEntityType.Builder.create(TileGearFactory::new, BlockRegister.BLOCK_GEAR_FACTORY)
-                .build(null)
-                .setRegistryName(BlockRegister.GEAR_FACTORY_ID));
 
         r.register(TileEntityType.Builder.create(EggLootCrateTileEntity::new, BlockRegister.EGG_LOOT_CRATE_BLOCK)
                 .build(null)

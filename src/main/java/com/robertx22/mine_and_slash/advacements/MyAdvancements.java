@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.advacements;
 
+import com.robertx22.mine_and_slash.database.items.currency.ItemChaosOrb;
+import com.robertx22.mine_and_slash.database.items.currency.ItemOrbOfTransmutation;
+import com.robertx22.mine_and_slash.database.items.currency.ItemStoneOfHope;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ItemMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ItemMasterBag;
-import com.robertx22.mine_and_slash.database.items.currency.ItemChaosOrb;
-import com.robertx22.mine_and_slash.database.items.currency.ItemOrbOfTransmutation;
-import com.robertx22.mine_and_slash.database.items.currency.ItemStoneOfHope;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemHammer;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
@@ -70,7 +70,6 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement repair = itemAdv(AdvTitles.RepairStation, AdvDescs.RepairStation, "repair", parent, consu, BlockRegister.BLOCK_GEAR_REPAIR);
         Advancement modify = itemAdv(AdvTitles.ModifyStation, AdvDescs.ModifyStation, "modify", lvl_10, consu, BlockRegister.BLOCK_GEAR_MODIFY);
         Advancement salvage = itemAdv(AdvTitles.SalvageStation, AdvDescs.SalvageStation, "salvage", parent, consu, BlockRegister.BLOCK_GEAR_SALVAGE);
-        Advancement factory = itemAdv(AdvTitles.FactoryStation, AdvDescs.FactoryStation, "factory", parent, consu, BlockRegister.BLOCK_GEAR_FACTORY);
 
         Advancement currency_bag = itemAdv(AdvTitles.CurrencyBag, AdvDescs.CurrencyBag, "currency_bag", repair, consu, ItemCurrencyBag.ITEM);
         Advancement map_bag = itemAdv(AdvTitles.MapBag, AdvDescs.MapBag, "map_bag", repair, consu, ItemMapBag.ITEM);

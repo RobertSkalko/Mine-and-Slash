@@ -50,6 +50,10 @@ public class StatPointScreen extends BaseScreen {
         data = Load.statPoints(Minecraft.getInstance().player);
         unitdata = Load.Unit(Minecraft.getInstance().player);
 
+        if (data == null || unitdata == null) {
+            this.onClose();
+        }
+
         this.guiLeft = (this.width - sizeX) / 2;
         this.guiTop = (this.height - sizeY) / 2;
         MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.STAT_POINTS));

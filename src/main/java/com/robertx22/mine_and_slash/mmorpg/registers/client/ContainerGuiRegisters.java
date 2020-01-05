@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
-import com.robertx22.mine_and_slash.blocks.gear_factory_station.ContainerGearFactory;
-import com.robertx22.mine_and_slash.blocks.gear_factory_station.GuiGearFactory;
 import com.robertx22.mine_and_slash.blocks.item_modify_station.ContainerGearModify;
 import com.robertx22.mine_and_slash.blocks.item_modify_station.GuiGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.ContainerMapDevice;
@@ -27,7 +25,6 @@ public class ContainerGuiRegisters {
     public static void reg() {
 
         // BLACKED "OBSOLTE" PARTS ARE NEEDED OR IT ERROS !!!!
-        ScreenManager.<ContainerGearFactory, GuiGearFactory>registerFactory(ContainerTypeRegisters.GEAR_FACTORY, GuiGearFactory::new);
         ScreenManager.<ContainerGearModify, GuiGearModify>registerFactory(ContainerTypeRegisters.GEAR_MODIFY, GuiGearModify::new);
 
         ScreenManager.<ContainerMapDevice, GuiMapDevice>registerFactory(ContainerTypeRegisters.MAP_DEVICE, GuiMapDevice::new);

@@ -31,7 +31,7 @@ public class UniqueCrate extends LootCrate {
 
     @Override
     public int averageItemCount() {
-        return 2;
+        return 1;
     }
 
     @Override

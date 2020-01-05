@@ -1,4 +1,5 @@
 2.10.0
+removed factory station (its use was replaced by the more interesting currency system and modify station)
 added azure's gui overlay option
 fix modify station tooltips a bit
 player lvl up token and config removed
