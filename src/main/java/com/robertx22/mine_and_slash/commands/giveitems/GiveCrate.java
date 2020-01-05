@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.commands.giveitems;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -28,8 +27,8 @@ public class GiveCrate {
                         .then(Commands.argument("type", StringArgumentType.word())
                                 .suggests(new CrateSuggestions())
                                 .then(Commands.argument("level", IntegerArgumentType.integer())
-                                        .then(Commands.argument("score", FloatArgumentType
-                                                .floatArg(0.1F, 10F))
+                                        .then(Commands.argument("score", IntegerArgumentType
+                                                .integer(1, 5))
                                                 .then(Commands.argument("amount", IntegerArgumentType
                                                         .integer(1, 5000))
                                                         .then(Commands.argument("tier", IntegerArgumentType
@@ -37,8 +36,8 @@ public class GiveCrate {
                                                                 .executes(e -> execute(e.getSource(), EntityArgument
                                                                         .getPlayer(e, "target"), StringArgumentType
                                                                         .getString(e, "type"), IntegerArgumentType
-                                                                        .getInteger(e, "level"), FloatArgumentType
-                                                                        .getFloat(e, "score"), IntegerArgumentType
+                                                                        .getInteger(e, "level"), IntegerArgumentType
+                                                                        .getInteger(e, "score"), IntegerArgumentType
                                                                         .getInteger(e, "amount"), IntegerArgumentType
                                                                         .getInteger(e, "tier")
 
@@ -46,7 +45,7 @@ public class GiveCrate {
     }
 
     private static int execute(CommandSource commandSource, @Nullable PlayerEntity player,
-                               String type, int lvl, float score, int amount, int tier) {
+                               String type, int lvl, int score, int amount, int tier) {
 
         if (Objects.isNull(player)) {
             try {

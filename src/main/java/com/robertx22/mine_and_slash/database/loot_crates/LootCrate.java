@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +17,8 @@ import java.util.List;
 public abstract class LootCrate implements ISlashRegistryEntry {
 
     public abstract Item lootCrateItem();
+
+    public abstract Words name();
 
     public abstract ItemStack generateStack(LootInfo info);
 
@@ -29,7 +32,7 @@ public abstract class LootCrate implements ISlashRegistryEntry {
 
     public abstract int averageItemCount();
 
-    public List<ItemStack> generateItems(LootInfo info, float scoreMulti,
+    public List<ItemStack> generateItems(LootInfo info, int scoreMulti,
                                          boolean wonLottery) {
 
         List<ItemStack> items = new ArrayList<>();

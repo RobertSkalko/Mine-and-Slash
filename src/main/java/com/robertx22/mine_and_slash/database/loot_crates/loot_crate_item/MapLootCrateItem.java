@@ -5,6 +5,8 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -14,6 +16,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -34,6 +38,11 @@ public class MapLootCrateItem extends Item {
 
     }
 
+    @Override
+    public String getHighlightTip(ItemStack stack, String displayName) {
+        return getCrate(stack).name().translate();
+    }
+
     public static Properties getProp() {
         Properties prop = new Properties().maxStackSize(1);
 
@@ -45,7 +54,7 @@ public class MapLootCrateItem extends Item {
 
     static String LVL = "LVL", SCORE = "SCORE", ID = "REGISTRY_ID", TIER = "TIER";
 
-    public static ItemStack getStack(LootCrate crate, int lvl, int mapTier, float score) {
+    public static ItemStack getStack(LootCrate crate, int lvl, int mapTier, int score) {
 
         ItemStack stack = new ItemStack(ITEM);
 
@@ -56,10 +65,16 @@ public class MapLootCrateItem extends Item {
         stack.getTag().putInt(LVL, lvl);
         stack.getTag().putInt(TIER, mapTier);
         stack.getTag().putString(ID, crate.GUID());
-        stack.getTag().putFloat(SCORE, score);
+        stack.getTag().putInt(SCORE, score);
 
         return stack;
     }
+
+    public LootCrate getCrate(ItemStack stack) {
+        return SlashRegistry.LootCrates().get(stack.getTag().getString(ID));
+    }
+
+    static String SCORE_SYMBOL = "\u2764";
 
     @OnlyIn(Dist.CLIENT)
     @Override
@@ -67,11 +82,35 @@ public class MapLootCrateItem extends Item {
                                List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         try {
-            LootCrate crate = SlashRegistry.LootCrates()
-                    .get(stack.getTag().getString(ID));
+            LootCrate crate = getCrate(stack);
             int lvl = stack.getTag().getInt(LVL);
-            float score = stack.getTag().getFloat(SCORE);
+            int score = stack.getTag().getInt(SCORE);
             int tier = stack.getTag().getInt(TIER);
+
+            tooltip.clear();
+
+            tooltip.add(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.YELLOW)
+                    .appendSibling(crate.name().locName()));
+
+            tooltip.add(TooltipUtils.level(lvl));
+
+            Tooltip.addEmpty(tooltip);
+
+            tooltip.add(TooltipUtils.tier(tier));
+
+            Tooltip.addEmpty(tooltip);
+
+            String stars = "";
+
+            for (int i = 0; i < score; i++) {
+                stars += " " + SCORE_SYMBOL;
+            }
+
+            tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Score: " + stars));
+
+            Tooltip.addEmpty(tooltip);
+
+            tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Right click to open!"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +132,7 @@ public class MapLootCrateItem extends Item {
                     LootCrate crate = SlashRegistry.LootCrates()
                             .get(stack.getTag().getString(ID));
                     int lvl = stack.getTag().getInt(LVL);
-                    float score = stack.getTag().getFloat(SCORE);
+                    int score = stack.getTag().getInt(SCORE);
                     int tier = stack.getTag().getInt(TIER);
 
                     LootInfo info = new LootInfo(player);

@@ -38,8 +38,8 @@ public class RingCrit extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new MajorCriticalHitPercent().multi(2), new MajorCriticalDamagePercent()
-                .multi(2), new EnergyRegenFlat());
+        return Arrays.asList(new MajorCriticalHitPercent().multi(1.5F), new MajorCriticalDamagePercent()
+                .multi(1.5F), new EnergyRegenFlat());
     }
 
     @Override
