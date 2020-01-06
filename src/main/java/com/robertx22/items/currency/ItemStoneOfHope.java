@@ -66,7 +66,7 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
 			Gear.Save(result, newgear);
 		}
 
-		return stack;
+		return result;
 
 	}
 
