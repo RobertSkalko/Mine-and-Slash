@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.loot_crates.bases.MapScoreEnum;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -40,7 +41,12 @@ public class MapLootCrateItem extends Item {
 
     @Override
     public String getHighlightTip(ItemStack stack, String displayName) {
-        return getCrate(stack).name().translate();
+        return CLOC.translate(name(stack));
+    }
+
+    public ITextComponent name(ItemStack stack) {
+        return new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.DARK_PURPLE)
+                .appendSibling(getCrate(stack).name().locName());
     }
 
     public static Properties getProp() {
@@ -71,8 +77,9 @@ public class MapLootCrateItem extends Item {
 
             tooltip.clear();
 
-            tooltip.add(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.YELLOW)
-                    .appendSibling(crate.name().locName()));
+            tooltip.add(name(stack));
+
+            Tooltip.addEmpty(tooltip);
 
             tooltip.add(TooltipUtils.level(lvl));
 

@@ -26,7 +26,7 @@ public class CommonerCrate extends LootCrate {
 
     @Override
     public int maxItems() {
-        return 5;
+        return 6;
     }
 
     @Override

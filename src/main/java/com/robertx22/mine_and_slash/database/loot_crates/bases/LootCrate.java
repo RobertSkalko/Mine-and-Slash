@@ -47,7 +47,8 @@ public abstract class LootCrate implements ISlashRegistryEntry {
         stack.getTag().putInt(MapLootCrateItem.LVL, lvl);
         stack.getTag().putInt(MapLootCrateItem.TIER, mapTier);
         stack.getTag().putString(MapLootCrateItem.ID, GUID());
-        stack.getTag().putInt(MapLootCrateItem.SCORE, score);
+        stack.getTag()
+                .putString(MapLootCrateItem.SCORE, MapScoreEnum.byNumber(score).name());
 
         return stack;
     }

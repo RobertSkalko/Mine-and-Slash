@@ -26,7 +26,7 @@ public class RuneCrate extends LootCrate {
 
     @Override
     public int maxItems() {
-        return 7;
+        return 10;
     }
 
     @Override

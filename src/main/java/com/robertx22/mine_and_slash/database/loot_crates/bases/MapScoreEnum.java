@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.loot_crates.bases;
 
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 
+import java.util.Arrays;
+
 public enum MapScoreEnum {
 
     BAD(1, 0.25F, Words.Bad),
@@ -15,8 +17,16 @@ public enum MapScoreEnum {
         this.itemRewardMulti = itemRewardMulti;
         this.word = word;
     }
-    
+
     static String SCORE_SYMBOL = "\u2764";
+
+    public static MapScoreEnum byNumber(int score) {
+        return Arrays.asList(MapScoreEnum.values())
+                .stream()
+                .filter(x -> ((MapScoreEnum) x).number == score)
+                .findFirst()
+                .get();
+    }
 
     public String getTooltipLine() {
         String text = "";

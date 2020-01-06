@@ -20,3 +20,4 @@ overlay now updates more often to be smoother
 map back pearl now teleports back instantly
 hud should be back faster now after changing dimensions
 adventure map bonus loot is now smaller cus i'm adding loot crate as completition reward
+pressing same keybind should now close the gui

@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.gui.stats_gui.StatOverviewGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.lwjgl.glfw.GLFW;
 
 public class OnKeyPress {
 
@@ -17,23 +18,45 @@ public class OnKeyPress {
     @SubscribeEvent
     public static void onKeyInput(InputEvent.KeyInputEvent event) {
 
+        Minecraft mc = Minecraft.getInstance();
+
         int key = event.getKey();
 
-        if (Minecraft.getInstance().currentScreen == null) { // public net.minecraft.client.gui.screen.Screen field_71462_r
+        if (event.getAction() == GLFW.GLFW_RELEASE) {
 
-            if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
-                Minecraft.getInstance().displayGuiScreen(new StatOverviewGUI());
-            } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
-                Minecraft.getInstance().displayGuiScreen(new StatPointScreen());
-            } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
-                Minecraft.getInstance().displayGuiScreen(new PerkTreeScreen());
+            if (mc.currentScreen == null) { // public net.minecraft.client.gui.screen.Screen field_71462_r
+
+                if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
+                    mc.displayGuiScreen(new StatOverviewGUI());
+                } else if (key == KeybindsRegister.Player_Stat_Points.getKey()
+                        .getKeyCode()) {
+                    mc.displayGuiScreen(new StatPointScreen());
+                } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
+                    mc.displayGuiScreen(new PerkTreeScreen());
+                }
+
+                boolean wasDown = down;
+                down = KeybindsRegister.disableNeatOverlay.isKeyDown();
+                if (mc.isGameFocused() && down && !wasDown)
+                    NeatConfig.draw = !NeatConfig.draw;
+
+            } else {
+
+                if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
+                    if (mc.currentScreen instanceof StatOverviewGUI) {
+                        mc.displayGuiScreen(null);
+                    }
+                } else if (key == KeybindsRegister.Player_Stat_Points.getKey()
+                        .getKeyCode()) {
+                    if (mc.currentScreen instanceof StatPointScreen) {
+                        mc.displayGuiScreen(null);
+                    }
+                } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
+                    if (mc.currentScreen instanceof PerkTreeScreen) {
+                        mc.displayGuiScreen(null);
+                    }
+                }
             }
-
-            boolean wasDown = down;
-            down = KeybindsRegister.disableNeatOverlay.isKeyDown();
-            if (Minecraft.getInstance().isGameFocused() && down && !wasDown)
-                NeatConfig.draw = !NeatConfig.draw;
-
         }
 
     }
