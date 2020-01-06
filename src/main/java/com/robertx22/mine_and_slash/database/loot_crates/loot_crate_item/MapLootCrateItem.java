@@ -11,7 +11,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -52,23 +51,7 @@ public class MapLootCrateItem extends Item {
 
     }
 
-    static String LVL = "LVL", SCORE = "SCORE", ID = "REGISTRY_ID", TIER = "TIER";
-
-    public static ItemStack getStack(LootCrate crate, int lvl, int mapTier, int score) {
-
-        ItemStack stack = new ItemStack(ITEM);
-
-        if (!stack.hasTag()) {
-            stack.setTag(new CompoundNBT());
-        }
-
-        stack.getTag().putInt(LVL, lvl);
-        stack.getTag().putInt(TIER, mapTier);
-        stack.getTag().putString(ID, crate.GUID());
-        stack.getTag().putInt(SCORE, score);
-
-        return stack;
-    }
+    public static String LVL = "LVL", SCORE = "SCORE", ID = "REGISTRY_ID", TIER = "TIER";
 
     public LootCrate getCrate(ItemStack stack) {
         return SlashRegistry.LootCrates().get(stack.getTag().getString(ID));

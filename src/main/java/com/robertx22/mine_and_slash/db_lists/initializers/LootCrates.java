@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.database.loot_crates.LootCrate;
-import com.robertx22.mine_and_slash.database.loot_crates.UniqueCrate;
+import com.robertx22.mine_and_slash.database.loot_crates.*;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
@@ -16,7 +15,9 @@ public class LootCrates implements ISlashRegistryInit {
             {
                 {
                     add(new UniqueCrate());
-
+                    add(new CommonerCrate());
+                    add(new CurrencyCrate());
+                    add(new RuneCrate());
                 }
             }
         };

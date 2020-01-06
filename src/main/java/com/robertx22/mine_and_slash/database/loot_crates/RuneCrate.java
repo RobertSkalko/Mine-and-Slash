@@ -1,36 +1,36 @@
 package com.robertx22.mine_and_slash.database.loot_crates;
 
 import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.RuneLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 
-public class UniqueCrate extends LootCrate {
+public class RuneCrate extends LootCrate {
 
     @Override
     public Words name() {
-        return Words.UniqueCrate;
+        return Words.RuneCrate;
     }
 
     @Override
     public ItemStack generateStack(LootInfo info) {
-        return new UniqueGearLootGen(info).generateOne();
+        return new RuneLootGen(info).generateOne();
     }
 
     @Override
     public int getRarityRank() {
-        return IRarity.Legendary;
+        return IRarity.Rare;
     }
 
     @Override
     public int averageItemCount() {
-        return 1;
+        return 7;
     }
 
     @Override
     public String GUID() {
-        return "unique_crate";
+        return "rune_crate";
     }
 
 }

@@ -4,7 +4,10 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
-    UniqueCrate("Unique Crate"),
+    CurrencyCrate("Crafter's Paradise Crate"),
+    RuneCrate("Runecrafter's Crate"),
+    CommonerCrate("Commoner's Dream Crate"),
+    UniqueCrate("Pharaoh Crate"),
     PressAltForStatInfo("Press Alt for Stat Info"),
     MustBeMap("Must be an Adventure Map"),
     MustBeGear("Must be a Gear Item"),

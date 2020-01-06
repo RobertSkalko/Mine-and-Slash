@@ -72,6 +72,7 @@ public class PlayerMapCap {
 
         void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player);
 
+        void syncToClient(PlayerEntity player);
     }
 
     @Mod.EventBusSubscriber
@@ -210,6 +211,11 @@ public class PlayerMapCap {
             this.originalDimension = player.world.getDimension().getType();
             this.mapdata = map.clone();
 
+            MMORPG.syncMapData((ServerPlayerEntity) player);
+        }
+
+        @Override
+        public void syncToClient(PlayerEntity player) {
             MMORPG.syncMapData((ServerPlayerEntity) player);
         }
 

@@ -36,6 +36,7 @@ public class RegisterEvents {
         register(OnLogin.class);
         register(OnLogout.class);
         register(OnTickLogic.class);
+        register(CapSync.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnKeyPress.class);

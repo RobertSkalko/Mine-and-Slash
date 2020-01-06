@@ -6,7 +6,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.CrateSuggestions;
 import com.robertx22.mine_and_slash.database.loot_crates.LootCrate;
-import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.command.CommandSource;
@@ -58,7 +57,7 @@ public class GiveCrate {
 
         LootCrate crate = SlashRegistry.LootCrates().get(type);
 
-        ItemStack stack = MapLootCrateItem.getStack(crate, lvl, tier, score);
+        ItemStack stack = crate.getCrateStack(lvl, tier, score);
 
         for (int i = 0; i < amount; i++) {
             player.addItemStackToInventory(stack);
