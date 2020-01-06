@@ -2,6 +2,8 @@ package com.robertx22.uncommon.gui.player_overlays;
 
 import java.awt.Color;
 
+import com.robertx22.config.ModConfig;
+import com.robertx22.mmorpg.Player_GUIs;
 import com.robertx22.saveclasses.Unit;
 import com.robertx22.uncommon.capability.EntityData.UnitData;
 import com.robertx22.uncommon.effectdatas.DamageEffect;
@@ -18,16 +20,21 @@ public abstract class BasePlayerOverlay {
 	public int TEXTURE_WIDTH = 106;
 	public int TEXTURE_HEIGHT = 11;
 
-	public final ResourceLocation azuremanatexturepath = new ResourceLocation("mmorpg", "textures/gui/mana_bar_azure.png");
-	public final ResourceLocation azureenergytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar_azure.png");
-	public final ResourceLocation azurehealthtexturepath = new ResourceLocation("mmorpg", "textures/gui/health_bar_azure.png");
-	public final ResourceLocation azureexperiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/exp_bar_azure.png");
-	public final ResourceLocation azureleveltexturepath = new ResourceLocation("mmorpg", "textures/gui/level_ui_azure.png");
+	public final ResourceLocation azuremanatexturepath = new ResourceLocation("mmorpg",
+			"textures/gui/mana_bar_azure.png");
+	public final ResourceLocation azureenergytexturepath = new ResourceLocation("mmorpg",
+			"textures/gui/energy_bar_azure.png");
+	public final ResourceLocation azurehealthtexturepath = new ResourceLocation("mmorpg",
+			"textures/gui/health_bar_azure.png");
+	public final ResourceLocation azureexperiencetexturepath = new ResourceLocation("mmorpg",
+			"textures/gui/exp_bar_azure.png");
+	public final ResourceLocation azureleveltexturepath = new ResourceLocation("mmorpg",
+			"textures/gui/level_ui_azure.png");
 	public final ResourceLocation manatexturepath = new ResourceLocation("mmorpg", "textures/gui/mana_bar.png");
-    public final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar.png");
-    public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/health_bar.png");
-    public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg",
-	    "textures/gui/experience_bar.png");
+	public final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/energy_bar.png");
+	public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/health_bar.png");
+	public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg",
+			"textures/gui/experience_bar.png");
 
 	public abstract void Draw(Gui gui, Minecraft mc, EntityLivingBase entity, RenderGameOverlayEvent event, Unit unit,
 			UnitData level);
@@ -48,7 +55,15 @@ public abstract class BasePlayerOverlay {
 		String maximum = DamageEffect.FormatNumber((int) max);
 		String str = "";
 
-		str = now + "/" + maximum;
+		Player_GUIs guiType = ModConfig.Client.PLAYER_GUI_TYPE;
+
+		if (!isExp) {
+			str = now + "/" + maximum;
+		} else if (guiType.equals(Player_GUIs.Azure_Top_Left)) {
+			str = now + "/" + maximum;
+		} else {
+			str = "Lvl:" + data.getLevel() + " " + now + "/" + maximum;
+		}
 
 		float text_x = x + TEXTURE_WIDTH / 2 - mc.fontRenderer.getStringWidth(str) / 2;
 		float text_y = y + TEXTURE_HEIGHT / 2 - mc.fontRenderer.FONT_HEIGHT / 2 + 0.5F;
@@ -70,13 +85,13 @@ public abstract class BasePlayerOverlay {
 
 		str2 = "" + data.getLevel();
 
-		mc.fontRenderer.drawString(str2, 20, 26, Color.LIGHT_GRAY.getRGB(), true);
+		mc.fontRenderer.drawString(str2, 20, 26, Color.WHITE.getRGB(), true);
 
 		String str3 = "";
 
 		str3 = "LVL:";
 
-		mc.fontRenderer.drawString(str3, 20, 17, Color.LIGHT_GRAY.getRGB(), true);
+		mc.fontRenderer.drawString(str3, 20, 17, Color.WHITE.getRGB(), true);
 	}
 
 }
