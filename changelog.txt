@@ -1,36 +1,12 @@
-1.8.7
-- Fixed EB Magic Wands
-1.8.6
-- Updated Tech Reborn Compat
-- Updated Thermal Foundation Compat
-- Fixed EB Wizardry and Ice and Fire Compats. Stupid code
-1.8.5
-- Fixed the Auto Vanilla Compat
-- Updated the EB Wizardry and Ice and Fire Auto Compats to fall in line to the new system I'm basing off of Vanilla
-1.8.4
-- Updated zh_cn.lang (thanks gswvmware)
-1.8.3
-- Made Thickets taller
-- Added new ConfigItem options for devs. (setstatsAddedOnlyOnDrops and setdropsAsLoot)
-- Reconfigured Auto Vanilla Items Compat
-Weapons:
-Wooden = Max level of 10, always normal (never runed), max common, not able to salvaged.
-Stone = Max level of 20, always normal (never runed), max uncommon, not able to salvaged.
-Iron = Max level of 30, always normal (never runed), max rare, not able to salvaged.
-Gold = Max level of 30, always normal (never runed), max rare, not able to salvaged.
-Diamond = Minimum level of 50, not able to salvaged.
-Bow = Minimum level of 5, not able to salvaged.
-Armor:
-Leather = Max level of 10, always normal (never runed), max common, not able to salvaged.
-Iron = Max level of 30, always normal (never runed), max rare, not able to salvaged.
-Golden = Max level of 30, always normal (never runed), max rare, not able to salvaged.
-Diamond = Minimum level of 50, not able to salvaged.
-Chain Mail = Minimum level of 40, able to be salvaged since it can't be crafted.
-- Made the recipes for the Map Device and Modify and Salvage Stations a lot cheaper. 
-1.8.2
-- Fixed getting trapped in Thicket maps, raised the trees height. 
-1.8.1
-- Fixes the nullpoint in the damage. You can hit again!
-1.8.0
-- Added damage event. (Thanks @codetaylor )
-- Reworked a lot of the damage system, should be a lot more clean to match the 1.14 version. 
+1.9.2
+- Fixes the Stone of Hope.
+- Fixes the old overlays not having the level.
+- Fixes the reverse logic of weather or not mobs should burn.
+1.9.1
+- Fixes all commands to work in Command blocks.
+- Added a config option to allow mob burning during the day time.
+- Fixes runeword Ghost requiring 2 XAH runes. 
+- Hopefully fixes mobs disappearing if hit with an arrow from a sheild.
+- Reworked some Baubles code, just under the hood things.
+1.9.0
+- Restores the old Overlays as configurable options again. The new one is still the default but you can now change it again.Top_Left, Bottom_Middle, Bottom_Middle_Corners, Middle, Azure_Top_Left
