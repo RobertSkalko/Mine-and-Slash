@@ -16,51 +16,51 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class OnMobSpawn {
 
-    @SubscribeEvent
-    public static void onMobSpawn(EntityJoinWorldEvent event) {
+	@SubscribeEvent
+	public static void onMobSpawn(EntityJoinWorldEvent event) {
 
-	if (!(event.getEntity() instanceof EntityLivingBase)) {
-	    return;
-	}
-
-	EntityLivingBase entity = (EntityLivingBase) event.getEntity();
-
-	if (entity.world.isRemote) {
-	    return;
-	}
-
-	if (entity.hasCapability(EntityData.Data, null) == false) {
-	    return;
-	}
-
-	try {
-	    IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
-
-	    if (!(entity instanceof EntityPlayer)) {
-		if (event.getWorld().hasCapability(WorldData.Data, null)) {
-
-		    UnitData endata = entity.getCapability(EntityData.Data, null);
-		    Unit check = endata.getUnit();
-
-		    if (check == null) {
-
-			Unit unit = Unit.Mob(entity, data);
-
-			endata.forceSetUnit(unit);
-
-		    }
-
+		if (!(event.getEntity() instanceof EntityLivingBase)) {
+			return;
 		}
-	    } else {
-		UnitData endata = entity.getCapability(EntityData.Data, null);
-		if (endata != null && endata.getUnit() != null) {
-		    CommonStatUtils.addMapAffixes(data, entity, endata.getUnit(), endata);
-		}
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
 
-    }
+		EntityLivingBase entity = (EntityLivingBase) event.getEntity();
+
+		if (entity.world.isRemote) {
+			return;
+		}
+
+		if (entity.hasCapability(EntityData.Data, null) == false) {
+			return;
+		}
+
+		try {
+			IWorldData data = event.getWorld().getCapability(WorldData.Data, null);
+
+			if (!(entity instanceof EntityPlayer)) {
+				if (event.getWorld().hasCapability(WorldData.Data, null)) {
+
+					UnitData endata = entity.getCapability(EntityData.Data, null);
+					Unit check = endata.getUnit();
+
+					if (check == null) {
+
+						Unit unit = Unit.Mob(entity, data);
+
+						endata.forceSetUnit(unit);
+
+					}
+
+				}
+			} else {
+				UnitData endata = entity.getCapability(EntityData.Data, null);
+				if (endata != null && endata.getUnit() != null) {
+					CommonStatUtils.addMapAffixes(data, entity, endata.getUnit(), endata);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }

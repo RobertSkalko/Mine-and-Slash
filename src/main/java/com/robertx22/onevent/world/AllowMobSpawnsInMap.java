@@ -16,39 +16,39 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class AllowMobSpawnsInMap {
 
-    /**
-     * allows mobs to spawn at all times, even daylight. Some mobs are blacklisted
-     * like slimes or non mobs
-     */
-    @SubscribeEvent
-    public static void onMobForceSpawn(LivingSpawnEvent.CheckSpawn event) {
+	/**
+	 * allows mobs to spawn at all times, even daylight. Some mobs are blacklisted
+	 * like slimes or non mobs
+	 */
+	@SubscribeEvent
+	public static void onMobForceSpawn(LivingSpawnEvent.CheckSpawn event) {
 
-	EntityLivingBase en = event.getEntityLiving();
+		EntityLivingBase en = event.getEntityLiving();
 
-	if (en instanceof EntityMob) {
+		if (en instanceof EntityMob) {
 
-	    EntityMob mob = (EntityMob) en;
+			EntityMob mob = (EntityMob) en;
 
-	    IWorldData data = Load.World(event.getWorld());
+			IWorldData data = Load.World(event.getWorld());
 
-	    if (data.isMapWorld()) {
+			if (data.isMapWorld()) {
 
-		if (en instanceof EntitySlime) {
+				if (en instanceof EntitySlime) {
 
-		    // no
-		} else {
-		    IBlockState iblockstate = mob.world.getBlockState((new BlockPos(mob)).down());
+					// no
+				} else {
+					IBlockState iblockstate = mob.world.getBlockState((new BlockPos(mob)).down());
 
-		    if (!iblockstate.canEntitySpawn(mob)) {
-			return;
-		    }
+					if (!iblockstate.canEntitySpawn(mob)) {
+						return;
+					}
 
-		    if (mob.isNotColliding()) {
-			event.setResult(Result.ALLOW);
-		    }
+					if (mob.isNotColliding()) {
+						event.setResult(Result.ALLOW);
+					}
+				}
+			}
+
 		}
-	    }
-
 	}
-    }
 }
