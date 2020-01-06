@@ -12,8 +12,8 @@ public class ServerContainer {
 	
 	@Config.Name("Enable Mob Fire Damage")
 	@Config.LangKey("mmorpg.config.")
-	@Config.Comment("This enables mobs like zombies from burning in daylight or not burning.")
-	public boolean SHOULD_MOBS_BURN = true;
+	@Config.Comment("This enables mobs like zombies from burning in daylight or not burning. True = Not burning False = Burning")
+	public boolean SHOULD_MOBS_NOT_BURN = true;
 	
 	@Config.Name("Stats Added Only on Drop")
 	@Config.LangKey("mmorpg.config.")

@@ -16,7 +16,7 @@ public class OnBurnStop {
 		if (event.getEntityLiving() instanceof EntityMob) {
 
 			if (event.getEntityLiving().isBurning()) {
-				if (ModConfig.Server.SHOULD_MOBS_BURN) {
+				if (ModConfig.Server.SHOULD_MOBS_NOT_BURN) {
 					event.getEntityLiving().extinguish();
 				} else {
 					
