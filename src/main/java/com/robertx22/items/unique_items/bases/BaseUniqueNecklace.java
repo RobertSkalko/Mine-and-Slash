@@ -8,17 +8,18 @@ import baubles.api.BaubleType;
 import net.minecraft.item.ItemStack;
 
 public abstract class BaseUniqueNecklace extends ItemNecklace implements IUnique {
-    public BaseUniqueNecklace() {
-	IUnique.ITEMS.put(GUID(), this);
-    }
+	public BaseUniqueNecklace(BaubleType type) {
+		super(type);
+		IUnique.ITEMS.put(GUID(), this);
+	}
 
-    @Override
-    public BaubleType getBaubleType(ItemStack itemstack) {
-	return BaubleType.AMULET;
-    }
+	@Override
+	public BaubleType getBaubleType(ItemStack itemstack) {
+		return BaubleType.AMULET;
+	}
 
-    @Override
-    public String slot() {
-	return new Necklace().GUID();
-    }
+	@Override
+	public String slot() {
+		return new Necklace().GUID();
+	}
 }

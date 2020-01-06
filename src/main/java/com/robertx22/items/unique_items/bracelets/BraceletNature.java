@@ -11,10 +11,12 @@ import com.robertx22.database.stat_mods.percent.much_less.CrippleCriticalDamageP
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueBracelet;
 
+import baubles.api.BaubleType;
+
 public class BraceletNature extends BaseUniqueBracelet {
 
-    public BraceletNature() {
-
+    public BraceletNature(BaubleType type) {
+		super(type);
     }
 
     @Override

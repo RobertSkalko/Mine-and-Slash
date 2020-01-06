@@ -10,10 +10,12 @@ import com.robertx22.database.stat_mods.flat.elemental.spell_dmg.SpellWaterDamag
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueRing;
 
+import baubles.api.BaubleType;
+
 public class RingWaterFire extends BaseUniqueRing {
 
-    public RingWaterFire() {
-
+    public RingWaterFire(BaubleType type) {
+		super(type);
     }
 
     @Override

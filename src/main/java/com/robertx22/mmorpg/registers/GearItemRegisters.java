@@ -10,6 +10,7 @@ import com.robertx22.items.gearitems.armor.ItemBoots;
 import com.robertx22.items.gearitems.armor.ItemChest;
 import com.robertx22.items.gearitems.armor.ItemHelmet;
 import com.robertx22.items.gearitems.armor.ItemPants;
+import com.robertx22.items.gearitems.bases.BaseBaublesItem;
 import com.robertx22.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.items.gearitems.baubles.ItemCharm;
 import com.robertx22.items.gearitems.baubles.ItemNecklace;
@@ -33,6 +34,7 @@ import com.robertx22.items.runes.VohItem;
 import com.robertx22.items.runes.XahItem;
 import com.robertx22.uncommon.utilityclasses.RegisterUtils;
 
+import baubles.api.BaubleType;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -76,10 +78,10 @@ public class GearItemRegisters {
 			regRarities(new ItemStaff(), ItemStaff.Items, "staff/staff", rarity.Rank());
 
 			// baubles
-			regRarities(new ItemNecklace(), ItemNecklace.Items, "necklace/necklace", rarity.Rank());
-			regRarities(new ItemBracelet(), ItemBracelet.Items, "bracelet/bracelet", rarity.Rank());
-			regRarities(new ItemRing(), ItemRing.Items, "ring/ring", rarity.Rank());
-			regRarities(new ItemCharm(), ItemCharm.Items, "charm/charm", rarity.Rank());
+			regRarities(new BaseBaublesItem(BaubleType.AMULET), ItemNecklace.Items, "necklace/necklace", rarity.Rank());
+			regRarities(new BaseBaublesItem(BaubleType.BELT), ItemBracelet.Items, "bracelet/bracelet", rarity.Rank());
+			regRarities(new BaseBaublesItem(BaubleType.RING), ItemRing.Items, "ring/ring", rarity.Rank());
+			regRarities(new BaseBaublesItem(BaubleType.CHARM), ItemCharm.Items, "charm/charm", rarity.Rank());
 
 			// armors
 			regRarities(new ItemBoots(rank), ItemBoots.Items, "boots/boots", rarity.Rank());

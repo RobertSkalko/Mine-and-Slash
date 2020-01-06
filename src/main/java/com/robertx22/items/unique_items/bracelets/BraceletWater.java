@@ -12,10 +12,12 @@ import com.robertx22.database.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueBracelet;
 
+import baubles.api.BaubleType;
+
 public class BraceletWater extends BaseUniqueBracelet {
 
-    public BraceletWater() {
-
+    public BraceletWater(BaubleType type) {
+		super(type);
     }
 
     @Override

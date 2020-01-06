@@ -12,10 +12,12 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellNatureDamageP
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueCharm;
 
+import baubles.api.BaubleType;
+
 public class CharmNature extends BaseUniqueCharm {
 
-    public CharmNature() {
-
+    public CharmNature(BaubleType type) {
+		super(type);
     }
 
     @Override

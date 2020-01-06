@@ -51,16 +51,18 @@ import com.robertx22.items.unique_items.swords.SwordNature;
 import com.robertx22.items.unique_items.swords.SwordPhysical;
 import com.robertx22.items.unique_items.swords.SwordWater;
 
+import baubles.api.BaubleType;
+
 public class UniqueItemRegister {
 
     public static void registerAll() {
 
 	// charms
 
-	new CharmThunder();
-	new CharmWater();
-	new CharmFire();
-	new CharmNature();
+	new CharmThunder(BaubleType.CHARM);
+	new CharmWater(BaubleType.CHARM);
+	new CharmFire(BaubleType.CHARM);
+	new CharmNature(BaubleType.CHARM);
 
 	// pants
 	new PantsThunder();
@@ -104,24 +106,24 @@ public class UniqueItemRegister {
 	new AxeThunder();
 
 	// rings
-	new RingDodge();
-	new RingWaterFire();
-	new RingEnergy();
-	new RingCrit();
+	new RingDodge(BaubleType.RING);
+	new RingWaterFire(BaubleType.RING);
+	new RingEnergy(BaubleType.RING);
+	new RingCrit(BaubleType.RING);
 
 	// bracelets
-	new BraceletThunder();
-	new BraceletWater();
-	new BraceletThunderNature();
-	new BraceletFire();
-	new BraceletNature();
+	new BraceletThunder(BaubleType.BELT);
+	new BraceletWater(BaubleType.BELT);
+	new BraceletThunderNature(BaubleType.BELT);
+	new BraceletFire(BaubleType.BELT);
+	new BraceletNature(BaubleType.BELT);
 
 	// necklaces
-	new NecklaceNature();
-	new NecklaceWater();
-	new NecklaceFire();
-	new NecklaceThunder();
-	new NecklaceEnergy();
+	new NecklaceNature(BaubleType.AMULET);
+	new NecklaceWater(BaubleType.AMULET);
+	new NecklaceFire(BaubleType.AMULET);
+	new NecklaceThunder(BaubleType.AMULET);
+	new NecklaceEnergy(BaubleType.AMULET);
 
 	// staffs
 	new StaffFire();

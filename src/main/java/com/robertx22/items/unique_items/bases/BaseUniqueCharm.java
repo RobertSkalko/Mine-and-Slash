@@ -8,17 +8,13 @@ import baubles.api.BaubleType;
 import net.minecraft.item.ItemStack;
 
 public abstract class BaseUniqueCharm extends ItemCharm implements IUnique {
-    public BaseUniqueCharm() {
-	IUnique.ITEMS.put(GUID(), this);
-    }
+	public BaseUniqueCharm(BaubleType type) {
+		super(type);
+		IUnique.ITEMS.put(GUID(), this);
+	}
 
-    @Override
-    public BaubleType getBaubleType(ItemStack itemstack) {
-	return BaubleType.CHARM;
-    }
-
-    @Override
-    public String slot() {
-	return new Charm().GUID();
-    }
+	@Override
+	public String slot() {
+		return new Charm().GUID();
+	}
 }

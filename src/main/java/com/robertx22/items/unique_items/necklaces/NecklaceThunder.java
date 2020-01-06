@@ -12,10 +12,12 @@ import com.robertx22.database.stat_mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueNecklace;
 
+import baubles.api.BaubleType;
+
 public class NecklaceThunder extends BaseUniqueNecklace {
 
-    public NecklaceThunder() {
-
+    public NecklaceThunder(BaubleType type) {
+		super(type);
     }
 
     @Override
