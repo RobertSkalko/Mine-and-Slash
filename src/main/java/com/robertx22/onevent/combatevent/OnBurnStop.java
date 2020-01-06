@@ -1,5 +1,7 @@
 package com.robertx22.onevent.combatevent;
 
+import com.robertx22.config.ModConfig;
+
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,7 +16,11 @@ public class OnBurnStop {
 		if (event.getEntityLiving() instanceof EntityMob) {
 
 			if (event.getEntityLiving().isBurning()) {
-				event.getEntityLiving().extinguish();
+				if (ModConfig.Server.SHOULD_MOBS_BURN) {
+					event.getEntityLiving().extinguish();
+				} else {
+					
+				}
 			}
 		}
 	}
