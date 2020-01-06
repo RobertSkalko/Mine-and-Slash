@@ -24,6 +24,11 @@ public class DeleteDimension extends CommandBase {
 	public String getUsage(ICommandSender sender) {
 		return "/delete number_id";
 	}
+	
+	@Override
+	public int getRequiredPermissionLevel() {
+		return 2;
+	}
 
 	public static DimensionType testDimensionType;
 

@@ -21,6 +21,11 @@ public class GiveRunedGear extends CommandBase {
 	public String getUsage(ICommandSender sender) {
 		return "/giverunedgear (player) (lvl) (rarity 0-5) (type: Sword, Necklace etc) (amount)  NOTE: It's Caps sensitive! Sword, not sword.";
 	}
+	
+	@Override
+	public int getRequiredPermissionLevel() {
+		return 2;
+	}
 
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
