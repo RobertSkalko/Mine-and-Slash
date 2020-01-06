@@ -12,10 +12,12 @@ import com.robertx22.database.stat_mods.percent.spell_ele_dmg.SpellWaterDamagePe
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueNecklace;
 
+import baubles.api.BaubleType;
+
 public class NecklaceWater extends BaseUniqueNecklace {
 
-    public NecklaceWater() {
-
+    public NecklaceWater(BaubleType type) {
+		super(type);
     }
 
     @Override

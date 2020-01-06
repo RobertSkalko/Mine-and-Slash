@@ -12,10 +12,12 @@ import com.robertx22.database.stat_mods.percent.much_less.CrippleLifestealPercen
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueBracelet;
 
+import baubles.api.BaubleType;
+
 public class BraceletThunder extends BaseUniqueBracelet {
 
-    public BraceletThunder() {
-
+    public BraceletThunder(BaubleType type) {
+		super(type);
     }
 
     @Override

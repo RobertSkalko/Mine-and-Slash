@@ -11,10 +11,12 @@ import com.robertx22.database.stat_mods.flat.less.LessHealthRegenFlat;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueNecklace;
 
+import baubles.api.BaubleType;
+
 public class NecklaceFire extends BaseUniqueNecklace {
 
-    public NecklaceFire() {
-
+    public NecklaceFire(BaubleType type) {
+		super(type);
     }
 
     @Override

@@ -12,10 +12,12 @@ import com.robertx22.database.stat_mods.percent.less.LessDodgePercent;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueBracelet;
 
+import baubles.api.BaubleType;
+
 public class BraceletThunderNature extends BaseUniqueBracelet {
 
-    public BraceletThunderNature() {
-
+    public BraceletThunderNature(BaubleType type) {
+		super(type);
     }
 
     @Override

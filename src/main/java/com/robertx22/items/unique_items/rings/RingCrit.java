@@ -10,10 +10,12 @@ import com.robertx22.database.stat_mods.percent.MajorCriticalHitPercent;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueRing;
 
+import baubles.api.BaubleType;
+
 public class RingCrit extends BaseUniqueRing {
 
-    public RingCrit() {
-
+    public RingCrit(BaubleType type) {
+		super(type);
     }
 
     @Override

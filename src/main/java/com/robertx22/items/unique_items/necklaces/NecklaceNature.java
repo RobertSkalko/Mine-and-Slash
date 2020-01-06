@@ -13,10 +13,12 @@ import com.robertx22.database.stat_mods.percent.much_less.CrippleDodgePercent;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueNecklace;
 
+import baubles.api.BaubleType;
+
 public class NecklaceNature extends BaseUniqueNecklace {
 
-    public NecklaceNature() {
-
+    public NecklaceNature(BaubleType type) {
+		super(type);
     }
 
     @Override

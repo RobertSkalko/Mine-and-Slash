@@ -5,21 +5,16 @@ import com.robertx22.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.items.unique_items.IUnique;
 
 import baubles.api.BaubleType;
-import net.minecraft.item.ItemStack;
 
 public abstract class BaseUniqueBracelet extends ItemBracelet implements IUnique {
 
-    public BaseUniqueBracelet() {
-	IUnique.ITEMS.put(GUID(), this);
-    }
+	public BaseUniqueBracelet(BaubleType type) {
+		super(type);
+		IUnique.ITEMS.put(GUID(), this);
+	}
 
-    @Override
-    public BaubleType getBaubleType(ItemStack itemstack) {
-	return BaubleType.BELT;
-    }
-
-    @Override
-    public String slot() {
-	return new Bracelet().GUID();
-    }
+	@Override
+	public String slot() {
+		return new Bracelet().GUID();
+	}
 }

@@ -18,78 +18,78 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
 public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect {
-    @Override
-    public String GUID() {
-	return "stone_of_hope";
-    }
-
-    private static final String name = "stone_of_hope";
-
-    @GameRegistry.ObjectHolder(Ref.MODID + ":stone_of_hope")
-    public static final Item ITEM = null;
-
-    public ItemStoneOfHope() {
-
-	super(name);
-
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-	event.getRegistry().register(new ItemStoneOfHope());
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-	RegisterUtils.registerRender(ITEM);
-    }
-
-    @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
-
-	GearItemData gear = Gear.Load(stack);
-
-	GearBlueprint gearPrint = new GearBlueprint(gear.level);
-	gearPrint.SetSpecificType(gear.gearTypeName);
-	gearPrint.minRarity = gear.Rarity + 1;
-	gearPrint.LevelRange = false;
-
-	GearItemData newgear = GearGen.CreateData(gearPrint);
-	gear.WriteOverDataThatShouldStay(newgear);
-
-	ItemStack result = ItemStack.EMPTY;
-
-	if (gear.changesItemStack()) {
-	    result = GearGen.CreateStack(newgear);
-	} else {
-	    result = stack;
-	    Gear.Save(result, newgear);
+	@Override
+	public String GUID() {
+		return "stone_of_hope";
 	}
 
-	return stack;
+	private static final String name = "stone_of_hope";
 
-    }
+	@GameRegistry.ObjectHolder(Ref.MODID + ":stone_of_hope")
+	public static final Item ITEM = null;
 
-    @Override
-    public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
+	public ItemStoneOfHope() {
 
-	GearItemData gear = Gear.Load(stack);
+		super(name);
 
-	if (gear != null && gear.Rarity < Rarities.MAXIMUM_ITEM_RARITY) {
-	    return true;
 	}
 
-	return false;
-    }
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event) {
+		event.getRegistry().register(new ItemStoneOfHope());
+	}
 
-    @Override
-    public int Rank() {
-	return 4;
-    }
+	@SubscribeEvent
+	public static void onModelRegistry(ModelRegistryEvent event) {
+		RegisterUtils.registerRender(ITEM);
+	}
 
-    @Override
-    public int Tier() {
-	return 2;
-    }
+	@Override
+	public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+
+		GearItemData gear = Gear.Load(stack);
+
+		GearBlueprint gearPrint = new GearBlueprint(gear.level);
+		gearPrint.SetSpecificType(gear.gearTypeName);
+		gearPrint.minRarity = gear.Rarity + 1;
+		gearPrint.LevelRange = false;
+
+		GearItemData newgear = GearGen.CreateData(gearPrint);
+		gear.WriteOverDataThatShouldStay(newgear);
+
+		ItemStack result = ItemStack.EMPTY;
+
+		if (gear.changesItemStack()) {
+			result = GearGen.CreateStack(newgear);
+		} else {
+			result = stack;
+			Gear.Save(result, newgear);
+		}
+
+		return stack;
+
+	}
+
+	@Override
+	public boolean canItemBeModified(ItemStack stack, ItemStack Currency) {
+
+		GearItemData gear = Gear.Load(stack);
+
+		if (gear != null && gear.Rarity < Rarities.MAXIMUM_ITEM_RARITY) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int Rank() {
+		return 4;
+	}
+
+	@Override
+	public int Tier() {
+		return 2;
+	}
 
 }

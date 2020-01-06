@@ -10,6 +10,11 @@ public class ServerContainer {
 	@Config.Comment("This enables adding stats to items not from my mod automatically if they are added to my mod's config file inside the folder")
 	public boolean USE_COMPATIBILITY_ITEMS = true;
 	
+	@Config.Name("Enable Mob Fire Damage")
+	@Config.LangKey("mmorpg.config.")
+	@Config.Comment("This enables mobs like zombies from burning in daylight or not burning.")
+	public boolean SHOULD_MOBS_BURN = true;
+	
 	@Config.Name("Stats Added Only on Drop")
 	@Config.LangKey("mmorpg.config.")
 	@Config.Comment("Stats are only added to mob drops, crafted items will no longer get stats")

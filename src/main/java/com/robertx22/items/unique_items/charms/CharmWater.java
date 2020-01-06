@@ -12,10 +12,12 @@ import com.robertx22.database.stat_mods.percent.pene.WaterPenePercent;
 import com.robertx22.database.stats.StatMod;
 import com.robertx22.items.unique_items.bases.BaseUniqueCharm;
 
+import baubles.api.BaubleType;
+
 public class CharmWater extends BaseUniqueCharm {
 
-    public CharmWater() {
-
+    public CharmWater(BaubleType type) {
+		super(type);
     }
 
     @Override

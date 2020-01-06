@@ -1,6 +1,5 @@
 package com.robertx22.mmorpg.proxy;
 
-import com.robertx22.items.gearitems.MyEntityArrow;
 import com.robertx22.items.gearitems.offhands.NormalShield;
 import com.robertx22.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.spells.aoe_bomb_proj.SpellFireBomb;
@@ -15,6 +14,7 @@ import com.robertx22.spells.projectile.SpellAcidBolt;
 import com.robertx22.spells.projectile.SpellFireBolt;
 import com.robertx22.spells.projectile.SpellFrostBolt;
 import com.robertx22.spells.projectile.SpellThunderBolt;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -42,8 +42,6 @@ public interface IProxy {
 		RegisterModEntity(Items.GLOWSTONE_DUST, SpellLightningExplosion.EntityLightningExplosion.class, i++);
 
 		RegisterModEntity(Items.ENDER_PEARL, EntityStaffProjectile.class, i++);
-
-		regArrow(Items.ARROW, MyEntityArrow.class, i++);
 		//
 		RegisterModEntity(Items.MAGMA_CREAM, SpellFireBomb.EntityFireBomb.class, i++);
 		RegisterModEntity(Items.SLIME_BALL, SpellAcidBomb.EntityAcidBomb.class, i++);
@@ -51,8 +49,6 @@ public interface IProxy {
 		RegisterModEntity(Items.SNOWBALL, SpellIceBomb.EntityIceBomb.class, i++);
 
 	}
-
-	void regArrow(Item item, Class<? extends Entity> theclass, int id);
 
 	void RegisterModEntity(Item item, Class<? extends Entity> theclass, int id);
 

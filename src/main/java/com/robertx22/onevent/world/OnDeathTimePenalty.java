@@ -12,26 +12,26 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class OnDeathTimePenalty {
 
-    @SubscribeEvent
-    public static void onPlayerDeathDontDropItems(LivingDeathEvent event) {
+	@SubscribeEvent
+	public static void onPlayerDeathDontDropItems(LivingDeathEvent event) {
 
-	try {
-	    if (event.getEntityLiving().world.isRemote == false && event.getEntityLiving() instanceof EntityPlayer) {
+		try {
+			if (event.getEntityLiving().world.isRemote == false && event.getEntityLiving() instanceof EntityPlayer) {
 
-		EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-		World world = player.world;
-		IWorldData data = Load.World(world);
+				EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+				World world = player.world;
+				IWorldData data = Load.World(world);
 
-		if (data != null && data.isMapWorld()) {
+				if (data != null && data.isMapWorld()) {
 
-		    data.onPlayerDeath(player, world);
+					data.onPlayerDeath(player, world);
 
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
 
-    }
+	}
 
 }
