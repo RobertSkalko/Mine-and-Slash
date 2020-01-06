@@ -1,7 +1,7 @@
 1.9.2
 - Fixes the Stone of Hope.
 - Fixes the old overlays not having the level.
-- Fixes the reverse logic of weather or not mobs should burn.
+- Fixes the reverse logic of weather or not mobs should burn. SHOULD_MOBS_BURN moved to SHOULD_MOBS_NOT_BURN with more info in the tooltip.
 1.9.1
 - Fixes all commands to work in Command blocks.
 - Added a config option to allow mob burning during the day time.
