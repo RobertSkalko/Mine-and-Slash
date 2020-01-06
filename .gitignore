@@ -13,13 +13,14 @@ out
 *.iml
 .idea
 
-# gradle
+gradle
 build
 .gradle
 
 # other
 eclipse
 run
+gradlew
 src/main/resources/assets/mmorpg/textures/items/paid_assets
 src/main/resources/assets/mmorpg/textures/items/PAID_ASSETS
 src/main/resources/assets/mmorpg/textures/items/paidassets
