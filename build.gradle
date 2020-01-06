@@ -60,6 +60,14 @@ minecraft {
             }
         }
 
+		intellijClient { // run this in debug so hotswap doesnt randomly fail
+            parent runs.client
+
+            ideaModule "${project.name}.main"
+
+            environment 'MOD_CLASSES', "${project.file("out/production/resources").canonicalPath};${project.file("out/production/classes").canonicalPath}"
+        }
+
 
         data {
             workingDirectory project.file('run')

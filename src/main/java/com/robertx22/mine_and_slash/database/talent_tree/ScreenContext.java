@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
-import com.robertx22.mine_and_slash.database.talent_tree.gui.PerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkTreeScreen;
 import net.minecraft.client.Minecraft;
 
 public class ScreenContext {

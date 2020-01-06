@@ -1,10 +1,11 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
-import com.robertx22.mine_and_slash.database.talent_tree.gui.PerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoGui;
+import com.robertx22.mine_and_slash.gui.stat_point_screen.StatPointScreen;
+import com.robertx22.mine_and_slash.gui.stats_gui.StatOverviewGUI;
+import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkTreeScreen;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
-import com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen.StatPointScreen;
-import com.robertx22.mine_and_slash.uncommon.gui.stats_gui.StatOverviewGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,6 +34,8 @@ public class OnKeyPress {
                     mc.displayGuiScreen(new StatPointScreen());
                 } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
                     mc.displayGuiScreen(new PerkTreeScreen());
+                } else if (key == KeybindsRegister.mapInfo.getKey().getKeyCode()) {
+                    mc.displayGuiScreen(new MapInfoGui());
                 }
 
                 boolean wasDown = down;
@@ -55,7 +58,12 @@ public class OnKeyPress {
                     if (mc.currentScreen instanceof PerkTreeScreen) {
                         mc.displayGuiScreen(null);
                     }
+                } else if (key == KeybindsRegister.mapInfo.getKey().getKeyCode()) {
+                    if (mc.currentScreen instanceof MapInfoGui) {
+                        mc.displayGuiScreen(null);
+                    }
                 }
+
             }
         }
 

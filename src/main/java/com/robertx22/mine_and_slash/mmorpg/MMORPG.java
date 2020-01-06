@@ -10,6 +10,8 @@ import com.robertx22.mine_and_slash.config.compatible_items.ConfigItemsSerializa
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.gui.gear_overlay.GearOverlayGUI;
+import com.robertx22.mine_and_slash.gui.player_overlays.BarsGUI;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
@@ -26,8 +28,6 @@ import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
 import com.robertx22.mine_and_slash.tests.ValidateGuids;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
-import com.robertx22.mine_and_slash.uncommon.gui.gear_overlay.GearOverlayGUI;
-import com.robertx22.mine_and_slash.uncommon.gui.player_overlays.BarsGUI;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;

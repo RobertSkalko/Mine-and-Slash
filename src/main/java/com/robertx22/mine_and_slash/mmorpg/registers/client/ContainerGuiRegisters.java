@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.blocks.repair_station.ContainerGearRepair;
 import com.robertx22.mine_and_slash.blocks.repair_station.GuiGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.mine_and_slash.blocks.salvage_station.GuiGearSalvage;
+import com.robertx22.mine_and_slash.gui.professions.ProfessionGui;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ContainerCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.GuiCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ContainerLootBag;
@@ -17,7 +18,6 @@ import com.robertx22.mine_and_slash.items.bags.map_bag.GuiMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.GuiMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
-import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionGui;
 import net.minecraft.client.gui.ScreenManager;
 
 public class ContainerGuiRegisters {

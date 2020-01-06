@@ -1,13 +1,15 @@
-package com.robertx22.mine_and_slash.professions.blocks.bases;
+package com.robertx22.mine_and_slash.gui.professions;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;
+import com.robertx22.mine_and_slash.gui.professions.widgets.ChooseRecipeButton;
+import com.robertx22.mine_and_slash.gui.professions.widgets.OnlyLvlMetCheckBox;
+import com.robertx22.mine_and_slash.gui.professions.widgets.ProfessionLvlBar;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.RequestTilePacket;
-import com.robertx22.mine_and_slash.professions.blocks.bases.widgets.ChooseRecipeButton;
-import com.robertx22.mine_and_slash.professions.blocks.bases.widgets.OnlyLvlMetCheckBox;
-import com.robertx22.mine_and_slash.professions.blocks.bases.widgets.ProfessionLvlBar;
+import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
+import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionTile;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

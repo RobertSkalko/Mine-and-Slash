@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.gui.gear_overlay;
+package com.robertx22.mine_and_slash.gui.gear_overlay;
 
 import com.robertx22.mine_and_slash.onevent.my_events.CollectGearEvent;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;

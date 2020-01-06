@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.gui.stats_gui;
+package com.robertx22.mine_and_slash.gui.stats_gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;

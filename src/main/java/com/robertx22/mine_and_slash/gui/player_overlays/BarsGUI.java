@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.gui.player_overlays;
+package com.robertx22.mine_and_slash.gui.player_overlays;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;

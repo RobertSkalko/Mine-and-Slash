@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.talent_tree.gui;
+package com.robertx22.mine_and_slash.gui.talent_tree_gui;
 
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 

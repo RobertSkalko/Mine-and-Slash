@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.professions.blocks.bases.widgets;
+package com.robertx22.mine_and_slash.gui.professions.widgets;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;

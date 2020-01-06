@@ -1,9 +1,10 @@
-package com.robertx22.mine_and_slash.uncommon.gui.stat_point_screen;
+package com.robertx22.mine_and_slash.gui.stat_point_screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.BaseCoreStat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.gui.BaseScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.SpendStatPointPacket;
@@ -14,7 +15,6 @@ import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPoi
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerStatsPointsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.gui.BaseScreen;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -31,10 +31,11 @@ import java.util.List;
 public class StatPointScreen extends BaseScreen {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/stat_point_screen.png");
-    int sizeY = 220;
-    int sizeX = 215;
+    static int sizeY = 220;
+    static int sizeX = 215;
 
     public StatPointScreen() {
+        super(sizeX, sizeY);
     }
 
     PlayerStatsPointsCap.IPlayerStatPointsData data;
