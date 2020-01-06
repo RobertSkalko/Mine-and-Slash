@@ -42,12 +42,7 @@ public class ServerProxy implements IProxy {
 	public EntityPlayer getPlayerEntityFromContext(MessageContext ctx) {
 		return ctx.getServerHandler().player;
 	}
-
-	public void regArrow(Item item, Class<? extends Entity> theclass, int id) {
-		EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID, "arrow"), theclass, Ref.MODID + ":" + "arrow",
-				id, Main.instance, 64, 10, true);
-	}
-
+	
 	@Override
 	public String translate(String str) {
 		return "TRANSLATION PROXY ERROR";
