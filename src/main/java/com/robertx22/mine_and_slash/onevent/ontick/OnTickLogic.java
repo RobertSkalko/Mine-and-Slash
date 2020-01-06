@@ -5,13 +5,11 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
-import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -88,23 +86,23 @@ public class OnTickLogic {
                     }
 
                 }
-
-                if (data.playerSyncTick > TicksToUpdatePlayer) {
-                    data.playerSyncTick = 0;
-                    Load.Unit(player).syncToClient(player);
-
-                    if (player.openContainer instanceof ProfessionContainer) {
-                        MMORPG.sendToClient(new SyncCapabilityToClient(player, CapTypes.PROFESSIONS), player);
-                        ProfessionContainer prof = (ProfessionContainer) player.openContainer;
-                        prof.tile.onOpenByPlayer(player);
-                    }
-
-                }
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
                     if (WorldUtils.isMapWorldClass(player.world)) {
                         Load.playerMapData(player).onMinute(player);
                     }
+                }
+
+                if (data.playerSyncTick > TicksToUpdatePlayer) {
+                    data.playerSyncTick = 0;
+
+                    if (player.openContainer instanceof ProfessionContainer) {
+                        ProfessionContainer prof = (ProfessionContainer) player.openContainer;
+                        prof.tile.onOpenByPlayer(player);
+                    }
+
+                    CapSyncUtil.syncAll(player);
+
                 }
 
                 PlayerTickDatas.put(player.getUniqueID(), data);

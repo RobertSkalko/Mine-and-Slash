@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.loot_crates;
 
+import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -24,7 +25,7 @@ public class CommonerCrate extends LootCrate {
     }
 
     @Override
-    public int averageItemCount() {
+    public int maxItems() {
         return 5;
     }
 

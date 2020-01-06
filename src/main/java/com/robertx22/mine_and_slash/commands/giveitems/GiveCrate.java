@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.CrateSuggestions;
-import com.robertx22.mine_and_slash.database.loot_crates.LootCrate;
+import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.command.CommandSource;

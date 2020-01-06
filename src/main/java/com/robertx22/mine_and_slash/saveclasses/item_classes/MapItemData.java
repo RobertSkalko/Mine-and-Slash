@@ -111,7 +111,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     }
 
     public float getPermaDeathMultiplier() {
-        return this.isPermaDeath ? 1.2F : 1;
+        return this.isPermaDeath ? 1.1F : 1;
     }
 
     public boolean increaseLevel(int i) {

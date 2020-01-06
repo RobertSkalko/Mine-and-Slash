@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.loot_crates;
 
+import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -24,8 +25,8 @@ public class UniqueCrate extends LootCrate {
     }
 
     @Override
-    public int averageItemCount() {
-        return 1;
+    public int maxItems() {
+        return 3;
     }
 
     @Override

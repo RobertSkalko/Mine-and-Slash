@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.loot_crates;
+package com.robertx22.mine_and_slash.database.loot_crates.bases;
 
 import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -34,7 +34,7 @@ public abstract class LootCrate implements ISlashRegistryEntry {
         return RandomUtils.roll(lotteryWinChance());
     }
 
-    public abstract int averageItemCount();
+    public abstract int maxItems();
 
     public ItemStack getCrateStack(int lvl, int mapTier, int score) {
 
@@ -52,12 +52,12 @@ public abstract class LootCrate implements ISlashRegistryEntry {
         return stack;
     }
 
-    public List<ItemStack> generateItems(LootInfo info, int scoreMulti,
+    public List<ItemStack> generateItems(LootInfo info, MapScoreEnum score,
                                          boolean wonLottery) {
 
         List<ItemStack> items = new ArrayList<>();
 
-        float amount = (this.averageItemCount() * scoreMulti);
+        float amount = this.maxItems() * score.itemRewardMulti;
         if (wonLottery) {
             amount *= 3;
         }
