@@ -29,7 +29,7 @@ public class RuneWordGhost extends RuneWord {
 
     @Override
     public List<BaseRuneItem> runes() {
-	return Arrays.asList(new VohItem(0), new XahItem(0), new BerItem(0), new XahItem(0), new CenItem(0));
+	return Arrays.asList(new VohItem(0), new XahItem(0), new BerItem(0), new CenItem(0));
     }
 
     @Override
