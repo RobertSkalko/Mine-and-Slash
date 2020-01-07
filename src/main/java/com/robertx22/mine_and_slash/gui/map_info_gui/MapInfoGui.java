@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.gui.BaseScreen;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -35,9 +36,11 @@ public class MapInfoGui extends BaseScreen {
     protected void init() {
         super.init();
 
-        addButton(new MapItemButton(Load.playerMapData(mc.player)
-                .getMap(), guiLeft + 9, guiTop + 8));
+        PlayerMapCap.IPlayerMapData data = Load.playerMapData(mc.player);
 
+        if (data.hasTimeForMap()) {
+            addButton(new MapItemButton(data.getMap(), guiLeft + 9, guiTop + 8));
+        }
     }
 
     @Override

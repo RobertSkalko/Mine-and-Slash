@@ -19,7 +19,6 @@ import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,7 +32,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -67,8 +65,8 @@ public class HealthBarRenderer {
                 if (focused != null && focused instanceof LivingEntity && focused.isAlive())
                     renderHealthBar((LivingEntity) focused, partialTicks, cameraEntity);
             } else {
-                ClientWorld client = mc.world;
-                Int2ObjectMap<Entity> entitiesById = ObfuscationReflectionHelper.getPrivateValue(ClientWorld.class, client, "entitiesById");
+
+                Int2ObjectMap<Entity> entitiesById = mc.world.entitiesById;
                 for (Entity entity : entitiesById.values()) {
                     if (entity != null && entity instanceof LivingEntity && entity != mc.player && entity
                             .isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(), renderingVector

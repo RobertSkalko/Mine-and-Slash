@@ -37,7 +37,7 @@ public class ItemDyeRegister {
         list.addAll(ClothBootsItem.Items.values());
 
         evt.getItemColors()
-                .register((stack, color) -> getColor(stack, color), list.toArray(new IItemProvider[]{}));
+                .register(ItemDyeRegister::getColor, list.toArray(new IItemProvider[]{}));
 
     }
 
