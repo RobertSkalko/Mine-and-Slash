@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.a_libraries.dmg_number_particle;
 
 import com.mojang.blaze3d.platform.GLX;
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.client.Minecraft;
@@ -64,16 +65,12 @@ public class DamageParticle extends Particle {
 
             GLX.glMultiTexCoord2f(0, 240.0F, 0.003662109F); // UNSURE IF GOOD
 
-            GL11.glEnable(3553);
-            GL11.glDisable(3042);
-            GL11.glDepthMask(false);
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glEnable(3553);
-            GL11.glEnable(2929);
-            GL11.glDisable(2896);
-            GL11.glBlendFunc(770, 771);
-            GL11.glEnable(3042);
-            GL11.glEnable(3008);
+            GlStateManager.disableLighting();
+            GlStateManager.depthMask(false);
+            GlStateManager.disableDepthTest();
+            GlStateManager.disableTexture();
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 

@@ -24,6 +24,7 @@ public enum SlashRegistryType {
     PERK(),
     PERK_EFFECT(),
     LOOT_CRATE,
+    QUEST(),
     RECIPE();
 
 }
