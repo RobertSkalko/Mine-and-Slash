@@ -22,6 +22,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nullable;
@@ -52,7 +53,9 @@ public class MapLootCrateItem extends Item {
     public static Properties getProp() {
         Properties prop = new Properties().maxStackSize(1);
 
-        prop.setTEISR(LootCrateRenderer.INSTANCE);
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+            prop.setTEISR(LootCrateRenderer.INSTANCE);
+        });
 
         return prop;
 

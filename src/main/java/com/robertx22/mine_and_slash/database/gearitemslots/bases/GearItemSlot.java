@@ -34,6 +34,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         OffHand
     }
 
+    public float primaryStatMulti() {
+        return 1F / (float) primaryStatsAmount();
+    }
+
     public int cooldownTicks() {
         return 20;
     }
@@ -106,6 +110,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     @Override
     public String locNameLangFileGUID() {
         return Ref.MODID + ".gear_type." + formattedGUID();
+    }
+
+    public int primaryStatsAmount() {
+        return 1;
     }
 
     public abstract List<StatMod> PrimaryStats();

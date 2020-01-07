@@ -38,7 +38,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-
+			ideaModule = "${project.name}.main"
             //property 'forge.logging.console.level', 'debug'
 
             mods {
@@ -50,7 +50,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-
+			ideaModule = "${project.name}.main"
             //property 'forge.logging.console.level', 'debug'
 
             mods {

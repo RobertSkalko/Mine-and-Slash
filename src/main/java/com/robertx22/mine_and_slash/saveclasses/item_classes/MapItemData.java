@@ -248,81 +248,84 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         return DataItemType.MAP;
     }
 
-    @Override
-    public void BuildTooltip(TooltipContext ctx) {
+    public List<ITextComponent> getTooltip() {
+        List<ITextComponent> tooltip = new ArrayList<>();
 
-        if (ctx.data != null) {
+        GearRarity rarity = Rarities.Items.get(this.rarity);
 
-            List<ITextComponent> tooltip = ctx.event.getToolTip();
+        tooltip.add(TooltipUtils.level(this.level));
+        Tooltip.add("", tooltip);
 
-            GearRarity rarity = Rarities.Items.get(this.rarity);
+        addAffixTypeToTooltip(this, tooltip, AffectedEntities.Mobs);
+        addAffixTypeToTooltip(this, tooltip, AffectedEntities.Players);
+        addAffixTypeToTooltip(this, tooltip, AffectedEntities.All);
 
-            tooltip.add(TooltipUtils.level(this.level));
-            Tooltip.add("", tooltip);
+        Tooltip.add("", tooltip);
 
-            addAffixTypeToTooltip(this, tooltip, AffectedEntities.Mobs);
-            addAffixTypeToTooltip(this, tooltip, AffectedEntities.Players);
-            addAffixTypeToTooltip(this, tooltip, AffectedEntities.All);
-
-            Tooltip.add("", tooltip);
-
-            try {
-                tooltip.add(Styles.BLUECOMP()
-                        .appendSibling(Words.World_Type.locName())
-                        .appendText(": ")
-                        .appendSibling(this.getIWP().locName()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            Tooltip.add("", tooltip);
-            Tooltip.add(Styles.GOLDCOMP()
-                    .appendSibling(Words.Tier.locName()
-                            .appendText(": " + this.tier)), tooltip);
-
-            //Tooltip.add("", tooltip);
-            Tooltip.add(Styles.GREENCOMP()
-                    .appendSibling(Words.Minutes.locName()
-                            .appendText(": " + this.minutes)), tooltip);
-
-            // Tooltip.add("", tooltip);
-            Tooltip.add(Styles.YELLOWCOMP()
-                    .appendSibling(Words.Bonus_Loot_Amount.locName()
-                            .appendText(": " + this.getBonusLootAmountInPercent() + "%")), tooltip);
-
-            //Tooltip.add("", tooltip);
-            Tooltip.add(TooltipUtils.rarity(rarity), tooltip);
-
-            if (this.isPermaDeath) {
-                //    Tooltip.add("", tooltip);
-                Tooltip.add(Styles.REDCOMP()
-                        .appendSibling(Words.Permadeath.locName()), tooltip);
-            }
-
-            if (this.groupPlay) {
-                //  Tooltip.add("", tooltip);
-                Tooltip.add(Styles.GREENCOMP()
-                        .appendSibling(Words.GroupPlay.locName()
-                                .appendText(", ")
-                                .appendSibling(Words.PartySize.locName())
-                                .appendText(": " + this.maxPlayersInGroup)), tooltip);
-            }
-
-            //  Tooltip.add("", tooltip);
-            Tooltip.add(Styles.BLUECOMP()
-                    .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
-
-            // Tooltip.add("", tooltip);
-
-            tooltip.add(new StringTextComponent(TextFormatting.RED + "[*]").appendSibling(Words.MapWorldsAreResetOnGameReload
-                    .locName()));
-            tooltip.add(new StringTextComponent(TextFormatting.RED + "").appendSibling(Words.DoNotBuildInMaps
-                    .locName()));
-
-            TooltipUtils.removeDoubleBlankLines(tooltip, 20);
-
+        try {
+            tooltip.add(Styles.BLUECOMP()
+                    .appendSibling(Words.World_Type.locName())
+                    .appendText(": ")
+                    .appendSibling(this.getIWP().locName()));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+        Tooltip.add("", tooltip);
+        Tooltip.add(Styles.GOLDCOMP()
+                .appendSibling(Words.Tier.locName()
+                        .appendText(": " + this.tier)), tooltip);
+
+        //Tooltip.add("", tooltip);
+        Tooltip.add(Styles.GREENCOMP()
+                .appendSibling(Words.Minutes.locName()
+                        .appendText(": " + this.minutes)), tooltip);
+
+        // Tooltip.add("", tooltip);
+        Tooltip.add(Styles.YELLOWCOMP()
+                .appendSibling(Words.Bonus_Loot_Amount.locName()
+                        .appendText(": " + this.getBonusLootAmountInPercent() + "%")), tooltip);
+
+        //Tooltip.add("", tooltip);
+        Tooltip.add(TooltipUtils.rarity(rarity), tooltip);
+
+        if (this.isPermaDeath) {
+            //    Tooltip.add("", tooltip);
+            Tooltip.add(Styles.REDCOMP()
+                    .appendSibling(Words.Permadeath.locName()), tooltip);
+        }
+
+        if (this.groupPlay) {
+            //  Tooltip.add("", tooltip);
+            Tooltip.add(Styles.GREENCOMP()
+                    .appendSibling(Words.GroupPlay.locName()
+                            .appendText(", ")
+                            .appendSibling(Words.PartySize.locName())
+                            .appendText(": " + this.maxPlayersInGroup)), tooltip);
+        }
+
+        //  Tooltip.add("", tooltip);
+        Tooltip.add(Styles.BLUECOMP()
+                .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
+
+        // Tooltip.add("", tooltip);
+
+        tooltip.add(new StringTextComponent(TextFormatting.RED + "[*]").appendSibling(Words.MapWorldsAreResetOnGameReload
+                .locName()));
+        tooltip.add(new StringTextComponent(TextFormatting.RED + "").appendSibling(Words.DoNotBuildInMaps
+                .locName()));
+
+        TooltipUtils.removeDoubleBlankLines(tooltip, 20);
+
+        return tooltip;
+
+    }
+
+    @Override
+    public void BuildTooltip(TooltipContext ctx) {
+        if (ctx.data != null) {
+            ctx.event.getToolTip().addAll(getTooltip());
+        }
     }
 
     private int getBonusLootAmountInPercent() {

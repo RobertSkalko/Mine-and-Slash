@@ -34,10 +34,27 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
             }
 
         } else {
-            StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
-                    .PrimaryStats());
-            StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
-            this.Mods.add(moddata);
+            int stats = gear.GetBaseGearType().primaryStatsAmount();
+
+            for (int i = 0; i < stats; i++) {
+                StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
+                        .PrimaryStats());
+                StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
+                moddata.setPercent(moddata.getPercent() / stats);
+
+                boolean merged = false;
+
+                for (StatModData data : this.Mods) {
+                    if (data.getStatMod().GUID().equals(mod.GUID())) {
+                        data.setPercent(data.getPercent() + moddata.getPercent());
+                        merged = true;
+                    }
+                }
+
+                if (!merged) {
+                    this.Mods.add(moddata);
+                }
+            }
         }
     }
 

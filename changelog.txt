@@ -21,3 +21,5 @@ map back pearl now teleports back instantly
 hud should be back faster now after changing dimensions
 adventure map bonus loot is now smaller cus i'm adding loot crate as completition reward
 pressing same keybind should now close the gui
+map leave pearl no longer shows map stats, thats now in new map info gui
+wands and staffs now can have elemental attack dmg even without being unique items
