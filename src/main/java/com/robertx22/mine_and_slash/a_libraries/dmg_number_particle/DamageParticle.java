@@ -20,7 +20,6 @@ import org.lwjgl.opengl.GL11;
 public class DamageParticle extends Particle {
 
     protected String text;
-    protected boolean shouldOnTop = true;
     protected float scale = 0.7F;
     Elements element;
     public boolean grow = true;
@@ -54,11 +53,7 @@ public class DamageParticle extends Particle {
             final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * z - interpPosZ)) * speed;
 
             GL11.glPushMatrix();
-            if (this.shouldOnTop) {
-                GL11.glDepthFunc(519);
-            } else {
-                GL11.glDepthFunc(515);
-            }
+
             GL11.glTranslatef(locX, locY, locZ);
             GL11.glRotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
             GL11.glRotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
@@ -68,9 +63,10 @@ public class DamageParticle extends Particle {
             GL11.glScaled(this.scale, this.scale, this.scale);
 
             GLX.glMultiTexCoord2f(0, 240.0F, 0.003662109F); // UNSURE IF GOOD
+
             GL11.glEnable(3553);
             GL11.glDisable(3042);
-            GL11.glDepthMask(true);
+            GL11.glDepthMask(false);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glEnable(3553);
             GL11.glEnable(2929);
@@ -78,6 +74,7 @@ public class DamageParticle extends Particle {
             GL11.glBlendFunc(770, 771);
             GL11.glEnable(3042);
             GL11.glEnable(3008);
+
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             final FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
@@ -85,7 +82,6 @@ public class DamageParticle extends Particle {
                     .floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, element.format.getColor());
 
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glDepthFunc(515);
 
             GL11.glPopMatrix();
             if (ClientContainer.INSTANCE.dmgParticleConfig.GROWS.get()) {
