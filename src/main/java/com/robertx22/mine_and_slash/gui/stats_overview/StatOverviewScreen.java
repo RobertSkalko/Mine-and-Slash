@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.stats_gui;
+package com.robertx22.mine_and_slash.gui.stats_overview;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
@@ -30,13 +30,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @OnlyIn(Dist.CLIENT)
-public class StatOverviewGUI extends Screen {
+public class StatOverviewScreen extends Screen {
 
     Stat.StatGroup statgroup = Stat.StatGroup.Main;
     int currentElement = 0;
     HashMap<String, List<Stat>> statmap = new HashMap<>();
 
-    public StatOverviewGUI() {
+    public StatOverviewScreen() {
         super(new StringTextComponent("Stats Screen"));
 
     }
@@ -281,7 +281,7 @@ public class StatOverviewGUI extends Screen {
 
                 tooltip.add(Styles.GREENCOMP().appendSibling(stat.locDesc()));
 
-                StatOverviewGUI.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
+                StatOverviewScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
                         .getInstance().fontRenderer);
 
             }
@@ -305,13 +305,13 @@ public class StatOverviewGUI extends Screen {
 
             if (!(stat instanceof UnknownStat)) {
 
-                String str = StatOverviewGUI.this.getStatString(stat, unitdata);
+                String str = StatOverviewScreen.this.getStatString(stat, unitdata);
 
                 ResourceLocation res = stat.getIconLocation();
 
                 RenderUtils.renderIcon(res, getIconX(), getIconY());
 
-                StatOverviewGUI.this.drawString(font, str, this.x, this.y, TextFormatting.GOLD
+                StatOverviewScreen.this.drawString(font, str, this.x, this.y, TextFormatting.GOLD
                         .getColor());
             }
         }

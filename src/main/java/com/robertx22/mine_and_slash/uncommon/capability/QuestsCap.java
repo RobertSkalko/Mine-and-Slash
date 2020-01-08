@@ -41,6 +41,10 @@ public class QuestsCap {
         void syncToClient(PlayerEntity player);
 
         void setMapQuest(Quest quest);
+
+        QuestLogData getData();
+
+        QuestSaveData getMapQuestData();
     }
 
     @Mod.EventBusSubscriber
@@ -110,6 +114,16 @@ public class QuestsCap {
             this.data.mapCompletitionQuest = new QuestSaveData();
             this.data.mapCompletitionQuest.tasks.add(quest.getTaskData());
             this.data.mapCompletitionQuest.reward.rewardGUID = MapQuestReward.INSTANCE.GUID();
+        }
+
+        @Override
+        public QuestLogData getData() {
+            return this.data;
+        }
+
+        @Override
+        public QuestSaveData getMapQuestData() {
+            return data.mapCompletitionQuest;
         }
     }
 

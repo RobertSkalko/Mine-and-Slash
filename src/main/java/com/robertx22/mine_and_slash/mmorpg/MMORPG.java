@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.gear_overlay.GearOverlayGUI;
-import com.robertx22.mine_and_slash.gui.player_overlays.BarsGUI;
+import com.robertx22.mine_and_slash.gui.player_overlays.PlayerBarsOverlayScreen;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
@@ -148,7 +148,7 @@ public class MMORPG {
 
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);
-        MinecraftForge.EVENT_BUS.register(new BarsGUI(Minecraft.getInstance()));
+        MinecraftForge.EVENT_BUS.register(new PlayerBarsOverlayScreen(Minecraft.getInstance()));
 
         if (ClientContainer.INSTANCE.SHOW_UNMET_GEAR_REQUIREMENTS_GUI.get()) {
             MinecraftForge.EVENT_BUS.register(new GearOverlayGUI(Minecraft.getInstance()));

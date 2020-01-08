@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
+import com.robertx22.mine_and_slash.quests.base.Quest;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
@@ -66,11 +67,17 @@ public class MapLootGen extends BaseLootGen {
 
         data.rarity = rarity.Rank();
 
-        data.minutes = RandomUtils.RandomRange(15, 60);
+        Quest quest = SlashRegistry.Quests().getWrapped().random();
+
+        data.questGUID = quest.GUID();
+
+        data.minutes = quest.minutes();
 
         data.tier = blueprint.getTier();
 
         data.isPermaDeath = blueprint.getIsPermaDeath();
+
+        data.rewardCrateGUID = SlashRegistry.LootCrates().getWrapped().random().GUID();
 
         blueprint.rollSetupGrouPlay(data, rarity);
 

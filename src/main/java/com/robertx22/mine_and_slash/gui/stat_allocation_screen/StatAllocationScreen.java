@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.stat_point_screen;
+package com.robertx22.mine_and_slash.gui.stat_allocation_screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -28,13 +28,13 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatPointScreen extends BaseScreen {
+public class StatAllocationScreen extends BaseScreen {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/stat_point_screen.png");
     static int sizeY = 220;
     static int sizeX = 215;
 
-    public StatPointScreen() {
+    public StatAllocationScreen() {
         super(sizeX, sizeY);
     }
 
@@ -139,7 +139,7 @@ public class StatPointScreen extends BaseScreen {
                             .getStat(stat)));
                 }
 
-                StatPointScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
+                StatAllocationScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
                         .getInstance().fontRenderer);
 
             }

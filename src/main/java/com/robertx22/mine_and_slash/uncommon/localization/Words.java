@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    KillMobsCollectRarityPoints("Kill mobs, collect rarity points"),
     KillMobs("Kill Mobs"),
     Bad("Bad"),
     Good("Good"),

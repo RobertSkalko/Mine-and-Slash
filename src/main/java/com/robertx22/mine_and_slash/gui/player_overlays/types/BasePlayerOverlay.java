@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.player_overlays;
+package com.robertx22.mine_and_slash.gui.player_overlays.types;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;

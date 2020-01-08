@@ -36,7 +36,7 @@ import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.quests.base.Quest;
 import com.robertx22.mine_and_slash.quests.base.QuestReward;
 import com.robertx22.mine_and_slash.quests.quest_rewards.MapQuestReward;
-import com.robertx22.mine_and_slash.quests.quests.KillMobsQuest;
+import com.robertx22.mine_and_slash.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.IWorld;
@@ -265,7 +265,7 @@ public class SlashRegistry {
         map.put(SlashRegistryType.PERK, new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
         map.put(SlashRegistryType.PERK_EFFECT, new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
         map.put(SlashRegistryType.LOOT_CRATE, new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, new UniqueCrate()));
-        map.put(SlashRegistryType.QUEST, new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, KillMobsQuest.INSTANCE));
+        map.put(SlashRegistryType.QUEST, new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE));
         map.put(SlashRegistryType.QUEST_REWARD, new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, MapQuestReward.INSTANCE));
 
     }

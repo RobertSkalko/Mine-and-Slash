@@ -60,4 +60,5 @@ public abstract class Quest implements ISlashRegistryEntry {
         return 0;
     }
 
+    public abstract int minutes();
 }

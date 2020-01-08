@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.gui.player_overlays;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
+import com.robertx22.mine_and_slash.gui.player_overlays.types.*;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
@@ -11,7 +12,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class BarsGUI extends AbstractGui {
+public class PlayerBarsOverlayScreen extends AbstractGui {
     private Minecraft mc;
 
     BottomMiddleOverlay bottomMiddle = new BottomMiddleOverlay();
@@ -20,7 +21,7 @@ public class BarsGUI extends AbstractGui {
     MiddleOverlay middle = new MiddleOverlay();
     AzureTopLeftOverlay azuretopleft = new AzureTopLeftOverlay();
 
-    public BarsGUI(Minecraft mc) {
+    public PlayerBarsOverlayScreen(Minecraft mc) {
         super();
         this.mc = mc;
 

@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.quests.quests.KillMobsQuest;
+import com.robertx22.mine_and_slash.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -74,7 +74,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
 
     @Store
-    public String questGUID = KillMobsQuest.INSTANCE.GUID();
+    public String questGUID = SimpleKillMobsQuest.INSTANCE.GUID();
 
     @Store
     public String rewardCrateGUID = CommonerCrate.INSTANCE.GUID();

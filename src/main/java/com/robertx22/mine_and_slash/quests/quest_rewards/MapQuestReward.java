@@ -44,7 +44,7 @@ public class MapQuestReward extends QuestReward {
 
             ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, player, 50);
 
-            player.entityDropItem(stack);
+            player.entityDropItem(stack, 1F);
         }
 
     }

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
-import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoGui;
-import com.robertx22.mine_and_slash.gui.stat_point_screen.StatPointScreen;
-import com.robertx22.mine_and_slash.gui.stats_gui.StatOverviewGUI;
+import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoScreen;
+import com.robertx22.mine_and_slash.gui.stat_allocation_screen.StatAllocationScreen;
+import com.robertx22.mine_and_slash.gui.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkTreeScreen;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import net.minecraft.client.Minecraft;
@@ -28,14 +28,14 @@ public class OnKeyPress {
             if (mc.currentScreen == null) { // public net.minecraft.client.gui.screen.Screen field_71462_r
 
                 if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
-                    mc.displayGuiScreen(new StatOverviewGUI());
+                    mc.displayGuiScreen(new StatOverviewScreen());
                 } else if (key == KeybindsRegister.Player_Stat_Points.getKey()
                         .getKeyCode()) {
-                    mc.displayGuiScreen(new StatPointScreen());
+                    mc.displayGuiScreen(new StatAllocationScreen());
                 } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
                     mc.displayGuiScreen(new PerkTreeScreen());
                 } else if (key == KeybindsRegister.mapInfo.getKey().getKeyCode()) {
-                    mc.displayGuiScreen(new MapInfoGui());
+                    mc.displayGuiScreen(new MapInfoScreen());
                 }
 
                 boolean wasDown = down;
@@ -46,12 +46,12 @@ public class OnKeyPress {
             } else {
 
                 if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
-                    if (mc.currentScreen instanceof StatOverviewGUI) {
+                    if (mc.currentScreen instanceof StatOverviewScreen) {
                         mc.displayGuiScreen(null);
                     }
                 } else if (key == KeybindsRegister.Player_Stat_Points.getKey()
                         .getKeyCode()) {
-                    if (mc.currentScreen instanceof StatPointScreen) {
+                    if (mc.currentScreen instanceof StatAllocationScreen) {
                         mc.displayGuiScreen(null);
                     }
                 } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
@@ -59,7 +59,7 @@ public class OnKeyPress {
                         mc.displayGuiScreen(null);
                     }
                 } else if (key == KeybindsRegister.mapInfo.getKey().getKeyCode()) {
-                    if (mc.currentScreen instanceof MapInfoGui) {
+                    if (mc.currentScreen instanceof MapInfoScreen) {
                         mc.displayGuiScreen(null);
                     }
                 }
