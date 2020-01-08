@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
     Talents("Talents"),
-    StatOverview("Stat Overview"),
+    StatOverview("Stat Info"),
     StatPoints("Stat Points"),
     MapInfo("Map Info"),
     KillMobsCollectRarityPoints("Kill mobs, collect rarity points"),

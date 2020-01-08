@@ -12,6 +12,7 @@ public class KeybindsRegister {
     public static KeyBinding Talent_Tree = new KeyBinding("Talent Tree", GLFW.GLFW_KEY_J, Ref.MOD_NAME);
     public static KeyBinding disableNeatOverlay = new KeyBinding("Disable Neat Overlay", GLFW.GLFW_KEY_MINUS, Ref.MOD_NAME);
     public static KeyBinding mapInfo = new KeyBinding("Adventure Map Info", GLFW.GLFW_KEY_M, Ref.MOD_NAME);
+    public static KeyBinding hubScreen = new KeyBinding("Hub Screen", GLFW.GLFW_KEY_H, Ref.MOD_NAME);
 
     public static void register() {
         ClientRegistry.registerKeyBinding(Player_Stats);
@@ -19,6 +20,7 @@ public class KeybindsRegister {
         ClientRegistry.registerKeyBinding(disableNeatOverlay);
         ClientRegistry.registerKeyBinding(Talent_Tree);
         ClientRegistry.registerKeyBinding(mapInfo);
+        ClientRegistry.registerKeyBinding(hubScreen);
 
     }
 

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
+import com.robertx22.mine_and_slash.gui.main_hub.MainHubScreen;
 import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoScreen;
 import com.robertx22.mine_and_slash.gui.stat_allocation_screen.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.stats_overview.StatOverviewScreen;
@@ -36,6 +37,8 @@ public class OnKeyPress {
                     mc.displayGuiScreen(new PerkTreeScreen());
                 } else if (key == KeybindsRegister.mapInfo.getKey().getKeyCode()) {
                     mc.displayGuiScreen(new MapInfoScreen());
+                } else if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
+                    mc.displayGuiScreen(new MainHubScreen());
                 }
 
                 boolean wasDown = down;
@@ -60,6 +63,10 @@ public class OnKeyPress {
                     }
                 } else if (key == KeybindsRegister.mapInfo.getKey().getKeyCode()) {
                     if (mc.currentScreen instanceof MapInfoScreen) {
+                        mc.displayGuiScreen(null);
+                    }
+                } else if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
+                    if (mc.currentScreen instanceof MainHubScreen) {
                         mc.displayGuiScreen(null);
                     }
                 }
