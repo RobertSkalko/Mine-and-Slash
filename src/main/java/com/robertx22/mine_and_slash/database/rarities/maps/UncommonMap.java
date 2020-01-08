@@ -14,7 +14,7 @@ public class UncommonMap extends BaseUncommon implements MapRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(15, 35);
+        return new MinMax(25, 45);
     }
 
     @Override

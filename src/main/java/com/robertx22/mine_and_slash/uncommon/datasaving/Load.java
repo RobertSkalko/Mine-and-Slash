@@ -48,23 +48,22 @@ public class Load {
         return null;
     }
 
+    public static QuestsCap.IQuestsData quests(PlayerEntity provider) {
+
+        if (provider != null) {
+            return provider.getCapability(QuestsCap.Data)
+                    .orElse(new QuestsCap.DefaultImpl());
+
+        }
+        return null;
+    }
+
     public static ProfessionsCap.IProfessionsData professions(PlayerEntity provider) {
 
         if (provider != null) {
 
             return provider.getCapability(ProfessionsCap.Data)
                     .orElse(new ProfessionsCap.DefaultImpl());
-
-        }
-        return null;
-    }
-
-    public static PlayerMapCap.IPlayerMapData mapData(ICapabilityProvider provider) {
-
-        if (provider != null) {
-
-            return provider.getCapability(PlayerMapCap.Data)
-                    .orElse(new PlayerMapCap.DefaultImpl());
 
         }
         return null;

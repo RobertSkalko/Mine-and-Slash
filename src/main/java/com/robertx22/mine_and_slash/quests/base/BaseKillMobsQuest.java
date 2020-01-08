@@ -12,19 +12,22 @@ import java.util.List;
 public abstract class BaseKillMobsQuest extends Quest {
 
     @Override
-    public void onAction(ActionDoneData actionData) {
+    public void onAction(QuestTaskData task, ActionDoneData actionData) {
 
         if (actionData instanceof KilledMobData) {
 
-        }
+            KilledMobData mdata = (KilledMobData) actionData;
 
+            task.increaseCompletition(mdata.getGroupCompletitionMultiplier());
+
+        }
     }
 
     @Override
     public List<ITextComponent> getTooltip(QuestTaskData data) {
         List<ITextComponent> tooltip = new ArrayList<>();
 
-        tooltip.add(new StringTextComponent("Kill mobs" + " ( " + (int) data.currentCompletition + " / " + (int) data.amountRequired + " ) "));
+        tooltip.add(new StringTextComponent("Kill mobs" + " ( " + data.getCurrentCompletition() + " / " + data.amountRequired + " ) "));
 
         return tooltip;
     }

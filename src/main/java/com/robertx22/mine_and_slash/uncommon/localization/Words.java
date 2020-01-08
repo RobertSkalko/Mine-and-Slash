@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    KillMobs("Kill Mobs"),
     Bad("Bad"),
     Good("Good"),
     Average("Average"),
@@ -115,7 +116,7 @@ public enum Words implements IAutoLocName {
 
     Automatically_salvages_items("Automatically salvages items"),
 
-    Bonus_Loot_Amount("Bonus Loot Amount"),
+    Loot("Loot"),
 
     Bonus_Salvage_Chance("Bonus Salvage Chance"),
 
@@ -258,7 +259,7 @@ public enum Words implements IAutoLocName {
 
     Beware("Beware"),
 
-    MapWorldsAreResetOnGameReload("Map Worlds Are Reset On Game Reload"),
+    MapWorldsAreResetOnGameReload("Maps Worlds Wipe On Game Reload!"),
 
     DoNotBuildInMaps("Do not build in maps!"),
 

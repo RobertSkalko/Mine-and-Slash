@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.network.DmgNumPacket;
+import com.robertx22.mine_and_slash.quests.actions.KilledMobData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -27,42 +28,45 @@ public class OnMobDeathDrops {
 
         try {
 
-            LivingEntity entity = event.getEntityLiving();
+            LivingEntity mobKilled = event.getEntityLiving();
 
-            if (entity.world.isRemote) {
+            if (mobKilled.world.isRemote) {
                 return;
             }
 
-            if (!(entity instanceof PlayerEntity)) {
+            if (!(mobKilled instanceof PlayerEntity)) {
                 if (event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
-                    if (Load.hasUnit(entity)) {
+                    if (Load.hasUnit(mobKilled)) {
 
                         ServerPlayerEntity player = (ServerPlayerEntity) event.getSource()
                                 .getTrueSource();
 
-                        UnitData victim = Load.Unit(entity);
-                        UnitData killer = Load.Unit(player);
+                        UnitData mobKilledData = Load.Unit(mobKilled);
+                        UnitData playerData = Load.Unit(player);
 
-                        if (victim.shouldDropLoot() == false) {
+                        if (mobKilledData.shouldDropLoot() == false) {
                             return;
                         }
 
-                        CriteriaRegisters.DROP_LVL_PENALTY_TRIGGER.trigger(player, killer, victim);
+                        KilledMobData action = new KilledMobData(mobKilled, mobKilledData, player, playerData);
+                        Load.quests(player).onAction(player, action);
 
-                        ModEntityConfig config = SlashRegistry.getEntityConfig(entity, victim);
+                        CriteriaRegisters.DROP_LVL_PENALTY_TRIGGER.trigger(player, playerData, mobKilledData);
+
+                        ModEntityConfig config = SlashRegistry.getEntityConfig(mobKilled, mobKilledData);
 
                         float loot_multi = (float) config.LOOT_MULTI;
                         float exp_multi = (float) config.EXP_MULTI;
 
                         if (loot_multi > 0) {
-                            MasterLootGen.genAndDrop(victim, killer, entity, player);
+                            MasterLootGen.genAndDrop(mobKilledData, playerData, mobKilled, player);
                         }
 
                         if (exp_multi > 0) {
-                            int exp = GiveExp(entity, player, killer, victim, exp_multi);
+                            int exp = GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
 
                             if (exp > 0) {
-                                DmgNumPacket packet = new DmgNumPacket(entity, Elements.Nature, "+" + NumberUtils
+                                DmgNumPacket packet = new DmgNumPacket(mobKilled, Elements.Nature, "+" + NumberUtils
                                         .formatNumber(exp) + " Exp!");
                                 packet.isExp = true;
                                 MMORPG.sendToClient(packet, player);

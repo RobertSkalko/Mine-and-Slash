@@ -56,6 +56,8 @@ public class PlayerMapCap {
 
         int getTier();
 
+        int getMinutesPassed();
+
         MapItemData getMap();
 
         BlockPos getMapDevicePos();
@@ -73,6 +75,8 @@ public class PlayerMapCap {
         void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player);
 
         void syncToClient(PlayerEntity player);
+
+        void onQuestFinished();
     }
 
     @Mod.EventBusSubscriber
@@ -109,6 +113,8 @@ public class PlayerMapCap {
         int minutesPassed = 0;
         boolean isDead = false;
 
+        boolean questFinished = false;
+
         @Override
         public CompoundNBT getNBT() {
 
@@ -117,6 +123,7 @@ public class PlayerMapCap {
             nbt.putLong(POS_OBJ, mapDevicePos);
             nbt.putInt(MIN_PASSED, minutesPassed);
             nbt.putBoolean("isdead", isDead);
+            nbt.putBoolean("questFinished", questFinished);
 
             if (mapdata != null) {
                 Map.Save(nbt, mapdata);
@@ -137,6 +144,7 @@ public class PlayerMapCap {
             this.mapDevicePos = nbt.getLong(POS_OBJ);
             this.minutesPassed = nbt.getInt(MIN_PASSED);
             this.isDead = nbt.getBoolean("isdead");
+            this.questFinished = nbt.getBoolean("questFinished");
 
             mapdata = Map.Load(nbt);
 
@@ -210,6 +218,7 @@ public class PlayerMapCap {
             this.mapDevicePos = pos.toLong();
             this.originalDimension = player.world.getDimension().getType();
             this.mapdata = map.clone();
+            this.questFinished = false;
 
             MMORPG.syncMapData((ServerPlayerEntity) player);
         }
@@ -217,6 +226,11 @@ public class PlayerMapCap {
         @Override
         public void syncToClient(PlayerEntity player) {
             MMORPG.syncMapData((ServerPlayerEntity) player);
+        }
+
+        @Override
+        public void onQuestFinished() {
+            this.questFinished = true;
         }
 
         private void onMinutePassAnnounce(PlayerEntity player) {
@@ -239,7 +253,13 @@ public class PlayerMapCap {
 
         @Override
         public float getLootMultiplier(PlayerEntity player) {
+
             if (WorldUtils.isMapWorld(player.world)) {
+
+                if (questFinished) {
+                    return 0.3F;
+                }
+
                 return this.mapdata.getBonusLootMulti();
             } else {
                 return 1;
@@ -269,6 +289,11 @@ public class PlayerMapCap {
         @Override
         public int getTier() {
             return this.mapdata.tier;
+        }
+
+        @Override
+        public int getMinutesPassed() {
+            return this.minutesPassed;
         }
 
         @Override

@@ -9,12 +9,12 @@ public class LegendaryMap extends BaseLegendary implements MapRarity {
 
     @Override
     public MinMax AffixAmount() {
-        return new MinMax(3, 5);
+        return new MinMax(3, 3);
     }
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(40, 70);
+        return new MinMax(40, 80);
     }
 
     @Override

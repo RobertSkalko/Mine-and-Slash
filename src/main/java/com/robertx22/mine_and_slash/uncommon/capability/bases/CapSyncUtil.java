@@ -1,9 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability.bases;
 
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
-import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.*;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -14,6 +11,12 @@ public class CapSyncUtil {
         syncMapCap(player);
         syncTalents(player);
         syncProffs(player);
+        syncQuests(player);
+    }
+
+    public static void syncQuests(PlayerEntity player) {
+        QuestsCap.IQuestsData data = Load.quests(player);
+        data.syncToClient(player);
     }
 
     public static void syncEntityCap(PlayerEntity player) {

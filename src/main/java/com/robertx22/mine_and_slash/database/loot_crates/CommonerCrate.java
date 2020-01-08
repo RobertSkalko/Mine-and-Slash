@@ -9,6 +9,12 @@ import net.minecraft.item.ItemStack;
 
 public class CommonerCrate extends LootCrate {
 
+    public static CommonerCrate INSTANCE = new CommonerCrate();
+
+    private CommonerCrate() {
+
+    }
+
     @Override
     public Words name() {
         return Words.CommonerCrate;

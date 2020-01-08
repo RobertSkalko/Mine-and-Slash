@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
@@ -9,6 +10,7 @@ import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.quests.quests.KillMobsQuest;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -70,6 +72,12 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public boolean isPermaDeath = false;
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
+
+    @Store
+    public String questGUID = KillMobsQuest.INSTANCE.GUID();
+
+    @Store
+    public String rewardCrateGUID = CommonerCrate.INSTANCE.GUID();
 
     @Store
     public String mapUUID = UUID.randomUUID().toString();
@@ -209,6 +217,8 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         player.sendMessage(Styles.GREENCOMP().appendSibling(Chats.MapStarted.locName()));
 
+        Load.quests(player).setMapQuest(SlashRegistry.Quests().get(questGUID));
+
         return MapManager.setupPlayerMapDimension(player, unit, this, pos);
 
     }
@@ -272,31 +282,30 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         }
 
         Tooltip.add("", tooltip);
-        Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(Words.Tier.locName()
-                        .appendText(": " + this.tier)), tooltip);
 
-        //Tooltip.add("", tooltip);
         Tooltip.add(Styles.GREENCOMP()
                 .appendSibling(Words.Minutes.locName()
                         .appendText(": " + this.minutes)), tooltip);
 
-        // Tooltip.add("", tooltip);
-        Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(Words.Bonus_Loot_Amount.locName()
-                        .appendText(": " + this.getBonusLootAmountInPercent() + "%")), tooltip);
+        Tooltip.add("", tooltip);
 
-        //Tooltip.add("", tooltip);
-        Tooltip.add(TooltipUtils.rarity(rarity), tooltip);
+        tooltip.add(TooltipUtils.rarityShort(rarity)
+                .appendText(TextFormatting.GRAY + ", ")
+                .appendSibling(Styles.YELLOWCOMP()
+                        .appendSibling(Words.Loot.locName()
+                                .appendText(": +" + this.getBonusLootAmountInPercent() + "%")))
+                .appendText(TextFormatting.GRAY + ", ")
+                .appendSibling(Styles.GOLDCOMP()
+                        .appendSibling(Words.Tier.locName()
+                                .appendText(": " + this.tier))));
 
         if (this.isPermaDeath) {
-            //    Tooltip.add("", tooltip);
             Tooltip.add(Styles.REDCOMP()
-                    .appendSibling(Words.Permadeath.locName()), tooltip);
+                    .appendSibling(Words.Permadeath.locName()
+                            .appendText(" " + "\u2620")), tooltip);
         }
 
         if (this.groupPlay) {
-            //  Tooltip.add("", tooltip);
             Tooltip.add(Styles.GREENCOMP()
                     .appendSibling(Words.GroupPlay.locName()
                             .appendText(", ")
@@ -304,15 +313,27 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
                             .appendText(": " + this.maxPlayersInGroup)), tooltip);
         }
 
-        //  Tooltip.add("", tooltip);
+        Tooltip.add("", tooltip);
+
+        tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Reward: " + TextFormatting.DARK_PURPLE)
+                .appendSibling(SlashRegistry.LootCrates()
+                        .get(this.rewardCrateGUID)
+                        .name()
+                        .locName()));
+
+        Tooltip.add("", tooltip);
+
+        tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Quest: ").appendSibling(SlashRegistry
+                .Quests()
+                .get(questGUID)
+                .name()));
+
+        Tooltip.add("", tooltip);
+
         Tooltip.add(Styles.BLUECOMP()
                 .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
 
-        // Tooltip.add("", tooltip);
-
-        tooltip.add(new StringTextComponent(TextFormatting.RED + "[*]").appendSibling(Words.MapWorldsAreResetOnGameReload
-                .locName()));
-        tooltip.add(new StringTextComponent(TextFormatting.RED + "").appendSibling(Words.DoNotBuildInMaps
+        tooltip.add(new StringTextComponent(TextFormatting.RED + "[" + "\u2668" + "]").appendSibling(Words.MapWorldsAreResetOnGameReload
                 .locName()));
 
         TooltipUtils.removeDoubleBlankLines(tooltip, 20);

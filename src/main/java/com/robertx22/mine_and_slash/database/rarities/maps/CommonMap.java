@@ -14,7 +14,7 @@ public class CommonMap extends BaseCommon implements MapRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(10, 25);
+        return new MinMax(15, 30);
     }
 
     @Override

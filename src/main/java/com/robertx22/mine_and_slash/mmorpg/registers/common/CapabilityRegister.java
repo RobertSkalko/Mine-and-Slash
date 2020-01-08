@@ -20,6 +20,8 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(PlayerTalentsCap.IPlayerTalentsData.class, new PlayerTalentsCap.Storage(), PlayerTalentsCap.DefaultImpl::new);
 
+        CapabilityManager.INSTANCE.register(QuestsCap.IQuestsData.class, new QuestsCap.Storage(), QuestsCap.DefaultImpl::new);
+
     }
 
 }

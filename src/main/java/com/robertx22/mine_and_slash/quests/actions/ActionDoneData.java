@@ -2,8 +2,14 @@ package com.robertx22.mine_and_slash.quests.actions;
 
 public abstract class ActionDoneData {
 
-    public ActionDoneData() {
+    public int groupMembers = 1;
 
+    public ActionDoneData(int group) {
+        this.groupMembers = group;
+    }
+
+    public float getGroupCompletitionMultiplier() {
+        return 1F / (float) groupMembers;
     }
 
 }

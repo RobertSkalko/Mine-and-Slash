@@ -1,5 +1,8 @@
 package com.robertx22.mine_and_slash.quests.data;
 
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.quests.base.Quest;
+import com.robertx22.mine_and_slash.quests.base.QuestResult;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -10,12 +13,41 @@ public class QuestTaskData {
     public String questGUID = "";
 
     @Store
-    public float currentCompletition = 0;
+    private float currentCompletition = 0;
 
     @Store
-    public float amountRequired = 0;
+    public int amountRequired = 0;
 
     @Store
     public QuestResult questResult = QuestResult.UNFINISHED;
 
+    public Quest getQuest() {
+        return SlashRegistry.Quests().get(questGUID);
+    }
+
+    public boolean canProgress() {
+        return questResult == QuestResult.UNFINISHED;
+    }
+
+    private boolean isCompleted() {
+        return currentCompletition >= amountRequired;
+    }
+
+    public void setupResult() {
+        if (questResult == QuestResult.UNFINISHED) {
+            if (isCompleted()) {
+                questResult = QuestResult.COMPLETED;
+            }
+        }
+    }
+
+    public int getCurrentCompletition() {
+        return (int) this.currentCompletition;
+    }
+
+    public void increaseCompletition(float add) {
+        if (canProgress()) {
+            this.currentCompletition += add;
+        }
+    }
 }

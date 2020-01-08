@@ -150,6 +150,11 @@ public class TooltipUtils {
                 .appendSibling(rarity.locName())));
     }
 
+    public static ITextComponent rarityShort(Rarity rarity) {
+        return (new StringTextComponent(rarity.textFormatColor() + "").appendSibling(rarity
+                .locName()));
+    }
+
     public static ITextComponent tier(int tier) {
 
         return Styles.YELLOWCOMP()

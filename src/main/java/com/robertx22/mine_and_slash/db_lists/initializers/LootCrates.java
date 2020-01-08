@@ -19,7 +19,7 @@ public class LootCrates implements ISlashRegistryInit {
             {
                 {
                     add(new UniqueCrate());
-                    add(new CommonerCrate());
+                    add(CommonerCrate.INSTANCE);
                     add(new CurrencyCrate());
                     add(new RuneCrate());
                 }

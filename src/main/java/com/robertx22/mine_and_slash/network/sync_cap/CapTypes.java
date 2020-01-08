@@ -15,7 +15,7 @@ public enum CapTypes {
     MAP_DATA {
         @Override
         public ICommonCapability getCap(PlayerEntity player) {
-            return Load.mapData(player);
+            return Load.playerMapData(player);
         }
     },
     PROFESSIONS {
@@ -28,6 +28,12 @@ public enum CapTypes {
         @Override
         public ICommonCapability getCap(PlayerEntity player) {
             return Load.talents(player);
+        }
+    },
+    QUESTS {
+        @Override
+        public ICommonCapability getCap(PlayerEntity player) {
+            return Load.quests(player);
         }
     },
     STAT_POINTS {

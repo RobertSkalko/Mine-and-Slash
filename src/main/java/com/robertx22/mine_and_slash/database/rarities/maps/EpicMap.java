@@ -9,12 +9,12 @@ public class EpicMap extends BaseEpic implements MapRarity {
 
     @Override
     public MinMax AffixAmount() {
-        return new MinMax(3, 4);
+        return new MinMax(2, 3);
     }
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(30, 55);
+        return new MinMax(50, 80);
     }
 
     @Override

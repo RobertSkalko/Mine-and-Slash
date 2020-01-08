@@ -29,7 +29,7 @@ public class MapAffixData {
     }
 
     public float getBonusLootMultiplier() {
-        return ((float) percent / 300) * getAffix().lootMulti();
+        return ((float) percent / 750) * getAffix().lootMulti();
     }
 
     public MapAffixData(String guid, int percent, AffectedEntities affects) {
