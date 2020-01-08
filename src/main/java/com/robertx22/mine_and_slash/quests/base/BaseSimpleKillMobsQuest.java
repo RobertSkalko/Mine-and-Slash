@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.quests.base;
 import com.robertx22.mine_and_slash.quests.actions.ActionDoneData;
 import com.robertx22.mine_and_slash.quests.actions.KilledMobData;
 import com.robertx22.mine_and_slash.quests.data.QuestTaskData;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -19,7 +18,7 @@ public abstract class BaseSimpleKillMobsQuest extends Quest {
 
             KilledMobData mdata = (KilledMobData) actionData;
 
-            if (mdata.mobData.getType() != EntityTypeUtils.EntityType.MOB) {
+            if (Quest.isValidMapMobKill(mdata.mobkKilled, mdata.mobData) == false) {
                 return;
             }
 

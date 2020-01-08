@@ -7,6 +7,10 @@ import com.robertx22.mine_and_slash.quests.actions.ActionDoneData;
 import com.robertx22.mine_and_slash.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.quests.data.QuestTaskData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
 
@@ -26,6 +30,14 @@ public abstract class Quest implements ISlashRegistryEntry {
         data.questGUID = this.GUID();
 
         return data;
+
+    }
+
+    public static boolean isValidMapMobKill(Entity mob, EntityCap.UnitData data) {
+        if (data.getType() != EntityTypeUtils.EntityType.MOB) {
+            return false;
+        }
+        return WorldUtils.isMapWorldClass(mob.world);
 
     }
 
