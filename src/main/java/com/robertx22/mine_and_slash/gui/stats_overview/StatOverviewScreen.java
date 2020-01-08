@@ -6,10 +6,12 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -30,7 +32,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @OnlyIn(Dist.CLIENT)
-public class StatOverviewScreen extends Screen {
+public class StatOverviewScreen extends Screen implements INamedScreen {
 
     Stat.StatGroup statgroup = Stat.StatGroup.Main;
     int currentElement = 0;
@@ -39,6 +41,16 @@ public class StatOverviewScreen extends Screen {
     public StatOverviewScreen() {
         super(new StringTextComponent("Stats Screen"));
 
+    }
+
+    @Override
+    public ResourceLocation iconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/stat_overview.png");
+    }
+
+    @Override
+    public Words screenName() {
+        return Words.StatOverview;
     }
 
     @Override

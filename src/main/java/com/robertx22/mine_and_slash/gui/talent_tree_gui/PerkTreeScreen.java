@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
 import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
@@ -14,6 +15,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap.IPlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils.PointF;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -32,7 +34,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class PerkTreeScreen extends Screen {
+public class PerkTreeScreen extends Screen implements INamedScreen {
 
     Minecraft mc;
     EntityCap.UnitData data;
@@ -65,6 +67,16 @@ public class PerkTreeScreen extends Screen {
         MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
         this.talents = Load.talents(mc.player);
 
+    }
+
+    @Override
+    public ResourceLocation iconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/talents.png");
+    }
+
+    @Override
+    public Words screenName() {
+        return Words.Talents;
     }
 
     public void refreshConnections() {

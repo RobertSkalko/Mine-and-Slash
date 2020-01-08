@@ -1,13 +1,15 @@
 package com.robertx22.mine_and_slash.gui.map_info_gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.robertx22.mine_and_slash.gui.BaseScreen;
+import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
+import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.quests.data.QuestTaskData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.Minecraft;
@@ -20,7 +22,7 @@ import net.minecraft.util.text.ITextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapInfoScreen extends BaseScreen {
+public class MapInfoScreen extends BaseScreen implements INamedScreen {
 
     ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/map_info/window.png");
     public Minecraft mc;
@@ -89,6 +91,16 @@ public class MapInfoScreen extends BaseScreen {
     public static int ySize = 18;
 
     static ResourceLocation img = new ResourceLocation("");
+
+    @Override
+    public ResourceLocation iconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/map_info.png");
+    }
+
+    @Override
+    public Words screenName() {
+        return Words.MapInfo;
+    }
 
     class ItemButton extends ImageButton {
         List<ITextComponent> tooltip;

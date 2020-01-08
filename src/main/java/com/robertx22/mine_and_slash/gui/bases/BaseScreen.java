@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui;
+package com.robertx22.mine_and_slash.gui.bases;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.StringTextComponent;

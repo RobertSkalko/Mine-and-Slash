@@ -4,7 +4,8 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.BaseCoreStat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.gui.BaseScreen;
+import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
+import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.SpendStatPointPacket;
@@ -16,6 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerStatsPointsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.Minecraft;
@@ -28,7 +30,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatAllocationScreen extends BaseScreen {
+public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/stat_point_screen.png");
     static int sizeY = 220;
@@ -43,6 +45,16 @@ public class StatAllocationScreen extends BaseScreen {
 
     int guiLeft = 0;
     int guiTop = 0;
+
+    @Override
+    public ResourceLocation iconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/stat_points.png");
+    }
+
+    @Override
+    public Words screenName() {
+        return Words.StatPoints;
+    }
 
     @Override
     protected void init() {
