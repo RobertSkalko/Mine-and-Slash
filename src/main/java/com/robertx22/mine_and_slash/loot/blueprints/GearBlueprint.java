@@ -8,17 +8,22 @@ import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.db_lists.initializers.Sets;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
+import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.item.ItemStack;
 
 public class GearBlueprint extends ItemBlueprint {
 
     public GearBlueprint(int level) {
         super(level);
+        actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }
 
-    public GearItemSlotPart gearItemSlot = new GearItemSlotPart();
+    public GearItemSlotPart gearItemSlot = new GearItemSlotPart(this);
 
     public float chaosStatChance = 1;
 
@@ -47,6 +52,15 @@ public class GearBlueprint extends ItemBlueprint {
             e.printStackTrace();
         }
 
+    }
+
+    public GearItemData createData() {
+        return GearCreationUtils.CreateData(this, GearItemEnum.NORMAL);
+    }
+
+    @Override
+    ItemStack generate() {
+        return GearCreationUtils.CreateStack(createData());
     }
 
     public boolean isCustomSetChance = false;

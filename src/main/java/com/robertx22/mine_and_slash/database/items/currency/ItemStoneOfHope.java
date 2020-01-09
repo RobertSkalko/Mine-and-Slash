@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequ
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.gears.GearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -40,12 +39,12 @@ public class ItemStoneOfHope extends CurrencyItem implements ICurrencyItemEffect
 
         GearItemData gear = Gear.Load(stack);
 
-        GearBlueprint gearPrint = new GearBlueprint(gear.level);
-        gearPrint.SetSpecificType(gear.gearTypeName);
-        gearPrint.rarity.minRarity = gear.Rarity + 1;
-        gearPrint.level.LevelRange = false;
+        GearBlueprint blueprint = new GearBlueprint(gear.level);
+        blueprint.SetSpecificType(gear.gearTypeName);
+        blueprint.rarity.minRarity = gear.Rarity + 1;
+        blueprint.level.LevelRange = false;
 
-        GearItemData newgear = GearLootGen.CreateData(gearPrint);
+        GearItemData newgear = blueprint.createData();
         gear.WriteOverDataThatShouldStay(newgear);
 
         ItemStack result = ItemStack.EMPTY;

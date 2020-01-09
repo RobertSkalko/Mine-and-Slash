@@ -6,7 +6,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.UniqueRuneSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueRuneBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.UniqueRuneLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -53,7 +52,7 @@ public class GiveUniqueRune {
 
             blueprint.level.LevelRange = false;
 
-            player.addItemStackToInventory(UniqueRuneLootGen.Create(blueprint));
+            player.addItemStackToInventory(blueprint.createStack());
         }
 
         return 0;

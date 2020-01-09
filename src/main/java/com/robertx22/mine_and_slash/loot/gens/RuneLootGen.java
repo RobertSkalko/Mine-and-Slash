@@ -1,17 +1,12 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.RuneBlueprint;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
-public class RuneLootGen extends BaseLootGen {
+public class RuneLootGen extends BaseLootGen<RuneBlueprint> {
 
     public RuneLootGen(LootInfo info) {
         super(info);
@@ -30,37 +25,9 @@ public class RuneLootGen extends BaseLootGen {
     @Override
     public ItemStack generateOne() {
 
-        RuneBlueprint runePrint = new RuneBlueprint(info.level);
+        RuneBlueprint blueprint = new RuneBlueprint(info.level);
 
-        return Create(runePrint);
-
-    }
-
-    public static ItemStack Create(RuneBlueprint blueprint) {
-
-        BaseRuneItem item = blueprint.getRuneItem()
-                .byRarity(blueprint.rarity.get().Rank());
-
-        ItemStack stack = new ItemStack(item);
-
-        RuneItemData data = new RuneItemData();
-
-        data.rarity = item.rarity;
-        data.name = item.GUID();
-        data.level = blueprint.level.get();
-
-        data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                .armorStat()));
-
-        data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                .weaponStat()));
-
-        data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                .jewerlyStat()));
-
-        Rune.Save(stack, data);
-
-        return stack;
+        return blueprint.createStack();
 
     }
 

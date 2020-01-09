@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
+import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.stream.Collectors;
 
-public class CompatibleItemLootGen extends BaseLootGen {
+public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
     public CompatibleItemLootGen(LootInfo info) {
         super(info);
@@ -30,20 +31,12 @@ public class CompatibleItemLootGen extends BaseLootGen {
 
     @Override
     public boolean condition() {
-
-        return ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get();
+        return ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() && info.mobData != null;
     }
 
     @Override
     public ItemStack generateOne() {
-
-        if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == true && info.mobData != null) {
-
-            return gen(info.mobData.getLevel());
-        }
-
-        return ItemStack.EMPTY;
-
+        return gen(info.mobData.getLevel());
     }
 
     public static ItemStack gen(int level) {

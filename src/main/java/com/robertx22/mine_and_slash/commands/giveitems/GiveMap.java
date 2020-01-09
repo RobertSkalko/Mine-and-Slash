@@ -4,7 +4,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.MapLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -55,7 +54,7 @@ public class GiveMap {
             }
             blueprint.level.LevelRange = false;
 
-            player.addItemStackToInventory(MapLootGen.Create(blueprint));
+            player.addItemStackToInventory(blueprint.createStack());
         }
 
         return 0;

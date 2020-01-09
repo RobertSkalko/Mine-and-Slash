@@ -3,20 +3,48 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.LevelPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.RarityPart;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.TierPart;
+import com.robertx22.mine_and_slash.loot.gens.stack_changers.IStackAction;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import net.minecraft.item.ItemStack;
 
-// use once and discard!! unsure how to regulate this
+import java.util.ArrayList;
+import java.util.List;
+
+// use once and discard!
 public abstract class ItemBlueprint {
 
     public ItemBlueprint(int level) {
-        this.level.startPointLvl = level;
+        this.level.number = level;
+
+        this.onCostruct();
     }
 
-    public RarityPart rarity = new RarityPart(getRarityContainer());
-    public LevelPart level = new LevelPart();
+    public ItemBlueprint(int level, int tier) {
+        this.level.number = level;
+        this.tier.number = tier;
+
+        this.onCostruct();
+    }
+
+    protected List<IStackAction> actionsAfterGeneration = new ArrayList<>();
+
+    public boolean itemWasGenerated = false;
+
+    void onCostruct() {
+
+    }
+
+    public RarityPart rarity = new RarityPart(this);
+    public LevelPart level = new LevelPart(this);
+    public TierPart tier = new TierPart(this);
 
     public String GUID = "";
     public boolean randomGUID = true;
+
+    abstract ItemStack generate();
+
+    public abstract RaritiesContainer<? extends Rarity> getRarityContainer();
 
     public void SetSpecificType(String type) {
 
@@ -25,6 +53,25 @@ public abstract class ItemBlueprint {
 
     }
 
-    public abstract RaritiesContainer<? extends Rarity> getRarityContainer();
+    final public ItemStack createStack() {
+        checkAndSetGeneratedBoolean();
+        ItemStack stack = generate();
+        actionsAfterGeneration.forEach(x -> x.changeStack(stack));
+        return stack;
+    }
+
+    private void checkAndSetGeneratedBoolean() {
+
+        if (itemWasGenerated) {
+            try {
+                throw new Exception("Do not use a blueprint instance to make more than 1 item!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            itemWasGenerated = true;
+        }
+
+    }
 
 }

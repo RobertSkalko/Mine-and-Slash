@@ -1,8 +1,16 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
+import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
+
 public abstract class BlueprintPart<T> {
 
     private T part;
+
+    ItemBlueprint blueprint;
+
+    public BlueprintPart(ItemBlueprint blueprint) {
+        this.blueprint = blueprint;
+    }
 
     protected abstract T generateIfNull();
 

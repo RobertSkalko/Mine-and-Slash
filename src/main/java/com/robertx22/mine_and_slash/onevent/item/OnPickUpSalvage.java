@@ -17,9 +17,9 @@ public class OnPickUpSalvage {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onPickupItem(EntityItemPickupEvent event) {
 
-        if (event.getEntityPlayer() != null) {
+        if (event.getPlayer() != null) {
 
-            PlayerEntity player = event.getEntityPlayer();
+            PlayerEntity player = event.getPlayer();
 
             if (!player.world.isRemote) {
 

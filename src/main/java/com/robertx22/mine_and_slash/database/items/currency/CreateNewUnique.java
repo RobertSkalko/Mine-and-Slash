@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.gears.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -53,17 +52,20 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
         gearPrint.level.LevelRange = false;
 
-        GearItemData newgear = UniqueGearLootGen.CreateData(gearPrint);
+        ItemStack newstack = gearPrint.createStack();
+
+        GearItemData newgear = gearPrint.createData();
 
         int tries = 0; // in case there's only 1 unique in a tier
         while (newgear.gearTypeName.equals(gear.gearTypeName) && tries < 10) {
-            newgear = UniqueGearLootGen.CreateData(gearPrint);
+            newgear = gearPrint.createData();
+            newstack = gearPrint.createStack();
             tries++;
         }
 
         gear.WriteOverDataThatShouldStay(newgear);
 
-        return UniqueGearLootGen.CreateStack(newgear);
+        return newstack;
     }
 
     @Override

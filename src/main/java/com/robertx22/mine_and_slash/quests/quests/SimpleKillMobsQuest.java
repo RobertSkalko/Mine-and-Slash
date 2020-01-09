@@ -25,7 +25,7 @@ public class SimpleKillMobsQuest extends BaseSimpleKillMobsQuest {
 
     @Override
     public ResourceLocation icon() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/quest_icons/kill_mobs.png");
+        return new ResourceLocation(Ref.MODID, "textures/gui/quest_icons/kill_mobs.png");
     }
 
     @Override

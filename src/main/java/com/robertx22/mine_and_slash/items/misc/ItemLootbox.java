@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.CompatibleItemLootGen;
-import com.robertx22.mine_and_slash.loot.gens.SpellLootGen;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -220,7 +219,7 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
             print.level.LevelRange = false;
 
             for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
-                stacks.add(SpellLootGen.Create(print));
+                stacks.add(print.createStack());
             }
 
         } else if (lootType.equals(LootTypes.Currency)) {

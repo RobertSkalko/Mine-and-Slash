@@ -6,7 +6,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.SpellSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.SpellLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -62,7 +61,7 @@ public class GiveSpell {
                 blueprint.SetSpecificType(type);
             }
 
-            player.addItemStackToInventory(SpellLootGen.Create(blueprint));
+            player.addItemStackToInventory(blueprint.createStack());
         }
 
         return 0;

@@ -9,9 +9,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.gears.GearLootGen;
-import com.robertx22.mine_and_slash.loot.gens.gears.RunedGearLootGen;
-import com.robertx22.mine_and_slash.loot.gens.gears.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -243,7 +240,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
         blueprint.rarity.minRarity = this.minRarity;
         blueprint.rarity.maxRarity = this.maxRarity;
 
-        GearItemData gear = GearLootGen.CreateData(blueprint);
+        GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 
@@ -257,14 +254,13 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
         UniqueGearBlueprint blueprint = new UniqueGearBlueprint(level, this.uniqueId);
         blueprint.uniqueIsRandom = this.uniqueIsRandom;
-        blueprint.tier = randomUniqueUpToTier;
-        blueprint.mapTier = this.randomUniqueUpToTier;
+        blueprint.tier.number = randomUniqueUpToTier;
 
         blueprint.SetSpecificType(this.itemType);
         blueprint.level.LevelRange = this.levelVariance > 0;
         blueprint.level.LevelVariance = this.levelVariance;
 
-        GearItemData gear = UniqueGearLootGen.CreateData(blueprint);
+        GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 
@@ -288,7 +284,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
         blueprint.rarity.minRarity = this.minRarity;
         blueprint.rarity.maxRarity = this.maxRarity;
 
-        GearItemData gear = RunedGearLootGen.CreateData(blueprint);
+        GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 

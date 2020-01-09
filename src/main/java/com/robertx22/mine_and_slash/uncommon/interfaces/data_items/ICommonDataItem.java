@@ -1,13 +1,15 @@
 package com.robertx22.mine_and_slash.uncommon.interfaces.data_items;
 
-import com.robertx22.mine_and_slash.new_content_test.blueprints.BlueprintItemData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.*;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
@@ -48,11 +50,6 @@ public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable<
         RuneItemData rune = Rune.Load(stack);
         if (rune != null) {
             return rune;
-        }
-
-        BlueprintItemData blueprint = Blueprint.Load(stack);
-        if (blueprint != null) {
-            return blueprint;
         }
 
         return null;

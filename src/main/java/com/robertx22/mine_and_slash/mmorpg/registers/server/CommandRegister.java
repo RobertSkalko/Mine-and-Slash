@@ -39,7 +39,6 @@ public class CommandRegister {
 
         ReloadConfigs.register(dispatcher);
         ModifyItem.register(dispatcher);
-        GiveBlueprint.register(dispatcher);
         GiveUniqueRune.register(dispatcher);
         SayMapInfo.register(dispatcher);
         OpenPickStatsGui.register(dispatcher);

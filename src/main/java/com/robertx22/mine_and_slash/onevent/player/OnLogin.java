@@ -14,8 +14,6 @@ import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.MapLootGen;
-import com.robertx22.mine_and_slash.loot.gens.SpellLootGen;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -101,12 +99,12 @@ public class OnLogin {
 
         player.inventory.addItemStackToInventory(new ItemStack(ItemOre.ItemOres.get(0)));
 
-        player.inventory.addItemStackToInventory(SpellLootGen.Create(spell));
+        player.inventory.addItemStackToInventory(spell.createStack());
 
         if (MMORPG.RUN_DEV_TOOLS) {
             // TESTING MAPS
             MapBlueprint map = new MapBlueprint(1, 1);
-            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
+            player.inventory.addItemStackToInventory(map.createStack());
 
             ItemStack seeds = new ItemStack(Items.WHEAT_SEEDS);
             seeds.setCount(64);

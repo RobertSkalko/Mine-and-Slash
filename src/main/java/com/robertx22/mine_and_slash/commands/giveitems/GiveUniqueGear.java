@@ -6,7 +6,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.GearTypeSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.gears.UniqueGearLootGen;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -60,7 +59,7 @@ public class GiveUniqueGear {
 
             blueprint.level.LevelRange = false;
 
-            player.addItemStackToInventory(UniqueGearLootGen.CreateStack(blueprint));
+            player.addItemStackToInventory(blueprint.createStack());
         }
 
         return 0;

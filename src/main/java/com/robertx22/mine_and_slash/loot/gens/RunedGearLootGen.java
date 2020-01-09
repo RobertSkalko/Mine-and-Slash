@@ -2,31 +2,30 @@ package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
-public class SpellLootGen extends BaseLootGen<SpellBlueprint> {
+public class RunedGearLootGen extends BaseLootGen<RunedGearBlueprint> {
 
-    public SpellLootGen(LootInfo info) {
+    public RunedGearLootGen(LootInfo info) {
         super(info);
     }
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.SPELL_DROPRATE.get().floatValue();
+        return ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get().floatValue();
     }
 
     @Override
     public LootType lootType() {
-        return LootType.Spell;
+        return LootType.RunedItem;
     }
 
     @Override
     public ItemStack generateOne() {
-        SpellBlueprint blueprint = new SpellBlueprint(info.level);
-
-        return blueprint.createStack();
+        RunedGearBlueprint blueprint = new RunedGearBlueprint(info.level);
+        return blueprint.generate();
 
     }
 

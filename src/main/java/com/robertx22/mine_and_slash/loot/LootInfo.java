@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.loot;
 import com.robertx22.mine_and_slash.database.stats.types.generated.LootTypeBonus;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -26,6 +27,11 @@ public class LootInfo {
     public float multi = 1;
     public int minItems = 0;
     public int maxItems = 50;
+
+    public LootInfo(ItemBlueprint blueprint) {
+        this.level = blueprint.level.get();
+
+    }
 
     public LootInfo setMaximum(int max) {
         this.maxItems = max;

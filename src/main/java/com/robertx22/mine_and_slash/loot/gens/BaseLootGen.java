@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.loot.LootInfo;
+import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseLootGen {
+public abstract class BaseLootGen<T extends ItemBlueprint> {
 
     public abstract float baseDropChance();
 
@@ -44,6 +45,7 @@ public abstract class BaseLootGen {
     public BaseLootGen(LootInfo info) {
         this.info = info;
         this.info.setup(this);
+
     }
 
 }

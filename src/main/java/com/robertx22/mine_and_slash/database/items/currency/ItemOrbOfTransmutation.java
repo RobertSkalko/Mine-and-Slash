@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.gears.GearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
@@ -51,7 +50,7 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
         gearPrint.rarity.minRarity = 1;
         gearPrint.level.LevelRange = false;
 
-        GearItemData newgear = GearLootGen.CreateData(gearPrint);
+        GearItemData newgear = gearPrint.createData();
         gear.WriteOverDataThatShouldStay(newgear);
 
         ItemStack result = ItemStack.EMPTY;
