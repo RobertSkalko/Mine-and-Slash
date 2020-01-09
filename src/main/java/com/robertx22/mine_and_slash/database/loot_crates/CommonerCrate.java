@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 
 public class CommonerCrate extends LootCrate {
 
@@ -16,8 +17,8 @@ public class CommonerCrate extends LootCrate {
     }
 
     @Override
-    public Words name() {
-        return Words.CommonerCrate;
+    public ITextComponent name() {
+        return Words.CommonerCrate.locName();
     }
 
     @Override

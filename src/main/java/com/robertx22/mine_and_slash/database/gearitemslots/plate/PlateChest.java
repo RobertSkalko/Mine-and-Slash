@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
-import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateChestItem;
 import net.minecraft.item.Item;
@@ -18,8 +18,8 @@ public class PlateChest extends BaseChest {
     }
 
     @Override
-    public List<Stat> statRequirements() {
-        return plateRequirements();
+    public StatReq getRequirements() {
+        return plateArmorReq;
     }
 
     @Override

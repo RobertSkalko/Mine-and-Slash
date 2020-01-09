@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 
 public class ArmorcrafterCrate extends LootCrate {
 
@@ -21,8 +22,8 @@ public class ArmorcrafterCrate extends LootCrate {
     }
 
     @Override
-    public Words name() {
-        return Words.ArmorCrafterCrate;
+    public ITextComponent name() {
+        return Words.ArmorCrafterCrate.locName();
     }
 
     @Override

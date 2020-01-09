@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.loot.gens.RuneLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 
 public class RuneCrate extends LootCrate {
     public static RuneCrate INSTANCE = new RuneCrate();
@@ -15,8 +16,8 @@ public class RuneCrate extends LootCrate {
     }
 
     @Override
-    public Words name() {
-        return Words.RuneCrate;
+    public ITextComponent name() {
+        return Words.RuneCrate.locName();
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 
 public class UniqueCrate extends LootCrate {
     public static UniqueCrate INSTANCE = new UniqueCrate();
@@ -15,8 +16,8 @@ public class UniqueCrate extends LootCrate {
     }
 
     @Override
-    public Words name() {
-        return Words.UniqueCrate;
+    public ITextComponent name() {
+        return Words.UniqueCrate.locName();
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 
 public class MythicCrate extends LootCrate {
 
@@ -18,8 +19,8 @@ public class MythicCrate extends LootCrate {
     }
 
     @Override
-    public Words name() {
-        return Words.MythicCrate;
+    public ITextComponent name() {
+        return Words.MythicCrate.locName();
     }
 
     @Override

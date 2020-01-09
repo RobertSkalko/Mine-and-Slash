@@ -47,7 +47,7 @@ public class MapLootCrateItem extends Item {
 
     public ITextComponent name(ItemStack stack) {
         return new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.DARK_PURPLE)
-                .appendSibling(getCrate(stack).name().locName());
+                .appendSibling(getCrate(stack).name());
     }
 
     public static Properties getProp() {

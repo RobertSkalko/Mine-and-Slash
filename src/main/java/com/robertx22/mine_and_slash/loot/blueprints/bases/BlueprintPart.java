@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 
 public abstract class BlueprintPart<T> {
 
@@ -17,15 +18,9 @@ public abstract class BlueprintPart<T> {
     public void set(T t) {
 
         if (part == null) {
-
             part = t;
         } else {
-
-            try {
-                throw new Exception("Do not use a blueprint instance to make more than 1 item!");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            MMORPG.devToolsErrorLog("Do not override an already set and created part!");
         }
     }
 
@@ -36,11 +31,7 @@ public abstract class BlueprintPart<T> {
         }
 
         if (part == null) {
-            try {
-                throw new Exception("Variable is somehow null even though it was supposed to be generated!");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            MMORPG.devToolsErrorLog("Do not use a blueprint instance to make more than 1 item!");
         }
 
         return part;

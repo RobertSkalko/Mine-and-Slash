@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.loot.gens.CurrencyLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
 
 public class CurrencyCrate extends LootCrate {
     public static CurrencyCrate INSTANCE = new CurrencyCrate();
@@ -15,8 +16,8 @@ public class CurrencyCrate extends LootCrate {
     }
 
     @Override
-    public Words name() {
-        return Words.CurrencyCrate;
+    public ITextComponent name() {
+        return Words.CurrencyCrate.locName();
     }
 
     @Override

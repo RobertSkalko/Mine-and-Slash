@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
@@ -19,6 +20,11 @@ public class Necklace extends GearItemSlot {
 
     private Necklace() {
 
+    }
+
+    @Override
+    public StatReq getRequirements() {
+        return noReq;
     }
 
     @Override

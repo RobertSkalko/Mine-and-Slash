@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.db_lists.registry;
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.comparators.RarityComparator;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
@@ -133,7 +134,9 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     public C random() {
 
         if (this.list.isEmpty()) {
+            MMORPG.devToolsLog("Items filtered too much, no possibility left, returning null!");
             return null;
+
         }
 
         return RandomUtils.weightedRandom(list);

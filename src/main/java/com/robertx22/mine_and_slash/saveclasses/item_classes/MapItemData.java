@@ -226,8 +226,8 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
 
-        int min = tryIncreaseAmount(salvageBonus, 1);
-        int max = tryIncreaseAmount(salvageBonus, 3);
+        int min = tryIncreaseAmount(salvageBonus, 2);
+        int max = tryIncreaseAmount(salvageBonus, 4);
 
         ItemStack stack = ItemStack.EMPTY;
 
@@ -318,8 +318,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Reward: " + TextFormatting.DARK_PURPLE)
                 .appendSibling(SlashRegistry.LootCrates()
                         .get(this.rewardCrateGUID)
-                        .name()
-                        .locName()));
+                        .name()));
 
         Tooltip.add("", tooltip);
 

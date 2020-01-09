@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -18,6 +19,11 @@ public class EmptyGearType extends GearItemSlot {
     @Override
     public List<StatMod> PrimaryStats() {
         return new ArrayList<>();
+    }
+
+    @Override
+    public StatReq getRequirements() {
+        return noReq;
     }
 
     @Override

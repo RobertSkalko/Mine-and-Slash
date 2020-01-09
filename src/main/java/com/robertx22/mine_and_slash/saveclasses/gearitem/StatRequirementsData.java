@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -24,6 +23,10 @@ public class StatRequirementsData {
 
     @Store
     private List<String> stats = new ArrayList<>();
+
+    public List<String> getStatRequirements() {
+        return stats;
+    }
 
     private HashMap<String, Integer> getReqs(GearItemData data) {
         if (data.isUnique()) {
@@ -62,27 +65,15 @@ public class StatRequirementsData {
 
         this.stats = new ArrayList<>();
 
+        /*
         if (data.isUnique()) {
             unique(data);
         } else {
-            List<Stat> possibleReq = data.GetBaseGearType().statRequirements();
-
-            if (possibleReq != null) {
-                if (possibleReq.size() > 0) {
-                    if (possibleReq.size() > 1) {
-                        if (RandomUtils.roll(50)) {
-                            doubleStat(data);
-
-                        } else {
-                            singleStat(data);
-                        }
-                    } else {
-                        singleStat(data);
-                    }
-                }
-            }
-
+            singleStat(data);
         }
+
+         */
+
     }
 
     public static int getAmount(GearItemData data) {
@@ -94,7 +85,7 @@ public class StatRequirementsData {
                 .get());
         return MathHelper.clamp(req, 0, 100000);
     }
-
+/*
     private void singleStat(GearItemData data) {
         List<Stat> possibleReq = data.GetBaseGearType().statRequirements();
         Stat stat = RandomUtils.weightedRandom(possibleReq);
@@ -115,6 +106,8 @@ public class StatRequirementsData {
     private void unique(GearItemData data) {
 
     }
+
+ */
 
     public boolean meetsRequirements(UnitData data, GearItemData gear) {
 

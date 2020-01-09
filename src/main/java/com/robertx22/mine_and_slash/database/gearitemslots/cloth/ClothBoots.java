@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
-import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
@@ -21,13 +21,13 @@ public class ClothBoots extends BaseBoots {
     }
 
     @Override
-    public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new MagicShieldFlat());
+    public StatReq getRequirements() {
+        return clothArmorReq;
     }
 
     @Override
-    public List<Stat> statRequirements() {
-        return clothRequirements();
+    public List<StatMod> PrimaryStats() {
+        return Arrays.asList(new MagicShieldFlat());
     }
 
     @Override

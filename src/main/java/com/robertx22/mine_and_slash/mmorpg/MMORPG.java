@@ -70,6 +70,16 @@ public class MMORPG {
         }
     }
 
+    public static void devToolsErrorLog(String string) {
+        if (RUN_DEV_TOOLS) {
+            try {
+                throw new Exception(string);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static long MAP_WORLD_SEED = 0;
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);

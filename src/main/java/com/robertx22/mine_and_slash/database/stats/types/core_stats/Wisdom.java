@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class Wisdom extends BaseCoreStat {
     public static final String GUID = "Wisdom";
-    public static final Stat INSTANCE = new Wisdom();
+    public static final Wisdom INSTANCE = new Wisdom();
 
     private Wisdom() {
 

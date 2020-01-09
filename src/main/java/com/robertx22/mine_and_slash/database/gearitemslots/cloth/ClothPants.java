@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BasePants;
-import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothPantsItem;
@@ -25,8 +25,8 @@ public class ClothPants extends BasePants {
     }
 
     @Override
-    public List<Stat> statRequirements() {
-        return clothRequirements();
+    public StatReq getRequirements() {
+        return clothArmorReq;
     }
 
     @Override
