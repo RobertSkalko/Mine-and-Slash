@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.RunePart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
@@ -18,10 +18,12 @@ public class RuneBlueprint extends ItemBlueprint {
 
     }
 
+    public RunePart runePart = new RunePart(this);
+
     @Override
     public ItemStack generate() {
 
-        BaseRuneItem item = getRuneItem().byRarity(rarity.get().Rank());
+        BaseRuneItem item = runePart.get().byRarity(rarity.get().Rank());
 
         ItemStack stack = new ItemStack(item);
 
@@ -48,17 +50,6 @@ public class RuneBlueprint extends ItemBlueprint {
     @Override
     public RaritiesContainer<? extends Rarity> getRarityContainer() {
         return Rarities.Runes;
-    }
-
-    public BaseRuneItem getRuneItem() {
-
-        if (this.GUID.isEmpty()) {
-            return RandomUtils.weightedRandom(SlashRegistry.Runes().getList());
-
-        } else {
-            return SlashRegistry.Runes().get(GUID);
-        }
-
     }
 
 }

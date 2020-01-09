@@ -3,32 +3,18 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.misc.ItemAwakenRuneWord;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.RuneWordPart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.item.ItemStack;
 
 public class AwakenRuneWordBlueprint extends ItemBlueprint {
 
-    public String word = "";
-
     public AwakenRuneWordBlueprint() {
         super(1);
     }
 
-    public RuneWord getWord() {
-
-        if (SlashRegistry.RuneWords().isRegistered(word) == false) {
-
-            RuneWord random = SlashRegistry.RuneWords().random();
-
-            word = random.GUID();
-
-        }
-
-        return SlashRegistry.RuneWords().get(word);
-
-    }
+    public RuneWordPart runeWord = new RuneWordPart(this);
 
     @Override
     ItemStack generate() {
@@ -36,7 +22,7 @@ public class AwakenRuneWordBlueprint extends ItemBlueprint {
 
         ItemAwakenRuneWord item = (ItemAwakenRuneWord) stack.getItem();
 
-        RuneWord word = getWord();
+        RuneWord word = runeWord.get();
 
         item.setWord(stack, word);
 

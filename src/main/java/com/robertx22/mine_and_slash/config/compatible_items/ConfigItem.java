@@ -252,9 +252,13 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
     private ItemStack createUnique(ItemStack stack, int level) {
 
-        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(level, this.uniqueId);
-        blueprint.uniqueIsRandom = this.uniqueIsRandom;
-        blueprint.tier.number = randomUniqueUpToTier;
+        UniqueGearBlueprint blueprint = null;
+
+        if (SlashRegistry.UniqueGears().isRegistered(uniqueId)) {
+            new UniqueGearBlueprint(level, SlashRegistry.UniqueGears().get(uniqueId));
+        } else {
+            new UniqueGearBlueprint(level, randomUniqueUpToTier);
+        }
 
         blueprint.SetSpecificType(this.itemType);
         blueprint.level.LevelRange = this.levelVariance > 0;

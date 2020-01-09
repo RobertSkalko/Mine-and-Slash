@@ -55,7 +55,12 @@ public class GiveCrate {
             }
         }
 
-        LootCrate crate = SlashRegistry.LootCrates().get(type);
+        LootCrate crate = null;
+        if (SlashRegistry.LootCrates().isRegistered(type)) {
+            crate = SlashRegistry.LootCrates().get(type);
+        } else {
+            crate = SlashRegistry.LootCrates().random();
+        }
 
         ItemStack stack = crate.getCrateStack(lvl, tier, score);
 

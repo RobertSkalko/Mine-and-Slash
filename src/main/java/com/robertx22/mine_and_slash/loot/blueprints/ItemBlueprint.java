@@ -39,19 +39,9 @@ public abstract class ItemBlueprint {
     public LevelPart level = new LevelPart(this);
     public TierPart tier = new TierPart(this);
 
-    public String GUID = "";
-    public boolean randomGUID = true;
-
     abstract ItemStack generate();
 
     public abstract RaritiesContainer<? extends Rarity> getRarityContainer();
-
-    public void SetSpecificType(String type) {
-
-        GUID = type;
-        randomGUID = false;
-
-    }
 
     final public ItemStack createStack() {
         checkAndSetGeneratedBoolean();

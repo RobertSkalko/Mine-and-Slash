@@ -1,10 +1,9 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.UniqueRunePart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
@@ -22,9 +21,11 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
         this.rarity.setSpecificRarity(IRarity.Unique);
     }
 
+    public UniqueRunePart uniqueRunePart = new UniqueRunePart(this);
+
     @Override
     ItemStack generate() {
-        BaseRuneItem item = getRuneItem();
+        BaseRuneItem item = uniqueRunePart.get();
 
         ItemStack stack = ItemStack.EMPTY;
 
@@ -57,18 +58,6 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
     @Override
     public RaritiesContainer<? extends Rarity> getRarityContainer() {
         return Rarities.Runes;
-    }
-
-    public BaseUniqueRuneItem getRuneItem() {
-        if (this.GUID.isEmpty()) {
-            return SlashRegistry.UniqueRunes()
-                    .getWrapped()
-                    .ofTierOrLess(tier.number)
-                    .random();
-        } else {
-            return SlashRegistry.UniqueRunes().get(GUID);
-        }
-
     }
 
 }

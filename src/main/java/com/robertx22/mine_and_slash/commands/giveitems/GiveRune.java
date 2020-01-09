@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.RuneItemSuggestions;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.RuneBlueprint;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -59,7 +60,8 @@ public class GiveRune {
             if (type.equals("random") || type.isEmpty()) {
 
             } else {
-                blueprint.SetSpecificType(type);
+                blueprint.runePart.set(SlashRegistry.Runes().get(type));
+
             }
 
             blueprint.level.LevelRange = false;

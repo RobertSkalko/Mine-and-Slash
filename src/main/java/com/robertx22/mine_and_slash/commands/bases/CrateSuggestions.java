@@ -9,11 +9,15 @@ public class CrateSuggestions extends CommandSuggestions {
 
     @Override
     public List<String> suggestions() {
-        return SlashRegistry.LootCrates()
+        List<String> list = SlashRegistry.LootCrates()
                 .getList()
                 .stream()
                 .map(x -> x.GUID())
                 .collect(Collectors.toList());
+
+        list.add("random");
+
+        return list;
     }
 
 }

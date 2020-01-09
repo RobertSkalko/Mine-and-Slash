@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.UniqueGearPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -23,12 +23,14 @@ public class UniqueGearBlueprint extends GearBlueprint {
 
     }
 
-    public UniqueGearBlueprint(int level, String guid) {
+    public UniqueGearBlueprint(int level, IUnique uniq) {
         super(level);
-        this.guid = guid;
-        this.uniqueIsRandom = false;
+
+        this.unique.set(uniq);
 
     }
+
+    public UniqueGearPart unique = new UniqueGearPart(this);
 
     @Override
     void onCostruct() {
@@ -53,44 +55,6 @@ public class UniqueGearBlueprint extends GearBlueprint {
             return stack;
         }
         return ItemStack.EMPTY;
-    }
-
-    private String guid = "";
-    public boolean uniqueIsRandom = true;
-
-    public void setSpecificID(String id) {
-
-        this.guid = id;
-        this.uniqueIsRandom = false;
-
-    }
-
-    public IUnique getUnique() {
-        if (this.uniqueIsRandom) {
-
-            if (this.tier.isRandom == false) {
-                return SlashRegistry.UniqueGears()
-                        .getWrapped()
-                        .ofExactTier(tier.number)
-                        .random();
-
-            } else {
-                return randomUnique();
-            }
-        } else {
-            return SlashRegistry.UniqueGears().get(this.guid);
-        }
-
-    }
-
-    private IUnique randomUnique() {
-
-        return SlashRegistry.UniqueGears()
-                .getWrapped()
-                .ofTierOrLess(tier.number)
-                .ofSpecificGearType(gearItemSlot.get().GUID())
-                .random();
-
     }
 
 }

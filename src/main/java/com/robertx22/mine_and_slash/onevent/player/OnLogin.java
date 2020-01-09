@@ -93,7 +93,9 @@ public class OnLogin {
         giveGear(Bracelet.INSTANCE, player);
 
         SpellBlueprint spell = new SpellBlueprint(1);
-        spell.SetSpecificType(new SpellInstantHeal().GUID());
+
+        spell.spellPart.set(new SpellInstantHeal());
+
         spell.level.LevelRange = false;
         spell.rarity.setSpecificRarity(0);
 

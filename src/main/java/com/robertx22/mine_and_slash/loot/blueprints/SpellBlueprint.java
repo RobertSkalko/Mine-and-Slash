@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.SpellRarity;
 import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootUtils;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.SpellPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
@@ -20,9 +20,11 @@ public class SpellBlueprint extends ItemBlueprint {
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }
 
+    public SpellPart spellPart = new SpellPart(this);
+
     @Override
     public ItemStack generate() {
-        BaseSpell spell = GetSpell();
+        BaseSpell spell = spellPart.get();
         ItemStack stack = new ItemStack(spell.SpellItem());
         SpellItemData data = new SpellItemData();
         data.rarity = rarity.get().Rank();
@@ -47,19 +49,6 @@ public class SpellBlueprint extends ItemBlueprint {
     @Override
     public RaritiesContainer<? extends Rarity> getRarityContainer() {
         return Rarities.Spells;
-    }
-
-    public BaseSpell GetSpell() {
-
-        if (randomGUID) {
-
-            return RandomUtils.weightedRandom(SlashRegistry.Spells().getAll().values());
-
-        } else {
-
-            return SlashRegistry.Spells().get(GUID);
-        }
-
     }
 
 }
