@@ -12,7 +12,8 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
     public UniqueRuneBlueprint(int level, int tier) {
         super(level);
         this.tier = tier;
-        this.rarity = IRarity.Unique;
+
+        this.rarity.setSpecificRarity(IRarity.Unique);
     }
 
     int tier = 0;

@@ -4,7 +4,8 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.gears.GearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -48,22 +49,22 @@ public class ItemNewbieGearBag extends BaseItem {
 
                 GearBlueprint weaponPrint = new GearBlueprint(1);
                 weaponPrint.SetSpecificType(Sword.INSTANCE.GUID());
-                weaponPrint.LevelRange = false;
-
-                GearBlueprint print = new GearBlueprint(1);
-                print.LevelRange = false;
+                weaponPrint.level.LevelRange = false;
 
                 GearItemData wepData = GearLootGen.CreateData(weaponPrint);
                 wepData.isSalvagable = false;
 
-                ItemStack weaponStack = GearLootGen.CreateStack(wepData);
+                ItemStack weaponStack = GearCreationUtils.CreateStack(wepData);
                 playerIn.dropItem(weaponStack, false, true);
 
                 for (int i = 0; i < ITEMS_AMOUNT; i++) {
 
+                    GearBlueprint print = new GearBlueprint(1);
+                    print.level.LevelRange = false;
+
                     GearItemData data = GearLootGen.CreateData(print);
                     data.isSalvagable = false;
-                    ItemStack stack = GearLootGen.CreateStack(data);
+                    ItemStack stack = GearCreationUtils.CreateStack(data);
 
                     playerIn.dropItem(stack, false, true);
 

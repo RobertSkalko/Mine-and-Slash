@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
@@ -13,12 +14,13 @@ import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.MapLootGen;
 import com.robertx22.mine_and_slash.loot.gens.SpellLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
@@ -69,36 +71,33 @@ public class OnLogin {
 
     }
 
+    private static void giveGear(GearItemSlot type, PlayerEntity player) {
+        GearBlueprint print = new GearBlueprint(1);
+        print.SetSpecificType(type);
+        print.level.LevelRange = false;
+        print.rarity.setSpecificRarity(0);
+        player.inventory.addItemStackToInventory(GearCreationUtils.CreateStack(print, GearItemEnum.NORMAL));
+
+    }
+
     public static void GiveStarterItems(PlayerEntity player) {
 
-        GearBlueprint print = new GearBlueprint(1);
-        print.SetSpecificType(Sword.INSTANCE.GUID());
-        print.LevelRange = false;
-        print.setSpecificRarity(0);
+        giveGear(PlatePants.INSTANCE, player);
+        giveGear(PlateChest.INSTANCE, player);
+        giveGear(PlateHelmet.INSTANCE, player);
+        giveGear(PlateBoots.INSTANCE, player);
 
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(PlatePants.INSTANCE.GUID());
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(PlateChest.INSTANCE.GUID());
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(PlateHelmet.INSTANCE.GUID());
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(PlateBoots.INSTANCE.GUID());
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
+        giveGear(Sword.INSTANCE, player);
 
-        print.SetSpecificType(Ring.INSTANCE.GUID());
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(Ring.INSTANCE.GUID());
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(Necklace.INSTANCE.GUID());
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
-        print.SetSpecificType(Bracelet.INSTANCE.GUID());
-        player.inventory.addItemStackToInventory(GearLootGen.CreateStack(print));
+        giveGear(Ring.INSTANCE, player);
+        giveGear(Ring.INSTANCE, player);
+        giveGear(Necklace.INSTANCE, player);
+        giveGear(Bracelet.INSTANCE, player);
 
         SpellBlueprint spell = new SpellBlueprint(1);
         spell.SetSpecificType(new SpellInstantHeal().GUID());
-        spell.LevelRange = false;
-        spell.setSpecificRarity(0);
+        spell.level.LevelRange = false;
+        spell.rarity.setSpecificRarity(0);
 
         player.inventory.addItemStackToInventory(new ItemStack(ItemOre.ItemOres.get(0)));
 
@@ -107,11 +106,6 @@ public class OnLogin {
         if (MMORPG.RUN_DEV_TOOLS) {
             // TESTING MAPS
             MapBlueprint map = new MapBlueprint(1, 1);
-            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
-            player.inventory.addItemStackToInventory(MapLootGen.Create(map));
             player.inventory.addItemStackToInventory(MapLootGen.Create(map));
 
             ItemStack seeds = new ItemStack(Items.WHEAT_SEEDS);

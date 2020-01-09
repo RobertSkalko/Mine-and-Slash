@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.loot.gens;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
@@ -27,7 +26,7 @@ public class MapLootGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return ModConfig.INSTANCE.DropRates.MAP_DROPRATE.get().floatValue();
     }
 
@@ -51,7 +50,8 @@ public class MapLootGen extends BaseLootGen {
 
         MapBlueprint blueprint = new MapBlueprint(info.level, info.tier);
 
-        if (blueprint.level >= ModConfig.INSTANCE.Server.MAPS_DROP_AFTER_LEVEL.get()) {
+        if (blueprint.level.startPointLvl >= ModConfig.INSTANCE.Server.MAPS_DROP_AFTER_LEVEL
+                .get()) {
             return Create(blueprint);
         } else {
             return ItemStack.EMPTY;
@@ -62,7 +62,7 @@ public class MapLootGen extends BaseLootGen {
     public static ItemStack Create(MapBlueprint blueprint) {
 
         MapItemData data = new MapItemData();
-        MapRarity rarity = Rarities.Maps.get(blueprint.getRarityRank());
+        MapRarity rarity = (MapRarity) blueprint.rarity.get();
         ItemStack stack = new ItemStack(ItemMap.Items.get(rarity.Rank()));
 
         data.rarity = rarity.Rank();
@@ -81,7 +81,7 @@ public class MapLootGen extends BaseLootGen {
 
         blueprint.rollSetupGrouPlay(data, rarity);
 
-        data.level = blueprint.getLevel();
+        data.level = blueprint.level.get();
 
         data = genAffixes(data, rarity);
 

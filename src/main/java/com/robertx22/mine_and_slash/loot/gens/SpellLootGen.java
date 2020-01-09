@@ -19,7 +19,7 @@ public class SpellLootGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return ModConfig.INSTANCE.DropRates.SPELL_DROPRATE.get().floatValue();
     }
 
@@ -41,14 +41,14 @@ public class SpellLootGen extends BaseLootGen {
         BaseSpell spell = blueprint.GetSpell();
         ItemStack stack = new ItemStack(spell.SpellItem());
         SpellItemData data = new SpellItemData();
-        data.rarity = blueprint.getRarityRank();
+        data.rarity = blueprint.rarity.get().Rank();
         SpellRarity rarity = data.getRarity();
 
         data.rarity = rarity.Rank();
 
         data.spellGUID = spell.GUID();
 
-        data.level = blueprint.getLevel();
+        data.level = blueprint.level.get();
         data.baseEffectPercent = RandomUtils.RandomRange(rarity.SpellBasePercents().Min, rarity
                 .SpellBasePercents().Max);
         data.scalingEffectPercent = RandomUtils.RandomRange(rarity.SpellScalingPercents().Min, rarity

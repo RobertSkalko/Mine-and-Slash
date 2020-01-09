@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
+import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -11,7 +12,8 @@ public enum GearItemEnum implements IWeighted {
     NORMAL() {
         @Override
         public int Weight() {
-            return 1000;
+            return (int) (ModConfig.INSTANCE.DropRates.GEAR_DROPRATE.get()
+                    .floatValue() * 100); // cus some config values are < 1 like 0.1F
         }
 
         @Override
@@ -58,7 +60,8 @@ public enum GearItemEnum implements IWeighted {
     RUNED() {
         @Override
         public int Weight() {
-            return 250;
+            return (int) (ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get()
+                    .floatValue() * 100); // cus some config values are < 1 like 0.1F
         }
 
         @Override
@@ -106,7 +109,8 @@ public enum GearItemEnum implements IWeighted {
     UNIQUE() {
         @Override
         public int Weight() {
-            return 50;
+            return (int) (ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get()
+                    .floatValue() * 100); // cus some config values are < 1 like 0.1F
         }
 
         @Override

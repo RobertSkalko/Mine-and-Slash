@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.gears.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -49,8 +49,9 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
         UniqueGearBlueprint gearPrint = new UniqueGearBlueprint(gear.level, gear.uniqueStats
                 .getUniqueItem()
                 .Tier(), false);
-        gearPrint.setSpecificRarity(new UniqueGear().Rank());
-        gearPrint.LevelRange = false;
+        gearPrint.rarity.setSpecificRarity(new UniqueGear().Rank());
+
+        gearPrint.level.LevelRange = false;
 
         GearItemData newgear = UniqueGearLootGen.CreateData(gearPrint);
 

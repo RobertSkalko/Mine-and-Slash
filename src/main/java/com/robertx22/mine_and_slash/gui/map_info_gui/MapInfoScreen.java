@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.gui.map_info_gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
@@ -15,7 +16,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
@@ -61,7 +61,7 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
                 List<ITextComponent> taskTooltip = new ArrayList<>();
                 taskTooltip.addAll(task.getQuest().getTooltip(task));
 
-                addButton(new ItemButton(new ItemStack(Items.MAP), taskTooltip, x, y));
+                addButton(new ItemButton(task.getQuest().icon(), taskTooltip, x, y));
 
                 x += 20;
 
@@ -105,6 +105,7 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
     class ItemButton extends ImageButton {
         List<ITextComponent> tooltip;
         ItemStack stack;
+        ResourceLocation icon;
 
         public ItemButton(ItemStack stack, List<ITextComponent> tooltip, int xPos,
                           int yPos) {
@@ -116,11 +117,23 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
 
         }
 
+        public ItemButton(ResourceLocation icon, List<ITextComponent> tooltip, int xPos,
+                          int yPos) {
+            super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, img, (button) -> {
+            });
+
+            this.icon = icon;
+            this.tooltip = tooltip;
+
+        }
+
         @Override
         public void renderButton(int x, int y, float ticks) {
-
-            mc.getItemRenderer().renderItemAndEffectIntoGUI(stack, this.x, this.y);
-
+            if (stack != null) {
+                mc.getItemRenderer().renderItemAndEffectIntoGUI(stack, this.x, this.y);
+            } else {
+                RenderUtils.renderIcon(icon, this.x, this.y);
+            }
         }
 
         @Override

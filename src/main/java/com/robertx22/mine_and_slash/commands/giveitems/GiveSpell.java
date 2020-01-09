@@ -51,16 +51,17 @@ public class GiveSpell {
 
         }
 
-        SpellBlueprint blueprint = new SpellBlueprint(lvl);
-        blueprint.LevelRange = false;
-        if (rarity > -1) {
-            blueprint.setSpecificRarity(rarity);
-        }
-        if (!type.equals("random")) {
-            blueprint.SetSpecificType(type);
-        }
-
         for (int i = 0; i < amount; i++) {
+
+            SpellBlueprint blueprint = new SpellBlueprint(lvl);
+            blueprint.level.LevelRange = false;
+            if (rarity > -1) {
+                blueprint.rarity.setSpecificRarity(rarity);
+            }
+            if (!type.equals("random")) {
+                blueprint.SetSpecificType(type);
+            }
+
             player.addItemStackToInventory(SpellLootGen.Create(blueprint));
         }
 

@@ -5,7 +5,6 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.UniqueRuneSuggestions;
-import com.robertx22.mine_and_slash.database.rarities.runes.UniqueRune;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueRuneBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.UniqueRuneLootGen;
 import net.minecraft.command.CommandSource;
@@ -46,16 +45,14 @@ public class GiveUniqueRune {
                 return 1;
             }
         }
-
-        UniqueRuneBlueprint blueprint = new UniqueRuneBlueprint(lvl, 0);
-
-        blueprint.setSpecificRarity(new UniqueRune().Rank());
-
-        blueprint.SetSpecificType(id);
-
-        blueprint.LevelRange = false;
-
         for (int i = 0; i < amount; i++) {
+
+            UniqueRuneBlueprint blueprint = new UniqueRuneBlueprint(lvl, 0);
+
+            blueprint.SetSpecificType(id);
+
+            blueprint.level.LevelRange = false;
+
             player.addItemStackToInventory(UniqueRuneLootGen.Create(blueprint));
         }
 

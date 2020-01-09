@@ -19,7 +19,7 @@ public class UniqueRuneLootGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return ModConfig.INSTANCE.DropRates.UNIQUE_RUNE_DROPRATE.get().floatValue();
     }
 
@@ -55,7 +55,7 @@ public class UniqueRuneLootGen extends BaseLootGen {
 
             data.rarity = item.rarity;
             data.name = item.GUID();
-            data.level = blueprint.level;
+            data.level = blueprint.level.get();
             data.tier = item.Tier();
 
             data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item

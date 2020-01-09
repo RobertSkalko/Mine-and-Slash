@@ -8,6 +8,11 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 
 public class RuneCrate extends LootCrate {
+    public static RuneCrate INSTANCE = new RuneCrate();
+
+    private RuneCrate() {
+
+    }
 
     @Override
     public Words name() {

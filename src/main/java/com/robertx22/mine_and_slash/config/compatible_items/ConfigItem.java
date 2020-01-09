@@ -9,9 +9,9 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
-import com.robertx22.mine_and_slash.loot.gens.RunedGearLootGen;
-import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.gears.GearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.gears.RunedGearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.gears.UniqueGearLootGen;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -156,26 +156,26 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
         this.maxRarity = rar;
         return this;
     }
-	
-	public ConfigItem setstatsAddedOnlyOnDrop(boolean bool) {
-		this.statsAddedOnlyOnDrop = bool;
-		return this;
-	}
-	
-	public ConfigItem setdropsAsLoot(boolean bool) {
-		this.dropsAsLoot = bool;
-		return this;
-	}
-	
-	public ConfigItem setMinLevel(int rar) {
-		this.minLevel = rar;
-		return this;
-	}
 
-	public ConfigItem setMaxLevel(int rar) {
-		this.maxLevel = rar;
-		return this;
-	}
+    public ConfigItem setstatsAddedOnlyOnDrop(boolean bool) {
+        this.statsAddedOnlyOnDrop = bool;
+        return this;
+    }
+
+    public ConfigItem setdropsAsLoot(boolean bool) {
+        this.dropsAsLoot = bool;
+        return this;
+    }
+
+    public ConfigItem setMinLevel(int rar) {
+        this.minLevel = rar;
+        return this;
+    }
+
+    public ConfigItem setMaxLevel(int rar) {
+        this.maxLevel = rar;
+        return this;
+    }
 
     public boolean isValid() throws Exception {
 
@@ -238,10 +238,10 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
         GearBlueprint blueprint = new GearBlueprint(level);
         blueprint.SetSpecificType(this.itemType);
-        blueprint.LevelRange = this.levelVariance > 0;
-        blueprint.LevelVariance = this.levelVariance;
-        blueprint.minRarity = this.minRarity;
-        blueprint.maxRarity = this.maxRarity;
+        blueprint.level.LevelRange = this.levelVariance > 0;
+        blueprint.level.LevelVariance = this.levelVariance;
+        blueprint.rarity.minRarity = this.minRarity;
+        blueprint.rarity.maxRarity = this.maxRarity;
 
         GearItemData gear = GearLootGen.CreateData(blueprint);
         gear.isSalvagable = this.isSalvagable;
@@ -258,11 +258,11 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
         UniqueGearBlueprint blueprint = new UniqueGearBlueprint(level, this.uniqueId);
         blueprint.uniqueIsRandom = this.uniqueIsRandom;
         blueprint.tier = randomUniqueUpToTier;
-        blueprint.map_tier = this.randomUniqueUpToTier;
+        blueprint.mapTier = this.randomUniqueUpToTier;
 
         blueprint.SetSpecificType(this.itemType);
-        blueprint.LevelRange = this.levelVariance > 0;
-        blueprint.LevelVariance = this.levelVariance;
+        blueprint.level.LevelRange = this.levelVariance > 0;
+        blueprint.level.LevelVariance = this.levelVariance;
 
         GearItemData gear = UniqueGearLootGen.CreateData(blueprint);
         gear.isSalvagable = this.isSalvagable;
@@ -283,10 +283,10 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
         RunedGearBlueprint blueprint = new RunedGearBlueprint(level);
         blueprint.SetSpecificType(this.itemType);
-        blueprint.LevelRange = this.levelVariance > 0;
-        blueprint.LevelVariance = this.levelVariance;
-        blueprint.minRarity = this.minRarity;
-        blueprint.maxRarity = this.maxRarity;
+        blueprint.level.LevelRange = this.levelVariance > 0;
+        blueprint.level.LevelVariance = this.levelVariance;
+        blueprint.rarity.minRarity = this.minRarity;
+        blueprint.rarity.maxRarity = this.maxRarity;
 
         GearItemData gear = RunedGearLootGen.CreateData(blueprint);
         gear.isSalvagable = this.isSalvagable;

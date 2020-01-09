@@ -4,6 +4,10 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    MythicCrate("Mythic Crate"),
+    JewerlyCrafterCrate("Jewerly Crafter's Crate"),
+    ArmorCrafterCrate("Armor Crafter's Crate"),
+    WeaponcraftersCrate("Weapon Crafter's Crate"),
     Talents("Talents"),
     StatOverview("Stat Info"),
     StatPoints("Stat Points"),

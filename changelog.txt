@@ -24,3 +24,4 @@ pressing same keybind should now close the gui
 map leave pearl no longer shows map stats, thats now in new map info gui
 wands and staffs now can have elemental attack dmg even without being unique items
 maps have less affixes but they're stronger
+added main hub gui if you want to only have 1 keybind!

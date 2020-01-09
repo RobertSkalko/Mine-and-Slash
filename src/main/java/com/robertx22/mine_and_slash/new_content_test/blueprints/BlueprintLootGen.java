@@ -14,7 +14,7 @@ public class BlueprintLootGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return 2;
 
     }
@@ -42,9 +42,9 @@ public class BlueprintLootGen extends BaseLootGen {
 
         BlueprintItemData data = new BlueprintItemData();
 
-        data.level = blueprint.level;
+        data.level = blueprint.level.get();
         data.tier = blueprint.tier;
-        data.rarity = blueprint.getRarityRank();
+        data.rarity = blueprint.rarity.get().Rank();
 
         blueprint.generateRequests(data);
 

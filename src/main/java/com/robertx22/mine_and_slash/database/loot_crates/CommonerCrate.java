@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.loot_crates;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.gears.GearLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;

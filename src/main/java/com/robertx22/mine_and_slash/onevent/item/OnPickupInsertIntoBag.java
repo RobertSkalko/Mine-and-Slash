@@ -20,11 +20,11 @@ public class OnPickupInsertIntoBag {
 
         ItemStack stack = event.getItem().getItem();
 
-        for (int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
-            if (i == event.getEntityPlayer().inventory.currentItem)
+        for (int i = 0; i < event.getPlayer().inventory.getSizeInventory(); i++) {
+            if (i == event.getPlayer().inventory.currentItem)
                 continue; // prevent item deletion
 
-            ItemStack bag = event.getEntityPlayer().inventory.getStackInSlot(i);
+            ItemStack bag = event.getPlayer().inventory.getStackInSlot(i);
             if (!bag.isEmpty() && bag.getItem() instanceof BaseBagItem) {
                 BaseBagItem basebag = (BaseBagItem) bag.getItem();
                 BaseInventory bagInv = basebag.getInventory(bag, stack);
@@ -71,16 +71,15 @@ public class OnPickupInsertIntoBag {
 
                 event.setCanceled(true);
                 if (!event.getItem().isSilent()) {
-                    event.getItem().world.playSound(null, event.getEntityPlayer().posX, event
-                            .getEntityPlayer().posY, event.getEntityPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event
+                    event.getItem().world.playSound(null, event.getPlayer().posX, event.getPlayer().posY, event
+                            .getPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event
                             .getItem().world.rand.nextFloat() - event.getItem().world.rand
                             .nextFloat()) * 0.7F + 1.0F) * 2.0F);
                 }
-                ((ServerPlayerEntity) event.getEntityPlayer()).connection.sendPacket(new SCollectItemPacket(event
+                ((ServerPlayerEntity) event.getPlayer()).connection.sendPacket(new SCollectItemPacket(event
                         .getItem()
-                        .getEntityId(), event.getEntityPlayer()
-                        .getEntityId(), numPickedUp));
-                event.getEntityPlayer().openContainer.detectAndSendChanges();
+                        .getEntityId(), event.getPlayer().getEntityId(), numPickedUp));
+                event.getPlayer().openContainer.detectAndSendChanges();
 
                 return result;
             }

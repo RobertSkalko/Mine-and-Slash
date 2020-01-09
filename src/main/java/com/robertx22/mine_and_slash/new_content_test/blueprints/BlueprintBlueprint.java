@@ -30,7 +30,7 @@ public class BlueprintBlueprint extends ItemBlueprint {
         List<BlueprintDataItemRequest> datas = new ArrayList<>();
         List<BlueprintSimpleItemRequest> simples = new ArrayList<>();
 
-        GearRarity rar = Rarities.Items.get(this.getRarityRank());
+        GearRarity rar = (GearRarity) rarity.get();
 
         BlueprintDataItemRequest request = new BlueprintDataItemRequest();
         request.random(rar);

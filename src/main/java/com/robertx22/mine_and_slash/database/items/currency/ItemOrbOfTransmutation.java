@@ -6,7 +6,8 @@ import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.gears.GearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -47,8 +48,8 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
 
         GearBlueprint gearPrint = new GearBlueprint(gear.level);
         gearPrint.SetSpecificType(gear.gearTypeName);
-        gearPrint.minRarity = 1;
-        gearPrint.LevelRange = false;
+        gearPrint.rarity.minRarity = 1;
+        gearPrint.level.LevelRange = false;
 
         GearItemData newgear = GearLootGen.CreateData(gearPrint);
         gear.WriteOverDataThatShouldStay(newgear);
@@ -56,7 +57,7 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
         ItemStack result = ItemStack.EMPTY;
 
         if (gear.changesItemStack()) {
-            result = GearLootGen.CreateStack(newgear);
+            result = GearCreationUtils.CreateStack(newgear);
         } else {
             result = stack;
             Gear.Save(result, newgear);

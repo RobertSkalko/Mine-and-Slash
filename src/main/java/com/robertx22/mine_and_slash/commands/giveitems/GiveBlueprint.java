@@ -51,12 +51,12 @@ public class GiveBlueprint {
         }
         BlueprintBlueprint blueprint = new BlueprintBlueprint(lvl, WorldUtils.getTier(player.world, player));
         if (rarity > -1) {
-            blueprint.setSpecificRarity(rarity);
+            blueprint.rarity.setSpecificRarity(rarity);
         }
         if (!type.equals("random")) {
             blueprint.SetSpecificType(type);
         }
-        blueprint.LevelRange = false;
+        blueprint.level.LevelRange = false;
 
         for (int i = 0; i < amount; i++) {
             player.addItemStackToInventory(BlueprintLootGen.Create(blueprint));

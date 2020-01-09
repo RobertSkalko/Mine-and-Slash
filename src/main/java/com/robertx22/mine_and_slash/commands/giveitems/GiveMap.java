@@ -47,14 +47,14 @@ public class GiveMap {
                 return 1;
             }
         }
-
-        MapBlueprint blueprint = new MapBlueprint(lvl, tier);
-        if (rarity > -1) {
-            blueprint.setSpecificRarity(rarity);
-        }
-        blueprint.LevelRange = false;
-
         for (int i = 0; i < amount; i++) {
+
+            MapBlueprint blueprint = new MapBlueprint(lvl, tier);
+            if (rarity > -1) {
+                blueprint.rarity.setSpecificRarity(rarity);
+            }
+            blueprint.level.LevelRange = false;
+
             player.addItemStackToInventory(MapLootGen.Create(blueprint));
         }
 

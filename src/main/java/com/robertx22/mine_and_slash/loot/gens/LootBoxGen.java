@@ -14,7 +14,7 @@ public class LootBoxGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return ModConfig.INSTANCE.DropRates.LOOTBOX_DROPRATE.get().floatValue();
 
     }

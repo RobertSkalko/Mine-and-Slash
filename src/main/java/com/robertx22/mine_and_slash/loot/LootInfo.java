@@ -90,7 +90,7 @@ public class LootInfo {
 
     public void setup(BaseLootGen gen) {
 
-        float chance = gen.BaseChance();
+        float chance = gen.baseDropChance();
 
         chance *= multi;
 

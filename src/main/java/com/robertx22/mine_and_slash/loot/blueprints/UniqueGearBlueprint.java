@@ -1,17 +1,26 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 public class UniqueGearBlueprint extends GearBlueprint {
 
-    public UniqueGearBlueprint(int level, int map_tier, boolean randomTier) {
+    public UniqueGearBlueprint(int level, int mapTier) {
         super(level);
-        this.randomTier = randomTier;
-        this.map_tier = map_tier;
-        this.tier = map_tier;
+        this.mapTier = mapTier;
+        this.tier = mapTier;
 
+        this.rarity.setSpecificRarity(IRarity.Unique);
+    }
+
+    public UniqueGearBlueprint(int level, int mapTier, boolean tierIsRandom) {
+        super(level);
+        this.tierIsRandom = tierIsRandom;
+        this.mapTier = mapTier;
+        this.tier = mapTier;
+
+        this.rarity.setSpecificRarity(IRarity.Unique);
     }
 
     public UniqueGearBlueprint(int level, String guid) {
@@ -19,20 +28,16 @@ public class UniqueGearBlueprint extends GearBlueprint {
         this.guid = guid;
         this.uniqueIsRandom = false;
 
-    }
-
-    @Override
-    public int getRarityRank() {
-        return new UniqueGear().Rank();
+        this.rarity.setSpecificRarity(IRarity.Unique);
     }
 
     private String guid = "";
     public boolean uniqueIsRandom = true;
 
-    public int map_tier = 0;
+    public int mapTier = 0;
     public int tier = -1;
 
-    private boolean randomTier = true;
+    private boolean tierIsRandom = true;
 
     public void setSpecificID(String id) {
 
@@ -44,7 +49,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
     public IUnique getUnique() {
         if (this.uniqueIsRandom) {
 
-            if (this.randomTier == false) {
+            if (this.tierIsRandom == false) {
 
                 return SlashRegistry.UniqueGears()
                         .getWrapped()
@@ -65,7 +70,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
         return SlashRegistry.UniqueGears()
                 .getWrapped()
                 .ofTierOrLess(tier)
-                .ofSpecificGearType(gearType)
+                .ofSpecificGearType(gearItemSlot.get().GUID())
                 .random();
 
     }

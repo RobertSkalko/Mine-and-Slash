@@ -2,9 +2,8 @@ package com.robertx22.mine_and_slash.uncommon.testing.tests;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.HashMap;
@@ -25,7 +24,7 @@ public class ItemGenRarityTest {
 
         for (int i = 0; i < amount; i++) {
 
-            GearItemData data = Gear.Load(GearLootGen.CreateStack(schema));
+            GearItemData data = GearCreationUtils.CreateData(schema);
 
             if (RarityandNumber.containsKey(data.Rarity)) {
                 RarityandNumber.put(data.Rarity, RarityandNumber.get(data.Rarity) + 1);

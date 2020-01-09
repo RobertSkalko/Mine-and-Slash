@@ -18,7 +18,7 @@ public class RuneLootGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return ModConfig.INSTANCE.DropRates.RUNE_DROPRATE.get().floatValue();
     }
 
@@ -38,7 +38,8 @@ public class RuneLootGen extends BaseLootGen {
 
     public static ItemStack Create(RuneBlueprint blueprint) {
 
-        BaseRuneItem item = blueprint.getRuneItem().byRarity(blueprint.getRarityRank());
+        BaseRuneItem item = blueprint.getRuneItem()
+                .byRarity(blueprint.rarity.get().Rank());
 
         ItemStack stack = new ItemStack(item);
 
@@ -46,7 +47,7 @@ public class RuneLootGen extends BaseLootGen {
 
         data.rarity = item.rarity;
         data.name = item.GUID();
-        data.level = blueprint.level;
+        data.level = blueprint.level.get();
 
         data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
                 .armorStat()));

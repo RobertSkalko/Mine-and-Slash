@@ -5,9 +5,8 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
-import com.robertx22.mine_and_slash.loot.gens.RunedGearLootGen;
-import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.gears.UniqueGearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -83,14 +82,14 @@ public class BlueprintGearReward {
                 blueprint = new UniqueGearBlueprint(level, uniqueID);
             }
 
-            blueprint.LevelRange = false;
-            blueprint.setSpecificRarity(rarity);
+            blueprint.level.LevelRange = false;
+            blueprint.rarity.setSpecificRarity(rarity);
             blueprint.SetSpecificType(specificType);
 
             if (enumGearType == GearItemEnum.NORMAL) {
-                stack = GearLootGen.CreateStack(blueprint);
+                stack = GearCreationUtils.CreateStack(blueprint, enumGearType);
             } else if (enumGearType == GearItemEnum.RUNED) {
-                stack = RunedGearLootGen.CreateStack((RunedGearBlueprint) blueprint);
+                stack = GearCreationUtils.CreateStack((RunedGearBlueprint) blueprint, enumGearType);
             } else if (enumGearType == GearItemEnum.UNIQUE) {
                 stack = UniqueGearLootGen.CreateStack((UniqueGearBlueprint) blueprint);
             }

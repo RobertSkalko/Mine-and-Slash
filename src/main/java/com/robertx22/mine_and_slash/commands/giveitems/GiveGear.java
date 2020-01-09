@@ -6,7 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.bases.GearTypeSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -50,17 +50,18 @@ public class GiveGear {
                 return 1;
             }
         }
-        GearBlueprint blueprint = new GearBlueprint(lvl);
-        if (rarity > -1) {
-            blueprint.setSpecificRarity(rarity);
-        }
-        if (!type.equals("random")) {
-            blueprint.SetSpecificType(type);
-        }
-        blueprint.LevelRange = false;
-
         for (int i = 0; i < amount; i++) {
-            ItemStack stack = GearLootGen.CreateStack(blueprint);
+
+            GearBlueprint blueprint = new GearBlueprint(lvl);
+            if (rarity > -1) {
+                blueprint.rarity.setSpecificRarity(rarity);
+            }
+            if (!type.equals("random")) {
+                blueprint.SetSpecificType(type);
+            }
+            blueprint.level.LevelRange = false;
+
+            ItemStack stack = GearCreationUtils.CreateStack(blueprint);
             player.addItemStackToInventory(stack);
         }
 

@@ -8,6 +8,11 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 
 public class CurrencyCrate extends LootCrate {
+    public static CurrencyCrate INSTANCE = new CurrencyCrate();
+
+    private CurrencyCrate() {
+
+    }
 
     @Override
     public Words name() {

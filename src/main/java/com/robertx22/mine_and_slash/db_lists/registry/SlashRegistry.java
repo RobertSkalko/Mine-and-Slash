@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.loot_crates.UniqueCrate;
+import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
@@ -264,7 +264,7 @@ public class SlashRegistry {
                 .logAdditions());
         map.put(SlashRegistryType.PERK, new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
         map.put(SlashRegistryType.PERK_EFFECT, new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
-        map.put(SlashRegistryType.LOOT_CRATE, new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, new UniqueCrate()));
+        map.put(SlashRegistryType.LOOT_CRATE, new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
         map.put(SlashRegistryType.QUEST, new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE));
         map.put(SlashRegistryType.QUEST_REWARD, new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, MapQuestReward.INSTANCE));
 

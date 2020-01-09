@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.quests.actions.ActionDoneData;
 import com.robertx22.mine_and_slash.quests.actions.KilledMobData;
 import com.robertx22.mine_and_slash.quests.base.Quest;
@@ -11,6 +12,7 @@ import com.robertx22.mine_and_slash.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.quests.data.QuestTaskData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -27,6 +29,11 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
         this.rarity = rar;
         this.min = min;
         this.max = max;
+    }
+
+    @Override
+    public ResourceLocation icon() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/quest_icons/kill_mobs.png");
     }
 
     MobRarity rarity;

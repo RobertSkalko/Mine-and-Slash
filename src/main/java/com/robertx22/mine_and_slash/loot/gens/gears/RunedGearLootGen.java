@@ -1,9 +1,11 @@
-package com.robertx22.mine_and_slash.loot.gens;
+package com.robertx22.mine_and_slash.loot.gens.gears;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
+import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -17,7 +19,7 @@ public class RunedGearLootGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get().floatValue();
     }
 
@@ -31,7 +33,7 @@ public class RunedGearLootGen extends BaseLootGen {
 
         RunedGearBlueprint gearPrint = new RunedGearBlueprint(info.level);
 
-        ItemStack stack = CreateStack(gearPrint);
+        ItemStack stack = GearCreationUtils.CreateStack(gearPrint);
 
         GearItemData gear = Gear.Load(stack);
 
@@ -40,28 +42,7 @@ public class RunedGearLootGen extends BaseLootGen {
     }
 
     public static GearItemData CreateData(RunedGearBlueprint blueprint) {
-        return GearLootGen.CreateData(blueprint, GearItemEnum.RUNED);
+        return GearCreationUtils.CreateData(blueprint, GearItemEnum.RUNED);
     }
 
-    public static ItemStack CreateStack(RunedGearBlueprint schema) {
-
-        GearItemData data = CreateData(schema);
-
-        ItemStack stack = new ItemStack(data.getItem());
-
-        Gear.Save(stack, data);
-
-        return stack;
-
-    }
-
-    public static ItemStack CreateStack(GearItemData data) {
-
-        ItemStack stack = new ItemStack(data.getItem());
-
-        Gear.Save(stack, data);
-
-        return stack;
-
-    }
 }

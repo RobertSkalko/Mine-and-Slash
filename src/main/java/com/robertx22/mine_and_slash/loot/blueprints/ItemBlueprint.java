@@ -1,31 +1,19 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.LevelPart;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.RarityPart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.util.math.MathHelper;
 
+// use once and discard!! unsure how to regulate this
 public abstract class ItemBlueprint {
 
     public ItemBlueprint(int level) {
-
-        this.level = level;
-
+        this.level.startPointLvl = level;
     }
 
-    public int MagicFind = 0;
-
-    public int rarity;
-    public boolean RandomRarity = true;
-    public int level;
-    public boolean LevelRange = true;
-    public int LevelVariance = 3;
-
-    public int minRarity = -1;
-    public int maxRarity = 5;
-
-    public int minLevel = 1;
+    public RarityPart rarity = new RarityPart(getRarityContainer());
+    public LevelPart level = new LevelPart();
 
     public String GUID = "";
     public boolean randomGUID = true;
@@ -39,44 +27,4 @@ public abstract class ItemBlueprint {
 
     public abstract RaritiesContainer<? extends Rarity> getRarityContainer();
 
-    public void setSpecificRarity(int i) {
-
-        rarity = i;
-        RandomRarity = false;
-
-    }
-
-    public int getRarityRank() {
-
-        RaritiesContainer<? extends Rarity> rarities = getRarityContainer();
-
-        if (RandomRarity) {
-
-            int rank = MathHelper.clamp(rarities.random().Rank(), minRarity, maxRarity);
-
-            Rarity rarity = rarities.get(rank);
-
-            this.rarity = rarity.Rank();
-
-        }
-
-        return rarity;
-
-    }
-
-    public int getLevel() {
-
-        int lvl = level;
-
-        if (LevelRange) {
-
-            lvl = RandomUtils.RandomRange(level - LevelVariance, level + LevelVariance);
-
-            level = lvl;
-
-        }
-        return MathHelper.clamp(lvl, this.minLevel, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
-                .get());
-
-    }
 }

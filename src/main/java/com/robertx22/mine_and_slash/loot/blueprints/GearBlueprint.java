@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.db_lists.initializers.Sets;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -17,8 +18,8 @@ public class GearBlueprint extends ItemBlueprint {
         super(level);
     }
 
-    public String gearType = "";
-    public boolean RandomGearType = true;
+    public GearItemSlotPart gearItemSlot = new GearItemSlotPart();
+
     public float chaosStatChance = 1;
 
     @Override
@@ -32,27 +33,18 @@ public class GearBlueprint extends ItemBlueprint {
         return RandomUtils.roll(chaosStatChance);
     }
 
+    public void SetSpecificType(GearItemSlot type) {
+        SetSpecificType(type.GUID());
+    }
+
     public void SetSpecificType(String type) {
 
-        gearType = type;
-        RandomGearType = false;
+        this.gearItemSlot.set(SlashRegistry.GearTypes().get(type));
 
         try {
             SlashRegistry.GearTypes().get(type);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
-        }
-
-    }
-
-    public GearItemSlot GetGearType() {
-
-        if (RandomGearType) {
-            return RandomUtils.weightedRandom(SlashRegistry.GearTypes().getList());
-
-        } else {
-
-            return SlashRegistry.GearTypes().get(gearType);
         }
 
     }

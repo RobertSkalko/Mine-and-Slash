@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class BaseLootGen {
 
-    public abstract float BaseChance();
+    public abstract float baseDropChance();
 
     public abstract LootType lootType();
 

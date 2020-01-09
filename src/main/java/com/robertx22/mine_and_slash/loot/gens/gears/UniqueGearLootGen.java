@@ -1,9 +1,11 @@
-package com.robertx22.mine_and_slash.loot.gens;
+package com.robertx22.mine_and_slash.loot.gens.gears;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
+import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -18,7 +20,7 @@ public class UniqueGearLootGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get().floatValue();
     }
 
@@ -50,7 +52,7 @@ public class UniqueGearLootGen extends BaseLootGen {
     }
 
     public static GearItemData CreateData(UniqueGearBlueprint blueprint) {
-        return GearLootGen.CreateData(blueprint, GearItemEnum.UNIQUE);
+        return GearCreationUtils.CreateData(blueprint, GearItemEnum.UNIQUE);
     }
 
     public static ItemStack CreateStack(UniqueGearBlueprint schema) {

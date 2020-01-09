@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.quests.quests;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.MapScoreEnum;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.quests.base.BaseSimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public class SimpleKillMobsQuest extends BaseSimpleKillMobsQuest {
@@ -19,6 +21,11 @@ public class SimpleKillMobsQuest extends BaseSimpleKillMobsQuest {
     @Override
     public ITextComponent name() {
         return Words.KillMobs.locName();
+    }
+
+    @Override
+    public ResourceLocation icon() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/quest_icons/kill_mobs.png");
     }
 
     @Override

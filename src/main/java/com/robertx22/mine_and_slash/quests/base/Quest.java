@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.List;
 public abstract class Quest implements ISlashRegistryEntry {
 
     public abstract void onAction(QuestTaskData task, ActionDoneData actionData);
+
+    public abstract ResourceLocation icon();
 
     public abstract ITextComponent name();
 

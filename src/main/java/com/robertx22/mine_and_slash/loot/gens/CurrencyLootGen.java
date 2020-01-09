@@ -13,7 +13,7 @@ public class CurrencyLootGen extends BaseLootGen {
     }
 
     @Override
-    public float BaseChance() {
+    public float baseDropChance() {
         return ModConfig.INSTANCE.DropRates.CURRENCY_DROPRATE.get().floatValue();
 
     }

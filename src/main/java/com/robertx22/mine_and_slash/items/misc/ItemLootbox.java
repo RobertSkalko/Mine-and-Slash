@@ -11,9 +11,9 @@ import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.CompatibleItemLootGen;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
-import com.robertx22.mine_and_slash.loot.gens.RunedGearLootGen;
 import com.robertx22.mine_and_slash.loot.gens.SpellLootGen;
+import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -199,25 +199,25 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
                 } else if (type.equals(GearType.Runed)) {
 
                     RunedGearBlueprint print = new RunedGearBlueprint(lvl);
-                    print.minRarity = this.rarity;
-                    print.LevelRange = false;
+                    print.rarity.minRarity = this.rarity;
+                    print.level.LevelRange = false;
 
-                    stacks.add(RunedGearLootGen.CreateStack(print));
+                    stacks.add(GearCreationUtils.CreateStack(print, GearItemEnum.RUNED));
 
                 } else {
                     GearBlueprint print = new GearBlueprint(lvl);
-                    print.minRarity = this.rarity;
-                    print.LevelRange = false;
+                    print.rarity.minRarity = this.rarity;
+                    print.level.LevelRange = false;
 
-                    stacks.add(GearLootGen.CreateStack(print));
+                    stacks.add(GearCreationUtils.CreateStack(print));
                 }
             }
 
         } else if (lootType.equals(LootTypes.Spell)) {
 
             SpellBlueprint print = new SpellBlueprint(lvl);
-            print.minRarity = this.rarity;
-            print.LevelRange = false;
+            print.rarity.minRarity = this.rarity;
+            print.level.LevelRange = false;
 
             for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
                 stacks.add(SpellLootGen.Create(print));

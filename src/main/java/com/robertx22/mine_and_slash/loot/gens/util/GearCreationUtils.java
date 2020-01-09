@@ -1,64 +1,78 @@
-package com.robertx22.mine_and_slash.loot.gens;
+package com.robertx22.mine_and_slash.loot.gens.util;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
-public class GearLootGen extends BaseLootGen {
+public class GearCreationUtils {
 
-    public GearLootGen(LootInfo info) {
-        super(info);
+    public static ItemStack CreateStack(GearItemData data) {
+
+        ItemStack stack = new ItemStack(data.getItem());
+
+        Gear.Save(stack, data);
+
+        return stack;
+
     }
 
-    @Override
-    public float BaseChance() {
-        return ModConfig.INSTANCE.DropRates.GEAR_DROPRATE.get().floatValue();
+    public static ItemStack CreateStack(GearBlueprint blueprint) {
+
+        GearItemData data = CreateData(blueprint);
+
+        ItemStack stack = new ItemStack(data.getItem());
+
+        Gear.Save(stack, data);
+
+        return stack;
+
     }
 
-    @Override
-    public LootType lootType() {
-        return LootType.NormalItem;
-    }
+    public static ItemStack CreateStack(GearBlueprint blueprint, GearItemEnum type) {
 
-    @Override
-    public ItemStack generateOne() {
+        GearItemData data = CreateData(blueprint, type);
 
-        GearBlueprint gearPrint = new GearBlueprint(info.level);
+        ItemStack stack = new ItemStack(data.getItem());
 
-        ItemStack stack = CreateStack(gearPrint);
+        Gear.Save(stack, data);
 
-        GearItemData gear = Gear.Load(stack);
-
-        return LootUtils.RandomDamagedGear(stack, gear.getRarity(), gear.level);
+        return stack;
 
     }
 
     public static GearItemData CreateData(GearBlueprint blueprint) {
-        return GearLootGen.CreateData(blueprint, GearItemEnum.NORMAL);
+
+        GearItemEnum type = GearItemEnum.random();
+
+        if (blueprint instanceof RunedGearBlueprint) {
+            type = GearItemEnum.RUNED;
+        } else if (blueprint instanceof UniqueGearBlueprint) {
+            type = GearItemEnum.UNIQUE;
+        }
+
+        return CreateData(blueprint, type);
+
     }
 
     public static GearItemData CreateData(GearBlueprint blueprint, GearItemEnum type) {
 
-        GearRarity rarity = Rarities.Items.get(blueprint.getRarityRank());
+        GearRarity rarity = (GearRarity) blueprint.rarity.get();
         GearItemData data = new GearItemData();
 
-        data.level = blueprint.getLevel();
-        data.gearTypeName = blueprint.GetGearType().GUID();
+        data.level = blueprint.level.get();
+        data.gearTypeName = blueprint.gearItemSlot.get().GUID();
         data.Rarity = rarity.Rank();
 
-        if (type == GearItemEnum.UNIQUE && blueprint instanceof UniqueGearBlueprint) {
+        if (blueprint instanceof UniqueGearBlueprint) {
 
             UniqueGearBlueprint uniqprint = (UniqueGearBlueprint) blueprint;
 
@@ -80,7 +94,7 @@ public class GearLootGen extends BaseLootGen {
                 }
 
             } else {
-                return null;
+                data.Rarity = IRarity.Common;
             }
         }
 
@@ -130,22 +144,4 @@ public class GearLootGen extends BaseLootGen {
 
         return data;
     }
-
-    public static ItemStack CreateStack(GearBlueprint schema) {
-
-        GearItemData data = CreateData(schema);
-        ItemStack stack = new ItemStack(data.getItem());
-        Gear.Save(stack, data);
-        return stack;
-
-    }
-
-    public static ItemStack CreateStack(GearItemData data) {
-
-        ItemStack stack = new ItemStack(data.getItem());
-        Gear.Save(stack, data);
-        return stack;
-
-    }
-
 }

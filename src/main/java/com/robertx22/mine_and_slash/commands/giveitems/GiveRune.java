@@ -54,7 +54,7 @@ public class GiveRune {
         for (int i = 0; i < amount; i++) {
             RuneBlueprint blueprint = new RuneBlueprint(lvl);
             if (rarity > -2) {
-                blueprint.setSpecificRarity(rarity);
+                blueprint.rarity.setSpecificRarity(rarity);
             }
 
             if (type.equals("random") || type.isEmpty()) {
@@ -63,7 +63,7 @@ public class GiveRune {
                 blueprint.SetSpecificType(type);
             }
 
-            blueprint.LevelRange = false;
+            blueprint.level.LevelRange = false;
 
             player.addItemStackToInventory(RuneLootGen.Create(blueprint));
         }
