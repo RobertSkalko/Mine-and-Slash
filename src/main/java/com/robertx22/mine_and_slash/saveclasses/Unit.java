@@ -122,18 +122,30 @@ public class Unit {
 
     }
 
+    private void removeEmptyStats() {
+
+        for (StatData data : new ArrayList<>(MyStats.values())) {
+            if (data.val <= 0 || data.getId().isEmpty()) {
+                //System.out.println(data.Name);
+                MyStats.remove(data.getId());
+            }
+        }
+
+    }
+
     public void removeUnregisteredStats() {
 
         if (MyStats == null) {
             MyStats = new HashMap<String, StatData>();
         }
 
+        removeEmptyStats();
+
         for (Map.Entry<String, StatData> entry : new ArrayList<>(MyStats.entrySet())) {
 
             StatData data = entry.getValue();
 
-            if (data.getId().isEmpty() || !SlashRegistry.Stats()
-                    .isRegistered(data.getId())) {
+            if (!SlashRegistry.Stats().isRegistered(data.getId())) {
                 MyStats.remove(entry.getKey());
             }
         }
@@ -452,17 +464,6 @@ public class Unit {
 
         if (old.isDirty(newcheck)) {
             MMORPG.sendToTracking(new EntityUnitPacket(entity, data), entity);
-        }
-
-    }
-
-    private void removeEmptyStats() {
-
-        for (StatData data : new ArrayList<>(MyStats.values())) {
-            if (data.val <= 0 || data.getId().isEmpty()) {
-                //System.out.println(data.Name);
-                MyStats.remove(data.getId());
-            }
         }
 
     }
