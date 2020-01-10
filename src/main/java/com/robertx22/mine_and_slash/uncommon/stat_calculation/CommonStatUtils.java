@@ -78,7 +78,7 @@ public class CommonStatUtils {
         for (IPreCoreStat core : Stats.allPreGenMapStatLists.get(IPreCoreStat.class)) {
             if (theunit.getStats().containsKey(core.GUID())) {
                 StatData statdata = theunit.getStat(core.GUID());
-                if (statdata.Value > 0) {
+                if (statdata.val > 0) {
                     core.addToCoreStats(unit, statdata);
                 }
             }
@@ -86,7 +86,7 @@ public class CommonStatUtils {
         for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
             if (theunit.getStats().containsKey(core.GUID())) {
                 StatData statdata = theunit.getStat(core.GUID());
-                if (statdata.Value > 0) {
+                if (statdata.val > 0) {
                     core.addToOtherStats(unit, statdata);
                 }
             }
@@ -94,7 +94,7 @@ public class CommonStatUtils {
         for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
             if (theunit.getStats().containsKey(trait.GUID())) {
                 StatData statdata = theunit.getStat(trait.GUID());
-                if (statdata.Value > 0) {
+                if (statdata.val > 0) {
                     trait.TryAffectOtherStats(unit, statdata);
                 }
             }
@@ -102,7 +102,7 @@ public class CommonStatUtils {
         for (IAffectsStats trait : Stats.allPreGenMapStatLists.get(IAffectsStats.class)) {
             if (theunit.getStats().containsKey(trait.GUID())) {
                 StatData statdata = theunit.getStat(trait.GUID());
-                if (statdata.Value > 0) {
+                if (statdata.val > 0) {
                     trait.affectStats(unit, statdata);
                 }
             }
@@ -119,7 +119,7 @@ public class CommonStatUtils {
         for (IStatConversion core : Stats.allPreGenMapStatLists.get(IStatConversion.class)) {
             if (unit.getStats().containsKey(core.GUID())) {
                 StatData statdata = copy.getStat(core.GUID());
-                if (statdata.Value > 0) {
+                if (statdata.val > 0) {
                     core.convertStats(copy, unit, copy.getStat(core.GUID()));
                 }
             }
@@ -127,7 +127,7 @@ public class CommonStatUtils {
         for (IStatTransfer core : Stats.allPreGenMapStatLists.get(IStatTransfer.class)) {
             if (unit.getStats().containsKey(core.GUID())) {
                 StatData statdata = copy.getStat(core.GUID());
-                if (statdata.Value > 0) {
+                if (statdata.val > 0) {
                     core.transferStats(copy, unit, copy.getStat(core.GUID()));
                 }
             }

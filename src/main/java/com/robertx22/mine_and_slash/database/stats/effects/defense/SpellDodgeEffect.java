@@ -29,7 +29,7 @@ public class SpellDodgeEffect implements IStatEffect {
             if (Effect instanceof DamageEffect && Effect.getEffectType()
                     .equals(EffectTypes.SPELL)) {
 
-                if (RandomUtils.roll(data.Value)) {
+                if (RandomUtils.roll(data.val)) {
 
                     DamageEffect dmgeffect = (DamageEffect) Effect;
 

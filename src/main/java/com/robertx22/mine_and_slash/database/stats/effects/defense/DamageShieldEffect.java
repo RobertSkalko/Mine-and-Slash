@@ -25,7 +25,7 @@ public class DamageShieldEffect implements IStatEffect {
 
         try {
             if (Effect instanceof DamageEffect) {
-                Effect.number -= data.Value;
+                Effect.number -= data.val;
             }
 
         } catch (Exception e) {

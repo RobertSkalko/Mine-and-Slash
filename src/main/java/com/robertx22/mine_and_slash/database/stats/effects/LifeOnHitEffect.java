@@ -29,7 +29,7 @@ public class LifeOnHitEffect implements IStatEffect {
                     .equals(EffectTypes.BASIC_ATTACK)) {
 
                 if (Effect.canceled == false) {
-                    int healed = (int) data.Value;
+                    int healed = (int) data.val;
 
                     DamageEffect dmgeffect = (DamageEffect) Effect;
                     dmgeffect.healthHealed += healed;

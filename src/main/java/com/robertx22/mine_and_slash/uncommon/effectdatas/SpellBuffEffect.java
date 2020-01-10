@@ -85,7 +85,7 @@ public class SpellBuffEffect extends EffectData implements IBuffableSpell {
         Effects.sort((Comparator<EffectUnitStat>) new EffectUnitStat());
 
         for (EffectUnitStat item : Effects) {
-            if (item.stat.Value != 0) {
+            if (item.stat.val != 0) {
                 if (AffectsThisUnit(item.effect, Data, item.source)) {
                     item.effect.TryModifyEffect(Data, item.source, item.stat, item.stat.GetStat());
                 }

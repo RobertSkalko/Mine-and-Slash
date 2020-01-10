@@ -50,7 +50,7 @@ public class BlockReflectEffect implements IStatEffect {
 
                         Effect.targetData.getResources().modify(ctx);
 
-                        float dmg = data.Value;
+                        float dmg = data.val;
 
                         DamageEffect effect = new DamageEffect(null, Effect.target, Effect.source, (int) dmg, Effect.targetData, Effect.sourceData, EffectTypes.REFLECT, WeaponTypes.None);
                         effect.element = stat.Element();

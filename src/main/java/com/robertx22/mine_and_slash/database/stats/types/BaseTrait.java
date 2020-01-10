@@ -41,9 +41,9 @@ public abstract class BaseTrait extends Stat {
     public void CalcVal(StatData data, EntityCap.UnitData Source) {
 
         if (data.Flat > 0) {
-            data.Value = 1;
+            data.val = 1;
         } else {
-            data.Value = 0;
+            data.val = 0;
 
         }
 

@@ -1,12 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.FillableStat;
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
 public class Mana extends FillableStat {
-    public static Stat INSTANCE = new Mana();
+    public static Mana INSTANCE = new Mana();
     public static String GUID = "Mana";
 
     @Override

@@ -35,7 +35,7 @@ public class RefreshingBreezeEffect implements IStatEffect {
 
                 if (dmg.isDodged) {
                     float energy = dmg.targetData.getUnit()
-                            .getStat(EnergyRegen.GUID).Value * RefreshingBreeze.PERCENT / 100;
+                            .getStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
                     ResourcesData.Context ene = new ResourcesData.Context(dmg.targetData, dmg.target, ResourcesData.Type.ENERGY, energy, ResourcesData.Use.RESTORE);
                     dmg.targetData.getResources().modify(ene);
 

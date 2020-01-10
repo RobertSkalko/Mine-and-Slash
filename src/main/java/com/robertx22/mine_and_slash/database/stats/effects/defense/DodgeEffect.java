@@ -32,7 +32,7 @@ public class DodgeEffect implements IStatEffect {
 
                 IUsableStat usable = (IUsableStat) stat;
 
-                float chance = usable.GetUsableValue(Effect.targetData.getLevel(), (int) data.Value) * 100;
+                float chance = usable.GetUsableValue(Effect.targetData.getLevel(), (int) data.val) * 100;
 
                 if (RandomUtils.roll(chance)) {
                     DamageEffect dmgeffect = (DamageEffect) Effect;

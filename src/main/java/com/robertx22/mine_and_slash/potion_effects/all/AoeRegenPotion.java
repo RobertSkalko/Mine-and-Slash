@@ -44,7 +44,7 @@ public class AoeRegenPotion extends SpellPotionBase {
                 ParticleUtils.spawnHealParticles(en, 3);
             } else {
 
-                int healed = (int) data.getUnit().healthData().Value / 50;
+                int healed = (int) data.getUnit().healthData().val / 50;
 
                 ResourcesData.Context ctx = new ResourcesData.Context(data, en, ResourcesData.Type.MANA, healed, ResourcesData.Use.RESTORE);
 

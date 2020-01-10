@@ -27,13 +27,13 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
         int x = width / 2 + this.TEXTURE_WIDTH - offsetx;
         int y = height - 16 - this.TEXTURE_HEIGHT;
 
-        this.DrawBar(mc, gui, energytexturepath, data.getCurrentEnergy(), unit.energyData().Value, Type.ENE, data, x, y);
+        this.DrawBar(mc, gui, energytexturepath, data.getCurrentEnergy(), unit.energyData().val, Type.ENE, data, x, y);
 
         // MANA
         x = width / 2 + this.TEXTURE_WIDTH - offsetx;
         y = height - 15;
 
-        this.DrawBar(mc, gui, manatexturepath, data.getCurrentMana(), unit.manaData().Value, Type.MANA, data, x, y);
+        this.DrawBar(mc, gui, manatexturepath, data.getCurrentMana(), unit.manaData().val, Type.MANA, data, x, y);
 
         // MANA
 
@@ -42,7 +42,7 @@ public class BottomMiddleCornersOverlay extends BasePlayerOverlay {
         y = height - 16 - this.TEXTURE_HEIGHT;
 
         this.DrawBar(mc, gui, healthtexturepath, unit.health()
-                .CurrentValue(entity, unit), unit.healthData().Value, Type.HP, data, x, y);
+                .CurrentValue(entity, unit), unit.healthData().val, Type.HP, data, x, y);
 
         // HEALTH
 

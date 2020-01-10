@@ -59,12 +59,12 @@ public abstract class BasePlayerOverlay {
             float curMS = data.getResources().getMagicShield();
             if (curMS > 0) {
 
-                float hp = data.getUnit().healthData().Value;
+                float hp = data.getUnit().healthData().val;
 
                 float maxperc = MathHelper.clamp(curMS / hp, 0, 1);
 
                 int enebar = (int) ((int) ((curMS / data.getUnit()
-                        .magicShieldData().Value * 100)) * maxperc);
+                        .magicShieldData().val * 100)) * maxperc);
                 mc.getTextureManager().bindTexture(magicshieldpath);
                 gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, enebar, 5);
             }

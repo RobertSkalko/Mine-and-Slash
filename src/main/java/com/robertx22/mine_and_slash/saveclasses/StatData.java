@@ -16,15 +16,15 @@ public class StatData {
     }
 
     public StatData(Stat stat) {
-        this.Name = stat.GUID();
+        this.id = stat.GUID();
     }
 
     public Stat GetStat() {
-        return SlashRegistry.Stats().get(Name);
+        return SlashRegistry.Stats().get(id);
     }
 
-    @Store
-    public String Name;
+    @Store// guid
+    private String id = "";
 
     public float Flat = 0;
 
@@ -33,7 +33,15 @@ public class StatData {
     public float Multi = 0;
 
     @Store
-    public float Value = 0;
+    public float val = 0;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public void addExact(StatTypes type, float value) {
         if (type == StatTypes.Flat) {
@@ -46,7 +54,7 @@ public class StatData {
     }
 
     public void addExact(StatData data) {
-        if (data.Name.equals(this.Name)) {
+        if (data.id.equals(this.id)) {
             this.Flat += data.Flat;
             this.Percent += data.Percent;
             this.Multi += data.Multi;
@@ -71,7 +79,7 @@ public class StatData {
 
     public String formattedValue() {
 
-        float val = Value;
+        float val = this.val;
 
         DecimalFormat format = new DecimalFormat();
 
@@ -88,7 +96,10 @@ public class StatData {
     }
 
     public float getMultiplier() {
-        return 1 + Value / 100;
+        return 1 + val / 100;
     }
 
+    public boolean isNotEmpty() {
+        return Flat != 0 || val != 0 || Percent != 0 || Multi != 0;
+    }
 }

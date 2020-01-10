@@ -50,7 +50,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
                 entities.add((LivingEntity) en);
             }
         }
-        int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).Value;
+        int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).val;
 
         for (LivingEntity entity : entities) {
             if (entity.equals(target)) {

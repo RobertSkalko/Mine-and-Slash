@@ -159,7 +159,7 @@ public abstract class EffectData {
         Effects.sort(new EffectUnitStat());
 
         for (EffectUnitStat item : Effects) {
-            if (item.stat.Value != 0) {
+            if (item.stat.val != 0) {
                 if (AffectsThisUnit(item.effect, this, item.source)) {
                     item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
                 }
@@ -200,7 +200,7 @@ public abstract class EffectData {
 
                         StatData stat = unit.getStat((Stat) stateffects);
 
-                        if (stat.Value != 0) {
+                        if (stat.val != 0) {
                             effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));
                         }
                     }

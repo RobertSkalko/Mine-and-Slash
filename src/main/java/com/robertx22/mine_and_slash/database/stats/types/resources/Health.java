@@ -64,7 +64,7 @@ public class Health extends Stat {
 
         float mult = entity.getHealth() / entity.getMaxHealth();
 
-        return (int) (mult * unit.healthData().Value);
+        return (int) (mult * unit.healthData().val);
 
     }
 

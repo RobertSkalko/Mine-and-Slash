@@ -61,12 +61,12 @@ public class AzureTopLeftOverlay {
             float curMS = data.getResources().getMagicShield();
             if (curMS > 0) {
 
-                float hp = data.getUnit().healthData().Value;
+                float hp = data.getUnit().healthData().val;
 
                 float maxperc = MathHelper.clamp(curMS / hp, 0, 1);
 
                 int enebar = (int) ((int) ((curMS / data.getUnit()
-                        .magicShieldData().Value * 100)) * maxperc);
+                        .magicShieldData().val * 100)) * maxperc);
                 mc.getTextureManager().bindTexture(magicshieldpath);
                 gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, enebar, 5);
             }
@@ -132,14 +132,14 @@ public class AzureTopLeftOverlay {
         xPos = 59;
         yPos = 4;
         DrawBar(mc, gui, azurehealthtexturepath, unit.health()
-                .CurrentValue(mc.player, unit), unit.healthData().Value, Type.HP, data, xPos, yPos);
+                .CurrentValue(mc.player, unit), unit.healthData().val, Type.HP, data, xPos, yPos);
         xPos = 59;
         yPos += 11;
 
-        DrawBar(mc, gui, azuremanatexturepath, data.getCurrentMana(), unit.manaData().Value, Type.MANA, data, xPos, yPos);
+        DrawBar(mc, gui, azuremanatexturepath, data.getCurrentMana(), unit.manaData().val, Type.MANA, data, xPos, yPos);
         xPos = 59;
         yPos += 11;
-        DrawBar(mc, gui, azureenergytexturepath, data.getCurrentEnergy(), unit.energyData().Value, Type.ENE, data, xPos, yPos);
+        DrawBar(mc, gui, azureenergytexturepath, data.getCurrentEnergy(), unit.energyData().val, Type.ENE, data, xPos, yPos);
         xPos = 59;
         yPos += 11;
         DrawBar(mc, gui, azureexperiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, xPos, yPos);

@@ -37,7 +37,7 @@ public class BleedMasteryEffect implements IStatEffect {
                     if (dmg.isDmgAllowed()) {
 
                         int val = (int) (Effect.sourceData.getUnit()
-                                .getStat(PhysicalDamage.GUID).Value / 4);
+                                .getStat(PhysicalDamage.GUID).val / 4);
 
                         Effect.target.addPotionEffect(new EffectInstance(BleedPotion.INSTANCE, 100, val));
                     }

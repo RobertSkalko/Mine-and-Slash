@@ -136,7 +136,7 @@ public class HealthBarRenderer {
 
                 float scale = 0.026666672F;
                 // MY CODE
-                float maxHealth = unit.healthData().Value;
+                float maxHealth = unit.healthData().val;
                 float health = unit.health().CurrentValue(entity, unit);
                 //MY CODE
 

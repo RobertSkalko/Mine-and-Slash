@@ -187,7 +187,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         finalValue *= 1 + data.Multi / 100;
 
-        data.Value = MathHelper.clamp(finalValue, minimumValue, maximumValue);
+        data.val = MathHelper.clamp(finalValue, minimumValue, maximumValue);
 
     }
 

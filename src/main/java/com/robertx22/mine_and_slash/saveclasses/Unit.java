@@ -40,10 +40,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 // this stores data that can be lost without issue, stats that are recalculated all the time
 // and mob status effects.
@@ -125,10 +122,20 @@ public class Unit {
 
     }
 
-    public void InitPlayerStats() {
+    public void removeUnregisteredStats() {
 
         if (MyStats == null) {
             MyStats = new HashMap<String, StatData>();
+        }
+
+        for (Map.Entry<String, StatData> entry : new ArrayList<>(MyStats.entrySet())) {
+
+            StatData data = entry.getValue();
+
+            if (data.getId().isEmpty() || !SlashRegistry.Stats()
+                    .isRegistered(data.getId())) {
+                MyStats.remove(entry.getKey());
+            }
         }
 
     }
@@ -152,15 +159,15 @@ public class Unit {
 
     // Stat shortcuts
     public Health health() {
-        return (Health) getStat(Health.GUID).GetStat();
+        return Health.INSTANCE;
     }
 
     public Mana mana() {
-        return (Mana) getStat(Mana.GUID).GetStat();
+        return Mana.INSTANCE;
     }
 
     public Energy energy() {
-        return (Energy) getStat(Energy.GUID).GetStat();
+        return Energy.INSTANCE;
     }
 
     public float getCurrentEffectiveHealth(LivingEntity entity, UnitData data) {
@@ -171,20 +178,20 @@ public class Unit {
     }
 
     public float getMaxEffectiveHealth() {
-        float hp = healthData().Value;
-        hp += magicShieldData().Value;
+        float hp = healthData().val;
+        hp += magicShieldData().val;
 
         return hp;
 
     }
 
     public boolean isBloodMage() {
-        return this.getStat(BloodMage.INSTANCE).Value > 0;
+        return hasStat(BloodMage.INSTANCE) && this.getStat(BloodMage.INSTANCE).val > 0;
     }
 
     public float getMaximumBlood() {
-        if (this.getStat(BloodMage.INSTANCE).Value > 0) {
-            return healthData().Value / 2;
+        if (this.getStat(BloodMage.INSTANCE).val > 0) {
+            return healthData().val / 2;
         }
         return 0;
     }
@@ -335,7 +342,7 @@ public class Unit {
 
         DirtyCheck check = new DirtyCheck();
 
-        check.hp = (int) getStat(Health.GUID).Value;
+        check.hp = (int) getStat(Health.GUID).val;
 
         return check;
     }
@@ -452,11 +459,12 @@ public class Unit {
     private void removeEmptyStats() {
 
         for (StatData data : new ArrayList<>(MyStats.values())) {
-            if (data.Value <= 0) {
+            if (data.val <= 0 || data.getId().isEmpty()) {
                 //System.out.println(data.Name);
-                MyStats.remove(data.Name);
+                MyStats.remove(data.getId());
             }
         }
+
     }
 
     // gear check works on everything but the weapon.

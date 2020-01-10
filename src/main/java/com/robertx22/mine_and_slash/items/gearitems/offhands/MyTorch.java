@@ -101,10 +101,10 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
 
             float manarestored = restoreBasedOnMissing(data.getResources().getMana(), data
                     .getUnit()
-                    .manaData().Value);
+                    .manaData().val);
 
             float energyrestored = restoreBasedOnMissing(data.getResources()
-                    .getEnergy(), data.getUnit().energyData().Value);
+                    .getEnergy(), data.getUnit().energyData().val);
 
             ResourcesData.Context mana = new ResourcesData.Context(data, player, ResourcesData.Type.MANA, manarestored, ResourcesData.Use.RESTORE);
             ResourcesData.Context ene = new ResourcesData.Context(data, player, ResourcesData.Type.ENERGY, energyrestored, ResourcesData.Use.RESTORE);

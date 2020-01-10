@@ -140,13 +140,13 @@ public class ResourcesData {
 
         if (ctx.type == Type.ENERGY) {
             energy = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                    .energyData().Value);
+                    .energyData().val);
         } else if (ctx.type == Type.MANA) {
             mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                    .manaData().Value);
+                    .manaData().val);
         } else if (ctx.type == Type.MAGIC_SHIELD) {
             magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                    .magicShieldData().Value);
+                    .magicShieldData().val);
         } else if (ctx.type == Type.BLOOD) {
             blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                     .getMaximumBlood());

@@ -19,7 +19,7 @@ public class EffectCalculation {
     }
 
     public int GetValue(Unit unit) {
-        return (int) (unit.getStat(stat).Value * Multi);
+        return (int) (unit.getStat(stat).val * Multi);
     }
 
 }

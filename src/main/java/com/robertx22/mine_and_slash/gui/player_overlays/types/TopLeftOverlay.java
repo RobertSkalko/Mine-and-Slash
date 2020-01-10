@@ -25,12 +25,12 @@ public class TopLeftOverlay extends BasePlayerOverlay {
         GlStateManager.scalef(scale, scale, scale);
 
         DrawBar(mc, gui, healthtexturepath, unit.health()
-                .CurrentValue(mc.player, unit), unit.healthData().Value, Type.HP, data, xPos, yPos);
+                .CurrentValue(mc.player, unit), unit.healthData().val, Type.HP, data, xPos, yPos);
         yPos += 12;
 
-        DrawBar(mc, gui, manatexturepath, data.getCurrentMana(), unit.manaData().Value, Type.MANA, data, xPos, yPos);
+        DrawBar(mc, gui, manatexturepath, data.getCurrentMana(), unit.manaData().val, Type.MANA, data, xPos, yPos);
         yPos += 12;
-        DrawBar(mc, gui, energytexturepath, data.getCurrentEnergy(), unit.energyData().Value, Type.ENE, data, xPos, yPos);
+        DrawBar(mc, gui, energytexturepath, data.getCurrentEnergy(), unit.energyData().val, Type.ENE, data, xPos, yPos);
         yPos += 12;
         DrawBar(mc, gui, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, xPos, yPos);
 

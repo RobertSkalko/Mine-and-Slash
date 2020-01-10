@@ -29,7 +29,7 @@ public class CriticalHitEffect implements IStatEffect {
 
                 ICrittable icrit = (ICrittable) Effect;
 
-                if (RandomUtils.roll(data.Value)) {
+                if (RandomUtils.roll(data.val)) {
                     icrit.setCrit(true);
                 }
 

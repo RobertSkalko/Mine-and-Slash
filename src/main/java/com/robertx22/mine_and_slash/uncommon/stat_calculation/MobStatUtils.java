@@ -62,7 +62,7 @@ public class MobStatUtils {
             Stat stat = data.GetStat();
             if (stat instanceof PhysicalDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
                 data.Flat *= config.DMG_MULTI;
-            } else if (data.Name.equals(Health.GUID)) {
+            } else if (data.getId().equals(Health.GUID)) {
                 data.Flat *= config.HP_MULTI;
             } else {
                 data.Flat *= config.STAT_MULTI;

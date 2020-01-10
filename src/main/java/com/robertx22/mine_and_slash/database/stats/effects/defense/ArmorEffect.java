@@ -38,7 +38,7 @@ public class ArmorEffect implements IStatEffect {
 
                 IUsableStat armor = (IUsableStat) stat;
 
-                float EffectiveArmor = armor.GetUsableValue(Effect.targetData.getLevel(), (int) (data.Value - pene));
+                float EffectiveArmor = armor.GetUsableValue(Effect.targetData.getLevel(), (int) (data.val - pene));
 
                 EffectiveArmor = MathHelper.clamp(EffectiveArmor, 0, 1);
 

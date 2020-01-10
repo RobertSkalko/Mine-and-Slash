@@ -30,7 +30,7 @@ public class ManaOnHitEffect implements IStatEffect {
 
                 if (Effect.canceled == false) {
 
-                    int mana_restored = (int) data.Value;
+                    int mana_restored = (int) data.val;
 
                     DamageEffect dmgeffect = (DamageEffect) Effect;
                     dmgeffect.manaRestored += mana_restored;

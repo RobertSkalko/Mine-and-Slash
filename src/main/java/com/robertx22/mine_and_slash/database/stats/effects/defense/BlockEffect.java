@@ -40,7 +40,7 @@ public class BlockEffect implements IStatEffect {
 
                 if (canBlockDamageSource(Effect.target, dmgsource)) {
 
-                    float blockval = data.Value;
+                    float blockval = data.val;
 
                     float afterblock = Effect.number - blockval;
 

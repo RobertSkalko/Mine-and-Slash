@@ -30,7 +30,7 @@ public class ElementalAttackDamageEffect implements IStatEffect {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                dmgeffect.addBonusEleDmg(stat.Element(), data.Value);
+                dmgeffect.addBonusEleDmg(stat.Element(), data.val);
 
             }
 

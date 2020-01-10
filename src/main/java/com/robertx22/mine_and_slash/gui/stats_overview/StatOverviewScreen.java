@@ -115,7 +115,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
             String value = NumberUtils.formatNumber(usable.GetUsableValue(data.getLevel(), (int) data
                     .getUnit()
-                    .getStat(stat).Value) * 100);
+                    .getStat(stat).val) * 100);
 
             str += " (" + value + "%)";
 

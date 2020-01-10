@@ -28,7 +28,7 @@ public class HealOnHitEffect implements IStatEffect {
             if (Effect instanceof DamageEffect) {
 
                 Effect.targetData.getResources()
-                        .modify(new ResourcesData.Context(Effect.targetData, Effect.target, ResourcesData.Type.HEALTH, data.Value, ResourcesData.Use.RESTORE));
+                        .modify(new ResourcesData.Context(Effect.targetData, Effect.target, ResourcesData.Type.HEALTH, data.val, ResourcesData.Use.RESTORE));
 
             }
 

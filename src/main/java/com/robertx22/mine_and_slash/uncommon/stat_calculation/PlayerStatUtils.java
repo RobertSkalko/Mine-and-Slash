@@ -113,8 +113,8 @@ public class PlayerStatUtils {
             for (Map.Entry<String, StatData> entry : data.getUnit()
                     .getStats()
                     .entrySet()) {
-                if (entry.getValue().Value > 0) {
-                    entry.getValue().Value *= penalty;
+                if (entry.getValue().val > 0) {
+                    entry.getValue().val *= penalty;
                 }
             }
 

@@ -493,7 +493,7 @@ public class EntityCap {
 
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
 
-            i *= (double) this.getUnit().getStat(BonusExp.GUID).Value / 100 + 1;
+            i *= (double) this.getUnit().getStat(BonusExp.GUID).val / 100 + 1;
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(killed, player, this, i));
 
@@ -850,7 +850,7 @@ public class EntityCap {
                 if (unit == null) {
                     unit = new Unit();
                 }
-                unit.InitPlayerStats();
+                unit.removeUnregisteredStats();
 
                 // check if newbie
                 if (isNewbie()) {
@@ -923,7 +923,7 @@ public class EntityCap {
 
             if (this.getResources().hasEnough(energy)) {
                 this.getResources().modify(energy);
-                int num = (int) unit.getStat(PhysicalDamage.GUID).Value;
+                int num = (int) unit.getStat(PhysicalDamage.GUID).val;
                 DamageEffect dmg = new DamageEffect(event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
                 dmg.Activate();

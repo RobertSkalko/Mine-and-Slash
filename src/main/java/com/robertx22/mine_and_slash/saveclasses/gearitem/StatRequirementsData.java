@@ -125,7 +125,7 @@ public class StatRequirementsData {
                         return false;
                     }
 
-                    if (data.getUnit().getStat(entry.getKey()).Value < entry.getValue()) {
+                    if (data.getUnit().getStat(entry.getKey()).val < entry.getValue()) {
                         return false;
                     }
 
@@ -146,7 +146,7 @@ public class StatRequirementsData {
                     Stat stat = SlashRegistry.Stats().get(entry.getKey());
 
                     list.add(TooltipUtils.requirement(stat.locName(), (int) info.unitdata.getUnit()
-                            .getStat(stat).Value, entry.getValue()));
+                            .getStat(stat).val, entry.getValue()));
                 }
             }
         }

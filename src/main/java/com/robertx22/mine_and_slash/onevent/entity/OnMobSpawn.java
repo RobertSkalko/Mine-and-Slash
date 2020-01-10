@@ -37,6 +37,10 @@ public class OnMobSpawn {
 
         UnitData endata = Load.Unit(entity);
 
+        if (endata.getUnit() != null) {
+            endata.getUnit().removeUnregisteredStats();
+        }
+
         if (endata != null) {
 
             endata.setType(entity);

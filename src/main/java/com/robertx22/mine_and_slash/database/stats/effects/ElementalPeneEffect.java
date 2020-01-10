@@ -37,11 +37,11 @@ public class ElementalPeneEffect implements IStatEffect {
 
                     if (stat.Element() == Elements.Physical) {
                         IPenetrable ipene = (IPenetrable) Effect;
-                        ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.Value);
+                        ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.val);
 
                     } else {
                         IElementalPenetrable ipene = (IElementalPenetrable) Effect;
-                        ipene.addElementalPenetration((int) data.Value);
+                        ipene.addElementalPenetration((int) data.val);
                     }
                 }
             }

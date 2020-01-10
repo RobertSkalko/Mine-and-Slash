@@ -29,7 +29,7 @@ public class LifestealEffect implements IStatEffect {
                     .equals(EffectTypes.BASIC_ATTACK)) {
                 if (Effect.canceled == false) {
 
-                    float healed = ((float) data.Value * Effect.number / 100);
+                    float healed = ((float) data.val * Effect.number / 100);
 
                     DamageEffect dmgeffect = (DamageEffect) Effect;
                     dmgeffect.healthHealed += healed;
