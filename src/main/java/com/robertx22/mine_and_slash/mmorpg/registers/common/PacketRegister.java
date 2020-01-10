@@ -41,6 +41,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, UseMapTicketPacket.class, UseMapTicketPacket::encode, UseMapTicketPacket::decode, UseMapTicketPacket::handle);
 
+        MMORPG.Network.registerMessage(index++, EfficientMobUnitPacket.class, EfficientMobUnitPacket::encode, EfficientMobUnitPacket::decode, EfficientMobUnitPacket::handle);
+
     }
 
 }

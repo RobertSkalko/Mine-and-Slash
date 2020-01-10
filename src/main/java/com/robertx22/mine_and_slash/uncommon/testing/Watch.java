@@ -32,7 +32,9 @@ public class Watch {
 
     public String getPrint() {
 
-        stop.stop();
+        if (!stop.isStopped()) {
+            stop.stop();
+        }
         Long time = stop.getTime(unit);
         if (time > min) {
             return "Action took: " + time + " " + unit.name().toLowerCase();

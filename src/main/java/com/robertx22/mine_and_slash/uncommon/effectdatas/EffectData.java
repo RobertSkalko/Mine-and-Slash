@@ -195,10 +195,14 @@ public abstract class EffectData {
             for (IStatEffects stateffects : Stats.allPreGenMapStatLists.get(IStatEffects.class)) {
 
                 if (stateffects.getEffect().Side().equals(side)) {
-                    StatData stat = unit.getStat((Stat) stateffects);
 
-                    if (stat.Value != 0) {
-                        effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));
+                    if (unit.getStats().containsKey(stateffects.GUID())) {
+
+                        StatData stat = unit.getStat((Stat) stateffects);
+
+                        if (stat.Value != 0) {
+                            effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));
+                        }
                     }
                 }
 

@@ -46,6 +46,8 @@ public class EntityUnitPacket {
         tag.writeInt(packet.id);
         tag.writeCompoundTag(packet.nbt);
 
+        //System.out.println("old uses " + tag.writerIndex());
+
     }
 
     public static void handle(final EntityUnitPacket pkt,

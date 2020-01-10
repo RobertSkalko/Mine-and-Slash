@@ -25,11 +25,18 @@ public class OnTrackEntity {
                 if (Load.hasUnit(entity)) {
 
                     if (entity instanceof PlayerEntity) {
-                        MMORPG.sendToClient(new EfficientMobUnitPacket(entity, Load.Unit(entity)), (ServerPlayerEntity) event
-                                .getEntityPlayer());
-                    } else {
                         MMORPG.sendToClient(new EntityUnitPacket(entity, Load.Unit(entity)), (ServerPlayerEntity) event
                                 .getEntityPlayer());
+                    } else {
+
+                        MMORPG.sendToClient(new EfficientMobUnitPacket(entity, Load.Unit(entity)), (ServerPlayerEntity) event
+                                .getEntityPlayer());
+/*
+                        MMORPG.sendToClient(new EntityUnitPacket(entity, Load.Unit(entity)), (ServerPlayerEntity) event
+                                .getEntityPlayer());
+
+ */
+
                     }
 
                 }

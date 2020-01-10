@@ -104,13 +104,16 @@ public class Unit {
 
     }
 
-    public void InitMobStats() {
+    public void InitMobStats() { // todo see if i can remove this
 
         MyStats = new HashMap<String, StatData>();
+
         // adds all stats
+        /*
         for (Stat stat : SlashRegistry.Stats().getAll().values()) {
             MyStats.put(stat.GUID(), new StatData(stat));
         }
+         */
 
     }
 
@@ -305,7 +308,7 @@ public class Unit {
     protected void ClearStats() {
 
         if (MyStats == null) {
-            this.InitPlayerStats();
+            this.InitMobStats();
         }
 
         for (StatData stat : MyStats.values()) {
@@ -340,12 +343,12 @@ public class Unit {
     private DirtyCheck getDirtyCheck() {
 
         if (MyStats == null || MyStats.isEmpty()) {
-            this.InitPlayerStats();
+            this.InitMobStats();
         }
 
         DirtyCheck check = new DirtyCheck();
 
-        check.hp = (int) MyStats.get(Health.GUID).Value;
+        check.hp = (int) getStat(Health.GUID).Value;
 
         return check;
     }

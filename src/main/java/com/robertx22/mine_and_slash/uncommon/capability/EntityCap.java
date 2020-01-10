@@ -17,7 +17,6 @@ import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
-import com.robertx22.mine_and_slash.network.EfficientMobUnitPacket;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
@@ -30,6 +29,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.INeededForClient;
 import com.robertx22.mine_and_slash.uncommon.datasaving.*;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -91,7 +91,7 @@ public class EntityCap {
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
     private static final String AVG_GEAR_LVL = "AVG_GEAR_LVL";
 
-    public interface UnitData extends ICommonCapability {
+    public interface UnitData extends ICommonCapability, INeededForClient {
 
         void modifyResource(ResourcesData.Context ctx);
 
@@ -218,7 +218,7 @@ public class EntityCap {
 
         int getLvlForResourceCosts();
 
-        void syncEfficientMobPacket(EfficientMobUnitPacket pkt);
+        ;
     }
 
     @EventBusSubscriber
@@ -276,13 +276,52 @@ public class EntityCap {
         CustomExactStatsData customExactStats = new CustomExactStatsData();
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT getClientNBT() {
+
             CompoundNBT nbt = new CompoundNBT();
 
-            nbt.putFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
             nbt.putInt(LEVEL, level);
-            nbt.putInt(EXP, exp);
             nbt.putInt(RARITY, rarity);
+            nbt.putBoolean(PREVENT_LOOT, preventLoot);
+            nbt.putString(ENTITY_TYPE, this.type.toString());
+
+            if (unit != null) {
+                // System.out.println(unit.getStats().size()); for testing if mobs get all stats or only ones they need
+
+                UnitNbt.Save(nbt, unit);
+            }
+
+            return nbt;
+
+        }
+
+        @Override
+        public void setClientNBT(CompoundNBT nbt) {
+
+            this.level = nbt.getInt(LEVEL);
+            this.rarity = nbt.getInt(RARITY);
+            this.preventLoot = nbt.getBoolean(PREVENT_LOOT);
+
+            try {
+                String typestring = nbt.getString(ENTITY_TYPE);
+                this.type = EntityTypeUtils.EntityType.valueOf(typestring);
+            } catch (Exception e) {
+                this.type = EntityTypeUtils.EntityType.OTHER;
+                //if no nbt, set to default. Then at spawn, set correctly
+            }
+
+            this.unit = UnitNbt.Load(nbt);
+            if (this.unit == null) {
+                this.unit = new Unit();
+            }
+        }
+
+        @Override
+        public CompoundNBT getNBT() {
+            CompoundNBT nbt = getClientNBT();
+
+            nbt.putFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
+            nbt.putInt(EXP, exp);
             nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
@@ -290,9 +329,7 @@ public class EntityCap {
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
-            nbt.putBoolean(PREVENT_LOOT, preventLoot);
             nbt.putBoolean(SHOULD_SYNC, shouldSync);
-            nbt.putString(ENTITY_TYPE, this.type.toString());
 
             if (customStats != null) {
                 CustomStats.Save(nbt, customStats);
@@ -300,10 +337,6 @@ public class EntityCap {
 
             if (customExactStats != null) {
                 CustomExactStats.Save(nbt, customExactStats);
-            }
-
-            if (unit != null) {
-                UnitNbt.Save(nbt, unit);
             }
 
             if (resources != null) {
@@ -316,9 +349,9 @@ public class EntityCap {
         @Override
         public void setNBT(CompoundNBT nbt) {
 
-            this.level = nbt.getInt(LEVEL);
+            setClientNBT(nbt);
+
             this.exp = nbt.getInt(EXP);
-            this.rarity = nbt.getInt(RARITY);
             this.tier = nbt.getInt(TIER);
             this.uuid = nbt.getString(UUID);
             this.dmgByNonPlayers = nbt.getFloat(DMG_DONE_BY_NON_PLAYERS);
@@ -326,7 +359,6 @@ public class EntityCap {
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
             this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
             this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
-            this.preventLoot = nbt.getBoolean(PREVENT_LOOT);
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
 
             try {
@@ -338,14 +370,6 @@ public class EntityCap {
                 e.printStackTrace();
             }
 
-            try {
-                String typestring = nbt.getString(ENTITY_TYPE);
-                this.type = EntityTypeUtils.EntityType.valueOf(typestring);
-            } catch (Exception e) {
-                this.type = EntityTypeUtils.EntityType.OTHER;
-                //if no nbt, set to default. Then at spawn, set correctly
-            }
-
             this.customStats = CustomStats.Load(nbt);
             if (this.customStats == null) {
                 this.customStats = new CustomStatsData();
@@ -354,11 +378,6 @@ public class EntityCap {
             this.customExactStats = CustomExactStats.Load(nbt);
             if (this.customExactStats == null) {
                 this.customExactStats = new CustomExactStatsData();
-            }
-
-            this.unit = UnitNbt.Load(nbt);
-            if (this.unit == null) {
-                this.unit = new Unit();
             }
 
         }
@@ -987,15 +1006,6 @@ public class EntityCap {
         }
 
         @Override
-        public void syncEfficientMobPacket(EfficientMobUnitPacket pkt) {
-            this.level = pkt.level;
-            this.rarity = pkt.rarity;
-            this.preventLoot = pkt.preventLoot;
-            this.unit = pkt.unit;
-            this.type = pkt.type;
-        }
-
-        @Override
         public void freelySetLevel(int lvl) {
             this.level = lvl;
         }
@@ -1014,6 +1024,7 @@ public class EntityCap {
         public boolean needsToBeGivenStats() {
             return this.setMobStats == false;
         }
+
     }
 
     public static class Storage extends BaseStorage<UnitData> {

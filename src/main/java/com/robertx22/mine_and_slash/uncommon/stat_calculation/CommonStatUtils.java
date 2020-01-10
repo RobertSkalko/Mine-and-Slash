@@ -76,30 +76,37 @@ public class CommonStatUtils {
         Unit theunit = unit.getUnit();
 
         for (IPreCoreStat core : Stats.allPreGenMapStatLists.get(IPreCoreStat.class)) {
-            StatData statdata = theunit.getStat(core.GUID());
-            if (statdata.Value > 0) {
-                core.addToCoreStats(unit, statdata);
+            if (theunit.getStats().containsKey(core.GUID())) {
+                StatData statdata = theunit.getStat(core.GUID());
+                if (statdata.Value > 0) {
+                    core.addToCoreStats(unit, statdata);
+                }
             }
         }
         for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
-            StatData statdata = theunit.getStat(core.GUID());
-            if (statdata.Value > 0) {
-                core.addToOtherStats(unit, statdata);
+            if (theunit.getStats().containsKey(core.GUID())) {
+                StatData statdata = theunit.getStat(core.GUID());
+                if (statdata.Value > 0) {
+                    core.addToOtherStats(unit, statdata);
+                }
             }
         }
         for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
-            StatData statdata = theunit.getStat(trait.GUID());
-            if (statdata.Value > 0) {
-                trait.TryAffectOtherStats(unit, statdata);
+            if (theunit.getStats().containsKey(trait.GUID())) {
+                StatData statdata = theunit.getStat(trait.GUID());
+                if (statdata.Value > 0) {
+                    trait.TryAffectOtherStats(unit, statdata);
+                }
             }
         }
         for (IAffectsStats trait : Stats.allPreGenMapStatLists.get(IAffectsStats.class)) {
-            StatData statdata = theunit.getStat(trait.GUID());
-            if (statdata.Value > 0) {
-                trait.affectStats(unit, statdata);
+            if (theunit.getStats().containsKey(trait.GUID())) {
+                StatData statdata = theunit.getStat(trait.GUID());
+                if (statdata.Value > 0) {
+                    trait.affectStats(unit, statdata);
+                }
             }
         }
-
     }
 
     /**
@@ -110,15 +117,19 @@ public class CommonStatUtils {
     public static void CalcStatConversionsAndTransfers(Unit copy, Unit unit) {
 
         for (IStatConversion core : Stats.allPreGenMapStatLists.get(IStatConversion.class)) {
-            StatData statdata = copy.getStat(core.GUID());
-            if (statdata.Value > 0) {
-                core.convertStats(copy, unit, copy.getStat(core.GUID()));
+            if (unit.getStats().containsKey(core.GUID())) {
+                StatData statdata = copy.getStat(core.GUID());
+                if (statdata.Value > 0) {
+                    core.convertStats(copy, unit, copy.getStat(core.GUID()));
+                }
             }
         }
         for (IStatTransfer core : Stats.allPreGenMapStatLists.get(IStatTransfer.class)) {
-            StatData statdata = copy.getStat(core.GUID());
-            if (statdata.Value > 0) {
-                core.transferStats(copy, unit, copy.getStat(core.GUID()));
+            if (unit.getStats().containsKey(core.GUID())) {
+                StatData statdata = copy.getStat(core.GUID());
+                if (statdata.Value > 0) {
+                    core.transferStats(copy, unit, copy.getStat(core.GUID()));
+                }
             }
         }
 

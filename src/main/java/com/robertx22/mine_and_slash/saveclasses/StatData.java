@@ -20,7 +20,7 @@ public class StatData {
     }
 
     public Stat GetStat() {
-        return SlashRegistry.Stats().get(Name); // testing if this is better
+        return SlashRegistry.Stats().get(Name);
     }
 
     @Store
