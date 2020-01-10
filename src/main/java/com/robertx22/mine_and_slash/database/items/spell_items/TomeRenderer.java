@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.spell_items;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.RenderSystem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
@@ -44,11 +44,11 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
 
             Minecraft.getInstance().getTextureManager().bindTexture(tome.texture);
 
-            GlStateManager.pushMatrix();
-            GlStateManager.rotatef(rotation, 0.05F, 0.2F, 0);
-            GlStateManager.scaled(scale, -scale, -scale);
-            GlStateManager.translatef(0.15F, -0.45F, -0.2F);
-            GlStateManager.enableCull();
+            RenderSystem.pushMatrix();
+            RenderSystem.rotatef(rotation, 0.05F, 0.2F, 0);
+            RenderSystem.scaled(scale, -scale, -scale);
+            RenderSystem.translatef(0.15F, -0.45F, -0.2F);
+            RenderSystem.enableCull();
 
             if (isTheOneThatIsCurrentlyInUse(stack)) {
                 openPercent += changeOpenPercent;
@@ -63,7 +63,7 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
             float ticks = mc.getRenderPartialTicks() + mc.player.ticksExisted;
 
             tomeModel.render(ticks, 0, 0, openPercent, 0.0F, 0.0625F);
-            GlStateManager.popMatrix();
+            RenderSystem.popMatrix();
 
         }
 

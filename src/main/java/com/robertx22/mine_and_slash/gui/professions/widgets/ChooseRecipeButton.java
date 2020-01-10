@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.professions.widgets;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -86,7 +86,7 @@ public class ChooseRecipeButton extends ImageButton {
 
         Minecraft mc = Minecraft.getInstance();
         mc.getTextureManager().bindTexture(img);
-        GlStateManager.disableDepthTest();
+        RenderSystem.disableDepthTest();
 
         int offsetY = 0;
         if (this.isHovered()) {
@@ -104,7 +104,7 @@ public class ChooseRecipeButton extends ImageButton {
         } else {
             blit(xArrowPos, yArrowPos, 0, NOImgY, YESNOSize, YESNOSize, 256, 256);
         }
-        GlStateManager.enableDepthTest();
+        RenderSystem.enableDepthTest();
     }
 
 }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.player_overlays.types;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import net.minecraft.client.Minecraft;
@@ -22,7 +22,7 @@ public class TopLeftOverlay extends BasePlayerOverlay {
 
         float scale = 1F;
 
-        GlStateManager.scalef(scale, scale, scale);
+        RenderSystem.scalef(scale, scale, scale);
 
         DrawBar(mc, gui, healthtexturepath, unit.health()
                 .CurrentValue(mc.player, unit), unit.healthData().val, Type.HP, data, xPos, yPos);
@@ -35,7 +35,7 @@ public class TopLeftOverlay extends BasePlayerOverlay {
         DrawBar(mc, gui, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, xPos, yPos);
 
         scale = 1 / scale;
-        GlStateManager.scalef(scale, scale, scale);
+        RenderSystem.scalef(scale, scale, scale);
 
     }
 

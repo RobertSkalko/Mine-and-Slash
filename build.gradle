@@ -3,6 +3,7 @@ buildscript {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
+		maven { url = "https://maven.tterrag.com/" } //yarn mixed mappings 
         jcenter()
         mavenCentral()
 
@@ -107,6 +108,10 @@ repositories {
     }
 
     maven { url = "https://maven2.tterrag.com" } // AutoSave	
+	
+	  maven {
+        url "https://maven.tterrag.com/" //yarn mixed mappings
+    }
 
     maven { url = "https://maven.theillusivec4.top/" } // curios  
 

@@ -30,6 +30,8 @@ import com.robertx22.mine_and_slash.tests.ValidateGuids;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -155,6 +157,9 @@ public class MMORPG {
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {
+
+        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_MODIFY, RenderType.func_228643_e_());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_SALVAGE, RenderType.func_228643_e_());//cutout
 
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);

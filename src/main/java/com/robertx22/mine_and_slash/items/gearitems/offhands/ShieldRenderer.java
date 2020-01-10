@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.model.ShieldModel;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
@@ -27,10 +27,10 @@ public class ShieldRenderer extends ItemStackTileEntityRenderer implements Calla
             NormalShield shield = (NormalShield) item;
 
             Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
-            GlStateManager.pushMatrix();
-            GlStateManager.scaled(1F, -0.6F, -1.0);
+            RenderSystem.pushMatrix();
+            RenderSystem.scaled(1F, -0.6F, -1.0);
             modelShield.render();
-            GlStateManager.popMatrix();
+            RenderSystem.popMatrix();
 
         }
 

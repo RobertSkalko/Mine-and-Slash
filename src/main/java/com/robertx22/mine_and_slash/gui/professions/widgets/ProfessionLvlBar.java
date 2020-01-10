@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.professions.widgets;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
@@ -34,7 +34,7 @@ public class ProfessionLvlBar extends ImageButton {
 
         Minecraft mc = Minecraft.getInstance();
         mc.getTextureManager().bindTexture(img);
-        GlStateManager.disableDepthTest();
+        RenderSystem.disableDepthTest();
 
         float max = data.getExpToReachNextLevel(prof);
         float current = data.getCurrentExp(prof);
@@ -57,7 +57,7 @@ public class ProfessionLvlBar extends ImageButton {
         mc.fontRenderer.drawString(text, orbX + lvlOrbSize + 3, orbY + mc.fontRenderer.FONT_HEIGHT / 2 - 2, TextFormatting.YELLOW
                 .getColor());
 
-        GlStateManager.enableDepthTest();
+        RenderSystem.enableDepthTest();
     }
 
 }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.items.currency.IAddsInstability;
@@ -51,7 +51,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         // Bind the image texture
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
         // Draw the image
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 

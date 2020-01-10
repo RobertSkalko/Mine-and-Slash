@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.blocks.repair_station;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
 import com.robertx22.mine_and_slash.uncommon.Res;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -56,7 +56,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         // Bind the image texture
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
         // Draw the image
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         // get cook progress as a double between 0 and 1

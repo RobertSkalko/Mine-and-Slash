@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.player_overlays.types;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.client.Minecraft;
@@ -38,7 +38,7 @@ public abstract class BasePlayerOverlay {
                         float current, float max, Type type, UnitData data, int x,
                         int y) {
 
-        GlStateManager.color4f(1F, 1F, 1F, 1F);
+        RenderSystem.color4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(res);
 
         if (type == Type.MANA && data.getUnit().isBloodMage()) {

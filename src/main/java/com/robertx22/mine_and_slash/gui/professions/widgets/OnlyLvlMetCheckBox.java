@@ -7,7 +7,7 @@ import net.minecraft.client.gui.widget.button.AbstractButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
-import static com.mojang.blaze3d.platform.GlStateManager.*;
+import static com.mojang.blaze3d.platform.RenderSystem.*;
 
 public class OnlyLvlMetCheckBox extends AbstractButton {
     public enum PickedRecipes {

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.spell_items;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.model.SimpleBakedModel;
@@ -35,14 +36,13 @@ public class InGame3DWhile2DInvModel extends SimpleBakedModel {
     }
 
     @Override
-    public org.apache.commons.lang3.tuple.Pair<? extends IBakedModel, javax.vecmath.Matrix4f> handlePerspective(
-            ItemCameraTransforms.TransformType cameraTransformType) {
-
+    public IBakedModel handlePerspective(
+            ItemCameraTransforms.TransformType cameraTransformType, MatrixStack mat) {
         if (cameraTransformType == ItemCameraTransforms.TransformType.GUI || cameraTransformType == ItemCameraTransforms.TransformType.GROUND) {
-            return net.minecraftforge.client.ForgeHooksClient.handlePerspective(getBakedModel(), cameraTransformType);
+            return net.minecraftforge.client.ForgeHooksClient.handlePerspective(getBakedModel(), cameraTransformType, mat);
         } else {
             return net.minecraftforge.client.ForgeHooksClient.handlePerspective(renderModel
-                    .getBakedModel(), cameraTransformType);
+                    .getBakedModel(), cameraTransformType, mat);
         }
     }
 

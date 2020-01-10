@@ -72,7 +72,7 @@ public abstract class BaseBagItem extends Item {
                 player.openContainer(getNamedContainer(player.getHeldItemMainhand()));
             }
         }
-        return ActionResult.newResult(ActionResultType.SUCCESS, player.getHeldItem(hand));
+        return new ActionResult<ItemStack>(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }
 
     public BaseInventory getInventory(ItemStack bag, ItemStack stack) {

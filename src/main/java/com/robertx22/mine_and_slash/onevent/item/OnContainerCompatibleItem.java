@@ -21,13 +21,13 @@ public class OnContainerCompatibleItem {
             if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == false) {
                 return;
             }
-            if (event.getEntityPlayer().world.isRemote) {
+            if (event.getPlayer().world.isRemote) {
                 return;
             }
 
             UnitData data = null;
 
-            for (ItemStack stack : event.getEntityPlayer().inventory.mainInventory) {
+            for (ItemStack stack : event.getPlayer().inventory.mainInventory) {
 
                 if (stack.isEmpty()) {
                     continue;
@@ -45,14 +45,14 @@ public class OnContainerCompatibleItem {
                         } else {
 
                             if (data == null) {
-                                data = Load.Unit(event.getEntityPlayer());
+                                data = Load.Unit(event.getPlayer());
                             }
 
                             // slow check to make absolutely sure it doesnt have stats
                             GearItemData gear = Gear.Load(stack);
                             if (gear == null) {
                                 stack = config.create(stack, data.getLevel());
-                                event.getEntityPlayer().inventory.markDirty();
+                                event.getPlayer().inventory.markDirty();
                             }
                         }
                     }

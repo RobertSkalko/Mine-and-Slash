@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.professions;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;
 import com.robertx22.mine_and_slash.gui.professions.widgets.ChooseRecipeButton;
 import com.robertx22.mine_and_slash.gui.professions.widgets.OnlyLvlMetCheckBox;
@@ -216,7 +216,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
         RenderHelper.disableStandardItemLighting();
         super.render(mouseX, mouseY, partialTicks);
 
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1F);
         RenderHelper.disableStandardItemLighting();
         renderItemIcons(mouseX, mouseY, partialTicks);
 
@@ -343,8 +343,8 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
         Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(guiLeft, guiTop, this.blitOffset, 0.0F, 0.0F, this.xSize, this.ySize, 256, 512);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.xSize, this.ySize, 256, 512);
 
         // the cook time arrow
         float cooktime = tile.getCookTimeCompleted();

@@ -26,9 +26,8 @@ public abstract class NonFullBlock extends Block {
 
     }
 
-    @Override
-    public boolean isSolid(BlockState state) {
-        return false;
+    public boolean isNotSolid(BlockState state) {
+        return true;
     }
 
     @Override

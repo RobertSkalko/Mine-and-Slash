@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.a_libraries.dmg_number_particle;
 
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.client.Minecraft;
@@ -7,7 +8,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.particle.IParticleRenderType;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -37,9 +37,8 @@ public class DamageParticle extends Particle {
         this.element = element;
     }
 
-    @Override
-    public void renderParticle(BufferBuilder renderer, ActiveRenderInfo entityIn, float x,
-                               float y, float z, float dX, float dY, float dZ) {
+    public void func_225606_a_(IVertexBuilder vertex, ActiveRenderInfo info, float var3) {
+
         try {
             float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
             float rotationPitch = Minecraft.getInstance().player.rotationPitch;
@@ -47,9 +46,16 @@ public class DamageParticle extends Particle {
             float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get()
                     .floatValue();
 
-            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * x - interpPosX)) * speed;
-            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * y - interpPosY)) * speed;
-            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * z - interpPosZ)) * speed;
+            // TODO UNSURE IF info.getBlockPos().getX() is good
+            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * info
+                    .getBlockPos()
+                    .getX())) * speed;
+            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * info
+                    .getBlockPos()
+                    .getY())) * speed;
+            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * info
+                    .getBlockPos()
+                    .getZ())) * speed;
 
             GL11.glPushMatrix();
 
@@ -60,18 +66,6 @@ public class DamageParticle extends Particle {
             GL11.glScalef(-1.0F, -1.0F, 1.0F);
             GL11.glScaled(this.scale * 0.008D, this.scale * 0.008D, this.scale * 0.008D);
             GL11.glScaled(this.scale, this.scale, this.scale);
-
-            /*
-            GLX.glMultiTexCoord2f(0, 240.0F, 0.003662109F); // UNSURE IF GOOD
-
-            GlStateManager.disableLighting();
-            GlStateManager.depthMask(false);
-            GlStateManager.disableDepthTest();
-            GlStateManager.disableTexture();
-            GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
-             */
 
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 

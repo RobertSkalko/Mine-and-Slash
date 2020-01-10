@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.talent_tree_gui;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
@@ -252,7 +252,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
 
         ScreenContext ctx = new ScreenContext(this);
 
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         Minecraft.getInstance().getTextureManager().bindTexture(LINES);
 
         for (PerkConnectionRender c : this.buttonConnections) {
@@ -304,7 +304,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
     }
 
     protected void drawPointsLeftNumber() {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
         int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2 + 10;
 
@@ -321,19 +321,19 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
     }
 
     protected void drawSpace() {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
         int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
         Minecraft.getInstance().getTextureManager().bindTexture(SPACE);
-        blit(offsetX + 3, offsetY + 3, this.blitOffset, 0.0F, 0.0F, sizeX - 6, sizeY - 6, 2048, 2048);
+        blit(offsetX + 3, offsetY + 3, this.getBlitOffset(), 0.0F, 0.0F, sizeX - 6, sizeY - 6, 2048, 2048);
     }
 
     protected void drawBorders() {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
         int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
         Minecraft.getInstance().getTextureManager().bindTexture(TEXTURE);
-        blit(offsetX, offsetY, this.blitOffset, 0.0F, 0.0F, sizeX, sizeY, 256, 512);
+        blit(offsetX, offsetY, this.getBlitOffset(), 0.0F, 0.0F, sizeX, sizeY, 256, 512);
 
     }
 

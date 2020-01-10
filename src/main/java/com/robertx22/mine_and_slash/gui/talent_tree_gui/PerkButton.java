@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.talent_tree_gui;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
@@ -50,7 +50,7 @@ public class PerkButton extends ImageButton {
         if (PerkTreeScreen.shouldRender(checkX, checkY, ctx, perk.getPerkType())) {
             Minecraft mc = Minecraft.getInstance();
             mc.getTextureManager().bindTexture(this.perk.getPerkType().TEXTURE);
-            GlStateManager.disableDepthTest();
+            RenderSystem.disableDepthTest();
 
             PerkConnection.Allocation status = perk.getStatus(talents);
 
@@ -58,7 +58,7 @@ public class PerkButton extends ImageButton {
             int yStart = perk.getPerkType().getOffsetY(status);
 
             blit(finalX, finalY, xstart, (float) yStart, this.width, this.height, 256, 256);
-            GlStateManager.enableDepthTest();
+            RenderSystem.enableDepthTest();
 
             int itemX = finalX - 8 + perk.getPerkType().sizeX / 2;
             int itemY = finalY - 8 + perk.getPerkType().sizeY / 2;

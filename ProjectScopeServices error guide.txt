@@ -1,0 +1,9 @@
+Caused by: java.lang.IllegalStateException: ProjectScopeServices has been closed. now?
+
+>>
+
+exit IDE
+
+--stop
+
+build.bat

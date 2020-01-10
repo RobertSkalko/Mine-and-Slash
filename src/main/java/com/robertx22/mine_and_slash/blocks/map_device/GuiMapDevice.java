@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.blocks.map_device;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -44,7 +44,7 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
         // Bind the image texture
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
         // Draw the image
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
 
     }

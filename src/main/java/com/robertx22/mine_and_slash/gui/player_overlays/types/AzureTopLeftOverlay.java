@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.player_overlays.types;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
@@ -40,7 +40,7 @@ public class AzureTopLeftOverlay {
                         float current, float max, Type type, UnitData data, int x,
                         int y) {
 
-        GlStateManager.color4f(1F, 1F, 1F, 1F);
+        RenderSystem.color4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(res);
 
         if (type == Type.MANA && data.getUnit().isBloodMage()) {
@@ -101,7 +101,7 @@ public class AzureTopLeftOverlay {
     public void DrawUI(Minecraft mc, AbstractGui gui, ResourceLocation res, Type type,
                        UnitData data, int x, int y) {
 
-        GlStateManager.color4f(1F, 1F, 1F, 1F);
+        RenderSystem.color4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(res);
 
         gui.blit(x, y, 0, 0, this.TEXTURE_WIDTH2, this.TEXTURE_HEIGHT2);
@@ -123,7 +123,7 @@ public class AzureTopLeftOverlay {
 
         float scale = 1F;
 
-        GlStateManager.scalef(scale, scale, scale);
+        RenderSystem.scalef(scale, scale, scale);
 
         xPos = 3;
         yPos = 1;
@@ -145,7 +145,7 @@ public class AzureTopLeftOverlay {
         DrawBar(mc, gui, azureexperiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, xPos, yPos);
 
         scale = 1 / scale;
-        GlStateManager.scalef(scale, scale, scale);
+        RenderSystem.scalef(scale, scale, scale);
 
     }
 

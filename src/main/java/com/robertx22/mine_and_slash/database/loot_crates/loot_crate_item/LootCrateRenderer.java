@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.Item;
@@ -14,12 +16,14 @@ public class LootCrateRenderer extends ItemStackTileEntityRenderer implements Su
     public static LootCrateRenderer INSTANCE = new LootCrateRenderer();
 
     @Override
-    public void renderByItem(ItemStack stack) {
+    public void func_228364_a_(ItemStack stack, MatrixStack p_228364_2_,
+                               IRenderTypeBuffer p_228364_3_, int p_228364_4_,
+                               int p_228364_5_) {
         Item item = stack.getItem();
         if (item instanceof MapLootCrateItem) {
-            TileEntityRendererDispatcher.instance.renderAsItem(new ChestTileEntity());
+            TileEntityRendererDispatcher.instance.func_228851_a_(new ChestTileEntity(), new MatrixStack()); // todo
         } else {
-            super.renderByItem(stack);
+            super.func_228364_a_(stack, p_228364_2_, p_228364_3_, p_228364_4_, p_228364_5_);
         }
     }
 

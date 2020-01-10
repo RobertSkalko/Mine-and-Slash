@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
@@ -147,20 +147,20 @@ public class HealthBarRenderer {
                 EntityRendererManager renderManager = Minecraft.getInstance()
                         .getRenderManager();
 
-                GlStateManager.pushMatrix();
-                GlStateManager.translatef((float) (x - renderManager.renderPosX), (float) (y - renderManager.renderPosY + passedEntity
+                RenderSystem.pushMatrix();
+                RenderSystem.translatef((float) (x - renderManager.renderPosX), (float) (y - renderManager.renderPosY + passedEntity
                         .getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get()), (float) (z - renderManager.renderPosZ));
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-                GlStateManager.rotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-                GlStateManager.rotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-                GlStateManager.scalef(-scale, -scale, scale);
+                RenderSystem.rotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
+                RenderSystem.rotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+                RenderSystem.scalef(-scale, -scale, scale);
                 boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
-                GlStateManager.disableLighting();
-                GlStateManager.depthMask(false);
-                GlStateManager.disableDepthTest();
-                GlStateManager.disableTexture();
-                GlStateManager.enableBlend();
-                GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                RenderSystem.disableLighting();
+                RenderSystem.depthMask(false);
+                RenderSystem.disableDepthTest();
+                RenderSystem.disableTexture();
+                RenderSystem.enableBlend();
+                RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder buffer = tessellator.getBuffer();
 
@@ -183,7 +183,7 @@ public class HealthBarRenderer {
                     b = color.getBlue();
                 }
 
-                GlStateManager.translatef(0F, pastTranslate, 0F);
+                RenderSystem.translatef(0F, pastTranslate, 0F);
 
                 float s = 0.5F;
                 ITextComponent name = data.getName(entity);
@@ -238,16 +238,16 @@ public class HealthBarRenderer {
                         .endVertex();
                 tessellator.draw();
 
-                GlStateManager.enableTexture();
+                RenderSystem.enableTexture();
 
-                GlStateManager.pushMatrix();
-                GlStateManager.translatef(-size, -4.5F, 0F);
-                GlStateManager.scalef(s, s, s);
+                RenderSystem.pushMatrix();
+                RenderSystem.translatef(-size, -4.5F, 0F);
+                RenderSystem.scalef(s, s, s);
                 mc.fontRenderer.drawString(namestring, 0, 0, 0xFFFFFF);
 
-                GlStateManager.pushMatrix();
+                RenderSystem.pushMatrix();
                 float s1 = 0.75F;
-                GlStateManager.scalef(s1, s1, s1);
+                RenderSystem.scalef(s1, s1, s1);
 
                 int h = ClientContainer.INSTANCE.neatConfig.hpTextHeight.get();
                 String maxHpStr = TextFormatting.BOLD + NumberUtils.formatNumber((int) maxHealth);
@@ -269,13 +269,13 @@ public class HealthBarRenderer {
                             .getStringWidth(percStr) / 2, h, 0xFFFFFFFF);
                 if (ClientContainer.INSTANCE.neatConfig.enableDebugInfo.get() && mc.gameSettings.showDebugInfo)
                     mc.fontRenderer.drawString("GEAR_FACTORY_ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
-                GlStateManager.popMatrix();
+                RenderSystem.popMatrix();
 
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
                 s1 = 0.5F;
-                GlStateManager.scalef(s1, s1, s1);
-                GlStateManager.translatef(size / (s * s1) * 2 - 16, 0F, 0F);
+                RenderSystem.scalef(s1, s1, s1);
+                RenderSystem.translatef(size / (s * s1) * 2 - 16, 0F, 0F);
                 mc.textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
 
                 // SHOW ICONS HERE
@@ -296,15 +296,15 @@ public class HealthBarRenderer {
                 }
                 //MY CODE
 
-                GlStateManager.popMatrix();
+                RenderSystem.popMatrix();
 
-                GlStateManager.disableBlend();
-                GlStateManager.enableDepthTest();
-                GlStateManager.depthMask(true);
+                RenderSystem.disableBlend();
+                RenderSystem.enableDepthTest();
+                RenderSystem.depthMask(true);
                 if (lighting)
-                    GlStateManager.enableLighting();
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                GlStateManager.popMatrix();
+                    RenderSystem.enableLighting();
+                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                RenderSystem.popMatrix();
 
                 pastTranslate -= bgHeight + barHeight + padding;
             }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.stat_allocation_screen;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.BaseCoreStat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -98,7 +98,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
     protected void drawGuiBackgroundLayer(float partialTicks, int x, int y) {
 
         minecraft.getTextureManager().bindTexture(TEXTURE);
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.blit(minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, minecraft.mainWindow
                 .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY);
 

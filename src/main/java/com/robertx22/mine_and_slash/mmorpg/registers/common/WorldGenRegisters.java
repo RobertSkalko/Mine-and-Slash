@@ -2,9 +2,6 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
-import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceEggFeature;
-import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceTreasure;
 import com.robertx22.mine_and_slash.world_gen.structures.Random1ChunkDunStructure;
 import com.robertx22.mine_and_slash.world_gen.structures.TowerStructure;
 import net.minecraft.util.registry.Registry;
@@ -15,8 +12,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.placement.AtSurfaceWithChance;
-import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.RegistryEvent;
@@ -31,10 +26,13 @@ import java.util.stream.Collectors;
 public class WorldGenRegisters {
 
     public static final int SMALL_DECO_CHANCE = 50;
+    /*
     public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(1000));
     public static final ConfiguredFeature smallRandomSurfaceDecoration = createSmallSurfaceDeco(new RandomSurfaceDecoration(NoFeatureConfig::deserialize));
     public static final ConfiguredFeature smallRandomSurfaceTreasure = Biome.createDecoratedFeature(new RandomSurfaceTreasure(NoFeatureConfig::deserialize), IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(400));
 
+
+     */
     public static Structure<NoFeatureConfig> towerStructure = null;
     public static Structure<NoFeatureConfig> dungeon0Structure = null;
 
@@ -55,9 +53,15 @@ public class WorldGenRegisters {
                     .collect(Collectors.toList())
                     .size() > 0) {
 
+                /*
+
                 add(biome, randomSurfaceChest);
                 add(biome, smallRandomSurfaceDecoration);
                 add(biome, smallRandomSurfaceTreasure);
+
+                 */
+
+                //func_226711_a_
 
                 biome.addStructure(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG);
                 biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(towerStructure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
@@ -100,7 +104,7 @@ public class WorldGenRegisters {
     public static void add(Biome biome, ConfiguredFeature comp) {
         biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, comp);
     }
-
+/*
     public static ConfiguredFeature createSmallSurfaceDeco(Feature feature) {
 
         return Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(SMALL_DECO_CHANCE));
@@ -112,4 +116,6 @@ public class WorldGenRegisters {
         return Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, basePlacementIn, placementConfig);
     }
 
+
+ */
 }

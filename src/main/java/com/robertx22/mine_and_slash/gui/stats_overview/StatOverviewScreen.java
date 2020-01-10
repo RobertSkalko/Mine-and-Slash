@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.stats_overview;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
@@ -67,7 +67,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
     public void render(int x, int y, float ticks) {
 
         minecraft.getTextureManager().bindTexture(texture);
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         this.blit(minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, minecraft.mainWindow
                 .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY);

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.main_hub;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
@@ -79,8 +79,8 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
     protected void drawBackground(float partialTicks, int x, int y) {
         Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(guiLeft, guiTop, this.blitOffset, 0.0F, 0.0F, this.x, this.y, 256, 512);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 512);
 
     }
 

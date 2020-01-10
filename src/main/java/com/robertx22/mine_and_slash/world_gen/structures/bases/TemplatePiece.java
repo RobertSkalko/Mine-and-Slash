@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
@@ -103,8 +104,8 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
     }
 
     @Override
-    public boolean addComponentParts(IWorld iworld, Random ran,
-                                     MutableBoundingBox boundingbox, ChunkPos chunkPos) {
+    public boolean func_225577_a_(IWorld iworld, ChunkGenerator<?> chunkGen, Random ran,
+                                  MutableBoundingBox boundingbox, ChunkPos chunkPos) {
 
         IWP iwp = WorldUtils.getIWP(iworld);
 
@@ -128,7 +129,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
 
             this.templatePosition = this.templatePosition.add(0, surfaceHeight - 90 - this.lowerIntoGroundBy, 0);
 
-            boolean addedParts = super.addComponentParts(iworld, ran, boundingbox, chunkPos);
+            boolean addedParts = super.func_225577_a_(iworld, chunkGen, ran, boundingbox, chunkPos);
 
             this.templatePosition = templatePosition;
 

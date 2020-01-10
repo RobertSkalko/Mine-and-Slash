@@ -126,11 +126,24 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         return null;
     }
 
+    public static final String RESETTABLE = "resettable";
+
     @Override
+    public ResourceLocation getResourceLoc() {
+        return new ResourceLocation(Ref.MODID, RESETTABLE + "_" + this.GUID());
+    }
+
+    public BaseWorldProvider(World world, DimensionType type) {
+        super(world, type, 0F);
+        this.type = type;
+        this.setModDim();
+
+    }
+
     @Nullable
     public BlockPos findSpawn(int posX, int posZ, boolean checkValid) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(posX, 0, posZ);
-        Biome biome = this.world.getBiome(blockpos$mutableblockpos);
+        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable(posX, 0, posZ);
+        Biome biome = this.world.func_226691_t_(blockpos$mutable);
         BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
         if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
             return null;
@@ -144,34 +157,20 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
                 return null;
             } else {
                 for (int j = i + 1; j >= 0; --j) {
-                    blockpos$mutableblockpos.setPos(posX, j, posZ);
-                    BlockState blockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
+                    blockpos$mutable.setPos(posX, j, posZ);
+                    BlockState blockstate1 = this.world.getBlockState(blockpos$mutable);
                     if (!blockstate1.getFluidState().isEmpty()) {
                         break;
                     }
 
                     if (blockstate1.equals(blockstate)) {
-                        return blockpos$mutableblockpos.up().toImmutable();
+                        return blockpos$mutable.up().toImmutable();
                     }
                 }
 
                 return null;
             }
         }
-    }
-
-    public static final String RESETTABLE = "resettable";
-
-    @Override
-    public ResourceLocation getResourceLoc() {
-        return new ResourceLocation(Ref.MODID, RESETTABLE + "_" + this.GUID());
-    }
-
-    public BaseWorldProvider(World world, DimensionType type) {
-        super(world, type);
-        this.type = type;
-        this.setModDim();
-
     }
 
     @Override
@@ -192,8 +191,10 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
 
         OverworldGenSettings settings = (OverworldGenSettings) chunkType.createSettings();
 
-        SingleBiomeProvider biomeProvider = biomeType.create(biomeType.createSettings()
-                .setBiome(this.getBiome()));
+        SingleBiomeProviderSettings set = biomeType.func_226840_a_(this.world.getWorldInfo())
+                .setBiome(this.getBiome()); // todo unsure
+
+        SingleBiomeProvider biomeProvider = biomeType.create(set.setBiome(this.getBiome()));
 
         ChunkGenerator gen = chunkType.create(this.world, biomeProvider, settings);
 

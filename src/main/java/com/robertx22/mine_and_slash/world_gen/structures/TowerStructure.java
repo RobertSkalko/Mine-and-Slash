@@ -45,9 +45,9 @@ public class TowerStructure extends ScatteredStructure<NoFeatureConfig> {
     }
 
     public static class Start extends StructureStart {
-        public Start(Structure<?> structure, int chunkX, int chunkZ, Biome biome,
+        public Start(Structure<?> structure, int chunkX, int chunkZ,
                      MutableBoundingBox boundingbox, int referenceIn, long longNum) {
-            super(structure, chunkX, chunkZ, biome, boundingbox, referenceIn, longNum);
+            super(structure, chunkX, chunkZ, boundingbox, referenceIn, longNum);
 
         }
 
