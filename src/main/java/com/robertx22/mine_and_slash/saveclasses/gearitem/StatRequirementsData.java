@@ -114,10 +114,21 @@ public class StatRequirementsData {
         if (data != null && data.getUnit() != null) {
 
             for (Map.Entry<String, Integer> entry : getReqs(gear).entrySet()) {
+
                 if (SlashRegistry.Stats().isRegistered(entry.getKey())) {
+
+                    if (entry.getValue() <= 0) {
+                        return true;
+                    }
+
+                    if (!data.getUnit().getStats().containsKey(entry.getKey())) {
+                        return false;
+                    }
+
                     if (data.getUnit().getStat(entry.getKey()).Value < entry.getValue()) {
                         return false;
                     }
+
                 }
             }
         }

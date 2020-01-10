@@ -43,7 +43,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.UUID;
 
 // this stores data that can be lost without issue, stats that are recalculated all the time
@@ -78,6 +77,14 @@ public class Unit {
         return getStat(stat.GUID());
     }
 
+    public boolean hasStat(Stat stat) {
+        return hasStat(stat.GUID());
+    }
+
+    public boolean hasStat(String guid) {
+        return MyStats.containsKey(guid);
+    }
+
     @Nonnull
     public StatData getStat(String guid) {
 
@@ -91,6 +98,7 @@ public class Unit {
             Stat stat = SlashRegistry.Stats().get(guid);
             if (stat != null) {
                 MyStats.put(stat.GUID(), new StatData(stat));
+
                 return MyStats.get(stat.GUID());
             } else {
                 return new StatData(new UnknownStat());
@@ -121,27 +129,6 @@ public class Unit {
 
         if (MyStats == null) {
             MyStats = new HashMap<String, StatData>();
-
-            // adds all stats
-            for (Stat stat : SlashRegistry.Stats().getAll().values()) {
-                MyStats.put(stat.GUID(), new StatData(stat));
-            }
-
-        } else {
-            // adds new stats
-            for (Stat stat : SlashRegistry.Stats().getAll().values()) {
-                if (!MyStats.containsKey(stat.GUID())) {
-                    MyStats.put(stat.GUID(), new StatData(stat));
-                }
-            }
-            // removes stats that were deleted or renamed
-            HashMap<String, StatData> stats = new HashMap<String, StatData>(MyStats);
-            for (Entry<String, StatData> entry : stats.entrySet()) {
-                if (!SlashRegistry.Stats().isRegistered(entry.getKey())) {
-                    MyStats.remove(entry.getKey());
-                }
-            }
-
         }
 
     }
@@ -437,9 +424,7 @@ public class Unit {
         CommonStatUtils.AddStatusEffectStats(this, level);
 
         if (isMapWorld) {
-
             CommonStatUtils.AddMapAffixStats(mapdata, this, level, entity);
-
         }
 
         CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
@@ -449,6 +434,8 @@ public class Unit {
         MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnStatCalculation(entity, data));
 
         CalcStats(data);
+
+        removeEmptyStats();
 
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.applyRequirementsUnmetPenalty(entity, data, gears);
@@ -460,6 +447,16 @@ public class Unit {
             MMORPG.sendToTracking(new EntityUnitPacket(entity, data), entity);
         }
 
+    }
+
+    private void removeEmptyStats() {
+
+        for (StatData data : new ArrayList<>(MyStats.values())) {
+            if (data.Value <= 0) {
+                //System.out.println(data.Name);
+                MyStats.remove(data.Name);
+            }
+        }
     }
 
     // gear check works on everything but the weapon.

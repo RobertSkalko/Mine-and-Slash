@@ -32,7 +32,6 @@
     "_comment": "STATIONS",
     "block.mmorpg.modify_station": "Gear Modify Station",
     "block.mmorpg.repair_station": "Gear Repair Station",
-    "block.mmorpg.gear_factory_station": "Gear Craft Station",
     "block.mmorpg.salvage_station": "Gear Salvage Station",
     "block.mmorpg.map_device": "Map Device",
 
