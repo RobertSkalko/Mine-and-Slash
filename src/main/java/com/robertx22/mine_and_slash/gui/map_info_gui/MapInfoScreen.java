@@ -54,19 +54,20 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
 
             QuestSaveData questData = Load.quests(mc.player).getMapQuestData();
 
-            x += 30;
+            if (questData != null) {
+                x += 30;
 
-            for (QuestTaskData task : questData.tasks) {
+                for (QuestTaskData task : questData.tasks) {
 
-                List<ITextComponent> taskTooltip = new ArrayList<>();
-                taskTooltip.addAll(task.getQuest().getTooltip(task));
+                    List<ITextComponent> taskTooltip = new ArrayList<>();
+                    taskTooltip.addAll(task.getQuest().getTooltip(task));
 
-                addButton(new ItemButton(task.getQuest().icon(), taskTooltip, x, y));
+                    addButton(new ItemButton(task.getQuest().icon(), taskTooltip, x, y));
 
-                x += 20;
+                    x += 20;
 
+                }
             }
-
         }
     }
 

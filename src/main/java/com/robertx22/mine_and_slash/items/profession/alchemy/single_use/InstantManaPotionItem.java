@@ -60,7 +60,7 @@ public class InstantManaPotionItem extends BaseInstantPotion implements IAmount 
 
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
                 .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(Items.KELP, 5 * this.level.materialCostMulti)
+                .addMaterial(Items.COAL, 5 * this.level.materialCostMulti)
                 .addMaterial(Items.LAPIS_LAZULI, 5 * level.materialCostMulti);
 
         if (level.number >= Professions.Levels.FIFTY.number) {

@@ -8,16 +8,12 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class ItemAcidBomb extends BaseBombitem {
 
-    public ItemAcidBomb() {
-        super();
-    }
-
     @ObjectHolder(Ref.MODID + ":spell_acid_bomb")
     public static final Item ITEM = null;
 
     @Override
     public BaseSpell Spell() {
-        return new SpellAcidBomb();
+        return SpellAcidBomb.getInstance();
     }
 
     @Override

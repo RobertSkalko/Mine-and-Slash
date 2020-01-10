@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.spells.SpellBonusEleBasicDmg;
 import com.robertx22.mine_and_slash.database.spells.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.mine_and_slash.database.spells.aoe_bomb_proj.SpellFireBomb;
@@ -21,6 +20,7 @@ import com.robertx22.mine_and_slash.database.spells.projectile.SpellFrostBolt;
 import com.robertx22.mine_and_slash.database.spells.projectile.SpellThunderBolt;
 import com.robertx22.mine_and_slash.database.spells.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.database.spells.self.SpellSelfRegen;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
@@ -50,7 +50,7 @@ public class Spells implements ISlashRegistryInit {
 
                     add(new SpellFireBomb());
                     add(new SpellThunderBomb());
-                    add(new SpellAcidBomb());
+                    add(SpellAcidBomb.getInstance());
                     add(new SpellIceBomb());
 
                     add(new SpellFrostNova());

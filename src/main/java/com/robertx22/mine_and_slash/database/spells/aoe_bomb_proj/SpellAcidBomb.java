@@ -10,8 +10,11 @@ import net.minecraft.world.World;
 
 public class SpellAcidBomb extends BaseBombSpell {
 
-    public SpellAcidBomb() {
-        super();
+    private SpellAcidBomb() {
+    }
+
+    public static SpellAcidBomb getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -34,4 +37,7 @@ public class SpellAcidBomb extends BaseBombSpell {
         return new EntityAcidBomb(world);
     }
 
+    private static class SingletonHolder {
+        private static final SpellAcidBomb INSTANCE = new SpellAcidBomb();
+    }
 }

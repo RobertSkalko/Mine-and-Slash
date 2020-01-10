@@ -10,7 +10,7 @@ import java.util.List;
 public class QuestLogData {
 
     @Store
-    public QuestSaveData mapCompletitionQuest;
+    public QuestSaveData mapCompletitionQuest = new QuestSaveData();
 
     @Store
     public List<QuestSaveData> quests = new ArrayList<>();

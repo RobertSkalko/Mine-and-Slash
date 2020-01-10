@@ -49,7 +49,6 @@ public class OnMobSpawn {
 
             if (endata.needsToBeGivenStats()) {
                 Unit unit = Unit.Mob(entity, nearestPlayer);
-                endata.forceSetUnit(unit);
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit(), entity);

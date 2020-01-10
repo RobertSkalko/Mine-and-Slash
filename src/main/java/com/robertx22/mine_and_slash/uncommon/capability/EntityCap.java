@@ -17,6 +17,7 @@ import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
+import com.robertx22.mine_and_slash.network.EfficientMobUnitPacket;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
@@ -217,7 +218,7 @@ public class EntityCap {
 
         int getLvlForResourceCosts();
 
-        void setAverageGearLevel(int lvl);
+        void syncEfficientMobPacket(EfficientMobUnitPacket pkt);
     }
 
     @EventBusSubscriber
@@ -252,26 +253,25 @@ public class EntityCap {
 
     public static class DefaultImpl implements UnitData {
 
-        boolean setMobStats = false;
+        // sync these for mobs
         Unit unit = null;
         int level = 1;
-        int exp = 0;
         int rarity = 0;
+        boolean preventLoot = false;
+        EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
+        // sync these for mobs
+
+        int exp = 0;
+        boolean setMobStats = false;
         String uuid = "";
         String currentMapResourceLoc = "";
         boolean isNewbie = true;
         boolean equipsChanged = true;
         int tier = 0;
-        boolean preventLoot = false;
         boolean shouldSync = false;
-        EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
-
-        int averageGearLevel = 1;
-
         float dmgByNonPlayers = 0;
 
         ResourcesData resources = new ResourcesData();
-
         CustomStatsData customStats = new CustomStatsData();
         CustomExactStatsData customExactStats = new CustomExactStatsData();
 
@@ -283,7 +283,6 @@ public class EntityCap {
             nbt.putInt(LEVEL, level);
             nbt.putInt(EXP, exp);
             nbt.putInt(RARITY, rarity);
-            nbt.putInt(AVG_GEAR_LVL, averageGearLevel);
             nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
@@ -321,7 +320,6 @@ public class EntityCap {
             this.exp = nbt.getInt(EXP);
             this.rarity = nbt.getInt(RARITY);
             this.tier = nbt.getInt(TIER);
-            this.averageGearLevel = nbt.getInt(AVG_GEAR_LVL);
             this.uuid = nbt.getString(UUID);
             this.dmgByNonPlayers = nbt.getFloat(DMG_DONE_BY_NON_PLAYERS);
             this.currentMapResourceLoc = nbt.getString(CURRENT_MAP_ID);
@@ -989,8 +987,12 @@ public class EntityCap {
         }
 
         @Override
-        public void setAverageGearLevel(int lvl) {
-            averageGearLevel = lvl;
+        public void syncEfficientMobPacket(EfficientMobUnitPacket pkt) {
+            this.level = pkt.level;
+            this.rarity = pkt.rarity;
+            this.preventLoot = pkt.preventLoot;
+            this.unit = pkt.unit;
+            this.type = pkt.type;
         }
 
         @Override
