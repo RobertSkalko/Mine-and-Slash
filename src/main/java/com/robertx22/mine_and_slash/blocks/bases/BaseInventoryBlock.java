@@ -74,10 +74,11 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
         return true;
     }
 
+    @Override
     @Deprecated
-    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos,
-                                           PlayerEntity player, Hand hand,
-                                           BlockRayTraceResult ray) {
+    public ActionResultType onUse(BlockState state, World world, BlockPos pos,
+                                  PlayerEntity player, Hand hand,
+                                  BlockRayTraceResult ray) {
         if (world.isRemote) {
             return ActionResultType.PASS;
         }

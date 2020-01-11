@@ -13,7 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -49,7 +48,6 @@ public class HealthBarRenderer {
                 return;
 
             Entity cameraEntity = mc.getRenderViewEntity();
-            Frustum frustum = new Frustum();
 
             BlockPos renderingVector = cameraEntity.getPosition();
 
@@ -57,7 +55,6 @@ public class HealthBarRenderer {
             double viewX = cameraEntity.lastTickPosX + (cameraEntity.posX - cameraEntity.lastTickPosX) * partialTicks;
             double viewY = cameraEntity.lastTickPosY + (cameraEntity.posY - cameraEntity.lastTickPosY) * partialTicks;
             double viewZ = cameraEntity.lastTickPosZ + (cameraEntity.posZ - cameraEntity.lastTickPosZ) * partialTicks;
-            frustum.setPosition(viewX, viewY, viewZ);
 
             if (ClientContainer.INSTANCE.neatConfig.showOnlyFocused.get()) {
                 Entity focused = LookUtils.getEntityLookedAt(mc.player);
@@ -70,8 +67,7 @@ public class HealthBarRenderer {
                 for (Entity entity : entitiesById.values()) {
                     if (entity != null && entity instanceof LivingEntity && entity != mc.player && entity
                             .isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(), renderingVector
-                                    .getZ()) && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity
-                            .getBoundingBox())) && entity.isAlive() && entity.getRecursivePassengers()
+                                    .getZ()) && entity.isAlive() && entity.getRecursivePassengers()
                             .isEmpty())
                         renderHealthBar((LivingEntity) entity, partialTicks, cameraEntity);
                 }
@@ -148,11 +144,16 @@ public class HealthBarRenderer {
                         .getRenderManager();
 
                 RenderSystem.pushMatrix();
-                RenderSystem.translatef((float) (x - renderManager.renderPosX), (float) (y - renderManager.renderPosY + passedEntity
-                        .getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get()), (float) (z - renderManager.renderPosZ));
+
+                // todo wtf
+                RenderSystem.translatef((float) (x - renderManager.info.getRenderViewEntity().posX), (float) (y - renderManager.info
+                        .getRenderViewEntity()
+                        .getY() + passedEntity.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove
+                        .get()), (float) (z - renderManager.info.getRenderViewEntity().posZ));
+
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-                RenderSystem.rotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-                RenderSystem.rotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+                RenderSystem.rotatef((float) -renderManager.info.getProjectedView().y, 0.0F, 1.0F, 0.0F);
+                RenderSystem.rotatef((float) renderManager.info.getProjectedView().x, 1.0F, 0.0F, 0.0F);
                 RenderSystem.scalef(-scale, -scale, scale);
                 boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
                 RenderSystem.disableLighting();
@@ -203,16 +204,17 @@ public class HealthBarRenderer {
                 // Background
                 if (ClientContainer.INSTANCE.neatConfig.drawBackground.get()) {
                     buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(-size - padding, -bgHeight, 0.0D)
+
+                    buffer.vertex(-size - padding, -bgHeight, 0.0D)
                             .color(0, 0, 0, 64)
                             .endVertex();
-                    buffer.pos(-size - padding, barHeight + padding, 0.0D)
+                    buffer.vertex(-size - padding, barHeight + padding, 0.0D)
                             .color(0, 0, 0, 64)
                             .endVertex();
-                    buffer.pos(size + padding, barHeight + padding, 0.0D)
+                    buffer.vertex(size + padding, barHeight + padding, 0.0D)
                             .color(0, 0, 0, 64)
                             .endVertex();
-                    buffer.pos(size + padding, -bgHeight, 0.0D)
+                    buffer.vertex(size + padding, -bgHeight, 0.0D)
                             .color(0, 0, 0, 64)
                             .endVertex();
                     tessellator.draw();
@@ -220,20 +222,24 @@ public class HealthBarRenderer {
 
                 // Gray Space
                 buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                buffer.pos(-size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
-                buffer.pos(-size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
-                buffer.pos(size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
-                buffer.pos(size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
+                buffer.vertex(-size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
+                buffer.vertex(-size, barHeight, 0.0D)
+                        .color(127, 127, 127, 127)
+                        .endVertex();
+                buffer.vertex(size, barHeight, 0.0D)
+                        .color(127, 127, 127, 127)
+                        .endVertex();
+                buffer.vertex(size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
                 tessellator.draw();
 
                 // Health Bar
                 buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                buffer.pos(-size, 0, 0.0D).color(r, g, b, 127).endVertex();
-                buffer.pos(-size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
-                buffer.pos(healthSize * 2 - size, barHeight, 0.0D)
+                buffer.vertex(-size, 0, 0.0D).color(r, g, b, 127).endVertex();
+                buffer.vertex(-size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
+                buffer.vertex(healthSize * 2 - size, barHeight, 0.0D)
                         .color(r, g, b, 127)
                         .endVertex();
-                buffer.pos(healthSize * 2 - size, 0, 0.0D)
+                buffer.vertex(healthSize * 2 - size, 0, 0.0D)
                         .color(r, g, b, 127)
                         .endVertex();
                 tessellator.draw();
@@ -318,28 +324,28 @@ public class HealthBarRenderer {
             IBakedModel iBakedModel = mc.getItemRenderer()
                     .getItemModelMesher()
                     .getItemModel(stack);
-            TextureAtlasSprite textureAtlasSprite = mc.getTextureMap()
-                    .getAtlasSprite(iBakedModel.getParticleTexture()
-                            .getName()
-                            .toString());
+
+            TextureAtlasSprite textureAtlasSprite = mc.getSpriteAtlas(AtlasTexture.LOCATION_BLOCKS_TEXTURE)
+                    .apply(iBakedModel.getParticleTexture().getName());
+
             mc.getTextureManager().bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder buffer = tessellator.getBuffer();
             buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
-            buffer.pos((double) (vertexX), (double) (vertexY + intV), 0.0D)
-                    .tex((double) textureAtlasSprite.getMinU(), (double) textureAtlasSprite
+
+            buffer.vertex((double) (vertexX), (double) (vertexY + intV), 0.0D)
+                    .texture((float) textureAtlasSprite.getMinU(), (float) textureAtlasSprite
                             .getMaxV())
                     .endVertex();
-            buffer.pos((double) (vertexX + intU), (double) (vertexY + intV), 0.0D)
-                    .tex((double) textureAtlasSprite.getMaxU(), (double) textureAtlasSprite
-                            .getMaxV())
-                    .endVertex();
-            buffer.pos((double) (vertexX + intU), (double) (vertexY), 0.0D)
-                    .tex((double) textureAtlasSprite.getMaxU(), (double) textureAtlasSprite
+            buffer.vertex((double) (vertexX + intU), (double) (vertexY + intV), 0.0D).
+                    texture((float) textureAtlasSprite.getMaxU(), (float) textureAtlasSprite
+                            .getMaxV()).endVertex();
+            buffer.vertex((double) (vertexX + intU), (double) (vertexY), 0.0D)
+                    .texture((float) textureAtlasSprite.getMaxU(), (float) textureAtlasSprite
                             .getMinV())
                     .endVertex();
-            buffer.pos((double) (vertexX), (double) (vertexY), 0.0D)
-                    .tex((double) textureAtlasSprite.getMinU(), (double) textureAtlasSprite
+            buffer.vertex((double) (vertexX), (double) (vertexY), 0.0D)
+                    .texture((float) textureAtlasSprite.getMinU(), (float) textureAtlasSprite
                             .getMinV())
                     .endVertex();
             tessellator.draw();
@@ -348,3 +354,5 @@ public class HealthBarRenderer {
     }
 
 }
+
+// tex -> func_225583a ??
