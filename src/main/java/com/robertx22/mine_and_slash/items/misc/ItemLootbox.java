@@ -214,11 +214,11 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
         } else if (lootType.equals(LootTypes.Spell)) {
 
-            SpellBlueprint print = new SpellBlueprint(lvl);
-            print.rarity.minRarity = this.rarity;
-            print.level.LevelRange = false;
-
             for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
+                SpellBlueprint print = new SpellBlueprint(lvl);
+                print.rarity.minRarity = this.rarity;
+                print.level.LevelRange = false;
+
                 stacks.add(print.createStack());
             }
 

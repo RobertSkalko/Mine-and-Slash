@@ -31,7 +31,7 @@ public abstract class BlueprintPart<T> {
         }
 
         if (part == null) {
-            MMORPG.devToolsErrorLog("Do not use a blueprint instance to make more than 1 item!");
+            MMORPG.devToolsErrorLog("Item is null even after being generated!");
         }
 
         return part;

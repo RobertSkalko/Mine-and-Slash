@@ -37,6 +37,7 @@ public class DamageParticle extends Particle {
         this.element = element;
     }
 
+    @Override
     public void buildGeometry(IVertexBuilder vertex, ActiveRenderInfo info, float var3) {
 
         try {
@@ -48,14 +49,11 @@ public class DamageParticle extends Particle {
 
             // TODO UNSURE IF info.getBlockPos().getX() is good
             final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * info
-                    .getBlockPos()
-                    .getX())) * speed;
+                    .getProjectedView().x)) * speed;
             final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * info
-                    .getBlockPos()
-                    .getY())) * speed;
+                    .getProjectedView().y)) * speed;
             final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * info
-                    .getBlockPos()
-                    .getZ())) * speed;
+                    .getProjectedView().z)) * speed;
 
             GL11.glPushMatrix();
 

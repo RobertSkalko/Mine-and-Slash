@@ -33,7 +33,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
     public UniqueGearPart unique = new UniqueGearPart(this);
 
     @Override
-    void onCostruct() {
+    void onConstruct() {
         this.rarity.setSpecificRarity(IRarity.Unique);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }

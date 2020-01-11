@@ -17,21 +17,21 @@ public abstract class ItemBlueprint {
     public ItemBlueprint(int level) {
         this.level.number = level;
 
-        this.onCostruct();
+        this.onConstruct();
     }
 
     public ItemBlueprint(int level, int tier) {
         this.level.number = level;
         this.tier.number = tier;
 
-        this.onCostruct();
+        this.onConstruct();
     }
 
     protected List<IStackAction> actionsAfterGeneration = new ArrayList<>();
 
-    public boolean itemWasGenerated = false;
+    boolean itemWasGenerated = false;
 
-    void onCostruct() {
+    void onConstruct() {
 
     }
 
