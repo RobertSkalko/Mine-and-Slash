@@ -79,11 +79,11 @@ public class HealthBarRenderer {
 
     }
 
-    public static void renderHealthBar(LivingEntity passedEntity, float partialTicks,
+    public static void renderHealthBar(LivingEntity en, float partialTicks,
                                        Entity viewPoint) {
         Stack<LivingEntity> ridingStack = new Stack<>();
 
-        LivingEntity entity = passedEntity;
+        LivingEntity entity = en;
         ridingStack.push(entity);
 
         // MY CODE
@@ -117,8 +117,8 @@ public class HealthBarRenderer {
 
             processing:
             {
-                float distance = passedEntity.getDistance(viewPoint);
-                if (distance > ClientContainer.INSTANCE.neatConfig.maxDistance.get() || !passedEntity
+                float distance = en.getDistance(viewPoint);
+                if (distance > ClientContainer.INSTANCE.neatConfig.maxDistance.get() || !en
                         .canEntityBeSeen(viewPoint) || entity.isInvisible())
                     break processing;
                 if (!ClientContainer.INSTANCE.neatConfig.showOnBosses.get() && !boss)
@@ -126,9 +126,9 @@ public class HealthBarRenderer {
                 if (!ClientContainer.INSTANCE.neatConfig.showOnPlayers.get() && entity instanceof PlayerEntity)
                     break processing;
 
-                double x = passedEntity.lastTickPosX + (passedEntity.posX - passedEntity.lastTickPosX) * partialTicks;
-                double y = passedEntity.lastTickPosY + (passedEntity.posY - passedEntity.lastTickPosY) * partialTicks;
-                double z = passedEntity.lastTickPosZ + (passedEntity.posZ - passedEntity.lastTickPosZ) * partialTicks;
+                double x = en.lastTickPosX + (en.posX - en.lastTickPosX) * partialTicks;
+                double y = en.lastTickPosY + (en.posY - en.lastTickPosY) * partialTicks;
+                double z = en.lastTickPosZ + (en.posZ - en.lastTickPosZ) * partialTicks;
 
                 float scale = 0.026666672F;
                 // MY CODE
@@ -140,20 +140,26 @@ public class HealthBarRenderer {
                     break processing;
 
                 float percent = (int) ((health / maxHealth) * 100F);
+
                 EntityRendererManager renderManager = Minecraft.getInstance()
                         .getRenderManager();
+                double renderPosX = renderManager.info.getProjectedView().getX();
+                double renderPosY = renderManager.info.getProjectedView().getY();
+                double renderPosZ = renderManager.info.getProjectedView().getZ();
 
                 RenderSystem.pushMatrix();
 
                 // todo wtf
-                RenderSystem.translatef((float) (x - renderManager.info.getRenderViewEntity().posX), (float) (y - renderManager.info
-                        .getRenderViewEntity()
-                        .getY() + passedEntity.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove
-                        .get()), (float) (z - renderManager.info.getRenderViewEntity().posZ));
+                RenderSystem.translatef((float) (x - renderPosX), (float) (y - renderPosY + en
+                        .getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get()), (float) (z - renderPosZ));
 
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-                RenderSystem.rotatef((float) -renderManager.info.getProjectedView().y, 0.0F, 1.0F, 0.0F);
-                RenderSystem.rotatef((float) renderManager.info.getProjectedView().x, 1.0F, 0.0F, 0.0F);
+             /*   RenderSystem.rotatef((float) -renderManager.info.getVerticalPlane()
+                        .getY(), 0.0F, 1.0F, 0.0F);
+                RenderSystem.rotatef((float) renderManager.info.getVerticalPlane()
+                        .getX(), 1.0F, 0.0F, 0.0F);
+
+              */
                 RenderSystem.scalef(-scale, -scale, scale);
                 boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
                 RenderSystem.disableLighting();

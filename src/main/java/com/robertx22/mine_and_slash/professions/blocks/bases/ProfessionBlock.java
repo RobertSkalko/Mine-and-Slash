@@ -24,7 +24,7 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
     public static final BooleanProperty ENABLED = BlockStateProperties.ENABLED;
 
     public ProfessionBlock() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(5F));
+        super(Properties.create(Material.ROCK).hardnessAndResistance(5F).nonOpaque());
         this.setDefaultState(this.stateContainer.getBaseState().with(ENABLED, true));
 
     }

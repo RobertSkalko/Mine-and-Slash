@@ -38,19 +38,27 @@ public class DamageParticle extends Particle {
     }
 
     @Override
-    public void buildGeometry(IVertexBuilder vertex, ActiveRenderInfo info, float var3) {
+    public void buildGeometry(IVertexBuilder vertex, ActiveRenderInfo info, float f) {
 
         try {
             float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
             float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
+            Minecraft mc = Minecraft.getInstance();
+
             float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get()
                     .floatValue();
 
-            // TODO UNSURE IF info.getBlockPos().getX() is good
-            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * 1)) * speed;
-            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * 1)) * speed;
-            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * 1)) * speed;
+            // TODO WTF
+            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * posX - info
+                    .getProjectedView()
+                    .getX())) * speed;
+            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * posY - info
+                    .getProjectedView()
+                    .getY())) * speed;
+            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * posZ - info
+                    .getProjectedView()
+                    .getZ())) * speed;
 
             GL11.glPushMatrix();
 

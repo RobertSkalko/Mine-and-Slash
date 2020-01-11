@@ -65,8 +65,19 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
 
             float ticks = mc.getRenderPartialTicks() + mc.player.ticksExisted;
 
-            // todo could be bad   tomeModel.render(m, t.getBuffer(RenderType.getCutout()), (int) ticks, 0, 0, openPercent, 0.0F, 0.0625F);
+            // todo could be bad
+
             RenderSystem.popMatrix();
+
+            /*
+            IRenderTypeBuffer.Impl buf = IRenderTypeBuffer.immediate(Tessellator.getInstance()
+                    .getBuffer());
+            IVertexBuilder ivertexbuilder = buf.getBuffer(tomeModel.getLayer(tome.texture));
+
+
+             */
+            // tomeModel.render(m, ivertexbuilder, (int) ticks, 0, 0, openPercent, 0.0F, 0.0625F);
+            //tomeModel.render(m, ivertexbuilder, 15728880, OverlayTexture.DEFAULT_UV, 1.0F, openPercent, 1.0F, 0.0625F);
 
         }
     }

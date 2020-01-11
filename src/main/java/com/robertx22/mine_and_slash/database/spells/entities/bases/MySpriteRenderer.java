@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.util.ResourceLocation;
 
 public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
@@ -42,7 +41,7 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
         p_225623_4_.scale(this.scale, this.scale, this.scale);
         p_225623_4_.multiply(this.renderManager.getRotation());
         p_225623_4_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
-        this.itemRenderer.renderItem(((IRendersAsItem) p_225623_1_).getItem(), ItemCameraTransforms.TransformType.GROUND, p_225623_6_, OverlayTexture.DEFAULT_UV, p_225623_4_, p_225623_5_);
+        this.itemRenderer.renderItem(((IMyRenderAsItem) p_225623_1_).getItem(), ItemCameraTransforms.TransformType.GROUND, p_225623_6_, OverlayTexture.DEFAULT_UV, p_225623_4_, p_225623_5_);
         p_225623_4_.pop();
         super.render(p_225623_1_, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);
     }

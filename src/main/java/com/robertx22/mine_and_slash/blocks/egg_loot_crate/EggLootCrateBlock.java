@@ -22,7 +22,8 @@ public class EggLootCrateBlock extends NonFullBlock {
     public EggLootCrateBlock() {
         super(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.BLACK)
                 .hardnessAndResistance(Float.MAX_VALUE)
-                .lightValue(1));
+                .lightValue(1)
+                .nonOpaque());
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
