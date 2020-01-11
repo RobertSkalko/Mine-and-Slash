@@ -31,16 +31,16 @@ public class WorldGenRegisters {
 
     public static final int SMALL_DECO_CHANCE = 50;
 
-    public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(200));
+    public static final ConfiguredFeature randomSurfaceChest = create(new RandomSurfaceEggFeature(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(1000));
 
-    public static final ConfiguredFeature smallRandomSurfaceDecoration = create(new RandomSurfaceDecoration(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(1000));
+    public static final ConfiguredFeature smallRandomSurfaceDecoration = create(new RandomSurfaceDecoration(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(40));
 
-    public static final ConfiguredFeature smallRandomSurfaceTreasure = create(new RandomSurfaceDecoration(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(600));
+    public static final ConfiguredFeature smallRandomSurfaceTreasure = create(new RandomSurfaceDecoration(NoFeatureConfig::deserialize), new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(300));
 
     public static Structure<NoFeatureConfig> towerStructure = null;
     public static Structure<NoFeatureConfig> dungeon0Structure = null;
 
-    public static void register() {
+    private static void register() {
 
         System.out.println("Registering Mine and Slash Map World Gen");
 
@@ -61,13 +61,16 @@ public class WorldGenRegisters {
                 add(biome, smallRandomSurfaceDecoration);
                 add(biome, smallRandomSurfaceTreasure);
 
-                biome.addStructureFeature(towerStructure.configure(IFeatureConfig.NO_FEATURE_CONFIG));
-                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, towerStructure
-                        .configure(IFeatureConfig.NO_FEATURE_CONFIG));
+                ConfiguredFeature<?, ?> tower0 = towerStructure.configure(IFeatureConfig.NO_FEATURE_CONFIG)
+                        .createDecoratedFeature(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+                ConfiguredFeature<?, ?> dungeon0 = dungeon0Structure.configure(IFeatureConfig.NO_FEATURE_CONFIG)
+                        .createDecoratedFeature(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
+                biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, tower0);
+                biome.addStructureFeature(towerStructure.configure(IFeatureConfig.NO_FEATURE_CONFIG));
+
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, dungeon0);
                 biome.addStructureFeature(dungeon0Structure.configure(IFeatureConfig.NO_FEATURE_CONFIG));
-                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, dungeon0Structure
-                        .configure(IFeatureConfig.NO_FEATURE_CONFIG));
 
             }
 
@@ -83,6 +86,8 @@ public class WorldGenRegisters {
 
         event.getRegistry().register(towerStructure);
         event.getRegistry().register(dungeon0Structure);
+
+        register();
 
     }
 
@@ -103,10 +108,6 @@ public class WorldGenRegisters {
 
     public static void add(Biome biome, ConfiguredFeature comp) {
         biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, comp);
-    }
-
-    public static ConfiguredFeature createSmallSurfaceDeco(Feature feature) {
-        return feature.configure(IFeatureConfig.NO_FEATURE_CONFIG);
     }
 
     public static <FC extends Feature<C>, C extends IFeatureConfig, P extends IPlacementConfig> ConfiguredFeature<C, FC> create(

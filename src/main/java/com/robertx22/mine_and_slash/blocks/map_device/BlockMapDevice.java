@@ -34,7 +34,7 @@ public class BlockMapDevice extends BaseInventoryBlock {
                                   BlockRayTraceResult ray) {
 
         if (world.isRemote) {
-            return ActionResultType.PASS;
+            return ActionResultType.CONSUME;
         }
 
         TileEntity tile = world.getTileEntity(pos);

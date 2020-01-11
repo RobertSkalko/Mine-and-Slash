@@ -40,7 +40,7 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
                                   PlayerEntity player, Hand hand,
                                   BlockRayTraceResult ray) {
         if (world.isRemote) {
-            return ActionResultType.FAIL;
+            return ActionResultType.CONSUME;
         }
 
         TileEntity tile = world.getTileEntity(pos);

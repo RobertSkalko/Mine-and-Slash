@@ -48,12 +48,9 @@ public class DamageParticle extends Particle {
                     .floatValue();
 
             // TODO UNSURE IF info.getBlockPos().getX() is good
-            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * info
-                    .getProjectedView().x)) * speed;
-            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * info
-                    .getProjectedView().y)) * speed;
-            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * info
-                    .getProjectedView().z)) * speed;
+            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * 1)) * speed;
+            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * 1)) * speed;
+            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * 1)) * speed;
 
             GL11.glPushMatrix();
 

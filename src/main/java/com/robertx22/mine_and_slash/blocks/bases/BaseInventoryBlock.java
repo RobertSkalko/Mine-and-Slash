@@ -80,7 +80,7 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
                                   PlayerEntity player, Hand hand,
                                   BlockRayTraceResult ray) {
         if (world.isRemote) {
-            return ActionResultType.PASS;
+            return ActionResultType.CONSUME;
         }
 
         TileEntity tile = world.getTileEntity(pos);
@@ -93,7 +93,7 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
             return ActionResultType.SUCCESS;
         }
 
-        return ActionResultType.PASS;
+        return ActionResultType.CONSUME;
     }
 
 }

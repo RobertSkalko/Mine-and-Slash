@@ -15,7 +15,6 @@
 "_comment": "STATIONS",
 "block.mmorpg.modify_station": "Gear Modify Station",
 "block.mmorpg.repair_station": "Gear Repair Station",
-"block.mmorpg.gear_factory_station": "Gear Craft Station",
 "block.mmorpg.salvage_station": "Gear Salvage Station",
 "block.mmorpg.map_device": "Map Device",
 "block.mmorpg.alchemy_station": "Alchemy Station",
@@ -42,7 +41,6 @@
 "item.mmorpg.level_nearest_entity": "Level Nearest Entity",
 "item.mmorpg.increase_rarity_nearest_entity": "Increase Rarity Nearest Entity",
 "item.mmorpg.awaken_runeword": "Awaken RuneWord",
-
 "_comment": "SPELL TOOLTIPS",
 "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",
 "mmorpg.tooltip.single_target_spell_bolt": "Casts a Single Target elemental projectile.",
@@ -58,7 +56,6 @@
 "item.mmorpg.capacitor3": "Epic Capacitor",
 "item.mmorpg.capacitor4": "Legendary Capacitor",
 "item.mmorpg.capacitor5": "Mythical Capacitor",
-
 "_comment": "ITEM TOOLTIPS",
 "_comment": "MAPS",
 "mmorpg.name.map": "Adventure Map",

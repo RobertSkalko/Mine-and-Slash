@@ -79,7 +79,7 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
         ItemStack itemstack = player.getHeldItem(handIn);
 
         if (player.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
-            return new ActionResult<>(ActionResultType.FAIL, itemstack);
+            return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
         }
 
         player.setActiveHand(handIn);

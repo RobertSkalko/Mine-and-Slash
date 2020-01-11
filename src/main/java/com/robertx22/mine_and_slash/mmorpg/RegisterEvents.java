@@ -40,7 +40,6 @@ public class RegisterEvents {
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnKeyPress.class);
-
         });
 
     }

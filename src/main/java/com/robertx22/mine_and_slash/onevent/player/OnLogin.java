@@ -25,7 +25,6 @@ import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -107,10 +106,6 @@ public class OnLogin {
             // TESTING MAPS
             MapBlueprint map = new MapBlueprint(1, 1);
             player.inventory.addItemStackToInventory(map.createStack());
-
-            ItemStack seeds = new ItemStack(Items.WHEAT_SEEDS);
-            seeds.setCount(64);
-            player.inventory.addItemStackToInventory(seeds);
 
             ItemStack mapdevice = new ItemStack(BlockRegister.ITEMBLOCK_MAP_DEVICE);
             mapdevice.setCount(64);

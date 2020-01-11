@@ -135,7 +135,7 @@ public class MMORPG {
         OreGenRegister.register();
         CapabilityRegister.register();
         CriteriaRegisters.register();
-        WorldGenRegisters.register();
+        //  WorldGenRegisters.register();
 
     }
 

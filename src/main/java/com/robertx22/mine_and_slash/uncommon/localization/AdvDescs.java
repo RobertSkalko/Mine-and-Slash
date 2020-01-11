@@ -27,7 +27,7 @@ public enum AdvDescs implements IAutoLocName {
 
     AddAffix("Unique items have lower chance to gain affixes, that's why these currencies are so important"),
 
-    MapDevice("This device allows you to sacrifice an adventure map and a seed, to gain time that allows you to enter adventure maps, gain special rewards like unique items and currencies, progress through tiers for better rewards!"),
+    MapDevice("This device allows you to sacrifice an adventure map to gain time that allows you to enter adventure maps, gain special rewards like unique items and currencies, progress through tiers for better rewards!"),
 
     MasterBag("Master Bag automatically picks up almost all Mine and Slash loot drops and each is separated into a different container for easy sorting.");
 
