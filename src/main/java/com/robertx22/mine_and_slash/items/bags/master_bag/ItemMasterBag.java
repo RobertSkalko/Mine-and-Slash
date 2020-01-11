@@ -12,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -77,7 +76,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
             }
         }
 
-        return ActionResult.newResult(ActionResultType.SUCCESS, player.getHeldItemMainhand());
+        return ActionResult.success(player.getHeldItemMainhand());
     }
 
     @Override

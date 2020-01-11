@@ -10,6 +10,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -35,11 +36,11 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos,
-                                    PlayerEntity player, Hand hand,
-                                    BlockRayTraceResult ray) {
+    public ActionResultType onUse(BlockState state, World world, BlockPos pos,
+                                  PlayerEntity player, Hand hand,
+                                  BlockRayTraceResult ray) {
         if (world.isRemote) {
-            return true;
+            return ActionResultType.FAIL;
         }
 
         TileEntity tile = world.getTileEntity(pos);
@@ -60,7 +61,7 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
             }
         }
 
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
 }

@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -41,11 +42,11 @@ public class EggLootCrateBlock extends NonFullBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos,
-                                    PlayerEntity player, Hand hand,
-                                    BlockRayTraceResult ray) {
+    public ActionResultType onUse(BlockState state, World world, BlockPos pos,
+                                  PlayerEntity player, Hand hand,
+                                  BlockRayTraceResult ray) {
         if (world.isRemote) {
-            return true;
+            return ActionResultType.PASS;
         }
 
         TileEntity tile = world.getTileEntity(pos);
@@ -58,7 +59,7 @@ public class EggLootCrateBlock extends NonFullBlock {
 
         }
 
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
 }

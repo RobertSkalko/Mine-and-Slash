@@ -158,8 +158,8 @@ public class MMORPG {
 
     public void clientSetup(final FMLClientSetupEvent event) {
 
-        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_MODIFY, RenderType.func_228643_e_());//cutout
-        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_SALVAGE, RenderType.func_228643_e_());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_MODIFY, RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_SALVAGE, RenderType.getCutout());//cutout
 
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);

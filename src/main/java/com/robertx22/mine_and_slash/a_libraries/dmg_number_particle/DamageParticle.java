@@ -37,7 +37,7 @@ public class DamageParticle extends Particle {
         this.element = element;
     }
 
-    public void func_225606_a_(IVertexBuilder vertex, ActiveRenderInfo info, float var3) {
+    public void buildGeometry(IVertexBuilder vertex, ActiveRenderInfo info, float var3) {
 
         try {
             float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);

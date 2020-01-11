@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -28,12 +29,12 @@ public class BlockMapDevice extends BaseInventoryBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos,
-                                    PlayerEntity player, Hand hand,
-                                    BlockRayTraceResult ray) {
+    public ActionResultType onUse(BlockState state, World world, BlockPos pos,
+                                  PlayerEntity player, Hand hand,
+                                  BlockRayTraceResult ray) {
 
         if (world.isRemote) {
-            return true;
+            return ActionResultType.PASS;
         }
 
         TileEntity tile = world.getTileEntity(pos);
@@ -47,12 +48,12 @@ public class BlockMapDevice extends BaseInventoryBlock {
 
             if (mapdata != null) {
                 map.sacrificeMap(player, mapdata, stack);
-                return true;
+                return ActionResultType.SUCCESS;
             }
 
         }
 
-        return super.onBlockActivated(state, world, pos, player, hand, ray);
+        return super.onUse(state, world, pos, player, hand, ray);
 
     }
 

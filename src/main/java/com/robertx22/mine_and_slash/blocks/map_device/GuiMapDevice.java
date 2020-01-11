@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.blocks.map_device;
 
-import com.mojang.blaze3d.platform.RenderSystem;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;

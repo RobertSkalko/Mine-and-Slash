@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.talent_tree_gui;
 
-import com.mojang.blaze3d.platform.RenderSystem;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;

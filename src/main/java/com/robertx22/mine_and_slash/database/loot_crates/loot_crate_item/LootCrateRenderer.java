@@ -16,14 +16,13 @@ public class LootCrateRenderer extends ItemStackTileEntityRenderer implements Su
     public static LootCrateRenderer INSTANCE = new LootCrateRenderer();
 
     @Override
-    public void func_228364_a_(ItemStack stack, MatrixStack p_228364_2_,
-                               IRenderTypeBuffer p_228364_3_, int p_228364_4_,
-                               int p_228364_5_) {
+    public void render(ItemStack stack, MatrixStack p_228364_2_,
+                       IRenderTypeBuffer p_228364_3_, int p_228364_4_, int p_228364_5_) {
         Item item = stack.getItem();
         if (item instanceof MapLootCrateItem) {
-            TileEntityRendererDispatcher.instance.func_228851_a_(new ChestTileEntity(), new MatrixStack()); // todo
+            TileEntityRendererDispatcher.instance.renderEntity(new ChestTileEntity(), new MatrixStack()); // todo
         } else {
-            super.func_228364_a_(stack, p_228364_2_, p_228364_3_, p_228364_4_, p_228364_5_);
+            super.render(stack, p_228364_2_, p_228364_3_, p_228364_4_, p_228364_5_);
         }
     }
 

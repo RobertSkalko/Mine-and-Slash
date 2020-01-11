@@ -77,10 +77,12 @@ public class PlayerUtils {
             player.dimension = destination;
             ServerWorld serverworld1 = player.server.getWorld(destination);
             WorldInfo worldinfo = player.world.getWorldInfo();
-            player.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), player.interactionManager
-                    .getGameType()));
+
+            player.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.sha256Hash(worldinfo
+                    .getSeed()), worldinfo.getGenerator(), player.interactionManager.getGameType()));
             player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo
                     .isDifficultyLocked()));
+            
             PlayerList playerlist = player.server.getPlayerList();
             playerlist.updatePermissionLevel(player);
             serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.

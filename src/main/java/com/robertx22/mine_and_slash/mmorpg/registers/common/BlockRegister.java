@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.blocks.repair_station.BlockGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.BlockGearSalvage;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
+import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.alchemy.AlchemyBlock;
@@ -53,7 +54,7 @@ public class BlockRegister {
     @ObjectHolder(MAP_PORTAL_BLOCK_ID)
     public static Block PORTAL_BLOCK;
     @ObjectHolder(MAP_PORTAL_BLOCK_ID)
-    public static TileEntityType<?> TILE_PORTAL_BLOCK;
+    public static TileEntityType<TileMapPortal> TILE_PORTAL_BLOCK;
 
     // NEW BLOCK
     @ObjectHolder(GEAR_MODIFY_ID)

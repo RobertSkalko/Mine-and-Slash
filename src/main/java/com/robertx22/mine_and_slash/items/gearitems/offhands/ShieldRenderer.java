@@ -1,8 +1,14 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
-import com.mojang.blaze3d.platform.RenderSystem;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.entity.model.ShieldModel;
+import net.minecraft.client.renderer.model.Material;
+import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +25,8 @@ public class ShieldRenderer extends ItemStackTileEntityRenderer implements Calla
     }
 
     @Override
-    public void renderByItem(ItemStack stack) {
+    public void render(ItemStack stack, MatrixStack mat, IRenderTypeBuffer renderType,
+                       int x, int y) {
         Item item = stack.getItem();
 
         if (item instanceof NormalShield) {
@@ -29,7 +36,13 @@ public class ShieldRenderer extends ItemStackTileEntityRenderer implements Calla
             Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
             RenderSystem.pushMatrix();
             RenderSystem.scaled(1F, -0.6F, -1.0);
-            modelShield.render();
+
+            Material material = ModelBakery.SHIELD_BASE;
+            IVertexBuilder ivertexbuilder = material.getSprite()
+                    .getTextureSpecificVertexConsumer(ItemRenderer.getArmorVertexConsumer(renderType, this.modelShield
+                            .getLayer(material.getAtlasId()), false, stack.hasEffect()));
+
+            modelShield.render(mat, ivertexbuilder, x, y, 1F, 1F, 1F, 1F);
             RenderSystem.popMatrix();
 
         }

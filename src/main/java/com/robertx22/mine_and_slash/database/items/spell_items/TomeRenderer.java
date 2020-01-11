@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.spell_items;
 
-import com.mojang.blaze3d.platform.RenderSystem;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,7 +28,8 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
     }
 
     @Override
-    public void renderByItem(ItemStack stack) {
+    public void render(ItemStack stack, MatrixStack m, IRenderTypeBuffer t, int x,
+                       int y) {
         Item item = stack.getItem();
 
         if (item instanceof BaseSpellItem) {
@@ -62,11 +65,10 @@ public class TomeRenderer extends ItemStackTileEntityRenderer implements Callabl
 
             float ticks = mc.getRenderPartialTicks() + mc.player.ticksExisted;
 
-            tomeModel.render(ticks, 0, 0, openPercent, 0.0F, 0.0625F);
+            // todo could be bad   tomeModel.render(m, t.getBuffer(RenderType.getCutout()), (int) ticks, 0, 0, openPercent, 0.0F, 0.0625F);
             RenderSystem.popMatrix();
 
         }
-
     }
 
     private boolean isTheOneThatIsCurrentlyInUse(ItemStack stack) {

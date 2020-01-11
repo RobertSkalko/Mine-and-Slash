@@ -104,8 +104,8 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
     }
 
     @Override
-    public boolean func_225577_a_(IWorld iworld, ChunkGenerator<?> chunkGen, Random ran,
-                                  MutableBoundingBox boundingbox, ChunkPos chunkPos) {
+    public boolean generate(IWorld iworld, ChunkGenerator<?> chunkGen, Random ran,
+                            MutableBoundingBox boundingbox, ChunkPos chunkPos) {
 
         IWP iwp = WorldUtils.getIWP(iworld);
 
@@ -129,7 +129,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
 
             this.templatePosition = this.templatePosition.add(0, surfaceHeight - 90 - this.lowerIntoGroundBy, 0);
 
-            boolean addedParts = super.func_225577_a_(iworld, chunkGen, ran, boundingbox, chunkPos);
+            boolean addedParts = super.generate(iworld, chunkGen, ran, boundingbox, chunkPos);
 
             this.templatePosition = templatePosition;
 

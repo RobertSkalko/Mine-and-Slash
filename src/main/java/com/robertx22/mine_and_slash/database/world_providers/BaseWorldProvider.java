@@ -112,6 +112,40 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         return true;
     }
 
+    @Override
+    @Nullable
+    public BlockPos findSpawn(int p_206921_1_, int p_206921_2_, boolean p_206921_3_) {
+        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable(p_206921_1_, 0, p_206921_2_);
+        Biome biome = this.world.getBiome(blockpos$mutable);
+        BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
+        if (p_206921_3_ && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
+            return null;
+        } else {
+            Chunk chunk = this.world.getChunk(p_206921_1_ >> 4, p_206921_2_ >> 4);
+            int i = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, p_206921_1_ & 15, p_206921_2_ & 15);
+            if (i < 0) {
+                return null;
+            } else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, p_206921_1_ & 15, p_206921_2_ & 15) > chunk
+                    .getTopBlockY(Heightmap.Type.OCEAN_FLOOR, p_206921_1_ & 15, p_206921_2_ & 15)) {
+                return null;
+            } else {
+                for (int j = i + 1; j >= 0; --j) {
+                    blockpos$mutable.setPos(p_206921_1_, j, p_206921_2_);
+                    BlockState blockstate1 = this.world.getBlockState(blockpos$mutable);
+                    if (!blockstate1.getFluidState().isEmpty()) {
+                        break;
+                    }
+
+                    if (blockstate1.equals(blockstate)) {
+                        return blockpos$mutable.up().toImmutable();
+                    }
+                }
+
+                return null;
+            }
+        }
+    }
+
     @Nullable
     public BlockPos findSpawn(ChunkPos p_206920_1_, boolean checkValid) {
         for (int i = p_206920_1_.getXStart(); i <= p_206920_1_.getXEnd(); ++i) {
@@ -140,39 +174,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
 
     }
 
-    @Nullable
-    public BlockPos findSpawn(int posX, int posZ, boolean checkValid) {
-        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable(posX, 0, posZ);
-        Biome biome = this.world.func_226691_t_(blockpos$mutable);
-        BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
-        if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
-            return null;
-        } else {
-            Chunk chunk = this.world.getChunk(posX >> 4, posZ >> 4);
-            int i = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, posX & 15, posZ & 15);
-            if (i < 0) {
-                return null;
-            } else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, posX & 15, posZ & 15) > chunk
-                    .getTopBlockY(Heightmap.Type.OCEAN_FLOOR, posX & 15, posZ & 15)) {
-                return null;
-            } else {
-                for (int j = i + 1; j >= 0; --j) {
-                    blockpos$mutable.setPos(posX, j, posZ);
-                    BlockState blockstate1 = this.world.getBlockState(blockpos$mutable);
-                    if (!blockstate1.getFluidState().isEmpty()) {
-                        break;
-                    }
-
-                    if (blockstate1.equals(blockstate)) {
-                        return blockpos$mutable.up().toImmutable();
-                    }
-                }
-
-                return null;
-            }
-        }
-    }
-
     @Override
     public ModDimension getModDim() {
         return moddim;
@@ -191,7 +192,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
 
         OverworldGenSettings settings = (OverworldGenSettings) chunkType.createSettings();
 
-        SingleBiomeProviderSettings set = biomeType.func_226840_a_(this.world.getWorldInfo())
+        SingleBiomeProviderSettings set = biomeType.getConfig(this.world.getWorldInfo())
                 .setBiome(this.getBiome()); // todo unsure
 
         SingleBiomeProvider biomeProvider = biomeType.create(set.setBiome(this.getBiome()));

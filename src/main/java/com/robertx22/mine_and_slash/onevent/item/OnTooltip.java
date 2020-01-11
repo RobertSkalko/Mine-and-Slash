@@ -39,8 +39,7 @@ public class OnTooltip {
                 return;
             }
 
-            if (event.getEntityPlayer() == null || event.getEntityPlayer().world == null || !event
-                    .getEntityPlayer().world.isRemote) {
+            if (event.getPlayer() == null || event.getPlayer().world == null || !event.getPlayer().world.isRemote) {
                 return;
             }
 
@@ -48,7 +47,7 @@ public class OnTooltip {
 
             stack = event.getItemStack();
 
-            UnitData unitdata = Load.Unit(event.getEntityPlayer());
+            UnitData unitdata = Load.Unit(event.getPlayer());
 
             if (unitdata == null) {
                 return;

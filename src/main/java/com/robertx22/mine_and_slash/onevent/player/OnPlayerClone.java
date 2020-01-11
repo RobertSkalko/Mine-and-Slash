@@ -13,7 +13,7 @@ public class OnPlayerClone {
     public static void onPlayerClone(PlayerEvent.Clone event) {
 
         PlayerEntity original = event.getOriginal();
-        PlayerEntity current = event.getEntityPlayer();
+        PlayerEntity current = event.getPlayer();
 
         try {
             EntityCap.UnitData data = Load.Unit(current);

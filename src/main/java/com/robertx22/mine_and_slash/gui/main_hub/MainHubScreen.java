@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.gui.main_hub;
 
-import com.mojang.blaze3d.platform.RenderSystem;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
