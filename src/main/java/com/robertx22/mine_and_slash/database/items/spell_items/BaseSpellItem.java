@@ -64,7 +64,7 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName, MyForg
                 .defaultMaxDamage(500);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            prop.setTEISR(TomeRenderer::new);
+            //  prop.setTEISR(TomeRenderer::new);
         });
 
         return prop;

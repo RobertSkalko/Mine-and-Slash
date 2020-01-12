@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
@@ -89,7 +88,6 @@ public class Stats implements ISlashRegistryInit {
                     add(new ElementalPene(Elements.Physical));
                     add(new ElementalFocus(Elements.Physical));
                     add(new BlockReflect(Elements.Physical));
-                    add(new BonusSpecificSpell(new SpellAcidBolt()));
 
                     // generated
 

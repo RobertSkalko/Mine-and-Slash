@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
@@ -84,7 +83,6 @@ public class StatMods implements ISlashRegistryInit {
                     add(new ElementalPenePercent(Elements.Physical));
                     add(new ElementalFocusFlat(Elements.Physical));
                     add(new BlockReflectFlat(Elements.Physical));
-                    add(new BonusSpecificSpellFlat(new SpellAcidBolt()));
 
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());

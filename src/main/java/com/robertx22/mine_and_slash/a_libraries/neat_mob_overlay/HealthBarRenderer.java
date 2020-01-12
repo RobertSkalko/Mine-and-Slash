@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -12,7 +13,9 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -60,7 +63,8 @@ public class HealthBarRenderer {
                 Entity focused = LookUtils.getEntityLookedAt(mc.player);
 
                 if (focused != null && focused instanceof LivingEntity && focused.isAlive())
-                    renderHealthBar((LivingEntity) focused, partialTicks, cameraEntity);
+                    renderHealthBar((LivingEntity) focused, partialTicks, cameraEntity, event
+                            .getMatrixStack());
             } else {
 
                 Int2ObjectMap<Entity> entitiesById = mc.world.entitiesById;
@@ -69,7 +73,8 @@ public class HealthBarRenderer {
                             .isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(), renderingVector
                                     .getZ()) && entity.isAlive() && entity.getRecursivePassengers()
                             .isEmpty())
-                        renderHealthBar((LivingEntity) entity, partialTicks, cameraEntity);
+                        renderHealthBar((LivingEntity) entity, partialTicks, cameraEntity, event
+                                .getMatrixStack());
                 }
 
             }
@@ -80,7 +85,7 @@ public class HealthBarRenderer {
     }
 
     public static void renderHealthBar(LivingEntity en, float partialTicks,
-                                       Entity viewPoint) {
+                                       Entity viewPoint, MatrixStack matrix) {
         Stack<LivingEntity> ridingStack = new Stack<>();
 
         LivingEntity entity = en;
@@ -126,9 +131,9 @@ public class HealthBarRenderer {
                 if (!ClientContainer.INSTANCE.neatConfig.showOnPlayers.get() && entity instanceof PlayerEntity)
                     break processing;
 
-                double x = en.lastTickPosX + (en.posX - en.lastTickPosX) * partialTicks;
-                double y = en.lastTickPosY + (en.posY - en.lastTickPosY) * partialTicks;
-                double z = en.lastTickPosZ + (en.posZ - en.lastTickPosZ) * partialTicks;
+                double x = en.lastTickPosX + (en.getX() - en.lastTickPosX) * partialTicks;
+                double y = en.lastTickPosY + (en.getY() - en.lastTickPosY) * partialTicks;
+                double z = en.lastTickPosZ + (en.getZ() - en.lastTickPosZ) * partialTicks;
 
                 float scale = 0.026666672F;
                 // MY CODE
@@ -143,24 +148,27 @@ public class HealthBarRenderer {
 
                 EntityRendererManager renderManager = Minecraft.getInstance()
                         .getRenderManager();
-                double renderPosX = renderManager.info.getProjectedView().getX();
-                double renderPosY = renderManager.info.getProjectedView().getY();
-                double renderPosZ = renderManager.info.getProjectedView().getZ();
 
-                RenderSystem.pushMatrix();
+                Vector3f view = renderManager.info.getHorizontalPlane();
+
+                float viewX = view.getX();
+                float viewY = view.getY();
+                float viewZ = view.getZ();
+
+                matrix.push();
 
                 // todo wtf
-                RenderSystem.translatef((float) (x - renderPosX), (float) (y - renderPosY + en
-                        .getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get()), (float) (z - renderPosZ));
+                matrix.translate(x - viewX, y - viewY + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove
+                        .get(), z - viewZ);
 
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-             /*   RenderSystem.rotatef((float) -renderManager.info.getVerticalPlane()
-                        .getY(), 0.0F, 1.0F, 0.0F);
-                RenderSystem.rotatef((float) renderManager.info.getVerticalPlane()
-                        .getX(), 1.0F, 0.0F, 0.0F);
 
-              */
-                RenderSystem.scalef(-scale, -scale, scale);
+                Quaternion rotation = renderManager.info.getRotation().copy();
+                rotation.scale(-1.0F);
+
+                matrix.multiply(rotation);
+                matrix.scale(-scale, -scale, scale);
+
                 boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
                 RenderSystem.disableLighting();
                 RenderSystem.depthMask(false);
@@ -190,7 +198,7 @@ public class HealthBarRenderer {
                     b = color.getBlue();
                 }
 
-                RenderSystem.translatef(0F, pastTranslate, 0F);
+                matrix.translate(0, pastTranslate, 0);
 
                 float s = 0.5F;
                 ITextComponent name = data.getName(entity);
@@ -252,14 +260,18 @@ public class HealthBarRenderer {
 
                 RenderSystem.enableTexture();
 
-                RenderSystem.pushMatrix();
-                RenderSystem.translatef(-size, -4.5F, 0F);
-                RenderSystem.scalef(s, s, s);
+                matrix.push();
+
+                matrix.translate(-size, -4.5F, 0F);
+                matrix.scale(s, s, s);
+
                 mc.fontRenderer.drawString(namestring, 0, 0, 0xFFFFFF);
 
-                RenderSystem.pushMatrix();
+                matrix.push();
+
                 float s1 = 0.75F;
-                RenderSystem.scalef(s1, s1, s1);
+
+                matrix.scale(s1, s1, s1);
 
                 int h = ClientContainer.INSTANCE.neatConfig.hpTextHeight.get();
                 String maxHpStr = TextFormatting.BOLD + NumberUtils.formatNumber((int) maxHealth);
@@ -281,13 +293,15 @@ public class HealthBarRenderer {
                             .getStringWidth(percStr) / 2, h, 0xFFFFFFFF);
                 if (ClientContainer.INSTANCE.neatConfig.enableDebugInfo.get() && mc.gameSettings.showDebugInfo)
                     mc.fontRenderer.drawString("GEAR_FACTORY_ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
-                RenderSystem.popMatrix();
+
+                matrix.pop();
 
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
                 s1 = 0.5F;
-                RenderSystem.scalef(s1, s1, s1);
-                RenderSystem.translatef(size / (s * s1) * 2 - 16, 0F, 0F);
+
+                matrix.scale(s1, s1, s1);
+                matrix.translate(size / (s * s1) * 2 - 16, 0F, 0F);
                 mc.textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
 
                 // SHOW ICONS HERE
@@ -308,15 +322,18 @@ public class HealthBarRenderer {
                 }
                 //MY CODE
 
-                RenderSystem.popMatrix();
+                matrix.pop();
 
                 RenderSystem.disableBlend();
                 RenderSystem.enableDepthTest();
                 RenderSystem.depthMask(true);
-                if (lighting)
+
+                if (lighting) {
                     RenderSystem.enableLighting();
+                }
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                RenderSystem.popMatrix();
+
+                matrix.pop();
 
                 pastTranslate -= bgHeight + barHeight + padding;
             }

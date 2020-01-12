@@ -6,8 +6,10 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.LootTypeBonusFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -34,7 +36,7 @@ public class MagesLuckyAmulet extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Elemental), new ManaFlat().multi(2));
+        return Arrays.asList(new ElementalResistFlat(Elements.Elemental), new ManaFlat().multi(2), new LootTypeBonusFlat(LootType.UniqueItem));
     }
 
     @Override

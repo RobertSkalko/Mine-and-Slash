@@ -21,6 +21,10 @@ public class OnModelBake {
     @SubscribeEvent
     public static void bake(ModelBakeEvent event) {
 
+        if (true) {
+            return;
+        }
+
         List<ResourceLocation> locations = new ArrayList<>();
 
         List<String> spellIds = new ArrayList<>();

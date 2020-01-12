@@ -11,8 +11,6 @@ import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_reso
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.DeepMind;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.Heros;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.MagesGamble;
-import com.robertx22.mine_and_slash.database.spells.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -90,7 +88,6 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
                     add(new EleShieldPrefix(Elements.Physical));
                     add(new ElementImbued(Elements.Physical));
                     add(new ElementThornsMastery(Elements.Physical));
-                    add(new MagesGamble(new SpellAcidBolt()));
 
                 }
             }
