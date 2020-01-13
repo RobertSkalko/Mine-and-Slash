@@ -6,6 +6,8 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.IParticleData.IDeserializer;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ParticleDeserializer {
 
@@ -16,8 +18,11 @@ public class ParticleDeserializer {
             reader.expect(' ');
             String eleName = reader.readString();
             Elements element = Elements.valueOf(eleName);
+            reader.expect(' ');
+            ResourceLocation key = new ResourceLocation(reader.readString());
+            ParticleType<?> type = ForgeRegistries.PARTICLE_TYPES.getValue(key);
 
-            return new EleParticleData(element);
+            return new EleParticleData(type, element);
         }
 
         @Override
@@ -25,7 +30,11 @@ public class ParticleDeserializer {
                                     PacketBuffer buf) {
             String eleName = buf.readString();
             Elements element = Elements.valueOf(eleName);
-            return new EleParticleData(element);
+
+            ResourceLocation key = new ResourceLocation(buf.readString());
+            ParticleType<?> type = ForgeRegistries.PARTICLE_TYPES.getValue(key);
+
+            return new EleParticleData(type, element);
         }
     };
 }

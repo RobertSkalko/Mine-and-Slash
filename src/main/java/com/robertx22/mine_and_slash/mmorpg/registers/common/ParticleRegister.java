@@ -13,10 +13,10 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ParticleRegister {
 
-    public final static String eleId = Ref.MODID + ":ele_particle";
+    public final static String eleId = Ref.MODID + ":drip";
 
     @ObjectHolder(eleId)
-    public static final ParticleType<EleParticleData> ele_particle = null;
+    public static final ParticleType<EleParticleData> DRIP = null;
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<ParticleType<?>> event) {

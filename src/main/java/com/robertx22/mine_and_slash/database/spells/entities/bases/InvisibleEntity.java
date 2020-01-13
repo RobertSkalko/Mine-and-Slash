@@ -20,7 +20,7 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem 
 
     private UUID casterUUID;
 
-    public int lifetime = 600;
+    public int lifetime = 100;
 
     protected BaseSpellEffect effect;
     protected DamageData data;

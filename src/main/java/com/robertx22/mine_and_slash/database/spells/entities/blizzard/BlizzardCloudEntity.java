@@ -1,13 +1,17 @@
 package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.particles.EleParticleData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
@@ -29,13 +33,13 @@ public class BlizzardCloudEntity extends CloudEntity {
     @Override
     public void tick() {
 
-        if (this.ticksExisted % 15 == 1) {
+        if (this.ticksExisted % 8 == 1) {
             this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0f, 1.0f);
         }
 
         super.tick();
 
-        double radius = 3;
+        float radius = 3;
 
         if (!this.world.isRemote) {
 
@@ -59,14 +63,14 @@ public class BlizzardCloudEntity extends CloudEntity {
 
         if (world.isRemote && ticksExisted % 2 == 0) {
 
-            // todo how to apply motion to particles
             for (int i = 1; i < 12; i++) {
                 double speed = (rand.nextBoolean() ? 1 : -1) * 0.1 + 0.05 * rand.nextDouble();
 
-                double x = rand.nextFloat() * radius;
-                double z = rand.nextFloat() * radius;
+                float yRandom = (float) RandomUtils.RandomRange(1, 100) / 40F;
 
-                Minecraft.getInstance().world.addParticle(new EleParticleData(Elements.Water), true, posX + x, posY + 4, posZ + z, 0, 0, 0);
+                Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(posX, posY + 4 + yRandom, posZ, radius);
+
+                Minecraft.getInstance().world.addParticle(new EleParticleData(ParticleRegister.DRIP, Elements.Water), true, p.x, p.y, p.z, 0, 0, 0);
 
             }
         }

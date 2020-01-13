@@ -17,7 +17,7 @@ public class ParticleFactoryRegister {
     public static void onParticleFactoryRegisterEvent(
             ParticleFactoryRegisterEvent event) {
 
-        Minecraft.getInstance().particles.registerFactory(ParticleRegister.ele_particle, DripEleParticle.DrippingElementalFactory::new);
+        Minecraft.getInstance().particles.registerFactory(ParticleRegister.DRIP, DripEleParticle.DrippingElementalFactory::new);
 
         MMORPG.devToolsLog("Registered Particles");
     }

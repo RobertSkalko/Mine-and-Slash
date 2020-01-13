@@ -25,7 +25,7 @@ public class DripEleParticle extends SpriteTexturedParticle {
         return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
-    public int getBrightnessForRender(float p_189214_1_) {
+    public int getBrightnessForRender(float f) {
         return 240;
     }
 
