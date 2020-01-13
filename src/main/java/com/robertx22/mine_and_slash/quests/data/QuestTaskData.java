@@ -16,7 +16,7 @@ public class QuestTaskData {
     private float currentCompletition = 0;
 
     @Store
-    public int amountRequired = 0;
+    public int amountRequired = 100000;
 
     @Store
     public QuestResult questResult = QuestResult.UNFINISHED;

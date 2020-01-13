@@ -35,6 +35,10 @@ public class QuestSaveData {
 
         if (questResult == QuestResult.UNFINISHED) {
 
+            if (tasks.isEmpty()) {
+                return;
+            }
+
             tasks.forEach(x -> x.setupResult());
 
             boolean unfinished = false;
