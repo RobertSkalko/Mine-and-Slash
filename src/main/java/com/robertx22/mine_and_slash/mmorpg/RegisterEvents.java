@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ItemDyeRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.onevent.entity.*;
 import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
 import com.robertx22.mine_and_slash.onevent.item.*;
@@ -54,6 +55,8 @@ public class RegisterEvents {
         register(OnPotionChange.class);
         register(OnTrackEntity.class);
         register(OnMobSpawn.class);
+
+        register(ParticleRegister.class); // todo maybe just on client?
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 

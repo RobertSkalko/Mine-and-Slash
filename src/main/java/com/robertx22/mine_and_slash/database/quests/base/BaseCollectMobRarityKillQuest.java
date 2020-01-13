@@ -1,9 +1,9 @@
-package com.robertx22.mine_and_slash.quests.base;
+package com.robertx22.mine_and_slash.database.quests.base;
 
+import com.robertx22.mine_and_slash.database.quests.actions.ActionDoneData;
+import com.robertx22.mine_and_slash.database.quests.actions.KilledMobData;
+import com.robertx22.mine_and_slash.database.quests.data.QuestTaskData;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.quests.actions.ActionDoneData;
-import com.robertx22.mine_and_slash.quests.actions.KilledMobData;
-import com.robertx22.mine_and_slash.quests.data.QuestTaskData;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 

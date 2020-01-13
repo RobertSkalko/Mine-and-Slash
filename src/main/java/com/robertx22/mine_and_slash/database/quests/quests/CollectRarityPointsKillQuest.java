@@ -1,9 +1,9 @@
-package com.robertx22.mine_and_slash.quests.quests;
+package com.robertx22.mine_and_slash.database.quests.quests;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.MapScoreEnum;
+import com.robertx22.mine_and_slash.database.quests.base.BaseCollectMobRarityKillQuest;
+import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.quests.base.BaseCollectMobRarityKillQuest;
-import com.robertx22.mine_and_slash.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;

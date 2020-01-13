@@ -1,8 +1,8 @@
-package com.robertx22.mine_and_slash.quests.data;
+package com.robertx22.mine_and_slash.database.quests.data;
 
+import com.robertx22.mine_and_slash.database.quests.base.Quest;
+import com.robertx22.mine_and_slash.database.quests.base.QuestResult;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.quests.base.Quest;
-import com.robertx22.mine_and_slash.quests.base.QuestResult;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 

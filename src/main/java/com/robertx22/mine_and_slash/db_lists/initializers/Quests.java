@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.quests.base.Quest;
-import com.robertx22.mine_and_slash.quests.quests.CollectRarityPointsKillQuest;
-import com.robertx22.mine_and_slash.quests.quests.KillOnlyOfRarityOrHigherQuest;
-import com.robertx22.mine_and_slash.quests.quests.SimpleKillMobsQuest;
+import com.robertx22.mine_and_slash.database.quests.base.Quest;
+import com.robertx22.mine_and_slash.database.quests.quests.CollectRarityPointsKillQuest;
+import com.robertx22.mine_and_slash.database.quests.quests.KillOnlyOfRarityOrHigherQuest;
+import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 
 import java.util.ArrayList;
 import java.util.List;

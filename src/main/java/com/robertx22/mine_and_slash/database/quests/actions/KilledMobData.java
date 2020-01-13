@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.quests.actions;
+package com.robertx22.mine_and_slash.database.quests.actions;
 
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

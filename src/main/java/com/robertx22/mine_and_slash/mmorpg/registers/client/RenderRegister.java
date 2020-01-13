@@ -17,7 +17,8 @@ public class RenderRegister {
     //@SubscribeEvent
     public static void regRenders(/*ModelRegistryEvent evt*/) {
 
-        for (EntityType type : EntityRegister.ENTITY_TYPES) {
+        for (EntityType type : EntityRegister.ENTITY_THAT_USE_ITEM_RENDERS) {
+
             RenderingRegistry.registerEntityRenderingHandler(type, newRenFac());
 
         }

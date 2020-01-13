@@ -10,4 +10,10 @@ public abstract class CloudEntity extends InvisibleEntity {
         super(type, world);
     }
 
+    @Override
+    public void tick() {
+
+        super.tick();
+
+    }
 }

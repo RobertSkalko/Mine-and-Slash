@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.quests.data;
+package com.robertx22.mine_and_slash.database.quests.data;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

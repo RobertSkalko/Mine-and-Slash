@@ -9,7 +9,7 @@ import net.minecraft.world.IBlockReader;
 public class BlockGearSalvage extends BaseInventoryBlock {
 
     public BlockGearSalvage() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(5F));
+        super(Properties.create(Material.ROCK).hardnessAndResistance(5F).nonOpaque());
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
-import com.robertx22.mine_and_slash.quests.data.QuestLogData;
+import com.robertx22.mine_and_slash.database.quests.data.QuestLogData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.nbt.CompoundNBT;
 

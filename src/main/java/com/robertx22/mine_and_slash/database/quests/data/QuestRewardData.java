@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.quests.data;
+package com.robertx22.mine_and_slash.database.quests.data;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.MapScoreEnum;
 import info.loenwind.autosave.annotations.Storable;

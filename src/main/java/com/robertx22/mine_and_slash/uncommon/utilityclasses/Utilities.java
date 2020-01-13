@@ -12,6 +12,17 @@ import java.util.UUID;
 
 public final class Utilities {
 
+    /*
+    public static boolean attackEntityWithoutKnockback(Entity entity, DamageSource source,
+                                                       float amount) {
+        Vec3d motion = entity.getMotion();
+        boolean succeeded = entity.attackEntityFrom(source, amount);
+        entity.setMotion(motion);
+        return succeeded;
+    }
+
+     */
+
     @Nullable
     public static LivingEntity getLivingEntityByUUID(World world, @Nullable UUID id) {
 

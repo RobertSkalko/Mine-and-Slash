@@ -34,6 +34,7 @@ import java.util.function.BiFunction;
 public class EntityRegister {
 
     public static List<EntityType<? extends Entity>> ENTITY_TYPES = new LinkedList();
+    public static List<EntityType<? extends Entity>> ENTITY_THAT_USE_ITEM_RENDERS = new LinkedList();
 
     @SubscribeEvent
     public static void registerEntityTypes(
@@ -64,30 +65,39 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> WANDPROJECTILE;
 
     static {
-        FROST_BLIZZARD = newType(BlizzardCloudEntity.class, BlizzardCloudEntity::new, BlizzardCloudEntity::new, "entity_frost_blizzard");
+        FROST_BLIZZARD = newType(BlizzardCloudEntity::new, BlizzardCloudEntity::new, "entity_frost_blizzard");
 
-        FIREBOLT = newType(EntityFireBolt.class, EntityFireBolt::new, EntityFireBolt::new, "entity_fire_bolt");
-        FROSTBOLT = newType(EntityFrostBolt.class, EntityFrostBolt::new, EntityFrostBolt::new, "entity_frost_bolt");
-        ACIDBOLT = newType(EntityAcidBolt.class, EntityAcidBolt::new, EntityAcidBolt::new, "entity_acid_bolt");
-        THUNDERBOLT = newType(EntityThunderBolt.class, EntityThunderBolt::new, EntityThunderBolt::new, "entity_thunder_bolt");
+        FIREBOLT = newType(EntityFireBolt::new, EntityFireBolt::new, "entity_fire_bolt");
+        FROSTBOLT = newType(EntityFrostBolt::new, EntityFrostBolt::new, "entity_frost_bolt");
+        ACIDBOLT = newType(EntityAcidBolt::new, EntityAcidBolt::new, "entity_acid_bolt");
+        THUNDERBOLT = newType(EntityThunderBolt::new, EntityThunderBolt::new, "entity_thunder_bolt");
 
-        FIREEXPLOSION = newType(EntityFlameExplosion.class, EntityFlameExplosion::new, EntityFlameExplosion::new, "entity_flame_explosion");
-        FROSTEXPLOSION = newType(EntityFrostExplosion.class, EntityFrostExplosion::new, EntityFrostExplosion::new, "entity_frost_explosion");
-        ACIDEXPLOSION = newType(EntityAcidExplosion.class, EntityAcidExplosion::new, EntityAcidExplosion::new, "entity_acid_explosion");
-        THUNDEREXPLOSION = newType(EntityLightningExplosion.class, EntityLightningExplosion::new, EntityLightningExplosion::new, "entity_lightning_explosion");
+        FIREEXPLOSION = newType(EntityFlameExplosion::new, EntityFlameExplosion::new, "entity_flame_explosion");
+        FROSTEXPLOSION = newType(EntityFrostExplosion::new, EntityFrostExplosion::new, "entity_frost_explosion");
+        ACIDEXPLOSION = newType(EntityAcidExplosion::new, EntityAcidExplosion::new, "entity_acid_explosion");
+        THUNDEREXPLOSION = newType(EntityLightningExplosion::new, EntityLightningExplosion::new, "entity_lightning_explosion");
 
-        FIREBOMB = newType(EntityFireBomb.class, EntityFireBomb::new, EntityFireBomb::new, "entity_fire_bomb");
-        FROSTBOMB = newType(EntityIceBomb.class, EntityIceBomb::new, EntityIceBomb::new, "entity_ice_bomb");
-        ACIDBOMB = newType(EntityAcidBomb.class, EntityAcidBomb::new, EntityAcidBomb::new, "entity_acid_bomb");
-        THUNDERBOMB = newType(EntityThunderBomb.class, EntityThunderBomb::new, EntityThunderBomb::new, "entity_thunder_bomb");
+        FIREBOMB = newType(EntityFireBomb::new, EntityFireBomb::new, "entity_fire_bomb");
+        FROSTBOMB = newType(EntityIceBomb::new, EntityIceBomb::new, "entity_ice_bomb");
+        ACIDBOMB = newType(EntityAcidBomb::new, EntityAcidBomb::new, "entity_acid_bomb");
+        THUNDERBOMB = newType(EntityThunderBomb::new, EntityThunderBomb::new, "entity_thunder_bomb");
 
-        STAFFPROJECTILE = newType(EntityStaffProjectile.class, EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
-        WANDPROJECTILE = newType(EntityWandProjectile.class, EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
+        STAFFPROJECTILE = newType(EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
+        WANDPROJECTILE = newType(EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
     }
 
     private static <T extends Entity> EntityType<T> newType(
-            Class<? extends T> entityClass, EntityType.IFactory<T> factory,
+            EntityType.IFactory<T> factory,
             BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif, String id) {
+
+        return newType(factory, bif, id, true);
+
+    }
+
+    private static <T extends Entity> EntityType<T> newType(
+            EntityType.IFactory<T> factory,
+            BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif, String id,
+            boolean itemRender) {
 
         EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC)
                 .setCustomClientFactory(bif)
@@ -97,6 +107,10 @@ public class EntityRegister {
         type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
 
         ENTITY_TYPES.add(type);
+
+        if (itemRender) {
+            ENTITY_THAT_USE_ITEM_RENDERS.add(type);
+        }
 
         return type;
     }

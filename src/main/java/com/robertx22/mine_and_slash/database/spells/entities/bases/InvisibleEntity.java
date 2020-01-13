@@ -1,9 +1,12 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellEffect;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.DamageData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.math.Vec3d;
@@ -13,11 +16,19 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public abstract class InvisibleEntity extends Entity {
+public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem {
 
     private UUID casterUUID;
 
     public int lifetime = 600;
+
+    protected BaseSpellEffect effect;
+    protected DamageData data;
+
+    public void SetReady(BaseSpellEffect effect, DamageData data) {
+        this.effect = effect;
+        this.data = data;
+    }
 
     public InvisibleEntity(EntityType type, World world) {
         super(type, world);
@@ -36,6 +47,11 @@ public abstract class InvisibleEntity extends Entity {
 
         super.tick();
 
+    }
+
+    @Override
+    public ItemStack getItem() {
+        return ItemStack.EMPTY;
     }
 
     @Override

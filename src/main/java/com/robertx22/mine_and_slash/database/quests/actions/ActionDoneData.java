@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.quests.actions;
+package com.robertx22.mine_and_slash.database.quests.actions;
 
 public abstract class ActionDoneData {
 

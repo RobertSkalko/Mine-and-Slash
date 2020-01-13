@@ -33,10 +33,10 @@ import com.robertx22.mine_and_slash.db_lists.initializers.profession_recipes.Alc
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.quests.base.Quest;
-import com.robertx22.mine_and_slash.quests.base.QuestReward;
-import com.robertx22.mine_and_slash.quests.quest_rewards.MapQuestReward;
-import com.robertx22.mine_and_slash.quests.quests.SimpleKillMobsQuest;
+import com.robertx22.mine_and_slash.database.quests.base.Quest;
+import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
+import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
+import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.IWorld;

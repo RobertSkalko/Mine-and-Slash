@@ -1,15 +1,15 @@
-package com.robertx22.mine_and_slash.quests.quests;
+package com.robertx22.mine_and_slash.database.quests.quests;
 
+import com.robertx22.mine_and_slash.database.quests.actions.ActionDoneData;
+import com.robertx22.mine_and_slash.database.quests.actions.KilledMobData;
+import com.robertx22.mine_and_slash.database.quests.base.Quest;
+import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
+import com.robertx22.mine_and_slash.database.quests.data.QuestTaskData;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.quests.actions.ActionDoneData;
-import com.robertx22.mine_and_slash.quests.actions.KilledMobData;
-import com.robertx22.mine_and_slash.quests.base.Quest;
-import com.robertx22.mine_and_slash.quests.data.QuestSaveData;
-import com.robertx22.mine_and_slash.quests.data.QuestTaskData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
