@@ -5,14 +5,12 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleType;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class DripEleParticle extends SpriteTexturedParticle implements ParticleType<EleParticleData> {
+public class DripEleParticle extends SpriteTexturedParticle {
     private final Fluid fluid;
 
     public DripEleParticle(World world, double x, double y, double z) {
@@ -28,7 +26,7 @@ public class DripEleParticle extends SpriteTexturedParticle implements ParticleT
     }
 
     public int getBrightnessForRender(float p_189214_1_) {
-        return this.fluid.isIn(FluidTags.LAVA) ? 240 : super.getBrightnessForRender(p_189214_1_);
+        return 240;
     }
 
     @Override
@@ -45,10 +43,10 @@ public class DripEleParticle extends SpriteTexturedParticle implements ParticleT
                 this.motionX *= 0.9800000190734863D;
                 this.motionY *= 0.9800000190734863D;
                 this.motionZ *= 0.9800000190734863D;
-                BlockPos lvt_1_1_ = new BlockPos(this.posX, this.posY, this.posZ);
-                IFluidState lvt_2_1_ = this.world.getFluidState(lvt_1_1_);
-                if (lvt_2_1_.getFluid() == this.fluid && this.posY < (double) ((float) lvt_1_1_
-                        .getY() + lvt_2_1_.getActualHeight(this.world, lvt_1_1_))) {
+                BlockPos pos = new BlockPos(this.posX, this.posY, this.posZ);
+                IFluidState state = this.world.getFluidState(pos);
+                if (state.getFluid() == this.fluid && this.posY < (double) ((float) pos.getY() + state
+                        .getActualHeight(this.world, pos))) {
                     this.setExpired();
                 }
 
@@ -80,7 +78,8 @@ public class DripEleParticle extends SpriteTexturedParticle implements ParticleT
                                      double mz) {
             DripEleParticle particle = new DripEleParticle(world, x, y, z);
             particle.particleGravity = 0.01F;
-            particle.setColor(0.582F, 0.448F, 0.082F);
+
+            particle.setColor((float) mx, (float) my, (float) mz);
             particle.selectSpriteRandomly(this.spriteProvider);
             return particle;
         }

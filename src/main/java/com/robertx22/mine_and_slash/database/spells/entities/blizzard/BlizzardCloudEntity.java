@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
@@ -68,7 +68,8 @@ public class BlizzardCloudEntity extends CloudEntity {
                 double x = rand.nextFloat() * radius;
                 double z = rand.nextFloat() * radius;
 
-                Minecraft.getInstance().world.addParticle(ParticleTypes.FALLING_WATER, true, posX + x, posY + 4, posZ + z, 0, 0, 0);
+                Minecraft.getInstance().world.addParticle(ParticleRegister.ele_particle, true, posX + x, posY + 4, posZ + z, color
+                        .getR(), color.getG(), color.getB());
 
             }
         }
