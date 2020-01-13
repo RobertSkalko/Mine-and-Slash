@@ -20,6 +20,10 @@ public class OnPickupInsertIntoBag {
 
         ItemStack stack = event.getItem().getItem();
 
+        if (stack.hasDisplayName() || stack.isEnchanted()) {
+            return; // don't pickup into bag if it has custom name or encahnted, it means its part of current gear and not a new drop
+        }
+
         for (int i = 0; i < event.getPlayer().inventory.getSizeInventory(); i++) {
             if (i == event.getPlayer().inventory.currentItem)
                 continue; // prevent item deletion
