@@ -1,11 +1,10 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.ShieldModel;
 import net.minecraft.client.renderer.model.Material;
 import net.minecraft.client.renderer.model.ModelBakery;
@@ -33,17 +32,23 @@ public class ShieldRenderer extends ItemStackTileEntityRenderer implements Calla
 
             NormalShield shield = (NormalShield) item;
 
-            Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
-            RenderSystem.pushMatrix();
-            RenderSystem.scaled(1F, -0.6F, -1.0);
+            mat.push();
+
+            mat.scale(1F, -0.6F, -1.0F);
 
             Material material = ModelBakery.SHIELD_BASE;
-            IVertexBuilder ivertexbuilder = material.getSprite()
-                    .getTextureSpecificVertexConsumer(ItemRenderer.getArmorVertexConsumer(renderType, this.modelShield
-                            .getLayer(material.getAtlasId()), false, stack.hasEffect()));
 
-            modelShield.render(mat, ivertexbuilder, x, y, 1F, 1F, 1F, 1F);
-            RenderSystem.popMatrix();
+            IVertexBuilder ivertexbuilder = material.getVertexConsumer(renderType, RenderType::getEntityNoOutline);
+
+            Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
+
+            //handle and shield parts
+            modelShield.func_228294_b_().
+                    render(mat, ivertexbuilder, x, y, 1F, 1F, 1F, 1F);
+            modelShield.func_228293_a_().
+                    render(mat, ivertexbuilder, x, y, 1F, 1F, 1F, 1F);
+
+            mat.pop();
 
         }
 

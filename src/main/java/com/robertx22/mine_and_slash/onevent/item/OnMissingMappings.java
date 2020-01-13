@@ -11,14 +11,19 @@ import java.util.HashMap;
 
 public class OnMissingMappings {
 
-    static final HashMap<String, Item> map = new HashMap<>();
-
     @SubscribeEvent
     public static void onMissingMappings(RegistryEvent.MissingMappings<Item> event) {
 
+        HashMap<String, Item> map = new HashMap<>();
+
         System.out.println("Remapping Items that have changed IDs");
 
-        generateHashMap();
+        for (Item item : ForgeRegistries.ITEMS) {
+            if (item instanceof IRenamed) {
+                IRenamed renamed = ((IRenamed) item);
+                renamed.oldNames().forEach(x -> map.put(x, item));
+            }
+        }
 
         for (RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
 
@@ -32,19 +37,6 @@ public class OnMissingMappings {
                 }
             }
 
-        }
-
-        map.clear();
-
-    }
-
-    private static void generateHashMap() {
-
-        for (Item item : ForgeRegistries.ITEMS) {
-            if (item instanceof IRenamed) {
-                IRenamed renamed = ((IRenamed) item);
-                renamed.oldNames().forEach(x -> map.put(x, item));
-            }
         }
 
     }

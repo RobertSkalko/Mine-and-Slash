@@ -5,8 +5,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -54,6 +56,16 @@ public abstract class InvisibleEntity extends Entity {
     public LivingEntity getCaster() {
         return Utilities.getLivingEntityByUUID(world, getOwnerId());
 
+    }
+
+    @Override
+    protected void registerData() {
+
+    }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     public void setCaster(LivingEntity caster) {

@@ -160,6 +160,8 @@ public class MMORPG {
 
         RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_MODIFY, RenderType.getCutout());//cutout
         RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_SALVAGE, RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.ALCHEMY_BLOCK, RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_REPAIR, RenderType.getCutout());//cutout
 
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);

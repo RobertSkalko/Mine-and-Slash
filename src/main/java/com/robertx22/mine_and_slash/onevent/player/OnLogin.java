@@ -47,8 +47,6 @@ public class OnLogin {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
                         .setStyle(new Style().setColor(Styles.RED)));
 
-                player.sendMessage(new StringTextComponent("azure test"));
-
             }
 
             if (Load.hasUnit(player)) {
