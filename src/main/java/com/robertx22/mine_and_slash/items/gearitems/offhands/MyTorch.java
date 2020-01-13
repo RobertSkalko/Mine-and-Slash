@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
-import com.robertx22.mine_and_slash.database.items.spell_items.BaseSpellItem;
+import com.robertx22.mine_and_slash.database.spells.items.BaseSpellItem;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;

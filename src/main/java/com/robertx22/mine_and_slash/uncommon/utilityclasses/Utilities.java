@@ -6,9 +6,38 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 
 public final class Utilities {
+
+    @Nullable
+    public static LivingEntity getLivingEntityByUUID(World world, @Nullable UUID id) {
+
+        Entity en = getEntityByUUID(world, id);
+
+        if (en instanceof LivingEntity) {
+            return (LivingEntity) en;
+        } else {
+            return null;
+        }
+
+    }
+
+    @Nullable
+    public static Entity getEntityByUUID(World world, @Nullable UUID id) {
+
+        if (id == null)
+            return null;
+
+        if (world.isRemote) {
+            return ClientOnly.getEntityByUUID(world, id);
+        } else {
+            return ServerOnly.getEntityByUUID(world, id);
+        }
+
+    }
 
     /**
      * Shorthand for

@@ -1,9 +1,14 @@
-Caused by: java.lang.IllegalStateException: ProjectScopeServices has been closed. now?
+if gradle isn't downloading or you get this error:
+Caused by: java.lang.IllegalStateException: ProjectScopeServices has been closed.
 
->>
+do:
 
 exit IDE
+
+run these commands/bat files in your project directory:
 
 --stop
 
 build.bat
+
+reopoen IDE and try refreshing again, should work now

@@ -45,6 +45,11 @@ public class HealthBarRenderer {
     @SubscribeEvent
     public static void onRenderWorldLast(RenderWorldLastEvent event) {
         try {
+
+            if (true) {
+                return;
+            }
+
             Minecraft mc = Minecraft.getInstance();
 
             if ((!ClientContainer.INSTANCE.neatConfig.renderInF1.get() && !Minecraft.isGuiEnabled()) || !NeatConfig.draw)

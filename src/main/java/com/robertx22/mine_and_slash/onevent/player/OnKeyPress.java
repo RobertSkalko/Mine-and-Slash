@@ -26,7 +26,7 @@ public class OnKeyPress {
 
         if (event.getAction() == GLFW.GLFW_RELEASE) {
 
-            if (mc.currentScreen == null) { // public net.minecraft.client.gui.screen.Screen field_71462_r
+            if (mc.currentScreen == null) {
 
                 if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
                     mc.displayGuiScreen(new StatOverviewScreen());
@@ -43,9 +43,9 @@ public class OnKeyPress {
 
                 boolean wasDown = down;
                 down = KeybindsRegister.disableNeatOverlay.isKeyDown();
-                if (mc.isGameFocused() && down && !wasDown)
+                if (mc.isGameFocused() && down && !wasDown) {
                     NeatConfig.draw = !NeatConfig.draw;
-
+                }
             } else {
 
                 if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {

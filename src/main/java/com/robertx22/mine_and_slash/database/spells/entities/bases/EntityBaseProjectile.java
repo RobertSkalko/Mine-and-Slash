@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell.SpellType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell.SpellType;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;

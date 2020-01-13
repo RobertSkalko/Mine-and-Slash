@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.onevent.entity.damage;
 import com.robertx22.mine_and_slash.a_libraries.curios.MyCurioUtils;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
-import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

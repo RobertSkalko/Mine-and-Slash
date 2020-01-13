@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
-import com.robertx22.mine_and_slash.database.items.spell_items.InGame3DWhile2DInvModel;
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.items.InGame3DWhile2DInvModel;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.renderer.model.IBakedModel;

@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
-import com.robertx22.mine_and_slash.database.spells.self.SpellInstantHeal;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -46,6 +46,8 @@ public class OnLogin {
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
                         .setStyle(new Style().setColor(Styles.RED)));
+
+                player.sendMessage(new StringTextComponent("azure test"));
 
             }
 

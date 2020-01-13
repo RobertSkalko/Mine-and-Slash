@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.database.items.spell_items.projectile.ItemFrostBolt;
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.bases.EffectCalculation;
+import com.robertx22.mine_and_slash.database.spells.items.projectile.ItemFrostBolt;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.player.PlayerEntity;

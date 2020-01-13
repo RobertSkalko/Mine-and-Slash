@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.effects.spell_buffs;
 
 import com.robertx22.mine_and_slash.database.stats.effects.spell_buffs.base.BaseSpellBuff;
-import com.robertx22.mine_and_slash.database.spells.bases.BaseSpell.SpellType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell.SpellType;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell.SpellBuffType;
 
 public class ManaRegenBuffEffect extends BaseSpellBuff {

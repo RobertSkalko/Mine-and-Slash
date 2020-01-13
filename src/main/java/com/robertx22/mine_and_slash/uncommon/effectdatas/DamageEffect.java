@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.database.spells.bases.MyDamageSource;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.BlockEffect;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
