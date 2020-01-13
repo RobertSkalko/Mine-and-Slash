@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.particles.EleParticleData;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,7 +16,7 @@ public class ParticleRegister {
     public final static String eleId = Ref.MODID + ":ele_particle";
 
     @ObjectHolder(eleId)
-    public static final BasicParticleType ele_particle = null;
+    public static final ParticleType<EleParticleData> ele_particle = null;
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<ParticleType<?>> event) {

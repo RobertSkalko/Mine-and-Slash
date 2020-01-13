@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.particles;
 
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.client.particle.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
-import net.minecraft.particles.BasicParticleType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -65,7 +65,7 @@ public class DripEleParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class DrippingElementalFactory implements IParticleFactory<BasicParticleType> {
+    public static class DrippingElementalFactory implements IParticleFactory<EleParticleData> {
         protected final IAnimatedSprite spriteProvider;
 
         public DrippingElementalFactory(IAnimatedSprite sprite) {
@@ -73,13 +73,16 @@ public class DripEleParticle extends SpriteTexturedParticle {
         }
 
         @Override
-        public Particle makeParticle(BasicParticleType type, World world, double x,
+        public Particle makeParticle(EleParticleData type, World world, double x,
                                      double y, double z, double mx, double my,
                                      double mz) {
             DripEleParticle particle = new DripEleParticle(world, x, y, z);
             particle.particleGravity = 0.01F;
 
-            particle.setColor((float) mx, (float) my, (float) mz);
+            Elements.RGB col = type.element.getRGBColor();
+
+            particle.setColor(col.getR(), col.getG(), col.getB());
+
             particle.selectSpriteRandomly(this.spriteProvider);
             return particle;
         }

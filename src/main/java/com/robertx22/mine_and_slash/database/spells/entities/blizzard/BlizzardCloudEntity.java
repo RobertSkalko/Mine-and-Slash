@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.particles.EleParticleData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.client.Minecraft;
@@ -63,13 +63,10 @@ public class BlizzardCloudEntity extends CloudEntity {
             for (int i = 1; i < 12; i++) {
                 double speed = (rand.nextBoolean() ? 1 : -1) * 0.1 + 0.05 * rand.nextDouble();
 
-                Elements.RGB color = Elements.Water.getRGBColor();
-
                 double x = rand.nextFloat() * radius;
                 double z = rand.nextFloat() * radius;
 
-                Minecraft.getInstance().world.addParticle(ParticleRegister.ele_particle, true, posX + x, posY + 4, posZ + z, color
-                        .getR(), color.getG(), color.getB());
+                Minecraft.getInstance().world.addParticle(new EleParticleData(Elements.Water), true, posX + x, posY + 4, posZ + z, 0, 0, 0);
 
             }
         }
