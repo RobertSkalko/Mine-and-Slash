@@ -20,9 +20,9 @@ public class ConsumableRegister {
     public static void register(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> reg = event.getRegistry();
 
-        //  reg.register(new RestoreEnergyItem());
-        //reg.register(new RestoreManaItem());
-        //reg.register(new GiveManaRegenBuffItem());
+        //  reg.registerForgeConfigs(new RestoreEnergyItem());
+        //reg.registerForgeConfigs(new RestoreManaItem());
+        //reg.registerForgeConfigs(new GiveManaRegenBuffItem());
     }
 
 }

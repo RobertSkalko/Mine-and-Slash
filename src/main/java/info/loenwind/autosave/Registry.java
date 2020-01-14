@@ -40,7 +40,7 @@ public class Registry {
     /**
      * This is the super-registry of all registries. It contains handlers for Java primitives, Java classes, Minecraft classes and Forge classes.
      * <p>
-     * You can register new handlers here if you want other mods to be able to store your objects. Otherwise please use your own registry.
+     * You can registerForgeConfigs new handlers here if you want other mods to be able to store your objects. Otherwise please use your own registry.
      */
 
     public static final @Nonnull
@@ -187,7 +187,7 @@ public class Registry {
 
         // Forge basic types
         GLOBAL_REGISTRY.register(new HandleFluidStack());
-        //    GLOBAL_REGISTRY.register(new HandleFluid());
+        //    GLOBAL_REGISTRY.registerForgeConfigs(new HandleFluid());
 
         // Annotated objects
         GLOBAL_REGISTRY.register(new HandleStorable<Object>());
@@ -225,7 +225,7 @@ public class Registry {
     /**
      * Registers a new {@link IHandler}.
      *
-     * @param handler The {@link IHandler} to register
+     * @param handler The {@link IHandler} to registerForgeConfigs
      */
     public void register(IHandler handler) {
         handlers.add(handler);
@@ -234,7 +234,7 @@ public class Registry {
     /**
      * Registers a new {@link IHandler} that has higher priority than all existing handlers.
      *
-     * @param handler The {@link IHandler} to register
+     * @param handler The {@link IHandler} to registerForgeConfigs
      */
     public void registerPriority(IHandler handler) {
         handlers.add(0, handler);

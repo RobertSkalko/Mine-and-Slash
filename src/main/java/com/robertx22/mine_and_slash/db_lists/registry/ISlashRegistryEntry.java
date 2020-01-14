@@ -18,4 +18,9 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
         SlashRegistry.getRegistry(getSlashRegistryType()).register(this);
     }
 
+    // true for configs cus they sync from server to client, so unregister on load, then registerForgeConfigs
+    default boolean unregisterBeforeConfigsLoad() {
+        return false;
+    }
+
 }

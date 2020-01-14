@@ -34,6 +34,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return this;
     }
 
+    public void unRegister(ISlashRegistryEntry entry) {
+        map.remove(entry.GUID());
+    }
+
     public SlashRegistryContainer dontErrorMissingEntriesOnAccess() {
         this.logMissingEntryOnAccess = false;
         return this;

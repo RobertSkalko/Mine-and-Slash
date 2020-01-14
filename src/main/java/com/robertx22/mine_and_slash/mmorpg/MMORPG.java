@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItemsSerialization;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -102,7 +101,7 @@ public class MMORPG {
 
         RegisterEvents.register();
 
-        ConfigRegister.register(); // MUST BE IN MAIN CLASS
+        ConfigRegister.registerForgeConfigs(); // MUST BE IN MAIN CLASS
 
         OnStartResetMaps.OnStartResetMaps();
 
@@ -135,7 +134,6 @@ public class MMORPG {
         OreGenRegister.register();
         CapabilityRegister.register();
         CriteriaRegisters.register();
-        //  WorldGenRegisters.register();
 
     }
 
@@ -148,9 +146,7 @@ public class MMORPG {
     private void interModProcessEvent(final InterModProcessEvent event) {
         System.out.println(Ref.MODID + ":InterModProcessEvent");
 
-        ConfigItemsSerialization.INSTANCE.generateConfigTutorials();
-        ConfigRegister.regConfigsWhichNeedMyRegistry();
-        ConfigRegister.regConfigsWhichDontNeedMyRegistry(); // still need after reg is inited
+        ConfigRegister.registerCustomConfigs();
 
         RegisterProfessionRecipesFromItems.register();
 

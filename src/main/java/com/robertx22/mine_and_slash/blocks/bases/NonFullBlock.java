@@ -18,7 +18,7 @@ public abstract class NonFullBlock extends Block {
     public static final BooleanProperty light = RedstoneTorchBlock.LIT;
 
     public NonFullBlock(Properties properties) {
-        super(properties.lightValue(15));
+        super(properties.lightValue(10).nonOpaque());
 
         this.setDefaultState(this.stateContainer.getBaseState()
                 .with(direction, Direction.NORTH)

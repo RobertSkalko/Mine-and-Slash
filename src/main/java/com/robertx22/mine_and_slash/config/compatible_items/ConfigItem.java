@@ -34,6 +34,11 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
     }
 
     @Override
+    public boolean unregisterBeforeConfigsLoad() {
+        return false;
+    }
+
+    @Override
     public String GUID() {
         return this.registryName;
     }

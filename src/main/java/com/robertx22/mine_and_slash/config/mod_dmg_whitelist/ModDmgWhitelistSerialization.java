@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.config.mod_dmg_whitelist;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
@@ -22,15 +21,6 @@ public class ModDmgWhitelistSerialization implements ISerializedConfig {
     }
 
     @Override
-    public void generateIfEmpty() {
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(new ModDmgWhitelistContainer());
-        SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
-
-    }
-
-    @Override
     public void load() {
 
         JsonReader reader;
@@ -45,6 +35,11 @@ public class ModDmgWhitelistSerialization implements ISerializedConfig {
 
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Object getDefaultObject() {
+        return new ModDmgWhitelistContainer();
     }
 
 }

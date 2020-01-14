@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -18,15 +17,6 @@ import java.util.stream.Collectors;
 public class ConfigItemsSerialization implements ISerializedConfig {
 
     public static ConfigItemsSerialization INSTANCE = new ConfigItemsSerialization();
-
-    @Override
-    public void generateIfEmpty() {
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(GenCompItemJsons.generate());
-        SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
-
-    }
 
     @Override
     public String fileName() {
@@ -56,6 +46,11 @@ public class ConfigItemsSerialization implements ISerializedConfig {
         System.out.println("Items added to config: " + SlashRegistry.CompatibleItems()
                 .getSize());
 
+    }
+
+    @Override
+    public Object getDefaultObject() {
+        return GenCompItemJsons.generate();
     }
 
     // needs to be done after unique items are actually registered.

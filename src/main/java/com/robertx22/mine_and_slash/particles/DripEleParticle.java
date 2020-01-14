@@ -31,6 +31,9 @@ public class DripEleParticle extends SpriteTexturedParticle {
 
     @Override
     public void tick() {
+
+        float speedMulti = 1.4F;
+
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
@@ -40,9 +43,9 @@ public class DripEleParticle extends SpriteTexturedParticle {
             this.move(this.motionX, this.motionY, this.motionZ);
             this.onDeath();
             if (!this.isExpired) {
-                this.motionX *= 0.9800000190734863D;
-                this.motionY *= 0.9800000190734863D;
-                this.motionZ *= 0.9800000190734863D;
+                this.motionX *= 0.9800000190734863D * speedMulti;
+                this.motionY *= 0.9800000190734863D * speedMulti;
+                this.motionZ *= 0.9800000190734863D * speedMulti;
                 BlockPos pos = new BlockPos(this.posX, this.posY, this.posZ);
                 IFluidState state = this.world.getFluidState(pos);
                 if (state.getFluid() == this.fluid && this.posY < (double) ((float) pos.getY() + state

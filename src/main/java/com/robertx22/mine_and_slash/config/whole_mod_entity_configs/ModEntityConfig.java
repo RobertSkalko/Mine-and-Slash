@@ -35,6 +35,11 @@ public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {
     }
 
     @Override
+    public boolean unregisterBeforeConfigsLoad() {
+        return false;
+    }
+
+    @Override
     public String GUID() {
         return GUID;
     }

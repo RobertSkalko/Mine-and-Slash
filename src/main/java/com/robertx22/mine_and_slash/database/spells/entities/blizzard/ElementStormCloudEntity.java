@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -65,7 +66,13 @@ public class ElementStormCloudEntity extends InvisibleEntity {
 
                     float yRandom = (float) RandomUtils.RandomRange(1, 100) / 40F;
 
-                    Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(posX, posY + 4 + yRandom, posZ, radius);
+                    float height = 4;
+
+                    Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(posX, posY + height + yRandom, posZ, radius);
+
+                    for (int a = 1; a < 2; a++) {
+                        this.world.addParticle(ParticleTypes.CLOUD, p.x, p.y + 1, p.z, 0.0D, 0.0D, 0.0D);
+                    }
 
                     Minecraft.getInstance().world.addParticle(new EleParticleData(ParticleRegister.DRIP, getElement()), true, p.x, p.y, p.z, 0, 0, 0);
 

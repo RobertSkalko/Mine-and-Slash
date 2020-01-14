@@ -17,6 +17,10 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
+import com.robertx22.mine_and_slash.database.quests.base.Quest;
+import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
+import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
+import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
@@ -33,15 +37,13 @@ import com.robertx22.mine_and_slash.db_lists.initializers.profession_recipes.Alc
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.database.quests.base.Quest;
-import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
-import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
-import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.IWorld;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SlashRegistry {
 
@@ -186,6 +188,10 @@ public class SlashRegistry {
     }
 
     private static HashMap<SlashRegistryType, SlashRegistryContainer> map = new HashMap<>();
+
+    public static List<SlashRegistryContainer> getAllRegistries() {
+        return new ArrayList<>(map.values());
+    }
 
     public static SlashRegistryContainer getRegistry(SlashRegistryType type) {
         return map.get(type);

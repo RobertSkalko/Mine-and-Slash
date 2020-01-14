@@ -48,7 +48,7 @@ public class WorldGenRegisters {
 
         for (Biome biome : ForgeRegistries.BIOMES) { // this works!
 
-            // only register world getMap where it can actually be used
+            // only registerForgeConfigs world getMap where it can actually be used
             if (SlashRegistry.WorldProviders()
                     .getAll()
                     .values()
