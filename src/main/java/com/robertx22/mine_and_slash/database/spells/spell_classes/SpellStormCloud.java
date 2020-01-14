@@ -83,7 +83,7 @@ public class SpellStormCloud extends BaseSpell implements IGenerated<BaseSpell> 
     public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
                         SpellItemData data) {
 
-        RayTraceResult ray = caster.pick(20.0D, 0.0F, false);
+        RayTraceResult ray = caster.pick(10D, 0.0F, false);
 
         Vec3d pos = ray.getHitVec();
 

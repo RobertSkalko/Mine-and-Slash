@@ -48,7 +48,7 @@ public class ElementStormCloudEntity extends InvisibleEntity {
 
                         if (this.isValidTarget(target)) {
 
-                            if (this.getCaster() != null) {
+                            if (this.getCaster() != null && target != getCaster()) {
 
                                 this.getServerSpellData().effect.Activate(this.getServerSpellData().data, target);
 

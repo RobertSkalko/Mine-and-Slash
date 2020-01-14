@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -106,4 +107,18 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem,
     public void setServerSpellData(ServerEntitySpellData data) {
         this.serverSpellData = data;
     }
+
+    @Override
+    public void writeSpawnData(PacketBuffer buf) {
+        CompoundNBT nbt = new CompoundNBT();
+        writeAdditional(nbt);
+        buf.writeCompoundTag(nbt);
+    }
+
+    @Override
+    public void readSpawnData(PacketBuffer buf) {
+        CompoundNBT nbt = buf.readCompoundTag();
+        this.readAdditional(nbt);
+    }
+
 }
