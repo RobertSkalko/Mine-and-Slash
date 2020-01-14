@@ -2,7 +2,8 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.particles.EleParticleData;
-import net.minecraft.particles.BasicParticleType;
+import com.robertx22.mine_and_slash.particles.ParticleDeserializer;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,7 +22,7 @@ public class ParticleRegister {
     @SubscribeEvent
     public static void register(RegistryEvent.Register<ParticleType<?>> event) {
 
-        register(eleId, new BasicParticleType(false));
+        register(eleId, ParticleDeserializer.INSTANCE);
 
     }
 
@@ -30,4 +31,11 @@ public class ParticleRegister {
         ForgeRegistries.PARTICLE_TYPES.register(particleType);
         return particleType;
     }
+
+    private static <T extends IParticleData> ParticleType register(String name,
+                                                                   IParticleData.IDeserializer<T> deseri) {
+        ParticleType<?> particleType = new ParticleType(false, deseri);
+        return register(name, particleType);
+    }
+
 }

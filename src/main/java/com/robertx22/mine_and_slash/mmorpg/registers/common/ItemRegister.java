@@ -1,7 +1,11 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.items.currency.*;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.spells.items.ItemBonusEleAtkDmg;
+import com.robertx22.mine_and_slash.database.spells.items.ItemStormCloud;
 import com.robertx22.mine_and_slash.database.spells.items.aoe_bomb_proj.ItemAcidBomb;
 import com.robertx22.mine_and_slash.database.spells.items.aoe_bomb_proj.ItemFireBomb;
 import com.robertx22.mine_and_slash.database.spells.items.aoe_bomb_proj.ItemIceBomb;
@@ -20,8 +24,6 @@ import com.robertx22.mine_and_slash.database.spells.items.projectile.ItemFrostBo
 import com.robertx22.mine_and_slash.database.spells.items.projectile.ItemThunderBolt;
 import com.robertx22.mine_and_slash.database.spells.items.self.ItemInstantHeal;
 import com.robertx22.mine_and_slash.database.spells.items.self.ItemSelfRegen;
-import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
@@ -30,7 +32,6 @@ import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ItemMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.mine_and_slash.items.misc.*;
-import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items.AlchemyItemRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -159,6 +160,7 @@ public class ItemRegister {
         list.add(new ItemSelfRegen());
 
         list.add(new ItemBonusEleAtkDmg(Elements.Physical));
+        list.add(new ItemStormCloud(Elements.Physical));
 
         for (Item item : list) {
             if (item instanceof IGenerated) {

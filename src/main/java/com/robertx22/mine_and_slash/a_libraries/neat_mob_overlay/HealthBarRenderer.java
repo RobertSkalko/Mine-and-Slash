@@ -382,5 +382,3 @@ public class HealthBarRenderer {
     }
 
 }
-
-// tex -> func_225583a ??

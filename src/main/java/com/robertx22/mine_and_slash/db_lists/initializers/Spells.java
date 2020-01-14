@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellBonusEleBasicDmg;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellStormCloud;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.aoe_bomb_proj.SpellAcidBomb;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.aoe_bomb_proj.SpellFireBomb;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.aoe_bomb_proj.SpellIceBomb;
@@ -66,6 +67,7 @@ public class Spells implements ISlashRegistryInit {
             {
                 {
                     add(new SpellBonusEleBasicDmg(Elements.Physical));
+                    add(new SpellStormCloud(Elements.Physical));
 
                 }
             }

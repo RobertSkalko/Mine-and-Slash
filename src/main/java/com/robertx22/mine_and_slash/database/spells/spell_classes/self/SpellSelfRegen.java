@@ -69,7 +69,7 @@ public class SpellSelfRegen extends BaseSpellHeal {
 
                 UnitData unit = Load.Unit(caster);
 
-                int healed = (int) (data.GetBaseValue() + data.GetScalingValue() * unit.getUnit()
+                int healed = (int) (data.getBaseValue() + data.getScalingValue() * unit.getUnit()
                         .healthData().val / 100);
 
                 caster.addPotionEffect(new EffectInstance(HealthRegenPotion.INSTANCE, 500, healed));

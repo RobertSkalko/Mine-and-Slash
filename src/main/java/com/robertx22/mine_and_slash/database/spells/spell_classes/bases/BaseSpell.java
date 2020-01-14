@@ -31,6 +31,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Aoe_Bomb_Projectile,
         Restore_Energy,
         Aoe_Damage_Nova,
+        LASTING_AOE,
         Self_Buff,
     }
 
@@ -123,7 +124,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
                 }
 
                 ResourcesData.Context ctx = new ResourcesData.Context(unit, caster, ResourcesData.Type.MANA, data
-                        .GetManaCost(unit), ResourcesData.Use.SPEND);
+                        .getManaCost(unit), ResourcesData.Use.SPEND);
 
                 if (unit.getResources().hasEnough(ctx)) {
                     unit.getResources().modify(ctx);

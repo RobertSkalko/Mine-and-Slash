@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
 
@@ -23,10 +23,10 @@ public class SpellEffectDamage extends BaseSpellEffect {
     @Override
     public void Activate(DamageData dmgdata, LivingEntity target) {
 
-        int num = dmgdata.spellItem.GetDamage(dmgdata.casterUnit.getUnit());
+        int num = dmgdata.spellItemData.getDamage(dmgdata.casterData.getUnit());
 
-        SpellDamageEffect dmg = new SpellDamageEffect(dmgdata.caster, target, num, dmgdata.casterUnit, Load
-                .Unit(target), dmgdata.spellItem.GetSpell());
+        SpellDamageEffect dmg = new SpellDamageEffect(dmgdata.caster, target, num, dmgdata.casterData, Load
+                .Unit(target), dmgdata.spellItemData.getSpell());
         dmg.element = this.element;
         dmg.Activate();
 

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -44,12 +45,16 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem,
     }
 
     @Override
-    protected void readAdditional(CompoundNBT p_70037_1_) {
+    protected void readAdditional(CompoundNBT nbt) {
+
+        this.syncedSpellData = EntitySpellDataSaving.Load(nbt);
 
     }
 
     @Override
-    protected void writeAdditional(CompoundNBT p_213281_1_) {
+    protected void writeAdditional(CompoundNBT nbt) {
+
+        EntitySpellDataSaving.Save(nbt, syncedSpellData);
 
     }
 

@@ -15,6 +15,10 @@ public interface ISpellEntity {
 
     void setServerSpellData(ServerEntitySpellData data);
 
+    default int getDefaultLifeInTicks() {
+        return 200;
+    }
+
     default Elements getElement() {
         return getSyncedSpellData().element;
     }

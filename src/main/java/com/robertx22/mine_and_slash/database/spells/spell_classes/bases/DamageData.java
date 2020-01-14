@@ -7,15 +7,15 @@ import net.minecraft.entity.LivingEntity;
 
 public class DamageData {
 
-    public DamageData(LivingEntity entity, SpellItemData spellItem) {
-        this.caster = entity;
-        this.spellItem = spellItem;
-        this.casterUnit = Load.Unit(entity);
+    public DamageData(LivingEntity caster, SpellItemData spellItemData) {
+        this.caster = caster;
+        this.spellItemData = spellItemData;
+        this.casterData = Load.Unit(caster);
 
     }
 
-    public EntityCap.UnitData casterUnit;
+    public EntityCap.UnitData casterData;
     public LivingEntity caster;
-    public SpellItemData spellItem;
+    public SpellItemData spellItemData;
 
 }

@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.LivingEntity;
 
 import java.util.UUID;
 
@@ -23,9 +24,11 @@ public class EntitySpellData {
     @Store
     public String spellGUID = "";
 
-    public EntitySpellData(BaseSpell spell) {
+    public EntitySpellData(BaseSpell spell, LivingEntity caster, int lifeInTicks) {
         this.element = spell.getElement();
         this.spellGUID = spell.GUID();
+        this.casterUUIDString = caster.getUniqueID().toString();
+        this.lifeInTicks = lifeInTicks;
     }
 
     public UUID getCasterUUID() {

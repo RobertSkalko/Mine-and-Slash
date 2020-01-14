@@ -67,44 +67,44 @@ public class SpellItemData implements ICommonDataItem {
         return this.spellGUID;
     }
 
-    public int GetManaCost(EntityCap.UnitData data) {
-        return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
+    public int getManaCost(EntityCap.UnitData data) {
+        return (int) StatUtils.calculateNormalScalingStatGrowth(this.getSpell()
                 .getManaCost() * this.manaCostPercent / 100, data.getLvlForResourceCosts());
     }
 
-    public int GetBaseValue() {
-        return (int) StatUtils.calculateNormalScalingStatGrowth(2 + GetSpell().getBaseValue() * baseEffectPercent / 100, level);
+    public int getBaseValue() {
+        return (int) StatUtils.calculateNormalScalingStatGrowth(2 + getSpell().getBaseValue() * baseEffectPercent / 100, level);
     }
 
-    public float GetScalingValue() {
-        return (GetSpell().ScalingValue().Multi * scalingEffectPercent / 100);
+    public float getScalingValue() {
+        return (getSpell().ScalingValue().Multi * scalingEffectPercent / 100);
     }
 
-    private int MinScaling() {
-        return (int) (GetSpell().ScalingValue().Multi * getRarity().SpellScalingPercents().Min);
+    private int getMinScaling() {
+        return (int) (getSpell().ScalingValue().Multi * getRarity().SpellScalingPercents().Min);
     }
 
-    private int MaxScaling() {
-        return (int) (GetSpell().ScalingValue().Multi * getRarity().SpellScalingPercents().Max);
+    private int getMaxScaling() {
+        return (int) (getSpell().ScalingValue().Multi * getRarity().SpellScalingPercents().Max);
     }
 
-    private int MinBase() {
-        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) GetSpell().getBaseValue() * getRarity()
+    private int getMinBase() {
+        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) getSpell().getBaseValue() * getRarity()
                 .SpellBasePercents().Min / 100), level);
     }
 
-    private int MaxBase() {
-        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) GetSpell().getBaseValue() * getRarity()
+    private int getMaxBase() {
+        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) getSpell().getBaseValue() * getRarity()
                 .SpellBasePercents().Max / 100), level);
     }
 
-    private int MinMana(EntityCap.UnitData data) {
-        return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
+    private int getMinMana(EntityCap.UnitData data) {
+        return (int) StatUtils.calculateNormalScalingStatGrowth(this.getSpell()
                 .getManaCost() * MIN_MANA_COST_PERCENT / 100, data.getLvlForResourceCosts());
     }
 
-    private int MaxMana(EntityCap.UnitData data) {
-        return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
+    private int getMaxMana(EntityCap.UnitData data) {
+        return (int) StatUtils.calculateNormalScalingStatGrowth(this.getSpell()
                 .getManaCost() * MAX_MANA_COST_PERCENT / 100, data.getLvlForResourceCosts());
     }
 
@@ -122,50 +122,50 @@ public class SpellItemData implements ICommonDataItem {
         return Rarities.Spells.get(this.rarity);
     }
 
-    public ITextComponent GetScalingDesc(boolean moreInfo) {
+    public ITextComponent getScalingDesc(boolean moreInfo) {
 
         ITextComponent text = new StringTextComponent("");
 
         try {
             text = Words.Scaling_Value.locName()
                     .appendText(": ")
-                    .appendSibling(GetSpell().ScalingValue().GetStat().locName())
+                    .appendSibling(getSpell().ScalingValue().GetStat().locName())
                     .appendText(" ")
                     .appendSibling(Words.By.locName())
-                    .appendText(" : " + (int) (GetScalingValue() * 100) + "%");
+                    .appendText(" : " + (int) (getScalingValue() * 100) + "%");
         } catch (Exception e) {
             e.printStackTrace();
 
         }
 
         if (moreInfo) {
-            text.appendText(" (" + MinScaling() + "-" + MaxScaling() + ")");
+            text.appendText(" (" + getMinScaling() + "-" + getMaxScaling() + ")");
         }
 
         return text;
 
     }
 
-    public ITextComponent GetBaseDesc(boolean moreInfo) {
+    public ITextComponent getBaseDesc(boolean moreInfo) {
 
         ITextComponent text = Words.BaseValue.locName()
-                .appendText(": " + this.GetBaseValue());
+                .appendText(": " + this.getBaseValue());
 
         if (moreInfo) {
 
-            text.appendText("" + " (" + MinBase() + "-" + MaxBase() + ")");
+            text.appendText("" + " (" + getMinBase() + "-" + getMaxBase() + ")");
         }
 
         return text;
     }
 
-    public ITextComponent GetManaDesc(EntityCap.UnitData data, boolean moreInfo) {
+    public ITextComponent getManaDesc(EntityCap.UnitData data, boolean moreInfo) {
 
         ITextComponent text = Words.Mana_Cost.locName()
-                .appendText(": " + this.GetManaCost(data));
+                .appendText(": " + this.getManaCost(data));
 
         if (moreInfo) {
-            text.appendText(" (" + MinMana(data) + "-" + MaxMana(data) + ")");
+            text.appendText(" (" + getMinMana(data) + "-" + getMaxMana(data) + ")");
         }
 
         return text;
@@ -173,12 +173,12 @@ public class SpellItemData implements ICommonDataItem {
 
     public static float SPELL_DMG_RANDOMNESS = 1.5F;
 
-    public int GetDamage(Unit unit) {
+    public int getDamage(Unit unit) {
 
-        //        BaseSpell spell = GetSpell();
+        //        BaseSpell spell = getSpell();
 
-        int basedmg = GetBaseValue();
-        int scalingdmg = (int) GetScalingValue();
+        int basedmg = getBaseValue();
+        int scalingdmg = (int) getScalingValue();
 
         int total = basedmg + scalingdmg;
 
@@ -186,7 +186,7 @@ public class SpellItemData implements ICommonDataItem {
 
     }
 
-    public BaseSpell GetSpell() {
+    public BaseSpell getSpell() {
         return SlashRegistry.Spells().get(this.spellGUID);
     }
 
@@ -226,9 +226,9 @@ public class SpellItemData implements ICommonDataItem {
 
         List<ITextComponent> tooltip = ctx.event.getToolTip();
 
-        if (GetSpell() != null) {
+        if (getSpell() != null) {
 
-            BaseSpell spell = GetSpell();
+            BaseSpell spell = getSpell();
 
             GearRarity rarity = Rarities.Items.get(this.rarity);
 
@@ -241,19 +241,19 @@ public class SpellItemData implements ICommonDataItem {
             Tooltip.add(Styles.GREENCOMP()
                     .appendSibling(Words.Stats.locName().appendText(": ")), tooltip);
 
-            Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetManaDesc(ctx.data, moreInfo)), tooltip);
+            Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(getManaDesc(ctx.data, moreInfo)), tooltip);
 
-            Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetBaseDesc(moreInfo)), tooltip);
+            Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(getBaseDesc(moreInfo)), tooltip);
 
             if (spell.hasScalingValue()) {
-                Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(GetScalingDesc(moreInfo)), tooltip);
+                Tooltip.add(new StringTextComponent(TextFormatting.RED + " * ").appendSibling(getScalingDesc(moreInfo)), tooltip);
             }
 
             Tooltip.add("", tooltip);
 
             Tooltip.add(Styles.GREENCOMP()
                     .appendSibling(Words.Use_Time.locName()
-                            .appendText(": " + GetSpell().getUseDurationInSeconds() + " sec.")), tooltip);
+                            .appendText(": " + getSpell().getUseDurationInSeconds() + " sec.")), tooltip);
 
             Tooltip.add("", tooltip);
 
@@ -265,7 +265,7 @@ public class SpellItemData implements ICommonDataItem {
             Tooltip.add("", tooltip);
 
             Tooltip.add(Styles.LIGHT_PURPLECOMP()
-                    .appendSibling(GetSpell().GetDescription(this)), tooltip);
+                    .appendSibling(getSpell().GetDescription(this)), tooltip);
 
             Tooltip.add("", tooltip);
 

@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.database.particle_gens;
 
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
+import net.minecraft.util.math.Vec3d;
 
 public class AoeProjectileParticleGen extends ParticleGen {
 
@@ -9,15 +11,9 @@ public class AoeProjectileParticleGen extends ParticleGen {
                        Elements.RGB color) {
         for (int i = 0; i < amount; i++) {
 
-            double u = Math.random();
-            double v = Math.random();
-            double theta = 2 * Math.PI * u;
-            double phi = Math.acos(2 * v - 1);
-            double xpos = x + (radius * Math.sin(phi) * Math.cos(theta));
-            double ypos = y + (radius * Math.sin(phi) * Math.sin(theta));
-            double zpos = z + (radius * Math.cos(phi));
+            Vec3d r = GeometryUtils.getRandomHorizontalPosInRadiusCircle(x, y, z, (float) radius);
 
-            this.spawnRedstone(color, xpos, ypos, zpos);
+            this.spawnRedstone(color, r.x, r.y, r.z);
 
         }
     }

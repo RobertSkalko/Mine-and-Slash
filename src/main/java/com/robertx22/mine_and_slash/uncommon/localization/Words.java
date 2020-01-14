@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    StormCloudSpellDesc("Summons a storm cloud that deals damage over time."),
     Crate("Crate"),
     MythicCrate("Mythic Crate"),
     JewerlyCrafterCrate("Jewerly Crafter's Crate"),
