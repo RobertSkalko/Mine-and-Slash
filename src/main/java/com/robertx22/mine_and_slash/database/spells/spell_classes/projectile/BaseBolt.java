@@ -19,7 +19,7 @@ public abstract class BaseBolt extends BaseSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 1.5F);
+        return new EffectCalculation(new ElementalSpellDamage(this.getElement()), 1.5F);
     }
 
     @Override
@@ -28,7 +28,7 @@ public abstract class BaseBolt extends BaseSpell {
 
         if (!world.isRemote) {
             EntityElementalBolt projectile = this.projectile(world);
-            projectile.SpawnAndShoot(new SpellEffectDamage(this.Element()), new DamageData(caster, data), caster);
+            projectile.SpawnAndShoot(new SpellEffectDamage(this.getElement()), new DamageData(caster, data), caster);
 
         }
 
@@ -38,12 +38,12 @@ public abstract class BaseBolt extends BaseSpell {
     }
 
     @Override
-    public int ManaCost() {
+    public int getManaCost() {
         return 25;
     }
 
     @Override
-    public int BaseValue() {
+    public int getBaseValue() {
         return 25;
     }
 

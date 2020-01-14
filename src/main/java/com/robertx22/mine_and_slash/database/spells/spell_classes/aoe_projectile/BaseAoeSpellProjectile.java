@@ -24,7 +24,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
     }
 
     @Override
-    public SpellType Type() {
+    public SpellType getSpellType() {
         return SpellType.Aoe_Projectile;
     }
 
@@ -35,7 +35,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
         if (!world.isRemote) {
 
             EntityElementalBolt projectile = this.projectile(world);
-            projectile.SpawnAndShoot(new SpellEffectDamage(this.Element()), new DamageData(caster, data), caster);
+            projectile.SpawnAndShoot(new SpellEffectDamage(this.getElement()), new DamageData(caster, data), caster);
 
         }
 
@@ -46,7 +46,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.Element()), 0.5F);
+        return new EffectCalculation(new ElementalSpellDamage(this.getElement()), 0.5F);
     }
 
 }

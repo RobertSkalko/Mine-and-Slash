@@ -15,7 +15,7 @@ public enum Elements implements IColor {
     Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.BLUE, Items.SNOWBALL, "Blizzards", "water", "\u2749"),
     Thunder(3, new RGB(204, 0, 255), true, "Lightning", TextFormatting.LIGHT_PURPLE, Items.GLOWSTONE_DUST, "Thunderstorms", "thunder", "\u272A"),
     Nature(4, new RGB(0, 204, 0), true, "Venom", TextFormatting.DARK_GREEN, Items.SLIME_BALL, "Earthquakes", "nature", "\u273F"),
-    Elemental(5, new RGB(0, 0, 0), false, "Elemental", TextFormatting.GOLD, Items.EMERALD, "Element Eruption", "elemental", "\u269C");
+    Elemental(5, new RGB(0, 0, 0), false, "Elemental", TextFormatting.GOLD, Items.EMERALD, "getElement Eruption", "elemental", "\u269C");
 
     public boolean isSingleElement = true;
     public Item projectileItem;

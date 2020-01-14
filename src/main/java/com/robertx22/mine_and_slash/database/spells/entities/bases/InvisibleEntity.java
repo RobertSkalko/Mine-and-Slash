@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellEffect;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.DamageData;
+import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -14,21 +13,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-import java.util.UUID;
 
-public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem {
+public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem, ISpellEntity {
 
-    private UUID casterUUID;
-
-    public int lifetime = 100;
-
-    protected BaseSpellEffect effect;
-    protected DamageData data;
-
-    public void SetReady(BaseSpellEffect effect, DamageData data) {
-        this.effect = effect;
-        this.data = data;
-    }
+    EntitySpellData syncedSpellData;
+    ServerEntitySpellData serverSpellData;
 
     public InvisibleEntity(EntityType type, World world) {
         super(type, world);
@@ -41,7 +30,7 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem 
     @Override
     public void tick() {
 
-        if (this.ticksExisted > lifetime && lifetime != -1) {
+        if (this.ticksExisted > getLifeInTicks() && getLifeInTicks() != -1) {
             this.remove();
         }
 
@@ -64,14 +53,9 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem 
 
     }
 
-    public UUID getOwnerId() {
-        return casterUUID;
-    }
-
     @Nullable
     public LivingEntity getCaster() {
-        return Utilities.getLivingEntityByUUID(world, getOwnerId());
-
+        return Utilities.getLivingEntityByUUID(world, getCasterUUID());
     }
 
     @Override
@@ -82,10 +66,6 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem 
     @Override
     public IPacket<?> createSpawnPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    public void setCaster(LivingEntity caster) {
-        this.casterUUID = caster.getUniqueID();
     }
 
     public boolean isValidTarget(Entity target) {
@@ -102,4 +82,23 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem 
         return false;
     }
 
+    @Override
+    public EntitySpellData getSyncedSpellData() {
+        return syncedSpellData;
+    }
+
+    @Override
+    public ServerEntitySpellData getServerSpellData() {
+        return serverSpellData;
+    }
+
+    @Override
+    public void setSyncedSpellData(EntitySpellData data) {
+        this.syncedSpellData = data;
+    }
+
+    @Override
+    public void setServerSpellData(ServerEntitySpellData data) {
+        this.serverSpellData = data;
+    }
 }

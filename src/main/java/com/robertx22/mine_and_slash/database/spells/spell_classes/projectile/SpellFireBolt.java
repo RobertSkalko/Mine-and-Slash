@@ -14,12 +14,12 @@ public class SpellFireBolt extends BaseSpellProjectile {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Fire;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemFireBolt.ITEM;
     }
 

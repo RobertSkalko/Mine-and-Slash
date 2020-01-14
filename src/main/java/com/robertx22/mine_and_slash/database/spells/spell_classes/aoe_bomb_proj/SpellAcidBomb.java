@@ -18,12 +18,12 @@ public class SpellAcidBomb extends BaseBombSpell {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Nature;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemAcidBomb.ITEM;
     }
 

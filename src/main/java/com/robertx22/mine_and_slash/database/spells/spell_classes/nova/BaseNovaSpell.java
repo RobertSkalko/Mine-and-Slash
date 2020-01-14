@@ -31,17 +31,17 @@ public abstract class BaseNovaSpell extends BaseSpell {
     }
 
     @Override
-    public SpellType Type() {
+    public SpellType getSpellType() {
         return SpellType.Aoe_Damage_Nova;
     }
 
     @Override
-    public int ManaCost() {
+    public int getManaCost() {
         return 25;
     }
 
     @Override
-    public int BaseValue() {
+    public int getBaseValue() {
         return 10;
     }
 
@@ -53,7 +53,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalResist(this.Element()), scaling);
+        return new EffectCalculation(new ElementalResist(this.getElement()), scaling);
     }
 
     @Override
@@ -62,7 +62,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
         if (!world.isRemote) {
 
-            ElementalParticleUtils.SpawnNovaParticle(this.Element(), caster, radius, 200);
+            ElementalParticleUtils.SpawnNovaParticle(this.getElement(), caster, radius, 200);
 
             List<LivingEntity> list = Utilities.getEntitiesWithinRadius(radius, 2, caster, LivingEntity.class);
 
@@ -73,7 +73,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
 
                     entity1.playSound(SoundEvents.ENCHANT_THORNS_HIT, 0.7F, 0);
 
-                    SpellEffectDamage effect = new SpellEffectDamage(this.Element());
+                    SpellEffectDamage effect = new SpellEffectDamage(this.getElement());
                     effect.Activate(new DamageData(caster, data), entity1);
 
                 }

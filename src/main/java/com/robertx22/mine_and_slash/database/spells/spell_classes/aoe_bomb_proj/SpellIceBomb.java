@@ -15,12 +15,12 @@ public class SpellIceBomb extends BaseBombSpell {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Water;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemIceBomb.ITEM;
     }
 

@@ -12,12 +12,12 @@ public class SpellFrostNova extends BaseNovaSpell {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Water;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemFrostNova.ITEM;
     }
 

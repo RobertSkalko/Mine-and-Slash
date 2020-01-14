@@ -52,7 +52,7 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName, MyForg
 
     private void setupTexture() {
         texture = new ResourceLocation(Ref.MODID, "textures/tomes/" + this.Spell()
-                .Element()
+                .getElement()
                 .name()
                 .toLowerCase() + ".png");
     }

@@ -257,7 +257,7 @@ public enum Words implements IAutoLocName {
 
     Took("Took"),
 
-    Type("Type"),
+    Type("getSpellType"),
 
     Unique_Stats("Unique Stats"),
 
@@ -273,7 +273,7 @@ public enum Words implements IAutoLocName {
 
     DoNotBuildInMaps("Do not build in maps!"),
 
-    World_Type("World Type"),
+    World_Type("World getSpellType"),
 
     Gear_Modify("Gear Modify"),
 

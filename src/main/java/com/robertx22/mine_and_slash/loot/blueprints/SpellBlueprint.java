@@ -25,7 +25,7 @@ public class SpellBlueprint extends ItemBlueprint {
     @Override
     public ItemStack generate() {
         BaseSpell spell = spellPart.get();
-        ItemStack stack = new ItemStack(spell.SpellItem());
+        ItemStack stack = new ItemStack(spell.getSpellItem());
         SpellItemData data = new SpellItemData();
         data.rarity = rarity.get().Rank();
         SpellRarity rarity = data.getRarity();

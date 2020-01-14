@@ -29,7 +29,7 @@ public class SpellBonusEleBasicDmg extends BaseSpell implements IGenerated<BaseS
     public Elements element = Elements.Physical;
 
     @Override
-    public SpellType Type() {
+    public SpellType getSpellType() {
         return SpellType.Self_Buff;
     }
 
@@ -39,7 +39,7 @@ public class SpellBonusEleBasicDmg extends BaseSpell implements IGenerated<BaseS
     }
 
     @Override
-    public int ManaCost() {
+    public int getManaCost() {
         return 50;
     }
 
@@ -49,7 +49,7 @@ public class SpellBonusEleBasicDmg extends BaseSpell implements IGenerated<BaseS
     }
 
     @Override
-    public int BaseValue() {
+    public int getBaseValue() {
         return 5;
     }
 
@@ -59,12 +59,12 @@ public class SpellBonusEleBasicDmg extends BaseSpell implements IGenerated<BaseS
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return element;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemBonusEleAtkDmg.MAP.get(element);
     }
 

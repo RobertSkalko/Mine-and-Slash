@@ -59,9 +59,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public String typeString() {
-
-        return this.Type().toString().replaceAll("_", " ");
-
+        return this.getSpellType().toString().replaceAll("_", " ");
     }
 
     public boolean hasScalingValue() {
@@ -72,11 +70,11 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return true;
     }
 
-    public abstract SpellType Type();
+    public abstract SpellType getSpellType();
 
     public abstract String GUID();
 
-    public abstract int ManaCost();
+    public abstract int getManaCost();
 
     public abstract int useTimeTicks();
 
@@ -86,17 +84,17 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     // public abstract int Cooldown();
 
-    public abstract int BaseValue();
+    public abstract int getBaseValue();
 
     public abstract EffectCalculation ScalingValue();
 
     public int DamageVariance = 50;
 
-    public abstract Elements Element();
+    public abstract Elements getElement();
 
     public boolean ScalesWithLevel = true;
 
-    public abstract Item SpellItem();
+    public abstract Item getSpellItem();
 
     public BaseSpell() {
 

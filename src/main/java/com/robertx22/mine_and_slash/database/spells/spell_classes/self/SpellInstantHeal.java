@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 public class SpellInstantHeal extends BaseSpellHeal {
 
     @Override
-    public SpellType Type() {
+    public SpellType getSpellType() {
         return SpellType.Self_Heal;
     }
 
@@ -32,12 +32,12 @@ public class SpellInstantHeal extends BaseSpellHeal {
     }
 
     @Override
-    public int ManaCost() {
+    public int getManaCost() {
         return 40;
     }
 
     @Override
-    public int BaseValue() {
+    public int getBaseValue() {
         return 25;
     }
 
@@ -47,7 +47,7 @@ public class SpellInstantHeal extends BaseSpellHeal {
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemInstantHeal.ITEM;
     }
 
@@ -72,7 +72,7 @@ public class SpellInstantHeal extends BaseSpellHeal {
 
                 SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
                 // spell buffs
-                SpellBuffCheck check = new SpellBuffCheck(this.Type());
+                SpellBuffCheck check = new SpellBuffCheck(this.getSpellType());
                 SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);
                 spelleffect.Activate();
                 checkSpellBuffs(caster, check);

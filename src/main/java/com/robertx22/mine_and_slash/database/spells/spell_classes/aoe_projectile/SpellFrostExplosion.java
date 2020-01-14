@@ -14,12 +14,12 @@ public class SpellFrostExplosion extends BaseAoeSpellProjectile {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Water;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemFrostExplosion.ITEM;
     }
 

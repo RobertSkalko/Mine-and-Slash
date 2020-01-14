@@ -14,12 +14,12 @@ public class SpellAcidBolt extends BaseSpellProjectile {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Nature;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemAcidBolt.ITEM;
     }
 

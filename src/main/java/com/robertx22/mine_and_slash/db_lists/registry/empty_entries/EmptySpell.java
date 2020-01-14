@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class EmptySpell extends BaseSpell {
     @Override
-    public SpellType Type() {
+    public SpellType getSpellType() {
         return SpellType.Self_Heal;
     }
 
@@ -24,7 +24,7 @@ public class EmptySpell extends BaseSpell {
     }
 
     @Override
-    public int ManaCost() {
+    public int getManaCost() {
         return 0;
     }
 
@@ -34,7 +34,7 @@ public class EmptySpell extends BaseSpell {
     }
 
     @Override
-    public int BaseValue() {
+    public int getBaseValue() {
         return 0;
     }
 
@@ -44,12 +44,12 @@ public class EmptySpell extends BaseSpell {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Physical;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemFrostBolt.ITEM;
     }
 

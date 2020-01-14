@@ -8,12 +8,12 @@ import net.minecraft.util.text.ITextComponent;
 public abstract class BaseBoltAOE extends BaseBolt {
 
     @Override
-    public int ManaCost() {
+    public int getManaCost() {
         return 25;
     }
 
     @Override
-    public int BaseValue() {
+    public int getBaseValue() {
         return 15;
     }
 

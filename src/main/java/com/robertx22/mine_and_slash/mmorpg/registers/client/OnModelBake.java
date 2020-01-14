@@ -32,7 +32,7 @@ public class OnModelBake {
         for (BaseSpell baseSpell : SlashRegistry.Spells().getList()) {
 
             try {
-                String path = baseSpell.SpellItem().getRegistryName().getPath();
+                String path = baseSpell.getSpellItem().getRegistryName().getPath();
                 spellIds.add(path);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -76,8 +76,8 @@ public class OnModelBake {
 
         for (BaseSpell spell : SlashRegistry.Spells().getList()) {
             try {
-                if (spell.SpellItem().getRegistryName() != null && loc != null) {
-                    if (spell.SpellItem().getRegistryName().equals(loc)) {
+                if (spell.getSpellItem().getRegistryName() != null && loc != null) {
+                    if (spell.getSpellItem().getRegistryName().equals(loc)) {
                         return spell;
                     }
                 }

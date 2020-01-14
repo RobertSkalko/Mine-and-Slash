@@ -19,12 +19,12 @@ public abstract class BaseSpellHeal extends BaseSpell {
     }
 
     @Override
-    public SpellType Type() {
+    public SpellType getSpellType() {
         return SpellType.Self_Heal;
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Physical;
     }
 

@@ -22,7 +22,7 @@ public abstract class BaseSpellProjectile extends BaseBolt {
     }
 
     @Override
-    public SpellType Type() {
+    public SpellType getSpellType() {
         return SpellType.Single_Target_Projectile;
     }
 
@@ -33,7 +33,7 @@ public abstract class BaseSpellProjectile extends BaseBolt {
         if (!world.isRemote) {
 
             EntityElementalBolt projectile = this.projectile(world);
-            projectile.SpawnAndShoot(new SpellEffectDamage(this.Element()), new DamageData(caster, data), caster);
+            projectile.SpawnAndShoot(new SpellEffectDamage(this.getElement()), new DamageData(caster, data), caster);
 
         }
 

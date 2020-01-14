@@ -69,11 +69,11 @@ public class SpellItemData implements ICommonDataItem {
 
     public int GetManaCost(EntityCap.UnitData data) {
         return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
-                .ManaCost() * this.manaCostPercent / 100, data.getLvlForResourceCosts());
+                .getManaCost() * this.manaCostPercent / 100, data.getLvlForResourceCosts());
     }
 
     public int GetBaseValue() {
-        return (int) StatUtils.calculateNormalScalingStatGrowth(2 + GetSpell().BaseValue() * baseEffectPercent / 100, level);
+        return (int) StatUtils.calculateNormalScalingStatGrowth(2 + GetSpell().getBaseValue() * baseEffectPercent / 100, level);
     }
 
     public float GetScalingValue() {
@@ -89,23 +89,23 @@ public class SpellItemData implements ICommonDataItem {
     }
 
     private int MinBase() {
-        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) GetSpell().BaseValue() * getRarity()
+        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) GetSpell().getBaseValue() * getRarity()
                 .SpellBasePercents().Min / 100), level);
     }
 
     private int MaxBase() {
-        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) GetSpell().BaseValue() * getRarity()
+        return (int) StatUtils.calculateNormalScalingStatGrowth((1 + (float) GetSpell().getBaseValue() * getRarity()
                 .SpellBasePercents().Max / 100), level);
     }
 
     private int MinMana(EntityCap.UnitData data) {
         return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
-                .ManaCost() * MIN_MANA_COST_PERCENT / 100, data.getLvlForResourceCosts());
+                .getManaCost() * MIN_MANA_COST_PERCENT / 100, data.getLvlForResourceCosts());
     }
 
     private int MaxMana(EntityCap.UnitData data) {
         return (int) StatUtils.calculateNormalScalingStatGrowth(this.GetSpell()
-                .ManaCost() * MAX_MANA_COST_PERCENT / 100, data.getLvlForResourceCosts());
+                .getManaCost() * MAX_MANA_COST_PERCENT / 100, data.getLvlForResourceCosts());
     }
 
     @Override

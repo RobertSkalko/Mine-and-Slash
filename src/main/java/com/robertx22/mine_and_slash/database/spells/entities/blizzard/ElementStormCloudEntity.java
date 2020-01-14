@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
 
+import com.robertx22.mine_and_slash.database.spells.entities.bases.InvisibleEntity;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.particles.EleParticleData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
@@ -17,17 +17,18 @@ import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.List;
 
-public class BlizzardCloudEntity extends CloudEntity {
-    public BlizzardCloudEntity(World world) {
-        super(EntityRegister.FROST_BLIZZARD, world);
+public class ElementStormCloudEntity extends InvisibleEntity {
+
+    public ElementStormCloudEntity(World world) {
+        super(EntityRegister.ELEMENT_STORM_CLOUD, world);
     }
 
-    public BlizzardCloudEntity(EntityType type, World world) {
+    public ElementStormCloudEntity(EntityType type, World world) {
         super(type, world);
     }
 
-    public BlizzardCloudEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.FROST_BLIZZARD, world);
+    public ElementStormCloudEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+        super(EntityRegister.ELEMENT_STORM_CLOUD, world);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class BlizzardCloudEntity extends CloudEntity {
 
                     if (this.getCaster() != null) {
                         try {
-                            this.effect.Activate(this.data, target);
+                            this.getServerSpellData().effect.Activate(this.getServerSpellData().data, target);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -70,7 +71,7 @@ public class BlizzardCloudEntity extends CloudEntity {
 
                 Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(posX, posY + 4 + yRandom, posZ, radius);
 
-                Minecraft.getInstance().world.addParticle(new EleParticleData(ParticleRegister.DRIP, Elements.Water), true, p.x, p.y, p.z, 0, 0, 0);
+                Minecraft.getInstance().world.addParticle(new EleParticleData(ParticleRegister.DRIP, getElement()), true, p.x, p.y, p.z, 0, 0, 0);
 
             }
         }

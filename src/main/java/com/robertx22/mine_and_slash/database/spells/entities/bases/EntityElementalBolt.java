@@ -146,7 +146,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
     public void SpawnAndShoot(BaseSpellEffect effect, DamageData data,
                               LivingEntity caster) {
 
-        this.spellType = data.spellItem.GetSpell().Type();
+        this.spellType = data.spellItem.GetSpell().getSpellType();
 
         SpellBuffEffect spelleffect = new SpellBuffEffect(caster, this);
         spelleffect.Activate();

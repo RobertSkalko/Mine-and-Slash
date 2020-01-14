@@ -16,12 +16,12 @@ public class SpellThunderBomb extends BaseBombSpell {
 
     @Override
 
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Thunder;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemThunderBomb.ITEM;
     }
 

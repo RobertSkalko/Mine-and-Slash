@@ -11,6 +11,6 @@ public abstract class BaseItemNova extends BaseSpellItem {
 
     @Override
     public String locNameForLangFile() {
-        return color + this.Spell().Element().dmgName + " Nova";
+        return color + this.Spell().getElement().dmgName + " Nova";
     }
 }

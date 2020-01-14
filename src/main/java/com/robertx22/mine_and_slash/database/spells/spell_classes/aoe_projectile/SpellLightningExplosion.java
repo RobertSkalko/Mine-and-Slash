@@ -14,12 +14,12 @@ public class SpellLightningExplosion extends BaseAoeSpellProjectile {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Thunder;
     }
 
     @Override
-    public Item SpellItem() {
+    public Item getSpellItem() {
         return ItemLightningExplosion.ITEM;
     }
 

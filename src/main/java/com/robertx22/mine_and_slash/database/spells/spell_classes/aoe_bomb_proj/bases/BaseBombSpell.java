@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
-    public int BaseValue() {
+    public int getBaseValue() {
         return 15;
     }
 
@@ -27,16 +27,16 @@ public abstract class BaseBombSpell extends BaseSpellProjectile {
 
     @Override
     public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.Element()), this.damageScaling);
+        return new EffectCalculation(new ElementalSpellDamage(this.getElement()), this.damageScaling);
     }
 
     @Override
-    public SpellType Type() {
+    public SpellType getSpellType() {
         return SpellType.Aoe_Bomb_Projectile;
     }
 
     @Override
-    public int ManaCost() {
+    public int getManaCost() {
         return 40;
     }
 

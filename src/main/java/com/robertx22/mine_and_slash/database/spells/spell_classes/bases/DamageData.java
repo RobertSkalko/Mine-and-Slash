@@ -8,7 +8,6 @@ import net.minecraft.entity.LivingEntity;
 public class DamageData {
 
     public DamageData(LivingEntity entity, SpellItemData spellItem) {
-        // this.effect = e;
         this.caster = entity;
         this.spellItem = spellItem;
         this.casterUnit = Load.Unit(entity);
@@ -16,7 +15,6 @@ public class DamageData {
     }
 
     public EntityCap.UnitData casterUnit;
-    // public BaseSpellEffect effect;
     public LivingEntity caster;
     public SpellItemData spellItem;
 

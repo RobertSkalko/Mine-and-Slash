@@ -42,7 +42,7 @@ public class NeatConfig {
         barHeight = builder.define("Health Bar Height", 4);
         plateSize = builder.define("Plate Size", 25);
         plateSizeBoss = builder.define("Plate Size (Boss)", 50);
-        colorByType = builder.define("Color Health Bar by Type (instead of health percentage)", false);
+        colorByType = builder.define("Color Health Bar by getSpellType (instead of health percentage)", false);
         hpTextHeight = builder.define("HP Text Height", 14);
         showMaxHP = builder.define("Show Max HP", true);
         showCurrentHP = builder.define("Show Current HP", true);
