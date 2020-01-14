@@ -43,6 +43,8 @@ public class PacketRegister {
 
         MMORPG.Network.registerMessage(index++, EfficientMobUnitPacket.class, EfficientMobUnitPacket::encode, EfficientMobUnitPacket::decode, EfficientMobUnitPacket::handle);
 
+        MMORPG.Network.registerMessage(index++, SyncConfigToClientPacket.class, SyncConfigToClientPacket::encode, SyncConfigToClientPacket::decode, SyncConfigToClientPacket::handle);
+
     }
 
 }

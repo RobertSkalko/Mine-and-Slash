@@ -2,10 +2,11 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.config.ModConfig;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItemsSerialization;
-import com.robertx22.mine_and_slash.config.dimension_configs.ConfigDimensionsSerialization;
-import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistSerialization;
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigsSerialization;
+import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
+import com.robertx22.mine_and_slash.config.serialization.CompatibleItemSerial;
+import com.robertx22.mine_and_slash.config.serialization.DimensionsSerial;
+import com.robertx22.mine_and_slash.config.serialization.ModDmgWhitelistSerial;
+import com.robertx22.mine_and_slash.config.serialization.ModEntityConfigsSerial;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
@@ -14,41 +15,50 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig.Type;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ConfigRegister {
 
+    public static HashMap<Config, ISerializedConfig> CONFIGS = new HashMap<>();
+
+    public enum Config {
+        COMPATIBLE_ITEM,
+        MOD_DMG_WHITELIST,
+        MOD_ENTITY,
+        DIMENSIONS
+    }
+
     public static void registerCustomConfigs() {
 
+        CONFIGS.put(Config.COMPATIBLE_ITEM, CompatibleItemSerial.INSTANCE);
+        CONFIGS.put(Config.MOD_DMG_WHITELIST, ModDmgWhitelistSerial.INSTANCE);
+        CONFIGS.put(Config.MOD_ENTITY, ModEntityConfigsSerial.INSTANCE);
+        CONFIGS.put(Config.DIMENSIONS, DimensionsSerial.INSTANCE);
+
         unregisterFlaggedEntries(); // call first
-        regConfigsWhichDontNeedMyRegistry();
-        regConfigsWhichNeedMyRegistry();
+
+        generateIfEmpty();
+
+        DistExecutor.runWhenOn(Dist.DEDICATED_SERVER, () -> () -> {
+            load();
+        });
+
         createTutorials();
 
     }
 
     private static void createTutorials() {
-
-        ConfigItemsSerialization.INSTANCE.generateConfigTutorials();
-
+        CompatibleItemSerial.INSTANCE.generateConfigTutorials();
     }
 
-    private static void regConfigsWhichDontNeedMyRegistry() {
-
-        ConfigDimensionsSerialization.INSTANCE.generateIfEmpty();
-        ModDmgWhitelistSerialization.INSTANCE.generateIfEmpty();
-        ModEntityConfigsSerialization.INSTANCE.generateIfEmpty();
-
-        ConfigDimensionsSerialization.INSTANCE.load();
-        ModDmgWhitelistSerialization.INSTANCE.load();
-        ModEntityConfigsSerialization.INSTANCE.load();
+    // should be called only on server, then packets sent to client
+    private static void load() {
+        CONFIGS.values().forEach(x -> x.loadOnServer());
     }
 
-    private static void regConfigsWhichNeedMyRegistry() {
-
-        ConfigItemsSerialization.INSTANCE.generateIfEmpty();
-        ConfigItemsSerialization.INSTANCE.load();
-
+    private static void generateIfEmpty() {
+        CONFIGS.values().forEach(x -> x.generateIfEmpty());
     }
 
     private static void unregisterFlaggedEntries() {

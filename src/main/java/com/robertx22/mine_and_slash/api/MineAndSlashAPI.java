@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItemsSerialization;
+import com.robertx22.mine_and_slash.config.serialization.CompatibleItemSerial;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
@@ -31,7 +31,7 @@ public class MineAndSlashAPI {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(items);
-        SerializationUtils.makeFileAndDirAndWrite(new ConfigItemsSerialization().folder(), fileName, json);
+        SerializationUtils.makeFileAndDirAndWrite(new CompatibleItemSerial().folder(), fileName, json);
     }
 
     public static void addAffix(BaseAffix affix) {

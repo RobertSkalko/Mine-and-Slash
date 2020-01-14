@@ -2,19 +2,62 @@ package com.robertx22.mine_and_slash.config.base;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
+import com.robertx22.mine_and_slash.network.SyncConfigToClientPacket;
+import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
+import net.minecraft.entity.player.ServerPlayerEntity;
 
-public interface ISerializedConfig {
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+
+public interface ISerializedConfig<T extends ISlashRegistryInit> {
 
     public abstract String fileName();
-
-    public abstract void load();
 
     public default String getPath() {
         return folder() + "/" + fileName();
     }
 
-    Object getDefaultObject();
+    T getDefaultObject();
+
+    default String getJsonFromFile(String path) {
+        try {
+            return new String(Files.readAllBytes(Paths.get(path)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    T loadFromString(String string);
+
+    default List<String> getAllJsons() {
+        return Arrays.asList(getJsonFromFile(getPath()));
+    }
+
+    ConfigRegister.Config getConfigType();
+
+    default void loadOnServer() {
+
+        getAllJsons().forEach(x -> loadFromString(x).registerAll());
+
+    }
+
+    default void sendToClient(ServerPlayerEntity player) {
+
+        List<String> configs = getAllJsons();
+
+        SyncConfigToClientPacket pkt = new SyncConfigToClientPacket(new ListStringData(configs), getConfigType());
+
+        MMORPG.sendToClient(pkt, player);
+
+    }
 
     default String folder() {
         return SerializationUtils.CONFIG_PATH;
@@ -26,4 +69,7 @@ public interface ISerializedConfig {
         SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
     }
 
+    default void loadFromJsons(List<String> list) {
+        list.forEach(x -> loadFromString(x).registerAll());
+    }
 }

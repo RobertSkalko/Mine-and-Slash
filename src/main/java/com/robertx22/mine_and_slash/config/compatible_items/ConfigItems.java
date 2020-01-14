@@ -19,8 +19,6 @@ public class ConfigItems implements IConfig, ISlashRegistryInit {
 
     public String ConfigType = "compatible_items";
 
-    // public static ConfigItems INSTANCE = new ConfigItems();
-
     String version = "1.3";
 
     boolean enabled = true;
@@ -33,6 +31,8 @@ public class ConfigItems implements IConfig, ISlashRegistryInit {
     public void registerAll() {
 
         if (enabled) {
+
+            this.validateAll();
 
             list = new ArrayList<>();
 

@@ -18,8 +18,7 @@ public class ReloadConfigs {
 
         try {
 
-            ConfigRegister.regConfigsWhichNeedMyRegistry();
-            ConfigRegister.regConfigsWhichDontNeedMyRegistry();
+            ConfigRegister.registerCustomConfigs();
 
             if (source.getEntity() instanceof ServerPlayerEntity) {
                 ((ServerPlayerEntity) source.getEntity()).sendMessage(new StringTextComponent("Configs reloaded"));

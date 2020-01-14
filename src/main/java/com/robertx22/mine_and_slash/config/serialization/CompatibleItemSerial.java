@@ -1,22 +1,23 @@
-package com.robertx22.mine_and_slash.config.compatible_items;
+package com.robertx22.mine_and_slash.config.serialization;
 
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
+import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
+import com.robertx22.mine_and_slash.config.compatible_items.GenCompItemJsons;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class ConfigItemsSerialization implements ISerializedConfig {
+public class CompatibleItemSerial implements ISerializedConfig<ConfigItems> {
 
-    public static ConfigItemsSerialization INSTANCE = new ConfigItemsSerialization();
+    public static CompatibleItemSerial INSTANCE = new CompatibleItemSerial();
 
     @Override
     public String fileName() {
@@ -29,28 +30,30 @@ public class ConfigItemsSerialization implements ISerializedConfig {
     }
 
     @Override
-    public void load() {
+    public List<String> getAllJsons() {
 
+        List<String> list = new ArrayList<>();
         for (File file : Objects.requireNonNull(new File(folder()).listFiles())) {
-
-            try {
-                JsonReader reader = new JsonReader(new FileReader(file.getPath()));
-                ConfigItems items = new Gson().fromJson(reader, ConfigItems.class);
-                items.validateAll();
-                items.registerAll();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            list.add(getJsonFromFile(file.getPath()));
         }
-        System.out.println("Items added to config: " + SlashRegistry.CompatibleItems()
-                .getSize());
+
+        return list;
 
     }
 
     @Override
-    public Object getDefaultObject() {
+    public ConfigRegister.Config getConfigType() {
+        return ConfigRegister.Config.COMPATIBLE_ITEM;
+    }
+
+    @Override
+    public ConfigItems getDefaultObject() {
         return GenCompItemJsons.generate();
+    }
+
+    @Override
+    public ConfigItems loadFromString(String string) {
+        return new Gson().fromJson(string, ConfigItems.class);
     }
 
     // needs to be done after unique items are actually registered.

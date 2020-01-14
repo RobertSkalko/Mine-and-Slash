@@ -1,11 +1,12 @@
 package com.robertx22.mine_and_slash.config.mod_dmg_whitelist;
 
+import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashMap;
 
-public class ModDmgWhitelistContainer {
+public class ModDmgWhitelistContainer implements ISlashRegistryInit {
 
     public static ModDmgWhitelistContainer INSTANCE = new ModDmgWhitelistContainer();
 
@@ -17,6 +18,11 @@ public class ModDmgWhitelistContainer {
     }
 
     public HashMap<String, ModDmgWhitelist> modList = new HashMap<>();
+
+    @Override
+    public void registerAll() {
+        INSTANCE = this;
+    }
 
     public static class ModDmgWhitelist {
 
