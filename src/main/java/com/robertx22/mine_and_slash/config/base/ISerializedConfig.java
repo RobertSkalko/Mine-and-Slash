@@ -45,13 +45,19 @@ public interface ISerializedConfig<T extends ISlashRegistryInit> {
 
     default void loadOnServer() {
 
-        getAllJsons().forEach(x -> loadFromString(x).registerAll());
+        List<String> jsons = getAllJsons();
+
+        ConfigRegister.SAVED_JSONS.put(getConfigType(), jsons);
+
+        getAllJsons().forEach(x -> {
+            loadFromString(x).registerAll();
+        });
 
     }
 
     default void sendToClient(ServerPlayerEntity player) {
 
-        List<String> configs = getAllJsons();
+        List<String> configs = ConfigRegister.SAVED_JSONS.get(getConfigType());
 
         SyncConfigToClientPacket pkt = new SyncConfigToClientPacket(new ListStringData(configs), getConfigType());
 

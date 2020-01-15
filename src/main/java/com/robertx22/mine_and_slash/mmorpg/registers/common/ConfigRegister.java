@@ -21,6 +21,7 @@ import java.util.List;
 public class ConfigRegister {
 
     public static HashMap<Config, ISerializedConfig> CONFIGS = new HashMap<>();
+    public static HashMap<Config, List<String>> SAVED_JSONS = new HashMap<>();
 
     public enum Config {
         COMPATIBLE_ITEM,
