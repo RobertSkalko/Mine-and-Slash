@@ -41,9 +41,7 @@ public class ConfigRegister {
 
         generateIfEmpty();
 
-        DistExecutor.runWhenOn(Dist.DEDICATED_SERVER, () -> () -> {
-            load();
-        });
+        load();
 
         createTutorials();
 

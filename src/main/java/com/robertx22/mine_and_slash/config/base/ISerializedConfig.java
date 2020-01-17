@@ -43,6 +43,7 @@ public interface ISerializedConfig<T extends ISlashRegistryInit> {
 
     ConfigRegister.Config getConfigType();
 
+    // call on client too cus dedicated server dist executor doesnt work on singleplayer "servers"
     default void loadOnServer() {
 
         List<String> jsons = getAllJsons();
