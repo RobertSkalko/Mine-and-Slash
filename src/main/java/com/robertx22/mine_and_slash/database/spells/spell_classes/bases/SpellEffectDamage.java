@@ -12,6 +12,8 @@ public class SpellEffectDamage extends BaseSpellEffect {
 
     }
 
+    public boolean knockback = true;
+
     public SpellEffectDamage(Elements el) {
         super();
 
@@ -27,6 +29,11 @@ public class SpellEffectDamage extends BaseSpellEffect {
 
         SpellDamageEffect dmg = new SpellDamageEffect(dmgdata.caster, target, num, dmgdata.casterData, Load
                 .Unit(target), dmgdata.spellItemData.getSpell());
+
+        if (knockback == false) {
+            dmg.removeKnockback();
+        }
+
         dmg.element = this.element;
         dmg.Activate();
 

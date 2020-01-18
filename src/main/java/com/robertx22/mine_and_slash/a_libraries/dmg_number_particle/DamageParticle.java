@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.a_libraries.dmg_number_particle;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -16,7 +17,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
 public class DamageParticle extends Particle {
@@ -25,6 +25,12 @@ public class DamageParticle extends Particle {
     protected float scale = 0.7F;
     Elements element;
     public boolean grow = true;
+
+    float locX;
+    float locY;
+    float locZ;
+
+    boolean positionNeedsSetting = true;
 
     public DamageParticle(Elements element, String str, World world, double parX,
                           double parY, double parZ, double parMotionX, double parMotionY,
@@ -38,6 +44,25 @@ public class DamageParticle extends Particle {
                 .intValue();
         this.text = element.format + element.icon + TextFormatting.GRAY + str;
         this.element = element;
+    }
+
+    public void setupPosition(ActiveRenderInfo info) {
+        Minecraft mc = Minecraft.getInstance();
+
+        float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get().floatValue();
+
+        PlayerEntity p = mc.player;
+
+        Vec3d view = info.getProjectedView();
+
+        Vector3d distance = new Vector3d(posX - p.posX, posY - p.posY, posZ - p.posZ);
+
+        locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * posX - view.getX())) * speed;
+        locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * posY - view.getY())) * speed;
+        locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * posZ - view.getZ())) * speed;
+
+        positionNeedsSetting = false;
+
     }
 
     @Override
@@ -58,57 +83,46 @@ public class DamageParticle extends Particle {
 
             Vector3d distance = new Vector3d(posX - p.posX, posY - p.posY, posZ - p.posZ);
 
-            final float locX = ((float) (this.prevPosX + (this.posX - this.prevPosX) * posX - view
-                    .getX())) * speed;
-            final float locY = ((float) (this.prevPosY + (this.posY - this.prevPosY) * posY - view
-                    .getY())) * speed;
-            final float locZ = ((float) (this.prevPosZ + (this.posZ - this.prevPosZ) * posZ - view
-                    .getZ())) * speed;
+            if (positionNeedsSetting) {
+                setupPosition(info);
+            }
 
-            GL11.glPushMatrix();
+            //            MatrixStack matrix = new MatrixStack();
 
-            GL11.glDepthFunc(519);
+            // matrix.push();
 
-            GL11.glTranslated(locX + distance.x, locY + distance.y - p.getEyeHeight(), locZ + distance.z);
+            RenderSystem.pushMatrix();
 
-            GL11.glRotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
-            GL11.glRotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
+            RenderSystem.depthFunc(519);
 
-            GL11.glScalef(-1.0F, -1.0F, 1.0F);
-            GL11.glScaled(this.scale * 0.008D, this.scale * 0.008D, this.scale * 0.008D);
-            GL11.glScaled(this.scale, this.scale, this.scale);
+            RenderSystem.translated(locX + distance.x, locY + distance.y - p.getEyeHeight(), locZ + distance.z);
 
-            //idk
-            GL11.glEnable(3553);
-            GL11.glDisable(3042);
-            GL11.glDepthMask(false);
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glEnable(3553);
-            GL11.glEnable(2929);
-            GL11.glDisable(2896);
-            GL11.glBlendFunc(770, 771);
-            GL11.glEnable(3042);
-            GL11.glEnable(3008);
+            RenderSystem.rotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
+            RenderSystem.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
 
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            RenderSystem.scalef(-1.0F, -1.0F, 1.0F);
+            RenderSystem.scaled(this.scale * 0.008D, this.scale * 0.008D, this.scale * 0.008D);
+            RenderSystem.scaled(this.scale, this.scale, this.scale);
+
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             final FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
             fontRenderer.drawStringWithShadow(this.text, -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1, -MathHelper
                     .floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, element.format.getColor());
 
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glDepthFunc(515);
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            RenderSystem.depthFunc(515);
 
-            GL11.glPopMatrix();
+            RenderSystem.popMatrix();
             if (ClientContainer.INSTANCE.dmgParticleConfig.GROWS.get()) {
                 if (this.grow) {
-                    this.scale *= 1.08F;
+                    this.scale *= 1.05F;
                     if (this.scale > ClientContainer.INSTANCE.dmgParticleConfig.MAX_SIZE.get()
                             .floatValue()) {
                         this.grow = false;
                     }
                 } else {
-                    this.scale *= 0.96F;
+                    this.scale *= 0.97F;
                 }
             }
         } catch (Exception e) {

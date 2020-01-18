@@ -8,6 +8,9 @@ import java.util.UUID;
 
 public interface ISpellEntity extends IEntityAdditionalSpawnData {
 
+    default void initSpellEntity() {
+    }
+
     EntitySpellData getSyncedSpellData();
 
     ServerEntitySpellData getServerSpellData();

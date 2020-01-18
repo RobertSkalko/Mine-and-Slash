@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
-import com.robertx22.mine_and_slash.database.spells.entities.blizzard.ElementStormCloudEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.blizzard.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.items.ItemStormCloud;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
@@ -87,7 +87,7 @@ public class SpellStormCloud extends BaseSpell implements IGenerated<BaseSpell> 
 
         Vec3d pos = ray.getHitVec();
 
-        Entity en = SpellUtils.getSpellEntity(new ElementStormCloudEntity(world), new SpellEffectDamage(getElement()), data, caster);
+        Entity en = SpellUtils.getSpellEntity(new ThunderstormEntity(world), new SpellEffectDamage(getElement()), data, caster);
 
         en.setPosition(pos.x, pos.y, pos.z);
 

@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.aoe.EntityAcidExplo
 import com.robertx22.mine_and_slash.database.spells.entities.aoe.EntityFlameExplosion;
 import com.robertx22.mine_and_slash.database.spells.entities.aoe.EntityFrostExplosion;
 import com.robertx22.mine_and_slash.database.spells.entities.aoe.EntityLightningExplosion;
-import com.robertx22.mine_and_slash.database.spells.entities.blizzard.ElementStormCloudEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.blizzard.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bomb.EntityAcidBomb;
 import com.robertx22.mine_and_slash.database.spells.entities.bomb.EntityFireBomb;
 import com.robertx22.mine_and_slash.database.spells.entities.bomb.EntityIceBomb;
@@ -44,7 +44,8 @@ public class EntityRegister {
 
     }
 
-    public static final EntityType<? extends Entity> ELEMENT_STORM_CLOUD;
+    public static final EntityType<? extends Entity> BLIZZARD;
+    public static final EntityType<? extends Entity> THUNDERSTORM;
 
     public static final EntityType<? extends Entity> FIREBOLT;
     public static final EntityType<? extends Entity> FROSTBOLT;
@@ -65,7 +66,8 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> WANDPROJECTILE;
 
     static {
-        ELEMENT_STORM_CLOUD = newType(ElementStormCloudEntity::new, ElementStormCloudEntity::new, "element_storm_cloud");
+        BLIZZARD = newType(ThunderstormEntity::new, ThunderstormEntity::new, "blizzard");
+        THUNDERSTORM = newType(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
 
         FIREBOLT = newType(EntityFireBolt::new, EntityFireBolt::new, "entity_fire_bolt");
         FROSTBOLT = newType(EntityFrostBolt::new, EntityFrostBolt::new, "entity_frost_bolt");

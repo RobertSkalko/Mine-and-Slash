@@ -49,13 +49,13 @@ public class ElementalSpellDamage extends ElementalStat {
 
     @Override
     public String locNameForLangFile() {
-        return "Spell " + this.Element().name() + " Damage";
+        return "Spell " + this.Element().name() + " Power";
 
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Spell damage is used by spells and some other stats";
+        return "Spell power is used by spells and some other stats";
     }
 
 }

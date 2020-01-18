@@ -29,3 +29,4 @@ maps now have a quest and loot crate as a reward!
 armor requirements are no longer random (wis or int), now they are always wis and int etc (existing gear will have a change, beware)
 enchanted/renamed items no longer get auto put in bags. Should stop some annoyances
 configs should now sync to client on login
+spell damage renamed to spell power. Should make more sense if nature power increases healing, than nature damage increasing healing
