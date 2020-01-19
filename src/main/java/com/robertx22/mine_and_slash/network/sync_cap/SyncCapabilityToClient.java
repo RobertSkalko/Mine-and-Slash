@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.network.sync_cap;
 
+import com.robertx22.mine_and_slash.mmorpg.CapSyncCheck;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -47,6 +48,8 @@ public class SyncCapabilityToClient {
 
                 if (player != null) {
                     pkt.type.getCap(player).setNBT(pkt.nbt);
+
+                    CapSyncCheck.set(pkt.type);
                 }
 
             } catch (Exception e) {

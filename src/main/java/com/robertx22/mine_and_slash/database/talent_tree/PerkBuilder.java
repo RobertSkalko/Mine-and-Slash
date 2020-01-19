@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
-import com.robertx22.mine_and_slash.db_lists.initializers.Perks;
 
 public class PerkBuilder {
 
@@ -43,9 +42,9 @@ public class PerkBuilder {
 
     public static class Position {
 
-        private Perk talent;
+        private BasePerk talent;
 
-        public Position(Perk talent, int x, int y) {
+        public Position(BasePerk talent, int x, int y) {
             this.talent = talent;
             this.talent.x = x;
             this.talent.y = y;
@@ -63,9 +62,9 @@ public class PerkBuilder {
 
     public static class Effect {
 
-        private Perk talent;
+        private BasePerk talent;
 
-        public Effect(Perk talent, BasePerkEffect effect) {
+        public Effect(BasePerk talent, BasePerkEffect effect) {
             this.talent = talent;
             talent.effect = effect;
         }
@@ -78,19 +77,19 @@ public class PerkBuilder {
 
     public static class Connections {
 
-        private Perk talent;
+        private BasePerk talent;
 
-        public Connections(Perk talent) {
+        public Connections(BasePerk talent) {
             this.talent = talent;
         }
 
-        public Connections add(Perk other) {
+        public Connections add(BasePerk other) {
             this.talent.tryConnectTo(other);
             return this;
         }
 
-        public Perk build() {
-            Perks.all.add(talent);
+        public BasePerk build() {
+            talent.registerToSlashRegistry();
             return talent;
         }
 

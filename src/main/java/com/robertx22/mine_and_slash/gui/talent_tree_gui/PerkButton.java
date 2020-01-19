@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.network.AllocateTalentPacket;
 import com.robertx22.mine_and_slash.network.TryRemoveTalentPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -20,18 +19,18 @@ public class PerkButton extends ImageButton {
     Perk perk;
     EntityCap.UnitData data;
     Minecraft mc;
-    PlayerTalentsCap.IPlayerTalentsData talents;
+    PerkConnection.Allocation status;
 
-    public PerkButton(PlayerTalentsCap.IPlayerTalentsData talents, Perk perk,
+    public PerkButton(PerkConnection.Allocation status, Perk perk,
                       EntityCap.UnitData data) {
         super(0, 0, perk.getPerkType().sizeX, perk.getPerkType().sizeY, 0, 0, perk.getPerkType().sizeY, perk
                 .getPerkType().TEXTURE, (button) -> {
         });
 
+        this.status = status;
         this.perk = perk;
         this.data = data;
         this.mc = Minecraft.getInstance();
-        this.talents = talents;
     }
 
     @Override
@@ -51,8 +50,6 @@ public class PerkButton extends ImageButton {
             Minecraft mc = Minecraft.getInstance();
             mc.getTextureManager().bindTexture(this.perk.getPerkType().TEXTURE);
             RenderSystem.disableDepthTest();
-
-            PerkConnection.Allocation status = perk.getStatus(talents);
 
             float xstart = perk.getPerkType().getOffsetX();
             int yStart = perk.getPerkType().getOffsetY(status);

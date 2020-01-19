@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
 import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
+import com.robertx22.mine_and_slash.mmorpg.CapSyncCheck;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
@@ -89,12 +90,29 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
         super.init(mc, x, y);
 
         for (Perk talent : SlashRegistry.Perks().getList()) {
-            this.addButton(new PerkButton(talents, talent, data));
+            this.addButton(new PerkButton(talent.getStatus(talents), talent, data));
         }
 
         returnToCenter();
 
+        refresh();
+
+    }
+
+    public void refresh() {
+        MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
+
+        this.talents = Load.talents(mc.player);
+
         refreshConnections();
+        refreshAllocatedStatus();
+    }
+
+    public void refreshAllocatedStatus() {
+
+        this.buttons.stream()
+                .filter(x -> x instanceof PerkButton)
+                .forEach(y -> ((PerkButton) y).status = ((PerkButton) y).perk.getStatus(talents));
 
     }
 
@@ -144,10 +162,15 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
     @Override
     public void render(int x, int y, float ticks) {
 
+        if (CapSyncCheck.get(CapTypes.TALENTS)) {
+            refresh();
+        }
+        
         if (mc.player.ticksExisted % 100 == 0) {
             MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
-            this.talents = Load.talents(mc.player);
-            refreshConnections();
+
+            refresh();
+
         }
 
         super.render(x, y, ticks);
@@ -219,9 +242,11 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
 
         getTalentButtons().forEach(t -> t.onClick(ctx, (int) x, (int) y, button));
 
-        refreshConnections();
+        boolean bool = super.mouseReleased(x, y, button);
 
-        return super.mouseReleased(x, y, button);
+        refresh();
+
+        return bool;
 
     }
 

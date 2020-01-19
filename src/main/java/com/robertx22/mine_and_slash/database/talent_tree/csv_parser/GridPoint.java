@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.talent_tree.csv_parser;
 
-import com.robertx22.mine_and_slash.database.talent_tree.Perk;
+import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class GridPoint<T extends Perk> {
+public class GridPoint<T extends BasePerk> {
 
     public int x;
     public int y;

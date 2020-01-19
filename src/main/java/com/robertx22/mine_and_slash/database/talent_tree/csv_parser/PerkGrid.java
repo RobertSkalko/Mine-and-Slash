@@ -162,7 +162,7 @@ public class PerkGrid<T extends GridPoint> {
                         System.out.println(point.getID() + " is a broken talent.");
                     }
 
-                    Perk perk = PerkBuilder.create(point.getID())
+                    Perk perk = (Perk) PerkBuilder.create(point.getID())
                             .pos(point.x, point.y)
                             .effect(effect)
                             .connections()

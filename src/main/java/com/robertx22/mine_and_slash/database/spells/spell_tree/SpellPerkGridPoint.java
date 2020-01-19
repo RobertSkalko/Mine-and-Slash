@@ -3,14 +3,14 @@ package com.robertx22.mine_and_slash.database.spells.spell_tree;
 import com.robertx22.mine_and_slash.database.talent_tree.csv_parser.GridPoint;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
-public class SpellPerkGridPoint<T extends SpellPerk> extends GridPoint {
+public class SpellPerkGridPoint extends GridPoint<SpellPerk> {
 
     public SpellPerkGridPoint(int x, int y, String str) {
         super(x, y, str);
     }
 
     @Override
-    public T getPerk() {
+    public SpellPerk getPerk() {
         // handle both caps and lowercase
         String id = getID();
 
@@ -21,7 +21,7 @@ public class SpellPerkGridPoint<T extends SpellPerk> extends GridPoint {
             }
         }
 
-        return (T) SlashRegistry.SpellPerks().get(id);
+        return SlashRegistry.SpellPerks().get(id);
     }
 
 }
