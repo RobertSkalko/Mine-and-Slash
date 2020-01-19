@@ -31,3 +31,4 @@ enchanted/renamed items no longer get auto put in bags. Should stop some annoyan
 configs should now sync to client on login
 spell damage renamed to spell power. Should make more sense if nature power increases healing, than nature damage increasing healing
 loot now drops based on highest damager. So if you most dmg to mob and it dies to fire, it will still drop loot!
+fixed scaling spell dmg not being applied

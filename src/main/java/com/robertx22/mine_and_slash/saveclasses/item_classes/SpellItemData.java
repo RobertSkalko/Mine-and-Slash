@@ -175,10 +175,9 @@ public class SpellItemData implements ICommonDataItem {
 
     public int getDamage(Unit unit) {
 
-        //        BaseSpell spell = getSpell();
-
         int basedmg = getBaseValue();
-        int scalingdmg = (int) getScalingValue();
+        int scalingdmg = (int) (getScalingValue() * unit.getStat(getSpell().ScalingValue()
+                .GetStat()).val);
 
         int total = basedmg + scalingdmg;
 
