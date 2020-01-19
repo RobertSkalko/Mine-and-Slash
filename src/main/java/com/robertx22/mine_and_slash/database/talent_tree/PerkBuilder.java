@@ -1,11 +1,30 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
+import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
 import com.robertx22.mine_and_slash.db_lists.initializers.Perks;
 
 public class PerkBuilder {
 
     public static Guid create(String id) {
         return new Guid(id);
+    }
+
+    public static SpellGuid createSpell(String id) {
+        return new SpellGuid(id);
+    }
+
+    public static class SpellGuid {
+
+        private SpellPerk talent;
+
+        public SpellGuid(String guid) {
+            talent = new SpellPerk(guid);
+        }
+
+        public Position pos(int x, int y) {
+            return new Position(talent, x, y);
+        }
+
     }
 
     public static class Guid {
@@ -32,7 +51,7 @@ public class PerkBuilder {
             this.talent.y = y;
         }
 
-        public Effect effect(PerkEffect effect) {
+        public Effect effect(BasePerkEffect effect) {
             return new Effect(talent, effect);
         }
 
@@ -46,7 +65,7 @@ public class PerkBuilder {
 
         private Perk talent;
 
-        public Effect(Perk talent, PerkEffect effect) {
+        public Effect(Perk talent, BasePerkEffect effect) {
             this.talent = talent;
             talent.effect = effect;
         }

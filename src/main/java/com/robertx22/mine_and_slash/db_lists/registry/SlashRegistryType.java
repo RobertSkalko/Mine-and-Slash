@@ -23,6 +23,8 @@ public enum SlashRegistryType {
     COMPATIBLE_ITEM(),
     PERK(),
     PERK_EFFECT(),
+    SPELL_PERK(),
+    SPELL_PERK_EFFECT(),
     LOOT_CRATE,
     QUEST(),
     QUEST_REWARD(),

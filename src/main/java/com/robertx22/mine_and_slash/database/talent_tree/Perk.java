@@ -16,7 +16,7 @@ public class Perk implements ISlashRegistryEntry<Perk> {
     }
 
     public List<Perk> connections = new ArrayList<>();
-    public PerkEffect effect;
+    public BasePerkEffect effect;
     private String guid;
     public int x;
     public int y;
@@ -24,7 +24,6 @@ public class Perk implements ISlashRegistryEntry<Perk> {
     public boolean isStart = false;
 
     public void render(int x, int y) {
-
         this.effect.render(x, y);
     }
 
@@ -36,15 +35,15 @@ public class Perk implements ISlashRegistryEntry<Perk> {
     public PerkType getPerkType() {
 
         // make major stats only lookk major if they are gamechangers. i agree i didnt think this one through
-        if (effect.type == PerkType.MAJOR) {
+        if (effect.getPerkType() == PerkType.MAJOR) {
             if (effect.isGameChanger()) {
-                return effect.type;
+                return effect.getPerkType();
             } else {
                 return PerkType.BIG;
             }
         }
 
-        return this.effect.type;
+        return this.effect.getPerkType();
     }
 
     public boolean tryConnectTo(Perk other) {

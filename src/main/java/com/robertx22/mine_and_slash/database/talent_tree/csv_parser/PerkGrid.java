@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.talent_tree.csv_parser;
 
+import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
+import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkBuilder;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
@@ -8,7 +10,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
 import java.util.*;
 
-public class TalentGrid {
+public class PerkGrid {
 
     List<List<GridPoint>> grid = new ArrayList<>();
 
@@ -16,7 +18,7 @@ public class TalentGrid {
         return grid.get(x).get(y);
     }
 
-    public TalentGrid(String str) {
+    public PerkGrid(String str) {
 
         int y = 0;
         for (String line : str.split("\n")) {
@@ -131,7 +133,48 @@ public class TalentGrid {
         return false;
     }
 
-    public void createPerks() {
+    public void createSpellPerks() {
+
+        for (List<GridPoint> list : grid) {
+            for (GridPoint point : list) {
+
+                if (point.isTalent()) {
+
+                    String id = point.getEffectID();
+
+                    if (!SlashRegistry.SpellPerkEffects().isRegistered(id)) {
+                        id = id.toLowerCase();
+                        if (!SlashRegistry.SpellPerkEffects().isRegistered(id)) {
+                            id = id.toUpperCase();
+                        }
+                    }
+
+                    SpellPerkEffect effect = null;
+
+                    if (SlashRegistry.SpellPerkEffects().isRegistered(id)) {
+                        effect = SlashRegistry.SpellPerkEffects().get(id);
+                    }
+                    if (effect == null) {
+
+                        System.out.println(point.getID() + " is a broken talent.");
+                    }
+
+                    SpellPerk perk = (SpellPerk) PerkBuilder.createSpell(point.getID())
+                            .pos(point.x, point.y)
+                            .effect(effect)
+                            .connections()
+                            .build();
+
+                    perk.registerToSlashRegistry();
+
+                }
+            }
+
+        }
+
+    }
+
+    public void createTalentPerks() {
 
         for (List<GridPoint> list : grid) {
             for (GridPoint point : list) {

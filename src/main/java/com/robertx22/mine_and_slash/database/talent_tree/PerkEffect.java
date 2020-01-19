@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -22,16 +21,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PerkEffect implements ITooltipList, IApplyableStats, ISlashRegistryEntry<PerkEffect> {
+public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlashRegistryEntry<PerkEffect> {
 
     public PerkType type = PerkType.SMALL;
     public List<ExactStatData> exactStats;
-    private Words word;
 
     boolean hasTexture = false;
     private String guid;
 
-    public boolean isGameChanger = false;
     private ResourceLocation TEXTURE;
 
     public PerkEffect setGameChanger() {
@@ -126,6 +123,11 @@ public class PerkEffect implements ITooltipList, IApplyableStats, ISlashRegistry
 
         }
 
+    }
+
+    @Override
+    public PerkType getPerkType() {
+        return this.type;
     }
 
     @Override

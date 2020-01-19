@@ -24,6 +24,7 @@ import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
@@ -93,6 +94,14 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<Perk> Perks() {
         return getRegistry(SlashRegistryType.PERK);
+    }
+
+    public static SlashRegistryContainer<Perk> SpellPerks() {
+        return getRegistry(SlashRegistryType.SPELL_PERK);
+    }
+
+    public static SlashRegistryContainer<SpellPerkEffect> SpellPerkEffects() {
+        return getRegistry(SlashRegistryType.SPELL_PERK_EFFECT);
     }
 
     public static SlashRegistryContainer<BaseRecipe> Recipes() {
@@ -273,6 +282,8 @@ public class SlashRegistry {
         map.put(SlashRegistryType.LOOT_CRATE, new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
         map.put(SlashRegistryType.QUEST, new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE));
         map.put(SlashRegistryType.QUEST_REWARD, new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, MapQuestReward.INSTANCE));
+        map.put(SlashRegistryType.SPELL_PERK, new SlashRegistryContainer<Perk>(SlashRegistryType.SPELL_PERK, null));
+        map.put(SlashRegistryType.SPELL_PERK_EFFECT, new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null));
 
     }
 

@@ -118,7 +118,12 @@ public class PlayerTalentsData implements IApplyableStats {
     public void applyStats(EntityCap.UnitData data) {
         for (Perk talent : getAllCurrentTalents()) {
             if (talent.effect != null) {
-                talent.effect.applyStats(data);
+
+                if (talent.effect instanceof IApplyableStats) {
+                    IApplyableStats apply = (IApplyableStats) talent.effect;
+                    apply.applyStats(data);
+                }
+
             }
         }
     }

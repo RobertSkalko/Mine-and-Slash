@@ -28,9 +28,9 @@ public class TalentParser {
                 FileUtils.writeStringToFile(file, s, "utf-8");
             }
 
-            TalentGrid grid = new TalentGrid(s);
+            PerkGrid grid = new PerkGrid(s);
 
-            grid.createPerks();
+            grid.createTalentPerks();
 
             grid.createConnections();
 
