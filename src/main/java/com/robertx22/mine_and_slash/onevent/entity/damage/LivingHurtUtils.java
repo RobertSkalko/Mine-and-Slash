@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -217,27 +216,17 @@ public class LivingHurtUtils {
 
         LivingEntity defender = event.getEntityLiving();
 
-        if (defender instanceof PlayerEntity == false) {
+        UnitData data = Load.Unit(defender);
 
-            if (event.getSource() != null) {
-                Entity attacker = event.getSource().getTrueSource();
+        if (event.getSource() != null && event.getSource()
+                .getTrueSource() instanceof LivingEntity) {
+            LivingEntity attacker = (LivingEntity) event.getSource().getTrueSource();
+            data.onDamagedBy(attacker, event.getAmount());
 
-                if (attacker instanceof PlayerEntity == false) {
-                    UnitData data = Load.Unit(event.getEntityLiving());
-                    if (data != null) {
-                        data.onDamagedByNonPlayer(defender, event.getAmount());
-                        data.trySync(defender);
-                    }
-
-                }
-            } else {
-                UnitData data = Load.Unit(event.getEntityLiving());
-                if (data != null) {
-                    data.onDamagedByNonPlayer(defender, event.getAmount());
-                    data.trySync(defender);
-                }
-            }
+        } else {
+            data.onDamagedBy(null, event.getAmount());
         }
+
     }
 
 }

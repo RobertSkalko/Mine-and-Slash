@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,18 +36,16 @@ public class OnMobDeathDrops {
             }
 
             if (!(mobKilled instanceof PlayerEntity)) {
-                if (event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
-                    if (Load.hasUnit(mobKilled)) {
+                if (Load.hasUnit(mobKilled)) {
 
-                        ServerPlayerEntity player = (ServerPlayerEntity) event.getSource()
-                                .getTrueSource();
+                    UnitData mobKilledData = Load.Unit(mobKilled);
 
-                        UnitData mobKilledData = Load.Unit(mobKilled);
+                    Entity killerEntity = mobKilledData.getHighestDamageEntity(mobKilled);
+
+                    if (killerEntity instanceof ServerPlayerEntity) {
+
+                        ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
                         UnitData playerData = Load.Unit(player);
-
-                        if (mobKilledData.shouldDropLoot() == false) {
-                            return;
-                        }
 
                         KilledMobData action = new KilledMobData(mobKilled, mobKilledData, player, playerData);
                         Load.quests(player).onAction(player, action);
@@ -74,6 +73,7 @@ public class OnMobDeathDrops {
                         }
                     }
                 }
+
             }
 
         } catch (

@@ -21,10 +21,7 @@ import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
-import com.robertx22.mine_and_slash.saveclasses.CustomExactStatsData;
-import com.robertx22.mine_and_slash.saveclasses.CustomStatsData;
-import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.saveclasses.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -55,6 +52,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -82,7 +80,7 @@ public class EntityCap {
     private static final String CURRENT_MAP_ID = "current_map_resource_loc";
     private static final String SET_MOB_STATS = "set_mob_stats";
     private static final String NEWBIE_STATUS = "is_a_newbie";
-    private static final String DMG_DONE_BY_NON_PLAYERS = "DMG_DONE_BY_NON_PLAYERS";
+    private static final String DMG_STATS = "dmg_stats";
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
     private static final String TIER = "TIER";
     private static final String PREVENT_LOOT = "PREVENT_LOOT";
@@ -111,9 +109,9 @@ public class EntityCap {
 
         void setEquipsChanged(boolean bool);
 
-        void onDamagedByNonPlayer(LivingEntity entity, float dmg);
+        void onDamagedBy(LivingEntity entity, float dmg);
 
-        boolean shouldDropLoot();
+        Entity getHighestDamageEntity(Entity entity);
 
         int PostGiveExpEvent(LivingEntity killed, PlayerEntity player, int exp);
 
@@ -257,7 +255,7 @@ public class EntityCap {
         Unit unit = null;
         int level = 1;
         int rarity = 0;
-        boolean preventLoot = false;
+
         EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
         // sync these for mobs
 
@@ -269,8 +267,8 @@ public class EntityCap {
         boolean equipsChanged = true;
         int tier = 0;
         boolean shouldSync = false;
-        float dmgByNonPlayers = 0;
 
+        EntityDmgStatsData dmgStats = new EntityDmgStatsData();
         ResourcesData resources = new ResourcesData();
         CustomStatsData customStats = new CustomStatsData();
         CustomExactStatsData customExactStats = new CustomExactStatsData();
@@ -282,7 +280,6 @@ public class EntityCap {
 
             nbt.putInt(LEVEL, level);
             nbt.putInt(RARITY, rarity);
-            nbt.putBoolean(PREVENT_LOOT, preventLoot);
             nbt.putString(ENTITY_TYPE, this.type.toString());
 
             if (unit != null) {
@@ -300,7 +297,6 @@ public class EntityCap {
 
             this.level = nbt.getInt(LEVEL);
             this.rarity = nbt.getInt(RARITY);
-            this.preventLoot = nbt.getBoolean(PREVENT_LOOT);
 
             try {
                 String typestring = nbt.getString(ENTITY_TYPE);
@@ -320,7 +316,6 @@ public class EntityCap {
         public CompoundNBT getNBT() {
             CompoundNBT nbt = getClientNBT();
 
-            nbt.putFloat(DMG_DONE_BY_NON_PLAYERS, dmgByNonPlayers);
             nbt.putInt(EXP, exp);
             nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
@@ -342,6 +337,11 @@ public class EntityCap {
             if (resources != null) {
                 LoadSave.Save(resources, nbt, RESOURCES_LOC);
             }
+
+            if (dmgStats != null) {
+                LoadSave.Save(dmgStats, nbt, DMG_STATS);
+            }
+
             return nbt;
 
         }
@@ -354,7 +354,6 @@ public class EntityCap {
             this.exp = nbt.getInt(EXP);
             this.tier = nbt.getInt(TIER);
             this.uuid = nbt.getString(UUID);
-            this.dmgByNonPlayers = nbt.getFloat(DMG_DONE_BY_NON_PLAYERS);
             this.currentMapResourceLoc = nbt.getString(CURRENT_MAP_ID);
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
             this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
@@ -365,6 +364,15 @@ public class EntityCap {
                 this.resources = LoadSave.Load(ResourcesData.class, new ResourcesData(), nbt, RESOURCES_LOC);
                 if (resources == null) {
                     resources = new ResourcesData();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                this.dmgStats = LoadSave.Load(EntityDmgStatsData.class, new EntityDmgStatsData(), nbt, DMG_STATS);
+                if (dmgStats == null) {
+                    dmgStats = new EntityDmgStatsData();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -462,30 +470,15 @@ public class EntityCap {
         }
 
         @Override
-        public void onDamagedByNonPlayer(LivingEntity entity, float dmg) {
+        public void onDamagedBy(LivingEntity entity, float dmg) {
 
-            this.dmgByNonPlayers += dmg;
-
-            if (this.preventLoot == false && this.shouldDropLoot(entity) == false) {
-                this.preventLoot = true;
-                this.shouldSync = true;
-            }
+            this.dmgStats.onDamage(entity, dmg);
 
         }
 
         @Override
-        public boolean shouldDropLoot() {
-            return this.preventLoot == false;
-        }
-
-        private boolean shouldDropLoot(LivingEntity entity) {
-
-            if (entity.getMaxHealth() * ModConfig.INSTANCE.Server.STOP_DROPS_IF_NON_PLAYER_DOES_DMG_PERCENT
-                    .get() >= this.dmgByNonPlayers) {
-                return true;
-            }
-
-            return false;
+        public Entity getHighestDamageEntity(Entity entity) {
+            return dmgStats.getHighestDamageEntity((ServerWorld) entity.world);
         }
 
         @Override

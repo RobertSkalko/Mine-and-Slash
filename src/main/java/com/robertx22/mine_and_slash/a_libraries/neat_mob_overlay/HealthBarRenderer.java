@@ -25,7 +25,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -320,11 +319,14 @@ public class HealthBarRenderer {
                     off -= 16;
 
                 }
+                /*
                 // show that loots are prevented
                 if (!data.shouldDropLoot()) {
                     renderIcon(off, 0, new ItemStack(Items.BARRIER), 16, 16);
                     off -= 16;
                 }
+
+                 */
                 //MY CODE
 
                 matrix.pop();
