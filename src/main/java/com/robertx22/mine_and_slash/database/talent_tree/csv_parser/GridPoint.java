@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class GridPoint {
+public class GridPoint<T extends Perk> {
 
     public int x;
     public int y;
@@ -31,7 +31,7 @@ public class GridPoint {
         return EqualsBuilder.reflectionEquals(this, obj, false);
     }
 
-    public Perk getPerk() {
+    public T getPerk() {
         // handle both caps and lowercase
         String id = getID();
 
@@ -42,7 +42,7 @@ public class GridPoint {
             }
         }
 
-        return SlashRegistry.Perks().get(id);
+        return (T) SlashRegistry.Perks().get(id);
     }
 
     public boolean isTalent() {

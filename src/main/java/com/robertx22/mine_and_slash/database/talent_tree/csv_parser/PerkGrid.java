@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.database.talent_tree.csv_parser;
 
-import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
-import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkBuilder;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
@@ -10,12 +8,16 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
 import java.util.*;
 
-public class PerkGrid {
+public class PerkGrid<T extends GridPoint> {
 
-    List<List<GridPoint>> grid = new ArrayList<>();
+    protected List<List<T>> grid = new ArrayList<>();
 
-    public GridPoint get(int x, int y) {
+    public T get(int x, int y) {
         return grid.get(x).get(y);
+    }
+
+    public T newGridPoint(int x, int y, String s) {
+        return (T) new GridPoint(x, y, s);
     }
 
     public PerkGrid(String str) {
@@ -29,7 +31,7 @@ public class PerkGrid {
                     grid.add(new ArrayList<>());
                 }
 
-                grid.get(x).add(new GridPoint(x, y, s));
+                grid.get(x).add(newGridPoint(x, y, s));
 
                 x++;
 
@@ -41,10 +43,10 @@ public class PerkGrid {
 
     public void createConnections() {
 
-        List<GridPoint> talents = new ArrayList<>();
+        List<T> talents = new ArrayList<>();
 
-        for (List<GridPoint> list : grid) {
-            for (GridPoint point : list) {
+        for (List<T> list : grid) {
+            for (T point : list) {
                 if (point.isTalent()) {
                     talents.add(point);
                 }
@@ -52,8 +54,8 @@ public class PerkGrid {
 
         }
 
-        for (GridPoint one : talents) {
-            for (GridPoint two : talents) {
+        for (T one : talents) {
+            for (T two : talents) {
                 if (hasPath(one, two)) {
                     one.getPerk().tryConnectTo(two.getPerk());
                 }
@@ -62,14 +64,14 @@ public class PerkGrid {
 
     }
 
-    private boolean hasPath(GridPoint start, GridPoint end) {
-        Queue<GridPoint> openSet = new ArrayDeque<>();
+    private boolean hasPath(T start, T end) {
+        Queue<T> openSet = new ArrayDeque<>();
         openSet.add(start);
 
-        Set<GridPoint> closedSet = new HashSet<>();
+        Set<T> closedSet = new HashSet<>();
 
         while (!openSet.isEmpty()) {
-            GridPoint current = openSet.poll();
+            T current = openSet.poll();
 
             if (current.equals(end)) {
                 return true;
@@ -89,9 +91,9 @@ public class PerkGrid {
         return false;
     }
 
-    public List<GridPoint> getEligibleSurroundingPoints(GridPoint p) {
+    public List<T> getEligibleSurroundingPoints(T p) {
 
-        List<GridPoint> list = new ArrayList<>();
+        List<T> list = new ArrayList<>();
         int x = p.x;
         int y = p.y;
 
@@ -101,7 +103,7 @@ public class PerkGrid {
                     continue;
                 }
                 if (isInRange(x + dx, y + dy)) {
-                    GridPoint point = get(x + dx, y + dy);
+                    T point = get(x + dx, y + dy);
 
                     if (Math.abs(dx) == 1 && Math.abs(dy) == 1) { // we are discovering a diagonal
                         if (get(x + dx, y).isTalent() || get(x, y + dy).isTalent()) {
@@ -133,51 +135,10 @@ public class PerkGrid {
         return false;
     }
 
-    public void createSpellPerks() {
+    public void createAndRegisterAll() {
 
-        for (List<GridPoint> list : grid) {
-            for (GridPoint point : list) {
-
-                if (point.isTalent()) {
-
-                    String id = point.getEffectID();
-
-                    if (!SlashRegistry.SpellPerkEffects().isRegistered(id)) {
-                        id = id.toLowerCase();
-                        if (!SlashRegistry.SpellPerkEffects().isRegistered(id)) {
-                            id = id.toUpperCase();
-                        }
-                    }
-
-                    SpellPerkEffect effect = null;
-
-                    if (SlashRegistry.SpellPerkEffects().isRegistered(id)) {
-                        effect = SlashRegistry.SpellPerkEffects().get(id);
-                    }
-                    if (effect == null) {
-
-                        System.out.println(point.getID() + " is a broken talent.");
-                    }
-
-                    SpellPerk perk = (SpellPerk) PerkBuilder.createSpell(point.getID())
-                            .pos(point.x, point.y)
-                            .effect(effect)
-                            .connections()
-                            .build();
-
-                    perk.registerToSlashRegistry();
-
-                }
-            }
-
-        }
-
-    }
-
-    public void createTalentPerks() {
-
-        for (List<GridPoint> list : grid) {
-            for (GridPoint point : list) {
+        for (List<T> list : grid) {
+            for (T point : list) {
 
                 if (point.isTalent()) {
 
