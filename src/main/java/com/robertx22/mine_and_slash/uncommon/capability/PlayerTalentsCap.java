@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
-import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.saveclasses.talents.PlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,11 +25,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import static com.robertx22.mine_and_slash.database.talent_tree.PerkConnection.Allocation.*;
-
 @Mod.EventBusSubscriber
 public class PlayerTalentsCap {
 
@@ -39,30 +35,8 @@ public class PlayerTalentsCap {
     @CapabilityInject(IPlayerTalentsData.class)
     public static final Capability<IPlayerTalentsData> Data = null;
 
-    public interface IPlayerTalentsData extends ICommonCapability {
-        Set<PerkConnection> getConnections();
+    public abstract static class IPlayerTalentsData extends IPerkCap<Perk, PlayerTalentsData> implements ICommonCapability {
 
-        boolean canAllocatePoint(Perk talent, EntityCap.UnitData data);
-
-        boolean hasPerk(Perk perk);
-
-        boolean tryRemovePoint(Perk talent);
-
-        void allocate(Perk talent);
-
-        int getFreePoints(EntityCap.UnitData data);
-
-        int getAllocatedPoints();
-
-        void reset();
-
-        void applyStats(EntityCap.UnitData data, PlayerEntity player);
-
-        void addResetPoints(int amount);
-
-        PlayerTalentsData getData();
-
-        void syncToClient(PlayerEntity player);
     }
 
     @Mod.EventBusSubscriber
@@ -89,7 +63,7 @@ public class PlayerTalentsCap {
         }
     }
 
-    public static class DefaultImpl implements IPlayerTalentsData {
+    public static class DefaultImpl extends IPlayerTalentsData {
 
         PlayerTalentsData data = new PlayerTalentsData();
 
@@ -109,107 +83,9 @@ public class PlayerTalentsCap {
             }
         }
 
-        @Override
-        public Set<PerkConnection> getConnections() {
-
-            HashSet<PerkConnection> set = new HashSet<>();
-
-            for (Perk talent : SlashRegistry.Perks().getList()) {
-
-                if (data.isAllocated(talent)) {
-                    for (Perk con : talent.connections) {
-                        if (data.isAllocated(con)) {
-                            set.add(new PerkConnection(ALLOCATED, talent, con));
-                        } else {
-                            set.add(new PerkConnection(CAN_ALLOCATE, talent, con));
-                        }
-                    }
-
-                } else {
-                    for (Perk con : talent.connections) {
-                        if (data.isAllocated(con)) {
-                            set.add(new PerkConnection(CAN_ALLOCATE, talent, con));
-                        } else {
-                            set.add(new PerkConnection(CANT_ALLOCATE, talent, con));
-                        }
-                    }
-                }
-
-            }
-
-            return set;
-
-        }
-
-        @Override
-        public boolean canAllocatePoint(Perk talent, EntityCap.UnitData data) {
-
-            if (getFreePoints(data) > 0 == false) {
-                return false;
-            }
-
-            if (talent.isStart) {
-                if (this.getData()
-                        .getAllCurrentTalents()
-                        .stream()
-                        .anyMatch(x -> x.isStart)) {
-                    // if player already picked a starting point, dont allow to pick other start points
-                    return false;
-                }
-
-                return true;
-            }
-
-            boolean can = false;
-            for (Perk con : talent.connections) {
-                if (this.data.isAllocated(con)) {
-                    can = true;
-                    break;
-                }
-            }
-
-            return can;
-
-        }
-
-        @Override
-        public boolean hasPerk(Perk perk) {
-            return this.getData().isAllocated(perk);
-        }
-
-        @Override
-        public boolean tryRemovePoint(Perk talent) {
-            if (getData().canRemove(talent)) {
-                this.getData().remove(talent.GUID());
-                this.getData().resetPoints--;
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public void allocate(Perk talent) {
-            this.data.allocate(talent.GUID());
-        }
-
-        @Override
-        public int getFreePoints(EntityCap.UnitData data) {
-            return getAllowedPoints(data) - this.getAllocatedPoints();
-        }
-
         public int getAllowedPoints(EntityCap.UnitData data) {
             return (int) ((float) data.getLevel() * ModConfig.INSTANCE.Server.TALENT_POINTS_PER_LEVEL
                     .get());
-        }
-
-        @Override
-        public int getAllocatedPoints() {
-            return this.data.getAllocatedTalents();
-        }
-
-        @Override
-        public void reset() {
-            this.data.reset();
         }
 
         @Override
@@ -218,19 +94,20 @@ public class PlayerTalentsCap {
         }
 
         @Override
-        public void addResetPoints(int amount) {
-            this.getData().resetPoints += amount;
+        public PlayerTalentsData getData() {
+            return data;
         }
 
         @Override
-        public PlayerTalentsData getData() {
-            return data;
+        public SlashRegistryContainer getContainer() {
+            return SlashRegistry.Perks();
         }
 
         @Override
         public void syncToClient(PlayerEntity player) {
             MMORPG.sendToClient(new SyncCapabilityToClient((ServerPlayerEntity) player, CapTypes.TALENTS), (ServerPlayerEntity) player);
         }
+
     }
 
     public static class Storage extends BaseStorage<IPlayerTalentsData> {

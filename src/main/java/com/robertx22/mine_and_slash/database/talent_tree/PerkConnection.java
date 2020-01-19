@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class PerkConnection {
 
-    public PerkConnection(Allocation status, Perk one, Perk two) {
+    public PerkConnection(Allocation status, BasePerk one, BasePerk two) {
         this.allocationStatus = status;
         this.one = one;
         this.two = two;
 
     }
 
-    public Perk one, two;
+    public BasePerk one, two;
     public Allocation allocationStatus = Allocation.CANT_ALLOCATE;
 
     public enum Allocation {

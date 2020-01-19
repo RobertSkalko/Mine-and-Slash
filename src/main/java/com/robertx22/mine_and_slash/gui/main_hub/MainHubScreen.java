@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoScreen;
 import com.robertx22.mine_and_slash.gui.stat_allocation_screen.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.stats_overview.StatOverviewScreen;
-import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.talent_tree_gui.TalentPerkTreeScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.client.Minecraft;
@@ -39,7 +39,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         List<INamedScreen> screens = new ArrayList<>();
         screens.add(new MapInfoScreen());
-        screens.add(new PerkTreeScreen());
+        screens.add(new TalentPerkTreeScreen());
         screens.add(new StatOverviewScreen());
         screens.add(new StatAllocationScreen());
 

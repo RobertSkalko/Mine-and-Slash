@@ -1,24 +1,21 @@
-package com.robertx22.mine_and_slash.gui.talent_tree_gui;
+package com.robertx22.mine_and_slash.gui.bases;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.database.talent_tree.Perk;
+import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
 import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
+import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkButton;
+import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkConnectionRender;
 import com.robertx22.mine_and_slash.mmorpg.CapSyncCheck;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.network.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.talents.BasePerksData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap.IPlayerTalentsData;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils.PointF;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.client.Minecraft;
@@ -35,12 +32,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class PerkTreeScreen extends Screen implements INamedScreen {
+import static com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils.PointF;
+import static com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils.generateCurve;
 
-    Minecraft mc;
-    EntityCap.UnitData data;
+public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerksData<T>, C extends IPerkCap<T, D>> extends Screen implements INamedScreen {
 
-    IPlayerTalentsData talents;
+    public Minecraft mc;
+    public EntityCap.UnitData unitData;
+
+    public Set<PerkConnection> connections;
+    public Set<PerkConnectionRender> buttonConnections;
+
+    public C capData;
 
     public float scrollX = 0;
     public float scrollY = 0;
@@ -49,39 +52,36 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
     public static int CENTER_X = 500;
     public static int CENTER_Y = 500;
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/talents/talent_frame.png");
-    private static final ResourceLocation SPACE = new ResourceLocation(Ref.MODID, "textures/gui/talents/space.png");
-    private static final ResourceLocation LINES = new ResourceLocation(Ref.MODID, "textures/gui/talents/lines.png");
+    public abstract ResourceLocation TEXTURE();
+
+    public abstract ResourceLocation SPACE();
+
+    public abstract ResourceLocation LINES();
 
     public static int sizeX = 318;
     public static int sizeY = 233;
 
-    Set<PerkConnection> connections;
+    public abstract CapTypes getCapType();
 
-    Set<PerkConnectionRender> buttonConnections;
+    public abstract void reloadData();
 
-    public PerkTreeScreen() {
+    public BasePerkTreeScreen() {
         super(new StringTextComponent(""));
         this.mc = Minecraft.getInstance();
-        this.data = Load.Unit(mc.player);
+        this.unitData = Load.Unit(mc.player);
 
-        MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
-        this.talents = Load.talents(mc.player);
+        reloadData();
+
+        requestSync();
 
     }
 
-    @Override
-    public ResourceLocation iconLocation() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/talents.png");
-    }
-
-    @Override
-    public Words screenName() {
-        return Words.Talents;
+    public void requestSync() {
+        MMORPG.sendToServer(new RequestSyncCapToClient(getCapType()));
     }
 
     public void refreshConnections() {
-        connections = this.talents.getConnections();
+        connections = this.capData.getConnections();
         this.buttonConnections = getButtonConnections();
     }
 
@@ -89,20 +89,12 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
     public void init(Minecraft mc, int x, int y) {
         super.init(mc, x, y);
 
-        for (Perk talent : SlashRegistry.Perks().getList()) {
-            this.addButton(new PerkButton(talent.getStatus(talents), talent, data));
-        }
-
-        returnToCenter();
-
-        refresh();
-
     }
 
     public void refresh() {
-        MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
+        MMORPG.sendToServer(new RequestSyncCapToClient(getCapType()));
 
-        this.talents = Load.talents(mc.player);
+        reloadData();
 
         refreshConnections();
         refreshAllocatedStatus();
@@ -112,7 +104,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
 
         this.buttons.stream()
                 .filter(x -> x instanceof PerkButton)
-                .forEach(y -> ((PerkButton) y).status = ((PerkButton) y).perk.getStatus(talents));
+                .forEach(y -> ((PerkButton) y).status = ((PerkButton) y).perk.getStatus(capData));
 
     }
 
@@ -128,7 +120,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
 
     }
 
-    private void returnToCenter() {
+    public void returnToCenter() {
         this.scrollX = PerkButton.getSpacing() * CENTER_X;
         this.scrollY = PerkButton.getSpacing() * CENTER_Y;
 
@@ -162,15 +154,13 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
     @Override
     public void render(int x, int y, float ticks) {
 
-        if (CapSyncCheck.get(CapTypes.TALENTS)) {
+        if (CapSyncCheck.get(getCapType())) {
             refresh();
         }
-        
+
         if (mc.player.ticksExisted % 100 == 0) {
-            MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.TALENTS));
-
+            requestSync();
             refresh();
-
         }
 
         super.render(x, y, ticks);
@@ -250,7 +240,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
 
     }
 
-    private Set<PerkConnectionRender> getButtonConnections() {
+    public Set<PerkConnectionRender> getButtonConnections() {
 
         Set<PerkConnectionRender> conns = new ObjectArraySet<>();
 
@@ -278,7 +268,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
         ScreenContext ctx = new ScreenContext(this);
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        Minecraft.getInstance().getTextureManager().bindTexture(LINES);
+        Minecraft.getInstance().getTextureManager().bindTexture(LINES());
 
         for (PerkConnectionRender c : this.buttonConnections) {
             renderConnection(c.perk1, c.perk2, c.connection, ctx);
@@ -314,7 +304,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
 
         float spacing = size + size / 2;
 
-        List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 360f, spacing, true);
+        List<PointF> points = generateCurve(new PointF(x1, y1), new PointF(x2, y2), 360f, spacing, true);
 
         for (PointF point : points) {
 
@@ -333,12 +323,12 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
         int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2 + 10;
 
-        String str2 = "Reset Points (RMB): " + this.talents.getData().resetPoints;
+        String str2 = "Reset Points (RMB): " + this.capData.getData().resetPoints;
 
         mc.fontRenderer.drawStringWithShadow(str2, offsetX + 10, offsetY, TextFormatting.GREEN
                 .getColor());
 
-        String str = "Points (LMB): " + this.talents.getFreePoints(data);
+        String str = "Points (LMB): " + this.capData.getFreePoints(unitData);
 
         mc.fontRenderer.drawStringWithShadow(str, offsetX + 10, offsetY + mc.fontRenderer.FONT_HEIGHT + 5, TextFormatting.GREEN
                 .getColor());
@@ -349,7 +339,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
         int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
-        Minecraft.getInstance().getTextureManager().bindTexture(SPACE);
+        Minecraft.getInstance().getTextureManager().bindTexture(SPACE());
         blit(offsetX + 3, offsetY + 3, this.getBlitOffset(), 0.0F, 0.0F, sizeX - 6, sizeY - 6, 2048, 2048);
     }
 
@@ -357,7 +347,7 @@ public class PerkTreeScreen extends Screen implements INamedScreen {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
         int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
-        Minecraft.getInstance().getTextureManager().bindTexture(TEXTURE);
+        Minecraft.getInstance().getTextureManager().bindTexture(TEXTURE());
         blit(offsetX, offsetY, this.getBlitOffset(), 0.0F, 0.0F, sizeX, sizeY, 256, 512);
 
     }

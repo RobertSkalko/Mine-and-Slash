@@ -16,10 +16,10 @@ import java.awt.*;
 
 public class PerkButton extends ImageButton {
 
-    Perk perk;
-    EntityCap.UnitData data;
-    Minecraft mc;
-    PerkConnection.Allocation status;
+    public Perk perk;
+    public EntityCap.UnitData data;
+    public Minecraft mc;
+    public PerkConnection.Allocation status;
 
     public PerkButton(PerkConnection.Allocation status, Perk perk,
                       EntityCap.UnitData data) {
@@ -46,7 +46,7 @@ public class PerkButton extends ImageButton {
         int checkX = finalX;
         int checkY = finalY;
 
-        if (PerkTreeScreen.shouldRender(checkX, checkY, ctx, perk.getPerkType())) {
+        if (TalentPerkTreeScreen.shouldRender(checkX, checkY, ctx, perk.getPerkType())) {
             Minecraft mc = Minecraft.getInstance();
             mc.getTextureManager().bindTexture(this.perk.getPerkType().TEXTURE);
             RenderSystem.disableDepthTest();
@@ -80,7 +80,7 @@ public class PerkButton extends ImageButton {
     public int getPosX(ScreenContext ctx) {
         int offsetX = mc.mainWindow.getScaledWidth() / 2;
         offsetX *= ctx.getZoomMulti();
-        offsetX -= PerkTreeScreen.sizeX * ctx.zoom / 2;
+        offsetX -= TalentPerkTreeScreen.sizeX * ctx.zoom / 2;
 
         return getX(ctx) + offsetX;
     }
@@ -88,7 +88,7 @@ public class PerkButton extends ImageButton {
     public int getPosY(ScreenContext ctx) {
         int offsetY = mc.mainWindow.getScaledHeight() / 2;
         offsetY *= ctx.getZoomMulti();
-        offsetY -= PerkTreeScreen.sizeY * ctx.zoom / 2;
+        offsetY -= TalentPerkTreeScreen.sizeY * ctx.zoom / 2;
         return getY(ctx) + offsetY;
     }
 

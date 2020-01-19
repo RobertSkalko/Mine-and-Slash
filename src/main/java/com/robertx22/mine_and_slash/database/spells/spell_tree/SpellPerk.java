@@ -3,8 +3,9 @@ package com.robertx22.mine_and_slash.database.spells.spell_tree;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 
-public class SpellPerk extends BasePerk<SpellPerk, Object> {
+public class SpellPerk extends BasePerk<SpellPerk, IPerkCap> {
 
     public SpellPerk(String guid) {
         super(guid);
@@ -16,7 +17,7 @@ public class SpellPerk extends BasePerk<SpellPerk, Object> {
     }
 
     @Override
-    public PerkConnection.Allocation getStatus(Object data) {
+    public PerkConnection.Allocation getStatus(IPerkCap data) {
         return null;
 /*
         if (data.getData().isAllocated(this)) {

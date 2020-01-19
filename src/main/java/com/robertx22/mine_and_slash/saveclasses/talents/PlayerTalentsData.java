@@ -15,10 +15,6 @@ public class PlayerTalentsData extends BasePerksData<Perk> implements IApplyable
         return SlashRegistry.Perks();
     }
 
-    public void reset() {
-        this.map.clear();
-    }
-
     @Override
     public void applyStats(EntityCap.UnitData data) {
         for (Perk talent : getAllCurrentTalents()) {

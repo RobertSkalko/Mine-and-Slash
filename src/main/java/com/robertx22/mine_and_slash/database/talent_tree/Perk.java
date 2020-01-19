@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.talent_tree;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 
 public class Perk extends BasePerk<Perk, PlayerTalentsCap.IPlayerTalentsData> {
 
@@ -19,7 +20,7 @@ public class Perk extends BasePerk<Perk, PlayerTalentsCap.IPlayerTalentsData> {
     }
 
     @Override
-    public PerkConnection.Allocation getStatus(PlayerTalentsCap.IPlayerTalentsData data) {
+    public PerkConnection.Allocation getStatus(IPerkCap data) {
 
         if (data.getData().isAllocated(this)) {
             return PerkConnection.Allocation.ALLOCATED;

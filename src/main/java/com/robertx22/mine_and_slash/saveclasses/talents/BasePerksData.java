@@ -32,9 +32,13 @@ public abstract class BasePerksData<T extends BasePerk> {
         map.put(guid, false);
     }
 
+    public void reset() {
+        this.map.clear();
+    }
+
     public abstract SlashRegistryContainer getRegistryContainer();
 
-    public int getAllocatedTalents() {
+    public int getAllocatedPerks() {
 
         int talents = 0;
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {

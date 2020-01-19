@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
-import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.bases.BasePerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.talent_tree_gui.TalentPerkTreeScreen;
 import net.minecraft.client.Minecraft;
 
 public class ScreenContext {
@@ -17,7 +18,7 @@ public class ScreenContext {
         setupOffsets();
     }
 
-    public ScreenContext(PerkTreeScreen screen) {
+    public ScreenContext(BasePerkTreeScreen screen) {
         this.zoom = screen.zoom;
         this.scrollX = screen.scrollX;
         this.scrollY = screen.scrollY;
@@ -25,8 +26,8 @@ public class ScreenContext {
     }
 
     private void setupOffsets() {
-        offsetX = (int) (Minecraft.getInstance().mainWindow.getScaledWidth() * getZoomMulti() / 2 - PerkTreeScreen.sizeX * getZoomMulti() / 2);
-        offsetY = (int) (Minecraft.getInstance().mainWindow.getScaledHeight() * getZoomMulti() / 2 - PerkTreeScreen.sizeY * getZoomMulti() / 2);
+        offsetX = (int) (Minecraft.getInstance().mainWindow.getScaledWidth() * getZoomMulti() / 2 - TalentPerkTreeScreen.sizeX * getZoomMulti() / 2);
+        offsetY = (int) (Minecraft.getInstance().mainWindow.getScaledHeight() * getZoomMulti() / 2 - TalentPerkTreeScreen.sizeY * getZoomMulti() / 2);
     }
 
     public float getZoomMulti() {

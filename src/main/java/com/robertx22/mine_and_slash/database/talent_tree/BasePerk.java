@@ -3,11 +3,12 @@ package com.robertx22.mine_and_slash.database.talent_tree;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BasePerk<T extends BasePerk, C> implements ISlashRegistryEntry<T> {
+public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implements ISlashRegistryEntry<T> {
 
     public BasePerk(String guid) {
         this.guid = guid;
@@ -21,7 +22,7 @@ public abstract class BasePerk<T extends BasePerk, C> implements ISlashRegistryE
 
     public boolean isStart = false;
 
-    public abstract PerkConnection.Allocation getStatus(C data);
+    public abstract PerkConnection.Allocation getStatus(IPerkCap data);
 
     public boolean isConnectedTo(T talent) {
         for (T con : connections) {
