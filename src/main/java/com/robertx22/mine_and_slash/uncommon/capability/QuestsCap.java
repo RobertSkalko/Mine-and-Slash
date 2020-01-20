@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
-import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.database.quests.actions.ActionDoneData;
 import com.robertx22.mine_and_slash.database.quests.base.Quest;
 import com.robertx22.mine_and_slash.database.quests.data.QuestLogData;
 import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
@@ -37,8 +37,6 @@ public class QuestsCap {
     public interface IQuestsData extends ICommonCapability {
 
         void onAction(PlayerEntity player, ActionDoneData actionData);
-
-        void syncToClient(PlayerEntity player);
 
         void setMapQuest(Quest quest);
 
@@ -124,6 +122,11 @@ public class QuestsCap {
         @Override
         public QuestSaveData getMapQuestData() {
             return data.mapCompletitionQuest;
+        }
+
+        @Override
+        public CapTypes getCapType() {
+            return CapTypes.QUESTS;
         }
     }
 

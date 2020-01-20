@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -73,8 +74,6 @@ public class PlayerMapCap {
         void onMinute(PlayerEntity player);
 
         void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player);
-
-        void syncToClient(PlayerEntity player);
 
         void onQuestFinished();
     }
@@ -157,6 +156,11 @@ public class PlayerMapCap {
         }
 
         @Override
+        public CapTypes getCapType() {
+            return CapTypes.MAP_DATA;
+        }
+
+        @Override
         public void onPlayerDeath(PlayerEntity player) {
 
             this.isDead = true;
@@ -220,11 +224,6 @@ public class PlayerMapCap {
             this.mapdata = map.clone();
             this.questFinished = false;
 
-            MMORPG.syncMapData((ServerPlayerEntity) player);
-        }
-
-        @Override
-        public void syncToClient(PlayerEntity player) {
             MMORPG.syncMapData((ServerPlayerEntity) player);
         }
 

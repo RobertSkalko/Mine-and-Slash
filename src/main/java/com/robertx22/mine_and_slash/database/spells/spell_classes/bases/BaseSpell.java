@@ -18,9 +18,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
 
 public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell> {
 
@@ -107,8 +105,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return 1000;
     }
 
-    public abstract boolean cast(World world, PlayerEntity caster, Hand hand,
-                                 int ticksInUse, SpellItemData data);
+    public abstract boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data);
 
     public boolean CanCast(PlayerEntity caster, SpellItemData data) {
 

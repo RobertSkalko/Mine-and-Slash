@@ -14,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
@@ -80,8 +79,8 @@ public class SpellStormCloud extends BaseSpell implements IGenerated<BaseSpell> 
     }
 
     @Override
-    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
-                        SpellItemData data) {
+    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
+        World world = caster.world;
 
         RayTraceResult ray = caster.pick(10D, 0.0F, false);
 
@@ -91,7 +90,7 @@ public class SpellStormCloud extends BaseSpell implements IGenerated<BaseSpell> 
 
         en.setPosition(pos.x, pos.y, pos.z);
 
-        world.addEntity(en);
+        caster.world.addEntity(en);
 
         return true;
     }

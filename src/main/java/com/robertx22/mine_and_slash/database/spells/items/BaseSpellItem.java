@@ -99,7 +99,7 @@ public abstract class BaseSpellItem extends Item implements IAutoLocName, MyForg
                 SpellItemData data = Spell.Load(stack);
 
                 if (Spell().CanCast((PlayerEntity) playerIn, data)) {
-                    Spell().cast(worldIn, (PlayerEntity) playerIn, playerIn.getActiveHand(), 5, data);
+                    Spell().cast((PlayerEntity) playerIn, 5, data);
 
                     stack.damageItem(1, playerIn, (entity) -> {
                         if (entity != null) {

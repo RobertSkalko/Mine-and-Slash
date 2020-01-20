@@ -22,8 +22,6 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
 
     public boolean isStart = false;
 
-    public abstract PerkConnection.Allocation getStatus(IPerkCap data);
-
     public boolean isConnectedTo(T talent) {
         for (T con : connections) {
             if (con.GUID().equals(talent.GUID())) {
@@ -65,6 +63,35 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
         }
 
         return added;
+
+    }
+
+    public PerkConnection.Allocation getStatus(IPerkCap data) {
+
+        if (data.getPerksData().isAllocated(this)) {
+            return PerkConnection.Allocation.ALLOCATED;
+        } else {
+
+            if (this.isStart) {
+                if (data.getAllocatedPoints() == 0) { // only 1 start
+                    return PerkConnection.Allocation.CAN_ALLOCATE;
+                }
+            }
+
+            boolean hascon = false;
+            for (BasePerk con : this.connections) {
+                if (data.getPerksData().isAllocated(con)) {
+                    hascon = true;
+                }
+            }
+
+            if (hascon) {
+                return PerkConnection.Allocation.CAN_ALLOCATE;
+            } else {
+                return PerkConnection.Allocation.CANT_ALLOCATE;
+            }
+
+        }
 
     }
 

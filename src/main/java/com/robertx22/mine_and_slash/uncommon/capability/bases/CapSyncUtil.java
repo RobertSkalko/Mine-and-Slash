@@ -12,6 +12,12 @@ public class CapSyncUtil {
         syncTalents(player);
         syncProffs(player);
         syncQuests(player);
+        syncSpells(player);
+    }
+
+    public static void syncSpells(PlayerEntity player) {
+        PlayerSpellCap.ISpellsCap data = Load.spells(player);
+        data.syncToClient(player);
     }
 
     public static void syncQuests(PlayerEntity player) {

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -108,6 +109,11 @@ public class WeaponSpeedCap {
             if (cooldownTicks > 0) {
                 this.cooldownTicks = MathHelper.clamp(this.cooldownTicks - 1, 0, 1000);
             }
+        }
+
+        @Override
+        public CapTypes getCapType() {
+            return null;
         }
     }
 

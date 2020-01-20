@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpel
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
@@ -29,8 +28,8 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
     }
 
     @Override
-    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
-                        SpellItemData data) {
+    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
+        World world = caster.world;
 
         if (!world.isRemote) {
 
@@ -40,7 +39,7 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
         }
 
         SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
-        caster.swingArm(hand);
+
         return true;
     }
 

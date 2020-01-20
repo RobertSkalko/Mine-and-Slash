@@ -19,7 +19,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.network.EntityUnitPacket;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
-import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
 import com.robertx22.mine_and_slash.saveclasses.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -102,8 +101,6 @@ public class EntityCap {
         void trySync(LivingEntity entity);
 
         void onAttackEntity(LivingEntity attacker, LivingEntity victim);
-
-        void syncToClient(PlayerEntity player);
 
         GearItemData getWeaponData(LivingEntity entity);
 
@@ -658,12 +655,8 @@ public class EntityCap {
         }
 
         @Override
-        public void syncToClient(PlayerEntity player) {
-            if (unit != null) {
-                ServerPlayerEntity mp = (ServerPlayerEntity) player;
-                SyncCapabilityToClient packet = new SyncCapabilityToClient(mp, CapTypes.ENTITY_DATA);
-                MMORPG.sendToClient(packet, mp);
-            }
+        public CapTypes getCapType() {
+            return CapTypes.ENTITY_DATA;
         }
 
         @Override

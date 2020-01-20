@@ -80,7 +80,7 @@ public class TalentPerkTreeScreen extends BasePerkTreeScreen<Perk, PlayerTalents
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
         int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2 + 10;
 
-        String str2 = "Reset Points (RMB): " + this.capData.getData().resetPoints;
+        String str2 = "Reset Points (RMB): " + this.capData.getPerksData().resetPoints;
 
         mc.fontRenderer.drawStringWithShadow(str2, offsetX + 10, offsetY, TextFormatting.GREEN
                 .getColor());

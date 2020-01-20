@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -57,8 +56,8 @@ public abstract class BaseNovaSpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
-                        SpellItemData data) {
+    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
+        World world = caster.world;
 
         if (!world.isRemote) {
 
@@ -83,7 +82,7 @@ public abstract class BaseNovaSpell extends BaseSpell {
         }
 
         SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1, 1);
-        caster.swingArm(hand);
+
         return true;
     }
 

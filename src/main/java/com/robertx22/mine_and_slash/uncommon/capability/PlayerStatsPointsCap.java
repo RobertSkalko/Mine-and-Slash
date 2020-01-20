@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.PlayerStatPointsData;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
@@ -82,6 +83,11 @@ public class PlayerStatsPointsCap {
             CompoundNBT nbt = new CompoundNBT();
             LoadSave.Save(data, nbt, LOC);
             return nbt;
+        }
+
+        @Override
+        public CapTypes getCapType() {
+            return CapTypes.STAT_POINTS;
         }
 
         @Override

@@ -4,10 +4,8 @@ import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
-import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.saveclasses.talents.PlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -16,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -83,6 +80,11 @@ public class PlayerTalentsCap {
             }
         }
 
+        @Override
+        public CapTypes getCapType() {
+            return CapTypes.TALENTS;
+        }
+
         public int getAllowedPoints(EntityCap.UnitData data) {
             return (int) ((float) data.getLevel() * ModConfig.INSTANCE.Server.TALENT_POINTS_PER_LEVEL
                     .get());
@@ -94,18 +96,13 @@ public class PlayerTalentsCap {
         }
 
         @Override
-        public PlayerTalentsData getData() {
+        public PlayerTalentsData getPerksData() {
             return data;
         }
 
         @Override
         public SlashRegistryContainer getContainer() {
             return SlashRegistry.Perks();
-        }
-
-        @Override
-        public void syncToClient(PlayerEntity player) {
-            MMORPG.sendToClient(new SyncCapabilityToClient((ServerPlayerEntity) player, CapTypes.TALENTS), (ServerPlayerEntity) player);
         }
 
     }

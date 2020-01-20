@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -23,8 +22,9 @@ public abstract class BaseBolt extends BaseSpell {
     }
 
     @Override
-    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
-                        SpellItemData data) {
+    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
+
+        World world = caster.world;
 
         if (!world.isRemote) {
             EntityElementalBolt projectile = this.projectile(world);
@@ -33,7 +33,7 @@ public abstract class BaseBolt extends BaseSpell {
         }
 
         SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SPLASH_POTION_THROW, 1, 1);
-        caster.swingArm(hand);
+
         return true;
     }
 

@@ -22,6 +22,8 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(QuestsCap.IQuestsData.class, new QuestsCap.Storage(), QuestsCap.DefaultImpl::new);
 
+        CapabilityManager.INSTANCE.register(PlayerSpellCap.ISpellsCap.class, new PlayerSpellCap.Storage(), PlayerSpellCap.DefaultImpl::new);
+
     }
 
 }

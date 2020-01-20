@@ -15,15 +15,13 @@ import static com.robertx22.mine_and_slash.database.talent_tree.PerkConnection.A
 
 public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
 
-    public abstract void syncToClient(PlayerEntity player);
-
     public abstract int getAllowedPoints(EntityCap.UnitData data);
 
     public abstract void allocate(T talent);
 
     public abstract void applyStats(EntityCap.UnitData data, PlayerEntity player);
 
-    public abstract D getData();
+    public abstract D getPerksData();
 
     public abstract SlashRegistryContainer getContainer();
 
@@ -34,11 +32,11 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
         for (Object o : getContainer().getList()) {
             T talent = (T) o;
 
-            if (getData().isAllocated(talent)) {
+            if (getPerksData().isAllocated(talent)) {
                 for (Object obj : talent.connections) {
                     T con = (T) obj;
 
-                    if (getData().isAllocated(con)) {
+                    if (getPerksData().isAllocated(con)) {
                         set.add(new PerkConnection(ALLOCATED, talent, con));
                     } else {
                         set.add(new PerkConnection(CAN_ALLOCATE, talent, con));
@@ -49,7 +47,7 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
                 for (Object obj : talent.connections) {
                     T con = (T) obj;
 
-                    if (getData().isAllocated(con)) {
+                    if (getPerksData().isAllocated(con)) {
                         set.add(new PerkConnection(CAN_ALLOCATE, talent, con));
                     } else {
                         set.add(new PerkConnection(CANT_ALLOCATE, talent, con));
@@ -64,20 +62,20 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
     }
 
     public boolean hasPerk(T perk) {
-        return this.getData().isAllocated(perk);
+        return this.getPerksData().isAllocated(perk);
     }
 
     public boolean tryRemovePoint(T talent) {
-        if (getData().canRemove(talent)) {
-            this.getData().remove(talent.GUID());
-            this.getData().resetPoints--;
+        if (getPerksData().canRemove(talent)) {
+            this.getPerksData().remove(talent.GUID());
+            this.getPerksData().resetPoints--;
             return true;
         }
         return false;
     }
 
     public void allocate(Perk talent) {
-        this.getData().allocate(talent.GUID());
+        this.getPerksData().allocate(talent.GUID());
     }
 
     public int getFreePoints(EntityCap.UnitData data) {
@@ -85,15 +83,15 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
     }
 
     public int getAllocatedPoints() {
-        return this.getData().getAllocatedPerks();
+        return this.getPerksData().getAllocatedPerks();
     }
 
     public void reset() {
-        this.getData().reset();
+        this.getPerksData().reset();
     }
 
     public void addResetPoints(int amount) {
-        this.getData().resetPoints += amount;
+        this.getPerksData().resetPoints += amount;
     }
 
     public boolean canAllocatePoint(T talent, EntityCap.UnitData data) {
@@ -103,7 +101,10 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
         }
 
         if (talent.isStart) {
-            if (this.getData().getAllCurrentTalents().stream().anyMatch(x -> x.isStart)) {
+            if (this.getPerksData()
+                    .getAllCurrentPerks()
+                    .stream()
+                    .anyMatch(x -> x.isStart)) {
                 // if player already picked a starting point, dont allow to pick other start points
                 return false;
             }
@@ -114,7 +115,7 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
         boolean can = false;
         for (Object obj : talent.connections) {
             T con = (T) obj;
-            if (this.getData().isAllocated(con)) {
+            if (this.getPerksData().isAllocated(con)) {
                 can = true;
                 break;
             }

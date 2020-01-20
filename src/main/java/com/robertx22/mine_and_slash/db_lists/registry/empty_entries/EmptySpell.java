@@ -7,10 +7,8 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 
 public class EmptySpell extends BaseSpell {
     @Override
@@ -59,8 +57,7 @@ public class EmptySpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
-                        SpellItemData data) {
+    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
         return false;
     }
 }

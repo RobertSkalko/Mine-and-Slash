@@ -1,9 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
-import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.saveclasses.professions.ProfessionData;
@@ -49,7 +47,6 @@ public class ProfessionsCap {
 
         boolean canCraftRecipe(BaseRecipe recipe);
 
-        void syncToClient(PlayerEntity player);
     }
 
     @Mod.EventBusSubscriber
@@ -124,6 +121,11 @@ public class ProfessionsCap {
             return stat * (float) Math.pow(lvl, getMultiplier(lvl));
         }
 
+        @Override
+        public CapTypes getCapType() {
+            return CapTypes.PROFESSIONS;
+        }
+
         private static float getMultiplier(int lvl) {
             return MathHelper.clamp(0.4F + (float) lvl / 50, 0.4F, 1.4F);
         }
@@ -155,10 +157,6 @@ public class ProfessionsCap {
             return getLevel(recipe.profession()) >= recipe.professionLevelReq;
         }
 
-        @Override
-        public void syncToClient(PlayerEntity player) {
-            MMORPG.sendToClient(new SyncCapabilityToClient((ServerPlayerEntity) player, CapTypes.PROFESSIONS), (ServerPlayerEntity) player);
-        }
     }
 
     public static class Storage extends BaseStorage<IProfessionsData> {

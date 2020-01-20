@@ -14,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -57,10 +56,10 @@ public class SpellInstantHeal extends BaseSpellHeal {
     }
 
     @Override
-    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
-                        SpellItemData spellData) {
+    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData spellData) {
 
         try {
+            World world = caster.world;
 
             if (!world.isRemote) {
 

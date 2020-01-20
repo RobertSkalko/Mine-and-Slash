@@ -2,13 +2,15 @@ package com.robertx22.mine_and_slash.saveclasses.talents;
 
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 import java.util.*;
 
 @Storable
-public abstract class BasePerksData<T extends BasePerk> {
+public abstract class BasePerksData<T extends BasePerk> implements IApplyableStats {
 
     @Store
     public int resetPoints = 0;
@@ -49,6 +51,20 @@ public abstract class BasePerksData<T extends BasePerk> {
             }
         }
         return talents;
+    }
+
+    @Override
+    public void applyStats(EntityCap.UnitData data) {
+        for (BasePerk talent : getAllCurrentPerks()) {
+            if (talent.effect != null) {
+
+                if (talent.effect instanceof IApplyableStats) {
+                    IApplyableStats apply = (IApplyableStats) talent.effect;
+                    apply.applyStats(data);
+                }
+
+            }
+        }
     }
 
     public boolean canRemove(T toRemove) {
@@ -100,7 +116,7 @@ public abstract class BasePerksData<T extends BasePerk> {
         return false;
     }
 
-    public List<T> getAllCurrentTalents() {
+    public List<T> getAllCurrentPerks() {
         List<T> list = new ArrayList<>();
 
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {

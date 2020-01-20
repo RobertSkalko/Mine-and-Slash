@@ -46,6 +46,12 @@ public class OnPlayerClone {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            Load.spells(current).setNBT(Load.spells(original).getNBT());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

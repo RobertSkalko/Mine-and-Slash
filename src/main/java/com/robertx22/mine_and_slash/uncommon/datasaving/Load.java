@@ -37,6 +37,13 @@ public class Load {
                 .orElse(new PlayerTalentsCap.DefaultImpl());
     }
 
+    @Nonnull
+    public static PlayerSpellCap.ISpellsCap spells(PlayerEntity provider) {
+
+        return provider.getCapability(PlayerSpellCap.Data)
+                .orElse(new PlayerSpellCap.DefaultImpl());
+    }
+
     public static WeaponSpeedCap.IWeaponSpeedCap weaponSpeed(PlayerEntity provider) {
 
         if (provider != null) {

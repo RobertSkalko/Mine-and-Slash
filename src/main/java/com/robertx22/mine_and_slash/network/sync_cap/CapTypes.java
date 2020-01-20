@@ -30,6 +30,12 @@ public enum CapTypes {
             return Load.talents(player);
         }
     },
+    SPELLS {
+        @Override
+        public ICommonCapability getCap(PlayerEntity player) {
+            return Load.spells(player);
+        }
+    },
     QUESTS {
         @Override
         public ICommonCapability getCap(PlayerEntity player) {

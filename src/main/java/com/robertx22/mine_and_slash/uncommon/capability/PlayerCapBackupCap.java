@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.PlayersCapBackup;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -69,6 +70,11 @@ public class PlayerCapBackupCap {
 
             return nbt;
 
+        }
+
+        @Override
+        public CapTypes getCapType() {
+            return null;
         }
 
         @Override

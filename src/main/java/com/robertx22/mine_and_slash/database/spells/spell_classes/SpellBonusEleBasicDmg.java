@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -74,8 +73,8 @@ public class SpellBonusEleBasicDmg extends BaseSpell implements IGenerated<BaseS
     }
 
     @Override
-    public boolean cast(World world, PlayerEntity caster, Hand hand, int ticksInUse,
-                        SpellItemData data) {
+    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
+        World world = caster.world;
 
         int amp = data.getDamage(Load.Unit(caster).getUnit());
 

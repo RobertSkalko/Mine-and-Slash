@@ -20,7 +20,7 @@ public class SpellPerk extends BasePerk<SpellPerk, IPerkCap> {
     public PerkConnection.Allocation getStatus(IPerkCap data) {
         return null;
 /*
-        if (data.getData().isAllocated(this)) {
+        if (data.getPerksData().isAllocated(this)) {
             return PerkConnection.Allocation.ALLOCATED;
         } else {
 
@@ -32,7 +32,7 @@ public class SpellPerk extends BasePerk<SpellPerk, IPerkCap> {
 
             boolean hascon = false;
             for (Perk con : this.connections) {
-                if (data.getData().isAllocated(con)) {
+                if (data.getPerksData().isAllocated(con)) {
                     hascon = true;
                 }
             }
