@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -94,6 +94,6 @@ public class PlayerSpellsData {
     }
 
     public BaseSpell getSpellByKeybind(int key) {
-        return new BlizzardSpell(); // todo
+        return new ThunderspearSpell(); // todo
     }
 }

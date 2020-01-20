@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.F
 import com.robertx22.mine_and_slash.database.spells.spell_classes.projectile.SpellAcidBolt;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.projectile.SpellFireBolt;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.projectile.SpellThunderBolt;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -34,7 +35,9 @@ public class Spells implements ISlashRegistryInit {
                     add(new RegenerateSpell());
 
                     add(new BlizzardSpell());
+
                     add(new ThunderstormSpell());
+                    add(new ThunderspearSpell());
 
                 }
             }

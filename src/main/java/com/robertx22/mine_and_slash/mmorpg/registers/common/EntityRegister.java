@@ -14,12 +14,14 @@ import com.robertx22.mine_and_slash.database.spells.entities.proj.EntityAcidBolt
 import com.robertx22.mine_and_slash.database.spells.entities.proj.EntityFireBolt;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.EntityFrostBolt;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.EntityThunderBolt;
+import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityStaffProjectile;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityWandProjectile;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
@@ -47,6 +49,7 @@ public class EntityRegister {
 
     public static final EntityType<? extends Entity> BLIZZARD;
     public static final EntityType<? extends Entity> THUNDERSTORM;
+    public static final EntityType<? extends TridentEntity> THUNDER_SPEAR;
 
     public static final EntityType<? extends Entity> FIREBOLT;
     public static final EntityType<? extends Entity> FROSTBOLT;
@@ -69,6 +72,7 @@ public class EntityRegister {
     static {
         BLIZZARD = newType(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
         THUNDERSTORM = newType(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
+        THUNDER_SPEAR = newType(ThunderspearEntity::new, ThunderspearEntity::new, "thunder_spear", false);
 
         FIREBOLT = newType(EntityFireBolt::new, EntityFireBolt::new, "entity_fire_bolt");
         FROSTBOLT = newType(EntityFrostBolt::new, EntityFrostBolt::new, "entity_frost_bolt");

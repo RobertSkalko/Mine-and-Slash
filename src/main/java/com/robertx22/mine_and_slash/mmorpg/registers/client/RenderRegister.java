@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.bases.MySpriteRende
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.TridentRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,10 +19,10 @@ public class RenderRegister {
     public static void regRenders(/*ModelRegistryEvent evt*/) {
 
         for (EntityType type : EntityRegister.ENTITY_THAT_USE_ITEM_RENDERS) {
-
             RenderingRegistry.registerEntityRenderingHandler(type, newRenFac());
-
         }
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.THUNDER_SPEAR, TridentRenderer::new);
 
     }
 

@@ -16,12 +16,12 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem, ISpellEntity {
+public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsItem, ISpellEntity {
 
     EntitySpellData syncedSpellData;
     ServerEntitySpellData serverSpellData;
 
-    public InvisibleEntity(EntityType type, World world) {
+    public BaseInvisibleEntity(EntityType type, World world) {
         super(type, world);
 
         this.setNoGravity(true);
@@ -32,12 +32,12 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem,
     @Override
     public void tick() {
 
-        if (this.ticksExisted > getLifeInTicks() && getLifeInTicks() != -1) {
-            this.remove();
-        }
-
         super.tick();
 
+        if (this.ticksExisted > getLifeInTicks() && getLifeInTicks() != -1) {
+            this.remove();
+
+        }
     }
 
     @Override
@@ -47,16 +47,12 @@ public abstract class InvisibleEntity extends Entity implements IMyRenderAsItem,
 
     @Override
     protected void readAdditional(CompoundNBT nbt) {
-
         this.syncedSpellData = EntitySpellDataSaving.Load(nbt);
-
     }
 
     @Override
     protected void writeAdditional(CompoundNBT nbt) {
-
         EntitySpellDataSaving.Save(nbt, syncedSpellData);
-
     }
 
     @Nullable

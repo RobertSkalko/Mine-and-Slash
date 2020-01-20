@@ -1,6 +1,5 @@
-package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
+package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.database.spells.entities.bases.InvisibleEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -13,7 +12,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public abstract class BaseCloudEntity extends InvisibleEntity {
+public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
     public BaseCloudEntity(EntityType type, World world) {
         super(type, world);
