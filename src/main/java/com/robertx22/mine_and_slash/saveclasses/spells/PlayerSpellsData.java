@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellStormCloud;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ThunderstormSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -52,7 +52,7 @@ public class PlayerSpellsData {
 
         return data.cooldownIsReady();
     }
-    
+
     private void onSpellCast(BaseSpell spell) {
         SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
@@ -95,6 +95,6 @@ public class PlayerSpellsData {
     }
 
     public BaseSpell getSpellByKeybind(int key) {
-        return new SpellStormCloud(Elements.Thunder); // todo
+        return new ThunderstormSpell(Elements.Thunder); // todo
     }
 }

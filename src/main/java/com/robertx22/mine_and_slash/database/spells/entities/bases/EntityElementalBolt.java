@@ -128,11 +128,6 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
                 }
             }
 
-            //ParticleTypes.BUBBLE_POP water,ParticleTypes.ITEM_SNOWBALL water,
-            // ParticleTypes.FIRE fire,
-            // ParticleTypes.COMPOSTER nature,
-            // ParticleTypes.WITCH thunder
-
         }
 
         ticks++;

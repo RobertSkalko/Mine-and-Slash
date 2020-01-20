@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
-import com.robertx22.mine_and_slash.database.spells.items.BaseSpellItem;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -78,10 +77,6 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
                                                     Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
 
-        if (player.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
-            return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
-        }
-
         player.setActiveHand(handIn);
         return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
     }
@@ -89,11 +84,6 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn,
                                      LivingEntity player) {
-
-        // stops using it when you want to right click a spell
-        if (player.getHeldItemMainhand().getItem() instanceof BaseSpellItem) {
-            return stack;
-        }
 
         if (worldIn.isRemote == false) {
 

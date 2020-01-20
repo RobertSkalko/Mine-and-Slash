@@ -1,7 +1,5 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.self;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellBuffCheck;
 import com.robertx22.mine_and_slash.potion_effects.all.AoeRegenPotion;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell.SpellBuffType;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;

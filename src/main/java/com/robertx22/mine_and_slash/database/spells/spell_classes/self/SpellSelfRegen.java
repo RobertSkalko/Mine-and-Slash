@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.self;
 
-import com.robertx22.mine_and_slash.database.spells.items.self.ItemSelfRegen;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellBuffCheck;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
@@ -45,11 +44,6 @@ public class SpellSelfRegen extends BaseSpellHeal {
     public EffectCalculation ScalingValue() {
         return new EffectCalculation(HealthRegen.INSTANCE, 0.75F);
 
-    }
-
-    @Override
-    public Item getSpellItem() {
-        return ItemSelfRegen.ITEM;
     }
 
     @Override

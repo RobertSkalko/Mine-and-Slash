@@ -1,34 +1,31 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.aoe_projectile;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.DamageData;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
+public abstract class BaseSpellProjectile extends BaseBolt {
 
     @Override
     public int useTimeTicks() {
-        return 15;
+        return 10;
     }
 
-    public BaseAoeSpellProjectile() {
+    public BaseSpellProjectile() {
         super();
     }
 
     @Override
     public SpellType getSpellType() {
-        return SpellType.Aoe_Projectile;
+        return SpellType.Single_Target_Projectile;
     }
 
     @Override
     public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
+
         World world = caster.world;
 
         if (!world.isRemote) {
@@ -41,11 +38,6 @@ public abstract class BaseAoeSpellProjectile extends BaseBoltAOE {
         SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
 
         return true;
-    }
-
-    @Override
-    public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.getElement()), 0.5F);
     }
 
 }

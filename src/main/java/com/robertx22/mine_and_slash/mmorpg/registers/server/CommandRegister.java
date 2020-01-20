@@ -24,7 +24,6 @@ public class CommandRegister {
         GiveMap.register(dispatcher);
         GiveRune.register(dispatcher);
         GiveRunedGear.register(dispatcher);
-        GiveSpell.register(dispatcher);
         GiveUniqueGear.register(dispatcher);
         SetEntityLevel.register(dispatcher);
         SetEntityRarity.register(dispatcher);

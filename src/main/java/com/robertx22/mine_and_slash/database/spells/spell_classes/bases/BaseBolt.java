@@ -1,10 +1,6 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.projectile;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.DamageData;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;

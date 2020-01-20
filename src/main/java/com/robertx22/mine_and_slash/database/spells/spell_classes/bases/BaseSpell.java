@@ -17,7 +17,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell> {
@@ -31,10 +30,6 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Aoe_Damage_Nova,
         LASTING_AOE,
         Self_Buff,
-    }
-
-    public boolean use3dBookModel() {
-        return true;
     }
 
     @Override
@@ -92,8 +87,6 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     public abstract Elements getElement();
 
     public boolean ScalesWithLevel = true;
-
-    public abstract Item getSpellItem();
 
     public BaseSpell() {
 

@@ -1,12 +1,10 @@
 package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.database.spells.items.projectile.ItemFrostBolt;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -44,11 +42,6 @@ public class EmptySpell extends BaseSpell {
     @Override
     public Elements getElement() {
         return Elements.Physical;
-    }
-
-    @Override
-    public Item getSpellItem() {
-        return ItemFrostBolt.ITEM;
     }
 
     @Override

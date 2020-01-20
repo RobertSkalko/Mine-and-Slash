@@ -4,26 +4,6 @@ import com.robertx22.mine_and_slash.database.items.currency.*;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.spells.items.ItemBonusEleAtkDmg;
-import com.robertx22.mine_and_slash.database.spells.items.ItemStormCloud;
-import com.robertx22.mine_and_slash.database.spells.items.aoe_bomb_proj.ItemAcidBomb;
-import com.robertx22.mine_and_slash.database.spells.items.aoe_bomb_proj.ItemFireBomb;
-import com.robertx22.mine_and_slash.database.spells.items.aoe_bomb_proj.ItemIceBomb;
-import com.robertx22.mine_and_slash.database.spells.items.aoe_bomb_proj.ItemThunderBomb;
-import com.robertx22.mine_and_slash.database.spells.items.aoe_projectile.ItemAcidExplosion;
-import com.robertx22.mine_and_slash.database.spells.items.aoe_projectile.ItemFlameExplosion;
-import com.robertx22.mine_and_slash.database.spells.items.aoe_projectile.ItemFrostExplosion;
-import com.robertx22.mine_and_slash.database.spells.items.aoe_projectile.ItemLightningExplosion;
-import com.robertx22.mine_and_slash.database.spells.items.nova.ItemFireNova;
-import com.robertx22.mine_and_slash.database.spells.items.nova.ItemFrostNova;
-import com.robertx22.mine_and_slash.database.spells.items.nova.ItemPoisonNova;
-import com.robertx22.mine_and_slash.database.spells.items.nova.ItemThunderNova;
-import com.robertx22.mine_and_slash.database.spells.items.projectile.ItemAcidBolt;
-import com.robertx22.mine_and_slash.database.spells.items.projectile.ItemFireBolt;
-import com.robertx22.mine_and_slash.database.spells.items.projectile.ItemFrostBolt;
-import com.robertx22.mine_and_slash.database.spells.items.projectile.ItemThunderBolt;
-import com.robertx22.mine_and_slash.database.spells.items.self.ItemInstantHeal;
-import com.robertx22.mine_and_slash.database.spells.items.self.ItemSelfRegen;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
@@ -34,7 +14,6 @@ import com.robertx22.mine_and_slash.items.bags.master_bag.ItemMasterBag;
 import com.robertx22.mine_and_slash.items.misc.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items.AlchemyItemRegister;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -135,32 +114,6 @@ public class ItemRegister {
         list.add(new ItemLevelNearestEntity());
         list.add(new ItemMapBackPortal());
         list.add(new ItemNewbieGearBag());
-
-        list.add(new ItemAcidBolt());
-        list.add(new ItemFireBolt());
-        list.add(new ItemFrostBolt());
-        list.add(new ItemThunderBolt());
-
-        list.add(new ItemAcidBomb());
-        list.add(new ItemFireBomb());
-        list.add(new ItemIceBomb());
-        list.add(new ItemThunderBomb());
-
-        list.add(new ItemFireNova());
-        list.add(new ItemFrostNova());
-        list.add(new ItemThunderNova());
-        list.add(new ItemPoisonNova());
-
-        list.add(new ItemAcidExplosion());
-        list.add(new ItemFrostExplosion());
-        list.add(new ItemLightningExplosion());
-        list.add(new ItemFlameExplosion());
-
-        list.add(new ItemInstantHeal());
-        list.add(new ItemSelfRegen());
-
-        list.add(new ItemBonusEleAtkDmg(Elements.Physical));
-        list.add(new ItemStormCloud(Elements.Physical));
 
         for (Item item : list) {
             if (item instanceof IGenerated) {

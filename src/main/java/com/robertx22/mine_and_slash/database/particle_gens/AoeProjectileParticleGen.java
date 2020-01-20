@@ -11,7 +11,7 @@ public class AoeProjectileParticleGen extends ParticleGen {
                        Elements.RGB color) {
         for (int i = 0; i < amount; i++) {
 
-            Vec3d r = GeometryUtils.getRandomHorizontalPosInRadiusCircle(x, y, z, (float) radius);
+            Vec3d r = GeometryUtils.getRandomPosInRadiusCircle(x, y, z, (float) radius);
 
             this.spawnRedstone(color, r.x, r.y, r.z);
 

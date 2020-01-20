@@ -1,6 +1,5 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.aoe_projectile;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.projectile.BaseBolt;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.util.text.ITextComponent;

@@ -57,7 +57,6 @@ public class MasterLootGen {
         items.addAll(new CurrencyLootGen(info).tryGenerate());
         items.addAll(new AwakenRuneWordLootGen(info).tryGenerate());
         items.addAll(new GearLootGen(info).tryGenerate());
-        items.addAll(new SpellLootGen(info).tryGenerate());
         items.addAll(new MapLootGen(info).tryGenerate());
         items.addAll(new RuneLootGen(info).tryGenerate());
         items.addAll(new RunedGearLootGen(info).tryGenerate());

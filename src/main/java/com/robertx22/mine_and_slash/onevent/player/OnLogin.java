@@ -9,11 +9,9 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.self.SpellInstantHeal;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -95,16 +93,7 @@ public class OnLogin {
         giveGear(Necklace.INSTANCE, player);
         giveGear(Bracelet.INSTANCE, player);
 
-        SpellBlueprint spell = new SpellBlueprint(1);
-
-        spell.spellPart.set(new SpellInstantHeal());
-
-        spell.level.LevelRange = false;
-        spell.rarity.setSpecificRarity(0);
-
         player.inventory.addItemStackToInventory(new ItemStack(ItemOre.ItemOres.get(0)));
-
-        player.inventory.addItemStackToInventory(spell.createStack());
 
         if (MMORPG.RUN_DEV_TOOLS) {
             // TESTING MAPS

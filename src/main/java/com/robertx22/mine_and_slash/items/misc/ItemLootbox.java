@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.SpellBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.CompatibleItemLootGen;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
@@ -65,7 +64,6 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
     public enum LootTypes {
         Gear,
-        Spell,
         Currency
     }
 
@@ -210,16 +208,6 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
                     stacks.add(GearCreationUtils.CreateStack(print));
                 }
-            }
-
-        } else if (lootType.equals(LootTypes.Spell)) {
-
-            for (int i = 0; i < this.ItemAmount.get(this.size); i++) {
-                SpellBlueprint print = new SpellBlueprint(lvl);
-                print.rarity.minRarity = this.rarity;
-                print.level.LevelRange = false;
-
-                stacks.add(print.createStack());
             }
 
         } else if (lootType.equals(LootTypes.Currency)) {
