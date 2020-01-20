@@ -19,7 +19,7 @@ public class SpellUtils {
     public static void summonLightningStrike(Entity entity) {
 
         LightningBoltEntity lightningboltentity = new LightningBoltEntity(entity.world, (double) entity
-                .getX() + 0.5D, (double) entity.getY(), (double) entity.getZ() + 0.5D, false);
+                .getX() + 0.5D, (double) entity.getY(), (double) entity.getZ() + 0.5D, true);  //boolean true means it's only an effect!'
 
         ((ServerWorld) entity.world).addLightningBolt(lightningboltentity);
 

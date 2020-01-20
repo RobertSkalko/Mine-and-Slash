@@ -10,6 +10,8 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -73,6 +75,8 @@ public class ThunderspearSpell extends BaseSpell {
         SpellUtils.setupProjectileForCasting(en, caster, 2);
 
         caster.world.addEntity(en);
+
+        caster.world.playMovingSound((PlayerEntity) null, en, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         return true;
     }

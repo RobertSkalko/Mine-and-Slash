@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.particles.DripEleParticle;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.BubbleParticle;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,6 +19,7 @@ public class ParticleFactoryRegister {
             ParticleFactoryRegisterEvent event) {
 
         Minecraft.getInstance().particles.registerFactory(ParticleRegister.DRIP, DripEleParticle.DrippingElementalFactory::new);
+        Minecraft.getInstance().particles.registerFactory(ParticleRegister.THUNDER, BubbleParticle.Factory::new);
 
         MMORPG.devToolsLog("Registered Particles");
     }

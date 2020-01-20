@@ -9,6 +9,7 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Storable
@@ -33,22 +34,26 @@ public class EntityDmgStatsData {
 
     public LivingEntity getHighestDamageEntity(ServerWorld world) {
 
-        Map.Entry<String, Float> entry = map.entrySet()
+        Optional<Map.Entry<String, Float>> opt = map.entrySet()
                 .stream()
-                .max((one, two) -> one.getValue() >= two.getValue() ? 1 : -1)
-                .get();
+                .max((one, two) -> one.getValue() >= two.getValue() ? 1 : -1);
 
-        String id = entry.getKey();
-        Float val = entry.getValue();
+        if (opt.isPresent()) {
 
-        if (enviroDmg > val) {
-            return null; // means enviroment did more damage than the highest entity dmg dealer
-        }
+            Map.Entry<String, Float> entry = opt.get();
 
-        Entity en = Utilities.getEntityByUUID(world, UUID.fromString(id));
+            String id = entry.getKey();
+            Float val = entry.getValue();
 
-        if (en instanceof LivingEntity) {
-            return (LivingEntity) en;
+            if (enviroDmg > val) {
+                return null; // means enviroment did more damage than the highest entity dmg dealer
+            }
+
+            Entity en = Utilities.getEntityByUUID(world, UUID.fromString(id));
+
+            if (en instanceof LivingEntity) {
+                return (LivingEntity) en;
+            }
         }
         return null;
 

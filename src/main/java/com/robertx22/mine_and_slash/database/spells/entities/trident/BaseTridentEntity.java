@@ -1,9 +1,12 @@
 package com.robertx22.mine_and_slash.database.spells.entities.trident;
 
+import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ServerEntitySpellData;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -15,6 +18,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -108,6 +112,14 @@ public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
             this.removed = true;
         }
 
+        if (this.ticksExisted > 2) {
+            for (int i = 0; i < 10; i++) {
+                Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(posX, posY, posZ, 0.1F);
+
+                world.addParticle(ParticleRegister.THUNDER, true, p.x, p.y, p.z, 0, 0, 0);
+            }
+        }
+
         super.tick();
 
         if (removed) {
@@ -118,18 +130,23 @@ public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
     @Override
     protected void onEntityHit(EntityRayTraceResult ray) {
 
-        Entity entity = ray.getEntity();
-        Entity shooter = this.getCaster();
+        if (!world.isRemote) {
 
-        if (entity == shooter) {
-            return;
+            Entity entity = ray.getEntity();
+            Entity shooter = this.getCaster();
+
+            if (entity == shooter) {
+                return;
+            }
+
+            this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D)); // bounce back
+
+            SpellUtils.summonLightningStrike(entity);
+
+        } else {
+            SoundEvent soundevent = SoundEvents.ITEM_TRIDENT_HIT;
+            this.playSound(soundevent, 8F, 1.0F);
+
         }
-
-        SoundEvent soundevent = SoundEvents.ITEM_TRIDENT_HIT;
-
-        this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D)); // bounce back
-
-        this.playSound(soundevent, 8F, 1.0F);
-
     }
 }

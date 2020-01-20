@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.particles.EleParticleData;
 import com.robertx22.mine_and_slash.particles.ParticleDeserializer;
+import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,14 +16,19 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ParticleRegister {
 
     public final static String eleId = Ref.MODID + ":drip";
+    public final static String thunderId = Ref.MODID + ":thunder";
 
     @ObjectHolder(eleId)
     public static final ParticleType<EleParticleData> DRIP = null;
+
+    @ObjectHolder(thunderId)
+    public static final BasicParticleType THUNDER = null;
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<ParticleType<?>> event) {
 
         register(eleId, ParticleDeserializer.INSTANCE);
+        register(thunderId, new BasicParticleType(false));
 
     }
 

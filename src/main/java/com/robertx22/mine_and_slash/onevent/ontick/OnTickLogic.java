@@ -27,7 +27,7 @@ public class OnTickLogic {
     static final int TicksToRegen = 100;
     static final int TicksToGiveMapPortal = 400;
     static final int TicksToPassMinute = 1200;
-    static final int TicksToSpellCooldowns = 20;
+    static final int TicksToSpellCooldowns = 2;
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
