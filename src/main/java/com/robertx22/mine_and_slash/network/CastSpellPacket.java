@@ -37,8 +37,7 @@ public class CastSpellPacket {
 
     }
 
-    public static void handle(final CastSpellPacket pkt,
-                              Supplier<NetworkEvent.Context> ctx) {
+    public static void handle(final CastSpellPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
         ctx.get().enqueueWork(() -> {
             try {
@@ -49,6 +48,8 @@ public class CastSpellPacket {
 
                 if (spells.getSpellData().canCast(pkt.hotbarNumber, player)) {
                     spells.getSpellData().setToCast(pkt.hotbarNumber, player, 0);
+
+                    spells.syncToClient(player);
                 }
 
             } catch (Exception e) {

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import info.loenwind.autosave.annotations.Storable;
@@ -17,11 +17,15 @@ public class PlayerSpellsData {
     public int castingTicksLeft = 0;
 
     @Store
+    public int lastSpellCastTimeInTicks = 0;
+
+    @Store
     public String spellBeingCast = "";
 
     public void cancelCast() {
         spellBeingCast = "";
         castingTicksLeft = 0;
+        lastSpellCastTimeInTicks = 0;
     }
 
     public enum Hotbar {
@@ -54,6 +58,7 @@ public class PlayerSpellsData {
         this.spellBeingCast = spell.GUID();
 
         this.castingTicksLeft = spell.useTimeTicks();
+        this.lastSpellCastTimeInTicks = spell.useTimeTicks();
 
     }
 
@@ -129,6 +134,6 @@ public class PlayerSpellsData {
     }
 
     public BaseSpell getSpellByKeybind(int key) {
-        return new BlizzardSpell(); // todo
+        return new ThunderstormSpell(); // todo
     }
 }

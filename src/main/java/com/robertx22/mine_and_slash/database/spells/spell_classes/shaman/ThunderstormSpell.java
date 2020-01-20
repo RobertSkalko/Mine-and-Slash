@@ -41,7 +41,7 @@ public class ThunderstormSpell extends BaseSpell {
 
     @Override
     public int useTimeTicks() {
-        return 20;
+        return 40;
     }
 
     @Override
@@ -72,7 +72,8 @@ public class ThunderstormSpell extends BaseSpell {
 
         Vec3d pos = ray.getHitVec();
 
-        Entity en = SpellUtils.getSpellEntity(new ThunderstormEntity(world), new SpellEffectDamage(getElement()), data, caster);
+        Entity en = SpellUtils.getSpellEntity(
+                new ThunderstormEntity(world), new SpellEffectDamage(getElement()), data, caster);
 
         en.setPosition(pos.x, pos.y, pos.z);
 

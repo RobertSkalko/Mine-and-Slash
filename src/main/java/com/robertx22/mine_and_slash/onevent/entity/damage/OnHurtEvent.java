@@ -14,7 +14,6 @@ public class OnHurtEvent {
             return;
         }
 
-        // LivingHurtUtils.disableIfCastingSpell(event);
         LivingHurtUtils.onAttack(event);
         LivingHurtUtils.modifyDamage(event);
         LivingHurtUtils.onHurtRecordNonPlayerDmg(event);

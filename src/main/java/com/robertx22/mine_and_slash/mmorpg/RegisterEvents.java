@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
 import com.robertx22.mine_and_slash.onevent.item.*;
 import com.robertx22.mine_and_slash.onevent.my_events.CollectGearEvent;
 import com.robertx22.mine_and_slash.onevent.my_events.GiveExpSub;
+import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.onevent.ontick.OnTickLogic;
 import com.robertx22.mine_and_slash.onevent.player.*;
 import com.robertx22.mine_and_slash.uncommon.capability.WeaponSpeedCap;
@@ -36,6 +37,7 @@ public class RegisterEvents {
         register(OnLogin.class);
         register(OnLogout.class);
         register(OnTickLogic.class);
+        register(OnClientTick.class);
         register(CapSync.class);
         register(StopCastingIfInteract.class);
 

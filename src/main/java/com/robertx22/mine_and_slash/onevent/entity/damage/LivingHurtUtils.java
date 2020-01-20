@@ -52,20 +52,6 @@ public class LivingHurtUtils {
 
     }
 
-    /*
-    // would be dumb if player can attack while casting
-    public static void disableIfCastingSpell(LivingHurtEvent event) {
-        if (event.getSource() != null) {
-            if (event.getSource().getTrueSource() instanceof PlayerEntity) {
-                if (Load.spells((PlayerEntity) event.getSource().getTrueSource()).getSpellData().isCasting()) {
-                    event.setCanceled(true);
-                }
-            }
-        }
-    }
-
-     */
-
     public static void onAttack(LivingHurtEvent event) {
 
         LivingEntity target = event.getEntityLiving();

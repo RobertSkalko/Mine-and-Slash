@@ -10,16 +10,18 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 public class BottomMiddleOverlay extends BasePlayerOverlay {
 
     @Override
-    public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
-                     RenderGameOverlayEvent event, UnitData data) {
+    public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity, RenderGameOverlayEvent event, UnitData data) {
         Unit unit = data.getUnit();
+
+        int offY = 12;
+        int offY2 = 45;
 
         int height = mc.mainWindow.getScaledHeight();
         int width = mc.mainWindow.getScaledWidth();
 
         // ENERGY
         int x = width / 2 - this.TEXTURE_WIDTH * 2;
-        int y = height - 15;
+        int y = height - offY;
 
         this.DrawBar(mc, gui, energytexturepath, data.getCurrentEnergy(), unit.energyData().val, Type.ENE, data, x, y);
 
@@ -27,23 +29,26 @@ public class BottomMiddleOverlay extends BasePlayerOverlay {
 
         // MANA
         x = width / 2 + this.TEXTURE_WIDTH;
-        y = height - 15;
+        y = height - offY;
         this.DrawBar(mc, gui, manatexturepath, data.getCurrentMana(), unit.manaData().val, Type.MANA, data, x, y);
         // MANA
 
         // HEALTHs
         x = width / 2 - this.TEXTURE_WIDTH;
-        y = height - 53;
+        y = height - offY2;
 
-        this.DrawBar(mc, gui, healthtexturepath, unit.health()
-                .CurrentValue(entity, unit), unit.healthData().val, Type.HP, data, x, y);
+        this.DrawBar(
+                mc, gui, healthtexturepath, unit.health().CurrentValue(entity, unit), unit.healthData().val, Type.HP,
+                data, x, y
+        );
         // HEALTH
 
         // EXP
         x = width / 2 + 5;
-        y = height - 53;
+        y = height - offY2;
 
-        this.DrawBar(mc, gui, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, x, y);
+        this.DrawBar(
+                mc, gui, experiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, x, y);
         // EXP
 
     }

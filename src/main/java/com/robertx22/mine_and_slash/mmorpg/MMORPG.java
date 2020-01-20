@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.gear_overlay.GearOverlayGUI;
 import com.robertx22.mine_and_slash.gui.player_overlays.PlayerBarsOverlayScreen;
+import com.robertx22.mine_and_slash.gui.spell_cast_bar.SpellCastBarOverlay;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
@@ -87,7 +88,8 @@ public class MMORPG {
 
     private static final String PROTOCOL_VERSION = Integer.toString(1);
 
-    public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(Ref.MODID, "main_channel"))
+    public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder.named(
+            new ResourceLocation(Ref.MODID, "main_channel"))
             .clientAcceptedVersions(PROTOCOL_VERSION::equals)
             .serverAcceptedVersions(PROTOCOL_VERSION::equals)
             .networkProtocolVersion(() -> PROTOCOL_VERSION)
@@ -161,7 +163,9 @@ public class MMORPG {
 
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);
+
         MinecraftForge.EVENT_BUS.register(new PlayerBarsOverlayScreen(Minecraft.getInstance()));
+        MinecraftForge.EVENT_BUS.register(new SpellCastBarOverlay());
 
         if (ClientContainer.INSTANCE.SHOW_UNMET_GEAR_REQUIREMENTS_GUI.get()) {
             MinecraftForge.EVENT_BUS.register(new GearOverlayGUI(Minecraft.getInstance()));
@@ -213,7 +217,8 @@ public class MMORPG {
 
         }
 
-        Stats.allPreGenMapStatLists = new AllPreGenMapStats(); // in case stat lists are made before all stats are added up by other mods?
+        Stats.allPreGenMapStatLists = new AllPreGenMapStats(); // in case stat lists are made before all stats are
+        // added up by other mods?
 
     }
 
@@ -240,8 +245,8 @@ public class MMORPG {
             return;
         }
 
-        PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(pos.getX(), pos
-                .getY(), pos.getZ(), 50, world.getDimension().getType());
+        PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(
+                pos.getX(), pos.getY(), pos.getZ(), 50, world.getDimension().getType());
 
         Network.send(PacketDistributor.NEAR.with(() -> point), msg);
 

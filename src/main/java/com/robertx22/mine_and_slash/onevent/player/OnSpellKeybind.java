@@ -16,12 +16,15 @@ public class OnSpellKeybind {
         Minecraft mc = Minecraft.getInstance();
         int key = event.getKey();
 
-        for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {
-            if (key == entry.getKey().getKeyCode()) {
-                MMORPG.sendToServer(new CastSpellPacket(KeybindsRegister.HOTBAR.get(entry)));
+        if (mc.currentScreen == null) {
+
+            for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {
+                if (key == entry.getKey().getKeyCode()) {
+                    MMORPG.sendToServer(new CastSpellPacket(KeybindsRegister.HOTBAR.get(entry)));
+
+                }
 
             }
-
         }
     }
 }
