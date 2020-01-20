@@ -29,6 +29,6 @@ public class NoMobAroundCondition extends LootCrateCondition {
 
     @Override
     public ITextComponent tellCondition() {
-        return new StringTextComponent("You cannot open this crate while mobs are around.");
+        return new StringTextComponent("You cannot openStatAllocation this crate while mobs are around.");
     }
 }

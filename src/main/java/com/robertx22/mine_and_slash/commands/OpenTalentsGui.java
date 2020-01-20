@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.OpenTalentsGuiPacket;
+import com.robertx22.mine_and_slash.network.OpenGuiPacket;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -21,7 +21,7 @@ public class OpenTalentsGui {
         try {
 
             if (source.getEntity() instanceof ServerPlayerEntity) {
-                MMORPG.sendToClient(new OpenTalentsGuiPacket(), (ServerPlayerEntity) source
+                MMORPG.sendToClient(new OpenGuiPacket(OpenGuiPacket.GuiType.TALENTS), (ServerPlayerEntity) source
                         .getEntity());
             }
 

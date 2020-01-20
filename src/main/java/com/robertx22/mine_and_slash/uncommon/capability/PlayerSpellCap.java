@@ -38,6 +38,7 @@ public class PlayerSpellCap {
     public abstract static class ISpellsCap extends IPerkCap<SpellPerk, SpellPerksData> implements ICommonCapability {
         public abstract BaseSpell getSpellByKeybind(int key);
 
+        public abstract PlayerSpellsData getSpellData();
     }
 
     @Mod.EventBusSubscriber
@@ -126,6 +127,11 @@ public class PlayerSpellCap {
         @Override
         public BaseSpell getSpellByKeybind(int key) {
             return this.playerSpellsData.getSpellByKeybind(key);
+        }
+
+        @Override
+        public PlayerSpellsData getSpellData() {
+            return this.playerSpellsData;
         }
     }
 

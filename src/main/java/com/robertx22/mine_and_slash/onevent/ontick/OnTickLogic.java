@@ -27,6 +27,7 @@ public class OnTickLogic {
     static final int TicksToRegen = 100;
     static final int TicksToGiveMapPortal = 400;
     static final int TicksToPassMinute = 1200;
+    static final int TicksToSpellCooldowns = 20;
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
@@ -105,6 +106,13 @@ public class OnTickLogic {
 
                 }
 
+                if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
+                    data.ticksToSpellCooldowns = 0;
+                    Load.spells(player)
+                            .getSpellData()
+                            .onTimePassTickCooldowns(TicksToSpellCooldowns);
+                }
+
                 PlayerTickDatas.put(player.getUniqueID(), data);
 
             } catch (Exception e) {
@@ -120,12 +128,14 @@ public class OnTickLogic {
         public int playerSyncTick = 0;
         public int mapPortalTicks = 0;
         public int ticksToPassMinute = 0;
+        public int ticksToSpellCooldowns = 0;
 
         public void increment() {
             regenTicks++;
             playerSyncTick++;
             mapPortalTicks++;
             ticksToPassMinute++;
+            ticksToSpellCooldowns++;
         }
 
     }

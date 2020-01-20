@@ -91,7 +91,7 @@ public class MapLootCrateItem extends Item {
 
             Tooltip.addEmpty(tooltip);
 
-            tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Right click to open!"));
+            tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Right click to openStatAllocation!"));
 
         } catch (Exception e) {
             e.printStackTrace();

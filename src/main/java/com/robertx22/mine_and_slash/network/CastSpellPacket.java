@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.network;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -49,10 +47,8 @@ public class CastSpellPacket {
 
                 PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                BaseSpell spell = spells.getSpellByKeybind(pkt.hotbarNumber);
-
-                if (spell.CanCast(player, new SpellItemData())) {
-                    spell.cast(player, 0, new SpellItemData());
+                if (spells.getSpellData().canCast(pkt.hotbarNumber, player)) {
+                    spells.getSpellData().cast(pkt.hotbarNumber, player, 0);
                 }
 
             } catch (Exception e) {

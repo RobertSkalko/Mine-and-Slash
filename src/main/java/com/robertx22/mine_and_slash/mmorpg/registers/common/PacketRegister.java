@@ -49,11 +49,9 @@ public class PacketRegister {
 
         reg(SpendStatPointPacket.class, SpendStatPointPacket::encode, SpendStatPointPacket::decode, SpendStatPointPacket::handle);
 
-        reg(OpenPickStatsGuiPacket.class, OpenPickStatsGuiPacket::encode, OpenPickStatsGuiPacket::decode, OpenPickStatsGuiPacket::handle);
+        reg(OpenGuiPacket.class, OpenGuiPacket::encode, OpenGuiPacket::decode, OpenGuiPacket::handle);
 
         reg(AllocateTalentPacket.class, AllocateTalentPacket::encode, AllocateTalentPacket::decode, AllocateTalentPacket::handle);
-
-        reg(OpenTalentsGuiPacket.class, OpenTalentsGuiPacket::encode, OpenTalentsGuiPacket::decode, OpenTalentsGuiPacket::handle);
 
         reg(TryRemoveTalentPacket.class, TryRemoveTalentPacket::encode, TryRemoveTalentPacket::decode, TryRemoveTalentPacket::handle);
 
