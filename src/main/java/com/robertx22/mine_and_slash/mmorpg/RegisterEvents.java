@@ -37,6 +37,7 @@ public class RegisterEvents {
         register(OnLogout.class);
         register(OnTickLogic.class);
         register(CapSync.class);
+        register(StopCastingIfInteract.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnKeyPress.class);
@@ -72,9 +73,7 @@ public class RegisterEvents {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnTooltip.class);
 
-            FMLJavaModLoadingContext.get()
-                    .getModEventBus()
-                    .register(ItemDyeRegister.class);
+            FMLJavaModLoadingContext.get().getModEventBus().register(ItemDyeRegister.class);
 
         });
 

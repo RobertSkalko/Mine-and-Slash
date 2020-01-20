@@ -122,9 +122,8 @@ public class EntityCap {
 
         int getLevel();
 
-        void mobBasicAttack(LivingHurtEvent event, LivingEntity source,
-                            LivingEntity target, UnitData sourcedata, UnitData targetdata,
-                            float event_damage);
+        void mobBasicAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData sourcedata,
+                            UnitData targetdata, float event_damage);
 
         void setLevel(int lvl, LivingEntity entity);
 
@@ -172,9 +171,8 @@ public class EntityCap {
 
         boolean tryUseWeapon(GearItemData gear, LivingEntity entity, float multi);
 
-        void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData gear,
-                              LivingEntity source, LivingEntity target,
-                              UnitData targetdata);
+        void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData gear, LivingEntity source,
+                              LivingEntity target, UnitData targetdata);
 
         void onLogin(PlayerEntity player);
 
@@ -186,8 +184,7 @@ public class EntityCap {
 
         void clearCurrentMapId();
 
-        void unarmedAttack(LivingHurtEvent event, LivingEntity source,
-                           LivingEntity target, UnitData targetdata);
+        void unarmedAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData targetdata);
 
         boolean decreaseRarity(LivingEntity entity);
 
@@ -388,8 +385,7 @@ public class EntityCap {
         }
 
         @Override
-        public void mobBasicAttack(LivingHurtEvent event, LivingEntity source,
-                                   LivingEntity target, UnitData sourcedata,
+        public void mobBasicAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData sourcedata,
                                    UnitData targetdata, float event_damage) {
 
             MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
@@ -400,7 +396,9 @@ public class EntityCap {
 
             num *= SlashRegistry.getEntityConfig(source, sourcedata).DMG_MULTI;
 
-            DamageEffect dmg = new DamageEffect(event, source, target, (int) num, sourcedata, targetdata, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None);
+            DamageEffect dmg = new DamageEffect(event, source, target, (int) num, sourcedata, targetdata,
+                                                EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None
+            );
 
             dmg.Activate();
 
@@ -540,9 +538,9 @@ public class EntityCap {
 
                 this.setLevel(level + 1, player);
                 setExp(getRemainingExp());
-                player.sendMessage(new StringTextComponent(TextFormatting.YELLOW + "" + TextFormatting.BOLD)
-                        .appendSibling(Chats.You_have_leveled_up.locName())
-                        .appendText("!"));
+                player.sendMessage(
+                        new StringTextComponent(TextFormatting.YELLOW + "" + TextFormatting.BOLD).appendSibling(
+                                Chats.You_have_leveled_up.locName()).appendText("!"));
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
                 onLvlPostStatPickMsg(player);
                 onLvlPostTalentsMsg(player);
@@ -565,9 +563,12 @@ public class EntityCap {
             int points = Load.talents((PlayerEntity) en).getFreePoints(this);
 
             if (points > 0) {
-                ITextComponent msg = new StringTextComponent(TextFormatting.BLUE + "You have " + points + " Unspent Talent points." + TextFormatting.ITALIC + " Click to Open Talents");
+                ITextComponent msg = new StringTextComponent(
+                        TextFormatting.BLUE + "You have " + points + " Unspent Talent points." + TextFormatting.ITALIC + " Click to Open Talents");
                 msg.setStyle(msg.getStyle()
-                        .setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + OpenTalentsGui.COMMAND)));
+                                     .setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                                                                   "/" + OpenTalentsGui.COMMAND
+                                     )));
                 en.sendMessage(msg);
             }
         }
@@ -577,9 +578,12 @@ public class EntityCap {
             int points = Load.statPoints((PlayerEntity) en).getAvailablePoints(this);
 
             if (points > 0) {
-                ITextComponent msg = new StringTextComponent(TextFormatting.GREEN + "You have " + points + " Unspent Stat points." + TextFormatting.ITALIC + " Click to Open Gui");
+                ITextComponent msg = new StringTextComponent(
+                        TextFormatting.GREEN + "You have " + points + " Unspent Stat points." + TextFormatting.ITALIC + " " + "Click to Open Gui");
                 msg.setStyle(msg.getStyle()
-                        .setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + OpenPickStatsGui.COMMAND)));
+                                     .setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                                                                   "/" + OpenPickStatsGui.COMMAND
+                                     )));
                 en.sendMessage(msg);
             }
         }
@@ -594,8 +598,7 @@ public class EntityCap {
         @Override
         public void setLevel(int lvl, LivingEntity entity) {
 
-            level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
-                    .get());
+            level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
 
             this.equipsChanged = true;
             this.shouldSync = true;
@@ -710,8 +713,8 @@ public class EntityCap {
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
                         .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));
 
-                ITextComponent suffix = new StringTextComponent(rarity.textFormatColor() + "")
-                        .appendSibling(rarityprefix.appendText(" ").appendSibling(name));
+                ITextComponent suffix = new StringTextComponent(rarity.textFormatColor() + "").appendSibling(
+                        rarityprefix.appendText(" ").appendSibling(name));
 
                 return lvlcomp.appendSibling(suffix);
 
@@ -767,8 +770,7 @@ public class EntityCap {
         }
 
         @Override
-        public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source,
-                                    float multi) {
+        public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source, float multi) {
 
             try {
 
@@ -776,13 +778,13 @@ public class EntityCap {
 
                     IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
-                    float energyCost = iwep.mechanic()
-                            .GetEnergyCost(getLvlForResourceCosts()) * multi;
-                    float manaCost = iwep.mechanic()
-                            .GetManaCost(getLvlForResourceCosts()) * multi;
+                    float energyCost = iwep.mechanic().GetEnergyCost(getLvlForResourceCosts()) * multi;
+                    float manaCost = iwep.mechanic().GetManaCost(getLvlForResourceCosts()) * multi;
 
-                    ResourcesData.Context ene = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
-                    ResourcesData.Context mana = new ResourcesData.Context(this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
+                    ResourcesData.Context ene = new ResourcesData.Context(
+                            this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
+                    ResourcesData.Context mana = new ResourcesData.Context(
+                            this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
 
                     if (getResources().hasEnough(ene) == false) {
                         AttackUtils.NoEnergyMessage(source);
@@ -811,9 +813,8 @@ public class EntityCap {
         }
 
         @Override
-        public void attackWithWeapon(LivingHurtEvent event, ItemStack weapon,
-                                     GearItemData weaponData, LivingEntity source,
-                                     LivingEntity target, UnitData targetdata) {
+        public void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData weaponData,
+                                     LivingEntity source, LivingEntity target, UnitData targetdata) {
 
             if (weaponData.GetBaseGearType() instanceof IWeapon) {
 
@@ -898,19 +899,21 @@ public class EntityCap {
         }
 
         @Override
-        public void unarmedAttack(LivingHurtEvent event, LivingEntity source,
-                                  LivingEntity target, UnitData targetdata) {
+        public void unarmedAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
+                                  UnitData targetdata) {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
             cost = Energy.INSTANCE.calculateScalingStatGrowth(cost, getLvlForResourceCosts());
 
-            ResourcesData.Context energy = new ResourcesData.Context(this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
+            ResourcesData.Context energy = new ResourcesData.Context(
+                    this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
 
             if (this.getResources().hasEnough(energy)) {
                 this.getResources().modify(energy);
                 int num = (int) unit.getStat(PhysicalDamage.GUID).val;
-                DamageEffect dmg = new DamageEffect(event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
+                DamageEffect dmg = new DamageEffect(
+                        event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
                 dmg.Activate();
             }
@@ -981,14 +984,7 @@ public class EntityCap {
         public int getLvlForResourceCosts() {
 
             return this.getLevel();
-            /*
 
-            int min = MathHelper.clamp(getLevel() - 5, 1, getLevel());
-            int max = getLevel();
-
-            return MathHelper.clamp(this.averageGearLevel, min, max);
-
-             */
         }
 
         @Override

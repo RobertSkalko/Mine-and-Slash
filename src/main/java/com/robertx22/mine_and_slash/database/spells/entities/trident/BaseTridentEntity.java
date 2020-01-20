@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.entities.trident;
 
-import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ServerEntitySpellData;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
@@ -15,7 +14,6 @@ import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -133,20 +131,23 @@ public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
         if (!world.isRemote) {
 
             Entity entity = ray.getEntity();
-            Entity shooter = this.getCaster();
+            if (entity instanceof LivingEntity) {
+                Entity shooter = this.getCaster();
 
-            if (entity == shooter) {
-                return;
+                if (entity == shooter) {
+                    return;
+                }
+
+                this.setMotion(this.getMotion()
+                        .mul(-0.01D, -0.1D, -0.01D)); // bounce back
+
+                this.activateEffectOn((LivingEntity) entity);
+
+                // IF SYNERGY SpellUtils.summonLightningStrike(entity);
+
+            } else {
+                this.playSound(SoundEvents.ITEM_TRIDENT_HIT, 8F, 1.0F);
             }
-
-            this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D)); // bounce back
-
-            SpellUtils.summonLightningStrike(entity);
-
-        } else {
-            SoundEvent soundevent = SoundEvents.ITEM_TRIDENT_HIT;
-            this.playSound(soundevent, 8F, 1.0F);
-
         }
     }
 }

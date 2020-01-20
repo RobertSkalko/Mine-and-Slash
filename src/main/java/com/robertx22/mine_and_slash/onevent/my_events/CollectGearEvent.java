@@ -63,11 +63,8 @@ public class CollectGearEvent {
                     .slotType()
                     .equals(GearItemSlot.GearSlotType.OffHand)) {
                 event.add(off);
-            } else if (off != null && off.GetBaseGearType()
-                    .slotType()
-                    .equals(GearItemSlot.GearSlotType.Weapon)) {
-                event.getEntityLiving()
-                        .sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
+            } else if (off != null && off.GetBaseGearType().slotType().equals(GearItemSlot.GearSlotType.Weapon)) {
+                event.getEntityLiving().sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
             }
 
         }

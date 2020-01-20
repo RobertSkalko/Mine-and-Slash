@@ -27,7 +27,7 @@ public class OnTickLogic {
     static final int TicksToRegen = 100;
     static final int TicksToGiveMapPortal = 400;
     static final int TicksToPassMinute = 1200;
-    static final int TicksToSpellCooldowns = 2;
+    static final int TicksToSpellCooldowns = 1;
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
@@ -53,23 +53,35 @@ public class OnTickLogic {
                     if (player.isAlive()) {
 
                         UnitData unit_capa = Load.Unit(player);
-                        unit_capa.forceRecalculateStats(player); // has to do this cus curios doesnt call equipsChanged event - actually there's one, but i fear  bugs
+                        unit_capa.forceRecalculateStats(player); // has to do
+                        // this cus curios doesnt call
+                        // equipsChanged event - actually
+                        // there's one, but i fear  bugs
                         Unit unit = unit_capa.getUnit();
 
                         int manarestored = (int) unit.getStat(ManaRegen.GUID).val;
-                        ResourcesData.Context mana = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.MANA, manarestored, ResourcesData.Use.RESTORE);
+                        ResourcesData.Context mana = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.MANA,
+                                                                               manarestored, ResourcesData.Use.RESTORE
+                        );
                         unit_capa.getResources().modify(mana);
 
                         int energyrestored = (int) unit.getStat(EnergyRegen.GUID).val;
-                        ResourcesData.Context ene = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.ENERGY, energyrestored, ResourcesData.Use.RESTORE);
+                        ResourcesData.Context ene = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.ENERGY,
+                                                                              energyrestored, ResourcesData.Use.RESTORE
+                        );
                         unit_capa.getResources().modify(ene);
 
                         int healthrestored = (int) unit.getStat(HealthRegen.GUID).val;
-                        ResourcesData.Context hp = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.HEALTH, healthrestored, ResourcesData.Use.RESTORE);
+                        ResourcesData.Context hp = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.HEALTH,
+                                                                             healthrestored, ResourcesData.Use.RESTORE
+                        );
                         unit_capa.getResources().modify(hp);
 
                         int magicshieldrestored = (int) unit.getStat(MagicShieldRegen.GUID).val;
-                        ResourcesData.Context ms = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.MAGIC_SHIELD, magicshieldrestored, ResourcesData.Use.RESTORE);
+                        ResourcesData.Context ms = new ResourcesData.Context(unit_capa, player,
+                                                                             ResourcesData.Type.MAGIC_SHIELD,
+                                                                             magicshieldrestored, ResourcesData.Use.RESTORE
+                        );
                         unit_capa.getResources().modify(ms);
 
                     }
@@ -108,9 +120,9 @@ public class OnTickLogic {
 
                 if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
                     data.ticksToSpellCooldowns = 0;
-                    Load.spells(player)
-                            .getSpellData()
-                            .onTimePassTickCooldowns(TicksToSpellCooldowns);
+                    Load.spells(player).getSpellData().onTimePass(TicksToSpellCooldowns);
+                    Load.spells(player).getSpellData().tryCast(player);
+
                 }
 
                 PlayerTickDatas.put(player.getUniqueID(), data);

@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -11,6 +12,17 @@ import java.util.HashMap;
 
 @Storable
 public class PlayerSpellsData {
+
+    @Store
+    public int castingTicksLeft = 0;
+
+    @Store
+    public String spellBeingCast = "";
+
+    public void cancelCast() {
+        spellBeingCast = "";
+        castingTicksLeft = 0;
+    }
 
     public enum Hotbar {
         FIRST,
@@ -26,20 +38,43 @@ public class PlayerSpellsData {
     @Store
     private HashMap<String, SpellData> spellDatas = new HashMap<>();
 
-    public void onTimePassTickCooldowns(int ticks) {
-        spellDatas.values().forEach(x -> x.tickCooldown(ticks));
+    public boolean isCasting() {
+        return castingTicksLeft > 0;
     }
 
-    public void cast(int key, PlayerEntity player, int ticks) {
+    public void onTimePass(int ticks) {
+        spellDatas.values().forEach(x -> x.tickCooldown(ticks));
+
+        castingTicksLeft--;
+    }
+
+    public void setToCast(int key, PlayerEntity player, int ticks) {
         BaseSpell spell = getSpellByKeybind(key);
 
-        spell.cast(player, ticks, new SpellItemData());
+        this.spellBeingCast = spell.GUID();
 
-        onSpellCast(spell);
+        this.castingTicksLeft = spell.useTimeTicks();
+
+    }
+
+    public void tryCast(PlayerEntity player) {
+
+        if (!spellBeingCast.isEmpty()) {
+            if (castingTicksLeft <= 0) {
+                BaseSpell spell = SlashRegistry.Spells().get(spellBeingCast);
+                spell.cast(player, spell.useTimeTicks(), new SpellItemData());
+
+                spellBeingCast = "";
+            }
+        }
 
     }
 
     public boolean canCast(int key, PlayerEntity player) {
+
+        if (isCasting()) {
+            return false;
+        }
 
         BaseSpell spell = getSpellByKeybind(key);
 
@@ -94,6 +129,6 @@ public class PlayerSpellsData {
     }
 
     public BaseSpell getSpellByKeybind(int key) {
-        return new ThunderspearSpell(); // todo
+        return new BlizzardSpell(); // todo
     }
 }

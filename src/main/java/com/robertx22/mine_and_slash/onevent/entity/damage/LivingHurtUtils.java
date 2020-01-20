@@ -52,6 +52,20 @@ public class LivingHurtUtils {
 
     }
 
+    /*
+    // would be dumb if player can attack while casting
+    public static void disableIfCastingSpell(LivingHurtEvent event) {
+        if (event.getSource() != null) {
+            if (event.getSource().getTrueSource() instanceof PlayerEntity) {
+                if (Load.spells((PlayerEntity) event.getSource().getTrueSource()).getSpellData().isCasting()) {
+                    event.setCanceled(true);
+                }
+            }
+        }
+    }
+
+     */
+
     public static void onAttack(LivingHurtEvent event) {
 
         LivingEntity target = event.getEntityLiving();
@@ -82,8 +96,7 @@ public class LivingHurtUtils {
 
     }
 
-    public static void onAttack(LivingEntity source, LivingEntity target, float amount,
-                                LivingHurtEvent event) {
+    public static void onAttack(LivingEntity source, LivingEntity target, float amount, LivingHurtEvent event) {
 
         try {
 
@@ -112,8 +125,7 @@ public class LivingHurtUtils {
 
                 if (weapondata == null) {
                     ItemStack weapon = source.getHeldItemMainhand();
-                    ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer
-                            .getModDmgWhitelist(weapon);
+                    ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(weapon);
                     if (mod != null) {
                         return;
                     }
@@ -121,7 +133,8 @@ public class LivingHurtUtils {
 
                 if (sourceData.isWeapon(weapondata)) {
                     if (sourceData.tryUseWeapon(weapondata, source)) {
-                        sourceData.attackWithWeapon(event, source.getHeldItemMainhand(), weapondata, source, target, targetData);
+                        sourceData.attackWithWeapon(
+                                event, source.getHeldItemMainhand(), weapondata, source, target, targetData);
                     }
 
                 } else {
@@ -182,9 +195,8 @@ public class LivingHurtUtils {
 
         if (isEnviromentalDmg(event.getSource())) {
             if (event.getEntity() instanceof PlayerEntity == false) {
-                event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI
-                        .get()
-                        .floatValue());
+                event.setAmount(
+                        event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI.get().floatValue());
                 return;
             }
         } else {
@@ -192,17 +204,15 @@ public class LivingHurtUtils {
             // dont decrease dmg if its from whitelist item
             LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
 
-            ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(en
-                    .getHeldItemMainhand());
+            ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(
+                    en.getHeldItemMainhand());
 
             if (mod != null) {
                 event.setAmount(event.getAmount() * mod.dmgMultiplier);
                 return;
             }
 
-            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI
-                    .get()
-                    .floatValue());
+            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI.get().floatValue());
 
             return;
         }
@@ -218,8 +228,7 @@ public class LivingHurtUtils {
 
         UnitData data = Load.Unit(defender);
 
-        if (event.getSource() != null && event.getSource()
-                .getTrueSource() instanceof LivingEntity) {
+        if (event.getSource() != null && event.getSource().getTrueSource() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) event.getSource().getTrueSource();
             data.onDamagedBy(attacker, event.getAmount());
 

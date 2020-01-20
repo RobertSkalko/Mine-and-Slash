@@ -48,7 +48,7 @@ public class CastSpellPacket {
                 PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
                 if (spells.getSpellData().canCast(pkt.hotbarNumber, player)) {
-                    spells.getSpellData().cast(pkt.hotbarNumber, player, 0);
+                    spells.getSpellData().setToCast(pkt.hotbarNumber, player, 0);
                 }
 
             } catch (Exception e) {
