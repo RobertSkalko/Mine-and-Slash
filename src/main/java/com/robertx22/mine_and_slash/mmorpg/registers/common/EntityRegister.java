@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.aoe.EntityAcidExplo
 import com.robertx22.mine_and_slash.database.spells.entities.aoe.EntityFlameExplosion;
 import com.robertx22.mine_and_slash.database.spells.entities.aoe.EntityFrostExplosion;
 import com.robertx22.mine_and_slash.database.spells.entities.aoe.EntityLightningExplosion;
+import com.robertx22.mine_and_slash.database.spells.entities.blizzard.BlizzardEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.blizzard.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bomb.EntityAcidBomb;
 import com.robertx22.mine_and_slash.database.spells.entities.bomb.EntityFireBomb;
@@ -66,7 +67,7 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> WANDPROJECTILE;
 
     static {
-        BLIZZARD = newType(ThunderstormEntity::new, ThunderstormEntity::new, "blizzard");
+        BLIZZARD = newType(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
         THUNDERSTORM = newType(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
 
         FIREBOLT = newType(EntityFireBolt::new, EntityFireBolt::new, "entity_fire_bolt");

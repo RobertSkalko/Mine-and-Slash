@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public abstract class EntityElementalBoltAOE extends EntityElementalBolt {
+public abstract class EntityElementalBoltAOE extends BaseElementalBoltEntity {
 
     public EntityElementalBoltAOE(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);

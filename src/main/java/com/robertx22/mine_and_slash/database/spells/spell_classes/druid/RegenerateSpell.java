@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.self;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
@@ -18,7 +18,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
-public class SpellSelfRegen extends BaseSpellHeal {
+public class RegenerateSpell extends BaseSpellHeal {
 
     @Override
     public int useTimeTicks() {

@@ -1,9 +1,8 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ThunderstormSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -56,7 +55,7 @@ public class PlayerSpellsData {
     private void onSpellCast(BaseSpell spell) {
         SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
-        data.setCooldown(100); // TODO
+        data.setCooldown(20); // TODO
 
         spellDatas.put(spell.GUID(), data);
 
@@ -95,6 +94,6 @@ public class PlayerSpellsData {
     }
 
     public BaseSpell getSpellByKeybind(int key) {
-        return new ThunderstormSpell(Elements.Thunder); // todo
+        return new BlizzardSpell(); // todo
     }
 }

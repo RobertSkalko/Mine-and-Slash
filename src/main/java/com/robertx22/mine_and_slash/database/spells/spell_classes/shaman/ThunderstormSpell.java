@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.blizzard.ThunderstormEntity;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.self.SpellSelfRegen;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
@@ -44,7 +44,7 @@ public class HealthRegenPotion extends SpellPotionBase {
             } else {
                 UnitData data = Load.Unit(entity);
 
-                ResourcesData.Context hp = new ResourcesData.Context(data, entity, ResourcesData.Type.HEALTH, amplifier, ResourcesData.Use.RESTORE, new SpellSelfRegen());
+                ResourcesData.Context hp = new ResourcesData.Context(data, entity, ResourcesData.Type.HEALTH, amplifier, ResourcesData.Use.RESTORE, new RegenerateSpell());
 
                 data.modifyResource(hp);
 

@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.DamageData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
@@ -22,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EntityElementalBolt extends EntityBaseProjectile {
+public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
 
     @OnlyIn(Dist.CLIENT)
     @Override
@@ -35,9 +34,9 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
 
     public abstract Elements element();
 
-    public EntityElementalBolt(EntityType<? extends Entity> type, World worldIn) {
+    public BaseElementalBoltEntity(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
-        this.shootSpeed = 1.75F;
+        this.shootSpeed = 1.95F;
 
     }
 
@@ -112,7 +111,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
                 BasicParticleType particle = ParticleTypes.ENCHANTED_HIT;
 
                 if (element().equals(Elements.Water)) {
-                    particle = ParticleTypes.BUBBLE_POP;
+                    particle = ParticleTypes.ITEM_SNOWBALL;
                 } else if (element().equals(Elements.Fire)) {
                     particle = ParticleTypes.FLAME;
                 } else if (element().equals(Elements.Thunder)) {
@@ -133,7 +132,7 @@ public abstract class EntityElementalBolt extends EntityBaseProjectile {
         ticks++;
         if (ticks > 1) {
             ticks = 0;
-            ElementalParticleUtils.SpawnAoeParticle(element(), this, 0.15F, 15);
+            // ElementalParticleUtils.SpawnAoeParticle(element(), this, 0.15F, 15);
         }
 
     }

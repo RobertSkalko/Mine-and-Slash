@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.projectile;
 
-import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.EntityAcidBolt;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellProjectile;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.world.World;
 
-public class SpellAcidBolt extends BaseSpellProjectile {
+public class SpellAcidBolt extends BaseProjectileSpell {
 
     public SpellAcidBolt() {
         super();
@@ -23,7 +23,7 @@ public class SpellAcidBolt extends BaseSpellProjectile {
     }
 
     @Override
-    public EntityElementalBolt projectile(World world) {
+    public BaseElementalBoltEntity projectile(World world) {
         return new EntityAcidBolt(world);
     }
 

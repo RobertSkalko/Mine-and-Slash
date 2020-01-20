@@ -19,6 +19,7 @@ public class OnSpellKeybind {
         for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {
             if (key == entry.getKey().getKeyCode()) {
                 MMORPG.sendToServer(new CastSpellPacket(KeybindsRegister.HOTBAR.get(entry)));
+
             }
 
         }

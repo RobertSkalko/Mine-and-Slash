@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -23,7 +23,7 @@ public abstract class BaseBolt extends BaseSpell {
         World world = caster.world;
 
         if (!world.isRemote) {
-            EntityElementalBolt projectile = this.projectile(world);
+            BaseElementalBoltEntity projectile = this.projectile(world);
             projectile.SpawnAndShoot(new SpellEffectDamage(this.getElement()), new DamageData(caster, data), caster);
 
         }
@@ -49,5 +49,5 @@ public abstract class BaseBolt extends BaseSpell {
 
     }
 
-    public abstract EntityElementalBolt projectile(World world);
+    public abstract BaseElementalBoltEntity projectile(World world);
 }

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.util.text.ITextComponent;
 
-public abstract class BaseBombSpell extends BaseSpellProjectile {
+public abstract class BaseBombSpell extends BaseProjectileSpell {
 
     @Override
     public int getBaseValue() {

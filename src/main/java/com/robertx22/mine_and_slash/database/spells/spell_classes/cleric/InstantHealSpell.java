@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.self;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.cleric;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
@@ -17,7 +17,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
-public class SpellInstantHeal extends BaseSpellHeal {
+public class InstantHealSpell extends BaseSpellHeal {
 
     @Override
     public SpellType getSpellType() {
@@ -64,6 +64,7 @@ public class SpellInstantHeal extends BaseSpellHeal {
                                 .getDamage(data.getUnit()), ResourcesData.Use.RESTORE, this));
 
                 SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
+
                 // spell buffs
                 SpellBuffCheck check = new SpellBuffCheck(this.getSpellType());
                 SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);

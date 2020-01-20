@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public abstract class EntityBombProjectile extends EntityElementalBolt {
+public abstract class EntityBombProjectile extends BaseElementalBoltEntity {
 
     @Override
     public double radius() {

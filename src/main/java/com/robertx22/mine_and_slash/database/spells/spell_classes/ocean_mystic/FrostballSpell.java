@@ -1,14 +1,14 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.projectile;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.EntityFrostBolt;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellProjectile;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.world.World;
 
-public class SpellFrostBolt extends BaseSpellProjectile {
+public class FrostballSpell extends BaseProjectileSpell {
 
-    public SpellFrostBolt() {
+    public FrostballSpell() {
         super();
     }
 
@@ -23,7 +23,7 @@ public class SpellFrostBolt extends BaseSpellProjectile {
     }
 
     @Override
-    public EntityElementalBolt projectile(World world) {
+    public BaseElementalBoltEntity projectile(World world) {
         return new EntityFrostBolt(world);
     }
 

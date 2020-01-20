@@ -1,20 +1,20 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityElementalBolt;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public abstract class BaseSpellProjectile extends BaseBolt {
+public abstract class BaseProjectileSpell extends BaseBolt {
 
     @Override
     public int useTimeTicks() {
         return 10;
     }
 
-    public BaseSpellProjectile() {
+    public BaseProjectileSpell() {
         super();
     }
 
@@ -30,7 +30,7 @@ public abstract class BaseSpellProjectile extends BaseBolt {
 
         if (!world.isRemote) {
 
-            EntityElementalBolt projectile = this.projectile(world);
+            BaseElementalBoltEntity projectile = this.projectile(world);
             projectile.SpawnAndShoot(new SpellEffectDamage(this.getElement()), new DamageData(caster, data), caster);
 
         }
