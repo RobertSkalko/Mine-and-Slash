@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 public abstract class BasePerkEffect implements ITooltipList {
 
     protected boolean isGameChanger = false;
+    public boolean isStart = false;
 
     public abstract void render(int x, int y);
 

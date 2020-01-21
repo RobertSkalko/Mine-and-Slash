@@ -16,8 +16,7 @@ public class PacketRegister {
     static int index = 0;
 
     // bit shorter
-    private static <MSG> void reg(Class<MSG> messageType,
-                                  BiConsumer<MSG, PacketBuffer> encoder,
+    private static <MSG> void reg(Class<MSG> messageType, BiConsumer<MSG, PacketBuffer> encoder,
                                   Function<PacketBuffer, MSG> decoder,
                                   BiConsumer<MSG, Supplier<NetworkEvent.Context>> messageConsumer) {
 
@@ -39,29 +38,53 @@ public class PacketRegister {
 
         reg(MasterBagPacket.class, MasterBagPacket::encode, MasterBagPacket::decode, MasterBagPacket::handle);
 
-        reg(RarityItemDropPacket.class, RarityItemDropPacket::encode, RarityItemDropPacket::decode, RarityItemDropPacket::handle);
+        reg(RarityItemDropPacket.class, RarityItemDropPacket::encode, RarityItemDropPacket::decode,
+            RarityItemDropPacket::handle
+        );
 
-        reg(ProfessionRecipePacket.class, ProfessionRecipePacket::encode, ProfessionRecipePacket::decode, ProfessionRecipePacket::handle);
+        reg(ProfessionRecipePacket.class, ProfessionRecipePacket::encode, ProfessionRecipePacket::decode,
+            ProfessionRecipePacket::handle
+        );
 
-        reg(SyncCapabilityToClient.class, SyncCapabilityToClient::encode, SyncCapabilityToClient::decode, SyncCapabilityToClient::handle);
+        reg(SyncCapabilityToClient.class, SyncCapabilityToClient::encode, SyncCapabilityToClient::decode,
+            SyncCapabilityToClient::handle
+        );
 
-        reg(RequestSyncCapToClient.class, RequestSyncCapToClient::encode, RequestSyncCapToClient::decode, RequestSyncCapToClient::handle);
+        reg(RequestSyncCapToClient.class, RequestSyncCapToClient::encode, RequestSyncCapToClient::decode,
+            RequestSyncCapToClient::handle
+        );
 
-        reg(SpendStatPointPacket.class, SpendStatPointPacket::encode, SpendStatPointPacket::decode, SpendStatPointPacket::handle);
+        reg(SpendStatPointPacket.class, SpendStatPointPacket::encode, SpendStatPointPacket::decode,
+            SpendStatPointPacket::handle
+        );
 
         reg(OpenGuiPacket.class, OpenGuiPacket::encode, OpenGuiPacket::decode, OpenGuiPacket::handle);
 
-        reg(AllocateTalentPacket.class, AllocateTalentPacket::encode, AllocateTalentPacket::decode, AllocateTalentPacket::handle);
+        reg(AllocatePerkPacket.class, AllocatePerkPacket::encode, AllocatePerkPacket::decode,
+            AllocatePerkPacket::handle
+        );
 
-        reg(TryRemoveTalentPacket.class, TryRemoveTalentPacket::encode, TryRemoveTalentPacket::decode, TryRemoveTalentPacket::handle);
+        reg(TryRemovePerkPacket.class, TryRemovePerkPacket::encode, TryRemovePerkPacket::decode,
+            TryRemovePerkPacket::handle
+        );
 
-        reg(UseMapTicketPacket.class, UseMapTicketPacket::encode, UseMapTicketPacket::decode, UseMapTicketPacket::handle);
+        reg(UseMapTicketPacket.class, UseMapTicketPacket::encode, UseMapTicketPacket::decode,
+            UseMapTicketPacket::handle
+        );
 
-        reg(EfficientMobUnitPacket.class, EfficientMobUnitPacket::encode, EfficientMobUnitPacket::decode, EfficientMobUnitPacket::handle);
+        reg(EfficientMobUnitPacket.class, EfficientMobUnitPacket::encode, EfficientMobUnitPacket::decode,
+            EfficientMobUnitPacket::handle
+        );
 
-        reg(SyncConfigToClientPacket.class, SyncConfigToClientPacket::encode, SyncConfigToClientPacket::decode, SyncConfigToClientPacket::handle);
+        reg(SyncConfigToClientPacket.class, SyncConfigToClientPacket::encode, SyncConfigToClientPacket::decode,
+            SyncConfigToClientPacket::handle
+        );
 
         reg(CastSpellPacket.class, CastSpellPacket::encode, CastSpellPacket::decode, CastSpellPacket::handle);
+
+        reg(ChangeSpellHotbarPacket.class, ChangeSpellHotbarPacket::encode, ChangeSpellHotbarPacket::decode,
+            ChangeSpellHotbarPacket::handle
+        );
 
     }
 

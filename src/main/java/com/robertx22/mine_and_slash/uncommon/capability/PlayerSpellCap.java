@@ -92,7 +92,8 @@ public class PlayerSpellCap {
                 perksData = new SpellPerksData();
             }
 
-            this.playerSpellsData = LoadSave.Load(PlayerSpellsData.class, new PlayerSpellsData(), nbt, PLAYER_SPELL_DATA);
+            this.playerSpellsData = LoadSave.Load(
+                    PlayerSpellsData.class, new PlayerSpellsData(), nbt, PLAYER_SPELL_DATA);
 
             if (playerSpellsData == null) {
                 playerSpellsData = new PlayerSpellsData();
@@ -100,8 +101,7 @@ public class PlayerSpellCap {
         }
 
         public int getAllowedPoints(EntityCap.UnitData data) {
-            return (int) ((float) data.getLevel() * ModConfig.INSTANCE.Server.TALENT_POINTS_PER_LEVEL
-                    .get());
+            return (int) ((float) data.getLevel() * ModConfig.INSTANCE.Server.TALENT_POINTS_PER_LEVEL.get());
         }
 
         @Override

@@ -25,7 +25,8 @@ public class SpellPerkEffects {
 
     public static void register() {
 
-        START = new SpellPerkEffect("start", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/mage");
+        START = new SpellPerkEffect(
+                "start", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/mage").setStart();
 
         FROSTBALL = new SpellPerkEffect(new FrostballSpell()).setGameChanger().type(PerkType.MAJOR);
         BLIZZARD = new SpellPerkEffect(new BlizzardSpell()).setGameChanger().type(PerkType.MAJOR);

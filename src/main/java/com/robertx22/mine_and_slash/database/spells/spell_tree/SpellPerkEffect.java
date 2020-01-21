@@ -125,6 +125,11 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         return this.guid;
     }
 
+    public SpellPerkEffect setStart() {
+        isStart = true;
+        return this;
+    }
+
     @Override
     public int Weight() {
         return 1000;

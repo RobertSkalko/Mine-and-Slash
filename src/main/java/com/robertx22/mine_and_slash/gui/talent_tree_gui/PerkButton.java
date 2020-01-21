@@ -2,12 +2,11 @@ package com.robertx22.mine_and_slash.gui.talent_tree_gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
-import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.AllocateTalentPacket;
-import com.robertx22.mine_and_slash.network.TryRemoveTalentPacket;
+import com.robertx22.mine_and_slash.network.AllocatePerkPacket;
+import com.robertx22.mine_and_slash.network.TryRemovePerkPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
@@ -109,13 +108,10 @@ public class PerkButton extends ImageButton {
     public void onClick(ScreenContext ctx, int mouseX, int mouseY, int click) {
         if (isInsideSlot(ctx, mouseX, mouseY)) {
             if (click == 1) { // if right click
-                if (perk instanceof Perk) {
-                    MMORPG.sendToServer(new TryRemoveTalentPacket((Perk) this.perk));
-                }
+                MMORPG.sendToServer(new TryRemovePerkPacket(this.perk));
             } else {
-                if (perk instanceof Perk) {
-                    MMORPG.sendToServer(new AllocateTalentPacket((Perk) this.perk));
-                }
+                MMORPG.sendToServer(new AllocatePerkPacket(this.perk));
+
             }
         }
     }

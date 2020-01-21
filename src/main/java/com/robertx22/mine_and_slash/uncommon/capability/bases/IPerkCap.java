@@ -94,6 +94,10 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
         this.getPerksData().resetPoints += amount;
     }
 
+    public boolean allowMultipleStarts() {
+        return false;
+    }
+
     public boolean canAllocatePoint(T talent, EntityCap.UnitData data) {
 
         if (getFreePoints(data) > 0 == false) {
@@ -101,15 +105,15 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
         }
 
         if (talent.isStart) {
-            if (this.getPerksData()
-                    .getAllCurrentPerks()
-                    .stream()
-                    .anyMatch(x -> x.isStart)) {
-                // if player already picked a starting point, dont allow to pick other start points
-                return false;
+            if (allowMultipleStarts()) {
+                return true;
+            } else {
+                if (this.getPerksData().getAllCurrentPerks().stream().anyMatch(x -> x.isStart)) {
+                    // if player already picked a starting point, dont allow to pick other start points
+                    return false;
+                }
             }
 
-            return true;
         }
 
         boolean can = false;

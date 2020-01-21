@@ -12,8 +12,7 @@ public class CommandRegister {
     public static void Register(MinecraftServer server) {
         System.out.println("Registering Mine and Slash Commands.");
 
-        CommandDispatcher<CommandSource> dispatcher = server.getCommandManager()
-                .getDispatcher();
+        CommandDispatcher<CommandSource> dispatcher = server.getCommandManager().getDispatcher();
 
         SetLevel.register(dispatcher);
         RestoreLevel.register(dispatcher);
@@ -31,6 +30,7 @@ public class CommandRegister {
         GiveStatMod.register(dispatcher);
         RemoveStatMod.register(dispatcher);
         ClearStatMods.register(dispatcher);
+        ResetSpells.register(dispatcher);
 
         GiveStat.register(dispatcher);
         RemoveStat.register(dispatcher);
