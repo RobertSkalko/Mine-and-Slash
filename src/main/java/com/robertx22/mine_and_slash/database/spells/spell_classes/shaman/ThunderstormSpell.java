@@ -42,7 +42,7 @@ public class ThunderstormSpell extends BaseSpell {
 
     @Override
     public String GUID() {
-        return "thunder_storm_cloud";
+        return "thunder_storm";
     }
 
     @Override

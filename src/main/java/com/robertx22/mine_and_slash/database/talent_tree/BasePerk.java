@@ -31,6 +31,8 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
         return false;
     }
 
+    public abstract void render(int x, int y);
+
     public PerkType getPerkType() {
         // make major stats only lookk major if they are gamechangers. i agree i didnt think this one through
         if (effect.getPerkType() == PerkType.MAJOR) {

@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoScreen;
+import com.robertx22.mine_and_slash.gui.spell_perk_tree.SpellPerkTreeScreen;
 import com.robertx22.mine_and_slash.gui.stat_allocation_screen.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.TalentPerkTreeScreen;
@@ -42,27 +43,26 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         screens.add(new TalentPerkTreeScreen());
         screens.add(new StatOverviewScreen());
         screens.add(new StatAllocationScreen());
+        screens.add(new SpellPerkTreeScreen());
 
-        int x = guiLeft + 9;
+        int x = guiLeft + 10;
         int y = guiTop + 8;
 
         int count = 0;
 
         for (INamedScreen screen : screens) {
 
-            count++;
-
-            if (count >= 4) {
+            if (count >= 3) {
                 y += Button.ySize + 5;
                 x = guiLeft + 9;
                 count = 0;
             }
-
-            addButton(new Button(screen, x, y));
-
             if (count >= 1) {
                 x += Button.xSize + 5;
             }
+            count++;
+
+            addButton(new Button(screen, x, y));
 
         }
 
@@ -121,8 +121,8 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
             String str = screen.screenName().translate();
 
-            Minecraft.getInstance().fontRenderer.drawStringWithShadow(str, this.x + 30, this.y + 10, TextFormatting.GREEN
-                    .getColor());
+            Minecraft.getInstance().fontRenderer.drawStringWithShadow(
+                    str, this.x + 30, this.y + 10, TextFormatting.GREEN.getColor());
         }
 
     }

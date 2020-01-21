@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_tree;
 
+import com.robertx22.mine_and_slash.database.talent_tree.BasePerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkBuilder;
 import com.robertx22.mine_and_slash.database.talent_tree.csv_parser.PerkGrid;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -24,23 +25,21 @@ public class SpellPerkGrid extends PerkGrid<SpellPerkGridPoint> {
 
                 if (point.isTalent()) {
 
-                    String id = point.getEffectID();
+                    String id = point.getEffectIDRaw();
 
-                    if (!SlashRegistry.SpellPerkEffects().isRegistered(id)) {
-                        id = id.toLowerCase();
-                        if (!SlashRegistry.SpellPerkEffects().isRegistered(id)) {
-                            id = id.toUpperCase();
-                        }
-                    }
+                    // SlashRegistryContainer con = SlashRegistry.SpellPerkEffects();
 
-                    SpellPerkEffect effect = null;
+                    BasePerkEffect effect = null;
 
                     if (SlashRegistry.SpellPerkEffects().isRegistered(id)) {
                         effect = SlashRegistry.SpellPerkEffects().get(id);
                     }
-                    if (effect == null) {
+                    if (SlashRegistry.PerkEffects().isRegistered(id)) {
+                        effect = SlashRegistry.PerkEffects().get(id);
+                    }
 
-                        System.out.println(point.getID() + " is a broken talent.");
+                    if (effect == null) {
+                        System.out.println(id + " is a broken spell perk effect.");
                     }
 
                     SpellPerk perk = (SpellPerk) PerkBuilder.createSpell(point.getID())
@@ -48,8 +47,6 @@ public class SpellPerkGrid extends PerkGrid<SpellPerkGridPoint> {
                             .effect(effect)
                             .connections()
                             .build();
-
-                    perk.registerToSlashRegistry();
 
                 }
             }

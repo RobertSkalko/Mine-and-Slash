@@ -42,7 +42,7 @@ public class BlizzardSpell extends BaseSpell {
 
     @Override
     public String GUID() {
-        return "blizzard_storm_cloud";
+        return "blizzard";
     }
 
     @Override

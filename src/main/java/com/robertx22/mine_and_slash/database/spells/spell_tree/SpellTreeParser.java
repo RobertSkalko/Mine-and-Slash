@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.spells.spell_tree;
 
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;
@@ -21,20 +20,13 @@ public class SpellTreeParser {
 
             File file = new File(path);
 
-            if (file.exists()) {
-                s = FileUtils.readFileToString(file, "utf-8");
-            } else {
-                FileUtils.writeStringToFile(file, s, "utf-8");
-            }
-
             SpellPerkGrid grid = new SpellPerkGrid(s);
 
             grid.createAndRegisterAll();
 
             grid.createConnections();
 
-            System.out.println("Registered all" + SlashRegistry.SpellPerks()
-                    .getSize() + " perks to the talent tree!");
+            System.out.println("Registered all" + SlashRegistry.SpellPerks().getSize() + " perks to the spell tree!");
 
         } catch (Exception e) {
             e.printStackTrace();

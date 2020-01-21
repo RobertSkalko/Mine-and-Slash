@@ -55,8 +55,7 @@ public class SlashRegistry {
 
     }
 
-    public static ModEntityConfig getEntityConfig(LivingEntity entity,
-                                                  EntityCap.UnitData data) {
+    public static ModEntityConfig getEntityConfig(LivingEntity entity, EntityCap.UnitData data) {
 
         String monster_id = entity.getType().getRegistryName().toString();
         String mod_id = entity.getType().getRegistryName().getNamespace();
@@ -227,7 +226,8 @@ public class SlashRegistry {
     private static void registerFromAllInits() {
 
         new Spells().registerAll(); // some stats are based on spells, so spells go first
-        new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or should be at least
+        new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or
+        // should be at least
         new StatMods().registerAll();
         new Runes().registerAll();
         new RuneWords().registerAll();
@@ -247,44 +247,99 @@ public class SlashRegistry {
         new AlchemyRecipes().registerAll();
 
         new PerkEffectsInit().registerAll();
+        new SpellPerkEffectsInit().registerAll();
+
         new Perks().registerAll();
+        new SpellPerks().registerAll();
+
         new LootCrates().registerAll();
         new Quests().registerAll();
         new QuestRewards().registerAll();
     }
 
     private static void createRegistries() {
-        map.put(SlashRegistryType.GEAR_TYPE, new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType()));
+        map.put(SlashRegistryType.GEAR_TYPE,
+                new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType())
+        );
         map.put(SlashRegistryType.STAT, new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, new EmptyStat()));
-        map.put(SlashRegistryType.STATMOD, new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, new EmptyStatMod()));
+        map.put(SlashRegistryType.STATMOD,
+                new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, new EmptyStatMod())
+        );
         map.put(SlashRegistryType.SET, new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()));
-        map.put(SlashRegistryType.SPELL, new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
-        map.put(SlashRegistryType.UNIQUE_GEAR, new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, new EmptyUnique()));
-        map.put(SlashRegistryType.UNIQUE_RUNES, new SlashRegistryContainer<BaseUniqueRuneItem>(SlashRegistryType.UNIQUE_RUNES, new PSIItem()));
-        map.put(SlashRegistryType.SUFFIX, new SlashRegistryContainer<Suffix>(SlashRegistryType.SUFFIX, new EmptySuffix()));
-        map.put(SlashRegistryType.PREFIX, new SlashRegistryContainer<Prefix>(SlashRegistryType.PREFIX, new EmptyPrefix()));
-        map.put(SlashRegistryType.RUNE, new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0)));
-        map.put(SlashRegistryType.RUNEWORD, new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, new EmptyRuneWord()));
-        map.put(SlashRegistryType.MAP_AFFIX, new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
-        map.put(SlashRegistryType.STATUS_EFFECT, new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
-        map.put(SlashRegistryType.WORLD_PROVIDER, new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new BirchForestIWP(null, null)));
-        map.put(SlashRegistryType.ITEM_MODIFICATION, new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
-        map.put(SlashRegistryType.CURRENCY_ITEMS, new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new ItemOrbOfTransmutation()));
+        map.put(SlashRegistryType.SPELL,
+                new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell())
+        );
+        map.put(SlashRegistryType.UNIQUE_GEAR,
+                new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, new EmptyUnique())
+        );
+        map.put(SlashRegistryType.UNIQUE_RUNES,
+                new SlashRegistryContainer<BaseUniqueRuneItem>(SlashRegistryType.UNIQUE_RUNES, new PSIItem())
+        );
+        map.put(SlashRegistryType.SUFFIX,
+                new SlashRegistryContainer<Suffix>(SlashRegistryType.SUFFIX, new EmptySuffix())
+        );
+        map.put(SlashRegistryType.PREFIX,
+                new SlashRegistryContainer<Prefix>(SlashRegistryType.PREFIX, new EmptyPrefix())
+        );
+        map.put(SlashRegistryType.RUNE,
+                new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0))
+        );
+        map.put(SlashRegistryType.RUNEWORD,
+                new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, new EmptyRuneWord())
+        );
+        map.put(SlashRegistryType.MAP_AFFIX,
+                new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix())
+        );
+        map.put(SlashRegistryType.STATUS_EFFECT,
+                new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect())
+        );
+        map.put(SlashRegistryType.WORLD_PROVIDER,
+                new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER,
+                                                              new BirchForestIWP(null, null)
+                )
+        );
+        map.put(SlashRegistryType.ITEM_MODIFICATION,
+                new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION,
+                                                                 new AddChaosStatMod()
+                )
+        );
+        map.put(SlashRegistryType.CURRENCY_ITEMS,
+                new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new ItemOrbOfTransmutation())
+        );
         map.put(SlashRegistryType.RECIPE, new SlashRegistryContainer<BaseRecipe>(SlashRegistryType.RECIPE, null));
-        map.put(SlashRegistryType.COMPATIBLE_ITEM, new SlashRegistryContainer<ConfigItem>(SlashRegistryType.COMPATIBLE_ITEM, new ConfigItem())
-                .dontErrorIfEmpty()
-                .logAdditions());
-        map.put(SlashRegistryType.DIMENSION_CONFIGS, new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig
-                .DefaultExtra()).logAdditions().dontErrorMissingEntriesOnAccess());
-        map.put(SlashRegistryType.MOD_ENTITY_CONFIGS, new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS)
-                .logAdditions());
+        map.put(SlashRegistryType.COMPATIBLE_ITEM,
+                new SlashRegistryContainer<ConfigItem>(SlashRegistryType.COMPATIBLE_ITEM,
+                                                       new ConfigItem()
+                ).dontErrorIfEmpty().logAdditions()
+        );
+        map.put(SlashRegistryType.DIMENSION_CONFIGS,
+                new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS,
+                                                            DimensionConfig.DefaultExtra()
+                ).logAdditions()
+                        .dontErrorMissingEntriesOnAccess()
+        );
+        map.put(SlashRegistryType.MOD_ENTITY_CONFIGS,
+                new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS).logAdditions()
+        );
         map.put(SlashRegistryType.PERK, new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
-        map.put(SlashRegistryType.PERK_EFFECT, new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
-        map.put(SlashRegistryType.LOOT_CRATE, new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
-        map.put(SlashRegistryType.QUEST, new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE));
-        map.put(SlashRegistryType.QUEST_REWARD, new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, MapQuestReward.INSTANCE));
-        map.put(SlashRegistryType.SPELL_PERK, new SlashRegistryContainer<SpellPerk>(SlashRegistryType.SPELL_PERK, null));
-        map.put(SlashRegistryType.SPELL_PERK_EFFECT, new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null));
+        map.put(SlashRegistryType.PERK_EFFECT,
+                new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN)
+        );
+        map.put(SlashRegistryType.LOOT_CRATE,
+                new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE)
+        );
+        map.put(SlashRegistryType.QUEST,
+                new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE)
+        );
+        map.put(SlashRegistryType.QUEST_REWARD,
+                new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, MapQuestReward.INSTANCE)
+        );
+        map.put(SlashRegistryType.SPELL_PERK,
+                new SlashRegistryContainer<SpellPerk>(SlashRegistryType.SPELL_PERK, null)
+        );
+        map.put(SlashRegistryType.SPELL_PERK_EFFECT,
+                new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null)
+        );
 
     }
 

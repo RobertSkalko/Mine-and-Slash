@@ -57,7 +57,7 @@ public class InstantHealSpell extends BaseSpellHeal {
 
     @Override
     public ITextComponent GetDescription(SpellItemData data) {
-        return CLOC.tooltip("spell_instant_heal");
+        return CLOC.tooltip("instant_heal");
     }
 
     @Override

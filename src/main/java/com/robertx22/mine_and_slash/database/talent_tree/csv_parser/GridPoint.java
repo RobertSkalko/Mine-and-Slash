@@ -15,6 +15,10 @@ public class GridPoint<T extends BasePerk> {
         return effectID.toLowerCase();
     }
 
+    public String getEffectIDRaw() {
+        return effectID;
+    }
+
     public GridPoint(int x, int y, String str) {
         this.x = x;
         this.y = y;

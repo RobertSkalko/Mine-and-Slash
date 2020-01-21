@@ -168,8 +168,6 @@ public class PerkGrid<T extends GridPoint> {
                             .connections()
                             .build();
 
-                    perk.registerToSlashRegistry();
-
                 }
             }
 

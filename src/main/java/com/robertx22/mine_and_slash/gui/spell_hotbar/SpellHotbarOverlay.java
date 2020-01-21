@@ -2,13 +2,7 @@ package com.robertx22.mine_and_slash.gui.spell_hotbar;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
@@ -17,8 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.HashMap;
 
 public class SpellHotbarOverlay extends AbstractGui {
 
@@ -52,18 +44,10 @@ public class SpellHotbarOverlay extends AbstractGui {
 
     private void renderSpellsOnHotbar(int x, int y) {
 
-        HashMap<Integer, String> bar = data.getSpellData().getMap(PlayerSpellsData.Hotbar.FIRST);
-        bar.put(1, new FrostballSpell().GUID());
-        bar.put(2, new BlizzardSpell().GUID());
-        bar.put(3, new ThunderspearSpell().GUID());
-        bar.put(4, new ThunderstormSpell().GUID());
-        bar.put(5, new InstantHealSpell().GUID());
-        // TODO TEMP
-
         x += 3;
         y += 3;
 
-        for (int i = 1; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             BaseSpell spell = data.getSpellByKeybind(i);
 
             double scale = 0.5D;
@@ -71,9 +55,6 @@ public class SpellHotbarOverlay extends AbstractGui {
 
             int xs = (int) (x * 1 / scale);
             int ys = (int) (y * 1 / scale);
-
-            mc.getTextureManager().bindTexture(spell.getSchool().getGuiIconLocation());
-            this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
 
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 

@@ -20,12 +20,37 @@ public class KeybindsRegister {
 
     static String HOTBAR_NAME = Ref.MOD_NAME + " Hotbar";
 
+    static KeyBinding SPELL_1 = new KeyBinding("Spell Hotbar key 1", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_1,
+                                               HOTBAR_NAME
+    );
+    static KeyBinding SPELL_2 = new KeyBinding("Spell Hotbar key 2", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_2,
+                                               HOTBAR_NAME
+    );
+    static KeyBinding SPELL_3 = new KeyBinding("Spell Hotbar key 3", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_3,
+                                               HOTBAR_NAME
+    );
+    static KeyBinding SPELL_4 = new KeyBinding("Spell Hotbar key 4", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_4,
+                                               HOTBAR_NAME
+    );
+    static KeyBinding SPELL_5 = new KeyBinding("Spell Hotbar key 5", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_5,
+                                               HOTBAR_NAME
+    );
+
     public static HashMap<KeyBinding, Integer> HOTBAR = new HashMap<KeyBinding, Integer>() {{
-        put(new KeyBinding("Spell Hotbar key 1", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_1, HOTBAR_NAME), 0);
-        put(new KeyBinding("Spell Hotbar key 2", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_2, HOTBAR_NAME), 1);
-        put(new KeyBinding("Spell Hotbar key 3", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_3, HOTBAR_NAME), 2);
-        put(new KeyBinding("Spell Hotbar key 4", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_4, HOTBAR_NAME), 3);
-        put(new KeyBinding("Spell Hotbar key 5", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_5, HOTBAR_NAME), 4);
+        put(SPELL_1, 0);
+        put(SPELL_2, 1);
+        put(SPELL_3, 2);
+        put(SPELL_4, 3);
+        put(SPELL_5, 4);
+
+    }};
+
+    public static HashMap<Integer, KeyBinding> HOTBAR_BY_NUMBER = new HashMap<Integer, KeyBinding>() {{
+        put(0, SPELL_1);
+        put(1, SPELL_2);
+        put(2, SPELL_3);
+        put(3, SPELL_4);
+        put(4, SPELL_5);
 
     }};
 

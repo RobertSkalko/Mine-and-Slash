@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.gui.talent_tree_gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
@@ -16,16 +17,16 @@ import java.awt.*;
 
 public class PerkButton extends ImageButton {
 
-    public Perk perk;
+    public BasePerk perk;
     public EntityCap.UnitData data;
     public Minecraft mc;
     public PerkConnection.Allocation status;
 
-    public PerkButton(PerkConnection.Allocation status, Perk perk,
-                      EntityCap.UnitData data) {
-        super(0, 0, perk.getPerkType().sizeX, perk.getPerkType().sizeY, 0, 0, perk.getPerkType().sizeY, perk
-                .getPerkType().TEXTURE, (button) -> {
-        });
+    public PerkButton(PerkConnection.Allocation status, BasePerk perk, EntityCap.UnitData data) {
+        super(0, 0, perk.getPerkType().sizeX, perk.getPerkType().sizeY, 0, 0, perk.getPerkType().sizeY,
+              perk.getPerkType().TEXTURE, (button) -> {
+                }
+        );
 
         this.status = status;
         this.perk = perk;
@@ -108,10 +109,13 @@ public class PerkButton extends ImageButton {
     public void onClick(ScreenContext ctx, int mouseX, int mouseY, int click) {
         if (isInsideSlot(ctx, mouseX, mouseY)) {
             if (click == 1) { // if right click
-                MMORPG.sendToServer(new TryRemoveTalentPacket(this.perk));
+                if (perk instanceof Perk) {
+                    MMORPG.sendToServer(new TryRemoveTalentPacket((Perk) this.perk));
+                }
             } else {
-
-                MMORPG.sendToServer(new AllocateTalentPacket(this.perk));
+                if (perk instanceof Perk) {
+                    MMORPG.sendToServer(new AllocateTalentPacket((Perk) this.perk));
+                }
             }
         }
     }
@@ -119,8 +123,7 @@ public class PerkButton extends ImageButton {
     public boolean isInsideSlot(ScreenContext ctx, int mouseX, int mouseY) {
 
         Point guipos = new Point(getPosX(ctx), getPosY(ctx));
-        Point mousePos = new Point((int) (mouseX * ctx.getZoomMulti()), (int) (mouseY * ctx
-                .getZoomMulti()));
+        Point mousePos = new Point((int) (mouseX * ctx.getZoomMulti()), (int) (mouseY * ctx.getZoomMulti()));
 
         int xEnd = (int) (perk.getPerkType().sizeX);
         int yEnd = (int) (perk.getPerkType().sizeY);

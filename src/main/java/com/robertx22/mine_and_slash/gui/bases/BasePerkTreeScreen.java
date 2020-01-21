@@ -132,8 +132,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
     }
 
     @Override
-    public boolean mouseDragged(double x, double y, int ticks, double dragX,
-                                double dragY) {
+    public boolean mouseDragged(double x, double y, int ticks, double dragX, double dragY) {
         this.scrollX -= dragX * 1 / zoom;
         this.scrollY -= dragY * 1 / zoom;
         return true;
@@ -220,7 +219,9 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
         list.forEach(button -> {
 
             if (button.isInsideSlot(ctx, mouseX, mouseY)) {
-                this.renderTooltip(TooltipUtils.compsToStrings(button.perk.effect.GetTooltipString(info)), mouseX, mouseY, mc.fontRenderer);
+                this.renderTooltip(TooltipUtils.compsToStrings(button.perk.effect.GetTooltipString(info)), mouseX,
+                                   mouseY, mc.fontRenderer
+                );
             }
         });
 
@@ -291,8 +292,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     }
 
-    private void renderConnection(PerkButton one, PerkButton two,
-                                  PerkConnection connection, ScreenContext ctx) {
+    private void renderConnection(PerkButton one, PerkButton two, PerkConnection connection, ScreenContext ctx) {
 
         int x1 = one.getMiddleX(ctx);
         int y1 = one.getMiddleY(ctx);
@@ -318,23 +318,6 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     }
 
-    protected void drawPointsLeftNumber() {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2 + 10;
-
-        String str2 = "Reset Points (RMB): " + this.capData.getPerksData().resetPoints;
-
-        mc.fontRenderer.drawStringWithShadow(str2, offsetX + 10, offsetY, TextFormatting.GREEN
-                .getColor());
-
-        String str = "Points (LMB): " + this.capData.getFreePoints(unitData);
-
-        mc.fontRenderer.drawStringWithShadow(str, offsetX + 10, offsetY + mc.fontRenderer.FONT_HEIGHT + 5, TextFormatting.GREEN
-                .getColor());
-
-    }
-
     protected void drawSpace() {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
@@ -352,4 +335,19 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     }
 
+    protected void drawPointsLeftNumber() {
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
+        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2 + 10;
+
+        String str2 = "Reset Points (RMB): " + this.capData.getPerksData().resetPoints;
+
+        mc.fontRenderer.drawStringWithShadow(str2, offsetX + 10, offsetY, TextFormatting.GREEN.getColor());
+
+        String str = "Points (LMB): " + this.capData.getFreePoints(unitData);
+
+        mc.fontRenderer.drawStringWithShadow(
+                str, offsetX + 10, offsetY + mc.fontRenderer.FONT_HEIGHT + 5, TextFormatting.GREEN.getColor());
+
+    }
 }

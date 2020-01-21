@@ -30,7 +30,7 @@ public class FrostballSpell extends BaseProjectileSpell {
 
     @Override
     public String GUID() {
-        return "FrostBolt";
+        return "frostball";
     }
 
     @Override

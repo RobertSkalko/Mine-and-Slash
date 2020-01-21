@@ -1,20 +1,21 @@
-package com.robertx22.mine_and_slash.gui.talent_tree_gui;
+package com.robertx22.mine_and_slash.gui.spell_perk_tree;
 
-import com.robertx22.mine_and_slash.database.talent_tree.Perk;
+import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.BasePerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
-import com.robertx22.mine_and_slash.saveclasses.talents.PlayerTalentsData;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap.IPlayerTalentsData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellPerksData;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
-public class TalentPerkTreeScreen extends BasePerkTreeScreen<Perk, PlayerTalentsData, IPlayerTalentsData> {
+public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerksData, PlayerSpellCap.ISpellsCap> {
 
-    public TalentPerkTreeScreen() {
+    public SpellPerkTreeScreen() {
         super();
     }
 
@@ -25,7 +26,7 @@ public class TalentPerkTreeScreen extends BasePerkTreeScreen<Perk, PlayerTalents
 
     @Override
     public ResourceLocation SPACE() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/talents/space.png");
+        return new ResourceLocation(Ref.MODID, "textures/gui/talents/space2.png");
     }
 
     @Override
@@ -40,25 +41,25 @@ public class TalentPerkTreeScreen extends BasePerkTreeScreen<Perk, PlayerTalents
 
     @Override
     public void reloadData() {
-        this.capData = Load.talents(mc.player);
+        this.capData = Load.spells(mc.player);
     }
 
     @Override
     public ResourceLocation iconLocation() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/talents.png");
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/spell_perks.png");
     }
 
     @Override
     public Words screenName() {
-        return Words.Talents;
+        return Words.Spell;
     }
 
     @Override
     public void init(Minecraft mc, int x, int y) {
         super.init(mc, x, y);
 
-        for (Perk talent : SlashRegistry.Perks().getList()) {
-            this.addButton(new PerkButton(talent.getStatus(capData), talent, unitData));
+        for (SpellPerk perk : SlashRegistry.SpellPerks().getList()) {
+            this.addButton(new PerkButton(perk.getStatus(capData), perk, unitData));
         }
 
         returnToCenter();
