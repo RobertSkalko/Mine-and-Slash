@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElemental
 import com.robertx22.mine_and_slash.database.spells.entities.proj.EntityFrostBolt;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.world.World;
 
 public class FrostballSpell extends BaseProjectileSpell {
@@ -15,6 +16,16 @@ public class FrostballSpell extends BaseProjectileSpell {
     @Override
     public Elements getElement() {
         return Elements.Water;
+    }
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.OCEAN_MYSTIC;
+    }
+
+    @Override
+    public String iconName() {
+        return "ocean_mystic/frostball";
     }
 
     @Override

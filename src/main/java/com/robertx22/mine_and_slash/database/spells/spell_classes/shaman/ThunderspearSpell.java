@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEff
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundCategory;
@@ -23,6 +24,16 @@ public class ThunderspearSpell extends BaseSpell {
     }
 
     public Elements element = Elements.Thunder;
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.SHAMAN;
+    }
+
+    @Override
+    public String iconName() {
+        return "shaman/thunderspear";
+    }
 
     @Override
     public BaseSpell.SpellType getSpellType() {
@@ -70,13 +81,15 @@ public class ThunderspearSpell extends BaseSpell {
 
         Vec3d pos = caster.getPositionVector();
 
-        ThunderspearEntity en = SpellUtils.getSpellEntity(new ThunderspearEntity(world), new SpellEffectDamage(getElement()), data, caster);
+        ThunderspearEntity en = SpellUtils.getSpellEntity(
+                new ThunderspearEntity(world), new SpellEffectDamage(getElement()), data, caster);
 
         SpellUtils.setupProjectileForCasting(en, caster, 2);
 
         caster.world.addEntity(en);
 
-        caster.world.playMovingSound((PlayerEntity) null, en, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        caster.world.playMovingSound(
+                (PlayerEntity) null, en, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         return true;
     }

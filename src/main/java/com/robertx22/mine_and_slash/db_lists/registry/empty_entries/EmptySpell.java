@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -27,6 +28,11 @@ public class EmptySpell extends BaseSpell {
     @Override
     public int useTimeTicks() {
         return 0;
+    }
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.OCEAN_MYSTIC;
     }
 
     @Override

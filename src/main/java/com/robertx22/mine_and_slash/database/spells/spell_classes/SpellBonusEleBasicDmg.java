@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.potion_effects.all.BonusDmgPotion;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,6 +29,11 @@ public class SpellBonusEleBasicDmg extends BaseSpell implements IGenerated<BaseS
     @Override
     public SpellType getSpellType() {
         return SpellType.Self_Buff;
+    }
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.OCEAN_MYSTIC;
     }
 
     @Override
@@ -80,8 +86,7 @@ public class SpellBonusEleBasicDmg extends BaseSpell implements IGenerated<BaseS
     public List<BaseSpell> generateAllPossibleStatVariations() {
 
         List<BaseSpell> spells = new ArrayList<>();
-        Elements.getAllSingleElements()
-                .forEach(x -> spells.add(new SpellBonusEleBasicDmg(x)));
+        Elements.getAllSingleElements().forEach(x -> spells.add(new SpellBonusEleBasicDmg(x)));
 
         return spells;
     }

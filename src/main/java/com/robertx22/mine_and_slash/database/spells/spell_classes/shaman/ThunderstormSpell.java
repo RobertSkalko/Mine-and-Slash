@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEff
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,6 +24,16 @@ public class ThunderstormSpell extends BaseSpell {
     }
 
     public Elements element = Elements.Thunder;
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.SHAMAN;
+    }
+
+    @Override
+    public String iconName() {
+        return "shaman/thunderstorm";
+    }
 
     @Override
     public BaseSpell.SpellType getSpellType() {

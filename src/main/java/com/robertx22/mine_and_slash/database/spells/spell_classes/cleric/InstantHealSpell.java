@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -27,6 +28,16 @@ public class InstantHealSpell extends BaseSpellHeal {
     @Override
     public String GUID() {
         return "instant_heal";
+    }
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.CLERIC;
+    }
+
+    @Override
+    public String iconName() {
+        return "cleric/instant_heal";
     }
 
     @Override
@@ -60,8 +71,10 @@ public class InstantHealSpell extends BaseSpellHeal {
                 UnitData data = Load.Unit(caster);
 
                 data.getResources()
-                        .modify(new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH, spellData
-                                .getDamage(data.getUnit()), ResourcesData.Use.RESTORE, this));
+                        .modify(new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
+                                                          spellData.getDamage(data.getUnit()),
+                                                          ResourcesData.Use.RESTORE, this
+                        ));
 
                 SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
 

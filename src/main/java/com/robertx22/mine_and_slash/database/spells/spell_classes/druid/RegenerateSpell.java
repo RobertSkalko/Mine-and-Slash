@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -28,6 +29,11 @@ public class RegenerateSpell extends BaseSpellHeal {
     @Override
     public String GUID() {
         return "spell_self_regen";
+    }
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.DRUID;
     }
 
     @Override
