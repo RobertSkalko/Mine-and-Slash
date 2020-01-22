@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.PlayerStatPointsData;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
@@ -35,8 +35,7 @@ public class PlayerStatsPointsCap {
 
         public SingleStatPointData getStatData(LvlPointStat stat);
 
-        public void addPoint(PlayerEntity player, LvlPointStat stat,
-                             EntityCap.UnitData data);
+        public void addPoint(PlayerEntity player, LvlPointStat stat, EntityCap.UnitData data);
 
         int getAvailablePoints(EntityCap.UnitData data);
 
@@ -138,8 +137,7 @@ public class PlayerStatsPointsCap {
         }
 
         @Override
-        public void addPoint(PlayerEntity player, LvlPointStat stat,
-                             EntityCap.UnitData data) {
+        public void addPoint(PlayerEntity player, LvlPointStat stat, EntityCap.UnitData data) {
             if (this.hasAvailablePoints(data)) {
                 getStatData(stat).points++;
                 data.setEquipsChanged(true);

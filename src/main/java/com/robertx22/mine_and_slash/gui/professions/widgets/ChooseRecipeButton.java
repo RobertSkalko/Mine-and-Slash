@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.RecipeSlot;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.ProfessionRecipePacket;
+import com.robertx22.mine_and_slash.packets.ProfessionRecipePacket;
 import com.robertx22.mine_and_slash.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
@@ -39,8 +39,8 @@ public class ChooseRecipeButton extends ImageButton {
     static int YESNOSize = 10;
     static int expSize = 9;
 
-    public ChooseRecipeButton(int playerProfLvl, BaseRecipe recipe, ItemStack output,
-                              int xPos, int yPos, BlockPos pos) {
+    public ChooseRecipeButton(int playerProfLvl, BaseRecipe recipe, ItemStack output, int xPos, int yPos,
+                              BlockPos pos) {
         super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, img, (button) -> {
         });
 

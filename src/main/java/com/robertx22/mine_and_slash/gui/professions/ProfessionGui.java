@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.gui.professions.widgets.OnlyLvlMetCheckBox;
 import com.robertx22.mine_and_slash.gui.professions.widgets.ProfessionLvlBar;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.RequestTilePacket;
+import com.robertx22.mine_and_slash.packets.RequestTilePacket;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionTile;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -56,8 +56,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
     static int x = 318;
     static int y = 232;
 
-    public ProfessionGui(ProfessionContainer cont, PlayerInventory inv,
-                         ITextComponent text) {
+    public ProfessionGui(ProfessionContainer cont, PlayerInventory inv, ITextComponent text) {
         super(cont, inv, text);
 
         this.xSize = x;
@@ -153,8 +152,8 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
             xOffset = n * (ChooseRecipeButton.xSize + 1);
 
-            ChooseRecipeButton button = new ChooseRecipeButton(proffs.getLevel(recipe.profession()), recipe, output, x + xOffset, y, tile
-                    .getPos());
+            ChooseRecipeButton button = new ChooseRecipeButton(
+                    proffs.getLevel(recipe.profession()), recipe, output, x + xOffset, y, tile.getPos());
 
             this.displayedRecipeButtons.add(button);
 
@@ -179,13 +178,18 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
     public void render(int mouseX, int mouseY, float partialTicks) {
 
         if (this.lvlbar == null) {
-            this.lvlbar = new ProfessionLvlBar(tile.profession, proffs, guiLeft + 229 - ProfessionLvlBar.xSize / 2, guiTop + 70 - ProfessionLvlBar.ySize);
+            this.lvlbar = new ProfessionLvlBar(
+                    tile.profession, proffs, guiLeft + 229 - ProfessionLvlBar.xSize / 2,
+                    guiTop + 70 - ProfessionLvlBar.ySize
+            );
         }
 
         if (this.searchBar == null) {
             String s = this.searchBar != null ? this.searchBar.getText() : "";
-            this.searchBar = new TextFieldWidget(this.mc.fontRenderer, this.guiLeft + 20, this.guiTop + 5, 80, 9 + 5, I18n
-                    .format("itemGroup.search"));
+            this.searchBar = new TextFieldWidget(
+                    this.mc.fontRenderer, this.guiLeft + 20, this.guiTop + 5, 80, 9 + 5,
+                    I18n.format("itemGroup.search")
+            );
             this.searchBar.setMaxStringLength(50);
             this.searchBar.setEnableBackgroundDrawing(false);
             this.searchBar.setVisible(true);
@@ -249,8 +253,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
         if (this.tile.currentRecipe != null) {
             int x = this.guiLeft + 217 + 5;
             int y = this.guiTop + 19 + 5;
-            currentOutput = new Slot(new Inventory(tile.currentRecipe.getOutput(tile)
-                    .getPreview()), 0, x, y);
+            currentOutput = new Slot(new Inventory(tile.currentRecipe.getOutput(tile).getPreview()), 0, x, y);
             this.drawSlot(currentOutput);
         }
     }
@@ -302,11 +305,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
             for (BaseRecipe recipe : recipes) {
 
-                String s = recipe.getOutput(tile)
-                        .getPreview()
-                        .getDisplayName()
-                        .getFormattedText()
-                        .toLowerCase();
+                String s = recipe.getOutput(tile).getPreview().getDisplayName().getFormattedText().toLowerCase();
 
                 if (s.contains(this.searchBar.getText().toLowerCase())) {
                     list.add(recipe);

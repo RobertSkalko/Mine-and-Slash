@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoScreen;
+import com.robertx22.mine_and_slash.gui.spell_hotbar_setup.SpellHotbatSetupScreen;
 import com.robertx22.mine_and_slash.gui.spell_perk_tree.SpellPerkTreeScreen;
 import com.robertx22.mine_and_slash.gui.stat_allocation_screen.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.stats_overview.StatOverviewScreen;
@@ -44,6 +45,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         screens.add(new StatOverviewScreen());
         screens.add(new StatAllocationScreen());
         screens.add(new SpellPerkTreeScreen());
+        screens.add(new SpellHotbatSetupScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 8;

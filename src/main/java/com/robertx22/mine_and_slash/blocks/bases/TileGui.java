@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.blocks.bases;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.RequestTilePacket;
+import com.robertx22.mine_and_slash.packets.RequestTilePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;

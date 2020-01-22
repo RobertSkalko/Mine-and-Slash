@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.bags.master_bag;
 
-import com.robertx22.mine_and_slash.network.MasterBagPacket;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.packets.MasterBagPacket;
 import net.minecraft.client.gui.widget.Widget;
 
 public class MasterButton extends Widget {

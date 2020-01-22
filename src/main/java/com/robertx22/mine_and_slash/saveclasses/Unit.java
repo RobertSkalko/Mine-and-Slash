@@ -15,7 +15,7 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.EntityUnitPacket;
+import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -361,8 +361,7 @@ public class Unit {
 
     private float getHpAdded(LivingEntity entity, MobRarity rar, UnitData data) {
 
-        float hpadded = StatUtils.calculateNormalScalingStatGrowth(entity.getMaxHealth(), data
-                .getLevel());
+        float hpadded = StatUtils.calculateNormalScalingStatGrowth(entity.getMaxHealth(), data.getLevel());
 
         if (entity instanceof PlayerEntity) {
             hpadded *= ModConfig.INSTANCE.Server.PLAYER_HEART_TO_HEALTH_CONVERSION.get();
@@ -416,10 +415,7 @@ public class Unit {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
             PlayerStatUtils.addTalentStats(data, (PlayerEntity) entity);
 
-            Load.statPoints((PlayerEntity) entity)
-                    .getData()
-                    .getAllStatDatas()
-                    .forEach(x -> x.applyStats(data));
+            Load.statPoints((PlayerEntity) entity).getData().getAllStatDatas().forEach(x -> x.applyStats(data));
 
         } else {
             MobStatUtils.AddMobcStats(data, data.getLevel());
@@ -448,7 +444,8 @@ public class Unit {
 
         CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
 
-        CommonStatUtils.CalcTraitsAndCoreStats(data); // has to be at end for the conditionals like if crit higher than x
+        CommonStatUtils.CalcTraitsAndCoreStats(
+                data); // has to be at end for the conditionals like if crit higher than x
 
         MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnStatCalculation(entity, data));
 
@@ -475,8 +472,10 @@ public class Unit {
 
         if (unique_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS.get()) {
             if (en instanceof ServerPlayerEntity) {
-                en.sendMessage(new StringTextComponent("Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
-                        .get()));
+                en.sendMessage(new StringTextComponent(
+                        "Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique" +
+                                " items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
+                                .get()));
             }
             return false;
         }
@@ -485,8 +484,10 @@ public class Unit {
 
         if (runed_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS.get()) {
             if (en instanceof ServerPlayerEntity) {
-                en.sendMessage(new StringTextComponent("Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
-                        .get()));
+                en.sendMessage(new StringTextComponent(
+                        "Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique " +
+                                "items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
+                                .get()));
             }
             return false;
         }

@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.BasePerkTreeScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.talents.PlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap.IPlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

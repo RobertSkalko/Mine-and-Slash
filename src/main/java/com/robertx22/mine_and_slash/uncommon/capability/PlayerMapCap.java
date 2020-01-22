@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -129,8 +129,7 @@ public class PlayerMapCap {
             }
 
             if (this.originalDimension != null) {
-                nbt.putString(ORIGINAL_DIM, MapManager.getResourceLocation(originalDimension)
-                        .toString());
+                nbt.putString(ORIGINAL_DIM, MapManager.getResourceLocation(originalDimension).toString());
             }
 
             return nbt;
@@ -170,17 +169,15 @@ public class PlayerMapCap {
                 this.minutesPassed += 555555;
 
                 player.sendMessage(Chats.Player_died_in_a_map_world.locName()
-                        .appendText(" " + player.getDisplayName()
-                                .getFormattedText() + " ")
-                        .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
+                                           .appendText(" " + player.getDisplayName().getFormattedText() + " ")
+                                           .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
 
             } else {
                 int punishment = 5;
 
                 player.sendMessage(Chats.Player_died_in_a_map_world.locName()
-                        .appendText(" " + player.getDisplayName()
-                                .getFormattedText() + " ")
-                        .appendSibling(Chats.Map_time_penalty_activated.locName()));
+                                           .appendText(" " + player.getDisplayName().getFormattedText() + " ")
+                                           .appendSibling(Chats.Map_time_penalty_activated.locName()));
 
                 this.minutesPassed += punishment;
 
@@ -215,8 +212,7 @@ public class PlayerMapCap {
         }
 
         @Override
-        public void init(BlockPos pos, MapItemData map, DimensionType type,
-                         PlayerEntity player) {
+        public void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player) {
 
             this.minutesPassed = 0;
             this.mapDevicePos = pos.toLong();
@@ -350,8 +346,7 @@ public class PlayerMapCap {
                 }
                 if (pos == null) {
                     try {
-                        pos = MapManager.getWorld(DimensionType.OVERWORLD)
-                                .getSpawnPoint();
+                        pos = MapManager.getWorld(DimensionType.OVERWORLD).getSpawnPoint();
                     } catch (Exception e) {
                         error("Last safeguard failed, can't even get spawn point of overworld");
                         e.printStackTrace();
@@ -360,7 +355,8 @@ public class PlayerMapCap {
                 }
 
                 pos = pos.north(2);
-                PlayerUtils.changeDimension((ServerPlayerEntity) player, this.originalDimension, pos); // TODO conditionIsMet if works
+                PlayerUtils.changeDimension(
+                        (ServerPlayerEntity) player, this.originalDimension, pos); // TODO conditionIsMet if works
 
             }
         }
@@ -374,8 +370,8 @@ public class PlayerMapCap {
         private void announceTimeLeft(PlayerEntity player) {
 
             player.sendMessage(Chats.Remaining_Map_Time_is.locName()
-                    .appendText(" " + this.getMinutesLeft() + " ")
-                    .appendSibling(Words.Minutes.locName()));
+                                       .appendText(" " + this.getMinutesLeft() + " ")
+                                       .appendSibling(Words.Minutes.locName()));
 
         }
 

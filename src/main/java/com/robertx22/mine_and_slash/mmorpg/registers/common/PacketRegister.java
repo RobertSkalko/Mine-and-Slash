@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.*;
-import com.robertx22.mine_and_slash.network.sync_cap.RequestSyncCapToClient;
-import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
+import com.robertx22.mine_and_slash.packets.*;
+import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
+import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
+import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
+import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -38,10 +40,6 @@ public class PacketRegister {
 
         reg(MasterBagPacket.class, MasterBagPacket::encode, MasterBagPacket::decode, MasterBagPacket::handle);
 
-        reg(RarityItemDropPacket.class, RarityItemDropPacket::encode, RarityItemDropPacket::decode,
-            RarityItemDropPacket::handle
-        );
-
         reg(ProfessionRecipePacket.class, ProfessionRecipePacket::encode, ProfessionRecipePacket::decode,
             ProfessionRecipePacket::handle
         );
@@ -60,8 +58,8 @@ public class PacketRegister {
 
         reg(OpenGuiPacket.class, OpenGuiPacket::encode, OpenGuiPacket::decode, OpenGuiPacket::handle);
 
-        reg(AllocatePerkPacket.class, AllocatePerkPacket::encode, AllocatePerkPacket::decode,
-            AllocatePerkPacket::handle
+        reg(TryAllocatePerkPacket.class, TryAllocatePerkPacket::encode, TryAllocatePerkPacket::decode,
+            TryAllocatePerkPacket::handle
         );
 
         reg(TryRemovePerkPacket.class, TryRemovePerkPacket::encode, TryRemovePerkPacket::decode,
@@ -85,6 +83,8 @@ public class PacketRegister {
         reg(ChangeSpellHotbarPacket.class, ChangeSpellHotbarPacket::encode, ChangeSpellHotbarPacket::decode,
             ChangeSpellHotbarPacket::handle
         );
+
+        reg(HotbarSetupPacket.class, HotbarSetupPacket::encode, HotbarSetupPacket::decode, HotbarSetupPacket::handle);
 
     }
 

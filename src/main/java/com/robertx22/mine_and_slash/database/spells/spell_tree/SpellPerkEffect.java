@@ -24,7 +24,7 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
 
     public PerkType type = PerkType.SMALL;
     boolean hasTexture = false;
-    BaseSpell spell;
+    public BaseSpell spell;
     private String guid;
     private ResourceLocation TEXTURE;
     public List<ExactStatData> exactStats = new ArrayList<>();

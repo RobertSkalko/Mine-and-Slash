@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
-import com.robertx22.mine_and_slash.network.SyncConfigToClientPacket;
+import com.robertx22.mine_and_slash.packets.SyncConfigToClientPacket;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;

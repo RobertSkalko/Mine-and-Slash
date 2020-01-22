@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.blocks.map_device;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.UseMapTicketPacket;
+import com.robertx22.mine_and_slash.packets.UseMapTicketPacket;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;

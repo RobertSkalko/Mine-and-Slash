@@ -79,6 +79,19 @@ public class PlayerSpellsData {
 
     }
 
+    public void setHotbar(int number, Hotbar hotbar, String spellID) {
+
+        if (!SlashRegistry.Spells().isRegistered(spellID)) {
+            try {
+                throw new Exception("Trying to setup spell that isn't registered!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        getMap(hotbar).put(number, spellID);
+    }
+
     public boolean canCast(int key, PlayerEntity player) {
 
         if (isCasting()) {

@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.EfficientMobUnitPacket;
-import com.robertx22.mine_and_slash.network.EntityUnitPacket;
+import com.robertx22.mine_and_slash.packets.EfficientMobUnitPacket;
+import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -25,12 +25,16 @@ public class OnTrackEntity {
                 if (Load.hasUnit(entity)) {
 
                     if (entity instanceof PlayerEntity) {
-                        MMORPG.sendToClient(new EntityUnitPacket(entity, Load.Unit(entity)), (ServerPlayerEntity) event
-                                .getPlayer());
+                        MMORPG.sendToClient(
+                                new EntityUnitPacket(entity, Load.Unit(entity)),
+                                (ServerPlayerEntity) event.getPlayer()
+                        );
                     } else {
 
-                        MMORPG.sendToClient(new EfficientMobUnitPacket(entity, Load.Unit(entity)), (ServerPlayerEntity) event
-                                .getPlayer());
+                        MMORPG.sendToClient(
+                                new EfficientMobUnitPacket(entity, Load.Unit(entity)),
+                                (ServerPlayerEntity) event.getPlayer()
+                        );
 
                     }
 

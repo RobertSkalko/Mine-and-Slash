@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
-import com.robertx22.mine_and_slash.network.sync_cap.SyncCapabilityToClient;
+import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
@@ -104,7 +104,10 @@ public class QuestsCap {
 
         @Override
         public void syncToClient(PlayerEntity player) {
-            MMORPG.sendToClient(new SyncCapabilityToClient((ServerPlayerEntity) player, CapTypes.QUESTS), (ServerPlayerEntity) player);
+            MMORPG.sendToClient(
+                    new SyncCapabilityToClient((ServerPlayerEntity) player, CapTypes.QUESTS),
+                    (ServerPlayerEntity) player
+            );
         }
 
         @Override

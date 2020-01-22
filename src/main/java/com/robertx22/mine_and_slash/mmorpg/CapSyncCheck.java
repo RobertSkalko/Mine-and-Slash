@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
 
 import java.util.HashMap;
 

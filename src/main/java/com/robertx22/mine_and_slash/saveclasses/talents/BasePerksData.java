@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.talents;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -8,6 +10,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Storable
 public abstract class BasePerksData<T extends BasePerk> implements IApplyableStats {
@@ -129,6 +132,14 @@ public abstract class BasePerksData<T extends BasePerk> implements IApplyableSta
             }
         }
         return list;
+
+    }
+
+    public List<BaseSpell> getAvailableSpells() {
+        return getAllCurrentPerks().stream()
+                .filter(x -> x.effect instanceof SpellPerkEffect)
+                .map(x -> ((SpellPerkEffect) x.effect).spell)
+                .collect(Collectors.toList());
 
     }
 }

@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
-import com.robertx22.mine_and_slash.network.DmgNumPacket;
+import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -65,8 +65,8 @@ public class OnMobDeathDrops {
                             int exp = GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
 
                             if (exp > 0) {
-                                DmgNumPacket packet = new DmgNumPacket(mobKilled, Elements.Nature, "+" + NumberUtils
-                                        .formatNumber(exp) + " Exp!");
+                                DmgNumPacket packet = new DmgNumPacket(
+                                        mobKilled, Elements.Nature, "+" + NumberUtils.formatNumber(exp) + " Exp!");
                                 packet.isExp = true;
                                 MMORPG.sendToClient(packet, player);
                             }
@@ -84,11 +84,9 @@ public class OnMobDeathDrops {
 
     }
 
-    private static int GiveExp(LivingEntity victim, PlayerEntity entity, UnitData player,
-                               UnitData mob, float multi) {
+    private static int GiveExp(LivingEntity victim, PlayerEntity entity, UnitData player, UnitData mob, float multi) {
 
-        int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity())
-                .ExpOnKill() * multi);
+        int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill() * multi);
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
 

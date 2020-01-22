@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
-import com.robertx22.mine_and_slash.network.CastSpellPacket;
+import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.InputEvent;

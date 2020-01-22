@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellPerksData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
@@ -24,6 +24,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.List;
+
 @Mod.EventBusSubscriber
 public class PlayerSpellCap {
 
@@ -39,6 +41,9 @@ public class PlayerSpellCap {
         public abstract BaseSpell getSpellByKeybind(int key);
 
         public abstract PlayerSpellsData getSpellData();
+
+        public abstract List<BaseSpell> getAvailableSpells();
+
     }
 
     @Mod.EventBusSubscriber
@@ -133,6 +138,12 @@ public class PlayerSpellCap {
         public PlayerSpellsData getSpellData() {
             return this.playerSpellsData;
         }
+
+        @Override
+        public List<BaseSpell> getAvailableSpells() {
+            return this.perksData.getAvailableSpells();
+        }
+
     }
 
     public static class Storage extends BaseStorage<ISpellsCap> {

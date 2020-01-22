@@ -8,9 +8,9 @@ import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.network.SpendStatPointPacket;
-import com.robertx22.mine_and_slash.network.sync_cap.CapTypes;
-import com.robertx22.mine_and_slash.network.sync_cap.RequestSyncCapToClient;
+import com.robertx22.mine_and_slash.packets.SpendStatPointPacket;
+import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -32,7 +32,8 @@ import java.util.List;
 
 public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/stat_point_screen.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(
+            Ref.MODID, "textures/gui/stat_point_screen.png");
     static int sizeY = 220;
     static int sizeX = 215;
 
@@ -87,9 +88,10 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
         String str = "Stat Points Remaining: " + data.getAvailablePoints(Load.Unit(minecraft.player));
 
-        Minecraft.getInstance().fontRenderer.drawStringWithShadow(str, guiLeft + sizeX / 2 + 50 - Minecraft
-                .getInstance().fontRenderer.getStringWidth(str), guiTop + 15, TextFormatting.GREEN
-                .getColor());
+        Minecraft.getInstance().fontRenderer.drawStringWithShadow(
+                str, guiLeft + sizeX / 2 + 50 - Minecraft.getInstance().fontRenderer.getStringWidth(str), guiTop + 15,
+                TextFormatting.GREEN.getColor()
+        );
 
         buttons.forEach(b -> b.renderToolTip(x, y));
 
@@ -99,8 +101,10 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
         minecraft.getTextureManager().bindTexture(TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.blit(minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, minecraft.mainWindow
-                .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY);
+        this.blit(
+                minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2,
+                minecraft.mainWindow.getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
+        );
 
     }
 
@@ -115,8 +119,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
         LvlPointStat stat;
         EntityCap.UnitData unitdata;
 
-        public IncreaseStatButton(EntityCap.UnitData unitdata,
-                                  PlayerStatsPointsCap.IPlayerStatPointsData data,
+        public IncreaseStatButton(EntityCap.UnitData unitdata, PlayerStatsPointsCap.IPlayerStatPointsData data,
                                   SingleStatPointData statData, int xPos, int yPos) {
             super(xPos, yPos, button_sizeX, button_sizeY, 0, 0, button_sizeY, BUTTON_TEX, (button) -> {
             });
@@ -147,12 +150,11 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
                 if (stat instanceof BaseCoreStat) {
                     BaseCoreStat core = (BaseCoreStat) stat;
-                    tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit()
-                            .getStat(stat)));
+                    tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit().getStat(stat)));
                 }
 
-                StatAllocationScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
-                        .getInstance().fontRenderer);
+                StatAllocationScreen.this.renderTooltip(
+                        TooltipUtils.compsToStrings(tooltip), x, y, Minecraft.getInstance().fontRenderer);
 
             }
         }
@@ -171,12 +173,14 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
             Stat stat = single.getStat();
 
-            String str = single.stat.formatting + single.stat.shortName + format + ": " + TextFormatting.GREEN + single.points + format;
-            str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit()
-                    .getStat(stat).val + format + ")";
+            String str =
+                    single.stat.formatting + single.stat.shortName + format + ": " + TextFormatting.GREEN + single.points + format;
+            str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit().getStat(stat).val + format + ")";
 
-            font.drawStringWithShadow(str, this.x - button_sizeX - 5 - font.getStringWidth(str), this.y - button_sizeY / 2 + font.FONT_HEIGHT, format
-                    .getColor());
+            font.drawStringWithShadow(
+                    str, this.x - button_sizeX - 5 - font.getStringWidth(str),
+                    this.y - button_sizeY / 2 + font.FONT_HEIGHT, format.getColor()
+            );
 
         }
 

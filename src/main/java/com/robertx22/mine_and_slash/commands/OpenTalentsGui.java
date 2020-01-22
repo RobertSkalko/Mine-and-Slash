@@ -2,16 +2,15 @@ package com.robertx22.mine_and_slash.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.network.OpenGuiPacket;
+import com.robertx22.mine_and_slash.packets.OpenGuiPacket;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.ServerPlayerEntity;
 
 public class OpenTalentsGui {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
-        commandDispatcher.register(Commands.literal(COMMAND)
-                .requires(e -> e.hasPermissionLevel(0))
-                .executes(ctx -> run(ctx.getSource())));
+        commandDispatcher.register(
+                Commands.literal(COMMAND).requires(e -> e.hasPermissionLevel(0)).executes(ctx -> run(ctx.getSource())));
     }
 
     public static final String COMMAND = "opentalentsgui";
@@ -21,8 +20,8 @@ public class OpenTalentsGui {
         try {
 
             if (source.getEntity() instanceof ServerPlayerEntity) {
-                MMORPG.sendToClient(new OpenGuiPacket(OpenGuiPacket.GuiType.TALENTS), (ServerPlayerEntity) source
-                        .getEntity());
+                MMORPG.sendToClient(
+                        new OpenGuiPacket(OpenGuiPacket.GuiType.TALENTS), (ServerPlayerEntity) source.getEntity());
             }
 
         } catch (Exception e) {
