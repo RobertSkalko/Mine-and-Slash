@@ -28,12 +28,17 @@ public class RegenerateSpell extends BaseSpellHeal {
 
     @Override
     public String GUID() {
-        return "spell_self_regen";
+        return "regenerate";
     }
 
     @Override
     public SpellSchools getSchool() {
         return SpellSchools.DRUID;
+    }
+
+    @Override
+    public int getCooldownInSeconds() {
+        return 30;
     }
 
     @Override
@@ -78,11 +83,11 @@ public class RegenerateSpell extends BaseSpellHeal {
                 SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);
                 spelleffect.Activate();
                 checkSpellBuffs(caster, check);
+
                 //
 
-            } else {
-
                 ParticleUtils.spawnHealParticles(caster, 10);
+
             }
         } catch (Exception e) {
             e.printStackTrace();

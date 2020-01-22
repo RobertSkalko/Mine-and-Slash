@@ -24,8 +24,8 @@ public class FrostballSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public String iconName() {
-        return "ocean_mystic/frostball";
+    public int getCooldownInSeconds() {
+        return 0;
     }
 
     @Override

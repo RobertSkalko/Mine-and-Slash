@@ -31,8 +31,8 @@ public class BlizzardSpell extends BaseSpell {
     }
 
     @Override
-    public String iconName() {
-        return "ocean_mystic/blizzard";
+    public int getCooldownInSeconds() {
+        return 15;
     }
 
     @Override

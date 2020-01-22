@@ -108,7 +108,7 @@ public class PlayerSpellsData {
     private void onSpellCast(BaseSpell spell) {
         SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
-        data.setCooldown(20); // TODO
+        data.setCooldown(spell.getCooldownInTicks());
 
         spellDatas.put(spell.GUID(), data);
 

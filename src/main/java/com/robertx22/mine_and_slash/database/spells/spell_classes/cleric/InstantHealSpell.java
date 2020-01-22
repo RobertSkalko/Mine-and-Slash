@@ -36,8 +36,8 @@ public class InstantHealSpell extends BaseSpellHeal {
     }
 
     @Override
-    public String iconName() {
-        return "cleric/instant_heal";
+    public int getCooldownInSeconds() {
+        return 20;
     }
 
     @Override
@@ -83,10 +83,9 @@ public class InstantHealSpell extends BaseSpellHeal {
                 SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);
                 spelleffect.Activate();
                 checkSpellBuffs(caster, check);
-                //
-            } else {
 
                 ParticleUtils.spawnHealParticles(caster, 10);
+                //
             }
         } catch (Exception e) {
             e.printStackTrace();

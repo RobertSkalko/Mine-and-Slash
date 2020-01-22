@@ -31,8 +31,8 @@ public class ThunderstormSpell extends BaseSpell {
     }
 
     @Override
-    public String iconName() {
-        return "shaman/thunderstorm";
+    public int getCooldownInSeconds() {
+        return 20;
     }
 
     @Override

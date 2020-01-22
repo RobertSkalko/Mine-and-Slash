@@ -50,15 +50,17 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return 0;
     }
 
-    public ResourceLocation getIcon() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + iconName() + ".png");
+    public final ResourceLocation getIcon() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + getSchool().id + "/" + GUID() + ".png");
     }
 
     public abstract SpellSchools getSchool();
 
-    public String iconName() { // TODO make abstract when done
-        return "";
+    public final int getCooldownInTicks() {
+        return getCooldownInSeconds() * 20;
     }
+
+    public abstract int getCooldownInSeconds();
 
     @Override
     public SlashRegistryType getSlashRegistryType() {

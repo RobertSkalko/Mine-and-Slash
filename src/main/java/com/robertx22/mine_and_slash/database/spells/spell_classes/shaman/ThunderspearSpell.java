@@ -31,8 +31,8 @@ public class ThunderspearSpell extends BaseSpell {
     }
 
     @Override
-    public String iconName() {
-        return "shaman/thunderspear";
+    public int getCooldownInSeconds() {
+        return 0;
     }
 
     @Override
