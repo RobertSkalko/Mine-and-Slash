@@ -40,7 +40,7 @@ public class LootTypeBonus extends Stat implements IGenerated<Stat> {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

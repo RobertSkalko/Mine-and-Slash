@@ -1,9 +1,8 @@
 package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseCloudEntity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.potion_effects.PotionEffectUtils;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -29,10 +28,7 @@ public class BlizzardEntity extends BaseCloudEntity {
 
     @Override
     public void initSpellEntity() {
-        if (getServerSpellData().effect instanceof SpellEffectDamage) {
-            SpellEffectDamage dmg = (SpellEffectDamage) getServerSpellData().effect;
-            dmg.knockback = false;
-        }
+
     }
 
     @Override
@@ -40,7 +36,7 @@ public class BlizzardEntity extends BaseCloudEntity {
 
         this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0f, 1.0f);
 
-        this.getServerSpellData().effect.Activate(this.getServerSpellData().data, entity);
+        this.dealSpellDamageTo(entity, false);
 
         PotionEffectUtils.apply(FrostEffect.INSTANCE, 8 * 20, getCaster(), entity);
 

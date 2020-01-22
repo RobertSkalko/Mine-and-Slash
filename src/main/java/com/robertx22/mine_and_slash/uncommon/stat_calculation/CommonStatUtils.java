@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.ICoreStat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.IPreCoreStat;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
-import com.robertx22.mine_and_slash.potion_effects.IStatGivingPotion;
-import com.robertx22.mine_and_slash.potion_effects.IStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IStatGivingPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -135,8 +135,8 @@ public class CommonStatUtils {
 
     }
 
-    public static void AddMapAffixStats(PlayerMapCap.IPlayerMapData mapdata, Unit unit,
-                                        int level, LivingEntity entity) {
+    public static void AddMapAffixStats(PlayerMapCap.IPlayerMapData mapdata, Unit unit, int level,
+                                        LivingEntity entity) {
 
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
             List<StatModData> datas = status.GetAllStats();

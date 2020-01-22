@@ -58,17 +58,17 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
     }
 
     public Stat StatThatGiveDamage() {
-        return new ElementalSpellDamage(this.Element());
+        return new ElementalSpellDamage(this.getElement());
     }
 
     @Override
     public String locNameForLangFile() {
-        return this.Element().name() + " Spell to Atk Dmg";
+        return this.getElement().name() + " Spell to Atk Dmg";
     }
 
     @Override
     public String GUID() {
-        return Element().name() + " Spell to Attack DMG";
+        return getElement().name() + " Spell to Attack DMG";
     }
 
     @Override

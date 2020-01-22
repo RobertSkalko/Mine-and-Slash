@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +18,6 @@ import javax.annotation.Nullable;
 public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsItem, ISpellEntity {
 
     EntitySpellData syncedSpellData;
-    ServerEntitySpellData serverSpellData;
 
     public BaseInvisibleEntity(EntityType type, World world) {
         super(type, world);
@@ -57,7 +55,7 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
 
     @Nullable
     public LivingEntity getCaster() {
-        return Utilities.getLivingEntityByUUID(world, getCasterUUID());
+        return getSyncedSpellData().getCaster(world);
     }
 
     @Override
@@ -90,18 +88,8 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
     }
 
     @Override
-    public ServerEntitySpellData getServerSpellData() {
-        return serverSpellData;
-    }
-
-    @Override
     public void setSyncedSpellData(EntitySpellData data) {
         this.syncedSpellData = data;
-    }
-
-    @Override
-    public void setServerSpellData(ServerEntitySpellData data) {
-        this.serverSpellData = data;
     }
 
     @Override

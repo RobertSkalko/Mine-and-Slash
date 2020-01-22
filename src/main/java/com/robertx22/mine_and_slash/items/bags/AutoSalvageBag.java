@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
@@ -48,7 +47,6 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
     public int rarity = 0;
 
     private final int defaul_gear_rarity_salvage = 0;
-    private final int default_spell_rarity_salvage = 0;
     private final int default_map_rarity_salvage = -1;
     private final int default_rune_rarity_salvage = 1;
 
@@ -67,8 +65,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
         return BonusSalvageValues.get(rarity);
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
-                                                    Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 
         if (!world.isRemote) {
             ItemStack bag = player.getHeldItem(hand);
@@ -126,8 +123,8 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
         CompoundNBT nbt = stack.getTag();
 
@@ -135,48 +132,37 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
             nbt = new CompoundNBT();
         }
 
-        Tooltip.add(Styles.GREENCOMP()
-                .appendSibling(Words.Automatically_salvages_items.locName())
-                .appendText("!"), tooltip);
+        Tooltip.add(Styles.GREENCOMP().appendSibling(Words.Automatically_salvages_items.locName()).appendText("!"),
+                    tooltip
+        );
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(Words.Gears.locName().appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items.getRarities()), this
-                .getGear(nbt)), tooltip);
+        Tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Gears.locName().appendText(":")), tooltip);
+        Tooltip.add(
+                getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items.getRarities()), this.getGear(nbt)), tooltip);
 
-        Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(Words.Spells.locName().appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Spells.getRarities()), this
-                .getSpell(nbt)), tooltip);
+        Tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Maps.locName().appendText(":")), tooltip);
+        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getRarities()), this.getMap(nbt)), tooltip);
 
-        Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(Words.Maps.locName().appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getRarities()), this
-                .getMap(nbt)), tooltip);
-
-        Tooltip.add(Styles.YELLOWCOMP()
-                .appendSibling(Words.Runes.locName().appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getRarities()), this
-                .getRune(nbt)), tooltip);
+        Tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Runes.locName().appendText(":")), tooltip);
+        Tooltip.add(
+                getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getRarities()), this.getRune(nbt)), tooltip);
 
         Tooltip.add("", tooltip);
 
         Tooltip.add(Styles.LIGHT_PURPLECOMP()
-                .appendSibling(Words.Bonus_Salvage_Chance.locName())
-                .appendText(": " + this.getBonusSalvageChance() + "%"), tooltip);
+                            .appendSibling(Words.Bonus_Salvage_Chance.locName())
+                            .appendText(": " + this.getBonusSalvageChance() + "%"), tooltip);
 
         Tooltip.add("", tooltip);
 
-        Tooltip.add(Styles.GREENCOMP()
-                .appendSibling(Words.Works_when_equipped.locName()), tooltip);
+        Tooltip.add(Styles.GREENCOMP().appendSibling(Words.Works_when_equipped.locName()), tooltip);
         Tooltip.add("", tooltip);
 
         if (Screen.hasShiftDown() == false) {
 
-            Tooltip.add(Styles.GREENCOMP()
-                    .appendSibling(Words.Press_Shift_For_Setup_Info.locName()), tooltip);
+            Tooltip.add(Styles.GREENCOMP().appendSibling(Words.Press_Shift_For_Setup_Info.locName()), tooltip);
 
         } else {
 
@@ -219,10 +205,6 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
                 if (rarity <= getGear(nbt)) {
                     return true;
                 }
-            } else if (sal instanceof SpellItemData) {
-                if (rarity <= getSpell(nbt)) {
-                    return true;
-                }
             } else if (sal instanceof MapItemData) {
                 if (rarity <= getMap(nbt)) {
                     return true;
@@ -246,16 +228,6 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
             }
         }
         return this.defaul_gear_rarity_salvage;
-
-    }
-
-    private int getSpell(CompoundNBT nbt) {
-        if (nbt != null) {
-            if (nbt.contains("spell")) {
-                return nbt.getInt("spell");
-            }
-        }
-        return this.default_spell_rarity_salvage;
 
     }
 
@@ -287,7 +259,10 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
     @Override
     public List<String> loreLines() {
-        return Arrays.asList("Place An Item Of Maximum Rarity You want to", "salvage in your off-hand.", "Then right click with this bag.", "To Not Salvage Any Items, clear the config by", "Right Clicking the bag while shield slot is empty.");
+        return Arrays.asList("Place An Item Of Maximum Rarity You want to", "salvage in your off-hand.",
+                             "Then right click with this bag.", "To Not Salvage Any Items, clear the config by",
+                             "Right Clicking the bag while shield slot is empty."
+        );
     }
 
     @Override

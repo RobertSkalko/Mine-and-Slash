@@ -84,7 +84,7 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

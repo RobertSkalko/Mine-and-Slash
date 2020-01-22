@@ -1,6 +1,7 @@
-package com.robertx22.mine_and_slash.potion_effects;
+package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

@@ -18,7 +18,7 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return this.element;
     }
 

@@ -48,14 +48,11 @@ public abstract class EntityElementalBoltAOE extends BaseElementalBoltEntity {
 
         }
 
-        if (effect != null && data != null) {
+        List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
 
-            List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
-
-            if (entities != null) {
-                for (LivingEntity entity : entities) {
-                    effect.Activate(data, entity);
-                }
+        if (entities != null) {
+            for (LivingEntity entity : entities) {
+                dealSpellDamageTo(entity, true);
             }
         }
 

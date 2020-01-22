@@ -33,7 +33,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
 
     @Override
     public String GUID() {
-        return this.Element().name() + " Resist";
+        return this.getElement().name() + " Resist";
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
 
     @Override
     public String locNameForLangFile() {
-        return this.Element().name() + " Resist";
+        return this.getElement().name() + " Resist";
     }
 
 }

@@ -21,16 +21,14 @@ public class AllEleDmgEffectIfElement implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (Effect instanceof DamageEffect) {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                if (dmgeffect.element.equals(stat.Element()) || stat.Element()
-                        .equals(Elements.Elemental)) {
+                if (dmgeffect.element.equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental)) {
 
                     dmgeffect.number *= data.getMultiplier();
 

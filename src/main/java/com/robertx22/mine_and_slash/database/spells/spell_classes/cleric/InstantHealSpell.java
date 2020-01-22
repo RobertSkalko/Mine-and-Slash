@@ -1,11 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.cleric;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellBuffCheck;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
@@ -46,33 +45,28 @@ public class InstantHealSpell extends BaseSpellHeal {
     }
 
     @Override
-    public int getBaseValue() {
-        return 25;
+    public SpellCalcData getCalculation() {
+        return SpellCalcData.one(Health.INSTANCE, 0.2F, 25);
     }
 
     @Override
-    public EffectCalculation ScalingValue() {
-        return new EffectCalculation(Health.INSTANCE, 0.1F);
-    }
-
-    @Override
-    public ITextComponent GetDescription(SpellItemData data) {
+    public ITextComponent GetDescription() {
         return CLOC.tooltip("instant_heal");
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData spellData) {
+    public boolean cast(PlayerEntity caster, int ticksInUse) {
 
         try {
             World world = caster.world;
 
-            if (!world.isRemote) {
+            if (!world.isRemote()) {
 
                 UnitData data = Load.Unit(caster);
 
                 data.getResources()
                         .modify(new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
-                                                          spellData.getDamage(data.getUnit()),
+                                                          getCalculation().getCalculatedValue(data),
                                                           ResourcesData.Use.RESTORE, this
                         ));
 

@@ -43,7 +43,7 @@ public class MagicShieldRegen extends BaseRegenClass {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

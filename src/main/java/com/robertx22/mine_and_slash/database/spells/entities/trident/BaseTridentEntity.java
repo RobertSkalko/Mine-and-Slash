@@ -1,12 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.entities.trident;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.bases.ServerEntitySpellData;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +23,6 @@ import javax.annotation.Nullable;
 public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
 
     EntitySpellData syncedSpellData;
-    ServerEntitySpellData serverSpellData;
 
     public BaseTridentEntity(EntityType<? extends TridentEntity> type, World world) {
         super(type, world);
@@ -43,7 +40,7 @@ public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
 
     @Nullable
     public LivingEntity getCaster() {
-        return Utilities.getLivingEntityByUUID(world, getCasterUUID());
+        return getSyncedSpellData().getCaster(world);
     }
 
     @Override
@@ -76,18 +73,8 @@ public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
     }
 
     @Override
-    public ServerEntitySpellData getServerSpellData() {
-        return serverSpellData;
-    }
-
-    @Override
     public void setSyncedSpellData(EntitySpellData data) {
         this.syncedSpellData = data;
-    }
-
-    @Override
-    public void setServerSpellData(ServerEntitySpellData data) {
-        this.serverSpellData = data;
     }
 
     @Override
@@ -138,10 +125,9 @@ public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
                     return;
                 }
 
-                this.setMotion(this.getMotion()
-                        .mul(-0.01D, -0.1D, -0.01D)); // bounce back
+                this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D)); // bounce back
 
-                this.activateEffectOn((LivingEntity) entity);
+                dealSpellDamageTo((LivingEntity) entity, true);
 
                 // IF SYNERGY SpellUtils.summonLightningStrike(entity);
 

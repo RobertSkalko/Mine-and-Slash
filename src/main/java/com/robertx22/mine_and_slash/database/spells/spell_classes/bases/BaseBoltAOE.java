@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.util.text.ITextComponent;
 
@@ -12,12 +11,7 @@ public abstract class BaseBoltAOE extends BaseBolt {
     }
 
     @Override
-    public int getBaseValue() {
-        return 15;
-    }
-
-    @Override
-    public ITextComponent GetDescription(SpellItemData data) {
+    public ITextComponent GetDescription() {
         return CLOC.tooltip("aoe_spell_explosion");
 
     }

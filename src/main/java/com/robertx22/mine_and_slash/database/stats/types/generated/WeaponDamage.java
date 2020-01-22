@@ -51,7 +51,7 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Weapo
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

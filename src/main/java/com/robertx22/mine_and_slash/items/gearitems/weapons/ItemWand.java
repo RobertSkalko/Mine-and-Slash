@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapons;
 
+import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityWandProjectile;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.bases.BaseWeaponItem;
@@ -22,6 +23,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -41,8 +43,7 @@ public class ItemWand extends BaseWeaponItem implements IWeapon, IEffectItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
-                                                    Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
         player.setActiveHand(handIn);
         return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
@@ -59,8 +60,7 @@ public class ItemWand extends BaseWeaponItem implements IWeapon, IEffectItem {
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity player,
-                                     int timeLeft) {
+    public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity player, int timeLeft) {
 
         try {
 
@@ -82,10 +82,11 @@ public class ItemWand extends BaseWeaponItem implements IWeapon, IEffectItem {
 
                     if (data.tryUseWeapon(weapondata, player, costmulti)) {
 
-                        EntityWandProjectile projectile = new EntityWandProjectile(world);
-                        projectile.SetReady(stack);
-                        projectile.charge = multi;
-                        projectile.SpawnAndShoot(player, velocity * 3F);
+                        Vec3d pos = player.getPositionVector();
+                        EntityWandProjectile en = SpellUtils.getSpellEntity(
+                                new EntityWandProjectile(world), null, player);
+                        SpellUtils.setupProjectileForCasting(en, player, 2);
+                        world.addEntity(en);
 
                         stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
 

@@ -30,7 +30,7 @@ public abstract class Trait extends BaseTrait implements IAffectsOtherStats {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

@@ -17,7 +17,7 @@ public class EmptyStat extends Stat {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Physical;
     }
 

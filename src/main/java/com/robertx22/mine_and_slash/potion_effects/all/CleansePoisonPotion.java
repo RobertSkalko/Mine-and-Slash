@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.potion_effects.BasePotionEffect;
+import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;

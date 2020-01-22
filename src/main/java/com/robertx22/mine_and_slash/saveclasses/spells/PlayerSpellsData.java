@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -67,7 +66,7 @@ public class PlayerSpellsData {
         if (!spellBeingCast.isEmpty()) {
             if (castingTicksLeft <= 0) {
                 BaseSpell spell = SlashRegistry.Spells().get(spellBeingCast);
-                spell.cast(player, spell.useTimeTicks(), new SpellItemData());
+                spell.cast(player, spell.useTimeTicks());
 
                 spellBeingCast = "";
             }
@@ -96,7 +95,7 @@ public class PlayerSpellsData {
 
         BaseSpell spell = getSpellByKeybind(key, hotbar);
 
-        if (!spell.CanCast(player, new SpellItemData())) {
+        if (!spell.CanCast(player)) {
             return false;
         }
 

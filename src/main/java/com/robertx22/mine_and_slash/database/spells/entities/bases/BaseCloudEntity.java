@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
@@ -20,10 +19,7 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
     @Override
     public void initSpellEntity() {
-        if (getServerSpellData().effect instanceof SpellEffectDamage) {
-            SpellEffectDamage dmg = (SpellEffectDamage) getServerSpellData().effect;
-            dmg.knockback = false;
-        }
+
     }
 
     public abstract void onHit(LivingEntity entity);
@@ -42,7 +38,8 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
                 if (!this.world.isRemote) {
 
-                    List<LivingEntity> targets = Utilities.getEntitiesWithinRadius(radius(), radius(), this, LivingEntity.class);
+                    List<LivingEntity> targets = Utilities.getEntitiesWithinRadius(
+                            radius(), radius(), this, LivingEntity.class);
 
                     for (LivingEntity target : targets) {
 
@@ -67,7 +64,8 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
                     float height = 4;
 
-                    Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(posX, posY + height + yRandom, posZ, radius());
+                    Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
+                            posX, posY + height + yRandom, posZ, radius());
 
                     for (int a = 1; a < 2; a++) {
                         this.world.addParticle(ParticleTypes.CLOUD, p.x, p.y + 1, p.z, 0.0D, 0.0D, 0.0D);

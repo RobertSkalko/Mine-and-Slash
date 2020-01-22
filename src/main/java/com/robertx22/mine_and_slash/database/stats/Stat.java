@@ -35,8 +35,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     // 14 per 14
 
     public TextFormatting getIconFormat() {
-        if (this.Element() != null) {
-            return this.Element().format;
+        if (this.getElement() != null) {
+            return this.getElement().format;
         } else {
             return Elements.Physical.format;
         }
@@ -47,8 +47,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     }
 
     public String getIcon() {
-        if (this.Element() != null) {
-            return this.Element().icon;
+        if (this.getElement() != null) {
+            return this.getElement().icon;
         } else {
             return Elements.Physical.icon;
         }
@@ -126,7 +126,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     public abstract boolean ScalesToLevel();
 
-    public abstract Elements Element();
+    public abstract Elements getElement();
 
     public int BaseFlat = 0;
 

@@ -33,18 +33,19 @@ public class BlockReflectEffect implements IStatEffect {
     int energyCost = 1;
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
-            if (Effect instanceof DamageEffect && Effect.getEffectType()
-                    .equals(EffectTypes.BASIC_ATTACK)) {
+            if (Effect instanceof DamageEffect && Effect.getEffectType().equals(EffectTypes.BASIC_ATTACK)) {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
                 if (dmgeffect.isBlocked()) {
 
-                    ResourcesData.Context ctx = new ResourcesData.Context(Effect.targetData, Effect.target, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
+                    ResourcesData.Context ctx = new ResourcesData.Context(
+                            Effect.targetData, Effect.target, ResourcesData.Type.ENERGY, energyCost,
+                            ResourcesData.Use.SPEND
+                    );
 
                     if (Effect.targetData.getResources().hasEnough(ctx)) {
 
@@ -52,8 +53,11 @@ public class BlockReflectEffect implements IStatEffect {
 
                         float dmg = data.val;
 
-                        DamageEffect effect = new DamageEffect(null, Effect.target, Effect.source, (int) dmg, Effect.targetData, Effect.sourceData, EffectTypes.REFLECT, WeaponTypes.None);
-                        effect.element = stat.Element();
+                        DamageEffect effect = new DamageEffect(
+                                null, Effect.target, Effect.source, (int) dmg, Effect.targetData, Effect.sourceData,
+                                EffectTypes.REFLECT, WeaponTypes.None
+                        );
+                        effect.element = stat.getElement();
 
                         effect.Activate();
                     }

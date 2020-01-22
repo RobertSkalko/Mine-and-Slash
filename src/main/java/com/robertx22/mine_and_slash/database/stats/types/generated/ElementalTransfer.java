@@ -38,7 +38,7 @@ public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

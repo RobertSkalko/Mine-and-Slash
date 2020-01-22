@@ -48,7 +48,7 @@ public class Mana extends FillableStat {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

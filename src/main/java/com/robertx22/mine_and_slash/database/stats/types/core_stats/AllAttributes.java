@@ -29,7 +29,7 @@ public class AllAttributes extends Stat implements IPreCoreStat {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 
@@ -44,7 +44,10 @@ public class AllAttributes extends Stat implements IPreCoreStat {
 
     @Override
     public List<StatMod> coreStatsThatBenefit() {
-        return Arrays.asList(new StrengthFlat(), new StaminaFlat(), new IntelligenceFlat(), new WisdomFlat(), new DexterityFlat(), new VitalityFlat());
+        return Arrays.asList(
+                new StrengthFlat(), new StaminaFlat(), new IntelligenceFlat(), new WisdomFlat(), new DexterityFlat(),
+                new VitalityFlat()
+        );
     }
 
     @Override

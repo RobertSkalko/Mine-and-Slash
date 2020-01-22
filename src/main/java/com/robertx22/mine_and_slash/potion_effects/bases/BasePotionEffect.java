@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.potion_effects;
+package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -60,8 +60,13 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName {
     @Override
     public void performEffect(LivingEntity en, int amplifier) {
 
-        if (en.ticksExisted % performEachXTicks() == 0)
-            onXTicks(en, getInstanceFromEntity(en));
+        try {
+            if (en.ticksExisted % performEachXTicks() == 0) {
+                onXTicks(en, getInstanceFromEntity(en));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected BasePotionEffect(EffectType type, int liquidColorIn) {

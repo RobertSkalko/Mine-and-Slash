@@ -45,7 +45,7 @@ public class AllEleSpellDmg extends Stat implements IStatEffects {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return Elements.Physical;
     }
 }

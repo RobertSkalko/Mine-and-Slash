@@ -33,7 +33,7 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
 
     @Override
     public String GUID() {
-        return this.Element().name() + " Penetration";
+        return this.getElement().name() + " Penetration";
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return this.Element().name() + " Penetration";
+        return this.getElement().name() + " Penetration";
     }
 
     @Override

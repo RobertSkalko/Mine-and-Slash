@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
@@ -28,6 +29,15 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg, UnitData sourceData,
                         UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
         super(source, target, sourceData, targetData);
+
+        this.setEffectType(effectType, weptype);
+        this.number = dmg;
+        this.event = event;
+    }
+
+    public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg,
+                        EffectTypes effectType, WeaponTypes weptype) {
+        super(source, target, Load.Unit(source), Load.Unit(target));
 
         this.setEffectType(effectType, weptype);
         this.number = dmg;
@@ -181,11 +191,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (dmg > 0 && source instanceof ServerPlayerEntity && info.highestDmgElement != null) {
 
                 ServerPlayerEntity player = (ServerPlayerEntity) source;
-                DmgNumPacket packet = new DmgNumPacket(
-                        target, info.highestDmgElement, NumberUtils.formatDamageNumber(this,
-                                                                                       (int) HealthUtils.vanillaHealthToActualHealth(
-                                                                                               dmg, target, targetData)
-                ));
+                DmgNumPacket packet = new DmgNumPacket(target, info.highestDmgElement,
+                                                       NumberUtils.formatDamageNumber(this,
+                                                                                      (int) HealthUtils.vanillaHealthToActualHealth(
+                                                                                              dmg, target, targetData)
+                                                       )
+                );
                 MMORPG.sendToClient(packet, player);
 
             }
@@ -257,9 +268,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
-                DamageEffect bonus = new DamageEffect(
-                        null, source, target, entry.getValue(), this.sourceData, this.targetData,
-                        EffectTypes.BONUS_ATTACK, this.weaponType
+                DamageEffect bonus = new DamageEffect(null, source, target, entry.getValue(), this.sourceData,
+                                                      this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType
                 );
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;

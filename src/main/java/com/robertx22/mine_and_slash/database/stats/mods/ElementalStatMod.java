@@ -27,7 +27,7 @@ public abstract class ElementalStatMod extends StatMod implements IElementalGene
         IGenerated<Stat> gen = (IGenerated<Stat>) this.GetBaseStat();
 
         for (Stat stat : gen.generateAllPossibleStatVariations()) {
-            list.add(this.newGeneratedInstance(stat.Element()));
+            list.add(this.newGeneratedInstance(stat.getElement()));
         }
 
         return list;

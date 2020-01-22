@@ -18,7 +18,7 @@ public abstract class SpellBuffTrait extends BaseTrait implements IStatEffects {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

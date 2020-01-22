@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseCloudEntity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -27,15 +26,12 @@ public class ThunderstormEntity extends BaseCloudEntity {
 
     @Override
     public void initSpellEntity() {
-        if (getServerSpellData().effect instanceof SpellEffectDamage) {
-            SpellEffectDamage dmg = (SpellEffectDamage) getServerSpellData().effect;
-            dmg.knockback = false;
-        }
+
     }
 
     @Override
     public void onHit(LivingEntity entity) {
-        this.getServerSpellData().effect.Activate(this.getServerSpellData().data, entity);
+        this.dealSpellDamageTo(entity, false);
 
         // entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10));
 

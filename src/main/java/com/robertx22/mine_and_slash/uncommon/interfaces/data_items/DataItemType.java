@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.uncommon.interfaces.data_items;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 
 public enum DataItemType {
@@ -12,12 +11,6 @@ public enum DataItemType {
         @Override
         public boolean isType(ICommonDataItem data) {
             return data instanceof GearItemData;
-        }
-    },
-    SPELL("spell", Words.Spell) {
-        @Override
-        public boolean isType(ICommonDataItem data) {
-            return data instanceof SpellItemData;
         }
     },
     RUNE("rune", Words.Runes) {

@@ -1,13 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.entities.weapon_proj;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellEffect;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.DamageData;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -23,8 +20,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
     ItemStack staff;
 
-    public EntityStaffProjectile(EntityType<? extends EntityStaffProjectile> type,
-                                 World world) {
+    public EntityStaffProjectile(EntityType<? extends EntityStaffProjectile> type, World world) {
         super(type, world);
     }
 
@@ -56,10 +52,11 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
             if (!world.isRemote) {
                 try {
 
-                    UnitData sourcedata = Load.Unit(this.thrower);
+                    UnitData sourcedata = Load.Unit(this.getCaster());
                     UnitData targetdata = Load.Unit(entity);
 
-                    StaffWeaponMechanic.INSTANCE.powerAttack(null, this.getThrower(), entity, sourcedata, targetdata, this.charge);
+                    StaffWeaponMechanic.INSTANCE.powerAttack(
+                            null, this.getCaster(), entity, sourcedata, targetdata, this.charge);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -83,8 +80,10 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
         if (world.isRemote) {
             for (int i = 0; i < 5; i++) {
 
-                this.world.addParticle(ParticleTypes.CRIT, true, this.posX + rand.nextFloat() * 0.2 - 0.1, this.posY + this
-                        .getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1, this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0);
+                this.world.addParticle(ParticleTypes.CRIT, true, this.posX + rand.nextFloat() * 0.2 - 0.1,
+                                       this.posY + this.getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1,
+                                       this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0
+                );
 
             }
         }
@@ -92,24 +91,6 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
         if (this.ticksExisted > 20) {
             this.remove();
         }
-    }
-
-    public void SpawnAndShoot(BaseSpellEffect effect, DamageData data,
-                              LivingEntity caster) {
-        SpawnAndShoot(effect, data, caster, 1.5F);
-    }
-
-    public void SpawnAndShoot(BaseSpellEffect effect, DamageData data,
-                              LivingEntity caster, float vel) {
-
-        this.ignoreEntity = caster;
-        this.thrower = caster;
-
-        SetReady(caster.getHeldItemMainhand());
-        this.setPos(caster);
-        shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, vel, 1.0F);
-
-        WorldUtils.spawnEntity(world, this);
     }
 
     @OnlyIn(Dist.CLIENT)

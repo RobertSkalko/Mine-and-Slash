@@ -21,8 +21,7 @@ public class ElementalFocusEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (Effect instanceof DamageEffect) {
@@ -33,7 +32,7 @@ public class ElementalFocusEffect implements IStatEffect {
 
                     float amount = dmgeffect.number * data.val / 100;
 
-                    if (dmgeffect.element.equals(stat.Element())) {
+                    if (dmgeffect.element.equals(stat.getElement())) {
                         dmgeffect.number += amount;
                     } else {
                         dmgeffect.number -= amount;

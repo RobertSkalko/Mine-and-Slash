@@ -3,10 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.blizzard.BlizzardEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -56,13 +53,8 @@ public class BlizzardSpell extends BaseSpell {
     }
 
     @Override
-    public int getBaseValue() {
-        return 5;
-    }
-
-    @Override
-    public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(element), 0.5F);
+    public SpellCalcData getCalculation() {
+        return SpellCalcData.one(dmgStat(), 0.25F, 5);
     }
 
     @Override
@@ -71,20 +63,19 @@ public class BlizzardSpell extends BaseSpell {
     }
 
     @Override
-    public ITextComponent GetDescription(SpellItemData data) {
+    public ITextComponent GetDescription() {
         return Words.StormCloudSpellDesc.locName();
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
+    public boolean cast(PlayerEntity caster, int ticksInUse) {
         World world = caster.world;
 
         RayTraceResult ray = caster.pick(10D, 0.0F, false);
 
         Vec3d pos = ray.getHitVec();
 
-        Entity en = SpellUtils.getSpellEntity(
-                new BlizzardEntity(world), new SpellEffectDamage(getElement()), data, caster);
+        Entity en = SpellUtils.getSpellEntity(new BlizzardEntity(world), this, caster);
 
         en.setPosition(pos.x, pos.y, pos.z);
 

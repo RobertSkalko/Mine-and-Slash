@@ -47,7 +47,7 @@ public class CriticalDamage extends Stat implements IStatEffects {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

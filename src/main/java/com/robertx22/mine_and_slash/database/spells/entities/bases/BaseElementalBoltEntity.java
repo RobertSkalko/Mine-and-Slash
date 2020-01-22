@@ -1,11 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellEffect;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.DamageData;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -29,9 +25,6 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
         return new ItemStack(this.element().projectileItem);
     }
 
-    protected BaseSpellEffect effect;
-    protected DamageData data;
-
     public abstract Elements element();
 
     public BaseElementalBoltEntity(EntityType<? extends Entity> type, World worldIn) {
@@ -48,12 +41,6 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
     protected void entityInit() {
     }
 
-    public void SetReady(BaseSpellEffect effect, DamageData data) {
-        this.effect = effect;
-        this.data = data;
-
-    }
-
     public void ifDamageKilledEnemy(LivingEntity enemy) {
         if (enemy.getHealth() <= 0) {
 
@@ -67,13 +54,14 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
 
         LivingEntity entityHit = getEntityHit(result, 0.3D);
 
-        if (entityHit != null && effect != null && data != null) {
+        if (entityHit != null) {
             if (world.isRemote) {
                 SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
             }
 
             if (!entitiesHit.contains(entityHit)) {
-                effect.Activate(data, entityHit);
+
+                this.dealSpellDamageTo(entityHit, true);
 
                 ifDamageKilledEnemy(entityHit);
                 entitiesHit.add(entityHit);
@@ -86,8 +74,7 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
         }
 
         if (!this.world.isRemote) {
-            if (this.getBuff()
-                    .equals(SpellBuffType.Ghost_Projectile) == false) { // spell buff to go through all
+            if (this.getBuff().equals(SpellBuffType.Ghost_Projectile) == false) { // spell buff to go through all
                 // mobs in the way and damage
                 // them all
                 this.world.setEntityState(this, (byte) 3);
@@ -121,9 +108,10 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
                 }
 
                 for (int i = 0; i < 2; i++) {
-                    this.world.addParticle(particle, true, this.posX + rand.nextFloat() * 0.2 - 0.1, this.posY + this
-                            .getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1, this.posZ + rand
-                            .nextFloat() * 0.2 - 0.1, 0, 0, 0);
+                    this.world.addParticle(particle, true, this.posX + rand.nextFloat() * 0.2 - 0.1,
+                                           this.posY + this.getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1,
+                                           this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0
+                    );
                 }
             }
 
@@ -135,24 +123,6 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
             // ElementalParticleUtils.SpawnAoeParticle(element(), this, 0.15F, 15);
         }
 
-    }
-
-    public void SpawnAndShoot(BaseSpellEffect effect, DamageData data,
-                              LivingEntity caster) {
-
-        this.spellType = data.spellItemData.getSpell().getSpellType();
-
-        SpellBuffEffect spelleffect = new SpellBuffEffect(caster, this);
-        spelleffect.Activate();
-
-        this.ignoreEntity = caster;
-        this.thrower = caster;
-
-        SetReady(effect, data);
-        this.setPos(caster);
-        shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, this.shootSpeed, 0.5F); // start velocity
-
-        WorldUtils.spawnEntity(world, this);
     }
 
 }

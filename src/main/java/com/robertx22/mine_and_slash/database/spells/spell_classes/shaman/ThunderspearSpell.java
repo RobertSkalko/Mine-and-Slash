@@ -3,10 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectCalculation;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -56,13 +53,8 @@ public class ThunderspearSpell extends BaseSpell {
     }
 
     @Override
-    public int getBaseValue() {
-        return 3;
-    }
-
-    @Override
-    public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(element), 0.5F);
+    public SpellCalcData getCalculation() {
+        return SpellCalcData.one(dmgStat(), 1F, 15);
     }
 
     @Override
@@ -71,18 +63,17 @@ public class ThunderspearSpell extends BaseSpell {
     }
 
     @Override
-    public ITextComponent GetDescription(SpellItemData data) {
+    public ITextComponent GetDescription() {
         return Words.StormCloudSpellDesc.locName();
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse, SpellItemData data) {
+    public boolean cast(PlayerEntity caster, int ticksInUse) {
         World world = caster.world;
 
         Vec3d pos = caster.getPositionVector();
 
-        ThunderspearEntity en = SpellUtils.getSpellEntity(
-                new ThunderspearEntity(world), new SpellEffectDamage(getElement()), data, caster);
+        ThunderspearEntity en = SpellUtils.getSpellEntity(new ThunderspearEntity(world), this, caster);
 
         SpellUtils.setupProjectileForCasting(en, caster, 2);
 

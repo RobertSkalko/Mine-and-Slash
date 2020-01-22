@@ -23,8 +23,7 @@ public class ElementalPeneEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
 
@@ -32,10 +31,9 @@ public class ElementalPeneEffect implements IStatEffect {
 
                 IElementalEffect ele = (IElementalEffect) Effect;
 
-                if (ele.GetElement().equals(stat.Element()) || stat.Element()
-                        .equals(Elements.Elemental)) {
+                if (ele.GetElement().equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental)) {
 
-                    if (stat.Element() == Elements.Physical) {
+                    if (stat.getElement() == Elements.Physical) {
                         IPenetrable ipene = (IPenetrable) Effect;
                         ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.val);
 

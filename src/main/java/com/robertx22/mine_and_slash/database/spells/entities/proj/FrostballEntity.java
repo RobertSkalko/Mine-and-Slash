@@ -7,18 +7,18 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
-public class EntityFrostBolt extends BaseElementalBoltEntity {
-    public EntityFrostBolt(EntityType<? extends EntityFrostBolt> type, World world) {
+public class FrostballEntity extends BaseElementalBoltEntity {
+    public FrostballEntity(EntityType<? extends FrostballEntity> type, World world) {
         super(type, world);
     }
 
-    public EntityFrostBolt(World worldIn) {
+    public FrostballEntity(World worldIn) {
 
         super(EntityRegister.FROSTBOLT, worldIn);
 
     }
 
-    public EntityFrostBolt(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+    public FrostballEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
         super(EntityRegister.FROSTBOLT, world);
 
     }

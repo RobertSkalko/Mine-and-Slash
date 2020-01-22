@@ -19,13 +19,12 @@ public class ContainerMasterBag extends Container {
 
     public enum ItemType {
         GEAR(0, ItemFilterGroup.ANY_GEAR_EXCEPT_UNIQUE),
-        SPELL(1, ItemFilterGroup.ANY_SPELL),
-        CURRENCY(2, ItemFilterGroup.ANY_CURRENCY),
-        UNIQUE(3, ItemFilterGroup.ANY_UNIQUE),
-        RUNE(4, ItemFilterGroup.ANY_RUNE),
-        MAP(5, ItemFilterGroup.ANY_MAP),
-        AWAKEN(6, ItemFilterGroup.ANY_AWAKEN),
-        ORES(7, ItemFilterGroup.ANY_ORE);
+        CURRENCY(1, ItemFilterGroup.ANY_CURRENCY),
+        UNIQUE(2, ItemFilterGroup.ANY_UNIQUE),
+        RUNE(3, ItemFilterGroup.ANY_RUNE),
+        MAP(4, ItemFilterGroup.ANY_MAP),
+        AWAKEN(5, ItemFilterGroup.ANY_AWAKEN),
+        ORES(6, ItemFilterGroup.ANY_ORE);
 
         ItemType(int place, ItemFilterGroup filter) {
             this.place = place;
@@ -40,16 +39,16 @@ public class ContainerMasterBag extends Container {
 
     public ContainerMasterBag(int i, PlayerInventory playerInventory, PacketBuffer pkt) {
 
-        this(i, playerInventory, new InventoryMasterBag(new ItemStack(ItemMasterBag.ITEM), ItemType.GEAR), ItemType
-                .valueOf(pkt.readString()));
+        this(i, playerInventory, new InventoryMasterBag(new ItemStack(ItemMasterBag.ITEM), ItemType.GEAR),
+             ItemType.valueOf(pkt.readString())
+        );
 
     }
 
     public ItemType type = ItemType.GEAR;
     public int bagHash;
 
-    public ContainerMasterBag(int num, PlayerInventory playerInv,
-                              InventoryMasterBag basebag, ItemType type) {
+    public ContainerMasterBag(int num, PlayerInventory playerInv, InventoryMasterBag basebag, ItemType type) {
         super(ContainerTypeRegisters.MASTER_BAG, num);
 
         bagHash = basebag.getStack().hashCode();
@@ -107,8 +106,7 @@ public class ContainerMasterBag extends Container {
     }
 
     @Override
-    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn,
-                               PlayerEntity player) {
+    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
         try {
             if (this.getSlot(slotId).getStack().getItem() instanceof BaseBagItem) {
                 return ItemStack.EMPTY;
@@ -130,8 +128,7 @@ public class ContainerMasterBag extends Container {
             itemstack = itemstack1.copy();
 
             if (index < this.numRows * 9) {
-                if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots
-                        .size(), true)) {
+                if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots.size(), true)) {
                     slot.onSlotChanged();
                     this.detectAndSendChanges();
                     return ItemStack.EMPTY;

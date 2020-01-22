@@ -12,7 +12,7 @@ import net.minecraft.potion.Effects;
 public class OnDodgeBuffSpeed extends BaseTrait implements IStatEffects {
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 
@@ -33,7 +33,10 @@ public class OnDodgeBuffSpeed extends BaseTrait implements IStatEffects {
 
     @Override
     public IStatEffect getEffect() {
-        return new OnCauseDoEffect(new OnAttackDodgedCause(), 100, IStatEffect.EffectSides.Target, new GivePotionEffect(Effects.SPEED, 5), IStatEffect.EffectSides.Target);
+        return new OnCauseDoEffect(
+                new OnAttackDodgedCause(), 100, IStatEffect.EffectSides.Target, new GivePotionEffect(Effects.SPEED, 5),
+                IStatEffect.EffectSides.Target
+        );
     }
 }
 

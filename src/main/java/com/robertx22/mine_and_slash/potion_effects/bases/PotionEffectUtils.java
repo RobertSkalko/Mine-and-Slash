@@ -1,5 +1,6 @@
-package com.robertx22.mine_and_slash.potion_effects;
+package com.robertx22.mine_and_slash.potion_effects.bases;
 
+import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
@@ -41,7 +42,8 @@ public class PotionEffectUtils {
             net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(
                     new net.minecraftforge.event.entity.living.PotionEvent.PotionAddedEvent(target,
                                                                                             target.getActivePotionEffect(
-                                                                                                    effect), instance));
+                                                                                                    effect), instance
+                    ));
 
         }
 

@@ -1,16 +1,9 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class BaseBombSpell extends BaseProjectileSpell {
-
-    @Override
-    public int getBaseValue() {
-        return 15;
-    }
 
     @Override
     public int useTimeTicks() {
@@ -18,14 +11,9 @@ public abstract class BaseBombSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public ITextComponent GetDescription(SpellItemData data) {
+    public ITextComponent GetDescription() {
         return CLOC.tooltip("aoe_bomb_spell");
 
-    }
-
-    @Override
-    public EffectCalculation ScalingValue() {
-        return new EffectCalculation(new ElementalSpellDamage(this.getElement()), this.damageScaling);
     }
 
     @Override

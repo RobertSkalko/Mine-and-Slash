@@ -25,8 +25,7 @@ public class PotionBonusDmgEffect implements IStatEffect {
     static float manaCost = 3F;
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (Effect instanceof DamageEffect) {
@@ -35,7 +34,10 @@ public class PotionBonusDmgEffect implements IStatEffect {
 
                 if (dmg.getEffectType() == EffectData.EffectTypes.BASIC_ATTACK) {
 
-                    ResourcesData.Context ctx = new ResourcesData.Context(Effect.sourceData, Effect.source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
+                    ResourcesData.Context ctx = new ResourcesData.Context(
+                            Effect.sourceData, Effect.source, ResourcesData.Type.MANA, manaCost,
+                            ResourcesData.Use.SPEND
+                    );
 
                     if (dmg.sourceData.getResources().hasEnough(ctx)) {
                         dmg.sourceData.getResources().modify(ctx);
@@ -44,7 +46,7 @@ public class PotionBonusDmgEffect implements IStatEffect {
                         return Effect;
                     }
 
-                    Elements element = stat.Element();
+                    Elements element = stat.getElement();
                     dmg.addBonusEleDmgDivideByMulti(element, data.val);
 
                     ElementalParticleUtils.SpawnNovaParticle(element, dmg.target, 0.5F, 50);

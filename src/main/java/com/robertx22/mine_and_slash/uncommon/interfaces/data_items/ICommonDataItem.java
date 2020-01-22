@@ -5,11 +5,9 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Spell;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
@@ -35,11 +33,6 @@ public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable<
         GearItemData gear = Gear.Load(stack);
         if (gear != null) {
             return gear;
-        }
-
-        SpellItemData spell = Spell.Load(stack);
-        if (spell != null) {
-            return spell;
         }
 
         MapItemData map = Map.Load(stack);

@@ -47,7 +47,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

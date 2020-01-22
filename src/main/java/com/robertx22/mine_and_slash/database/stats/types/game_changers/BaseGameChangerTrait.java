@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 public abstract class BaseGameChangerTrait extends BaseTrait {
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

@@ -65,18 +65,18 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
 
     @Override
     public String GUID() {
-        return Element().toString() + "_affinity";
+        return getElement().toString() + "_affinity";
     }
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new ElementalResistFlat(this.Element()), new ElementalSpellDamageFlat(this
-                .Element()));
+        return Arrays.asList(
+                new ElementalResistFlat(this.getElement()), new ElementalSpellDamageFlat(this.getElement()));
     }
 
     @Override
     public String locNameForLangFile() {
-        return Element().name() + " Affinity";
+        return getElement().name() + " Affinity";
     }
 
 }

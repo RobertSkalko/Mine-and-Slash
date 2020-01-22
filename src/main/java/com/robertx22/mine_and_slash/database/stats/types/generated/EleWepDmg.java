@@ -29,7 +29,7 @@ public class EleWepDmg extends Stat implements IStatEffects {
     public String getIconPath() {
         return "ele_wep_dmg/" + weaponType.id;
     }
-    
+
     public WeaponTypes weaponType() {
         return this.weaponType;
     }
@@ -50,7 +50,7 @@ public class EleWepDmg extends Stat implements IStatEffects {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

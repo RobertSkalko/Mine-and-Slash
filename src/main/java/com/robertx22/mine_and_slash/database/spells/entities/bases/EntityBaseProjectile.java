@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell.SpellType;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.block.Block;
@@ -10,17 +11,16 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -28,12 +28,11 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
-public abstract class EntityBaseProjectile extends AbstractArrowEntity implements IProjectile, IMyRenderAsItem, IBuffableSpell, IShootableProjectile {
+public abstract class EntityBaseProjectile extends AbstractArrowEntity implements IProjectile, IMyRenderAsItem,
+        IBuffableSpell, ISpellEntity {
 
-    Entity homingTarget = null;
+    EntitySpellData syncedSpellData;
 
     public float shootSpeed = 1.3F;
 
@@ -44,11 +43,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     private Block inTile;
     protected boolean inGround;
     public int throwableShake;
-    /**
-     * The entity that threw this throwable item.
-     */
-    protected LivingEntity thrower;
-    private String throwerName;
+
     private int ticksInGround;
     private int ticksInAir;
     private int deathTime = 80;
@@ -61,16 +56,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     public SpellType spellType = SpellType.Self_Heal;
 
     public abstract double radius();
-
-    @Override
-    protected void registerData() {
-        super.registerData();
-    }
-
-    @Override
-    public IPacket<?> createSpawnPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
 
     @Override
     public void setBuffType(SpellType type) {
@@ -169,7 +154,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         }
 
         if (enres != null && enres.getEntity() instanceof LivingEntity) {
-            if (enres.getEntity() != this.getThrower()) {
+            if (enres.getEntity() != this.getCaster()) {
                 return (LivingEntity) enres.getEntity();
             }
         }
@@ -188,7 +173,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
                 }
             }
 
-            if (closest == this.getThrower()) {
+            if (closest == this.getCaster()) {
                 return null;
             }
 
@@ -234,10 +219,8 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     public void tick() {
         super.tick();
 
-        checkHoming();
-
         if (this.ticksExisted >= this.getDeathTime()) {
-            onExpireProc(this.getThrower());
+            onExpireProc(this.getCaster());
             this.remove();
         }
 
@@ -247,12 +230,10 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     @Nullable
     protected EntityRayTraceResult rayTraceEntities(Vec3d pos, Vec3d posPlusMotion) {
 
-        return ProjectileHelper.rayTraceEntities(this.world, this, pos, posPlusMotion, this
-                .getBoundingBox()
-                .expand(this.getMotion())
-                .grow(1D), (e) -> {
-            return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.thrower && e != this.ignoreEntity;
-        });
+        return ProjectileHelper.rayTraceEntities(
+                this.world, this, pos, posPlusMotion, this.getBoundingBox().expand(this.getMotion()).grow(1D), (e) -> {
+                    return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.getCaster() && e != this.ignoreEntity;
+                });
 
     }
 
@@ -268,8 +249,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
             BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceResultIn;
             BlockState blockstate = this.world.getBlockState(blockraytraceresult.getPos());
 
-            Vec3d vec3d = blockraytraceresult.getHitVec()
-                    .subtract(this.posX, this.posY, this.posZ);
+            Vec3d vec3d = blockraytraceresult.getHitVec().subtract(this.posX, this.posY, this.posZ);
             this.setMotion(vec3d);
             Vec3d vec3d1 = vec3d.normalize().scale((double) 0.05F);
             this.posX -= vec3d1.x;
@@ -284,50 +264,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     }
 
-    public void checkHoming() {
-
-        if (this.getBuff().equals(SpellBuffType.Homing_Projectile)) {
-            // homing
-
-            if (!this.collided && !this.world.isRemote) {
-
-                double seekingRange = 5.0d;
-
-                if (homingTarget == null || !homingTarget.isAlive()) {
-                    List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(seekingRange, this.posX, this.posY, this.posZ, this.world)
-                            .stream()
-                            .filter(x -> x.isAlive())
-                            .collect(Collectors.toList());
-
-                    for (Entity possibleTarget : entities) {
-                        // Decides if current entity should be replaced.
-                        if (homingTarget == null || this.getDistance(homingTarget) > this.getDistance(possibleTarget)) {
-                            // Decides if new entity is a valid target.
-                            if (Load.hasUnit(possibleTarget) && !possibleTarget.equals(this
-                                    .getThrower())) {
-                                homingTarget = possibleTarget;
-                                this.setNoGravity(true);
-
-                                this.setMotion(getMotion().x / 5, getMotion().y / 5, getMotion().z / 5);
-
-                            }
-                        }
-                    }
-                }
-
-                if (homingTarget != null && Math.abs(this.getMotion().x) < 5 && Math.abs(this
-                        .getMotion().y) < 5 && Math.abs(this.getMotion().z) < 5) {
-
-                    this.addVelocity((homingTarget.posX - this.posX) / 30, (homingTarget.posY + homingTarget
-                            .getHeight() / 2 - this.posY) / 30, (homingTarget.posZ - this.posZ) / 30);
-
-                    // this.getMotion().y += (target.posY + target.height - this.posY) / 30;
-
-                }
-            }
-        }
-    }
-
     /**
      * Called when this EntityThrowable hits a block or entity.
      */
@@ -338,88 +274,103 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
      */
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
+    public void writeAdditional(CompoundNBT nbt) {
 
-        compound.putInt("xTile", this.xTile);
-        compound.putInt("yTile", this.yTile);
-        compound.putInt("zTile", this.zTile);
+        nbt.putInt("xTile", this.xTile);
+        nbt.putInt("yTile", this.yTile);
+        nbt.putInt("zTile", this.zTile);
 
-        compound.putFloat("charge", this.charge);
+        nbt.putFloat("charge", this.charge);
 
-        compound.putByte("shake", (byte) this.throwableShake);
-        compound.putByte("inGround", (byte) (this.inGround ? 1 : 0));
+        nbt.putByte("shake", (byte) this.throwableShake);
+        nbt.putByte("inGround", (byte) (this.inGround ? 1 : 0));
 
-        if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower instanceof PlayerEntity) {
-            this.throwerName = this.thrower.getName().toString();
-        }
+        nbt.putBoolean("doGroundProc", this.getDoExpireProc());
+        nbt.putInt("airProcTime", this.getAirProcTime());
+        nbt.putInt("deathTime", this.getDeathTime());
 
-        compound.putString("ownerName", this.throwerName == null ? "" : this.throwerName);
-        compound.putBoolean("doGroundProc", this.getDoExpireProc());
-        compound.putInt("airProcTime", this.getAirProcTime());
-        compound.putInt("deathTime", this.getDeathTime());
+        EntitySpellDataSaving.Save(nbt, syncedSpellData);
     }
 
     /**
      * (abstract) Protected helper method to read subclass entity dataInstance from NBT.
      */
     @Override
-    public void readAdditional(CompoundNBT compound) {
+    public void readAdditional(CompoundNBT nbt) {
 
-        this.xTile = compound.getInt("xTile");
-        this.yTile = compound.getInt("yTile");
-        this.zTile = compound.getInt("zTile");
+        this.xTile = nbt.getInt("xTile");
+        this.yTile = nbt.getInt("yTile");
+        this.zTile = nbt.getInt("zTile");
 
-        this.charge = compound.getFloat("charge");
+        this.charge = nbt.getFloat("charge");
 
-        this.throwableShake = compound.getByte("shake") & 255;
-        this.inGround = compound.getByte("inGround") == 1;
-        this.thrower = null;
-        this.throwerName = compound.getString("ownerName");
+        this.throwableShake = nbt.getByte("shake") & 255;
+        this.inGround = nbt.getByte("inGround") == 1;
 
-        if (this.throwerName != null && this.throwerName.isEmpty()) {
-            this.throwerName = null;
-        }
+        this.setDoExpireProc(nbt.getBoolean("doGroundProc"));
+        this.setAirProcTime(nbt.getInt("airProcTime"));
+        this.setDeathTime(nbt.getInt("deathTime"));
 
-        this.thrower = this.getThrower();
-
-        this.setDoExpireProc(compound.getBoolean("doGroundProc"));
-        this.setAirProcTime(compound.getInt("airProcTime"));
-        this.setDeathTime(compound.getInt("deathTime"));
-    }
-
-    @Nullable
-    public LivingEntity getThrower() {
-        try {
-            if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty()) {
-
-                UUID id = UUID.fromString(this.throwerName);
-
-                if (((ServerWorld) this.world).getEntityByUuid(id) instanceof LivingEntity) {
-                    this.thrower = (LivingEntity) ((ServerWorld) this.world).getEntityByUuid(UUID
-                            .fromString(this.throwerName));
-                }
-
-                if (this.thrower == null && this.world instanceof ServerWorld) {
-                    try {
-                        Entity entity = ((ServerWorld) this.world).getEntityByUuid(UUID.fromString(this.throwerName));
-
-                        if (entity instanceof LivingEntity) {
-                            this.thrower = (LivingEntity) entity;
-                        }
-                    } catch (Throwable var2) {
-                        this.thrower = null;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return this.thrower;
+        this.syncedSpellData = EntitySpellDataSaving.Load(nbt);
     }
 
     protected void setPos(LivingEntity caster) {
         Vec3d look = caster.getLookVec();
         setPosition(caster.posX - look.x, caster.posY - look.y + 1.3, caster.posZ - look.z);
     }
+
+    ////////////////////////////////////////////////////////
+
+    @Nullable
+    public LivingEntity getCaster() {
+        return this.getSyncedSpellData().getCaster(world);
+    }
+
+    @Override
+    protected void registerData() {
+        super.registerData();
+    }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    public boolean isValidTarget(Entity target) {
+        return true;
+    }
+
+    @Override
+    public boolean canRenderOnFire() {
+        return false;
+    }
+
+    @Override
+    public boolean isPushedByWater() {
+        return false;
+    }
+
+    @Override
+    public EntitySpellData getSyncedSpellData() {
+        return syncedSpellData;
+    }
+
+    @Override
+    public void setSyncedSpellData(EntitySpellData data) {
+        this.syncedSpellData = data;
+    }
+
+    @Override
+    public void writeSpawnData(PacketBuffer buf) {
+        CompoundNBT nbt = new CompoundNBT();
+        writeAdditional(nbt);
+        buf.writeCompoundTag(nbt);
+    }
+
+    @Override
+    public void readSpawnData(PacketBuffer buf) {
+        CompoundNBT nbt = buf.readCompoundTag();
+        this.readAdditional(nbt);
+    }
+
 }

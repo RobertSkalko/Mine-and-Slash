@@ -33,7 +33,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 
@@ -48,12 +48,13 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     public float getPercent(EntityCap.UnitData unitdata, StatData data) {
-        return MathHelper.clamp(data.val / calculateScalingStatGrowth(this.amountToReach100Percent(), unitdata
-                .getLevel()) * 100, 0, 100000);
+        return MathHelper.clamp(
+                data.val / calculateScalingStatGrowth(this.amountToReach100Percent(), unitdata.getLevel()) * 100, 0,
+                100000
+        );
     }
 
-    public List<ITextComponent> getCoreStatTooltip(EntityCap.UnitData unitdata,
-                                                   StatData data) {
+    public List<ITextComponent> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
 
         TooltipInfo info = new TooltipInfo(unitdata, null, unitdata.getLevel());
 

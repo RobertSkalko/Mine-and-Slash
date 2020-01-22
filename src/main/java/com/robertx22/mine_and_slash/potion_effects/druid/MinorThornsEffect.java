@@ -1,45 +1,53 @@
-package com.robertx22.mine_and_slash.potion_effects.ocean_mystic;
+package com.robertx22.mine_and_slash.potion_effects.druid;
 
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatCalc;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 
-public class FrostEffect extends BasePotionEffect implements IStatPotion {
+public class MinorThornsEffect extends BasePotionEffect implements IStatPotion {
 
-    public static final FrostEffect INSTANCE = new FrostEffect();
+    public static final MinorThornsEffect INSTANCE = new MinorThornsEffect();
 
-    private FrostEffect() {
+    private MinorThornsEffect() {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-
-        this.addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890",
-                                   (double) -0.15F, AttributeModifier.Operation.MULTIPLY_TOTAL
-        );
     }
 
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
-        ParticleUtils.spawnParticles(ParticleTypes.ITEM_SNOWBALL, entity, 5);
+
+        ExtraPotionData extraData = PotionDataSaving.getData(instance);
+
+        LivingEntity caster = extraData.getCaster(entity.world);
+
+        StatCalc calc = new StatCalc(new ElementalSpellDamage(Elements.Nature), 0.1F);
+
+        int num = calc.getCalculatedValue(Load.Unit(caster));
+
+        DamageEffect dmg = new DamageEffect(null, entity, caster, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
+
+        ParticleUtils.spawnParticles(ParticleTypes.ITEM_SLIME, entity, 5);
     }
 
     @Override
     public String GUID() {
-        return "frost";
+        return "minor_thorns";
     }
 
     @Override
@@ -49,28 +57,18 @@ public class FrostEffect extends BasePotionEffect implements IStatPotion {
 
     @Override
     public String locNameForLangFile() {
-        return "Frost";
+        return "Minor Thorns";
     }
 
     @Override
     public int maxStacks() {
-        return 5;
+        return 1;
     }
 
     @Override
     public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
 
         ExtraPotionData extraData = PotionDataSaving.getData(instance);
-
-        int statAmount = 10 * extraData.getStacks();
-
-        ExactStatData water = new ExactStatData(
-                statAmount, StatTypes.Flat, new ElementalResist(Elements.Water)).scaleToLvl(extraData.casterLvl);
-        ExactStatData fire = new ExactStatData(
-                statAmount, StatTypes.Flat, new ElementalResist(Elements.Fire)).scaleToLvl(extraData.casterLvl);
-
-        water.applyStats(data);
-        fire.applyStats(data);
 
     }
 }

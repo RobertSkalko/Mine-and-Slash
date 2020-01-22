@@ -24,16 +24,14 @@ public class ElementalResistEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (Effect instanceof IElementalResistable) {
 
                 IElementalEffect ele = (IElementalEffect) Effect;
 
-                if (ele.GetElement().equals(stat.Element()) || stat.Element()
-                        .equals(Elements.Elemental)) {
+                if (ele.GetElement().equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental)) {
 
                     int pene = 0;
 

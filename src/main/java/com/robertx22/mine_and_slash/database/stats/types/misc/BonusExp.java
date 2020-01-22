@@ -28,7 +28,7 @@ public class BonusExp extends Stat {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

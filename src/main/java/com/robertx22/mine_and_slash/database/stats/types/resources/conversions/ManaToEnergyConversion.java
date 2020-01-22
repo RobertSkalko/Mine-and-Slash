@@ -44,7 +44,7 @@ public class ManaToEnergyConversion extends Stat implements IStatConversion {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 }

@@ -55,7 +55,7 @@ public class ElementalAttackDamage extends ElementalStat implements IStatEffects
 
     @Override
     public String locNameForLangFile() {
-        return "Attack " + this.Element().name() + " Damage";
+        return "Attack " + this.getElement().name() + " Damage";
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ElementalAttackDamage extends ElementalStat implements IStatEffects
 
     @Override
     public String GUID() {
-        return "Attack " + Element().name() + " Damage";
+        return "Attack " + getElement().name() + " Damage";
     }
 
     @Override

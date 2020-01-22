@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-
-import java.util.UUID;
 
 public interface ISpellEntity extends IEntityAdditionalSpawnData {
 
@@ -14,30 +16,43 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
 
     EntitySpellData getSyncedSpellData();
 
-    ServerEntitySpellData getServerSpellData();
-
     void setSyncedSpellData(EntitySpellData data);
-
-    void setServerSpellData(ServerEntitySpellData data);
 
     default int getDefaultLifeInTicks() {
         return 200;
     }
 
     default Elements getElement() {
-        return getSyncedSpellData().element;
+        return getSyncedSpellData().ele;
     }
 
     default int getLifeInTicks() {
         return getSyncedSpellData().lifeInTicks;
     }
 
-    default UUID getCasterUUID() {
-        return getSyncedSpellData().getCasterUUID();
-    }
+    default void dealSpellDamageTo(LivingEntity target, boolean knockback) {
 
-    default void activateEffectOn(LivingEntity entity) {
-        this.getServerSpellData().effect.Activate(this.getServerSpellData().data, (LivingEntity) entity);
+        EntitySpellData data = getSyncedSpellData();
+
+        LivingEntity caster = data.getCaster(target.world);
+
+        BaseSpell spell = data.getSpell();
+
+        EntityCap.UnitData casterData = Load.Unit(caster);
+
+        int num = spell.getCalculation().getCalculatedValue(casterData);
+
+        SpellDamageEffect dmg = new SpellDamageEffect(caster, target, num, casterData, Load.Unit(target),
+                                                      data.getSpell()
+        );
+
+        if (knockback == false) {
+            dmg.removeKnockback();
+        }
+
+        dmg.element = spell.getElement();
+        dmg.Activate();
+
     }
 
 }

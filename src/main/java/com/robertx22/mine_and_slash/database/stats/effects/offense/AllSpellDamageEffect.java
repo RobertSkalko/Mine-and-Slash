@@ -21,8 +21,7 @@ public class AllSpellDamageEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (Effect instanceof SpellDamageEffect) {
@@ -30,7 +29,8 @@ public class AllSpellDamageEffect implements IStatEffect {
                 SpellDamageEffect dmgeffect = (SpellDamageEffect) Effect;
 
                 if (dmgeffect.getEffectType().equals(EffectData.EffectTypes.SPELL)) {
-                    dmgeffect.number += data.val * dmgeffect.spell.ScalingValue().Multi;
+                    dmgeffect.number += data.val * dmgeffect.spell.getCalculation()
+                            .getCalculatedValue(Effect.sourceData);
                 }
 
             }

@@ -51,7 +51,7 @@ public class Health extends Stat {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

@@ -50,7 +50,7 @@ public class Energy extends FillableStat {
     }
 
     @Override
-    public Elements Element() {
+    public Elements getElement() {
         return null;
     }
 

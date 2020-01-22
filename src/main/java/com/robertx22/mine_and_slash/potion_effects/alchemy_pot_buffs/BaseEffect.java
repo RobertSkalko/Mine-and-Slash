@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs;
 
-import com.robertx22.mine_and_slash.potion_effects.IDefaultStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IDefaultStatPotion;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;

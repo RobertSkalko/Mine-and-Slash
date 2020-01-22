@@ -129,7 +129,6 @@ public class Stats implements ISlashRegistryInit {
                     add(new BonusExp());
 
                     // spell buffs
-                    add(new HomingTrait());
                     add(new GhostProjectileTrait());
                     add(new ZephyrTrait());
                     add(new LightTrait());

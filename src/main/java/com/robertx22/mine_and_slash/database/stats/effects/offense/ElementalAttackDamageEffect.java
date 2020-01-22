@@ -21,16 +21,14 @@ public class ElementalAttackDamageEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
-            if (Effect instanceof DamageEffect && Effect.getEffectType()
-                    .equals(EffectTypes.BASIC_ATTACK)) {
+            if (Effect instanceof DamageEffect && Effect.getEffectType().equals(EffectTypes.BASIC_ATTACK)) {
 
                 DamageEffect dmgeffect = (DamageEffect) Effect;
 
-                dmgeffect.addBonusEleDmg(stat.Element(), data.val);
+                dmgeffect.addBonusEleDmg(stat.getElement(), data.val);
 
             }
 

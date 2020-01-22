@@ -16,7 +16,6 @@ public class Rarities {
     public static final ItemRarities Items = new ItemRarities();
     public static final MapRarities Maps = new MapRarities();
     public static final MobRarities Mobs = new MobRarities();
-    public static final SpellRarities Spells = new SpellRarities();
 
     public static List<GearRarity> allIncludingUnique() {
         List<GearRarity> list = new ArrayList<>(Items.rarities());

@@ -73,7 +73,7 @@ public abstract class EntityBombProjectile extends BaseElementalBoltEntity {
             this.world.addParticle(ParticleTypes.EXPLOSION, true, this.posX, this.posY, this.posZ, 1, 1, 1);
         }
 
-        if (!this.world.isRemote && caster != null && effect != null) {
+        if (!this.world.isRemote && caster != null) {
 
             List<LivingEntity> list = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
 
@@ -81,7 +81,7 @@ public abstract class EntityBombProjectile extends BaseElementalBoltEntity {
                 LivingEntity entity = list.get(i);
 
                 if (Load.hasUnit(entity)) {
-                    effect.Activate(data, entity);
+                    this.dealSpellDamageTo(entity, true);
 
                     checkOnKill(entity);
 
@@ -97,14 +97,12 @@ public abstract class EntityBombProjectile extends BaseElementalBoltEntity {
 
     public void checkOnKill(LivingEntity entity) {
 
-        if (entity.isAlive() == false && this.getThrower() != null) {
+        if (entity.isAlive() == false && this.getCaster() != null) {
 
             if (this.getBuff().equals(SpellBuffType.Energy_Regen)) {
-                this.getThrower()
-                        .addPotionEffect(new EffectInstance(EnergyRegenPotion.INSTANCE, 400, 2));
+                this.getCaster().addPotionEffect(new EffectInstance(EnergyRegenPotion.INSTANCE, 400, 2));
             } else if (this.getBuff().equals(SpellBuffType.Mana_Regen)) {
-                this.getThrower()
-                        .addPotionEffect(new EffectInstance(ManaRegenPotion.INSTANCE, 400, 2));
+                this.getCaster().addPotionEffect(new EffectInstance(ManaRegenPotion.INSTANCE, 400, 2));
             }
         }
     }

@@ -29,7 +29,7 @@ public class ElementalSpellDamage extends ElementalStat {
 
     @Override
     public String GUID() {
-        return "Spell " + this.Element().name() + " Damage";
+        return "Spell " + this.getElement().name() + " Damage";
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ElementalSpellDamage extends ElementalStat {
 
     @Override
     public String locNameForLangFile() {
-        return "Spell " + this.Element().name() + " Power";
+        return "Spell " + this.getElement().name() + " Power";
 
     }
 
