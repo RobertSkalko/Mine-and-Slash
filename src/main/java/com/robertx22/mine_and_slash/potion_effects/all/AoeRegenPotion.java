@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -10,6 +11,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AoeRegenPotion extends BasePotionEffect {
 
@@ -57,5 +62,10 @@ public class AoeRegenPotion extends BasePotionEffect {
     @Override
     public String locNameForLangFile() {
         return "Aoe Regen";
+    }
+
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        return new ArrayList<>();
     }
 }

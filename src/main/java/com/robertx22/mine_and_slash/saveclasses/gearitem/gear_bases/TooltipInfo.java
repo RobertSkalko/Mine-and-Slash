@@ -17,6 +17,17 @@ public class TooltipInfo implements Cloneable {
 
     }
 
+    public TooltipInfo(EntityCap.UnitData unitdata, int level) {
+        this.minmax = new MinMax(100, 100);
+        this.level = level;
+        this.unitdata = unitdata;
+
+        if (Screen.hasShiftDown()) {
+            verbose = true;
+        }
+
+    }
+
     public TooltipInfo() {
     }
 

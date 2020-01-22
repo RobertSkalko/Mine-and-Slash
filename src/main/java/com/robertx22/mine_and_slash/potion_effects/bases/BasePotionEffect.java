@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.client.Minecraft;
@@ -19,7 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public abstract class BasePotionEffect extends Effect implements IAutoLocName {
+public abstract class BasePotionEffect extends Effect implements IAutoLocName, ITooltipList {
 
     public abstract void onXTicks(LivingEntity entity,
 

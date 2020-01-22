@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatCalc;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -19,6 +20,11 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MinorThornsEffect extends BasePotionEffect implements IStatPotion {
 
@@ -29,6 +35,8 @@ public class MinorThornsEffect extends BasePotionEffect implements IStatPotion {
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
     }
 
+    static StatCalc CALC = new StatCalc(new ElementalSpellDamage(Elements.Nature), 0.1F);
+
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
 
@@ -36,9 +44,7 @@ public class MinorThornsEffect extends BasePotionEffect implements IStatPotion {
 
         LivingEntity caster = extraData.getCaster(entity.world);
 
-        StatCalc calc = new StatCalc(new ElementalSpellDamage(Elements.Nature), 0.1F);
-
-        int num = calc.getCalculatedValue(Load.Unit(caster));
+        int num = CALC.getCalculatedValue(Load.Unit(caster));
 
         DamageEffect dmg = new DamageEffect(null, entity, caster, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
 
@@ -70,6 +76,20 @@ public class MinorThornsEffect extends BasePotionEffect implements IStatPotion {
 
         ExtraPotionData extraData = PotionDataSaving.getData(instance);
 
+    }
+
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(locName());
+
+        list.add(new StringTextComponent("Does damage:"));
+
+        list.addAll(CALC.GetTooltipString(info));
+
+        return list;
     }
 }
 

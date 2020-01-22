@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
@@ -18,6 +19,11 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FrostEffect extends BasePotionEffect implements IStatPotion {
 
@@ -57,21 +63,41 @@ public class FrostEffect extends BasePotionEffect implements IStatPotion {
         return 5;
     }
 
+    public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
+        int statAmount = -1 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(ele)).scaleToLvl(extraData.casterLvl);
+    }
+
     @Override
     public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
 
         ExtraPotionData extraData = PotionDataSaving.getData(instance);
 
-        int statAmount = 10 * extraData.getStacks();
-
-        ExactStatData water = new ExactStatData(
-                statAmount, StatTypes.Flat, new ElementalResist(Elements.Water)).scaleToLvl(extraData.casterLvl);
-        ExactStatData fire = new ExactStatData(
-                statAmount, StatTypes.Flat, new ElementalResist(Elements.Fire)).scaleToLvl(extraData.casterLvl);
+        ExactStatData water = getStatMod(data, Elements.Water, extraData);
+        ExactStatData fire = getStatMod(data, Elements.Fire, extraData);
 
         water.applyStats(data);
         fire.applyStats(data);
 
     }
+
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(locName());
+
+        list.add(new StringTextComponent("Slows and Reduces Resistances;"));
+
+        ExactStatData water = getStatMod(info.unitdata, Elements.Water, new ExtraPotionData());
+        ExactStatData fire = getStatMod(info.unitdata, Elements.Fire, new ExtraPotionData());
+
+        list.addAll(water.GetTooltipString(info));
+        list.addAll(fire.GetTooltipString(info));
+
+        return list;
+
+    }
+
 }
 

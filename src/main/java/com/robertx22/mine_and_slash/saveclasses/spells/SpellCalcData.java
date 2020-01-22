@@ -67,13 +67,7 @@ public class SpellCalcData implements ITooltipList {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        for (StatCalc calc : this.scalingValues) {
-            Stat stat = calc.getStat();
-
-            list.add(new StringTextComponent(
-                    "Scales with " + (int) (calc.multi * 100F) + "%" + stat.getElement().format + stat.getElement().icon + " ")
-                             .appendSibling(stat.locName()));
-        }
+        scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         list.add(new StringTextComponent("Base value: " + baseValue));
 

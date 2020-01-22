@@ -29,7 +29,7 @@ public class MobStatUtils {
 
     static int spelldmg = 12;
     static int elePene = 8;
-    static int spellresist = 3;
+    static int spellresist = 5;
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
@@ -82,23 +82,19 @@ public class MobStatUtils {
 
         for (Elements element : Elements.getAllSingleElements()) {
 
-            unit.getStat(new ElementalResist(element).GUID())
-                    .addFlat(spellresist * rar.StatMultiplier(), level);
-            unit.getStat(new ElementalSpellDamage(element).GUID())
-                    .addFlat(spelldmg * rar.DamageMultiplier(), level);
+            unit.getStat(new ElementalResist(element).GUID()).addFlat(spellresist * rar.StatMultiplier(), level);
+            unit.getStat(new ElementalSpellDamage(element).GUID()).addFlat(spelldmg * rar.DamageMultiplier(), level);
         }
 
         for (Elements element : Elements.getAllExceptNone()) {
-            unit.getStat(new ElementalPene(element).GUID())
-                    .addFlat(elePene * rar.DamageMultiplier(), level);
+            unit.getStat(new ElementalPene(element).GUID()).addFlat(elePene * rar.DamageMultiplier(), level);
 
         }
 
     }
 
     // this apparently takes 60 ms
-    public static void AddRandomMobStatusEffects(LivingEntity entity, Unit unit,
-                                                 MobRarity rarity) {
+    public static void AddRandomMobStatusEffects(LivingEntity entity, Unit unit, MobRarity rarity) {
 
         int max = rarity.MaxMobEffects();
 
@@ -115,9 +111,7 @@ public class MobStatUtils {
                 BaseStatusEffect effect = null;
 
                 while (effect == null || unit.statusEffects.containsKey(effect.GUID())) {
-                    effect = RandomUtils.weightedRandom(SlashRegistry.StatusEffects()
-                            .getAll()
-                            .values());
+                    effect = RandomUtils.weightedRandom(SlashRegistry.StatusEffects().getAll().values());
                 }
                 amount--;
                 unit.statusEffects.put(effect.GUID(), new StatusEffectData(effect));
