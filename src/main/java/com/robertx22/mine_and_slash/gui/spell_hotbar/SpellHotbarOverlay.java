@@ -53,21 +53,22 @@ public class SpellHotbarOverlay extends AbstractGui {
         for (int i = 0; i < 5; i++) {
             BaseSpell spell = data.getSpellByKeybind(i, CURRENT_HOTBAR);
 
-            double scale = 0.5D;
-            RenderSystem.scaled(scale, scale, scale);
+            if (spell != null) {
+                double scale = 0.5D;
+                RenderSystem.scaled(scale, scale, scale);
 
-            int xs = (int) (x * 1 / scale);
-            int ys = (int) (y * 1 / scale);
+                int xs = (int) (x * 1 / scale);
+                int ys = (int) (y * 1 / scale);
 
-            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-            mc.getTextureManager().bindTexture(spell.getIcon());
-            this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
+                mc.getTextureManager().bindTexture(spell.getIcon());
+                this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
 
-            RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
+                RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 
+            }
             y += 20;
-
         }
 
     }

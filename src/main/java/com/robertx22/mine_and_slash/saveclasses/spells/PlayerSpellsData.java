@@ -7,6 +7,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 @Storable
@@ -145,7 +146,15 @@ public class PlayerSpellsData {
 
     }
 
+    @Nullable
     public BaseSpell getSpellByKeybind(int key, Hotbar hotbar) {
-        return SlashRegistry.Spells().get(getMap(hotbar).get(key));
+        String id = getMap(hotbar).get(key);
+
+        if (SlashRegistry.Spells().isRegistered(id)) {
+            return SlashRegistry.Spells().get(id);
+        } else {
+            return null;
+        }
+
     }
 }

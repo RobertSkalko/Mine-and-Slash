@@ -9,6 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.lwjgl.glfw.GLFW;
 
 public class OnSpellKeybind {
 
@@ -18,21 +19,25 @@ public class OnSpellKeybind {
         Minecraft mc = Minecraft.getInstance();
         int key = event.getKey();
 
-        if (mc.currentScreen == null) {
+        if (event.getAction() == GLFW.GLFW_PRESS) {
 
-            if (key == KeybindsRegister.swapHotbar.getKey().getKeyCode()) {
-                SpellHotbarOverlay.CURRENT_HOTBAR =
-                        SpellHotbarOverlay.CURRENT_HOTBAR == PlayerSpellsData.Hotbar.FIRST ?
-                                PlayerSpellsData.Hotbar.SECOND : PlayerSpellsData.Hotbar.FIRST;
-            }
+            if (mc.currentScreen == null) {
 
-            for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {
-                if (key == entry.getKey().getKeyCode()) {
-                    MMORPG.sendToServer(
-                            new CastSpellPacket(KeybindsRegister.HOTBAR.get(entry), SpellHotbarOverlay.CURRENT_HOTBAR));
+                if (key == KeybindsRegister.swapHotbar.getKey().getKeyCode()) {
+                    SpellHotbarOverlay.CURRENT_HOTBAR =
+                            SpellHotbarOverlay.CURRENT_HOTBAR == PlayerSpellsData.Hotbar.FIRST ?
+                                    PlayerSpellsData.Hotbar.SECOND : PlayerSpellsData.Hotbar.FIRST;
                 }
-            }
 
+                for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {
+                    if (key == entry.getKey().getKeyCode()) {
+                        MMORPG.sendToServer(new CastSpellPacket(KeybindsRegister.HOTBAR.get(entry),
+                                                                SpellHotbarOverlay.CURRENT_HOTBAR
+                        ));
+                    }
+                }
+
+            }
         }
     }
 }
