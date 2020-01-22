@@ -3,11 +3,11 @@ package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseCloudEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellEffectDamage;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.potion_effects.PotionEffectUtils;
+import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -42,7 +42,7 @@ public class BlizzardEntity extends BaseCloudEntity {
 
         this.getServerSpellData().effect.Activate(this.getServerSpellData().data, entity);
 
-        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10));
+        PotionEffectUtils.apply(FrostEffect.INSTANCE, 8 * 20, getCaster(), entity);
 
     }
 

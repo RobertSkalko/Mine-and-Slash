@@ -43,8 +43,7 @@ public class ParticleUtils {
             if (en.world.isRemote) {
                 en.world.addParticle(particle, true, d0, d1, d2, 0, 48 + en.world.rand.nextInt(12), 1.0f);
             } else {
-                ((ServerWorld) en.world).spawnParticle(
-                        ParticleTypes.HAPPY_VILLAGER, d0, d1, d2, 10, 0.0D, 0.0D, 0.0D, (double) 1F);
+                ((ServerWorld) en.world).spawnParticle(particle, d0, d1, d2, 10, 0.0D, 0.0D, 0.0D, (double) 1F);
             }
 
         }

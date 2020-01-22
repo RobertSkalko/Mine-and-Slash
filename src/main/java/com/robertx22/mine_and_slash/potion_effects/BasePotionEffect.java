@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.potion_effects;
 
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
@@ -19,11 +19,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public abstract class SpellPotionBase extends Effect implements IAutoLocName {
+public abstract class BasePotionEffect extends Effect implements IAutoLocName {
 
-    public abstract void performEffectEverySetTime(LivingEntity entityLivingBaseIn,
+    public abstract void onXTicks(LivingEntity entity,
 
-                                                   int amplifier);
+                                  EffectInstance instance);
+
+    public int maxStacks() {
+        return 1;
+    }
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -46,8 +50,7 @@ public abstract class SpellPotionBase extends Effect implements IAutoLocName {
 
     public List<LivingEntity> getEntitiesAround(Entity en, float radius) {
 
-        return en.world.getEntitiesWithinAABB(LivingEntity.class, en.getBoundingBox()
-                .grow(radius));
+        return en.world.getEntitiesWithinAABB(LivingEntity.class, en.getBoundingBox().grow(radius));
     }
 
     public ResourceLocation getIconTexture() {
@@ -58,12 +61,16 @@ public abstract class SpellPotionBase extends Effect implements IAutoLocName {
     public void performEffect(LivingEntity en, int amplifier) {
 
         if (en.ticksExisted % performEachXTicks() == 0)
-            performEffectEverySetTime(en, amplifier);
+            onXTicks(en, getInstanceFromEntity(en));
     }
 
-    protected SpellPotionBase(EffectType type, int liquidColorIn) {
+    protected BasePotionEffect(EffectType type, int liquidColorIn) {
         super(type, liquidColorIn);
 
+    }
+
+    public EffectInstance getInstanceFromEntity(LivingEntity entity) {
+        return entity.getActivePotionEffect(this);
     }
 
     protected boolean isServerSideOnly() {
@@ -85,18 +92,17 @@ public abstract class SpellPotionBase extends Effect implements IAutoLocName {
     // Called when the potion is being applied by an
     // AreaEffect or thrown potion bottle
     @Override
-    public void affectEntity(Entity applier, Entity caster, @Nonnull LivingEntity target,
-                             int amplifier, double health) {
+    public void affectEntity(Entity applier, Entity caster, @Nonnull LivingEntity target, int amplifier,
+                             double health) {
 
         if (target.world.isRemote && isServerSideOnly())
             return;
 
-        doEffect(applier, caster, target, amplifier);
+        onEffectApplied(applier, caster, target, amplifier);
     }
 
     @Override
-    public void applyAttributesModifiersToEntity(LivingEntity target,
-                                                 @Nonnull AbstractAttributeMap attributes,
+    public void applyAttributesModifiersToEntity(LivingEntity target, @Nonnull AbstractAttributeMap attributes,
                                                  int amplifier) {
 
         if (!target.world.isRemote || !isServerSideOnly()) {
@@ -110,27 +116,25 @@ public abstract class SpellPotionBase extends Effect implements IAutoLocName {
     }
 
     @Override
-    public void removeAttributesModifiersFromEntity(LivingEntity target,
-                                                    @Nonnull AbstractAttributeMap attributes,
+    public void removeAttributesModifiersFromEntity(LivingEntity target, @Nonnull AbstractAttributeMap attributes,
                                                     int amplifier) {
 
         // Called on removal
         super.removeAttributesModifiersFromEntity(target, attributes, amplifier);
     }
 
-    public void onPotionAdd(LivingEntity target, AbstractAttributeMap attributes,
-                            int amplifier) {
+    public void onPotionAdd(LivingEntity target, AbstractAttributeMap attributes, int amplifier) {
     }
 
-    public void onPotionRemove(LivingEntity target, AbstractAttributeMap attributes,
-                               int amplifier) {
+    public void onPotionRemove(LivingEntity target, AbstractAttributeMap attributes, int amplifier) {
     }
 
-    public abstract void doEffect(Entity applier, Entity caster, LivingEntity target,
-                                  int amplifier);
+    public void onEffectApplied(Entity applier, Entity caster, LivingEntity target, int amplifier) {
+
+    }
 
     protected boolean shouldShowParticles() {
-        return true;
+        return false;
     }
 
     protected boolean isAmbient() {
@@ -146,8 +150,7 @@ public abstract class SpellPotionBase extends Effect implements IAutoLocName {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void renderHUDEffect(EffectInstance effect, AbstractGui gui, int x, int y,
-                                float z, float alpha) {
+    public void renderHUDEffect(EffectInstance effect, AbstractGui gui, int x, int y, float z, float alpha) {
         if (getIconTexture() != null) {
             Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
             AbstractGui.blit(x + 4, y + 4, 0, 0, 16, 16, 16, 16);

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.consumables.bases;
 
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
-import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
+import com.robertx22.mine_and_slash.potion_effects.BasePotionEffect;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -21,17 +21,15 @@ public abstract class BaseGiveBuffItem extends BaseInstantPotion {
     @Override
     public ITextComponent tooltip() {
         return Styles.GREENCOMP()
-                .appendSibling(new StringTextComponent("Gives ").appendSibling(potion().locName())
-                        .appendText(" Buff"));
+                .appendSibling(new StringTextComponent("Gives ").appendSibling(potion().locName()).appendText(" Buff"));
     }
 
-    public abstract SpellPotionBase potion();
+    public abstract BasePotionEffect potion();
 
     public abstract int seconds();
 
     @Override
-    public void onFinish(ItemStack stack, World world, LivingEntity player,
-                         EntityCap.UnitData unitdata) {
+    public void onFinish(ItemStack stack, World world, LivingEntity player, EntityCap.UnitData unitdata) {
 
         player.addPotionEffect(new EffectInstance(potion(), seconds() * 20));
 

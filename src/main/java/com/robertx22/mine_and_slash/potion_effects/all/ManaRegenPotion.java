@@ -1,22 +1,21 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
+import com.robertx22.mine_and_slash.potion_effects.BasePotionEffect;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 
-public class ManaRegenPotion extends SpellPotionBase {
+public class ManaRegenPotion extends BasePotionEffect {
 
     public static final ManaRegenPotion INSTANCE = new ManaRegenPotion();
 
     private ManaRegenPotion() {
-        // boolean isBadEffectIn, int liquidColorIn
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
@@ -33,13 +32,7 @@ public class ManaRegenPotion extends SpellPotionBase {
     }
 
     @Override
-    public void doEffect(Entity applier, Entity caster, LivingEntity target,
-                         int amplifier) {
-
-    }
-
-    @Override
-    public void performEffectEverySetTime(LivingEntity entity, int amplifier) {
+    public void onXTicks(LivingEntity entity, EffectInstance instance) {
 
         try {
 
@@ -48,7 +41,8 @@ public class ManaRegenPotion extends SpellPotionBase {
             } else {
                 UnitData data = Load.Unit(entity);
 
-                ResourcesData.Context cost = new ResourcesData.Context(data, entity, ResourcesData.Type.MANA, amplifier, ResourcesData.Use.RESTORE);
+                ResourcesData.Context cost = new ResourcesData.Context(
+                        data, entity, ResourcesData.Type.MANA, instance.getAmplifier(), ResourcesData.Use.RESTORE);
 
                 data.getResources().modify(cost);
 

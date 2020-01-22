@@ -36,6 +36,11 @@ public class EmptySpell extends BaseSpell {
     }
 
     @Override
+    public int getCooldownInSeconds() {
+        return 0;
+    }
+
+    @Override
     public int getBaseValue() {
         return 0;
     }

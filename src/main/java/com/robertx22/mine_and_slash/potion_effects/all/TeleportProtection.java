@@ -1,19 +1,18 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.potion_effects.SpellPotionBase;
-import net.minecraft.entity.Entity;
+import com.robertx22.mine_and_slash.potion_effects.BasePotionEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 
-public class TeleportProtection extends SpellPotionBase {
+public class TeleportProtection extends BasePotionEffect {
 
     public static final TeleportProtection INSTANCE = new TeleportProtection();
 
     private TeleportProtection() {
-        // boolean isBadEffectIn, int liquidColorIn
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
@@ -30,11 +29,6 @@ public class TeleportProtection extends SpellPotionBase {
     }
 
     @Override
-    public void doEffect(Entity applier, Entity caster, LivingEntity target,
-                         int amplifier) {
-    }
-
-    @Override
     public void performEffect(LivingEntity en, int amplifier) {
 
         en.setInvulnerable(true);
@@ -43,7 +37,7 @@ public class TeleportProtection extends SpellPotionBase {
     }
 
     @Override
-    public void performEffectEverySetTime(LivingEntity entity, int amplifier) {
+    public void onXTicks(LivingEntity entity, EffectInstance instance) {
 
         try {
 
