@@ -55,7 +55,7 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
 
     @Nullable
     public LivingEntity getCaster() {
-        return getSyncedSpellData().getCaster(world);
+        return getSpellData().getCaster(world);
     }
 
     @Override
@@ -83,12 +83,12 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
     }
 
     @Override
-    public EntitySpellData getSyncedSpellData() {
+    public EntitySpellData getSpellData() {
         return syncedSpellData;
     }
 
     @Override
-    public void setSyncedSpellData(EntitySpellData data) {
+    public void setSpellData(EntitySpellData data) {
         this.syncedSpellData = data;
     }
 

@@ -15,6 +15,9 @@ import java.util.UUID;
 public class EntitySpellData {
 
     @Store
+    public float charge = 1;
+
+    @Store
     private String casterID;
 
     private LivingEntity caster;

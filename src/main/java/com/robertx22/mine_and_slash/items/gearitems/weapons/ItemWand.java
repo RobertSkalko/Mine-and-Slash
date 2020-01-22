@@ -86,6 +86,7 @@ public class ItemWand extends BaseWeaponItem implements IWeapon, IEffectItem {
                         EntityWandProjectile en = SpellUtils.getSpellEntity(
                                 new EntityWandProjectile(world), null, player);
                         SpellUtils.setupProjectileForCasting(en, player, 2);
+                        en.getSpellData().charge = multi;
                         world.addEntity(en);
 
                         stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);

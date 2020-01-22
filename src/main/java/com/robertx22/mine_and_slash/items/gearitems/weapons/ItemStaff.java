@@ -82,6 +82,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
                         EntityStaffProjectile en = SpellUtils.getSpellEntity(
                                 new EntityStaffProjectile(world), null, player);
                         SpellUtils.setupProjectileForCasting(en, player, 2);
+                        en.getSpellData().charge = multi;
                         world.addEntity(en);
 
                         stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);

@@ -58,7 +58,7 @@ public class EntityWandProjectile extends EntityBaseProjectile {
                         UnitData targetdata = Load.Unit(entity);
 
                         WandWeaponMechanic.INSTANCE.powerAttack(
-                                null, caster, entity, sourcedata, targetdata, this.charge);
+                                null, caster, entity, sourcedata, targetdata, getSpellData().charge);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -82,10 +82,9 @@ public class EntityWandProjectile extends EntityBaseProjectile {
         if (world.isRemote) {
             if (this.ticksExisted > 2) {
                 for (int i = 0; i < 10; i++) {
-                    this.world.addParticle(
-                            ParticleTypes.ENCHANTED_HIT, true, this.posX + rand.nextFloat() * 0.2 - 0.1,
-                            this.posY + this.getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1,
-                            this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0
+                    this.world.addParticle(ParticleTypes.ENCHANTED_HIT, true, this.posX + rand.nextFloat() * 0.2 - 0.1,
+                                           this.posY + this.getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1,
+                                           this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0
                     );
                 }
             }

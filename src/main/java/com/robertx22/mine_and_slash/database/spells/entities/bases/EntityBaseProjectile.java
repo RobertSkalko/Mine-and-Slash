@@ -32,11 +32,10 @@ import java.util.List;
 public abstract class EntityBaseProjectile extends AbstractArrowEntity implements IProjectile, IMyRenderAsItem,
         IBuffableSpell, ISpellEntity {
 
-    EntitySpellData syncedSpellData;
+    EntitySpellData spellData;
 
     public float shootSpeed = 1.3F;
 
-    public float charge = 0;
     private int xTile;
     private int yTile;
     private int zTile;
@@ -280,8 +279,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         nbt.putInt("yTile", this.yTile);
         nbt.putInt("zTile", this.zTile);
 
-        nbt.putFloat("charge", this.charge);
-
         nbt.putByte("shake", (byte) this.throwableShake);
         nbt.putByte("inGround", (byte) (this.inGround ? 1 : 0));
 
@@ -289,7 +286,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         nbt.putInt("airProcTime", this.getAirProcTime());
         nbt.putInt("deathTime", this.getDeathTime());
 
-        EntitySpellDataSaving.Save(nbt, syncedSpellData);
+        EntitySpellDataSaving.Save(nbt, spellData);
     }
 
     /**
@@ -302,8 +299,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         this.yTile = nbt.getInt("yTile");
         this.zTile = nbt.getInt("zTile");
 
-        this.charge = nbt.getFloat("charge");
-
         this.throwableShake = nbt.getByte("shake") & 255;
         this.inGround = nbt.getByte("inGround") == 1;
 
@@ -311,7 +306,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         this.setAirProcTime(nbt.getInt("airProcTime"));
         this.setDeathTime(nbt.getInt("deathTime"));
 
-        this.syncedSpellData = EntitySpellDataSaving.Load(nbt);
+        this.spellData = EntitySpellDataSaving.Load(nbt);
     }
 
     protected void setPos(LivingEntity caster) {
@@ -323,7 +318,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     @Nullable
     public LivingEntity getCaster() {
-        return this.getSyncedSpellData().getCaster(world);
+        return this.getSpellData().getCaster(world);
     }
 
     @Override
@@ -351,13 +346,13 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     }
 
     @Override
-    public EntitySpellData getSyncedSpellData() {
-        return syncedSpellData;
+    public EntitySpellData getSpellData() {
+        return spellData;
     }
 
     @Override
-    public void setSyncedSpellData(EntitySpellData data) {
-        this.syncedSpellData = data;
+    public void setSpellData(EntitySpellData data) {
+        this.spellData = data;
     }
 
     @Override

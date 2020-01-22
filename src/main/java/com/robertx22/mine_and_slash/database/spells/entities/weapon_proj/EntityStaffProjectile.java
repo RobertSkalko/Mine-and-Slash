@@ -18,8 +18,6 @@ import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class EntityStaffProjectile extends EntityBaseProjectile {
 
-    ItemStack staff;
-
     public EntityStaffProjectile(EntityType<? extends EntityStaffProjectile> type, World world) {
         super(type, world);
     }
@@ -33,10 +31,6 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
         super(EntityRegister.STAFFPROJECTILE, world);
     }
 
-    public void SetReady(ItemStack staff) {
-        this.staff = staff;
-    }
-
     @Override
     public double radius() {
         return 0.5D;
@@ -47,7 +41,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
         LivingEntity entity = getEntityHit(result, 0.5D);
 
-        if (entity != null && staff != null) {
+        if (entity != null) {
 
             if (!world.isRemote) {
                 try {
@@ -56,7 +50,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
                     UnitData targetdata = Load.Unit(entity);
 
                     StaffWeaponMechanic.INSTANCE.powerAttack(
-                            null, this.getCaster(), entity, sourcedata, targetdata, this.charge);
+                            null, this.getCaster(), entity, sourcedata, targetdata, getSpellData().charge);
 
                 } catch (Exception e) {
                     e.printStackTrace();

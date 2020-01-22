@@ -33,6 +33,11 @@ public class SpellCalcData implements ITooltipList {
         this.baseValue = base;
     }
 
+    public double getScalingMultiAverage() {
+        return scalingValues.stream().mapToDouble(x -> x.multi).sum() / scalingValues.size();
+
+    }
+
     @Store
     public List<StatCalc> scalingValues = new ArrayList<>();
 

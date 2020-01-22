@@ -14,25 +14,25 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
     default void initSpellEntity() {
     }
 
-    EntitySpellData getSyncedSpellData();
+    EntitySpellData getSpellData();
 
-    void setSyncedSpellData(EntitySpellData data);
+    void setSpellData(EntitySpellData data);
 
     default int getDefaultLifeInTicks() {
         return 200;
     }
 
     default Elements getElement() {
-        return getSyncedSpellData().ele;
+        return getSpellData().ele;
     }
 
     default int getLifeInTicks() {
-        return getSyncedSpellData().lifeInTicks;
+        return getSpellData().lifeInTicks;
     }
 
     default void dealSpellDamageTo(LivingEntity target, boolean knockback) {
 
-        EntitySpellData data = getSyncedSpellData();
+        EntitySpellData data = getSpellData();
 
         LivingEntity caster = data.getCaster(target.world);
 

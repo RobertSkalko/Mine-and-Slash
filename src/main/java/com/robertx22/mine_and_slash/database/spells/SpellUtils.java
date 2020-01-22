@@ -50,7 +50,7 @@ public class SpellUtils {
 
         EntitySpellData syncData = new EntitySpellData(spell, caster, lifeInTicks);
 
-        se.setSyncedSpellData(syncData);
+        se.setSpellData(syncData);
 
         se.initSpellEntity();
 

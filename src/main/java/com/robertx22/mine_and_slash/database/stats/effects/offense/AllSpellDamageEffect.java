@@ -29,8 +29,10 @@ public class AllSpellDamageEffect implements IStatEffect {
                 SpellDamageEffect dmgeffect = (SpellDamageEffect) Effect;
 
                 if (dmgeffect.getEffectType().equals(EffectData.EffectTypes.SPELL)) {
-                    dmgeffect.number += data.val * dmgeffect.spell.getCalculation()
-                            .getCalculatedValue(Effect.sourceData);
+
+                    int add = (int) (data.val * dmgeffect.spell.getCalculation().getScalingMultiAverage());
+
+                    dmgeffect.number += add;
                 }
 
             }
