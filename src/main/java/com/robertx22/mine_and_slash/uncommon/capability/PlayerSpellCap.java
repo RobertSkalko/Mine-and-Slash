@@ -38,7 +38,7 @@ public class PlayerSpellCap {
     public static final Capability<ISpellsCap> Data = null;
 
     public abstract static class ISpellsCap extends IPerkCap<SpellPerk, SpellPerksData> implements ICommonCapability {
-        public abstract BaseSpell getSpellByKeybind(int key);
+        public abstract BaseSpell getSpellByKeybind(int key, PlayerSpellsData.Hotbar bar);
 
         public abstract PlayerSpellsData getSpellData();
 
@@ -130,8 +130,8 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public BaseSpell getSpellByKeybind(int key) {
-            return this.playerSpellsData.getSpellByKeybind(key);
+        public BaseSpell getSpellByKeybind(int key, PlayerSpellsData.Hotbar hotbar) {
+            return this.playerSpellsData.getSpellByKeybind(key, hotbar);
         }
 
         @Override

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.gui.spell_hotbar;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
@@ -13,6 +14,8 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class SpellHotbarOverlay extends AbstractGui {
+
+    public static PlayerSpellsData.Hotbar CURRENT_HOTBAR = PlayerSpellsData.Hotbar.FIRST;
 
     private static final ResourceLocation HOTBAR_TEX = new ResourceLocation(Ref.MODID,
                                                                             "textures/gui/spells/hotbar.png"
@@ -48,7 +51,7 @@ public class SpellHotbarOverlay extends AbstractGui {
         y += 3;
 
         for (int i = 0; i < 5; i++) {
-            BaseSpell spell = data.getSpellByKeybind(i);
+            BaseSpell spell = data.getSpellByKeybind(i, CURRENT_HOTBAR);
 
             double scale = 0.5D;
             RenderSystem.scaled(scale, scale, scale);

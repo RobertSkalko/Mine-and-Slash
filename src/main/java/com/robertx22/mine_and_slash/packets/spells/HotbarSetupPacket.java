@@ -1,10 +1,9 @@
 package com.robertx22.mine_and_slash.packets.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -16,7 +15,7 @@ public class HotbarSetupPacket {
     public PlayerSpellsData.Hotbar hotbar;
     public String spellID;
 
-    public HotbarSetupPacket() {
+    private HotbarSetupPacket() {
 
     }
 
@@ -51,7 +50,7 @@ public class HotbarSetupPacket {
         ctx.get().enqueueWork(() -> {
             try {
 
-                PlayerEntity player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
+                ServerPlayerEntity player = ctx.get().getSender();
 
                 PlayerSpellsData data = Load.spells(player).getSpellData();
 

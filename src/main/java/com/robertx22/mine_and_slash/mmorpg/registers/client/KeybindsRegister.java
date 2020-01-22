@@ -17,6 +17,7 @@ public class KeybindsRegister {
             "Disable Neat Overlay", GLFW.GLFW_KEY_MINUS, Ref.MOD_NAME);
     public static KeyBinding mapInfo = new KeyBinding("Adventure Map Info", GLFW.GLFW_KEY_M, Ref.MOD_NAME);
     public static KeyBinding hubScreen = new KeyBinding("Main Hub Screen", GLFW.GLFW_KEY_H, Ref.MOD_NAME);
+    public static KeyBinding swapHotbar = new KeyBinding("Swap Spell Hotbar", GLFW.GLFW_KEY_X, Ref.MOD_NAME);
 
     static String HOTBAR_NAME = Ref.MOD_NAME + " Hotbar";
 
@@ -61,6 +62,7 @@ public class KeybindsRegister {
         ClientRegistry.registerKeyBinding(Talent_Tree);
         ClientRegistry.registerKeyBinding(mapInfo);
         ClientRegistry.registerKeyBinding(hubScreen);
+        ClientRegistry.registerKeyBinding(swapHotbar);
 
         for (KeyBinding entry : HOTBAR.keySet()) {
             ClientRegistry.registerKeyBinding(entry);

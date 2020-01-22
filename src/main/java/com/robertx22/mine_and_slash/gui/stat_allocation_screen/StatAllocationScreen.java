@@ -88,9 +88,10 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
         String str = "Stat Points Remaining: " + data.getAvailablePoints(Load.Unit(minecraft.player));
 
-        Minecraft.getInstance().fontRenderer.drawStringWithShadow(
-                str, guiLeft + sizeX / 2 + 50 - Minecraft.getInstance().fontRenderer.getStringWidth(str), guiTop + 15,
-                TextFormatting.GREEN.getColor()
+        Minecraft.getInstance().fontRenderer.drawStringWithShadow(str,
+                                                                  guiLeft + sizeX / 2 + 50 - Minecraft.getInstance().fontRenderer
+                                                                          .getStringWidth(str), guiTop + 15,
+                                                                  TextFormatting.GREEN.getColor()
         );
 
         buttons.forEach(b -> b.renderToolTip(x, y));
@@ -101,9 +102,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
         minecraft.getTextureManager().bindTexture(TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.blit(
-                minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2,
-                minecraft.mainWindow.getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
+        this.blit(minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2,
+                  minecraft.mainWindow.getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
         );
 
     }
@@ -122,6 +122,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
         public IncreaseStatButton(EntityCap.UnitData unitdata, PlayerStatsPointsCap.IPlayerStatPointsData data,
                                   SingleStatPointData statData, int xPos, int yPos) {
             super(xPos, yPos, button_sizeX, button_sizeY, 0, 0, button_sizeY, BUTTON_TEX, (button) -> {
+
             });
 
             this.data = data;
@@ -131,12 +132,12 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
         }
 
         @Override
-        public void onClick(double x, double y) {
-            super.onClick(x, y);
-            if (isInside((int) x, (int) y)) {
-                MMORPG.sendToServer(new SpendStatPointPacket(this.stat));
-                MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.STAT_POINTS));
-            }
+        public void onPress() {
+            super.onPress();
+
+            MMORPG.sendToServer(new SpendStatPointPacket(this.stat));
+            MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.STAT_POINTS));
+
         }
 
         @Override
@@ -177,9 +178,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
                     single.stat.formatting + single.stat.shortName + format + ": " + TextFormatting.GREEN + single.points + format;
             str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit().getStat(stat).val + format + ")";
 
-            font.drawStringWithShadow(
-                    str, this.x - button_sizeX - 5 - font.getStringWidth(str),
-                    this.y - button_sizeY / 2 + font.FONT_HEIGHT, format.getColor()
+            font.drawStringWithShadow(str, this.x - button_sizeX - 5 - font.getStringWidth(str),
+                                      this.y - button_sizeY / 2 + font.FONT_HEIGHT, format.getColor()
             );
 
         }

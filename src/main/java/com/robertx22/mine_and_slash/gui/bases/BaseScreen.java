@@ -19,7 +19,6 @@ public class BaseScreen extends Screen {
 
     @Override
     public boolean mouseReleased(double x, double y, int ticks) {
-        this.buttons.forEach(b -> b.onClick(x, y));
         return super.mouseReleased(x, y, ticks);
     }
 

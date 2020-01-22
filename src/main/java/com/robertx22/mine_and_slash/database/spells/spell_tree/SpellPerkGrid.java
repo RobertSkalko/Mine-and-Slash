@@ -39,7 +39,13 @@ public class SpellPerkGrid extends PerkGrid<SpellPerkGridPoint> {
                     }
 
                     if (effect == null) {
-                        System.out.println(id + " is a broken spell perk effect.");
+
+                        try {
+                            throw new Exception(id + " is a broken spell perk effect.");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
                     SpellPerk perk = (SpellPerk) PerkBuilder.createSpell(point.getID())

@@ -3,9 +3,13 @@ package com.robertx22.mine_and_slash.gui.spell_hotbar_setup;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
+import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -14,6 +18,7 @@ import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 
 public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
@@ -22,8 +27,8 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             Ref.MODID, "textures/gui/hotbar_setup/window.png");
     public Minecraft mc;
 
-    static int x = 215;
-    static int y = 220;
+    static int x = 212;
+    static int y = 222;
 
     PlayerSpellCap.ISpellsCap spells;
 
@@ -43,15 +48,15 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             spells.addAll(this.spells.getAvailableSpells());
         }
 
-        int x = guiLeft + 10;
-        int y = guiTop + 10;
+        int x = guiLeft + 7;
+        int y = guiTop + 7;
 
         int count = 0;
 
         for (BaseSpell spell : spells) {
-            if (count >= 10) {
+            if (count >= 11) {
                 y += AvailableSpellButton.ySize + 2;
-                x = guiLeft + 10;
+                x = guiLeft + 7;
                 count = 0;
             }
             if (count >= 1) {
@@ -59,6 +64,34 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             }
             count++;
             addButton(new AvailableSpellButton(spell, x, y));
+        }
+
+        count = 0;
+
+        x = guiLeft + 55;
+        y = guiTop + 100;
+
+        for (PlayerSpellsData.Hotbar bar : Arrays.asList(
+                PlayerSpellsData.Hotbar.FIRST, PlayerSpellsData.Hotbar.SECOND)) {
+
+            y += 50;
+            x = guiLeft + 55;
+
+            for (int i = 0; i < 5; i++) {
+
+                String spellId = Load.spells(mc.player).getSpellData().getMap(bar).get(i);
+
+                BaseSpell spell = SlashRegistry.Spells().isRegistered(spellId) ? SlashRegistry.Spells()
+                        .get(spellId) : null;
+
+                HotbarButton but = new HotbarButton(spell, i, bar, x, y);
+
+                this.addButton(but);
+
+                x += HotbarButton.xSize;
+
+            }
+
         }
 
     }
@@ -75,7 +108,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
     protected void drawBackground(float partialTicks, int x, int y) {
         Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 512);
+        blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 256);
 
     }
 
@@ -89,30 +122,56 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         return Words.Spellbar;
     }
 
+    public static HotbarButton barBeingPicked = null;
+
     static class HotbarButton extends ImageButton {
 
         public static int xSize = 16;
         public static int ySize = 16;
 
-        static ResourceLocation buttonLoc = new ResourceLocation(
+        static ResourceLocation NORMAL_TEX = new ResourceLocation(
                 Ref.MODID, "textures/gui/hotbar_setup/hotbar_button.png");
+        static ResourceLocation PICKED_TEX = new ResourceLocation(
+                Ref.MODID, "textures/gui/hotbar_setup/picked_bar.png");
 
         @Nullable
         BaseSpell spell;
 
-        public HotbarButton(BaseSpell spell, int xPos, int yPos) {
+        int number;
+        PlayerSpellsData.Hotbar hotbar;
 
-            super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, buttonLoc, (button) -> {
-
+        public HotbarButton(BaseSpell spell, int number, PlayerSpellsData.Hotbar hotbar, int xPos, int yPos) {
+            super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
             });
 
+            this.hotbar = hotbar;
+            this.number = number;
             this.spell = spell;
 
         }
 
         @Override
+        public void onPress() {
+            super.onPress();
+            SpellHotbatSetupScreen.barBeingPicked = this;
+        }
+
+        @Override
         public void renderButton(int x, int y, float ticks) {
-            super.renderButton(x, y, ticks);
+
+            Minecraft mc = Minecraft.getInstance();
+
+            if (SpellHotbatSetupScreen.barBeingPicked == this) {
+                mc.getTextureManager().bindTexture(PICKED_TEX);
+            } else {
+                mc.getTextureManager().bindTexture(NORMAL_TEX);
+            }
+
+            RenderSystem.disableDepthTest();
+
+            blit(this.x, this.y, 0, 0, this.width, this.height);
+
+            RenderSystem.enableDepthTest();
 
             if (spell != null) {
                 RenderUtils.renderIcon(spell.getIcon(), this.x, this.y);
@@ -134,6 +193,15 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
 
+                if (SpellHotbatSetupScreen.barBeingPicked != null) {
+
+                    HotbarButton bar = SpellHotbatSetupScreen.barBeingPicked;
+
+                    if (bar.hotbar != null) {
+                        MMORPG.sendToServer(new HotbarSetupPacket(spell, bar.number, bar.hotbar));
+                    }
+                }
+
             });
 
             this.spell = spell;
@@ -142,7 +210,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         @Override
         public void renderButton(int x, int y, float ticks) {
-            super.renderButton(x, y, ticks);
+            //super.renderButton(x, y, ticks);
 
             RenderUtils.renderIcon(spell.getIcon(), this.x, this.y);
 

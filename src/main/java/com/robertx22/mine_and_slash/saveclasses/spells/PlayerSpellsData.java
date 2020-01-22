@@ -1,11 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SpellItemData;
 import info.loenwind.autosave.annotations.Storable;
@@ -56,8 +51,8 @@ public class PlayerSpellsData {
         castingTicksLeft--;
     }
 
-    public void setToCast(int key, PlayerEntity player, int ticks) {
-        BaseSpell spell = getSpellByKeybind(key);
+    public void setToCast(int key, Hotbar hotbar, PlayerEntity player, int ticks) {
+        BaseSpell spell = getSpellByKeybind(key, hotbar);
 
         this.spellBeingCast = spell.GUID();
 
@@ -92,13 +87,13 @@ public class PlayerSpellsData {
         getMap(hotbar).put(number, spellID);
     }
 
-    public boolean canCast(int key, PlayerEntity player) {
+    public boolean canCast(int key, Hotbar hotbar, PlayerEntity player) {
 
         if (isCasting()) {
             return false;
         }
 
-        BaseSpell spell = getSpellByKeybind(key);
+        BaseSpell spell = getSpellByKeybind(key, hotbar);
 
         if (!spell.CanCast(player, new SpellItemData())) {
             return false;
@@ -150,14 +145,7 @@ public class PlayerSpellsData {
 
     }
 
-    public BaseSpell getSpellByKeybind(int key) {
-
-        firstHotbar.put(0, new FrostballSpell().GUID());
-        firstHotbar.put(1, new BlizzardSpell().GUID());
-        firstHotbar.put(2, new ThunderspearSpell().GUID());
-        firstHotbar.put(3, new ThunderstormSpell().GUID());
-        firstHotbar.put(4, new InstantHealSpell().GUID());
-
-        return SlashRegistry.Spells().get(firstHotbar.get(key));
+    public BaseSpell getSpellByKeybind(int key, Hotbar hotbar) {
+        return SlashRegistry.Spells().get(getMap(hotbar).get(key));
     }
 }

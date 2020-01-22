@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.packets.spells;
 
+import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -11,13 +12,15 @@ import java.util.function.Supplier;
 public class CastSpellPacket {
 
     public Integer hotbarNumber;
+    public PlayerSpellsData.Hotbar hotbar;
 
     public CastSpellPacket() {
 
     }
 
-    public CastSpellPacket(Integer hotbarNumber) {
+    public CastSpellPacket(Integer hotbarNumber, PlayerSpellsData.Hotbar bar) {
         this.hotbarNumber = hotbarNumber;
+        this.hotbar = bar;
 
     }
 
@@ -26,6 +29,7 @@ public class CastSpellPacket {
         CastSpellPacket newpkt = new CastSpellPacket();
 
         newpkt.hotbarNumber = buf.readInt();
+        newpkt.hotbar = PlayerSpellsData.Hotbar.valueOf(buf.readString(30));
 
         return newpkt;
 
@@ -34,6 +38,7 @@ public class CastSpellPacket {
     public static void encode(CastSpellPacket packet, PacketBuffer tag) {
 
         tag.writeInt(packet.hotbarNumber);
+        tag.writeString(packet.hotbar.name());
 
     }
 
@@ -46,8 +51,8 @@ public class CastSpellPacket {
 
                 PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                if (spells.getSpellData().canCast(pkt.hotbarNumber, player)) {
-                    spells.getSpellData().setToCast(pkt.hotbarNumber, player, 0);
+                if (spells.getSpellData().canCast(pkt.hotbarNumber, pkt.hotbar, player)) {
+                    spells.getSpellData().setToCast(pkt.hotbarNumber, pkt.hotbar, player, 0);
 
                     spells.syncToClient(player);
                 }
