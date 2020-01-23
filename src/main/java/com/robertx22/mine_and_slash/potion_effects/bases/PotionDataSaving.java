@@ -18,9 +18,15 @@ public class PotionDataSaving {
 
         if (instance.getCurativeItems().size() > 0) {
             ItemStack stack = instance.getCurativeItems().get(0);
-            return LoadSave.Load(ExtraPotionData.class, new ExtraPotionData(), stack.getTag(), LOC);
+
+            ExtraPotionData data = LoadSave.Load(ExtraPotionData.class, new ExtraPotionData(), stack.getTag(), LOC);
+
+            if (data != null) {
+                return data;
+            }
+
         }
-        return null;
+        return new ExtraPotionData();
     }
 
     public static void saveData(EffectInstance instance, ExtraPotionData data) {

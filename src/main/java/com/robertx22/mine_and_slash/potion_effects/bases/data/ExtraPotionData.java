@@ -17,6 +17,9 @@ public class ExtraPotionData {
     public int uses = 1;
 
     @Store
+    private int initialDurationTicks = -1;
+
+    @Store
     public String casterID = "";
 
     @Store
@@ -24,6 +27,16 @@ public class ExtraPotionData {
 
     @Store
     public int casterLvl = 1;
+
+    public int getInitialDurationTicks() {
+        return initialDurationTicks;
+    }
+
+    public void setInitialDurationTicks(int ticks) {
+        if (initialDurationTicks == -1) {
+            this.initialDurationTicks = ticks;
+        }
+    }
 
     public void addStacks(int num, BasePotionEffect effect) {
         this.stacks = MathHelper.clamp(stacks + num, 0, effect.maxStacks());

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.particles;
 
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import net.minecraft.client.particle.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -48,8 +48,8 @@ public class DripEleParticle extends SpriteTexturedParticle {
                 this.motionZ *= 0.9800000190734863D * speedMulti;
                 BlockPos pos = new BlockPos(this.posX, this.posY, this.posZ);
                 IFluidState state = this.world.getFluidState(pos);
-                if (state.getFluid() == this.fluid && this.posY < (double) ((float) pos.getY() + state
-                        .getActualHeight(this.world, pos))) {
+                if (state.getFluid() == this.fluid && this.posY < (double) ((float) pos.getY() + state.getActualHeight(
+                        this.world, pos))) {
                     this.setExpired();
                 }
 
@@ -76,13 +76,12 @@ public class DripEleParticle extends SpriteTexturedParticle {
         }
 
         @Override
-        public Particle makeParticle(EleParticleData type, World world, double x,
-                                     double y, double z, double mx, double my,
-                                     double mz) {
+        public Particle makeParticle(EleParticleData type, World world, double x, double y, double z, double mx,
+                                     double my, double mz) {
             DripEleParticle particle = new DripEleParticle(world, x, y, z);
             particle.particleGravity = 0.01F;
 
-            Elements.RGB col = type.element.getRGBColor();
+            RGB col = type.element.getRGBColor();
 
             particle.setColor(col.getR(), col.getG(), col.getB());
 

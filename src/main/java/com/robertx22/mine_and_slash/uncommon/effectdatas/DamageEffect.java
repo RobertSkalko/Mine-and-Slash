@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnAttackPotion;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -17,11 +18,14 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.potion.EffectInstance;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
         IElementalResistable, IElementalPenetrable, ICrittable {
@@ -188,21 +192,40 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             Heal();
             RestoreMana();
 
-            if (dmg > 0 && source instanceof ServerPlayerEntity && info.highestDmgElement != null) {
+            if (dmg > 0) {
 
-                ServerPlayerEntity player = (ServerPlayerEntity) source;
-                DmgNumPacket packet = new DmgNumPacket(target, info.highestDmgElement,
-                                                       NumberUtils.formatDamageNumber(this,
-                                                                                      (int) HealthUtils.vanillaHealthToActualHealth(
-                                                                                              dmg, target, targetData)
-                                                       )
-                );
-                MMORPG.sendToClient(packet, player);
+                onEventPotions();
 
+                if (source instanceof ServerPlayerEntity && info.highestDmgElement != null) {
+
+                    ServerPlayerEntity player = (ServerPlayerEntity) source;
+
+                    String str = NumberUtils.formatDamageNumber(this, (int) HealthUtils.vanillaHealthToActualHealth(dmg,
+                                                                                                                    target,
+                                                                                                                    targetData
+                    ));
+
+                    DmgNumPacket packet = new DmgNumPacket(target, info.highestDmgElement, str
+
+                    );
+                    MMORPG.sendToClient(packet, player);
+
+                }
             }
         }
 
         BlockEffect.removeKnockbackResist(target);
+
+    }
+
+    private void onEventPotions() {
+
+        List<EffectInstance> list = source.getActivePotionEffects()
+                .stream()
+                .filter(x -> x.getPotion() instanceof IOnAttackPotion)
+                .collect(Collectors.toList());
+
+        list.forEach(x -> ((IOnAttackPotion) x.getPotion()).onAttack(source, target));
 
     }
 

@@ -1,14 +1,8 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.packets.ParticleGenPacket;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IColor;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class ParticleUtils {
@@ -47,24 +41,6 @@ public class ParticleUtils {
             }
 
         }
-    }
-
-    public static void spawnParticleGenerator(Entity source, String name, double x, double y, double z, double xVel,
-                                              double yVel, double zVel, double radius, int amount, IColor icolor) {
-
-        ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, icolor);
-
-        MMORPG.sendToTracking(packet, source);
-
-    }
-
-    public static void spawnParticleGenerator(World world, String name, double x, double y, double z, double xVel,
-                                              double yVel, double zVel, double radius, int amount, IColor icolor) {
-
-        ParticleGenPacket packet = new ParticleGenPacket(name, x, y, z, xVel, yVel, zVel, radius, amount, icolor);
-
-        MMORPG.sendToTracking(packet, new BlockPos(x, y, z), world);
-
     }
 
 }

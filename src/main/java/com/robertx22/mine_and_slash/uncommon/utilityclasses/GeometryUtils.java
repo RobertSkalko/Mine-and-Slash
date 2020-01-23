@@ -30,7 +30,7 @@ public class GeometryUtils {
         double theta = 2 * Math.PI * u;
         double phi = Math.acos(2 * v - 1);
         double xpos = x + (radius * Math.sin(phi) * Math.cos(theta));
-        double ypos = y + (radius * Math.cos(phi));
+        double ypos = y + (radius * Math.sin(phi) * Math.sin(theta));
         double zpos = z + (radius * Math.cos(phi));
 
         return new Vec3d(xpos, ypos, zpos);

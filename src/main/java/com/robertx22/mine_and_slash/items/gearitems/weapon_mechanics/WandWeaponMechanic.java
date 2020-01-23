@@ -10,9 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
@@ -48,8 +46,7 @@ public class WandWeaponMechanic extends WeaponMechanic {
         return WeaponTypes.Wand;
     }
 
-    public boolean powerAttack(LivingHurtEvent event, LivingEntity source,
-                               LivingEntity target, UnitData unitsource,
+    public boolean powerAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
                                UnitData targetUnit, float multi) {
 
         double RANGE = 1.5F;
@@ -59,10 +56,11 @@ public class WandWeaponMechanic extends WeaponMechanic {
                 .filter(x -> x.equals(source) == false && x.equals(target) == false)
                 .collect(Collectors.toList());
 
-        ElementalParticleUtils.SpawnNovaParticle(Elements.Physical, target, RANGE, 200);
+        // TODO
 
         int val = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).val;
-        DamageEffect dmg1 = new DamageEffect(event, source, target, val, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, weaponType());
+        DamageEffect dmg1 = new DamageEffect(
+                event, source, target, val, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, weaponType());
         dmg1.setMultiplier(multi);
         dmg1.Activate();
 
@@ -70,7 +68,8 @@ public class WandWeaponMechanic extends WeaponMechanic {
             EntityCap.UnitData targetdata = Load.Unit(entity);
 
             int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).val;
-            DamageEffect dmg = new DamageEffect(null, source, entity, num, unitsource, targetdata, EffectData.EffectTypes.SPELL, weaponType());
+            DamageEffect dmg = new DamageEffect(
+                    null, source, entity, num, unitsource, targetdata, EffectData.EffectTypes.SPELL, weaponType());
             dmg.setMultiplier(multi);
             dmg.Activate();
         }
@@ -79,11 +78,12 @@ public class WandWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
-                          UnitData unitsource, UnitData targetUnit) {
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
+                          UnitData targetUnit) {
 
         int val = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).val;
-        DamageEffect dmg1 = new DamageEffect(event, source, target, val, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, weaponType());
+        DamageEffect dmg1 = new DamageEffect(
+                event, source, target, val, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, weaponType());
         dmg1.setMultiplier(1);
         dmg1.Activate();
 

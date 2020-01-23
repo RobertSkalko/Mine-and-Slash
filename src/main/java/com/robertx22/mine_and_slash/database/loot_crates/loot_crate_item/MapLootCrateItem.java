@@ -45,8 +45,8 @@ public class MapLootCrateItem extends Item {
     }
 
     public ITextComponent name(ItemStack stack) {
-        return new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.DARK_PURPLE)
-                .appendSibling(getCrate(stack).name());
+        return new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.DARK_PURPLE).appendSibling(
+                getCrate(stack).name());
     }
 
     public static Properties getProp() {
@@ -63,8 +63,8 @@ public class MapLootCrateItem extends Item {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
         try {
             LootCrate crate = getCrate(stack);
@@ -86,12 +86,11 @@ public class MapLootCrateItem extends Item {
 
             Tooltip.addEmpty(tooltip);
 
-            tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Score: " + score
-                    .getTooltipLine()));
+            tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Score: " + score.getTooltipLine()));
 
             Tooltip.addEmpty(tooltip);
 
-            tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Right click to openStatAllocation!"));
+            tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Right click to open!"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,8 +99,7 @@ public class MapLootCrateItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
-                                                    Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 
         if (!world.isRemote) {
             try {
@@ -110,11 +108,9 @@ public class MapLootCrateItem extends Item {
 
                     ItemStack stack = player.getHeldItem(hand);
 
-                    LootCrate crate = SlashRegistry.LootCrates()
-                            .get(stack.getTag().getString(ID));
+                    LootCrate crate = SlashRegistry.LootCrates().get(stack.getTag().getString(ID));
                     int lvl = stack.getTag().getInt(LVL);
-                    MapScoreEnum score = MapScoreEnum.valueOf(stack.getTag()
-                            .getString(SCORE));
+                    MapScoreEnum score = MapScoreEnum.valueOf(stack.getTag().getString(SCORE));
                     int tier = stack.getTag().getInt(TIER);
 
                     LootInfo info = new LootInfo(player);

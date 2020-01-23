@@ -17,11 +17,10 @@ public class NoMobAroundCondition extends LootCrateCondition {
     @Override
     public boolean canOpenCrate(PlayerEntity player) {
 
-        long entities = player.world.getEntitiesWithinAABBExcludingEntity(player, player.getBoundingBox()
-                .grow(radius))
+        long entities = player.world.getEntitiesWithinAABBExcludingEntity(player, player.getBoundingBox().grow(radius))
                 .stream()
-                .filter(x -> x instanceof LivingEntity && x instanceof PlayerEntity == false && EntityTypeUtils
-                        .isMob(x))
+                .filter(x -> x instanceof LivingEntity && x instanceof PlayerEntity == false && EntityTypeUtils.isMob(
+                        x))
                 .count();
 
         return entities < 1;
@@ -29,6 +28,6 @@ public class NoMobAroundCondition extends LootCrateCondition {
 
     @Override
     public ITextComponent tellCondition() {
-        return new StringTextComponent("You cannot openStatAllocation this crate while mobs are around.");
+        return new StringTextComponent("You cannot open this crate while mobs are around.");
     }
 }

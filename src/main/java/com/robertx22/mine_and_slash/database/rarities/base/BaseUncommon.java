@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.rarities.base;
 
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class BaseUncommon implements Rarity {
@@ -38,8 +38,8 @@ public abstract class BaseUncommon implements Rarity {
     }
 
     @Override
-    public Elements.RGB getRGBColor() {
-        return new Elements.RGB(102, 255, 102);
+    public RGB getRGBColor() {
+        return new RGB(102, 255, 102);
     }
 
     @Override

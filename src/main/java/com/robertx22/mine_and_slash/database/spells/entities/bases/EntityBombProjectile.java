@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.all.EnergyRegenPotion;
 import com.robertx22.mine_and_slash.potion_effects.all.ManaRegenPotion;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
@@ -65,7 +66,9 @@ public abstract class EntityBombProjectile extends BaseElementalBoltEntity {
 
         } else {
 
-            ElementalParticleUtils.SpawnAoeParticle(element(), this, this.radius(), 300);
+            ParticleEnum.sendToClients(
+                    this, new ParticlePacketData(this.getPosition(), ParticleEnum.CIRCLE_REDSTONE).radius(radius())
+                            .color(element().getRGBColor()));
 
         }
 

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
@@ -44,8 +45,8 @@ public abstract class EntityElementalBoltAOE extends BaseElementalBoltEntity {
         } else {
             SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.4F, 0.5F);
 
-            ElementalParticleUtils.SpawnAoeParticle(element(), this, radius(), 500);
-
+            ParticleEnum.sendToClients(this, new ParticlePacketData(getPosition(), ParticleEnum.CIRCLE_REDSTONE).radius(
+                    radius()).color(element().getRGBColor()));
         }
 
         List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);

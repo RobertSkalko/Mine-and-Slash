@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
 
 public class PotionBonusDmgEffect implements IStatEffect {
 
@@ -34,9 +33,9 @@ public class PotionBonusDmgEffect implements IStatEffect {
 
                 if (dmg.getEffectType() == EffectData.EffectTypes.BASIC_ATTACK) {
 
-                    ResourcesData.Context ctx = new ResourcesData.Context(
-                            Effect.sourceData, Effect.source, ResourcesData.Type.MANA, manaCost,
-                            ResourcesData.Use.SPEND
+                    ResourcesData.Context ctx = new ResourcesData.Context(Effect.sourceData, Effect.source,
+                                                                          ResourcesData.Type.MANA, manaCost,
+                                                                          ResourcesData.Use.SPEND
                     );
 
                     if (dmg.sourceData.getResources().hasEnough(ctx)) {
@@ -48,8 +47,6 @@ public class PotionBonusDmgEffect implements IStatEffect {
 
                     Elements element = stat.getElement();
                     dmg.addBonusEleDmgDivideByMulti(element, data.val);
-
-                    ElementalParticleUtils.SpawnNovaParticle(element, dmg.target, 0.5F, 50);
 
                 }
 

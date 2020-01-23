@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.potion_effects.ember_mage;
 
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
@@ -14,16 +16,11 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -43,10 +40,14 @@ public class BlazingInfernoEffect extends BasePotionEffect implements IStatPotio
 
     public static float RADIUS = 3.5F;
 
-    @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public static void damageMobsAroundYou(LivingEntity entity, EffectInstance instance) {
 
         if (!entity.world.isRemote) {
+
+            ParticlePacketData data = new ParticlePacketData(entity.getPosition().up(1), ParticleEnum.BLAZING_INFERNO);
+            data.radius = RADIUS;
+            ParticleEnum.BLAZING_INFERNO.sendToClients(entity, data);
+
             ExtraPotionData extraData = PotionDataSaving.getData(instance);
 
             int num = CALC.getCalculatedValue(Load.Unit(entity));
@@ -58,17 +59,13 @@ public class BlazingInfernoEffect extends BasePotionEffect implements IStatPotio
                 dmg.Activate();
 
             }
-        } else {
-            for (int i = 0; i < 100; i++) {
-                Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(entity.getPositionVector(), RADIUS);
-                entity.world.addParticle(ParticleTypes.FLAME, p.x, p.y + entity.getEyeHeight() / 2, p.z, 0, 0, 0);
-                entity.world.addParticle(ParticleTypes.SMOKE, p.x, p.y + entity.getEyeHeight() / 2, p.z, 0, 0, 0);
-
-            }
-
-            SoundUtils.playSound(entity, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);
-
         }
+    }
+
+    @Override
+    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+
+        damageMobsAroundYou(entity, instance);
 
     }
 
@@ -112,5 +109,6 @@ public class BlazingInfernoEffect extends BasePotionEffect implements IStatPotio
 
         return list;
     }
+
 }
 

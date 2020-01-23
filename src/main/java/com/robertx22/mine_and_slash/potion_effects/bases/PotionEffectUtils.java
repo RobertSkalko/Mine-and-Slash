@@ -8,6 +8,10 @@ import net.minecraft.potion.EffectInstance;
 
 public class PotionEffectUtils {
 
+    public static void reApplyToSelf(BasePotionEffect effect, LivingEntity caster) {
+        apply(effect, -1, caster, caster);
+    }
+
     public static void applyToSelf(BasePotionEffect effect, int duration, LivingEntity caster) {
         apply(effect, duration, caster, caster);
     }
@@ -17,13 +21,24 @@ public class PotionEffectUtils {
         EntityCap.UnitData casterData = Load.Unit(caster);
 
         EffectInstance instance = target.getActivePotionEffect(effect);
+        ExtraPotionData extraData;
+
+        if (instance != null) {
+            extraData = PotionDataSaving.getData(instance);
+        } else {
+            extraData = new ExtraPotionData();
+        }
+
+        if (extraData.getInitialDurationTicks() > 0) {
+            duration = extraData.getInitialDurationTicks(); // if reapplied, apply existing duration
+        }
 
         EffectInstance newInstance = new EffectInstance(effect, duration, 1, false, false, true);
 
         if (instance == null) {
 
-            ExtraPotionData extraData = new ExtraPotionData();
             extraData.casterLvl = casterData.getLevel();
+            extraData.setInitialDurationTicks(duration);
 
             PotionDataSaving.saveData(newInstance, extraData);
 
@@ -34,8 +49,8 @@ public class PotionEffectUtils {
                 duration = instance.getDuration();
             }
 
-            ExtraPotionData extraData = PotionDataSaving.getData(instance);
             extraData.casterLvl = casterData.getLevel();
+            extraData.setInitialDurationTicks(duration);
             extraData.addStacks(1, effect);
 
             PotionDataSaving.saveData(newInstance, extraData);

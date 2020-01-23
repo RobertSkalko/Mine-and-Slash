@@ -7,10 +7,12 @@ import com.robertx22.mine_and_slash.database.rarities.gears.MythicalGear;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.saveclasses.PlayerOncePerMapData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.datasaving.PlayerOncePerMap;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ElementalParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.item.FireworkRocketEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -44,8 +46,8 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
     public void firework() {
 
         // turns invisible for some reason?
-        FireworkRocketEntity firework = new FireworkRocketEntity(world, pos.getX(), pos.getY() + 2, pos
-                .getZ(), ItemStack.EMPTY);
+        FireworkRocketEntity firework = new FireworkRocketEntity(
+                world, pos.getX(), pos.getY() + 2, pos.getZ(), ItemStack.EMPTY);
         firework.setPosition(pos.getX(), pos.getY() + 2, pos.getZ());
         firework.setInvulnerable(true);
         WorldUtils.spawnEntity(world, firework);
@@ -61,8 +63,7 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
             List<ItemStack> loot = MasterLootGen.generateLoot(new LootInfo(player).setMinimum(1));
 
             for (ItemStack stack : loot) {
-                WorldUtils.spawnEntity(world, new ItemEntity(world, pos.getX(), pos.getY() + 1, pos
-                        .getZ(), stack));
+                WorldUtils.spawnEntity(world, new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(), stack));
             }
             if (loot.size() > 0) {
                 firework();
@@ -143,8 +144,9 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
                 reset();
             }
 
-            ElementalParticleUtils.SpawnAoeParticle(getRarity(), world, pos.getX() + 0.5, pos
-                    .getY() + 0.5, pos.getZ() + 0.5, 1.3F, 10); // 0.5 is cus blockpos truncates the values so it ends at the edges instead of center
+            ParticleEnum.sendToClients(
+                    getPos(), world, new ParticlePacketData(getPos(), ParticleEnum.CIRCLE_REDSTONE).radius(1.3F)
+                            .color(Elements.Thunder.getRGBColor()));
 
             dropLootTicks++;
 
