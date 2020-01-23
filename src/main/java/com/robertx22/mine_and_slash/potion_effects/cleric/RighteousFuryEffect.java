@@ -2,7 +2,10 @@ package com.robertx22.mine_and_slash.potion_effects.cleric;
 
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.potion_effects.bases.*;
+import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -24,7 +27,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion, IOnAttackPotion {
+public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion, IOnBasicAttackPotion {
 
     public static final RighteousFuryEffect INSTANCE = new RighteousFuryEffect();
 
@@ -39,16 +42,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion
 
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
 
-        if (extraData.getStacks() >= this.maxStacks()) {
-            BlazingInfernoEffect.damageMobsAroundYou(entity, instance);
-
-            SoundUtils.playSound(entity, SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
-
-            entity.removePotionEffect(this);
-
-        }
     }
 
     @Override
@@ -68,7 +62,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion
 
     @Override
     public int maxStacks() {
-        return 25;
+        return 5;
     }
 
     public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
@@ -99,10 +93,8 @@ public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion
         list.add(new StringTextComponent("At " + maxStacks() + " stacks, buff explodes in an area attack."));
         list.add(new StringTextComponent("Gains stacks by damaging mobs"));
 
-        ExactStatData water = getStatMod(info.unitdata, Elements.Water, new ExtraPotionData());
         ExactStatData fire = getStatMod(info.unitdata, Elements.Fire, new ExtraPotionData());
 
-        list.addAll(water.GetTooltipString(info));
         list.addAll(fire.GetTooltipString(info));
 
         return list;
@@ -110,8 +102,41 @@ public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion
     }
 
     @Override
-    public void onAttack(LivingEntity source, LivingEntity target) {
-        PotionEffectUtils.reApplyToSelf(this, source);
+    public void OnBasicAttack(LivingEntity source, LivingEntity target) {
+
+        //        PotionEffectUtils.reApplyToSelf(this, source);
+
+        EffectInstance instance = source.getActivePotionEffect(this);
+
+        if (instance != null) {
+            ExtraPotionData extraData = PotionDataSaving.getData(instance);
+
+            if (extraData != null) {
+                extraData.addStacks(1, this);
+
+                if (extraData.getStacks() >= maxStacks()) {
+
+                    if (extraData.timesUsed > 3) {
+                        System.out.println("THIS SHOULDNT BE HAPPENING ");
+                    }
+
+                    extraData.decreaseStacks(500, this);
+                    extraData.timesUsed++;
+
+                    BlazingInfernoEffect.damageMobsAroundYou(source, instance);
+
+                    SoundUtils.playSound(source, SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
+
+                    if (extraData.timesUsed > 3) {
+                        source.removePotionEffect(this);
+                    } else {
+                        PotionDataSaving.saveData(instance, extraData);
+                    }
+                } else {
+                    PotionDataSaving.saveData(instance, extraData);
+                }
+            }
+        }
     }
 
 }

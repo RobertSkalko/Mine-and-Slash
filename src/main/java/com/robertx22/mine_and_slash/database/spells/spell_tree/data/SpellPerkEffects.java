@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.Bla
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
@@ -26,6 +27,7 @@ public class SpellPerkEffects {
 
     static SpellPerkEffect THUNDER_STORM;
     static SpellPerkEffect THUNDER_SPEAR;
+    static SpellPerkEffect THUNDER_DASH;
 
     static SpellPerkEffect INSTANT_HEAL;
     static SpellPerkEffect RIGHTEOUS_fURY;
@@ -46,6 +48,7 @@ public class SpellPerkEffects {
 
         THUNDER_STORM = spell(new ThunderstormSpell());
         THUNDER_SPEAR = spell(new ThunderspearSpell());
+        THUNDER_DASH = spell(new ThunderDashSpell());
 
         INSTANT_HEAL = spell(new InstantHealSpell());
         RIGHTEOUS_fURY = spell(new RighteousFurySpell());

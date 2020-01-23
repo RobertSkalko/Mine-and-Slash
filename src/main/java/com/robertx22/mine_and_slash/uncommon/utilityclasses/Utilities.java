@@ -109,6 +109,11 @@ public final class Utilities {
         return entityList;
     }
 
+    public static Vec3d getEndOfLook(LivingEntity entity, float distance) {
+        return entity.getEyePosition(0.5F).add(entity.getLookVec().scale(distance));
+
+    }
+
     public static <T extends LivingEntity> List<T> getEntitiesInFrontOf(double horizontal, double vertical,
                                                                         int distance, LivingEntity entity,
                                                                         Class<T> entityType) {
@@ -116,7 +121,7 @@ public final class Utilities {
         double y = entity.posY;
         double z = entity.posZ;
 
-        Vec3d l = entity.getEyePosition(0.5F).add(entity.getLookVec().scale(distance));
+        Vec3d l = getEndOfLook(entity, distance);
 
         double minX = x < l.x ? x : l.x;
         double minY = y < l.y ? y : l.y;
@@ -130,7 +135,7 @@ public final class Utilities {
                                                maxY + vertical, maxZ + horizontal
         );
 
-        spawnParticlesForTesting(aabb, entity.world);
+        // spawnParticlesForTesting(aabb, entity.world);
 
         List<T> entityList = entity.world.getEntitiesWithinAABB(entityType, aabb);
         entityList.removeIf(e -> e == entity);
@@ -167,6 +172,9 @@ public final class Utilities {
                 entityList.remove(i);
             }
         }
+
+        entityList.removeIf(e -> e == entity);
+
         return entityList;
     }
 

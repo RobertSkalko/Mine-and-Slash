@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import net.minecraft.entity.LivingEntity;
 
-public interface IOnAttackPotion {
+public interface IOnBasicAttackPotion {
 
-    void onAttack(LivingEntity source, LivingEntity target);
+    void OnBasicAttack(LivingEntity source, LivingEntity target);
 
 }

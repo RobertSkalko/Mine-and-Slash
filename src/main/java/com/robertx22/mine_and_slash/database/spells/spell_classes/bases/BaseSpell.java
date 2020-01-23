@@ -34,6 +34,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Restore_Energy,
         Aoe_Damage_Nova,
         LASTING_AOE,
+        Dash,
         Self_Buff,
         Aoe_Debuff // TODO TURN THESE INTO SINGLES AND ASK FOR LIST
     }

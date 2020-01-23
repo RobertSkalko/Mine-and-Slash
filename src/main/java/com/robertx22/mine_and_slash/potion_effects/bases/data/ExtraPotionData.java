@@ -17,6 +17,9 @@ public class ExtraPotionData {
     public int uses = 1;
 
     @Store
+    public int timesUsed = 1;
+
+    @Store
     private int initialDurationTicks = -1;
 
     @Store
@@ -42,8 +45,8 @@ public class ExtraPotionData {
         this.stacks = MathHelper.clamp(stacks + num, 0, effect.maxStacks());
     }
 
-    public void decreaseStacks(int num) {
-        stacks -= num;
+    public void decreaseStacks(int num, BasePotionEffect effect) {
+        this.stacks = MathHelper.clamp(stacks - num, 0, effect.maxStacks());
     }
 
     public int getStacks() {

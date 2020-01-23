@@ -8,12 +8,14 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 
 public class PotionDataSaving {
 
     private static String LOC = Ref.MODID + ":pot_data";
 
+    @Nullable
     public static ExtraPotionData getData(EffectInstance instance) {
 
         if (instance.getCurativeItems().size() > 0) {
@@ -26,7 +28,7 @@ public class PotionDataSaving {
             }
 
         }
-        return new ExtraPotionData();
+        return null;
     }
 
     public static void saveData(EffectInstance instance, ExtraPotionData data) {

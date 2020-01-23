@@ -1,4 +1,102 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
-public class ThunderDashSpell {
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.play.server.SEntityVelocityPacket;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.World;
+
+public class ThunderDashSpell extends BaseSpell {
+
+    public ThunderDashSpell() {
+
+    }
+
+    public Elements element = Elements.Thunder;
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.SHAMAN;
+    }
+
+    @Override
+    public int getCooldownInSeconds() {
+        return 30;
+    }
+
+    @Override
+    public BaseSpell.SpellType getSpellType() {
+        return SpellType.Dash;
+    }
+
+    @Override
+    public String GUID() {
+        return "thunder_dash";
+    }
+
+    @Override
+    public int getManaCost() {
+        return 30;
+    }
+
+    @Override
+    public int useTimeTicks() {
+        return 0;
+    }
+
+    @Override
+    public SpellCalcData getCalculation() {
+        return SpellCalcData.one(dmgStat(), 0.5F, 5);
+    }
+
+    @Override
+    public Elements getElement() {
+        return element;
+    }
+
+    @Override
+    public ITextComponent GetDescription() {
+        return Words.StormCloudSpellDesc.locName();
+    }
+
+    public static void dashForward(LivingEntity caster) {
+
+        float distance = 0.017453292f;
+
+        caster.knockBack(caster, 3.5f, (double) MathHelper.sin(caster.rotationYaw * distance),
+                         (double) (-MathHelper.cos(caster.rotationYaw * distance))
+        );
+
+        ((ServerPlayerEntity) caster).connection.sendPacket(new SEntityVelocityPacket(caster));
+        caster.velocityChanged = false;
+    }
+
+    @Override
+    public boolean cast(PlayerEntity caster, int ticksInUse) {
+        World world = caster.world;
+
+        dashForward(caster);
+
+        int num = getCalculation().getCalculatedValue(Load.Unit(caster));
+
+        Utilities.getEntitiesInFrontOf(2, 2, 10, caster, LivingEntity.class).forEach(x -> {
+            DamageEffect dmg = new DamageEffect(null, caster, x, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
+            dmg.element = Elements.Thunder;
+            dmg.Activate();
+        });
+
+        return true;
+    }
 }

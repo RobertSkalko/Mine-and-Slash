@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.potion_effects.druid;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnAttackedPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
@@ -32,7 +32,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PetrifyEffect extends BasePotionEffect implements IStatPotion, IOnAttackedPotion {
+public class PetrifyEffect extends BasePotionEffect implements IStatPotion, IOnBasicAttackedPotion {
 
     public static final PetrifyEffect INSTANCE = new PetrifyEffect();
 
@@ -98,7 +98,7 @@ public class PetrifyEffect extends BasePotionEffect implements IStatPotion, IOnA
     }
 
     @Override
-    public void onAttacked(LivingEntity source, LivingEntity target) {
+    public void onBasicAttacked(LivingEntity source, LivingEntity target) {
 
         int num = CALC.getCalculatedValue(Load.Unit(source));
 

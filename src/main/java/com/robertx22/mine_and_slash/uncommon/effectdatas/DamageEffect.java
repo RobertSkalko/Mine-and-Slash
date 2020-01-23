@@ -8,8 +8,8 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnAttackPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnAttackedPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -221,20 +221,22 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private void onEventPotions() {
 
-        List<EffectInstance> onAttacks = source.getActivePotionEffects()
-                .stream()
-                .filter(x -> x.getPotion() instanceof IOnAttackPotion)
-                .collect(Collectors.toList());
+        if (this.getEffectType() == EffectTypes.BASIC_ATTACK) {
+            List<EffectInstance> onAttacks = source.getActivePotionEffects()
+                    .stream()
+                    .filter(x -> x.getPotion() instanceof IOnBasicAttackPotion)
+                    .collect(Collectors.toList());
 
-        onAttacks.forEach(x -> ((IOnAttackPotion) x.getPotion()).onAttack(source, target));
+            onAttacks.forEach(x -> ((IOnBasicAttackPotion) x.getPotion()).OnBasicAttack(source, target));
 
-        List<EffectInstance> onAttackeds = target.getActivePotionEffects()
-                .stream()
-                .filter(x -> x.getPotion() instanceof IOnAttackedPotion)
-                .collect(Collectors.toList());
+            List<EffectInstance> onAttackeds = target.getActivePotionEffects()
+                    .stream()
+                    .filter(x -> x.getPotion() instanceof IOnBasicAttackedPotion)
+                    .collect(Collectors.toList());
 
-        onAttackeds.forEach(x -> ((IOnAttackedPotion) x.getPotion()).onAttacked(source, target));
+            onAttackeds.forEach(x -> ((IOnBasicAttackedPotion) x.getPotion()).onBasicAttacked(source, target));
 
+        }
     }
 
     public void RestoreMana() {
