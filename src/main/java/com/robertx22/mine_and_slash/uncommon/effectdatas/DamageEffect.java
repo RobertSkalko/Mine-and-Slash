@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnAttackPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnAttackedPotion;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -220,12 +221,19 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private void onEventPotions() {
 
-        List<EffectInstance> list = source.getActivePotionEffects()
+        List<EffectInstance> onAttacks = source.getActivePotionEffects()
                 .stream()
                 .filter(x -> x.getPotion() instanceof IOnAttackPotion)
                 .collect(Collectors.toList());
 
-        list.forEach(x -> ((IOnAttackPotion) x.getPotion()).onAttack(source, target));
+        onAttacks.forEach(x -> ((IOnAttackPotion) x.getPotion()).onAttack(source, target));
+
+        List<EffectInstance> onAttackeds = target.getActivePotionEffects()
+                .stream()
+                .filter(x -> x.getPotion() instanceof IOnAttackedPotion)
+                .collect(Collectors.toList());
+
+        onAttackeds.forEach(x -> ((IOnAttackedPotion) x.getPotion()).onAttacked(source, target));
 
     }
 

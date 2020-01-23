@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_tree.data;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.RighteousFurySpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.GorgonsGazeSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.BlazingInfernoSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
@@ -30,6 +31,7 @@ public class SpellPerkEffects {
     static SpellPerkEffect RIGHTEOUS_fURY;
 
     static SpellPerkEffect REGENERATE;
+    static SpellPerkEffect GORGONS_GAZE;
 
     static SpellPerkEffect BLAZING_INFERNO;
     static SpellPerkEffect FIREBALL;
@@ -49,6 +51,7 @@ public class SpellPerkEffects {
         RIGHTEOUS_fURY = spell(new RighteousFurySpell());
 
         REGENERATE = spell(new RegenerateSpell());
+        GORGONS_GAZE = spell(new GorgonsGazeSpell());
 
         BLAZING_INFERNO = spell(new BlazingInfernoSpell());
         FIREBALL = spell(new FireballSpell());

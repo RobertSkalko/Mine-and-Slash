@@ -31,6 +31,7 @@ public class CommandRegister {
         RemoveStatMod.register(dispatcher);
         ClearStatMods.register(dispatcher);
         ResetSpells.register(dispatcher);
+        ResetSpellCooldowns.register(dispatcher);
 
         GiveStat.register(dispatcher);
         RemoveStat.register(dispatcher);

@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.all.*;
 import com.robertx22.mine_and_slash.potion_effects.cleric.RighteousFuryEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
+import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
 import net.minecraft.potion.Effect;
@@ -34,6 +35,7 @@ public class PotionRegister {
         reg.register(BlazingInfernoEffect.INSTANCE);
         reg.register(MinorThornsEffect.INSTANCE);
         reg.register(RighteousFuryEffect.INSTANCE);
+        reg.register(PetrifyEffect.INSTANCE);
 
         for (net.minecraft.item.Item item : ForgeRegistries.ITEMS) {
             if (item instanceof BaseBuffPotion) {

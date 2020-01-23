@@ -48,8 +48,8 @@ public class OnKeyPress {
             } else {
 
                 if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
-                    mc.displayGuiScreen(null);
-                    return;
+                    // mc.displayGuiScreen(null);
+                    // return;
                 }
 
                 if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {

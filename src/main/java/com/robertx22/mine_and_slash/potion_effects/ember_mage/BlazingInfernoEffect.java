@@ -32,7 +32,7 @@ public class BlazingInfernoEffect extends BasePotionEffect implements IStatPotio
     public static final BlazingInfernoEffect INSTANCE = new BlazingInfernoEffect();
 
     private BlazingInfernoEffect() {
-        super(EffectType.HARMFUL, 4393423);
+        super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
     }
 
