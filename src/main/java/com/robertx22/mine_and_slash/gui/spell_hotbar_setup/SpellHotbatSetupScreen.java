@@ -218,8 +218,9 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         public void renderButton(int x, int y, float ticks) {
             //super.renderButton(x, y, ticks);
 
-            RenderUtils.renderIcon(spell.getIcon(), this.x, this.y);
-
+            if (spell != null && spell.getIcon() != null) {
+                RenderUtils.renderIcon(spell.getIcon(), this.x, this.y);
+            }
         }
 
     }

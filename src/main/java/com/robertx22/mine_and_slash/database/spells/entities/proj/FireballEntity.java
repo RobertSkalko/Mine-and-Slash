@@ -7,19 +7,19 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
-public class EntityFireBolt extends BaseElementalBoltEntity {
+public class FireballEntity extends BaseElementalBoltEntity {
 
-    public EntityFireBolt(EntityType<? extends EntityFireBolt> type, World world) {
+    public FireballEntity(EntityType<? extends FireballEntity> type, World world) {
         super(type, world);
     }
 
-    public EntityFireBolt(World worldIn) {
+    public FireballEntity(World worldIn) {
 
         super(EntityRegister.FIREBOLT, worldIn);
 
     }
 
-    public EntityFireBolt(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+    public FireballEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
         super(EntityRegister.FIREBOLT, world);
 
     }

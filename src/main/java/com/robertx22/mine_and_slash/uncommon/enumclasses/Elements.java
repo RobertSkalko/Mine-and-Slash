@@ -13,7 +13,7 @@ public enum Elements implements IColor {
     Physical(0, new RGB(240, 157, 55), false, "Physical", TextFormatting.GOLD, Items.COAL, "Annihilation", "physical",
              "\u2726"
     ),
-    Fire(1, new RGB(255, 0, 0), true, "Flame", TextFormatting.RED, Items.MAGMA_CREAM, "Firestorms", "fire", "\u2600"),
+    Fire(1, new RGB(255, 0, 0), true, "Flame", TextFormatting.RED, Items.FIRE_CHARGE, "Firestorms", "fire", "\u2600"),
     Water(2, new RGB(0, 128, 255), true, "Frost", TextFormatting.BLUE, Items.SNOWBALL, "Blizzards", "water", "\u2749"),
     Thunder(3, new RGB(204, 0, 255), true, "Lightning", TextFormatting.LIGHT_PURPLE, Items.GLOWSTONE_DUST,
             "Thunderstorms", "thunder", "\u272A"

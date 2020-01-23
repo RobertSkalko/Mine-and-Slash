@@ -69,7 +69,9 @@ public class SpellCalcData implements ITooltipList {
 
         scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-        list.add(new StringTextComponent("Base value: " + baseValue));
+        if (baseValue > 0) {
+            list.add(new StringTextComponent("Base value: " + baseValue));
+        }
 
         return list;
     }

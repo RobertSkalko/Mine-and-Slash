@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
@@ -62,7 +63,7 @@ public class RegenerateSpell extends BaseSpellHeal {
 
             if (!world.isRemote) {
 
-                SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
+                SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION, 1, 1);
 
                 UnitData unit = Load.Unit(caster);
 
@@ -78,7 +79,8 @@ public class RegenerateSpell extends BaseSpellHeal {
 
                 //
 
-                ParticleUtils.spawnHealParticles(caster, 10);
+            } else {
+                ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, caster, 10);
 
             }
         } catch (Exception e) {

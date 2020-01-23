@@ -30,8 +30,7 @@ public class OnKeyPress {
 
                 if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
                     mc.displayGuiScreen(new StatOverviewScreen());
-                } else if (key == KeybindsRegister.Player_Stat_Points.getKey()
-                        .getKeyCode()) {
+                } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
                     mc.displayGuiScreen(new StatAllocationScreen());
                 } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
                     mc.displayGuiScreen(new TalentPerkTreeScreen());
@@ -48,12 +47,16 @@ public class OnKeyPress {
                 }
             } else {
 
+                if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
+                    mc.displayGuiScreen(null);
+                    return;
+                }
+
                 if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
                     if (mc.currentScreen instanceof StatOverviewScreen) {
                         mc.displayGuiScreen(null);
                     }
-                } else if (key == KeybindsRegister.Player_Stat_Points.getKey()
-                        .getKeyCode()) {
+                } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
                     if (mc.currentScreen instanceof StatAllocationScreen) {
                         mc.displayGuiScreen(null);
                     }

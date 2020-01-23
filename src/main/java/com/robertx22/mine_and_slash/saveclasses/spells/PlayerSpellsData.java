@@ -69,6 +69,8 @@ public class PlayerSpellsData {
                 spell.cast(player, spell.useTimeTicks());
 
                 spellBeingCast = "";
+
+                onSpellCast(spell);
             }
         }
 

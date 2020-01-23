@@ -19,7 +19,7 @@ public class OnSpellKeybind {
         Minecraft mc = Minecraft.getInstance();
         int key = event.getKey();
 
-        if (event.getAction() == GLFW.GLFW_PRESS) {
+        if (event.getAction() == GLFW.GLFW_RELEASE) {
 
             if (mc.currentScreen == null) {
 

@@ -172,6 +172,26 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7Common Big Currency Treasure Box",
@@ -212,26 +232,6 @@
 	"item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -1051,11 +1051,13 @@
 	"effect.mmorpg.alchemy.buff.mana_regen.potion_lvl_50": "Alchemy Buff",
 	"effect.mmorpg.alchemy.buff.mana_regen.potion_lvl_75": "Alchemy Buff",
 	"effect.mmorpg.aoe_regen": "Aoe Regen",
+	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
 	"effect.mmorpg.bleed": "Bleed",
 	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
 	"effect.mmorpg.energy_regen": "Regen Energy",
 	"effect.mmorpg.frost": "Frost",
 	"effect.mmorpg.mana_regen": "Regen Mana",
+	"effect.mmorpg.minor_thorns": "Minor Thorns",
 	"effect.mmorpg.self_regen": "Regenerate",
 	"effect.mmorpg.teleport_protection": "Teleport Guard",
 

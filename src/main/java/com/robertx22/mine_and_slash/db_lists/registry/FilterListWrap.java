@@ -28,9 +28,7 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     public List<C> list = new ArrayList<C>();
 
     public FilterListWrap<C> ofTierOrLess(int tier) {
-        this.list = list.stream()
-                .filter(x -> ((ITiered) x).Tier() <= tier)
-                .collect(Collectors.toList());
+        this.list = list.stream().filter(x -> ((ITiered) x).Tier() <= tier).collect(Collectors.toList());
         return this;
     }
 
@@ -42,24 +40,18 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     }
 
     public FilterListWrap<C> ofTierRange(int min, int max) {
-        this.list = list.stream()
-                .filter(x -> x.Tier() >= min && x.Tier() <= max)
-                .collect(Collectors.toList());
+        this.list = list.stream().filter(x -> x.Tier() >= min && x.Tier() <= max).collect(Collectors.toList());
         return this;
     }
 
     public FilterListWrap<C> ofExactTier(int tier) {
-        this.list = list.stream()
-                .filter(x -> ((ITiered) x).Tier() == tier)
-                .collect(Collectors.toList());
+        this.list = list.stream().filter(x -> ((ITiered) x).Tier() == tier).collect(Collectors.toList());
 
         return this;
     }
 
     public FilterListWrap<C> ofExactRarity(int rarity) {
-        this.list = list.stream()
-                .filter(x -> ((IRarity) x).getRarityRank() == rarity)
-                .collect(Collectors.toList());
+        this.list = list.stream().filter(x -> ((IRarity) x).getRarityRank() == rarity).collect(Collectors.toList());
         return this;
     }
 
@@ -98,9 +90,19 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
         HashSet<C> set = new HashSet<>();
 
-        while (set.size() < amount) {
-            list.add(random());
+        if (amount > list.size()) {
+
+            MMORPG.logError("ERROR! Can't have more random items than there are items in registry!");
+
+            amount = SlashRegistry.StatusEffects().getSize() - 1;
         }
+        int tries = 0;
+
+        while (set.size() < amount && tries < 5) {
+            set.add(random());
+            tries++;
+        }
+
         this.list = new ArrayList<>(set);
         return this;
     }
@@ -110,7 +112,7 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
         List<C> list = new ArrayList<>();
 
         int tries = 0;
-        while (list.size() < amount && tries < 100) {
+        while (list.size() < amount && tries < 20) {
             list.add(random());
             tries++;
         }

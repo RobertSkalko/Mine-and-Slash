@@ -93,7 +93,7 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
         super.tick();
 
         if (world.isRemote) {
-            if (this.ticksExisted > 2) {
+            if (this.ticksExisted > 1) {
 
                 BasicParticleType particle = ParticleTypes.ENCHANTED_HIT;
 
@@ -107,7 +107,13 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
                     particle = ParticleTypes.COMPOSTER;
                 }
 
-                for (int i = 0; i < 2; i++) {
+                int amount = 2;
+
+                if (element() == Elements.Fire) {
+                    amount += 2;
+                }
+
+                for (int i = 0; i < amount; i++) {
                     this.world.addParticle(particle, true, this.posX + rand.nextFloat() * 0.2 - 0.1,
                                            this.posY + this.getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1,
                                            this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0

@@ -8,6 +8,10 @@ import net.minecraft.potion.EffectInstance;
 
 public class PotionEffectUtils {
 
+    public static void applyToSelf(BasePotionEffect effect, int duration, LivingEntity caster) {
+        apply(effect, duration, caster, caster);
+    }
+
     public static void apply(BasePotionEffect effect, int duration, LivingEntity caster, LivingEntity target) {
 
         EntityCap.UnitData casterData = Load.Unit(caster);

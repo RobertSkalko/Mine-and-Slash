@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
-import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
@@ -99,24 +98,16 @@ public class MobStatUtils {
         int max = rarity.MaxMobEffects();
 
         if (max > 0) {
-            if (max > SlashRegistry.StatusEffects().getAll().values().size()) {
+            if (max > SlashRegistry.StatusEffects().getSize()) {
                 System.out.println("ERROR! Can't have more unique effects than there are effects!");
-                max = SlashRegistry.StatusEffects().getAll().values().size() - 1;
+                max = SlashRegistry.StatusEffects().getSize() - 1;
             }
 
             int amount = RandomUtils.RandomRange(0, max);
 
-            while (amount > 0) {
+            SlashRegistry.StatusEffects().getWrapped().randomAmountWithoutDuplicates(amount).list.forEach(
+                    x -> unit.statusEffects.put(x.GUID(), new StatusEffectData(x)));
 
-                BaseStatusEffect effect = null;
-
-                while (effect == null || unit.statusEffects.containsKey(effect.GUID())) {
-                    effect = RandomUtils.weightedRandom(SlashRegistry.StatusEffects().getAll().values());
-                }
-                amount--;
-                unit.statusEffects.put(effect.GUID(), new StatusEffectData(effect));
-
-            }
         }
     }
 }

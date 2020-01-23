@@ -4,8 +4,11 @@ import net.minecraft.util.math.Vec3d;
 
 public class GeometryUtils {
 
-    public static Vec3d getRandomHorizontalPosInRadiusCircle(double x, double y, double z,
-                                                             float radius) {
+    public static Vec3d getRandomHorizontalPosInRadiusCircle(Vec3d pos, float radius) {
+        return getRandomHorizontalPosInRadiusCircle(pos.x, pos.y, pos.z, radius);
+    }
+
+    public static Vec3d getRandomHorizontalPosInRadiusCircle(double x, double y, double z, float radius) {
 
         double u = Math.random();
         double v = Math.random();
@@ -20,8 +23,7 @@ public class GeometryUtils {
     }
 
     // todo unsure if works
-    public static Vec3d getRandomPosInRadiusCircle(double x, double y, double z,
-                                                   float radius) {
+    public static Vec3d getRandomPosInRadiusCircle(double x, double y, double z, float radius) {
 
         double u = Math.random();
         double v = Math.random();

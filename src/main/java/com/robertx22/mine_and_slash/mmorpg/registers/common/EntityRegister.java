@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.spells.entities.blizzard.BlizzardEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.blizzard.ThunderstormEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.proj.EntityFireBolt;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.FrostballEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityStaffProjectile;
@@ -49,11 +49,12 @@ public class EntityRegister {
     static {
 
         BLIZZARD = newType(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
+        FROSTBOLT = newType(FrostballEntity::new, FrostballEntity::new, "frostball");
+
         THUNDERSTORM = newType(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
         THUNDER_SPEAR = newType(ThunderspearEntity::new, ThunderspearEntity::new, "thunder_spear", false);
-        FROSTBOLT = newType(FrostballEntity::new, FrostballEntity::new, "entity_frost_bolt");
 
-        FIREBOLT = newType(EntityFireBolt::new, EntityFireBolt::new, "entity_fire_bolt");
+        FIREBOLT = newType(FireballEntity::new, FireballEntity::new, "fireball");
 
         STAFFPROJECTILE = newType(EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
         WANDPROJECTILE = newType(EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");

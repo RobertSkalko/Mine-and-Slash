@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseBuffPotion;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.all.*;
+import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
+import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.event.RegistryEvent;
@@ -28,6 +30,8 @@ public class PotionRegister {
         reg.register(BleedPotion.INSTANCE);
 
         reg.register(FrostEffect.INSTANCE);
+        reg.register(BlazingInfernoEffect.INSTANCE);
+        reg.register(MinorThornsEffect.INSTANCE);
 
         for (net.minecraft.item.Item item : ForgeRegistries.ITEMS) {
             if (item instanceof BaseBuffPotion) {

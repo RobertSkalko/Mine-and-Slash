@@ -1,7 +1,7 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
-import com.robertx22.mine_and_slash.database.spells.entities.proj.FrostballEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -12,20 +12,20 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class FrostballSpell extends BaseProjectileSpell {
+public class FireballSpell extends BaseProjectileSpell {
 
-    public FrostballSpell() {
+    public FireballSpell() {
         super();
     }
 
     @Override
     public Elements getElement() {
-        return Elements.Water;
+        return Elements.Fire;
     }
 
     @Override
     public SpellSchools getSchool() {
-        return SpellSchools.OCEAN_MYSTIC;
+        return SpellSchools.EMBER_MAGE;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class FrostballSpell extends BaseProjectileSpell {
 
     @Override
     public String GUID() {
-        return "frostball";
+        return "fireball";
     }
 
     @Override
@@ -48,12 +48,11 @@ public class FrostballSpell extends BaseProjectileSpell {
 
         World world = caster.world;
         Vec3d pos = caster.getPositionVector();
-        FrostballEntity en = SpellUtils.getSpellEntity(new FrostballEntity(world), this, caster);
+        FireballEntity en = SpellUtils.getSpellEntity(new FireballEntity(world), this, caster);
         SpellUtils.setupProjectileForCasting(en, caster, 2);
         caster.world.addEntity(en);
 
-        caster.world.playMovingSound(
-                (PlayerEntity) null, en, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        caster.world.playMovingSound(null, en, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         return true;
     }

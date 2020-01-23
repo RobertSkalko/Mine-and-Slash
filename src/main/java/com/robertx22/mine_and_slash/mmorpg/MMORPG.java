@@ -58,6 +58,8 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
+import java.util.logging.Logger;
+
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @Mod(Ref.MODID)
@@ -66,6 +68,8 @@ public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
     public static boolean RUN_DEV_TOOLS = true;
+
+    public static Logger LOGGER = Logger.getLogger(Ref.MOD_NAME);
 
     public static void devToolsLog(String string) {
         if (RUN_DEV_TOOLS) {
@@ -127,6 +131,14 @@ public class MMORPG {
             MAP_WORLD_SEED = org.apache.commons.lang3.RandomUtils.nextLong();
         }
 
+    }
+
+    public static void logError(String s) {
+        try {
+            throw new Exception(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {

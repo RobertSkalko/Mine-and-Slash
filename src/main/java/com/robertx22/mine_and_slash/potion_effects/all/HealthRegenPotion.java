@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -38,7 +39,7 @@ public class HealthRegenPotion extends BasePotionEffect {
         try {
 
             if (entity.world.isRemote) {
-                ParticleUtils.spawnHealParticles(entity, 3);
+                ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, entity, 3);
             } else {
                 UnitData data = Load.Unit(entity);
 

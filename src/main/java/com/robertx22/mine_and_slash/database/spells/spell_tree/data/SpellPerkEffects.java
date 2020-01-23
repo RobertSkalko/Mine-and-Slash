@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.database.spells.spell_tree.data;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.BlazingInfernoSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
@@ -24,7 +26,11 @@ public class SpellPerkEffects {
     static SpellPerkEffect THUNDER_SPEAR;
 
     static SpellPerkEffect INSTANT_HEAL;
+
     static SpellPerkEffect REGENERATE;
+
+    static SpellPerkEffect BLAZING_INFERNO;
+    static SpellPerkEffect FIREBALL;
 
     public static void register() {
 
@@ -33,10 +39,16 @@ public class SpellPerkEffects {
 
         FROSTBALL = spell(new FrostballSpell());
         BLIZZARD = spell(new BlizzardSpell());
+
         THUNDER_STORM = spell(new ThunderstormSpell());
         THUNDER_SPEAR = spell(new ThunderspearSpell());
+
         INSTANT_HEAL = spell(new InstantHealSpell());
+
         REGENERATE = spell(new RegenerateSpell());
+
+        BLAZING_INFERNO = spell(new BlazingInfernoSpell());
+        FIREBALL = spell(new FireballSpell());
 
     }
 
