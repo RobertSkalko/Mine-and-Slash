@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
@@ -19,6 +20,9 @@ public class SpellHotbarOverlay extends AbstractGui {
 
     private static final ResourceLocation HOTBAR_TEX = new ResourceLocation(Ref.MODID,
                                                                             "textures/gui/spells/hotbar.png"
+    );
+    private static final ResourceLocation COOLDOWN_TEX = new ResourceLocation(Ref.MODID,
+                                                                              "textures/gui/spells/cooldown.png"
     );
 
     static int WIDTH = 22;
@@ -64,6 +68,22 @@ public class SpellHotbarOverlay extends AbstractGui {
 
                 mc.getTextureManager().bindTexture(spell.getIcon());
                 this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
+
+                SpellData spelldata = data.getSpellData().getDataBySpell(spell, CURRENT_HOTBAR);
+
+                if (spelldata != null) {
+                    if (spelldata.getRemainingCooldown() > 0) {
+                        float percent = (float) spelldata.getRemainingCooldown() / (float) spell.getCooldownInTicks();
+
+                        RenderSystem.enableBlend(); // enables transparency
+
+                        mc.getTextureManager().bindTexture(COOLDOWN_TEX);
+                        this.blit(xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+
+                        RenderSystem.disableBlend(); // enables transparency
+
+                    }
+                }
 
                 RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 

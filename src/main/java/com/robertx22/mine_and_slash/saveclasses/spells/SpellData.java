@@ -14,6 +14,10 @@ public class SpellData {
         return cooldownInTicks <= 0;
     }
 
+    public int getRemainingCooldown() {
+        return cooldownInTicks;
+    }
+
     public void setCooldown(int ticks) {
         this.cooldownInTicks = ticks;
     }

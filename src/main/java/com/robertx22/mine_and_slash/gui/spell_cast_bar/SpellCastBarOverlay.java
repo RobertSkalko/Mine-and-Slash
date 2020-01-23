@@ -32,7 +32,7 @@ public class SpellCastBarOverlay extends AbstractGui {
         if (data.getSpellData().isCasting()) {
 
             int x = mc.mainWindow.getScaledWidth() / 2 - WIDTH / 2;
-            int y = (int) (mc.mainWindow.getScaledHeight() / 1.2F - HEIGHT / 2);
+            int y = (int) (mc.mainWindow.getScaledHeight() / 1.25F - HEIGHT / 2);
 
             float percent =
                     ((float) data.getSpellData().lastSpellCastTimeInTicks - (float) data.getSpellData().castingTicksLeft) / (float) data
