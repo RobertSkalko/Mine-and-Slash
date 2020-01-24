@@ -22,7 +22,10 @@ public class GeometryUtils {
 
     }
 
-    // todo unsure if works
+    public static Vec3d getRandomPosInRadiusCircle(Vec3d p, float radius) {
+        return getRandomPosInRadiusCircle(p.x, p.y, p.z, radius);
+    }
+
     public static Vec3d getRandomPosInRadiusCircle(double x, double y, double z, float radius) {
 
         double u = Math.random();

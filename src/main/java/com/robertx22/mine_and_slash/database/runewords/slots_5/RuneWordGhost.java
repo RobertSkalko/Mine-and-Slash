@@ -4,11 +4,9 @@ import com.robertx22.mine_and_slash.database.items.runes.*;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.DodgePercent;
-import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.GhostProjectileTrait;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -18,7 +16,8 @@ public class RuneWordGhost extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new AllTraitMods(new GhostProjectileTrait()), new DodgeRatingFlat(), new DodgePercent(), new ElementalResistFlat(Elements.Nature));
+        return Arrays.asList(
+                new DodgeRatingFlat().multi(3), new DodgePercent(), new ElementalResistFlat(Elements.Nature));
     }
 
     @Override

@@ -23,8 +23,10 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
     }
 
     public ExactStatData scaleToLvl(int lvl) {
-        value = SlashRegistry.Stats().get(statGUID).calculateScalingStatGrowth(value, lvl);
-
+        Stat stat = SlashRegistry.Stats().get(statGUID);
+        if (stat.ScalesToLevel()) {
+            value = stat.calculateScalingStatGrowth(value, lvl);
+        }
         return this;
     }
 

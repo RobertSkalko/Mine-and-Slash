@@ -30,7 +30,7 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
         return getSpellData().lifeInTicks;
     }
 
-    default void dealSpellDamageTo(LivingEntity target, boolean knockback) {
+    default SpellDamageEffect dealSpellDamageTo(LivingEntity target, boolean knockback) {
 
         EntitySpellData data = getSpellData();
 
@@ -52,6 +52,8 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
 
         dmg.element = spell.getElement();
         dmg.Activate();
+
+        return dmg;
 
     }
 

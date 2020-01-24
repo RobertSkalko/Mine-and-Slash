@@ -34,8 +34,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     EntitySpellData spellData;
 
-    public float shootSpeed = 1.3F;
-
     private int xTile;
     private int yTile;
     private int zTile;
@@ -259,8 +257,8 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
             this.onImpact(blockraytraceresult);
 
             blockstate.onProjectileCollision(this.world, blockstate, blockraytraceresult, this);
-        }
 
+        }
     }
 
     /**

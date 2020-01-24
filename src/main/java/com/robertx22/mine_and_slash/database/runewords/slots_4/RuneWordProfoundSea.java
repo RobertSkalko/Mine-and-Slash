@@ -1,16 +1,14 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_4;
 
-import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.BuffManaRegenTrait;
 import com.robertx22.mine_and_slash.database.items.runes.AnoItem;
 import com.robertx22.mine_and_slash.database.items.runes.CenItem;
 import com.robertx22.mine_and_slash.database.items.runes.DosItem;
 import com.robertx22.mine_and_slash.database.items.runes.RahItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runewords.RuneWord;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +17,7 @@ public class RuneWordProfoundSea extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new AllTraitMods(new BuffManaRegenTrait()), new ManaRegenFlat(), new ManaFlat());
+        return Arrays.asList(new ManaRegenFlat(), new ManaFlat().multi(2));
     }
 
     @Override

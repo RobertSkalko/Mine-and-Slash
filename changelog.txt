@@ -1,4 +1,52 @@
 2.10.0
+
+[THIS UPDATE IS BETA, EXPECT BUGS!]
+
+REVAMPED SPELL SYSTEM!
+
+Spells are no longer items, you now learn them as you level up!
+They are separated currently into 5 classes and you can pick one or all, but you won't have enough points to take all the spells. 
+So you have to specialize. But my intent is to make dual or even triple classing a viable thing. 
+
+Now here's the first few classes:
+
+* SHAMAN - thunder
+* EMBER MAGE - fire
+* OCEAN MYSTIC - water
+* DRUID - nature
+* CLERIC - heal/buff class that uses all elements.
+
+Shamans can throw tridents of lightning or summon thunderstorms.
+Ember Mages can set their foes on fire and deal massive lasting damage.
+Ocean Mystics use power of water and ice to deal damage and even sometimes heal.
+Druids use nature based spells to heal or damage their enemies.
+Clerics have the strongest heals but lack attacking methods.
+
+Another thing to note is that all spells now will be UNIQUE. Meaning they will all differ somehow. 
+I am completely abandoning my previous approach that every element based spell must have a counterpart for each element.
+
+This means more FUN for you, but also more balancing problems. Which is why i'd prefer if the community points out not only weak spells, but OP ones too.
+
+Each class's gameplay will be based on a thing called SYNERGY. 
+You unlock synergies the same way you unlock spells. They power a certain spell to make it do additional, often gameplay changing effects.
+
+For example a synergy can make Frostball consume Shiver stacks to deal extra damage.
+
+Classes also have certain things that make multi classing viable.
+For example the Shiver effect from Ocean Mystic's Whirlpool not only reduces water resistance, but fire resistance too.
+
+
+MAPS NOW HAVE QUESTS!
+
+Map system was overhauled to have objectives and rewards. You now have more agency against RNG by being able to pick which maps to do based on their rewards,
+which are listed on the map item. It could reward runes, unique items, currency etc. You can pick what you want!
+
+You need to finish the objectives fast to get good score. Your reward crate's item rewards will depend on your score.
+
+After you're done with the objective, map's drops will be lowered substantially. You've effectively "cleared" the map. 
+
+
+PATCHNOTES:
 removed factory station (its use was replaced by the more interesting currency system and modify station)
 added azure's gui overlay option
 fix modify station tooltips a bit
@@ -32,3 +80,4 @@ configs should now sync to client on login
 spell damage renamed to spell power. Should make more sense if nature power increases healing, than nature damage increasing healing
 loot now drops based on highest damager. So if you most dmg to mob and it dies to fire, it will still drop loot!
 fixed scaling spell dmg not being applied
+removed some stats based on old spells which no longer exist. (runewords affected have other stats boosted)

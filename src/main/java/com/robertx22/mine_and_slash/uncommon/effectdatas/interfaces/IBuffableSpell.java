@@ -6,8 +6,6 @@ public interface IBuffableSpell {
 
     enum SpellBuffType {
         None,
-        Homing_Projectile,
-        Ghost_Projectile,
         Zephyr_Speed_Boost,
         Light_Aoe_Regen,
         Purity_Remove_Negative_Effects,

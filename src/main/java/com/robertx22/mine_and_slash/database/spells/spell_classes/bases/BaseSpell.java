@@ -30,7 +30,6 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Single_Target_Projectile,
         Aoe_Projectile,
         Self_Heal,
-        Aoe_Bomb_Projectile,
         Restore_Energy,
         Aoe_Damage_Nova,
         LASTING_AOE,

@@ -85,13 +85,9 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                 world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F, 1F,
                                 false
                 );
-                // world.playSound(p.x, p.y, p.z, SoundEvents.ENTITY_DROWNED_HURT_WATER, SoundCategory.BLOCKS, 1F, 1F,
-                // false
-                //);
+
             }
         }
-
-        // Random r = new Random();
 
         if (this.inGround && world.isRemote) {
 

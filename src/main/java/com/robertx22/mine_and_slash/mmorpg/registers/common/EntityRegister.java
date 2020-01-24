@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntit
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.FrostballEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.LightningTotemEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.WhirlpoolEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityStaffProjectile;
@@ -37,13 +38,15 @@ public class EntityRegister {
 
     }
 
-    public static final EntityType<? extends Entity> BLIZZARD;
     public static final EntityType<? extends Entity> THUNDERSTORM;
     public static final EntityType<? extends TridentEntity> THUNDER_SPEAR;
+    public static final EntityType<? extends Entity> LIGHTNING_TOTEM;
 
     public static final EntityType<? extends Entity> FIREBOLT;
+
     public static final EntityType<? extends Entity> FROSTBOLT;
     public static final EntityType<? extends Entity> WHIRPOOL;
+    public static final EntityType<? extends Entity> BLIZZARD;
 
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
     public static final EntityType<? extends Entity> WANDPROJECTILE;
@@ -56,6 +59,7 @@ public class EntityRegister {
 
         THUNDERSTORM = newType(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
         THUNDER_SPEAR = newType(ThunderspearEntity::new, ThunderspearEntity::new, "thunder_spear", false);
+        LIGHTNING_TOTEM = newType(LightningTotemEntity::new, LightningTotemEntity::new, "lightning_totem");
 
         FIREBOLT = newType(FireballEntity::new, FireballEntity::new, "fireball");
 

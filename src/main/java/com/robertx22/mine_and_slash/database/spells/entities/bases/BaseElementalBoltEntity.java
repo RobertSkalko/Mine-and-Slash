@@ -6,16 +6,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
 
@@ -29,7 +24,6 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
 
     public BaseElementalBoltEntity(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
-        this.shootSpeed = 1.95F;
 
     }
 
@@ -47,8 +41,6 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
         }
     }
 
-    public List<LivingEntity> entitiesHit = new ArrayList();
-
     @Override
     protected void onImpact(RayTraceResult result) {
 
@@ -59,13 +51,9 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
                 SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
             }
 
-            if (!entitiesHit.contains(entityHit)) {
+            this.dealSpellDamageTo(entityHit, true);
 
-                this.dealSpellDamageTo(entityHit, true);
-
-                ifDamageKilledEnemy(entityHit);
-                entitiesHit.add(entityHit);
-            }
+            ifDamageKilledEnemy(entityHit);
 
         } else {
             if (world.isRemote) {
@@ -73,62 +61,9 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
             }
         }
 
-        if (!this.world.isRemote) {
-            if (this.getBuff().equals(SpellBuffType.Ghost_Projectile) == false) { // spell buff to go through all
-                // mobs in the way and damage
-                // them all
-                this.world.setEntityState(this, (byte) 3);
-                this.remove();
-                return;
-            }
-
-        }
+        this.remove();
     }
 
     int ticks = 0;
-
-    @Override
-    public void tick() {
-
-        super.tick();
-
-        if (world.isRemote) {
-            if (this.ticksExisted > 1) {
-
-                BasicParticleType particle = ParticleTypes.ENCHANTED_HIT;
-
-                if (element().equals(Elements.Water)) {
-                    particle = ParticleTypes.ITEM_SNOWBALL;
-                } else if (element().equals(Elements.Fire)) {
-                    particle = ParticleTypes.FLAME;
-                } else if (element().equals(Elements.Thunder)) {
-                    particle = ParticleTypes.WITCH;
-                } else if (element().equals(Elements.Nature)) {
-                    particle = ParticleTypes.COMPOSTER;
-                }
-
-                int amount = 2;
-
-                if (element() == Elements.Fire) {
-                    amount += 2;
-                }
-
-                for (int i = 0; i < amount; i++) {
-                    this.world.addParticle(particle, true, this.posX + rand.nextFloat() * 0.2 - 0.1,
-                                           this.posY + this.getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1,
-                                           this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0
-                    );
-                }
-            }
-
-        }
-
-        ticks++;
-        if (ticks > 1) {
-            ticks = 0;
-            // ElementalParticleUtils.SpawnAoeParticle(element(), this, 0.15F, 15);
-        }
-
-    }
 
 }

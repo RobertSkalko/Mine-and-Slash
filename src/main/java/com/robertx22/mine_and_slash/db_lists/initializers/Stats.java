@@ -16,7 +16,9 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.ManaToEnergyConversion;
-import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.*;
+import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.LightTrait;
+import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.PurityTrait;
+import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.ZephyrTrait;
 import com.robertx22.mine_and_slash.database.stats.types.traits.*;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.EarthAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.FireAtronach;
@@ -129,12 +131,9 @@ public class Stats implements ISlashRegistryInit {
                     add(new BonusExp());
 
                     // spell buffs
-                    add(new GhostProjectileTrait());
                     add(new ZephyrTrait());
                     add(new LightTrait());
                     add(new PurityTrait());
-                    add(new BuffEnergyRegenTrait());
-                    add(new BuffManaRegenTrait());
 
                     // spell buffs
 
