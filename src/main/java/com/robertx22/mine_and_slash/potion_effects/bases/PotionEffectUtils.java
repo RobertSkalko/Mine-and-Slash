@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.potion_effects.bases;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 
@@ -14,6 +15,17 @@ public class PotionEffectUtils {
 
     public static void applyToSelf(BasePotionEffect effect, int duration, LivingEntity caster) {
         apply(effect, duration, caster, caster);
+    }
+
+    public static ExtraPotionData getDataForTooltips(BasePotionEffect effect) {
+        LivingEntity caster = ClientOnly.getPlayer();
+
+        ExtraPotionData data = new ExtraPotionData();
+        data.casterID = caster.getUniqueID().toString();
+        data.casterLvl = Load.Unit(caster).getLevel();
+
+        return data;
+
     }
 
     public static void apply(BasePotionEffect effect, int duration, LivingEntity caster, LivingEntity target) {
@@ -38,6 +50,7 @@ public class PotionEffectUtils {
         if (instance == null) {
 
             extraData.casterLvl = casterData.getLevel();
+            extraData.casterID = caster.getUniqueID().toString();
             extraData.setInitialDurationTicks(duration);
 
             PotionDataSaving.saveData(newInstance, extraData);
@@ -50,6 +63,7 @@ public class PotionEffectUtils {
             }
 
             extraData.casterLvl = casterData.getLevel();
+            extraData.casterID = caster.getUniqueID().toString();
             extraData.setInitialDurationTicks(duration);
             extraData.addStacks(1, effect);
 

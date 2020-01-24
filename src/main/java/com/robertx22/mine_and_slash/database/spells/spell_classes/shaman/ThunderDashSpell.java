@@ -16,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SEntityVelocityPacket;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -76,7 +77,8 @@ public class ThunderDashSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Dash in your current direction, damaging all enemies in the path: "));
+        list.add(new StringTextComponent("Dash in your current direction,"));
+        list.add(new StringTextComponent("damages all enemies in the path."));
 
         list.addAll(getCalculation().GetTooltipString(info));
 
@@ -92,6 +94,8 @@ public class ThunderDashSpell extends BaseSpell {
     public static void dashForward(LivingEntity caster) {
 
         float distance = 0.017453292f;
+
+        caster.setMotion(new Vec3d(0, 0, 0));
 
         caster.knockBack(caster, 3.5f, (double) MathHelper.sin(caster.rotationYaw * distance),
                          (double) (-MathHelper.cos(caster.rotationYaw * distance))

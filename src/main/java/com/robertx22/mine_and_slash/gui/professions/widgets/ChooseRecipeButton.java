@@ -74,7 +74,6 @@ public class ChooseRecipeButton extends ImageButton {
 
     public boolean isInsideSlot(Slot slot, int x, int y) {
         return GuiUtils.isInRect(slot.xPos, slot.yPos, 16, 16, x, y);
-
     }
 
     public boolean isInside(int x, int y) {

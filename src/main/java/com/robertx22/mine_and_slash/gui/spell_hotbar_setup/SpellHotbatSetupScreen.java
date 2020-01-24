@@ -8,15 +8,18 @@ import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,13 +45,6 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         super.init();
 
         List<BaseSpell> spells = this.spells.getAvailableSpells();
-
-        /*
-        for (int i = 0; i < 10; i++) {
-            spells.addAll(this.spells.getAvailableSpells());
-        }
-
-         */
 
         int x = guiLeft + 7;
         int y = guiTop + 7;
@@ -100,6 +96,8 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         super.render(x, y, ticks);
 
+        this.buttons.forEach(b -> b.renderToolTip(x, y));
+
     }
 
     protected void drawBackground(float partialTicks, int x, int y) {
@@ -141,6 +139,16 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             this.hotbar = hotbar;
             this.number = number;
 
+        }
+
+        @Override
+        public void renderToolTip(int mouseX, int mouseY) {
+            if (this.getSpell() != null) {
+                if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
+                    TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
+                    GuiUtils.renderTooltip(getSpell().GetTooltipString(info), mouseX, mouseY);
+                }
+            }
         }
 
         @Override
@@ -212,6 +220,16 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
             this.spell = spell;
 
+        }
+
+        @Override
+        public void renderToolTip(int mouseX, int mouseY) {
+            if (spell != null) {
+                if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
+                    TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
+                    GuiUtils.renderTooltip(spell.GetTooltipString(info), mouseX, mouseY);
+                }
+            }
         }
 
         @Override

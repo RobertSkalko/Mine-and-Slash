@@ -44,7 +44,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
     @Override
     public ITextComponent locName() {
-        return CLOC.blank("effect." + Ref.MODID + GUID());
+        return CLOC.blank("effect." + Ref.MODID + "." + GUID());
     }
 
     public abstract int performEachXTicks();

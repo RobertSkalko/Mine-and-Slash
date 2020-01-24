@@ -168,7 +168,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Tooltip.addEmpty(list);
 
         list.add(new StringTextComponent(TextFormatting.BLUE + "Mana Cost: " + getCalculatedManaCost(data)));
-        list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: : " + getCooldownInSeconds() + "s"));
+        list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: " + getCooldownInSeconds() + "s"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + getUseDurationInSeconds() + "s"));
 
         Tooltip.addEmpty(list);

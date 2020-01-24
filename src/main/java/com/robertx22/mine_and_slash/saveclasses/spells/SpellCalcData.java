@@ -8,6 +8,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,8 @@ public class SpellCalcData implements ITooltipList {
         scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         if (baseValue > 0) {
-            list.add(new StringTextComponent("Base value: " + baseValue));
+            list.add(new StringTextComponent(
+                    TextFormatting.RED + "Base value: " + getCalculatedBaseValue(info.unitdata)));
         }
 
         return list;

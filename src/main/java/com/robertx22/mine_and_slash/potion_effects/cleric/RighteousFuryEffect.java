@@ -2,10 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.cleric;
 
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
+import com.robertx22.mine_and_slash.potion_effects.bases.*;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -14,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -86,16 +84,27 @@ public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
+        ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
+
         list.add(locName());
 
         list.add(new StringTextComponent("Adds fire damage to your attacks"));
+
+        ExactStatData fire = getStatMod(info.unitdata, Elements.Fire, data);
+        list.addAll(fire.GetTooltipString(info));
+
+        Tooltip.addEmpty(list);
+
         list.add(new StringTextComponent("Increases your movement speed."));
         list.add(new StringTextComponent("At " + maxStacks() + " stacks, buff explodes in an area attack."));
+
+        Tooltip.addEmpty(list);
+
+        list.addAll(BlazingInfernoEffect.CALC.GetTooltipString(info));
+
+        Tooltip.addEmpty(list);
+
         list.add(new StringTextComponent("Gains stacks by damaging mobs"));
-
-        ExactStatData fire = getStatMod(info.unitdata, Elements.Fire, new ExtraPotionData());
-
-        list.addAll(fire.GetTooltipString(info));
 
         return list;
 
@@ -115,10 +124,6 @@ public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion
                 extraData.addStacks(1, this);
 
                 if (extraData.getStacks() >= maxStacks()) {
-
-                    if (extraData.timesUsed > 3) {
-                        System.out.println("THIS SHOULDNT BE HAPPENING ");
-                    }
 
                     extraData.decreaseStacks(500, this);
                     extraData.timesUsed++;

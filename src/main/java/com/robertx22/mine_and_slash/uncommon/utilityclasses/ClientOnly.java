@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -19,5 +21,9 @@ public class ClientOnly {
         }
         return null;
 
+    }
+
+    public static PlayerEntity getPlayer() {
+        return Minecraft.getInstance().player;
     }
 }

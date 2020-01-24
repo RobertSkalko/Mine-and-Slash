@@ -1,17 +1,35 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.util.text.ITextComponent;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuiUtils {
 
-    public static boolean isInRectPoints(Point guiPos, Point size, Point mousePos) {
-        return ((mousePos.x >= guiPos.x && mousePos.x <= guiPos.x + size.x) && (mousePos.y >= guiPos.y && mousePos.y <= guiPos.y + size.y));
+    public static void renderTooltip(List<ITextComponent> tooltip, int mouseX, int mouseY) {
+
+        Screen screen = Minecraft.getInstance().currentScreen;
+
+        if (screen != null) {
+
+            TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
+            screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY,
+                                 Minecraft.getInstance().fontRenderer
+            );
+        }
+
     }
 
-    public static boolean isInRect(int x, int y, int xSize, int ySize, int mouseX,
-                                   int mouseY) {
+    public static boolean isInRectPoints(Point guiPos, Point size, Point mousePos) {
+        return isInRect(guiPos.x, guiPos.y, size.x, size.y, mousePos.x, mousePos.y);
+    }
+
+    public static boolean isInRect(int x, int y, int xSize, int ySize, int mouseX, int mouseY) {
         return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
     }
 
@@ -30,8 +48,8 @@ public class GuiUtils {
         }
     }
 
-    public static List<PointF> generateCurve(PointF pFrom, PointF pTo, float pRadius,
-                                             float pMinDistance, boolean shortest) {
+    public static List<PointF> generateCurve(PointF pFrom, PointF pTo, float pRadius, float pMinDistance,
+                                             boolean shortest) {
 
         List<PointF> pOutPut = new ArrayList<PointF>();
 
@@ -50,11 +68,14 @@ public class GuiUtils {
         }
 
         // Calculate the middle of the expected curve.
-        float factor = (float) Math.sqrt((pRadius * pRadius) / ((pTo.x - pFrom.x) * (pTo.x - pFrom.x) + (pTo.y - pFrom.y) * (pTo.y - pFrom.y)) - 0.25f);
+        float factor = (float) Math.sqrt(
+                (pRadius * pRadius) / ((pTo.x - pFrom.x) * (pTo.x - pFrom.x) + (pTo.y - pFrom.y) * (pTo.y - pFrom.y)) - 0.25f);
         PointF circleMiddlePoint = new PointF(0, 0);
 
-        float middleDistance1 = 0.5f * (pFrom.x + pTo.x) + factor * (pTo.y - pFrom.y) + 0.5f * (pFrom.y + pTo.y) + factor * (pFrom.x - pTo.x);
-        float middleDistance2 = 0.5f * (pFrom.x + pTo.x) - factor * (pTo.y - pFrom.y) + 0.5f * (pFrom.y + pTo.y) - factor * (pFrom.x - pTo.x);
+        float middleDistance1 =
+                0.5f * (pFrom.x + pTo.x) + factor * (pTo.y - pFrom.y) + 0.5f * (pFrom.y + pTo.y) + factor * (pFrom.x - pTo.x);
+        float middleDistance2 =
+                0.5f * (pFrom.x + pTo.x) - factor * (pTo.y - pFrom.y) + 0.5f * (pFrom.y + pTo.y) - factor * (pFrom.x - pTo.x);
 
         boolean side2 = middleDistance1 < middleDistance2;
 
@@ -91,8 +112,9 @@ public class GuiUtils {
             }
         }
         for (float f = angle1; f < angle2; f += step) {
-            PointF p = new PointF((float) Math.cos(f) * pRadius + circleMiddlePoint.x, (float) Math
-                    .sin(f) * pRadius + circleMiddlePoint.y);
+            PointF p = new PointF((float) Math.cos(f) * pRadius + circleMiddlePoint.x,
+                                  (float) Math.sin(f) * pRadius + circleMiddlePoint.y
+            );
             pOutPut.add(p);
         }
         if (flipped ^ side2) {

@@ -14,7 +14,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -95,8 +94,7 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         List<ITextComponent> list = new ArrayList<>();
 
         if (spell != null) {
-            list.add(new StringTextComponent("Teaches you spell: ").appendText(spell.GUID()));
-
+            list.addAll(spell.GetTooltipString(info));
         }
 
         return list;

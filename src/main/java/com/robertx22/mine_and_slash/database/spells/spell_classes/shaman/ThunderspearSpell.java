@@ -82,7 +82,7 @@ public class ThunderspearSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.Blizzard;
+        return Words.ThunderSpear;
     }
 
     @Override

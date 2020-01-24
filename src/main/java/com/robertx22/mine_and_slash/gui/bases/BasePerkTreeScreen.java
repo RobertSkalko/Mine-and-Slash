@@ -212,7 +212,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     public void renderTooltips(List<PerkButton> list, int mouseX, int mouseY) {
 
-        TooltipInfo info = new TooltipInfo();
+        TooltipInfo info = new TooltipInfo(mc.player);
 
         ScreenContext ctx = new ScreenContext(this);
 

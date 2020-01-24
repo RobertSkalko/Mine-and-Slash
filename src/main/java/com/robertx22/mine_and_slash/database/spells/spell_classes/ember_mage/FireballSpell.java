@@ -63,7 +63,7 @@ public class FireballSpell extends BaseProjectileSpell {
 
     @Override
     public Words getName() {
-        return Words.BlazingInferno;
+        return Words.Fireball;
     }
 
     @Override

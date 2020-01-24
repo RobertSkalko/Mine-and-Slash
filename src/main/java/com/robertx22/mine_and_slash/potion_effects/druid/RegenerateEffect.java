@@ -78,6 +78,8 @@ public class RegenerateEffect extends BasePotionEffect {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
+        list.add(locName());
+
         list.addAll(CALC.GetTooltipString(info));
 
         return list;

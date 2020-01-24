@@ -70,6 +70,8 @@ public class GorgonsGazeSpell extends BaseSpell {
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Turn all enemies before you into stone: "));
+        list.add(new StringTextComponent("Applies debuff: "));
+        list.add(new StringTextComponent(""));
 
         list.addAll(PetrifyEffect.INSTANCE.GetTooltipString(info));
 
