@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.potion_effects.all.*;
 import com.robertx22.mine_and_slash.potion_effects.cleric.RighteousFuryEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
+import com.robertx22.mine_and_slash.potion_effects.druid.RegenerateEffect;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
@@ -28,7 +29,7 @@ public class PotionRegister {
         reg.register(AoeRegenPotion.INSTANCE);
         reg.register(CleansePoisonPotion.INSTANCE);
         reg.register(EnergyRegenPotion.INSTANCE);
-        reg.register(HealthRegenPotion.INSTANCE);
+        reg.register(RegenerateEffect.INSTANCE);
         reg.register(ManaRegenPotion.INSTANCE);
         reg.register(TeleportProtection.INSTANCE);
         reg.register(BleedPotion.INSTANCE);

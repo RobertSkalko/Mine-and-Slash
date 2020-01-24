@@ -4,6 +4,20 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    BlazingInferno("Blazing Inferno"),
+    Fireball("Fireball"),
+    Frostball("Frostball"),
+    ThunderSpear("Thunder Spear"),
+    ThunderDash("Thunder Dash"),
+    Thunderstorm("Thunderstorm"),
+    LightningTotem("Lightning Totem"),
+    Blizzard("Blizzard"),
+    Whirpool("Whirpool"),
+    GorgonsGaze("Gorgon's Gaze"),
+    Regenerate("Regenerate"),
+    InstantHeal("Instant Heal"),
+    RighteousFury("Righteous Fury"),
+
     Spellbar("Spellbar"),
     StormCloudSpellDesc("Summons a storm cloud that deals damage over time."),
     Crate("Crate"),
@@ -215,7 +229,7 @@ public enum Words implements IAutoLocName {
 
     Rarity("Rarity"),
 
-    Regeneration("Regeneration"),
+    Regeneration("Regenerate"),
 
     Resources("Resources"),
 

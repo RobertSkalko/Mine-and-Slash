@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -16,7 +17,11 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SEntityVelocityPacket;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThunderDashSpell extends BaseSpell {
 
@@ -67,8 +72,21 @@ public class ThunderDashSpell extends BaseSpell {
     }
 
     @Override
-    public ITextComponent GetDescription() {
-        return Words.StormCloudSpellDesc.locName();
+    public List<ITextComponent> GetDescription(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new StringTextComponent("Dash in your current direction, damaging all enemies in the path: "));
+
+        list.addAll(getCalculation().GetTooltipString(info));
+
+        return list;
+
+    }
+
+    @Override
+    public Words getName() {
+        return Words.ThunderDash;
     }
 
     public static void dashForward(LivingEntity caster) {

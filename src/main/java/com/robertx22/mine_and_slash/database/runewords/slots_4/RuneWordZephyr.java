@@ -1,17 +1,15 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_4;
 
-import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.types.spell_buff_traits.ZephyrTrait;
 import com.robertx22.mine_and_slash.database.items.runes.BerItem;
 import com.robertx22.mine_and_slash.database.items.runes.CenItem;
 import com.robertx22.mine_and_slash.database.items.runes.MosItem;
 import com.robertx22.mine_and_slash.database.items.runes.XahItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runewords.RuneWord;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +19,8 @@ public class RuneWordZephyr extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new AllTraitMods(new ZephyrTrait()), new EnergyRegenFlat(), new ElementalResistFlat(Elements.Thunder), new ArmorFlat());
+        return Arrays.asList(
+                new EnergyRegenFlat(), new ElementalResistFlat(Elements.Thunder).multi(2), new ArmorFlat());
     }
 
     @Override

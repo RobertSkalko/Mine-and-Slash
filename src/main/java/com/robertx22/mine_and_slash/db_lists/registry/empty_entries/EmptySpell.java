@@ -1,12 +1,15 @@
 package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+
+import java.util.List;
 
 public class EmptySpell extends BaseSpell {
     @Override
@@ -50,8 +53,13 @@ public class EmptySpell extends BaseSpell {
     }
 
     @Override
-    public ITextComponent GetDescription() {
-        return new StringTextComponent("");
+    public List<ITextComponent> GetDescription(TooltipInfo info) {
+        return null;
+    }
+
+    @Override
+    public Words getName() {
+        return null;
     }
 
     @Override

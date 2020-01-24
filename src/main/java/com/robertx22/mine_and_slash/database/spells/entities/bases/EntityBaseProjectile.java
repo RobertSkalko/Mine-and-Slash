@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.spells.entities.bases;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell.SpellType;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IBuffableSpell;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EntityBaseProjectile extends AbstractArrowEntity implements IProjectile, IMyRenderAsItem,
-        IBuffableSpell, ISpellEntity {
+        ISpellEntity {
 
     EntitySpellData spellData;
 
@@ -49,25 +48,9 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     public Entity ignoreEntity;
 
-    public SpellBuffType buff = SpellBuffType.None;
     public SpellType spellType = SpellType.Self_Heal;
 
     public abstract double radius();
-
-    @Override
-    public void setBuffType(SpellType type) {
-        this.spellType = type;
-    }
-
-    @Override
-    public SpellType getBuffType() {
-        return this.spellType;
-    }
-
-    @Override
-    public void setBuff(SpellBuffType buff) {
-        this.buff = buff;
-    }
 
     @Override
     protected ItemStack getArrowStack() {
@@ -86,11 +69,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     @Override
     public void setItemStackToSlot(EquipmentSlotType slotIn, ItemStack stack) {
 
-    }
-
-    @Override
-    public SpellBuffType getBuff() {
-        return buff;
     }
 
     public boolean getDoExpireProc() {

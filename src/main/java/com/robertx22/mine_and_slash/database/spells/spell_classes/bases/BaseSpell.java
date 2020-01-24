@@ -10,7 +10,9 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -18,13 +20,20 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
-public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell> {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell>, ITooltipList {
 
     public enum SpellType {
         Single_Target_Projectile,
@@ -98,8 +107,6 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return (float) useTimeTicks() / 20;
     }
 
-    public int DamageVariance = 50;
-
     public abstract SpellCalcData getCalculation();
 
     public abstract Elements getElement();
@@ -108,7 +115,9 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     }
 
-    public abstract ITextComponent GetDescription();
+    public abstract List<ITextComponent> GetDescription(TooltipInfo info);
+
+    public abstract Words getName();
 
     public int Weight() {
         return 1000;
@@ -140,6 +149,31 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
             }
         }
         return false;
+
+    }
+
+    @Override
+    public final List<ITextComponent> GetTooltipString(TooltipInfo info) {
+
+        UnitData data = info.unitdata;
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(getName().locName());
+
+        Tooltip.addEmpty(list);
+
+        list.addAll(GetDescription(info));
+
+        Tooltip.addEmpty(list);
+
+        list.add(new StringTextComponent(TextFormatting.BLUE + "Mana Cost: " + getCalculatedManaCost(data)));
+        list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: : " + getCooldownInSeconds() + "s"));
+        list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + getUseDurationInSeconds() + "s"));
+
+        Tooltip.addEmpty(list);
+
+        return list;
 
     }
 

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
@@ -11,7 +12,11 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GorgonsGazeSpell extends BaseSpell {
 
@@ -60,8 +65,21 @@ public class GorgonsGazeSpell extends BaseSpell {
     }
 
     @Override
-    public ITextComponent GetDescription() {
-        return Words.StormCloudSpellDesc.locName();
+    public List<ITextComponent> GetDescription(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new StringTextComponent("Turn all enemies before you into stone: "));
+
+        list.addAll(PetrifyEffect.INSTANCE.GetTooltipString(info));
+
+        return list;
+
+    }
+
+    @Override
+    public Words getName() {
+        return Words.GorgonsGaze;
     }
 
     @Override

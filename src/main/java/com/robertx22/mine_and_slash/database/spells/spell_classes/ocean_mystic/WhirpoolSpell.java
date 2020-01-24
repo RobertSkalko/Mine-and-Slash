@@ -3,13 +3,18 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.WhirlpoolEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WhirpoolSpell extends BaseSpell {
 
@@ -60,8 +65,21 @@ public class WhirpoolSpell extends BaseSpell {
     }
 
     @Override
-    public ITextComponent GetDescription() {
-        return Words.StormCloudSpellDesc.locName();
+    public List<ITextComponent> GetDescription(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new StringTextComponent("Summons a whirpool that slows and damages enemies: "));
+
+        list.addAll(getCalculation().GetTooltipString(info));
+
+        return list;
+
+    }
+
+    @Override
+    public Words getName() {
+        return Words.Whirpool;
     }
 
     @Override

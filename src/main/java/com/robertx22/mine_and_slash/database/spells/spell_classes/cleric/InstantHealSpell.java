@@ -1,21 +1,24 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.cleric;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellBuffCheck;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellBuffEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InstantHealSpell extends BaseSpellHeal {
 
@@ -50,8 +53,21 @@ public class InstantHealSpell extends BaseSpellHeal {
     }
 
     @Override
-    public ITextComponent GetDescription() {
-        return CLOC.tooltip("instant_heal");
+    public List<ITextComponent> GetDescription(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new StringTextComponent("Heals the user: "));
+
+        list.addAll(getCalculation().GetTooltipString(info));
+
+        return list;
+
+    }
+
+    @Override
+    public Words getName() {
+        return Words.InstantHeal;
     }
 
     @Override
@@ -72,14 +88,8 @@ public class InstantHealSpell extends BaseSpellHeal {
 
                 SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
 
-                // spell buffs
-                SpellBuffCheck check = new SpellBuffCheck(this.getSpellType());
-                SpellBuffEffect spelleffect = new SpellBuffEffect(caster, check);
-                spelleffect.Activate();
-                checkSpellBuffs(caster, check);
-
                 ParticleUtils.spawnHealParticles(caster, 10);
-                //
+
             }
         } catch (Exception e) {
             e.printStackTrace();

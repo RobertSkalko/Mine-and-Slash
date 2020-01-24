@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
@@ -13,6 +15,9 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThunderspearSpell extends BaseSpell {
 
@@ -63,8 +68,21 @@ public class ThunderspearSpell extends BaseSpell {
     }
 
     @Override
-    public ITextComponent GetDescription() {
-        return Words.StormCloudSpellDesc.locName();
+    public List<ITextComponent> GetDescription(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(SpellTooltips.singleTargetProjectile());
+
+        list.addAll(getCalculation().GetTooltipString(info));
+
+        return list;
+
+    }
+
+    @Override
+    public Words getName() {
+        return Words.Blizzard;
     }
 
     @Override

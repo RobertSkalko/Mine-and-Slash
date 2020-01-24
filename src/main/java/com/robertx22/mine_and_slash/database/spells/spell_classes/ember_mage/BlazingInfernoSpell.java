@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
@@ -11,6 +13,9 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlazingInfernoSpell extends BaseSpell {
 
@@ -59,8 +64,21 @@ public class BlazingInfernoSpell extends BaseSpell {
     }
 
     @Override
-    public ITextComponent GetDescription() {
-        return Words.StormCloudSpellDesc.locName();
+    public List<ITextComponent> GetDescription(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(SpellTooltips.buff());
+
+        list.addAll(BlazingInfernoEffect.INSTANCE.GetTooltipString(info));
+
+        return list;
+
+    }
+
+    @Override
+    public Words getName() {
+        return Words.BlazingInferno;
     }
 
     @Override
