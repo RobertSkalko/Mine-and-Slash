@@ -3,8 +3,11 @@ package com.robertx22.mine_and_slash.database.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
+import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -21,7 +24,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.List;
-import java.util.Random;
 
 public class WhirlpoolEntity extends EntityBaseProjectile {
 
@@ -61,8 +63,9 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
         int tickRate = 20;
 
-        if (!world.isRemote) {
-            if (this.ticksExisted % tickRate == 0) {
+        if (this.ticksExisted % tickRate == 0) {
+            if (!world.isRemote) {
+
                 List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
                 entities.removeIf(x -> x == getCaster());
 
@@ -71,21 +74,24 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
                     x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, tickRate, 10));
 
-                    if (this.getDistance(x) > 1) {
-                        // x.knockBack(this, 0.5F, getX() - x.getX(), getZ() - x.getZ());
-                    }
-                    //x.knockBack(this, 0.5F, this.rotationYaw, this.rotationPitch);
+                    PotionEffectUtils.apply(ShiverEffect.INSTANCE, ShiverEffect.DURATION, getCaster(), x);
 
-                    Vec3d p = x.getPositionVector();
+                    SoundUtils.playSound(this, SoundEvents.ENTITY_DROWNED_HURT_WATER, 1, 1);
 
-                    world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F,
-                                    1F, false
-                    );
                 });
+            } else {
+                Vec3d p = this.getPositionVector();
+
+                world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F, 1F,
+                                false
+                );
+                // world.playSound(p.x, p.y, p.z, SoundEvents.ENTITY_DROWNED_HURT_WATER, SoundCategory.BLOCKS, 1F, 1F,
+                // false
+                //);
             }
         }
 
-        Random r = new Random();
+        // Random r = new Random();
 
         if (this.inGround && world.isRemote) {
 
