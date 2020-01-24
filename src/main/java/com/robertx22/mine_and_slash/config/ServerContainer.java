@@ -66,16 +66,11 @@ public class ServerContainer {
                 .translation("mmorpg.word")
                 .define("RESET_MAP_DIMENSIONS_ON_LOAD", true);
 
-        DISABLE_DEATH_IN_MAPS = builder.comment(".")
-                .translation("mmorpg.word")
-                .define("DISABLE_DEATH_IN_MAPS", true);
+        DISABLE_DEATH_IN_MAPS = builder.comment(".").translation("mmorpg.word").define("DISABLE_DEATH_IN_MAPS", true);
 
-        ONLY_REPAIR_IN_STATION = builder.comment(".")
-                .define("ONLY_REPAIR_IN_STATION", false);
+        ONLY_REPAIR_IN_STATION = builder.comment(".").define("ONLY_REPAIR_IN_STATION", true);
 
-        GET_STARTER_ITEMS = builder.comment(".")
-                .translation("mmorpg.word")
-                .define("GET_STARTER_ITEMS", true);
+        GET_STARTER_ITEMS = builder.comment(".").translation("mmorpg.word").define("GET_STARTER_ITEMS", true);
 
         DISABLE_VANILLA_HP_REGEN = builder.comment(".")
                 .translation("mmorpg.word.entities")
@@ -85,9 +80,7 @@ public class ServerContainer {
                 .translation("mmorpg.word.")
                 .define("USE_COMPATIBILITY_ITEMS", true);
 
-        GENERATE_ORES = builder.comment(".")
-                .translation("mmorpg.word.")
-                .define("GENERATE_ORES", true);
+        GENERATE_ORES = builder.comment(".").translation("mmorpg.word.").define("GENERATE_ORES", true);
 
         MAXIMUM_WORN_RUNED_ITEMS = builder.comment(".")
                 .translation("mmorpg.word.")

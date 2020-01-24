@@ -3,9 +3,15 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class ParticleUtils {
+
+    public static void spawn(IParticleData type, World world, Vec3d vec) {
+        world.addParticle(type, vec.x, vec.y, vec.z, 0, 0, 0);
+    }
 
     public static void spawnHealParticles(LivingEntity en, int amount) {
 

@@ -15,8 +15,9 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ParticleRegister {
 
-    public final static String eleId = Ref.MODID + ":drip";
-    public final static String thunderId = Ref.MODID + ":thunder";
+    private final static String eleId = Ref.MODID + ":drip";
+    private final static String thunderId = Ref.MODID + ":thunder";
+    private final static String bubbleID = Ref.MODID + ":bubble";
 
     @ObjectHolder(eleId)
     public static final ParticleType<EleParticleData> DRIP = null;
@@ -24,11 +25,15 @@ public class ParticleRegister {
     @ObjectHolder(thunderId)
     public static final BasicParticleType THUNDER = null;
 
+    @ObjectHolder(bubbleID)
+    public static final BasicParticleType BUBBLE = null;
+
     @SubscribeEvent
     public static void register(RegistryEvent.Register<ParticleType<?>> event) {
 
         register(eleId, ParticleDeserializer.INSTANCE);
         register(thunderId, new BasicParticleType(false));
+        register(bubbleID, new BasicParticleType(false));
 
     }
 
@@ -38,8 +43,7 @@ public class ParticleRegister {
         return particleType;
     }
 
-    private static <T extends IParticleData> ParticleType register(String name,
-                                                                   IParticleData.IDeserializer<T> deseri) {
+    private static <T extends IParticleData> ParticleType register(String name, IParticleData.IDeserializer<T> deseri) {
         ParticleType<?> particleType = new ParticleType(false, deseri);
         return register(name, particleType);
     }

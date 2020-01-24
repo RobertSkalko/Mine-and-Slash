@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.database.spells.entities.blizzard.BlizzardEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.blizzard.ThunderstormEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.FrostballEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.WhirlpoolEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityStaffProjectile;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityWandProjectile;
@@ -42,6 +43,7 @@ public class EntityRegister {
 
     public static final EntityType<? extends Entity> FIREBOLT;
     public static final EntityType<? extends Entity> FROSTBOLT;
+    public static final EntityType<? extends Entity> WHIRPOOL;
 
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
     public static final EntityType<? extends Entity> WANDPROJECTILE;
@@ -50,6 +52,7 @@ public class EntityRegister {
 
         BLIZZARD = newType(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
         FROSTBOLT = newType(FrostballEntity::new, FrostballEntity::new, "frostball");
+        WHIRPOOL = newType(WhirlpoolEntity::new, WhirlpoolEntity::new, "whirlpool");
 
         THUNDERSTORM = newType(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
         THUNDER_SPEAR = newType(ThunderspearEntity::new, ThunderspearEntity::new, "thunder_spear", false);

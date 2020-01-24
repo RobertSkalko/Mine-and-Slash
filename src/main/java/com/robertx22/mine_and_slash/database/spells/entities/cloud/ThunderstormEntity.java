@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.entities.blizzard;
+package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseCloudEntity;

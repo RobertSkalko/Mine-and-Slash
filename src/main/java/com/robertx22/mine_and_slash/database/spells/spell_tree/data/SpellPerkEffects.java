@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.Bla
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.WhirpoolSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
@@ -24,6 +25,7 @@ public class SpellPerkEffects {
 
     static SpellPerkEffect FROSTBALL;
     static SpellPerkEffect BLIZZARD;
+    static SpellPerkEffect WHIRPOOL;
 
     static SpellPerkEffect THUNDER_STORM;
     static SpellPerkEffect THUNDER_SPEAR;
@@ -45,6 +47,7 @@ public class SpellPerkEffects {
 
         FROSTBALL = spell(new FrostballSpell());
         BLIZZARD = spell(new BlizzardSpell());
+        WHIRPOOL = spell(new WhirpoolSpell());
 
         THUNDER_STORM = spell(new ThunderstormSpell());
         THUNDER_SPEAR = spell(new ThunderspearSpell());

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
-import com.robertx22.mine_and_slash.database.spells.entities.blizzard.BlizzardEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
