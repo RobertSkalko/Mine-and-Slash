@@ -102,6 +102,8 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
 
         list.add(new StringTextComponent("Gains stacks by damaging mobs"));
 
+        list.addAll(getMaxStacksTooltip());
+
         return list;
 
     }

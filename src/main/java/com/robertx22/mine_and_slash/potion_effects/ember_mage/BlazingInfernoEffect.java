@@ -105,6 +105,8 @@ public class BlazingInfernoEffect extends BasePotionEffect {
 
         list.addAll(getTickTooltip());
 
+        list.addAll(getMaxStacksTooltip());
+
         return list;
     }
 

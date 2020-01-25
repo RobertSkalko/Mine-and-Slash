@@ -86,7 +86,9 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
         list.add(new StringTextComponent("Slows and Reduces Resistances;"));
 
-        getStatsAffected(info.unitdata, new ExtraPotionData()).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        list.addAll(getStatTooltip(info, this));
+
+        list.addAll(getMaxStacksTooltip());
 
         return list;
 

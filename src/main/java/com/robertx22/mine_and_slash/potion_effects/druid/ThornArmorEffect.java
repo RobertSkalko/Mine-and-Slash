@@ -97,6 +97,8 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
 
         list.addAll(getStatTooltip(info, this));
 
+        list.addAll(getMaxStacksTooltip());
+
         return list;
 
     }
@@ -105,7 +107,6 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     public void onBasicAttacked(LivingEntity source, LivingEntity target) {
         if (Synergies.THORN_ARMOR_THORNS.has(target)) {
             Synergies.THORN_ARMOR_THORNS.tryActivate(new CasterTargetContext(source, target));
-
         }
     }
 }

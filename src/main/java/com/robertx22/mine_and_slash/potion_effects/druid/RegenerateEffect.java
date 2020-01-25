@@ -92,6 +92,8 @@ public class RegenerateEffect extends BasePotionEffect {
 
         list.addAll(CALC.GetTooltipString(info));
 
+        list.addAll(getMaxStacksTooltip());
+
         return list;
     }
 }

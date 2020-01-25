@@ -52,6 +52,11 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         int count = 0;
 
         for (BaseSpell spell : spells) {
+
+            if (spell == null) {
+                continue;
+            }
+
             if (count >= 11) {
                 y += AvailableSpellButton.ySize + 2;
                 x = guiLeft + 7;

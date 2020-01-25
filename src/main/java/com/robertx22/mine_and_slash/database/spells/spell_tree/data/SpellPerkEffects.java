@@ -34,6 +34,8 @@ public class SpellPerkEffects {
         synergy(Synergies.THUNDER_SPEAR_LIGHTNING);
         synergy(Synergies.LIGHTNING_TOTEM_STATIC);
 
+        synergy(Synergies.RIGHTEOUS_FURY_AOE);
+
     }
 
     static SpellPerkEffect spell(BaseSpell spell) {

@@ -36,6 +36,10 @@ public class RighteousFuryAoeSynergy extends Synergy<PotionContext> {
 
         list.addAll(BlazingInfernoEffect.CALC.GetTooltipString(info));
 
+        Tooltip.addEmpty(list);
+
+        list.add(new StringTextComponent("The stacks reset after the attack."));
+
         return list;
     }
 

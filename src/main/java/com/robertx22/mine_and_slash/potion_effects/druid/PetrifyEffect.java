@@ -89,6 +89,8 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
 
         list.addAll(CALC.GetTooltipString(info));
 
+        list.addAll(getMaxStacksTooltip());
+
         return list;
     }
 

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
@@ -59,6 +60,17 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
     public ResourceLocation getIconTexture() {
         return new ResourceLocation(Ref.MODID, "textures/mob_effect/" + GUID() + ".png");
+    }
+
+    public List<ITextComponent> getMaxStacksTooltip() {
+        List<ITextComponent> list = new ArrayList<>();
+
+        Tooltip.addEmpty(list);
+        list.add(new StringTextComponent(
+                TextFormatting.LIGHT_PURPLE + "Max Stacks: " + TextFormatting.DARK_PURPLE + getMaxStacks()));
+
+        return list;
+
     }
 
     public abstract int getDurationInSeconds();

@@ -32,9 +32,6 @@ public interface IApplyStatPotion {
 
         getStatsAffected(info.unitdata, minStacks).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-        list.add(new StringTextComponent(
-                TextFormatting.LIGHT_PURPLE + "Max Stacks: " + TextFormatting.DARK_PURPLE + effect.getMaxStacks()));
-
         return list;
 
     }

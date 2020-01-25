@@ -92,6 +92,8 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
 
         getStatTooltip(info, this);
 
+        list.addAll(getMaxStacksTooltip());
+
         return list;
 
     }

@@ -116,6 +116,8 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
 
         list.addAll(getTickTooltip());
 
+        list.addAll(getMaxStacksTooltip());
+
         return list;
     }
 }

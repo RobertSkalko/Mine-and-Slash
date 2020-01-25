@@ -90,6 +90,8 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
         list.addAll(getStatTooltip(info, this));
 
+        list.addAll(getMaxStacksTooltip());
+
         return list;
 
     }
