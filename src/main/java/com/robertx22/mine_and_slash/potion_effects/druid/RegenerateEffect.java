@@ -38,6 +38,11 @@ public class RegenerateEffect extends BasePotionEffect {
     public static SpellCalcData CALC = SpellCalcData.one(HealthRegen.INSTANCE, 0.75F, 5);
 
     @Override
+    public int getDurationInSeconds() {
+        return 25;
+    }
+
+    @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
 
         try {

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class StatCalc implements ITooltipList {
+public class ScalingStatCalc implements ITooltipList {
 
     @Store
     public String statID;
@@ -28,7 +28,7 @@ public class StatCalc implements ITooltipList {
         return SlashRegistry.Stats().get(statID);
     }
 
-    public StatCalc(Stat stat, float multi) {
+    public ScalingStatCalc(Stat stat, float multi) {
         super();
         this.statID = stat.GUID();
         this.multi = multi;

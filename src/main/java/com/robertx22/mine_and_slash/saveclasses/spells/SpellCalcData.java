@@ -16,10 +16,18 @@ import java.util.List;
 @Storable
 public class SpellCalcData implements ITooltipList {
 
+    public static SpellCalcData empty() {
+
+        SpellCalcData d = new SpellCalcData();
+        d.empty = true;
+
+        return d;
+    }
+
     public static SpellCalcData one(Stat stat, float multi, int base) {
         SpellCalcData data = new SpellCalcData();
 
-        data.scalingValues.add(new StatCalc(stat, multi));
+        data.scalingValues.add(new ScalingStatCalc(stat, multi));
         data.baseValue = base;
 
         return data;
@@ -29,7 +37,7 @@ public class SpellCalcData implements ITooltipList {
 
     }
 
-    public SpellCalcData(StatCalc calc, int base) {
+    public SpellCalcData(ScalingStatCalc calc, int base) {
         this.scalingValues.add(calc);
         this.baseValue = base;
     }
@@ -40,10 +48,12 @@ public class SpellCalcData implements ITooltipList {
     }
 
     @Store
-    public List<StatCalc> scalingValues = new ArrayList<>();
+    public List<ScalingStatCalc> scalingValues = new ArrayList<>();
 
     @Store
     public StatScaleType baseScaling = StatScaleType.NORMAL;
+
+    private boolean empty = false;
 
     @Store
     public int baseValue = 0;
@@ -68,11 +78,13 @@ public class SpellCalcData implements ITooltipList {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
+        if (!empty) {
+            scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-        if (baseValue > 0) {
-            list.add(new StringTextComponent(
-                    TextFormatting.RED + "Base value: " + getCalculatedBaseValue(info.unitdata)));
+            if (baseValue > 0) {
+                list.add(new StringTextComponent(
+                        TextFormatting.RED + "Base value: " + getCalculatedBaseValue(info.unitdata)));
+            }
         }
 
         return list;

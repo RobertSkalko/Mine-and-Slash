@@ -7,7 +7,7 @@ import net.minecraft.potion.EffectInstance;
 
 import java.util.List;
 
-public interface IDefaultStatPotion extends IStatPotion, ILevel {
+public interface IDefaultApplyStatPotion extends IApplyStatPotion, ILevel {
 
     List<StatModData> statsMods();
 

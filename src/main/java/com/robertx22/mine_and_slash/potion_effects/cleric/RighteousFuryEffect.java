@@ -25,7 +25,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion, IOnBasicAttackPotion {
+public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatPotion, IOnBasicAttackPotion {
 
     public static final RighteousFuryEffect INSTANCE = new RighteousFuryEffect();
 
@@ -51,6 +51,11 @@ public class RighteousFuryEffect extends BasePotionEffect implements IStatPotion
     @Override
     public int performEachXTicks() {
         return 30;
+    }
+
+    @Override
+    public int getDurationInSeconds() {
+        return 45;
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -27,7 +27,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlazingInfernoEffect extends BasePotionEffect implements IStatPotion {
+public class BlazingInfernoEffect extends BasePotionEffect implements IApplyStatPotion {
 
     public static final BlazingInfernoEffect INSTANCE = new BlazingInfernoEffect();
 
@@ -87,6 +87,11 @@ public class BlazingInfernoEffect extends BasePotionEffect implements IStatPotio
     @Override
     public int maxStacks() {
         return 1;
+    }
+
+    @Override
+    public int getDurationInSeconds() {
+        return 15;
     }
 
     @Override

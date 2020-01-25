@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -31,6 +32,11 @@ public class FireballEntity extends BaseElementalBoltEntity {
     @Override
     public Elements element() {
         return Elements.Fire;
+    }
+
+    @Override
+    public void onHit(LivingEntity entity) {
+        dealSpellDamageTo(entity);
     }
 
     @Override

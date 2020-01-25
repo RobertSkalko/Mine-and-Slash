@@ -127,7 +127,7 @@ public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
 
                 this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D)); // bounce back
 
-                dealSpellDamageTo((LivingEntity) entity, true);
+                dealSpellDamageTo((LivingEntity) entity);
 
                 // IF SYNERGY SpellUtils.summonLightningStrike(entity);
 

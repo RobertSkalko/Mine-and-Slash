@@ -1,21 +1,19 @@
-package com.robertx22.mine_and_slash.potion_effects.ocean_mystic;
+package com.robertx22.mine_and_slash.potion_effects.druid;
 
+import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -25,32 +23,24 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
+public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPotion {
 
-    public static final FrostEffect INSTANCE = new FrostEffect();
+    public static final ThornArmorEffect INSTANCE = new ThornArmorEffect();
 
-    private FrostEffect() {
-        super(EffectType.HARMFUL, 4393423);
+    private ThornArmorEffect() {
+        super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-
-        this.addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890",
-                                   (double) -0.15F, AttributeModifier.Operation.MULTIPLY_TOTAL
-        );
     }
 
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
-        ParticleUtils.spawnParticles(ParticleTypes.ITEM_SNOWBALL, entity, 5);
-    }
+        //ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
 
-    @Override
-    public int getDurationInSeconds() {
-        return 8;
     }
 
     @Override
     public String GUID() {
-        return "frost";
+        return "thorn_armor";
     }
 
     @Override
@@ -60,17 +50,28 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public String locNameForLangFile() {
-        return "Frost";
+        return "Thorn Armor";
     }
 
     @Override
     public int maxStacks() {
-        return 5;
+        return 1;
     }
 
-    public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
-        int statAmount = -1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(ele)).scaleToLvl(extraData.casterLvl);
+    @Override
+    public int getDurationInSeconds() {
+        return 15;
+    }
+
+    public ExactStatData getNatureRes(EntityCap.UnitData data, ExtraPotionData extraData) {
+        int statAmount = 3 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Nature)).scaleToLvl(
+                extraData.casterLvl);
+    }
+
+    public ExactStatData getArmor(EntityCap.UnitData data, ExtraPotionData extraData) {
+        int statAmount = 1 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, Armor.INSTANCE).scaleToLvl(extraData.casterLvl);
     }
 
     @Override
@@ -78,11 +79,11 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
 
         ExtraPotionData extraData = PotionDataSaving.getData(instance);
 
-        ExactStatData water = getStatMod(data, Elements.Water, extraData);
-        ExactStatData fire = getStatMod(data, Elements.Fire, extraData);
+        ExactStatData nature = getNatureRes(data, extraData);
+        ExactStatData armor = getArmor(data, extraData);
 
-        water.applyStats(data);
-        fire.applyStats(data);
+        nature.applyStats(data);
+        armor.applyStats(data);
 
     }
 
@@ -90,15 +91,17 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
+        ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
+
         list.add(locName());
 
-        list.add(new StringTextComponent("Slows and Reduces Resistances;"));
+        list.add(new StringTextComponent("Adds stats: "));
 
-        ExactStatData water = getStatMod(info.unitdata, Elements.Water, new ExtraPotionData());
-        ExactStatData fire = getStatMod(info.unitdata, Elements.Fire, new ExtraPotionData());
+        ExactStatData nature = getNatureRes(info.unitdata, data);
+        ExactStatData armor = getArmor(info.unitdata, data);
 
-        list.addAll(water.GetTooltipString(info));
-        list.addAll(fire.GetTooltipString(info));
+        list.addAll(nature.GetTooltipString(info));
+        list.addAll(armor.GetTooltipString(info));
 
         return list;
 

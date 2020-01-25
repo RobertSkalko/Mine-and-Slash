@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs;
 
-import com.robertx22.mine_and_slash.potion_effects.bases.IDefaultStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IDefaultApplyStatPotion;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -10,7 +10,7 @@ import net.minecraft.potion.EffectType;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class BaseEffect extends Effect implements IAutoLocName, IDefaultStatPotion {
+public abstract class BaseEffect extends Effect implements IAutoLocName, IDefaultApplyStatPotion {
 
     public String guid;
     public String name;

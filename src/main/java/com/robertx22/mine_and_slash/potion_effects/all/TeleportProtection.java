@@ -24,6 +24,11 @@ public class TeleportProtection extends BasePotionEffect {
     }
 
     @Override
+    public int getDurationInSeconds() {
+        return 10;
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Teleport Guard";
     }

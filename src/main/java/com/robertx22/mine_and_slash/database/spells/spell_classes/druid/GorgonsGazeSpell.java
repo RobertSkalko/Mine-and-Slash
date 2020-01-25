@@ -90,7 +90,7 @@ public class GorgonsGazeSpell extends BaseSpell {
         World world = caster.world;
 
         Utilities.getEntitiesInFrontOf(3, 3, 15, caster, LivingEntity.class)
-                .forEach(x -> PotionEffectUtils.apply(PetrifyEffect.INSTANCE, 10 * 20, caster, x));
+                .forEach(x -> PotionEffectUtils.apply(PetrifyEffect.INSTANCE, caster, x));
 
         return true;
     }

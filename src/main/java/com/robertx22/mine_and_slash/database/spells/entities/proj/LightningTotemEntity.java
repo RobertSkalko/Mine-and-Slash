@@ -65,7 +65,7 @@ public class LightningTotemEntity extends EntityBaseProjectile {
                 entities.removeIf(x -> x == getCaster());
 
                 entities.forEach(x -> {
-                    this.dealSpellDamageTo(x, false);
+                    this.dealSpellDamageTo(x, new Options().knockbacks(false));
 
                     SoundUtils.playSound(this, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1, 1);
 

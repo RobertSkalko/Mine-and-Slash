@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
-import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
@@ -21,11 +20,7 @@ import java.util.List;
 
 public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEntry<SpellPerkEffect> {
 
-    public PerkType type = PerkType.SMALL;
-    boolean hasTexture = false;
     public BaseSpell spell;
-    private String guid;
-    private ResourceLocation TEXTURE;
     public List<ExactStatData> exactStats = new ArrayList<>();
 
     public SpellPerkEffect setGameChanger() {
@@ -46,7 +41,7 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         this.exactStats = Arrays.asList(exactStat);
         this.guid = guid;
 
-        setupTexture(render);
+        this.TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/talents/icons/" + render + ".png");
 
         this.registerToSlashRegistry();
     }
@@ -58,11 +53,6 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         setupTexture(spell);
 
         this.registerToSlashRegistry();
-    }
-
-    private void setupTexture(String id) {
-        this.TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/talents/icons/" + id + ".png");
-        this.hasTexture = !id.isEmpty();
     }
 
     public boolean isGameChanger() {
@@ -80,11 +70,6 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         this.hasTexture = true;
     }
 
-    public SpellPerkEffect type(PerkType type) {
-        this.type = type;
-        return this;
-    }
-
     public ITextComponent getName() {
         return null;
     }
@@ -98,14 +83,6 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         }
 
         return list;
-    }
-
-    public void render(int x, int y) {
-
-        if (hasTexture) {
-            RenderUtils.renderIcon(this.TEXTURE, x, y);
-        }
-
     }
 
     @Override

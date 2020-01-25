@@ -10,11 +10,11 @@ import net.minecraft.potion.EffectInstance;
 public class PotionEffectUtils {
 
     public static void reApplyToSelf(BasePotionEffect effect, LivingEntity caster) {
-        apply(effect, -1, caster, caster);
+        apply(effect, caster, caster);
     }
 
-    public static void applyToSelf(BasePotionEffect effect, int duration, LivingEntity caster) {
-        apply(effect, duration, caster, caster);
+    public static void applyToSelf(BasePotionEffect effect, LivingEntity caster) {
+        apply(effect, caster, caster);
     }
 
     public static ExtraPotionData getDataForTooltips(BasePotionEffect effect) {
@@ -28,7 +28,9 @@ public class PotionEffectUtils {
 
     }
 
-    public static void apply(BasePotionEffect effect, int duration, LivingEntity caster, LivingEntity target) {
+    public static void apply(BasePotionEffect effect, LivingEntity caster, LivingEntity target) {
+
+        int duration = effect.getDurationInTicks();
 
         EntityCap.UnitData casterData = Load.Unit(caster);
 

@@ -35,11 +35,7 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
     protected void entityInit() {
     }
 
-    public void ifDamageKilledEnemy(LivingEntity enemy) {
-        if (enemy.getHealth() <= 0) {
-
-        }
-    }
+    public abstract void onHit(LivingEntity entity);
 
     @Override
     protected void onImpact(RayTraceResult result) {
@@ -51,9 +47,7 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
                 SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.4F, 0.9F);
             }
 
-            this.dealSpellDamageTo(entityHit, true);
-
-            ifDamageKilledEnemy(entityHit);
+            onHit(entityHit);
 
         } else {
             if (world.isRemote) {

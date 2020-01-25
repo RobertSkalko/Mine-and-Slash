@@ -84,7 +84,7 @@ public class BlazingInfernoSpell extends BaseSpell {
     @Override
     public boolean cast(PlayerEntity caster, int ticksInUse) {
 
-        PotionEffectUtils.applyToSelf(BlazingInfernoEffect.INSTANCE, 15 * 20, caster);
+        PotionEffectUtils.applyToSelf(BlazingInfernoEffect.INSTANCE, caster);
 
         SoundUtils.playSoundAtPlayer(caster, SoundEvents.ITEM_FIRECHARGE_USE, 1, 1);
 

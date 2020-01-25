@@ -36,9 +36,9 @@ public class BlizzardEntity extends BaseCloudEntity {
 
         this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0f, 1.0f);
 
-        this.dealSpellDamageTo(entity, false);
+        this.dealSpellDamageTo(entity, new Options().knockbacks(false));
 
-        PotionEffectUtils.apply(FrostEffect.INSTANCE, 8 * 20, getCaster(), entity);
+        PotionEffectUtils.apply(FrostEffect.INSTANCE, getCaster(), entity);
 
     }
 

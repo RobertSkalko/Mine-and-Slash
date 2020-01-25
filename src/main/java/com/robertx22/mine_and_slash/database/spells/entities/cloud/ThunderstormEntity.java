@@ -31,7 +31,7 @@ public class ThunderstormEntity extends BaseCloudEntity {
 
     @Override
     public void onHit(LivingEntity entity) {
-        this.dealSpellDamageTo(entity, false);
+        this.dealSpellDamageTo(entity, new Options().knockbacks(false));
 
         // entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10));
 

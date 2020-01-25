@@ -25,6 +25,11 @@ public class CleansePoisonPotion extends BasePotionEffect {
     }
 
     @Override
+    public int getDurationInSeconds() {
+        return 5;
+    }
+
+    @Override
     public String GUID() {
         return "cleanse_poison";
     }

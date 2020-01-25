@@ -27,6 +27,11 @@ public class ManaRegenPotion extends BasePotionEffect {
     }
 
     @Override
+    public int getDurationInSeconds() {
+        return 10;
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Regen Mana";
     }

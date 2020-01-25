@@ -78,7 +78,7 @@ public class RegenerateSpell extends BaseSpellHeal {
 
                 SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION, 1, 1);
 
-                PotionEffectUtils.applyToSelf(RegenerateEffect.INSTANCE, 500, caster);
+                PotionEffectUtils.applyToSelf(RegenerateEffect.INSTANCE, caster);
 
             } else {
                 ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, caster, 10);

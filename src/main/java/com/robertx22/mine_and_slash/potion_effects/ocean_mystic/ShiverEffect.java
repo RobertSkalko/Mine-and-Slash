@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.potion_effects.ocean_mystic;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -23,11 +23,9 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShiverEffect extends BasePotionEffect implements IStatPotion {
+public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
 
     public static final ShiverEffect INSTANCE = new ShiverEffect();
-
-    public static final int DURATION = 100;
 
     private ShiverEffect() {
         super(EffectType.HARMFUL, 4393423);
@@ -37,6 +35,11 @@ public class ShiverEffect extends BasePotionEffect implements IStatPotion {
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
         ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
+    }
+
+    @Override
+    public int getDurationInSeconds() {
+        return 6;
     }
 
     @Override

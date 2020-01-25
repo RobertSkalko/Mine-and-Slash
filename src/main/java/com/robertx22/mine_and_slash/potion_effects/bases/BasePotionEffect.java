@@ -58,6 +58,12 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
         return new ResourceLocation(Ref.MODID, "textures/mob_effect/" + GUID() + ".png");
     }
 
+    public abstract int getDurationInSeconds();
+
+    public final int getDurationInTicks() {
+        return getDurationInSeconds() * 20;
+    }
+
     @Override
     public void performEffect(LivingEntity en, int amplifier) {
 
@@ -113,7 +119,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
         if (!target.world.isRemote || !isServerSideOnly()) {
 
-            onPotionAdd(target, attributes, amplifier);
+            onPotionAdd(target);
 
         }
 
@@ -124,15 +130,16 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
     @Override
     public void removeAttributesModifiersFromEntity(LivingEntity target, @Nonnull AbstractAttributeMap attributes,
                                                     int amplifier) {
-
-        // Called on removal
+        // called at end
         super.removeAttributesModifiersFromEntity(target, attributes, amplifier);
+
+        this.onPotionRemove(target);
     }
 
-    public void onPotionAdd(LivingEntity target, AbstractAttributeMap attributes, int amplifier) {
+    public void onPotionAdd(LivingEntity target) {
     }
 
-    public void onPotionRemove(LivingEntity target, AbstractAttributeMap attributes, int amplifier) {
+    public void onPotionRemove(LivingEntity target) {
     }
 
     public void onEffectApplied(Entity applier, Entity caster, LivingEntity target, int amplifier) {
@@ -145,14 +152,6 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
     protected boolean isAmbient() {
         return false;
-    }
-
-    public EffectInstance toPotionEffect(int amplifier) {
-        return toPotionEffect(1, amplifier);
-    }
-
-    public EffectInstance toPotionEffect(int duration, int amplifier) {
-        return new EffectInstance(this, duration, amplifier, isAmbient(), shouldShowParticles());
     }
 
     @OnlyIn(Dist.CLIENT)

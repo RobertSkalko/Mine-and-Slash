@@ -4,8 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.ICoreStat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.IPreCoreStat;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
-import com.robertx22.mine_and_slash.potion_effects.bases.IStatGivingPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -41,13 +40,13 @@ public class CommonStatUtils {
     public static void addPotionStats(LivingEntity entity, UnitData data) {
 
         for (EffectInstance instance : entity.getActivePotionEffects()) {
-            if (instance.getPotion() instanceof IStatGivingPotion) {
-                IStatGivingPotion pot = (IStatGivingPotion) instance.getPotion();
-                pot.getStats(instance).forEach(x -> x.useOnPlayer(data));
-            }
-            if (instance.getPotion() instanceof IStatPotion) {
-                IStatPotion stat = (IStatPotion) instance.getPotion();
-                stat.applyStats(data, instance);
+            if (instance.getPotion() instanceof IApplyStatPotion) {
+                IApplyStatPotion stat = (IApplyStatPotion) instance.getPotion();
+                try {
+                    stat.applyStats(data, instance);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

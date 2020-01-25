@@ -70,11 +70,11 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                 entities.removeIf(x -> x == getCaster());
 
                 entities.forEach(x -> {
-                    this.dealSpellDamageTo(x, false);
+                    this.dealSpellDamageTo(x, new Options().knockbacks(false));
 
                     x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, tickRate, 10));
 
-                    PotionEffectUtils.apply(ShiverEffect.INSTANCE, ShiverEffect.DURATION, getCaster(), x);
+                    PotionEffectUtils.apply(ShiverEffect.INSTANCE, getCaster(), x);
 
                     SoundUtils.playSound(this, SoundEvents.ENTITY_DROWNED_HURT_WATER, 1, 1);
 

@@ -30,7 +30,28 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
         return getSpellData().lifeInTicks;
     }
 
-    default SpellDamageEffect dealSpellDamageTo(LivingEntity target, boolean knockback) {
+    public static class Options {
+
+        public boolean knockback = true;
+        public boolean activateEffect = true;
+
+        public Options activatesEffect(boolean bool) {
+            this.activateEffect = bool;
+            return this;
+        }
+
+        public Options knockbacks(boolean bool) {
+            this.knockback = bool;
+            return this;
+        }
+
+    }
+
+    default SpellDamageEffect dealSpellDamageTo(LivingEntity target) {
+        return dealSpellDamageTo(target, new Options());
+    }
+
+    default SpellDamageEffect dealSpellDamageTo(LivingEntity target, Options opt) {
 
         EntitySpellData data = getSpellData();
 
@@ -46,12 +67,15 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
                                                       data.getSpell()
         );
 
-        if (knockback == false) {
+        if (opt.knockback == false) {
             dmg.removeKnockback();
         }
 
         dmg.element = spell.getElement();
-        dmg.Activate();
+
+        if (opt.activateEffect) {
+            dmg.Activate();
+        }
 
         return dmg;
 

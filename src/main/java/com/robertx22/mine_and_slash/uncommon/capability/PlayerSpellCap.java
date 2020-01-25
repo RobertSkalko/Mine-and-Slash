@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -43,6 +44,8 @@ public class PlayerSpellCap {
         public abstract PlayerSpellsData getSpellData();
 
         public abstract List<BaseSpell> getAvailableSpells();
+
+        public abstract boolean hasSynergy(Synergy synergy);
 
     }
 
@@ -142,6 +145,11 @@ public class PlayerSpellCap {
         @Override
         public List<BaseSpell> getAvailableSpells() {
             return this.perksData.getAvailableSpells();
+        }
+
+        @Override
+        public boolean hasSynergy(Synergy synergy) {
+            return getPerksData().isAllocated(synergy.GUID());
         }
 
     }

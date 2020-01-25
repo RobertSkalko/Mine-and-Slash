@@ -3,11 +3,11 @@ package com.robertx22.mine_and_slash.potion_effects.druid;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.IStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatCalc;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -26,7 +26,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinorThornsEffect extends BasePotionEffect implements IStatPotion {
+public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPotion {
 
     public static final MinorThornsEffect INSTANCE = new MinorThornsEffect();
 
@@ -35,7 +35,12 @@ public class MinorThornsEffect extends BasePotionEffect implements IStatPotion {
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
     }
 
-    static StatCalc CALC = new StatCalc(new ElementalSpellDamage(Elements.Nature), 0.1F);
+    static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.1F, 1);
+
+    @Override
+    public int getDurationInSeconds() {
+        return 15;
+    }
 
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
