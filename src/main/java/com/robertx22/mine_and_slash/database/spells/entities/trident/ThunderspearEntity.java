@@ -19,4 +19,8 @@ public class ThunderspearEntity extends BaseTridentEntity {
         super(EntityRegister.THUNDER_SPEAR, world);
     }
 
+    @Override
+    public int durationInSeconds() {
+        return 20;
+    }
 }

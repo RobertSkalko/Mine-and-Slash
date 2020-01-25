@@ -103,7 +103,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         return this.deathTime;
     }
 
-    public void setDeathTime(int newVal) {
+    private void setDeathTime(int newVal) {
         this.deathTime = newVal;
     }
 
@@ -116,6 +116,8 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         this.xTile = -1;
         this.yTile = -1;
         this.zTile = -1;
+
+        this.setDeathTime(this.getDefaultLifeInTicks());
 
     }
 

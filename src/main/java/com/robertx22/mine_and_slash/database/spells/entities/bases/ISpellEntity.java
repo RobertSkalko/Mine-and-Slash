@@ -14,6 +14,12 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
     default void initSpellEntity() {
     }
 
+    int durationInSeconds();
+
+    default int durationInTicks() {
+        return durationInSeconds() * 20;
+    }
+
     EntitySpellData getSpellData();
 
     void setSpellData(EntitySpellData data);

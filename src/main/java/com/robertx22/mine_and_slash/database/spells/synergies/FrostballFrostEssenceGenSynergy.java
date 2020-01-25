@@ -38,7 +38,7 @@ public class FrostballFrostEssenceGenSynergy extends Synergy<DamageContext> {
     }
 
     @Override
-    public void activate(DamageContext ctx) {
+    public void tryActivate(DamageContext ctx) {
         if (ctx.dmg.isCriticalHit()) {
             PotionEffectUtils.reApplyToSelf(FrostEssenceEffect.INSTANCE, ctx.caster);
         }

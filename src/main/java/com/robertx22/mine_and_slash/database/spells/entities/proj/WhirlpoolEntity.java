@@ -34,8 +34,11 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
     public WhirlpoolEntity(World worldIn) {
         super(EntityRegister.WHIRPOOL, worldIn);
 
-        this.setDeathTime(200);
+    }
 
+    @Override
+    public int durationInSeconds() {
+        return 10;
     }
 
     public WhirlpoolEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {

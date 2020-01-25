@@ -43,12 +43,14 @@ public class FrostballEntity extends BaseElementalBoltEntity {
 
         SpellDamageEffect dmg = dealSpellDamageTo(entity, new Options().activatesEffect(false));
 
-        if (Synergies.FROSTBALL_FROST_ESSENCE_GEN.has((PlayerEntity) getCaster())) {
-            Synergies.FROSTBALL_FROST_ESSENCE_GEN.activate(new DamageContext(getCaster(), entity, dmg));
+        if (Synergies.FROSTBALL_EXTRA_DMG.has((PlayerEntity) getCaster())) {
+            Synergies.FROSTBALL_EXTRA_DMG.tryActivate(new DamageContext(getCaster(), entity, dmg));
         }
 
-        if (Synergies.FROSTBALL_EXTRA_DMG.has((PlayerEntity) getCaster())) {
-            Synergies.FROSTBALL_EXTRA_DMG.activate(new DamageContext(getCaster(), entity, dmg));
+        dmg.Activate();
+
+        if (Synergies.FROSTBALL_FROST_ESSENCE_GEN.has((PlayerEntity) getCaster())) {
+            Synergies.FROSTBALL_FROST_ESSENCE_GEN.tryActivate(new DamageContext(getCaster(), entity, dmg));
         }
 
     }
@@ -69,4 +71,5 @@ public class FrostballEntity extends BaseElementalBoltEntity {
         }
 
     }
+
 }

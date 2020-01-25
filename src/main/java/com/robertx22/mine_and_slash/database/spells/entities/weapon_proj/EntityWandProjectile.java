@@ -29,6 +29,11 @@ public class EntityWandProjectile extends EntityBaseProjectile {
 
     }
 
+    @Override
+    public int durationInSeconds() {
+        return 20;
+    }
+
     public EntityWandProjectile(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
         super(EntityRegister.WANDPROJECTILE, world);
     }

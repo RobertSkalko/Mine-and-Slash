@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
@@ -43,11 +44,15 @@ public class PotionEffectUtils {
             extraData = new ExtraPotionData();
         }
 
+        if (extraData == null) {
+            extraData = new ExtraPotionData();
+        }
+
         if (extraData.getInitialDurationTicks() > 0) {
             duration = extraData.getInitialDurationTicks(); // if reapplied, apply existing duration
         }
 
-        EffectInstance newInstance = new EffectInstance(effect, duration, 1, false, false, true);
+        EffectInstance newInstance = new EffectInstance(effect, duration, extraData.getStacks(), false, false, true);
 
         if (instance == null) {
 
@@ -84,4 +89,31 @@ public class PotionEffectUtils {
 
     }
 
+    public static boolean reduceStacks(LivingEntity target, ShiverEffect effect) {
+        return reduceStacks(target, effect, 1);
+    }
+
+    public static boolean has(LivingEntity entity, BasePotionEffect effect) {
+        return entity.getActivePotionEffect(effect) != null;
+    }
+
+    public static boolean reduceStacks(LivingEntity target, ShiverEffect effect, int num) {
+
+        EffectInstance instance = target.getActivePotionEffect(effect);
+
+        if (instance != null) {
+            ExtraPotionData extraData = PotionDataSaving.getData(instance);
+
+            extraData.decreaseStacks(num, effect);
+
+            if (extraData.getStacks() <= 0) {
+                target.removePotionEffect(effect);
+            } else {
+                PotionDataSaving.saveData(instance, extraData);
+            }
+            return true;
+        }
+
+        return false;
+    }
 }

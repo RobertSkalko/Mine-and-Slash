@@ -14,7 +14,9 @@ public abstract class BasePerkEffect implements ITooltipList {
     protected boolean isGameChanger = false;
     public boolean isStart = false;
 
-    public abstract PerkType getPerkType();
+    public PerkType getPerkType() {
+        return this.type;
+    }
 
     public boolean isGameChanger() {
         return isGameChanger;

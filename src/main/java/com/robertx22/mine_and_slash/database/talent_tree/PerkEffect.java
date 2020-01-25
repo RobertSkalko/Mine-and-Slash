@@ -1,13 +1,11 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -23,13 +21,7 @@ import java.util.List;
 
 public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlashRegistryEntry<PerkEffect> {
 
-    public PerkType type = PerkType.SMALL;
     public List<ExactStatData> exactStats;
-
-    boolean hasTexture = false;
-    private String guid;
-
-    private ResourceLocation TEXTURE;
 
     public PerkEffect setGameChanger() {
         this.isGameChanger = true;
@@ -98,8 +90,8 @@ public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlas
 
         if (after > before) {
             if (!Screen.hasAltDown()) {
-                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(Words.PressAltForStatInfo
-                        .locName()).appendText("]"));
+                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(
+                        Words.PressAltForStatInfo.locName()).appendText("]"));
             }
         }
 
@@ -126,11 +118,6 @@ public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlas
     }
 
     @Override
-    public PerkType getPerkType() {
-        return this.type;
-    }
-
-    @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.PERK_EFFECT;
     }
@@ -140,23 +127,4 @@ public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlas
         return this.guid;
     }
 
-    @Override
-    public int Weight() {
-        return 1000;
-    }
-
-    @Override
-    public int getRarityRank() {
-        return 0;
-    }
-
-    @Override
-    public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
-    }
-
-    @Override
-    public int Tier() {
-        return 0;
-    }
 }

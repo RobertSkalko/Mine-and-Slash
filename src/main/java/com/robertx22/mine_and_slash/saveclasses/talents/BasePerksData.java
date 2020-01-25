@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.saveclasses.talents;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
+import com.robertx22.mine_and_slash.database.spells.spell_tree.SynergyPerkEffect;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -23,6 +25,13 @@ public abstract class BasePerksData<T extends BasePerk> implements IApplyableSta
 
     public boolean isAllocated(String guid) {
         return map.getOrDefault(guid, false);
+    }
+
+    public boolean hasSynergy(Synergy syn) {
+        return getAllCurrentPerks().stream()
+                .filter(x -> x.effect instanceof SynergyPerkEffect)
+                .anyMatch(x -> ((SynergyPerkEffect) x.effect).GUID().equals(syn.GUID()));
+
     }
 
     public boolean isAllocated(T point) {

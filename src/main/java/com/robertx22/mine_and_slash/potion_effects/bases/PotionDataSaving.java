@@ -34,6 +34,8 @@ public class PotionDataSaving {
     public static void saveData(EffectInstance instance, ExtraPotionData data) {
         ItemStack stack = new ItemStack(Items.AIR);
 
+        //instance.amplifier = data.getStacks(); amp isnt shown above 9, so its useless for my use case :/
+
         CompoundNBT nbt = new CompoundNBT();
         LoadSave.Save(data, nbt, LOC);
 

@@ -20,7 +20,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-public class BaseTridentEntity extends TridentEntity implements ISpellEntity {
+public abstract class BaseTridentEntity extends TridentEntity implements ISpellEntity {
 
     EntitySpellData syncedSpellData;
 

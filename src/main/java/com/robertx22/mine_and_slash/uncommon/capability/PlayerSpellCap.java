@@ -149,7 +149,7 @@ public class PlayerSpellCap {
 
         @Override
         public boolean hasSynergy(Synergy synergy) {
-            return getPerksData().isAllocated(synergy.GUID());
+            return getPerksData().hasSynergy(synergy);
         }
 
     }

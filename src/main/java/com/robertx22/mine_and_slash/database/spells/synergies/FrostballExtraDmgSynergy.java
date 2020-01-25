@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.DamageContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
+import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -43,8 +45,13 @@ public class FrostballExtraDmgSynergy extends Synergy<DamageContext> {
     }
 
     @Override
-    public void activate(DamageContext ctx) {
-        ctx.dmg.number += CALC.getCalculatedValue(Load.Unit(ctx.caster));
-    }
+    public void tryActivate(DamageContext ctx) {
 
+        if (PotionEffectUtils.has(ctx.target, ShiverEffect.INSTANCE)) {
+
+            PotionEffectUtils.reduceStacks(ctx.target, ShiverEffect.INSTANCE);
+
+            ctx.dmg.number += CALC.getCalculatedValue(Load.Unit(ctx.caster));
+        }
+    }
 }

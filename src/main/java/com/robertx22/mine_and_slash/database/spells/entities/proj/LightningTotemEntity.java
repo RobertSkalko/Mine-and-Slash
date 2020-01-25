@@ -29,8 +29,11 @@ public class LightningTotemEntity extends EntityBaseProjectile {
     public LightningTotemEntity(World worldIn) {
         super(EntityRegister.LIGHTNING_TOTEM, worldIn);
 
-        this.setDeathTime(300);
+    }
 
+    @Override
+    public int durationInSeconds() {
+        return 15;
     }
 
     public LightningTotemEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {

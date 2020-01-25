@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.spells.spell_tree;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerkEffect;
-import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
@@ -83,11 +82,6 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         }
 
         return list;
-    }
-
-    @Override
-    public PerkType getPerkType() {
-        return type;
     }
 
     @Override

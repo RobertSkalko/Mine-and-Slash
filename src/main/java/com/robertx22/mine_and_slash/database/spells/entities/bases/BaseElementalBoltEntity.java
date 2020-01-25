@@ -22,6 +22,11 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
 
     public abstract Elements element();
 
+    @Override
+    public int durationInSeconds() {
+        return 20;
+    }
+
     public BaseElementalBoltEntity(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
 

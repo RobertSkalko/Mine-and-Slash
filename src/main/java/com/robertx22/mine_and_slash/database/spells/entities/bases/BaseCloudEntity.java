@@ -22,6 +22,11 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
     }
 
+    @Override
+    public int durationInSeconds() {
+        return 8;
+    }
+
     public abstract void onHit(LivingEntity entity);
 
     public abstract void summonFallParticle(Vec3d p);

@@ -26,6 +26,7 @@ import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
+import com.robertx22.mine_and_slash.database.spells.spell_tree.SynergyPerkEffect;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
@@ -86,6 +87,10 @@ public class SlashRegistry {
 
         return EntityConfigs().getDefault();
 
+    }
+
+    public static SlashRegistryContainer<SynergyPerkEffect> SynergyEffects() {
+        return getRegistry(SlashRegistryType.SYNERGY_EFFECT);
     }
 
     public static SlashRegistryContainer<PerkEffect> PerkEffects() {
@@ -340,7 +345,9 @@ public class SlashRegistry {
         map.put(SlashRegistryType.SPELL_PERK_EFFECT,
                 new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null)
         );
-
+        map.put(SlashRegistryType.SYNERGY_EFFECT,
+                new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null)
+        );
     }
 
 }

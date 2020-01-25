@@ -37,6 +37,9 @@ public class SpellPerkGrid extends PerkGrid<SpellPerkGridPoint> {
                     if (SlashRegistry.PerkEffects().isRegistered(id)) {
                         effect = SlashRegistry.PerkEffects().get(id);
                     }
+                    if (SlashRegistry.SynergyEffects().isRegistered(id)) {
+                        effect = SlashRegistry.SynergyEffects().get(id);
+                    }
 
                     if (effect == null) {
 

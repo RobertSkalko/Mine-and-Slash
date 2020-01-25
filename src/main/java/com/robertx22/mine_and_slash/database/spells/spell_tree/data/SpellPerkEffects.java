@@ -18,7 +18,9 @@ public class SpellPerkEffects {
     public static void register() {
 
         START = new SpellPerkEffect(
-                "start", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/mage").setStart();
+                "start", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/mage").setStart()
+                .setGameChanger()
+                .type(PerkType.MAJOR);
 
         SlashRegistry.Spells().getList().forEach(x -> spell(x)); // registers all spells as perks
 
@@ -31,8 +33,8 @@ public class SpellPerkEffects {
         return new SpellPerkEffect(spell).setGameChanger().type(PerkType.MAJOR);
     }
 
-    static SpellPerkEffect synergy(Synergy synergy) {
-        return new SynergyPerkEffect(synergy).setGameChanger().type(PerkType.MAJOR);
+    static SynergyPerkEffect synergy(Synergy synergy) {
+        return new SynergyPerkEffect(synergy).setGameChanger().type(PerkType.BIG);
     }
 
 }

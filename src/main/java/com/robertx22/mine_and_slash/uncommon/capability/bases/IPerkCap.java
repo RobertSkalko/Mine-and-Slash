@@ -111,6 +111,8 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
                 if (this.getPerksData().getAllCurrentPerks().stream().anyMatch(x -> x.isStart)) {
                     // if player already picked a starting point, dont allow to pick other start points
                     return false;
+                } else {
+                    return true;
                 }
             }
 

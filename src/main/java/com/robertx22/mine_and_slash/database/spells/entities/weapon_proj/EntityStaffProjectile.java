@@ -32,6 +32,11 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     }
 
     @Override
+    public int durationInSeconds() {
+        return 20;
+    }
+
+    @Override
     public double radius() {
         return 0.5D;
     }

@@ -28,7 +28,7 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
 
     }
 
-    public abstract void activate(T ctx);
+    public abstract void tryActivate(T ctx);
 
     public boolean has(PlayerSpellCap.ISpellsCap spells) {
         return spells.hasSynergy(this);

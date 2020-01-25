@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -124,8 +125,10 @@ public class OnTickLogic {
 
                 if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
                     data.ticksToSpellCooldowns = 0;
-                    Load.spells(player).getSpellData().onTimePass(TicksToSpellCooldowns);
-                    Load.spells(player).getSpellData().tryCast(player);
+                    PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+
+                    spells.getSpellData().onTimePass(TicksToSpellCooldowns);
+                    spells.getSpellData().tryCast(player, spells);
 
                 }
 

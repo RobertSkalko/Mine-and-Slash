@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -61,16 +62,19 @@ public class PlayerSpellsData {
 
     }
 
-    public void tryCast(PlayerEntity player) {
+    public void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
 
         if (!spellBeingCast.isEmpty()) {
             if (castingTicksLeft <= 0) {
                 BaseSpell spell = SlashRegistry.Spells().get(spellBeingCast);
-                spell.cast(player, spell.useTimeTicks());
 
-                spellBeingCast = "";
+                if (spells.getPerksData().getAvailableSpells().contains(spell)) {
+                    spell.cast(player, spell.useTimeTicks());
 
-                onSpellCast(spell);
+                    spellBeingCast = "";
+
+                    onSpellCast(spell);
+                }
             }
         }
 
