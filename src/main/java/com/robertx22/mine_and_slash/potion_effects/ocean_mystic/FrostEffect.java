@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResi
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -64,7 +63,7 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public int maxStacks() {
+    public int getMaxStacks() {
         return 5;
     }
 
@@ -74,15 +73,14 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
+    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
 
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
+        List<ExactStatData> list = new ArrayList<>();
 
-        ExactStatData water = getStatMod(data, Elements.Water, extraData);
-        ExactStatData fire = getStatMod(data, Elements.Fire, extraData);
+        list.add(getStatMod(data, Elements.Water, extraData));
+        list.add(getStatMod(data, Elements.Fire, extraData));
 
-        water.applyStats(data);
-        fire.applyStats(data);
+        return list;
 
     }
 
@@ -92,13 +90,9 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
 
         list.add(locName());
 
-        list.add(new StringTextComponent("Slows and Reduces Resistances;"));
+        list.add(new StringTextComponent("Slows"));
 
-        ExactStatData water = getStatMod(info.unitdata, Elements.Water, new ExtraPotionData());
-        ExactStatData fire = getStatMod(info.unitdata, Elements.Fire, new ExtraPotionData());
-
-        list.addAll(water.GetTooltipString(info));
-        list.addAll(fire.GetTooltipString(info));
+        getStatTooltip(info, this);
 
         return list;
 

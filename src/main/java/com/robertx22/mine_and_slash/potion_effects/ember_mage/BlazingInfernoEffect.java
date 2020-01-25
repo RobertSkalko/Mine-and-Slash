@@ -5,12 +5,10 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -27,7 +25,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlazingInfernoEffect extends BasePotionEffect implements IApplyStatPotion {
+public class BlazingInfernoEffect extends BasePotionEffect {
 
     public static final BlazingInfernoEffect INSTANCE = new BlazingInfernoEffect();
 
@@ -85,20 +83,13 @@ public class BlazingInfernoEffect extends BasePotionEffect implements IApplyStat
     }
 
     @Override
-    public int maxStacks() {
+    public int getMaxStacks() {
         return 1;
     }
 
     @Override
     public int getDurationInSeconds() {
         return 15;
-    }
-
-    @Override
-    public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
-
-        // ExtraPotionData extraData = PotionDataSaving.getData(instance);
-
     }
 
     @Override
@@ -111,6 +102,8 @@ public class BlazingInfernoEffect extends BasePotionEffect implements IApplyStat
         list.add(new StringTextComponent("Does damage to enemies around you:"));
 
         list.addAll(CALC.GetTooltipString(info));
+
+        list.addAll(getTickTooltip());
 
         return list;
     }

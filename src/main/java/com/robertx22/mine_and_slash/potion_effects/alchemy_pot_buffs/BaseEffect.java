@@ -1,12 +1,16 @@
 package com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs;
 
 import com.robertx22.mine_and_slash.potion_effects.bases.IDefaultApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +31,11 @@ public abstract class BaseEffect extends Effect implements IAutoLocName, IDefaul
 
     public BaseEffect(String guid, String name, int level, StatModData mod) {
         this(guid, name, level, Arrays.asList(mod));
+    }
+
+    @Override
+    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
+        return new ArrayList<>();
     }
 
     public abstract Professions proffesion();

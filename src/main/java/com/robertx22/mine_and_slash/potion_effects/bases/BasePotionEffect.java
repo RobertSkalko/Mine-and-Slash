@@ -14,10 +14,13 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BasePotionEffect extends Effect implements IAutoLocName, ITooltipList {
@@ -26,7 +29,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
                                   EffectInstance instance);
 
-    public int maxStacks() {
+    public int getMaxStacks() {
         return 1;
     }
 
@@ -62,6 +65,17 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
     public final int getDurationInTicks() {
         return getDurationInSeconds() * 20;
+    }
+
+    public List<ITextComponent> getTickTooltip() {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new StringTextComponent(
+                TextFormatting.YELLOW + "Effect occurs every " + performEachXTicks() + " ticks."));
+
+        return list;
+
     }
 
     @Override

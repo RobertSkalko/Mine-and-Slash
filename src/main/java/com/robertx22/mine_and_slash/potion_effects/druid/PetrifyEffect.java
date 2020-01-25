@@ -3,13 +3,9 @@ package com.robertx22.mine_and_slash.potion_effects.druid;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -32,7 +28,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PetrifyEffect extends BasePotionEffect implements IApplyStatPotion, IOnBasicAttackedPotion {
+public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedPotion {
 
     public static final PetrifyEffect INSTANCE = new PetrifyEffect();
 
@@ -77,15 +73,8 @@ public class PetrifyEffect extends BasePotionEffect implements IApplyStatPotion,
     }
 
     @Override
-    public int maxStacks() {
+    public int getMaxStacks() {
         return 1;
-    }
-
-    @Override
-    public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
-
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
-
     }
 
     @Override
@@ -95,7 +84,8 @@ public class PetrifyEffect extends BasePotionEffect implements IApplyStatPotion,
 
         list.add(locName());
 
-        list.add(new StringTextComponent("Petrifies Enemy. If Attacked, does extra damage, but stops effect:"));
+        list.add(new StringTextComponent("Petrifies Enemy."));
+        list.add(new StringTextComponent("If Attacked, does extra damage, but stops effect."));
 
         list.addAll(CALC.GetTooltipString(info));
 

@@ -16,6 +16,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,10 @@ public class RegenerateEffect extends BasePotionEffect {
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(locName());
+
+        list.add(new StringTextComponent("Heals user."));
+
+        list.addAll(getTickTooltip());
 
         list.addAll(CALC.GetTooltipString(info));
 

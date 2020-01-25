@@ -42,11 +42,11 @@ public class ExtraPotionData {
     }
 
     public void addStacks(int num, BasePotionEffect effect) {
-        this.stacks = MathHelper.clamp(stacks + num, 0, effect.maxStacks());
+        this.stacks = MathHelper.clamp(stacks + num, 0, effect.getMaxStacks());
     }
 
     public void decreaseStacks(int num, BasePotionEffect effect) {
-        this.stacks = MathHelper.clamp(stacks - num, 0, effect.maxStacks());
+        this.stacks = MathHelper.clamp(stacks - num, 0, effect.getMaxStacks());
     }
 
     public int getStacks() {

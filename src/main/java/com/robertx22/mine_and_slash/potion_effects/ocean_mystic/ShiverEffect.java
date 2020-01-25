@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResi
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -18,7 +17,6 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +56,7 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public int maxStacks() {
+    public int getMaxStacks() {
         return 1;
     }
 
@@ -75,15 +73,14 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
+    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
 
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
+        List<ExactStatData> list = new ArrayList<>();
 
-        ExactStatData water = getWater(data, extraData);
-        ExactStatData fire = getFire(data, extraData);
+        list.add(getWater(data, extraData));
+        list.add(getFire(data, extraData));
 
-        water.applyStats(data);
-        fire.applyStats(data);
+        return list;
 
     }
 
@@ -93,13 +90,7 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
 
         list.add(locName());
 
-        list.add(new StringTextComponent("Reduces Resistances;"));
-
-        ExactStatData water = getWater(info.unitdata, new ExtraPotionData());
-        ExactStatData fire = getFire(info.unitdata, new ExtraPotionData());
-
-        list.addAll(water.GetTooltipString(info));
-        list.addAll(fire.GetTooltipString(info));
+        getStatTooltip(info, this);
 
         return list;
 

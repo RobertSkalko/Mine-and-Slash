@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResi
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -18,7 +17,6 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +52,7 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     }
 
     @Override
-    public int maxStacks() {
+    public int getMaxStacks() {
         return 1;
     }
 
@@ -75,15 +73,14 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
+    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
 
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
+        List<ExactStatData> list = new ArrayList<>();
 
-        ExactStatData nature = getNatureRes(data, extraData);
-        ExactStatData armor = getArmor(data, extraData);
+        list.add(getNatureRes(data, extraData));
+        list.add(getArmor(data, extraData));
 
-        nature.applyStats(data);
-        armor.applyStats(data);
+        return list;
 
     }
 
@@ -95,13 +92,7 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
 
         list.add(locName());
 
-        list.add(new StringTextComponent("Adds stats: "));
-
-        ExactStatData nature = getNatureRes(info.unitdata, data);
-        ExactStatData armor = getArmor(info.unitdata, data);
-
-        list.addAll(nature.GetTooltipString(info));
-        list.addAll(armor.GetTooltipString(info));
+        list.addAll(getStatTooltip(info, this));
 
         return list;
 

@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -14,7 +16,9 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
@@ -74,14 +78,24 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
     }
 
     @Override
-    public int maxStacks() {
+    public int getMaxStacks() {
         return 1;
     }
 
-    @Override
-    public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
+    public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
+        int statAmount = -3 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(ele)).scaleToLvl(extraData.casterLvl);
+    }
 
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
+    @Override
+    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
+
+        List<ExactStatData> list = new ArrayList<>();
+
+        list.add(getStatMod(data, Elements.Thunder, extraData));
+        list.add(getStatMod(data, Elements.Nature, extraData));
+
+        return list;
 
     }
 
@@ -95,6 +109,12 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
         list.add(new StringTextComponent("Does damage:"));
 
         list.addAll(CALC.GetTooltipString(info));
+
+        Tooltip.addEmpty(list);
+
+        this.getStatTooltip(info, this);
+
+        list.addAll(getTickTooltip());
 
         return list;
     }

@@ -80,9 +80,11 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+
         if (value == 0) {
             return new ArrayList<>();
         }
+
         Stat stat = getStat();
         TooltipStatInfo statInfo = new TooltipStatInfo(this, info);
         return new ArrayList<>(stat.getTooltipList(statInfo));

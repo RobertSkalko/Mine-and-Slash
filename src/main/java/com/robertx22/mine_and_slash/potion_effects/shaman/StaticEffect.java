@@ -1,8 +1,8 @@
-package com.robertx22.mine_and_slash.potion_effects.ocean_mystic;
+package com.robertx22.mine_and_slash.potion_effects.shaman;
 
-import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
-import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
@@ -11,27 +11,29 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPotion {
+public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
-    public static final FrostEssenceEffect INSTANCE = new FrostEssenceEffect();
+    public static final StaticEffect INSTANCE = new StaticEffect();
 
-    private FrostEssenceEffect() {
-        super(EffectType.BENEFICIAL, 4393423);
+    private StaticEffect() {
+        super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
     }
 
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
-        //ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
+        ParticleUtils.spawnParticles(ParticleRegister.THUNDER, entity, 5);
     }
 
     @Override
@@ -41,7 +43,7 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
     @Override
     public String GUID() {
-        return "frost_essence";
+        return "static";
     }
 
     @Override
@@ -51,23 +53,17 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
     @Override
     public String locNameForLangFile() {
-        return "Frost Essence";
+        return "Static";
     }
 
     @Override
     public int getMaxStacks() {
-        return 20;
+        return 3;
     }
 
-    public ExactStatData getCrit(EntityCap.UnitData data, ExtraPotionData extraData) {
-        float statAmount = 0.5F * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, CriticalDamage.INSTANCE);
-    }
-
-    public ExactStatData getWater(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = 1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new AllElementalDamage(Elements.Water)).scaleToLvl(
-                extraData.casterLvl);
+    public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
+        int statAmount = -1 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(ele)).scaleToLvl(extraData.casterLvl);
     }
 
     @Override
@@ -75,8 +71,8 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
         List<ExactStatData> list = new ArrayList<>();
 
-        list.add(getWater(data, extraData));
-        list.add(getCrit(data, extraData));
+        list.add(getStatMod(data, Elements.Thunder, extraData));
+        list.add(getStatMod(data, Elements.Nature, extraData));
 
         return list;
 
@@ -88,11 +84,12 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
         list.add(locName());
 
-        list.addAll(getStatTooltip(info, this));
+        list.add(new StringTextComponent("Slows and Reduces Resistances;"));
+
+        getStatsAffected(info.unitdata, new ExtraPotionData()).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 
     }
 
 }
-

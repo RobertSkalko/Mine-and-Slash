@@ -64,7 +64,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
     }
 
     @Override
-    public int maxStacks() {
+    public int getMaxStacks() {
         return 5;
     }
 
@@ -75,13 +75,13 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data, EffectInstance instance) {
+    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
 
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
+        List<ExactStatData> list = new ArrayList<>();
 
-        ExactStatData fire = getStatMod(data, Elements.Fire, extraData);
+        list.add(getStatMod(data, Elements.Fire, extraData));
 
-        fire.applyStats(data);
+        return list;
 
     }
 
@@ -93,15 +93,12 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
 
         list.add(locName());
 
-        list.add(new StringTextComponent("Adds fire damage to your attacks"));
-
-        ExactStatData fire = getStatMod(info.unitdata, Elements.Fire, data);
-        list.addAll(fire.GetTooltipString(info));
+        list.addAll(getStatTooltip(info, this));
 
         Tooltip.addEmpty(list);
 
         list.add(new StringTextComponent("Increases your movement speed."));
-        list.add(new StringTextComponent("At " + maxStacks() + " stacks, buff explodes in an area attack."));
+        list.add(new StringTextComponent("At " + getMaxStacks() + " stacks, buff explodes in an area attack."));
 
         Tooltip.addEmpty(list);
 
@@ -118,8 +115,6 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
     @Override
     public void OnBasicAttack(LivingEntity source, LivingEntity target) {
 
-        //        PotionEffectUtils.reApplyToSelf(this, source);
-
         EffectInstance instance = source.getActivePotionEffect(this);
 
         if (instance != null) {
@@ -128,7 +123,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
             if (extraData != null) {
                 extraData.addStacks(1, this);
 
-                if (extraData.getStacks() >= maxStacks()) {
+                if (extraData.getStacks() >= getMaxStacks()) {
 
                     extraData.decreaseStacks(500, this);
                     extraData.timesUsed++;
