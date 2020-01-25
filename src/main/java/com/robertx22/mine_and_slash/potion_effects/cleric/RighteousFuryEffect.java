@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.cleric;
 
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.*;
@@ -98,11 +99,6 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
         Tooltip.addEmpty(list);
 
         list.add(new StringTextComponent("Increases your movement speed."));
-        list.add(new StringTextComponent("At " + getMaxStacks() + " stacks, buff explodes in an area attack."));
-
-        Tooltip.addEmpty(list);
-
-        list.addAll(BlazingInfernoEffect.CALC.GetTooltipString(info));
 
         Tooltip.addEmpty(list);
 
@@ -125,17 +121,19 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
 
                 if (extraData.getStacks() >= getMaxStacks()) {
 
-                    extraData.decreaseStacks(500, this);
-                    extraData.timesUsed++;
+                    if (Synergies.RIGHTEOUS_FURY_AOE.has(source)) {
+                        extraData.decreaseStacks(500, this);
+                        extraData.timesUsed++;
 
-                    BlazingInfernoEffect.damageMobsAroundYou(source, instance);
+                        BlazingInfernoEffect.damageMobsAroundYou(source, instance);
 
-                    SoundUtils.playSound(source, SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
+                        SoundUtils.playSound(source, SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
 
-                    if (extraData.timesUsed > 3) {
-                        source.removePotionEffect(this);
-                    } else {
-                        PotionDataSaving.saveData(instance, extraData);
+                        if (extraData.timesUsed > 3) {
+                            source.removePotionEffect(this);
+                        } else {
+                            PotionDataSaving.saveData(instance, extraData);
+                        }
                     }
                 } else {
                     PotionDataSaving.saveData(instance, extraData);

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
@@ -89,7 +88,7 @@ public class PotionEffectUtils {
 
     }
 
-    public static boolean reduceStacks(LivingEntity target, ShiverEffect effect) {
+    public static boolean reduceStacks(LivingEntity target, BasePotionEffect effect) {
         return reduceStacks(target, effect, 1);
     }
 
@@ -97,7 +96,7 @@ public class PotionEffectUtils {
         return entity.getActivePotionEffect(effect) != null;
     }
 
-    public static boolean reduceStacks(LivingEntity target, ShiverEffect effect, int num) {
+    public static boolean reduceStacks(LivingEntity target, BasePotionEffect effect, int num) {
 
         EffectInstance instance = target.getActivePotionEffect(effect);
 

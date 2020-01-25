@@ -47,6 +47,9 @@ public class PlayerSpellCap {
 
         public abstract boolean hasSynergy(Synergy synergy);
 
+        @Override
+        public abstract void reset();
+
     }
 
     @Mod.EventBusSubscriber
@@ -150,6 +153,16 @@ public class PlayerSpellCap {
         @Override
         public boolean hasSynergy(Synergy synergy) {
             return getPerksData().hasSynergy(synergy);
+        }
+
+        @Override
+        public void reset() {
+
+            this.getPerksData().reset();
+
+            this.getSpellData().getMap(PlayerSpellsData.Hotbar.FIRST).clear();
+            this.getSpellData().getMap(PlayerSpellsData.Hotbar.SECOND).clear();
+
         }
 
     }

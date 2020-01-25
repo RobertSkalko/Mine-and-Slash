@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.database.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
+import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -69,6 +71,8 @@ public class LightningTotemEntity extends EntityBaseProjectile {
 
                 entities.forEach(x -> {
                     this.dealSpellDamageTo(x, new Options().knockbacks(false));
+
+                    PotionEffectUtils.apply(StaticEffect.INSTANCE, getCaster(), x);
 
                     SoundUtils.playSound(this, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1, 1);
 

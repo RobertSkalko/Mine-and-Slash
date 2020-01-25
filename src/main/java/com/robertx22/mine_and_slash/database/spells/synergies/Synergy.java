@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -17,8 +18,14 @@ import java.util.List;
 
 public abstract class Synergy<T extends SynergyContext> implements ITooltipList, IGUID {
 
-    public boolean has(PlayerEntity player) {
-        return Load.spells(player).hasSynergy(this);
+    public boolean has(LivingEntity en) {
+
+        if (en instanceof PlayerEntity) {
+
+            return Load.spells((PlayerEntity) en).hasSynergy(this);
+        }
+
+        return false;
     }
 
     public abstract BaseSpell spellAffected();

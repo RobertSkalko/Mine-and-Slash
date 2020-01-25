@@ -1,7 +1,8 @@
-package com.robertx22.mine_and_slash.database.spells.synergies;
+package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.DamageContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
