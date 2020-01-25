@@ -28,6 +28,7 @@ public class SpellPerkEffects {
         synergy(Synergies.FROSTBALL_FROST_ESSENCE_GEN);
         synergy(Synergies.BLIZZARD_FROST);
         synergy(Synergies.WHIRLPOOL_FROST_DMG);
+        synergy(Synergies.HEART_OF_ICE_FROST);
 
         synergy(Synergies.THORN_ARMOR_THORNS);
 

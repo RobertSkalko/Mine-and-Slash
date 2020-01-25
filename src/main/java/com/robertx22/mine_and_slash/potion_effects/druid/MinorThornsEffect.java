@@ -57,6 +57,7 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
 
         DamageEffect dmg = new DamageEffect(null, entity, caster, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
         dmg.element = Elements.Nature;
+        dmg.removeKnockback();
         dmg.Activate();
 
         ParticleUtils.spawnParticles(ParticleTypes.ITEM_SLIME, entity, 5);

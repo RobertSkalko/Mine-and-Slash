@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.Bla
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.HeartOfIceSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.WhirpoolSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.LightningTotemSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
@@ -31,6 +32,7 @@ public class Spells implements ISlashRegistryInit {
                     add(new FrostballSpell());
                     add(new BlizzardSpell());
                     add(new WhirpoolSpell());
+                    add(new HeartOfIceSpell());
 
                     add(new InstantHealSpell());
                     add(new RighteousFurySpell());
@@ -42,11 +44,11 @@ public class Spells implements ISlashRegistryInit {
                     add(new ThunderstormSpell());
                     add(new ThunderspearSpell());
                     add(new ThunderDashSpell());
+                    add(new LightningTotemSpell());
 
                     add(new BlazingInfernoSpell());
                     add(new FireballSpell());
 
-                    add(new LightningTotemSpell());
                 }
             }
 

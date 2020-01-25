@@ -144,11 +144,18 @@ public abstract class BasePerksData<T extends BasePerk> implements IApplyableSta
 
     }
 
+    private List<BaseSpell> spellsCache;
+
     public List<BaseSpell> getAvailableSpells() {
-        return getAllCurrentPerks().stream()
-                .filter(x -> x.effect instanceof SpellPerkEffect)
-                .map(x -> ((SpellPerkEffect) x.effect).spell)
-                .collect(Collectors.toList());
+
+        if (spellsCache == null) {
+            spellsCache = getAllCurrentPerks().stream()
+                    .filter(x -> x.effect instanceof SpellPerkEffect)
+                    .map(x -> ((SpellPerkEffect) x.effect).spell)
+                    .collect(Collectors.toList());
+        }
+
+        return spellsCache;
 
     }
 }

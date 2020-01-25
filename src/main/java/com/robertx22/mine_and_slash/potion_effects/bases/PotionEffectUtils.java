@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
@@ -114,5 +115,20 @@ public class PotionEffectUtils {
         }
 
         return false;
+    }
+
+    public static int getStacks(LivingEntity en, FrostEssenceEffect effect) {
+        EffectInstance instance = en.getActivePotionEffect(effect);
+
+        if (instance != null) {
+            ExtraPotionData extraData = PotionDataSaving.getData(instance);
+
+            if (extraData != null) {
+                return extraData.getStacks();
+            }
+
+        }
+        return 0;
+
     }
 }
