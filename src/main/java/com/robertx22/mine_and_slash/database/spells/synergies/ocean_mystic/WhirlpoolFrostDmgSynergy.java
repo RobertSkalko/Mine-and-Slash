@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.WhirpoolSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.DamageContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
@@ -17,7 +17,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WhirlpoolFrostDmgSynergy extends Synergy<DamageContext> {
+public class WhirlpoolFrostDmgSynergy extends Synergy<BeforeDamageContext> {
 
     @Override
     public String GUID() {
@@ -46,7 +46,7 @@ public class WhirlpoolFrostDmgSynergy extends Synergy<DamageContext> {
     }
 
     @Override
-    public void tryActivate(DamageContext ctx) {
+    public void tryActivate(BeforeDamageContext ctx) {
 
         if (PotionEffectUtils.has(ctx.target, FrostEffect.INSTANCE)) {
 

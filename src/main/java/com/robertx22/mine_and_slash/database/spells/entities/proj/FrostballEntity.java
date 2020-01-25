@@ -2,7 +2,8 @@ package com.robertx22.mine_and_slash.database.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.DamageContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -44,13 +45,13 @@ public class FrostballEntity extends BaseElementalBoltEntity {
         SpellDamageEffect dmg = dealSpellDamageTo(entity, new Options().activatesEffect(false));
 
         if (Synergies.FROSTBALL_EXTRA_DMG.has((PlayerEntity) getCaster())) {
-            Synergies.FROSTBALL_EXTRA_DMG.tryActivate(new DamageContext(getCaster(), entity, dmg));
+            Synergies.FROSTBALL_EXTRA_DMG.tryActivate(new BeforeDamageContext(getCaster(), entity, dmg));
         }
 
         dmg.Activate();
 
         if (Synergies.FROSTBALL_FROST_ESSENCE_GEN.has((PlayerEntity) getCaster())) {
-            Synergies.FROSTBALL_FROST_ESSENCE_GEN.tryActivate(new DamageContext(getCaster(), entity, dmg));
+            Synergies.FROSTBALL_FROST_ESSENCE_GEN.tryActivate(new AfterDamageContext(getCaster(), entity, dmg));
         }
 
     }

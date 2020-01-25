@@ -1,10 +1,13 @@
 package com.robertx22.mine_and_slash.database.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -73,7 +76,14 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                 entities.removeIf(x -> x == getCaster());
 
                 entities.forEach(x -> {
-                    this.dealSpellDamageTo(x, new Options().knockbacks(false));
+
+                    DamageEffect dmg = dealSpellDamageTo(x, new Options().knockbacks(false).activatesEffect(false));
+
+                    if (Synergies.WHIRLPOOL_FROST_DMG.has(getCaster())) {
+                        Synergies.WHIRLPOOL_FROST_DMG.tryActivate(new BeforeDamageContext(getCaster(), x, dmg));
+                    }
+
+                    dmg.Activate();
 
                     x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, tickRate, 10));
 

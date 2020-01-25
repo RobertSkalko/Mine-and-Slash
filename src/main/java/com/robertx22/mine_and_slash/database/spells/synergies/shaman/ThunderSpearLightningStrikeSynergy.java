@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.DamageContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
@@ -18,7 +18,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThunderSpearLightningStrikeSynergy extends Synergy<DamageContext> {
+public class ThunderSpearLightningStrikeSynergy extends Synergy<BeforeDamageContext> {
 
     @Override
     public String GUID() {
@@ -48,7 +48,7 @@ public class ThunderSpearLightningStrikeSynergy extends Synergy<DamageContext> {
     }
 
     @Override
-    public void tryActivate(DamageContext ctx) {
+    public void tryActivate(BeforeDamageContext ctx) {
 
         if (PotionEffectUtils.has(ctx.target, StaticEffect.INSTANCE)) {
 

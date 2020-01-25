@@ -1,10 +1,13 @@
 package com.robertx22.mine_and_slash.database.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -12,6 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.SoundEvents;
@@ -70,6 +74,15 @@ public class LightningTotemEntity extends EntityBaseProjectile {
                 entities.removeIf(x -> x == getCaster());
 
                 entities.forEach(x -> {
+
+                    SpellDamageEffect dmg = dealSpellDamageTo(x, new Options().activatesEffect(false));
+
+                    dmg.Activate();
+
+                    if (Synergies.LIGHTNING_TOTEM_STATIC.has((PlayerEntity) getCaster())) {
+                        Synergies.LIGHTNING_TOTEM_STATIC.tryActivate(new AfterDamageContext(getCaster(), x, dmg));
+                    }
+
                     this.dealSpellDamageTo(x, new Options().knockbacks(false));
 
                     PotionEffectUtils.apply(StaticEffect.INSTANCE, getCaster(), x);

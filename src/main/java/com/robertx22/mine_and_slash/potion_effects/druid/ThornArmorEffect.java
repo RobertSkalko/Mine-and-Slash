@@ -1,10 +1,13 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -21,7 +24,7 @@ import net.minecraft.util.text.ITextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPotion {
+public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPotion, IOnBasicAttackedPotion {
 
     public static final ThornArmorEffect INSTANCE = new ThornArmorEffect();
 
@@ -98,5 +101,12 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
 
     }
 
+    @Override
+    public void onBasicAttacked(LivingEntity source, LivingEntity target) {
+        if (Synergies.THORN_ARMOR_THORNS.has(target)) {
+            Synergies.THORN_ARMOR_THORNS.tryActivate(new CasterTargetContext(source, target));
+
+        }
+    }
 }
 

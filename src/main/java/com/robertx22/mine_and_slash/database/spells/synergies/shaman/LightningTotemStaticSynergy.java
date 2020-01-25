@@ -1,11 +1,11 @@
-package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
+package com.robertx22.mine_and_slash.database.spells.synergies.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.LightningTotemSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
+import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -13,11 +13,11 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrostballFrostEssenceGenSynergy extends Synergy<AfterDamageContext> {
+public class LightningTotemStaticSynergy extends Synergy<AfterDamageContext> {
 
     @Override
     public String GUID() {
-        return "frostball_frost_essence_gen_synergy";
+        return "lightning_totem_static_synergy";
     }
 
     @Override
@@ -26,22 +26,21 @@ public class FrostballFrostEssenceGenSynergy extends Synergy<AfterDamageContext>
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Criticals give Frost Essence"));
+        list.add(new StringTextComponent("Applies debuff"));
 
-        list.addAll(FrostEssenceEffect.INSTANCE.GetTooltipString(info));
+        list.addAll(StaticEffect.INSTANCE.GetTooltipString(info));
 
         return list;
     }
 
     @Override
+
     public BaseSpell spellAffected() {
-        return new FrostballSpell();
+        return new LightningTotemSpell();
     }
 
     @Override
     public void tryActivate(AfterDamageContext ctx) {
-        if (ctx.dmg.isCriticalHit()) {
-            PotionEffectUtils.reApplyToSelf(FrostEssenceEffect.INSTANCE, ctx.caster);
-        }
+        PotionEffectUtils.apply(StaticEffect.INSTANCE, ctx.caster, ctx.target);
     }
 }

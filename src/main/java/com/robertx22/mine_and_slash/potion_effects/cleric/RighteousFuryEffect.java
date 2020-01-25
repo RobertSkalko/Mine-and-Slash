@@ -1,17 +1,16 @@
 package com.robertx22.mine_and_slash.potion_effects.cleric;
 
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.PotionContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.*;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -19,7 +18,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -125,9 +123,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
                         extraData.decreaseStacks(500, this);
                         extraData.timesUsed++;
 
-                        BlazingInfernoEffect.damageMobsAroundYou(source, instance);
-
-                        SoundUtils.playSound(source, SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
+                        Synergies.RIGHTEOUS_FURY_AOE.tryActivate(new PotionContext(source, target, instance));
 
                         if (extraData.timesUsed > 3) {
                             source.removePotionEffect(this);

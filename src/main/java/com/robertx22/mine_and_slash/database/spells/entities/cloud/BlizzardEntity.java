@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseCloudEntity;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -36,9 +37,13 @@ public class BlizzardEntity extends BaseCloudEntity {
 
         this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0f, 1.0f);
 
-        this.dealSpellDamageTo(entity, new Options().knockbacks(false));
+        DamageEffect dmg = dealSpellDamageTo(entity, new Options().knockbacks(false).activatesEffect(false));
 
-        PotionEffectUtils.apply(FrostEffect.INSTANCE, getCaster(), entity);
+        if (Synergies.BLIZZARD_FROST.has(getCaster())) {
+            Synergies.BLIZZARD_FROST.tryActivate(new BeforeDamageContext(getCaster(), entity, dmg));
+        }
+
+        dmg.Activate();
 
     }
 

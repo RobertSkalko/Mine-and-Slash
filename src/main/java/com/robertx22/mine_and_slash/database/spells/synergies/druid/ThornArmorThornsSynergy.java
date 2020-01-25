@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.druid;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArmorSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.DamageContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornArmorEffect;
@@ -15,7 +15,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThornArmorThornsSynergy extends Synergy<DamageContext> {
+public class ThornArmorThornsSynergy extends Synergy<CasterTargetContext> {
 
     @Override
     public String GUID() {
@@ -44,14 +44,14 @@ public class ThornArmorThornsSynergy extends Synergy<DamageContext> {
     }
 
     @Override
-    public void tryActivate(DamageContext ctx) {
+    public void tryActivate(CasterTargetContext ctx) {
 
         if (RandomUtils.roll(CHANCE)) {
             if (PotionEffectUtils.has(ctx.caster, ThornArmorEffect.INSTANCE)) {
-                PotionEffectUtils.reApplyToSelf(MinorThornsEffect.INSTANCE, ctx.target);
+                PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.caster, ctx.target);
             }
             if (PotionEffectUtils.has(ctx.target, ThornArmorEffect.INSTANCE)) {
-                PotionEffectUtils.reApplyToSelf(MinorThornsEffect.INSTANCE, ctx.caster);
+                PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.caster, ctx.caster);
             }
         }
     }

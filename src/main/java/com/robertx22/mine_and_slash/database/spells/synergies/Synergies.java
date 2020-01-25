@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.Blizz
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.FrostballExtraDmgSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.FrostballFrostEssenceGenSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.WhirlpoolFrostDmgSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearLightningStrikeSynergy;
 
 public class Synergies {
@@ -16,6 +17,7 @@ public class Synergies {
     public static BlizzardFrostSynergy BLIZZARD_FROST = new BlizzardFrostSynergy();
 
     public static ThunderSpearLightningStrikeSynergy THUNDER_SPEAR_LIGHTNING = new ThunderSpearLightningStrikeSynergy();
+    public static LightningTotemStaticSynergy LIGHTNING_TOTEM_STATIC = new LightningTotemStaticSynergy();
 
     public static ThornArmorThornsSynergy THORN_ARMOR_THORNS = new ThornArmorThornsSynergy();
 
