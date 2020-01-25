@@ -60,27 +60,31 @@ public class OnTickLogic {
                         Unit unit = unit_capa.getUnit();
 
                         int manarestored = (int) unit.getStat(ManaRegen.GUID).val;
-                        ResourcesData.Context mana = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.MANA,
-                                                                               manarestored, ResourcesData.Use.RESTORE
+                        ResourcesData.Context mana = new ResourcesData.Context(unit_capa, player,
+                                                                               ResourcesData.Type.MANA, manarestored,
+                                                                               ResourcesData.Use.RESTORE
                         );
                         unit_capa.getResources().modify(mana);
 
                         int energyrestored = (int) unit.getStat(EnergyRegen.GUID).val;
-                        ResourcesData.Context ene = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.ENERGY,
-                                                                              energyrestored, ResourcesData.Use.RESTORE
+                        ResourcesData.Context ene = new ResourcesData.Context(unit_capa, player,
+                                                                              ResourcesData.Type.ENERGY, energyrestored,
+                                                                              ResourcesData.Use.RESTORE
                         );
                         unit_capa.getResources().modify(ene);
 
                         int healthrestored = (int) unit.getStat(HealthRegen.GUID).val;
-                        ResourcesData.Context hp = new ResourcesData.Context(unit_capa, player, ResourcesData.Type.HEALTH,
-                                                                             healthrestored, ResourcesData.Use.RESTORE
+                        ResourcesData.Context hp = new ResourcesData.Context(unit_capa, player,
+                                                                             ResourcesData.Type.HEALTH, healthrestored,
+                                                                             ResourcesData.Use.RESTORE
                         );
                         unit_capa.getResources().modify(hp);
 
                         int magicshieldrestored = (int) unit.getStat(MagicShieldRegen.GUID).val;
                         ResourcesData.Context ms = new ResourcesData.Context(unit_capa, player,
                                                                              ResourcesData.Type.MAGIC_SHIELD,
-                                                                             magicshieldrestored, ResourcesData.Use.RESTORE
+                                                                             magicshieldrestored,
+                                                                             ResourcesData.Use.RESTORE
                         );
                         unit_capa.getResources().modify(ms);
 
@@ -90,7 +94,7 @@ public class OnTickLogic {
                 if (data.mapPortalTicks > TicksToGiveMapPortal) {
                     data.mapPortalTicks = 0;
 
-                    if (WorldUtils.isMapWorld(player.world)) {
+                    if (WorldUtils.isMapWorldClass(player.world)) {
                         ItemStack portalitem = new ItemStack(ItemMapBackPortal.ITEM);
                         if (!player.inventory.hasItemStack(portalitem)) {
                             player.inventory.addItemStackToInventory(portalitem);

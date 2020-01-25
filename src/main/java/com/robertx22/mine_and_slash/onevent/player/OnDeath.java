@@ -59,7 +59,7 @@ public class OnDeath {
 
                 Load.Unit(player).onDeath(player);
 
-                if (WorldUtils.isMapWorld(living.world)) {
+                if (WorldUtils.isMapWorldClass(living.world)) {
 
                     PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
