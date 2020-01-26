@@ -38,7 +38,7 @@ public class RegenerateSpell extends BaseSpellHeal {
 
     @Override
     public int getCooldownInSeconds() {
-        return 30;
+        return 25;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class VolcanoSpell extends BaseSummonAtSightSpell {
 
     @Override
     public int getManaCost() {
-        return 75;
+        return 60;
     }
 
     @Override

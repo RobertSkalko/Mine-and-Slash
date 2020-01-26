@@ -61,9 +61,16 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
         return 3;
     }
 
-    public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
+    public ExactStatData nature(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(ele)).scaleToLvl(extraData.casterLvl);
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Nature)).scaleToLvl(
+                extraData.casterLvl);
+    }
+
+    public ExactStatData thunder(EntityCap.UnitData data, ExtraPotionData extraData) {
+        int statAmount = -1 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Thunder)).scaleToLvl(
+                extraData.casterLvl);
     }
 
     @Override
@@ -71,8 +78,8 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
         List<ExactStatData> list = new ArrayList<>();
 
-        list.add(getStatMod(data, Elements.Thunder, extraData));
-        list.add(getStatMod(data, Elements.Nature, extraData));
+        list.add(nature(data, extraData));
+        list.add(thunder(data, extraData));
 
         return list;
 

@@ -9,9 +9,7 @@ import java.util.List;
 public interface IAutoLocMultiLore extends IBaseAutoLoc {
 
     public default String getMultiGroupName() {
-        return locLoresGroup().name()
-                .toUpperCase()
-                .replaceAll("_", " ") + " - LORE LINES";
+        return locLoresGroup().name().toUpperCase().replaceAll("_", " ") + " - LORE LINES";
     }
 
     public AutoLocGroup locLoresGroup();

@@ -29,6 +29,7 @@ public class SpellPerkEffects {
         synergy(Synergies.BLIZZARD_FROST);
         synergy(Synergies.WHIRLPOOL_FROST_DMG);
         synergy(Synergies.HEART_OF_ICE_FROST);
+        synergy(Synergies.WHIRLPOOL_SHIVER);
 
         synergy(Synergies.THORN_ARMOR_THORNS);
 
@@ -36,6 +37,7 @@ public class SpellPerkEffects {
         synergy(Synergies.LIGHTNING_TOTEM_STATIC);
 
         synergy(Synergies.RIGHTEOUS_FURY_AOE);
+        synergy(Synergies.INSTANT_HEAL_REMOVE_DEBUFF);
 
         synergy(Synergies.FIREBALL_BURN_CONSUME);
         synergy(Synergies.VOLCANO_BURN);

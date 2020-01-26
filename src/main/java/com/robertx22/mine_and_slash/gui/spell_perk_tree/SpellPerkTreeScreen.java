@@ -20,17 +20,17 @@ public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerk
     }
 
     @Override
-    public ResourceLocation TEXTURE() {
+    public ResourceLocation getBorderTexture() {
         return new ResourceLocation(Ref.MODID, "textures/gui/talents/talent_frame.png");
     }
 
     @Override
-    public ResourceLocation SPACE() {
+    public ResourceLocation getSpaceTexture() {
         return new ResourceLocation(Ref.MODID, "textures/gui/talents/space2.png");
     }
 
     @Override
-    public ResourceLocation LINES() {
+    public ResourceLocation getLineTexture() {
         return new ResourceLocation(Ref.MODID, "textures/gui/talents/lines.png");
     }
 

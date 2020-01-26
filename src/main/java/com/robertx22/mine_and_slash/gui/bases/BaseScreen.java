@@ -18,11 +18,6 @@ public class BaseScreen extends Screen {
     public int sizeY = 0;
 
     @Override
-    public boolean mouseReleased(double x, double y, int ticks) {
-        return super.mouseReleased(x, y, ticks);
-    }
-
-    @Override
     protected void init() {
         super.init();
 

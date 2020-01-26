@@ -81,3 +81,4 @@ spell damage renamed to spell power. Should make more sense if nature power incr
 loot now drops based on highest damager. So if you most dmg to mob and it dies to fire, it will still drop loot!
 fixed scaling spell dmg not being applied
 removed some stats based on old spells which no longer exist. (runewords affected have other stats boosted)
+talent and spell trees are now FULLSCREEN!

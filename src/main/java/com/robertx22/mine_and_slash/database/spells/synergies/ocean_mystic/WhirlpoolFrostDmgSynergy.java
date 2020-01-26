@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.WhirpoolSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.WhirlpoolSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
@@ -42,7 +42,7 @@ public class WhirlpoolFrostDmgSynergy extends Synergy<BeforeDamageContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new WhirpoolSpell();
+        return new WhirlpoolSpell();
     }
 
     @Override

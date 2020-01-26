@@ -3,10 +3,9 @@ package com.robertx22.mine_and_slash.database.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -87,7 +86,9 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
                     x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, tickRate, 10));
 
-                    PotionEffectUtils.apply(ShiverEffect.INSTANCE, getCaster(), x);
+                    if (Synergies.WHIRLPOOL_SHIVER.has(getCaster())) {
+                        Synergies.WHIRLPOOL_SHIVER.tryActivate(new CasterTargetContext(getCaster(), x));
+                    }
 
                     SoundUtils.playSound(this, SoundEvents.ENTITY_DROWNED_HURT_WATER, 1, 1);
 

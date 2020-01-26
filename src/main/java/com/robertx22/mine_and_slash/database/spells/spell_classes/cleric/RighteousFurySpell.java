@@ -43,7 +43,7 @@ public class RighteousFurySpell extends BaseSpellHeal {
 
     @Override
     public int getManaCost() {
-        return 50;
+        return 40;
     }
 
     @Override

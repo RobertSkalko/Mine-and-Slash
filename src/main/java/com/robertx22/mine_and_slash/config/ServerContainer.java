@@ -22,8 +22,11 @@ public class ServerContainer {
     public IntValue MAXIMUM_PLAYER_LEVEL;
     public IntValue MAXIMUM_ITEM_INSTABILITY;
 
+    public IntValue STARTING_SPELL_POINTS;
+
     public DoubleValue STAT_POINTS_PER_LEVEL;
     public DoubleValue TALENT_POINTS_PER_LEVEL;
+    public DoubleValue SPELL_POINTS_PER_LEVEL;
     public DoubleValue NON_MOD_DAMAGE_MULTI;
     public DoubleValue XP_LOSS_ON_DEATH;
     public DoubleValue MOB_ENVIRONMENT_DAMAGE_MULTI;
@@ -43,6 +46,14 @@ public class ServerContainer {
         TALENT_POINTS_PER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("TALENT_POINTS_PER_LEVEL", 1.25D, 0, 100);
+
+        SPELL_POINTS_PER_LEVEL = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("SPELL_POINTS_PER_LEVEL", 0.25D, 0, 100);
+
+        STARTING_SPELL_POINTS = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("STARTING_SPELL_POINTS", 5, 0, Integer.MAX_VALUE);
 
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
                 .translation("mmorpg.word.")

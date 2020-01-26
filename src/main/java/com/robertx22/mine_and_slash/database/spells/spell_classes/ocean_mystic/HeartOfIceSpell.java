@@ -49,7 +49,7 @@ public class HeartOfIceSpell extends BaseSpellHeal {
 
     @Override
     public int getManaCost() {
-        return 50;
+        return 40;
     }
 
     public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.25F, 5);

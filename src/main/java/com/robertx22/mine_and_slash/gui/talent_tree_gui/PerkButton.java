@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.gui.talent_tree_gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
-import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
+import com.robertx22.mine_and_slash.database.talent_tree.PerkScreenContext;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.TryAllocatePerkPacket;
 import com.robertx22.mine_and_slash.packets.TryRemovePerkPacket;
@@ -38,7 +38,7 @@ public class PerkButton extends ImageButton {
 
     }
 
-    public void renderButton(int x, int y, ScreenContext ctx) {
+    public void renderButton(int x, int y, PerkScreenContext ctx) {
 
         int finalX = getPosX(ctx);
         int finalY = getPosY(ctx);
@@ -69,43 +69,43 @@ public class PerkButton extends ImageButton {
         return 40;
     }
 
-    public int getMiddleX(ScreenContext ctx) {
+    public int getMiddleX(PerkScreenContext ctx) {
         return (int) (getPosX(ctx) + perk.getPerkType().sizeX / 2);
     }
 
-    public int getMiddleY(ScreenContext ctx) {
+    public int getMiddleY(PerkScreenContext ctx) {
         return (int) (getPosY(ctx) + perk.getPerkType().sizeY / 2);
     }
 
-    public int getPosX(ScreenContext ctx) {
+    public int getPosX(PerkScreenContext ctx) {
         int offsetX = mc.mainWindow.getScaledWidth() / 2;
         offsetX *= ctx.getZoomMulti();
-        offsetX -= TalentPerkTreeScreen.sizeX * ctx.zoom / 2;
+        offsetX -= TalentPerkTreeScreen.sizeX() * ctx.zoom / 2;
 
         return getX(ctx) + offsetX;
     }
 
-    public int getPosY(ScreenContext ctx) {
+    public int getPosY(PerkScreenContext ctx) {
         int offsetY = mc.mainWindow.getScaledHeight() / 2;
         offsetY *= ctx.getZoomMulti();
-        offsetY -= TalentPerkTreeScreen.sizeY * ctx.zoom / 2;
+        offsetY -= TalentPerkTreeScreen.sizeY() * ctx.zoom / 2;
         return getY(ctx) + offsetY;
     }
 
-    public int getX(ScreenContext ctx) {
+    public int getX(PerkScreenContext ctx) {
 
         int pos = (int) ((this.perk.x * getSpacing() - ctx.scrollX) * ctx.zoom) - perk.getPerkType().sizeX / 2;
 
         return pos;
     }
 
-    public int getY(ScreenContext ctx) {
+    public int getY(PerkScreenContext ctx) {
         int pos = (int) ((this.perk.y * getSpacing() - ctx.scrollY) * ctx.zoom) - perk.getPerkType().sizeY / 2;
 
         return pos;
     }
 
-    public void onClick(ScreenContext ctx, int mouseX, int mouseY, int click) {
+    public void onClick(PerkScreenContext ctx, int mouseX, int mouseY, int click) {
         if (isInsideSlot(ctx, mouseX, mouseY)) {
             if (click == 1) { // if right click
                 MMORPG.sendToServer(new TryRemovePerkPacket(this.perk));
@@ -116,7 +116,7 @@ public class PerkButton extends ImageButton {
         }
     }
 
-    public boolean isInsideSlot(ScreenContext ctx, int mouseX, int mouseY) {
+    public boolean isInsideSlot(PerkScreenContext ctx, int mouseX, int mouseY) {
 
         Point guipos = new Point(getPosX(ctx), getPosY(ctx));
         Point mousePos = new Point((int) (mouseX * ctx.getZoomMulti()), (int) (mouseY * ctx.getZoomMulti()));

@@ -111,8 +111,15 @@ public class PlayerSpellCap {
             }
         }
 
+        @Override
         public int getAllowedPoints(EntityCap.UnitData data) {
-            return (int) ((float) data.getLevel() * ModConfig.INSTANCE.Server.TALENT_POINTS_PER_LEVEL.get());
+
+            int perlvl = (int) (data.getLevel() * ModConfig.INSTANCE.Server.SPELL_POINTS_PER_LEVEL.get());
+
+            int starting = ModConfig.INSTANCE.Server.STARTING_SPELL_POINTS.get();
+
+            return starting + perlvl;
+
         }
 
         @Override

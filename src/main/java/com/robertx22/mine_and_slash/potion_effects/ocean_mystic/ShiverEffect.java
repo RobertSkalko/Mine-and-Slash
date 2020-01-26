@@ -66,6 +66,12 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
                 extraData.casterLvl);
     }
 
+    public ExactStatData getThunder(EntityCap.UnitData data, ExtraPotionData extraData) {
+        int statAmount = -5 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Thunder)).scaleToLvl(
+                extraData.casterLvl);
+    }
+
     public ExactStatData getWater(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -2 * extraData.getStacks();
         return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Water)).scaleToLvl(
@@ -79,6 +85,7 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
 
         list.add(getWater(data, extraData));
         list.add(getFire(data, extraData));
+        list.add(getThunder(data, extraData));
 
         return list;
 

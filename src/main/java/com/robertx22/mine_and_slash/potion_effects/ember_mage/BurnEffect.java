@@ -88,9 +88,16 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
         return 3;
     }
 
-    public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
+    public ExactStatData fire(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(ele)).scaleToLvl(extraData.casterLvl);
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Fire)).scaleToLvl(
+                extraData.casterLvl);
+    }
+
+    public ExactStatData water(EntityCap.UnitData data, ExtraPotionData extraData) {
+        int statAmount = -2 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Water)).scaleToLvl(
+                extraData.casterLvl);
     }
 
     @Override
@@ -98,8 +105,8 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
 
         List<ExactStatData> list = new ArrayList<>();
 
-        list.add(getStatMod(data, Elements.Fire, extraData));
-        list.add(getStatMod(data, Elements.Water, extraData));
+        list.add(fire(data, extraData));
+        list.add(water(data, extraData));
 
         return list;
 

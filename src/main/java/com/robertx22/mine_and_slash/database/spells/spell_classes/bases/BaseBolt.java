@@ -4,7 +4,7 @@ public abstract class BaseBolt extends BaseSpell {
 
     @Override
     public int getManaCost() {
-        return 25;
+        return 20;
     }
 
 }

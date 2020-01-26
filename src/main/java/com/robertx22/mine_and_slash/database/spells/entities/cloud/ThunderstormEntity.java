@@ -33,8 +33,6 @@ public class ThunderstormEntity extends BaseCloudEntity {
     public void onHit(LivingEntity entity) {
         this.dealSpellDamageTo(entity, new Options().knockbacks(false));
 
-        // entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10));
-
         SpellUtils.summonLightningStrike(entity);
 
     }

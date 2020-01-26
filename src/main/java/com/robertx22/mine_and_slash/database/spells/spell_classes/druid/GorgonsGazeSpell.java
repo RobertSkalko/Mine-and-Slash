@@ -31,7 +31,7 @@ public class GorgonsGazeSpell extends BaseSpell {
 
     @Override
     public int getCooldownInSeconds() {
-        return 60;
+        return 50;
     }
 
     @Override

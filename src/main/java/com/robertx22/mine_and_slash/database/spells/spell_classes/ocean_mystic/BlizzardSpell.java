@@ -31,7 +31,7 @@ public class BlizzardSpell extends BaseSummonAtSightSpell {
 
     @Override
     public int getCooldownInSeconds() {
-        return 15;
+        return 25;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class BlizzardSpell extends BaseSummonAtSightSpell {
 
     @Override
     public int getManaCost() {
-        return 80;
+        return 50;
     }
 
     @Override

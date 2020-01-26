@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.Vol
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.HeartOfIceSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.WhirpoolSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.WhirlpoolSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.LightningTotemSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
@@ -32,7 +32,7 @@ public class Spells implements ISlashRegistryInit {
                 {
                     add(new FrostballSpell());
                     add(new BlizzardSpell());
-                    add(new WhirpoolSpell());
+                    add(new WhirlpoolSpell());
                     add(new HeartOfIceSpell());
 
                     add(new InstantHealSpell());

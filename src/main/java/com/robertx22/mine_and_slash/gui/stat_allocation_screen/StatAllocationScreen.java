@@ -27,6 +27,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,21 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
     @Override
     public ResourceLocation iconLocation() {
         return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/stat_points.png");
+    }
+
+    @Override
+    public boolean mouseReleased(double x, double y, int ticks) {
+
+        buttons.forEach(b -> {
+            if (GuiUtils.isInRectPoints(new Point(b.x, b.y), new Point(b.getWidth(), b.getHeight()),
+                                        new Point((int) x, (int) y)
+            )) {
+                b.onClick(x, y);
+            }
+        });
+
+        return super.mouseReleased(x, y, ticks);
+
     }
 
     @Override
@@ -122,6 +138,9 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
         public IncreaseStatButton(EntityCap.UnitData unitdata, PlayerStatsPointsCap.IPlayerStatPointsData data,
                                   SingleStatPointData statData, int xPos, int yPos) {
             super(xPos, yPos, button_sizeX, button_sizeY, 0, 0, button_sizeY, BUTTON_TEX, (button) -> {
+
+                // MMORPG.sendToServer(new SpendStatPointPacket(statData.stat));
+                //MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.STAT_POINTS));
 
             });
 

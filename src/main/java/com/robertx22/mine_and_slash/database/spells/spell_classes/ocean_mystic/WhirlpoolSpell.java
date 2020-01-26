@@ -16,9 +16,9 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WhirpoolSpell extends BaseSpell {
+public class WhirlpoolSpell extends BaseSpell {
 
-    public WhirpoolSpell() {
+    public WhirlpoolSpell() {
 
     }
 
@@ -46,7 +46,7 @@ public class WhirpoolSpell extends BaseSpell {
 
     @Override
     public int getManaCost() {
-        return 50;
+        return 35;
     }
 
     @Override

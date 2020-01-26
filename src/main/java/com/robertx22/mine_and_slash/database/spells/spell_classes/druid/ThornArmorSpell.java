@@ -36,7 +36,7 @@ public class ThornArmorSpell extends BaseSpellHeal {
 
     @Override
     public int getCooldownInSeconds() {
-        return 45;
+        return 40;
     }
 
     @Override

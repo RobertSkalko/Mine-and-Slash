@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.gui.bases;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
+import com.robertx22.mine_and_slash.database.talent_tree.PerkScreenContext;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
-import com.robertx22.mine_and_slash.database.talent_tree.ScreenContext;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkButton;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkConnectionRender;
 import com.robertx22.mine_and_slash.mmorpg.CapSyncCheck;
@@ -52,14 +52,19 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
     public static int CENTER_X = 500;
     public static int CENTER_Y = 500;
 
-    public abstract ResourceLocation TEXTURE();
+    public abstract ResourceLocation getBorderTexture();
 
-    public abstract ResourceLocation SPACE();
+    public abstract ResourceLocation getSpaceTexture();
 
-    public abstract ResourceLocation LINES();
+    public abstract ResourceLocation getLineTexture();
 
-    public static int sizeX = 318;
-    public static int sizeY = 233;
+    public static int sizeX() {
+        return Minecraft.getInstance().mainWindow.getWidth();
+    }
+
+    public static int sizeY() {
+        return Minecraft.getInstance().mainWindow.getHeight();
+    }
 
     public abstract CapTypes getCapType();
 
@@ -124,8 +129,8 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
         this.scrollX = PerkButton.getSpacing() * CENTER_X;
         this.scrollY = PerkButton.getSpacing() * CENTER_Y;
 
-        this.scrollX -= sizeX / 2;
-        this.scrollY -= sizeY / 2;
+        this.scrollX -= sizeX() / 2;
+        this.scrollY -= sizeY() / 2;
 
         this.zoom = 0.6F;
 
@@ -179,7 +184,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     public void renderZoomables(int x, int y, float ticks, List<PerkButton> list) {
 
-        ScreenContext ctx = new ScreenContext(this);
+        PerkScreenContext ctx = new PerkScreenContext(this);
 
         GL11.glScalef(zoom, zoom, zoom);
 
@@ -214,7 +219,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
         TooltipInfo info = new TooltipInfo(mc.player);
 
-        ScreenContext ctx = new ScreenContext(this);
+        PerkScreenContext ctx = new PerkScreenContext(this);
 
         list.forEach(button -> {
 
@@ -229,7 +234,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     @Override
     public boolean mouseReleased(double x, double y, int button) {
-        ScreenContext ctx = new ScreenContext(this);
+        PerkScreenContext ctx = new PerkScreenContext(this);
 
         getTalentButtons().forEach(t -> t.onClick(ctx, (int) x, (int) y, button));
 
@@ -266,10 +271,10 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     private void renderConnections(List<PerkButton> list) {
 
-        ScreenContext ctx = new ScreenContext(this);
+        PerkScreenContext ctx = new PerkScreenContext(this);
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        Minecraft.getInstance().getTextureManager().bindTexture(LINES());
+        Minecraft.getInstance().getTextureManager().bindTexture(getLineTexture());
 
         for (PerkConnectionRender c : this.buttonConnections) {
             renderConnection(c.perk1, c.perk2, c.connection, ctx);
@@ -277,13 +282,13 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     }
 
-    public static boolean shouldRender(int x, int y, ScreenContext ctx, PerkType type) {
+    public static boolean shouldRender(int x, int y, PerkScreenContext ctx, PerkType type) {
 
         int perkX = type == null ? 5 : type.sizeX / 2;
         int perkY = type == null ? 5 : type.sizeY / 2;
 
-        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + (sizeX - perkX) * ctx.getZoomMulti() - 10) {
-            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + (sizeY - perkY) * ctx.getZoomMulti() - 10) {
+        if (x >= ctx.offsetX + 10 && x < ctx.offsetX + (sizeX() - perkX) * ctx.getZoomMulti() - 10) {
+            if (y >= ctx.offsetY + 10 && y < ctx.offsetY + (sizeY() - perkY) * ctx.getZoomMulti() - 10) {
                 return true;
             }
         }
@@ -292,7 +297,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     }
 
-    private void renderConnection(PerkButton one, PerkButton two, PerkConnection connection, ScreenContext ctx) {
+    private void renderConnection(PerkButton one, PerkButton two, PerkConnection connection, PerkScreenContext ctx) {
 
         int x1 = one.getMiddleX(ctx);
         int y1 = one.getMiddleY(ctx);
@@ -320,34 +325,37 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     protected void drawSpace() {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
-        Minecraft.getInstance().getTextureManager().bindTexture(SPACE());
-        blit(offsetX + 3, offsetY + 3, this.getBlitOffset(), 0.0F, 0.0F, sizeX - 6, sizeY - 6, 2048, 2048);
+        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX() / 2;
+        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY() / 2;
+        Minecraft.getInstance().getTextureManager().bindTexture(getSpaceTexture());
+        blit(offsetX + 3, offsetY + 3, this.getBlitOffset(), 0.0F, 0.0F, sizeX() - 6, sizeY() - 6, 2048, 2048);
     }
 
     protected void drawBorders() {
+        /*
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2;
-        Minecraft.getInstance().getTextureManager().bindTexture(TEXTURE());
-        blit(offsetX, offsetY, this.getBlitOffset(), 0.0F, 0.0F, sizeX, sizeY, 256, 512);
+        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX() / 2;
+        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY() / 2;
+        Minecraft.getInstance().getTextureManager().bindTexture(getBorderTexture());
+        blit(offsetX, offsetY, this.getBlitOffset(), 0.0F, 0.0F, sizeX(), sizeY(), 256, 512);
+
+         */
 
     }
 
     protected void drawPointsLeftNumber() {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX / 2;
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY / 2 + 10;
+        int offsetX = 5;
+        int offsetY = 5;
 
         String str2 = "Reset Points (RMB): " + this.capData.getPerksData().resetPoints;
 
-        mc.fontRenderer.drawStringWithShadow(str2, offsetX + 10, offsetY, TextFormatting.GREEN.getColor());
+        mc.fontRenderer.drawStringWithShadow(str2, offsetX, offsetY, TextFormatting.GREEN.getColor());
 
         String str = "Points (LMB): " + this.capData.getFreePoints(unitData);
 
         mc.fontRenderer.drawStringWithShadow(
-                str, offsetX + 10, offsetY + mc.fontRenderer.FONT_HEIGHT + 5, TextFormatting.GREEN.getColor());
+                str, offsetX, offsetY + mc.fontRenderer.FONT_HEIGHT + 5, TextFormatting.GREEN.getColor());
 
     }
 }

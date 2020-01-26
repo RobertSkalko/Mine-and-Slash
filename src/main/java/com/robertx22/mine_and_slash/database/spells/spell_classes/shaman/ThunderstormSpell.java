@@ -46,7 +46,7 @@ public class ThunderstormSpell extends BaseSummonAtSightSpell {
 
     @Override
     public int getManaCost() {
-        return 80;
+        return 60;
     }
 
     @Override

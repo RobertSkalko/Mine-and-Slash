@@ -1,12 +1,15 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.cleric;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -44,7 +47,7 @@ public class InstantHealSpell extends BaseSpellHeal {
 
     @Override
     public int getManaCost() {
-        return 40;
+        return 30;
     }
 
     @Override
@@ -80,11 +83,16 @@ public class InstantHealSpell extends BaseSpellHeal {
 
                 UnitData data = Load.Unit(caster);
 
-                data.getResources()
-                        .modify(new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
-                                                          getCalculation().getCalculatedValue(data),
-                                                          ResourcesData.Use.RESTORE, this
-                        ));
+                HealEffect heal = new HealEffect(new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
+                                                                           getCalculation().getCalculatedValue(data),
+                                                                           ResourcesData.Use.RESTORE, this
+                ));
+
+                if (Synergies.INSTANT_HEAL_REMOVE_DEBUFF.has(caster)) {
+                    Synergies.INSTANT_HEAL_REMOVE_DEBUFF.tryActivate(new BeforeHealContext(caster, caster, heal));
+                }
+
+                heal.Activate();
 
                 SoundUtils.playSound(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
 
