@@ -16,6 +16,17 @@ import net.minecraft.world.World;
 
 public enum ParticleEnum {
 
+    AOE() {
+        @Override
+        public void activate(ParticlePacketData data, World world, LivingEntity entity) {
+            Vec3d p = getCenter(data.pos);
+
+            for (int i = 0; i < data.amount; i++) {
+                Vec3d r = GeometryUtils.getRandomPosInRadiusCircle(p.x, p.y, p.z, data.radius);
+                world.addParticle(data.getParticleType(), r.x, r.y, r.z, 1, 1, 1);
+            }
+        }
+    },
     CIRCLE_REDSTONE() {
         @Override
         public void activate(ParticlePacketData data, World world, LivingEntity entity) {

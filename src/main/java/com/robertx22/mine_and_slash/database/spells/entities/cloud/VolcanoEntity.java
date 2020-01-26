@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseInvisibleEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
@@ -68,9 +68,8 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
                             if (this.getCaster() != null && target != getCaster()) {
 
-                                if (true) // todo
-                                {
-                                    PotionEffectUtils.apply(BurnEffect.INSTANCE, getCaster(), target);
+                                if (Synergies.VOLCANO_BURN.has(getCaster())) {
+                                    Synergies.VOLCANO_BURN.tryActivate(new CasterTargetContext(getCaster(), target));
                                 }
 
                                 this.dealSpellDamageTo(target, new ISpellEntity.Options().knockbacks(true));

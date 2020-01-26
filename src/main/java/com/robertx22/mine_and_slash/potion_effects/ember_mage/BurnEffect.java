@@ -62,9 +62,9 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
         dmg.removeKnockback();
         dmg.Activate();
 
-        SoundUtils.playSound(entity, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 1F, 1F);
+        SoundUtils.playSound(entity, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5F, 1F);
 
-        ParticleUtils.spawnParticles(ParticleTypes.LAVA, entity, 1);
+        ParticleUtils.spawnParticles(ParticleTypes.FLAME, entity, 5);
         //  ParticleUtils.spawnParticles(ParticleTypes.LAVA, entity, 5);
     }
 

@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.spells.synergies;
 
 import com.robertx22.mine_and_slash.database.spells.synergies.cleric.RighteousFuryAoeSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.druid.ThornArmorThornsSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.FireballBurnConsumeSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.VolcanoBurnSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.*;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearLightningStrikeSynergy;
@@ -20,4 +22,7 @@ public class Synergies {
     public static ThornArmorThornsSynergy THORN_ARMOR_THORNS = new ThornArmorThornsSynergy();
 
     public static RighteousFuryAoeSynergy RIGHTEOUS_FURY_AOE = new RighteousFuryAoeSynergy();
+
+    public static FireballBurnConsumeSynergy FIREBALL_BURN_CONSUME = new FireballBurnConsumeSynergy();
+    public static VolcanoBurnSynergy VOLCANO_BURN = new VolcanoBurnSynergy();
 }

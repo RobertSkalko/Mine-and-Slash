@@ -28,7 +28,7 @@ public class ParticlePacket {
 
         ParticlePacket newpkt = new ParticlePacket();
 
-        newpkt.data = LoadSave.Load(ParticlePacketData.class, new ParticlePacketData(), tag.readCompoundTag(), LOC);
+        newpkt.data = LoadSave.Load(ParticlePacketData.class, ParticlePacketData.empty(), tag.readCompoundTag(), LOC);
 
         return newpkt;
 

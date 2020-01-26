@@ -46,17 +46,17 @@ public class VolcanoSpell extends BaseSummonAtSightSpell {
 
     @Override
     public int getManaCost() {
-        return 50;
+        return 75;
     }
 
     @Override
     public int useTimeTicks() {
-        return 30;
+        return 60;
     }
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 0.25F, 5);
+        return SpellCalcData.one(dmgStat(), 0.5F, 10);
     }
 
     @Override

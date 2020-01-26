@@ -37,6 +37,9 @@ public class SpellPerkEffects {
 
         synergy(Synergies.RIGHTEOUS_FURY_AOE);
 
+        synergy(Synergies.FIREBALL_BURN_CONSUME);
+        synergy(Synergies.VOLCANO_BURN);
+
     }
 
     static SpellPerkEffect spell(BaseSpell spell) {
