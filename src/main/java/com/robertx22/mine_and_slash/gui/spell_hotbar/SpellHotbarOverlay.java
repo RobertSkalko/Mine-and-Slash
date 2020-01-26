@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.gui.spell_hotbar;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
@@ -24,7 +25,9 @@ public class SpellHotbarOverlay extends AbstractGui {
     private static final ResourceLocation COOLDOWN_TEX = new ResourceLocation(Ref.MODID,
                                                                               "textures/gui/spells/cooldown.png"
     );
-
+    private static final ResourceLocation SPELL_READY_TEXT = new ResourceLocation(Ref.MODID,
+                                                                                  "textures/gui/spells/spell_ready.png"
+    );
     static int WIDTH = 22;
     static int HEIGHT = 102;
 
@@ -72,7 +75,7 @@ public class SpellHotbarOverlay extends AbstractGui {
                 SpellData spelldata = data.getSpellData().getDataBySpell(spell, CURRENT_HOTBAR);
 
                 if (spelldata != null) {
-                    if (spelldata.getRemainingCooldown() > 0) {
+                    if (spelldata.cooldownIsReady() == false) {
                         float percent = (float) spelldata.getRemainingCooldown() / (float) spell.getCooldownInTicks();
 
                         RenderSystem.enableBlend(); // enables transparency
@@ -87,10 +90,22 @@ public class SpellHotbarOverlay extends AbstractGui {
 
                 RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 
-            }
-            y += 20;
-        }
+                if (spelldata != null) {
+                    if (spelldata.cooldownIsReady()) {
+                        if (OnClientTick.COOLDOWN_READY_MAP.getOrDefault(spell.GUID(), 0) > 0) {
 
+                            RenderSystem.enableBlend(); // enables transparency
+                            mc.getTextureManager().bindTexture(SPELL_READY_TEXT);
+                            this.blit(x - 2, y - 2, 0, 0, 20, 20, 20, 20);
+                            RenderSystem.disableBlend(); // enables transparency
+
+                        }
+                    }
+                }
+
+                y += 20;
+            }
+        }
     }
 
     private void renderHotbar(int x, int y) {

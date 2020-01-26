@@ -9,6 +9,8 @@ import net.minecraft.entity.player.PlayerEntity;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Storable
 public class PlayerSpellsData {
@@ -50,6 +52,15 @@ public class PlayerSpellsData {
         spellDatas.values().forEach(x -> x.tickCooldown(ticks));
 
         castingTicksLeft--;
+    }
+
+    public List<String> getSpellsOnCooldown() {
+        return spellDatas.entrySet()
+                .stream()
+                .filter(x -> !x.getValue().cooldownIsReady())
+                .map(x -> x.getKey())
+                .collect(Collectors.toList());
+
     }
 
     public void setToCast(int key, Hotbar hotbar, PlayerEntity player, int ticks) {
