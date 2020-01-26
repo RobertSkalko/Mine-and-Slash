@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.VolcanoEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.FrostballEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.LightningTotemEntity;
@@ -43,6 +44,7 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> LIGHTNING_TOTEM;
 
     public static final EntityType<? extends Entity> FIREBOLT;
+    public static final EntityType<? extends Entity> VOLCANO;
 
     public static final EntityType<? extends Entity> FROSTBOLT;
     public static final EntityType<? extends Entity> WHIRPOOL;
@@ -62,6 +64,7 @@ public class EntityRegister {
         LIGHTNING_TOTEM = newType(LightningTotemEntity::new, LightningTotemEntity::new, "lightning_totem");
 
         FIREBOLT = newType(FireballEntity::new, FireballEntity::new, "fireball");
+        VOLCANO = newType(VolcanoEntity::new, VolcanoEntity::new, "volcano");
 
         STAFFPROJECTILE = newType(EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
         WANDPROJECTILE = newType(EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");

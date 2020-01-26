@@ -27,6 +27,8 @@ import java.util.List;
 
 public abstract class BasePotionEffect extends Effect implements IAutoLocName, ITooltipList {
 
+    public boolean needsTickTooltip = false;
+
     public abstract void onXTicks(LivingEntity entity,
 
                                   EffectInstance instance);
@@ -34,8 +36,6 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
     public int getMaxStacks() {
         return 1;
     }
-
-    public boolean needsTickTooltip = false;
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -79,11 +79,6 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
         list.addAll(getDurationTooltip());
 
         return list;
-    }
-
-    public List<LivingEntity> getEntitiesAround(Entity en, float radius) {
-
-        return en.world.getEntitiesWithinAABB(LivingEntity.class, en.getBoundingBox().grow(radius));
     }
 
     public ResourceLocation getIconTexture() {

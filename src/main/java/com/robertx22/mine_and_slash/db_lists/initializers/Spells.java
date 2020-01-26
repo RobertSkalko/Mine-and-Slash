@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.Regenera
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArmorSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.BlazingInfernoSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.VolcanoSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.BlizzardSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.HeartOfIceSpell;
@@ -48,6 +49,7 @@ public class Spells implements ISlashRegistryInit {
 
                     add(new BlazingInfernoSpell());
                     add(new FireballSpell());
+                    add(new VolcanoSpell());
 
                 }
             }

@@ -1,6 +1,6 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.VolcanoEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSummonAtSightSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -16,22 +16,22 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlizzardSpell extends BaseSummonAtSightSpell {
+public class VolcanoSpell extends BaseSummonAtSightSpell {
 
-    public BlizzardSpell() {
+    public VolcanoSpell() {
 
     }
 
-    public Elements element = Elements.Water;
+    public Elements element = Elements.Fire;
 
     @Override
     public SpellSchools getSchool() {
-        return SpellSchools.OCEAN_MYSTIC;
+        return SpellSchools.EMBER_MAGE;
     }
 
     @Override
     public int getCooldownInSeconds() {
-        return 15;
+        return 30;
     }
 
     @Override
@@ -41,12 +41,12 @@ public class BlizzardSpell extends BaseSummonAtSightSpell {
 
     @Override
     public String GUID() {
-        return "blizzard";
+        return "volcano";
     }
 
     @Override
     public int getManaCost() {
-        return 80;
+        return 50;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class BlizzardSpell extends BaseSummonAtSightSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Summons a blizzard that does dmg over time: "));
+        list.add(new StringTextComponent("Summons an erupting volcano: "));
 
         list.addAll(getCalculation().GetTooltipString(info));
 
@@ -79,11 +79,11 @@ public class BlizzardSpell extends BaseSummonAtSightSpell {
 
     @Override
     public Words getName() {
-        return Words.Blizzard;
+        return Words.Volcano;
     }
 
     @Override
     public Entity newEntity(World world) {
-        return new BlizzardEntity(world);
+        return new VolcanoEntity(world);
     }
 }

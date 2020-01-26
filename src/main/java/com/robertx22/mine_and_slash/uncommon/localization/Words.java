@@ -18,6 +18,7 @@ public enum Words implements IAutoLocName {
     ThunderDash("Thunder Dash"),
     Thunderstorm("Thunderstorm"),
     LightningTotem("Lightning Totem"),
+    Volcano("Volcano"),
     Blizzard("Blizzard"),
     Whirpool("Whirpool"),
     GorgonsGaze("Gorgon's Gaze"),
