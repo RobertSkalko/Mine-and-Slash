@@ -33,14 +33,14 @@ public class MapQuestReward extends QuestReward {
 
             mapdata.onQuestFinished();
 
-            LootCrate crate = SlashRegistry.LootCrates()
-                    .get(mapdata.getMap().rewardCrateGUID);
+            LootCrate crate = SlashRegistry.LootCrates().get(mapdata.getMap().rewardCrateGUID);
 
             ItemStack stack = crate.getCrateStack(mapdata.getLevel(), mapdata.getTier(), data.reward.score.number);
 
-            player.sendMessage(new StringTextComponent(TextFormatting.GREEN + "Map Completed! Further exploration seems to give little benefit."));
+            player.sendMessage(new StringTextComponent(
+                    TextFormatting.GREEN + "Map Completed! Further exploration seems to give little benefit."));
 
-            SoundUtils.playSoundAtPlayer(player, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
+            SoundUtils.playSound(player, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
 
             ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, player, 50);
 

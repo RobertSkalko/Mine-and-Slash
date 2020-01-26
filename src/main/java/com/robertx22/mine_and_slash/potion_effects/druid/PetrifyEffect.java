@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -22,6 +21,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -52,9 +52,16 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
         if (!entity.world.isRemote) {
-            ParticleUtils.spawnParticles(
-                    new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()), entity, 10);
+
+            for (int i = 0; i < 10; i++) {
+                Vec3d p = entity.getPositionVector();
+                entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()),
+                                         p.x, p.y, p.z, 0D, 0D, 0D
+                );
+            }
+
         }
+
     }
 
     @Override
@@ -99,8 +106,12 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
         dmg.element = Elements.Nature;
         dmg.Activate();
 
-        ParticleUtils.spawnParticles(
-                new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()), target, 20);
+        for (int i = 0; i < 15; i++) {
+            Vec3d p = target.getPositionVector();
+            target.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()), p.x,
+                                     p.y, p.z, 0D, 0D, 0D
+            );
+        }
 
         target.playSound(SoundEvents.BLOCK_STONE_BREAK, 1, 1);
 

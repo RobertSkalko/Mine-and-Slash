@@ -76,7 +76,7 @@ public class RegenerateSpell extends BaseSpellHeal {
 
             if (!world.isRemote) {
 
-                SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION, 1, 1);
+                SoundUtils.playSound(caster, SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION, 1, 1);
 
                 PotionEffectUtils.applyToSelf(RegenerateEffect.INSTANCE, caster);
 

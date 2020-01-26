@@ -25,6 +25,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -64,9 +65,14 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
 
         /// SoundUtils.playSound(entity, SoundEvents., 1F, 1F);
 
-        ParticleUtils.spawnParticles(
-                new BlockParticleData(ParticleTypes.BLOCK, Blocks.BIRCH_LEAVES.getDefaultState()), entity, 2);
         ParticleUtils.spawnParticles(ParticleTypes.ITEM_SLIME, entity, 5);
+
+        for (int i = 0; i < 8; i++) {
+            Vec3d p = entity.getPositionVector();
+            entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.BIRCH_LEAVES.getDefaultState()),
+                                     p.x, p.y, p.z, 0D, 0D, 0D
+            );
+        }
     }
 
     @Override

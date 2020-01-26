@@ -79,7 +79,7 @@ public class RighteousFurySpell extends BaseSpellHeal {
 
                 PotionEffectUtils.applyToSelf(RighteousFuryEffect.INSTANCE, caster);
 
-                SoundUtils.playSoundAtPlayer(caster, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);
+                SoundUtils.playSound(caster, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);
 
             }
         } catch (Exception e) {

@@ -87,7 +87,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
                         stack.attemptDamageItem(1, new Random(), (ServerPlayerEntity) player);
 
-                        SoundUtils.playSoundAtPlayer((PlayerEntity) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
+                        SoundUtils.playSound((PlayerEntity) player, SoundEvents.ENTITY_SNOWBALL_THROW, 1, 1);
 
                     }
                 }

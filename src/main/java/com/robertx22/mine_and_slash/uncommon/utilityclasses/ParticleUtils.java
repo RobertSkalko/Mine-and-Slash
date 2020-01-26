@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
 public class ParticleUtils {
 
@@ -31,20 +33,12 @@ public class ParticleUtils {
 
     }
 
-    public static void spawnParticles(IParticleData particle, LivingEntity en, int amount) {
-        for (int i = 0; i < amount; i++) {
+    public static void spawnParticles(ParticleType particle, LivingEntity en, int amount) {
 
-            double x = (double) ((float) en.posX + en.world.rand.nextFloat() * 2 - 1.0F);
-            double y = (double) ((float) Utilities.getPlayerEyesPos(en) - 0.5F + en.world.rand.nextFloat());
-            double z = (double) ((float) en.posZ + en.world.rand.nextFloat() * 2 - 1.0F);
+        ParticleEnum.sendToClients(en, new ParticlePacketData(en.getPosition(), ParticleEnum.AOE).radius(1)
+                .type(particle)
+                .amount(amount));
 
-            if (en.world.isRemote) {
-                en.world.addParticle(particle, true, x, y, z, 0, 1, 1.0f);
-            } else {
-                ((ServerWorld) en.world).spawnParticle(particle, x, y, z, 0, 0.0D, 0.0D, 0.0D, (double) 1F);
-            }
-
-        }
     }
 
 }

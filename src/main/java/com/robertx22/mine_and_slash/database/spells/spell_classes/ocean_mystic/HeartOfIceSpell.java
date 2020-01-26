@@ -84,7 +84,7 @@ public class HeartOfIceSpell extends BaseSpellHeal {
 
             if (!world.isRemote) {
 
-                SoundUtils.playSoundAtPlayer(caster, SoundEvents.MUSIC_UNDER_WATER, 1, 1);
+                SoundUtils.playSound(caster, SoundEvents.MUSIC_UNDER_WATER, 1, 1);
 
                 UnitData data = Load.Unit(caster);
 
@@ -100,12 +100,12 @@ public class HeartOfIceSpell extends BaseSpellHeal {
 
                 heal.Activate();
 
-                SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_DOLPHIN_SPLASH, 1, 1);
+                SoundUtils.playSound(caster, SoundEvents.ENTITY_DOLPHIN_SPLASH, 1, 1);
 
                 ParticleUtils.spawnParticles(ParticleRegister.BUBBLE, caster, 25);
 
             } else {
-                SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_DOLPHIN_SPLASH, 1, 1);
+                SoundUtils.playSound(caster, SoundEvents.ENTITY_DOLPHIN_SPLASH, 1, 1);
 
             }
         } catch (Exception e) {

@@ -86,7 +86,7 @@ public class BlazingInfernoSpell extends BaseSpell {
 
         PotionEffectUtils.applyToSelf(BlazingInfernoEffect.INSTANCE, caster);
 
-        SoundUtils.playSoundAtPlayer(caster, SoundEvents.ITEM_FIRECHARGE_USE, 1, 1);
+        SoundUtils.playSound(caster, SoundEvents.ITEM_FIRECHARGE_USE, 1, 1);
 
         return true;
     }

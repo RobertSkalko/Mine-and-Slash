@@ -99,6 +99,14 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                                 false
                 );
 
+                /*
+                this.player.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE, 1.0F, 1.0F);
+            } else {
+                this.player.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE, 1.0F, 1.0F);
+
+
+                 */
+
             }
         }
 

@@ -86,7 +86,7 @@ public class InstantHealSpell extends BaseSpellHeal {
                                                           ResourcesData.Use.RESTORE, this
                         ));
 
-                SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
+                SoundUtils.playSound(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
 
                 ParticleUtils.spawnHealParticles(caster, 10);
 

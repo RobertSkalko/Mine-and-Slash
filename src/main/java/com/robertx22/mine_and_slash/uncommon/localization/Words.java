@@ -8,7 +8,7 @@ public enum Words implements IAutoLocName {
     OceanMystic("Ocean Mystic"),
     Shaman("Shaman"),
     Druid("Druid"),
-    Cleric("Clerci"),
+    Cleric("Cleric"),
     HeartOfIce("Heart of Ice"),
     ThornArmor("Thorn Armor"),
     BlazingInferno("Blazing Inferno"),

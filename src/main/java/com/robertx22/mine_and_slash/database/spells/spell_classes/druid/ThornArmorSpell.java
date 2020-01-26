@@ -74,7 +74,7 @@ public class ThornArmorSpell extends BaseSpellHeal {
 
             if (!world.isRemote) {
 
-                SoundUtils.playSoundAtPlayer(caster, SoundEvents.ENTITY_WITCH_DRINK, 1, 1);
+                SoundUtils.playSound(caster, SoundEvents.ENTITY_WITCH_DRINK, 1, 1);
 
                 PotionEffectUtils.applyToSelf(ThornArmorEffect.INSTANCE, caster);
 
