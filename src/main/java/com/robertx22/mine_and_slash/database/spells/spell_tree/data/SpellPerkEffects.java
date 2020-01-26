@@ -35,6 +35,7 @@ public class SpellPerkEffects {
 
         synergy(Synergies.THUNDER_SPEAR_LIGHTNING);
         synergy(Synergies.LIGHTNING_TOTEM_STATIC);
+        synergy(Synergies.THUNDER_SPEAR_ESSENCE);
 
         synergy(Synergies.RIGHTEOUS_FURY_AOE);
         synergy(Synergies.INSTANT_HEAL_REMOVE_DEBUFF);

@@ -25,7 +25,6 @@ import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -361,7 +360,7 @@ public class Unit {
 
     private float getHpAdded(LivingEntity entity, MobRarity rar, UnitData data) {
 
-        float hpadded = StatUtils.calculateNormalScalingStatGrowth(entity.getMaxHealth(), data.getLevel());
+        float hpadded = Health.INSTANCE.calculateScalingStatGrowth(entity.getMaxHealth(), data.getLevel());
 
         if (entity instanceof PlayerEntity) {
             hpadded *= ModConfig.INSTANCE.Server.PLAYER_HEART_TO_HEALTH_CONVERSION.get();
@@ -473,8 +472,8 @@ public class Unit {
         if (unique_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS.get()) {
             if (en instanceof ServerPlayerEntity) {
                 en.sendMessage(new StringTextComponent(
-                        "Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible Unique" +
-                                " items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
+                        "Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible " +
+                                "Unique" + " items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
                                 .get()));
             }
             return false;
@@ -485,8 +484,8 @@ public class Unit {
         if (runed_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS.get()) {
             if (en instanceof ServerPlayerEntity) {
                 en.sendMessage(new StringTextComponent(
-                        "Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique " +
-                                "items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
+                        "Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique "
+                                + "items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
                                 .get()));
             }
             return false;

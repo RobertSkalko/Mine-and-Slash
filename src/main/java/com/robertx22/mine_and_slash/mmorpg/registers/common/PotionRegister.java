@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
+import com.robertx22.mine_and_slash.potion_effects.shaman.ThunderEssenceEffect;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -46,6 +47,7 @@ public class PotionRegister {
         reg.register(ThornArmorEffect.INSTANCE);
         reg.register(StaticEffect.INSTANCE);
         reg.register(BurnEffect.INSTANCE);
+        reg.register(ThunderEssenceEffect.INSTANCE);
 
         for (net.minecraft.item.Item item : ForgeRegistries.ITEMS) {
             if (item instanceof BaseBuffPotion) {

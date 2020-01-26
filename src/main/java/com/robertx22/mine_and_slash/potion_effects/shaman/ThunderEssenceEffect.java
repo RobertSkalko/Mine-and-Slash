@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.potion_effects.shaman;
 
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
+import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
@@ -11,29 +11,27 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
+public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStatPotion {
 
-    public static final StaticEffect INSTANCE = new StaticEffect();
+    public static final ThunderEssenceEffect INSTANCE = new ThunderEssenceEffect();
 
-    private StaticEffect() {
-        super(EffectType.HARMFUL, 4393423);
+    private ThunderEssenceEffect() {
+        super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
     }
 
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
-        ParticleUtils.spawnParticles(ParticleRegister.THUNDER, entity, 5);
+        //ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
     }
 
     @Override
@@ -43,7 +41,7 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public String GUID() {
-        return "static";
+        return "thunder_essence";
     }
 
     @Override
@@ -53,23 +51,22 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public String locNameForLangFile() {
-        return "Static";
+        return "Thunder Essence";
     }
 
     @Override
     public int getMaxStacks() {
-        return 3;
+        return 20;
     }
 
-    public ExactStatData nature(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = -2 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Nature)).scaleToLvl(
-                extraData.casterLvl);
+    public ExactStatData getCrit(EntityCap.UnitData data, ExtraPotionData extraData) {
+        float statAmount = 0.5F * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, CriticalHit.INSTANCE);
     }
 
-    public ExactStatData thunder(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = -1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Thunder)).scaleToLvl(
+    public ExactStatData getThunder(EntityCap.UnitData data, ExtraPotionData extraData) {
+        int statAmount = 1 * extraData.getStacks();
+        return new ExactStatData(statAmount, StatTypes.Flat, new AllElementalDamage(Elements.Thunder)).scaleToLvl(
                 extraData.casterLvl);
     }
 
@@ -78,8 +75,8 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
         List<ExactStatData> list = new ArrayList<>();
 
-        list.add(nature(data, extraData));
-        list.add(thunder(data, extraData));
+        list.add(getThunder(data, extraData));
+        list.add(getCrit(data, extraData));
 
         return list;
 
@@ -88,8 +85,6 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
-
-        list.add(new StringTextComponent("Slows and Reduces Resistances;"));
 
         return list;
 

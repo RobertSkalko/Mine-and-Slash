@@ -16,7 +16,11 @@ public interface IApplyStatPotion {
 
     default void applyStats(EntityCap.UnitData data, EffectInstance instance) {
         ExtraPotionData extraData = PotionDataSaving.getData(instance);
-        getStatsAffected(data, extraData).forEach(x -> x.applyStats(data));
+
+        if (extraData != null) {
+            getStatsAffected(data, extraData).forEach(x -> x.applyStats(data));
+        }
+
     }
 
     List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData);

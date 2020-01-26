@@ -22,7 +22,7 @@ import net.minecraftforge.fml.LogicalSide;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class OnTickLogic {
+public class OnServerTick {
 
     static final int TicksToUpdatePlayer = 18;
     static final int TicksToRegen = 100;

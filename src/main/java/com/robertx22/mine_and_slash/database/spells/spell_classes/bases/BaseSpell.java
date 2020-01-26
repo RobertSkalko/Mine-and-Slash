@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
@@ -21,7 +22,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -98,7 +98,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     public abstract int getManaCost();
 
     public final int getCalculatedManaCost(UnitData data) {
-        return (int) StatUtils.calculateNormalScalingStatGrowth(getManaCost(), data.getLevel());
+        return (int) Mana.INSTANCE.calculateScalingStatGrowth(getManaCost(), data.getLevel());
     }
 
     public abstract int useTimeTicks();

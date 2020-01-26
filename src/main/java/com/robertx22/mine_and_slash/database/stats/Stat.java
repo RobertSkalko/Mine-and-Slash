@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
@@ -137,8 +138,16 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     }
 
-    public float calculateScalingStatGrowth(float stat, int lvl) {
-        return StatUtils.calculateNormalScalingStatGrowth(stat, lvl);
+    public final float calculateScalingStatGrowth(float stat, int lvl) {
+        return getScaling().scale(stat, lvl);
+    }
+
+    public StatScaling getScaling() {
+        return StatScaling.NORMAL;
+    }
+
+    private static float getNormalScalingMultiplier(int lvl) {
+        return MathHelper.clamp(0.5F + (float) lvl / 50, 0.5F, 1.5F);
     }
 
     public float roundScalingStatGrowth(float stat, int lvl) {

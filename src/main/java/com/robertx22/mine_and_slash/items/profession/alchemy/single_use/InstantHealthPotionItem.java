@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
+import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -7,7 +8,6 @@ import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.professions.recipe.builders.SimpleRecipeBuilders;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -33,11 +33,12 @@ public class InstantHealthPotionItem extends BaseInstantPotion {
     }
 
     @Override
-    public void onFinish(ItemStack stack, World world, LivingEntity player,
-                         EntityCap.UnitData unitdata) {
+    public void onFinish(ItemStack stack, World world, LivingEntity player, EntityCap.UnitData unitdata) {
 
         unitdata.getResources()
-                .modify(new ResourcesData.Context(unitdata, player, ResourcesData.Type.HEALTH, amount(), ResourcesData.Use.RESTORE));
+                .modify(new ResourcesData.Context(unitdata, player, ResourcesData.Type.HEALTH, amount(),
+                                                  ResourcesData.Use.RESTORE
+                ));
 
     }
 
@@ -48,7 +49,7 @@ public class InstantHealthPotionItem extends BaseInstantPotion {
 
     @Override
     public float amount() {
-        return StatUtils.calculateNormalScalingStatGrowth(lvl_1_amount * level.effectMultiplier, level.number);
+        return Health.INSTANCE.calculateScalingStatGrowth(lvl_1_amount * level.effectMultiplier, level.number);
     }
 
     @Override
@@ -67,11 +68,7 @@ public class InstantHealthPotionItem extends BaseInstantPotion {
             mats.addMaterial(Items.BEETROOT, 5 * level.materialCostMulti);
         }
 
-        return mats.buildMaterials()
-                .setOutput(this, 3)
-                .levelReq(level.number)
-                .expGained(10)
-                .build();
+        return mats.buildMaterials().setOutput(this, 3).levelReq(level.number).expGained(10).build();
 
     }
 

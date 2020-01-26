@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 public class KeybindsRegister {
 
+    /*
     public static KeyBinding Player_Stats = new KeyBinding("Player Stat Overview", GLFW.GLFW_KEY_P, Ref.MOD_NAME);
     public static KeyBinding Player_Stat_Points = new KeyBinding(
             "Stat Allocation Screen", GLFW.GLFW_KEY_O, Ref.MOD_NAME);
@@ -16,6 +17,10 @@ public class KeybindsRegister {
     public static KeyBinding disableNeatOverlay = new KeyBinding(
             "Disable Neat Overlay", GLFW.GLFW_KEY_MINUS, Ref.MOD_NAME);
     public static KeyBinding mapInfo = new KeyBinding("Adventure Map Info", GLFW.GLFW_KEY_M, Ref.MOD_NAME);
+
+
+     */
+
     public static KeyBinding hubScreen = new KeyBinding("Main Hub Screen", GLFW.GLFW_KEY_H, Ref.MOD_NAME);
     public static KeyBinding swapHotbar = new KeyBinding("Swap Spell Hotbar", GLFW.GLFW_KEY_X, Ref.MOD_NAME);
 
@@ -56,11 +61,14 @@ public class KeybindsRegister {
     }};
 
     public static void register() {
+        /*
         ClientRegistry.registerKeyBinding(Player_Stats);
         ClientRegistry.registerKeyBinding(Player_Stat_Points);
         ClientRegistry.registerKeyBinding(disableNeatOverlay);
         ClientRegistry.registerKeyBinding(Talent_Tree);
         ClientRegistry.registerKeyBinding(mapInfo);
+
+         */
         ClientRegistry.registerKeyBinding(hubScreen);
         ClientRegistry.registerKeyBinding(swapHotbar);
 

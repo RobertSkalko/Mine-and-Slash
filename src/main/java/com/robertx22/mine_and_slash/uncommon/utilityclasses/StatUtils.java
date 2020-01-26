@@ -1,21 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import net.minecraft.util.math.MathHelper;
-
 public class StatUtils {
-
-    public static float calculateBaseStatScalingStatGrowth(float stat, int lvl) {
-        return stat * (1F + (float) lvl / 100);
-    }
-
-    public static float calculateNormalScalingStatGrowth(float stat, int lvl) {
-        return stat * (float) Math.pow(lvl, getNormalScalingMultiplier(lvl));
-    }
-
-    private static float getNormalScalingMultiplier(int lvl) {
-        return MathHelper.clamp(0.5F + (float) lvl / 50, 0.5F, 1.5F);
-
-    }
 
     public static float roundNumber(float n) {
 

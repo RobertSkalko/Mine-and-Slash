@@ -12,9 +12,7 @@ public class OnClientTick {
     public static void onTick(TickEvent.PlayerTickEvent event) {
 
         if (event.side.equals(LogicalSide.CLIENT) && event.phase == TickEvent.Phase.END) {
-
             PlayerEntity player = event.player;
-
             Load.spells(player).getSpellData().onTimePass(1); // ticks spells so i dont need to sync packets every tick
         }
     }

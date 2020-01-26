@@ -31,14 +31,13 @@ public class WandWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost(int lvl) {
-
-        return Energy.INSTANCE.calculateScalingStatGrowth(2, lvl);
+        return Energy.INSTANCE.calculateScalingStatGrowth(3, lvl);
 
     }
 
     @Override
     public float GetManaCost(int lvl) {
-        return Mana.INSTANCE.calculateScalingStatGrowth(2, lvl);
+        return Mana.INSTANCE.calculateScalingStatGrowth(1, lvl);
     }
 
     @Override

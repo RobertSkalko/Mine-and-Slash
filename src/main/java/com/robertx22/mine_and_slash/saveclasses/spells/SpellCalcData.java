@@ -51,7 +51,7 @@ public class SpellCalcData implements ITooltipList {
     public List<ScalingStatCalc> scalingValues = new ArrayList<>();
 
     @Store
-    public StatScaleType baseScaling = StatScaleType.NORMAL;
+    public StatScaling baseScaling = StatScaling.NORMAL;
 
     private boolean empty = false;
 

@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.Volcano
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.*;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearLightningStrikeSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearThunderEssenceSynergy;
 
 public class Synergies {
 
@@ -20,6 +21,7 @@ public class Synergies {
 
     public static ThunderSpearLightningStrikeSynergy THUNDER_SPEAR_LIGHTNING = new ThunderSpearLightningStrikeSynergy();
     public static LightningTotemStaticSynergy LIGHTNING_TOTEM_STATIC = new LightningTotemStaticSynergy();
+    public static ThunderSpearThunderEssenceSynergy THUNDER_SPEAR_ESSENCE = new ThunderSpearThunderEssenceSynergy();
 
     public static ThornArmorThornsSynergy THORN_ARMOR_THORNS = new ThornArmorThornsSynergy();
 

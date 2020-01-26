@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
-import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
+import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.main_hub.MainHubScreen;
-import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoScreen;
-import com.robertx22.mine_and_slash.gui.stat_allocation_screen.StatAllocationScreen;
-import com.robertx22.mine_and_slash.gui.stats_overview.StatOverviewScreen;
-import com.robertx22.mine_and_slash.gui.talent_tree_gui.TalentPerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.spell_hotbar.SpellHotbarOverlay;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
+import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
+import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
@@ -28,50 +29,32 @@ public class OnKeyPress {
 
             if (mc.currentScreen == null) {
 
-                if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
-                    mc.displayGuiScreen(new StatOverviewScreen());
-                } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
-                    mc.displayGuiScreen(new StatAllocationScreen());
-                } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
-                    mc.displayGuiScreen(new TalentPerkTreeScreen());
-                } else if (key == KeybindsRegister.mapInfo.getKey().getKeyCode()) {
-                    mc.displayGuiScreen(new MapInfoScreen());
-                } else if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
+                if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
                     mc.displayGuiScreen(new MainHubScreen());
-                }
 
-                boolean wasDown = down;
-                down = KeybindsRegister.disableNeatOverlay.isKeyDown();
-                if (mc.isGameFocused() && down && !wasDown) {
-                    NeatConfig.draw = !NeatConfig.draw;
+                } else if (key == KeybindsRegister.swapHotbar.getKey().getKeyCode()) {
+
+                    SpellHotbarOverlay.CURRENT_HOTBAR =
+                            SpellHotbarOverlay.CURRENT_HOTBAR == PlayerSpellsData.Hotbar.FIRST ?
+                                    PlayerSpellsData.Hotbar.SECOND : PlayerSpellsData.Hotbar.FIRST;
+                } else {
+
+                    for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {
+                        if (key == entry.getKey().getKeyCode()) {
+                            MMORPG.sendToServer(new CastSpellPacket(KeybindsRegister.HOTBAR.get(entry),
+                                                                    SpellHotbarOverlay.CURRENT_HOTBAR
+                            ));
+                        }
+                    }
                 }
             } else {
 
                 if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
-                    // mc.displayGuiScreen(null);
-                    // return;
-                }
 
-                if (key == KeybindsRegister.Player_Stats.getKey().getKeyCode()) {
-                    if (mc.currentScreen instanceof StatOverviewScreen) {
+                    if (mc.currentScreen instanceof INamedScreen) {
                         mc.displayGuiScreen(null);
                     }
-                } else if (key == KeybindsRegister.Player_Stat_Points.getKey().getKeyCode()) {
-                    if (mc.currentScreen instanceof StatAllocationScreen) {
-                        mc.displayGuiScreen(null);
-                    }
-                } else if (key == KeybindsRegister.Talent_Tree.getKey().getKeyCode()) {
-                    if (mc.currentScreen instanceof TalentPerkTreeScreen) {
-                        mc.displayGuiScreen(null);
-                    }
-                } else if (key == KeybindsRegister.mapInfo.getKey().getKeyCode()) {
-                    if (mc.currentScreen instanceof MapInfoScreen) {
-                        mc.displayGuiScreen(null);
-                    }
-                } else if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
-                    if (mc.currentScreen instanceof MainHubScreen) {
-                        mc.displayGuiScreen(null);
-                    }
+
                 }
 
             }

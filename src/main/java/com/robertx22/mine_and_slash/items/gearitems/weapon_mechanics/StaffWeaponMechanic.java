@@ -22,13 +22,13 @@ public class StaffWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost(int lvl) {
-        return Energy.INSTANCE.calculateScalingStatGrowth(6, lvl);
+        return Energy.INSTANCE.calculateScalingStatGrowth(7, lvl);
 
     }
 
     @Override
     public float GetManaCost(int lvl) {
-        return Mana.INSTANCE.calculateScalingStatGrowth(3, lvl);
+        return Mana.INSTANCE.calculateScalingStatGrowth(2, lvl);
     }
 
     @Override
@@ -36,8 +36,7 @@ public class StaffWeaponMechanic extends WeaponMechanic {
         return WeaponTypes.Staff;
     }
 
-    public boolean powerAttack(LivingHurtEvent event, LivingEntity source,
-                               LivingEntity target, UnitData unitsource,
+    public boolean powerAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
                                UnitData targetUnit, float multi) {
         super.multiplyDamage(event, source, target, unitsource, targetUnit, 2 * multi);
 
@@ -45,8 +44,8 @@ public class StaffWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
-                          UnitData unitsource, UnitData targetUnit) {
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
+                          UnitData targetUnit) {
 
         super.multiplyDamage(event, source, target, unitsource, targetUnit, 2);
 
