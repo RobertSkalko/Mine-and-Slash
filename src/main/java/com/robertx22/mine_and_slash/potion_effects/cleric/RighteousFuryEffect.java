@@ -4,7 +4,10 @@ import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.PotionContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.potion_effects.bases.*;
+import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
+import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -85,14 +88,8 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
-
-        ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
-
-        list.add(locName());
-
-        list.addAll(getStatTooltip(info, this));
 
         Tooltip.addEmpty(list);
 
@@ -101,8 +98,6 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
         Tooltip.addEmpty(list);
 
         list.add(new StringTextComponent("Gains stacks by damaging mobs"));
-
-        list.addAll(getMaxStacksTooltip());
 
         return list;
 

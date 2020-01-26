@@ -83,14 +83,8 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
-
-        list.add(locName());
-
-        list.addAll(getStatTooltip(info, this));
-
-        list.addAll(getMaxStacksTooltip());
 
         return list;
 

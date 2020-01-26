@@ -28,7 +28,7 @@ public class RegenerateEffect extends BasePotionEffect {
     private RegenerateEffect() {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-
+        this.needsTickTooltip = true;
     }
 
     @Override
@@ -81,18 +81,12 @@ public class RegenerateEffect extends BasePotionEffect {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
-
-        list.add(locName());
 
         list.add(new StringTextComponent("Heals user."));
 
-        list.addAll(getTickTooltip());
-
         list.addAll(CALC.GetTooltipString(info));
-
-        list.addAll(getMaxStacksTooltip());
 
         return list;
     }

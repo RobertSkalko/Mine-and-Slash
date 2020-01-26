@@ -85,14 +85,8 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
-
-        list.add(locName());
-
-        getStatTooltip(info, this);
-
-        list.addAll(getMaxStacksTooltip());
 
         return list;
 

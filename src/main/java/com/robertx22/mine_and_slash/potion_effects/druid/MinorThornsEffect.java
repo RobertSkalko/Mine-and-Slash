@@ -18,8 +18,9 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
@@ -37,9 +38,10 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
     private MinorThornsEffect() {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
+        this.needsTickTooltip = true;
     }
 
-    static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.1F, 1);
+    static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.1F, 2);
 
     @Override
     public int getDurationInSeconds() {
@@ -55,11 +57,15 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
 
         int num = CALC.getCalculatedValue(Load.Unit(caster));
 
-        DamageEffect dmg = new DamageEffect(null, entity, caster, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
+        DamageEffect dmg = new DamageEffect(null, caster, entity, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
         dmg.element = Elements.Nature;
         dmg.removeKnockback();
         dmg.Activate();
 
+        /// SoundUtils.playSound(entity, SoundEvents., 1F, 1F);
+
+        ParticleUtils.spawnParticles(
+                new BlockParticleData(ParticleTypes.BLOCK, Blocks.BIRCH_LEAVES.getDefaultState()), entity, 2);
         ParticleUtils.spawnParticles(ParticleTypes.ITEM_SLIME, entity, 5);
     }
 
@@ -101,23 +107,13 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<>();
-
-        list.add(locName());
 
         list.add(new StringTextComponent("Does damage:"));
 
         list.addAll(CALC.GetTooltipString(info));
-
-        Tooltip.addEmpty(list);
-
-        this.getStatTooltip(info, this);
-
-        list.addAll(getTickTooltip());
-
-        list.addAll(getMaxStacksTooltip());
 
         return list;
     }

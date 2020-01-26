@@ -4,6 +4,11 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    EmberMage("Ember Mage"),
+    OceanMystic("Ocean Mystic"),
+    Shaman("Shaman"),
+    Druid("Druid"),
+    Cleric("Clerci"),
     HeartOfIce("Heart of Ice"),
     ThornArmor("Thorn Armor"),
     BlazingInferno("Blazing Inferno"),

@@ -32,6 +32,7 @@ public class BlazingInfernoEffect extends BasePotionEffect {
     private BlazingInfernoEffect() {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
+        this.needsTickTooltip = true;
     }
 
     public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.25F, 1);
@@ -93,19 +94,13 @@ public class BlazingInfernoEffect extends BasePotionEffect {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<>();
-
-        list.add(locName());
 
         list.add(new StringTextComponent("Does damage to enemies around you:"));
 
         list.addAll(CALC.GetTooltipString(info));
-
-        list.addAll(getTickTooltip());
-
-        list.addAll(getMaxStacksTooltip());
 
         return list;
     }

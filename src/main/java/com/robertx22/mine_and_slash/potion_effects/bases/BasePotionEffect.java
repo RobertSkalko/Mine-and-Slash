@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
@@ -34,6 +35,8 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
         return 1;
     }
 
+    public boolean needsTickTooltip = false;
+
     @Override
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Potions;
@@ -53,6 +56,31 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
     public abstract int performEachXTicks();
 
+    public abstract List<ITextComponent> getEffectTooltip(TooltipInfo info);
+
+    @Override
+    public final List<ITextComponent> GetTooltipString(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.BOLD).appendSibling(
+                locName()));
+
+        list.addAll(getEffectTooltip(info));
+
+        if (this instanceof IApplyStatPotion) {
+            list.addAll(((IApplyStatPotion) this).getStatTooltip(info, this));
+        }
+
+        if (this.needsTickTooltip) {
+            list.addAll(getTickTooltip());
+        }
+        list.addAll(getMaxStacksTooltip());
+        list.addAll(getDurationTooltip());
+
+        return list;
+    }
+
     public List<LivingEntity> getEntitiesAround(Entity en, float radius) {
 
         return en.world.getEntitiesWithinAABB(LivingEntity.class, en.getBoundingBox().grow(radius));
@@ -62,12 +90,23 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
         return new ResourceLocation(Ref.MODID, "textures/mob_effect/" + GUID() + ".png");
     }
 
-    public List<ITextComponent> getMaxStacksTooltip() {
+    private List<ITextComponent> getMaxStacksTooltip() {
         List<ITextComponent> list = new ArrayList<>();
 
         Tooltip.addEmpty(list);
         list.add(new StringTextComponent(
                 TextFormatting.LIGHT_PURPLE + "Max Stacks: " + TextFormatting.DARK_PURPLE + getMaxStacks()));
+
+        return list;
+
+    }
+
+    private List<ITextComponent> getDurationTooltip() {
+        List<ITextComponent> list = new ArrayList<>();
+
+        Tooltip.addEmpty(list);
+        list.add(new StringTextComponent(
+                TextFormatting.GOLD + "Duration: " + TextFormatting.YELLOW + getDurationInSeconds() + "s"));
 
         return list;
 
@@ -79,7 +118,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
         return getDurationInSeconds() * 20;
     }
 
-    public List<ITextComponent> getTickTooltip() {
+    private List<ITextComponent> getTickTooltip() {
 
         List<ITextComponent> list = new ArrayList<>();
 

@@ -57,8 +57,6 @@ public class TileGearRepair extends BaseTile {
 
     public int MaximumFuel = 5000;
 
-    // returns the smelting result for the given stack. Returns null if the given
-    // stack can not be smelted
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
         if (stack.getItem().isDamageable()) {
             ICommonDataItem data = ICommonDataItem.load(stack);
@@ -117,18 +115,6 @@ public class TileGearRepair extends BaseTile {
     }
 
     /**
-     * return the remaining burn time of the fuel in the given slot
-     *
-     * @param fuelSlot the number of the fuel slot (0..3)
-     * @return seconds remaining
-     */
-    public int secondsOfFuelRemaining(int fuelSlot) {
-        if (fuel <= 0)
-            return 0;
-        return fuel; // 20 ticks per second
-    }
-
-    /**
      * Returns the amount of cook time completed on the currently cooking item.
      *
      * @return fraction remaining, between 0 - 1
@@ -179,8 +165,7 @@ public class TileGearRepair extends BaseTile {
                     // burnTimeInitialValue to the
                     // item's burn time and decrease the stack size
 
-                    int fuelgained = FuelSlot.FUEL_VALUES.getOrDefault(itemStacks[fuelSlotNumber]
-                            .getItem(), 0);
+                    int fuelgained = FuelSlot.FUEL_VALUES.getOrDefault(itemStacks[fuelSlotNumber].getItem(), 0);
 
                     if (fuelgained > 0) {
                         fuel += fuelgained;
@@ -207,45 +192,25 @@ public class TileGearRepair extends BaseTile {
         return burningCount;
     }
 
-    /**
-     * Check if any of the input items are smeltable and there is sufficient space
-     * in the output slots
-     *
-     * @return true if smelting is possible
-     */
     private boolean canSmelt() {
         return smeltItem(false);
     }
 
-    /**
-     * Smelt an input item into an output slot, if possible
-     */
     private void smeltItem() {
         smeltItem(true);
     }
 
-    /**
-     * checks that there is an item to be smelted in one of the input slots and that
-     * there is room for the result in the output slots If desired, performs the
-     * smelt
-     *
-     * @param performSmelt if true, perform the smelt. if false, check whether
-     *                     smelting is possible, but don't change the inventory
-     * @return false if no items can be smelted, true otherwise
-     */
     private boolean smeltItem(boolean performSmelt) {
         if (this.fuel < 1) {
             return false;
         }
 
         Integer firstSuitableInputSlot = null;
-        Integer firstSuitableOutputSlot = null;
+        Integer firstOuputSlot = null;
         ItemStack result = ItemStack.EMPTY; // EMPTY_ITEM
 
         int fuelNeeded = 0;
         float fuelMulti = 1F;
-
-        // TODO
 
         if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
 
@@ -253,7 +218,6 @@ public class TileGearRepair extends BaseTile {
 
             if (item instanceof ItemCapacitor) {
                 fuelMulti = ((ItemCapacitor) item).GetFuelMultiplier();
-                // System.out.println("it works!");
             }
 
         }
@@ -283,7 +247,7 @@ public class TileGearRepair extends BaseTile {
                         ItemStack outputStack = itemStacks[outputSlot];
                         if (outputStack.isEmpty()) { // isEmpty()
                             firstSuitableInputSlot = inputSlot;
-                            firstSuitableOutputSlot = outputSlot;
+                            firstOuputSlot = outputSlot;
                             break;
                         }
 
@@ -291,10 +255,9 @@ public class TileGearRepair extends BaseTile {
 
                                 && ItemStack.areItemStackTagsEqual(outputStack, result)) {
                             int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
-                            if (combinedSize <= getInventoryStackLimit() && combinedSize <= itemStacks[outputSlot]
-                                    .getMaxStackSize()) {
+                            if (combinedSize <= getInventoryStackLimit() && combinedSize <= itemStacks[outputSlot].getMaxStackSize()) {
                                 firstSuitableInputSlot = inputSlot;
-                                firstSuitableOutputSlot = outputSlot;
+                                firstOuputSlot = outputSlot;
                                 break;
                             }
                         }
@@ -315,11 +278,11 @@ public class TileGearRepair extends BaseTile {
         if (itemStacks[firstSuitableInputSlot].getCount() <= 0) {
             itemStacks[firstSuitableInputSlot] = ItemStack.EMPTY; // getStackSize(), EmptyItem
         }
-        if (itemStacks[firstSuitableOutputSlot].isEmpty()) { // isEmpty()
-            itemStacks[firstSuitableOutputSlot] = result.copy(); // Use deep .copy() to avoid altering the recipe
+        if (itemStacks[firstOuputSlot].isEmpty()) { // isEmpty()
+            itemStacks[firstOuputSlot] = result.copy(); // Use deep .copy() to avoid altering the recipe
         } else {
-            int newStackSize = itemStacks[firstSuitableOutputSlot].getCount() + result.getCount();
-            itemStacks[firstSuitableOutputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
+            int newStackSize = itemStacks[firstOuputSlot].getCount() + result.getCount();
+            itemStacks[firstOuputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
         }
 
         fuel -= fuelNeeded * fuelMulti; // TODO

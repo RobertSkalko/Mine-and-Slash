@@ -51,7 +51,7 @@ public class ThornArmorThornsSynergy extends Synergy<CasterTargetContext> {
                 PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.caster, ctx.target);
             }
             if (PotionEffectUtils.has(ctx.target, ThornArmorEffect.INSTANCE)) {
-                PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.caster, ctx.caster);
+                PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.target, ctx.caster);
             }
         }
     }

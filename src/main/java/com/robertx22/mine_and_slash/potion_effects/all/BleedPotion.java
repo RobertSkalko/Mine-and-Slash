@@ -80,7 +80,7 @@ public class BleedPotion extends BasePotionEffect {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         return new ArrayList<>();
     }
 }

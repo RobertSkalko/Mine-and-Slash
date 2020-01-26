@@ -159,7 +159,8 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(getName().locName());
+        list.add(new StringTextComponent(TextFormatting.BOLD + "" + getSchool().format).appendSibling(
+                getName().locName()));
 
         Tooltip.addEmpty(list);
 
@@ -172,6 +173,8 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + getUseDurationInSeconds() + "s"));
 
         Tooltip.addEmpty(list);
+
+        list.add(new StringTextComponent(getSchool().format + "School: ").appendSibling(getSchool().locName.locName()));
 
         return list;
 

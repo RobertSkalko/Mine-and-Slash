@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResi
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -24,7 +24,8 @@ import net.minecraft.util.text.ITextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPotion, IOnBasicAttackedPotion {
+public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPotion, IOnBasicAttackedPotion,
+        IOnBasicAttackPotion {
 
     public static final ThornArmorEffect INSTANCE = new ThornArmorEffect();
 
@@ -88,16 +89,8 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
-
-        ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
-
-        list.add(locName());
-
-        list.addAll(getStatTooltip(info, this));
-
-        list.addAll(getMaxStacksTooltip());
 
         return list;
 
@@ -106,6 +99,13 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     @Override
     public void onBasicAttacked(LivingEntity source, LivingEntity target) {
         if (Synergies.THORN_ARMOR_THORNS.has(target)) {
+            Synergies.THORN_ARMOR_THORNS.tryActivate(new CasterTargetContext(source, target));
+        }
+    }
+
+    @Override
+    public void OnBasicAttack(LivingEntity source, LivingEntity target) {
+        if (Synergies.THORN_ARMOR_THORNS.has(source)) {
             Synergies.THORN_ARMOR_THORNS.tryActivate(new CasterTargetContext(source, target));
         }
     }
