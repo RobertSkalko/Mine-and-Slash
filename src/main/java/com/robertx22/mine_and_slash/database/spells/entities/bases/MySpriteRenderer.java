@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.util.ResourceLocation;
 
 public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
@@ -16,8 +17,7 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
     private final float scale;
     private final boolean field_229126_f_;
 
-    public MySpriteRenderer(EntityRendererManager p_i226035_1_,
-                            net.minecraft.client.renderer.ItemRenderer p_i226035_2_,
+    public MySpriteRenderer(EntityRendererManager p_i226035_1_, net.minecraft.client.renderer.ItemRenderer p_i226035_2_,
                             float p_i226035_3_, boolean p_i226035_4_) {
         super(p_i226035_1_);
         this.itemRenderer = p_i226035_2_;
@@ -25,8 +25,7 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
         this.field_229126_f_ = p_i226035_4_;
     }
 
-    public MySpriteRenderer(EntityRendererManager p_i50957_1_,
-                            net.minecraft.client.renderer.ItemRenderer p_i50957_2_) {
+    public MySpriteRenderer(EntityRendererManager p_i50957_1_, net.minecraft.client.renderer.ItemRenderer p_i50957_2_) {
         this(p_i50957_1_, p_i50957_2_, 1.0F, false);
     }
 
@@ -34,14 +33,16 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
         return this.field_229126_f_ ? 15 : super.getBlockLight(p_225624_1_, p_225624_2_);
     }
 
-    public void render(T p_225623_1_, float p_225623_2_, float p_225623_3_,
-                       MatrixStack p_225623_4_, IRenderTypeBuffer p_225623_5_,
-                       int p_225623_6_) {
+    public void render(T p_225623_1_, float p_225623_2_, float p_225623_3_, MatrixStack p_225623_4_,
+                       IRenderTypeBuffer p_225623_5_, int p_225623_6_) {
         p_225623_4_.push();
         p_225623_4_.scale(this.scale, this.scale, this.scale);
-        p_225623_4_.multiply(this.renderManager.getRotation());
-        p_225623_4_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
-        this.itemRenderer.renderItem(((IMyRenderAsItem) p_225623_1_).getItem(), ItemCameraTransforms.TransformType.GROUND, p_225623_6_, OverlayTexture.DEFAULT_UV, p_225623_4_, p_225623_5_);
+        p_225623_4_.rotate(this.renderManager.getCameraOrientation());
+        p_225623_4_.rotate(Vector3f.YP.rotationDegrees(180.0F));
+        this.itemRenderer.renderItem(((IRendersAsItem) p_225623_1_).getItem(),
+                                     ItemCameraTransforms.TransformType.GROUND, p_225623_6_,
+                                     OverlayTexture.DEFAULT_LIGHT, p_225623_4_, p_225623_5_
+        );
         p_225623_4_.pop();
         super.render(p_225623_1_, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);
     }

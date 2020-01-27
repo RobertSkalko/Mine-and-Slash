@@ -62,8 +62,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
-                                                    @Nonnull Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, @Nonnull Hand hand) {
 
         if (!world.isRemote) {
 
@@ -76,7 +75,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
             }
         }
 
-        return ActionResult.success(player.getHeldItemMainhand());
+        return ActionResult.func_226248_a_(player.getHeldItemMainhand());
     }
 
     @Override
@@ -112,8 +111,8 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
     public static String NBT_ID = "mmorpg:master_loot_bag_data";
 
     @Override
-    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(
-            ItemStack stack, @Nullable CompoundNBT nbt) {
+    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack,
+                                                                                       @Nullable CompoundNBT nbt) {
         // TO TRANSFER TO NEW NBT SYSTEM WITHOUT LOSING ITEMS
         if (nbt != null && nbt.contains(NBT_ID)) {
             stack.setTag(nbt);

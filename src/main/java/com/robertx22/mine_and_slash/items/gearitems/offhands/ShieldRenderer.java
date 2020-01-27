@@ -24,8 +24,7 @@ public class ShieldRenderer extends ItemStackTileEntityRenderer implements Calla
     }
 
     @Override
-    public void render(ItemStack stack, MatrixStack mat, IRenderTypeBuffer renderType,
-                       int x, int y) {
+    public void render(ItemStack stack, MatrixStack mat, IRenderTypeBuffer renderType, int x, int y) {
         Item item = stack.getItem();
 
         if (item instanceof NormalShield) {
@@ -36,9 +35,9 @@ public class ShieldRenderer extends ItemStackTileEntityRenderer implements Calla
 
             mat.scale(1F, -0.6F, -1.0F);
 
-            Material material = ModelBakery.SHIELD_BASE;
+            Material material = ModelBakery.LOCATION_SHIELD_BASE;
 
-            IVertexBuilder ivertexbuilder = material.getVertexConsumer(renderType, RenderType::getEntityNoOutline);
+            IVertexBuilder ivertexbuilder = material.getBuffer(renderType, RenderType::entityNoOutline);
 
             Minecraft.getInstance().getTextureManager().bindTexture(shield.resource);
 

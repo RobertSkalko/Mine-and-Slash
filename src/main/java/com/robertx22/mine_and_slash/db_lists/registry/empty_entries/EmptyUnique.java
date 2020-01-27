@@ -81,14 +81,13 @@ public class EmptyUnique implements IUnique {
     }
 
     @Override
-    public int getHarvestLevel(ItemStack stack, ToolType tool,
-                               @Nullable PlayerEntity player,
+    public int getHarvestLevel(ItemStack stack, ToolType tool, @Nullable PlayerEntity player,
                                @Nullable BlockState blockState) {
         return 0;
     }
 
     @Override
-    public ItemStackTileEntityRenderer getTileEntityItemStackRenderer() {
+    public ItemStackTileEntityRenderer getItemStackTileEntityRenderer() {
         return null;
     }
 

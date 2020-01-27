@@ -35,8 +35,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
 
     public abstract List<StructureProcessor> processors();
 
-    public TemplatePiece(IStructurePieceType type, TemplateManager templateManager,
-                         CompoundNBT nbt) {
+    public TemplatePiece(IStructurePieceType type, TemplateManager templateManager, CompoundNBT nbt) {
         super(type, nbt);
         loadFromNBT(nbt);
         this.setupTemplateManager(templateManager);
@@ -104,8 +103,8 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
     }
 
     @Override
-    public boolean generate(IWorld iworld, ChunkGenerator<?> chunkGen, Random ran,
-                            MutableBoundingBox boundingbox, ChunkPos chunkPos) {
+    public boolean func_225577_a_(IWorld iworld, ChunkGenerator<?> chunkGen, Random ran, MutableBoundingBox boundingbox,
+                                  ChunkPos chunkPos) {
 
         IWP iwp = WorldUtils.getIWP(iworld);
 
@@ -113,7 +112,8 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
 
             PlacementSettings placeSettings = this.setupPlacementSettings();
 
-            BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
+            BlockPos pos = this.templatePosition.add(
+                    Template.transformedBlockPos(placeSettings, new BlockPos(0, 0, 0)));
 
             if (canBeInWater == false) {
                 if (WorldUtils.surfaceIsWater(iworld, pos)) {
@@ -129,7 +129,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
 
             this.templatePosition = this.templatePosition.add(0, surfaceHeight - 90 - this.lowerIntoGroundBy, 0);
 
-            boolean addedParts = super.generate(iworld, chunkGen, ran, boundingbox, chunkPos);
+            boolean addedParts = super.func_225577_a_(iworld, chunkGen, ran, boundingbox, chunkPos);
 
             this.templatePosition = templatePosition;
 
@@ -140,11 +140,9 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
 
     }
 
-    public static int getAverageSurfaceHeight(IWorld world, Template template,
-                                              BlockPos templatePosition) {
+    public static int getAverageSurfaceHeight(IWorld world, Template template, BlockPos templatePosition) {
         float height = 0;
-        BlockPos structureSize = templatePosition.add(template.getSize()
-                .getX() - 1, 0, template.getSize().getZ() - 1);
+        BlockPos structureSize = templatePosition.add(template.getSize().getX() - 1, 0, template.getSize().getZ() - 1);
 
         for (BlockPos pos : BlockPos.getAllInBoxMutable(templatePosition, structureSize)) {
             int k = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos.getX(), pos.getZ());
@@ -157,8 +155,7 @@ public abstract class TemplatePiece extends TemplateStructurePiece {
     }
 
     @Override
-    protected void handleDataMarker(String s, BlockPos blockPos, IWorld iWorld,
-                                    Random random,
+    protected void handleDataMarker(String s, BlockPos blockPos, IWorld iWorld, Random random,
                                     MutableBoundingBox mutableBoundingBox) {
 
     }

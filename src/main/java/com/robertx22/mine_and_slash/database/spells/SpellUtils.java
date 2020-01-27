@@ -14,9 +14,10 @@ public class SpellUtils {
 
     public static void summonLightningStrike(Entity entity) {
 
-        LightningBoltEntity lightningboltentity = new LightningBoltEntity(entity.world, (double) entity.getX() + 0.5D,
-                                                                          (double) entity.getY(),
-                                                                          (double) entity.getZ() + 0.5D, true
+        LightningBoltEntity lightningboltentity = new LightningBoltEntity(entity.world,
+                                                                          (double) entity.getPosX() + 0.5D,
+                                                                          (double) entity.getPosY(),
+                                                                          (double) entity.getPosZ() + 0.5D, true
         );  //boolean true means it's only an effect!'
 
         ((ServerWorld) entity.world).addLightningBolt(lightningboltentity);
@@ -26,7 +27,7 @@ public class SpellUtils {
     public static void setupProjectileForCasting(AbstractArrowEntity projectile, LivingEntity caster, float speed) {
         Vec3d pos = caster.getPositionVector();
 
-        ((Entity) projectile).setPosition(pos.x, caster.getEyeY() - 0.1F, pos.z);
+        ((Entity) projectile).setPosition(pos.x, caster.getPosY() + caster.getEyeHeight() - 0.1F, pos.z);
 
         projectile.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, speed, 1F);
 

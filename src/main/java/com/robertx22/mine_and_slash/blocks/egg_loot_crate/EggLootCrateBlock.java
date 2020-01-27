@@ -21,9 +21,9 @@ public class EggLootCrateBlock extends NonFullBlock {
 
     public EggLootCrateBlock() {
         super(Block.Properties.create(Material.DRAGON_EGG, MaterialColor.BLACK)
-                .hardnessAndResistance(Float.MAX_VALUE)
-                .lightValue(1)
-                .nonOpaque());
+                      .hardnessAndResistance(Float.MAX_VALUE)
+                      .lightValue(1)
+                      .notSolid());
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
@@ -43,9 +43,8 @@ public class EggLootCrateBlock extends NonFullBlock {
     }
 
     @Override
-    public ActionResultType onUse(BlockState state, World world, BlockPos pos,
-                                  PlayerEntity player, Hand hand,
-                                  BlockRayTraceResult ray) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                                             Hand hand, BlockRayTraceResult ray) {
         if (world.isRemote) {
             return ActionResultType.PASS;
         }

@@ -46,19 +46,15 @@ public class PlayerUtils {
     public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos, String name) {
 
         if (MMORPG.RUN_DEV_TOOLS) {
-            for (ServerPlayerEntity player : MapManager.getServer()
-                    .getPlayerList()
-                    .getPlayers()) {
+            for (ServerPlayerEntity player : MapManager.getServer().getPlayerList().getPlayers()) {
 
-                player.sendMessage(new StringTextComponent(name + " Structure spawned at : " + pos
-                        .toString()));
+                player.sendMessage(new StringTextComponent(name + " Structure spawned at : " + pos.toString()));
 
             }
         }
     }
 
-    public static Entity changeDimension(ServerPlayerEntity player,
-                                         DimensionType destination, BlockPos pos) {
+    public static Entity changeDimension(ServerPlayerEntity player, DimensionType destination, BlockPos pos) {
         if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination))
             return null;
         player.invulnerableDimensionChange = true;
@@ -78,14 +74,19 @@ public class PlayerUtils {
             ServerWorld serverworld1 = player.server.getWorld(destination);
             WorldInfo worldinfo = player.world.getWorldInfo();
 
-            player.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.sha256Hash(worldinfo
-                    .getSeed()), worldinfo.getGenerator(), player.interactionManager.getGameType()));
-            player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo
-                    .isDifficultyLocked()));
-            
+            player.connection.sendPacket(
+                    new SRespawnPacket(destination, WorldInfo.byHashing(worldinfo.getSeed()), worldinfo.getGenerator(),
+                                       player.interactionManager.getGameType()
+                    ));
+            player.connection.sendPacket(
+                    new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
+
             PlayerList playerlist = player.server.getPlayerList();
             playerlist.updatePermissionLevel(player);
-            serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
+            serverworld.removeEntity(player,
+                                     true
+            ); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no
+            // matching invalidate call.
             player.revive();
             float f1 = player.rotationYaw;
             serverworld.getProfiler().startSection("moving");
@@ -114,7 +115,8 @@ public class PlayerUtils {
             player.lastHealth = -1.0F;
             player.lastFoodLevel = -1;
 
-            net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
+            net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(
+                    player, dimensiontype, destination);
             return player;
         }
     }

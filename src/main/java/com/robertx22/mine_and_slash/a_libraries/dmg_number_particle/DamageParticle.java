@@ -32,16 +32,13 @@ public class DamageParticle extends Particle {
 
     boolean positionNeedsSetting = true;
 
-    public DamageParticle(Elements element, String str, World world, double parX,
-                          double parY, double parZ, double parMotionX, double parMotionY,
-                          double parMotionZ) {
+    public DamageParticle(Elements element, String str, World world, double parX, double parY, double parZ,
+                          double parMotionX, double parMotionY, double parMotionZ) {
         super(world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
 
-        particleGravity = ClientContainer.INSTANCE.dmgParticleConfig.GRAVITY.get()
-                .floatValue();
+        particleGravity = ClientContainer.INSTANCE.dmgParticleConfig.GRAVITY.get().floatValue();
         scale = ClientContainer.INSTANCE.dmgParticleConfig.START_SIZE.get().floatValue();
-        this.maxAge = ClientContainer.INSTANCE.dmgParticleConfig.LIFESPAN.get()
-                .intValue();
+        this.maxAge = ClientContainer.INSTANCE.dmgParticleConfig.LIFESPAN.get().intValue();
         this.text = element.format + element.icon + TextFormatting.GRAY + str;
         this.element = element;
     }
@@ -66,7 +63,7 @@ public class DamageParticle extends Particle {
     }
 
     @Override
-    public void buildGeometry(IVertexBuilder vertex, ActiveRenderInfo info, float f) {
+    public void renderParticle(IVertexBuilder vertex, ActiveRenderInfo info, float f) {
 
         try {
             float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
@@ -74,8 +71,7 @@ public class DamageParticle extends Particle {
 
             Minecraft mc = Minecraft.getInstance();
 
-            float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get()
-                    .floatValue();
+            float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get().floatValue();
 
             PlayerEntity p = mc.player;
 
@@ -107,8 +103,10 @@ public class DamageParticle extends Particle {
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             final FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
-            fontRenderer.drawStringWithShadow(this.text, -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1, -MathHelper
-                    .floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, element.format.getColor());
+            fontRenderer.drawStringWithShadow(
+                    this.text, -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1,
+                    -MathHelper.floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, element.format.getColor()
+            );
 
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.depthFunc(515);
@@ -117,8 +115,7 @@ public class DamageParticle extends Particle {
             if (ClientContainer.INSTANCE.dmgParticleConfig.GROWS.get()) {
                 if (this.grow) {
                     this.scale *= 1.05F;
-                    if (this.scale > ClientContainer.INSTANCE.dmgParticleConfig.MAX_SIZE.get()
-                            .floatValue()) {
+                    if (this.scale > ClientContainer.INSTANCE.dmgParticleConfig.MAX_SIZE.get().floatValue()) {
                         this.grow = false;
                     }
                 } else {

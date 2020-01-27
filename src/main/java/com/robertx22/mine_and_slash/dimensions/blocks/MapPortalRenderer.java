@@ -22,67 +22,72 @@ public class MapPortalRenderer extends TileEntityRenderer<TileMapPortal> {
     public static final ResourceLocation END_SKY_TEXTURE = new ResourceLocation("textures/environment/end_sky.png");
     public static final ResourceLocation END_PORTAL_TEXTURE = new ResourceLocation("textures/entity/end_portal.png");
     private static final Random RANDOM = new Random(31100L);
-    private static final List<RenderType> field_228881_e_ = (List) IntStream.range(0, 16)
-            .mapToObj((p_228882_0_) -> {
-                return RenderType.getEndPortal(p_228882_0_ + 1);
-            })
-            .collect(ImmutableList.toImmutableList());
+    private static final List<RenderType> RENDER_TYPES = (List) IntStream.range(0, 16).mapToObj((p_228882_0_) -> {
+        return RenderType.endPortal(p_228882_0_ + 1);
+    }).collect(ImmutableList.toImmutableList());
 
-    public MapPortalRenderer(TileEntityRendererDispatcher d) {
-        super(d);
+    public MapPortalRenderer(TileEntityRendererDispatcher p_i226019_1_) {
+        super(p_i226019_1_);
     }
 
-    public void render(TileMapPortal p_225616_1_, float p_225616_2_,
-                       MatrixStack p_225616_3_, IRenderTypeBuffer p_225616_4_,
-                       int p_225616_5_, int p_225616_6_) {
+    public void render(TileMapPortal p_225616_1_, float p_225616_2_, MatrixStack p_225616_3_,
+                       IRenderTypeBuffer p_225616_4_, int p_225616_5_, int p_225616_6_) {
         RANDOM.setSeed(31100L);
-        double lvt_7_1_ = p_225616_1_.getPos()
-                .distanceSq(this.dispatcher.renderInfo.getProjectedView(), true);
+        double lvt_7_1_ = p_225616_1_.getPos().distanceSq(this.renderDispatcher.renderInfo.getProjectedView(), true);
         int lvt_9_1_ = this.getPasses(lvt_7_1_);
         float lvt_10_1_ = this.getOffset();
-        Matrix4f lvt_11_1_ = p_225616_3_.peek().getModel();
-        this.func_228883_a_(p_225616_1_, lvt_10_1_, 0.15F, lvt_11_1_, p_225616_4_.getBuffer((RenderType) field_228881_e_
-                .get(0)));
+        Matrix4f lvt_11_1_ = p_225616_3_.getLast().getPositionMatrix();
+        this.renderCube(
+                p_225616_1_, lvt_10_1_, 0.15F, lvt_11_1_, p_225616_4_.getBuffer((RenderType) RENDER_TYPES.get(0)));
 
         for (int lvt_12_1_ = 1; lvt_12_1_ < lvt_9_1_; ++lvt_12_1_) {
-            this.func_228883_a_(p_225616_1_, lvt_10_1_, 2.0F / (float) (18 - lvt_12_1_), lvt_11_1_, p_225616_4_
-                    .getBuffer((RenderType) field_228881_e_.get(lvt_12_1_)));
+            this.renderCube(p_225616_1_, lvt_10_1_, 2.0F / (float) (18 - lvt_12_1_), lvt_11_1_,
+                            p_225616_4_.getBuffer((RenderType) RENDER_TYPES.get(lvt_12_1_))
+            );
         }
 
     }
 
-    private void func_228883_a_(TileMapPortal p_228883_1_, float p_228883_2_,
-                                float p_228883_3_, Matrix4f p_228883_4_,
-                                IVertexBuilder p_228883_5_) {
+    private void renderCube(TileMapPortal p_228883_1_, float p_228883_2_, float p_228883_3_, Matrix4f p_228883_4_,
+                            IVertexBuilder p_228883_5_) {
         float lvt_6_1_ = (RANDOM.nextFloat() * 0.5F + 0.1F) * p_228883_3_;
         float lvt_7_1_ = (RANDOM.nextFloat() * 0.5F + 0.4F) * p_228883_3_;
         float lvt_8_1_ = (RANDOM.nextFloat() * 0.5F + 0.5F) * p_228883_3_;
-        this.func_228884_a_(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 1.0F, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, lvt_6_1_, lvt_7_1_, lvt_8_1_, Direction.SOUTH);
-        this.func_228884_a_(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, lvt_6_1_, lvt_7_1_, lvt_8_1_, Direction.NORTH);
-        this.func_228884_a_(p_228883_1_, p_228883_4_, p_228883_5_, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.0F, lvt_6_1_, lvt_7_1_, lvt_8_1_, Direction.EAST);
-        this.func_228884_a_(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 1.0F, 1.0F, 0.0F, lvt_6_1_, lvt_7_1_, lvt_8_1_, Direction.WEST);
-        this.func_228884_a_(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 1.0F, lvt_6_1_, lvt_7_1_, lvt_8_1_, Direction.DOWN);
-        this.func_228884_a_(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 1.0F, p_228883_2_, p_228883_2_, 1.0F, 1.0F, 0.0F, 0.0F, lvt_6_1_, lvt_7_1_, lvt_8_1_, Direction.UP);
+        this.renderFace(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 1.0F, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, lvt_6_1_,
+                        lvt_7_1_, lvt_8_1_, Direction.SOUTH
+        );
+        this.renderFace(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, lvt_6_1_,
+                        lvt_7_1_, lvt_8_1_, Direction.NORTH
+        );
+        this.renderFace(p_228883_1_, p_228883_4_, p_228883_5_, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.0F, lvt_6_1_,
+                        lvt_7_1_, lvt_8_1_, Direction.EAST
+        );
+        this.renderFace(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 1.0F, 1.0F, 0.0F, lvt_6_1_,
+                        lvt_7_1_, lvt_8_1_, Direction.WEST
+        );
+        this.renderFace(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 1.0F, lvt_6_1_,
+                        lvt_7_1_, lvt_8_1_, Direction.DOWN
+        );
+        this.renderFace(p_228883_1_, p_228883_4_, p_228883_5_, 0.0F, 1.0F, p_228883_2_, p_228883_2_, 1.0F, 1.0F, 0.0F,
+                        0.0F, lvt_6_1_, lvt_7_1_, lvt_8_1_, Direction.UP
+        );
     }
 
-    private void func_228884_a_(TileMapPortal p_228884_1_, Matrix4f p_228884_2_,
-                                IVertexBuilder p_228884_3_, float p_228884_4_,
-                                float p_228884_5_, float p_228884_6_, float p_228884_7_,
-                                float p_228884_8_, float p_228884_9_, float p_228884_10_,
-                                float p_228884_11_, float p_228884_12_,
-                                float p_228884_13_, float p_228884_14_,
-                                Direction p_228884_15_) {
+    private void renderFace(TileMapPortal p_228884_1_, Matrix4f p_228884_2_, IVertexBuilder p_228884_3_,
+                            float p_228884_4_, float p_228884_5_, float p_228884_6_, float p_228884_7_,
+                            float p_228884_8_, float p_228884_9_, float p_228884_10_, float p_228884_11_,
+                            float p_228884_12_, float p_228884_13_, float p_228884_14_, Direction p_228884_15_) {
         if (p_228884_1_.shouldRenderFace(p_228884_15_)) {
-            p_228884_3_.vertex(p_228884_2_, p_228884_4_, p_228884_6_, p_228884_8_)
+            p_228884_3_.pos(p_228884_2_, p_228884_4_, p_228884_6_, p_228884_8_)
                     .color(p_228884_12_, p_228884_13_, p_228884_14_, 1.0F)
                     .endVertex();
-            p_228884_3_.vertex(p_228884_2_, p_228884_5_, p_228884_6_, p_228884_9_)
+            p_228884_3_.pos(p_228884_2_, p_228884_5_, p_228884_6_, p_228884_9_)
                     .color(p_228884_12_, p_228884_13_, p_228884_14_, 1.0F)
                     .endVertex();
-            p_228884_3_.vertex(p_228884_2_, p_228884_5_, p_228884_7_, p_228884_10_)
+            p_228884_3_.pos(p_228884_2_, p_228884_5_, p_228884_7_, p_228884_10_)
                     .color(p_228884_12_, p_228884_13_, p_228884_14_, 1.0F)
                     .endVertex();
-            p_228884_3_.vertex(p_228884_2_, p_228884_4_, p_228884_7_, p_228884_11_)
+            p_228884_3_.pos(p_228884_2_, p_228884_4_, p_228884_7_, p_228884_11_)
                     .color(p_228884_12_, p_228884_13_, p_228884_14_, 1.0F)
                     .endVertex();
         }

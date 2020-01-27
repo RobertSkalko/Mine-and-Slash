@@ -18,11 +18,10 @@ public abstract class NonFullBlock extends Block {
     public static final BooleanProperty light = RedstoneTorchBlock.LIT;
 
     public NonFullBlock(Properties properties) {
-        super(properties.lightValue(10).nonOpaque());
+        super(properties.lightValue(10).notSolid());
 
-        this.setDefaultState(this.stateContainer.getBaseState()
-                .with(direction, Direction.NORTH)
-                .with(light, Boolean.valueOf(true)));
+        this.setDefaultState(
+                this.stateContainer.getBaseState().with(direction, Direction.NORTH).with(light, Boolean.valueOf(true)));
 
     }
 
@@ -37,8 +36,7 @@ public abstract class NonFullBlock extends Block {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState()
-                .with(direction, context.getPlacementHorizontalFacing().getOpposite());
+        return this.getDefaultState().with(direction, context.getPlacementHorizontalFacing().getOpposite());
     }
 
     @Override

@@ -53,14 +53,12 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn,
-                                               BlockPos pos) {
+    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return 1.0F;
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader,
-                                          BlockPos pos) {
+    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;
     }
 
@@ -76,9 +74,8 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
 
     @Override
     @Deprecated
-    public ActionResultType onUse(BlockState state, World world, BlockPos pos,
-                                  PlayerEntity player, Hand hand,
-                                  BlockRayTraceResult ray) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                                             Hand hand, BlockRayTraceResult ray) {
         if (world.isRemote) {
             return ActionResultType.CONSUME;
         }

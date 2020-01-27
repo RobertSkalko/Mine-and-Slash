@@ -24,7 +24,7 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
     public static final BooleanProperty ENABLED = BlockStateProperties.ENABLED;
 
     public ProfessionBlock() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(5F).nonOpaque());
+        super(Properties.create(Material.ROCK).hardnessAndResistance(5F).notSolid());
         this.setDefaultState(this.stateContainer.getBaseState().with(ENABLED, true));
 
     }
@@ -36,9 +36,8 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
     }
 
     @Override
-    public ActionResultType onUse(BlockState state, World world, BlockPos pos,
-                                  PlayerEntity player, Hand hand,
-                                  BlockRayTraceResult ray) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                                             Hand hand, BlockRayTraceResult ray) {
         if (world.isRemote) {
             return ActionResultType.CONSUME;
         }
@@ -57,7 +56,8 @@ public abstract class ProfessionBlock extends BaseInventoryBlock {
 
                 });
             } else {
-                player.sendMessage(new StringTextComponent(TextFormatting.RED + "You can't use someone else's Profession Station."));
+                player.sendMessage(new StringTextComponent(
+                        TextFormatting.RED + "You can't use someone else's Profession Station."));
             }
         }
 

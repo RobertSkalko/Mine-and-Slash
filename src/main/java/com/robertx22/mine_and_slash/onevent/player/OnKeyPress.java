@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
 
@@ -29,10 +30,10 @@ public class OnKeyPress {
 
             if (mc.currentScreen == null) {
 
-                if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
+                if (isCorrectKey(KeybindsRegister.hubScreen, event)) {
                     mc.displayGuiScreen(new MainHubScreen());
 
-                } else if (key == KeybindsRegister.swapHotbar.getKey().getKeyCode()) {
+                } else if (isCorrectKey(KeybindsRegister.swapHotbar, event)) {
 
                     SpellHotbarOverlay.CURRENT_HOTBAR =
                             SpellHotbarOverlay.CURRENT_HOTBAR == PlayerSpellsData.Hotbar.FIRST ?
@@ -40,7 +41,8 @@ public class OnKeyPress {
                 } else {
 
                     for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {
-                        if (key == entry.getKey().getKeyCode()) {
+
+                        if (isCorrectKey(entry, event)) {
                             MMORPG.sendToServer(new CastSpellPacket(KeybindsRegister.HOTBAR.get(entry),
                                                                     SpellHotbarOverlay.CURRENT_HOTBAR
                             ));
@@ -61,4 +63,16 @@ public class OnKeyPress {
         }
 
     }
+
+    private static boolean isCorrectKey(KeyBinding keybind, InputEvent.KeyInputEvent event) {
+
+        if (event.getKey() == keybind.getKey().getKeyCode()) {
+            if (keybind.getKeyModifier().equals(KeyModifier.getActiveModifier())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
