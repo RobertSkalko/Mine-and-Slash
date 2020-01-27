@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.potion_effects.druid;
 
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -11,17 +13,15 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import net.minecraft.block.Blocks;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -51,16 +51,13 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
 
     @Override
     public void onXTicks(LivingEntity entity, EffectInstance instance) {
-        if (!entity.world.isRemote) {
 
-            for (int i = 0; i < 10; i++) {
-                Vec3d p = entity.getPositionVector();
-                entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()),
-                                         p.x, p.y, p.z, 0D, 0D, 0D
-                );
-            }
+        ParticleEnum.sendToClients(
+                entity, new ParticlePacketData(entity.getPosition(), ParticleEnum.PETRIFY).radius(1)
+                        .type(ParticleTypes.CLOUD)
+                        .amount(15));
 
-        }
+        SoundUtils.playSound(entity, SoundEvents.BLOCK_STONE_BREAK, 0.5F, 0.5F);
 
     }
 
@@ -106,12 +103,10 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
         dmg.element = Elements.Nature;
         dmg.Activate();
 
-        for (int i = 0; i < 15; i++) {
-            Vec3d p = target.getPositionVector();
-            target.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()), p.x,
-                                     p.y, p.z, 0D, 0D, 0D
-            );
-        }
+        ParticleEnum.sendToClients(
+                target, new ParticlePacketData(target.getPosition(), ParticleEnum.PETRIFY).radius(1)
+                        .type(ParticleTypes.CLOUD)
+                        .amount(20));
 
         target.playSound(SoundEvents.BLOCK_STONE_BREAK, 1, 1);
 

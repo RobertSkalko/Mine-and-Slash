@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import net.minecraft.util.math.Vec3d;
 
+import java.util.Random;
+
 public class GeometryUtils {
 
     public static Vec3d getRandomHorizontalPosInRadiusCircle(Vec3d pos, float radius) {
@@ -24,6 +26,25 @@ public class GeometryUtils {
 
     public static Vec3d getRandomPosInRadiusCircle(Vec3d p, float radius) {
         return getRandomPosInRadiusCircle(p.x, p.y, p.z, radius);
+    }
+
+    public static Vec3d randomMotion(Vec3d p, Random rand) {
+
+        double x = rand.nextDouble() - 0.5D * 2;
+        double y = -rand.nextDouble();
+        double z = rand.nextDouble() - 0.5D * 2;
+
+        return new Vec3d(x, y, z);
+    }
+
+    public static Vec3d randomPos(Vec3d p, Random rand) {
+
+        double x = p.x + rand.nextDouble() - 0.5D * 1;
+        double y = p.y + rand.nextDouble() - 0.5D * 1;
+        double z = p.z + rand.nextDouble() - 0.5D * 1;
+
+        return new Vec3d(x, y, z);
+
     }
 
     public static Vec3d getRandomPosInRadiusCircle(double x, double y, double z, float radius) {

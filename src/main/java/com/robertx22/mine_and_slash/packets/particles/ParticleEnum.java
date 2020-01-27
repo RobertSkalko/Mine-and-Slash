@@ -4,7 +4,9 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.util.SoundEvents;
@@ -14,6 +16,39 @@ import net.minecraft.world.World;
 
 public enum ParticleEnum {
 
+    THORNS() {
+        @Override
+        public void activate(ParticlePacketData data, World world, Entity entity) {
+            Vec3d center = getCenter(data.pos);
+
+            for (int i = 0; i < data.amount; i++) {
+                Vec3d p = GeometryUtils.randomPos(center, world.rand);
+                Vec3d m = GeometryUtils.randomMotion(center, world.rand);
+
+                world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.BIRCH_LEAVES.getDefaultState()),
+                                  p.x, p.y, p.z, m.x, m.y, m.z
+                );
+                world.addParticle(ParticleTypes.ITEM_SLIME, p.x, p.y, p.z, m.x, m.y, m.z);
+
+            }
+        }
+    },
+
+    PETRIFY() {
+        @Override
+        public void activate(ParticlePacketData data, World world, Entity entity) {
+            Vec3d center = getCenter(data.pos);
+
+            for (int i = 0; i < data.amount; i++) {
+                Vec3d p = GeometryUtils.randomPos(center, world.rand);
+                Vec3d m = GeometryUtils.randomMotion(center, world.rand);
+
+                world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()), p.x, p.y,
+                                  p.z, m.x, m.y, m.z
+                );
+            }
+        }
+    },
     AOE() {
         @Override
         public void activate(ParticlePacketData data, World world, Entity entity) {

@@ -97,8 +97,10 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                 Vec3d p = this.getPositionVector();
 
                 world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F, 1F,
+
                                 false
                 );
+
 
                 /*
                 this.player.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE, 1.0F, 1.0F);

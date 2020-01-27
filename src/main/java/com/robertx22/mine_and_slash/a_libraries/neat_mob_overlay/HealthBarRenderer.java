@@ -15,7 +15,6 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -26,6 +25,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -149,11 +149,11 @@ public class HealthBarRenderer {
 
                 EntityRendererManager renderManager = Minecraft.getInstance().getRenderManager();
 
-                Vector3f view = renderManager.info.getViewVector();
+                Vec3d view = renderManager.info.getProjectedView();
 
-                float viewX = view.getX();
-                float viewY = view.getY();
-                float viewZ = view.getZ();
+                double viewX = view.getX();
+                double viewY = view.getY();
+                double viewZ = view.getZ();
 
                 matrix.push();
 

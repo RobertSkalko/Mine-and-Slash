@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.potion_effects.druid;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
@@ -17,15 +19,12 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.block.Blocks;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.particles.BlockParticleData;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -63,16 +62,11 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
         dmg.removeKnockback();
         dmg.Activate();
 
-        /// SoundUtils.playSound(entity, SoundEvents., 1F, 1F);
+        ParticleEnum.sendToClients(
+                entity, new ParticlePacketData(entity.getPosition(), ParticleEnum.THORNS).amount(10));
 
-        ParticleUtils.spawnParticles(ParticleTypes.ITEM_SLIME, entity, 5);
+        SoundUtils.playSound(entity, SoundEvents.BLOCK_GRASS_BREAK, 1, 1);
 
-        for (int i = 0; i < 8; i++) {
-            Vec3d p = entity.getPositionVector();
-            entity.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.BIRCH_LEAVES.getDefaultState()),
-                                     p.x, p.y, p.z, 0D, 0D, 0D
-            );
-        }
     }
 
     @Override
