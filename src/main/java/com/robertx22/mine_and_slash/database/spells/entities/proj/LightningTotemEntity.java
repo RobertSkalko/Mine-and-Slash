@@ -83,8 +83,6 @@ public class LightningTotemEntity extends EntityBaseProjectile {
                         Synergies.LIGHTNING_TOTEM_STATIC.tryActivate(new AfterDamageContext(getCaster(), x, dmg));
                     }
 
-                    this.dealSpellDamageTo(x, new Options().knockbacks(false));
-
                     PotionEffectUtils.apply(StaticEffect.INSTANCE, getCaster(), x);
 
                     SoundUtils.playSound(this, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1, 1);

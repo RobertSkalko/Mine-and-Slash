@@ -102,9 +102,8 @@ public class SpellHotbarOverlay extends AbstractGui {
                         }
                     }
                 }
-
-                y += 20;
             }
+            y += 20;
         }
     }
 

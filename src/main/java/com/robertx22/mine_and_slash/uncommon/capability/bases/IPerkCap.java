@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.saveclasses.talents.BasePerksData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -65,9 +66,9 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
         return this.getPerksData().isAllocated(perk);
     }
 
-    public boolean tryRemovePoint(T talent) {
-        if (getPerksData().canRemove(talent)) {
-            this.getPerksData().remove(talent.GUID());
+    public boolean tryRemovePoint(T perk, ServerPlayerEntity player) {
+        if (getPerksData().canRemove(perk)) {
+            this.getPerksData().remove(perk.GUID());
             this.getPerksData().resetPoints--;
             return true;
         }

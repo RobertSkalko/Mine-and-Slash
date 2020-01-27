@@ -17,6 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -80,6 +81,19 @@ public class PlayerSpellCap {
 
         SpellPerksData perksData = new SpellPerksData();
         PlayerSpellsData playerSpellsData = new PlayerSpellsData();
+
+        @Override
+        public boolean tryRemovePoint(SpellPerk perk, ServerPlayerEntity player) {
+
+            boolean bool = super.tryRemovePoint(perk, player);
+
+            if (bool) {
+                this.getSpellData().clear();
+                this.syncToClient(player);
+            }
+
+            return bool;
+        }
 
         @Override
         public CompoundNBT getNBT() {
@@ -167,8 +181,7 @@ public class PlayerSpellCap {
 
             this.getPerksData().reset();
 
-            this.getSpellData().getMap(PlayerSpellsData.Hotbar.FIRST).clear();
-            this.getSpellData().getMap(PlayerSpellsData.Hotbar.SECOND).clear();
+            this.getSpellData().clear();
 
         }
 

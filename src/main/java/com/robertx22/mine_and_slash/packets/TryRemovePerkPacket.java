@@ -60,7 +60,7 @@ public class TryRemovePerkPacket {
                     Perk talent = SlashRegistry.Perks().get(pkt.guid);
 
                     if (talent != null) {
-                        talents.tryRemovePoint(talent);
+                        talents.tryRemovePoint(talent, player);
                         MMORPG.sendToClient(new SyncCapabilityToClient(player, CapTypes.TALENTS), player);
                     }
                 } else if (pkt.registryType == SlashRegistryType.SPELL_PERK) {
@@ -69,7 +69,7 @@ public class TryRemovePerkPacket {
                     SpellPerk perk = SlashRegistry.SpellPerks().get(pkt.guid);
 
                     if (perk != null) {
-                        spells.tryRemovePoint(perk);
+                        spells.tryRemovePoint(perk, player);
                         MMORPG.sendToClient(new SyncCapabilityToClient(player, CapTypes.SPELLS), player);
                     }
                 }

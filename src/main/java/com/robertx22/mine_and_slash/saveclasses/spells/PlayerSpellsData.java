@@ -30,6 +30,37 @@ public class PlayerSpellsData {
         lastSpellCastTimeInTicks = 0;
     }
 
+    public void clear() {
+        getMap(PlayerSpellsData.Hotbar.FIRST).clear();
+        getMap(PlayerSpellsData.Hotbar.SECOND).clear();
+
+    }
+
+    /*
+    public void deleteUnownedSpells(SpellPerksData perksData) {
+
+        List<BaseSpell> spells = perksData.getAvailableSpells();
+
+        for (Hotbar hotbar : Hotbar.values()) {
+
+            List<Integer> toRemove = new ArrayList<>();
+
+            HashMap<Integer, String> map = getMap(hotbar);
+
+            map.entrySet().forEach(e -> {
+                BaseSpell spell = SlashRegistry.Spells().get(e.getValue());
+
+                if (!spells.contains(spell)) {
+                    toRemove.add(e.getKey());
+                }
+            });
+            toRemove.forEach(x -> map.put(x, null));
+
+        }
+}
+
+     */
+
     public enum Hotbar {
         FIRST,
         SECOND
