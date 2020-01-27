@@ -16,7 +16,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataIt
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -128,43 +127,39 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
             TooltipInfo info = new TooltipInfo(new EntityCap.DefaultImpl(), rar.StatPercents(), rune.level);
 
             if (rune.armor != null) {
-                Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(Words.Armor.locName().appendText(":")), tooltip);
+                tooltip.add(Styles.GRAYCOMP().appendSibling(Words.Armor.locName().appendText(":")));
                 for (ITextComponent str : rune.armor.GetTooltipString(info)) {
-                    Tooltip.add(str, tooltip);
+                    tooltip.add(str);
                 }
-                Tooltip.add("", tooltip);
+                TooltipUtils.addEmpty(tooltip);
             }
             if (rune.weapon != null) {
 
-                Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(Words.Weapon.locName().appendText(":")), tooltip);
+                tooltip.add(Styles.GRAYCOMP().appendSibling(Words.Weapon.locName().appendText(":")));
                 for (ITextComponent str : rune.weapon.GetTooltipString(info)) {
-                    Tooltip.add(str, tooltip);
+                    tooltip.add(str);
                 }
             }
             if (rune.jewerly != null) {
 
-                Tooltip.add("", tooltip);
-                Tooltip.add(Styles.GRAYCOMP()
-                        .appendSibling(Words.Jewerly.locName().appendText(":")), tooltip);
+                TooltipUtils.addEmpty(tooltip);
+                tooltip.add(Styles.GRAYCOMP().appendSibling(Words.Jewerly.locName().appendText(":")));
                 for (ITextComponent str : rune.jewerly.GetTooltipString(info)) {
-                    Tooltip.add(str, tooltip);
+                    tooltip.add(str);
                 }
-                Tooltip.add("", tooltip);
+                TooltipUtils.addEmpty(tooltip);
             }
 
-            Tooltip.add(TooltipUtils.rarity(rune.getRarity()), tooltip);
+            tooltip.add(TooltipUtils.rarity(rune.getRarity()));
 
             if (this.tier > 0) {
-                Tooltip.add("", tooltip);
+                TooltipUtils.addEmpty(tooltip);
                 tooltip.add(TooltipUtils.tier(tier));
             }
 
-            Tooltip.add("", tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
-            Tooltip.add(Styles.BLUECOMP()
-                    .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
+            tooltip.add(Styles.BLUECOMP().appendSibling(Words.Item_modifiable_in_station.locName()));
 
         }
     }

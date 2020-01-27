@@ -18,7 +18,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -32,7 +31,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements IAddsInstability, ISlashRegistryEntry<CurrencyItem>, ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
+public abstract class CurrencyItem extends Item implements IAddsInstability, ISlashRegistryEntry<CurrencyItem>,
+        ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 
@@ -88,16 +88,13 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
         if (this instanceof IAutoLocMultiLore) {
             IAutoLocMultiLore auto = (IAutoLocMultiLore) this;
             for (ITextComponent comp : auto.getComponents()) {
-                tooltip.add(Styles.GREENCOMP()
-                        .appendText("'")
-                        .appendSibling(comp)
-                        .appendText("'"));
+                tooltip.add(Styles.GREENCOMP().appendText("'").appendSibling(comp).appendText("'"));
             }
         }
 
@@ -108,23 +105,20 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
 
         tooltip.add(ItemType.getTooltipString(this.itemTypesUsableOn));
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
         tooltip.add(TooltipUtils.tier(this.Tier()));
         tooltip.add(TooltipUtils.rarity(getRarity()));
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        if (this instanceof IAddsInstability && ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM
-                .get()) {
-            tooltip.add(Styles.REDCOMP()
-                    .appendText("Adds " + this.instabilityAddAmount() + " Instability"));
+        if (this instanceof IAddsInstability && ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM.get()) {
+            tooltip.add(Styles.REDCOMP().appendText("Adds " + this.instabilityAddAmount() + " Instability"));
         }
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
+        tooltip.add(Styles.BLUECOMP().appendSibling(Words.Item_modifiable_in_station.locName()));
 
-        Tooltip.addEmpty(tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
     }
 

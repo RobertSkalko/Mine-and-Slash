@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
+package com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets;
 
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
@@ -18,36 +18,35 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class AddRemoveTalentPotionItem extends BaseInstantPotion {
+public class ResetTalentsPotionItem extends BaseInstantPotion {
 
-    public AddRemoveTalentPotionItem() {
+    public ResetTalentsPotionItem() {
         super(Professions.Levels.ONE);
     }
 
     @Override
     public ITextComponent tooltip() {
-        ITextComponent comp = new StringTextComponent("Gives you 1 remove talent point. Use by right clicking on talent screen.");
+        ITextComponent comp = new StringTextComponent("Resets all your talent points");
         return comp;
 
     }
 
     @Override
-    public void onFinish(ItemStack stack, World world, LivingEntity player,
-                         EntityCap.UnitData unitdata) {
+    public void onFinish(ItemStack stack, World world, LivingEntity player, EntityCap.UnitData unitdata) {
 
         if (player instanceof PlayerEntity) {
-            Load.talents((PlayerEntity) player).addResetPoints(1);
+            Load.talents((PlayerEntity) player).reset();
         }
     }
 
     @Override
     public String GUID() {
-        return "alchemy/instant/misc/remove_talent";
+        return "alchemy/instant/misc/reset_talents";
     }
 
     @Override
     public String locNameForLangFile() {
-        return level.color + " " + "Potion of Single Talent Removal";
+        return level.color + level.name + " " + "Potion of Reset Talents";
     }
 
     @Override
@@ -55,16 +54,17 @@ public class AddRemoveTalentPotionItem extends BaseInstantPotion {
 
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
                 .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(Items.COAL, 3)
-                .addMaterial(ItemOre.ItemOres.get(IRarity.Common), 3);
+                .addMaterial(Items.DIAMOND, 3)
+                .addMaterial(Items.GOLDEN_APPLE, 1)
+                .addMaterial(ItemOre.ItemOres.get(IRarity.Common), 10);
 
-        return mats.buildMaterials().setOutput(this).levelReq(1).expGained(5).build();
+        return mats.buildMaterials().setOutput(this).levelReq(10).expGained(20).build();
 
     }
 
     @Override
     public BasePotion newInstance(Professions.Levels lvl) {
-        return new AddRemoveTalentPotionItem();
+        return new ResetTalentsPotionItem();
     }
 
     @Override

@@ -17,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -132,37 +132,33 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
             nbt = new CompoundNBT();
         }
 
-        Tooltip.add(Styles.GREENCOMP().appendSibling(Words.Automatically_salvages_items.locName()).appendText("!"),
-                    tooltip
-        );
+        tooltip.add(Styles.GREENCOMP().appendSibling(Words.Automatically_salvages_items.locName()).appendText("!"));
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        Tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Gears.locName().appendText(":")), tooltip);
-        Tooltip.add(
-                getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items.getRarities()), this.getGear(nbt)), tooltip);
+        tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Gears.locName().appendText(":")));
+        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items.getRarities()), this.getGear(nbt)));
 
-        Tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Maps.locName().appendText(":")), tooltip);
-        Tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getRarities()), this.getMap(nbt)), tooltip);
+        tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Maps.locName().appendText(":")));
+        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getRarities()), this.getMap(nbt)));
 
-        Tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Runes.locName().appendText(":")), tooltip);
-        Tooltip.add(
-                getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getRarities()), this.getRune(nbt)), tooltip);
+        tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Runes.locName().appendText(":")));
+        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getRarities()), this.getRune(nbt)));
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        Tooltip.add(Styles.LIGHT_PURPLECOMP()
+        tooltip.add(Styles.LIGHT_PURPLECOMP()
                             .appendSibling(Words.Bonus_Salvage_Chance.locName())
-                            .appendText(": " + this.getBonusSalvageChance() + "%"), tooltip);
+                            .appendText(": " + this.getBonusSalvageChance() + "%"));
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        Tooltip.add(Styles.GREENCOMP().appendSibling(Words.Works_when_equipped.locName()), tooltip);
-        Tooltip.add("", tooltip);
+        tooltip.add(Styles.GREENCOMP().appendSibling(Words.Works_when_equipped.locName()));
+        TooltipUtils.addEmpty(tooltip);
 
         if (Screen.hasShiftDown() == false) {
 
-            Tooltip.add(Styles.GREENCOMP().appendSibling(Words.Press_Shift_For_Setup_Info.locName()), tooltip);
+            tooltip.add(Styles.GREENCOMP().appendSibling(Words.Press_Shift_For_Setup_Info.locName()));
 
         } else {
 

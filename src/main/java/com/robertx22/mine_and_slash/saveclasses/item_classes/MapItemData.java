@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
+import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
@@ -10,7 +11,6 @@ import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -28,7 +28,10 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.*;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
@@ -157,8 +160,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         return total;
     }
 
-    public static List<MapAffixData> getAllAffixesThatAffect(List<MapAffixData> affixes,
-                                                             LivingEntity entity) {
+    public static List<MapAffixData> getAllAffixesThatAffect(List<MapAffixData> affixes, LivingEntity entity) {
 
         AffectedEntities affected = AffectedEntities.All;
 
@@ -172,8 +174,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
     }
 
-    public static List<MapAffixData> getAllAffixesThatAffect(List<MapAffixData> affixes,
-                                                             AffectedEntities affected) {
+    public static List<MapAffixData> getAllAffixesThatAffect(List<MapAffixData> affixes, AffectedEntities affected) {
 
         List<MapAffixData> list = new ArrayList<>();
 
@@ -233,10 +234,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         if (RandomUtils.roll(this.getRarity().specialItemChance())) {
 
-            Item item = SlashRegistry.CurrencyItems()
-                    .getWrapped()
-                    .ofCurrencyUsableOnItemType(ItemType.MAP)
-                    .random();
+            Item item = SlashRegistry.CurrencyItems().getWrapped().ofCurrencyUsableOnItemType(ItemType.MAP).random();
 
             stack = new ItemStack(item);
         } else {
@@ -264,76 +262,68 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         GearRarity rarity = Rarities.Items.get(this.rarity);
 
         tooltip.add(TooltipUtils.level(this.level));
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
         addAffixTypeToTooltip(this, tooltip, AffectedEntities.Mobs);
         addAffixTypeToTooltip(this, tooltip, AffectedEntities.Players);
         addAffixTypeToTooltip(this, tooltip, AffectedEntities.All);
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
         try {
             tooltip.add(Styles.BLUECOMP()
-                    .appendSibling(Words.World_Type.locName())
-                    .appendText(": ")
-                    .appendSibling(this.getIWP().locName()));
+                                .appendSibling(Words.World_Type.locName())
+                                .appendText(": ")
+                                .appendSibling(this.getIWP().locName()));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        Tooltip.add(Styles.GREENCOMP()
-                .appendSibling(Words.Minutes.locName()
-                        .appendText(": " + this.minutes)), tooltip);
+        tooltip.add(Styles.GREENCOMP().appendSibling(Words.Minutes.locName().appendText(": " + this.minutes)));
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
         tooltip.add(TooltipUtils.rarityShort(rarity)
-                .appendText(TextFormatting.GRAY + ", ")
-                .appendSibling(Styles.YELLOWCOMP()
-                        .appendSibling(Words.Loot.locName()
-                                .appendText(": +" + this.getBonusLootAmountInPercent() + "%")))
-                .appendText(TextFormatting.GRAY + ", ")
-                .appendSibling(Styles.GOLDCOMP()
-                        .appendSibling(Words.Tier.locName()
-                                .appendText(": " + this.tier))));
+                            .appendText(TextFormatting.GRAY + ", ")
+                            .appendSibling(Styles.YELLOWCOMP()
+                                                   .appendSibling(Words.Loot.locName()
+                                                                          .appendText(
+                                                                                  ": +" + this.getBonusLootAmountInPercent() + "%")))
+                            .appendText(TextFormatting.GRAY + ", ")
+                            .appendSibling(Styles.GOLDCOMP()
+                                                   .appendSibling(Words.Tier.locName().appendText(": " + this.tier))));
 
         if (this.isPermaDeath) {
-            Tooltip.add(Styles.REDCOMP()
-                    .appendSibling(Words.Permadeath.locName()
-                            .appendText(" " + "\u2620")), tooltip);
+            tooltip.add(Styles.REDCOMP().appendSibling(Words.Permadeath.locName().appendText(" " + "\u2620")));
         }
 
         if (this.groupPlay) {
-            Tooltip.add(Styles.GREENCOMP()
-                    .appendSibling(Words.GroupPlay.locName()
-                            .appendText(", ")
-                            .appendSibling(Words.PartySize.locName())
-                            .appendText(": " + this.maxPlayersInGroup)), tooltip);
+            tooltip.add(Styles.GREENCOMP()
+                                .appendSibling(Words.GroupPlay.locName()
+                                                       .appendText(", ")
+                                                       .appendSibling(Words.PartySize.locName())
+                                                       .appendText(": " + this.maxPlayersInGroup)));
         }
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Reward: " + TextFormatting.DARK_PURPLE)
-                .appendSibling(SlashRegistry.LootCrates()
-                        .get(this.rewardCrateGUID)
-                        .name()));
+        tooltip.add(new StringTextComponent(
+                TextFormatting.LIGHT_PURPLE + "Reward: " + TextFormatting.DARK_PURPLE).appendSibling(
+                SlashRegistry.LootCrates().get(this.rewardCrateGUID).name()));
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Quest: ").appendSibling(SlashRegistry
-                .Quests()
-                .get(questGUID)
-                .name()));
+        tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Quest: ").appendSibling(
+                SlashRegistry.Quests().get(questGUID).name()));
 
-        Tooltip.add("", tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(CLOC.tooltip("put_in_mapdevice")), tooltip);
+        tooltip.add(Styles.BLUECOMP().appendSibling(CLOC.tooltip("put_in_mapdevice")));
 
-        tooltip.add(new StringTextComponent(TextFormatting.RED + "[" + "\u2668" + "]").appendSibling(Words.MapWorldsAreResetOnGameReload
-                .locName()));
+        tooltip.add(new StringTextComponent(TextFormatting.RED + "[" + "\u2668" + "]").appendSibling(
+                Words.MapWorldsAreResetOnGameReload.locName()));
 
         TooltipUtils.removeDoubleBlankLines(tooltip, 20);
 
@@ -354,8 +344,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
     }
 
-    private static void addAffixTypeToTooltip(MapItemData data,
-                                              List<ITextComponent> tooltip,
+    private static void addAffixTypeToTooltip(MapItemData data, List<ITextComponent> tooltip,
                                               AffectedEntities affected) {
 
         List<MapAffixData> affixes = new ArrayList<>(data.getAllAffixesThatAffect(affected));
@@ -374,20 +363,16 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
             str.appendSibling(Words.Affixes_Affecting_All.locName());
         }
 
-        Tooltip.add(Styles.GREENCOMP().appendSibling(str), tooltip);
+        tooltip.add(Styles.GREENCOMP().appendSibling(str));
 
         for (MapAffixData affix : affixes) {
 
             for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
 
-                TooltipInfo info = new TooltipInfo(new EntityCap.DefaultImpl(), data.getRarity()
-                        .StatPercents(), data.level);
+                TooltipInfo info = new TooltipInfo(
+                        new EntityCap.DefaultImpl(), data.getRarity().StatPercents(), data.level);
 
-                for (ITextComponent statstring : statmod.GetTooltipString(info)) {
-
-                    Tooltip.add(statstring, tooltip);
-
-                }
+                tooltip.addAll(statmod.GetTooltipString(info));
 
             }
 

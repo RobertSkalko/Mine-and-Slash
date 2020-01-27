@@ -37,13 +37,14 @@ public class RegisterEvents {
         register(OnLogin.class);
         register(OnLogout.class);
         register(OnServerTick.class);
-        register(OnClientTick.class);
+
         register(CapSync.class);
         register(StopCastingIfInteract.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnKeyPress.class);
-            //register(OnSpellKeybind.class);
+            register(OnClientTick.class);
+            // register(OnClientTickRenderBoss.class);
         });
 
     }

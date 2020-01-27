@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
@@ -20,10 +21,16 @@ public class TooltipUtils {
     public static String CHECKMARK = TextFormatting.GREEN + "\u2714";
     public static String X = TextFormatting.RED + "\u2716";
 
+    public static ITextComponent color(TextFormatting format, ITextComponent comp) {
+        return new StringTextComponent(format + "").appendSibling(comp);
+    }
+
+    public static void addEmpty(List<ITextComponent> tooltip) {
+        tooltip.add(CLOC.blank(""));
+    }
+
     public static List<String> compsToStrings(List<ITextComponent> list) {
-        return list.stream()
-                .map(ITextComponent::getFormattedText)
-                .collect(Collectors.toList());
+        return list.stream().map(ITextComponent::getFormattedText).collect(Collectors.toList());
     }
 
     public static ITextComponent instability(IInstability insta) {
@@ -31,13 +38,13 @@ public class TooltipUtils {
 
         comp = Styles.REDCOMP()
                 .appendSibling(Words.Instability.locName()
-                        .appendText(": " + insta.getInstability() + "/" + insta.getMaxInstability()));
+                                       .appendText(": " + insta.getInstability() + "/" + insta.getMaxInstability()));
 
         if (insta.usesBreakChance()) {
             comp.appendText(" ")
                     .appendSibling((Styles.REDCOMP()
-                            .appendSibling(Words.BreakChance.locName()
-                                    .appendText(": " + insta.getBreakChance() + "%"))));
+                            .appendSibling(
+                                    Words.BreakChance.locName().appendText(": " + insta.getBreakChance() + "%"))));
 
         }
 
@@ -46,8 +53,8 @@ public class TooltipUtils {
     }
 
     public static ITextComponent level(int lvl) {
-        return new StringTextComponent(TextFormatting.YELLOW + "").appendSibling(Words.Level
-                .locName()).appendText((": " + lvl));
+        return new StringTextComponent(TextFormatting.YELLOW + "").appendSibling(Words.Level.locName())
+                .appendText((": " + lvl));
 
     }
 
@@ -82,8 +89,7 @@ public class TooltipUtils {
         if (data != null) {
 
             if (RepairUtils.isItemBroken(stack)) {
-                ITextComponent comp = new StringTextComponent(X + " ").appendSibling(Words.Broken
-                        .locName());
+                ITextComponent comp = new StringTextComponent(X + " ").appendSibling(Words.Broken.locName());
                 return comp;
             }
 
@@ -102,8 +108,8 @@ public class TooltipUtils {
             comp = new StringTextComponent(X);
         }
 
-        return comp.appendSibling(new StringTextComponent(TextFormatting.GRAY + " ").appendSibling(text)
-                .appendText(": " + req));
+        return comp.appendSibling(
+                new StringTextComponent(TextFormatting.GRAY + " ").appendSibling(text).appendText(": " + req));
 
     }
 
@@ -111,8 +117,7 @@ public class TooltipUtils {
         return requirement(new StringTextComponent("Lvl Req"), player.getLevel(), lvl);
     }
 
-    public static List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list,
-                                                              int minLinesCutAllBlanks) {
+    public static List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list, int minLinesCutAllBlanks) {
 
         List<ITextComponent> newt = new ArrayList();
 
@@ -144,22 +149,17 @@ public class TooltipUtils {
 
     public static ITextComponent rarity(Rarity rarity) {
 
-        return (new StringTextComponent(rarity.textFormatColor() + "").appendSibling(Words.Rarity
-                .locName()
-                .appendText(": ")
-                .appendSibling(rarity.locName())));
+        return (new StringTextComponent(rarity.textFormatColor() + "").appendSibling(
+                Words.Rarity.locName().appendText(": ").appendSibling(rarity.locName())));
     }
 
     public static ITextComponent rarityShort(Rarity rarity) {
-        return (new StringTextComponent(rarity.textFormatColor() + "").appendSibling(rarity
-                .locName()));
+        return (new StringTextComponent(rarity.textFormatColor() + "").appendSibling(rarity.locName()));
     }
 
     public static ITextComponent tier(int tier) {
 
-        return Styles.YELLOWCOMP()
-                .appendSibling(Words.Tier.locName())
-                .appendText(": " + tier);
+        return Styles.YELLOWCOMP().appendSibling(Words.Tier.locName()).appendText(": " + tier);
 
     }
 

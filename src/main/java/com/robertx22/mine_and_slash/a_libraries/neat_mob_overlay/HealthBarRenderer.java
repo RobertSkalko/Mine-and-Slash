@@ -149,7 +149,7 @@ public class HealthBarRenderer {
 
                 EntityRendererManager renderManager = Minecraft.getInstance().getRenderManager();
 
-                Vector3f view = renderManager.info.getUpVector();
+                Vector3f view = renderManager.info.getViewVector();
 
                 float viewX = view.getX();
                 float viewY = view.getY();

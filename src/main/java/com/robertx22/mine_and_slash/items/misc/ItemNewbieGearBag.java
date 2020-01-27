@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -40,8 +39,7 @@ public class ItemNewbieGearBag extends BaseItem {
     public static int ITEMS_AMOUNT = 6;
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn,
-                                                    Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
         if (!worldIn.isRemote) {
             try {
@@ -82,13 +80,13 @@ public class ItemNewbieGearBag extends BaseItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
-        Tooltip.add(CLOC.tooltip("newbie_gear_bag"), tooltip);
+        tooltip.add(CLOC.tooltip("newbie_gear_bag"));
 
-        Tooltip.add(CLOC.lore("newbie_gear_bag1"), tooltip);
-        Tooltip.add(CLOC.lore("newbie_gear_bag2"), tooltip);
+        tooltip.add(CLOC.lore("newbie_gear_bag1"));
+        tooltip.add(CLOC.lore("newbie_gear_bag2"));
 
     }
 

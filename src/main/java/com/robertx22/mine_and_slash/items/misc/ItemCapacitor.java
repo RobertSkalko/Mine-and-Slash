@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -59,16 +58,14 @@ public class ItemCapacitor extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
-        Tooltip.add(CLOC.tooltip("capacitor"), tooltip);
+        tooltip.add(CLOC.tooltip("capacitor"));
 
-        Tooltip.add(CLOC.tooltip("capacitor2")
-                .appendText(": " + this.GetFuelMultiplier() + "x"), tooltip);
+        tooltip.add(CLOC.tooltip("capacitor2").appendText(": " + this.GetFuelMultiplier() + "x"));
 
-        Tooltip.add(Words.Bonus_Salvage_Chance.locName()
-                .appendText(": " + this.getSalvageBonusChance() + "%"), tooltip);
+        tooltip.add(Words.Bonus_Salvage_Chance.locName().appendText(": " + this.getSalvageBonusChance() + "%"));
 
     }
 

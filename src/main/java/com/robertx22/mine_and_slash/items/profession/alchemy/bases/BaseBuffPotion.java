@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -65,8 +64,7 @@ public abstract class BaseBuffPotion extends BasePotion {
         return (BaseEffect) ForgeRegistries.POTIONS.getValue(new ResourceLocation(Ref.MODID, GUID()));
     }
 
-    public void onFinish(ItemStack stack, World world, LivingEntity player,
-                         EntityCap.UnitData unitdata) {
+    public void onFinish(ItemStack stack, World world, LivingEntity player, EntityCap.UnitData unitdata) {
 
         player.getActivePotionEffects()
                 .stream()
@@ -81,8 +79,8 @@ public abstract class BaseBuffPotion extends BasePotion {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
         TooltipInfo info = new TooltipInfo(null, new MinMax(100, 100), level.number);
         info.usePrettyStatSymbols = true;
@@ -93,10 +91,9 @@ public abstract class BaseBuffPotion extends BasePotion {
             tooltip.addAll(mod.GetTooltipString(info));
         }
 
-        Tooltip.addEmpty(tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Styles.BLUECOMP()
-                .appendText("Duration: " + durationInMinutes() + " Minutes"));
+        tooltip.add(Styles.BLUECOMP().appendText("Duration: " + durationInMinutes() + " Minutes"));
         tooltip.add(TooltipUtils.level(this.level.number));
 
     }
@@ -129,15 +126,12 @@ public abstract class BaseBuffPotion extends BasePotion {
 
     public boolean hasAlchemyPotion(LivingEntity en) {
 
-        return en.getActivePotionEffects()
-                .stream()
-                .anyMatch(x -> x.getPotion() instanceof BaseAlchemyEffect);
+        return en.getActivePotionEffects().stream().anyMatch(x -> x.getPotion() instanceof BaseAlchemyEffect);
 
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
-                                                    Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
 
         if (Load.Unit(player).getLevel() >= this.level.number) {

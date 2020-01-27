@@ -19,6 +19,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
+import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
 import com.robertx22.mine_and_slash.saveclasses.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -33,7 +34,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.AttackUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -787,13 +787,17 @@ public class EntityCap {
                             this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
 
                     if (getResources().hasEnough(ene) == false) {
-                        AttackUtils.NoEnergyMessage(source);
+                        if (source instanceof ServerPlayerEntity) {
+                            MMORPG.sendToClient(new NoEnergyPacket(), (ServerPlayerEntity) source);
+                        }
                         return false;
 
                     } else {
 
                         if (getResources().hasEnough(mana) == false) {
-                            AttackUtils.NoEnergyMessage(source);
+                            if (source instanceof ServerPlayerEntity) {
+                                MMORPG.sendToClient(new NoEnergyPacket(), (ServerPlayerEntity) source);
+                            }
                             return false;
                         }
 

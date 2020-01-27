@@ -6,7 +6,11 @@ import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.EneReg
 import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.HpRegenBuffPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.LootBonusBuffPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.potion_buffs.ManaRegenBuffPotion;
-import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.*;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantEnergyPotionItem;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantHealthPotionItem;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantManaPotionItem;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.LesserRecallPotionItem;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets.*;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -39,14 +43,15 @@ public class AlchemyItemRegister {
             vars.forEach(x -> r.register(x.setRegistryName(x.GUID())));
         }
 
-        r.register(new LesserRecallPotionItem().setRegistryName(new LesserRecallPotionItem()
-                .GUID()));
-        r.register(new ResetStatsPotionItem().setRegistryName(new ResetStatsPotionItem().GUID()));
-        r.register(new ResetTalentsPotionItem().setRegistryName(new ResetTalentsPotionItem()
-                .GUID()));
+        r.register(new LesserRecallPotionItem().setRegistryName(new LesserRecallPotionItem().GUID()));
 
-        r.register(new AddRemoveTalentPotionItem().setRegistryName(new AddRemoveTalentPotionItem()
-                .GUID()));
+        r.register(new ResetStatsPotionItem().setRegistryName(new ResetStatsPotionItem().GUID()));
+
+        r.register(new ResetTalentsPotionItem().setRegistryName(new ResetTalentsPotionItem().GUID()));
+        r.register(new AddRemoveTalentPotionItem().setRegistryName(new AddRemoveTalentPotionItem().GUID()));
+
+        r.register(new ResetSpellsPotionItem().setRegistryName(new ResetSpellsPotionItem().GUID()));
+        r.register(new AddRemoveSpellPotionItem().setRegistryName(new AddRemoveSpellPotionItem().GUID()));
 
     }
 

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
@@ -88,7 +88,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
     private List<ITextComponent> getMaxStacksTooltip() {
         List<ITextComponent> list = new ArrayList<>();
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
         list.add(new StringTextComponent(
                 TextFormatting.LIGHT_PURPLE + "Max Stacks: " + TextFormatting.DARK_PURPLE + getMaxStacks()));
 
@@ -99,7 +99,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
     private List<ITextComponent> getDurationTooltip() {
         List<ITextComponent> list = new ArrayList<>();
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
         list.add(new StringTextComponent(
                 TextFormatting.GOLD + "Duration: " + TextFormatting.YELLOW + getDurationInSeconds() + "s"));
 

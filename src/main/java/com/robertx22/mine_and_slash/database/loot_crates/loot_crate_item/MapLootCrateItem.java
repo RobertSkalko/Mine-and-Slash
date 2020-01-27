@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -76,19 +75,19 @@ public class MapLootCrateItem extends Item {
 
             tooltip.add(name(stack));
 
-            Tooltip.addEmpty(tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
             tooltip.add(TooltipUtils.level(lvl));
 
-            Tooltip.addEmpty(tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
             tooltip.add(TooltipUtils.tier(tier));
 
-            Tooltip.addEmpty(tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
             tooltip.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Score: " + score.getTooltipLine()));
 
-            Tooltip.addEmpty(tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
             tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Right click to open!"));
 

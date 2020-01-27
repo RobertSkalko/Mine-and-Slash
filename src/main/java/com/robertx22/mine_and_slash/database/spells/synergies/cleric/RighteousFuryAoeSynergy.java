@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.potion_effects.cleric.RighteousFuryEffect;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -32,11 +32,11 @@ public class RighteousFuryAoeSynergy extends Synergy<PotionContext> {
         list.add(new StringTextComponent(
                 "At " + RighteousFuryEffect.INSTANCE.getMaxStacks() + " stacks, buff explodes in an area attack."));
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
 
         list.addAll(BlazingInfernoEffect.CALC.GetTooltipString(info));
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
 
         list.add(new StringTextComponent("The stacks reset after the attack."));
 

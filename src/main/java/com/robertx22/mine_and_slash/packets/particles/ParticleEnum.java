@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.particles.RedstoneParticleData;
@@ -33,7 +32,7 @@ public enum ParticleEnum {
 
             for (int i = 0; i < data.radius * 80; i++) {
                 Vec3d r = GeometryUtils.getRandomPosInRadiusCircle(p.x, p.y, p.z, data.radius);
-                this.spawnRedstone(data.color, r.x, r.y, r.z);
+                this.spawnRedstone(world, data.color, r.x, r.y, r.z);
             }
         }
     },
@@ -46,7 +45,7 @@ public enum ParticleEnum {
 
             for (int i = 0; i < data.radius * 50; i++) {
                 Vec3d r = GeometryUtils.getRandomHorizontalPosInRadiusCircle(p.x, p.y, p.z, data.radius);
-                this.spawnRedstone(data.color, r.x, r.y, r.z);
+                this.spawnRedstone(world, data.color, r.x, r.y, r.z);
             }
         }
     },
@@ -87,10 +86,10 @@ public enum ParticleEnum {
         return new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
     }
 
-    public void spawnRedstone(RGB color, double xpos, double ypos, double zpos) {
+    public void spawnRedstone(World world, RGB color, double xpos, double ypos, double zpos) {
 
         RedstoneParticleData data = new RedstoneParticleData(color.getR(), color.getG(), color.getB(), 1F);
-        Minecraft.getInstance().world.addParticle(data, true, xpos, ypos, zpos, 1, 1, 1);
+        world.addParticle(data, true, xpos, ypos, zpos, 1, 1, 1);
     }
 
     public abstract void activate(ParticlePacketData data, World world, Entity entity);

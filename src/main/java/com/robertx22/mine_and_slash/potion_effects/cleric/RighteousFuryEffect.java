@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -91,11 +91,11 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
     public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
 
         list.add(new StringTextComponent("Increases your movement speed."));
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
 
         list.add(new StringTextComponent("Gains stacks by damaging mobs"));
 

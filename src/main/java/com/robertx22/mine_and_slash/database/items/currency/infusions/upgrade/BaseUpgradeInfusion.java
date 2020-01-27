@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -37,25 +37,24 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
-        Tooltip.add("", tooltip);
-        Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(Words.Major_Success_Chance.locName()
-                        .appendText(": " + this.bonusSuccessChance() + "%")), tooltip);
+        TooltipUtils.addEmpty(tooltip);
+        tooltip.add(Styles.GOLDCOMP()
+                            .appendSibling(Words.Major_Success_Chance.locName()
+                                                   .appendText(": " + this.bonusSuccessChance() + "%")));
 
-        Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(Words.Major_Success_Bonus.locName()
-                        .appendText(": " + this.critOnSuccessChance() + "%")), tooltip);
+        tooltip.add(Styles.GOLDCOMP()
+                            .appendSibling(Words.Major_Success_Bonus.locName()
+                                                   .appendText(": " + this.critOnSuccessChance() + "%")));
 
-        Tooltip.add(Styles.GOLDCOMP()
-                .appendSibling(Words.Major_Failure_Chance.locName()
-                        .appendText(": " + this.majorFailureChance() + "%")), tooltip);
+        tooltip.add(Styles.GOLDCOMP()
+                            .appendSibling(Words.Major_Failure_Chance.locName()
+                                                   .appendText(": " + this.majorFailureChance() + "%")));
 
-        Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
+        tooltip.add(Styles.BLUECOMP().appendSibling(Words.Item_modifiable_in_station.locName()));
 
     }
 
@@ -96,7 +95,8 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearEnumLocReq.INFUSIONS, SimpleGearLocReq.HAS_INSFUSION, SimpleGearLocReq.CAN_UPGRADE_INFUSION);
+        return Arrays.asList(
+                GearEnumLocReq.INFUSIONS, SimpleGearLocReq.HAS_INSFUSION, SimpleGearLocReq.CAN_UPGRADE_INFUSION);
     }
 
     public abstract float critOnSuccessChance();

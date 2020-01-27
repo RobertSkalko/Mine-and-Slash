@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.ItemSingle;
 import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -43,21 +43,20 @@ public abstract class BaseBagItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
-        tooltip.add(Tooltip.color(TextFormatting.GREEN, Words.PicksUpItemsAuto.locName()));
-        tooltip.add(Tooltip.color(TextFormatting.YELLOW, Words.HoldToPreventPickup.locName()));
+        tooltip.add(TooltipUtils.color(TextFormatting.GREEN, Words.PicksUpItemsAuto.locName()));
+        tooltip.add(TooltipUtils.color(TextFormatting.YELLOW, Words.HoldToPreventPickup.locName()));
 
-        Tooltip.addEmpty(tooltip);
+        TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Tooltip.color(TextFormatting.RED, Words.BewareCreativeBagBug1.locName()));
-        tooltip.add(Tooltip.color(TextFormatting.RED, Words.BewareCreativeBagBug2.locName()));
+        tooltip.add(TooltipUtils.color(TextFormatting.RED, Words.BewareCreativeBagBug1.locName()));
+        tooltip.add(TooltipUtils.color(TextFormatting.RED, Words.BewareCreativeBagBug2.locName()));
 
         if (showCraftWarning) {
             tooltip.add(new StringTextComponent(""));
-            tooltip.add(Tooltip.color(TextFormatting.RED, Words.CraftingDeletesItemsInside
-                    .locName()));
+            tooltip.add(TooltipUtils.color(TextFormatting.RED, Words.CraftingDeletesItemsInside.locName()));
 
         }
 
@@ -65,8 +64,7 @@ public abstract class BaseBagItem extends Item {
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
-                                                    @Nonnull Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, @Nonnull Hand hand) {
         if (!world.isRemote) {
             if (player.getHeldItemMainhand().getItem() instanceof BaseBagItem) {
                 player.openContainer(getNamedContainer(player.getHeldItemMainhand()));
@@ -84,8 +82,8 @@ public abstract class BaseBagItem extends Item {
     }
 
     @Override
-    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(
-            ItemStack stack, @Nullable CompoundNBT nbt) {
+    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack,
+                                                                                       @Nullable CompoundNBT nbt) {
         // MOVE OVER ITEM FROM OLD CAPABILITY SYSTEM
         if (nbt != null && nbt.contains("Parent")) {
             nbt.put("Items", nbt.get("Parent"));

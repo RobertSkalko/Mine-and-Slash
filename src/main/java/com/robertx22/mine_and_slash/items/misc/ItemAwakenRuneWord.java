@@ -18,7 +18,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -51,8 +51,8 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
         if (stack != null && SlashRegistry.RuneWords().isRegistered(getWord(stack))) {
 
@@ -60,39 +60,31 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
             RuneWord runeword = SlashRegistry.RuneWords().get(word);
 
-            ITextComponent name = new StringTextComponent(TextFormatting.LIGHT_PURPLE + "")
-                    .appendSibling(runeword.locName());
+            ITextComponent name = new StringTextComponent(TextFormatting.LIGHT_PURPLE + "").appendSibling(
+                    runeword.locName());
 
-            Tooltip.add(Styles.GOLDCOMP()
-                    .appendSibling(Words.Runeword.locName()
-                            .appendText(": ")
-                            .appendSibling(name)), tooltip);
+            tooltip.add(Styles.GOLDCOMP().appendSibling(Words.Runeword.locName().appendText(": ").appendSibling(name)));
 
-            Tooltip.add("", tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
-            tooltip.add(Styles.REDCOMP()
-                    .appendSibling(Words.NeedsGearWithRunesInserted.locName())
-                    .appendText(": "));
+            tooltip.add(Styles.REDCOMP().appendSibling(Words.NeedsGearWithRunesInserted.locName()).appendText(": "));
 
-            Tooltip.add("", tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
-            Tooltip.add(runeword.getRuneWordComboString(), tooltip);
+            tooltip.add(runeword.getRuneWordComboString());
 
-            Tooltip.add("", tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
-            Tooltip.add(new StringTextComponent(TextFormatting.AQUA + "").appendSibling(Words.RunesNeeded
-                    .locName()).appendText(": " + runeword.size()), tooltip);
+            tooltip.add(new StringTextComponent(TextFormatting.AQUA + "").appendSibling(Words.RunesNeeded.locName())
+                                .appendText(": " + runeword.size()));
 
-            Tooltip.add("", tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
             try {
                 RuneWordData data = new RuneWordData();
                 data.name = word;
 
-                data.Mods = runeword.mods()
-                        .stream()
-                        .map(x -> StatModData.Load(x, 100))
-                        .collect(Collectors.toList());
+                data.Mods = runeword.mods().stream().map(x -> StatModData.Load(x, 100)).collect(Collectors.toList());
 
                 TooltipInfo info = new TooltipInfo();
                 info.level = 1;
@@ -104,13 +96,11 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
                 e.printStackTrace();
             }
 
-            Tooltip.add("", tooltip);
+            TooltipUtils.addEmpty(tooltip);
 
         }
-        Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(Words.Item_modifiable_in_station.locName()), tooltip);
-        Tooltip.add(Styles.BLUECOMP()
-                .appendSibling(Words.unlocks_runeword_combo.locName()), tooltip);
+        tooltip.add(Styles.BLUECOMP().appendSibling(Words.Item_modifiable_in_station.locName()));
+        tooltip.add(Styles.BLUECOMP().appendSibling(Words.unlocks_runeword_combo.locName()));
 
     }
 

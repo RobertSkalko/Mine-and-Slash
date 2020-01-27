@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
+package com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets;
 
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
@@ -18,36 +18,36 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class ResetStatsPotionItem extends BaseInstantPotion {
+public class AddRemoveSpellPotionItem extends BaseInstantPotion {
 
-    public ResetStatsPotionItem() {
-        super(Professions.Levels.TEN);
+    public AddRemoveSpellPotionItem() {
+        super(Professions.Levels.ONE);
     }
 
     @Override
     public ITextComponent tooltip() {
-        ITextComponent comp = new StringTextComponent("Removes all allocated Stat Points");
+        ITextComponent comp = new StringTextComponent(
+                "Gives you 1 remove spell point. Use by right clicking on spell screen.");
         return comp;
 
     }
 
     @Override
-    public void onFinish(ItemStack stack, World world, LivingEntity player,
-                         EntityCap.UnitData unitdata) {
+    public void onFinish(ItemStack stack, World world, LivingEntity player, EntityCap.UnitData unitdata) {
 
         if (player instanceof PlayerEntity) {
-            Load.statPoints((PlayerEntity) player).resetStats();
+            Load.spells((PlayerEntity) player).addResetPoints(1);
         }
     }
 
     @Override
     public String GUID() {
-        return "alchemy/instant/misc/regret" + level.number;
+        return "alchemy/instant/misc/remove_spell";
     }
 
     @Override
     public String locNameForLangFile() {
-        return level.color + level.name + " " + "Potion of Regret";
+        return level.color + " " + "Potion of Single Spell Removal";
     }
 
     @Override
@@ -55,21 +55,16 @@ public class ResetStatsPotionItem extends BaseInstantPotion {
 
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
                 .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(Items.GOLDEN_CARROT, 2)
-                .addMaterial(Items.NETHER_WART, 25)
-                .addMaterial(ItemOre.ItemOres.get(IRarity.Mythic), 5);
+                .addMaterial(Items.COAL, 3)
+                .addMaterial(ItemOre.ItemOres.get(IRarity.Common), 3);
 
-        return mats.buildMaterials()
-                .setOutput(this)
-                .levelReq(level.number)
-                .expGained(10)
-                .build();
+        return mats.buildMaterials().setOutput(this).levelReq(1).expGained(5).build();
 
     }
 
     @Override
     public BasePotion newInstance(Professions.Levels lvl) {
-        return new ResetStatsPotionItem();
+        return new AddRemoveSpellPotionItem();
     }
 
     @Override

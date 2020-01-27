@@ -22,7 +22,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Tooltip;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -162,17 +162,17 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         list.add(new StringTextComponent(TextFormatting.BOLD + "" + getSchool().format).appendSibling(
                 getName().locName()));
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
 
         list.addAll(GetDescription(info));
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
 
         list.add(new StringTextComponent(TextFormatting.BLUE + "Mana Cost: " + getCalculatedManaCost(data)));
         list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: " + getCooldownInSeconds() + "s"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + getUseDurationInSeconds() + "s"));
 
-        Tooltip.addEmpty(list);
+        TooltipUtils.addEmpty(list);
 
         list.add(new StringTextComponent(getSchool().format + "School: ").appendSibling(getSchool().locName.locName()));
 

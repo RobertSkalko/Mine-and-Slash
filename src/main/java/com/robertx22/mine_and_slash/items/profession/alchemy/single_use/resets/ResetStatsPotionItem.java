@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
+package com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets;
 
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
@@ -18,36 +18,35 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class ResetTalentsPotionItem extends BaseInstantPotion {
+public class ResetStatsPotionItem extends BaseInstantPotion {
 
-    public ResetTalentsPotionItem() {
-        super(Professions.Levels.ONE);
+    public ResetStatsPotionItem() {
+        super(Professions.Levels.TEN);
     }
 
     @Override
     public ITextComponent tooltip() {
-        ITextComponent comp = new StringTextComponent("Resets all your talent points");
+        ITextComponent comp = new StringTextComponent("Removes all allocated Stat Points");
         return comp;
 
     }
 
     @Override
-    public void onFinish(ItemStack stack, World world, LivingEntity player,
-                         EntityCap.UnitData unitdata) {
+    public void onFinish(ItemStack stack, World world, LivingEntity player, EntityCap.UnitData unitdata) {
 
         if (player instanceof PlayerEntity) {
-            Load.talents((PlayerEntity) player).reset();
+            Load.statPoints((PlayerEntity) player).resetStats();
         }
     }
 
     @Override
     public String GUID() {
-        return "alchemy/instant/misc/reset_talents";
+        return "alchemy/instant/misc/regret" + level.number;
     }
 
     @Override
     public String locNameForLangFile() {
-        return level.color + level.name + " " + "Potion of Reset Talents";
+        return level.color + level.name + " " + "Potion of Stat Regret";
     }
 
     @Override
@@ -55,17 +54,17 @@ public class ResetTalentsPotionItem extends BaseInstantPotion {
 
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
                 .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(Items.DIAMOND, 3)
-                .addMaterial(Items.GOLDEN_APPLE, 1)
-                .addMaterial(ItemOre.ItemOres.get(IRarity.Common), 10);
+                .addMaterial(Items.GOLDEN_CARROT, 2)
+                .addMaterial(Items.NETHER_WART, 25)
+                .addMaterial(ItemOre.ItemOres.get(IRarity.Mythic), 5);
 
-        return mats.buildMaterials().setOutput(this).levelReq(10).expGained(20).build();
+        return mats.buildMaterials().setOutput(this).levelReq(level.number).expGained(10).build();
 
     }
 
     @Override
     public BasePotion newInstance(Professions.Levels lvl) {
-        return new ResetTalentsPotionItem();
+        return new ResetStatsPotionItem();
     }
 
     @Override

@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class SoundUtils {
 
@@ -19,11 +18,4 @@ public class SoundUtils {
 
         }
     }
-
-    public static void playSound(World world, BlockPos pos, SoundEvent sound, float volume, float pitch) {
-
-        world.playSound(pos.getX(), pos.getY(), pos.getZ(), sound, SoundCategory.PLAYERS, volume, pitch, true);
-
-    }
-
 }
