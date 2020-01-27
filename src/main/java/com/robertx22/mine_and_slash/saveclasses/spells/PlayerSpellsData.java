@@ -85,6 +85,7 @@ public class PlayerSpellsData {
                     spellBeingCast = "";
 
                     onSpellCast(spell);
+
                 }
             }
         }
@@ -114,13 +115,14 @@ public class PlayerSpellsData {
 
         BaseSpell spell = getSpellByKeybind(key, hotbar);
 
-        if (!spell.CanCast(player)) {
+        SpellData data = getDataBySpell(spell, Hotbar.FIRST);
+
+        if (data.cooldownIsReady() == false) {
             return false;
         }
 
-        SpellData data = getDataBySpell(spell, Hotbar.FIRST);
+        return spell.CanCast(player);
 
-        return data.cooldownIsReady();
     }
 
     private void onSpellCast(BaseSpell spell) {

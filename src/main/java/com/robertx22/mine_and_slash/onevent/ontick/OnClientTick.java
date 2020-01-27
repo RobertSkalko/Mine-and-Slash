@@ -2,10 +2,10 @@ package com.robertx22.mine_and_slash.onevent.ontick;
 
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,27 +17,32 @@ public class OnClientTick {
     static int TICKS_TO_SHOW = 50;
 
     @SubscribeEvent
-    public static void onTick(TickEvent.PlayerTickEvent event) {
+    public static void onTick(TickEvent.ClientTickEvent event) {
 
-        if (event.side.equals(LogicalSide.CLIENT) && event.phase == TickEvent.Phase.END) {
-            PlayerEntity player = event.player;
-            PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+        if (event.phase == TickEvent.Phase.END) {
 
-            List<String> onCooldown = spells.getSpellData().getSpellsOnCooldown();
+            PlayerEntity player = Minecraft.getInstance().player;
 
-            spells.getSpellData().onTimePass(1); // ticks spells so i dont need to sync packets every tick
+            if (player != null) {
 
-            List<String> onCooldownAfter = spells.getSpellData().getSpellsOnCooldown();
+                PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-            onCooldown.removeAll(onCooldownAfter);
+                List<String> onCooldown = spells.getSpellData().getSpellsOnCooldown();
 
-            COOLDOWN_READY_MAP.entrySet().forEach(x -> x.setValue(x.getValue() - 1));
+                spells.getSpellData().onTimePass(1); // ticks spells so i dont need to sync packets every tick
 
-            onCooldown.forEach(x -> {
-                COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);
-                x.isEmpty();
-            });
+                List<String> onCooldownAfter = spells.getSpellData().getSpellsOnCooldown();
 
+                onCooldown.removeAll(onCooldownAfter);
+
+                COOLDOWN_READY_MAP.entrySet().forEach(x -> x.setValue(x.getValue() - 1));
+
+                onCooldown.forEach(x -> {
+                    COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);
+                    x.isEmpty();
+                });
+
+            }
         }
     }
 }
