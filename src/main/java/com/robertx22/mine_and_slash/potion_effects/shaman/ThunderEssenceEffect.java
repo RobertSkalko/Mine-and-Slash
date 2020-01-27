@@ -36,7 +36,7 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
 
     @Override
     public int getDurationInSeconds() {
-        return 10;
+        return 15;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
     @Override
     public int getDurationInSeconds() {
-        return 10;
+        return 15;
     }
 
     @Override

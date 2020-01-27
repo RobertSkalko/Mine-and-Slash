@@ -34,13 +34,12 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
             }
 
         } else {
-            int stats = gear.GetBaseGearType().primaryStatsAmount();
+            int statsAmount = gear.GetBaseGearType().primaryStatsAmount();
 
-            for (int i = 0; i < stats; i++) {
-                StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
-                        .PrimaryStats());
+            for (int i = 0; i < statsAmount; i++) {
+                StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().PrimaryStats());
                 StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
-                moddata.setPercent(moddata.getPercent() / stats);
+                moddata.setPercent(moddata.getPercent() / statsAmount);
 
                 boolean merged = false;
 
@@ -73,8 +72,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         if (info.verbose) {
-            list.add(Styles.GRAYCOMP()
-                    .appendSibling(Words.Primary_Stats.locName().appendText(":")));
+            list.add(Styles.GRAYCOMP().appendSibling(Words.Primary_Stats.locName().appendText(":")));
 
         }
 
