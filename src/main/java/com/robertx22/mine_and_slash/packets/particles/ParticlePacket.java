@@ -49,7 +49,7 @@ public class ParticlePacket {
 
                 PlayerEntity p = MMORPG.proxy.getPlayerEntityFromContext(ctx);
 
-                pkt.data.type.activate(pkt.data, p.world, p);
+                pkt.data.type.activate(pkt.data, p.world);
 
             } catch (Exception e) {
                 e.printStackTrace();

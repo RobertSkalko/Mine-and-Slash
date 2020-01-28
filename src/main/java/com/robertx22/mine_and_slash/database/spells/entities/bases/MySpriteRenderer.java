@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.util.ResourceLocation;
 
 public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
@@ -39,7 +38,7 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
         p_225623_4_.scale(this.scale, this.scale, this.scale);
         p_225623_4_.rotate(this.renderManager.getCameraOrientation());
         p_225623_4_.rotate(Vector3f.YP.rotationDegrees(180.0F));
-        this.itemRenderer.renderItem(((IRendersAsItem) p_225623_1_).getItem(),
+        this.itemRenderer.renderItem(((IMyRenderAsItem) p_225623_1_).getItem(),
                                      ItemCameraTransforms.TransformType.GROUND, p_225623_6_,
                                      OverlayTexture.DEFAULT_LIGHT, p_225623_4_, p_225623_5_
         );

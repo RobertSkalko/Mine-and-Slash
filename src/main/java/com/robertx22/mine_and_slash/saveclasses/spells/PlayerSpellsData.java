@@ -146,6 +146,10 @@ public class PlayerSpellsData {
 
         BaseSpell spell = getSpellByKeybind(key, hotbar);
 
+        if (spell == null) {
+            return false;
+        }
+
         SpellData data = getDataBySpell(spell, Hotbar.FIRST);
 
         if (data.cooldownIsReady() == false) {

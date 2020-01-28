@@ -3,13 +3,11 @@ package com.robertx22.mine_and_slash.packets.particles;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.particles.RedstoneParticleData;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -18,7 +16,7 @@ public enum ParticleEnum {
 
     THORNS() {
         @Override
-        public void activate(ParticlePacketData data, World world, Entity entity) {
+        public void activate(ParticlePacketData data, World world) {
             Vec3d center = getCenter(data.pos);
 
             for (int i = 0; i < data.amount; i++) {
@@ -36,7 +34,7 @@ public enum ParticleEnum {
 
     PETRIFY() {
         @Override
-        public void activate(ParticlePacketData data, World world, Entity entity) {
+        public void activate(ParticlePacketData data, World world) {
             Vec3d center = getCenter(data.pos);
 
             for (int i = 0; i < data.amount; i++) {
@@ -51,7 +49,7 @@ public enum ParticleEnum {
     },
     AOE() {
         @Override
-        public void activate(ParticlePacketData data, World world, Entity entity) {
+        public void activate(ParticlePacketData data, World world) {
             Vec3d p = getCenter(data.pos);
 
             for (int i = 0; i < data.amount; i++) {
@@ -62,7 +60,7 @@ public enum ParticleEnum {
     },
     CIRCLE_REDSTONE() {
         @Override
-        public void activate(ParticlePacketData data, World world, Entity entity) {
+        public void activate(ParticlePacketData data, World world) {
             Vec3d p = getCenter(data.pos);
 
             for (int i = 0; i < data.radius * 80; i++) {
@@ -74,7 +72,7 @@ public enum ParticleEnum {
 
     NOVA_REDSTONE() {
         @Override
-        public void activate(ParticlePacketData data, World world, Entity entity) {
+        public void activate(ParticlePacketData data, World world) {
 
             Vec3d p = getCenter(data.pos);
 
@@ -86,7 +84,7 @@ public enum ParticleEnum {
     },
     BLAZING_INFERNO() {
         @Override
-        public void activate(ParticlePacketData data, World world, Entity entity) {
+        public void activate(ParticlePacketData data, World world) {
 
             for (int i = 0; i < 150; i++) {
                 Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(new Vec3d(data.pos), data.radius);
@@ -94,7 +92,7 @@ public enum ParticleEnum {
                 world.addParticle(ParticleTypes.SMOKE, p.x, p.y, p.z, 0, 0, 0);
 
             }
-            SoundUtils.playSound(entity, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);
+
         }
     };
 
@@ -105,7 +103,7 @@ public enum ParticleEnum {
     public static void sendToClients(Entity source, ParticlePacketData data) {
         if (source.world.isRemote) {
             try {
-                data.type.activate(data, source.world, source);
+                data.type.activate(data, source.world);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -115,9 +113,11 @@ public enum ParticleEnum {
     }
 
     public static void sendToClients(BlockPos pos, World world, ParticlePacketData data) {
-
-        MMORPG.sendToTracking(new ParticlePacket(data), pos, world);
-
+        if (!world.isRemote) {
+            MMORPG.sendToTracking(new ParticlePacket(data), pos, world);
+        } else {
+            data.type.activate(data, world);
+        }
     }
 
     public Vec3d getCenter(BlockPos pos) {
@@ -131,6 +131,6 @@ public enum ParticleEnum {
         world.addParticle(data, true, xpos, ypos, zpos, 1, 1, 1);
     }
 
-    public abstract void activate(ParticlePacketData data, World world, Entity entity);
+    public abstract void activate(ParticlePacketData data, World world);
 
 }
