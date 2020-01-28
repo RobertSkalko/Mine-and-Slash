@@ -17,6 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -47,7 +48,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         List<BaseSpell> spells = this.spells.getAvailableSpells();
 
         int x = guiLeft + 7;
-        int y = guiTop + 7;
+        int y = guiTop + 30;
 
         int count = 0;
 
@@ -99,9 +100,30 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         drawBackground(ticks, x, y);
 
+        drawText();
+        
         super.render(x, y, ticks);
 
         this.buttons.forEach(b -> b.renderToolTip(x, y));
+
+    }
+
+    private void drawText() {
+        double scale = 1.25;
+        String str = "First Hotbar";
+        int xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
+        int yp = 120 + guiTop;
+        GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.GREEN);
+
+        str = "Second Hotbar";
+        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
+        yp = 170 + guiTop;
+        GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.GREEN);
+
+        str = "Available Spells";
+        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
+        yp = 12 + guiTop;
+        GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.YELLOW);
 
     }
 

@@ -2,7 +2,8 @@
   "parent": "mmorpg:mine_and_slash/root",
   "display": {
     "icon": {
-      "item": "mmorpg:hammer/hammer0"
+      "item": "mmorpg:hammer/hammer0",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "extra": [

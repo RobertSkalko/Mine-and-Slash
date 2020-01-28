@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.player_overlays.types;
+package com.robertx22.mine_and_slash.gui.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -17,12 +17,18 @@ public class AzureTopLeftOverlay {
     int xPos = 2;
     int yPos = 4;
 
-    public final ResourceLocation azuremanatexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/mana_bar_azure.png");
-    public final ResourceLocation azureenergytexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/energy_bar_azure.png");
-    public final ResourceLocation azurehealthtexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/health_bar_azure.png");
-    public final ResourceLocation azureexperiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/exp_bar_azure.png");
-    public final ResourceLocation azurehudtexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/level_ui_azure.png");
-    public final ResourceLocation magicshieldpath = new ResourceLocation("mmorpg", "textures/gui/overlay/magic_shield_bar.png");
+    public final ResourceLocation azuremanatexturepath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/mana_bar_azure.png");
+    public final ResourceLocation azureenergytexturepath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/energy_bar_azure.png");
+    public final ResourceLocation azurehealthtexturepath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/health_bar_azure.png");
+    public final ResourceLocation azureexperiencetexturepath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/exp_bar_azure.png");
+    public final ResourceLocation azurehudtexturepath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/level_ui_azure.png");
+    public final ResourceLocation magicshieldpath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/magic_shield_bar.png");
     public final ResourceLocation bloodpath = new ResourceLocation("mmorpg", "textures/gui/overlay/blood_bar.png");
 
     public int TEXTURE_WIDTH = 106;
@@ -36,9 +42,8 @@ public class AzureTopLeftOverlay {
         LVL
     }
 
-    public void DrawBar(Minecraft mc, AbstractGui gui, ResourceLocation res,
-                        float current, float max, Type type, UnitData data, int x,
-                        int y) {
+    public void DrawBar(Minecraft mc, AbstractGui gui, ResourceLocation res, float current, float max, Type type,
+                        UnitData data, int x, int y) {
 
         RenderSystem.color4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(res);
@@ -65,8 +70,7 @@ public class AzureTopLeftOverlay {
 
                 float maxperc = MathHelper.clamp(curMS / hp, 0, 1);
 
-                int enebar = (int) ((int) ((curMS / data.getUnit()
-                        .magicShieldData().val * 100)) * maxperc);
+                int enebar = (int) ((int) ((curMS / data.getUnit().magicShieldData().val * 100)) * maxperc);
                 mc.getTextureManager().bindTexture(magicshieldpath);
                 gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, enebar, 5);
             }
@@ -80,10 +84,8 @@ public class AzureTopLeftOverlay {
 
         if (type == Type.HP) { // show effective health only on numbers, but let bars each separate from hp and
             // ms
-            now = NumberUtils.formatNumber((int) data.getUnit()
-                    .getCurrentEffectiveHealth(mc.player, data));
-            maximum = NumberUtils.formatNumber((int) data.getUnit()
-                    .getMaxEffectiveHealth());
+            now = NumberUtils.formatNumber((int) data.getUnit().getCurrentEffectiveHealth(mc.player, data));
+            maximum = NumberUtils.formatNumber((int) data.getUnit().getMaxEffectiveHealth());
         }
 
         str = now + "/" + maximum;
@@ -98,8 +100,7 @@ public class AzureTopLeftOverlay {
     public int TEXTURE_WIDTH2 = 120;
     public int TEXTURE_HEIGHT2 = 90;
 
-    public void DrawUI(Minecraft mc, AbstractGui gui, ResourceLocation res, Type type,
-                       UnitData data, int x, int y) {
+    public void DrawUI(Minecraft mc, AbstractGui gui, ResourceLocation res, Type type, UnitData data, int x, int y) {
 
         RenderSystem.color4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(res);
@@ -114,8 +115,7 @@ public class AzureTopLeftOverlay {
 
     }
 
-    public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
-                     RenderGameOverlayEvent event, UnitData data) {
+    public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity, RenderGameOverlayEvent event, UnitData data) {
 
         Unit unit = data.getUnit();
 
@@ -131,18 +131,26 @@ public class AzureTopLeftOverlay {
 
         xPos = 59;
         yPos = 4;
-        DrawBar(mc, gui, azurehealthtexturepath, unit.health()
-                .CurrentValue(mc.player, unit), unit.healthData().val, Type.HP, data, xPos, yPos);
+        DrawBar(
+                mc, gui, azurehealthtexturepath, unit.health().CurrentValue(mc.player, unit), unit.healthData().val,
+                Type.HP, data, xPos, yPos
+        );
         xPos = 59;
         yPos += 11;
 
         DrawBar(mc, gui, azuremanatexturepath, data.getCurrentMana(), unit.manaData().val, Type.MANA, data, xPos, yPos);
         xPos = 59;
         yPos += 11;
-        DrawBar(mc, gui, azureenergytexturepath, data.getCurrentEnergy(), unit.energyData().val, Type.ENE, data, xPos, yPos);
+        DrawBar(
+                mc, gui, azureenergytexturepath, data.getCurrentEnergy(), unit.energyData().val, Type.ENE, data, xPos,
+                yPos
+        );
         xPos = 59;
         yPos += 11;
-        DrawBar(mc, gui, azureexperiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data, xPos, yPos);
+        DrawBar(
+                mc, gui, azureexperiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data,
+                xPos, yPos
+        );
 
         scale = 1 / scale;
         RenderSystem.scalef(scale, scale, scale);

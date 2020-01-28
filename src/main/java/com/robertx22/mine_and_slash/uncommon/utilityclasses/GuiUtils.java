@@ -1,15 +1,37 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuiUtils {
+
+    public static void renderScaledText(int x, int y, double scale, String text, TextFormatting format) {
+
+        double antiScale = 1 / scale;
+
+        RenderSystem.scaled(scale, scale, scale);
+
+        double textWidthMinus = Minecraft.getInstance().fontRenderer.getStringWidth(text) / 2 * scale;
+        double textHeightMinus = Minecraft.getInstance().fontRenderer.FONT_HEIGHT * scale / 2;
+
+        float xp = (float) (x - textWidthMinus);
+        float yp = (float) (y - textHeightMinus);
+
+        float xf = (float) (xp * antiScale);
+        float yf = (float) (yp * antiScale);
+
+        Minecraft.getInstance().fontRenderer.drawStringWithShadow(text, xf, yf, format.getColor());
+        RenderSystem.scaled(antiScale, antiScale, antiScale);
+
+    }
 
     public static void renderTooltip(List<ITextComponent> tooltip, int mouseX, int mouseY) {
 

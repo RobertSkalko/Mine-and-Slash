@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.gui.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.TalentPerkTreeScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -77,21 +78,16 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         super.render(x, y, ticks);
 
+        renderTitle();
+
+    }
+
+    private void renderTitle() {
         double scale = 2;
-        double antiScale = 1 / scale;
-
-        RenderSystem.scaled(scale, scale, scale);
         String str = "Main Hub";
-
-        float xp = (float) (guiLeft + (MainHubScreen.x / 2 - mc.fontRenderer.getStringWidth(str) / 2 * scale));
-        float yp = (float) (guiTop + 12);
-
-        float xf = (float) (xp * antiScale);
-        float yf = (float) (yp * antiScale);
-
-        mc.fontRenderer.drawStringWithShadow(str, xf, yf, TextFormatting.YELLOW.getColor());
-        RenderSystem.scaled(antiScale, antiScale, antiScale);
-
+        int xp = (int) (guiLeft + (MainHubScreen.x / 2));
+        int yp = (int) (guiTop + 20);
+        GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.YELLOW);
     }
 
     protected void drawBackground(float partialTicks, int x, int y) {

@@ -1,7 +1,7 @@
-package com.robertx22.mine_and_slash.gui.player_overlays;
+package com.robertx22.mine_and_slash.gui.bar_overlays;
 
 import com.robertx22.mine_and_slash.config.ClientContainer;
-import com.robertx22.mine_and_slash.gui.player_overlays.types.*;
+import com.robertx22.mine_and_slash.gui.bar_overlays.types.*;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
@@ -32,9 +32,7 @@ public class PlayerBarsOverlayScreen extends AbstractGui {
 
     private void handleHeartGui(RenderGameOverlayEvent event) {
 
-        if (event.getType()
-                .equals(ElementType.HEALTH) && ClientContainer.INSTANCE.SHOW_VANILLA_HEARTS
-                .get() == false) {
+        if (event.getType().equals(ElementType.HEALTH) && ClientContainer.INSTANCE.SHOW_VANILLA_HEARTS.get() == false) {
             event.setCanceled(true);
         }
 
@@ -66,8 +64,8 @@ public class PlayerBarsOverlayScreen extends AbstractGui {
             if (data == null || data.getUnit() == null || mc == null || mc.player == null) {
                 return;
             }
-            if (data.getUnit().energyData() == null || data.getUnit()
-                    .manaData() == null || data.getUnit().healthData() == null) {
+            if (data.getUnit().energyData() == null || data.getUnit().manaData() == null || data.getUnit()
+                    .healthData() == null) {
                 return;
             }
 

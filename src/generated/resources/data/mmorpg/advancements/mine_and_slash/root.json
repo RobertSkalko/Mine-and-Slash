@@ -1,7 +1,8 @@
 {
   "display": {
     "icon": {
-      "item": "mmorpg:sword/sword5"
+      "item": "mmorpg:sword/sword5",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "translate": "mmorpg.advancement.title.welcomemineandslash"

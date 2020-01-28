@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.player_overlays.types;
+package com.robertx22.mine_and_slash.gui.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -25,18 +25,21 @@ public abstract class BasePlayerOverlay {
     }
 
     public final ResourceLocation manatexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/mana_bar.png");
-    public final ResourceLocation energytexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/energy_bar.png");
-    public final ResourceLocation healthtexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/health_bar.png");
-    public final ResourceLocation experiencetexturepath = new ResourceLocation("mmorpg", "textures/gui/overlay/experience_bar.png");
-    public final ResourceLocation magicshieldpath = new ResourceLocation("mmorpg", "textures/gui/overlay/magic_shield_bar.png");
+    public final ResourceLocation energytexturepath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/energy_bar.png");
+    public final ResourceLocation healthtexturepath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/health_bar.png");
+    public final ResourceLocation experiencetexturepath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/experience_bar.png");
+    public final ResourceLocation magicshieldpath = new ResourceLocation(
+            "mmorpg", "textures/gui/overlay/magic_shield_bar.png");
     public final ResourceLocation bloodpath = new ResourceLocation("mmorpg", "textures/gui/overlay/blood_bar.png");
 
-    public abstract void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity,
-                              RenderGameOverlayEvent event, UnitData level);
+    public abstract void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity, RenderGameOverlayEvent event,
+                              UnitData level);
 
-    public void DrawBar(Minecraft mc, AbstractGui gui, ResourceLocation res,
-                        float current, float max, Type type, UnitData data, int x,
-                        int y) {
+    public void DrawBar(Minecraft mc, AbstractGui gui, ResourceLocation res, float current, float max, Type type,
+                        UnitData data, int x, int y) {
 
         RenderSystem.color4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(res);
@@ -63,8 +66,7 @@ public abstract class BasePlayerOverlay {
 
                 float maxperc = MathHelper.clamp(curMS / hp, 0, 1);
 
-                int enebar = (int) ((int) ((curMS / data.getUnit()
-                        .magicShieldData().val * 100)) * maxperc);
+                int enebar = (int) ((int) ((curMS / data.getUnit().magicShieldData().val * 100)) * maxperc);
                 mc.getTextureManager().bindTexture(magicshieldpath);
                 gui.blit(x + 3, y + 3, 0, TEXTURE_HEIGHT, enebar, 5);
             }
@@ -77,10 +79,8 @@ public abstract class BasePlayerOverlay {
         String str = "";
 
         if (type == Type.HP) { // show effective health only on numbers, but let bars each separate from hp and ms
-            now = NumberUtils.formatNumber((int) data.getUnit()
-                    .getCurrentEffectiveHealth(mc.player, data));
-            maximum = NumberUtils.formatNumber((int) data.getUnit()
-                    .getMaxEffectiveHealth());
+            now = NumberUtils.formatNumber((int) data.getUnit().getCurrentEffectiveHealth(mc.player, data));
+            maximum = NumberUtils.formatNumber((int) data.getUnit().getMaxEffectiveHealth());
         }
 
         if (type != Type.EXP) {

@@ -2,7 +2,8 @@
   "parent": "mmorpg:mine_and_slash/player_level_90",
   "display": {
     "icon": {
-      "item": "mmorpg:hammer/hammer5"
+      "item": "mmorpg:hammer/hammer5",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "extra": [
