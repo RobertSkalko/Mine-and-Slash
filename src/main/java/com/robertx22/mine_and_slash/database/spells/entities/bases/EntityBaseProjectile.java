@@ -196,6 +196,12 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     public void tick() {
         super.tick();
 
+        if (this.inGround) {
+            ticksInGround++;
+        } else {
+            ticksInAir++;
+        }
+
         if (this.ticksExisted >= this.getDeathTime()) {
             onExpireProc(this.getCaster());
             this.remove();

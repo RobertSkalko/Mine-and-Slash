@@ -27,9 +27,18 @@ public abstract class BaseSpellTileEntity extends TileEntity implements ISpellEn
     @Override
     public final void tick() {
 
-        data.ticksExisted++;
+        try {
+            data.ticksExisted++;
+        } catch (Exception e) {
+            e.printStackTrace();
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+        }
 
-        onTick();
+        try {
+            onTick();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (data.getRemainingLifeTicks() < 1 && data.ticksExisted > 5) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);

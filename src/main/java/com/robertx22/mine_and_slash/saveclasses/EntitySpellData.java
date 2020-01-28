@@ -18,6 +18,9 @@ public class EntitySpellData {
     public float charge = 1;
 
     @Store
+    public boolean activated = false;
+
+    @Store
     private String casterID;
 
     private LivingEntity caster;

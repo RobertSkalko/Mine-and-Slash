@@ -1,7 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
+import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.SeedEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.IBlockSpawner;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
@@ -10,19 +13,20 @@ import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SComp;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagmaFlowerSpell extends BaseSpell {
+public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
 
     public MagmaFlowerSpell() {
 
@@ -82,44 +86,32 @@ public class MagmaFlowerSpell extends BaseSpell {
         return list;
 
     }
-
+    
     @Override
     public Words getName() {
-        return Words.BlazingInferno;
+        return Words.MagmaFlower;
     }
 
     @Override
     public boolean cast(PlayerEntity caster, int ticksInUse) {
 
-        RayTraceResult ray = caster.pick(20, 0.0F, false);
+        World world = caster.world;
+        Vec3d pos = caster.getPositionVector();
+        SeedEntity en = SpellUtils.getSpellEntity(new SeedEntity(world), this, caster);
+        SpellUtils.setupProjectileForCasting(en, caster, 0.5F);
+        caster.world.addEntity(en);
 
-        if (ray instanceof BlockRayTraceResult) {
-            BlockRayTraceResult blockray = (BlockRayTraceResult) ray;
-
-            BlockPos lPos = blockray.getPos();
-
-            if (!caster.world.getBlockState(lPos).isSolid()) {
-                return false; // dont spawn block unless there's solid underneath
-            }
-
-            BlockPos pos = blockray.getPos().up();
-
-            if (!caster.world.getBlockState(pos).isAir(caster.world, pos)) {
-                return false; // only replace air
-            }
-
-            caster.world.setBlockState(pos, BlockRegister.MAGMA_FLOWER_BLOCK.getDefaultState());
-
-            MagmaFlowerTileEntity tile = new MagmaFlowerTileEntity();
-            tile.setSpellData(new EntitySpellData(this, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));
-
-            caster.world.setTileEntity(pos, tile);
-
-        }
-
-        SoundUtils.playSound(caster, SoundEvents.BLOCK_FIRE_AMBIENT, 1, 1);
+        caster.world.playMovingSound(null, en, SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         return true;
+    }
+
+    @Override
+    public void spawnBlock(LivingEntity caster, World world, BlockPos pos, BaseSpell spell) {
+        caster.world.setBlockState(pos, BlockRegister.MAGMA_FLOWER_BLOCK.getDefaultState());
+        MagmaFlowerTileEntity tile = new MagmaFlowerTileEntity();
+        tile.setSpellData(new EntitySpellData(spell, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));
+        world.setTileEntity(pos, tile);
     }
 
 }

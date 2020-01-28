@@ -79,4 +79,5 @@ public class FireballSpell extends BaseProjectileSpell {
 
         return true;
     }
+
 }
