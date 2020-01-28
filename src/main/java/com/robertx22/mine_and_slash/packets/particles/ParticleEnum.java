@@ -56,7 +56,7 @@ public enum ParticleEnum {
 
             for (int i = 0; i < data.amount; i++) {
                 Vec3d r = GeometryUtils.getRandomPosInRadiusCircle(p.x, p.y, p.z, data.radius);
-                world.addParticle(data.getParticleType(), r.x, r.y, r.z, 1, 1, 1);
+                world.addParticle(data.getParticleType(), r.x, r.y, r.z, data.mx, data.my, data.mz);
             }
         }
     },
@@ -104,7 +104,11 @@ public enum ParticleEnum {
 
     public static void sendToClients(Entity source, ParticlePacketData data) {
         if (source.world.isRemote) {
-            data.type.activate(data, source.world, source);
+            try {
+                data.type.activate(data, source.world, source);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             MMORPG.sendToTracking(new ParticlePacket(data), source);
         }

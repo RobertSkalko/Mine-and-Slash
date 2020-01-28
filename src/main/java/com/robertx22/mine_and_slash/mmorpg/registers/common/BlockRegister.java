@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.BlockMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.BlockGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.BlockGearSalvage;
+import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerBlock;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
@@ -34,6 +35,14 @@ public class BlockRegister {
 
     static final String ALCHEMY_BLOCK_ID = Ref.MODID + ":" + "alchemy_station";
     static final String TINKERING_BLOCK_ID = Ref.MODID + ":" + "tinkering_station";
+
+    // NEW BLOCK
+    @ObjectHolder(MagmaFlowerBlock.ID)
+    public static Block MAGMA_FLOWER_BLOCK;
+    @ObjectHolder(MagmaFlowerBlock.ID)
+    public static TileEntityType<?> MAGMA_FLOWER_TILE;
+
+    // NEW BLOCK
 
     // NEW BLOCK
     @ObjectHolder(TINKERING_BLOCK_ID)
@@ -98,6 +107,8 @@ public class BlockRegister {
 
         reg.register(new AlchemyBlock().setRegistryName(ALCHEMY_BLOCK_ID));
         reg.register(new TinkeringBlock().setRegistryName(TINKERING_BLOCK_ID));
+
+        reg.register(new MagmaFlowerBlock().setRegistryName(MagmaFlowerBlock.ID));
 
         ItemOre.RegisterBlocks(event);
     }

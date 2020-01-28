@@ -26,6 +26,9 @@ public class EntitySpellData {
     public int lifeInTicks = 100;
 
     @Store
+    public int ticksExisted = 0;
+
+    @Store
     public Elements ele = Elements.Physical;
 
     @Store

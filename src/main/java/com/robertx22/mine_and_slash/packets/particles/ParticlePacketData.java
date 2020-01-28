@@ -7,6 +7,7 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @Storable
@@ -22,6 +23,13 @@ public class ParticlePacketData {
 
     @Store
     public BlockPos pos;
+
+    @Store
+    public double mx = 1;
+    @Store
+    public double my = 1;
+    @Store
+    public double mz = 1;
 
     @Store
     public ParticleEnum type;
@@ -40,6 +48,13 @@ public class ParticlePacketData {
 
     public IParticleData getParticleType() {
         return (IParticleData) ForgeRegistries.PARTICLE_TYPES.getValue(new ResourceLocation(particleID));
+    }
+
+    public ParticlePacketData motion(Vec3d v) {
+        mx = v.x;
+        my = v.y;
+        mz = v.z;
+        return this;
     }
 
     public ParticlePacketData type(ParticleType type) {

@@ -66,6 +66,7 @@ public class DamageParticle extends Particle {
     public void renderParticle(IVertexBuilder vertex, ActiveRenderInfo info, float f) {
 
         try {
+
             float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
             float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
@@ -97,15 +98,17 @@ public class DamageParticle extends Particle {
             RenderSystem.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
 
             RenderSystem.scalef(-1.0F, -1.0F, 1.0F);
+
             RenderSystem.scaled(this.scale * 0.008D, this.scale * 0.008D, this.scale * 0.008D);
             RenderSystem.scaled(this.scale, this.scale, this.scale);
 
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             final FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
-            fontRenderer.drawStringWithShadow(
-                    this.text, -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1,
-                    -MathHelper.floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1, element.format.getColor()
+            fontRenderer.drawStringWithShadow(this.text,
+                                              -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1,
+                                              -MathHelper.floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1,
+                                              element.format.getColor()
             );
 
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);

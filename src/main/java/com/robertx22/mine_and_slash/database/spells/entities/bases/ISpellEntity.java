@@ -57,6 +57,14 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
         return dealSpellDamageTo(target, new Options());
     }
 
+    default SpellDamageEffect getSetupSpellDamage(LivingEntity target) {
+        return dealSpellDamageTo(target, new Options().activatesEffect(false));
+    }
+
+    default SpellDamageEffect getSetupSpellDamage(LivingEntity target, Options opt) {
+        return dealSpellDamageTo(target, opt.activatesEffect(false));
+    }
+
     default SpellDamageEffect dealSpellDamageTo(LivingEntity target, Options opt) {
 
         EntitySpellData data = getSpellData();
