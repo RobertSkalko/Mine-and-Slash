@@ -35,7 +35,7 @@ public class MagmaFlowerSpell extends BaseSpell {
 
     @Override
     public int getCooldownInSeconds() {
-        return 30;
+        return 45;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class MagmaFlowerSpell extends BaseSpell {
         return 0;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.2F, 2);
+    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.5F, 5);
 
     @Override
     public SpellCalcData getCalculation() {
@@ -75,8 +75,7 @@ public class MagmaFlowerSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new SComp("Attacks enemies nearby."));
-        list.add(new SComp("Heals user for same value for every hit."));
+        list.add(new SComp("Summons a flower that attacks enemies nearby."));
 
         list.addAll(getCalculation().GetTooltipString(info));
 
@@ -97,14 +96,22 @@ public class MagmaFlowerSpell extends BaseSpell {
         if (ray instanceof BlockRayTraceResult) {
             BlockRayTraceResult blockray = (BlockRayTraceResult) ray;
 
+            BlockPos lPos = blockray.getPos();
+
+            if (!caster.world.getBlockState(lPos).isSolid()) {
+                return false; // dont spawn block unless there's solid underneath
+            }
+
             BlockPos pos = blockray.getPos().up();
 
-            if (caster.world.getBlockState(pos).isAir(caster.world, pos))
+            if (!caster.world.getBlockState(pos).isAir(caster.world, pos)) {
+                return false; // only replace air
+            }
 
-                caster.world.setBlockState(pos, BlockRegister.MAGMA_FLOWER_BLOCK.getDefaultState());
+            caster.world.setBlockState(pos, BlockRegister.MAGMA_FLOWER_BLOCK.getDefaultState());
 
             MagmaFlowerTileEntity tile = new MagmaFlowerTileEntity();
-            tile.setSpellData(new EntitySpellData(this, caster, MagmaFlowerTileEntity.DURATION_SEC));
+            tile.setSpellData(new EntitySpellData(this, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));
 
             caster.world.setTileEntity(pos, tile);
 

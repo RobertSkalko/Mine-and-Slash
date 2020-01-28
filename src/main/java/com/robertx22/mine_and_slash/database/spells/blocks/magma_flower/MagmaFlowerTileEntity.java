@@ -1,55 +1,35 @@
 package com.robertx22.mine_and_slash.database.spells.blocks.magma_flower;
 
-import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
+import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellTileEntity;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
-import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
-import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
-public class MagmaFlowerTileEntity extends TileEntity implements ISpellEntity, ITickableTileEntity {
-
-    public EntitySpellData data = new EntitySpellData();
+public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
 
     public MagmaFlowerTileEntity() {
         super(BlockRegister.MAGMA_FLOWER_TILE);
     }
 
     @Override
-    public void read(CompoundNBT nbt) {
-        super.read(nbt);
-        this.data = EntitySpellDataSaving.Load(nbt);
-    }
-
-    @Override
-    public void tick() {
+    public void onTick() {
 
         float RADIUS = 1.5F;
 
-        data.ticksExisted++;
-
-        if (this.data.ticksExisted > durationInTicks()) {
-            this.remove();
-            this.world.setBlockState(pos, Blocks.AIR.getDefaultState());
-        } else {
+        if (this.data.ticksExisted > durationInTicks() == false) {
 
             if (data.ticksExisted % 20 == 0) {
 
@@ -71,28 +51,14 @@ public class MagmaFlowerTileEntity extends TileEntity implements ISpellEntity, I
                     dmg.Activate();
                     SoundUtils.playSound(x, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);
 
-                    HealEffect heal = new HealEffect(new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
-                                                                               getSpellData().getSpell()
-                                                                                       .getCalculation()
-                                                                                       .getCalculatedValue(data),
-                                                                               ResourcesData.Use.RESTORE,
-                                                                               getSpellData().getSpell()
-                    ));
-
-                    heal.Activate();
+                    if (Synergies.MAGMA_FLOWER_HEAL.has(caster)) {
+                        Synergies.MAGMA_FLOWER_HEAL.tryActivate(new CasterContext(caster));
+                    }
 
                 });
 
             }
         }
-
-    }
-
-    @Override
-    public CompoundNBT write(CompoundNBT nbt) {
-        super.write(nbt);
-        EntitySpellDataSaving.Save(nbt, data);
-        return nbt;
 
     }
 
@@ -103,26 +69,4 @@ public class MagmaFlowerTileEntity extends TileEntity implements ISpellEntity, I
         return DURATION_SEC;
     }
 
-    @Override
-    public EntitySpellData getSpellData() {
-        return data;
-    }
-
-    @Override
-    public void setSpellData(EntitySpellData data) {
-        this.data = data;
-    }
-
-    @Override
-    public void writeSpawnData(PacketBuffer buf) {
-        CompoundNBT nbt = new CompoundNBT();
-        write(nbt);
-        buf.writeCompoundTag(nbt);
-    }
-
-    @Override
-    public void readSpawnData(PacketBuffer buf) {
-        CompoundNBT nbt = buf.readCompoundTag();
-        this.read(nbt);
-    }
 }

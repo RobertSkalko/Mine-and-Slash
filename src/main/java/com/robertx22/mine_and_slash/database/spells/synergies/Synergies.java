@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.cleric.InstantHeal
 import com.robertx22.mine_and_slash.database.spells.synergies.cleric.RighteousFuryAoeSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.druid.ThornArmorThornsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.FireballBurnConsumeSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFlowerHealSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.VolcanoBurnSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.*;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
@@ -30,4 +31,5 @@ public class Synergies {
 
     public static FireballBurnConsumeSynergy FIREBALL_BURN_CONSUME = new FireballBurnConsumeSynergy();
     public static VolcanoBurnSynergy VOLCANO_BURN = new VolcanoBurnSynergy();
+    public static MagmaFlowerHealSynergy MAGMA_FLOWER_HEAL = new MagmaFlowerHealSynergy();
 }

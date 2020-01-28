@@ -36,6 +36,10 @@ public class EntitySpellData {
 
     private BaseSpell spell;
 
+    public int getRemainingLifeTicks() {
+        return lifeInTicks - ticksExisted;
+    }
+
     public EntitySpellData(BaseSpell spell, LivingEntity caster, int lifeInTicks) {
         if (spell != null) {
             this.ele = spell.getElement();
