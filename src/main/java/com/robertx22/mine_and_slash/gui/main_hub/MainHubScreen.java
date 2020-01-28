@@ -48,7 +48,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         screens.add(new SpellHotbatSetupScreen());
 
         int x = guiLeft + 10;
-        int y = guiTop + 8;
+        int y = guiTop + 45;
 
         int count = 0;
 
@@ -76,6 +76,21 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         drawBackground(ticks, x, y);
 
         super.render(x, y, ticks);
+
+        double scale = 2;
+        double antiScale = 1 / scale;
+
+        RenderSystem.scaled(scale, scale, scale);
+        String str = "Main Hub";
+
+        float xp = (float) (guiLeft + (MainHubScreen.x / 2 - mc.fontRenderer.getStringWidth(str) / 2 * scale));
+        float yp = (float) (guiTop + 12);
+
+        float xf = (float) (xp * antiScale);
+        float yf = (float) (yp * antiScale);
+
+        mc.fontRenderer.drawStringWithShadow(str, xf, yf, TextFormatting.YELLOW.getColor());
+        RenderSystem.scaled(antiScale, antiScale, antiScale);
 
     }
 
