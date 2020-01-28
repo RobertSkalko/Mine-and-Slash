@@ -83,7 +83,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
     }
 
     private void renderTitle() {
-        double scale = 2;
+        double scale = 1.8F;
         String str = "Main Hub";
         int xp = (int) (guiLeft + (MainHubScreen.x / 2));
         int yp = (int) (guiTop + 20);

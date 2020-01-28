@@ -131,8 +131,7 @@ public class AzureTopLeftOverlay {
 
         xPos = 59;
         yPos = 4;
-        DrawBar(
-                mc, gui, azurehealthtexturepath, unit.health().CurrentValue(mc.player, unit), unit.healthData().val,
+        DrawBar(mc, gui, azurehealthtexturepath, unit.health().CurrentValue(mc.player, unit), unit.healthData().val,
                 Type.HP, data, xPos, yPos
         );
         xPos = 59;
@@ -141,14 +140,12 @@ public class AzureTopLeftOverlay {
         DrawBar(mc, gui, azuremanatexturepath, data.getCurrentMana(), unit.manaData().val, Type.MANA, data, xPos, yPos);
         xPos = 59;
         yPos += 11;
-        DrawBar(
-                mc, gui, azureenergytexturepath, data.getCurrentEnergy(), unit.energyData().val, Type.ENE, data, xPos,
+        DrawBar(mc, gui, azureenergytexturepath, data.getCurrentEnergy(), unit.energyData().val, Type.ENE, data, xPos,
                 yPos
         );
         xPos = 59;
         yPos += 11;
-        DrawBar(
-                mc, gui, azureexperiencetexturepath, data.getExp(), data.GetExpRequiredForLevelUp(), Type.EXP, data,
+        DrawBar(mc, gui, azureexperiencetexturepath, data.getExp(), data.getExpRequiredForLevelUp(), Type.EXP, data,
                 xPos, yPos
         );
 

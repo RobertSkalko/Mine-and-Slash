@@ -135,7 +135,7 @@ public class EntityCap {
 
         int GiveExp(PlayerEntity player, int i);
 
-        int GetExpRequiredForLevelUp();
+        int getExpRequiredForLevelUp();
 
         boolean CheckIfCanLevelUp();
 
@@ -405,7 +405,7 @@ public class EntityCap {
         }
 
         @Override
-        public int GetExpRequiredForLevelUp() {
+        public int getExpRequiredForLevelUp() {
             return levelToExp(this.getLevel() + 1);
         }
 
@@ -493,7 +493,7 @@ public class EntityCap {
 
             setExp(exp + i);
 
-            if (exp > this.GetExpRequiredForLevelUp()) {
+            if (exp > this.getExpRequiredForLevelUp()) {
 
                 if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
                     this.LevelUp(player);
@@ -507,12 +507,12 @@ public class EntityCap {
         @Override
         public boolean CheckIfCanLevelUp() {
 
-            return getExp() >= GetExpRequiredForLevelUp();
+            return getExp() >= getExpRequiredForLevelUp();
 
         }
 
         public int getRemainingExp() {
-            int num = getExp() - GetExpRequiredForLevelUp();
+            int num = getExp() - getExpRequiredForLevelUp();
 
             if (num < 0) {
                 num = 0;
