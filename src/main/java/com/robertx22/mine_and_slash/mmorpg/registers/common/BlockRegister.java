@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.blocks.map_device.BlockMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.BlockGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.BlockGearSalvage;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerBlock;
+import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushBlock;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
@@ -41,7 +42,13 @@ public class BlockRegister {
     public static Block MAGMA_FLOWER_BLOCK;
     @ObjectHolder(MagmaFlowerBlock.ID)
     public static TileEntityType<?> MAGMA_FLOWER_TILE;
+    // NEW BLOCK
 
+    // NEW BLOCK
+    @ObjectHolder(ThornBushBlock.ID)
+    public static Block THORN_BUSH_BLOCK;
+    @ObjectHolder(ThornBushBlock.ID)
+    public static TileEntityType<?> THORN_BUSH_TILE;
     // NEW BLOCK
 
     // NEW BLOCK
@@ -109,6 +116,7 @@ public class BlockRegister {
         reg.register(new TinkeringBlock().setRegistryName(TINKERING_BLOCK_ID));
 
         reg.register(new MagmaFlowerBlock().setRegistryName(MagmaFlowerBlock.ID));
+        reg.register(new ThornBushBlock().setRegistryName(ThornBushBlock.ID));
 
         ItemOre.RegisterBlocks(event);
     }

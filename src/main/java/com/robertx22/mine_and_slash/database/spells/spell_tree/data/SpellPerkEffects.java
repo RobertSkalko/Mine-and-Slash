@@ -32,6 +32,7 @@ public class SpellPerkEffects {
         synergy(Synergies.WHIRLPOOL_SHIVER);
 
         synergy(Synergies.THORN_ARMOR_THORNS);
+        synergy(Synergies.THORN_BUSH_MAJOR_TORNS);
 
         synergy(Synergies.THUNDER_SPEAR_LIGHTNING);
         synergy(Synergies.LIGHTNING_TOTEM_STATIC);

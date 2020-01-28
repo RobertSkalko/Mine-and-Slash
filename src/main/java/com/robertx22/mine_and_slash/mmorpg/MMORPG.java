@@ -175,6 +175,7 @@ public class MMORPG {
         RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_REPAIR, RenderType.cutout());//cutout
 
         RenderTypeLookup.setRenderLayer(BlockRegister.MAGMA_FLOWER_BLOCK, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegister.THORN_BUSH_BLOCK, RenderType.cutout());
 
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);

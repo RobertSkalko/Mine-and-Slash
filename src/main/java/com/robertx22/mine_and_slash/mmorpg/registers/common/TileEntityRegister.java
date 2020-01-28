@@ -7,6 +7,8 @@ import com.robertx22.mine_and_slash.blocks.repair_station.TileGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.TileGearSalvage;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerBlock;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
+import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushBlock;
+import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushTileEntity;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.alchemy.AlchemyTile;
@@ -60,6 +62,10 @@ public class TileEntityRegister {
         r.register(TileEntityType.Builder.create(MagmaFlowerTileEntity::new, BlockRegister.MAGMA_FLOWER_BLOCK)
                            .build(null)
                            .setRegistryName(MagmaFlowerBlock.ID));
+
+        r.register(TileEntityType.Builder.create(ThornBushTileEntity::new, BlockRegister.THORN_BUSH_BLOCK)
+                           .build(null)
+                           .setRegistryName(ThornBushBlock.ID));
 
     }
 

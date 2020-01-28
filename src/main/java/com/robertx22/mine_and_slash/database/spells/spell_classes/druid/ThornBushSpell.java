@@ -1,7 +1,7 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
-import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
+import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushTileEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.SeedEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.IBlockSpawner;
@@ -26,20 +26,20 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
+public class ThornBushSpell extends BaseSpell implements IBlockSpawner {
 
-    public MagmaFlowerSpell() {
+    public ThornBushSpell() {
 
     }
 
     @Override
     public SpellSchools getSchool() {
-        return SpellSchools.EMBER_MAGE;
+        return SpellSchools.DRUID;
     }
 
     @Override
     public int getCooldownInSeconds() {
-        return 45;
+        return 30;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
 
     @Override
     public String GUID() {
-        return "magma_flower";
+        return "thorn_bush";
     }
 
     @Override
@@ -62,7 +62,7 @@ public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
         return 20;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.5F, 5);
+    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.5F, 7);
 
     @Override
     public SpellCalcData getCalculation() {
@@ -71,7 +71,7 @@ public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
 
     @Override
     public Elements getElement() {
-        return Elements.Fire;
+        return Elements.Nature;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new SComp("Summons a flower that attacks enemies nearby."));
+        list.add(new SComp("Summons a bush that attacks enemies nearby."));
 
         list.addAll(getCalculation().GetTooltipString(info));
 
@@ -89,7 +89,7 @@ public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
 
     @Override
     public Words getName() {
-        return Words.MagmaFlower;
+        return Words.ThornBush;
     }
 
     @Override
@@ -108,9 +108,9 @@ public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
 
     @Override
     public void spawnBlock(LivingEntity caster, World world, BlockPos pos, BaseSpell spell) {
-        caster.world.setBlockState(pos, BlockRegister.MAGMA_FLOWER_BLOCK.getDefaultState());
-        MagmaFlowerTileEntity tile = new MagmaFlowerTileEntity();
-        tile.setSpellData(new EntitySpellData(spell, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));
+        caster.world.setBlockState(pos, BlockRegister.THORN_BUSH_BLOCK.getDefaultState());
+        ThornBushTileEntity tile = new ThornBushTileEntity();
+        tile.setSpellData(new EntitySpellData(spell, caster, ThornBushTileEntity.DURATION_SEC * 20));
         world.setTileEntity(pos, tile);
     }
 

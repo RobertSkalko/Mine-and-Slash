@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.Righteo
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.GorgonsGazeSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArmorSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornBushSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.BlazingInfernoSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
@@ -42,6 +43,7 @@ public class Spells implements ISlashRegistryInit {
                     add(new RegenerateSpell());
                     add(new GorgonsGazeSpell());
                     add(new ThornArmorSpell());
+                    add(new ThornBushSpell());
 
                     add(new ThunderstormSpell());
                     add(new ThunderspearSpell());
