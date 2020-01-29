@@ -71,7 +71,7 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
     @Override
     public List<IUnique> generateAllPossibleStatVariations() {
         List<IUnique> list = new ArrayList<>();
-        Elements.getAllSingleElements().forEach(x -> list.add(new ShieldElemental(x)));
+        Elements.getAllElementals().forEach(x -> list.add(new ShieldElemental(x)));
         return list;
     }
 }

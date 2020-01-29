@@ -24,6 +24,10 @@ public abstract class BlueprintPart<T> {
         }
     }
 
+    public boolean isGenerated() {
+        return part != null;
+    }
+
     public T get() {
 
         if (part == null) {

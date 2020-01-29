@@ -56,8 +56,7 @@ public class BlockReflect extends ElementalStat implements IStatEffects {
     // include none, the physical damage
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
-        List<Elements> elements = Elements.getAllSingleElements();
-        elements.add(Elements.Physical);
+        List<Elements> elements = Elements.getAllIncludingPhysical();
         List<Stat> list = new ArrayList<>();
         elements.forEach(x -> list.add(newGeneratedInstance(x)));
         return list;

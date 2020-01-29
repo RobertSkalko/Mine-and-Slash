@@ -74,7 +74,7 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Elements.getAllSingleElements().forEach(x -> list.add(newGeneratedInstance(x)));
+        Elements.getAllElementals().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
     }
 

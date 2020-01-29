@@ -19,27 +19,60 @@ public class GiveRunedGear {
 
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(Commands.literal("giverunedgear")
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.player())
-                        .then(Commands.argument("type", StringArgumentType.word())
-                                .suggests(new GearTypeSuggestions())
-                                .then(Commands.argument("level", IntegerArgumentType.integer())
-                                        .then(Commands.argument("rarity", IntegerArgumentType
-                                                .integer(0, 5))
-                                                .then(Commands.argument("amount", IntegerArgumentType
-                                                        .integer(1, 5000))
-                                                        .executes(e -> execute(e.getSource(), EntityArgument
-                                                                .getPlayer(e, "target"), StringArgumentType
-                                                                .getString(e, "type"), IntegerArgumentType
-                                                                .getInteger(e, "level"), IntegerArgumentType
-                                                                .getInteger(e, "rarity"), IntegerArgumentType
-                                                                .getInteger(e, "amount")
+                                           .requires(e -> e.hasPermissionLevel(2))
+                                           .then(Commands.argument("target", EntityArgument.player())
+                                                         .then(Commands.argument("type", StringArgumentType.word())
+                                                                       .suggests(new GearTypeSuggestions())
+                                                                       .then(Commands.argument("level",
+                                                                                               IntegerArgumentType.integer()
+                                                                       )
+                                                                                     .then(Commands.argument(
+                                                                                             "rarity",
+                                                                                             IntegerArgumentType.integer(
+                                                                                                     0, 5)
+                                                                                     )
+                                                                                                   .then(Commands.argument(
+                                                                                                           "amount",
+                                                                                                           IntegerArgumentType
+                                                                                                                   .integer(
+                                                                                                                           1,
+                                                                                                                           5000
+                                                                                                                   )
+                                                                                                   )
+                                                                                                                 .executes(
+                                                                                                                         e -> execute(
+                                                                                                                                 e.getSource(),
+                                                                                                                                 EntityArgument
+                                                                                                                                         .getPlayer(
+                                                                                                                                                 e,
+                                                                                                                                                 "target"
+                                                                                                                                         ),
+                                                                                                                                 StringArgumentType
+                                                                                                                                         .getString(
+                                                                                                                                                 e,
+                                                                                                                                                 "type"
+                                                                                                                                         ),
+                                                                                                                                 IntegerArgumentType
+                                                                                                                                         .getInteger(
+                                                                                                                                                 e,
+                                                                                                                                                 "level"
+                                                                                                                                         ),
+                                                                                                                                 IntegerArgumentType
+                                                                                                                                         .getInteger(
+                                                                                                                                                 e,
+                                                                                                                                                 "rarity"
+                                                                                                                                         ),
+                                                                                                                                 IntegerArgumentType
+                                                                                                                                         .getInteger(
+                                                                                                                                                 e,
+                                                                                                                                                 "amount"
+                                                                                                                                         )
 
-                                                        ))))))));
+                                                                                                                         ))))))));
     }
 
-    private static int execute(CommandSource commandSource, @Nullable PlayerEntity player,
-                               String type, int lvl, int rarity, int amount) {
+    private static int execute(CommandSource commandSource, @Nullable PlayerEntity player, String type, int lvl,
+                               int rarity, int amount) {
 
         if (Objects.isNull(player)) {
             try {
@@ -56,7 +89,7 @@ public class GiveRunedGear {
                 blueprint.rarity.setSpecificRarity(rarity);
             }
             if (!type.equals("random")) {
-                blueprint.SetSpecificType(type);
+                blueprint.gearItemSlot.set(type);
             }
             blueprint.level.LevelRange = false;
 

@@ -79,14 +79,14 @@ public class MobStatUtils {
         unit.getCreateStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
         unit.getCreateStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
 
-        for (Elements element : Elements.getAllSingleElements()) {
+        for (Elements element : Elements.getAllElementals()) {
 
             unit.getCreateStat(ElementalResist.MAP.get(element)).addFlat(spellresist * rar.StatMultiplier(), level);
             unit.getCreateStat(ElementalSpellDamage.MAP.get(element)).addFlat(spelldmg * rar.DamageMultiplier(), level);
 
         }
 
-        for (Elements element : Elements.getAllExceptNone()) {
+        for (Elements element : Elements.getAllIncludingPhysical()) {
             unit.getCreateStat(ElementalPene.MAP.get(element)).addFlat(elePene * rar.DamageMultiplier(), level);
 
         }

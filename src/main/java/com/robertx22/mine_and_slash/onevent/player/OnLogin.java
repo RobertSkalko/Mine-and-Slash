@@ -47,7 +47,7 @@ public class OnLogin {
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
-                        .setStyle(new Style().setColor(Styles.RED)));
+                                           .setStyle(new Style().setColor(Styles.RED)));
 
             }
 
@@ -62,7 +62,8 @@ public class OnLogin {
                 Load.playerMapData(player).teleportPlayerBack(player);
 
             } else {
-                player.sendMessage(new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
+                player.sendMessage(
+                        new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +73,7 @@ public class OnLogin {
 
     private static void giveGear(GearItemSlot type, PlayerEntity player) {
         GearBlueprint print = new GearBlueprint(1);
-        print.SetSpecificType(type);
+        print.gearItemSlot.set(type);
         print.level.LevelRange = false;
         print.rarity.setSpecificRarity(0);
         player.inventory.addItemStackToInventory(GearCreationUtils.CreateStack(print, GearItemEnum.NORMAL));

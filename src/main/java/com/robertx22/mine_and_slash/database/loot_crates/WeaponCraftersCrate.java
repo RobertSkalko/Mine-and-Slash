@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
@@ -31,9 +30,9 @@ public class WeaponCraftersCrate extends LootCrate {
 
         GearBlueprint blueprint = BlueprintUtils.randomGearBlueprint(info.level, info.tier);
 
-        blueprint.SetSpecificType(RandomUtils.weightedRandom(SlashRegistry.GearTypes()
-                .getFilterWrapped(x -> x.slotType()
-                        .equals(GearItemSlot.GearSlotType.Weapon)).list));
+        blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
+                                           .getFilterWrapped(x -> x.slotType().equals(GearItemSlot.GearSlotType.Weapon))
+                                           .random());
 
         return GearCreationUtils.CreateStack(blueprint);
 

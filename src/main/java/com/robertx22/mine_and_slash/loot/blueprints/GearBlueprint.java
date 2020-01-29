@@ -1,12 +1,10 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.containers.ItemRarities;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.db_lists.initializers.Sets;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
@@ -36,22 +34,6 @@ public class GearBlueprint extends ItemBlueprint {
 
     public boolean getsChaosStats() {
         return RandomUtils.roll(chaosStatChance);
-    }
-
-    public void SetSpecificType(GearItemSlot type) {
-        SetSpecificType(type.GUID());
-    }
-
-    public void SetSpecificType(String type) {
-
-        this.gearItemSlot.set(SlashRegistry.GearTypes().get(type));
-
-        try {
-            SlashRegistry.GearTypes().get(type);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public GearItemData createData() {

@@ -27,6 +27,7 @@ public class UniqueGearBlueprint extends GearBlueprint {
         super(level);
 
         this.unique.set(uniq);
+        this.gearItemSlot.set(uniq.getGearSlot());
 
     }
 

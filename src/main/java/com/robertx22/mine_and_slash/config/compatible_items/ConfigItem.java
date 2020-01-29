@@ -100,8 +100,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
         return this;
     }
 
-    public ConfigItem setGenerationWeights(int normalItemWeight, int runedItemWeight,
-                                           int uniqueItemWeight) {
+    public ConfigItem setGenerationWeights(int normalItemWeight, int runedItemWeight, int uniqueItemWeight) {
         this.normalItemWeight = normalItemWeight;
         this.uniqueItemWeight = uniqueItemWeight;
         this.runedItemWeight = runedItemWeight;
@@ -227,7 +226,11 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
     private creationTypes getCreationType() {
 
-        WeightedType result = RandomUtils.weightedRandom(Arrays.asList(new WeightedType(normalItemWeight, creationTypes.NORMAL), new WeightedType(uniqueItemWeight, creationTypes.UNIQUE), new WeightedType(runedItemWeight, creationTypes.RUNED)));
+        WeightedType result = RandomUtils.weightedRandom(Arrays.asList(
+                new WeightedType(normalItemWeight, creationTypes.NORMAL),
+                new WeightedType(uniqueItemWeight, creationTypes.UNIQUE),
+                new WeightedType(runedItemWeight, creationTypes.RUNED)
+        ));
 
         return result.type;
     }
@@ -239,7 +242,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
     private ItemStack createNormal(ItemStack stack, int level) {
 
         GearBlueprint blueprint = new GearBlueprint(level);
-        blueprint.SetSpecificType(this.itemType);
+        blueprint.gearItemSlot.set(this.itemType);
         blueprint.level.LevelRange = this.levelVariance > 0;
         blueprint.level.LevelVariance = this.levelVariance;
         blueprint.rarity.minRarity = this.minRarity;
@@ -265,7 +268,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
             new UniqueGearBlueprint(level, randomUniqueUpToTier);
         }
 
-        blueprint.SetSpecificType(this.itemType);
+        blueprint.gearItemSlot.set(this.itemType);
         blueprint.level.LevelRange = this.levelVariance > 0;
         blueprint.level.LevelVariance = this.levelVariance;
 
@@ -273,8 +276,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
         gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 
-        if (gear.uniqueGUID == null || !SlashRegistry.UniqueGears()
-                .isRegistered(gear.uniqueGUID)) {
+        if (gear.uniqueGUID == null || !SlashRegistry.UniqueGears().isRegistered(gear.uniqueGUID)) {
             return createNormal(stack, level);
         } else {
             Gear.Save(stack, gear);
@@ -287,7 +289,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
     private ItemStack createRuned(ItemStack stack, int level) {
 
         RunedGearBlueprint blueprint = new RunedGearBlueprint(level);
-        blueprint.SetSpecificType(this.itemType);
+        blueprint.gearItemSlot.set(this.itemType);
         blueprint.level.LevelRange = this.levelVariance > 0;
         blueprint.level.LevelVariance = this.levelVariance;
         blueprint.rarity.minRarity = this.minRarity;

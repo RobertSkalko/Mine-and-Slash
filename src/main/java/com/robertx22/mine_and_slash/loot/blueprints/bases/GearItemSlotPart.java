@@ -14,6 +14,11 @@ public class GearItemSlotPart extends BlueprintPart<GearItemSlot> {
     protected GearItemSlot generateIfNull() {
         return SlashRegistry.GearTypes().random();
     }
+
+    public void set(String id) {
+        super.set(SlashRegistry.GearTypes().get(id));
+    }
+
 }
 
 

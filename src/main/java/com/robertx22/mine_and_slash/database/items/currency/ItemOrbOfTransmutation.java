@@ -46,7 +46,7 @@ public class ItemOrbOfTransmutation extends CurrencyItem implements ICurrencyIte
         GearItemData gear = Gear.Load(stack);
 
         GearBlueprint gearPrint = new GearBlueprint(gear.level);
-        gearPrint.SetSpecificType(gear.gearTypeName);
+        gearPrint.gearItemSlot.set(gear.gearTypeName);
         gearPrint.rarity.minRarity = 1;
         gearPrint.level.LevelRange = false;
 

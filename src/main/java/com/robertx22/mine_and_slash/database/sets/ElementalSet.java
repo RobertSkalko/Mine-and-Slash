@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.sets;
 
-import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public abstract class ElementalSet extends Set implements IGenerated<Set> {
     @Override
     public List<Set> generateAllPossibleStatVariations() {
         List<Set> list = new ArrayList<>();
-        Elements.getAllSingleElements().forEach(x -> list.add(newGeneratedInstance(x)));
+        Elements.getAllElementals().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
     }
 }

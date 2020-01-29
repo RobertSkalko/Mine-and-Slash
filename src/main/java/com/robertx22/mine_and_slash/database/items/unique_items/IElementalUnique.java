@@ -13,7 +13,7 @@ public interface IElementalUnique extends IGenerated<IUnique> {
     @Override
     default List<IUnique> generateAllPossibleStatVariations() {
         List<IUnique> list = new ArrayList<>();
-        Elements.getAllSingleElements().forEach(x -> list.add(newInstance(x)));
+        Elements.getAllElementals().forEach(x -> list.add(newInstance(x)));
         return list;
     }
 }

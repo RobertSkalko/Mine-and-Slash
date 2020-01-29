@@ -7,7 +7,6 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public enum Elements implements IColor {
     Physical(0, new RGB(240, 157, 55), false, "Physical", TextFormatting.GOLD, Items.COAL, "Annihilation", "physical",
@@ -50,18 +49,15 @@ public enum Elements implements IColor {
 
     public TextFormatting format;
 
-    public static List<Elements> getAllSingleElements() {
+    private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Nature, Thunder);
+    private static List<Elements> allElementals = Arrays.asList(Fire, Water, Nature, Thunder);
 
-        return Arrays.stream(Elements.values()).filter(x -> x.isSingleElement).collect(Collectors.toList());
-
+    public static List<Elements> getAllElementals() {
+        return allElementals;
     }
 
-    private static List<Elements> allExceptNone = null;
-    private static List<Elements> allSingles = null;
-
-    public static List<Elements> getAllExceptNone() {
-        return Arrays.stream(Elements.values()).filter(x -> x != Elements.Elemental).collect(Collectors.toList());
-
+    public static List<Elements> getAllIncludingPhysical() {
+        return allIncludingPhys;
     }
 
     @Override
