@@ -60,28 +60,28 @@ public class OnServerTick {
                         // there's one, but i fear  bugs
                         Unit unit = unit_capa.getUnit();
 
-                        int manarestored = (int) unit.getStat(ManaRegen.GUID).val;
+                        int manarestored = (int) unit.getCreateStat(ManaRegen.GUID).val;
                         ResourcesData.Context mana = new ResourcesData.Context(unit_capa, player,
                                                                                ResourcesData.Type.MANA, manarestored,
                                                                                ResourcesData.Use.RESTORE
                         );
                         unit_capa.getResources().modify(mana);
 
-                        int energyrestored = (int) unit.getStat(EnergyRegen.GUID).val;
+                        int energyrestored = (int) unit.getCreateStat(EnergyRegen.GUID).val;
                         ResourcesData.Context ene = new ResourcesData.Context(unit_capa, player,
                                                                               ResourcesData.Type.ENERGY, energyrestored,
                                                                               ResourcesData.Use.RESTORE
                         );
                         unit_capa.getResources().modify(ene);
 
-                        int healthrestored = (int) unit.getStat(HealthRegen.GUID).val;
+                        int healthrestored = (int) unit.getCreateStat(HealthRegen.GUID).val;
                         ResourcesData.Context hp = new ResourcesData.Context(unit_capa, player,
                                                                              ResourcesData.Type.HEALTH, healthrestored,
                                                                              ResourcesData.Use.RESTORE
                         );
                         unit_capa.getResources().modify(hp);
 
-                        int magicshieldrestored = (int) unit.getStat(MagicShieldRegen.GUID).val;
+                        int magicshieldrestored = (int) unit.getCreateStat(MagicShieldRegen.GUID).val;
                         ResourcesData.Context ms = new ResourcesData.Context(unit_capa, player,
                                                                              ResourcesData.Type.MAGIC_SHIELD,
                                                                              magicshieldrestored,

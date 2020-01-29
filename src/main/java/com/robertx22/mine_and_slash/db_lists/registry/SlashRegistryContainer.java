@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
+import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
@@ -91,7 +92,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         } else {
             if (logMissingEntryOnAccess) {
                 if (accessorErrosAletedFor.contains(guid) == false) {
-                    logRegistryError("GUID Error: " + guid + " of type: " + type.toString() + " doesn't exist. This is either a removed/renamed old registry, or robertx22 forgot to include it in an update.");
+                    logRegistryError(
+                            "GUID Error: " + guid + " of type: " + type.toString() + " doesn't exist. This is either "
+                                    + "a removed/renamed old registry, or robertx22 forgot to include it in an " +
+                                    "update" + ".");
                     accessorErrosAletedFor.add(guid);
                 }
             }
@@ -139,8 +143,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         if (isRegistered(c)) {
 
             if (registersErrorsAlertedFor.contains(c.GUID()) == false) {
-                logRegistryError("Key: " + c.GUID() + " has already been registered to: " + c
-                        .getSlashRegistryType()
+                logRegistryError("Key: " + c.GUID() + " has already been registered to: " + c.getSlashRegistryType()
                         .toString() + " registry.");
                 registersErrorsAlertedFor.add(c.GUID());
             }
@@ -153,9 +156,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     private void tryLogAddition(C c) {
-        if (logAdditionsToRegistry) {
-            System.out.println("[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type
-                    .toString() + " registry");
+        if (logAdditionsToRegistry && ModConfig.INSTANCE.Server.LOG_REGISTRY_ENTRIES.get()) {
+            System.out.println(
+                    "[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
         }
 
     }

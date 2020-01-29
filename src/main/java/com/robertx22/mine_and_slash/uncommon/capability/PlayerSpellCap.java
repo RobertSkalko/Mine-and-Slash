@@ -98,8 +98,18 @@ public class PlayerSpellCap {
         @Override
         public CompoundNBT getNBT() {
             CompoundNBT nbt = new CompoundNBT();
-            LoadSave.Save(perksData, nbt, SPELL_PERK_DATA);
-            LoadSave.Save(playerSpellsData, nbt, PLAYER_SPELL_DATA);
+
+            try {
+                LoadSave.Save(perksData, nbt, SPELL_PERK_DATA);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                LoadSave.Save(playerSpellsData, nbt, PLAYER_SPELL_DATA);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             return nbt;
         }

@@ -8,7 +8,19 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class ElementalPene extends ElementalStat implements IStatEffects {
+    public static HashMap<Elements, ElementalPene> MAP = new HashMap<>();
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = super.generateAllPossibleStatVariations();
+        list.forEach(x -> MAP.put(x.getElement(), (ElementalPene) x));
+        return list;
+    }
+
     @Override
     public Stat.StatGroup statGroup() {
         return Stat.StatGroup.Penetration;

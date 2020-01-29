@@ -38,7 +38,7 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects, I
 
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit().getStat(DodgeRating.GUID).Multi -= 50;
+        data.getUnit().getCreateStat(DodgeRating.GUID).Multi -= 50;
     }
 
     @Override

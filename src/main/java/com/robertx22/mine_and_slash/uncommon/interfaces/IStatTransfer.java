@@ -15,10 +15,10 @@ public interface IStatTransfer extends IGUID {
 
         for (TransferMethod stat : this.Transfer()) {
 
-            float val = copy.getStat(stat.converted.GUID()).Flat * data.val /* percent */ / 100;
+            float val = copy.getCreateStat(stat.converted.GUID()).Flat * data.val /* percent */ / 100;
 
-            unit.getStat(stat.converted).Flat -= val;
-            unit.getStat(stat.statThatBenefits).Flat += val;
+            unit.getCreateStat(stat.converted).Flat -= val;
+            unit.getCreateStat(stat.statThatBenefits).Flat += val;
 
         }
 

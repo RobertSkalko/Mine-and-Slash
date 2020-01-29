@@ -29,52 +29,77 @@ public class PlayerStatUtils {
 
     public static void AddPlayerBaseStats(UnitData data, Unit unit) {
 
-        addScalingStat(data, SpellDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.spell_damage
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.spell_damage_per_level.get());
+        addScalingStat(
+                data, SpellDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.spell_damage.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.spell_damage_per_level.get()
+        );
 
-        addScalingStat(data, PhysicalDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.physical_damage
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.physical_damage_per_level.get());
+        addScalingStat(
+                data, PhysicalDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.physical_damage.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.physical_damage_per_level.get()
+        );
 
-        addScalingStat(data, HealthRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.health_regen
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.health_regen_per_level.get());
+        addScalingStat(
+                data, HealthRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.health_regen.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.health_regen_per_level.get()
+        );
 
-        addScalingStat(data, Armor.GUID, ModConfig.INSTANCE.PlayerBaseStats.armor.get(), ModConfig.INSTANCE.PlayerBaseStats.armor_per_level
-                .get());
+        addScalingStat(
+                data, Armor.GUID, ModConfig.INSTANCE.PlayerBaseStats.armor.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.armor_per_level.get()
+        );
 
-        addScalingStat(data, Health.GUID, ModConfig.INSTANCE.PlayerBaseStats.health.get(), ModConfig.INSTANCE.PlayerBaseStats.health_per_level
-                .get());
+        addScalingStat(
+                data, Health.GUID, ModConfig.INSTANCE.PlayerBaseStats.health.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.health_per_level.get()
+        );
 
-        addScalingStat(data, MagicShield.GUID, ModConfig.INSTANCE.PlayerBaseStats.magic_shield
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.magic_shield_per_level.get());
+        addScalingStat(
+                data, MagicShield.GUID, ModConfig.INSTANCE.PlayerBaseStats.magic_shield.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.magic_shield_per_level.get()
+        );
 
-        addScalingStat(data, MagicShieldRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.magic_shield_regen
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.magic_shield_regen_per_level.get());
+        addScalingStat(
+                data, MagicShieldRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.magic_shield_regen.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.magic_shield_regen_per_level.get()
+        );
 
-        addScalingStat(data, CriticalHit.GUID, ModConfig.INSTANCE.PlayerBaseStats.critical_hit
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.critical_hit_per_level.get());
+        addScalingStat(
+                data, CriticalHit.GUID, ModConfig.INSTANCE.PlayerBaseStats.critical_hit.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.critical_hit_per_level.get()
+        );
 
-        addScalingStat(data, CriticalDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.critical_damage
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.critical_damage_per_level.get());
+        addScalingStat(
+                data, CriticalDamage.GUID, ModConfig.INSTANCE.PlayerBaseStats.critical_damage.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.critical_damage_per_level.get()
+        );
 
-        addScalingStat(data, ManaRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.mana_regen
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.mana_regen_per_level.get());
+        addScalingStat(
+                data, ManaRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.mana_regen.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.mana_regen_per_level.get()
+        );
 
-        addScalingStat(data, EnergyRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.energy_regen
-                .get(), ModConfig.INSTANCE.PlayerBaseStats.energy_regen_per_level.get());
+        addScalingStat(
+                data, EnergyRegen.GUID, ModConfig.INSTANCE.PlayerBaseStats.energy_regen.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.energy_regen_per_level.get()
+        );
 
-        addScalingStat(data, Energy.GUID, ModConfig.INSTANCE.PlayerBaseStats.energy.get(), ModConfig.INSTANCE.PlayerBaseStats.energy_per_level
-                .get());
+        addScalingStat(
+                data, Energy.GUID, ModConfig.INSTANCE.PlayerBaseStats.energy.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.energy_per_level.get()
+        );
 
-        addScalingStat(data, Mana.GUID, ModConfig.INSTANCE.PlayerBaseStats.mana.get(), ModConfig.INSTANCE.PlayerBaseStats.mana_per_level
-                .get());
+        addScalingStat(
+                data, Mana.GUID, ModConfig.INSTANCE.PlayerBaseStats.mana.get(),
+                ModConfig.INSTANCE.PlayerBaseStats.mana_per_level.get()
+        );
 
     }
 
-    private static void addScalingStat(UnitData data, String stat, double base,
-                                       double perlvl) {
+    private static void addScalingStat(UnitData data, String stat, double base, double perlvl) {
 
-        data.getUnit().getStat(stat).Flat += base;
-        data.getUnit().getStat(stat).addFlat((float) (perlvl), data.getLevel());
+        data.getUnit().getCreateStat(stat).Flat += base;
+        data.getUnit().getCreateStat(stat).addFlat((float) (perlvl), data.getLevel());
 
     }
 
@@ -88,16 +113,14 @@ public class PlayerStatUtils {
 
     }
 
-    public static void AddAllSetStats(Entity entity, UnitData data, Unit unit,
-                                      int level) {
+    public static void AddAllSetStats(Entity entity, UnitData data, Unit unit, int level) {
 
         unit.wornSets.AddAllSetStats(data);
 
     }
 
     // if at end of stat calculation you still don't meet the gear requirements, apply penalty
-    public static void applyRequirementsUnmetPenalty(Entity en, UnitData data,
-                                                     List<GearItemData> gears) {
+    public static void applyRequirementsUnmetPenalty(Entity en, UnitData data, List<GearItemData> gears) {
 
         float penalty = 1;
         for (GearItemData gear : gears) {
@@ -110,9 +133,7 @@ public class PlayerStatUtils {
 
         if (penalty < 1) {
 
-            for (Map.Entry<String, StatData> entry : data.getUnit()
-                    .getStats()
-                    .entrySet()) {
+            for (Map.Entry<String, StatData> entry : data.getUnit().getStats().entrySet()) {
                 if (entry.getValue().val > 0) {
                     entry.getValue().val *= penalty;
                 }
@@ -122,8 +143,7 @@ public class PlayerStatUtils {
 
     }
 
-    public static void AddAllGearStats(Entity entity, List<GearItemData> gears,
-                                       UnitData unitdata, int level) {
+    public static void AddAllGearStats(Entity entity, List<GearItemData> gears, UnitData unitdata, int level) {
 
         for (GearItemData gear : gears) {
             if (gear.level > unitdata.getLevel()) {
@@ -142,7 +162,7 @@ public class PlayerStatUtils {
                             Stat stat = data.getStatMod().GetBaseStat();
 
                             if (stat != null) {
-                                StatData statdata = unitdata.getUnit().getStat(stat);
+                                StatData statdata = unitdata.getUnit().getCreateStat(stat);
                                 if (statdata != null) {
                                     data.Add(statdata, datas.level);
                                 }

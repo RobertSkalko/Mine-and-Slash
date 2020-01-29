@@ -39,9 +39,9 @@ public class RecklessBlows extends BaseGameChangerTrait implements IAffectsStats
     public void affectStats(EntityCap.UnitData data, StatData statData) {
 
         for (Stat stat : new ElementalPene(Elements.Physical).generateAllPossibleStatVariations()) {
-            data.getUnit().getStat(stat).Multi += 100;
+            data.getUnit().getCreateStat(stat).Multi += 100;
         }
 
-        data.getUnit().getStat(Armor.GUID).Multi -= 100;
+        data.getUnit().getCreateStat(Armor.GUID).Multi -= 100;
     }
 }

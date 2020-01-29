@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -47,10 +47,11 @@ public class MagmaFlowerHealSynergy extends Synergy<CasterContext> {
 
         BaseSpell spell = spellAffected();
 
-        HealEffect heal = new HealEffect(new ResourcesData.Context(data, ctx.caster, ResourcesData.Type.HEALTH,
-                                                                   spell.getCalculation().getCalculatedValue(data),
-                                                                   ResourcesData.Use.RESTORE, spell
-        ));
+        SpellHealEffect heal = new SpellHealEffect(
+                new ResourcesData.Context(data, ctx.caster, ResourcesData.Type.HEALTH,
+                                          spell.getCalculation().getCalculatedValue(data), ResourcesData.Use.RESTORE,
+                                          spell
+                ));
 
         heal.Activate();
     }

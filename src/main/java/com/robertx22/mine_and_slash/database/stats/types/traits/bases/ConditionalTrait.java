@@ -23,7 +23,7 @@ public abstract class ConditionalTrait extends Trait {
     @Override
     public boolean condition(EntityCap.UnitData unit) {
 
-        float val = unit.getUnit().getStat(stat()).Flat;
+        float val = unit.getUnit().getCreateStat(stat()).Flat;
 
         if (stat() instanceof IUsableStat) {
             IUsableStat usable = (IUsableStat) stat();

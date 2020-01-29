@@ -56,8 +56,10 @@ public enum Elements implements IColor {
 
     }
 
-    public static List<Elements> getAllExceptNone() {
+    private static List<Elements> allExceptNone = null;
+    private static List<Elements> allSingles = null;
 
+    public static List<Elements> getAllExceptNone() {
         return Arrays.stream(Elements.values()).filter(x -> x != Elements.Elemental).collect(Collectors.toList());
 
     }

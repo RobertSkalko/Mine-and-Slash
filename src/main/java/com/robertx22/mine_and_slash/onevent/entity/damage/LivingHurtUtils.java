@@ -24,11 +24,11 @@ import java.util.List;
 
 public class LivingHurtUtils {
 
-    public static void damageCurioItems(LivingHurtEvent event) {
+    public static void damageCurioItems(LivingEntity en) {
 
-        if (event.getEntityLiving() instanceof PlayerEntity) {
+        if (en instanceof PlayerEntity) {
 
-            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+            PlayerEntity player = (PlayerEntity) en;
 
             List<ItemStack> curios = MyCurioUtils.getAllSlots(player);
 
@@ -39,14 +39,14 @@ public class LivingHurtUtils {
         }
     }
 
-    public static void damageArmorItems(LivingHurtEvent event) {
+    public static void damageArmorItems(LivingEntity en) {
 
         List<ItemStack> stacks = new ArrayList<>();
 
-        event.getEntityLiving().getArmorInventoryList().forEach(x -> stacks.add(x));
-        stacks.add(event.getEntityLiving().getHeldItemOffhand());
+        en.getArmorInventoryList().forEach(x -> stacks.add(x));
+        stacks.add(en.getHeldItemOffhand());
 
-        stacks.forEach(x -> x.damageItem(1, event.getEntityLiving(), (entity) -> {
+        stacks.forEach(x -> x.damageItem(1, en, (entity) -> {
             entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         }));
 
@@ -171,7 +171,7 @@ public class LivingHurtUtils {
 
         if (DmgSourceUtils.isMyDmgSource(event.getSource())) {
             DmgSourceUtils.removeSourceMarker(event.getSource());
-            LivingHurtUtils.damageArmorItems(event);
+            LivingHurtUtils.damageArmorItems(event.getEntityLiving());
             return;
         }
 

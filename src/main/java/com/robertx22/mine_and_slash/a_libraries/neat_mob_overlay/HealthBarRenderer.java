@@ -1,33 +1,26 @@
 package com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.robertx22.mine_and_slash.config.ClientContainer;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LookUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -92,19 +85,6 @@ public class HealthBarRenderer {
         LivingEntity entity = en;
         ridingStack.push(entity);
 
-        // MY CODE
-        UnitData data = Load.Unit(entity);
-        if (data == null) {
-            return;
-        }
-
-        Unit unit = data.getUnit();
-        if (unit == null) {
-            return;
-        }
-
-        // MY CODE
-
         while (entity.getRidingEntity() != null && entity.getRidingEntity() instanceof LivingEntity) {
             entity = (LivingEntity) entity.getRidingEntity();
             ridingStack.push(entity);
@@ -118,8 +98,6 @@ public class HealthBarRenderer {
             boolean boss = !entity.isNonBoss();
 
             String entityID = entity.getEntityString();
-            if (ClientContainer.INSTANCE.neatConfig.blacklist.get().contains(entityID))
-                continue;
 
             processing:
             {
@@ -132,52 +110,49 @@ public class HealthBarRenderer {
                 if (!ClientContainer.INSTANCE.neatConfig.showOnPlayers.get() && entity instanceof PlayerEntity)
                     break processing;
 
-                double x = en.lastTickPosX + (en.getPosX() - en.lastTickPosX) * partialTicks;
-                double y = en.lastTickPosY + (en.getPosY() - en.lastTickPosY) * partialTicks;
-                double z = en.lastTickPosZ + (en.getPosZ() - en.lastTickPosZ) * partialTicks;
+                double x = en.posX;
+                double y = en.posY;
+                double z = en.posZ;
 
                 float scale = 0.026666672F;
-                // MY CODE
-                float maxHealth = unit.healthData().val;
-                float health = unit.health().CurrentValue(entity, unit);
-                //MY CODE
+                float maxHealth = entity.getMaxHealth();
+                float health = Math.min(maxHealth, entity.getHealth());
 
                 if (maxHealth <= 0)
                     break processing;
 
                 float percent = (int) ((health / maxHealth) * 100F);
 
+                //double renderPosX = ObfuscationReflectionHelper.getPrivateValue(
+                //       EntityRendererManager.class, renderManager, "renderPosX");
+
                 EntityRendererManager renderManager = Minecraft.getInstance().getRenderManager();
 
-                Vec3d view = renderManager.info.getProjectedView();
+                Vec3d pos = renderManager.info.getProjectedView();
 
-                double viewX = view.getX();
-                double viewY = view.getY();
-                double viewZ = view.getZ();
+                double renderPosX = pos.getX();
+                double renderPosY = pos.getY();
+                double renderPosZ = pos.getZ();
 
-                matrix.push();
-
-                // todo wtf
-                matrix.translate(x - viewX,
-                                 y - viewY + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get(),
-                                 z - viewZ
+                GlStateManager.pushMatrix();
+                GlStateManager.translatef((float) (x - renderPosX),
+                                          (float) (y - renderPosY + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove
+                                                  .get()), (float) (z - renderPosZ)
                 );
 
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
 
-                Quaternion rotation = renderManager.info.getRotation().copy();
-                rotation.multiply(-1.0F);
+                GlStateManager.rotatef((float) -renderManager.info.getViewVector().getY(), 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotatef((float) renderManager.info.getViewVector().getY(), 1.0F, 0.0F, 0.0F);// TODO
 
-                matrix.rotate(rotation);
-                matrix.scale(-scale, -scale, scale);
-
+                GlStateManager.scalef(-scale, -scale, scale);
                 boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
-                RenderSystem.disableLighting();
-                RenderSystem.depthMask(false);
-                RenderSystem.disableDepthTest();
-                RenderSystem.disableTexture();
-                RenderSystem.enableBlend();
-                RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                GlStateManager.disableLighting();
+                GlStateManager.depthMask(false);
+                GlStateManager.disableDepthTest();
+                GlStateManager.disableTexture();
+                GlStateManager.enableBlend();
+                GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder buffer = tessellator.getBuffer();
 
@@ -192,6 +167,10 @@ public class HealthBarRenderer {
                 int g = 255;
                 int b = 0;
 
+                ItemStack stack = ItemStack.EMPTY;
+
+                int armor = entity.getTotalArmorValue();
+
                 boolean useHue = !ClientContainer.INSTANCE.neatConfig.colorByType.get();
                 if (useHue) {
                     float hue = Math.max(0F, (health / maxHealth) / 3F - 0.07F);
@@ -201,18 +180,16 @@ public class HealthBarRenderer {
                     b = color.getBlue();
                 }
 
-                matrix.translate(0, pastTranslate, 0);
+                GlStateManager.translatef(0F, pastTranslate, 0F);
 
                 float s = 0.5F;
-                ITextComponent name = data.getName(entity);
+                String name = I18n.format(entity.getDisplayName().getFormattedText());
+                if (entity instanceof LivingEntity && entity.hasCustomName())
+                    name = TextFormatting.ITALIC + entity.getCustomName().toString();
+                else if (entity instanceof VillagerEntity)
+                    name = I18n.format("entity.Villager.name");
 
-                if (Screen.hasShiftDown()) {
-                    name.appendSibling(new StringTextComponent(" {" + data.getType().name() + "} "));
-                }
-
-                String namestring = name.getFormattedText();
-
-                float namel = mc.fontRenderer.getStringWidth(namestring) * s;
+                float namel = mc.fontRenderer.getStringWidth(name) * s;
                 if (namel + 20 > size * 2)
                     size = namel / 2F + 10F;
                 float healthSize = size * (health / maxHealth);
@@ -220,7 +197,6 @@ public class HealthBarRenderer {
                 // Background
                 if (ClientContainer.INSTANCE.neatConfig.drawBackground.get()) {
                     buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-
                     buffer.pos(-size - padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
                     buffer.pos(-size - padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
                     buffer.pos(size + padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
@@ -244,24 +220,20 @@ public class HealthBarRenderer {
                 buffer.pos(healthSize * 2 - size, 0, 0.0D).color(r, g, b, 127).endVertex();
                 tessellator.draw();
 
-                RenderSystem.enableTexture();
+                GlStateManager.enableTexture();
 
-                matrix.push();
+                GlStateManager.pushMatrix();
+                GlStateManager.translatef(-size, -4.5F, 0F);
+                GlStateManager.scalef(s, s, s);
+                mc.fontRenderer.drawString(name, 0, 0, 0xFFFFFF);
 
-                matrix.translate(-size, -4.5F, 0F);
-                matrix.scale(s, s, s);
-
-                mc.fontRenderer.drawString(namestring, 0, 0, 0xFFFFFF);
-
-                matrix.push();
-
+                GlStateManager.pushMatrix();
                 float s1 = 0.75F;
-
-                matrix.scale(s1, s1, s1);
+                GlStateManager.scalef(s1, s1, s1);
 
                 int h = ClientContainer.INSTANCE.neatConfig.hpTextHeight.get();
-                String maxHpStr = TextFormatting.BOLD + NumberUtils.formatNumber((int) maxHealth);
-                String hpStr = NumberUtils.formatNumber((int) health);
+                String maxHpStr = TextFormatting.BOLD + "" + Math.round(maxHealth * 100.0) / 100.0;
+                String hpStr = "" + Math.round(health * 100.0) / 100.0;
                 String percStr = (int) percent + "%";
 
                 if (maxHpStr.endsWith(".0"))
@@ -281,51 +253,28 @@ public class HealthBarRenderer {
                                                (int) (size / (s * s1)) - mc.fontRenderer.getStringWidth(percStr) / 2, h,
                                                0xFFFFFFFF
                     );
-                if (ClientContainer.INSTANCE.neatConfig.enableDebugInfo.get() && mc.gameSettings.showDebugInfo)
-                    mc.fontRenderer.drawString("GEAR_FACTORY_ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
 
-                matrix.pop();
+                GlStateManager.popMatrix();
 
-                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-                s1 = 0.5F;
-
-                matrix.scale(s1, s1, s1);
-                matrix.translate(size / (s * s1) * 2 - 16, 0F, 0F);
-                mc.textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
-
-                // SHOW ICONS HERE
-
-                // MY CODE
+                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
                 int off = 0;
 
-                for (StatusEffectData statusdata : unit.statusEffects.values()) {
-                    renderIcon(off, 0, new ItemStack(statusdata.GetEffect().ItemModel()), 16, 16);
-                    off -= 16;
+                s1 = 0.5F;
+                GlStateManager.scalef(s1, s1, s1);
+                GlStateManager.translatef(size / (s * s1) * 2 - 16, 0F, 0F);
+                mc.textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
 
-                }
-                /*
-                // show that loots are prevented
-                if (!data.shouldDropLoot()) {
-                    renderIcon(off, 0, new ItemStack(Items.BARRIER), 16, 16);
-                    off -= 16;
-                }
+                // render icons here
 
-                 */
-                //MY CODE
+                GlStateManager.popMatrix();
 
-                matrix.pop();
-
-                RenderSystem.disableBlend();
-                RenderSystem.enableDepthTest();
-                RenderSystem.depthMask(true);
-
-                if (lighting) {
-                    RenderSystem.enableLighting();
-                }
-                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-                matrix.pop();
+                GlStateManager.disableBlend();
+                GlStateManager.enableDepthTest();
+                GlStateManager.depthMask(true);
+                if (lighting)
+                    GlStateManager.enableLighting();
+                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                GlStateManager.popMatrix();
 
                 pastTranslate -= bgHeight + barHeight + padding;
             }

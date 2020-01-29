@@ -170,7 +170,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
                 if (stat instanceof BaseCoreStat) {
                     BaseCoreStat core = (BaseCoreStat) stat;
-                    tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit().getStat(stat)));
+                    tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit().getCreateStat(stat)));
                 }
 
                 StatAllocationScreen.this.renderTooltip(
@@ -195,7 +195,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
             String str =
                     single.stat.formatting + single.stat.shortName + format + ": " + TextFormatting.GREEN + single.points + format;
-            str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit().getStat(stat).val + format + ")";
+            str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit().getCreateStat(stat).val + format + ")";
 
             font.drawStringWithShadow(str, this.x - button_sizeX - 5 - font.getStringWidth(str),
                                       this.y - button_sizeY / 2 + font.FONT_HEIGHT, format.getColor()

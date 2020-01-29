@@ -58,7 +58,7 @@ public class CommonStatUtils {
             for (IStatModsContainer.LevelAndStats levelstat : levelsandstats) {
                 for (StatModData data : levelstat.mods) {
 
-                    StatData stat = unit.getStat(data.getStatMod().GetBaseStat());
+                    StatData stat = unit.getCreateStat(data.getStatMod().GetBaseStat());
                     if (stat == null) {
 
                     } else {
@@ -75,36 +75,36 @@ public class CommonStatUtils {
         Unit theunit = unit.getUnit();
 
         for (IPreCoreStat core : Stats.allPreGenMapStatLists.get(IPreCoreStat.class)) {
-            if (theunit.getStats().containsKey(core.GUID())) {
-                StatData statdata = theunit.getStat(core.GUID());
-                if (statdata.val > 0) {
-                    core.addToCoreStats(unit, statdata);
-                }
+
+            StatData statdata = theunit.peekAtStat(core.GUID());
+            if (statdata.val > 0) {
+                core.addToCoreStats(unit, statdata);
             }
+
         }
         for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
-            if (theunit.getStats().containsKey(core.GUID())) {
-                StatData statdata = theunit.getStat(core.GUID());
-                if (statdata.val > 0) {
-                    core.addToOtherStats(unit, statdata);
-                }
+
+            StatData statdata = theunit.peekAtStat(core.GUID());
+            if (statdata.val > 0) {
+                core.addToOtherStats(unit, statdata);
             }
+
         }
         for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
-            if (theunit.getStats().containsKey(trait.GUID())) {
-                StatData statdata = theunit.getStat(trait.GUID());
-                if (statdata.val > 0) {
-                    trait.TryAffectOtherStats(unit, statdata);
-                }
+
+            StatData statdata = theunit.peekAtStat(trait.GUID());
+            if (statdata.val > 0) {
+                trait.TryAffectOtherStats(unit, statdata);
             }
+
         }
         for (IAffectsStats trait : Stats.allPreGenMapStatLists.get(IAffectsStats.class)) {
-            if (theunit.getStats().containsKey(trait.GUID())) {
-                StatData statdata = theunit.getStat(trait.GUID());
-                if (statdata.val > 0) {
-                    trait.affectStats(unit, statdata);
-                }
+
+            StatData statdata = theunit.peekAtStat(trait.GUID());
+            if (statdata.val > 0) {
+                trait.affectStats(unit, statdata);
             }
+
         }
     }
 
@@ -116,20 +116,20 @@ public class CommonStatUtils {
     public static void CalcStatConversionsAndTransfers(Unit copy, Unit unit) {
 
         for (IStatConversion core : Stats.allPreGenMapStatLists.get(IStatConversion.class)) {
-            if (unit.getStats().containsKey(core.GUID())) {
-                StatData statdata = copy.getStat(core.GUID());
-                if (statdata.val > 0) {
-                    core.convertStats(copy, unit, copy.getStat(core.GUID()));
-                }
+
+            StatData statdata = copy.peekAtStat(core.GUID());
+            if (statdata.val > 0) {
+                core.convertStats(copy, unit, copy.getCreateStat(core.GUID()));
             }
+
         }
         for (IStatTransfer core : Stats.allPreGenMapStatLists.get(IStatTransfer.class)) {
-            if (unit.getStats().containsKey(core.GUID())) {
-                StatData statdata = copy.getStat(core.GUID());
-                if (statdata.val > 0) {
-                    core.transferStats(copy, unit, copy.getStat(core.GUID()));
-                }
+
+            StatData statdata = copy.peekAtStat(core.GUID());
+            if (statdata.val > 0) {
+                core.transferStats(copy, unit, copy.getCreateStat(core.GUID()));
             }
+
         }
 
     }
@@ -140,7 +140,7 @@ public class CommonStatUtils {
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
             List<StatModData> datas = status.GetAllStats();
             for (StatModData data : datas) {
-                StatData stat = unit.getStat(data.getStatMod().GetBaseStat());
+                StatData stat = unit.getCreateStat(data.getStatMod().GetBaseStat());
                 if (stat == null) {
                 } else {
 

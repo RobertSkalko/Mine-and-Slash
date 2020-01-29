@@ -21,16 +21,15 @@ public class HealEffect extends EffectData {
             return;
         }
 
-        this.calculateEffects();
-
-        this.target.heal(getNumber());
-
+        if (target.isAlive()) {
+            this.calculateEffects();
+            this.target.heal(getNumber());
+        }
     }
 
     public float getNumber() {
         // increases heal amount by the amount its decreased after in an event
-        return HealthUtils.DamageToMinecraftHealth(number / ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI
-                .get()
-                .floatValue(), target, targetData);
+        return HealthUtils.DamageToMinecraftHealth(
+                number / ModConfig.INSTANCE.Server.NON_MOD_HEAL_MULTI.get().floatValue(), target, targetData);
     }
 }

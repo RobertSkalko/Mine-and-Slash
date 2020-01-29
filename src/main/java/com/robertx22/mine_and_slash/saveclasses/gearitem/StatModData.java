@@ -53,11 +53,11 @@ public class StatModData implements ITooltipList {
     }
 
     public void useOnPlayer(UnitData unit) {
-        Add(unit.getUnit().getStat(this.getStatMod().GetBaseStat()), unit.getLevel());
+        Add(unit.getUnit().getCreateStat(this.getStatMod().GetBaseStat()), unit.getLevel());
     }
 
     public void useOnPlayer(UnitData unit, int level) {
-        Add(unit.getUnit().getStat(this.getStatMod().GetBaseStat()), level);
+        Add(unit.getUnit().getCreateStat(this.getStatMod().GetBaseStat()), level);
     }
 
     public int getPercent() {
@@ -144,8 +144,7 @@ public class StatModData implements ITooltipList {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         try {
-            return getStatMod().GetBaseStat()
-                    .getTooltipList(new TooltipStatInfo(this, info));
+            return getStatMod().GetBaseStat().getTooltipList(new TooltipStatInfo(this, info));
         } catch (Exception e) {
             e.printStackTrace();
         }

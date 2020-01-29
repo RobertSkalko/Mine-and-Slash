@@ -11,6 +11,12 @@ import java.text.DecimalFormat;
 @Storable
 public class StatData {
 
+    private static StatData empty = new StatData();
+
+    public static StatData empty() {
+        return empty;
+    }
+
     public StatData() {
 
     }

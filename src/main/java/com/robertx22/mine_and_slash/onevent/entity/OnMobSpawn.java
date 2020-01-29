@@ -58,7 +58,7 @@ public class OnMobSpawn {
                     endata.setUnit(new Unit(), entity);
                 }
 
-                endata.getUnit().InitMobStats(); // give new stats to mob on spawn
+                endata.getUnit().initStats(); // give new stats to mob on spawn
                 endata.forceRecalculateStats(entity);
             }
         }

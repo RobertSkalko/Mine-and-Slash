@@ -20,7 +20,7 @@ public class ElementalResistFlat extends ElementalStatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new ElementalResist(this.element);
+        return ElementalResist.MAP.get(element);
     }
 
     @Override

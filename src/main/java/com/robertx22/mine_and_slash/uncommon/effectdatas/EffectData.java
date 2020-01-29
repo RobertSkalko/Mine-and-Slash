@@ -69,8 +69,7 @@ public abstract class EffectData {
 
     }
 
-    public EffectData(LivingEntity source, LivingEntity target, UnitData sourceData,
-                      UnitData targetData) {
+    public EffectData(LivingEntity source, LivingEntity target, UnitData sourceData, UnitData targetData) {
 
         this.source = source;
         this.target = target;
@@ -188,8 +187,7 @@ public abstract class EffectData {
         return affects;
     }
 
-    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit,
-                                            EffectSides side) {
+    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit, EffectSides side) {
         if (unit != null) {
 
             for (IStatEffects stateffects : Stats.allPreGenMapStatLists.get(IStatEffects.class)) {
@@ -198,7 +196,7 @@ public abstract class EffectData {
 
                     if (unit.getStats().containsKey(stateffects.GUID())) {
 
-                        StatData stat = unit.getStat((Stat) stateffects);
+                        StatData stat = unit.getCreateStat((Stat) stateffects);
 
                         if (stat.val != 0) {
                             effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));

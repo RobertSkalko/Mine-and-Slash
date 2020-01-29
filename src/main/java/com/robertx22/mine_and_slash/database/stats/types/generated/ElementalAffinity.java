@@ -49,7 +49,7 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
         for (StatMod statmod : this.statsThatBenefit()) {
-            unitdata.getUnit().getStat(statmod.GetBaseStat()).Flat += data.val;
+            unitdata.getUnit().getCreateStat(statmod.GetBaseStat()).Flat += data.val;
         }
     }
 

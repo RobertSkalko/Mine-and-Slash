@@ -107,11 +107,11 @@ public class LootInfo {
         if (this.playerData != null) {
 
             chance *= this.playerData.getUnit()
-                    .getStat(new LootTypeBonus(gen.lootType()))
+                    .getCreateStat(new LootTypeBonus(gen.lootType()))
                     .getMultiplier();
 
             chance *= this.playerData.getUnit()
-                    .getStat(new LootTypeBonus(LootType.All))
+                    .getCreateStat(new LootTypeBonus(LootType.All))
                     .getMultiplier();
 
             if (mobData != null) {

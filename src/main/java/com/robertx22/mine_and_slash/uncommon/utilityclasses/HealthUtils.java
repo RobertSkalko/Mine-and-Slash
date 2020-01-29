@@ -13,7 +13,7 @@ public class HealthUtils {
         try {
             Unit unit = data.getUnit();
 
-            float maxhp = unit.getStat(Health.GUID).val;
+            float maxhp = unit.getCreateStat(Health.GUID).val;
             float maxMChp = entity.getMaxHealth();
 
             return (float) (maxMChp / maxhp * dmg);

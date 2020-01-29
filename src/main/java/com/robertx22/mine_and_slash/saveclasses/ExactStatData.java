@@ -75,7 +75,7 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
-        data.getUnit().getStat(statGUID).addExact(type, value);
+        data.getUnit().getCreateStat(statGUID).addExact(type, value);
     }
 
     @Override

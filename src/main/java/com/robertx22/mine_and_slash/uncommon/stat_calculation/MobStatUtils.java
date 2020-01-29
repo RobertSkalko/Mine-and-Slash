@@ -75,18 +75,19 @@ public class MobStatUtils {
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 
-        unit.getStat(Armor.GUID).addFlat(11 * rar.StatMultiplier(), level);
-        unit.getStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
-        unit.getStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
+        unit.getCreateStat(Armor.GUID).addFlat(11 * rar.StatMultiplier(), level);
+        unit.getCreateStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
+        unit.getCreateStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
 
         for (Elements element : Elements.getAllSingleElements()) {
 
-            unit.getStat(new ElementalResist(element).GUID()).addFlat(spellresist * rar.StatMultiplier(), level);
-            unit.getStat(new ElementalSpellDamage(element).GUID()).addFlat(spelldmg * rar.DamageMultiplier(), level);
+            unit.getCreateStat(ElementalResist.MAP.get(element)).addFlat(spellresist * rar.StatMultiplier(), level);
+            unit.getCreateStat(ElementalSpellDamage.MAP.get(element)).addFlat(spelldmg * rar.DamageMultiplier(), level);
+
         }
 
         for (Elements element : Elements.getAllExceptNone()) {
-            unit.getStat(new ElementalPene(element).GUID()).addFlat(elePene * rar.DamageMultiplier(), level);
+            unit.getCreateStat(ElementalPene.MAP.get(element)).addFlat(elePene * rar.DamageMultiplier(), level);
 
         }
 

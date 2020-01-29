@@ -35,7 +35,7 @@ public class ScalingStatCalc implements ITooltipList {
     }
 
     public int getCalculatedValue(EntityCap.UnitData data) {
-        return (int) (data.getUnit().getStat(statID).val * multi);
+        return (int) (data.getUnit().peekAtStat(statID).val * multi);
     }
 
     @Override

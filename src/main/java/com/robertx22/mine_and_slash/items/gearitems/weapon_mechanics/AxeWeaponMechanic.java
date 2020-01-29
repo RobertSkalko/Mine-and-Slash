@@ -30,8 +30,8 @@ public class AxeWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
-                          UnitData unitsource, UnitData targetUnit) {
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
+                          UnitData targetUnit) {
 
         super.multiplyDamage(event, source, target, unitsource, targetUnit, 2);
 

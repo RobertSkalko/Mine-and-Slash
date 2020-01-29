@@ -17,7 +17,7 @@ public class OnHurtEvent {
         LivingHurtUtils.onAttack(event);
         LivingHurtUtils.modifyDamage(event);
         LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
-        LivingHurtUtils.damageCurioItems(event);
+        LivingHurtUtils.damageCurioItems(event.getEntityLiving());
     }
 
 }

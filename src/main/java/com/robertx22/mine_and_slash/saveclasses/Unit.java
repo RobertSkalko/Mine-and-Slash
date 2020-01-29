@@ -62,15 +62,15 @@ public class Unit {
     public HashMap<String, StatData> getStats() {
 
         if (MyStats == null) {
-            this.InitMobStats();
+            this.initStats();
         }
 
         return MyStats;
     }
 
     @Nonnull
-    public StatData getStat(Stat stat) {
-        return getStat(stat.GUID());
+    public StatData getCreateStat(Stat stat) {
+        return getCreateStat(stat.GUID());
     }
 
     public boolean hasStat(Stat stat) {
@@ -81,11 +81,26 @@ public class Unit {
         return MyStats.containsKey(guid);
     }
 
+    public StatData peekAtStat(Stat stat) {
+        return peekAtStat(stat.GUID());
+    }
+
     @Nonnull
-    public StatData getStat(String guid) {
+    public StatData peekAtStat(String guid) {
 
         if (MyStats == null) {
-            this.InitMobStats();
+            this.initStats();
+        }
+
+        return MyStats.getOrDefault(guid, StatData.empty());
+
+    }
+
+    @Nonnull
+    public StatData getCreateStat(String guid) {
+
+        if (MyStats == null) {
+            this.initStats();
         }
 
         StatData data = MyStats.get(guid);
@@ -108,17 +123,8 @@ public class Unit {
 
     }
 
-    public void InitMobStats() { // todo see if i can remove this
-
+    public void initStats() {
         MyStats = new HashMap<String, StatData>();
-
-        // adds all stats
-        /*
-        for (Stat stat : SlashRegistry.Stats().getAll().values()) {
-            MyStats.put(stat.GUID(), new StatData(stat));
-        }
-         */
-
     }
 
     private void removeEmptyStats() {
@@ -197,11 +203,11 @@ public class Unit {
     }
 
     public boolean isBloodMage() {
-        return hasStat(BloodMage.INSTANCE) && this.getStat(BloodMage.INSTANCE).val > 0;
+        return hasStat(BloodMage.INSTANCE) && this.getCreateStat(BloodMage.INSTANCE).val > 0;
     }
 
     public float getMaximumBlood() {
-        if (this.getStat(BloodMage.INSTANCE).val > 0) {
+        if (this.getCreateStat(BloodMage.INSTANCE).val > 0) {
             return healthData().val / 2;
         }
         return 0;
@@ -209,7 +215,7 @@ public class Unit {
 
     public StatData healthData() {
         try {
-            return getStat(Health.GUID);
+            return getCreateStat(Health.GUID);
         } catch (Exception e) {
         }
         return null;
@@ -217,7 +223,7 @@ public class Unit {
 
     public StatData magicShieldData() {
         try {
-            return getStat(MagicShield.GUID);
+            return getCreateStat(MagicShield.GUID);
         } catch (Exception e) {
 
         }
@@ -226,7 +232,7 @@ public class Unit {
 
     public StatData manaData() {
         try {
-            return getStat(Mana.GUID);
+            return getCreateStat(Mana.GUID);
         } catch (Exception e) {
 
         }
@@ -235,7 +241,7 @@ public class Unit {
 
     public StatData energyData() {
         try {
-            return getStat(Energy.GUID);
+            return getCreateStat(Energy.GUID);
         } catch (Exception e) {
 
         }
@@ -245,7 +251,7 @@ public class Unit {
     public static Unit Mob(LivingEntity entity, @Nullable PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();
-        mob.InitMobStats();
+        mob.initStats();
 
         UnitData endata = Load.Unit(entity);
 
@@ -313,7 +319,7 @@ public class Unit {
     protected void ClearStats() {
 
         if (MyStats == null) {
-            this.InitMobStats();
+            this.initStats();
         }
 
         for (StatData stat : MyStats.values()) {
@@ -348,12 +354,12 @@ public class Unit {
     private DirtyCheck getDirtyCheck() {
 
         if (MyStats == null || MyStats.isEmpty()) {
-            this.InitMobStats();
+            this.initStats();
         }
 
         DirtyCheck check = new DirtyCheck();
 
-        check.hp = (int) getStat(Health.GUID).val;
+        check.hp = (int) getCreateStat(Health.GUID).val;
 
         return check;
     }

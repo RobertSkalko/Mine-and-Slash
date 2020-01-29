@@ -51,7 +51,7 @@ public class UseMapTicketPacket {
                         TileMapDevice map = (TileMapDevice) tile;
 
                         if (map.mapDeviceData.canPlayerUse(player)) {
-                            map.mapDeviceData.mapUsed.setupPlayerMapData(pkt.pos, player);
+                            map.mapDeviceData.mapUsed.clone().setupPlayerMapData(pkt.pos, player);
                         }
 
                     }

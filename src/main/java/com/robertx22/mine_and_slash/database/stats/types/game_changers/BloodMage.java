@@ -18,7 +18,8 @@ public class BloodMage extends BaseGameChangerTrait implements IStatEffects, IAf
 
     @Override
     public String locDescForLangFile() {
-        return "Your have no mana, you use blood instead. Max blood is half of your health. You replenish blood with any non spell related health restoration method like hp regen or lifesteal.";
+        return "Your have no mana, you use blood instead. Max blood is half of your health. You replenish blood with " +
+                "any non spell related health restoration method like hp regen or lifesteal.";
     }
 
     @Override
@@ -43,8 +44,8 @@ public class BloodMage extends BaseGameChangerTrait implements IStatEffects, IAf
 
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit().getStat(Mana.GUID).Flat -= Integer.MAX_VALUE;
-        data.getUnit().getStat(ManaRegen.GUID).Flat -= Integer.MAX_VALUE;
+        data.getUnit().getCreateStat(Mana.GUID).Flat -= Integer.MAX_VALUE;
+        data.getUnit().getCreateStat(ManaRegen.GUID).Flat -= Integer.MAX_VALUE;
     }
 }
 

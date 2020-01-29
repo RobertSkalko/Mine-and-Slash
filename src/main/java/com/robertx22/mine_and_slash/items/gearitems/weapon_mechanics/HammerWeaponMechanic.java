@@ -40,24 +40,36 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     float radius = 1.5F;
 
     @Override
-    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
-                          UnitData unitsource, UnitData targetUnit) {
+    public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
+                          UnitData targetUnit) {
 
         List<LivingEntity> entities = new ArrayList<LivingEntity>();
 
-        for (Entity en : target.world.getEntitiesWithinAABBExcludingEntity(source, new AxisAlignedBB(target.posX - radius, target.posY - radius, target.posZ - radius, target.posX + radius, target.posY + radius, target.posZ + radius))) {
+        for (Entity en : target.world.getEntitiesWithinAABBExcludingEntity(source,
+                                                                           new AxisAlignedBB(target.posX - radius,
+                                                                                             target.posY - radius,
+                                                                                             target.posZ - radius,
+                                                                                             target.posX + radius,
+                                                                                             target.posY + radius,
+                                                                                             target.posZ + radius
+                                                                           )
+        )) {
             if (en instanceof LivingEntity) {
                 entities.add((LivingEntity) en);
             }
         }
-        int num = (int) unitsource.getUnit().getStat(PhysicalDamage.GUID).val;
+        int num = (int) unitsource.getUnit().getCreateStat(PhysicalDamage.GUID).val;
 
         for (LivingEntity entity : entities) {
             if (entity.equals(target)) {
-                DamageEffect dmg = new DamageEffect(event, source, entity, num, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer);
+                DamageEffect dmg = new DamageEffect(event, source, entity, num, unitsource, targetUnit,
+                                                    EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
+                );
                 dmg.Activate();
             } else {
-                DamageEffect dmg = new DamageEffect(null, source, entity, num, unitsource, targetUnit, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer);
+                DamageEffect dmg = new DamageEffect(null, source, entity, num, unitsource, targetUnit,
+                                                    EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
+                );
                 dmg.Activate();
             }
         }

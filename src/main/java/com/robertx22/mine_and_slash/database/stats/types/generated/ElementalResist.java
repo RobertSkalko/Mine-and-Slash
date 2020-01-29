@@ -9,7 +9,20 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class ElementalResist extends ElementalStat implements IStatEffects, IUsableStat {
+
+    public static HashMap<Elements, ElementalResist> MAP = new HashMap<>();
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = super.generateAllPossibleStatVariations();
+        list.forEach(x -> MAP.put(x.getElement(), (ElementalResist) x));
+        return list;
+    }
+
     @Override
     public Stat.StatGroup statGroup() {
         return Stat.StatGroup.Defenses;

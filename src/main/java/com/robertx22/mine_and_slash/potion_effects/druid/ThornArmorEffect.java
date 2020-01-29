@@ -67,7 +67,7 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
 
     public ExactStatData getNatureRes(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = 3 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Nature)).scaleToLvl(
+        return new ExactStatData(statAmount, StatTypes.Flat, ElementalResist.MAP.get(Elements.Nature)).scaleToLvl(
                 extraData.casterLvl);
     }
 

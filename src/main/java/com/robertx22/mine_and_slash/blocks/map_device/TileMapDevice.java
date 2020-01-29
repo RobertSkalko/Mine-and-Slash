@@ -83,10 +83,6 @@ public class TileMapDevice extends BaseTile {
 
     @Override
     public void tick() {
-        if (!this.world.isRemote) {
-
-        }
-
     }
 
     private boolean summonPortals(MapItemData map) {
@@ -97,13 +93,14 @@ public class TileMapDevice extends BaseTile {
 
         BlockPos p = this.pos;
 
-        world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.6f, 0);
-        world.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
+        world.playSound(
+                null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.6f, 0);
+        world.playSound(
+                null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
 
         try {
 
-            DimensionType type = MapManager.getDimensionType(map.getIWP()
-                    .getResourceLoc());
+            DimensionType type = MapManager.getDimensionType(map.getIWP().getResourceLoc());
 
             // start map
 
@@ -157,8 +154,7 @@ public class TileMapDevice extends BaseTile {
 
     @Nullable
     @Override
-    public Container createMenu(int i, PlayerInventory playerInventory,
-                                PlayerEntity playerEntity) {
+    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
 
         return new ContainerMapDevice(i, playerInventory, this, this.pos);
 

@@ -37,7 +37,7 @@ public class TrueHit extends BaseGameChangerTrait implements IStatEffects, IAffe
 
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit().getStat(CriticalDamage.GUID).Multi += 50;
+        data.getUnit().getCreateStat(CriticalDamage.GUID).Multi += 50;
     }
 
     @Override

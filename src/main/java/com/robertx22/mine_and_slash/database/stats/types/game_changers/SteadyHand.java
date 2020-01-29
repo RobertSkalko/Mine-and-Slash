@@ -45,7 +45,7 @@ public class SteadyHand extends BaseGameChangerTrait implements IStatEffects, IA
 
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit().getStat(CriticalHit.GUID).Flat -= 1000;
-        data.getUnit().getStat(CriticalDamage.GUID).Flat -= 1000;
+        data.getUnit().getCreateStat(CriticalHit.GUID).Flat -= 1000;
+        data.getUnit().getCreateStat(CriticalDamage.GUID).Flat -= 1000;
     }
 }

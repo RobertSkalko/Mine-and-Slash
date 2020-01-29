@@ -5,7 +5,19 @@ import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class ElementalSpellDamage extends ElementalStat {
+
+    public static HashMap<Elements, ElementalSpellDamage> MAP = new HashMap<>();
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = super.generateAllPossibleStatVariations();
+        list.forEach(x -> MAP.put(x.getElement(), (ElementalSpellDamage) x));
+        return list;
+    }
 
     public ElementalSpellDamage(Elements element) {
         super(element);

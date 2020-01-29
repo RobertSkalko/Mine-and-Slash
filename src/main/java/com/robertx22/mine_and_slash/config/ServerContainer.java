@@ -11,6 +11,7 @@ public class ServerContainer {
     public BooleanValue RESET_MAP_DIMENSIONS_ON_LOAD;
     public BooleanValue DISABLE_DEATH_IN_MAPS;
     public BooleanValue ONLY_REPAIR_IN_STATION;
+    public BooleanValue LOG_REGISTRY_ENTRIES;
 
     public BooleanValue ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS;
     public BooleanValue ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM;
@@ -69,6 +70,7 @@ public class ServerContainer {
 
         ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS = builder.comment(".")
                 .define("ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS", true);
+        LOG_REGISTRY_ENTRIES = builder.comment(".").define("LOG_REGISTRY_ENTRIES", false);
 
         ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM = builder.comment(".")
                 .define("ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM", true);

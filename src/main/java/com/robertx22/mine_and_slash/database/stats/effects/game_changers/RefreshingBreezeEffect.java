@@ -25,8 +25,7 @@ public class RefreshingBreezeEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (Effect instanceof DamageEffect) {
@@ -35,8 +34,9 @@ public class RefreshingBreezeEffect implements IStatEffect {
 
                 if (dmg.isDodged) {
                     float energy = dmg.targetData.getUnit()
-                            .getStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
-                    ResourcesData.Context ene = new ResourcesData.Context(dmg.targetData, dmg.target, ResourcesData.Type.ENERGY, energy, ResourcesData.Use.RESTORE);
+                            .peekAtStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
+                    ResourcesData.Context ene = new ResourcesData.Context(
+                            dmg.targetData, dmg.target, ResourcesData.Type.ENERGY, energy, ResourcesData.Use.RESTORE);
                     dmg.targetData.getResources().modify(ene);
 
                 }

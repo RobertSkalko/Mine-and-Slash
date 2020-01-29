@@ -31,9 +31,7 @@ public class StatRequirementsData {
     private HashMap<String, Integer> getReqs(GearItemData data) {
         if (data.isUnique()) {
             try {
-                return data.uniqueStats.getUniqueItem()
-                        .getRequirements()
-                        .getRequirements(data.level, data.getRarity());
+                return data.uniqueStats.getUniqueItem().getRequirements().getRequirements(data.level, data.getRarity());
             } catch (Exception e) {
                 e.printStackTrace();
                 return new HashMap<>();
@@ -44,8 +42,7 @@ public class StatRequirementsData {
             if (data.GetBaseGearType() instanceof ISpecificStatReq) {
 
                 ISpecificStatReq specific = (ISpecificStatReq) data.GetBaseGearType();
-                return specific.getRequirements()
-                        .getRequirements(data.getLevel(), data.getRarity());
+                return specific.getRequirements().getRequirements(data.getLevel(), data.getRarity());
             } else {
                 HashMap<String, Integer> map = new HashMap<>();
                 float requirementMulti = data.getRarity().requirementMulti();
@@ -81,8 +78,7 @@ public class StatRequirementsData {
     }
 
     public static int getAmount(int lvl) {
-        int req = (int) ((lvl - ((float) lvl / 5F) - 5) * ModConfig.INSTANCE.Server.STAT_REQUIREMENTS_MULTI
-                .get());
+        int req = (int) ((lvl - ((float) lvl / 5F) - 5) * ModConfig.INSTANCE.Server.STAT_REQUIREMENTS_MULTI.get());
         return MathHelper.clamp(req, 0, 100000);
     }
 /*
@@ -125,7 +121,7 @@ public class StatRequirementsData {
                         return false;
                     }
 
-                    if (data.getUnit().getStat(entry.getKey()).val < entry.getValue()) {
+                    if (data.getUnit().peekAtStat(entry.getKey()).val < entry.getValue()) {
                         return false;
                     }
 
@@ -145,8 +141,10 @@ public class StatRequirementsData {
                 if (SlashRegistry.Stats().isRegistered(entry.getKey())) {
                     Stat stat = SlashRegistry.Stats().get(entry.getKey());
 
-                    list.add(TooltipUtils.requirement(stat.locName(), (int) info.unitdata.getUnit()
-                            .getStat(stat).val, entry.getValue()));
+                    list.add(TooltipUtils.requirement(stat.locName(),
+                                                      (int) info.unitdata.getUnit().getCreateStat(stat).val,
+                                                      entry.getValue()
+                    ));
                 }
             }
         }

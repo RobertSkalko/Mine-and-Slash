@@ -13,7 +13,7 @@ public interface IStatsContainer extends IApplyableStats {
     default void applyStats(EntityCap.UnitData data) {
         GetAllStats(data.getLevel()).forEach(x -> {
             if (x.isNotEmpty()) {
-                data.getUnit().getStat(x.getId()).addExact(x);
+                data.getUnit().getCreateStat(x.getId()).addExact(x);
             }
         });
     }

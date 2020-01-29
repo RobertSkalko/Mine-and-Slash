@@ -84,3 +84,4 @@ talent and spell trees are now FULLSCREEN!
 as there were too many keybinds, now guis will have to be accessed from the main hub (H). (Main hub, Hotbar swap + 5 hotbar buttons is already 7 keybinds!)
 lowered stat scaling a bit
 staffs and wands now need more energy and less mana.
+added config for logging registry entries like compatible items
