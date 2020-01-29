@@ -9,8 +9,8 @@ import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
@@ -35,14 +35,13 @@ public class ThornBushTileEntity extends BaseSpellTileEntity {
                 LivingEntity caster = data.getCaster(world);
                 EntityCap.UnitData data = Load.Unit(caster);
 
-                ParticleEnum.sendToClients(
-                        pos, world, new ParticlePacketData(pos, ParticleEnum.THORNS).radius(RADIUS)
-                                .motion(new Vec3d(0, 0, 0))
-                                .amount(25));
+                ParticleEnum.sendToClients(pos, world, new ParticlePacketData(pos, ParticleEnum.THORNS).radius(RADIUS)
+                        .motion(new Vec3d(0, 0, 0))
+                        .amount(25));
 
-                List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(
-                        RADIUS, pos.getX(), pos.getY(), pos.getZ(), world);
-                entities.removeIf(x -> x == caster);
+                List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, pos)
+                        .radius(RADIUS)
+                        .build();
 
                 entities.forEach(target -> {
                     SpellDamageEffect dmg = getSetupSpellDamage(target);

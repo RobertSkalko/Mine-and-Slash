@@ -8,10 +8,10 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -70,8 +70,9 @@ public class LightningTotemEntity extends EntityBaseProjectile {
         if (this.ticksExisted % tickRate == 0) {
             if (!world.isRemote) {
 
-                List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(radius(), this, LivingEntity.class);
-                entities.removeIf(x -> x == getCaster());
+                List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
+                        .radius(radius())
+                        .build();
 
                 entities.forEach(x -> {
 

@@ -68,10 +68,6 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public boolean isValidTarget(Entity target) {
-        return true;
-    }
-
     @Override
     public boolean canRenderOnFire() {
         return false;

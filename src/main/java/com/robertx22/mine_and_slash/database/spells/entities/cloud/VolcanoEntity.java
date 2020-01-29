@@ -7,10 +7,10 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetCo
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -59,24 +59,20 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
                 if (!this.world.isRemote) {
 
-                    List<LivingEntity> targets = Utilities.getEntitiesWithinRadius(
-                            radius(), radius(), this, LivingEntity.class);
+                    List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
+                            .radius(radius())
+                            .build();
 
-                    for (LivingEntity target : targets) {
+                    for (LivingEntity target : entities) {
 
-                        if (this.isValidTarget(target)) {
-
-                            if (this.getCaster() != null && target != getCaster()) {
-
-                                if (Synergies.VOLCANO_BURN.has(getCaster())) {
-                                    Synergies.VOLCANO_BURN.tryActivate(new CasterTargetContext(getCaster(), target));
-                                }
-
-                                this.dealSpellDamageTo(target, new ISpellEntity.Options().knockbacks(true));
-
-                            }
+                        if (Synergies.VOLCANO_BURN.has(getCaster())) {
+                            Synergies.VOLCANO_BURN.tryActivate(new CasterTargetContext(getCaster(), target));
                         }
+
+                        this.dealSpellDamageTo(target, new ISpellEntity.Options().knockbacks(true));
+
                     }
+
                 }
 
                 if (world.isRemote) {

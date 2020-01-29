@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
@@ -89,7 +89,11 @@ public class GorgonsGazeSpell extends BaseSpell {
 
         World world = caster.world;
 
-        Utilities.getEntitiesInFrontOf(3, 3, 15, caster, LivingEntity.class)
+        EntityFinder.start(caster, LivingEntity.class, caster.getPosition())
+                .radius(3)
+                .distance(15)
+                .finder(EntityFinder.Finder.IN_FRONT)
+                .build()
                 .forEach(x -> PotionEffectUtils.apply(PetrifyEffect.INSTANCE, caster, x));
 
         return true;

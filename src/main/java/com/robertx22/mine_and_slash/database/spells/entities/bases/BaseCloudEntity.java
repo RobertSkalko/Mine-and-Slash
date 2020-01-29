@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -43,20 +43,12 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
                 if (!this.world.isRemote) {
 
-                    List<LivingEntity> targets = Utilities.getEntitiesWithinRadius(
-                            radius(), radius(), this, LivingEntity.class);
+                    List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
+                            .radius(radius())
+                            .build();
 
-                    for (LivingEntity target : targets) {
+                    entities.forEach(x -> onHit(x));
 
-                        if (this.isValidTarget(target)) {
-
-                            if (this.getCaster() != null && target != getCaster()) {
-
-                                onHit(target);
-
-                            }
-                        }
-                    }
                 }
             }
 

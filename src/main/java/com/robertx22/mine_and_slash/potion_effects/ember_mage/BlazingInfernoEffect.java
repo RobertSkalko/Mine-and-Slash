@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
@@ -51,7 +51,11 @@ public class BlazingInfernoEffect extends BasePotionEffect {
 
             int num = CALC.getCalculatedValue(Load.Unit(entity));
 
-            for (LivingEntity en : Utilities.getEntitiesWithinRadius(RADIUS, entity, LivingEntity.class)) {
+            List<LivingEntity> entities = EntityFinder.start(entity, LivingEntity.class, entity.getPosition())
+                    .radius(RADIUS)
+                    .build();
+
+            for (LivingEntity en : entities) {
                 DamageEffect dmg = new DamageEffect(
                         null, entity, en, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
                 dmg.element = Elements.Fire;

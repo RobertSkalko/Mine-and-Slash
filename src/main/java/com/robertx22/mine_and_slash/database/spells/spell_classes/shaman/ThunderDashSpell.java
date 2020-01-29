@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -113,7 +113,13 @@ public class ThunderDashSpell extends BaseSpell {
 
         int num = getCalculation().getCalculatedValue(Load.Unit(caster));
 
-        Utilities.getEntitiesInFrontOf(2, 2, 10, caster, LivingEntity.class).forEach(x -> {
+        List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPosition())
+                .radius(2)
+                .distance(10)
+                .finder(EntityFinder.Finder.IN_FRONT)
+                .build();
+
+        entities.forEach(x -> {
             DamageEffect dmg = new DamageEffect(null, caster, x, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
             dmg.element = Elements.Thunder;
             dmg.Activate();

@@ -15,8 +15,8 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
@@ -76,8 +76,9 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
             EntityCap.UnitData casterData = Load.Unit(ctx.caster);
             EntityCap.UnitData targetData = Load.Unit(ctx.target);
 
-            List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(RADIUS, ctx.target, LivingEntity.class);
-            entities.removeIf(x -> x == ctx.caster);
+            List<LivingEntity> entities = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.target.getPosition())
+                    .radius(RADIUS)
+                    .build();
 
             entities.forEach(e -> {
                 SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, e, num, casterData, targetData,

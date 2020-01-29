@@ -26,6 +26,11 @@ public class EntityFinder {
                 }
                 return list;
             }
+
+            @Override
+            public boolean includesCaster() {
+                return true;
+            }
         },
         ENEMIES {
             @Override
@@ -37,16 +42,27 @@ public class EntityFinder {
                 }
                 return list;
             }
+
+            @Override
+            public boolean includesCaster() {
+                return false;
+            }
         },
         ALL {
             @Override
             public <T extends Entity> List<T> getMatchingEntities(List<T> list, Setup setup) {
                 return list;
             }
+
+            @Override
+            public boolean includesCaster() {
+                return true;
+            }
         };
 
         public abstract <T extends Entity> List<T> getMatchingEntities(List<T> list, Setup setup);
 
+        public abstract boolean includesCaster();
     }
 
     public enum Finder {
@@ -112,21 +128,19 @@ public class EntityFinder {
 
     }
 
-    public static <T extends Entity> Setup<T> find(World world, Class<T> entityType, BlockPos pos) {
-
-        Setup<T> setup = new Setup<T>(world, entityType, pos);
-
+    public static <T extends Entity> Setup<T> start(LivingEntity caster, Class<T> entityType, BlockPos pos) {
+        Setup<T> setup = new Setup<T>(caster, entityType, pos);
         return setup;
 
     }
 
-    static class Setup<T extends Entity> {
+    public static class Setup<T extends Entity> {
 
         Class<T> entityType;
         Finder finder = Finder.RADIUS;
         SearchFor searchFor = SearchFor.ENEMIES;
         LivingEntity caster;
-        boolean excludeCaster = true;
+        boolean forceExcludeCaster = false;
         World world;
         BlockPos pos;
         double radius = 1;
@@ -135,9 +149,10 @@ public class EntityFinder {
 
         double distanceToSearch = 10;
 
-        public Setup(World world, Class<T> entityType, BlockPos pos) {
+        public Setup(LivingEntity caster, Class<T> entityType, BlockPos pos) {
             this.entityType = entityType;
-            this.world = world;
+            this.caster = caster;
+            this.world = caster.world;
             this.pos = pos;
         }
 
@@ -151,7 +166,7 @@ public class EntityFinder {
 
             list = this.searchFor.getMatchingEntities(list, this);
 
-            if (excludeCaster) {
+            if (forceExcludeCaster || !searchFor.includesCaster()) {
                 list.removeIf(x -> x == caster);
             }
 
@@ -169,11 +184,6 @@ public class EntityFinder {
             return this;
         }
 
-        public Setup<T> caster(LivingEntity caster) {
-            this.caster = caster;
-            return this;
-        }
-
         public Setup<T> distance(double distance) {
             this.distanceToSearch = distance;
             return this;
@@ -187,7 +197,7 @@ public class EntityFinder {
         }
 
         public Setup<T> excludeCaster(boolean bool) {
-            this.excludeCaster = bool;
+            this.forceExcludeCaster = bool;
             return this;
         }
 

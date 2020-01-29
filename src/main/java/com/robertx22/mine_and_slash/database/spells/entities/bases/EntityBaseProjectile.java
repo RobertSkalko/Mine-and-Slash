@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.entities.bases;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell.SpellType;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -136,7 +136,9 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
             }
         }
 
-        List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(radius, this, LivingEntity.class);
+        List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
+                .radius(radius)
+                .build();
 
         if (entities.size() > 0) {
 
@@ -148,10 +150,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
                         closest = en;
                     }
                 }
-            }
-
-            if (closest == this.getCaster()) {
-                return null;
             }
 
             return closest;

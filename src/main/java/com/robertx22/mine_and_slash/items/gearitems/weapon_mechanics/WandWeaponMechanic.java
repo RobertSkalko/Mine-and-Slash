@@ -11,14 +11,13 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WandWeaponMechanic extends WeaponMechanic {
 
@@ -48,14 +47,11 @@ public class WandWeaponMechanic extends WeaponMechanic {
     public boolean powerAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
                                UnitData targetUnit, float multi) {
 
-        double RANGE = 1.5F;
+        double RADIUS = 1.5F;
 
-        List<LivingEntity> entities = Utilities.getEntitiesWithinRadius(RANGE, target, LivingEntity.class)
-                .stream()
-                .filter(x -> x.equals(source) == false && x.equals(target) == false)
-                .collect(Collectors.toList());
-
-        // TODO
+        List<LivingEntity> entities = EntityFinder.start(source, LivingEntity.class, target.getPosition())
+                .radius(RADIUS)
+                .build();
 
         int val = (int) unitsource.getUnit().getCreateStat(PhysicalDamage.GUID).val;
         DamageEffect dmg1 = new DamageEffect(
