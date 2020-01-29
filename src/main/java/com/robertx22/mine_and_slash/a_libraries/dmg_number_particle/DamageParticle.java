@@ -75,10 +75,11 @@ public class DamageParticle extends Particle {
             float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get().floatValue();
 
             PlayerEntity p = mc.player;
-
-            Vec3d view = info.getProjectedView();
-
             Vector3d distance = new Vector3d(posX - p.posX, posY - p.posY, posZ - p.posZ);
+
+            double x = locX + distance.x;
+            double y = locY + distance.y - p.getEyeHeight();
+            double z = locZ + distance.z;
 
             if (positionNeedsSetting) {
                 setupPosition(info);
@@ -92,7 +93,7 @@ public class DamageParticle extends Particle {
 
             RenderSystem.depthFunc(519);
 
-            RenderSystem.translated(locX + distance.x, locY + distance.y - p.getEyeHeight(), locZ + distance.z);
+            RenderSystem.translated(x, y, z);
 
             RenderSystem.rotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
             RenderSystem.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);

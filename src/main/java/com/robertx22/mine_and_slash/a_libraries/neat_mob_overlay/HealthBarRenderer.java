@@ -8,6 +8,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.Vector3d;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -130,14 +131,18 @@ public class HealthBarRenderer {
 
                 Vec3d pos = renderManager.info.getProjectedView();
 
-                double renderPosX = pos.getX();
-                double renderPosY = pos.getY();
-                double renderPosZ = pos.getZ();
+                PlayerEntity p = mc.player;
+
+                Vector3d dist = new Vector3d(x - p.posX, y - p.posY, z - p.posZ);
+
+                double renderPosX = pos.getX() - dist.x;
+                double renderPosY = pos.getY() - dist.y;
+                double renderPosZ = pos.getZ() - dist.z;
 
                 GlStateManager.pushMatrix();
-                GlStateManager.translatef((float) (x - renderPosX),
-                                          (float) (y - renderPosY + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove
-                                                  .get()), (float) (z - renderPosZ)
+                GlStateManager.translatef((float) (renderPosX),
+                                          (float) (renderPosY + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove
+                                                  .get()), (float) (renderPosZ)
                 );
 
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);

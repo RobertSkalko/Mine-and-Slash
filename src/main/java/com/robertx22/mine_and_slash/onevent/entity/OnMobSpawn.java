@@ -47,7 +47,7 @@ public class OnMobSpawn {
 
             PlayerEntity nearestPlayer = null;
 
-            if (WorldUtils.isMapWorld(entity.world)) {
+            if (WorldUtils.isMapWorldClass(entity.world)) {
                 nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
             }
 

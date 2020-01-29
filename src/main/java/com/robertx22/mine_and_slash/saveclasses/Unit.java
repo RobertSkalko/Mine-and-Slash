@@ -256,7 +256,7 @@ public class Unit {
         UnitData endata = Load.Unit(entity);
 
         if (nearestPlayer != null) {
-            if (WorldUtils.isMapWorld(entity.world)) {
+            if (WorldUtils.isMapWorldClass(entity.world)) {
                 PlayerMapCap.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
                 endata.setTier(mapdata.getTier());
             }

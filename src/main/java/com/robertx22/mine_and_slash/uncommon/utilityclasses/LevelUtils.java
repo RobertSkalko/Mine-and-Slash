@@ -4,26 +4,22 @@ import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class LevelUtils {
 
-    public static int determineLevel(World world, BlockPos pos) {
+    public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
 
         DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(world);
 
         int lvl = 1;
 
         if (dimConfig.SCALE_MOB_LEVEL_TO_NEAREST_PLAYER) {
-            PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), (double) 3000, EntityPredicates.NOT_SPECTATING);
-
-            if (player != null) {
-                lvl = Load.Unit(player).getLevel();
+            if (nearestPlayer != null) {
+                lvl = Load.Unit(nearestPlayer).getLevel();
             }
-
         } else {
             lvl = determineLevelPerDistanceFromSpawn(world, pos, dimConfig);
         }
@@ -33,8 +29,7 @@ public class LevelUtils {
         return lvl;
     }
 
-    public static int determineLevelPerDistanceFromSpawn(World world, BlockPos pos,
-                                                         DimensionConfig config) {
+    public static int determineLevelPerDistanceFromSpawn(World world, BlockPos pos, DimensionConfig config) {
 
         double distance = world.getSpawnPoint().manhattanDistance(pos);
 
@@ -50,8 +45,7 @@ public class LevelUtils {
 
     }
 
-    public static BlockPos getAreaPosOfLevel(World world, int level,
-                                             DimensionConfig config) {
+    public static BlockPos getAreaPosOfLevel(World world, int level, DimensionConfig config) {
 
         if (level == 1) {
             return world.getSpawnPoint();
