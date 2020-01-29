@@ -18,6 +18,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldInfo;
 
+import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -121,6 +122,7 @@ public class PlayerUtils {
         }
     }
 
+    @Nullable
     public static PlayerEntity nearestPlayer(ServerWorld world, LivingEntity entity) {
 
         Optional<ServerPlayerEntity> player = world.getPlayers()
