@@ -77,7 +77,7 @@ public class EntityFinder {
 
                 AxisAlignedBB aabb = new AxisAlignedBB(x - hori, y - verti, z - hori, x + hori, y + verti, z + hori);
 
-                Utilities.spawnParticlesForTesting(aabb, setup.world); // TODO TEST
+                //Utilities.spawnParticlesForTesting(aabb, setup.world); // TODO TEST
 
                 List<T> entityList = setup.world.getEntitiesWithinAABB(setup.entityType, aabb);
 
@@ -144,6 +144,8 @@ public class EntityFinder {
         double horizontal = 1;
         double vertical = 1;
 
+        boolean setRadius = false;
+
         double distanceToSearch = 10;
 
         public Setup(LivingEntity caster, Class<T> entityType, Vec3d pos) {
@@ -188,6 +190,11 @@ public class EntityFinder {
 
         public Setup<T> height(double rad) {
             this.vertical = rad;
+
+            if (this.setRadius) {
+                throw new RuntimeException("Can't set height in EntityFinder after setting radius!");
+            }
+
             return this;
         }
 
@@ -195,6 +202,7 @@ public class EntityFinder {
             this.radius = rad;
             this.horizontal = rad;
             this.vertical = rad;
+            this.setRadius = true;
             return this;
         }
 

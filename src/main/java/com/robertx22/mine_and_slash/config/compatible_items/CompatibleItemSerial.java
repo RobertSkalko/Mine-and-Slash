@@ -1,9 +1,7 @@
-package com.robertx22.mine_and_slash.config.serialization;
+package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.google.gson.Gson;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
-import com.robertx22.mine_and_slash.config.compatible_items.GenCompItemJsons;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
@@ -64,12 +62,9 @@ public class CompatibleItemSerial implements ISerializedConfig<ConfigItems> {
 
     private void genListOfUniqueItems() {
 
-        String text = "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW THE GUIDS/IDS OF ALL UNIQUE ITEMS\n" + String
-                .join("\n", SlashRegistry.UniqueGears()
-                        .getList()
-                        .stream()
-                        .map(x -> x.GUID())
-                        .collect(Collectors.toList()));
+        String text =
+                "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW THE GUIDS/IDS OF ALL UNIQUE ITEMS\n" + String.join(
+                "\n", SlashRegistry.UniqueGears().getList().stream().map(x -> x.GUID()).collect(Collectors.toList()));
 
         SerializationUtils.makeFileAndDirAndWrite("tutorials", "UniqueItemGUIDS-TUTORIAL.txt", text);
 
@@ -83,8 +78,8 @@ public class CompatibleItemSerial implements ISerializedConfig<ConfigItems> {
             list.add(item.GUID());
         }
 
-        String text = "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW WHAT ITEM TYPES THERE ARE\n" + String
-                .join("\n", list);
+        String text = "// THIS FILE IS A TUTORIAL FILE, IT LETS YOU KNOW WHAT ITEM TYPES THERE ARE\n" + String.join(
+                "\n", list);
 
         SerializationUtils.makeFileAndDirAndWrite("tutorials", "GearTypeGUIDS-TUTORIAL.txt", text);
 

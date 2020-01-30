@@ -1,8 +1,7 @@
-package com.robertx22.mine_and_slash.config.serialization;
+package com.robertx22.mine_and_slash.config.dimension_configs;
 
 import com.google.gson.Gson;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
-import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsContainer;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 
 public class DimensionsSerial implements ISerializedConfig<DimensionsContainer> {

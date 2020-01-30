@@ -8,7 +8,6 @@ public class ModConfig {
     public RarityDropratesConfig RarityWeightConfig;
     public ServerContainer Server;
     public DropRatesContainer DropRates;
-    public StatConfig PlayerBaseStats;
 
     public static final String NAME = "SERVER";
     public static final ForgeConfigSpec spec;
@@ -28,7 +27,6 @@ public class ModConfig {
         RarityWeightConfig = builder.configure(RarityDropratesConfig::new).getLeft();
         Server = builder.configure(ServerContainer::new).getLeft();
         DropRates = builder.configure(DropRatesContainer::new).getLeft();
-        PlayerBaseStats = builder.configure(StatConfig::new).getLeft();
 
         builder.pop();
         //builder.build();

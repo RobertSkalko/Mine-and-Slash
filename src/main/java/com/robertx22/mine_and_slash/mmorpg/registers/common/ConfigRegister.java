@@ -3,10 +3,11 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.config.ClientContainer;
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
-import com.robertx22.mine_and_slash.config.serialization.CompatibleItemSerial;
-import com.robertx22.mine_and_slash.config.serialization.DimensionsSerial;
-import com.robertx22.mine_and_slash.config.serialization.ModDmgWhitelistSerial;
-import com.robertx22.mine_and_slash.config.serialization.ModEntityConfigsSerial;
+import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatSerial;
+import com.robertx22.mine_and_slash.config.compatible_items.CompatibleItemSerial;
+import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsSerial;
+import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistSerial;
+import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigsSerial;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
@@ -27,7 +28,8 @@ public class ConfigRegister {
         COMPATIBLE_ITEM,
         MOD_DMG_WHITELIST,
         MOD_ENTITY,
-        DIMENSIONS
+        DIMENSIONS,
+        BASE_PLAYER_STATS
     }
 
     public static void registerCustomConfigs() {
@@ -36,6 +38,7 @@ public class ConfigRegister {
         CONFIGS.put(Config.MOD_DMG_WHITELIST, ModDmgWhitelistSerial.INSTANCE);
         CONFIGS.put(Config.MOD_ENTITY, ModEntityConfigsSerial.INSTANCE);
         CONFIGS.put(Config.DIMENSIONS, DimensionsSerial.INSTANCE);
+        CONFIGS.put(Config.BASE_PLAYER_STATS, BasePlayerStatSerial.INSTANCE);
 
         unregisterFlaggedEntries(); // call first
 

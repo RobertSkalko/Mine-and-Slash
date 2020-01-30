@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
-import com.robertx22.mine_and_slash.config.serialization.CompatibleItemSerial;
+import com.robertx22.mine_and_slash.config.compatible_items.CompatibleItemSerial;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;

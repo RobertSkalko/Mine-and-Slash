@@ -1,8 +1,7 @@
-package com.robertx22.mine_and_slash.config.serialization;
+package com.robertx22.mine_and_slash.config.mod_dmg_whitelist;
 
 import com.google.gson.Gson;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
-import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 

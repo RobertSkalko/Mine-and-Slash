@@ -1,8 +1,7 @@
-package com.robertx22.mine_and_slash.config.serialization;
+package com.robertx22.mine_and_slash.config.whole_mod_entity_configs;
 
 import com.google.gson.Gson;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigs;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 
 public class ModEntityConfigsSerial implements ISerializedConfig<ModEntityConfigs> {
