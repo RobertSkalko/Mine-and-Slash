@@ -85,3 +85,4 @@ as there were too many keybinds, now guis will have to be accessed from the main
 lowered stat scaling a bit
 staffs and wands now need more energy and less mana.
 added config for logging registry entries like compatible items
+added config for setting specific dimension lvl 1 area in case spawn position is buggy or you have other needs

@@ -4,6 +4,11 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
+
+import java.util.Objects;
 
 public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
 
@@ -39,6 +44,14 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
         this.MAXIMUM_MOB_LEVEL = max;
 
     }
+
+    static class Pos {
+
+    }
+
+    public boolean USE_SPECIFIC_LVL_1_POSITION = false;
+
+    public Vec3i SPECIFIC_LVL_1_POSITION = new Vec3i(0, 0, 0);
 
     public transient String GUID = "";
 
@@ -96,5 +109,23 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
 
     public boolean isMapWorld() {
         return MAP_TIER > 0;
+    }
+
+    public BlockPos getSpawnPos(World world) {
+
+        BlockPos pos = null;
+
+        if (USE_SPECIFIC_LVL_1_POSITION) {
+            pos = new BlockPos(SPECIFIC_LVL_1_POSITION);
+        } else {
+            pos = world.getSpawnPoint();
+        }
+
+        Objects.requireNonNull(pos, "Spawn pos cant be null, setting to 0,0,0!");
+
+        pos = new BlockPos(0, 0, 0);
+
+        return pos;
+
     }
 }

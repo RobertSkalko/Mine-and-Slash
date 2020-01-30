@@ -31,6 +31,8 @@ public class LevelUtils {
 
     public static int determineLevelPerDistanceFromSpawn(World world, BlockPos pos, DimensionConfig config) {
 
+        BlockPos spawnPos = config.getSpawnPos(world);
+
         double distance = world.getSpawnPoint().manhattanDistance(pos);
 
         int lvl = 1;
