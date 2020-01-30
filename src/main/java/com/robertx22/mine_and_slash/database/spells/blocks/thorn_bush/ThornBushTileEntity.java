@@ -26,7 +26,7 @@ public class ThornBushTileEntity extends BaseSpellTileEntity {
     @Override
     public void onTick() {
 
-        float RADIUS = 2F;
+        float RADIUS = 1.5F;
 
         if (this.data.ticksExisted > durationInTicks() == false) {
 
@@ -35,13 +35,13 @@ public class ThornBushTileEntity extends BaseSpellTileEntity {
                 LivingEntity caster = data.getCaster(world);
                 EntityCap.UnitData data = Load.Unit(caster);
 
-                ParticleEnum.sendToClients(pos, world, new ParticlePacketData(pos, ParticleEnum.THORNS).radius(RADIUS)
-                        .motion(new Vec3d(0, 0, 0))
-                        .amount(25));
+                ParticleEnum.sendToClients(
+                        pos, world, new ParticlePacketData(pos, ParticleEnum.THORNS).radius(RADIUS)
+                                .motion(new Vec3d(0, 0, 0))
+                                .amount(25));
 
-                List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, pos)
-                        .radius(RADIUS)
-                        .build();
+                List<LivingEntity> entities = EntityFinder.start(
+                        caster, LivingEntity.class, new Vec3d(pos).add(0.5F, 0, 0.5F)).radius(RADIUS).height(2).build();
 
                 entities.forEach(target -> {
                     SpellDamageEffect dmg = getSetupSpellDamage(target);

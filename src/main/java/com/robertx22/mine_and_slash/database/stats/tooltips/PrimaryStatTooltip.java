@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrimaryStatTooltipUtils implements IStatTooltipType {
+public class PrimaryStatTooltip implements IStatTooltipType {
 
     public ITextComponent NameText(TooltipStatInfo info) {
 

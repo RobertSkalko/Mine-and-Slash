@@ -1,14 +1,15 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
-import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.LightningTotemEntity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightningTotemSpell extends BaseSpell {
+public class LightningTotemSpell extends BaseProjectileSpell {
 
     public LightningTotemSpell() {
 
@@ -37,6 +38,21 @@ public class LightningTotemSpell extends BaseSpell {
     @Override
     public BaseSpell.SpellType getSpellType() {
         return SpellType.LASTING_AOE;
+    }
+
+    @Override
+    public float getShootSpeed() {
+        return 1F;
+    }
+
+    @Override
+    public AbstractArrowEntity newEntity(World world) {
+        return new LightningTotemEntity(world);
+    }
+
+    @Override
+    public SoundEvent getShootSound() {
+        return null;
     }
 
     @Override
@@ -80,18 +96,6 @@ public class LightningTotemSpell extends BaseSpell {
     @Override
     public Words getName() {
         return Words.LightningTotem;
-    }
-
-    @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
-        World world = caster.world;
-
-        LightningTotemEntity en = SpellUtils.getSpellEntity(new LightningTotemEntity(world), this, caster);
-        SpellUtils.setupProjectileForCasting(en, caster, 1);
-
-        caster.world.addEntity(en);
-
-        return true;
     }
 
 }

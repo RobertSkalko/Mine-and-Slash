@@ -49,7 +49,7 @@ public class LightningTotemEntity extends EntityBaseProjectile {
 
     @Override
     public double radius() {
-        return 1F;
+        return 2F;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class LightningTotemEntity extends EntityBaseProjectile {
         if (this.ticksExisted % tickRate == 0) {
             if (!world.isRemote) {
 
-                List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
+                List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPositionVector())
                         .radius(radius())
                         .build();
 

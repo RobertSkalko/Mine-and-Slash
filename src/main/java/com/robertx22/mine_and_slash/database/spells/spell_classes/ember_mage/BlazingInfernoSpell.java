@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 
@@ -82,11 +82,11 @@ public class BlazingInfernoSpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
+    public boolean cast(LivingEntity caster, int ticksInUse) {
 
         PotionEffectUtils.applyToSelf(BlazingInfernoEffect.INSTANCE, caster);
 
-        SoundUtils.playSound(caster, SoundEvents.ITEM_FIRECHARGE_USE, 1, 1);
+        SoundUtils.playSound(caster, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, 1, 1);
 
         return true;
     }

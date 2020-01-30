@@ -76,9 +76,8 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
             EntityCap.UnitData casterData = Load.Unit(ctx.caster);
             EntityCap.UnitData targetData = Load.Unit(ctx.target);
 
-            List<LivingEntity> entities = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.target.getPosition())
-                    .radius(RADIUS)
-                    .build();
+            List<LivingEntity> entities = EntityFinder.start(
+                    ctx.caster, LivingEntity.class, ctx.target.getPositionVector()).radius(RADIUS).build();
 
             entities.forEach(e -> {
                 SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, e, num, casterData, targetData,

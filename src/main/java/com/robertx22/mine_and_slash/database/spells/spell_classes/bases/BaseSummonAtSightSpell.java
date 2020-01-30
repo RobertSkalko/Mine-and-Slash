@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -12,12 +13,17 @@ public abstract class BaseSummonAtSightSpell extends BaseSpell {
     public abstract Entity newEntity(World world);
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
+    public boolean cast(LivingEntity caster, int ticksInUse) {
+
         World world = caster.world;
 
         RayTraceResult ray = caster.pick(10D, 0.0F, false);
 
         Vec3d pos = ray.getHitVec();
+
+        if (caster instanceof PlayerEntity == false) {
+            pos = caster.getPositionVector();
+        }
 
         Entity en = SpellUtils.getSpellEntity(newEntity(world), this, caster);
 

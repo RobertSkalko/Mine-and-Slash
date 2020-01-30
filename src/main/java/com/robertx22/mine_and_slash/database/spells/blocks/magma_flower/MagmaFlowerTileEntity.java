@@ -36,13 +36,16 @@ public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
                 LivingEntity caster = data.getCaster(world);
                 EntityCap.UnitData data = Load.Unit(caster);
 
-                ParticleEnum.sendToClients(pos, world, new ParticlePacketData(pos, ParticleEnum.AOE).radius(RADIUS)
-                        .motion(new Vec3d(0, 0, 0))
-                        .type(ParticleTypes.FLAME)
-                        .amount(15));
+                ParticleEnum.sendToClients(
+                        pos, world, new ParticlePacketData(pos, ParticleEnum.AOE).radius(RADIUS)
+                                .motion(new Vec3d(0, 0, 0))
+                                .type(ParticleTypes.FLAME)
+                                .amount(15));
 
-                List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, pos)
+                List<LivingEntity> entities = EntityFinder.start(
+                        caster, LivingEntity.class, new Vec3d(getPos()).add(0.5F, 0, 0.5F))
                         .radius(RADIUS)
+                        .height(2)
                         .build();
 
                 entities.forEach(x -> {

@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.database.stats.tooltips;
 
 public enum StatTooltipType {
 
-    NORMAL(new NormalStatTooltipUtils()),
-    PRIMARY_STATS(new PrimaryStatTooltipUtils());
+    NORMAL(new NormalStatTooltip()),
+    PRIMARY_STATS(new PrimaryStatTooltip());
 
     StatTooltipType(IStatTooltipType impl) {
         this.impl = impl;

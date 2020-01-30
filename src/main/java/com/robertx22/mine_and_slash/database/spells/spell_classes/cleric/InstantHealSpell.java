@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -74,7 +74,7 @@ public class InstantHealSpell extends BaseSpellHeal {
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
+    public boolean cast(LivingEntity caster, int ticksInUse) {
 
         try {
             World world = caster.world;

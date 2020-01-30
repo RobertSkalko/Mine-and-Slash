@@ -59,9 +59,8 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
                 if (!this.world.isRemote) {
 
-                    List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
-                            .radius(radius())
-                            .build();
+                    List<LivingEntity> entities = EntityFinder.start(
+                            getCaster(), LivingEntity.class, getPositionVector()).radius(radius()).build();
 
                     for (LivingEntity target : entities) {
 

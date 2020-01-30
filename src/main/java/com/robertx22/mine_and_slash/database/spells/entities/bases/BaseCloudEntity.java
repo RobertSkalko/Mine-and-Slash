@@ -43,9 +43,8 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
                 if (!this.world.isRemote) {
 
-                    List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
-                            .radius(radius())
-                            .build();
+                    List<LivingEntity> entities = EntityFinder.start(
+                            getCaster(), LivingEntity.class, getPositionVector()).radius(radius()).build();
 
                     entities.forEach(x -> onHit(x));
 

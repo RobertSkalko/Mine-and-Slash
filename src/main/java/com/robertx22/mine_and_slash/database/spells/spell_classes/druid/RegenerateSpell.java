@@ -1,25 +1,25 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseBuffSpell;
+import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.RegenerateEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegenerateSpell extends BaseSpellHeal {
+public class RegenerateSpell extends BaseBuffSpell {
 
     @Override
     public int useTimeTicks() {
@@ -42,6 +42,11 @@ public class RegenerateSpell extends BaseSpellHeal {
     }
 
     @Override
+    public SpellType getSpellType() {
+        return null;
+    }
+
+    @Override
     public int getManaCost() {
         return 50;
     }
@@ -49,6 +54,11 @@ public class RegenerateSpell extends BaseSpellHeal {
     @Override
     public SpellCalcData getCalculation() {
         return RegenerateEffect.CALC;
+    }
+
+    @Override
+    public Elements getElement() {
+        return null;
     }
 
     @Override
@@ -70,25 +80,19 @@ public class RegenerateSpell extends BaseSpellHeal {
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
-        try {
-            World world = caster.world;
-
-            if (!world.isRemote) {
-
-                SoundUtils.playSound(caster, SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION, 1, 1);
-
-                PotionEffectUtils.applyToSelf(RegenerateEffect.INSTANCE, caster);
-
-            } else {
-                ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, caster, 10);
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void spawnParticles(LivingEntity caster) {
+        if (caster.world.isRemote) {
+            ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, caster, 10);
         }
-
-        return true;
     }
 
+    @Override
+    public SoundEvent getCastSound() {
+        return SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION;
+    }
+
+    @Override
+    public BasePotionEffect getEffect() {
+        return RegenerateEffect.INSTANCE;
+    }
 }

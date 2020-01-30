@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NormalStatTooltipUtils implements IStatTooltipType {
+public class NormalStatTooltip implements IStatTooltipType {
 
     @Override
     public List<ITextComponent> getTooltipList(TooltipStatInfo info) {

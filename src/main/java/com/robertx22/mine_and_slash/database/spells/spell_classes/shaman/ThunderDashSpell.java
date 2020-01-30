@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SEntityVelocityPacket;
 import net.minecraft.util.math.MathHelper;
@@ -101,19 +100,21 @@ public class ThunderDashSpell extends BaseSpell {
                          (double) (-MathHelper.cos(caster.rotationYaw * distance))
         );
 
-        ((ServerPlayerEntity) caster).connection.sendPacket(new SEntityVelocityPacket(caster));
-        caster.velocityChanged = false;
+        if (caster instanceof ServerPlayerEntity) {
+            ((ServerPlayerEntity) caster).connection.sendPacket(new SEntityVelocityPacket(caster));
+            caster.velocityChanged = false;
+        }
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
+    public boolean cast(LivingEntity caster, int ticksInUse) {
         World world = caster.world;
 
         dashForward(caster);
 
         int num = getCalculation().getCalculatedValue(Load.Unit(caster));
 
-        List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPosition())
+        List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
                 .radius(2)
                 .distance(10)
                 .finder(EntityFinder.Finder.IN_FRONT)

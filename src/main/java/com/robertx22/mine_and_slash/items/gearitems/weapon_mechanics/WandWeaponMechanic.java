@@ -49,7 +49,7 @@ public class WandWeaponMechanic extends WeaponMechanic {
 
         double RADIUS = 1.5F;
 
-        List<LivingEntity> entities = EntityFinder.start(source, LivingEntity.class, target.getPosition())
+        List<LivingEntity> entities = EntityFinder.start(source, LivingEntity.class, target.getPositionVector())
                 .radius(RADIUS)
                 .build();
 

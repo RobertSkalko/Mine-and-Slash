@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
@@ -63,7 +63,8 @@ public class EmptySpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
+    public boolean cast(LivingEntity caster, int ticksInUse) {
         return false;
     }
+
 }

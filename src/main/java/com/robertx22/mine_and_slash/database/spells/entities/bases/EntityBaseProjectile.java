@@ -136,7 +136,7 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
             }
         }
 
-        List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
+        List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPositionVector())
                 .radius(radius)
                 .build();
 
@@ -187,22 +187,23 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         }
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
     @Override
     public void tick() {
-        super.tick();
+        try {
+            super.tick();
 
-        if (this.inGround) {
-            ticksInGround++;
-        } else {
-            ticksInAir++;
-        }
+            if (this.inGround) {
+                ticksInGround++;
+            } else {
+                ticksInAir++;
+            }
 
-        if (this.ticksExisted >= this.getDeathTime()) {
-            onExpireProc(this.getCaster());
-            this.remove();
+            if (this.ticksExisted >= this.getDeathTime()) {
+                onExpireProc(this.getCaster());
+                this.remove();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

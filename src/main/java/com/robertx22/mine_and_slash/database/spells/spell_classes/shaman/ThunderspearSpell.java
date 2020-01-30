@@ -1,25 +1,24 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
-import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThunderspearSpell extends BaseSpell {
+public class ThunderspearSpell extends BaseProjectileSpell {
 
     public ThunderspearSpell() {
 
@@ -40,6 +39,16 @@ public class ThunderspearSpell extends BaseSpell {
     @Override
     public BaseSpell.SpellType getSpellType() {
         return SpellType.Single_Target_Projectile;
+    }
+
+    @Override
+    public AbstractArrowEntity newEntity(World world) {
+        return new ThunderspearEntity(world);
+    }
+
+    @Override
+    public SoundEvent getShootSound() {
+        return SoundEvents.ITEM_TRIDENT_THROW;
     }
 
     @Override
@@ -85,21 +94,4 @@ public class ThunderspearSpell extends BaseSpell {
         return Words.ThunderSpear;
     }
 
-    @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
-        World world = caster.world;
-
-        Vec3d pos = caster.getPositionVector();
-
-        ThunderspearEntity en = SpellUtils.getSpellEntity(new ThunderspearEntity(world), this, caster);
-
-        SpellUtils.setupProjectileForCasting(en, caster, 2);
-
-        caster.world.addEntity(en);
-
-        caster.world.playMovingSound(
-                (PlayerEntity) null, en, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
-
-        return true;
-    }
 }

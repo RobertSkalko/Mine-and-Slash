@@ -4,9 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -70,20 +68,19 @@ public class EntityFinder {
             @Override
             public <T extends Entity> List<T> getEntities(Setup setup) {
 
-                float x = setup.pos.getX();
-                float y = setup.pos.getY();
-                float z = setup.pos.getZ();
+                double x = setup.pos.getX();
+                double y = setup.pos.getY();
+                double z = setup.pos.getZ();
 
-                double radius = setup.radius;
+                double hori = setup.horizontal;
+                double verti = setup.vertical;
 
-                AxisAlignedBB aabb = new AxisAlignedBB(
-                        x - radius, y - radius, z - radius, x + radius, y + radius, z + radius);
+                AxisAlignedBB aabb = new AxisAlignedBB(x - hori, y - verti, z - hori, x + hori, y + verti, z + hori);
+
+                Utilities.spawnParticlesForTesting(aabb, setup.world); // TODO TEST
+
                 List<T> entityList = setup.world.getEntitiesWithinAABB(setup.entityType, aabb);
-                for (int i = 0; i < entityList.size(); i++) {
-                    if (entityList.get(i).getPosition().manhattanDistance(new Vec3i(x, y, z)) > radius) {
-                        entityList.remove(i);
-                    }
-                }
+
                 return entityList;
             }
         },
@@ -128,7 +125,7 @@ public class EntityFinder {
 
     }
 
-    public static <T extends Entity> Setup<T> start(LivingEntity caster, Class<T> entityType, BlockPos pos) {
+    public static <T extends Entity> Setup<T> start(LivingEntity caster, Class<T> entityType, Vec3d pos) {
         Setup<T> setup = new Setup<T>(caster, entityType, pos);
         return setup;
 
@@ -142,14 +139,14 @@ public class EntityFinder {
         LivingEntity caster;
         boolean forceExcludeCaster = false;
         World world;
-        BlockPos pos;
+        Vec3d pos;
         double radius = 1;
         double horizontal = 1;
         double vertical = 1;
 
         double distanceToSearch = 10;
 
-        public Setup(LivingEntity caster, Class<T> entityType, BlockPos pos) {
+        public Setup(LivingEntity caster, Class<T> entityType, Vec3d pos) {
             this.entityType = entityType;
             this.caster = caster;
             this.world = caster.world;
@@ -186,6 +183,11 @@ public class EntityFinder {
 
         public Setup<T> distance(double distance) {
             this.distanceToSearch = distance;
+            return this;
+        }
+
+        public Setup<T> height(double rad) {
+            this.vertical = rad;
             return this;
         }
 

@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.proj.SeedEntity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSeedSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.IBlockSpawner;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
@@ -15,18 +14,14 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
+public class MagmaFlowerSpell extends BaseSeedSpell implements IBlockSpawner {
 
     public MagmaFlowerSpell() {
 
@@ -90,20 +85,6 @@ public class MagmaFlowerSpell extends BaseSpell implements IBlockSpawner {
     @Override
     public Words getName() {
         return Words.MagmaFlower;
-    }
-
-    @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
-
-        World world = caster.world;
-        Vec3d pos = caster.getPositionVector();
-        SeedEntity en = SpellUtils.getSpellEntity(new SeedEntity(world), this, caster);
-        SpellUtils.setupProjectileForCasting(en, caster, 0.5F);
-        caster.world.addEntity(en);
-
-        caster.world.playMovingSound(null, en, SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
-
-        return true;
     }
 
     @Override

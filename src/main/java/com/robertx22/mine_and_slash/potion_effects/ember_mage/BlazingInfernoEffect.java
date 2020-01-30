@@ -51,7 +51,7 @@ public class BlazingInfernoEffect extends BasePotionEffect {
 
             int num = CALC.getCalculatedValue(Load.Unit(entity));
 
-            List<LivingEntity> entities = EntityFinder.start(entity, LivingEntity.class, entity.getPosition())
+            List<LivingEntity> entities = EntityFinder.start(entity, LivingEntity.class, entity.getPositionVector())
                     .radius(RADIUS)
                     .build();
 

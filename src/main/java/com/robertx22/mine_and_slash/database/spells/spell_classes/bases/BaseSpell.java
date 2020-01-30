@@ -23,6 +23,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -123,9 +124,15 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return 1000;
     }
 
-    public abstract boolean cast(PlayerEntity caster, int ticksInUse);
+    public abstract boolean cast(LivingEntity caster, int ticksInUse);
 
-    public boolean CanCast(PlayerEntity caster) {
+    public boolean CanCast(LivingEntity caster) {
+
+        if (caster instanceof PlayerEntity == false) {
+            return true;
+        }
+
+        PlayerEntity player = (PlayerEntity) caster;
 
         if (!caster.world.isRemote) {
 

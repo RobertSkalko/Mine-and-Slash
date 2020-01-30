@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -85,11 +84,11 @@ public class GorgonsGazeSpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(PlayerEntity caster, int ticksInUse) {
+    public boolean cast(LivingEntity caster, int ticksInUse) {
 
         World world = caster.world;
 
-        EntityFinder.start(caster, LivingEntity.class, caster.getPosition())
+        EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
                 .radius(3)
                 .distance(15)
                 .finder(EntityFinder.Finder.IN_FRONT)

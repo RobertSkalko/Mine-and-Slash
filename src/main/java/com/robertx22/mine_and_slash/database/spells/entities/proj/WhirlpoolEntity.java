@@ -70,8 +70,13 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
         if (this.ticksExisted % tickRate == 0) {
             if (!world.isRemote) {
+                LivingEntity caster = getCaster();
 
-                List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosition())
+                if (caster == null) {
+                    return;
+                }
+
+                List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPositionVector())
                         .radius(radius())
                         .build();
 
@@ -79,16 +84,16 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
                     DamageEffect dmg = dealSpellDamageTo(x, new Options().knockbacks(false).activatesEffect(false));
 
-                    if (Synergies.WHIRLPOOL_FROST_DMG.has(getCaster())) {
-                        Synergies.WHIRLPOOL_FROST_DMG.tryActivate(new BeforeDamageContext(getCaster(), x, dmg));
+                    if (Synergies.WHIRLPOOL_FROST_DMG.has(caster)) {
+                        Synergies.WHIRLPOOL_FROST_DMG.tryActivate(new BeforeDamageContext(caster, x, dmg));
                     }
 
                     dmg.Activate();
 
                     x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, tickRate, 10));
 
-                    if (Synergies.WHIRLPOOL_SHIVER.has(getCaster())) {
-                        Synergies.WHIRLPOOL_SHIVER.tryActivate(new CasterTargetContext(getCaster(), x));
+                    if (Synergies.WHIRLPOOL_SHIVER.has(caster)) {
+                        Synergies.WHIRLPOOL_SHIVER.tryActivate(new CasterTargetContext(caster, x));
                     }
 
                     SoundUtils.playSound(this, SoundEvents.ENTITY_DROWNED_HURT_WATER, 1, 1);
