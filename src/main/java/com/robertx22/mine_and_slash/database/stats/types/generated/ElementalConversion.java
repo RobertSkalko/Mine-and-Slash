@@ -45,9 +45,9 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
 
         List<Stat> stats = new ArrayList<>();
 
-        for (Elements from : Elements.getAllElementals()) {
+        for (Elements from : Elements.getAllSingleElementals()) {
             if (from != Elements.Physical) {
-                for (Elements to : Elements.getAllElementals()) {
+                for (Elements to : Elements.getAllSingleElementals()) {
                     if (to != Elements.Physical && to != from) {
                         ElementalConversion stat = new ElementalConversion(from, to);
                         stats.add(stat);
@@ -65,7 +65,7 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
 
     @Override
     public String locDescForLangFile() {
-        return "Conversion adds a % of one to the other";
+        return "Conversion adds a percent of one to the other";
     }
 
     @Override

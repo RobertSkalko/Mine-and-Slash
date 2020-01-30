@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAffinity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 public class ElementalAffinityFlat extends ElementalStatMod {
 
@@ -20,8 +20,8 @@ public class ElementalAffinityFlat extends ElementalStatMod {
     }
 
     @Override
-    public Stat GetBaseStat() {
-        return new ElementalAffinity(element);
+    public MapWrapper<Elements, ElementalAffinity> getBaseStatMap() {
+        return ElementalAffinity.MAP;
     }
 
     @Override

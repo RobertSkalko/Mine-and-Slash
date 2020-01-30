@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.shields;
 
+import com.robertx22.mine_and_slash.database.items.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
@@ -10,15 +11,13 @@ import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffin
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUnique> {
+public class ShieldElemental extends BaseUniqueShield implements IElementalUnique {
 
     public Elements element;
 
@@ -69,9 +68,7 @@ public class ShieldElemental extends BaseUniqueShield implements IGenerated<IUni
     }
 
     @Override
-    public List<IUnique> generateAllPossibleStatVariations() {
-        List<IUnique> list = new ArrayList<>();
-        Elements.getAllElementals().forEach(x -> list.add(new ShieldElemental(x)));
-        return list;
+    public IUnique newInstance(Elements element) {
+        return new ShieldElemental(element);
     }
 }

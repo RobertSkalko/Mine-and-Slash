@@ -7,11 +7,11 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IElementalGenerated;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ElementalStat extends Stat implements IElementalGenerated<Stat> {
+public abstract class SingleElementalStat extends Stat implements IElementalGenerated<Stat> {
 
     public Elements element;
 
-    public ElementalStat(Elements element) {
+    public SingleElementalStat(Elements element) {
         this.element = element;
 
     }
@@ -26,7 +26,7 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Elements.getAllExcludingPhysical().forEach(x -> list.add(newGeneratedInstance(x)));
+        Elements.getAllSingleElementals().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
 
     }

@@ -8,7 +8,6 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.Vector3d;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -133,11 +132,11 @@ public class HealthBarRenderer {
 
                 PlayerEntity p = mc.player;
 
-                Vector3d dist = new Vector3d(x - p.posX, y - p.posY, z - p.posZ);
+                Vec3d dist = p.getPositionVector().add(en.getPositionVector()).subtract(pos);
 
-                double renderPosX = pos.getX() - dist.x;
-                double renderPosY = pos.getY() - dist.y;
-                double renderPosZ = pos.getZ() - dist.z;
+                double renderPosX = dist.x;
+                double renderPosY = dist.y;
+                double renderPosZ = dist.z;
 
                 GlStateManager.pushMatrix();
                 GlStateManager.translatef((float) (renderPosX),

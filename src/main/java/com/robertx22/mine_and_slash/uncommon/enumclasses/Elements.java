@@ -50,14 +50,19 @@ public enum Elements implements IColor {
     public TextFormatting format;
 
     private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Nature, Thunder);
-    private static List<Elements> allElementals = Arrays.asList(Fire, Water, Nature, Thunder);
+    private static List<Elements> allExcludingPhys = Arrays.asList(Fire, Water, Nature, Thunder, Elemental);
+    private static List<Elements> allSingleElementals = Arrays.asList(Fire, Water, Nature, Thunder);
 
-    public static List<Elements> getAllElementals() {
-        return allElementals;
+    public static List<Elements> getAllSingleElementals() {
+        return allSingleElementals;
     }
 
     public static List<Elements> getAllIncludingPhysical() {
         return allIncludingPhys;
+    }
+
+    public static List<Elements> getAllExcludingPhysical() {
+        return allExcludingPhys;
     }
 
     @Override

@@ -20,7 +20,8 @@ public class SteadyHand extends BaseGameChangerTrait implements IStatEffects, IA
 
     @Override
     public String locDescForLangFile() {
-        return "Your crit chance and crit dmg is 0. All your attacks deal " + DMG_INCREASE_PERCENT + "% more damage.";
+        return "Your crit chance and crit dmg is 0. All your attacks deal " + DMG_INCREASE_PERCENT + " percent more " +
+                "damage.";
     }
 
     @Override

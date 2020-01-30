@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 public class ElementalSpellDamageFlat extends ElementalStatMod {
 
@@ -19,8 +19,8 @@ public class ElementalSpellDamageFlat extends ElementalStatMod {
     }
 
     @Override
-    public Stat GetBaseStat() {
-        return new ElementalSpellDamage(this.element);
+    public MapWrapper<Elements, ElementalSpellDamage> getBaseStatMap() {
+        return ElementalSpellDamage.MAP;
     }
 
     @Override

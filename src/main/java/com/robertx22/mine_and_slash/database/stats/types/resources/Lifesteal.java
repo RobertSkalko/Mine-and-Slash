@@ -17,7 +17,7 @@ public class Lifesteal extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "% of basic attack DMG added to health";
+        return "Percent of basic attack DMG added to health";
     }
 
     @Override

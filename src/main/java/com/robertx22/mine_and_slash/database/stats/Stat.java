@@ -16,8 +16,10 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -26,6 +28,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, IAutoLocDesc, ISlashRegistryEntry {
@@ -62,6 +65,29 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     @Override
     public int Tier() {
         return 0;
+    }
+
+    public List<ITextComponent> getCutDescTooltip() {
+        List<ITextComponent> list = new ArrayList<>();
+
+        List<ITextComponent> cut = TooltipUtils.cutIfTooLong(locDesc());
+
+        for (int i = 0; i < cut.size(); i++) {
+
+            ITextComponent comp = Styles.BLUECOMP();
+            if (i == 0) {
+                comp.appendText(" [");
+            }
+            comp.appendSibling(cut.get(i));
+
+            if (i == cut.size() - 1) {
+                comp.appendText("]");
+            }
+
+            list.add(comp);
+
+        }
+        return list;
     }
 
     @Override
@@ -174,12 +200,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     @OnlyIn(Dist.CLIENT)
     public List<ITextComponent> getTooltipList(TooltipStatInfo info) {
-
-        if (info.tooltipInfo.usePrettyStatSymbols) {
-            return PrimaryStatTooltipUtils.getTooltipList(info);
-        } else {
-            return NormalStatTooltipUtils.getTooltipList(info);
-        }
+        return info.tooltipInfo.statTooltipType.impl.getTooltipList(info);
     }
 
     public void CalcVal(StatData data, UnitData Source) {

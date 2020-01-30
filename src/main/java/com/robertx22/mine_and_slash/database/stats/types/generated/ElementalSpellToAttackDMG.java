@@ -2,16 +2,26 @@ package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.SpellToBasicDamageEffect;
-import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
+import com.robertx22.mine_and_slash.database.stats.types.SingleElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEffects {
+public class ElementalSpellToAttackDMG extends SingleElementalStat implements IStatEffects {
+
+    public static MapWrapper<Elements, ElementalSpellToAttackDMG> MAP = new MapWrapper();
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = super.generateAllPossibleStatVariations();
+        list.forEach(x -> MAP.put(x.getElement(), (ElementalSpellToAttackDMG) x));
+        return list;
+
+    }
 
     public ElementalSpellToAttackDMG(Elements element) {
         super(element);
@@ -24,7 +34,7 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
 
     @Override
     public Stat newGeneratedInstance(Elements element) {
-        return new ElementalAttackDamage(element);
+        return new ElementalSpellToAttackDMG(element);
     }
 
     @Override
@@ -34,7 +44,7 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
 
     @Override
     public String locDescForLangFile() {
-        return "Adds a % of your spell DMG as DMG to your every weapon hit";
+        return "Adds a percent of your spell DMG as DMG to your every weapon hit";
     }
 
     @Override
@@ -69,13 +79,6 @@ public class ElementalSpellToAttackDMG extends ElementalStat implements IStatEff
     @Override
     public String GUID() {
         return getElement().name() + " Spell to Attack DMG";
-    }
-
-    @Override
-    public List<Stat> generateAllPossibleStatVariations() {
-        List<Stat> list = new ArrayList<>();
-        Elements.getAllElementals().forEach(x -> list.add(newGeneratedInstance(x)));
-        return list;
     }
 
 }

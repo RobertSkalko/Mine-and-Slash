@@ -2,16 +2,25 @@ package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.ElementalAttackDamageEffect;
-import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
+import com.robertx22.mine_and_slash.database.stats.types.SingleElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ElementalAttackDamage extends ElementalStat implements IStatEffects {
+public class ElementalAttackDamage extends SingleElementalStat implements IStatEffects {
+    public static MapWrapper<Elements, ElementalAttackDamage> MAP = new MapWrapper();
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = super.generateAllPossibleStatVariations();
+        list.forEach(x -> MAP.put(x.getElement(), (ElementalAttackDamage) x));
+        return list;
+
+    }
 
     @Override
     public Stat.StatGroup statGroup() {
@@ -25,7 +34,7 @@ public class ElementalAttackDamage extends ElementalStat implements IStatEffects
 
     @Override
     public Stat newGeneratedInstance(Elements element) {
-        return new ElementalSpellToAttackDMG(element);
+        return new ElementalAttackDamage(element);
     }
 
     @Override
@@ -66,13 +75,6 @@ public class ElementalAttackDamage extends ElementalStat implements IStatEffects
     @Override
     public String GUID() {
         return "Attack " + getElement().name() + " Damage";
-    }
-
-    @Override
-    public List<Stat> generateAllPossibleStatVariations() {
-        List<Stat> list = new ArrayList<>();
-        Elements.getAllElementals().forEach(x -> list.add(newGeneratedInstance(x)));
-        return list;
     }
 
 }

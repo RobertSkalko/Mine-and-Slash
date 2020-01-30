@@ -10,11 +10,21 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class ElementalAffinity extends ElementalStat implements ICoreStat {
+    public static MapWrapper<Elements, ElementalAffinity> MAP = new MapWrapper();
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = super.generateAllPossibleStatVariations();
+        list.forEach(x -> MAP.put(x.getElement(), (ElementalAffinity) x));
+        return list;
+
+    }
 
     public ElementalAffinity(Elements element) {
         super(element);

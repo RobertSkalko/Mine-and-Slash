@@ -1,16 +1,16 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
+import com.robertx22.mine_and_slash.database.stats.types.SingleElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-import java.util.HashMap;
 import java.util.List;
 
-public class ElementalSpellDamage extends ElementalStat {
+public class ElementalSpellDamage extends SingleElementalStat {
 
-    public static HashMap<Elements, ElementalSpellDamage> MAP = new HashMap<>();
+    public static MapWrapper<Elements, ElementalSpellDamage> MAP = new MapWrapper<>();
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {

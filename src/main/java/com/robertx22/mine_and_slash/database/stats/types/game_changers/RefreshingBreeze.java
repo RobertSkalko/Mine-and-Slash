@@ -15,7 +15,7 @@ public class RefreshingBreeze extends BaseGameChangerTrait implements IStatEffec
 
     @Override
     public String locDescForLangFile() {
-        return "Dodging restores " + PERCENT + "% of your energy regen";
+        return "Dodging restores " + PERCENT + " percent of your energy regen";
     }
 
     @Override

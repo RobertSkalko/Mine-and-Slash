@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -53,8 +52,7 @@ public abstract class BaseTrait extends Stat {
     public ITextComponent TraitText(TooltipStatInfo info) {
         Stat basestat = info.stat;
         ITextComponent comp = Styles.GREENCOMP()
-                .appendSibling(new StringTextComponent(" " + SYMBOL + " ").appendSibling(basestat
-                        .locName()));
+                .appendSibling(new StringTextComponent(" " + SYMBOL + " ").appendSibling(basestat.locName()));
 
         if (basestat instanceof INameSuffix) {
             INameSuffix suffix = (INameSuffix) basestat;
@@ -81,23 +79,21 @@ public abstract class BaseTrait extends Stat {
 
         list.add(text);
 
-        if (Screen.hasShiftDown()) {
+        if (info.useInDepthStats()) {
             if (basestat instanceof Trait) {
                 Trait trait = (Trait) basestat;
 
                 for (StatModData moddata : trait.getStatsMods()) {
-                    TooltipInfo newinfo = info.tooltipInfo.withLevel(info.tooltipInfo.unitdata
-                            .getLevel());
+                    TooltipInfo newinfo = info.tooltipInfo.withLevel(info.tooltipInfo.unitdata.getLevel());
                     newinfo.minmax = new MinMax(trait.percent(), trait.percent());
                     list.addAll(moddata.GetTooltipString(newinfo));
                 }
             }
         }
 
-        if (Screen.hasAltDown()) {
+        if (info.shouldShowDescriptions()) {
             if (locDescForLangFile().isEmpty() == false) {
-                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(this
-                        .locDesc()).appendText("]"));
+                list.addAll(info.stat.getCutDescTooltip());
             }
 
         }

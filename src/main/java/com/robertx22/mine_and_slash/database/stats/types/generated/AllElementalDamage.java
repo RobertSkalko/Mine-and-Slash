@@ -7,8 +7,21 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
+
+import java.util.List;
 
 public class AllElementalDamage extends ElementalStat implements IStatEffects {
+
+    public static MapWrapper<Elements, AllElementalDamage> MAP = new MapWrapper();
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = super.generateAllPossibleStatVariations();
+        list.forEach(x -> MAP.put(x.getElement(), (AllElementalDamage) x));
+        return list;
+
+    }
 
     public AllElementalDamage(Elements element) {
         super(element);

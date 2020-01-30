@@ -57,9 +57,9 @@ public class ElementalConversionFlat extends StatMod implements IGenerated<StatM
 
         List<StatMod> stats = new ArrayList<>();
 
-        for (Elements from : Elements.getAllElementals()) {
+        for (Elements from : Elements.getAllSingleElementals()) {
             if (from != Elements.Physical) {
-                for (Elements to : Elements.getAllElementals()) {
+                for (Elements to : Elements.getAllSingleElementals()) {
                     if (to != Elements.Physical && to != from) {
                         ElementalConversionFlat stat = new ElementalConversionFlat(from, to);
                         stats.add(stat);

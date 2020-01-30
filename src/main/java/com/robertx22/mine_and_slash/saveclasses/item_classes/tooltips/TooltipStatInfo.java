@@ -36,6 +36,7 @@ public class TooltipStatInfo implements ITooltipList {
         this.type = data.getStatMod().Type();
         this.tooltipInfo = info;
         this.statRange = new StatRangeContext(data, info.minmax, info.level);
+
     }
 
     public TooltipStatInfo(ExactStatData data, TooltipInfo info) {
@@ -44,6 +45,14 @@ public class TooltipStatInfo implements ITooltipList {
         this.type = data.getType();
         this.tooltipInfo = info;
 
+    }
+
+    public boolean shouldShowDescriptions() {
+        return tooltipInfo.shouldShowDescriptions();
+    }
+
+    public boolean useInDepthStats() {
+        return tooltipInfo.useInDepthStats();
     }
 
     public void combine(TooltipStatInfo another) {
@@ -69,16 +78,13 @@ public class TooltipStatInfo implements ITooltipList {
         return stat.getTooltipList(this);
     }
 
-    public static List<TooltipStatInfo> mergeDuplicates(
-            List<TooltipStatInfo> duplicates) {
+    public static List<TooltipStatInfo> mergeDuplicates(List<TooltipStatInfo> duplicates) {
 
         List<TooltipStatInfo> list = new ArrayList<>();
 
         for (TooltipStatInfo duplicate : duplicates) {
 
-            Optional<TooltipStatInfo> found = list.stream()
-                    .filter(x -> x.canBeCombined(duplicate))
-                    .findFirst();
+            Optional<TooltipStatInfo> found = list.stream().filter(x -> x.canBeCombined(duplicate)).findFirst();
 
             if (found.isPresent()) {
                 found.get().combine(duplicate);

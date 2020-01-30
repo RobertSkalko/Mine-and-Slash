@@ -69,8 +69,9 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
         minecraft.getTextureManager().bindTexture(texture);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        this.blit(minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2, minecraft.mainWindow
-                .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY);
+        this.blit(minecraft.mainWindow.getScaledWidth() / 2 - this.sizeX / 2,
+                  minecraft.mainWindow.getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
+        );
 
         renderStats();
 
@@ -102,9 +103,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
     public String getStatString(Stat stat, EntityCap.UnitData data) {
 
-        String str = stat.translate() + ": " + data.getUnit()
-                .getCreateStat(stat)
-                .formattedValue();
+        String str = stat.translate() + ": " + data.getUnit().getCreateStat(stat).formattedValue();
 
         if (stat.IsPercent()) {
             str += '%';
@@ -113,9 +112,8 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
         if (stat instanceof IUsableStat) {
             IUsableStat usable = (IUsableStat) stat;
 
-            String value = NumberUtils.formatNumber(usable.GetUsableValue(data.getLevel(), (int) data
-                    .getUnit()
-                    .getCreateStat(stat).val) * 100);
+            String value = NumberUtils.formatNumber(
+                    usable.GetUsableValue(data.getLevel(), (int) data.getUnit().getCreateStat(stat).val) * 100);
 
             str += " (" + value + "%)";
 
@@ -214,8 +212,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
                 .getAll()
                 .values()
                 .stream()
-                .filter(stat -> stat.IsShownOnStatGui() && stat.statGroup()
-                        .equals(statgroup))
+                .filter(stat -> stat.IsShownOnStatGui() && stat.statGroup().equals(statgroup))
                 .collect(Collectors.toList());
 
         Collections.sort(statlist, Comparator.comparing(stat -> stat.GUID()));
@@ -273,8 +270,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
         Stat stat;
         EntityCap.UnitData unitdata;
 
-        public StatButton(EntityCap.UnitData unitdata, Stat statData, int xPos,
-                          int yPos) {
+        public StatButton(EntityCap.UnitData unitdata, Stat statData, int xPos, int yPos) {
             super(xPos, yPos, button_sizeX, button_sizeY, 0, 0, button_sizeY, BUTTON_TEX, (button) -> {
             });
 
@@ -289,12 +285,12 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
                 List<ITextComponent> tooltip = new ArrayList<>();
 
-                tooltip.add(Styles.BLUECOMP().appendSibling(stat.locName()));
+                tooltip.add(Styles.GREENCOMP().appendSibling(stat.locName()));
 
-                tooltip.add(Styles.GREENCOMP().appendSibling(stat.locDesc()));
+                tooltip.addAll(stat.getCutDescTooltip());
 
-                StatOverviewScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y, Minecraft
-                        .getInstance().fontRenderer);
+                StatOverviewScreen.this.renderTooltip(
+                        TooltipUtils.compsToStrings(tooltip), x, y, Minecraft.getInstance().fontRenderer);
 
             }
         }
@@ -323,8 +319,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
                 RenderUtils.renderIcon(res, getIconX(), getIconY());
 
-                StatOverviewScreen.this.drawString(font, str, this.x, this.y, TextFormatting.GOLD
-                        .getColor());
+                StatOverviewScreen.this.drawString(font, str, this.x, this.y, TextFormatting.GOLD.getColor());
             }
         }
 

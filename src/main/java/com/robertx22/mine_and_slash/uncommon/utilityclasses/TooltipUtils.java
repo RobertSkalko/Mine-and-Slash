@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -7,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataIt
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -58,6 +60,12 @@ public class TooltipUtils {
 
     }
 
+    public static List<ITextComponent> cutIfTooLong(ITextComponent comp) {
+        List<String> stringList = cutIfTooLong(CLOC.translate(comp));
+        return stringList.stream().map(x -> new SText(x)).collect(Collectors.toList());
+
+    }
+
     public static List<String> cutIfTooLong(String str) {
 
         List<String> list = new ArrayList<>();
@@ -68,7 +76,7 @@ public class TooltipUtils {
 
             if (i == str.length() - 1) {
                 list.add(str.substring(start));
-            } else if (i - start > 25 && c == ' ') {
+            } else if (i - start > 28 && c == ' ') {
                 String cut = str.substring(start, i);
                 if (start > 0) {
                     cut = cut.substring(1);
@@ -160,6 +168,14 @@ public class TooltipUtils {
     public static ITextComponent tier(int tier) {
 
         return Styles.YELLOWCOMP().appendSibling(Words.Tier.locName()).appendText(": " + tier);
+
+    }
+
+    public static ITextComponent uniqueTier(int tier) {
+        return Styles.YELLOWCOMP()
+                .appendSibling(Words.Tier.locName())
+                .appendText(" " + tier + " ")
+                .appendSibling(Rarities.Items.unique().locName());
 
     }
 

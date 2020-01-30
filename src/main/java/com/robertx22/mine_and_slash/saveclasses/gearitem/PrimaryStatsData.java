@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.tooltips.StatTooltipType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -71,21 +72,22 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        if (info.verbose) {
+        if (info.useInDepthStats()) {
             list.add(Styles.GRAYCOMP().appendSibling(Words.Primary_Stats.locName().appendText(":")));
-
         }
 
         list.add(new StringTextComponent(" "));
 
-        info.usePrettyStatSymbols = true;
+        info.statTooltipType = StatTooltipType.PRIMARY_STATS;
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {
                 list.addAll(data.GetTooltipString(info));
             }
+
         }
-        info.usePrettyStatSymbols = false;
+
+        info.statTooltipType = StatTooltipType.NORMAL;
 
         return list;
 

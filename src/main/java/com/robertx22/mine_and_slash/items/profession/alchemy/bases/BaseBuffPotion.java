@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.bases;
 
 import com.robertx22.mine_and_slash.database.MinMax;
+import com.robertx22.mine_and_slash.database.stats.tooltips.StatTooltipType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs.BaseAlchemyEffect;
 import com.robertx22.mine_and_slash.potion_effects.alchemy_pot_buffs.BaseEffect;
@@ -83,7 +84,8 @@ public abstract class BaseBuffPotion extends BasePotion {
                                ITooltipFlag flagIn) {
 
         TooltipInfo info = new TooltipInfo(null, new MinMax(100, 100), level.number);
-        info.usePrettyStatSymbols = true;
+
+        info.statTooltipType = StatTooltipType.PRIMARY_STATS;
 
         tooltip.add(Styles.GREENCOMP().appendText("Stats: "));
 

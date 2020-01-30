@@ -1,10 +1,10 @@
-package com.robertx22.mine_and_slash.database.stats;
+package com.robertx22.mine_and_slash.database.stats.tooltips;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,9 +13,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrimaryStatTooltipUtils {
+public class PrimaryStatTooltipUtils implements IStatTooltipType {
 
-    public static ITextComponent NameText(TooltipStatInfo info) {
+    public ITextComponent NameText(TooltipStatInfo info) {
 
         Stat stat = info.stat;
 
@@ -29,16 +29,15 @@ public class PrimaryStatTooltipUtils {
 
         if (info.tooltipInfo.isSet == false) {
             return Styles.REDCOMP()
-                    .appendSibling(new StringTextComponent(" " + stat.getFormattedIcon() + " ")
-                            .appendSibling(str)
-                            .appendText(": "));
+                    .appendSibling(new StringTextComponent(" " + stat.getFormattedIcon() + " ").appendSibling(str)
+                                           .appendText(": "));
         } else {
             return Styles.GREENCOMP().appendSibling(str.appendText(": "));
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static ITextComponent NameAndValueText(TooltipStatInfo info) {
+    public ITextComponent NameAndValueText(TooltipStatInfo info) {
 
         float val = info.amount;
 
@@ -47,8 +46,8 @@ public class PrimaryStatTooltipUtils {
         return NameText(info).appendText(minusplus + info.stat.printValue(info.amount));
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static List<ITextComponent> getTooltipList(TooltipStatInfo info) {
+    @Override
+    public List<ITextComponent> getTooltipList(TooltipStatInfo info) {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
@@ -77,17 +76,15 @@ public class PrimaryStatTooltipUtils {
             text.appendText("% ").appendSibling(Words.Multi.locName());
         }
 
-        if (Screen.hasShiftDown() && info.tooltipInfo.isSet == false) {
+        if (info.useInDepthStats()) {
             if (info.statRange != null) {
-                text.appendSibling(NormalStatTooltipUtils.getNumberRanges(info.statRange));
+                text.appendSibling(getNumberRanges(info.statRange));
             }
         }
 
         list.add(text);
-        if (Screen.hasAltDown()) {
-            list.add(Styles.BLUECOMP()
-                    .appendText(" [")
-                    .appendSibling(info.stat.locDesc().appendText("]")));
+        if (info.shouldShowDescriptions()) {
+            list.addAll(info.stat.getCutDescTooltip());
         }
         return list;
 

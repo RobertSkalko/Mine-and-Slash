@@ -11,7 +11,7 @@ public class QARItem extends BaseUniqueRuneItem {
 
     @Override
     public List<StatMod> mods() {
-        return new ElementalAffinityFlat(Elements.Physical).getAllSingleElementVariations();
+        return new ElementalAffinityFlat(Elements.Physical).generateAllPossibleStatVariations();
     }
 
     @Override

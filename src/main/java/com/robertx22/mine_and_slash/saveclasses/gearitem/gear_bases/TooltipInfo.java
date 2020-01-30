@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.mine_and_slash.database.MinMax;
+import com.robertx22.mine_and_slash.database.stats.tooltips.StatTooltipType;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.gui.screen.Screen;
@@ -13,10 +14,8 @@ public class TooltipInfo implements Cloneable {
         this.level = level;
         this.unitdata = unitdata;
 
-        if (Screen.hasShiftDown()) {
-            verbose = true;
-        }
-
+        this.hasAltDown = Screen.hasAltDown();
+        this.hasShiftDown = Screen.hasShiftDown();
     }
 
     public TooltipInfo(EntityCap.UnitData unitdata, int level) {
@@ -24,13 +23,14 @@ public class TooltipInfo implements Cloneable {
         this.level = level;
         this.unitdata = unitdata;
 
-        if (Screen.hasShiftDown()) {
-            verbose = true;
-        }
+        this.hasAltDown = Screen.hasAltDown();
+        this.hasShiftDown = Screen.hasShiftDown();
 
     }
 
     public TooltipInfo() {
+        this.hasAltDown = Screen.hasAltDown();
+        this.hasShiftDown = Screen.hasShiftDown();
     }
 
     public TooltipInfo(PlayerEntity player) {
@@ -38,6 +38,9 @@ public class TooltipInfo implements Cloneable {
         this.unitdata = Load.Unit(player);
         this.level = unitdata.getLevel();
         this.minmax = new MinMax(100, 100);
+
+        this.hasAltDown = Screen.hasAltDown();
+        this.hasShiftDown = Screen.hasShiftDown();
     }
 
     public TooltipInfo setIsSet() {
@@ -50,8 +53,18 @@ public class TooltipInfo implements Cloneable {
     public MinMax minmax;
     public int level;
     public boolean isSet = false;
-    public boolean usePrettyStatSymbols = false;
-    public boolean verbose = false;
+    public StatTooltipType statTooltipType = StatTooltipType.NORMAL;
+
+    public boolean hasAltDown = false;
+    public boolean hasShiftDown = false;
+
+    public boolean shouldShowDescriptions() {
+        return hasAltDown && !hasShiftDown;
+    }
+
+    public boolean useInDepthStats() {
+        return !hasAltDown && hasShiftDown && !isSet;
+    }
 
     public TooltipInfo withLevel(int level) {
 

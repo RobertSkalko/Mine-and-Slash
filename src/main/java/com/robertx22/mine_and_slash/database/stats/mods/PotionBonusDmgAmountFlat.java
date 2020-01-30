@@ -1,15 +1,20 @@
 package com.robertx22.mine_and_slash.database.stats.mods;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalBonusDmgOnBasic;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 public class PotionBonusDmgAmountFlat extends ElementalStatMod {
 
     public PotionBonusDmgAmountFlat(Elements element) {
         super(element);
+    }
+
+    @Override
+    public MapWrapper getBaseStatMap() {
+        return ElementalBonusDmgOnBasic.MAP;
     }
 
     @Override
@@ -31,11 +36,6 @@ public class PotionBonusDmgAmountFlat extends ElementalStatMod {
     @Override
     public StatTypes Type() {
         return StatTypes.Flat;
-    }
-
-    @Override
-    public Stat GetBaseStat() {
-        return new ElementalBonusDmgOnBasic(element);
     }
 
     @Override

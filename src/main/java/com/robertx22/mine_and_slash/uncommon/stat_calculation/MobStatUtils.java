@@ -17,7 +17,6 @@ import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
@@ -79,17 +78,14 @@ public class MobStatUtils {
         unit.getCreateStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
         unit.getCreateStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
 
-        for (Elements element : Elements.getAllElementals()) {
+        ElementalResist.MAP.getList()
+                .forEach(x -> unit.getCreateStat(x).addFlat(spellresist * rar.StatMultiplier(), level));
 
-            unit.getCreateStat(ElementalResist.MAP.get(element)).addFlat(spellresist * rar.StatMultiplier(), level);
-            unit.getCreateStat(ElementalSpellDamage.MAP.get(element)).addFlat(spelldmg * rar.DamageMultiplier(), level);
+        ElementalSpellDamage.MAP.getList()
+                .forEach(x -> unit.getCreateStat(x).addFlat(spelldmg * rar.DamageMultiplier(), level));
 
-        }
-
-        for (Elements element : Elements.getAllIncludingPhysical()) {
-            unit.getCreateStat(ElementalPene.MAP.get(element)).addFlat(elePene * rar.DamageMultiplier(), level);
-
-        }
+        ElementalPene.MAP.getList()
+                .forEach(x -> unit.getCreateStat(x).addFlat(elePene * rar.DamageMultiplier(), level));
 
     }
 

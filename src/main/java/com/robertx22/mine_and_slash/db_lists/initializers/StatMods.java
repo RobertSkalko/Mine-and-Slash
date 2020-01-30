@@ -64,25 +64,25 @@ public class StatMods implements ISlashRegistryInit {
         List<StatMod> list = new ArrayList<StatMod>() {
             {
                 {
-                    add(new ElementalSpellToAttackDMGPercent(Elements.Physical));
-                    add(new PotionBonusDmgAmountFlat(Elements.Physical));
-                    add(new ElementalConversionFlat(Elements.Physical, Elements.Physical));
-                    add(new ElementalTransferFlat(Elements.Physical, Elements.Physical));
-                    add(new ElementalAffinityFlat(Elements.Physical));
+                    add(new ElementalSpellToAttackDMGPercent(Elements.Nature));
+                    add(new PotionBonusDmgAmountFlat(Elements.Nature));
+                    add(new ElementalConversionFlat(Elements.Nature, Elements.Nature));
+                    add(new ElementalTransferFlat(Elements.Nature, Elements.Nature));
+                    add(new ElementalAffinityFlat(Elements.Nature));
                     add(new LootTypeBonusFlat(LootType.NormalItem));
                     add(new WeaponDamageFlat(WeaponTypes.None));
                     add(new LessWeaponDamageFlat(WeaponTypes.None));
-                    add(new ElementalAttackDamageFlat(Elements.Physical));
-                    add(new AllElementalDamageMulti(Elements.Physical));
-                    add(new ElementalSpellToAttackDMGFlat(Elements.Physical));
-                    add(new ElementalSpellDamagePercent(Elements.Physical));
-                    add(new ElementalSpellDamageFlat(Elements.Physical));
-                    add(new ElementalResistFlat(Elements.Physical));
-                    add(new ElementalSpellDamageMulti(Elements.Physical));
-                    add(new ElementalPeneFlat(Elements.Physical));
-                    add(new ElementalPenePercent(Elements.Physical));
-                    add(new ElementalFocusFlat(Elements.Physical));
-                    add(new BlockReflectFlat(Elements.Physical));
+                    add(new ElementalAttackDamageFlat(Elements.Nature));
+                    add(new AllElementalDamageMulti(Elements.Nature));
+                    add(new ElementalSpellToAttackDMGFlat(Elements.Nature));
+                    add(new ElementalSpellDamagePercent(Elements.Nature));
+                    add(new ElementalSpellDamageFlat(Elements.Nature));
+                    add(new ElementalResistFlat(Elements.Nature));
+                    add(new ElementalSpellDamageMulti(Elements.Nature));
+                    add(new ElementalPeneFlat(Elements.Nature));
+                    add(new ElementalPenePercent(Elements.Nature));
+                    add(new ElementalFocusFlat(Elements.Nature));
+                    add(new BlockReflectFlat(Elements.Nature));
 
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());

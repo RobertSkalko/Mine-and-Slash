@@ -13,13 +13,7 @@ public interface IElementalGenerated<T extends IGUID> extends IGenerated {
     @Override
     public default List<T> generateAllPossibleStatVariations() {
         List<T> list = new ArrayList<>();
-        Elements.getAllIncludingPhysical().forEach(x -> list.add(newGeneratedInstance(x)));
-        return list;
-    }
-
-    public default List<T> getAllSingleElementVariations() {
-        List<T> list = new ArrayList<>();
-        Elements.getAllElementals().forEach(x -> list.add(newGeneratedInstance(x)));
+        Elements.getAllSingleElementals().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
     }
 

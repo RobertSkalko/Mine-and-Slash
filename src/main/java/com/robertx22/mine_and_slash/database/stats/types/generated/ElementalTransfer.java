@@ -14,7 +14,7 @@ public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated
 
     @Override
     public String locDescForLangFile() {
-        return "Transfer takes a % from 1 and gives to the other";
+        return "Transfer takes a percent from 1 and gives to the other";
     }
 
     @Override
@@ -70,9 +70,9 @@ public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated
 
         List<Stat> stats = new ArrayList<>();
 
-        for (Elements from : Elements.getAllElementals()) {
+        for (Elements from : Elements.getAllSingleElementals()) {
             if (from != Elements.Physical) {
-                for (Elements to : Elements.getAllElementals()) {
+                for (Elements to : Elements.getAllSingleElementals()) {
                     if (to != Elements.Physical && to != from) {
                         ElementalTransfer stat = new ElementalTransfer(from, to);
                         stats.add(stat);

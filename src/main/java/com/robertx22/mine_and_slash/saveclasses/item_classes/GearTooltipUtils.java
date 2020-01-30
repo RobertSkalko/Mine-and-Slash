@@ -27,13 +27,11 @@ import java.util.List;
 
 public class GearTooltipUtils {
 
-    public static void BuildTooltip(GearItemData gear, ItemStack stack,
-                                    ItemTooltipEvent event, UnitData data) {
+    public static void BuildTooltip(GearItemData gear, ItemStack stack, ItemTooltipEvent event, UnitData data) {
 
         List<ITextComponent> tip = event.getToolTip();
 
-        TooltipInfo info = new TooltipInfo(data, gear.getRarity()
-                .StatPercents(), gear.level);
+        TooltipInfo info = new TooltipInfo(data, gear.getRarity().StatPercents(), gear.level);
 
         tip.clear();
 
@@ -103,18 +101,24 @@ public class GearTooltipUtils {
 
         }
 
+        boolean addRarityTooltip = true;
+
         if (gear.isUnique) {
             IUnique unique = gear.uniqueStats.getUniqueItem();
 
+            addRarityTooltip = false;
+
             tip.add(new StringTextComponent(""));
 
-            tip.add(TooltipUtils.tier(unique.Tier()));
+            tip.add(TooltipUtils.uniqueTier(unique.Tier()));
 
             tip.add(new StringTextComponent(""));
         }
 
-        GearRarity rarity = gear.getRarity();
-        tip.add(TooltipUtils.rarity(rarity));
+        if (addRarityTooltip) {
+            GearRarity rarity = gear.getRarity();
+            tip.add(TooltipUtils.rarity(rarity));
+        }
 
         if (!gear.isSalvagable) {
             tip.add(Styles.REDCOMP().appendSibling(Words.Unsalvagable.locName()));
@@ -126,20 +130,18 @@ public class GearTooltipUtils {
                 tip.add(new StringTextComponent(""));
                 if (iwep.mechanic().GetEnergyCost(data.getLvlForResourceCosts()) > 0) {
                     tip.add(Styles.GREENCOMP()
-                            .appendSibling(Energy.INSTANCE.locName()
-                                    .appendText(": " + (int) iwep.mechanic()
-                                            .GetEnergyCost(data.getLvlForResourceCosts()))));
+                                    .appendSibling(Energy.INSTANCE.locName()
+                                                           .appendText(": " + (int) iwep.mechanic()
+                                                                   .GetEnergyCost(data.getLvlForResourceCosts()))));
                 }
                 if (iwep.mechanic().GetManaCost(data.getLvlForResourceCosts()) > 0) {
                     tip.add(Styles.BLUECOMP()
-                            .appendSibling(Mana.INSTANCE.locName()
-                                    .appendText(": " + (int) iwep.mechanic()
-                                            .GetManaCost(data.getLvlForResourceCosts()))));
+                                    .appendSibling(Mana.INSTANCE.locName()
+                                                           .appendText(": " + (int) iwep.mechanic()
+                                                                   .GetManaCost(data.getLvlForResourceCosts()))));
                 }
 
-                tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep
-                        .mechanic()
-                        .tooltipDesc()));
+                tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep.mechanic().tooltipDesc()));
             }
         }
 
@@ -148,7 +150,7 @@ public class GearTooltipUtils {
         } else {
             event.getToolTip()
                     .add(Styles.GOLDCOMP()
-                            .appendSibling(new StringTextComponent("Power Level: " + gear.getPowerLevel())));
+                                 .appendSibling(new StringTextComponent("Power Level: " + gear.getPowerLevel())));
 
             if (gear.usesInstability()) {
                 event.getToolTip().add(TooltipUtils.instability(gear));
@@ -156,7 +158,7 @@ public class GearTooltipUtils {
 
             event.getToolTip()
                     .add(Styles.BLUECOMP()
-                            .appendSibling(new StringTextComponent("[Alt]: Show Detailed Stat Descriptions")));
+                                 .appendSibling(new StringTextComponent("[Alt]: Show Detailed Stat Descriptions")));
 
         }
 
@@ -193,13 +195,13 @@ public class GearTooltipUtils {
         tip.add(new StringTextComponent(""));
 
         if (Screen.hasShiftDown() == false) {
-            event.getToolTip()
-                    .add(Styles.BLUECOMP()
-                            .appendSibling(CLOC.tooltip("press_shift_more_info")));
+            event.getToolTip().add(Styles.BLUECOMP().appendSibling(CLOC.tooltip("press_shift_more_info")));
         }
 
-        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip, ClientContainer.INSTANCE.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES
-                .get());
+        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip,
+                                                                        ClientContainer.INSTANCE.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES
+                                                                                .get()
+        );
         tip.clear();
         tip.addAll(tool);
 

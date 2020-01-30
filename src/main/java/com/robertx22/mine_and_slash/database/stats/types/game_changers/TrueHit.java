@@ -17,7 +17,7 @@ public class TrueHit extends BaseGameChangerTrait implements IStatEffects, IAffe
 
     @Override
     public String locDescForLangFile() {
-        return "+ 50% Crit Dmg Multi but non crit dmg is halved.";
+        return "+ 50 percent Crit Dmg Multi but non crit dmg is halved.";
     }
 
     @Override

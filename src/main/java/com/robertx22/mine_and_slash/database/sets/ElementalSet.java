@@ -19,7 +19,7 @@ public abstract class ElementalSet extends Set implements IGenerated<Set> {
     @Override
     public List<Set> generateAllPossibleStatVariations() {
         List<Set> list = new ArrayList<>();
-        Elements.getAllElementals().forEach(x -> list.add(newGeneratedInstance(x)));
+        Elements.getAllSingleElementals().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
     }
 }

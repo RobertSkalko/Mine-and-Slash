@@ -26,13 +26,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashRegistryEntry<GearItemSlot>, ISpecificStatReq {
+public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashRegistryEntry<GearItemSlot>,
+        ISpecificStatReq {
 
-    public static StatReq.Size doubleArmorStatSize = StatReq.Size.MEDIUM;
+    public static StatReq.Size doubleArmorStatSize = StatReq.Size.SMALL;
 
-    public static StatReq clothArmorReq = new StatReq(LvlPointStat.WISDOM, doubleArmorStatSize, LvlPointStat.INTELLIGENCE, doubleArmorStatSize);
-    public static StatReq leatherArmorReq = new StatReq(LvlPointStat.DEXTERITY, doubleArmorStatSize, LvlPointStat.STAMINA, doubleArmorStatSize);
-    public static StatReq plateArmorReq = new StatReq(LvlPointStat.VITALITY, doubleArmorStatSize, LvlPointStat.STRENGTH, doubleArmorStatSize);
+    public static StatReq clothArmorReq = new StatReq(
+            LvlPointStat.WISDOM, doubleArmorStatSize, LvlPointStat.INTELLIGENCE, doubleArmorStatSize);
+    public static StatReq leatherArmorReq = new StatReq(
+            LvlPointStat.DEXTERITY, doubleArmorStatSize, LvlPointStat.STAMINA, doubleArmorStatSize);
+    public static StatReq plateArmorReq = new StatReq(
+            LvlPointStat.VITALITY, doubleArmorStatSize, LvlPointStat.STRENGTH, doubleArmorStatSize);
+
     public static StatReq noReq = StatReq.nothing();
 
     public enum GearSlotType {
@@ -65,7 +70,8 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public static List<StatMod> clothArmorStats() {
-        return Arrays.asList(new ArmorFlat().multi(0.75F), new ManaFlat().multi(1.75F), new IntelligenceFlat(), new WisdomFlat());
+        return Arrays.asList(
+                new ArmorFlat().multi(0.75F), new ManaFlat().multi(1.75F), new IntelligenceFlat(), new WisdomFlat());
     }
 
     @Override
@@ -96,7 +102,9 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     public abstract GearSlotType slotType();
 
     public List<StatMod> coreStatMods() {
-        return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(), new StaminaFlat(), new DexterityFlat());
+        return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(),
+                             new StaminaFlat(), new DexterityFlat()
+        );
     }
 
     @Override

@@ -30,7 +30,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect, IAutoLocName, ISlashRegistryEntry<BaseRuneItem> {
+public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect, IAutoLocName,
+        ISlashRegistryEntry<BaseRuneItem> {
 
     public int rarity;
 
@@ -68,8 +69,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
         Rarity rar = Rarities.Runes.get(rarity);
 
-        return rar.textFormatColor() + this.name()
-                .toUpperCase() + " - " + rar.locNameForLangFile() + " Rune";
+        return rar.textFormatColor() + this.name().toUpperCase() + " - " + rar.locNameForLangFile() + " Rune";
 
     }
 
@@ -130,8 +130,8 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn,
-                               List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+                               ITooltipFlag flagIn) {
 
     }
 
@@ -145,7 +145,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     private List<StatMod> allElements(ElementalStatMod mod) {
 
-        return mod.generateAllPossibleStatVariations()
+        return (List<StatMod>) mod.generateAllPossibleStatVariations()
                 .stream()
                 .filter(x -> ((ElementalStatMod) x).element.isSingleElement)
                 .collect(Collectors.toList());

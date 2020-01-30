@@ -8,19 +8,20 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ElementalResist extends ElementalStat implements IStatEffects, IUsableStat {
 
-    public static HashMap<Elements, ElementalResist> MAP = new HashMap<>();
+    public static MapWrapper<Elements, ElementalResist> MAP = new MapWrapper();
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllPossibleStatVariations();
         list.forEach(x -> MAP.put(x.getElement(), (ElementalResist) x));
         return list;
+
     }
 
     @Override
@@ -51,7 +52,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
 
     @Override
     public String locDescForLangFile() {
-        return "Stops a % damage of that element";
+        return "Stops X percent damage of that element";
     }
 
     @Override

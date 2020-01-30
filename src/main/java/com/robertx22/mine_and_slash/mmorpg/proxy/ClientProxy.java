@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 import java.util.function.Supplier;
@@ -17,7 +18,17 @@ public class ClientProxy implements IProxy {
 
     @Override
     public String translate(ITextComponent comp) {
-        return I18n.format(comp.getFormattedText());
+
+        String s;
+
+        if (comp instanceof TranslationTextComponent) {
+            TranslationTextComponent t = (TranslationTextComponent) comp;
+            s = I18n.format(t.getKey());
+        } else {
+            s = I18n.format(comp.getFormattedText());
+        }
+
+        return s;
     }
 
 }

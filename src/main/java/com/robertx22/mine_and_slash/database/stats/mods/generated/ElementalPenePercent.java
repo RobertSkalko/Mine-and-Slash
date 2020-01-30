@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalPene;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 public class ElementalPenePercent extends ElementalStatMod {
 
@@ -19,8 +19,8 @@ public class ElementalPenePercent extends ElementalStatMod {
     }
 
     @Override
-    public Stat GetBaseStat() {
-        return new ElementalPene(this.element);
+    public MapWrapper<Elements, ElementalPene> getBaseStatMap() {
+        return ElementalPene.MAP;
     }
 
     @Override

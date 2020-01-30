@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
 import com.robertx22.mine_and_slash.database.stats.effects.game_changers.BleedMasteryEffect;
+import com.robertx22.mine_and_slash.potion_effects.all.BleedPotion;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
@@ -18,9 +19,9 @@ public class BleedMastery extends BaseGameChangerTrait implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Your phys basic attacks inflict % of your phys dmg as bleed on targets";
+        return "Your phys basic attacks inflict " + BleedPotion.CALC.multi + " percent of your phys dmg as bleed on " + "targets";
     }
-
+    
     @Override
     public String locNameForLangFile() {
         return "Bleed Mastery";

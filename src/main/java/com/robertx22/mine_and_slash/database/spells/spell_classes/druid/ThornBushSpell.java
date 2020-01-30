@@ -13,7 +13,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.wrappers.SComp;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundCategory;
@@ -79,7 +79,7 @@ public class ThornBushSpell extends BaseSpell implements IBlockSpawner {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new SComp("Summons a bush that attacks enemies nearby."));
+        list.add(new SText("Summons a bush that attacks enemies nearby."));
 
         list.addAll(getCalculation().GetTooltipString(info));
 

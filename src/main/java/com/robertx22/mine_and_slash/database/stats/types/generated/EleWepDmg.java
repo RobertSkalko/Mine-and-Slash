@@ -5,14 +5,26 @@ import com.robertx22.mine_and_slash.database.stats.effects.offense.EleWepDmgEffe
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-import java.util.HashMap;
+import java.util.List;
 
-public class EleWepDmg extends Stat implements IStatEffects {
+public class EleWepDmg extends Stat implements IStatEffects, IGenerated<EleWepDmg> {
 
-    public static HashMap<WeaponTypes, EleWepDmg> MAP = new HashMap<>();
+    public static MapWrapper<WeaponTypes, EleWepDmg> MAP = new MapWrapper();
+
+    @Override
+    public List<EleWepDmg> generateAllPossibleStatVariations() {
+        for (WeaponTypes x : WeaponTypes.getAll()) {
+            EleWepDmg stat = new EleWepDmg(x);
+            MAP.put(x, stat);
+        }
+        return MAP.getList();
+
+    }
 
     private WeaponTypes weaponType;
 

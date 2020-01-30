@@ -7,18 +7,19 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ElementalPene extends ElementalStat implements IStatEffects {
-    public static HashMap<Elements, ElementalPene> MAP = new HashMap<>();
+    public static MapWrapper<Elements, ElementalPene> MAP = new MapWrapper();
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllPossibleStatVariations();
         list.forEach(x -> MAP.put(x.getElement(), (ElementalPene) x));
         return list;
+
     }
 
     @Override

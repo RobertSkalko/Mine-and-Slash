@@ -26,7 +26,7 @@ public abstract class ElementalSuffix extends Suffix implements IElementalGenera
     @Override
     public List<Suffix> generateAllPossibleStatVariations() {
         List<Suffix> list = new ArrayList<>();
-        Elements.getAllElementals().forEach(x -> list.add(newGeneratedInstance(x)));
+        Elements.getAllSingleElementals().forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
 
     }
