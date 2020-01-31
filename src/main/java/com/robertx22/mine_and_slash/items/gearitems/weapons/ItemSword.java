@@ -48,7 +48,7 @@ public class ItemSword extends SwordItem implements IWeapon, IAutoLocName, IGear
 
     @Override
     public String locNameForLangFile() {
-        Rarity rar = Rarities.Items.get(rarity);
+        Rarity rar = Rarities.Gears.get(rarity);
         return rar.textFormatColor() + "Sword";
     }
 
@@ -78,15 +78,24 @@ public class ItemSword extends SwordItem implements IWeapon, IAutoLocName, IGear
     }
 
     @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(
-            EquipmentSlotType slot) {
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot) {
 
         float attackSpeed = -1.5F;
 
         Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot);
         if (slot == EquipmentSlotType.MAINHAND) {
-            map.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double) attackSpeed, AttributeModifier.Operation.ADDITION));
-            map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 5 + (this.rarity + 1), AttributeModifier.Operation.ADDITION));
+            map.put(
+                    SharedMonsterAttributes.ATTACK_SPEED.getName(),
+                    new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double) attackSpeed,
+                                          AttributeModifier.Operation.ADDITION
+                    )
+            );
+            map.put(
+                    SharedMonsterAttributes.ATTACK_DAMAGE.getName(),
+                    new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 5 + (this.rarity + 1),
+                                          AttributeModifier.Operation.ADDITION
+                    )
+            );
 
         }
 

@@ -137,13 +137,13 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
         TooltipUtils.addEmpty(tooltip);
 
         tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Gears.locName().appendText(":")));
-        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Items.getRarities()), this.getGear(nbt)));
+        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Gears.getAllRarities()), this.getGear(nbt)));
 
         tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Maps.locName().appendText(":")));
-        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getRarities()), this.getMap(nbt)));
+        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getAllRarities()), this.getMap(nbt)));
 
         tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Runes.locName().appendText(":")));
-        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getRarities()), this.getRune(nbt)));
+        tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getAllRarities()), this.getRune(nbt)));
 
         TooltipUtils.addEmpty(tooltip);
 
@@ -174,7 +174,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
         ITextComponent text = new StringTextComponent("");
 
-        for (GearRarity rar : Rarities.Items.rarities()) {
+        for (GearRarity rar : Rarities.Gears.getNormalRarities()) {
             if (rar.Rank() <= rarity) {
 
                 if (text.getSiblings().size() > 0) {
@@ -273,7 +273,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
     @Override
     public String locNameForLangFile() {
-        return Rarities.Items.get(this.rarity).Color() + "Auto Salvage Bag";
+        return Rarities.Gears.get(this.rarity).Color() + "Auto Salvage Bag";
     }
 
     @Override

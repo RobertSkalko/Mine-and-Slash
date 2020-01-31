@@ -84,8 +84,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     }
 
     public void setLevel(int lvl) {
-        this.level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
-                .get());
+        this.level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
     }
 
     @Override
@@ -95,7 +94,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     @Override
     public GearRarity getRarity() {
-        return Rarities.Items.get(this.Rarity);
+        return Rarities.Gears.get(this.Rarity);
     }
 
     public boolean changesItemStack() {
@@ -150,9 +149,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             if (gearTypeName.isEmpty()) {
                 return Items.AIR;
             } else {
-                return SlashRegistry.GearTypes()
-                        .get(gearTypeName)
-                        .GetItemForRarity(getRarity().Rank());
+                return SlashRegistry.GearTypes().get(gearTypeName).GetItemForRarity(getRarity().Rank());
             }
         }
 
@@ -186,8 +183,8 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     }
 
-    public List<ITextComponent> getMergedStatsTooltip(
-            List<IStatModsContainer.LevelAndStats> lvlstats, TooltipInfo info) {
+    public List<ITextComponent> getMergedStatsTooltip(List<IStatModsContainer.LevelAndStats> lvlstats,
+                                                      TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         for (IStatModsContainer.LevelAndStats part : lvlstats) {
@@ -202,13 +199,10 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     public ITextComponent GetDisplayName(ItemStack stack) {
 
-        ITextComponent text = new StringTextComponent(this.getRarity()
-                .textFormatColor() + "");
+        ITextComponent text = new StringTextComponent(this.getRarity().textFormatColor() + "");
 
         if (this.isRuned()) {
-            text.appendSibling(Words.Runed.locName()
-                    .appendText(" ")
-                    .appendSibling(name(stack)));
+            text.appendSibling(Words.Runed.locName().appendText(" ").appendSibling(name(stack)));
         } else {
 
             if (prefix != null && showAffix()) {
@@ -217,9 +211,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             text.appendSibling(name(stack));
 
             if (suffix != null && showAffix()) {
-                text.appendText(" ")
-                        .appendSibling(suffix.BaseAffix().locName())
-                        .appendText(" ");
+                text.appendText(" ").appendSibling(suffix.BaseAffix().locName()).appendText(" ");
             }
 
         }

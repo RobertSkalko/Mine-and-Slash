@@ -62,7 +62,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

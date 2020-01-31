@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
+import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.UniqueRunePart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -39,14 +39,11 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
             data.level = level.get();
             data.tier = item.Tier();
 
-            data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                    .armorStat()));
+            data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.armorStat()));
 
-            data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                    .weaponStat()));
+            data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.weaponStat()));
 
-            data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item
-                    .jewerlyStat()));
+            data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.jewerlyStat()));
 
             Rune.Save(stack, data);
         }
@@ -56,7 +53,7 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
     }
 
     @Override
-    public RaritiesContainer<? extends Rarity> getRarityContainer() {
+    public BaseRaritiesContainer<? extends Rarity> getRarityContainer() {
         return Rarities.Runes;
     }
 

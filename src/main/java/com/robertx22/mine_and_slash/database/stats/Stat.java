@@ -103,7 +103,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

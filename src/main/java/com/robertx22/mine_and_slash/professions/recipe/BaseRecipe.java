@@ -87,7 +87,7 @@ public abstract class BaseRecipe implements ISlashRegistryEntry {
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

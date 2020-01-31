@@ -16,7 +16,8 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 
 import java.util.List;
 
-public interface IUnique extends ISpecificStatReq, IWeighted, IRarity, IGearSlotType, ITiered, IGUID, IAutoLocName, IAutoLocDesc, IGearItem, ISlashRegistryEntry<IUnique> {
+public interface IUnique extends ISpecificStatReq, IWeighted, IRarity, IGearSlotType, ITiered, IGUID, IAutoLocName,
+        IAutoLocDesc, IGearItem, ISlashRegistryEntry<IUnique> {
 
     @Override
     public default int Weight() {
@@ -34,7 +35,7 @@ public interface IUnique extends ISpecificStatReq, IWeighted, IRarity, IGearSlot
 
     @Override
     public default Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     public default boolean canGetSet() {

@@ -33,9 +33,7 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public MyTorch(int rar) {
-        super(ItemUtils.getDefaultGearProperties()
-                .maxStackSize(1)
-                .defaultMaxDamage(1000));
+        super(ItemUtils.getDefaultGearProperties().maxStackSize(1).defaultMaxDamage(1000));
         this.rarity = rar;
     }
 
@@ -43,7 +41,7 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
 
     @Override
     public String locNameForLangFile() {
-        Rarity rar = Rarities.Items.get(rarity);
+        Rarity rar = Rarities.Gears.get(rarity);
         return rar.textFormatColor() + "Torch";
     }
 
@@ -73,8 +71,7 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player,
-                                                    Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
 
         player.setActiveHand(handIn);
@@ -82,22 +79,21 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn,
-                                     LivingEntity player) {
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity player) {
 
         if (worldIn.isRemote == false) {
 
             EntityCap.UnitData data = Load.Unit(player);
 
-            float manarestored = restoreBasedOnMissing(data.getResources().getMana(), data
-                    .getUnit()
-                    .manaData().val);
+            float manarestored = restoreBasedOnMissing(data.getResources().getMana(), data.getUnit().manaData().val);
 
-            float energyrestored = restoreBasedOnMissing(data.getResources()
-                    .getEnergy(), data.getUnit().energyData().val);
+            float energyrestored = restoreBasedOnMissing(
+                    data.getResources().getEnergy(), data.getUnit().energyData().val);
 
-            ResourcesData.Context mana = new ResourcesData.Context(data, player, ResourcesData.Type.MANA, manarestored, ResourcesData.Use.RESTORE);
-            ResourcesData.Context ene = new ResourcesData.Context(data, player, ResourcesData.Type.ENERGY, energyrestored, ResourcesData.Use.RESTORE);
+            ResourcesData.Context mana = new ResourcesData.Context(
+                    data, player, ResourcesData.Type.MANA, manarestored, ResourcesData.Use.RESTORE);
+            ResourcesData.Context ene = new ResourcesData.Context(
+                    data, player, ResourcesData.Type.ENERGY, energyrestored, ResourcesData.Use.RESTORE);
 
             boolean restored = false;
 
@@ -144,7 +140,8 @@ public class MyTorch extends Item implements IEffectItem, IAutoLocName, IGearIte
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Restoration"));
+        list.add(new StringTextComponent(
+                color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Restoration"));
         if (moreInfo) {
             list.add(new StringTextComponent(color() + "Restores Mana/Energy Based on Missing Amount"));
         }

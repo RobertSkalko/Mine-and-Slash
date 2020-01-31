@@ -53,16 +53,18 @@ public class ItemRegister {
 
     private static void putInLists() {
 
-        for (GearRarity x : Rarities.Items.rarities()) {
+        for (GearRarity x : Rarities.Gears.getNormalRarities()) {
             AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
             ItemCapacitor.Items.put(x.Rank(), new ItemCapacitor(x.Rank()));
 
-            for (GearRarity rarity : Rarities.Items.rarities()) {
+            for (GearRarity rarity : Rarities.Gears.getNormalRarities()) {
                 for (ItemLootbox.LootTypes type : ItemLootbox.LootTypes.values()) {
                     for (ItemLootbox.LootBoxSizes size : ItemLootbox.LootBoxSizes.values()) {
                         String reg = ItemLootbox.GetStringForType(rarity.Rank(), type, size);
-                        ItemLootbox.Items.put(reg, (ItemLootbox) new ItemLootbox(size, type, rarity
-                                .Rank()).setRegistryName(reg));
+                        ItemLootbox.Items.put(reg,
+                                              (ItemLootbox) new ItemLootbox(size, type, rarity.Rank()).setRegistryName(
+                                                      reg)
+                        );
                     }
                 }
             }
@@ -86,9 +88,7 @@ public class ItemRegister {
             r.register(item);
         }
 
-        SlashRegistry.UniqueRunes()
-                .getList()
-                .forEach(x -> r.register(x.setRegistryName(x.genRegisryName())));
+        SlashRegistry.UniqueRunes().getList().forEach(x -> r.register(x.setRegistryName(x.genRegisryName())));
 
     }
 
@@ -118,8 +118,7 @@ public class ItemRegister {
         for (Item item : list) {
             if (item instanceof IGenerated) {
                 IGenerated gen = (IGenerated) item;
-                gen.generateAllPossibleStatVariations()
-                        .forEach(x -> r.register((Item) x));
+                gen.generateAllPossibleStatVariations().forEach(x -> r.register((Item) x));
 
             } else {
                 r.register(item);

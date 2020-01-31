@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.rarities.containers;
 
+import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
-import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.maps.*;
 
-public class MapRarities extends RaritiesContainer<MapRarity> {
+public class MapRarities extends BaseRaritiesContainer<MapRarity> {
 
     public MapRarities() {
         super();

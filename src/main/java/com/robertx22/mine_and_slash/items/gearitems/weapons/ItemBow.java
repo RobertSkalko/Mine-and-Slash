@@ -17,9 +17,7 @@ public class ItemBow extends BowItem implements IWeapon, IAutoLocName, IGearItem
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemBow(int rar) {
-        super(ItemUtils.getDefaultGearProperties()
-                .maxStackSize(1)
-                .defaultMaxDamage(1000));
+        super(ItemUtils.getDefaultGearProperties().maxStackSize(1).defaultMaxDamage(1000));
         this.rarity = rar;
     }
 
@@ -27,7 +25,7 @@ public class ItemBow extends BowItem implements IWeapon, IAutoLocName, IGearItem
 
     @Override
     public String locNameForLangFile() {
-        Rarity rar = Rarities.Items.get(rarity);
+        Rarity rar = Rarities.Gears.get(rarity);
         return rar.textFormatColor() + "Bow";
     }
 

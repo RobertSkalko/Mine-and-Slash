@@ -36,7 +36,7 @@ public abstract class BaseStatusEffect implements IWeighted, ISlashRegistryEntry
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

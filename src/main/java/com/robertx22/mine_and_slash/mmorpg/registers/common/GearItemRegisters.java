@@ -44,7 +44,7 @@ public class GearItemRegisters {
 
     private static void register() {
 
-        for (GearRarity rarity : Rarities.Items.rarities()) {
+        for (GearRarity rarity : Rarities.Gears.getNormalRarities()) {
 
             Item.Properties shieldprop = ItemUtils.getDefaultGearProperties().defaultMaxDamage(750);
 
@@ -69,9 +69,8 @@ public class GearItemRegisters {
             regRune(new ItaItem(rank), ItaItem.Items, new ItaItem(rank).genRegisryName().toLowerCase(), rank);
 
             // offhands
-            regRarities(
-                    new NormalShield(rarity.Rank(), shieldprop, "normal_shield" + rarity.Rank()), NormalShield.Items,
-                    "shields/normal_shield", rarity.Rank()
+            regRarities(new NormalShield(rarity.Rank(), shieldprop, "normal_shield" + rarity.Rank()),
+                        NormalShield.Items, "shields/normal_shield", rarity.Rank()
             );
 
             regRarities(new MyTorch(rarity.Rank()), MyTorch.Items, "torch/torch", rarity.Rank());

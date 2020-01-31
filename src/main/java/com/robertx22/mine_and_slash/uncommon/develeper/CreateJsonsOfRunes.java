@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,7 +13,8 @@ public class CreateJsonsOfRunes {
 
     public void doit() {
 
-        String text = "{\n    \"instance\": \"item/generated\",\n    \"textures\": {\n        \"layer0\": \"mmorpg:items/runes/cen/1\"\n    }\n}\n";
+        String text = "{\n    \"instance\": \"item/generated\",\n    \"textures\": {\n        \"layer0\": " +
+                "\"mmorpg:items/runes/cen/1\"\n    }\n}\n";
 
         String lang = "";
 
@@ -21,13 +22,11 @@ public class CreateJsonsOfRunes {
 
             for (int i = 0; i < 6; i++) {
 
-                String runename = Rarities.Items.get(i)
-                        .Color() + "" + rune.name() + " - " + Rarities.Items.get(i)
+                String runename = Rarities.Gears.get(i).Color() + "" + rune.name() + " - " + Rarities.Gears.get(i)
                         .GUID() + " Rune ";
 
                 // for lang file
-                lang += "item.mmorpg:runes/" + rune.name()
-                        .toLowerCase() + i + ".name=" + runename + "\n";
+                lang += "item.mmorpg:runes/" + rune.name().toLowerCase() + i + ".name=" + runename + "\n";
 
                 // for model files
                 String newtext = text.replaceAll("1", i + "");

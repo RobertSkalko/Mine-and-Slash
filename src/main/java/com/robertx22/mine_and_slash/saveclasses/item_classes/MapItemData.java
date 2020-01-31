@@ -259,7 +259,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public List<ITextComponent> getTooltip() {
         List<ITextComponent> tooltip = new ArrayList<>();
 
-        GearRarity rarity = Rarities.Items.get(this.rarity);
+        GearRarity rarity = Rarities.Gears.get(this.rarity);
 
         tooltip.add(TooltipUtils.level(this.level));
         TooltipUtils.addEmpty(tooltip);

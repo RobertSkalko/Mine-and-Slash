@@ -81,7 +81,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

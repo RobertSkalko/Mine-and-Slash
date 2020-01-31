@@ -42,7 +42,7 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
 }

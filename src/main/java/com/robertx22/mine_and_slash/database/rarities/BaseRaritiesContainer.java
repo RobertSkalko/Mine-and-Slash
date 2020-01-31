@@ -1,48 +1,57 @@
 package com.robertx22.mine_and_slash.database.rarities;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public abstract class RaritiesContainer<RarityType extends Rarity> {
+public abstract class BaseRaritiesContainer<RarityType extends Rarity> {
 
     public int minRarity;
     public int maxRarity;
 
-    public RaritiesContainer() {
+    public List<RarityType> normalRarities;
+
+    HashMap<Integer, RarityType> map = new HashMap<>();
+
+    public BaseRaritiesContainer() {
 
     }
 
     public final void onInit() {
-        this.minRarity = rarities().stream().min((Comparator.comparingInt(Rarity::Rank))).get().Rank();
-        this.maxRarity = rarities().stream().max((Comparator.comparingInt(Rarity::Rank))).get().Rank();
+        this.minRarity = getAllRarities().stream().min((Comparator.comparingInt(Rarity::Rank))).get().Rank();
+        this.maxRarity = getAllRarities().stream().max((Comparator.comparingInt(Rarity::Rank))).get().Rank();
+
+        normalRarities = getMap().values()
+                .stream()
+                .filter(x -> x.Rank() >= IRarity.Common && x.Rank() <= IRarity.Mythic)
+                .collect(Collectors.toList());
 
     }
-
-    HashMap<Integer, RarityType> map = new HashMap<>();
 
     public final HashMap<Integer, RarityType> getMap() {
         return map;
     }
 
-    public List<RarityType> rarities() {
-        return new ArrayList<>(getMap().values());
+    public List<RarityType> getNormalRarities() {
+        return normalRarities;
     }
 
     protected void add(RarityType r) {
         this.getMap().put(r.Rank(), r);
     }
 
-    public List<RarityType> getRarities() {
-        return new ArrayList<>(rarities());
+    public List<RarityType> getAllRarities() {
+        return new ArrayList<>(getMap().values());
     }
 
     public RarityType random() {
-        return RandomUtils.weightedRandom(rarities());
+        return RandomUtils.weightedRandom(getNormalRarities());
     }
 
     public final RarityType get(int i) {

@@ -67,7 +67,7 @@ public abstract class Quest implements ISlashRegistryEntry {
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

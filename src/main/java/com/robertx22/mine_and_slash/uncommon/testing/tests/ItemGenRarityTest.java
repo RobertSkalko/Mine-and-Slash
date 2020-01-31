@@ -38,12 +38,14 @@ public class ItemGenRarityTest {
 
         for (Entry<Integer, Integer> entry : RarityandNumber.entrySet()) {
             float percent = (float) entry.getValue() / (float) amount * 100;
-            System.out.println("Rarity: " + Rarities.Items.get(entry.getKey())
-                    .locName() + " has this many items: " + entry.getValue() + " , percent of total: " + Float
-                    .toString(percent));
+            System.out.println("Rarity: " + Rarities.Gears.get(entry.getKey())
+                    .locName() + " has this many items: " + entry.getValue() + " , percent of total: " + Float.toString(
+                    percent));
         }
-        System.out.println("It took " + watch.getTime() + " miliseconds for " + amount + " items to addPieces, in other words it took this many miliseconds for one item: " + watch
-                .getTime() / amount);
+        System.out.println(
+                "It took " + watch.getTime() + " miliseconds for " + amount + " items to addPieces, in other words it" +
+                        " took this many miliseconds for one item: " + watch
+                        .getTime() / amount);
 
     }
 }

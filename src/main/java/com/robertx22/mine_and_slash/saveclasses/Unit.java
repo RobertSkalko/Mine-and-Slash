@@ -262,7 +262,7 @@ public class Unit {
 
         double y = entity.posY;
 
-        List<MobRarity> rarities = Rarities.Mobs.rarities();
+        List<MobRarity> rarities = Rarities.Mobs.getNormalRarities();
 
         if (entity.world.rand.nextBoolean()) {
             if (entity.dimension.equals(DimensionType.OVERWORLD)) {

@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.rarities.containers;
 
-import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
+import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.rarities.runes.*;
 
-public class RuneRarities extends RaritiesContainer<RuneRarity> {
+public class RuneRarities extends BaseRaritiesContainer<RuneRarity> {
 
     public RuneRarities() {
         super();

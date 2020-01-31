@@ -34,7 +34,7 @@ public abstract class BaseMapAffix implements IWeighted, IGUID, IRarity, ISlashR
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     public float lootMulti() {

@@ -105,7 +105,7 @@ public class ItemWand extends BaseWeaponItem implements IWeapon, IEffectItem {
 
     @Override
     public String locNameForLangFile() {
-        Rarity rar = Rarities.Items.get(rarity);
+        Rarity rar = Rarities.Gears.get(rarity);
         return rar.textFormatColor() + "Wand";
     }
 

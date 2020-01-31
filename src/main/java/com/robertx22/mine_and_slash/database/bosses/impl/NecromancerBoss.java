@@ -3,11 +3,9 @@ package com.robertx22.mine_and_slash.database.bosses.impl;
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.SkeletonEntity;
-import net.minecraft.entity.monster.ZombieEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -42,12 +40,12 @@ public class NecromancerBoss extends Boss {
 
         for (int i = 0; i < 4; i++) {
 
-            Entity spawned;
+            MobEntity spawned;
 
             if (en.world.rand.nextBoolean()) {
-                spawned = new SkeletonEntity(EntityType.SKELETON, en.world);
+                spawned = EntityType.SKELETON.create(en.world);
             } else {
-                spawned = new ZombieEntity(en.world);
+                spawned = EntityType.ZOMBIE.create(en.world);
             }
 
             spawnMinion(p, spawned, en.world);

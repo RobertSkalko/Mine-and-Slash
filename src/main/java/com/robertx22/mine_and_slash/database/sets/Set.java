@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements, IAutoLocName, ISlashRegistryEntry<Set> {
+public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements, IAutoLocName,
+        ISlashRegistryEntry<Set> {
 
     public Set() {
     }
@@ -32,7 +33,7 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

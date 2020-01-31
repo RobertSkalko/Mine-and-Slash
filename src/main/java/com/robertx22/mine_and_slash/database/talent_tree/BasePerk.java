@@ -109,7 +109,7 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

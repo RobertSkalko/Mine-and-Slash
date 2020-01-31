@@ -18,7 +18,7 @@ public abstract class BaseItemModification implements IWeighted, IRarity, ISlash
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

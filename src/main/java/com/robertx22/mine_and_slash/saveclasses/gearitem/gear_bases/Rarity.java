@@ -30,7 +30,7 @@ public interface Rarity extends IWeighted, IAutoLocName, IColor {
 
     @Override
     public default String locNameLangFileGUID() {
-        return Ref.MODID + "s.rarity." + formattedGUID();
+        return Ref.MODID + ".rarity." + formattedGUID();
     }
 
     @Override

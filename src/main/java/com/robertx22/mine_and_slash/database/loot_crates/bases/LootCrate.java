@@ -47,14 +47,12 @@ public abstract class LootCrate implements ISlashRegistryEntry {
         stack.getTag().putInt(MapLootCrateItem.LVL, lvl);
         stack.getTag().putInt(MapLootCrateItem.TIER, mapTier);
         stack.getTag().putString(MapLootCrateItem.ID, GUID());
-        stack.getTag()
-                .putString(MapLootCrateItem.SCORE, MapScoreEnum.byNumber(score).name());
+        stack.getTag().putString(MapLootCrateItem.SCORE, MapScoreEnum.byNumber(score).name());
 
         return stack;
     }
 
-    public List<ItemStack> generateItems(LootInfo info, MapScoreEnum score,
-                                         boolean wonLottery) {
+    public List<ItemStack> generateItems(LootInfo info, MapScoreEnum score, boolean wonLottery) {
 
         List<ItemStack> items = new ArrayList<>();
 
@@ -88,7 +86,7 @@ public abstract class LootCrate implements ISlashRegistryEntry {
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

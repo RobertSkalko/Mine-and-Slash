@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.rarities.containers;
 
+import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.gears.*;
 
-public class ItemRarities extends RaritiesContainer<GearRarity> {
+public class GearRarities extends BaseRaritiesContainer<GearRarity> {
 
-    public ItemRarities() {
+    public GearRarities() {
         super();
         add(CommonGear.getInstance());
         add(UncommonGear.getInstance());

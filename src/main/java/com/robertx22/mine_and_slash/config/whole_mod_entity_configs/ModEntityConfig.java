@@ -56,7 +56,7 @@ public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

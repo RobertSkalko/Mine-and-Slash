@@ -9,27 +9,27 @@ import net.minecraft.item.crafting.Ingredient;
 public class RarityItemTier implements IItemTier {
 
     public RarityItemTier(int rar) {
-        this.rar = Rarities.Items.get(rar);
+        this.rar = Rarities.Gears.get(rar);
     }
 
     GearRarity rar;
 
     @Override
     public int getMaxUses() {
-        return (int) (net.minecraft.item.ItemTier.IRON.getMaxUses() + (net.minecraft.item.ItemTier.WOOD
-                .getMaxUses() * rar.itemTierPower()));
+        return (int) (net.minecraft.item.ItemTier.IRON.getMaxUses() + (net.minecraft.item.ItemTier.WOOD.getMaxUses() * rar
+                .itemTierPower()));
     }
 
     @Override
     public float getEfficiency() {
-        return net.minecraft.item.ItemTier.IRON.getEfficiency() + net.minecraft.item.ItemTier.WOOD
-                .getEfficiency() * rar.itemTierPower();
+        return net.minecraft.item.ItemTier.IRON.getEfficiency() + net.minecraft.item.ItemTier.WOOD.getEfficiency() * rar
+                .itemTierPower();
     }
 
     @Override
     public float getAttackDamage() {
-        return net.minecraft.item.ItemTier.IRON.getAttackDamage() + net.minecraft.item.ItemTier.WOOD
-                .getAttackDamage() * rar.itemTierPower();
+        return net.minecraft.item.ItemTier.IRON.getAttackDamage() + net.minecraft.item.ItemTier.WOOD.getAttackDamage() * rar
+                .itemTierPower();
     }
 
     @Override
@@ -39,8 +39,8 @@ public class RarityItemTier implements IItemTier {
 
     @Override
     public int getEnchantability() {
-        return (int) (net.minecraft.item.ItemTier.IRON.getEnchantability() + (net.minecraft.item.ItemTier.IRON
-                .getEnchantability() * rar.itemTierPower()));
+        return (int) (net.minecraft.item.ItemTier.IRON.getEnchantability() + (net.minecraft.item.ItemTier.IRON.getEnchantability() * rar
+                .itemTierPower()));
     }
 
     @Override

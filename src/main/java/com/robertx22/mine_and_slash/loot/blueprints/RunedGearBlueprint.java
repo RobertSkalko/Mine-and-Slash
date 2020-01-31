@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
+import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
@@ -16,8 +16,8 @@ public class RunedGearBlueprint extends GearBlueprint {
     }
 
     @Override
-    public RaritiesContainer<? extends Rarity> getRarityContainer() {
-        return Rarities.RunedItems;
+    public BaseRaritiesContainer<? extends Rarity> getRarityContainer() {
+        return Rarities.RunedGears;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
 
     @Override
     public String locNameForLangFile() {
-        Rarity rar = Rarities.Items.get(rarity);
+        Rarity rar = Rarities.Gears.get(rarity);
         return rar.textFormatColor() + "Shield";
     }
 
@@ -66,7 +66,8 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent(color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
+        list.add(new StringTextComponent(
+                color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
         if (moreInfo) {
             list.add(new StringTextComponent(color() + "DMG Reduced Based on Block Strength"));
         }

@@ -37,7 +37,7 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
 
     @Override
     default Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     @Override

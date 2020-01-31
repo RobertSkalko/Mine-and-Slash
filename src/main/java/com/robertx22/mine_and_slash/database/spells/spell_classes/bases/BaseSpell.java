@@ -55,7 +55,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Items.get(getRarityRank());
+        return Rarities.Gears.get(getRarityRank());
     }
 
     public Stat dmgStat() {

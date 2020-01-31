@@ -6,9 +6,9 @@ public class Rarities {
 
     public static final int MAXIMUM_ITEM_RARITY = 5;
 
-    public static final RunedItemRarities RunedItems = new RunedItemRarities();
+    public static final RunedGearRarities RunedGears = new RunedGearRarities();
     public static final RuneRarities Runes = new RuneRarities();
-    public static final ItemRarities Items = new ItemRarities();
+    public static final GearRarities Gears = new GearRarities();
     public static final MapRarities Maps = new MapRarities();
     public static final MobRarities Mobs = new MobRarities();
 
