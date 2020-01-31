@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.PlayerStatPointsData;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,7 +31,7 @@ public class PlayerStatsPointsCap {
     @CapabilityInject(IPlayerStatPointsData.class)
     public static final Capability<IPlayerStatPointsData> Data = null;
 
-    public interface IPlayerStatPointsData extends ICommonCapability {
+    public interface IPlayerStatPointsData extends ICommonPlayerCap {
 
         public SingleStatPointData getStatData(LvlPointStat stat);
 
@@ -85,8 +85,8 @@ public class PlayerStatsPointsCap {
         }
 
         @Override
-        public CapTypes getCapType() {
-            return CapTypes.STAT_POINTS;
+        public PlayerCaps getCapType() {
+            return PlayerCaps.STAT_POINTS;
         }
 
         @Override

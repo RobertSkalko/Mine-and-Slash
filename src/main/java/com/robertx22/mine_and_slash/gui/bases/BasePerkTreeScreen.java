@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkButton;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkConnectionRender;
 import com.robertx22.mine_and_slash.mmorpg.CapSyncCheck;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.talents.BasePerksData;
@@ -66,7 +66,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
         return Minecraft.getInstance().mainWindow.getHeight();
     }
 
-    public abstract CapTypes getCapType();
+    public abstract PlayerCaps getCapType();
 
     public abstract void reloadData();
 

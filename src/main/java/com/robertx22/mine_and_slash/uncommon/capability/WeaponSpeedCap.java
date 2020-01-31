@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,7 +28,7 @@ public class WeaponSpeedCap {
     @CapabilityInject(IWeaponSpeedCap.class)
     public static final Capability<IWeaponSpeedCap> Data = null;
 
-    public interface IWeaponSpeedCap extends ICommonCapability {
+    public interface IWeaponSpeedCap extends ICommonPlayerCap {
         void onAttack(PlayerEntity en);
 
         boolean canAttack();
@@ -111,7 +111,7 @@ public class WeaponSpeedCap {
         }
 
         @Override
-        public CapTypes getCapType() {
+        public PlayerCaps getCapType() {
             return null;
         }
     }

@@ -5,11 +5,11 @@ import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.talents.PlayerTalentsData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
@@ -32,7 +32,7 @@ public class PlayerTalentsCap {
     @CapabilityInject(IPlayerTalentsData.class)
     public static final Capability<IPlayerTalentsData> Data = null;
 
-    public abstract static class IPlayerTalentsData extends IPerkCap<Perk, PlayerTalentsData> implements ICommonCapability {
+    public abstract static class IPlayerTalentsData extends IPerkCap<Perk, PlayerTalentsData> implements ICommonPlayerCap {
 
     }
 
@@ -81,8 +81,8 @@ public class PlayerTalentsCap {
         }
 
         @Override
-        public CapTypes getCapType() {
-            return CapTypes.TALENTS;
+        public PlayerCaps getCapType() {
+            return PlayerCaps.TALENTS;
         }
 
         public int getAllowedPoints(EntityCap.UnitData data) {

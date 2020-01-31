@@ -20,12 +20,12 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.INeededForClient;
 import com.robertx22.mine_and_slash.uncommon.datasaving.*;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
@@ -88,7 +88,7 @@ public class EntityCap {
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
     private static final String AVG_GEAR_LVL = "AVG_GEAR_LVL";
 
-    public interface UnitData extends ICommonCapability, INeededForClient {
+    public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
         void modifyResource(ResourcesData.Context ctx);
 
@@ -660,8 +660,8 @@ public class EntityCap {
         }
 
         @Override
-        public CapTypes getCapType() {
-            return CapTypes.ENTITY_DATA;
+        public PlayerCaps getCapType() {
+            return PlayerCaps.ENTITY_DATA;
         }
 
         @Override

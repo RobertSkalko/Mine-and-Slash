@@ -23,7 +23,7 @@ public class TestNameRender<T extends Entity> extends LayerRenderer<T, EntityMod
     public void render(MatrixStack matrix, IRenderTypeBuffer buffer, int lights, T en, float limbSwing,
                        float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
-        //renderName(en, "Test name", matrix, buffer, lights);
+        // renderName(en, "Test name", matrix, buffer, lights);
 
     }
 

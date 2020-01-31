@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.PlayersCapBackup;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.PlayersCapBackupSaving;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +25,7 @@ public class PlayerCapBackupCap {
     @CapabilityInject(IPlayerCapBackupData.class)
     public static final Capability<IPlayerCapBackupData> Data = null;
 
-    public interface IPlayerCapBackupData extends ICommonCapability {
+    public interface IPlayerCapBackupData extends ICommonPlayerCap {
 
         PlayersCapBackup getBackup();
 
@@ -73,7 +73,7 @@ public class PlayerCapBackupCap {
         }
 
         @Override
-        public CapTypes getCapType() {
+        public PlayerCaps getCapType() {
             return null;
         }
 

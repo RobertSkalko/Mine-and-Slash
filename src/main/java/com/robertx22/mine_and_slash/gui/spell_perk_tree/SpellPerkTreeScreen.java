@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.BasePerkTreeScreen;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellPerksData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -35,8 +35,8 @@ public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerk
     }
 
     @Override
-    public CapTypes getCapType() {
-        return CapTypes.TALENTS;
+    public PlayerCaps getCapType() {
+        return PlayerCaps.TALENTS;
     }
 
     @Override

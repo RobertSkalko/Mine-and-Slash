@@ -7,12 +7,12 @@ import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellPerksData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
@@ -39,7 +39,7 @@ public class PlayerSpellCap {
     @CapabilityInject(ISpellsCap.class)
     public static final Capability<ISpellsCap> Data = null;
 
-    public abstract static class ISpellsCap extends IPerkCap<SpellPerk, SpellPerksData> implements ICommonCapability {
+    public abstract static class ISpellsCap extends IPerkCap<SpellPerk, SpellPerksData> implements ICommonPlayerCap {
         public abstract BaseSpell getSpellByKeybind(int key, PlayerSpellsData.Hotbar bar);
 
         public abstract PlayerSpellsData getSpellData();
@@ -115,8 +115,8 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public CapTypes getCapType() {
-            return CapTypes.SPELLS;
+        public PlayerCaps getCapType() {
+            return PlayerCaps.SPELLS;
         }
 
         @Override

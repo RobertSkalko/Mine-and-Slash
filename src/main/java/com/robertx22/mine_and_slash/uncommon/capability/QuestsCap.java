@@ -6,10 +6,10 @@ import com.robertx22.mine_and_slash.database.quests.data.QuestLogData;
 import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.QuestLogSaving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,7 +31,7 @@ public class QuestsCap {
     @CapabilityInject(IQuestsData.class)
     public static final Capability<IQuestsData> Data = null;
 
-    public interface IQuestsData extends ICommonCapability {
+    public interface IQuestsData extends ICommonPlayerCap {
 
         void onAction(PlayerEntity player, ActionDoneData actionData);
 
@@ -117,8 +117,8 @@ public class QuestsCap {
         }
 
         @Override
-        public CapTypes getCapType() {
-            return CapTypes.QUESTS;
+        public PlayerCaps getCapType() {
+            return PlayerCaps.QUESTS;
         }
     }
 

@@ -43,6 +43,8 @@ public class OnMobSpawn {
 
         if (endata != null) {
 
+            Load.boss(entity).onMobCreation(entity);
+
             endata.setType(entity);
 
             PlayerEntity nearestPlayer = null;

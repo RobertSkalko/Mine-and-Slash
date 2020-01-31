@@ -1,58 +1,58 @@
 package com.robertx22.mine_and_slash.packets.sync_cap;
 
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 
-public enum CapTypes {
+public enum PlayerCaps {
 
     ENTITY_DATA {
         @Override
-        public ICommonCapability getCap(PlayerEntity player) {
+        public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.Unit(player);
         }
     },
     MAP_DATA {
         @Override
-        public ICommonCapability getCap(PlayerEntity player) {
+        public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.playerMapData(player);
         }
     },
     PROFESSIONS {
         @Override
-        public ICommonCapability getCap(PlayerEntity player) {
+        public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.professions(player);
         }
     },
     TALENTS {
         @Override
-        public ICommonCapability getCap(PlayerEntity player) {
+        public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.talents(player);
         }
     },
     SPELLS {
         @Override
-        public ICommonCapability getCap(PlayerEntity player) {
+        public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.spells(player);
         }
     },
     QUESTS {
         @Override
-        public ICommonCapability getCap(PlayerEntity player) {
+        public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.quests(player);
         }
     },
     STAT_POINTS {
         @Override
-        public ICommonCapability getCap(PlayerEntity player) {
+        public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.statPoints(player);
         }
     };
 
-    CapTypes() {
+    PlayerCaps() {
 
     }
 
-    public abstract ICommonCapability getCap(PlayerEntity player);
+    public abstract ICommonPlayerCap getCap(PlayerEntity player);
 
 }

@@ -20,10 +20,10 @@ public class DmgParticleConfig {
         builder.push("DMG_PARTICLE_CONFIGS");
 
         GRAVITY = builder.define("GRAVITY", 0.15D);
-        START_SIZE = builder.define("START_SIZE", 1D);
+        START_SIZE = builder.define("START_SIZE", 0.5D);
         MAX_SIZE = builder.define("MAX_SIZE", 2D);
         LIFESPAN = builder.define("LIFESPAN", 12D);
-        SPEED = builder.define("SPEED", 0.5D);
+        SPEED = builder.define("SPEED", 0.003D);
 
         GROWS = builder.define("GROWS", true);
 

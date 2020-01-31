@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
@@ -68,7 +68,7 @@ public class TryAllocatePerkPacket {
                             talents.allocate(perk);
                         }
 
-                        MMORPG.sendToClient(new SyncCapabilityToClient(player, CapTypes.TALENTS), player);
+                        MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.TALENTS), player);
                     }
                 }
                 if (pkt.registryType == SlashRegistryType.SPELL_PERK) {
@@ -84,7 +84,7 @@ public class TryAllocatePerkPacket {
                             spells.allocate(perk);
                         }
 
-                        MMORPG.sendToClient(new SyncCapabilityToClient(player, CapTypes.SPELLS), player);
+                        MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
                     }
 
                 }

@@ -20,6 +20,7 @@ import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -123,20 +124,19 @@ public class HealthBarRenderer {
 
                 float percent = (int) ((health / maxHealth) * 100F);
 
-                //double renderPosX = ObfuscationReflectionHelper.getPrivateValue(
-                //       EntityRendererManager.class, renderManager, "renderPosX");
-
                 EntityRendererManager renderManager = Minecraft.getInstance().getRenderManager();
 
                 Vec3d pos = renderManager.info.getProjectedView();
 
                 PlayerEntity p = mc.player;
 
-                Vec3d dist = p.getPositionVector().add(en.getPositionVector()).subtract(pos);
+                Vec3d view = renderManager.info.getProjectedView();
+                float renderPosX = (float) (MathHelper.lerp((double) partialTicks, en.prevPosX, en.posX) - view.getX());
+                float renderPosY = (float) (MathHelper.lerp((double) partialTicks, en.prevPosY, en.posY) - view.getY());
+                float renderPosZ = (float) (MathHelper.lerp((double) partialTicks, en.prevPosZ, en.posZ) - view.getZ());
 
-                double renderPosX = dist.x;
-                double renderPosY = dist.y;
-                double renderPosZ = dist.z;
+                float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
+                float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
                 GlStateManager.pushMatrix();
                 GlStateManager.translatef((float) (renderPosX),
@@ -144,10 +144,10 @@ public class HealthBarRenderer {
                                                   .get()), (float) (renderPosZ)
                 );
 
-                GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+                GlStateManager.rotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
 
-                GlStateManager.rotatef((float) -renderManager.info.getViewVector().getY(), 0.0F, 1.0F, 0.0F);
-                GlStateManager.rotatef((float) renderManager.info.getViewVector().getY(), 1.0F, 0.0F, 0.0F);// TODO
+                GlStateManager.normal3f(0.0F, 1.0F, 0.0F);
 
                 GlStateManager.scalef(-scale, -scale, scale);
                 boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);

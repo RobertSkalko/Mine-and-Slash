@@ -17,9 +17,9 @@ public class SyncCapabilityToClient {
     }
 
     private CompoundNBT nbt;
-    private CapTypes type;
+    private PlayerCaps type;
 
-    public SyncCapabilityToClient(ServerPlayerEntity p, CapTypes type) {
+    public SyncCapabilityToClient(ServerPlayerEntity p, PlayerCaps type) {
         this.nbt = type.getCap(p).getNBT();
         this.type = type;
     }
@@ -28,7 +28,7 @@ public class SyncCapabilityToClient {
 
         SyncCapabilityToClient newpkt = new SyncCapabilityToClient();
         newpkt.nbt = buf.readCompoundTag();
-        newpkt.type = buf.readEnumValue(CapTypes.class);
+        newpkt.type = buf.readEnumValue(PlayerCaps.class);
         return newpkt;
     }
 

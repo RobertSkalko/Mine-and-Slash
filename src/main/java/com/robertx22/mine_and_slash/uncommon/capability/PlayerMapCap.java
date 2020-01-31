@@ -4,11 +4,11 @@ import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -41,7 +41,7 @@ public class PlayerMapCap {
     static final String ORIGINAL_DIM = "original_dimension";
     static final String MIN_PASSED = "MIN_PASSED";
 
-    public interface IPlayerMapData extends ICommonCapability {
+    public interface IPlayerMapData extends ICommonPlayerCap {
 
         void onTickIfDead(ServerPlayerEntity player);
 
@@ -155,8 +155,8 @@ public class PlayerMapCap {
         }
 
         @Override
-        public CapTypes getCapType() {
-            return CapTypes.MAP_DATA;
+        public PlayerCaps getCapType() {
+            return PlayerCaps.MAP_DATA;
         }
 
         @Override

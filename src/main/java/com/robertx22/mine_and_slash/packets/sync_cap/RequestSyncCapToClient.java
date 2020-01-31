@@ -13,16 +13,16 @@ public class RequestSyncCapToClient {
 
     }
 
-    private CapTypes type;
+    private PlayerCaps type;
 
-    public RequestSyncCapToClient(CapTypes type) {
+    public RequestSyncCapToClient(PlayerCaps type) {
         this.type = type;
     }
 
     public static RequestSyncCapToClient decode(PacketBuffer buf) {
 
         RequestSyncCapToClient newpkt = new RequestSyncCapToClient();
-        newpkt.type = buf.readEnumValue(CapTypes.class);
+        newpkt.type = buf.readEnumValue(PlayerCaps.class);
         return newpkt;
     }
 

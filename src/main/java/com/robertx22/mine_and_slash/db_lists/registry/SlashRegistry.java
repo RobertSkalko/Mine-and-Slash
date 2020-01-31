@@ -5,6 +5,8 @@ import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
+import com.robertx22.mine_and_slash.database.bosses.base.Boss;
+import com.robertx22.mine_and_slash.database.bosses.impl.NecromancerBoss;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseItemModification;
 import com.robertx22.mine_and_slash.database.item_modifications.gear_items.AddChaosStatMod;
@@ -185,6 +187,10 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.RUNEWORD);
     }
 
+    public static SlashRegistryContainer<Boss> Bosses() {
+        return getRegistry(SlashRegistryType.BOSS);
+    }
+
     public static SlashRegistryContainer<BaseWorldProvider> WorldProviders() {
         return getRegistry(SlashRegistryType.WORLD_PROVIDER);
     }
@@ -260,6 +266,8 @@ public class SlashRegistry {
         new LootCrates().registerAll();
         new Quests().registerAll();
         new QuestRewards().registerAll();
+
+        new Bosses().registerAll();
     }
 
     private static void createRegistries() {
@@ -348,6 +356,10 @@ public class SlashRegistry {
         map.put(SlashRegistryType.SYNERGY_EFFECT,
                 new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null)
         );
+        map.put(SlashRegistryType.BOSS,
+                new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, new NecromancerBoss())
+        );
+
     }
 
 }

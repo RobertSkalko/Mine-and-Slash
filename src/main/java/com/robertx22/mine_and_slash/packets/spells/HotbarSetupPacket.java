@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.packets.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -61,7 +61,7 @@ public class HotbarSetupPacket {
 
                 data.setHotbar(pkt.number, pkt.hotbar, pkt.spellID);
 
-                MMORPG.sendToClient(new SyncCapabilityToClient(player, CapTypes.SPELLS), player);
+                MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.SpendStatPointPacket;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
@@ -86,7 +86,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
         this.guiLeft = (this.width - sizeX) / 2;
         this.guiTop = (this.height - sizeY) / 2;
-        MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.STAT_POINTS));
+        MMORPG.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
 
         int y = 0;
 
@@ -155,7 +155,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
             super.onPress();
 
             MMORPG.sendToServer(new SpendStatPointPacket(this.stat));
-            MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.STAT_POINTS));
+            MMORPG.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
 
         }
 
@@ -195,7 +195,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
 
             String str =
                     single.stat.formatting + single.stat.shortName + format + ": " + TextFormatting.GREEN + single.points + format;
-            str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit().getCreateStat(stat).val + format + ")";
+            str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit()
+                    .getCreateStat(stat).val + format + ")";
 
             font.drawStringWithShadow(str, this.x - button_sizeX - 5 - font.getStringWidth(str),
                                       this.y - button_sizeY / 2 + font.FONT_HEIGHT, format.getColor()

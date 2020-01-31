@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.CapTypes;
+import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.saveclasses.professions.ProfessionData;
 import com.robertx22.mine_and_slash.saveclasses.professions.ProfessionListData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCapability;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ProfessionSaving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,7 +31,7 @@ public class ProfessionsCap {
     @CapabilityInject(IProfessionsData.class)
     public static final Capability<IProfessionsData> Data = null;
 
-    public interface IProfessionsData extends ICommonCapability {
+    public interface IProfessionsData extends ICommonPlayerCap {
 
         int getLevel(Professions prof);
 
@@ -122,8 +122,8 @@ public class ProfessionsCap {
         }
 
         @Override
-        public CapTypes getCapType() {
-            return CapTypes.PROFESSIONS;
+        public PlayerCaps getCapType() {
+            return PlayerCaps.PROFESSIONS;
         }
 
         private static float getMultiplier(int lvl) {

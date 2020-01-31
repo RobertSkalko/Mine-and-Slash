@@ -17,6 +17,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
 public class DamageParticle extends Particle {
@@ -63,72 +64,88 @@ public class DamageParticle extends Particle {
     }
 
     @Override
-    public void renderParticle(IVertexBuilder vertex, ActiveRenderInfo info, float f) {
+    public void renderParticle(IVertexBuilder vertex, ActiveRenderInfo info, float partialTicks) {
 
         try {
 
             float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
             float rotationPitch = Minecraft.getInstance().player.rotationPitch;
-
-            Minecraft mc = Minecraft.getInstance();
-
-            float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get().floatValue();
-
-            PlayerEntity p = mc.player;
-            Vector3d distance = new Vector3d(posX - p.posX, posY - p.posY, posZ - p.posZ);
-
-            double x = locX + distance.x;
-            double y = locY + distance.y - p.getEyeHeight();
-            double z = locZ + distance.z;
-
-            if (positionNeedsSetting) {
-                setupPosition(info);
-            }
-
-            //            MatrixStack matrix = new MatrixStack();
-
-            // matrix.push();
+            Vec3d view = info.getProjectedView();
+            float posX = (float) (MathHelper.lerp((double) partialTicks, this.prevPosX, this.posX) - view.getX());
+            float posY = (float) (MathHelper.lerp((double) partialTicks, this.prevPosY, this.posY) - view.getY());
+            float posZ = (float) (MathHelper.lerp((double) partialTicks, this.prevPosZ, this.posZ) - view.getZ());
 
             RenderSystem.pushMatrix();
 
-            RenderSystem.depthFunc(519);
+            GL11.glTranslated(posX, posY - 0.5F, posZ);
+            GL11.glRotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
 
-            RenderSystem.translated(x, y, z);
+            GL11.glScaled(-1.0, -1.0, 1.0);
+            GL11.glScaled(this.getBoundingBox().getXSize() * 0.04D, this.getBoundingBox().getYSize() * 0.04D,
+                          this.getBoundingBox().getZSize() * 0.04D
+            );
+            GL11.glScaled(1.0, 1.0, 1.0);
 
-            RenderSystem.rotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
-            RenderSystem.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
-
-            RenderSystem.scalef(-1.0F, -1.0F, 1.0F);
-
-            RenderSystem.scaled(this.scale * 0.008D, this.scale * 0.008D, this.scale * 0.008D);
             RenderSystem.scaled(this.scale, this.scale, this.scale);
 
-            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
 
-            final FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
-            fontRenderer.drawStringWithShadow(this.text,
-                                              -MathHelper.floor(fontRenderer.getStringWidth(this.text) / 2.0F) + 1,
-                                              -MathHelper.floor(fontRenderer.FONT_HEIGHT / 2.0F) + 1,
-                                              element.format.getColor()
-            );
+            RenderSystem.disableColorMaterial();
+            RenderSystem.disableLighting();
+            RenderSystem.depthMask(false);
+            RenderSystem.disableDepthTest();
 
-            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            RenderSystem.depthFunc(515);
+            fontRenderer.drawStringWithShadow(this.text, 0, 0, element.format.getColor());
+
+            RenderSystem.enableDepthTest();
+            RenderSystem.depthMask(false);
+            RenderSystem.enableLighting();
+            RenderSystem.enableColorMaterial();
 
             RenderSystem.popMatrix();
-            if (ClientContainer.INSTANCE.dmgParticleConfig.GROWS.get()) {
-                if (this.grow) {
-                    this.scale *= 1.05F;
-                    if (this.scale > ClientContainer.INSTANCE.dmgParticleConfig.MAX_SIZE.get().floatValue()) {
-                        this.grow = false;
-                    }
-                } else {
-                    this.scale *= 0.97F;
-                }
-            }
+
+            this.setSize(1.0F, 1.0F);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void tick() {
+        if (ClientContainer.INSTANCE.dmgParticleConfig.GROWS.get()) {
+            if (this.grow) {
+                this.scale *= 1.05F;
+                if (this.scale > ClientContainer.INSTANCE.dmgParticleConfig.MAX_SIZE.get().floatValue()) {
+                    this.grow = false;
+                }
+            } else {
+                this.scale *= 0.97F;
+            }
+        }
+        this.prevPosX = this.posX;
+        this.prevPosY = this.posY;
+        this.prevPosZ = this.posZ;
+        if (this.age++ >= this.maxAge) {
+            this.setExpired();
+        }
+
+        this.prevParticleAngle = this.particleAngle;
+        this.particleAngle += (float) Math.PI * 0.2 * 2.0F;
+        if (this.onGround) {
+            this.prevParticleAngle = this.particleAngle = 0.0F;
+        }
+
+        this.move(this.motionX, this.motionY, this.motionZ);
+
+        double speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get();
+
+        this.motionY -= speed;
+        this.motionX += speed * world.rand.nextDouble();
+        this.motionZ += speed * world.rand.nextDouble();
+
+        this.motionY = Math.max(this.motionY, -0.14D);
     }
 
     @Override

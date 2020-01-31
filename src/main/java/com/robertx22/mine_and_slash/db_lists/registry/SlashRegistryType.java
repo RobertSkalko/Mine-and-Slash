@@ -29,6 +29,7 @@ public enum SlashRegistryType {
     LOOT_CRATE,
     QUEST(),
     QUEST_REWARD(),
-    RECIPE();
+    RECIPE(),
+    BOSS();
 
 }
