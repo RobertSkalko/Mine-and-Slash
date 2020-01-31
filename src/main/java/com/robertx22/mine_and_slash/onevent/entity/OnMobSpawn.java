@@ -1,9 +1,14 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
@@ -12,6 +17,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import javax.annotation.Nullable;
 
 public class OnMobSpawn {
 
@@ -43,7 +50,8 @@ public class OnMobSpawn {
 
         if (endata != null) {
 
-            Load.boss(entity).onMobCreation(entity);
+            BossCap.IBossData boss = Load.boss(entity);
+            boss.onMobCreation(entity);
 
             endata.setType(entity);
 
@@ -54,7 +62,7 @@ public class OnMobSpawn {
             }
 
             if (endata.needsToBeGivenStats()) {
-                Unit unit = Unit.Mob(entity, nearestPlayer);
+                Unit unit = Mob(entity, endata, boss, nearestPlayer);
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit(), entity);
@@ -63,7 +71,39 @@ public class OnMobSpawn {
                 endata.getUnit().initStats(); // give new stats to mob on spawn
                 endata.forceRecalculateStats(entity);
             }
+
+            if (boss.isBoss()) {
+                endata.setRarity(IRarity.Boss);
+            }
         }
+
+    }
+
+    public static Unit Mob(LivingEntity entity, UnitData data, BossCap.IBossData boss,
+                           @Nullable PlayerEntity nearestPlayer) {
+
+        Unit mob = new Unit();
+        mob.initStats();
+
+        UnitData endata = Load.Unit(entity);
+
+        if (nearestPlayer != null) {
+            if (WorldUtils.isMapWorldClass(entity.world)) {
+                PlayerMapCap.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
+                endata.setTier(mapdata.getTier());
+            }
+        }
+
+        endata.SetMobLevelAtSpawn(entity, nearestPlayer);
+        endata.setRarity(mob.randomRarity(entity, endata, boss));
+
+        MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
+
+        endata.setUnit(mob, entity);
+
+        mob.RecalculateStats(entity, endata, endata.getLevel());
+
+        return mob;
 
     }
 

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
@@ -175,7 +175,7 @@ public class TooltipUtils {
         return Styles.YELLOWCOMP()
                 .appendSibling(Words.Tier.locName())
                 .appendText(" " + tier + " ")
-                .appendSibling(Rarities.Items.unique().locName());
+                .appendSibling(UniqueGear.getInstance().locName());
 
     }
 

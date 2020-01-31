@@ -6,6 +6,13 @@ import com.robertx22.mine_and_slash.database.rarities.base.BaseLegendary;
 
 public class LegendaryMob extends BaseLegendary implements MobRarity {
 
+    private LegendaryMob() {
+    }
+
+    public static LegendaryMob getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public float StatMultiplier() {
         return 3.2F;
@@ -41,4 +48,7 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
         return ModConfig.INSTANCE.RarityWeightConfig.MOBS.LEGENDARY_WEIGHT.get();
     }
 
+    private static class SingletonHolder {
+        private static final LegendaryMob INSTANCE = new LegendaryMob();
+    }
 }

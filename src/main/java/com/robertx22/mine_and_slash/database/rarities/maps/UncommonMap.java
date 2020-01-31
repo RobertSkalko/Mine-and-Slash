@@ -7,6 +7,13 @@ import com.robertx22.mine_and_slash.database.rarities.base.BaseUncommon;
 
 public class UncommonMap extends BaseUncommon implements MapRarity {
 
+    private UncommonMap() {
+    }
+
+    public static UncommonMap getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public MinMax AffixAmount() {
         return new MinMax(2, 3);
@@ -32,4 +39,7 @@ public class UncommonMap extends BaseUncommon implements MapRarity {
         return ModConfig.INSTANCE.RarityWeightConfig.MAPS.UNCOMMON_WEIGHT.get();
     }
 
+    private static class SingletonHolder {
+        private static final UncommonMap INSTANCE = new UncommonMap();
+    }
 }

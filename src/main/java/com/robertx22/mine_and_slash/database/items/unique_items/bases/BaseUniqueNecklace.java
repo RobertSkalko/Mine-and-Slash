@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 
 public abstract class BaseUniqueNecklace extends ItemNecklace implements IUnique {
     public BaseUniqueNecklace() {
-        super(new UniqueGear().Rank());
+        super(UniqueGear.getInstance().Rank());
     }
 
     @Override

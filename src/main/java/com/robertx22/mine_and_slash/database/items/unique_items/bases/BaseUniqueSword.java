@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 
 public abstract class BaseUniqueSword extends ItemSword implements IUnique {
     public BaseUniqueSword() {
-        super(new UniqueGear().Rank());
+        super(UniqueGear.getInstance().Rank());
     }
 
     @Override

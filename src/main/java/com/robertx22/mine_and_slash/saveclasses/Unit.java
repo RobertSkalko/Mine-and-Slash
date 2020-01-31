@@ -18,12 +18,15 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.PlayerStatUtils;
+import com.robertx22.mine_and_slash.uncommon.testing.Watch;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -38,7 +41,6 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.*;
 
 // this stores data that can be lost without issue, stats that are recalculated all the time
@@ -248,71 +250,47 @@ public class Unit {
         return null;
     }
 
-    public static Unit Mob(LivingEntity entity, @Nullable PlayerEntity nearestPlayer) {
+    public int randomRarity(LivingEntity entity, UnitData data, BossCap.IBossData boss) {
 
-        Unit mob = new Unit();
-        mob.initStats();
-
-        UnitData endata = Load.Unit(entity);
-
-        if (nearestPlayer != null) {
-            if (WorldUtils.isMapWorldClass(entity.world)) {
-                PlayerMapCap.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
-                endata.setTier(mapdata.getTier());
-            }
+        if (boss != null && boss.isBoss()) {
+            return IRarity.Boss;
         }
 
-        endata.SetMobLevelAtSpawn(entity, nearestPlayer);
-        endata.setRarity(randomRarity(entity, endata.getLevel()));
+        Watch watch = new Watch();
 
-        MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));
-
-        endata.setUnit(mob, entity);
-
-        mob.RecalculateStats(entity, endata, endata.getLevel());
-
-        return mob;
-
-    }
-
-    private static int randomRarity(LivingEntity entity, int level) {
+        int level = data.getLevel();
 
         double y = entity.posY;
 
-        int minRarity = 0;
-
-        if (entity.dimension.equals(DimensionType.OVERWORLD)) {
-
-            if (y < 50) {
-                minRarity = 1;
-            }
-            if (y < 30) {
-                minRarity = 2;
-            }
-        }
-
         List<MobRarity> rarities = Rarities.Mobs.rarities();
-        List<MobRarity> after = new ArrayList<MobRarity>();
 
-        DimensionConfig config = SlashRegistry.getDimensionConfig(entity.world);
-
-        for (MobRarity rar : rarities) {
-            if (rar.Rank() >= minRarity) {
-                if (rar.Rank() == 4 && config.LEVEL_FOR_MOBS_TO_BE_LEGENDARY > level) {
-
-                } else if (rar.Rank() == 5 && config.LEVEL_FOR_MOBS_TO_BE_MYTHICAL > level) {
-
-                } else {
-                    after.add(rar);
+        if (entity.world.rand.nextBoolean()) {
+            if (entity.dimension.equals(DimensionType.OVERWORLD)) {
+                if (y < 50) {
+                    rarities.removeIf(x -> x.Rank() == IRarity.Common);
+                }
+                if (y < 30) {
+                    rarities.removeIf(x -> x.Rank() == IRarity.Uncommon);
                 }
             }
         }
 
-        MobRarity finalRarity = RandomUtils.weightedRandom(after);
+        DimensionConfig config = SlashRegistry.getDimensionConfig(entity.world);
 
-        ModEntityConfig entityconfig = SlashRegistry.getEntityConfig(entity, Load.Unit(entity));
+        if (config.LEVEL_FOR_MOBS_TO_BE_LEGENDARY > level) {
+            rarities.removeIf(x -> x.Rank() == IRarity.Legendary);
+        }
+        if (config.LEVEL_FOR_MOBS_TO_BE_MYTHICAL > level) {
+            rarities.removeIf(x -> x.Rank() == IRarity.Mythic);
+        }
 
-        return MathHelper.clamp(finalRarity.Rank(), entityconfig.MIN_RARITY, entityconfig.MAX_RARITY);
+        MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
+
+        ModEntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, Load.Unit(entity));
+
+        watch.print("mob rar ");
+
+        return MathHelper.clamp(finalRarity.Rank(), entityConfig.MIN_RARITY, entityConfig.MAX_RARITY);
 
     }
 

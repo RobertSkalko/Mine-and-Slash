@@ -132,7 +132,7 @@ public class MMORPG {
         System.out.println(Ref.MODID + ":FMLCommonSetupEvent");
 
         PacketRegister.register();
-        OreGenRegister.register();
+
         CapabilityRegister.register();
         CriteriaRegisters.register();
 

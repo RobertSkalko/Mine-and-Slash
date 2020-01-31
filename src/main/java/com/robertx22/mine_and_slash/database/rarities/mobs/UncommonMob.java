@@ -6,6 +6,13 @@ import com.robertx22.mine_and_slash.database.rarities.base.BaseUncommon;
 
 public class UncommonMob extends BaseUncommon implements MobRarity {
 
+    private UncommonMob() {
+    }
+
+    public static UncommonMob getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public float StatMultiplier() {
         return 1.3F;
@@ -41,4 +48,7 @@ public class UncommonMob extends BaseUncommon implements MobRarity {
         return ModConfig.INSTANCE.RarityWeightConfig.MOBS.UNCOMMON_WEIGHT.get();
     }
 
+    private static class SingletonHolder {
+        private static final UncommonMob INSTANCE = new UncommonMob();
+    }
 }

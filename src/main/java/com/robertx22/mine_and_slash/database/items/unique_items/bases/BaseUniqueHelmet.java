@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 public abstract class BaseUniqueHelmet extends PlateHelmetItem implements IUnique {
 
     public BaseUniqueHelmet() {
-        super(new UniqueGear().Rank());
+        super(UniqueGear.getInstance().Rank());
 
     }
 

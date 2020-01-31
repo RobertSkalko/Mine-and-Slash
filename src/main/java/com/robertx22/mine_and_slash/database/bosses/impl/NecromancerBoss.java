@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.bosses.impl;
 
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -61,7 +60,6 @@ public class NecromancerBoss extends Boss {
 
         super.applyStats(data);
 
-        data.getUnit().getCreateStat(Health.INSTANCE).addFlat(10, data.getLevel());
     }
 
 }

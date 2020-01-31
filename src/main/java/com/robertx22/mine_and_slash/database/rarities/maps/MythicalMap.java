@@ -7,6 +7,13 @@ import com.robertx22.mine_and_slash.database.rarities.base.BaseMythical;
 
 public class MythicalMap extends BaseMythical implements MapRarity {
 
+    private MythicalMap() {
+    }
+
+    public static MythicalMap getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public MinMax AffixAmount() {
         return new MinMax(3, 4);
@@ -32,4 +39,7 @@ public class MythicalMap extends BaseMythical implements MapRarity {
         return ModConfig.INSTANCE.RarityWeightConfig.MAPS.MYTHICAL_WEIGHT.get();
     }
 
+    private static class SingletonHolder {
+        private static final MythicalMap INSTANCE = new MythicalMap();
+    }
 }

@@ -20,7 +20,8 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IAutoLocMultiLore, IHasRecipe {
+public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IAutoLocMultiLore,
+        IHasRecipe {
 
     private static final String GUID = Ref.MODID + ":currency/create_new_unique";
 
@@ -45,10 +46,9 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
 
         GearItemData gear = Gear.Load(stack);
 
-        UniqueGearBlueprint gearPrint = new UniqueGearBlueprint(gear.level, gear.uniqueStats
-                .getUniqueItem()
-                .Tier(), false);
-        gearPrint.rarity.setSpecificRarity(new UniqueGear().Rank());
+        UniqueGearBlueprint gearPrint = new UniqueGearBlueprint(
+                gear.level, gear.uniqueStats.getUniqueItem().Tier(), false);
+        gearPrint.rarity.setSpecificRarity(UniqueGear.getInstance().Rank());
 
         gearPrint.level.LevelRange = false;
 

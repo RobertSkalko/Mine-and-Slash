@@ -3,14 +3,12 @@ package com.robertx22.mine_and_slash.blocks.egg_loot_crate;
 import com.robertx22.mine_and_slash.blocks.conditions.IConditionalLootCrate;
 import com.robertx22.mine_and_slash.blocks.conditions.LootCrateCondition;
 import com.robertx22.mine_and_slash.blocks.conditions.NoMobAroundCondition;
-import com.robertx22.mine_and_slash.database.rarities.gears.MythicalGear;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.saveclasses.PlayerOncePerMapData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -122,10 +120,6 @@ public class EggLootCrateTileEntity extends TileEntity implements ITickableTileE
 
     public boolean finished() {
         return timesToDrop < 1;
-    }
-
-    private Rarity getRarity() {
-        return new MythicalGear();
     }
 
     @Override

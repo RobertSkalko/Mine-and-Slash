@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 
 public abstract class BaseUniqueCharm extends ItemCharm implements IUnique {
     public BaseUniqueCharm() {
-        super(new UniqueGear().Rank());
+        super(UniqueGear.getInstance().Rank());
     }
 
     @Override

@@ -4,23 +4,19 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.RaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.gears.*;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class ItemRarities extends RaritiesContainer<GearRarity> {
 
-    public static final List<GearRarity> Items = Arrays.asList(new CommonGear(), new UncommonGear(), new RareGear(), new EpicGear(), new LegendaryGear(), new MythicalGear());
+    public ItemRarities() {
+        super();
+        add(CommonGear.getInstance());
+        add(UncommonGear.getInstance());
+        add(RareGear.getInstance());
+        add(EpicGear.getInstance());
+        add(LegendaryGear.getInstance());
+        add(MythicalGear.getInstance());
+        add(UniqueGear.getInstance());
 
-    UniqueGear unique = new UniqueGear();
-
-    @Override
-    public GearRarity unique() {
-        return unique;
-    }
-
-    @Override
-    public List<GearRarity> rarities() {
-        return Items;
+        this.onInit();
     }
 
 }

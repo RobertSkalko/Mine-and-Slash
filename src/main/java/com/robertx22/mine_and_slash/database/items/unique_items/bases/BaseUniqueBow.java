@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemBow;
 public abstract class BaseUniqueBow extends ItemBow implements IUnique {
 
     public BaseUniqueBow() {
-        super(new UniqueGear().Rank());
+        super(UniqueGear.getInstance().Rank());
     }
 
     @Override

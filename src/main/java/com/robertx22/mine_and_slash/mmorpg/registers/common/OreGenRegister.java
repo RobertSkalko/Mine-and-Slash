@@ -18,12 +18,11 @@ public class OreGenRegister {
 
             int amount = 3;
 
-            for (int i = 0; i < ItemOre.Blocks.values().size(); i++) {
-
+            for (Block block : ItemOre.Blocks.values()) {
                 if (amount < 1) {
                     amount = 1;
                 }
-                genOre(ItemOre.Blocks.get(i), amount--);
+                genOre(block, amount--);
             }
 
         }

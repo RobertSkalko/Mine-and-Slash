@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.rarities.base;
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.TextFormatting;
 
@@ -21,7 +22,7 @@ public abstract class BaseMythical implements Rarity {
     @Override
     public int Rank() {
 
-        return 5;
+        return IRarity.Mythic;
     }
 
     @Override

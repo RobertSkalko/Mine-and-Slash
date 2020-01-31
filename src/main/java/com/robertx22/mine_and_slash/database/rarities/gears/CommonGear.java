@@ -6,6 +6,13 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseCommon;
 
 public class CommonGear extends BaseCommon implements GearRarity {
+    CommonGear() {
+    }
+
+    public static CommonGear getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public float requirementMulti() {
         return 0.3F;
@@ -51,4 +58,7 @@ public class CommonGear extends BaseCommon implements GearRarity {
         return 1F;
     }
 
+    private static class SingletonHolder {
+        private static final CommonGear INSTANCE = new CommonGear();
+    }
 }

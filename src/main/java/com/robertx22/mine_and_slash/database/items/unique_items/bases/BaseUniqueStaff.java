@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 public abstract class BaseUniqueStaff extends ItemStaff implements IUnique {
 
     public BaseUniqueStaff() {
-        super(new UniqueGear().Rank());
+        super(UniqueGear.getInstance().Rank());
     }
 
     @Override

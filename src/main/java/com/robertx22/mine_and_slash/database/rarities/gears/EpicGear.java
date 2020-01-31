@@ -9,6 +9,10 @@ public class EpicGear extends BaseEpic implements GearRarity {
     public EpicGear() {
     }
 
+    public static EpicGear getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public float requirementMulti() {
         return 0.6F;
@@ -52,5 +56,9 @@ public class EpicGear extends BaseEpic implements GearRarity {
     @Override
     public float powerMultiplier() {
         return 1.6F;
+    }
+
+    private static class SingletonHolder {
+        private static final EpicGear INSTANCE = new EpicGear();
     }
 }

@@ -6,6 +6,13 @@ import com.robertx22.mine_and_slash.database.rarities.base.BaseRare;
 
 public class RareMob extends BaseRare implements MobRarity {
 
+    private RareMob() {
+    }
+
+    public static RareMob getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public float StatMultiplier() {
         return 1.5F;
@@ -39,5 +46,9 @@ public class RareMob extends BaseRare implements MobRarity {
     @Override
     public int Weight() {
         return ModConfig.INSTANCE.RarityWeightConfig.MOBS.RARE_WEIGHT.get();
+    }
+
+    private static class SingletonHolder {
+        private static final RareMob INSTANCE = new RareMob();
     }
 }

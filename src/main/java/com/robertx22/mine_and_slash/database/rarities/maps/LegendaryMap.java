@@ -7,6 +7,13 @@ import com.robertx22.mine_and_slash.database.rarities.base.BaseLegendary;
 
 public class LegendaryMap extends BaseLegendary implements MapRarity {
 
+    private LegendaryMap() {
+    }
+
+    public static LegendaryMap getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public MinMax AffixAmount() {
         return new MinMax(3, 3);
@@ -30,5 +37,9 @@ public class LegendaryMap extends BaseLegendary implements MapRarity {
     @Override
     public int Weight() {
         return ModConfig.INSTANCE.RarityWeightConfig.MAPS.LEGENDARY_WEIGHT.get();
+    }
+
+    private static class SingletonHolder {
+        private static final LegendaryMap INSTANCE = new LegendaryMap();
     }
 }

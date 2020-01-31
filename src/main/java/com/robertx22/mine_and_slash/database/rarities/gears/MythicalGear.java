@@ -6,6 +6,13 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseMythical;
 
 public class MythicalGear extends BaseMythical implements GearRarity {
+    MythicalGear() {
+    }
+
+    public static MythicalGear getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public float requirementMulti() {
         return 1F;
@@ -49,5 +56,9 @@ public class MythicalGear extends BaseMythical implements GearRarity {
     @Override
     public float powerMultiplier() {
         return 7F;
+    }
+
+    private static class SingletonHolder {
+        private static final MythicalGear INSTANCE = new MythicalGear();
     }
 }

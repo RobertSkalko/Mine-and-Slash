@@ -47,8 +47,7 @@ public class CreateLangFile {
                     }
                     usedGUIDS.add(iauto.formattedLocNameLangFileGUID());
 
-                    json += "\t" + "\"" + iauto.formattedLocNameLangFileGUID() + "\": \"" + iauto
-                            .locNameForLangFile() + "\",\n";
+                    json += "\t" + "\"" + iauto.formattedLocNameLangFileGUID() + "\": \"" + iauto.locNameForLangFile() + "\",\n";
                 }
             }
             json += CreateLangFileUtils.comment(entry.getKey());
@@ -75,8 +74,7 @@ public class CreateLangFile {
                     }
                     usedGUIDS.add(iauto.formattedLocDescLangFileGUID());
 
-                    json += "\t" + "\"" + iauto.formattedLocDescLangFileGUID() + "\": \"" + iauto
-                            .locDescForLangFile() + "\",\n";
+                    json += "\t" + "\"" + iauto.formattedLocDescLangFileGUID() + "\": \"" + iauto.locDescForLangFile() + "\",\n";
                 }
             }
             json += CreateLangFileUtils.comment(entry.getKey());
@@ -144,7 +142,7 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.GearTypes().getAll().values());
         list.addAll(SlashRegistry.WorldProviders().getAll().values());
         list.addAll(Arrays.asList(Words.values()));
-        list.addAll(Rarities.allIncludingUnique());
+        list.addAll(Rarities.Items.rarities());
         list.addAll(Arrays.asList(Chats.values()));
         list.addAll(Arrays.asList(AdvDescs.values()));
         list.addAll(Arrays.asList(AdvTitles.values()));
@@ -152,9 +150,10 @@ public class CreateLangFile {
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 
         for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
-            map.put(autoLocGroup, list.stream()
-                    .filter(x -> x.locNameGroup().equals(autoLocGroup))
-                    .collect(Collectors.toList()));
+            map.put(
+                    autoLocGroup,
+                    list.stream().filter(x -> x.locNameGroup().equals(autoLocGroup)).collect(Collectors.toList())
+            );
         }
 
         HashMap<String, List<IAutoLocName>> sortedMap = new HashMap<>();
@@ -177,9 +176,10 @@ public class CreateLangFile {
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> map = new HashMap<>();
 
         for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
-            map.put(autoLocGroup, list.stream()
-                    .filter(x -> x.locDescGroup().equals(autoLocGroup))
-                    .collect(Collectors.toList()));
+            map.put(
+                    autoLocGroup,
+                    list.stream().filter(x -> x.locDescGroup().equals(autoLocGroup)).collect(Collectors.toList())
+            );
         }
 
         HashMap<String, List<IAutoLocDesc>> sortedMap = new HashMap<>();
@@ -201,9 +201,10 @@ public class CreateLangFile {
         HashMap<IBaseAutoLoc.AutoLocGroup, List<IAutoLocMultiLore>> map = new HashMap<>();
 
         for (IBaseAutoLoc.AutoLocGroup autoLocGroup : IBaseAutoLoc.AutoLocGroup.values()) {
-            map.put(autoLocGroup, list.stream()
-                    .filter(x -> x.locLoresGroup().equals(autoLocGroup))
-                    .collect(Collectors.toList()));
+            map.put(
+                    autoLocGroup,
+                    list.stream().filter(x -> x.locLoresGroup().equals(autoLocGroup)).collect(Collectors.toList())
+            );
         }
 
         HashMap<String, List<IAutoLocMultiLore>> sortedMap = new HashMap<>();

@@ -6,6 +6,13 @@ import com.robertx22.mine_and_slash.database.rarities.base.BaseEpic;
 
 public class EpicMob extends BaseEpic implements MobRarity {
 
+    private EpicMob() {
+    }
+
+    public static EpicMob getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public float StatMultiplier() {
         return 2.1F;
@@ -39,5 +46,9 @@ public class EpicMob extends BaseEpic implements MobRarity {
     @Override
     public int Weight() {
         return ModConfig.INSTANCE.RarityWeightConfig.MOBS.EPIC_WEIGHT.get();
+    }
+
+    private static class SingletonHolder {
+        private static final EpicMob INSTANCE = new EpicMob();
     }
 }

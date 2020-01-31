@@ -6,6 +6,13 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseRare;
 
 public class RareGear extends BaseRare implements GearRarity {
+    RareGear() {
+    }
+
+    public static RareGear getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public float requirementMulti() {
         return 0.5F;
@@ -49,6 +56,10 @@ public class RareGear extends BaseRare implements GearRarity {
     @Override
     public float powerMultiplier() {
         return 1.4F;
+    }
+
+    private static class SingletonHolder {
+        private static final RareGear INSTANCE = new RareGear();
     }
 }
 

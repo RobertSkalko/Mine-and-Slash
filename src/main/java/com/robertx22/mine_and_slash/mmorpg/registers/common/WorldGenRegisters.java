@@ -53,6 +53,8 @@ public class WorldGenRegisters {
 
         System.out.println("Registering Mine and Slash Map World Gen");
 
+        OreGenRegister.register();
+
         registerStructure(towerStructure);
 
         for (Biome biome : ForgeRegistries.BIOMES) { // this works!
