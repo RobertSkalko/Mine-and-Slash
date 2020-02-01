@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
+import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -37,6 +38,8 @@ public class BossCap {
         void onMobCreation(LivingEntity en);
 
         void onHealthTreshholdTriggered(LivingEntity en, BossData.HealthTreshhold treshhold);
+
+        Boss getBoss();
 
         void setIsBoss(boolean b);
 
@@ -135,6 +138,16 @@ public class BossCap {
         @Override
         public void onHealthTreshholdTriggered(LivingEntity en, BossData.HealthTreshhold treshhold) {
             this.data.getBoss().onHealthTreshholdTriggered(en, treshhold);
+        }
+
+        @Override
+        public Boss getBoss() {
+
+            if (data != null) {
+                return data.getBoss();
+            }
+
+            return null;
         }
 
         @Override

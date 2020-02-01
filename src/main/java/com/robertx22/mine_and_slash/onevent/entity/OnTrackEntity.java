@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.packets.BossPacket;
 import com.robertx22.mine_and_slash.packets.EfficientMobUnitPacket;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -35,6 +36,8 @@ public class OnTrackEntity {
                                 new EfficientMobUnitPacket(entity, Load.Unit(entity)),
                                 (ServerPlayerEntity) event.getPlayer()
                         );
+
+                        MMORPG.sendToClient(new BossPacket(entity), (ServerPlayerEntity) event.getPlayer());
 
                     }
 

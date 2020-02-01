@@ -10,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -19,6 +20,8 @@ public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats
     public abstract void onTick(LivingEntity en);
 
     public abstract ITextComponent getName(LivingEntity en);
+
+    public abstract IParticleData getParticle();
 
     public void onSpawn(LivingEntity en) {
 

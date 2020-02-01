@@ -22,8 +22,7 @@ import java.util.Set;
 
 public class DropLvlPenaltyTrigger implements ICriterionTrigger<DropLvlPenaltyTrigger.Instance> {
     private static final ResourceLocation ID = new ResourceLocation(Ref.MODID, "drop_lvl_penalty_trigger");
-    private final Map<PlayerAdvancements, DropLvlPenaltyTrigger.Listeners> listeners = Maps
-            .newHashMap();
+    private final Map<PlayerAdvancements, DropLvlPenaltyTrigger.Listeners> listeners = Maps.newHashMap();
 
     public ResourceLocation getId() {
         return ID;
@@ -31,13 +30,13 @@ public class DropLvlPenaltyTrigger implements ICriterionTrigger<DropLvlPenaltyTr
 
     public void addListener(PlayerAdvancements playerAdvancementsIn,
                             ICriterionTrigger.Listener<DropLvlPenaltyTrigger.Instance> listener) {
-        DropLvlPenaltyTrigger.Listeners LevelTrigger$listeners = this.listeners.get(playerAdvancementsIn);
-        if (LevelTrigger$listeners == null) {
-            LevelTrigger$listeners = new DropLvlPenaltyTrigger.Listeners(playerAdvancementsIn);
-            this.listeners.put(playerAdvancementsIn, LevelTrigger$listeners);
+        DropLvlPenaltyTrigger.Listeners listeners = this.listeners.get(playerAdvancementsIn);
+        if (listeners == null) {
+            listeners = new DropLvlPenaltyTrigger.Listeners(playerAdvancementsIn);
+            this.listeners.put(playerAdvancementsIn, listeners);
         }
 
-        LevelTrigger$listeners.add(listener);
+        listeners.add(listener);
     }
 
     public void removeListener(PlayerAdvancements playerAdvancementsIn,
@@ -56,18 +55,15 @@ public class DropLvlPenaltyTrigger implements ICriterionTrigger<DropLvlPenaltyTr
         this.listeners.remove(playerAdvancementsIn);
     }
 
-    public DropLvlPenaltyTrigger.Instance deserializeInstance(JsonObject json,
-                                                              JsonDeserializationContext context) {
+    public DropLvlPenaltyTrigger.Instance deserializeInstance(JsonObject json, JsonDeserializationContext context) {
         int level = json.get("level").getAsInt();
         return new DropLvlPenaltyTrigger.Instance(level);
     }
 
-    public void trigger(ServerPlayerEntity player, EntityCap.UnitData data,
-                        EntityCap.UnitData mob) {
-        DropLvlPenaltyTrigger.Listeners LevelTrigger$listeners = this.listeners.get(player
-                .getAdvancements());
-        if (LevelTrigger$listeners != null) {
-            LevelTrigger$listeners.trigger(data, mob);
+    public void trigger(ServerPlayerEntity player, EntityCap.UnitData data, EntityCap.UnitData mob) {
+        DropLvlPenaltyTrigger.Listeners listeners = this.listeners.get(player.getAdvancements());
+        if (listeners != null) {
+            listeners.trigger(data, mob);
         }
 
     }
@@ -105,13 +101,11 @@ public class DropLvlPenaltyTrigger implements ICriterionTrigger<DropLvlPenaltyTr
             return this.listeners.isEmpty();
         }
 
-        public void add(
-                ICriterionTrigger.Listener<DropLvlPenaltyTrigger.Instance> listener) {
+        public void add(ICriterionTrigger.Listener<DropLvlPenaltyTrigger.Instance> listener) {
             this.listeners.add(listener);
         }
 
-        public void remove(
-                ICriterionTrigger.Listener<DropLvlPenaltyTrigger.Instance> listener) {
+        public void remove(ICriterionTrigger.Listener<DropLvlPenaltyTrigger.Instance> listener) {
             this.listeners.remove(listener);
         }
 

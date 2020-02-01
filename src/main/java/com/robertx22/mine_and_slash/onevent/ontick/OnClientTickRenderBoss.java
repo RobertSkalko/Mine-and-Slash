@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.onevent.ontick;
 
+import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.particles.ParticleTypes;
+import net.minecraft.particles.IParticleData;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,26 +17,22 @@ public class OnClientTickRenderBoss {
     @SubscribeEvent
     public static void onRenderWorldLast(RenderWorldLastEvent event) {
 
-        if (true) {
-            return; // TODO
-        }
-
         if (Minecraft.getInstance().world == null) {
             return;
         }
 
-        if (Minecraft.getInstance().player.ticksExisted % 2 == 0) {
+        if (Minecraft.getInstance().player.ticksExisted % 3 == 0) {
 
             Minecraft.getInstance().world.getAllEntities().forEach(x -> {
-                if (x instanceof SheepEntity) {
-                    particle((LivingEntity) x);
-                }
+                x.getCapability(BossCap.Data).ifPresent(c -> {
+                    particle((LivingEntity) x, c.getBoss().getParticle());
+                });
             });
         }
     }
 
-    private static void particle(LivingEntity ent) {
-        Minecraft.getInstance().worldRenderer.addParticle(ParticleTypes.WITCH, true,
+    private static void particle(LivingEntity ent, IParticleData p) {
+        Minecraft.getInstance().worldRenderer.addParticle(p, true,
                                                           ent.posX + (ent.world.rand.nextDouble() - 0.5D) * (double) ent
                                                                   .getWidth(),
                                                           ent.posY + ent.world.rand.nextDouble() * (double) ent.getHeight() - 0.25D,
