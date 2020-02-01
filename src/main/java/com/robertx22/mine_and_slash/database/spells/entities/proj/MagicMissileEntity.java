@@ -3,12 +3,15 @@ package com.robertx22.mine_and_slash.database.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
+
+import java.util.Comparator;
+import java.util.Optional;
 
 public class MagicMissileEntity extends BaseElementalBoltEntity {
 
@@ -42,13 +45,50 @@ public class MagicMissileEntity extends BaseElementalBoltEntity {
     public void tick() {
         super.tick();
 
-        if (world.isRemote) {
-            if (this.ticksExisted > 1) {
-                for (int i = 0; i < 3; i++) {
-                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPositionVector(), 0.15F);
-                    //ParticleUtils.spawn(ParticleTypes.CRIT, world, p);
-                }
+        if (!world.isRemote) {
+            goToEnemy();
+        }
+
+    }
+
+    Entity en;
+
+    public void goToEnemy() {
+
+        LivingEntity caster = getCaster();
+
+        if (en == null) {
+
+            Optional<LivingEntity> opt = EntityFinder.start(caster, LivingEntity.class, this.getPositionVector())
+                    .radius(15)
+                    .build()
+                    .stream()
+                    .min(Comparator.comparingDouble(caster::getDistanceSq));
+
+            if (opt.isPresent()) {
+                en = opt.get();
             }
+
+        }
+
+        if (en != null) {
+
+            this.setNoGravity(true);
+
+            float maxDistance = caster.getDistance(en);
+            float currentDistance = this.getDistance(en);
+
+            float multi = (currentDistance / maxDistance);
+
+            float divide = 20 * multi;
+
+            this.setVelocity((en.posX - this.posX) / divide, (en.posY + en.getHeight() / 2 - this.posY) / divide,
+                             (en.posZ - this.posZ) / divide
+            );
+
+        } else {
+            this.setNoGravity(false);
+
         }
 
     }

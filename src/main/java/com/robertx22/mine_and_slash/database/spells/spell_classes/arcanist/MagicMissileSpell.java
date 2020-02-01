@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.SoundEvent;
@@ -34,7 +35,7 @@ public class MagicMissileSpell extends BaseProjectileSpell {
 
     @Override
     public SoundEvent getShootSound() {
-        return SoundEvents.ENTITY_SNOWBALL_THROW;
+        return SoundEvents.ENTITY_FIREWORK_ROCKET_SHOOT;
     }
 
     @Override
@@ -62,6 +63,11 @@ public class MagicMissileSpell extends BaseProjectileSpell {
     @Override
     public SpellCalcData getCalculation() {
         return SpellCalcData.all(ElementalSpellDamage.MAP.MAP.values(), 0.1F, 2);
+    }
+
+    @Override
+    public float getShootSpeed() {
+        return 0.8F;
     }
 
     @Override
@@ -101,6 +107,7 @@ public class MagicMissileSpell extends BaseProjectileSpell {
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(SpellTooltips.singleTargetProjectile());
+        list.add(new SText("Spawns 3 projectiles"));
 
         list.addAll(getCalculation().GetTooltipString(info));
 

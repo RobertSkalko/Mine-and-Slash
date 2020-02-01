@@ -15,7 +15,7 @@ public class LootUtils {
     // prevents lvl 50 players farming lvl 1 mobs
     public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
 
-        if (ModConfig.INSTANCE.Server.DROP_PENALTY_ACTIVATES_IF_PLAYER_LEVEL_IS_LOWER.get()) {
+        if (ModConfig.INSTANCE.Server.KILLING_HIGHER_LEVELS_IS_HONORABLE.get()) {
             if (mob.getLevel() > player.getLevel()) {
                 return chance;
             }
@@ -24,7 +24,7 @@ public class LootUtils {
         int difference = Math.abs(player.getLevel() - mob.getLevel());
         int maxlvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
 
-        if (difference > ModConfig.INSTANCE.Server.MAX_LVL_DIFFERENCE_FOR_NO_DROP_PENALTY.get()) {
+        if (difference > ModConfig.INSTANCE.Server.HONORABLE_KILL_LEVEL_RANGE.get()) {
 
             // if a high lvl player is killing higher than max lvl mobs
             if (player.getLevel() == maxlvl && mob.getLevel() > maxlvl) {

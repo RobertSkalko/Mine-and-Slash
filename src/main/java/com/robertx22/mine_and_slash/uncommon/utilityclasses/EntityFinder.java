@@ -169,6 +169,8 @@ public class EntityFinder {
                 list.removeIf(x -> x == caster);
             }
 
+            list.removeIf(x -> !x.isAlive());
+
             return list;
 
         }
