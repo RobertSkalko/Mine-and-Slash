@@ -8,12 +8,12 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
-public class NecromancerBoss extends BaseSummonerBoss {
+public class ReplicatorBoss extends BaseSummonerBoss {
 
-    private NecromancerBoss() {
+    private ReplicatorBoss() {
     }
 
-    public static NecromancerBoss getInstance() {
+    public static ReplicatorBoss getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -24,12 +24,12 @@ public class NecromancerBoss extends BaseSummonerBoss {
 
     @Override
     public EntityType<?> getMinionType(LivingEntity en) {
-        return en.world.rand.nextBoolean() ? EntityType.ZOMBIE : EntityType.SKELETON;
+        return en.getType();
     }
 
     @Override
     public ITextComponent getName(LivingEntity en) {
-        return new StringTextComponent("Necromancer ").appendSibling(en.getDisplayName());
+        return new StringTextComponent("Replicator ").appendSibling(en.getDisplayName());
     }
 
     @Override
@@ -39,10 +39,10 @@ public class NecromancerBoss extends BaseSummonerBoss {
 
     @Override
     public String GUID() {
-        return "necromancer";
+        return "replicator";
     }
 
     private static class SingletonHolder {
-        private static final NecromancerBoss INSTANCE = new NecromancerBoss();
+        private static final ReplicatorBoss INSTANCE = new ReplicatorBoss();
     }
 }

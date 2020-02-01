@@ -6,7 +6,7 @@ import net.minecraft.nbt.CompoundNBT;
 
 public class PlayerOncePerMap {
 
-    private static final String LOC = "mmorpg:PLAYER_ONCE_PER_MAP_DATA";
+    private static final String LOC = "mmorpg:o_p_map";
 
     public static PlayerOncePerMapData Load(CompoundNBT nbt) {
 

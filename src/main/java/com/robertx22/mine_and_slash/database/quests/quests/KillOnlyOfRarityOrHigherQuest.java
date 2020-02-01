@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.quests.quests;
 import com.robertx22.mine_and_slash.database.quests.actions.ActionDoneData;
 import com.robertx22.mine_and_slash.database.quests.actions.KilledMobData;
 import com.robertx22.mine_and_slash.database.quests.base.Quest;
-import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.database.quests.data.QuestTaskData;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
@@ -11,7 +10,6 @@ import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -62,11 +60,6 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
     @Override
     public ITextComponent name() {
         return new StringTextComponent("Kill ").appendSibling(rarity.locName()).appendText(" mobs");
-    }
-
-    @Override
-    public void onCompleted(PlayerEntity player, QuestSaveData data) {
-
     }
 
     @Override

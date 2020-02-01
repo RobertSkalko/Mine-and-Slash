@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.QuestsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
@@ -47,8 +48,10 @@ public class OnMobDeathDrops {
                         ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
                         UnitData playerData = Load.Unit(player);
 
-                        KilledMobData action = new KilledMobData(mobKilled, mobKilledData, player, playerData);
-                        Load.quests(player).onAction(player, action);
+                        player.getCapability(QuestsCap.Data)
+                                .ifPresent(x -> x.onAction(player, new KilledMobData(mobKilled, mobKilledData, player,
+                                                                                     playerData
+                                )));
 
                         CriteriaRegisters.DROP_LVL_PENALTY_TRIGGER.trigger(player, playerData, mobKilledData);
 

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.blocks.egg_loot_crate;
 
+import com.robertx22.mine_and_slash.blocks.bases.BaseLootCrateTileEntity;
 import com.robertx22.mine_and_slash.blocks.bases.NonFullBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -51,15 +52,14 @@ public class EggLootCrateBlock extends NonFullBlock {
 
         TileEntity tile = world.getTileEntity(pos);
 
-        if (tile instanceof EggLootCrateTileEntity) {
+        if (tile instanceof BaseLootCrateTileEntity) {
 
-            EggLootCrateTileEntity crate = (EggLootCrateTileEntity) tile;
-
+            BaseLootCrateTileEntity crate = (BaseLootCrateTileEntity) tile;
             crate.tryActivate(player);
-
+            return ActionResultType.CONSUME;
         }
 
-        return ActionResultType.SUCCESS;
+        return ActionResultType.FAIL;
     }
 
 }

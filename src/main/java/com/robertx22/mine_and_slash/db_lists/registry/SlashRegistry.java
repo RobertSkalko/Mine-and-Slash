@@ -357,7 +357,7 @@ public class SlashRegistry {
                 new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null)
         );
         map.put(SlashRegistryType.BOSS,
-                new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, new NecromancerBoss())
+                new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, NecromancerBoss.getInstance())
         );
 
     }

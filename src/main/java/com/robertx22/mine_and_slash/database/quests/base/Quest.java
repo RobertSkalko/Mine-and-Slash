@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.quests.base;
 
+import com.robertx22.mine_and_slash.database.loot_crates.bases.MapScoreEnum;
 import com.robertx22.mine_and_slash.database.quests.actions.ActionDoneData;
 import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.database.quests.data.QuestTaskData;
@@ -36,6 +37,10 @@ public abstract class Quest implements ISlashRegistryEntry {
 
     }
 
+    public void onCompleted(PlayerEntity player, QuestSaveData data) {
+        data.reward.score = MapScoreEnum.getScore(player);
+    }
+
     public static boolean isValidMapMobKill(Entity mob, EntityCap.UnitData data) {
         if (data.getType() != EntityTypeUtils.EntityType.MOB) {
             return false;
@@ -43,8 +48,6 @@ public abstract class Quest implements ISlashRegistryEntry {
         return WorldUtils.isMapWorldClass(mob.world);
 
     }
-
-    public abstract void onCompleted(PlayerEntity player, QuestSaveData data);
 
     public abstract float amountRequired();
 

@@ -11,9 +11,11 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonMobCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -42,6 +44,8 @@ public class BossCap {
         Boss getBoss();
 
         void setIsBoss(boolean b);
+
+        void spawnParticle(LivingEntity en);
 
         void onHealthChanged(LivingEntity en, IBossData x);
     }
@@ -161,10 +165,34 @@ public class BossCap {
         }
 
         @Override
+        public void spawnParticle(LivingEntity en) {
+            if (isBoss && data != null) {
+
+                IParticleData p = getBoss().getParticle();
+                if (p != null) {
+                    particle(en, p);
+                }
+            }
+        }
+
+        @Override
         public void onHealthChanged(LivingEntity en, IBossData x) {
             if (isBoss) {
                 data.onHealthChanged(en, x);
             }
+        }
+
+        private void particle(LivingEntity ent, IParticleData p) {
+            Minecraft.getInstance().worldRenderer.addParticle(p, true,
+                                                              ent.posX + (ent.world.rand.nextDouble() - 0.5D) * (double) ent
+                                                                      .getWidth(),
+                                                              ent.posY + ent.world.rand.nextDouble() * (double) ent.getHeight() - 0.25D,
+                                                              ent.posZ + (ent.world.rand.nextDouble() - 0.5D) * (double) ent
+                                                                      .getWidth(),
+                                                              (ent.world.rand.nextDouble() - 0.5D) * 2.0D,
+                                                              -ent.world.rand.nextDouble(),
+                                                              (ent.world.rand.nextDouble() - 0.5D) * 2.0D
+            );
         }
 
     }

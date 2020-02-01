@@ -13,7 +13,7 @@ public enum StatScaling {
     NONE {
         @Override
         public float scale(float val, int lvl) {
-            return val * lvl;
+            return val;
         }
     },
     NORMAL {
