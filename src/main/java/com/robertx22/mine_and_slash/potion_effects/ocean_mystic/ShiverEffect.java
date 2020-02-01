@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -31,7 +30,7 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
         ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
     }
 

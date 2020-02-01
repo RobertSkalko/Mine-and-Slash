@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonMobCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -127,13 +128,15 @@ public class BossCap {
         @Override
         public void onMobCreation(LivingEntity en) {
             if (!doneGenerating) {
-                if (EntityTypeUtils.isMob(en)) {
-                    if (RandomUtils.roll(100)) {
+                if (RandomUtils.roll(0.1F)) {
+                    if (WorldUtils.isMapWorldClass(en.world)) {
+                        if (EntityTypeUtils.isMob(en)) {
 
-                        this.data = new BossData();
-                        this.data.boss = SlashRegistry.Bosses().random().GUID();
-                        this.isBoss = true;
-                        this.doneGenerating = true;
+                            this.data = new BossData();
+                            this.data.boss = SlashRegistry.Bosses().random().GUID();
+                            this.isBoss = true;
+                            this.doneGenerating = true;
+                        }
                     }
                 }
             }

@@ -33,6 +33,16 @@ public class SpellUtils {
 
     }
 
+    public static void setupProjectileForCasting(AbstractArrowEntity projectile, LivingEntity caster, float speed,
+                                                 float pitch, float yaw) {
+        Vec3d pos = caster.getPositionVector();
+
+        ((Entity) projectile).setPosition(pos.x, caster.getPosY() + caster.getEyeHeight() - 0.1F, pos.z);
+
+        projectile.shoot(caster, pitch, yaw, 0.0F, speed, 1F);
+
+    }
+
     public static <T extends Entity> T getEntity(T spellEntity, LivingEntity caster) {
         return getSpellEntity(spellEntity, null, caster);
     }

@@ -2,10 +2,10 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -47,7 +47,7 @@ public class TeleportProtection extends BasePotionEffect {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
         try {
 

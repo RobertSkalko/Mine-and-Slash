@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.RighteousFurySpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.PotionContext;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.potion_effects.cleric.RighteousFuryEffect;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -52,7 +54,9 @@ public class RighteousFuryAoeSynergy extends Synergy<PotionContext> {
     @Override
     public void tryActivate(PotionContext ctx) {
 
-        BlazingInfernoEffect.damageMobsAroundYou(ctx.caster, ctx.effectInstance);
+        ExtraPotionData data = PotionDataSaving.getData(ctx.effectInstance);
+
+        BlazingInfernoEffect.damageMobsAroundYou(ctx.caster, data, ctx.caster);
 
         SoundUtils.playSound(ctx.caster, SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
 

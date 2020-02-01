@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -20,6 +21,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jline.utils.Log;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -29,9 +31,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
     public boolean needsTickTooltip = false;
 
-    public abstract void onXTicks(LivingEntity entity,
-
-                                  EffectInstance instance);
+    public abstract void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster);
 
     public int getMaxStacks() {
         return 1;
@@ -129,9 +129,23 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
         try {
             if (en.ticksExisted % performEachXTicks() == 0) {
-                onXTicks(en, getInstanceFromEntity(en));
+
+                ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
+
+                if (data == null) {
+                    Log.error("Extra potion data is null. Deleting potion");
+                }
+
+                LivingEntity caster = data.getCaster(en.world);
+
+                if (caster == null) {
+                    Log.error("Potion can't find caster. Deleting potion");
+                }
+
+                onXTicks(en, data, caster);
             }
         } catch (Exception e) {
+            en.removePotionEffect(this);
             e.printStackTrace();
         }
     }

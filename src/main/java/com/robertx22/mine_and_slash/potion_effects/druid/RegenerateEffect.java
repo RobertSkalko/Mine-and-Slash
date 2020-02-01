@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.Regenera
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
@@ -12,7 +13,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -44,24 +44,22 @@ public class RegenerateEffect extends BasePotionEffect {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
         try {
 
             if (entity.world.isRemote) {
                 ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, entity, 3);
             } else {
-                UnitData data = Load.Unit(entity);
+                UnitData unitData = Load.Unit(entity);
 
-                // ExtraPotionData extraData = PotionDataSaving.getData(instance);
+                int num = CALC.getCalculatedValue(unitData);
 
-                int num = CALC.getCalculatedValue(data);
-
-                ResourcesData.Context hp = new ResourcesData.Context(data, entity, ResourcesData.Type.HEALTH, num,
+                ResourcesData.Context hp = new ResourcesData.Context(unitData, entity, ResourcesData.Type.HEALTH, num,
                                                                      ResourcesData.Use.RESTORE, new RegenerateSpell()
                 );
 
-                data.modifyResource(hp);
+                unitData.modifyResource(hp);
 
             }
         } catch (Exception e) {

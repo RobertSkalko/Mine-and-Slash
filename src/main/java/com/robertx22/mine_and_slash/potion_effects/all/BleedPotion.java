@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.ScalingStatCalc;
@@ -15,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -46,11 +44,7 @@ public class BleedPotion extends BasePotionEffect {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
-
-        ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
-
-        LivingEntity caster = data.getCaster(entity.world);
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
         EntityCap.UnitData casterData = Load.Unit(data.getCaster(entity.world));
         EntityCap.UnitData targetData = Load.Unit(entity);

@@ -15,7 +15,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -38,7 +37,7 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
         ParticleUtils.spawnParticles(ParticleTypes.ITEM_SNOWBALL, entity, 5);
     }
 

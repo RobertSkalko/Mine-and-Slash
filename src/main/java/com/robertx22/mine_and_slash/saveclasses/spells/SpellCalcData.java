@@ -11,6 +11,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Storable
@@ -28,6 +29,18 @@ public class SpellCalcData implements ITooltipList {
         SpellCalcData data = new SpellCalcData();
 
         data.scalingValues.add(new ScalingStatCalc(stat, multi));
+        data.baseValue = base;
+
+        return data;
+    }
+
+    public static <T extends Stat> SpellCalcData all(Collection<T> stats, float multi, int base) {
+        SpellCalcData data = new SpellCalcData();
+
+        for (Stat s : stats) {
+            data.scalingValues.add(new ScalingStatCalc(s, multi));
+        }
+
         data.baseValue = base;
 
         return data;

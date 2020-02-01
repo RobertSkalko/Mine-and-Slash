@@ -189,21 +189,27 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     @Override
     public void tick() {
-        try {
-            super.tick();
 
-            if (this.inGround) {
-                ticksInGround++;
-            } else {
-                ticksInAir++;
-            }
+        if (this.spellData == null) {
+            this.remove();
+        } else {
+            try {
 
-            if (this.ticksExisted >= this.getDeathTime()) {
-                onExpireProc(this.getCaster());
-                this.remove();
+                super.tick();
+
+                if (this.inGround) {
+                    ticksInGround++;
+                } else {
+                    ticksInAir++;
+                }
+
+                if (this.ticksExisted >= this.getDeathTime()) {
+                    onExpireProc(this.getCaster());
+                    this.remove();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }

@@ -41,7 +41,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
     }
 
@@ -52,7 +52,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
 
     @Override
     public int performEachXTicks() {
-        return 30;
+        return 50;
     }
 
     @Override

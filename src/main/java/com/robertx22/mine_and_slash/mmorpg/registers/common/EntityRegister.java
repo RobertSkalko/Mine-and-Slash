@@ -47,12 +47,16 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> WHIRPOOL;
     public static final EntityType<? extends Entity> BLIZZARD;
 
+    public static final EntityType<MagicMissileEntity> MAGIC_MISSILE;
+
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
     public static final EntityType<? extends Entity> WANDPROJECTILE;
 
     public static final EntityType<? extends Entity> SEED;
 
     static {
+
+        MAGIC_MISSILE = newType(MagicMissileEntity::new, MagicMissileEntity::new, "magic_missile", false);
 
         BLIZZARD = newType(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
         FROSTBOLT = newType(FrostballEntity::new, FrostballEntity::new, "frostball");

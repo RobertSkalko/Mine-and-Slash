@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -18,7 +19,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
@@ -50,7 +50,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.5F, 2);
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
         ParticleEnum.sendToClients(
                 entity, new ParticlePacketData(entity.getPosition(), ParticleEnum.PETRIFY).radius(1)

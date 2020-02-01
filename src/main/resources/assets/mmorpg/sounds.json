@@ -1,0 +1,15 @@
+{
+    "freeze": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:freeze", "stream": true}]
+    },
+    "dash": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:dash", "stream": true}]
+    },
+    "splash": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:splash", "stream": true}]
+    }
+
+}

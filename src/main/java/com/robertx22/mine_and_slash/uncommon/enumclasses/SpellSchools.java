@@ -7,6 +7,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public enum SpellSchools {
 
+    ARCANIST("arcanist", Elements.Elemental.format, Words.Arcanist),
     OCEAN_MYSTIC("ocean_mystic", Elements.Water.format, Words.OceanMystic),
     EMBER_MAGE("ember_mage", Elements.Fire.format, Words.EmberMage),
     DRUID("druid", Elements.Nature.format, Words.Druid),

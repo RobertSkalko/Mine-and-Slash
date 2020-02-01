@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpel
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -21,7 +20,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
@@ -49,11 +47,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
-
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
-
-        LivingEntity caster = extraData.getCaster(entity.world);
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
         int num = CALC.getCalculatedValue(Load.Unit(caster));
 
@@ -65,7 +59,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
         SoundUtils.playSound(entity, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5F, 1F);
 
         ParticleUtils.spawnParticles(ParticleTypes.FLAME, entity, 5);
-        //  ParticleUtils.spawnParticles(ParticleTypes.LAVA, entity, 5);
+
     }
 
     @Override

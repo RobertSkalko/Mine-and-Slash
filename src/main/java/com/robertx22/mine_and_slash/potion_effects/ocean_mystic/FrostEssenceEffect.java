@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -30,7 +29,7 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
         //ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
     }
 
@@ -46,7 +45,7 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
     @Override
     public int performEachXTicks() {
-        return 20;
+        return 100;
     }
 
     @Override

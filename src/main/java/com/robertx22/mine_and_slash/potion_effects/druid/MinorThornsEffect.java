@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -21,7 +20,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
@@ -49,11 +47,7 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
-
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
-
-        LivingEntity caster = extraData.getCaster(entity.world);
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
         int num = CALC.getCalculatedValue(Load.Unit(caster));
 

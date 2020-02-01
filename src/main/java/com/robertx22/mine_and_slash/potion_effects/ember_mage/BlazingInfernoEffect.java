@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionDataSaving;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
@@ -16,7 +15,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -39,17 +37,15 @@ public class BlazingInfernoEffect extends BasePotionEffect {
 
     public static float RADIUS = 3.5F;
 
-    public static void damageMobsAroundYou(LivingEntity entity, EffectInstance instance) {
+    public static void damageMobsAroundYou(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
         if (!entity.world.isRemote) {
 
-            ParticlePacketData data = new ParticlePacketData(entity.getPosition().up(1), ParticleEnum.BLAZING_INFERNO);
-            data.radius = RADIUS;
-            ParticleEnum.BLAZING_INFERNO.sendToClients(entity, data);
+            ParticlePacketData pdata = new ParticlePacketData(entity.getPosition().up(1), ParticleEnum.BLAZING_INFERNO);
+            pdata.radius = RADIUS;
+            ParticleEnum.BLAZING_INFERNO.sendToClients(entity, pdata);
 
-            ExtraPotionData extraData = PotionDataSaving.getData(instance);
-
-            int num = CALC.getCalculatedValue(Load.Unit(entity));
+            int num = CALC.getCalculatedValue(Load.Unit(caster));
 
             List<LivingEntity> entities = EntityFinder.start(entity, LivingEntity.class, entity.getPositionVector())
                     .radius(RADIUS)
@@ -57,7 +53,7 @@ public class BlazingInfernoEffect extends BasePotionEffect {
 
             for (LivingEntity en : entities) {
                 DamageEffect dmg = new DamageEffect(
-                        null, entity, en, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
+                        null, caster, en, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
                 dmg.element = Elements.Fire;
                 dmg.Activate();
 
@@ -66,9 +62,9 @@ public class BlazingInfernoEffect extends BasePotionEffect {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, EffectInstance instance) {
+    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
-        damageMobsAroundYou(entity, instance);
+        damageMobsAroundYou(entity, data, caster);
 
     }
 

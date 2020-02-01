@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -11,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SEntityVelocityPacket;
@@ -125,6 +127,8 @@ public class ThunderDashSpell extends BaseSpell {
             dmg.element = Elements.Thunder;
             dmg.Activate();
         });
+
+        SoundUtils.playSound(caster, Sounds.DASH, 1, 1);
 
         return true;
     }

@@ -45,6 +45,16 @@ You need to finish the objectives fast to get good score. Your reward crate's it
 
 After you're done with the objective, map's drops will be lowered substantially. You've effectively "cleared" the map. 
 
+ADDED BOSSES!
+
+Every hostile mob has a small chance to become a boss. 
+"Boss" is considered a rarity. It's a special rarity for mobs.
+Bosses drop a lot more loot but they also use strong spells against you!
+
+Currently there 3 different Summoner type bosses. They summon mobs when you bring them down to a certain hp percent.
+I have ideas for more bosses too, like a healer type boss that heals nearby hostile mobs. 
+Bosses can only spawn in adventure maps.
+
 
 PATCHNOTES:
 removed factory station (its use was replaced by the more interesting currency system and modify station)
@@ -71,13 +81,13 @@ adventure map bonus loot is now smaller cus i'm adding loot crate as completitio
 pressing same keybind should now close the gui
 map leave pearl no longer shows map stats, thats now in new map info gui
 maps have less affixes but they're stronger
-added main hub gui if you want to only have 1 keybind!
+added main hub gui 
 maps now have a quest and loot crate as a reward!
 armor requirements are no longer random (wis or int), now they are always wis and int etc (existing gear will have a change, beware)
 enchanted/renamed items no longer get auto put in bags. Should stop some annoyances
 configs should now sync to client on login
 spell damage renamed to spell power. Should make more sense if nature power increases healing, than nature damage increasing healing
-loot now drops based on highest damager. So if you most dmg to mob and it dies to fire, it will still drop loot!
+loot now drops based on highest damager. So if you do most dmg to mob and it dies to fire, it will still drop loot!
 fixed scaling spell dmg not being applied
 removed some stats based on old spells which no longer exist. (runewords affected have other stats boosted)
 talent and spell trees are now FULLSCREEN!
