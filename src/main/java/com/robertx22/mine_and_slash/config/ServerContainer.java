@@ -23,7 +23,7 @@ public class ServerContainer {
     public IntValue CURRENCY_DROP_AFTER_LEVEL;
     public IntValue MAXIMUM_PLAYER_LEVEL;
     public IntValue MAXIMUM_ITEM_INSTABILITY;
-    public IntValue EXP_DROPS_PENALTY_LEVEL_DIFFERENCE_REQUIREMENT;
+    public IntValue MAX_LVL_DIFFERENCE_FOR_NO_DROP_PENALTY;
 
     public IntValue STARTING_SPELL_POINTS;
 
@@ -61,9 +61,9 @@ public class ServerContainer {
                 .translation("mmorpg.word.")
                 .defineInRange("STARTING_SPELL_POINTS", 5, 0, Integer.MAX_VALUE);
 
-        EXP_DROPS_PENALTY_LEVEL_DIFFERENCE_REQUIREMENT = builder.comment(".")
+        MAX_LVL_DIFFERENCE_FOR_NO_DROP_PENALTY = builder.comment(".")
                 .translation("mmorpg.word.")
-                .defineInRange("EXP_DROPS_PENALTY_LEVEL_DIFFERENCE_REQUIREMENT", 5, 0, Integer.MAX_VALUE);
+                .defineInRange("MAX_LVL_DIFFERENCE_FOR_NO_DROP_PENALTY ", 5, 0, Integer.MAX_VALUE);
 
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
                 .translation("mmorpg.word.")

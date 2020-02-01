@@ -37,11 +37,11 @@ public class GeometryUtils {
         return new Vec3d(x, y, z);
     }
 
-    public static Vec3d randomPos(Vec3d p, Random rand) {
+    public static Vec3d randomPos(Vec3d p, Random rand, float radius) {
 
-        double x = p.x + rand.nextDouble() - 0.5D * 1;
-        double y = p.y + rand.nextDouble() - 0.5D * 1;
-        double z = p.z + rand.nextDouble() - 0.5D * 1;
+        double x = p.x + rand.nextDouble() * radius - 0.5D * radius;
+        double y = p.y + rand.nextDouble() * radius - 0.5D * radius;
+        double z = p.z + rand.nextDouble() * radius - 0.5D * radius;
 
         return new Vec3d(x, y, z);
 

@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseBuffSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.RegenerateEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -71,6 +73,24 @@ public class RegenerateSpell extends BaseBuffSpell {
         list.addAll(RegenerateEffect.INSTANCE.GetTooltipString(info));
 
         return list;
+
+    }
+
+    @Override
+    public boolean cast(LivingEntity caster, int ticksInUse) {
+
+        boolean bool = super.cast(caster, ticksInUse);
+
+        if (bool) {
+            if (Synergies.REGEN_AOE.has(caster)) {
+                Synergies.REGEN_AOE.tryActivate(new CasterContext(caster));
+            }
+            if (Synergies.REGEN_THORNS.has(caster)) {
+                Synergies.REGEN_THORNS.tryActivate(new CasterContext(caster));
+            }
+        }
+
+        return bool;
 
     }
 

@@ -20,23 +20,31 @@ public class RarityDropratesConfig {
 
         ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("ITEM", builder, config))
                 .getLeft();
-        RUNED_ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNED_ITEMS", builder, new RarityWeight.DefaultConfig()))
+        RUNED_ITEMS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNED_ITEMS", builder,
+                                                                                             new RarityWeight.DefaultConfig()
+        )).getLeft();
+
+        RUNES = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNES", builder,
+                                                                                       new RarityWeight.DefaultConfig().higherChanceByMulti(
+                                                                                               1.5F)
+        )).getLeft();
+
+        MOBS = builder.configure(
+                (ForgeConfigSpec.Builder prefix) -> new RarityWeight("MOBS", builder, new RarityWeight.DefaultConfig()))
                 .getLeft();
 
-        RUNES = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("RUNES", builder, new RarityWeight.DefaultConfig()
-                .higherChanceByMulti(1.2F))).getLeft();
+        MAPS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MAPS", builder,
+                                                                                      new RarityWeight.DefaultConfig().higherChanceByMulti(
+                                                                                              1.5F)
+        )).getLeft();
 
-        MOBS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MOBS", builder, new RarityWeight.DefaultConfig()))
-                .getLeft();
+        CURRENCY = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("CURRENCY", builder,
+                                                                                          new RarityWeight.DefaultConfig()
+        )).getLeft();
 
-        MAPS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MAPS", builder, new RarityWeight.DefaultConfig()
-                .higherChanceByMulti(1.5F))).getLeft();
-
-        CURRENCY = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("CURRENCY", builder, new RarityWeight.DefaultConfig()))
-                .getLeft();
-
-        SPELLS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("SPELLS", builder, new RarityWeight.DefaultConfig()))
-                .getLeft();
+        SPELLS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("SPELLS", builder,
+                                                                                        new RarityWeight.DefaultConfig()
+        )).getLeft();
 
         builder.pop();
     }

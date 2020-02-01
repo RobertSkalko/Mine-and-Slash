@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.spells.synergies;
 
 import com.robertx22.mine_and_slash.database.spells.synergies.cleric.InstantHealRemoveDebuffSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.cleric.RighteousFuryAoeSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.druid.RegenerateAoeSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.druid.RegenerateThornsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.druid.ThornArmorThornsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.druid.ThornBushMajorThornsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.FireballBurnConsumeSynergy;
@@ -27,6 +29,8 @@ public class Synergies {
 
     public static ThornArmorThornsSynergy THORN_ARMOR_THORNS = new ThornArmorThornsSynergy();
     public static ThornBushMajorThornsSynergy THORN_BUSH_MAJOR_TORNS = new ThornBushMajorThornsSynergy();
+    public static RegenerateThornsSynergy REGEN_THORNS = new RegenerateThornsSynergy();
+    public static RegenerateAoeSynergy REGEN_AOE = new RegenerateAoeSynergy();
 
     public static RighteousFuryAoeSynergy RIGHTEOUS_FURY_AOE = new RighteousFuryAoeSynergy();
     public static InstantHealRemoveDebuffSynergy INSTANT_HEAL_REMOVE_DEBUFF = new InstantHealRemoveDebuffSynergy();

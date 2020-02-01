@@ -20,7 +20,7 @@ public enum ParticleEnum {
             Vec3d center = getCenter(data.pos);
 
             for (int i = 0; i < data.amount; i++) {
-                Vec3d p = GeometryUtils.randomPos(center, world.rand);
+                Vec3d p = GeometryUtils.randomPos(center, world.rand, data.radius);
                 Vec3d m = GeometryUtils.randomMotion(center, world.rand);
 
                 world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.BIRCH_LEAVES.getDefaultState()),
@@ -38,7 +38,7 @@ public enum ParticleEnum {
             Vec3d center = getCenter(data.pos);
 
             for (int i = 0; i < data.amount; i++) {
-                Vec3d p = GeometryUtils.randomPos(center, world.rand);
+                Vec3d p = GeometryUtils.randomPos(center, world.rand, data.radius);
                 Vec3d m = GeometryUtils.randomMotion(center, world.rand);
 
                 world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()), p.x, p.y,
@@ -79,6 +79,19 @@ public enum ParticleEnum {
             for (int i = 0; i < data.radius * 50; i++) {
                 Vec3d r = GeometryUtils.getRandomHorizontalPosInRadiusCircle(p.x, p.y, p.z, data.radius);
                 this.spawnRedstone(world, data.color, r.x, r.y, r.z);
+            }
+        }
+    },
+    NOVA() {
+        @Override
+        public void activate(ParticlePacketData data, World world) {
+
+            Vec3d p = getCenter(data.pos);
+
+            for (int i = 0; i < data.amount; i++) {
+
+                Vec3d r = GeometryUtils.getRandomHorizontalPosInRadiusCircle(p.x, p.y, p.z, data.radius);
+                world.addParticle(data.getParticleType(), r.x, r.y, r.z, 0, 0, 0);
             }
         }
     },

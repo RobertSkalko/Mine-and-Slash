@@ -24,7 +24,7 @@ public class LootUtils {
         int difference = Math.abs(player.getLevel() - mob.getLevel());
         int maxlvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
 
-        if (difference > ModConfig.INSTANCE.Server.EXP_DROPS_PENALTY_LEVEL_DIFFERENCE_REQUIREMENT.get()) {
+        if (difference > ModConfig.INSTANCE.Server.MAX_LVL_DIFFERENCE_FOR_NO_DROP_PENALTY.get()) {
 
             // if a high lvl player is killing higher than max lvl mobs
             if (player.getLevel() == maxlvl && mob.getLevel() > maxlvl) {
