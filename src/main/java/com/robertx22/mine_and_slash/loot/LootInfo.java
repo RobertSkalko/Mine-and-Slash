@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -24,6 +25,7 @@ public class LootInfo {
     public LivingEntity victim;
     public PlayerEntity killer;
     public World world;
+    public WorldMapCap.IWorldMapData mapData;
     public float multi = 1;
     public int minItems = 0;
     public int maxItems = 50;
@@ -60,9 +62,7 @@ public class LootInfo {
         } else {
             if (killer != null) {
                 if (WorldUtils.isMapWorld(killer.world)) {
-
-                    this.tier = WorldUtils.getTier(killer.world, killer);
-
+                    this.tier = WorldUtils.getTier(killer.world, mapData, killer);
                 }
             }
         }
@@ -70,14 +70,16 @@ public class LootInfo {
 
     }
 
-    public LootInfo(UnitData mob, UnitData player, LivingEntity victim,
-                    PlayerEntity killer) {
+    public LootInfo(UnitData mobData, UnitData playerData, LivingEntity victim, PlayerEntity killer) {
         this.world = victim.world;
-        this.mobData = mob;
-        this.playerData = player;
+        this.mapData = Load.world(world);
+        this.mobData = mobData;
+        this.playerData = playerData;
         this.victim = victim;
         this.killer = killer;
-        this.level = mob.getLevel();
+
+        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel() : mobData.getLevel();
+
         setTier();
 
     }
@@ -88,8 +90,11 @@ public class LootInfo {
 
     public LootInfo(PlayerEntity player) {
         this.world = player.world;
+        this.mapData = Load.world(world);
         this.playerData = Load.Unit(player);
-        this.level = Load.playerMapData(player).getLevel();
+
+        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel() : playerData.getLevel();
+
         setTier();
 
     }
@@ -106,13 +111,9 @@ public class LootInfo {
 
         if (this.playerData != null) {
 
-            chance *= this.playerData.getUnit()
-                    .getCreateStat(new LootTypeBonus(gen.lootType()))
-                    .getMultiplier();
+            chance *= this.playerData.getUnit().getCreateStat(new LootTypeBonus(gen.lootType())).getMultiplier();
 
-            chance *= this.playerData.getUnit()
-                    .getCreateStat(new LootTypeBonus(LootType.All))
-                    .getMultiplier();
+            chance *= this.playerData.getUnit().getCreateStat(new LootTypeBonus(LootType.All)).getMultiplier();
 
             if (mobData != null) {
                 if (playerData.getLevel() < 5 && mobData.getLevel() < 5) {
@@ -124,7 +125,6 @@ public class LootInfo {
 
         if (killer != null) {
             chance *= Load.playerMapData(killer).getLootMultiplier(killer);
-
         }
 
         if (world != null) {
@@ -134,6 +134,8 @@ public class LootInfo {
                 IWP iwp = (IWP) world.getDimension();
                 chance *= iwp.getBonusLootMulti();
             }
+
+            chance *= Load.world(world).getLootMultiplier();
         }
 
         if (mobData != null && victim != null) {

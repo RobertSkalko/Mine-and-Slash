@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -26,7 +25,7 @@ public class WorldMapCap {
 
     public interface IWorldMapData extends ICommonCap {
 
-        float getLootMultiplier(PlayerEntity player);
+        float getLootMultiplier();
 
         float getExpMultiplier();
 
@@ -105,7 +104,7 @@ public class WorldMapCap {
         }
 
         @Override
-        public float getLootMultiplier(PlayerEntity player) {
+        public float getLootMultiplier() {
 
             return this.getMap().getBonusLootMulti();
 

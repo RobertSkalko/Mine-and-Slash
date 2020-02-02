@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 
@@ -72,13 +71,10 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
     public void applyStats(EntityCap.UnitData data) {
 
         this.BASE_PLAYER_STATS.entrySet().forEach(x -> {
-            data.getUnit().getCreateStat(SlashRegistry.Stats().get(x.getKey())).val += x.getValue();
+            data.getUnit().getCreateStat(x.getKey()).Flat += x.getValue();
         });
-
         this.PLAYER_STATS_THAT_SCALE_TO_LEVEL.entrySet().forEach(x -> {
-            data.getUnit()
-                    .getCreateStat(SlashRegistry.Stats().get(x.getKey()))
-                    .addFlat(x.getValue().floatValue(), data.getLevel());
+            data.getUnit().getCreateStat(x.getKey()).addFlat(x.getValue().floatValue(), data.getLevel());
         });
 
     }

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
@@ -56,13 +56,14 @@ public class OnMobSpawn {
             endata.setType(entity);
 
             PlayerEntity nearestPlayer = null;
+            WorldMapCap.IWorldMapData mapData = Load.world(entity.world);
 
             if (WorldUtils.isMapWorldClass(entity.world)) {
                 nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
             }
 
             if (endata.needsToBeGivenStats()) {
-                Unit unit = Mob(entity, endata, boss, nearestPlayer);
+                Unit unit = Mob(entity, endata, boss, mapData, nearestPlayer);
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit(), entity);
@@ -80,21 +81,18 @@ public class OnMobSpawn {
     }
 
     public static Unit Mob(LivingEntity entity, UnitData data, BossCap.IBossData boss,
-                           @Nullable PlayerEntity nearestPlayer) {
+                           WorldMapCap.IWorldMapData mapData, @Nullable PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();
         mob.initStats();
 
         UnitData endata = Load.Unit(entity);
 
-        if (nearestPlayer != null) {
-            if (WorldUtils.isMapWorldClass(entity.world)) {
-                PlayerMapCap.IPlayerMapData mapdata = Load.playerMapData(nearestPlayer);
-                endata.setTier(mapdata.getTier());
-            }
+        if (WorldUtils.isMapWorldClass(entity.world)) {
+            endata.setTier(mapData.getTier());
         }
 
-        endata.SetMobLevelAtSpawn(entity, nearestPlayer);
+        endata.SetMobLevelAtSpawn(mapData, entity, nearestPlayer);
         endata.setRarity(mob.randomRarity(entity, endata, boss));
 
         MobStatUtils.AddRandomMobStatusEffects(entity, mob, Rarities.Mobs.get(endata.getRarity()));

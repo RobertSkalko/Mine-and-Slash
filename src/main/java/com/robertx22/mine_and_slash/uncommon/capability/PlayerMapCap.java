@@ -47,15 +47,9 @@ public class PlayerMapCap {
 
         float getLootMultiplier(PlayerEntity player);
 
-        float getExpMultiplier();
-
         String getLastMapGUID();
 
         boolean hasTimeForMap();
-
-        int getLevel();
-
-        int getTier();
 
         int getMinutesPassed();
 
@@ -250,20 +244,12 @@ public class PlayerMapCap {
         public float getLootMultiplier(PlayerEntity player) {
 
             if (WorldUtils.isMapWorldClass(player.world)) {
-
                 if (questFinished) {
                     return 0.3F;
                 }
-
-                return this.mapdata.getBonusLootMulti();
-            } else {
-                return 1;
             }
-        }
 
-        @Override
-        public float getExpMultiplier() {
-            return 1 + getMap().tier * 0.05F;
+            return 1;
         }
 
         @Override
@@ -274,16 +260,6 @@ public class PlayerMapCap {
         @Override
         public boolean hasTimeForMap() {
             return this.getMinutesLeft() > 0;
-        }
-
-        @Override
-        public int getLevel() {
-            return this.mapdata.level;
-        }
-
-        @Override
-        public int getTier() {
-            return this.mapdata.tier;
         }
 
         @Override

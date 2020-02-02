@@ -46,15 +46,15 @@ public class RegenerateThornsSynergy extends Synergy<CasterContext> {
     @Override
     public void tryActivate(CasterContext ctx) {
 
-        float radius = 3;
-
         BlockPos pos = ctx.caster.getPosition();
 
-        ParticleEnum.sendToClients(
-                pos, ctx.caster.world, new ParticlePacketData(pos, ParticleEnum.THORNS).radius(radius).amount(30));
+        ParticleEnum.sendToClients(pos, ctx.caster.world,
+                                   new ParticlePacketData(pos, ParticleEnum.THORNS).radius(RegenerateSpell.RADIUS)
+                                           .amount(30)
+        );
 
         EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPositionVector())
-                .radius(radius)
+                .radius(RegenerateSpell.RADIUS)
                 .build()
                 .forEach(x -> PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.caster, x));
 

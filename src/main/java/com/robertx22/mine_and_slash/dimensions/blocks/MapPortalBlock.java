@@ -77,7 +77,7 @@ public class MapPortalBlock extends EndPortalBlock {
 
                                         entity.sendMessage(Chats.Teleport_started.locName());
 
-                                        BlockPos pos1 = WorldUtils.getPosByLevel(mapworld, data.getLevel());
+                                        BlockPos pos1 = WorldUtils.getSurface(mapworld, mapworld.getSpawnPoint());
 
                                         PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos1);
 

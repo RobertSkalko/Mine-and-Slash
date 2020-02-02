@@ -58,6 +58,8 @@ public class RegenerateSpell extends BaseBuffSpell {
         return RegenerateEffect.CALC;
     }
 
+    public static float RADIUS = 4;
+
     @Override
     public Elements getElement() {
         return null;

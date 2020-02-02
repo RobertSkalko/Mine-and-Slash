@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
 import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -29,13 +30,14 @@ public class MapQuestReward extends QuestReward {
 
         if (data.questResult == QuestResult.COMPLETED) {
 
-            PlayerMapCap.IPlayerMapData mapdata = Load.playerMapData(player);
+            player.getCapability(PlayerMapCap.Data).ifPresent(x -> x.onQuestFinished());
 
-            mapdata.onQuestFinished();
+            WorldMapCap.IWorldMapData worldmapdata = Load.world(player.world);
 
-            LootCrate crate = SlashRegistry.LootCrates().get(mapdata.getMap().rewardCrateGUID);
+            LootCrate crate = SlashRegistry.LootCrates().get(worldmapdata.getMap().rewardCrateGUID);
 
-            ItemStack stack = crate.getCrateStack(mapdata.getLevel(), mapdata.getTier(), data.reward.score.number);
+            ItemStack stack = crate.getCrateStack(
+                    worldmapdata.getLevel(), worldmapdata.getTier(), data.reward.score.number);
 
             player.sendMessage(new StringTextComponent(
                     TextFormatting.GREEN + "Map Completed! Further exploration seems to give little benefit."));

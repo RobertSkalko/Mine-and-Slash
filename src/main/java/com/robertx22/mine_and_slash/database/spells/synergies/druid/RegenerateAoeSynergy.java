@@ -46,17 +46,17 @@ public class RegenerateAoeSynergy extends Synergy<CasterContext> {
     @Override
     public void tryActivate(CasterContext ctx) {
 
-        float radius = 3;
-
         BlockPos pos = ctx.caster.getPosition();
 
-        ParticleEnum.sendToClients(pos, ctx.caster.world, new ParticlePacketData(pos, ParticleEnum.NOVA).radius(radius)
-                .motion(new Vec3d(0, 0, 0))
-                .type(ParticleTypes.HAPPY_VILLAGER)
-                .amount(50));
+        ParticleEnum.sendToClients(pos, ctx.caster.world,
+                                   new ParticlePacketData(pos, ParticleEnum.NOVA).radius(RegenerateSpell.RADIUS)
+                                           .motion(new Vec3d(0, 0, 0))
+                                           .type(ParticleTypes.HAPPY_VILLAGER)
+                                           .amount(50)
+        );
 
         EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPositionVector())
-                .radius(radius)
+                .radius(RegenerateSpell.RADIUS)
                 .searchFor(EntityFinder.SearchFor.ALLIES)
                 .build()
                 .forEach(x -> PotionEffectUtils.apply(RegenerateEffect.INSTANCE, ctx.caster, x));

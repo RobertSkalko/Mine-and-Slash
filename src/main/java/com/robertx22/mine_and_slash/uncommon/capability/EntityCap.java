@@ -143,7 +143,7 @@ public class EntityCap {
 
         boolean CheckLevelCap();
 
-        void SetMobLevelAtSpawn(LivingEntity entity, PlayerEntity player);
+        void SetMobLevelAtSpawn(WorldMapCap.IWorldMapData data, LivingEntity entity, PlayerEntity player);
 
         Unit getUnit();
 
@@ -438,15 +438,12 @@ public class EntityCap {
         }
 
         @Override
-        public void SetMobLevelAtSpawn(LivingEntity entity, PlayerEntity nearestPlayer) {
+        public void SetMobLevelAtSpawn(WorldMapCap.IWorldMapData data, LivingEntity entity,
+                                       PlayerEntity nearestPlayer) {
             this.setMobStats = true;
 
             if (WorldUtils.isMapWorldClass(entity.world)) {
-                if (nearestPlayer != null) {
-                    this.level = Load.playerMapData(nearestPlayer).getLevel();
-                } else {
-                    setMobLvlNormally(entity, nearestPlayer);
-                }
+                this.level = data.getLevel();
 
             } else {
                 setMobLvlNormally(entity, nearestPlayer);

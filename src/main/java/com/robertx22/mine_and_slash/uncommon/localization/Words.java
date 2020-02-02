@@ -302,7 +302,7 @@ public enum Words implements IAutoLocName {
 
     DoNotBuildInMaps("Do not build in maps!"),
 
-    World_Type("World getSpellType"),
+    World_Type("World Type"),
 
     Gear_Modify("Gear Modify"),
 

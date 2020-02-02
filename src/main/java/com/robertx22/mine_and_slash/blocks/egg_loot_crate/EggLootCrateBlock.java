@@ -47,7 +47,7 @@ public class EggLootCrateBlock extends NonFullBlock {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player,
                                              Hand hand, BlockRayTraceResult ray) {
         if (world.isRemote) {
-            return ActionResultType.PASS;
+            return ActionResultType.CONSUME;
         }
 
         TileEntity tile = world.getTileEntity(pos);
@@ -56,10 +56,10 @@ public class EggLootCrateBlock extends NonFullBlock {
 
             BaseLootCrateTileEntity crate = (BaseLootCrateTileEntity) tile;
             crate.tryActivate(player);
-            return ActionResultType.CONSUME;
+            return ActionResultType.SUCCESS;
         }
 
-        return ActionResultType.FAIL;
+        return ActionResultType.CONSUME;
     }
 
 }

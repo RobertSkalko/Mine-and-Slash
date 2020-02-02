@@ -98,7 +98,7 @@ public class OnMobDeathDrops {
         }
 
         if (WorldUtils.isMapWorldClass(victim.world)) {
-            exp *= Load.playerMapData(entity).getExpMultiplier();
+            exp *= Load.world(entity.world).getExpMultiplier();
         }
 
         exp = player.PostGiveExpEvent(victim, entity, exp);

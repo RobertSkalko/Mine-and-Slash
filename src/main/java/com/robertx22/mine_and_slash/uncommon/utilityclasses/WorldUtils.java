@@ -6,8 +6,7 @@ import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -40,13 +39,12 @@ public class WorldUtils {
         return false;
     }
 
-    public static List<MapAffixData> getAllAffixesThatAffect(
-            PlayerMapCap.IPlayerMapData mapdata, LivingEntity entity) {
+    public static List<MapAffixData> getAllAffixesThatAffect(WorldMapCap.IWorldMapData data, LivingEntity entity) {
 
         List<MapAffixData> list = new ArrayList<>();
 
-        if (mapdata != null) {
-            list.addAll(MapItemData.getAllAffixesThatAffect(mapdata.getMap().affixes, entity));
+        if (data != null) {
+            list.addAll(MapItemData.getAllAffixesThatAffect(data.getMap().affixes, entity));
         }
 
         list.addAll(MapItemData.getAllAffixesThatAffect(getAllMapAffixes(entity.world), entity));
@@ -123,8 +121,7 @@ public class WorldUtils {
 
         BlockPos surface = getSurface(world, pos);
 
-        for (BlockPos x : Arrays.asList(surface.up(), surface.up(2), surface.down(), surface
-                .down(2), surface)) {
+        for (BlockPos x : Arrays.asList(surface.up(), surface.up(2), surface.down(), surface.down(2), surface)) {
             if (world.getBlockState(x).getMaterial() == Material.WATER) {
                 return true;
             }
@@ -140,8 +137,7 @@ public class WorldUtils {
 
         boolean goingDown = world.isAirBlock(pos);
 
-        while (world.isAirBlock(pos) || world.getBlockState(pos)
-                .getBlock() instanceof LeavesBlock) {
+        while (world.isAirBlock(pos) || world.getBlockState(pos).getBlock() instanceof LeavesBlock) {
 
             if (goingDown) {
                 pos = pos.down();
@@ -190,10 +186,10 @@ public class WorldUtils {
         return null;
     }
 
-    public static int getTier(World world, PlayerEntity player) {
+    public static int getTier(World world, WorldMapCap.IWorldMapData data, PlayerEntity player) {
 
         if (WorldUtils.isMapWorldClass(world)) {
-            return Load.playerMapData(player).getTier();
+            return data.getTier();
         } else {
             return SlashRegistry.getDimensionConfig(world).MAP_TIER;
         }

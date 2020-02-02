@@ -13,7 +13,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatConversion;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatTransfer;
@@ -134,8 +134,7 @@ public class CommonStatUtils {
 
     }
 
-    public static void AddMapAffixStats(PlayerMapCap.IPlayerMapData mapdata, Unit unit, int level,
-                                        LivingEntity entity) {
+    public static void AddMapAffixStats(WorldMapCap.IWorldMapData mapdata, Unit unit, int level, LivingEntity entity) {
 
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
             List<StatModData> datas = status.GetAllStats();

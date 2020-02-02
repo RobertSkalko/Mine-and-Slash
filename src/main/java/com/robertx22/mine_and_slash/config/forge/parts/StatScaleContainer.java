@@ -13,16 +13,11 @@ public class StatScaleContainer {
         NORMAL_SCALING = builder.comment(
                 "val * (float) Math.pow(lvl, MathHelper.clamp(FIRST_VALUE + (float) lvl / " + "SECOND_VALUE, " +
                         "THIRD_VALUE, FOURTH_VALUE))")
-                .configure(
-                        (ForgeConfigSpec.Builder builder1) -> new StatScaleValue(builder1, "Normal", 0.5D, 150D, 0.2D,
-                                                                                 1.5D
-                        ))
+                .configure((ForgeConfigSpec.Builder b) -> new StatScaleValue(b, "Normal", 0.5D, 150D, 0.2D, 1.5D))
                 .getLeft();
 
         CORE_STAT_SCALING = builder.comment("val * (FIRST_VALUE + (float) lvl / SECOND_VALUE)")
-                .configure((ForgeConfigSpec.Builder builder1) -> new StatScaleValue(builder1, "Core stat", 1D, 100D, 0D,
-                                                                                    0D
-                ))
+                .configure((ForgeConfigSpec.Builder b) -> new StatScaleValue(b, "Core stat", 1D, 100D, 0D, 0D))
                 .getLeft();
 
         builder.pop();

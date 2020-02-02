@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.quests.actions;
 
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 
 public abstract class ActionDoneData {
@@ -17,12 +16,7 @@ public abstract class ActionDoneData {
 
     public static int getGroupAmount(PlayerEntity player) {
 
-        int amount = 0;
-
-        amount += player.world.getPlayers()
-                .stream()
-                .filter(x -> Load.playerMapData(x).getMap().mapUUID.equals(Load.playerMapData(player).getMap().mapUUID))
-                .count();
+        int amount = player.world.getPlayers().size();
 
         if (amount < 1) {
             amount = 1; // if in some weird case player isnt in world he is..? idk i feel it could happen somehow

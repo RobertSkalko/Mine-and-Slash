@@ -20,7 +20,7 @@ import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
@@ -369,12 +369,6 @@ public class Unit {
 
         Unit copy = this.Clone();
 
-        PlayerMapCap.IPlayerMapData mapdata = null;
-
-        if (entity instanceof PlayerEntity) {
-            mapdata = Load.playerMapData((PlayerEntity) entity);
-        }
-
         ClearStats();
 
         MobRarity rar = Rarities.Mobs.get(data.getRarity());
@@ -384,6 +378,8 @@ public class Unit {
         MyStats.get(Health.GUID).Flat += hpadded;
 
         Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
+
+        WorldMapCap.IWorldMapData mapData = Load.world(entity.world);
 
         CommonStatUtils.addPotionStats(entity, data);
         CommonStatUtils.addCustomStats(data, this, level);
@@ -417,7 +413,7 @@ public class Unit {
         CommonStatUtils.AddStatusEffectStats(this, level);
 
         if (isMapWorld) {
-            CommonStatUtils.AddMapAffixStats(mapdata, this, level, entity);
+            CommonStatUtils.AddMapAffixStats(mapData, this, level, entity);
         }
 
         CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
