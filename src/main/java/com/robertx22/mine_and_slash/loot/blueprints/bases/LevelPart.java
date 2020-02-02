@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
@@ -31,8 +31,7 @@ public class LevelPart extends BlueprintPart<Integer> {
             finalLvl = RandomUtils.RandomRange(number - LevelVariance, number + LevelVariance);
 
         }
-        return MathHelper.clamp(finalLvl, this.minLevel, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
-                .get());
+        return MathHelper.clamp(finalLvl, this.minLevel, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
     }
 }
 

@@ -111,6 +111,8 @@ repositories {
     //maven { url = "https://maven2.tterrag.com" } // AutoSave	
 		
     maven { url = "https://maven.theillusivec4.top/" } // curios  
+	
+	maven { url = "https://mvnrepository.com/artifact/org.mariuszgromada.math/MathParser.org-mXparser" }
 
     maven {
         name = "CurseForge"
@@ -133,7 +135,10 @@ dependencies {
     minecraft "net.minecraftforge:forge:${version_forge}"
 
     compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}") // Trinkets, REQUIRED
-    compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
+    compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED	
+	
+	compile group: 'org.mariuszgromada.math', name: 'MathParser.org-mXparser', version: '4.0.0'
+
 
 }
 

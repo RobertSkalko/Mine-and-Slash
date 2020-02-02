@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;

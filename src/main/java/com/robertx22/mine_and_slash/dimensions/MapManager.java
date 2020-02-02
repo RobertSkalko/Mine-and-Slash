@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.dimensions;
 
+import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -19,7 +20,6 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -29,8 +29,7 @@ public class MapManager {
     @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventMod {
         @SubscribeEvent
-        public static void registerModDimensions(
-                RegistryEvent.Register<ModDimension> event) {
+        public static void registerModDimensions(RegistryEvent.Register<ModDimension> event) {
 
             for (IWP iwp : SlashRegistry.WorldProviders().getList()) {
 
@@ -39,13 +38,6 @@ public class MapManager {
                 if (moddim.getRegistryName() == null) {
                     moddim.setRegistryName(iwp.getResourceLoc());
                 }
-
-                /*
-                DimensionConfig config = new DimensionConfig(5000, 50, 1, 100);
-                config.GUID = moddim.getRegistryName().toString();
-                config.registerToSlashRegistry();
-                // while it does work. it would make multiplayer harder to play together..
-                 */
 
                 event.getRegistry().register(moddim);
 
@@ -57,31 +49,30 @@ public class MapManager {
 
     }
 
-    @Mod.EventBusSubscriber
-    public static class EventDim {
-        @SubscribeEvent
-        public static void registerAllModDims(RegisterDimensionsEvent event) {
-            for (IWP iwp : SlashRegistry.WorldProviders().getList()) {
+    static ResourceLocation getResourceLocForMap(MapItemData map) {
+        return new ResourceLocation(Ref.MODID, BaseWorldProvider.RESETTABLE + "_mine_and_slash_map_" + map.mapUUID);
+    }
 
-                ResourceLocation res = iwp.getResourceLoc();
+    public static DimensionType getOrRegister(MapItemData map) {
 
-                ModDimension moddim = iwp.getModDim();
+        IWP iwp = map.getIWP();
+        ResourceLocation res = getResourceLocForMap(map);
 
-                if (moddim.getRegistryName() == null) {
-                    moddim.setRegistryName(iwp.getResourceLoc().toString());
-                }
-
-                if (isRegistered(iwp.getResourceLoc()) == false) {
-
-                    DimensionType type = DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled
-                            .buffer()), true);
-
-                    DimensionManager.keepLoaded(type, false);
-
-                }
-            }
-
+        if (isRegistered(res)) {
+            return DimensionType.byName(res);
         }
+
+        ModDimension moddim = iwp.getModDim();
+
+        if (moddim.getRegistryName() == null) {
+            moddim.setRegistryName(res);
+        }
+
+        DimensionType type = DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled.buffer()), true);
+
+        DimensionManager.keepLoaded(type, false);
+
+        return type;
     }
 
     public static DimensionType getDimensionType(ResourceLocation res) {
@@ -116,7 +107,7 @@ public class MapManager {
     }
 
     public static World getWorld(DimensionType type) {
-        return getWorld(getResourceLocation(type).toString());
+        return getServer().getWorld(type);
     }
 
     public static World getWorld(String res) {
@@ -137,13 +128,12 @@ public class MapManager {
         return loc;
     }
 
-    public static DimensionType setupPlayerMapDimension(PlayerEntity player,
-                                                        UnitData unit, MapItemData map,
+    public static DimensionType setupPlayerMapDimension(PlayerEntity player, UnitData unit, MapItemData map,
                                                         BlockPos pos) {
 
-        DimensionType type = getDimensionType(map.getIWP().getResourceLoc());
+        ResourceLocation res = getResourceLocForMap(map);
 
-        ResourceLocation res = getResourceLocation(type);
+        DimensionType type = getOrRegister(map);
 
         unit.setCurrentMapId(res.toString());
 

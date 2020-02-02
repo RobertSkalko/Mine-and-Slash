@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.items.currency.IAddsInstability;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
@@ -64,8 +64,9 @@ public class TileGearModify extends BaseTile {
                             boolean broke = false;
                             if (insta.usesBreakChance()) {
                                 if (addsInta.activatesBreakRoll()) {
-                                    float breakChance = (addsInta.additionalBreakChance() + insta
-                                            .getBreakChance()) * addsInta.breakChanceMulti();
+                                    float breakChance =
+                                            (addsInta.additionalBreakChance() + insta.getBreakChance()) * addsInta
+                                            .breakChanceMulti();
                                     if (RandomUtils.roll(breakChance)) {
                                         copy = new ItemStack(Items.GUNPOWDER);
                                         broke = true;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
-import com.robertx22.mine_and_slash.config.IConfig;
+import com.robertx22.mine_and_slash.config.base.IConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 
@@ -58,7 +58,9 @@ public class ConfigItems implements IConfig, ISlashRegistryInit {
 
             for (Map.Entry<String, ConfigItem> entry : map.entrySet()) {
                 if (entry.getValue().isValid() == false) {
-                    System.out.println(entry.getKey() + " Is not correctly implemented. Please go to CompatibleItems file and fix it");
+                    System.out.println(
+                            entry.getKey() + " Is not correctly implemented. Please go to CompatibleItems file and " +
+                                    "fix it");
                 }
             }
         } catch (Exception e) {

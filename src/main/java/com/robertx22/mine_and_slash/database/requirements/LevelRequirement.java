@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import net.minecraft.util.math.MathHelper;
 
 public class LevelRequirement extends BaseRequirement {
@@ -54,8 +54,14 @@ public class LevelRequirement extends BaseRequirement {
 
         int maxPlayerlvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
 
-        minLevel = MathHelper.clamp(minLevel, 0, maxPlayerlvl);  // make sure min lvl is not higher than the maximum posible level in case it was decreased by config?
-        maxLevel = MathHelper.clamp(maxLevel, 0, maxPlayerlvl);  // make sure min lvl is not higher than the maximum posible level in case it was decreased by config?
+        minLevel = MathHelper.clamp(
+                minLevel, 0,
+                maxPlayerlvl
+        );  // make sure min lvl is not higher than the maximum posible level in case it was decreased by config?
+        maxLevel = MathHelper.clamp(
+                maxLevel, 0,
+                maxPlayerlvl
+        );  // make sure min lvl is not higher than the maximum posible level in case it was decreased by config?
 
         int level = requested.gearData.level;
 

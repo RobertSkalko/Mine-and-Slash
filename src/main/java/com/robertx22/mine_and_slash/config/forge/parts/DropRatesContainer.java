@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.config;
+package com.robertx22.mine_and_slash.config.forge.parts;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
@@ -17,7 +17,7 @@ public class DropRatesContainer {
     public DoubleValue COMPATIBLE_ITEMS_DROPRATE;
     public DoubleValue LOOTBOX_DROPRATE;
 
-    DropRatesContainer(ForgeConfigSpec.Builder builder) {
+    public DropRatesContainer(ForgeConfigSpec.Builder builder) {
         builder.push("DROPRATES");
 
         UNIQUE_RUNE_DROPRATE = builder.comment(".")

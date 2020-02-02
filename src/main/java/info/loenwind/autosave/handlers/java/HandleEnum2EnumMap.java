@@ -16,7 +16,8 @@ import java.util.Set;
 /**
  * This is a specialized version of {@link HandleEnumMap}, for maps with enum values as well.
  * <p>
- * It will compress the stored data into a single long, throwing an error on construction if there are too many values to do so.
+ * It will compress the stored data into a single long, throwing an error on construction if there are too many
+ * values to do so.
  *
  * @author tterrag
  */
@@ -47,7 +48,8 @@ public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, 
         this.valspace = getValspace(vals.length);
 
         if (keys.length * valspace > 64) {
-            throw new IllegalArgumentException("Enums " + keyClass + " and " + valClass + " cannot be used, as they have too many combinations.");
+            throw new IllegalArgumentException(
+                    "Enums " + keyClass + " and " + valClass + " cannot be used, as they have too many combinations.");
         }
     }
 
@@ -70,7 +72,8 @@ public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, 
             Type[] types = ((ParameterizedType) type).getActualTypeArguments();
             @NonnullType Class[] paramClasses = new Class[types.length];
             for (int i = 0; i < types.length; i++) {
-                paramClasses[i] = TypeUtil.toClass(NullHelper.notnullJ(types[i], "ParameterizedType#getActualTypeArguments[i]"));
+                paramClasses[i] = TypeUtil.toClass(
+                        NullHelper.notnullJ(types[i], "ParameterizedType#getActualTypeArguments[i]"));
             }
             if (paramClasses.length == 2 && paramClasses[0].isEnum() && paramClasses[1].isEnum()) {
                 // Make sure we can store this, otherwise it will fall back to EnumMap handler
@@ -90,9 +93,9 @@ public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, 
     }
 
     @Override
-    public boolean store(Registry registry, Set<NBTAction> phase, CompoundNBT nbt,
-                         Type type, String name,
-                         EnumMap<T, Enum> object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
+    public boolean store(Registry registry, Set<NBTAction> phase, CompoundNBT nbt, Type type, String name,
+                         EnumMap<T, Enum> object) throws IllegalArgumentException, IllegalAccessException,
+            InstantiationException, NoHandlerFoundException {
         long value = 0;
         for (T key : keys) {
             // 0 is null, all ordinal values are shifted up by 1
@@ -108,9 +111,9 @@ public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, 
 
     @Override
     public @Nullable
-    EnumMap read(Registry registry, Set<NBTAction> phase, CompoundNBT nbt, Type type,
-                 String name,
-                 @Nullable EnumMap<T, Enum> object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
+    EnumMap read(Registry registry, Set<NBTAction> phase, CompoundNBT nbt, Type type, String name,
+                 @Nullable EnumMap<T, Enum> object) throws IllegalArgumentException, IllegalAccessException,
+            InstantiationException, NoHandlerFoundException {
         if (nbt.contains(name)) {
             if (object == null) {
                 object = createMap();
@@ -139,7 +142,7 @@ public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, 
                 } else if (subvalue == 0) {
                     object.remove(key);
                 } else {
-                    Log.error("Found invalid map value when parsing enum2enum map! Data: %s   getSpellType: %s", nbt, type);
+                    Log.error("Found invalid map value when parsing enum2enum map! Data: %s   type: %s", nbt, type);
                     Thread.dumpStack();
                 }
             }

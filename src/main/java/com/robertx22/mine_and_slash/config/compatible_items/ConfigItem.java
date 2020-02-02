@@ -193,7 +193,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
             }
         }
         if (matchtype == false) {
-            throw new Exception("Gear getSpellType doesn't exist: " + this.itemType);
+            throw new Exception("Gear type doesn't exist: " + this.itemType);
         }
         if (normalItemWeight < 1 && this.runedItemWeight < 1 && this.uniqueItemWeight < 1) {
             throw new Exception("Weights can't all be 0 on an item: ");

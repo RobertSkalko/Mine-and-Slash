@@ -2,8 +2,6 @@ package com.robertx22.mine_and_slash.blocks.bases;
 
 import com.robertx22.mine_and_slash.blocks.conditions.IConditionalLootCrate;
 import com.robertx22.mine_and_slash.database.quests.actions.OpenedCrateData;
-import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.saveclasses.PlayerOncePerMapData;
@@ -61,7 +59,7 @@ public abstract class BaseLootCrateTileEntity extends TileEntity implements ITic
 
         if (player != null) {
 
-            List<ItemStack> loot = MasterLootGen.generateLoot(new LootInfo(player).setMinimum(1));
+            List<ItemStack> loot = generateLoot(player);
 
             for (ItemStack stack : loot) {
                 WorldUtils.spawnEntity(world, new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(), stack));

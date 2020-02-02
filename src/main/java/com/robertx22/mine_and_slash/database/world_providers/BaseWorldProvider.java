@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.world_providers;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.Templates;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;

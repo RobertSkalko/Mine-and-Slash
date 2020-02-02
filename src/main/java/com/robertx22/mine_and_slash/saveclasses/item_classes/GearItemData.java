@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.config.ClientContainer;
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;

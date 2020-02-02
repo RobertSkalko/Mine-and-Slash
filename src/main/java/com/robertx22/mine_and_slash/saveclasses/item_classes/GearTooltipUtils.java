@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.config.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities.maps;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseEpic;

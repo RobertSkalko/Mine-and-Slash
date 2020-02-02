@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.client;
 import com.robertx22.mine_and_slash.a_libraries.TestNameRender;
 import com.robertx22.mine_and_slash.a_libraries.curios.CurioClientSetup;
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRenderer;
-import com.robertx22.mine_and_slash.config.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.gui.bar_overlays.PlayerBarsOverlayScreen;
 import com.robertx22.mine_and_slash.gui.gear_overlay.GearOverlayGUI;
 import com.robertx22.mine_and_slash.gui.spell_cast_bar.SpellCastBarOverlay;

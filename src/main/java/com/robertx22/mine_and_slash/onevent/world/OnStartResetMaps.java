@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.world;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraftforge.fml.loading.FMLPaths;

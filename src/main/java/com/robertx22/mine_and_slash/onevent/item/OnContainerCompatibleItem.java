@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.Biome;

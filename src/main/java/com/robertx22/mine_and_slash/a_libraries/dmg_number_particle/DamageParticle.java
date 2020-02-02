@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.a_libraries.dmg_number_particle;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.robertx22.mine_and_slash.config.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

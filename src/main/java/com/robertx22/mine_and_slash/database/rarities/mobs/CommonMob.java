@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities.mobs;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseCommon;
 

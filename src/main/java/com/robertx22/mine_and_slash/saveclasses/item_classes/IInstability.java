@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import net.minecraft.util.math.MathHelper;
 
 public interface IInstability {

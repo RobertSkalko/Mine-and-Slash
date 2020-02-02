@@ -99,3 +99,4 @@ added config for setting specific dimension lvl 1 area in case spawn position is
 base player stats are now in the folder for json configs. You can add any stat now.
 added configs for loot and xp penalty for level difference and if it should activate if player is lower lvl or just when higher lvl.
 added configs for level penalties for loot and xp, you can define ranges and multipliers now, allows much more customization, even increasing loot for higher lvl mobs kills.
+map dimensions are once again dynamic! You enter the dimension for the map you sacrificed, not whichever map was last sacrificed at the device. If you want to play with friends, use group maps! 

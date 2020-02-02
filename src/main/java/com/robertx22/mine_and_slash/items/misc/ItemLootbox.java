@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.misc;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;

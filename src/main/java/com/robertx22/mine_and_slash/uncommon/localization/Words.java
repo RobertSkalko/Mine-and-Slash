@@ -286,7 +286,7 @@ public enum Words implements IAutoLocName {
 
     Took("Took"),
 
-    Type("getSpellType"),
+    Type("Type"),
 
     Unique_Stats("Unique Stats"),
 

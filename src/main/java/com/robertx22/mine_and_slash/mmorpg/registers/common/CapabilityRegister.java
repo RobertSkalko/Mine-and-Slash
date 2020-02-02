@@ -12,25 +12,22 @@ public class CapabilityRegister {
         CapabilityManager.INSTANCE.register(
                 PlayerMapCap.IPlayerMapData.class, new PlayerMapCap.Storage(), PlayerMapCap.DefaultImpl::new);
 
-        CapabilityManager.INSTANCE.register(
-                PlayerCapBackupCap.IPlayerCapBackupData.class, new PlayerCapBackupCap.Storage(),
-                PlayerCapBackupCap.DefaultImpl::new
+        CapabilityManager.INSTANCE.register(PlayerCapBackupCap.IPlayerCapBackupData.class,
+                                            new PlayerCapBackupCap.Storage(), PlayerCapBackupCap.DefaultImpl::new
         );
 
         CapabilityManager.INSTANCE.register(
                 ProfessionsCap.IProfessionsData.class, new ProfessionsCap.Storage(), ProfessionsCap.DefaultImpl::new);
 
-        CapabilityManager.INSTANCE.register(
-                PlayerStatsPointsCap.IPlayerStatPointsData.class, new PlayerStatsPointsCap.Storage(),
-                PlayerStatsPointsCap.DefaultImpl::new
+        CapabilityManager.INSTANCE.register(PlayerStatsPointsCap.IPlayerStatPointsData.class,
+                                            new PlayerStatsPointsCap.Storage(), PlayerStatsPointsCap.DefaultImpl::new
         );
 
         CapabilityManager.INSTANCE.register(
                 WeaponSpeedCap.IWeaponSpeedCap.class, new WeaponSpeedCap.Storage(), WeaponSpeedCap.DefaultImpl::new);
 
-        CapabilityManager.INSTANCE.register(
-                PlayerTalentsCap.IPlayerTalentsData.class, new PlayerTalentsCap.Storage(),
-                PlayerTalentsCap.DefaultImpl::new
+        CapabilityManager.INSTANCE.register(PlayerTalentsCap.IPlayerTalentsData.class, new PlayerTalentsCap.Storage(),
+                                            PlayerTalentsCap.DefaultImpl::new
         );
 
         CapabilityManager.INSTANCE.register(
@@ -40,6 +37,9 @@ public class CapabilityRegister {
                 PlayerSpellCap.ISpellsCap.class, new PlayerSpellCap.Storage(), PlayerSpellCap.DefaultImpl::new);
 
         CapabilityManager.INSTANCE.register(BossCap.IBossData.class, new BossCap.Storage(), BossCap.DefaultImpl::new);
+
+        CapabilityManager.INSTANCE.register(
+                WorldMapCap.IWorldMapData.class, new WorldMapCap.Storage(), WorldMapCap.DefaultImpl::new);
 
     }
 

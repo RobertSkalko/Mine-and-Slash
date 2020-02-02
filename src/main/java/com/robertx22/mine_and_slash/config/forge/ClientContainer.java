@@ -1,6 +1,7 @@
-package com.robertx22.mine_and_slash.config;
+package com.robertx22.mine_and_slash.config.forge;
 
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
+import com.robertx22.mine_and_slash.config.forge.parts.DmgParticleConfig;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
@@ -14,8 +15,8 @@ public class ClientContainer {
     public static final ClientContainer INSTANCE;
 
     static {
-        final Pair<ClientContainer, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder()
-                .configure(ClientContainer::new);
+        final Pair<ClientContainer, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(
+                ClientContainer::new);
         spec = specPair.getRight();
         INSTANCE = specPair.getLeft();
 

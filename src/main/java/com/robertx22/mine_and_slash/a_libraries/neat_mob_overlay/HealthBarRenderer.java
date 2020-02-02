@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.robertx22.mine_and_slash.config.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LookUtils;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;

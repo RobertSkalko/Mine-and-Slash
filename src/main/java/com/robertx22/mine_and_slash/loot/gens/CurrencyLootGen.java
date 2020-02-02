@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
@@ -32,10 +32,7 @@ public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        return new ItemStack(SlashRegistry.CurrencyItems()
-                .getWrapped()
-                .ofTierOrLess(info.tier)
-                .random());
+        return new ItemStack(SlashRegistry.CurrencyItems().getWrapped().ofTierOrLess(info.tier).random());
 
     }
 

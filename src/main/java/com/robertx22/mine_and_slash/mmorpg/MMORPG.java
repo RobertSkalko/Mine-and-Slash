@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;

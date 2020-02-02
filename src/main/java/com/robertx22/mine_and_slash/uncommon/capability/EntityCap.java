@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.commands.OpenPickStatsGui;
 import com.robertx22.mine_and_slash.commands.OpenTalentsGui;
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;

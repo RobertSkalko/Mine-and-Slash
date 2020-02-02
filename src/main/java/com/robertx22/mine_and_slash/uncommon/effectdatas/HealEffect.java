@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 

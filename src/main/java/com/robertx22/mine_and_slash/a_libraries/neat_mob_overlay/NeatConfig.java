@@ -42,7 +42,7 @@ public class NeatConfig {
         barHeight = builder.define("Health Bar Height", 4);
         plateSize = builder.define("Plate Size", 25);
         plateSizeBoss = builder.define("Plate Size (Boss)", 50);
-        colorByType = builder.define("Color Health Bar by getSpellType (instead of health percentage)", false);
+        colorByType = builder.define("Color Health Bar by type (instead of health percentage)", false);
         hpTextHeight = builder.define("HP Text Height", 14);
         showMaxHP = builder.define("Show Max HP", true);
         showCurrentHP = builder.define("Show Current HP", true);
@@ -51,8 +51,12 @@ public class NeatConfig {
         showOnBosses = builder.define("Display on Bosses", true);
         showOnlyFocused = builder.define("Only show the health bar for the entity looked at", true);
         enableDebugInfo = builder.define("Show Debug Info with F3", true);
-        blacklist = builder.comment("Blacklist uses entity IDs, not their display names. Use F3 to see them in the Neat bar.")
-                .defineList("Blacklist", ImmutableList.of("minecraft:shulker", "minecraft:armor_stand", "minecraft:cod", "minecraft:salmon", "minecraft:pufferfish", "minecraft:tropical_fish"), a -> true);
+        blacklist = builder.comment(
+                "Blacklist uses entity IDs, not their display names. Use F3 to see them in the Neat bar.")
+                .defineList("Blacklist", ImmutableList.of("minecraft:shulker", "minecraft:armor_stand", "minecraft:cod",
+                                                          "minecraft:salmon", "minecraft:pufferfish",
+                                                          "minecraft:tropical_fish"
+                ), a -> true);
 
         builder.pop();
     }

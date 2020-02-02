@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;

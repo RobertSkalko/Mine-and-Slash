@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.packets;
 
-import com.robertx22.mine_and_slash.config.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketBuffer;

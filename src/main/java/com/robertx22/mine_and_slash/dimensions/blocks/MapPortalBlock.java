@@ -27,15 +27,14 @@ public class MapPortalBlock extends EndPortalBlock {
     public MapPortalBlock() {
 
         super(Block.Properties.create(Material.PORTAL, MaterialColor.BLACK)
-                .doesNotBlockMovement()
-                .lightValue(15)
-                .hardnessAndResistance(2, 2));
+                      .doesNotBlockMovement()
+                      .lightValue(15)
+                      .hardnessAndResistance(2, 2));
 
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos,
-                                  Entity entity) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         try {
             if (world.isRemote == false && entity instanceof PlayerEntity) {
                 if (!entity.isBeingRidden() && entity.isNonBoss()) {
@@ -49,40 +48,36 @@ public class MapPortalBlock extends EndPortalBlock {
 
                         if (portal.readyToTeleport()) {
 
-                            ResourceLocation loc = MapManager.getResourceLocation(entity.world
-                                    .getDimension()
-                                    .getType());
+                            ResourceLocation loc = MapManager.getResourceLocation(
+                                    entity.world.getDimension().getType());
 
                             // prevents infinite teleport loop xD makes sure you dont teleport to the same
                             // dimension, forever
                             if (portal.id != loc.toString()) {
 
-                                World mapworld = MapManager.getWorld(portal.id);
+                                PlayerEntity player = (PlayerEntity) entity;
 
-                                if (mapworld == null) {
-                                    return;
-                                }
+                                PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
-                                if (WorldUtils.isMapWorld(mapworld)) {
+                                if (data.hasTimeForMap()) {
 
-                                    PlayerEntity player = (PlayerEntity) entity;
+                                    DimensionType type = MapManager.getOrRegister(data.getMap());
 
-                                    PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
+                                    World mapworld = MapManager.getWorld(type);
 
-                                    if (data.hasTimeForMap()) {
+                                    if (mapworld == null) {
+                                        return;
+                                    }
 
-                                        MMORPG.devToolsLog("trying to teleport to portal id:  " + portal.id + " world id: " + MapManager
-                                                .getId(mapworld));
+                                    if (WorldUtils.isMapWorld(mapworld)) {
+
+                                        MMORPG.devToolsLog(
+                                                "trying to teleport to portal id:  " + portal.id + " world id: " + MapManager
+                                                        .getId(mapworld));
 
                                         entity.sendMessage(Chats.Teleport_started.locName());
 
-                                        BlockPos pos1 = WorldUtils.getPosByLevel(mapworld, data
-                                                .getLevel());
-
-                                        DimensionType type = mapworld.getDimension()
-                                                .getType();
-
-                                        // TODO
+                                        BlockPos pos1 = WorldUtils.getPosByLevel(mapworld, data.getLevel());
 
                                         PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos1);
 

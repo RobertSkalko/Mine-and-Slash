@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.packets;
 
 import com.robertx22.mine_and_slash.a_libraries.dmg_number_particle.OnDisplayDamage;
-import com.robertx22.mine_and_slash.config.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;

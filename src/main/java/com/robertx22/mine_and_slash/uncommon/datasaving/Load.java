@@ -37,6 +37,12 @@ public class Load {
     }
 
     @Nonnull
+    public static WorldMapCap.IWorldMapData world(PlayerEntity provider) {
+
+        return provider.getCapability(WorldMapCap.Data).orElse(new WorldMapCap.DefaultImpl());
+    }
+
+    @Nonnull
     public static PlayerTalentsCap.IPlayerTalentsData talents(PlayerEntity provider) {
 
         return provider.getCapability(PlayerTalentsCap.Data).orElse(new PlayerTalentsCap.DefaultImpl());

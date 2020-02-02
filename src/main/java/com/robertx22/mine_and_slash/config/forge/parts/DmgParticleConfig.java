@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.config;
+package com.robertx22.mine_and_slash.config.forge.parts;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;

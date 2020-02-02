@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
@@ -43,10 +43,10 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
         try {
             ConfigItem config = RandomUtils.weightedRandom(SlashRegistry.CompatibleItems()
-                    .getList()
-                    .stream()
-                    .filter(x -> x.dropsAsLoot)
-                    .collect(Collectors.toList()));
+                                                                   .getList()
+                                                                   .stream()
+                                                                   .filter(x -> x.dropsAsLoot)
+                                                                   .collect(Collectors.toList()));
 
             if (config != null) {
                 ResourceLocation res = new ResourceLocation(config.registryName);

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.config.dimension_configs;
 
-import com.robertx22.mine_and_slash.config.IConfig;
+import com.robertx22.mine_and_slash.config.base.IConfig;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
@@ -39,8 +39,7 @@ public class DimensionsContainer implements IConfig, ISlashRegistryInit {
             entry.getValue().registerToSlashRegistry();
         }
 
-        SlashRegistry.getRegistry(SlashRegistryType.DIMENSION_CONFIGS)
-                .setDefault(this.defaultconfig);
+        SlashRegistry.getRegistry(SlashRegistryType.DIMENSION_CONFIGS).setDefault(this.defaultconfig);
 
     }
 }

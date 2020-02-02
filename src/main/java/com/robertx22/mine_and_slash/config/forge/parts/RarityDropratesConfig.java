@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.config;
+package com.robertx22.mine_and_slash.config.forge.parts;
 
 import com.robertx22.mine_and_slash.config.base.RarityWeight;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -13,7 +13,7 @@ public class RarityDropratesConfig {
     public RarityWeight CURRENCY;
     public RarityWeight SPELLS;
 
-    RarityDropratesConfig(ForgeConfigSpec.Builder builder) {
+    public RarityDropratesConfig(ForgeConfigSpec.Builder builder) {
         builder.push("RARITY_WEIGHT_CONTAINERS");
 
         RarityWeight.DefaultConfig config = new RarityWeight.DefaultConfig();

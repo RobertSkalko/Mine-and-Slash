@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities.gears;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 
 public class EpicRunedGear extends EpicGear {
 

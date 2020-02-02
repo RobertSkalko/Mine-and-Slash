@@ -13,17 +13,17 @@ public class TypeUtil {
      * Convert a {@link Type} to a {@link Class}, discarding all generic
      * information.
      *
-     * @param type The getSpellType to convert.
+     * @param type The type to convert.
      * @return The raw Class object.
      */
     public static Class<?> toClass(Type type) {
-        return (Class<?>) (type instanceof ParameterizedType ? NullHelper.notnullJ(((ParameterizedType) type)
-                .getRawType(), "ParameterizedType#getRawType") : type);
+        return (Class<?>) (type instanceof ParameterizedType ? NullHelper.notnullJ(
+                ((ParameterizedType) type).getRawType(), "ParameterizedType#getRawType") : type);
     }
 
     /**
      * Analogous to {@link Class#isAssignableFrom(Class)}, but converts the passed
-     * getSpellType to a class via {{@link #toClass(Type)} first.
+     * type to a class via {{@link #toClass(Type)} first.
      *
      * @param clazz The class to be the left-hand comparison
      * @param type  The type to be the right-hand comparison
@@ -50,7 +50,10 @@ public class TypeUtil {
     }
 
     public static Type getGenericType(Field field) {
-        return NullHelper.notnullJ(field.getGenericType(), "Field#getGenericType"); // TODO Would caching this be worthwhile? Seems to be cached in Field already.
+        return NullHelper.notnullJ(
+                field.getGenericType(),
+                "Field#getGenericType"
+        ); // TODO Would caching this be worthwhile? Seems to be cached in Field already.
     }
 
 }

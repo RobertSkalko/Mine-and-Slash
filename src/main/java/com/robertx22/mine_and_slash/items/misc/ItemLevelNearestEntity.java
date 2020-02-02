@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.misc;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -31,8 +31,7 @@ public class ItemLevelNearestEntity extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
-                                                    Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 
         if (!world.isRemote) {
             try {
@@ -45,16 +44,14 @@ public class ItemLevelNearestEntity extends Item {
 
                         UnitData data = Load.Unit(en);
 
-                        if (data.getLevel() + 1 <= ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL
-                                .get()) {
+                        if (data.getLevel() + 1 <= ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get()) {
                             data.setLevel(data.getLevel() + 1, en);
 
                             player.getHeldItem(hand).shrink(1);
 
                             data.trySync(en);
 
-                            return new ActionResult<ItemStack>(ActionResultType.PASS, player
-                                    .getHeldItem(hand));
+                            return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(hand));
                         } else {
                             player.sendMessage(Chats.No_targets_found.locName());
                         }

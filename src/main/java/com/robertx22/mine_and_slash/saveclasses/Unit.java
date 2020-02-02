@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
-import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -26,7 +26,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.PlayerStatUtils;
-import com.robertx22.mine_and_slash.uncommon.testing.Watch;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -256,8 +255,6 @@ public class Unit {
             return IRarity.Boss;
         }
 
-        Watch watch = new Watch();
-
         int level = data.getLevel();
 
         double y = entity.posY;
@@ -287,8 +284,6 @@ public class Unit {
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
 
         ModEntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, Load.Unit(entity));
-
-        watch.print("mob rar ");
 
         return MathHelper.clamp(finalRarity.Rank(), entityConfig.MIN_RARITY, entityConfig.MAX_RARITY);
 

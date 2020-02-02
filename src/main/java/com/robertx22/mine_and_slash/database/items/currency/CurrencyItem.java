@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.currency;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.db_lists.Rarities;

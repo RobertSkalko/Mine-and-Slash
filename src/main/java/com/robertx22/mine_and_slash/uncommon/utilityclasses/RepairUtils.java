@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
@@ -18,8 +18,7 @@ public class RepairUtils {
 
     public static void setDamageOverride(ItemStack stack, int damage) {
 
-        if (damage < stack.getDamage() && ModConfig.INSTANCE.Server.ONLY_REPAIR_IN_STATION
-                .get()) {
+        if (damage < stack.getDamage() && ModConfig.INSTANCE.Server.ONLY_REPAIR_IN_STATION.get()) {
             if (stack.getOrCreateTag().getBoolean(IS_BEING_REPAIRED)) {
                 stack.getOrCreateTag().putInt("Damage", Math.max(0, damage));
             }

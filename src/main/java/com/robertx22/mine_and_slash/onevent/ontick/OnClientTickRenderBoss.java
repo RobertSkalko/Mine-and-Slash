@@ -8,6 +8,8 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import javax.script.ScriptEngineManager;
+
 @Mod.EventBusSubscriber(Dist.CLIENT)
 public class OnClientTickRenderBoss {
 
@@ -19,6 +21,13 @@ public class OnClientTickRenderBoss {
         if (Minecraft.getInstance().world == null) {
             return;
         }
+        ScriptEngineManager mgr = new ScriptEngineManager();
+
+        // String foo = "100 * (1 + 100 / 100)";
+
+        String foo = "100 * Math.pow(100,0.5 + 100 / 150)";
+
+        //  System.out.println(engine.eval(foo) + " vs " + StatScaling.NORMAL.scale(100, 100));
 
         if (Minecraft.getInstance().player.ticksExisted % 3 == 0) {
 

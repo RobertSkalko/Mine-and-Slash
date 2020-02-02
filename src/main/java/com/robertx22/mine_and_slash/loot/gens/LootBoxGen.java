@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.items.misc.ItemLootbox;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;

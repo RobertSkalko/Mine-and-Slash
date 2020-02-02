@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.config.ClientContainer;
-import com.robertx22.mine_and_slash.config.ModConfig;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatSerial;
 import com.robertx22.mine_and_slash.config.compatible_items.CompatibleItemSerial;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsSerial;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.lvl_penalty.LvlPenaltySerial;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistSerial;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigsSerial;

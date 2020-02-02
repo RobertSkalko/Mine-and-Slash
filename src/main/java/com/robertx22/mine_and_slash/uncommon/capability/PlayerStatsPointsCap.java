@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
