@@ -249,7 +249,7 @@ public class PlayerMapCap {
         @Override
         public float getLootMultiplier(PlayerEntity player) {
 
-            if (WorldUtils.isMapWorld(player.world)) {
+            if (WorldUtils.isMapWorldClass(player.world)) {
 
                 if (questFinished) {
                     return 0.3F;

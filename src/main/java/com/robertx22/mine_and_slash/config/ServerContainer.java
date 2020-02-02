@@ -12,7 +12,6 @@ public class ServerContainer {
     public BooleanValue DISABLE_DEATH_IN_MAPS;
     public BooleanValue ONLY_REPAIR_IN_STATION;
     public BooleanValue LOG_REGISTRY_ENTRIES;
-    public BooleanValue KILLING_HIGHER_LEVELS_IS_HONORABLE;
 
     public BooleanValue ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS;
     public BooleanValue ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM;
@@ -23,7 +22,6 @@ public class ServerContainer {
     public IntValue CURRENCY_DROP_AFTER_LEVEL;
     public IntValue MAXIMUM_PLAYER_LEVEL;
     public IntValue MAXIMUM_ITEM_INSTABILITY;
-    public IntValue HONORABLE_KILL_LEVEL_RANGE;
 
     public IntValue STARTING_SPELL_POINTS;
 
@@ -42,8 +40,6 @@ public class ServerContainer {
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
 
-        KILLING_HIGHER_LEVELS_IS_HONORABLE = builder.comment(".").define("KILLING_HIGHER_LEVELS_IS_HONORABLE", true);
-
         STAT_POINTS_PER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("STAT_POINTS_PER_LEVEL", 1D, 0, 100);
@@ -59,10 +55,6 @@ public class ServerContainer {
         STARTING_SPELL_POINTS = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("STARTING_SPELL_POINTS", 5, 0, Integer.MAX_VALUE);
-
-        HONORABLE_KILL_LEVEL_RANGE = builder.comment(".")
-                .translation("mmorpg.word.")
-                .defineInRange("HONORABLE_KILL_LEVEL_RANGE ", 5, 0, Integer.MAX_VALUE);
 
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
                 .translation("mmorpg.word.")

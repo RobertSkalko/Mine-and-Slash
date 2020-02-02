@@ -38,6 +38,6 @@ public class PerfectPrimaryStats extends BaseGearMod {
 
     @Override
     public void modifyGear(GearItemData gear) {
-        gear.primaryStats.increaseAllModsBy(gear, gear.getRarity().StatPercents().Max);
+        gear.primaryStats.increaseAllModsBy(gear, gear.getRarity().StatPercents().max);
     }
 }

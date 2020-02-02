@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.mine_and_slash.config.ModConfig;
+import com.robertx22.mine_and_slash.config.lvl_penalty.LvlPenaltyContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -14,41 +14,8 @@ public class LootUtils {
 
     // prevents lvl 50 players farming lvl 1 mobs
     public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
-
-        if (ModConfig.INSTANCE.Server.KILLING_HIGHER_LEVELS_IS_HONORABLE.get()) {
-            if (mob.getLevel() > player.getLevel()) {
-                return chance;
-            }
-        }
-
-        int difference = Math.abs(player.getLevel() - mob.getLevel());
-        int maxlvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
-
-        if (difference > ModConfig.INSTANCE.Server.HONORABLE_KILL_LEVEL_RANGE.get()) {
-
-            // if a high lvl player is killing higher than max lvl mobs
-            if (player.getLevel() == maxlvl && mob.getLevel() > maxlvl) {
-                return chance;
-            }
-
-            float levelDiff = 1;
-
-            if (player.getLevel() > mob.getLevel()) {
-                levelDiff = (float) mob.getLevel() / (float) (player.getLevel());
-            } else {
-                levelDiff = (float) player.getLevel() / (float) (mob.getLevel());
-            }
-
-            if (levelDiff > 1) {
-                levelDiff = 1;
-            }
-
-            return chance * levelDiff;
-
-        }
-
-        return chance;
-
+        return (float) (LvlPenaltyContainer.INSTANCE.getMultiForLevelDifference(
+                player.getLevel(), mob.getLevel()) * chance);
     }
 
     public static ItemStack RandomDamagedGear(ItemStack stack, Rarity rar, int level) {
@@ -64,7 +31,7 @@ public class LootUtils {
             }
 
             float dmgMulti = (float) RandomUtils.RandomRange(
-                    rar.SpawnDurabilityHit().Min, rar.SpawnDurabilityHit().Max) / (float) 100;
+                    rar.SpawnDurabilityHit().min, rar.SpawnDurabilityHit().max) / (float) 100;
 
             dmgMulti += lvlDuraPenalty;
 

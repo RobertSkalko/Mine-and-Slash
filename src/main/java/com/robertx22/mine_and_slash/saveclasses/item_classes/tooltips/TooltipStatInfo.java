@@ -58,8 +58,8 @@ public class TooltipStatInfo implements ITooltipList {
     public void combine(TooltipStatInfo another) {
         this.amount += another.amount;
         if (this.statRange != null && another.statRange != null) {
-            this.statRange.minmax.Min += another.statRange.minmax.Min;
-            this.statRange.minmax.Max += another.statRange.minmax.Max;
+            this.statRange.minmax.min += another.statRange.minmax.min;
+            this.statRange.minmax.max += another.statRange.minmax.max;
         }
     }
 

@@ -90,7 +90,7 @@ public class MapBlueprint extends ItemBlueprint {
 
     private MapItemData genAffixes(MapItemData map, MapRarity rarity) {
 
-        int amount = RandomUtils.RandomRange(rarity.AffixAmount().Min, rarity.AffixAmount().Max);
+        int amount = RandomUtils.RandomRange(rarity.AffixAmount().min, rarity.AffixAmount().max);
 
         List<String> affixes = new ArrayList<String>();
 
@@ -104,7 +104,7 @@ public class MapBlueprint extends ItemBlueprint {
                 affix = RandomUtils.weightedRandom(SlashRegistry.MapAffixes().getAll().values());
             }
 
-            int percent = RandomUtils.RandomRange(rarity.StatPercents().Min, rarity.StatPercents().Max);
+            int percent = RandomUtils.RandomRange(rarity.StatPercents().min, rarity.StatPercents().max);
 
             map.affixes.add(new MapAffixData(affix, percent));
             affixes.add(affix.GUID());

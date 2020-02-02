@@ -69,7 +69,7 @@ public class StatModData implements ITooltipList {
     }
 
     public void setPercentClamp(MinMax minmax, int perc) {
-        this.percent = MathHelper.clamp(perc, minmax.Min, minmax.Max);
+        this.percent = MathHelper.clamp(perc, minmax.min, minmax.max);
     }
 
     @Store

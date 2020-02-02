@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatSerial;
 import com.robertx22.mine_and_slash.config.compatible_items.CompatibleItemSerial;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsSerial;
+import com.robertx22.mine_and_slash.config.lvl_penalty.LvlPenaltySerial;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistSerial;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigsSerial;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
@@ -29,6 +30,7 @@ public class ConfigRegister {
         MOD_DMG_WHITELIST,
         MOD_ENTITY,
         DIMENSIONS,
+        LVL_PENALTY,
         BASE_PLAYER_STATS
     }
 
@@ -39,6 +41,7 @@ public class ConfigRegister {
         CONFIGS.put(Config.MOD_ENTITY, ModEntityConfigsSerial.INSTANCE);
         CONFIGS.put(Config.DIMENSIONS, DimensionsSerial.INSTANCE);
         CONFIGS.put(Config.BASE_PLAYER_STATS, BasePlayerStatSerial.INSTANCE);
+        CONFIGS.put(Config.LVL_PENALTY, LvlPenaltySerial.INSTANCE);
 
         unregisterFlaggedEntries(); // call first
 

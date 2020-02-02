@@ -56,14 +56,18 @@ public interface ISerializedConfig<T extends ISlashRegistryInit> {
 
     }
 
+    default boolean isSyncedToClient() {
+        return true;
+    }
+
     default void sendToClient(ServerPlayerEntity player) {
+        if (isSyncedToClient()) {
+            List<String> configs = ConfigRegister.SAVED_JSONS.get(getConfigType());
 
-        List<String> configs = ConfigRegister.SAVED_JSONS.get(getConfigType());
+            SyncConfigToClientPacket pkt = new SyncConfigToClientPacket(new ListStringData(configs), getConfigType());
 
-        SyncConfigToClientPacket pkt = new SyncConfigToClientPacket(new ListStringData(configs), getConfigType());
-
-        MMORPG.sendToClient(pkt, player);
-
+            MMORPG.sendToClient(pkt, player);
+        }
     }
 
     default String folder() {

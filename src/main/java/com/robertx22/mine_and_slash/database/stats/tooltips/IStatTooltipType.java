@@ -19,8 +19,8 @@ public interface IStatTooltipType {
         StatModData data = ctx.modData;
         int level = ctx.level;
 
-        StatModData min = StatModData.Load(data.getStatMod(), minmax.Min);
-        StatModData max = StatModData.Load(data.getStatMod(), minmax.Max);
+        StatModData min = StatModData.Load(data.getStatMod(), minmax.min);
+        StatModData max = StatModData.Load(data.getStatMod(), minmax.max);
 
         return Styles.GREENCOMP()
                 .appendSibling(
