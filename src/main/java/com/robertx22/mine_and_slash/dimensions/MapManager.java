@@ -49,6 +49,28 @@ public class MapManager {
 
     }
 
+    // this is INCOMPLETE AND DOES NOTHING
+    public static void unregisterDims() {
+        DimensionManager.getRegistry().stream().filter(x -> {
+            try {
+                if (x.getModType() != null) {
+                    String path = x.getModType().getRegistryName().getNamespace();
+
+                    if (path.equals(Ref.MODID)) {
+                        return true;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
+        }).forEach(d -> {
+            DimensionManager.unregisterDimension(d.getId());
+
+        });
+
+    }
+
     static ResourceLocation getResourceLocForMap(MapItemData map) {
         return new ResourceLocation(Ref.MODID, BaseWorldProvider.RESETTABLE + "_mine_and_slash_map_" + map.mapUUID);
     }
@@ -69,6 +91,8 @@ public class MapManager {
         }
 
         DimensionType type = DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled.buffer()), true);
+
+        Load.world(getWorld(type)).init(map);
 
         DimensionManager.keepLoaded(type, false);
 

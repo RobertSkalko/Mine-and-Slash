@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 
 public class MapPortalBlock extends EndPortalBlock {
 
@@ -48,46 +49,43 @@ public class MapPortalBlock extends EndPortalBlock {
 
                         if (portal.readyToTeleport()) {
 
+                            Iterable<ServerWorld> test = MapManager.getServer().getWorlds();
+
                             ResourceLocation loc = MapManager.getResourceLocation(
                                     entity.world.getDimension().getType());
 
-                            // prevents infinite teleport loop xD makes sure you dont teleport to the same
-                            // dimension, forever
-                            if (portal.id != loc.toString()) {
+                            PlayerEntity player = (PlayerEntity) entity;
 
-                                PlayerEntity player = (PlayerEntity) entity;
+                            PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
-                                PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
+                            if (data.hasTimeForMap()) {
 
-                                if (data.hasTimeForMap()) {
+                                DimensionType type = MapManager.getOrRegister(data.getMap());
 
-                                    DimensionType type = MapManager.getOrRegister(data.getMap());
+                                World mapworld = MapManager.getWorld(type);
 
-                                    World mapworld = MapManager.getWorld(type);
-
-                                    if (mapworld == null) {
-                                        return;
-                                    }
-
-                                    if (WorldUtils.isMapWorld(mapworld)) {
-
-                                        MMORPG.devToolsLog(
-                                                "trying to teleport to portal id:  " + portal.id + " world id: " + MapManager
-                                                        .getId(mapworld));
-
-                                        entity.sendMessage(Chats.Teleport_started.locName());
-
-                                        BlockPos pos1 = WorldUtils.getSurface(mapworld, mapworld.getSpawnPoint());
-
-                                        PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos1);
-
-                                        MMORPG.devToolsLog("tp to map succeeded");
-
-                                    } else {
-                                        entity.sendMessage(Chats.Not_enough_time.locName());
-                                    }
-
+                                if (mapworld == null) {
+                                    return;
                                 }
+
+                                if (WorldUtils.isMapWorld(mapworld)) {
+
+                                    MMORPG.devToolsLog(
+                                            "trying to teleport to portal id:  " + MapManager.getResourceLocation(type)
+                                                    .toString() + " world id: " + MapManager.getId(mapworld));
+
+                                    entity.sendMessage(Chats.Teleport_started.locName());
+
+                                    BlockPos pos1 = WorldUtils.getSurface(mapworld, mapworld.getSpawnPoint());
+
+                                    PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos1);
+
+                                    MMORPG.devToolsLog("tp to map succeeded");
+
+                                } else {
+                                    entity.sendMessage(Chats.Not_enough_time.locName());
+                                }
+
                             }
 
                         }

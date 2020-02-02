@@ -25,8 +25,7 @@ public class ItemMap extends Item implements IAutoLocName {
         this.rarity = rarity;
     }
 
-    public static boolean createMapPortal(DimensionType type, BlockPos pos, World world,
-                                          MapItemData data) {
+    public static boolean createMapPortal(DimensionType type, BlockPos pos, World world, MapItemData data) {
 
         if (WorldUtils.isMapWorld(world)) {
 
@@ -57,14 +56,13 @@ public class ItemMap extends Item implements IAutoLocName {
 
     }
 
-    private static boolean spawnPortalBlock(World world, BlockPos pos,
-                                            DimensionType type) {
+    private static boolean spawnPortalBlock(World world, BlockPos pos, DimensionType type) {
         Block block = world.getBlockState(pos).getBlock();
 
         if (block.equals(Blocks.AIR) || block.equals(BlockRegister.PORTAL_BLOCK)) {
 
             world.setBlockState(pos, BlockRegister.PORTAL_BLOCK.getDefaultState(), 2);
-            TileMapPortal portal = new TileMapPortal(type);
+            TileMapPortal portal = new TileMapPortal();
             world.setTileEntity(pos, portal);
             return true;
         }
