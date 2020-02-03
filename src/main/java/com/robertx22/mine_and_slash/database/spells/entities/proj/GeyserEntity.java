@@ -94,7 +94,8 @@ public class GeyserEntity extends EntityBaseProjectile {
                     }
 
                     if (Synergies.GEYSER_ATTACK.has(caster)) {
-                        Synergies.GEYSER_ATTACK.tryActivate(new CasterAndSpellEntityContext(caster, this));
+                        Synergies.GEYSER_ATTACK.tryActivate(
+                                new CasterAndSpellEntityContext<GeyserEntity>(caster, this));
                     }
 
                     List<LivingEntity> allies = EntityFinder.start(caster, LivingEntity.class, getPositionVector())

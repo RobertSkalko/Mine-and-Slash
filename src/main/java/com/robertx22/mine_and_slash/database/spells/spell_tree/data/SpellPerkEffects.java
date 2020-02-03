@@ -47,6 +47,7 @@ public class SpellPerkEffects {
         synergy(Synergies.FIREBALL_BURN_CONSUME);
         synergy(Synergies.VOLCANO_BURN);
         synergy(Synergies.MAGMA_FLOWER_HEAL);
+        synergy(Synergies.MAGMA_FLOWER_ENHANCED);
 
     }
 

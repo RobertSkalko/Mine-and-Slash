@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 
+import com.robertx22.mine_and_slash.database.spells.entities.proj.GeyserEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.GeyserSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
@@ -20,7 +21,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeyserAttackSynergy extends Synergy<CasterAndSpellEntityContext> {
+public class GeyserAttackSynergy extends Synergy<CasterAndSpellEntityContext<GeyserEntity>> {
 
     @Override
     public String GUID() {
@@ -48,7 +49,7 @@ public class GeyserAttackSynergy extends Synergy<CasterAndSpellEntityContext> {
     }
 
     @Override
-    public void tryActivate(CasterAndSpellEntityContext ctx) {
+    public void tryActivate(CasterAndSpellEntityContext<GeyserEntity> ctx) {
 
         List<LivingEntity> entities = EntityFinder.start(
                 ctx.caster, LivingEntity.class, ctx.spellEntity.getPositionVector()).radius(GeyserSpell.RADIUS).build();

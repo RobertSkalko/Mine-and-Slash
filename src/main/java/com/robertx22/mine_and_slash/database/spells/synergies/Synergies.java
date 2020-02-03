@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.druid.RegenerateTh
 import com.robertx22.mine_and_slash.database.spells.synergies.druid.ThornArmorThornsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.druid.ThornBushMajorThornsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.FireballBurnConsumeSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFlowerEnhancedSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFlowerHealSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.VolcanoBurnSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.*;
@@ -36,6 +37,7 @@ public class Synergies {
     public static RighteousFuryAoeSynergy RIGHTEOUS_FURY_AOE = new RighteousFuryAoeSynergy();
     public static InstantHealRemoveDebuffSynergy INSTANT_HEAL_REMOVE_DEBUFF = new InstantHealRemoveDebuffSynergy();
 
+    public static MagmaFlowerEnhancedSynergy MAGMA_FLOWER_ENHANCED = new MagmaFlowerEnhancedSynergy();
     public static FireballBurnConsumeSynergy FIREBALL_BURN_CONSUME = new FireballBurnConsumeSynergy();
     public static VolcanoBurnSynergy VOLCANO_BURN = new VolcanoBurnSynergy();
     public static MagmaFlowerHealSynergy MAGMA_FLOWER_HEAL = new MagmaFlowerHealSynergy();

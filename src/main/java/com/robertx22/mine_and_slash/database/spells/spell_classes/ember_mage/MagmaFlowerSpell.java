@@ -96,6 +96,7 @@ public class MagmaFlowerSpell extends BaseSeedSpell implements IBlockSpawner {
         MagmaFlowerTileEntity tile = new MagmaFlowerTileEntity();
         tile.setSpellData(new EntitySpellData(spell, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));
         world.setTileEntity(pos, tile);
+        tile.initSpellEntity();
     }
 
     private static class SingletonHolder {

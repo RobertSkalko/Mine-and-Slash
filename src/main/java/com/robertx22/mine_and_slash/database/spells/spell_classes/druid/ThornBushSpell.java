@@ -95,7 +95,9 @@ public class ThornBushSpell extends BaseSeedSpell implements IBlockSpawner {
         caster.world.setBlockState(pos, BlockRegister.THORN_BUSH_BLOCK.getDefaultState());
         ThornBushTileEntity tile = new ThornBushTileEntity();
         tile.setSpellData(new EntitySpellData(spell, caster, ThornBushTileEntity.DURATION_SEC * 20));
+       
         world.setTileEntity(pos, tile);
+        tile.initSpellEntity();
     }
 
     private static class SingletonHolder {
