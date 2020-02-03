@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.bosses.base;
 
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
@@ -15,9 +16,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats {
 
-    public abstract void onTick(LivingEntity en);
+    public List<Synergy> synergies = new ArrayList<>();
+    public List<TickAction> tickActions = new ArrayList<>();
+
+    public final void onTick(LivingEntity en) {
+        tickActions.forEach(x -> x.onTick(en));
+    }
 
     public abstract ITextComponent getName(LivingEntity en);
 
@@ -52,6 +61,10 @@ public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats
     @Override
     public void applyStats(EntityCap.UnitData data) {
         data.getUnit().getCreateStat(Health.INSTANCE).Multi += 500;
+    }
+
+    public boolean hasSynergy(Synergy synergy) {
+        return synergies.contains(synergy);
     }
 }
 

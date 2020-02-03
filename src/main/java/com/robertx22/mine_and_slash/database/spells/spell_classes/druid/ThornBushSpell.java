@@ -23,8 +23,11 @@ import java.util.List;
 
 public class ThornBushSpell extends BaseSeedSpell implements IBlockSpawner {
 
-    public ThornBushSpell() {
+    private ThornBushSpell() {
+    }
 
+    public static ThornBushSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -95,4 +98,7 @@ public class ThornBushSpell extends BaseSeedSpell implements IBlockSpawner {
         world.setTileEntity(pos, tile);
     }
 
+    private static class SingletonHolder {
+        private static final ThornBushSpell INSTANCE = new ThornBushSpell();
+    }
 }

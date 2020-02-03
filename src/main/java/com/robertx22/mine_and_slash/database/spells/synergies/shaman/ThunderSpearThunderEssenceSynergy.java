@@ -35,7 +35,7 @@ public class ThunderSpearThunderEssenceSynergy extends Synergy<AfterDamageContex
 
     @Override
     public BaseSpell spellAffected() {
-        return new ThunderspearSpell();
+        return ThunderspearSpell.getInstance();
     }
 
     @Override

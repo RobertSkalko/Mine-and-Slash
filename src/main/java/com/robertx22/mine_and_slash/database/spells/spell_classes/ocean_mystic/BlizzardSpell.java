@@ -18,11 +18,14 @@ import java.util.List;
 
 public class BlizzardSpell extends BaseSummonAtSightSpell {
 
-    public BlizzardSpell() {
+    public Elements element = Elements.Water;
 
+    private BlizzardSpell() {
     }
 
-    public Elements element = Elements.Water;
+    public static BlizzardSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public SpellSchools getSchool() {
@@ -85,5 +88,9 @@ public class BlizzardSpell extends BaseSummonAtSightSpell {
     @Override
     public Entity newEntity(World world) {
         return new BlizzardEntity(world);
+    }
+
+    private static class SingletonHolder {
+        private static final BlizzardSpell INSTANCE = new BlizzardSpell();
     }
 }

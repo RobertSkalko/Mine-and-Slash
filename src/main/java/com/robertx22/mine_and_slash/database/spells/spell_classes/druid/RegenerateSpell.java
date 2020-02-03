@@ -23,6 +23,13 @@ import java.util.List;
 
 public class RegenerateSpell extends BaseBuffSpell {
 
+    private RegenerateSpell() {
+    }
+
+    public static RegenerateSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public int useTimeTicks() {
         return 20;
@@ -116,5 +123,9 @@ public class RegenerateSpell extends BaseBuffSpell {
     @Override
     public BasePotionEffect getEffect() {
         return RegenerateEffect.INSTANCE;
+    }
+
+    private static class SingletonHolder {
+        private static final RegenerateSpell INSTANCE = new RegenerateSpell();
     }
 }

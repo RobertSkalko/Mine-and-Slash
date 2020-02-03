@@ -41,7 +41,7 @@ public class HeartOfIceFrostSynergy extends Synergy<BeforeHealContext> {
 
     @Override
     public BaseSpell spellAffected() {
-        return new HeartOfIceSpell();
+        return HeartOfIceSpell.getInstance();
     }
 
     @Override

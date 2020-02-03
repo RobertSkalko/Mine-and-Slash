@@ -18,6 +18,13 @@ import java.util.List;
 
 public class ThornArmorSpell extends BaseBuffSpell {
 
+    private ThornArmorSpell() {
+    }
+
+    public static ThornArmorSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public int useTimeTicks() {
         return 10;
@@ -84,5 +91,9 @@ public class ThornArmorSpell extends BaseBuffSpell {
     @Override
     public BasePotionEffect getEffect() {
         return ThornArmorEffect.INSTANCE;
+    }
+
+    private static class SingletonHolder {
+        private static final ThornArmorSpell INSTANCE = new ThornArmorSpell();
     }
 }

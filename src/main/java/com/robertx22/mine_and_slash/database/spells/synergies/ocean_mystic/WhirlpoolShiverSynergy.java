@@ -36,7 +36,7 @@ public class WhirlpoolShiverSynergy extends Synergy<CasterTargetContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new WhirlpoolSpell();
+        return WhirlpoolSpell.getInstance();
     }
 
     @Override

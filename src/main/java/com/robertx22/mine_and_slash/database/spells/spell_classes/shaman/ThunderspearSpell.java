@@ -20,11 +20,14 @@ import java.util.List;
 
 public class ThunderspearSpell extends BaseProjectileSpell {
 
-    public ThunderspearSpell() {
+    public Elements element = Elements.Thunder;
 
+    private ThunderspearSpell() {
     }
 
-    public Elements element = Elements.Thunder;
+    public static ThunderspearSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public SpellSchools getSchool() {
@@ -94,4 +97,7 @@ public class ThunderspearSpell extends BaseProjectileSpell {
         return Words.ThunderSpear;
     }
 
+    private static class SingletonHolder {
+        private static final ThunderspearSpell INSTANCE = new ThunderspearSpell();
+    }
 }

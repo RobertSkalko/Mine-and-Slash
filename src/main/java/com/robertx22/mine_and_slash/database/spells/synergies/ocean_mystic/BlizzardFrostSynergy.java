@@ -36,7 +36,7 @@ public class BlizzardFrostSynergy extends Synergy<BeforeDamageContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new BlizzardSpell();
+        return BlizzardSpell.getInstance();
     }
 
     @Override

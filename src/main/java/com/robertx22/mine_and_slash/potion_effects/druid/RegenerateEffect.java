@@ -56,7 +56,8 @@ public class RegenerateEffect extends BasePotionEffect {
                 int num = CALC.getCalculatedValue(unitData);
 
                 ResourcesData.Context hp = new ResourcesData.Context(unitData, entity, ResourcesData.Type.HEALTH, num,
-                                                                     ResourcesData.Use.RESTORE, new RegenerateSpell()
+                                                                     ResourcesData.Use.RESTORE,
+                                                                     RegenerateSpell.getInstance()
                 );
 
                 unitData.modifyResource(hp);

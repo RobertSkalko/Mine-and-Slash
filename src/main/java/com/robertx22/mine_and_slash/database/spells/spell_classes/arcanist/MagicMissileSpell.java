@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.arcanist;
 
-import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.MagicMissileEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
@@ -10,9 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -24,8 +21,11 @@ import java.util.List;
 
 public class MagicMissileSpell extends BaseProjectileSpell {
 
-    public MagicMissileSpell() {
-        super();
+    private MagicMissileSpell() {
+    }
+
+    public static MagicMissileSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -71,37 +71,6 @@ public class MagicMissileSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public boolean cast(LivingEntity caster, int ticksInUse) {
-
-        World world = caster.world;
-
-        for (int i = 0; i < 3; i++) {
-
-            float f = 0;
-
-            if (i == 0) {
-                f = 0.5F;
-            }
-            if (i == 2) {
-                f = -0.5F;
-            }
-            f *= 10;
-
-            AbstractArrowEntity en = SpellUtils.getSpellEntity(newEntity(world), this, caster);
-            SpellUtils.setupProjectileForCasting(en, caster, getShootSpeed(), caster.rotationPitch,
-                                                 caster.rotationYaw + f
-            );
-
-            caster.world.addEntity(en);
-
-            if (getShootSound() != null) {
-                SoundUtils.playSound(caster, getShootSound(), 1.0F, 1.0F);
-            }
-        }
-        return true;
-    }
-
-    @Override
     public List<ITextComponent> GetDescription(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<>();
@@ -120,4 +89,7 @@ public class MagicMissileSpell extends BaseProjectileSpell {
         return Words.Magic_Missile;
     }
 
+    private static class SingletonHolder {
+        private static final MagicMissileSpell INSTANCE = new MagicMissileSpell();
+    }
 }

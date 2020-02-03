@@ -44,7 +44,7 @@ public class InstantHealRemoveDebuffSynergy extends Synergy<BeforeHealContext> {
 
     @Override
     public BaseSpell spellAffected() {
-        return new InstantHealSpell();
+        return InstantHealSpell.getInstance();
     }
 
     @Override

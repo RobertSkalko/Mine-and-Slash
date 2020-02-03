@@ -18,11 +18,6 @@ public class HellLordBoss extends BaseSummonerBoss {
     }
 
     @Override
-    public void onTick(LivingEntity en) {
-
-    }
-
-    @Override
     public EntityType<?> getMinionType(LivingEntity en) {
         return en.world.rand.nextBoolean() ? EntityType.MAGMA_CUBE : EntityType.BLAZE;
     }

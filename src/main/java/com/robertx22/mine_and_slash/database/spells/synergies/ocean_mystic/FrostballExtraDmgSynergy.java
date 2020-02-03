@@ -42,7 +42,7 @@ public class FrostballExtraDmgSynergy extends Synergy<BeforeDamageContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new FrostballSpell();
+        return FrostballSpell.getInstance();
     }
 
     @Override

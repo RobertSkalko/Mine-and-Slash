@@ -19,11 +19,14 @@ import java.util.List;
 
 public class WhirlpoolSpell extends BaseProjectileSpell {
 
-    public WhirlpoolSpell() {
+    public Elements element = Elements.Water;
 
+    private WhirlpoolSpell() {
     }
 
-    public Elements element = Elements.Water;
+    public static WhirlpoolSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public SpellSchools getSchool() {
@@ -99,4 +102,7 @@ public class WhirlpoolSpell extends BaseProjectileSpell {
         return Words.Whirpool;
     }
 
+    private static class SingletonHolder {
+        private static final WhirlpoolSpell INSTANCE = new WhirlpoolSpell();
+    }
 }

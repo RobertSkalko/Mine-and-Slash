@@ -36,7 +36,7 @@ public class LightningTotemStaticSynergy extends Synergy<AfterDamageContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new LightningTotemSpell();
+        return LightningTotemSpell.getInstance();
     }
 
     @Override

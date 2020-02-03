@@ -18,11 +18,6 @@ public class ReplicatorBoss extends BaseSummonerBoss {
     }
 
     @Override
-    public void onTick(LivingEntity en) {
-
-    }
-
-    @Override
     public EntityType<?> getMinionType(LivingEntity en) {
         return en.getType();
     }

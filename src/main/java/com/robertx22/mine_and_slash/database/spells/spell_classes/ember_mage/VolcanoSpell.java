@@ -18,11 +18,14 @@ import java.util.List;
 
 public class VolcanoSpell extends BaseSummonAtSightSpell {
 
-    public VolcanoSpell() {
+    public Elements element = Elements.Fire;
 
+    private VolcanoSpell() {
     }
 
-    public Elements element = Elements.Fire;
+    public static VolcanoSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public SpellSchools getSchool() {
@@ -85,5 +88,9 @@ public class VolcanoSpell extends BaseSummonAtSightSpell {
     @Override
     public Entity newEntity(World world) {
         return new VolcanoEntity(world);
+    }
+
+    private static class SingletonHolder {
+        private static final VolcanoSpell INSTANCE = new VolcanoSpell();
     }
 }

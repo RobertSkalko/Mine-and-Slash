@@ -42,7 +42,7 @@ public class WhirlpoolFrostDmgSynergy extends Synergy<BeforeDamageContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new WhirlpoolSpell();
+        return WhirlpoolSpell.getInstance();
     }
 
     @Override

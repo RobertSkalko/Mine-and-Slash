@@ -19,8 +19,11 @@ import java.util.List;
 
 public class FrostballSpell extends BaseProjectileSpell {
 
-    public FrostballSpell() {
-        super();
+    private FrostballSpell() {
+    }
+
+    public static FrostballSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -76,4 +79,7 @@ public class FrostballSpell extends BaseProjectileSpell {
         return Words.Frostball;
     }
 
+    private static class SingletonHolder {
+        private static final FrostballSpell INSTANCE = new FrostballSpell();
+    }
 }

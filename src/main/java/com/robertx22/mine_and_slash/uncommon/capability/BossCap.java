@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.MobCaps;
@@ -49,6 +50,12 @@ public class BossCap {
         void spawnParticle(LivingEntity en);
 
         void onHealthChanged(LivingEntity en, IBossData x);
+
+        boolean hasSynergy(Synergy synergy);
+
+        void setBoss(Boss random);
+
+        void onTick(LivingEntity entityLiving);
     }
 
     @Mod.EventBusSubscriber
@@ -182,6 +189,36 @@ public class BossCap {
         public void onHealthChanged(LivingEntity en, IBossData x) {
             if (isBoss) {
                 data.onHealthChanged(en, x);
+            }
+        }
+
+        @Override
+        public boolean hasSynergy(Synergy synergy) {
+            return getBoss().hasSynergy(synergy);
+        }
+
+        @Override
+        public void setBoss(Boss boss) {
+
+            this.isBoss = true;
+            this.data = new BossData();
+            data.boss = boss.GUID();
+            this.doneGenerating = true;
+
+        }
+
+        @Override
+        public void onTick(LivingEntity en) {
+            if (this.isBoss) {
+                if (en.isAlive()) {
+
+                    Boss boss = getBoss();
+                    if (boss != null) {
+                        boss.onTick(en);
+                    } else {
+                        Log.error("Boss is null for some reason!");
+                    }
+                }
             }
         }
 

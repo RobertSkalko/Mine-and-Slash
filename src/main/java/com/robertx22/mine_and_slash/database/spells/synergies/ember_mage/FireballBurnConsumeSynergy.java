@@ -53,7 +53,7 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new FireballSpell();
+        return FireballSpell.getInstance();
     }
 
     @Override

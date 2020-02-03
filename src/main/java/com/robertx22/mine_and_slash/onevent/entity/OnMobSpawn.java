@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -53,6 +54,10 @@ public class OnMobSpawn {
             BossCap.IBossData boss = Load.boss(entity);
             boss.onMobCreation(entity);
 
+            if (boss.isBoss()) {
+                OnBossTick.bossList.add(entity);
+            }
+            
             endata.setType(entity);
 
             PlayerEntity nearestPlayer = null;

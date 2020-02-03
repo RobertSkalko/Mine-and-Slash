@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.quests.quests;
 import com.robertx22.mine_and_slash.blocks.bases.BaseLootCrateTileEntity;
 import com.robertx22.mine_and_slash.database.quests.base.BaseOpenCratesQuest;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.text.ITextComponent;
 
 public class OpenAnyCratesQuest extends BaseOpenCratesQuest {
@@ -26,7 +27,7 @@ public class OpenAnyCratesQuest extends BaseOpenCratesQuest {
 
     @Override
     public float amountRequired() {
-        return 8;
+        return RandomUtils.RandomRange(5, 10);
     }
 
     @Override

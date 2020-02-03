@@ -19,8 +19,11 @@ import java.util.List;
 
 public class GorgonsGazeSpell extends BaseSpell {
 
-    public GorgonsGazeSpell() {
+    private GorgonsGazeSpell() {
+    }
 
+    public static GorgonsGazeSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -98,4 +101,7 @@ public class GorgonsGazeSpell extends BaseSpell {
         return true;
     }
 
+    private static class SingletonHolder {
+        private static final GorgonsGazeSpell INSTANCE = new GorgonsGazeSpell();
+    }
 }

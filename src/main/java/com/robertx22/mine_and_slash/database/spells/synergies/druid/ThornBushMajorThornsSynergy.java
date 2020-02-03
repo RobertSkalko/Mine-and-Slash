@@ -36,7 +36,7 @@ public class ThornBushMajorThornsSynergy extends Synergy<CasterTargetContext> {
 
     @Override
     public BaseSpell spellAffected() {
-        return new ThornArmorSpell();
+        return ThornArmorSpell.getInstance();
     }
 
     @Override

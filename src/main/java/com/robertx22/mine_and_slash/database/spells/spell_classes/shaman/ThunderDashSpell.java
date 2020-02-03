@@ -27,11 +27,14 @@ import java.util.List;
 
 public class ThunderDashSpell extends BaseSpell {
 
-    public ThunderDashSpell() {
+    public Elements element = Elements.Thunder;
 
+    private ThunderDashSpell() {
     }
 
-    public Elements element = Elements.Thunder;
+    public static ThunderDashSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public SpellSchools getSchool() {
@@ -131,5 +134,9 @@ public class ThunderDashSpell extends BaseSpell {
         SoundUtils.playSound(caster, Sounds.DASH, 1, 1);
 
         return true;
+    }
+
+    private static class SingletonHolder {
+        private static final ThunderDashSpell INSTANCE = new ThunderDashSpell();
     }
 }

@@ -25,6 +25,13 @@ import java.util.List;
 
 public class InstantHealSpell extends BaseSpellHeal {
 
+    private InstantHealSpell() {
+    }
+
+    public static InstantHealSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public SpellType getSpellType() {
         return SpellType.Self_Heal;
@@ -107,4 +114,7 @@ public class InstantHealSpell extends BaseSpellHeal {
         return true;
     }
 
+    private static class SingletonHolder {
+        private static final InstantHealSpell INSTANCE = new InstantHealSpell();
+    }
 }

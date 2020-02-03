@@ -44,7 +44,7 @@ public class ThunderSpearLightningStrikeSynergy extends Synergy<BeforeDamageCont
     @Override
 
     public BaseSpell spellAffected() {
-        return new ThunderspearSpell();
+        return ThunderspearSpell.getInstance();
     }
 
     @Override

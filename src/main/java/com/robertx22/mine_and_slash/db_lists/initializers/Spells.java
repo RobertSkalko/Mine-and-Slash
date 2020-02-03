@@ -34,30 +34,30 @@ public class Spells implements ISlashRegistryInit {
             {
                 {
 
-                    add(new MagicMissileSpell());
+                    add(MagicMissileSpell.getInstance());
 
-                    add(new FrostballSpell());
-                    add(new BlizzardSpell());
-                    add(new WhirlpoolSpell());
-                    add(new HeartOfIceSpell());
+                    add(FrostballSpell.getInstance());
+                    add(BlizzardSpell.getInstance());
+                    add(WhirlpoolSpell.getInstance());
+                    add(HeartOfIceSpell.getInstance());
 
-                    add(new InstantHealSpell());
-                    add(new RighteousFurySpell());
+                    add(InstantHealSpell.getInstance());
+                    add(RighteousFurySpell.getInstance());
 
-                    add(new RegenerateSpell());
-                    add(new GorgonsGazeSpell());
-                    add(new ThornArmorSpell());
-                    add(new ThornBushSpell());
+                    add(RegenerateSpell.getInstance());
+                    add(GorgonsGazeSpell.getInstance());
+                    add(ThornArmorSpell.getInstance());
+                    add(ThornBushSpell.getInstance());
 
-                    add(new ThunderstormSpell());
-                    add(new ThunderspearSpell());
-                    add(new ThunderDashSpell());
-                    add(new LightningTotemSpell());
+                    add(ThunderstormSpell.getInstance());
+                    add(ThunderspearSpell.getInstance());
+                    add(ThunderDashSpell.getInstance());
+                    add(LightningTotemSpell.getInstance());
 
-                    add(new BlazingInfernoSpell());
-                    add(new FireballSpell());
-                    add(new VolcanoSpell());
-                    add(new MagmaFlowerSpell());
+                    add(BlazingInfernoSpell.getInstance());
+                    add(FireballSpell.getInstance());
+                    add(VolcanoSpell.getInstance());
+                    add(MagmaFlowerSpell.getInstance());
 
                 }
             }

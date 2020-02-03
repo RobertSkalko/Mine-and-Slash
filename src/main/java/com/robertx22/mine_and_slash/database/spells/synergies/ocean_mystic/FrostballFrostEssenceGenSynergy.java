@@ -35,7 +35,7 @@ public class FrostballFrostEssenceGenSynergy extends Synergy<AfterDamageContext>
 
     @Override
     public BaseSpell spellAffected() {
-        return new FrostballSpell();
+        return FrostballSpell.getInstance();
     }
 
     @Override

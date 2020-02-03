@@ -33,6 +33,11 @@ public class ThornBushTileEntity extends BaseSpellTileEntity {
             if (data.ticksExisted % 20 == 0) {
 
                 LivingEntity caster = data.getCaster(world);
+
+                if (caster == null) {
+                    return;
+                }
+
                 EntityCap.UnitData data = Load.Unit(caster);
 
                 ParticleEnum.sendToClients(

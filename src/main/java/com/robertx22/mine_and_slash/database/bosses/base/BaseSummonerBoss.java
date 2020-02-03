@@ -9,11 +9,6 @@ import net.minecraft.util.math.BlockPos;
 public abstract class BaseSummonerBoss extends com.robertx22.mine_and_slash.database.bosses.base.Boss {
 
     @Override
-    public void onTick(LivingEntity en) {
-
-    }
-
-    @Override
     public void onHealthTreshholdTriggered(LivingEntity en, BossData.HealthTreshhold t) {
 
         int amount = 1;

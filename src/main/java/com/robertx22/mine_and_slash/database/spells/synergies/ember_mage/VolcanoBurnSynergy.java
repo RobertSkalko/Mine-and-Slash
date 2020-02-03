@@ -36,7 +36,7 @@ public class VolcanoBurnSynergy extends Synergy<CasterTargetContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new VolcanoSpell();
+        return VolcanoSpell.getInstance();
     }
 
     @Override

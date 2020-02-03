@@ -21,10 +21,12 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
     public boolean has(LivingEntity en) {
 
         if (en instanceof PlayerEntity) {
-
             return Load.spells((PlayerEntity) en).hasSynergy(this);
+        } else {
+            if (Load.isBoss(en)) {
+                return Load.boss(en).hasSynergy(this);
+            }
         }
-
         return false;
     }
 

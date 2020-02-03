@@ -19,8 +19,11 @@ import java.util.List;
 
 public class FireballSpell extends BaseProjectileSpell {
 
-    public FireballSpell() {
-        super();
+    private FireballSpell() {
+    }
+
+    public static FireballSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -74,4 +77,7 @@ public class FireballSpell extends BaseProjectileSpell {
         return Words.Fireball;
     }
 
+    private static class SingletonHolder {
+        private static final FireballSpell INSTANCE = new FireballSpell();
+    }
 }

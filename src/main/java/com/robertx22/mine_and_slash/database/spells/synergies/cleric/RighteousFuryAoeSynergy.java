@@ -48,7 +48,7 @@ public class RighteousFuryAoeSynergy extends Synergy<PotionContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new RighteousFurySpell();
+        return RighteousFurySpell.getInstance();
     }
 
     @Override

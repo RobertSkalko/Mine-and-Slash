@@ -19,11 +19,14 @@ import java.util.List;
 
 public class LightningTotemSpell extends BaseProjectileSpell {
 
-    public LightningTotemSpell() {
+    public Elements element = Elements.Thunder;
 
+    private LightningTotemSpell() {
     }
 
-    public Elements element = Elements.Thunder;
+    public static LightningTotemSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public SpellSchools getSchool() {
@@ -98,4 +101,7 @@ public class LightningTotemSpell extends BaseProjectileSpell {
         return Words.LightningTotem;
     }
 
+    private static class SingletonHolder {
+        private static final LightningTotemSpell INSTANCE = new LightningTotemSpell();
+    }
 }

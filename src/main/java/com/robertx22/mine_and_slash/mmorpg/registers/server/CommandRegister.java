@@ -26,6 +26,7 @@ public class CommandRegister {
         GiveUniqueGear.register(dispatcher);
         SetEntityLevel.register(dispatcher);
         SetEntityRarity.register(dispatcher);
+        SummonBoss.register(dispatcher);
 
         GiveStatMod.register(dispatcher);
         RemoveStatMod.register(dispatcher);

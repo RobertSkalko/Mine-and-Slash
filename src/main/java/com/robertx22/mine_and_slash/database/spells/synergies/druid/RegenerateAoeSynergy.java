@@ -40,7 +40,7 @@ public class RegenerateAoeSynergy extends Synergy<CasterContext> {
 
     @Override
     public BaseSpell spellAffected() {
-        return new RegenerateSpell();
+        return RegenerateSpell.getInstance();
     }
 
     @Override

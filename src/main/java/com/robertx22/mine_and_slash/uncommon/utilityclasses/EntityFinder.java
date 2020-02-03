@@ -193,10 +193,6 @@ public class EntityFinder {
         public Setup<T> height(double rad) {
             this.vertical = rad;
 
-            if (this.setRadius) {
-                throw new RuntimeException("Can't set height in EntityFinder after setting radius!");
-            }
-
             return this;
         }
 
@@ -204,7 +200,6 @@ public class EntityFinder {
             this.radius = rad;
             this.horizontal = rad;
             this.vertical = rad;
-            this.setRadius = true;
             return this;
         }
 

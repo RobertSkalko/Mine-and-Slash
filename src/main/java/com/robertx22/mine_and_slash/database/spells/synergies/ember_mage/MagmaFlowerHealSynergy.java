@@ -38,7 +38,7 @@ public class MagmaFlowerHealSynergy extends Synergy<CasterContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return new MagmaFlowerSpell();
+        return MagmaFlowerSpell.getInstance();
     }
 
     @Override

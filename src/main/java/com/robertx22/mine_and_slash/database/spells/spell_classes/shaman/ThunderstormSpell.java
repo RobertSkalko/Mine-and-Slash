@@ -18,11 +18,14 @@ import java.util.List;
 
 public class ThunderstormSpell extends BaseSummonAtSightSpell {
 
-    public ThunderstormSpell() {
+    public Elements element = Elements.Thunder;
 
+    private ThunderstormSpell() {
     }
 
-    public Elements element = Elements.Thunder;
+    public static ThunderstormSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public SpellSchools getSchool() {
@@ -85,5 +88,9 @@ public class ThunderstormSpell extends BaseSummonAtSightSpell {
     @Override
     public Entity newEntity(World world) {
         return new ThunderstormEntity(world);
+    }
+
+    private static class SingletonHolder {
+        private static final ThunderstormSpell INSTANCE = new ThunderstormSpell();
     }
 }

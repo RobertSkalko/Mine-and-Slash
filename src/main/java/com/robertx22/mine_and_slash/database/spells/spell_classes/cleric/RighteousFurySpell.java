@@ -20,6 +20,13 @@ import java.util.List;
 
 public class RighteousFurySpell extends BaseBuffSpell {
 
+    private RighteousFurySpell() {
+    }
+
+    public static RighteousFurySpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public BaseSpell.SpellType getSpellType() {
         return SpellType.Self_Buff;
@@ -86,5 +93,9 @@ public class RighteousFurySpell extends BaseBuffSpell {
     @Override
     public BasePotionEffect getEffect() {
         return RighteousFuryEffect.INSTANCE;
+    }
+
+    private static class SingletonHolder {
+        private static final RighteousFurySpell INSTANCE = new RighteousFurySpell();
     }
 }

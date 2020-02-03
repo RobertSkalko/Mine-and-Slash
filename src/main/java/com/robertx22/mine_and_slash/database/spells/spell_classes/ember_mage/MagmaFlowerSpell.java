@@ -23,8 +23,11 @@ import java.util.List;
 
 public class MagmaFlowerSpell extends BaseSeedSpell implements IBlockSpawner {
 
-    public MagmaFlowerSpell() {
+    private MagmaFlowerSpell() {
+    }
 
+    public static MagmaFlowerSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -95,4 +98,7 @@ public class MagmaFlowerSpell extends BaseSeedSpell implements IBlockSpawner {
         world.setTileEntity(pos, tile);
     }
 
+    private static class SingletonHolder {
+        private static final MagmaFlowerSpell INSTANCE = new MagmaFlowerSpell();
+    }
 }

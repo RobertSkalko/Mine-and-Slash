@@ -19,8 +19,11 @@ import java.util.List;
 
 public class BlazingInfernoSpell extends BaseSpell {
 
-    public BlazingInfernoSpell() {
+    private BlazingInfernoSpell() {
+    }
 
+    public static BlazingInfernoSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -91,4 +94,7 @@ public class BlazingInfernoSpell extends BaseSpell {
         return true;
     }
 
+    private static class SingletonHolder {
+        private static final BlazingInfernoSpell INSTANCE = new BlazingInfernoSpell();
+    }
 }

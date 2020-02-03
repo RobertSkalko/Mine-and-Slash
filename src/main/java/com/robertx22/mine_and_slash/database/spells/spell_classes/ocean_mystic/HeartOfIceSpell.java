@@ -28,6 +28,13 @@ import java.util.List;
 
 public class HeartOfIceSpell extends BaseSpellHeal {
 
+    private HeartOfIceSpell() {
+    }
+
+    public static HeartOfIceSpell getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public int useTimeTicks() {
         return 40;
@@ -117,4 +124,7 @@ public class HeartOfIceSpell extends BaseSpellHeal {
         return true;
     }
 
+    private static class SingletonHolder {
+        private static final HeartOfIceSpell INSTANCE = new HeartOfIceSpell();
+    }
 }
