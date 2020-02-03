@@ -26,6 +26,7 @@ public enum Words implements IAutoLocName {
     Volcano("Volcano"),
     Blizzard("Blizzard"),
     Whirpool("Whirpool"),
+    Geyser("Geyser"),
     GorgonsGaze("Gorgon's Gaze"),
     Regenerate("Regenerate"),
     InstantHeal("Instant Heal"),

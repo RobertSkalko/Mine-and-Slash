@@ -392,7 +392,7 @@ public class EntityCap {
 
             float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getDMGMultiplierIncreaseByTier();
 
-            float num = 1.1F * vanilla * rar.DamageMultiplier();
+            float num = vanilla * rar.DamageMultiplier();
 
             num *= SlashRegistry.getEntityConfig(source, sourcedata).DMG_MULTI;
 

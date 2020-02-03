@@ -14,6 +14,14 @@ public class Sounds {
     static final String DASH_ID = "dash";
     static final String SPLASH_ID = "splash";
     static final String FREEZE_ID = "freeze";
+    static final String STONE_CRACK_ID = "stone_crack";
+    static final String FIREBALL_ID = "fireball";
+
+    @ObjectHolder(Ref.MODID + ":" + STONE_CRACK_ID)
+    public static SoundEvent STONE_CRACK;
+
+    @ObjectHolder(Ref.MODID + ":" + FIREBALL_ID)
+    public static SoundEvent FIREBALL;
 
     @ObjectHolder(Ref.MODID + ":" + DASH_ID)
     public static SoundEvent DASH;
@@ -29,6 +37,8 @@ public class Sounds {
         reg(event, DASH_ID);
         reg(event, SPLASH_ID);
         reg(event, FREEZE_ID);
+        reg(event, STONE_CRACK_ID);
+        reg(event, FIREBALL_ID);
     }
 
     private static void reg(RegistryEvent.Register<SoundEvent> event, String id) {

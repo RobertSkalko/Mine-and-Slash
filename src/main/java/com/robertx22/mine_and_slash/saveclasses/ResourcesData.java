@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.ModifyResourceEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
@@ -34,8 +35,7 @@ public class ResourcesData {
 
         public boolean statsCalculated = false;
 
-        public Context(UnitData data, LivingEntity entity, Type type, float amount,
-                       Use use, BaseSpell spell) {
+        public Context(UnitData data, LivingEntity entity, Type type, float amount, Use use, BaseSpell spell) {
             this.targetData = data;
             this.target = entity;
             this.sourceData = data;
@@ -47,12 +47,22 @@ public class ResourcesData {
             calculateStats();
         }
 
-        public Context(UnitData data, LivingEntity entity, Type type, float amount,
-                       Use use) {
+        public Context(UnitData data, LivingEntity entity, Type type, float amount, Use use) {
             this.targetData = data;
             this.target = entity;
             this.sourceData = data;
             this.source = entity;
+            this.type = type;
+            this.amount = amount;
+            this.use = use;
+            calculateStats();
+        }
+
+        public Context(LivingEntity caster, LivingEntity target, Type type, float amount, Use use, BaseSpell spell) {
+            this.targetData = Load.Unit(target);
+            this.target = target;
+            this.sourceData = Load.Unit(source);
+            this.source = source;
             this.type = type;
             this.amount = amount;
             this.use = use;
@@ -128,9 +138,7 @@ public class ResourcesData {
         } else if (ctx.type == Type.BLOOD) {
             return blood;
         } else if (ctx.type == Type.HEALTH) {
-            return ctx.targetData.getUnit()
-                    .health()
-                    .CurrentValue(ctx.target, ctx.targetData.getUnit());
+            return ctx.targetData.getUnit().health().CurrentValue(ctx.target, ctx.targetData.getUnit());
         }
         return 0;
 
@@ -139,22 +147,19 @@ public class ResourcesData {
     private void modifyBy(Context ctx) {
 
         if (ctx.type == Type.ENERGY) {
-            energy = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                    .energyData().val);
+            energy = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit().energyData().val);
         } else if (ctx.type == Type.MANA) {
-            mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                    .manaData().val);
+            mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit().manaData().val);
         } else if (ctx.type == Type.MAGIC_SHIELD) {
-            magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                    .magicShieldData().val);
+            magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit().magicShieldData().val);
         } else if (ctx.type == Type.BLOOD) {
-            blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                    .getMaximumBlood());
+            blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit().getMaximumBlood());
         } else if (ctx.type == Type.HEALTH) {
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);
             } else {
-                ctx.target.setHealth(HealthUtils.DamageToMinecraftHealth(getModifiedValue(ctx), ctx.target, ctx.targetData));
+                ctx.target.setHealth(
+                        HealthUtils.DamageToMinecraftHealth(getModifiedValue(ctx), ctx.target, ctx.targetData));
             }
         }
     }

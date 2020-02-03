@@ -25,7 +25,7 @@ public class OnBossTick {
 
             clearTicks++;
 
-            if (clearTicks > 50) {
+            if (clearTicks > ticksToClear) {
                 clearTicks = 0;
                 bossList.removeIf(x -> x == null || !x.isAlive());
             }

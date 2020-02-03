@@ -25,6 +25,7 @@ public class ServerContainer {
 
     public IntValue STARTING_SPELL_POINTS;
 
+    public DoubleValue MOB_BOSS_CHANCE_IN_MAPS;
     public DoubleValue STAT_POINTS_PER_LEVEL;
     public DoubleValue TALENT_POINTS_PER_LEVEL;
     public DoubleValue SPELL_POINTS_PER_LEVEL;
@@ -39,6 +40,10 @@ public class ServerContainer {
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
+
+        MOB_BOSS_CHANCE_IN_MAPS = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("MOB_BOSS_CHANCE_IN_MAPS", 0.2D, 0, 100);
 
         STAT_POINTS_PER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -10,7 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -33,7 +33,7 @@ public class FireballSpell extends BaseProjectileSpell {
 
     @Override
     public SoundEvent getShootSound() {
-        return SoundEvents.ITEM_FIRECHARGE_USE;
+        return Sounds.FIREBALL;
     }
 
     @Override

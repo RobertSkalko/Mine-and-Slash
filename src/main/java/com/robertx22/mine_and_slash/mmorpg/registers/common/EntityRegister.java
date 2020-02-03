@@ -46,6 +46,7 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> FROSTBOLT;
     public static final EntityType<? extends Entity> WHIRPOOL;
     public static final EntityType<? extends Entity> BLIZZARD;
+    public static final EntityType<? extends Entity> GEYSER;
 
     public static final EntityType<MagicMissileEntity> MAGIC_MISSILE;
 
@@ -61,6 +62,7 @@ public class EntityRegister {
         BLIZZARD = newType(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
         FROSTBOLT = newType(FrostballEntity::new, FrostballEntity::new, "frostball");
         WHIRPOOL = newType(WhirlpoolEntity::new, WhirlpoolEntity::new, "whirlpool");
+        GEYSER = newType(GeyserEntity::new, GeyserEntity::new, "geyser");
 
         THUNDERSTORM = newType(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
         THUNDER_SPEAR = newType(ThunderspearEntity::new, ThunderspearEntity::new, "thunder_spear", false);

@@ -68,79 +68,72 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
         int tickRate = 20;
 
-        if (this.ticksExisted % tickRate == 0) {
-            if (!world.isRemote) {
-                LivingEntity caster = getCaster();
+        if (this.inGround) {
+            if (this.ticksExisted % tickRate == 0) {
+                if (!world.isRemote) {
+                    LivingEntity caster = getCaster();
 
-                if (caster == null) {
-                    return;
+                    if (caster == null) {
+                        return;
+                    }
+
+                    List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPositionVector())
+                            .radius(radius())
+                            .build();
+
+                    entities.forEach(x -> {
+
+                        DamageEffect dmg = dealSpellDamageTo(x, new Options().knockbacks(false).activatesEffect(false));
+
+                        if (Synergies.WHIRLPOOL_FROST_DMG.has(caster)) {
+                            Synergies.WHIRLPOOL_FROST_DMG.tryActivate(new BeforeDamageContext(caster, x, dmg));
+                        }
+
+                        dmg.Activate();
+
+                        x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, tickRate, 10));
+
+                        if (Synergies.WHIRLPOOL_SHIVER.has(caster)) {
+                            Synergies.WHIRLPOOL_SHIVER.tryActivate(new CasterTargetContext(caster, x));
+                        }
+
+                        SoundUtils.playSound(this, SoundEvents.ENTITY_DROWNED_HURT_WATER, 1, 1);
+
+                    });
+                } else {
+                    Vec3d p = this.getPositionVector();
+
+                    world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F,
+                                    1F,
+
+                                    false
+                    );
+
+                }
+            }
+
+            if (this.inGround && world.isRemote) {
+
+                float yUp = 0.05F;
+
+                for (float rad = 1; rad < radius(); rad++) {
+
+                    yUp += 0.1F;
+
+                    for (int i = 0; i < 40; i++) {
+                        Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
+                                getPositionVector().add(0, yUp, 0), rad);
+                        ParticleUtils.spawn(ParticleRegister.BUBBLE, world, p);
+
+                    }
                 }
 
-                List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPositionVector())
-                        .radius(radius())
-                        .build();
-
-                entities.forEach(x -> {
-
-                    DamageEffect dmg = dealSpellDamageTo(x, new Options().knockbacks(false).activatesEffect(false));
-
-                    if (Synergies.WHIRLPOOL_FROST_DMG.has(caster)) {
-                        Synergies.WHIRLPOOL_FROST_DMG.tryActivate(new BeforeDamageContext(caster, x, dmg));
-                    }
-
-                    dmg.Activate();
-
-                    x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, tickRate, 10));
-
-                    if (Synergies.WHIRLPOOL_SHIVER.has(caster)) {
-                        Synergies.WHIRLPOOL_SHIVER.tryActivate(new CasterTargetContext(caster, x));
-                    }
-
-                    SoundUtils.playSound(this, SoundEvents.ENTITY_DROWNED_HURT_WATER, 1, 1);
-
-                });
-            } else {
                 Vec3d p = this.getPositionVector();
 
-                world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F, 1F,
-
-                                false
+                world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT, SoundCategory.BLOCKS,
+                                0.2F, 0.9F, false
                 );
-
-
-                /*
-                this.player.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE, 1.0F, 1.0F);
-            } else {
-                this.player.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE, 1.0F, 1.0F);
-
-
-                 */
-
             }
-        }
-
-        if (this.inGround && world.isRemote) {
-
-            float yUp = 0.05F;
-
-            for (float rad = 1; rad < radius(); rad++) {
-
-                yUp += 0.1F;
-
-                for (int i = 0; i < 40; i++) {
-                    Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                            getPositionVector().add(0, yUp, 0), rad);
-                    ParticleUtils.spawn(ParticleRegister.BUBBLE, world, p);
-
-                }
-            }
-
-            Vec3d p = this.getPositionVector();
-
-            world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT, SoundCategory.BLOCKS,
-                            0.2F, 0.9F, false
-            );
-
         }
 
         super.tick();

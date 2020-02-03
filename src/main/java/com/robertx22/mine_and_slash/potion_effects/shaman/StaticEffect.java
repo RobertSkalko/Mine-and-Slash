@@ -32,7 +32,7 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-        ParticleUtils.spawnParticles(ParticleRegister.THUNDER, entity, 5);
+        ParticleUtils.spawnParticles(ParticleRegister.THUNDER, entity, 50);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public int performEachXTicks() {
-        return 20;
+        return 5;
     }
 
     @Override

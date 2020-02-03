@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
@@ -135,10 +136,9 @@ public class BossCap {
         @Override
         public void onMobCreation(LivingEntity en) {
             if (!doneGenerating) {
-                if (RandomUtils.roll(0.1F)) {
+                if (RandomUtils.roll(ModConfig.INSTANCE.Server.MOB_BOSS_CHANCE_IN_MAPS.get().floatValue())) {
                     if (WorldUtils.isMapWorldClass(en.world)) {
                         if (EntityTypeUtils.isMob(en)) {
-
                             this.data = new BossData();
                             this.data.boss = SlashRegistry.Bosses().random().GUID();
                             this.isBoss = true;

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -9,6 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -90,6 +92,8 @@ public class GorgonsGazeSpell extends BaseSpell {
     public boolean cast(LivingEntity caster, int ticksInUse) {
 
         World world = caster.world;
+
+        SoundUtils.playSound(caster, Sounds.STONE_CRACK, 1, 1);
 
         EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
                 .radius(3)

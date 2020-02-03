@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.bosses.base;
 
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -60,7 +59,8 @@ public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
-        data.getUnit().getCreateStat(Health.INSTANCE).Multi += 500;
+        //data.getUnit().getCreateStat(Health.INSTANCE).Multi += 500;
+
     }
 
     public boolean hasSynergy(Synergy synergy) {
