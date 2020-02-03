@@ -78,7 +78,7 @@ public class MapPortalBlock extends EndPortalBlock {
 
                                     BlockPos pos1 = WorldUtils.getSurface(mapworld, mapworld.getSpawnPoint());
 
-                                    PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos1);
+                                    Entity tped = PlayerUtils.changeDimension((ServerPlayerEntity) player, type, pos1);
 
                                     MMORPG.devToolsLog("tp to map succeeded");
 

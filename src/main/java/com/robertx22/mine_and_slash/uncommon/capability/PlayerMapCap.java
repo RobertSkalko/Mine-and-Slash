@@ -5,11 +5,12 @@ import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
+import com.robertx22.mine_and_slash.saveclasses.PlayerWholeMapData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
+import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
@@ -37,9 +38,7 @@ public class PlayerMapCap {
     @CapabilityInject(IPlayerMapData.class)
     public static final Capability<IPlayerMapData> Data = null;
 
-    static final String POS_OBJ = "POS_OBJ";
-    static final String ORIGINAL_DIM = "original_dimension";
-    static final String MIN_PASSED = "MIN_PASSED";
+    static final String LOC = Ref.MODID + "data";
 
     public interface IPlayerMapData extends ICommonPlayerCap {
 
@@ -100,30 +99,15 @@ public class PlayerMapCap {
 
     public static class DefaultImpl implements IPlayerMapData {
 
-        long mapDevicePos;
-        MapItemData mapdata = new MapItemData();
-        DimensionType originalDimension = null;
-        int minutesPassed = 0;
-        boolean isDead = false;
-
-        boolean questFinished = false;
+        PlayerWholeMapData data = new PlayerWholeMapData();
 
         @Override
         public CompoundNBT getNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
-            nbt.putLong(POS_OBJ, mapDevicePos);
-            nbt.putInt(MIN_PASSED, minutesPassed);
-            nbt.putBoolean("isdead", isDead);
-            nbt.putBoolean("questFinished", questFinished);
-
-            if (mapdata != null) {
-                Map.Save(nbt, mapdata);
-            }
-
-            if (this.originalDimension != null) {
-                nbt.putString(ORIGINAL_DIM, MapManager.getResourceLocation(originalDimension).toString());
+            if (data != null) {
+                LoadSave.Save(data, nbt, LOC);
             }
 
             return nbt;
@@ -132,20 +116,7 @@ public class PlayerMapCap {
 
         @Override
         public void setNBT(CompoundNBT nbt) {
-
-            this.mapDevicePos = nbt.getLong(POS_OBJ);
-            this.minutesPassed = nbt.getInt(MIN_PASSED);
-            this.isDead = nbt.getBoolean("isdead");
-            this.questFinished = nbt.getBoolean("questFinished");
-
-            mapdata = Map.Load(nbt);
-
-            if (nbt.contains(ORIGINAL_DIM)) {
-                this.originalDimension = DimensionType.byName(new ResourceLocation(nbt.getString(ORIGINAL_DIM)));
-            } else {
-                this.originalDimension = DimensionType.OVERWORLD;
-            }
-
+            data = LoadSave.Load(PlayerWholeMapData.class, new PlayerWholeMapData(), nbt, LOC);
         }
 
         @Override
@@ -156,11 +127,11 @@ public class PlayerMapCap {
         @Override
         public void onPlayerDeath(PlayerEntity player) {
 
-            this.isDead = true;
+            this.data.isDead = true;
 
             if (this.isPermaDeath()) {
 
-                this.minutesPassed += 555555;
+                this.data.minutesPassed += 555555;
 
                 player.sendMessage(Chats.Player_died_in_a_map_world.locName()
                                            .appendText(" " + player.getDisplayName().getFormattedText() + " ")
@@ -173,7 +144,7 @@ public class PlayerMapCap {
                                            .appendText(" " + player.getDisplayName().getFormattedText() + " ")
                                            .appendSibling(Chats.Map_time_penalty_activated.locName()));
 
-                this.minutesPassed += punishment;
+                this.data.minutesPassed += punishment;
 
                 announceTimeLeft(player);
             }
@@ -186,12 +157,12 @@ public class PlayerMapCap {
 
         @Override
         public boolean isPermaDeath() {
-            return mapdata.isPermaDeath;
+            return data.mapdata.isPermaDeath;
         }
 
         @Override
         public void onMinute(PlayerEntity player) {
-            this.minutesPassed++;
+            this.data.minutesPassed++;
 
             if (this.getMinutesLeft() < 1) {
 
@@ -208,18 +179,21 @@ public class PlayerMapCap {
         @Override
         public void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player) {
 
-            this.minutesPassed = 0;
-            this.mapDevicePos = pos.toLong();
-            this.originalDimension = player.world.getDimension().getType();
-            this.mapdata = map.clone();
-            this.questFinished = false;
+            this.data = new PlayerWholeMapData();
+
+            this.data.minutesPassed = 0;
+            this.data.mapDevicePos = new BlockPos(pos);
+            this.data.setOriginalDimension(player.world.getDimension().getType());
+            this.data.mapdata = map.clone();
+            this.data.questFinished = false;
+            this.data.setPlayerId(player);
 
             MMORPG.syncMapData((ServerPlayerEntity) player);
         }
 
         @Override
         public void onQuestFinished() {
-            this.questFinished = true;
+            this.data.questFinished = true;
         }
 
         private void onMinutePassAnnounce(PlayerEntity player) {
@@ -234,8 +208,8 @@ public class PlayerMapCap {
 
         @Override
         public void onTickIfDead(ServerPlayerEntity player) {
-            if (isDead) {
-                this.isDead = false;
+            if (data.isDead) {
+                this.data.isDead = false;
                 teleportPlayerBack(player);
             }
         }
@@ -244,7 +218,7 @@ public class PlayerMapCap {
         public float getLootMultiplier(PlayerEntity player) {
 
             if (WorldUtils.isMapWorldClass(player.world)) {
-                if (questFinished) {
+                if (data.questFinished) {
                     return 0.3F;
                 }
             }
@@ -264,13 +238,13 @@ public class PlayerMapCap {
 
         @Override
         public int getMinutesPassed() {
-            return this.minutesPassed;
+            return this.data.minutesPassed;
         }
 
         @Override
         public MapItemData getMap() {
-            if (mapdata != null) {
-                return this.mapdata;
+            if (data != null && data.mapdata != null) {
+                return this.data.mapdata;
             } else {
                 return MapItemData.empty();
             }
@@ -278,12 +252,12 @@ public class PlayerMapCap {
 
         @Override
         public BlockPos getMapDevicePos() {
-            return BlockPos.fromLong(mapDevicePos).south(3);
+            return data.mapDevicePos.south(3);
         }
 
         @Override
         public DimensionType getOriginalDimension() {
-            return originalDimension;
+            return data.getOriginalDimension();
         }
 
         private static void error(String str) {
@@ -294,11 +268,6 @@ public class PlayerMapCap {
         public void teleportPlayerBack(PlayerEntity player) {
 
             if (WorldUtils.isMapWorld(player.world)) {
-
-                if (this.originalDimension == null) {
-                    error("Original Dimension is null");
-                    this.originalDimension = DimensionType.OVERWORLD;
-                }
 
                 BlockPos pos = getMapDevicePos();
 
@@ -331,8 +300,7 @@ public class PlayerMapCap {
                 }
 
                 pos = pos.north(2);
-                PlayerUtils.changeDimension(
-                        (ServerPlayerEntity) player, this.originalDimension, pos); // TODO conditionIsMet if works
+                PlayerUtils.changeDimension((ServerPlayerEntity) player, data.getOriginalDimension(), pos);
 
             }
         }
@@ -352,7 +320,7 @@ public class PlayerMapCap {
         }
 
         private int getMinutesLeft() {
-            return this.getMap().minutes - this.minutesPassed;
+            return this.getMap().minutes - this.data.minutesPassed;
 
         }
     }

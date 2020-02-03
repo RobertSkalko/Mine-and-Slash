@@ -68,6 +68,10 @@ public class PlayerUtils {
 
         player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
+        //player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0.0F);
+        // player.moveToBlockPosAndAngles(pos, player.rotationYaw, player.rotationPitch);
+        player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+
         return player;
 
     }

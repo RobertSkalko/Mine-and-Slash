@@ -8,10 +8,10 @@ import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -26,7 +26,7 @@ public class OnServerTick {
 
     static final int TicksToUpdatePlayer = 18;
     static final int TicksToRegen = 100;
-    static final int TicksToGiveMapPortal = 400;
+    static final int TicksToGiveMapPortal = 500;
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
 
@@ -53,42 +53,44 @@ public class OnServerTick {
                     data.regenTicks = 0;
                     if (player.isAlive()) {
 
-                        UnitData unit_capa = Load.Unit(player);
-                        unit_capa.forceRecalculateStats(player); // has to do
-                        // this cus curios doesnt call
-                        // equipsChanged event - actually
-                        // there's one, but i fear  bugs
-                        Unit unit = unit_capa.getUnit();
+                        player.getCapability(EntityCap.Data).ifPresent(x -> {
+                            x.forceRecalculateStats(player);
+                            // has to do
+                            // this cus curios doesnt call
+                            // equipsChanged event - actually
+                            // there's one, but i fear  bugs
 
-                        int manarestored = (int) unit.getCreateStat(ManaRegen.GUID).val;
-                        ResourcesData.Context mana = new ResourcesData.Context(unit_capa, player,
-                                                                               ResourcesData.Type.MANA, manarestored,
-                                                                               ResourcesData.Use.RESTORE
-                        );
-                        unit_capa.getResources().modify(mana);
+                            Unit unit = x.getUnit();
 
-                        int energyrestored = (int) unit.getCreateStat(EnergyRegen.GUID).val;
-                        ResourcesData.Context ene = new ResourcesData.Context(unit_capa, player,
-                                                                              ResourcesData.Type.ENERGY, energyrestored,
-                                                                              ResourcesData.Use.RESTORE
-                        );
-                        unit_capa.getResources().modify(ene);
+                            int manarestored = (int) unit.getCreateStat(ManaRegen.GUID).val;
+                            ResourcesData.Context mana = new ResourcesData.Context(x, player, ResourcesData.Type.MANA,
+                                                                                   manarestored,
+                                                                                   ResourcesData.Use.RESTORE
+                            );
+                            x.getResources().modify(mana);
 
-                        int healthrestored = (int) unit.getCreateStat(HealthRegen.GUID).val;
-                        ResourcesData.Context hp = new ResourcesData.Context(unit_capa, player,
-                                                                             ResourcesData.Type.HEALTH, healthrestored,
-                                                                             ResourcesData.Use.RESTORE
-                        );
-                        unit_capa.getResources().modify(hp);
+                            int energyrestored = (int) unit.getCreateStat(EnergyRegen.GUID).val;
+                            ResourcesData.Context ene = new ResourcesData.Context(x, player, ResourcesData.Type.ENERGY,
+                                                                                  energyrestored,
+                                                                                  ResourcesData.Use.RESTORE
+                            );
+                            x.getResources().modify(ene);
 
-                        int magicshieldrestored = (int) unit.getCreateStat(MagicShieldRegen.GUID).val;
-                        ResourcesData.Context ms = new ResourcesData.Context(unit_capa, player,
-                                                                             ResourcesData.Type.MAGIC_SHIELD,
-                                                                             magicshieldrestored,
-                                                                             ResourcesData.Use.RESTORE
-                        );
-                        unit_capa.getResources().modify(ms);
+                            int healthrestored = (int) unit.getCreateStat(HealthRegen.GUID).val;
+                            ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
+                                                                                 healthrestored,
+                                                                                 ResourcesData.Use.RESTORE
+                            );
+                            x.getResources().modify(hp);
 
+                            int magicshieldrestored = (int) unit.getCreateStat(MagicShieldRegen.GUID).val;
+                            ResourcesData.Context ms = new ResourcesData.Context(x, player,
+                                                                                 ResourcesData.Type.MAGIC_SHIELD,
+                                                                                 magicshieldrestored,
+                                                                                 ResourcesData.Use.RESTORE
+                            );
+                            x.getResources().modify(ms);
+                        });
                     }
                 }
 
@@ -107,8 +109,17 @@ public class OnServerTick {
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
                     if (WorldUtils.isMapWorldClass(player.world)) {
-                        Load.playerMapData(player).onMinute(player);
+                        player.getCapability(PlayerMapCap.Data).ifPresent(x -> x.onMinute(player));
                     }
+                }
+
+                if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
+                    data.ticksToSpellCooldowns = 0;
+
+                    player.getCapability(PlayerSpellCap.Data).ifPresent(x -> {
+                        x.getSpellData().onTimePass(TicksToSpellCooldowns);
+                        x.getSpellData().tryCast(player, x);
+                    });
                 }
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
@@ -120,15 +131,6 @@ public class OnServerTick {
                     }
 
                     CapSyncUtil.syncAll(player);
-
-                }
-
-                if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
-                    data.ticksToSpellCooldowns = 0;
-                    PlayerSpellCap.ISpellsCap spells = Load.spells(player);
-
-                    spells.getSpellData().onTimePass(TicksToSpellCooldowns);
-                    spells.getSpellData().tryCast(player, spells);
 
                 }
 
