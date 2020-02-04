@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
@@ -9,20 +10,30 @@ import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class EntityFinder {
+
+    static boolean isTamed(LivingEntity x) {
+        if (x instanceof TameableEntity) {
+            TameableEntity tame = (TameableEntity) x;
+            return tame.isTamed();
+        }
+        return false;
+    }
 
     public enum SearchFor {
 
         ALLIES() {
             @Override
-            public <T extends Entity> List<T> getMatchingEntities(List<T> list, Setup setup) {
-                if (setup.caster instanceof PlayerEntity) {
-                    list.removeIf(x -> x instanceof PlayerEntity == false);
-                } else {
-                    list.removeIf(x -> x instanceof PlayerEntity);
-                }
-                return list;
+            public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
+                return list.stream().filter(x -> {
+                    if (setup.caster instanceof PlayerEntity) {
+                        return x instanceof PlayerEntity || isTamed(x);
+                    } else {
+                        return x instanceof PlayerEntity == false && !isTamed(x);
+                    }
+                }).collect(Collectors.toList());
             }
 
             @Override
@@ -32,13 +43,14 @@ public class EntityFinder {
         },
         ENEMIES {
             @Override
-            public <T extends Entity> List<T> getMatchingEntities(List<T> list, Setup setup) {
-                if (setup.caster instanceof PlayerEntity) {
-                    list.removeIf(x -> x instanceof PlayerEntity);
-                } else {
-                    list.removeIf(x -> x instanceof PlayerEntity == false);
-                }
-                return list;
+            public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
+                return list.stream().filter(x -> {
+                    if (setup.caster instanceof PlayerEntity) {
+                        return x instanceof PlayerEntity == false && !isTamed(x);
+                    } else {
+                        return x instanceof PlayerEntity;
+                    }
+                }).collect(Collectors.toList());
             }
 
             @Override
@@ -48,7 +60,7 @@ public class EntityFinder {
         },
         ALL {
             @Override
-            public <T extends Entity> List<T> getMatchingEntities(List<T> list, Setup setup) {
+            public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
                 return list;
             }
 
@@ -58,7 +70,7 @@ public class EntityFinder {
             }
         };
 
-        public abstract <T extends Entity> List<T> getMatchingEntities(List<T> list, Setup setup);
+        public abstract <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup);
 
         public abstract boolean includesCaster();
     }
@@ -125,13 +137,13 @@ public class EntityFinder {
 
     }
 
-    public static <T extends Entity> Setup<T> start(LivingEntity caster, Class<T> entityType, Vec3d pos) {
+    public static <T extends LivingEntity> Setup<T> start(LivingEntity caster, Class<T> entityType, Vec3d pos) {
         Setup<T> setup = new Setup<T>(caster, entityType, pos);
         return setup;
 
     }
 
-    public static class Setup<T extends Entity> {
+    public static class Setup<T extends LivingEntity> {
 
         Class<T> entityType;
         Finder finder = Finder.RADIUS;
