@@ -7,19 +7,17 @@ import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
@@ -36,7 +34,29 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
     private MinorThornsEffect() {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-        this.needsTickTooltip = true;
+
+        this.tickActions.add(new OnTickAction(20, ctx -> {
+            int num = CALC.getCalculatedValue(ctx.casterData);
+
+            DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
+                                                EffectData.EffectTypes.SPELL, WeaponTypes.None
+            );
+            dmg.element = Elements.Nature;
+            dmg.removeKnockback();
+            dmg.Activate();
+
+            ParticleEnum.sendToClients(
+                    ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.THORNS).amount(10));
+
+            SoundUtils.playSound(ctx.entity, SoundEvents.BLOCK_GRASS_BREAK, 1, 1);
+            return ctx;
+        }, info -> {
+            List<ITextComponent> list = new ArrayList<>();
+            list.add(new StringTextComponent("Does damage:"));
+            list.addAll(CALC.GetTooltipString(info));
+
+            return list;
+        }));
     }
 
     static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.1F, 2);
@@ -47,30 +67,8 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-
-        int num = CALC.getCalculatedValue(Load.Unit(caster));
-
-        DamageEffect dmg = new DamageEffect(null, caster, entity, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
-        dmg.element = Elements.Nature;
-        dmg.removeKnockback();
-        dmg.Activate();
-
-        ParticleEnum.sendToClients(
-                entity, new ParticlePacketData(entity.getPosition(), ParticleEnum.THORNS).amount(10));
-
-        SoundUtils.playSound(entity, SoundEvents.BLOCK_GRASS_BREAK, 1, 1);
-
-    }
-
-    @Override
     public String GUID() {
         return "minor_thorns";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 20;
     }
 
     @Override
@@ -107,16 +105,5 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
 
     }
 
-    @Override
-    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
-
-        List<ITextComponent> list = new ArrayList<>();
-
-        list.add(new StringTextComponent("Does damage:"));
-
-        list.addAll(CALC.GetTooltipString(info));
-
-        return list;
-    }
 }
 

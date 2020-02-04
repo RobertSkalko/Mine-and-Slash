@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
@@ -29,9 +30,7 @@ import java.util.List;
 
 public abstract class BasePotionEffect extends Effect implements IAutoLocName, ITooltipList {
 
-    public boolean needsTickTooltip = false;
-
-    public abstract void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster);
+    protected List<OnTickAction> tickActions = new ArrayList<>();
 
     public int getMaxStacks() {
         return 1;
@@ -54,9 +53,11 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
         return CLOC.blank("effect." + Ref.MODID + "." + GUID());
     }
 
-    public abstract int performEachXTicks();
+    //public abstract List<ITextComponent> getEffectTooltip(TooltipInfo info);
 
-    public abstract List<ITextComponent> getEffectTooltip(TooltipInfo info);
+    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
+        return new ArrayList<>();
+    }
 
     @Override
     public final List<ITextComponent> GetTooltipString(TooltipInfo info) {
@@ -72,11 +73,14 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
             list.addAll(((IApplyStatPotion) this).getStatTooltip(info, this));
         }
 
-        if (this.needsTickTooltip) {
-            list.addAll(getTickTooltip());
-        }
+        list.add(new SText(""));
+
+        tickActions.forEach(x -> list.addAll(x.getTooltip(info)));
+
         list.addAll(getMaxStacksTooltip());
         list.addAll(getDurationTooltip());
+
+        // list = TooltipUtils.removeDoubleBlankLines(list, 0);
 
         return list;
     }
@@ -113,37 +117,30 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
         return getDurationInSeconds() * 20;
     }
 
-    private List<ITextComponent> getTickTooltip() {
-
-        List<ITextComponent> list = new ArrayList<>();
-
-        list.add(new StringTextComponent(
-                TextFormatting.YELLOW + "Effect occurs every " + performEachXTicks() + " ticks."));
-
-        return list;
-
-    }
-
     @Override
     public void performEffect(LivingEntity en, int amplifier) {
 
         try {
-            if (en.ticksExisted % performEachXTicks() == 0) {
 
-                ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
+            this.tickActions.forEach(x -> {
+                if (en.ticksExisted % x.eachXticks == 0) {
 
-                if (data == null) {
-                    Log.error("Extra potion data is null. Deleting potion");
+                    ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
+
+                    if (data == null) {
+                        Log.error("Extra potion data is null. Deleting potion");
+                    }
+
+                    LivingEntity caster = data.getCaster(en.world);
+
+                    if (caster == null) {
+                        Log.error("Potion can't find caster. Deleting potion");
+                    }
+
+                    x.onTick(new PotionContext(en, data, caster));
                 }
+            });
 
-                LivingEntity caster = data.getCaster(en.world);
-
-                if (caster == null) {
-                    Log.error("Potion can't find caster. Deleting potion");
-                }
-
-                onXTicks(en, data, caster);
-            }
         } catch (Exception e) {
             en.removePotionEffect(this);
             e.printStackTrace();

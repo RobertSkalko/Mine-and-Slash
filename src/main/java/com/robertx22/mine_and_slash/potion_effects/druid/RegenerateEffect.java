@@ -4,14 +4,10 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.Regenera
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -28,7 +24,30 @@ public class RegenerateEffect extends BasePotionEffect {
     private RegenerateEffect() {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-        this.needsTickTooltip = true;
+
+        this.tickActions.add(new OnTickAction(30, ctx -> {
+            if (ctx.entity.world.isRemote) {
+                ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, ctx.entity, 3);
+            } else {
+
+                int num = CALC.getCalculatedValue(ctx.casterData);
+
+                ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
+                                                                     ctx.entityData, ResourcesData.Type.HEALTH, num,
+                                                                     ResourcesData.Use.RESTORE,
+                                                                     RegenerateSpell.getInstance()
+                );
+
+                ctx.entityData.modifyResource(hp);
+            }
+            return ctx;
+        }, info -> {
+            List<ITextComponent> list = new ArrayList<>();
+            list.add(new StringTextComponent("Heals user."));
+            list.addAll(CALC.GetTooltipString(info));
+            return list;
+        }));
+
     }
 
     @Override
@@ -44,49 +63,8 @@ public class RegenerateEffect extends BasePotionEffect {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-
-        try {
-
-            if (entity.world.isRemote) {
-                ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, entity, 3);
-            } else {
-                UnitData unitData = Load.Unit(entity);
-
-                int num = CALC.getCalculatedValue(unitData);
-
-                ResourcesData.Context hp = new ResourcesData.Context(unitData, entity, ResourcesData.Type.HEALTH, num,
-                                                                     ResourcesData.Use.RESTORE,
-                                                                     RegenerateSpell.getInstance()
-                );
-
-                unitData.modifyResource(hp);
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 30;
-    }
-
-    @Override
     public String locNameForLangFile() {
         return "Regenerate";
     }
 
-    @Override
-    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
-        List<ITextComponent> list = new ArrayList<>();
-
-        list.add(new StringTextComponent("Heals user."));
-
-        list.addAll(CALC.GetTooltipString(info));
-
-        return list;
-    }
 }

@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -12,7 +13,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -28,11 +28,11 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
     private StaticEffect() {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-    }
 
-    @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-        ParticleUtils.spawnParticles(ParticleRegister.THUNDER, entity, 50);
+        this.tickActions.add(new OnTickAction(10, ctx -> {
+            ParticleUtils.spawnParticles(ParticleRegister.THUNDER, ctx.entity, 50);
+            return ctx;
+        }, null));
     }
 
     @Override
@@ -43,11 +43,6 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public String GUID() {
         return "static";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 5;
     }
 
     @Override

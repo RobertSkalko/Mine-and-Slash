@@ -103,4 +103,4 @@ map dimensions are once again dynamic! You enter the dimension for the map you s
 If you want to play with friends, use group maps! 
 Added stat scale configs.
 added command to summon bosses
-added new traits to talent tree
+added new traits to talent tree, i'd advise looking at the left of the tree now :p

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -40,6 +40,16 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
                                    (double) -0.95F, AttributeModifier.Operation.MULTIPLY_TOTAL
         );
 
+        this.tickActions.add(new OnTickAction(20, ctx -> {
+            ParticleEnum.sendToClients(
+                    ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.PETRIFY).radius(1)
+                            .type(ParticleTypes.CLOUD)
+                            .amount(15));
+
+            SoundUtils.playSound(ctx.entity, SoundEvents.BLOCK_STONE_BREAK, 0.5F, 0.5F);
+            return ctx;
+        }, null));
+
     }
 
     @Override
@@ -50,25 +60,8 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.5F, 2);
 
     @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-
-        ParticleEnum.sendToClients(
-                entity, new ParticlePacketData(entity.getPosition(), ParticleEnum.PETRIFY).radius(1)
-                        .type(ParticleTypes.CLOUD)
-                        .amount(15));
-
-        SoundUtils.playSound(entity, SoundEvents.BLOCK_STONE_BREAK, 0.5F, 0.5F);
-
-    }
-
-    @Override
     public String GUID() {
         return "petrify";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 20;
     }
 
     @Override
@@ -85,10 +78,8 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<>();
-
         list.add(new StringTextComponent("Petrifies Enemy."));
         list.add(new StringTextComponent("If Attacked, does extra damage, but stops effect."));
-
         list.addAll(CALC.GetTooltipString(info));
 
         return list;

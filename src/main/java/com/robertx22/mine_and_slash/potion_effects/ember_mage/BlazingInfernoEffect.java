@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -30,7 +30,18 @@ public class BlazingInfernoEffect extends BasePotionEffect {
     private BlazingInfernoEffect() {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-        this.needsTickTooltip = true;
+
+        this.tickActions.add(new OnTickAction(30, ctx -> {
+            damageMobsAroundYou(ctx.entity, ctx.data, ctx.caster);
+            return ctx;
+        }, info -> {
+            List<ITextComponent> list = new ArrayList<>();
+            list.add(new StringTextComponent("Does damage to enemies around you:"));
+            list.addAll(CALC.GetTooltipString(info));
+
+            return list;
+        }));
+
     }
 
     public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.25F, 1);
@@ -62,20 +73,8 @@ public class BlazingInfernoEffect extends BasePotionEffect {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-
-        damageMobsAroundYou(entity, data, caster);
-
-    }
-
-    @Override
     public String GUID() {
         return "blazing_inferno";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 30;
     }
 
     @Override
@@ -91,18 +90,6 @@ public class BlazingInfernoEffect extends BasePotionEffect {
     @Override
     public int getDurationInSeconds() {
         return 15;
-    }
-
-    @Override
-    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
-
-        List<ITextComponent> list = new ArrayList<>();
-
-        list.add(new StringTextComponent("Does damage to enemies around you:"));
-
-        list.addAll(CALC.GetTooltipString(info));
-
-        return list;
     }
 
 }

@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -26,11 +25,7 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
     private ThunderEssenceEffect() {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-    }
 
-    @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-        //ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
     }
 
     @Override
@@ -41,11 +36,6 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
     @Override
     public String GUID() {
         return "thunder_essence";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 20;
     }
 
     @Override

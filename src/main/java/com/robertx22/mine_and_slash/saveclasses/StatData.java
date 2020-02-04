@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.math.MathHelper;
 
 import java.text.DecimalFormat;
 
@@ -47,6 +48,17 @@ public class StatData {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setValue(float val) {
+        Stat stat = GetStat();
+
+        this.val = MathHelper.clamp(val, stat.minimumValue, stat.maximumValue);
+
+    }
+
+    public float getValue() {
+        return val;
     }
 
     public void addExact(StatTypes type, float value) {

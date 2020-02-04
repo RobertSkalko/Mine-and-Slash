@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResi
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -11,7 +12,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.particles.ParticleTypes;
@@ -34,11 +34,12 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
         this.addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890",
                                    (double) -0.15F, AttributeModifier.Operation.MULTIPLY_TOTAL
         );
-    }
 
-    @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-        ParticleUtils.spawnParticles(ParticleTypes.ITEM_SNOWBALL, entity, 5);
+        this.tickActions.add(new OnTickAction(20, ctx -> {
+            ParticleUtils.spawnParticles(ParticleTypes.ITEM_SNOWBALL, ctx.entity, 5);
+            return ctx;
+        }, null));
+
     }
 
     @Override
@@ -49,11 +50,6 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public String GUID() {
         return "frost";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 20;
     }
 
     @Override

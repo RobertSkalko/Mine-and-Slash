@@ -34,19 +34,8 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-        //ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
-
-    }
-
-    @Override
     public String GUID() {
         return "thorn_armor";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 20;
     }
 
     @Override

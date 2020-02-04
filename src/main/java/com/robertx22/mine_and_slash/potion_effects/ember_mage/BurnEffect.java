@@ -7,19 +7,17 @@ import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -38,7 +36,31 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
     private BurnEffect() {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-        this.needsTickTooltip = true;
+
+        this.tickActions.add(new OnTickAction(20, ctx -> {
+            int num = CALC.getCalculatedValue(ctx.casterData);
+
+            DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
+                                                EffectData.EffectTypes.SPELL, WeaponTypes.None
+            );
+            dmg.element = Elements.Fire;
+            dmg.removeKnockback();
+            dmg.Activate();
+
+            SoundUtils.playSound(ctx.entity, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5F, 1F);
+
+            ParticleEnum.sendToClients(
+                    ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.AOE).type(
+                            ParticleTypes.FLAME).motion(new Vec3d(0, 0, 0)).amount(5));
+
+            return ctx;
+        }, info -> {
+            List<ITextComponent> list = new ArrayList<>();
+            list.add(new StringTextComponent("Does damage:"));
+            list.addAll(CALC.GetTooltipString(info));
+            return list;
+        }));
+
     }
 
     static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.25F, 2);
@@ -49,30 +71,8 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-
-        int num = CALC.getCalculatedValue(Load.Unit(caster));
-
-        DamageEffect dmg = new DamageEffect(null, caster, entity, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
-        dmg.element = Elements.Fire;
-        dmg.removeKnockback();
-        dmg.Activate();
-
-        SoundUtils.playSound(entity, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5F, 1F);
-
-        ParticleEnum.sendToClients(entity, new ParticlePacketData(entity.getPosition(), ParticleEnum.AOE).type(
-                ParticleTypes.FLAME).motion(new Vec3d(0, 0, 0)).amount(5));
-
-    }
-
-    @Override
     public String GUID() {
         return "burn";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 20;
     }
 
     @Override
@@ -109,16 +109,5 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
 
     }
 
-    @Override
-    public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
-
-        List<ITextComponent> list = new ArrayList<>();
-
-        list.add(new StringTextComponent("Does damage:"));
-
-        list.addAll(CALC.GetTooltipString(info));
-
-        return list;
-    }
 }
 

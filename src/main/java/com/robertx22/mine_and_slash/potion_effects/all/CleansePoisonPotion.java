@@ -2,10 +2,9 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
@@ -22,6 +21,18 @@ public class CleansePoisonPotion extends BasePotionEffect {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
+        this.tickActions.add(new OnTickAction(20, ctx -> {
+            if (ctx.entity.world.isRemote) {
+                ParticleUtils.spawnHealParticles(ctx.entity, 1);
+            } else {
+
+                if (ctx.entity.getActivePotionEffect(Effects.POISON) != null) {
+                    ctx.entity.removePotionEffect(Effects.POISON);
+                }
+            }
+            return ctx;
+        }, null));
+
     }
 
     @Override
@@ -32,31 +43,6 @@ public class CleansePoisonPotion extends BasePotionEffect {
     @Override
     public String GUID() {
         return "cleanse_poison";
-    }
-
-    @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-
-        try {
-
-            if (entity.world.isRemote) {
-                ParticleUtils.spawnHealParticles(entity, 1);
-            } else {
-
-                if (entity.getActivePotionEffect(Effects.POISON) != null) {
-                    entity.removePotionEffect(Effects.POISON);
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 20;
     }
 
     @Override

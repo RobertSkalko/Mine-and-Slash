@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResi
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -11,7 +12,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -27,11 +27,12 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
     private ShiverEffect() {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-    }
 
-    @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
-        ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, entity, 5);
+        this.tickActions.add(new OnTickAction(20, ctx -> {
+            ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, ctx.entity, 5);
+            return ctx;
+        }, null));
+
     }
 
     @Override
@@ -42,11 +43,6 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public String GUID() {
         return "shiver";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 20;
     }
 
     @Override

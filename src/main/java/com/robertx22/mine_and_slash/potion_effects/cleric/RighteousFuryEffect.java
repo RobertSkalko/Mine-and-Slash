@@ -38,21 +38,12 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
         this.addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "2cd621f2-bd94-442f-b94e-5dd6e4e8d6bc",
                                    (double) 0.2F, AttributeModifier.Operation.MULTIPLY_TOTAL
         );
-    }
-
-    @Override
-    public void onXTicks(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
 
     }
 
     @Override
     public String GUID() {
         return "righteous_fury";
-    }
-
-    @Override
-    public int performEachXTicks() {
-        return 50;
     }
 
     @Override
@@ -72,7 +63,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
 
     public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
         float statAmount = 0.25F * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalAttackDamage(ele)).scaleToLvl(
+        return new ExactStatData(statAmount, StatTypes.Flat, ElementalAttackDamage.MAP.get(ele)).scaleToLvl(
                 extraData.casterLvl);
     }
 

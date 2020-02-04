@@ -69,6 +69,18 @@ public class ResourcesData {
             calculateStats();
         }
 
+        public Context(LivingEntity caster, LivingEntity target, UnitData casterData, UnitData targetData, Type type,
+                       float amount, Use use, BaseSpell spell) {
+            this.targetData = targetData;
+            this.target = target;
+            this.sourceData = casterData;
+            this.source = source;
+            this.type = type;
+            this.amount = amount;
+            this.use = use;
+            calculateStats();
+        }
+
         private void calculateStats() {
             if (!statsCalculated) {
                 new ModifyResourceEffect(this).Activate();
