@@ -16,7 +16,7 @@ public class SwordWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost(int lvl) {
-        return Energy.INSTANCE.calculateScalingStatGrowth(2.5F, lvl);
+        return Energy.INSTANCE.calculateScalingStatGrowth(2F, lvl);
     }
 
     @Override

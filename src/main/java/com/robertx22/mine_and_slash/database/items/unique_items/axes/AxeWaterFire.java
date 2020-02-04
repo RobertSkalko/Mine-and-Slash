@@ -19,7 +19,8 @@ public class AxeWaterFire extends BaseUniqueAxe {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM, LvlPointStat.STRENGTH, StatReq.Size.SMALL);
+    static StatReq req = new StatReq(
+            LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -40,13 +41,15 @@ public class AxeWaterFire extends BaseUniqueAxe {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CrippleCriticalDamagePercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
+        return Arrays.asList(
+                new CrippleCriticalDamagePercent(), new CrippleLifeOnHitPercent(), new CrippleManaOnHitPercent());
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire).multi(multi), new ElementalAttackDamageFlat(Elements.Water)
-                .multi(multi));
+        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire).multi(multi),
+                             new ElementalAttackDamageFlat(Elements.Water).multi(multi)
+        );
     }
 
     @Override

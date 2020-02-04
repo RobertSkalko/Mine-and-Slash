@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.potion_effects.ember_mage;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
@@ -16,13 +18,13 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -58,7 +60,8 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
 
         SoundUtils.playSound(entity, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5F, 1F);
 
-        ParticleUtils.spawnParticles(ParticleTypes.FLAME, entity, 5);
+        ParticleEnum.sendToClients(entity, new ParticlePacketData(entity.getPosition(), ParticleEnum.AOE).type(
+                ParticleTypes.FLAME).motion(new Vec3d(0, 0, 0)).amount(5));
 
     }
 

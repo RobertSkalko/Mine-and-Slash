@@ -17,6 +17,7 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllPossibleStatVariations();
+        list.add(new ElementalPene(Elements.Physical));
         list.forEach(x -> MAP.put(x.getElement(), (ElementalPene) x));
         return list;
 

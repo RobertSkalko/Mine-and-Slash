@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalPene;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 
 public class RecklessBlows extends BaseGameChangerTrait implements IAffectsStats {
@@ -15,9 +14,11 @@ public class RecklessBlows extends BaseGameChangerTrait implements IAffectsStats
 
     public static final RecklessBlows INSTANCE = new RecklessBlows();
 
+    static int INC = 50;
+
     @Override
     public String locDescForLangFile() {
-        return "All your penetrations are doubled, but your armor is halved.";
+        return "All your penetrations are increased by " + INC + " percent, but your armor is halved.";
     }
 
     @Override
@@ -38,10 +39,10 @@ public class RecklessBlows extends BaseGameChangerTrait implements IAffectsStats
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
 
-        for (Stat stat : new ElementalPene(Elements.Physical).generateAllPossibleStatVariations()) {
-            data.getUnit().getCreateStat(stat).Multi += 100;
+        for (Stat stat : ElementalPene.MAP.getList()) {
+            data.getUnit().getCreateStat(stat).Multi += INC;
         }
 
-        data.getUnit().getCreateStat(Armor.GUID).Multi -= 100;
+        data.getUnit().getCreateStat(Armor.GUID).Multi -= INC;
     }
 }

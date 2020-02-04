@@ -22,7 +22,7 @@ import java.util.List;
 public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
 
     public float RADIUS = 1.5F;
-    public float TICK_RATE = 20;
+    public float TICK_RATE = 30;
 
     public MagmaFlowerTileEntity() {
         super(BlockRegister.MAGMA_FLOWER_TILE);

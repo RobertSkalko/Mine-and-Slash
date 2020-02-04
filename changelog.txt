@@ -102,4 +102,5 @@ added configs for level penalties for loot and xp, you can define ranges and mul
 map dimensions are once again dynamic! You enter the dimension for the map you sacrificed, not whichever map was last sacrificed at the device,
 If you want to play with friends, use group maps! 
 Added stat scale configs.
-added command to summon boss
+added command to summon bosses
+added new traits to talent tree

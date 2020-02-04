@@ -8,15 +8,11 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import net.minecraft.entity.Entity;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HammerWeaponMechanic extends WeaponMechanic {
 
@@ -27,9 +23,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost(int lvl) {
-
         return Energy.INSTANCE.calculateScalingStatGrowth(10, lvl);
-
     }
 
     @Override
@@ -37,41 +31,30 @@ public class HammerWeaponMechanic extends WeaponMechanic {
         return WeaponTypes.Hammer;
     }
 
-    float radius = 1.5F;
+    float radius = 1.2F;
 
     @Override
     public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
                           UnitData targetUnit) {
 
-        List<LivingEntity> entities = new ArrayList<LivingEntity>();
-
-        for (Entity en : target.world.getEntitiesWithinAABBExcludingEntity(source,
-                                                                           new AxisAlignedBB(target.posX - radius,
-                                                                                             target.posY - radius,
-                                                                                             target.posZ - radius,
-                                                                                             target.posX + radius,
-                                                                                             target.posY + radius,
-                                                                                             target.posZ + radius
-                                                                           )
-        )) {
-            if (en instanceof LivingEntity) {
-                entities.add((LivingEntity) en);
-            }
-        }
         int num = (int) unitsource.getUnit().getCreateStat(PhysicalDamage.GUID).val;
 
-        for (LivingEntity entity : entities) {
-            if (entity.equals(target)) {
-                DamageEffect dmg = new DamageEffect(event, source, entity, num, unitsource, targetUnit,
+        for (LivingEntity en : EntityFinder.start(source, LivingEntity.class, target.getPositionVector())
+                .radius(radius)
+                .build()) {
+
+            if (en.equals(target)) {
+                DamageEffect dmg = new DamageEffect(event, source, en, num, unitsource, targetUnit,
                                                     EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
                 );
                 dmg.Activate();
             } else {
-                DamageEffect dmg = new DamageEffect(null, source, entity, num, unitsource, targetUnit,
+                DamageEffect dmg = new DamageEffect(null, source, en, num, unitsource, targetUnit,
                                                     EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
                 );
                 dmg.Activate();
             }
+
         }
 
         return true;

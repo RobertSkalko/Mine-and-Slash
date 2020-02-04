@@ -31,7 +31,6 @@ public class WandWeaponMechanic extends WeaponMechanic {
     @Override
     public float GetEnergyCost(int lvl) {
         return Energy.INSTANCE.calculateScalingStatGrowth(3, lvl);
-
     }
 
     @Override

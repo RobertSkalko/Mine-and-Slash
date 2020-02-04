@@ -72,6 +72,8 @@ public class Stats implements ISlashRegistryInit {
                     add(SteadyHand.INSTANCE);
                     add(RecklessBlows.INSTANCE);
                     add(TrueHit.INSTANCE);
+                    add(ElementalPurity.getInstance());
+                    add(OverflowingVitality.getInstance());
 
                     add(new ElementalBonusDmgOnBasic(Elements.Physical));
                     add(new ElementalConversion(Elements.Physical, Elements.Physical));

@@ -74,7 +74,7 @@ public class MobStatUtils {
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 
-        unit.getCreateStat(Armor.GUID).addFlat(11 * rar.StatMultiplier(), level);
+        unit.getCreateStat(Armor.GUID).addFlat(12 * rar.StatMultiplier(), level);
         unit.getCreateStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
         unit.getCreateStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
 

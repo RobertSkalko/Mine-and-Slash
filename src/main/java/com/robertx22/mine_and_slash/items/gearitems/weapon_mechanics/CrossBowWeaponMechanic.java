@@ -14,14 +14,12 @@ public class CrossBowWeaponMechanic extends WeaponMechanic {
 
     @Override
     public ITextComponent tooltipDesc() {
-        return new StringTextComponent(Styles.GREEN + "Double Damage");
+        return new StringTextComponent(Styles.GREEN + "Triple Damage");
     }
 
     @Override
     public float GetEnergyCost(int lvl) {
-
-        return Energy.INSTANCE.calculateScalingStatGrowth(6, lvl);
-
+        return Energy.INSTANCE.calculateScalingStatGrowth(10, lvl);
     }
 
     @Override
@@ -33,7 +31,7 @@ public class CrossBowWeaponMechanic extends WeaponMechanic {
     public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
                           EntityCap.UnitData unitsource, EntityCap.UnitData targetUnit) {
 
-        super.multiplyDamage(event, source, target, unitsource, targetUnit, 2);
+        super.multiplyDamage(event, source, target, unitsource, targetUnit, 3);
 
         return true;
     }

@@ -50,12 +50,13 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
         return MyTorch.Items;
     }
 
-    float multi = 2.5F;
+    float multi = 2F;
 
     @Override
     public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new ManaRegenFlat().multi(multi), new EnergyRegenFlat().multi(multi), new MagicShieldRegenFlat()
-                .multi(multi));
+        return Arrays.asList(new ManaRegenFlat().multi(multi), new EnergyRegenFlat().multi(multi),
+                             new MagicShieldRegenFlat().multi(multi)
+        );
     }
 
     @Override
