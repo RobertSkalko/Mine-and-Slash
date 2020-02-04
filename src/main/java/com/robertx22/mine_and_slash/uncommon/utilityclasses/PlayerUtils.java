@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -71,6 +72,10 @@ public class PlayerUtils {
         //player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0.0F);
         // player.moveToBlockPosAndAngles(pos, player.rotationYaw, player.rotationPitch);
         player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+
+        if (WorldUtils.isMapWorldClass(player.world)) {
+            Load.world(player.world).init(Load.playerMapData(player).getMap()); // TODO
+        }
 
         return player;
 

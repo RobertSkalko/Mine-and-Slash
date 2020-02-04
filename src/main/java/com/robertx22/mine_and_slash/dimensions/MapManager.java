@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.PlayerEntity;
@@ -92,9 +93,10 @@ public class MapManager {
 
         DimensionType type = DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled.buffer()), true);
 
-        Load.world(getWorld(type)).init(map);
-
         DimensionManager.keepLoaded(type, false);
+
+        WorldMapCap.IWorldMapData mapcap = Load.world(getWorld(type));
+        mapcap.init(map); // this should work but it doesnt
 
         return type;
     }

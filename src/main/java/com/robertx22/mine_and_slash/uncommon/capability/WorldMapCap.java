@@ -46,10 +46,7 @@ public class WorldMapCap {
 
         @SubscribeEvent
         public static void onEntityConstruct(AttachCapabilitiesEvent<World> event) {
-
-            if (event.getObject() instanceof World) {
-                event.addCapability(RESOURCE, new Provider());
-            }
+            event.addCapability(RESOURCE, new Provider());
         }
 
     }
@@ -69,10 +66,10 @@ public class WorldMapCap {
 
     public static class DefaultImpl implements IWorldMapData {
 
-        MapItemData mapdata = new MapItemData();
+        MapItemData mapdata = null;
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
@@ -85,7 +82,7 @@ public class WorldMapCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
 
             mapdata = Map.Load(nbt);
 
@@ -98,9 +95,9 @@ public class WorldMapCap {
 
         @Override
         public void init(MapItemData map) {
-
-            this.mapdata = map.clone();
-
+            if (mapdata == null) { // only init once, after that its set in stone
+                this.mapdata = map.clone();
+            }
         }
 
         @Override
@@ -117,12 +114,12 @@ public class WorldMapCap {
 
         @Override
         public int getLevel() {
-            return this.mapdata.level;
+            return this.getMap().level;
         }
 
         @Override
         public int getTier() {
-            return this.mapdata.tier;
+            return this.getMap().tier;
         }
 
         @Override
