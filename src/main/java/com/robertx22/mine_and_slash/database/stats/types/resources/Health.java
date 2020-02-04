@@ -12,7 +12,7 @@ public class Health extends Stat {
     public static Health INSTANCE = new Health();
 
     private Health() {
-
+        this.minimumValue = 1;
     }
 
     @Override

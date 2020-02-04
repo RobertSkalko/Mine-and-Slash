@@ -40,11 +40,12 @@ public class SetData implements ITooltipList {
             return list;
         }
 
+        info.isSet = true;
+
         Set set = GetSet();
 
         if (set != null) {
-            list.add(Styles.GREENCOMP()
-                    .appendSibling(new StringTextComponent("[Set]: ").appendSibling(set.locName())));
+            list.add(Styles.GREENCOMP().appendSibling(new StringTextComponent("[Set]: ").appendSibling(set.locName())));
 
             for (Map.Entry<Integer, StatMod> entry : GetSet().AllMods().entrySet()) {
 
@@ -58,8 +59,7 @@ public class SetData implements ITooltipList {
                     color = TextFormatting.DARK_GREEN;
                 }
 
-                int avgLvl = info.unitdata.getUnit().wornSets.get(baseSet)
-                        .getAverageLevel();
+                int avgLvl = info.unitdata.getUnit().wornSets.get(baseSet).getAverageLevel();
 
                 TooltipInfo setInfo = info.withLevel(avgLvl).setIsSet();
                 setInfo.minmax = set.statPercents;
@@ -67,8 +67,8 @@ public class SetData implements ITooltipList {
                 for (ITextComponent str : StatModData.Load(entry.getValue(), GetSet().StatPercent)
                         .GetTooltipString(setInfo)) {
 
-                    ITextComponent comp = new StringTextComponent(color + "").appendSibling(new StringTextComponent("(" + entry
-                            .getKey() + ")"));
+                    ITextComponent comp = new StringTextComponent(color + "").appendSibling(
+                            new StringTextComponent("(" + entry.getKey() + ")"));
 
                     if (has) {
                         comp.appendText(": ").appendSibling(str);
@@ -82,6 +82,8 @@ public class SetData implements ITooltipList {
             }
             list.add(new StringTextComponent(""));
         }
+
+        info.isSet = false;
 
         return list;
 

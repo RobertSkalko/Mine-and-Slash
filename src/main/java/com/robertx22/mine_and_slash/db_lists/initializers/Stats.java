@@ -74,6 +74,7 @@ public class Stats implements ISlashRegistryInit {
                     add(TrueHit.INSTANCE);
                     add(ElementalPurity.getInstance());
                     add(OverflowingVitality.getInstance());
+                    add(ArcaneDevotion.getInstance());
 
                     add(new ElementalBonusDmgOnBasic(Elements.Physical));
                     add(new ElementalConversion(Elements.Physical, Elements.Physical));
