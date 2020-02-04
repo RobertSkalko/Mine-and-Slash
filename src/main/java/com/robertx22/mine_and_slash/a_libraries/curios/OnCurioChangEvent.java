@@ -19,7 +19,7 @@ public class OnCurioChangEvent {
             EntityCap.UnitData data = Load.Unit(entity);
             if (data != null) {
                 data.setEquipsChanged(true);
-                data.recalculateStats(entity);
+                data.tryRecalculateStats(entity);
 
                 if (entity instanceof ServerPlayerEntity) {
                     data.syncToClient((ServerPlayerEntity) entity);

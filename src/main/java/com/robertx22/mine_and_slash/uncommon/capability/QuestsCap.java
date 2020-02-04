@@ -73,7 +73,7 @@ public class QuestsCap {
         QuestLogData data = new QuestLogData();
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
@@ -84,7 +84,7 @@ public class QuestsCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
             this.data = QuestLogSaving.Load(nbt);
         }
 

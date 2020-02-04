@@ -57,15 +57,13 @@ public class OnMobSpawn {
             if (boss.isBoss()) {
                 OnBossTick.bossList.add(entity);
             }
-            
+
             endata.setType(entity);
 
             PlayerEntity nearestPlayer = null;
             WorldMapCap.IWorldMapData mapData = Load.world(entity.world);
 
-            if (WorldUtils.isMapWorldClass(entity.world)) {
-                nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
-            }
+            nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
 
             if (endata.needsToBeGivenStats()) {
                 Unit unit = Mob(entity, endata, boss, mapData, nearestPlayer);
@@ -104,7 +102,7 @@ public class OnMobSpawn {
 
         endata.setUnit(mob, entity);
 
-        mob.RecalculateStats(entity, endata, endata.getLevel());
+        mob.recalculateStats(entity, endata, endata.getLevel());
 
         return mob;
 

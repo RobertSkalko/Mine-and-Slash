@@ -80,7 +80,7 @@ public class ProfessionsCap {
         ProfessionListData data = new ProfessionListData();
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
@@ -91,7 +91,7 @@ public class ProfessionsCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
             this.data = ProfessionSaving.Load(nbt);
         }
 

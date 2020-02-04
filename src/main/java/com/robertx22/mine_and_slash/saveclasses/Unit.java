@@ -351,7 +351,7 @@ public class Unit {
         return hpadded;
     }
 
-    public void RecalculateStats(LivingEntity entity, UnitData data, int level) {
+    public void recalculateStats(LivingEntity entity, UnitData data, int level) {
 
         data.setEquipsChanged(false);
 
@@ -404,10 +404,9 @@ public class Unit {
         }
 
         if (gearIsValid) {
-            PlayerStatUtils.CountWornSets(entity, gears, this);
+            PlayerStatUtils.countWornSets(entity, gears, this);
             PlayerStatUtils.AddAllGearStats(entity, gears, data, level);
             PlayerStatUtils.AddAllSetStats(entity, data, this, level);
-
         }
 
         CommonStatUtils.AddStatusEffectStats(this, level);

@@ -25,14 +25,12 @@ public class PlayerStatUtils {
         BasePlayerStatContainer.INSTANCE.applyStats(data);
     }
 
-    public static void CountWornSets(Entity entity, List<GearItemData> gears, Unit unit) {
-
+    public static void countWornSets(Entity entity, List<GearItemData> gears, Unit unit) {
         unit.wornSets = new WornSetsContainerData();
 
         for (GearItemData gear : gears) {
             unit.wornSets.addSet(gear);
         }
-
     }
 
     public static void AddAllSetStats(Entity entity, UnitData data, Unit unit, int level) {

@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 
@@ -39,7 +40,10 @@ public class Load {
     @Nonnull
     public static WorldMapCap.IWorldMapData world(World provider) {
 
-        return provider.getCapability(WorldMapCap.Data).orElse(new WorldMapCap.DefaultImpl());
+        LazyOptional<WorldMapCap.IWorldMapData> mapData = provider.getCapability(WorldMapCap.Data);
+
+        return mapData.orElse(new WorldMapCap.DefaultImpl());
+
     }
 
     @Nonnull

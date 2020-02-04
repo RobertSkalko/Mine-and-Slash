@@ -161,7 +161,7 @@ public class EntityCap {
 
         void HandleCloneEvent(UnitData old);
 
-        void recalculateStats(LivingEntity entity);
+        void tryRecalculateStats(LivingEntity entity);
 
         void forceRecalculateStats(LivingEntity entity);
 
@@ -307,7 +307,7 @@ public class EntityCap {
         }
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
             CompoundNBT nbt = getClientNBT();
 
             nbt.putInt(EXP, exp);
@@ -341,7 +341,7 @@ public class EntityCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
 
             setClientNBT(nbt);
 
@@ -722,18 +722,18 @@ public class EntityCap {
 
         @Override
         public void HandleCloneEvent(UnitData old) {
-            this.setNBT(old.getNBT());
+            this.loadFromNBT(old.saveToNBT());
         }
 
         @Override
-        public void recalculateStats(LivingEntity entity) {
+        public void tryRecalculateStats(LivingEntity entity) {
 
             if (unit == null) {
                 unit = new Unit();
             }
 
             if (needsToRecalcStats()) {
-                unit.RecalculateStats(entity, this, level);
+                unit.recalculateStats(entity, this, level);
             }
 
         }
@@ -744,7 +744,7 @@ public class EntityCap {
             if (unit == null) {
                 unit = new Unit();
             }
-            unit.RecalculateStats(entity, this, level);
+            unit.recalculateStats(entity, this, level);
         }
 
         // This reduces stat calculation by about 4 TIMES!

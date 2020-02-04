@@ -65,14 +65,14 @@ public class PlayerTalentsCap {
         PlayerTalentsData data = new PlayerTalentsData();
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
             CompoundNBT nbt = new CompoundNBT();
             LoadSave.Save(data, nbt, LOC);
             return nbt;
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
             this.data = LoadSave.Load(PlayerTalentsData.class, new PlayerTalentsData(), nbt, LOC);
 
             if (data == null) {

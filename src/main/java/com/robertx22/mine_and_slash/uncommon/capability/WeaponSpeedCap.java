@@ -74,7 +74,7 @@ public class WeaponSpeedCap {
         int cooldownTicks = 0;
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
@@ -85,7 +85,7 @@ public class WeaponSpeedCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
             this.cooldownTicks = nbt.getInt("ticks");
         }
 

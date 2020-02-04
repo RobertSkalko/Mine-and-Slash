@@ -10,13 +10,13 @@ public class BaseStorage<TYPE extends ICommonCap> implements Capability.IStorage
     @Override
     public INBT writeNBT(Capability<TYPE> capability, TYPE instance, Direction side) {
 
-        return instance.getNBT();
+        return instance.saveToNBT();
     }
 
     @Override
     public void readNBT(Capability<TYPE> capability, TYPE instance, Direction side, INBT nbt) {
 
-        instance.setNBT((CompoundNBT) nbt);
+        instance.loadFromNBT((CompoundNBT) nbt);
 
     }
 

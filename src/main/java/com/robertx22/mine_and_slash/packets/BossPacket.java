@@ -21,7 +21,7 @@ public class BossPacket {
 
     public BossPacket(Entity entity) {
         this.id = entity.getEntityId();
-        this.nbt = Load.boss(entity).getNBT();
+        this.nbt = Load.boss(entity).saveToNBT();
     }
 
     public static BossPacket decode(PacketBuffer buf) {
@@ -51,7 +51,7 @@ public class BossPacket {
 
                 if (entity instanceof LivingEntity) {
                     LivingEntity en = (LivingEntity) entity;
-                    Load.boss(en).setNBT(pkt.nbt);
+                    Load.boss(en).loadFromNBT(pkt.nbt);
                 }
 
             } catch (Exception e) {

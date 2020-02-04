@@ -16,12 +16,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.server.ServerWorld;
 
 public class MapPortalBlock extends EndPortalBlock {
 
@@ -49,11 +47,6 @@ public class MapPortalBlock extends EndPortalBlock {
 
                         if (portal.readyToTeleport()) {
 
-                            Iterable<ServerWorld> test = MapManager.getServer().getWorlds();
-
-                            ResourceLocation loc = MapManager.getResourceLocation(
-                                    entity.world.getDimension().getType());
-
                             PlayerEntity player = (PlayerEntity) entity;
 
                             PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
@@ -63,6 +56,8 @@ public class MapPortalBlock extends EndPortalBlock {
                                 DimensionType type = MapManager.getOrRegister(data.getMap());
 
                                 World mapworld = MapManager.getWorld(type);
+
+                                // mapworld.getCapability(WorldMapCap.Data).ifPresent(x -> x.init(data.getMap()));
 
                                 if (mapworld == null) {
                                     return;

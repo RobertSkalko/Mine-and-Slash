@@ -90,7 +90,7 @@ public class BossCap {
         boolean doneGenerating = false;
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
@@ -110,7 +110,7 @@ public class BossCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
 
             this.isBoss = nbt.getBoolean("isBoss");
             this.doneGenerating = nbt.getBoolean("doneGen");

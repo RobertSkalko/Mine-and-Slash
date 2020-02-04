@@ -21,8 +21,7 @@ public class MineAndSlashEvents {
         public LivingEntity entityKilled;
         public PlayerEntity player;
 
-        public GiveExpEvent(LivingEntity killed, PlayerEntity player, UnitData playerdata,
-                            int exp) {
+        public GiveExpEvent(LivingEntity killed, PlayerEntity player, UnitData playerdata, int exp) {
             super(player);
             this.entityKilled = killed;
             this.player = player;
@@ -57,9 +56,7 @@ public class MineAndSlashEvents {
 
     // called right before stats are calculated.
     public static class OnStatCalculation extends LivingEvent {
-
         public UnitData data;
-        public LivingEntity entityKilled;
 
         public OnStatCalculation(LivingEntity entity, UnitData data) {
             super(entity);
@@ -68,7 +65,8 @@ public class MineAndSlashEvents {
 
     }
 
-    // called before stat calculation to gather all the gears. Add it here if you say use a different jewerly mod that isn't compatible with one i use
+    // called before stat calculation to gather all the gears. Add it here if you say use a different jewerly mod
+    // that isn't compatible with one i use
     public static class CollectGearStacksEvent extends LivingEvent {
 
         public List<GearItemData> gears;

@@ -16,11 +16,11 @@ public class OnPotionChange {
         if (entity != null) {
             EntityCap.UnitData data = Load.Unit(entity);
             data.setEquipsChanged(true);
-            data.recalculateStats(entity);
+            data.tryRecalculateStats(entity);
         }
 
     }
-    
+
     @SubscribeEvent
     public static void onExpired(PotionEvent.PotionExpiryEvent event) {
 
@@ -29,7 +29,7 @@ public class OnPotionChange {
         if (entity != null) {
             EntityCap.UnitData data = Load.Unit(entity);
             data.setEquipsChanged(true);
-            data.recalculateStats(entity);
+            data.tryRecalculateStats(entity);
         }
 
     }

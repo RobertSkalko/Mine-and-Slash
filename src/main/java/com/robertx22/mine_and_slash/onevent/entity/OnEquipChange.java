@@ -19,7 +19,7 @@ public class OnEquipChange {
 
             EntityCap.UnitData data = Load.Unit(entity);
             data.setEquipsChanged(true);
-            data.recalculateStats(entity);
+            data.tryRecalculateStats(entity);
 
             if (entity instanceof PlayerEntity) {
                 data.syncToClient((PlayerEntity) entity);

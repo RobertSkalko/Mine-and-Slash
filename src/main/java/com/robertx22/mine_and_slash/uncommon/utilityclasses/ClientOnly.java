@@ -14,9 +14,12 @@ public class ClientOnly {
     @Nullable
     public static Entity getEntityByUUID(World world, @Nullable UUID id) {
 
-        for (Entity entity : ((ClientWorld) world).getAllEntities()) {
-            if (entity.getUniqueID().equals(id)) {
-                return entity;
+        if (world instanceof ClientWorld) {
+            for (Entity entity : ((ClientWorld) world).getAllEntities()) {
+                if (entity.getUniqueID().equals(id)) {
+
+                    return entity;
+                }
             }
         }
         return null;

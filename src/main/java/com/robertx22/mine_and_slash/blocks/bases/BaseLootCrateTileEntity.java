@@ -164,7 +164,7 @@ public abstract class BaseLootCrateTileEntity extends TileEntity implements ITic
             data = new PlayerOncePerMapData();
         }
 
-        if (condition().canOpenCrate(player)) {
+        if (condition().canOpenCrate(player, this)) {
 
             if (data.canDo(player)) {
 

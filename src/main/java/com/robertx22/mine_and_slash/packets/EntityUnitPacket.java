@@ -22,12 +22,12 @@ public class EntityUnitPacket {
 
     public EntityUnitPacket(Entity entity) {
         this.id = entity.getEntityId();
-        this.nbt = Load.Unit(entity).getNBT();
+        this.nbt = Load.Unit(entity).saveToNBT();
     }
 
     public EntityUnitPacket(Entity entity, UnitData data) {
         this.id = entity.getEntityId();
-        this.nbt = data.getNBT();
+        this.nbt = data.saveToNBT();
     }
 
     public static EntityUnitPacket decode(PacketBuffer buf) {
@@ -61,7 +61,7 @@ public class EntityUnitPacket {
 
                     LivingEntity en = (LivingEntity) entity;
 
-                    Load.Unit(en).setNBT(pkt.nbt);
+                    Load.Unit(en).loadFromNBT(pkt.nbt);
                 }
 
             } catch (Exception e) {

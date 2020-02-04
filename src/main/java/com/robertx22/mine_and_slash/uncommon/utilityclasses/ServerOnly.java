@@ -13,7 +13,6 @@ public class ServerOnly {
 
         if (world instanceof ServerWorld) {
             return ((ServerWorld) world).getEntityByUuid(id);
-
         }
 
         return null;

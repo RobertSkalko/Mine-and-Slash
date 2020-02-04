@@ -96,7 +96,7 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
             CompoundNBT nbt = new CompoundNBT();
 
             try {
@@ -120,7 +120,7 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
             this.perksData = LoadSave.Load(SpellPerksData.class, new SpellPerksData(), nbt, SPELL_PERK_DATA);
 
             if (perksData == null) {

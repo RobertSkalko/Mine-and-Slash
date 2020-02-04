@@ -109,8 +109,8 @@ public class LivingHurtUtils {
                 return;
             }
 
-            targetData.recalculateStats(target);
-            sourceData.recalculateStats(source);
+            targetData.tryRecalculateStats(target);
+            sourceData.tryRecalculateStats(source);
 
             if (source instanceof PlayerEntity) {
 

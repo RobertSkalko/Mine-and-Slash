@@ -8,8 +8,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class EntityFinder {
@@ -156,6 +158,8 @@ public class EntityFinder {
         double horizontal = 1;
         double vertical = 1;
 
+        List<Predicate<T>> predicates = new ArrayList();
+
         boolean setRadius = false;
 
         double distanceToSearch = 10;
@@ -175,6 +179,10 @@ public class EntityFinder {
 
             List<T> list = this.finder.getEntities(this);
 
+            for (Predicate<T> predicate : predicates) {
+                list.removeIf(y -> !predicate.test(y));
+            }
+
             list = this.searchFor.getMatchingEntities(list, this);
 
             if (forceExcludeCaster || !searchFor.includesCaster()) {
@@ -185,6 +193,11 @@ public class EntityFinder {
 
             return list;
 
+        }
+
+        public Setup<T> addPredicate(Predicate<T> p) {
+            this.predicates.add(p);
+            return this;
         }
 
         public Setup<T> finder(Finder f) {

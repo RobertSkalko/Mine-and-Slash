@@ -61,7 +61,7 @@ public class PlayerCapBackupCap {
         PlayersCapBackup backup = new PlayersCapBackup();
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
             CompoundNBT nbt = new CompoundNBT();
 
             if (backup != null) {
@@ -78,7 +78,7 @@ public class PlayerCapBackupCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT value) {
+        public void loadFromNBT(CompoundNBT value) {
 
             backup = PlayersCapBackupSaving.Load(value);
 

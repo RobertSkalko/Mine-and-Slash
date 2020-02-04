@@ -20,7 +20,7 @@ public class SyncCapabilityToClient {
     private PlayerCaps type;
 
     public SyncCapabilityToClient(ServerPlayerEntity p, PlayerCaps type) {
-        this.nbt = type.getCap(p).getNBT();
+        this.nbt = type.getCap(p).saveToNBT();
         this.type = type;
     }
 
@@ -46,7 +46,7 @@ public class SyncCapabilityToClient {
                 final PlayerEntity player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
 
                 if (player != null) {
-                    pkt.type.getCap(player).setNBT(pkt.nbt);
+                    pkt.type.getCap(player).loadFromNBT(pkt.nbt);
 
                     CapSyncCheck.set(pkt.type);
                 }

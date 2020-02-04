@@ -102,7 +102,7 @@ public class PlayerMapCap {
         PlayerWholeMapData data = new PlayerWholeMapData();
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
@@ -115,7 +115,7 @@ public class PlayerMapCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
             data = LoadSave.Load(PlayerWholeMapData.class, new PlayerWholeMapData(), nbt, LOC);
         }
 

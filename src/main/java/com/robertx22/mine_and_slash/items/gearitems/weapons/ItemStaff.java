@@ -65,7 +65,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
             if (!world.isRemote) {
 
                 UnitData data = Load.Unit(player);
-                data.recalculateStats(player);
+                data.tryRecalculateStats(player);
                 GearItemData weapondata = data.getWeaponData(player);
 
                 int charge = this.getUseDuration(stack) - timeLeft;

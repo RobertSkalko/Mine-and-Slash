@@ -43,9 +43,7 @@ public class MobStatUtils {
     }
 
     public static void worldMultiplierStats(World world, Unit unit) {
-
         for (StatData stat : unit.getStats().values()) {
-
             stat.Flat *= SlashRegistry.getDimensionConfig(world).MOB_STRENGTH_MULTIPLIER;
         }
 

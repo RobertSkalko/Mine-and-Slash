@@ -78,7 +78,7 @@ public class PlayerStatsPointsCap {
         PlayerStatPointsData data = new PlayerStatPointsData();
 
         @Override
-        public CompoundNBT getNBT() {
+        public CompoundNBT saveToNBT() {
             CompoundNBT nbt = new CompoundNBT();
             LoadSave.Save(data, nbt, LOC);
             return nbt;
@@ -90,7 +90,7 @@ public class PlayerStatsPointsCap {
         }
 
         @Override
-        public void setNBT(CompoundNBT nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
             this.data = LoadSave.Load(PlayerStatPointsData.class, new PlayerStatPointsData(), nbt, LOC);
         }
 
@@ -141,7 +141,7 @@ public class PlayerStatsPointsCap {
             if (this.hasAvailablePoints(data)) {
                 getStatData(stat).points++;
                 data.setEquipsChanged(true);
-                data.recalculateStats(player);
+                data.tryRecalculateStats(player);
                 data.syncToClient(player);
             }
         }

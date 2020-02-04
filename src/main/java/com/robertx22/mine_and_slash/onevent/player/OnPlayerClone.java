@@ -17,37 +17,37 @@ public class OnPlayerClone {
 
         try {
             EntityCap.UnitData data = Load.Unit(current);
-            data.setNBT(Load.Unit(original).getNBT());
+            data.loadFromNBT(Load.Unit(original).saveToNBT());
             data.syncToClient(current);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            Load.playerMapData(current).setNBT(Load.playerMapData(original).getNBT());
+            Load.playerMapData(current).loadFromNBT(Load.playerMapData(original).saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            Load.statPoints(current).setNBT(Load.statPoints(original).getNBT());
+            Load.statPoints(current).loadFromNBT(Load.statPoints(original).saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            Load.professions(current).setNBT(Load.professions(original).getNBT());
+            Load.professions(current).loadFromNBT(Load.professions(original).saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            Load.talents(current).setNBT(Load.talents(original).getNBT());
+            Load.talents(current).loadFromNBT(Load.talents(original).saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            Load.spells(current).setNBT(Load.spells(original).getNBT());
+            Load.spells(current).loadFromNBT(Load.spells(original).saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }

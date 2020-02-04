@@ -4,9 +4,9 @@ import com.robertx22.mine_and_slash.packets.sync_cap.MobCaps;
 import net.minecraft.nbt.CompoundNBT;
 
 public interface ICommonMobCap extends ICommonCap {
-    CompoundNBT getNBT();
+    CompoundNBT saveToNBT();
 
-    void setNBT(CompoundNBT value);
+    void loadFromNBT(CompoundNBT value);
 
     MobCaps getCapType();
 
