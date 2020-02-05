@@ -62,7 +62,7 @@ public class GeyserEntity extends EntityBaseProjectile {
     }
 
     @Override
-    public void tick() {
+    public void onTick() {
 
         if (!this.inGround) {
             this.addVelocity(0, -10, 0);
@@ -125,8 +125,6 @@ public class GeyserEntity extends EntityBaseProjectile {
                 }
             }
         }
-
-        super.tick();
 
     }
 

@@ -63,7 +63,7 @@ public class LightningTotemEntity extends EntityBaseProjectile {
     }
 
     @Override
-    public void tick() {
+    public void onTick() {
 
         int tickRate = 20;
 
@@ -106,8 +106,6 @@ public class LightningTotemEntity extends EntityBaseProjectile {
             }
 
         }
-
-        super.tick();
 
     }
 

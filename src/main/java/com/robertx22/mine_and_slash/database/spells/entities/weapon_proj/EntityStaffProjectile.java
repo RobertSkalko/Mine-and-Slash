@@ -72,9 +72,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
     }
 
     @Override
-    public void tick() {
-
-        super.tick();
+    public void onTick() {
 
         if (world.isRemote) {
             for (int i = 0; i < 5; i++) {

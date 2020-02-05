@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.gui.main_hub;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
+import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.map_info_gui.MapInfoScreen;
 import com.robertx22.mine_and_slash.gui.spell_hotbar_setup.SpellHotbatSetupScreen;
@@ -25,6 +26,9 @@ import java.util.List;
 public class MainHubScreen extends BaseScreen implements INamedScreen {
 
     ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/main_hub/window.png");
+    public static ResourceLocation EXLAMATION_MARK_TEX = new ResourceLocation(
+            Ref.MODID, "textures/gui/main_hub/exclamation_mark.png");
+
     public Minecraft mc;
 
     static int x = 318;
@@ -42,11 +46,11 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         List<INamedScreen> screens = new ArrayList<>();
         screens.add(new MapInfoScreen());
-        screens.add(new TalentPerkTreeScreen());
+        screens.add(new SpellHotbatSetupScreen());
         screens.add(new StatOverviewScreen());
         screens.add(new StatAllocationScreen());
         screens.add(new SpellPerkTreeScreen());
-        screens.add(new SpellHotbatSetupScreen());
+        screens.add(new TalentPerkTreeScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;
@@ -112,6 +116,8 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         public static int xSize = 95;
         public static int ySize = 32;
 
+        boolean shouldAlert = false;
+
         static ResourceLocation buttonLoc = new ResourceLocation(Ref.MODID, "textures/gui/main_hub/buttons.png");
 
         INamedScreen screen;
@@ -124,6 +130,11 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
             this.screen = screen;
 
+            if (screen instanceof IAlertScreen) {
+                IAlertScreen alert = (IAlertScreen) screen;
+                this.shouldAlert = alert.shouldAlert();
+            }
+
         }
 
         @Override
@@ -131,6 +142,10 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
             super.renderButton(x, y, ticks);
 
             RenderUtils.renderIcon(screen.iconLocation(), this.x + 9, this.y + 7);
+
+            if (shouldAlert) {
+                RenderUtils.renderIcon(EXLAMATION_MARK_TEX, this.x + 5, this.y + 7);
+            }
 
             String str = screen.screenName().translate();
 

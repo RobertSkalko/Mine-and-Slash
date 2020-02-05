@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.BaseCoreStat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
+import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -31,7 +32,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatAllocationScreen extends BaseScreen implements INamedScreen {
+public class StatAllocationScreen extends BaseScreen implements INamedScreen, IAlertScreen {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(
             Ref.MODID, "textures/gui/stat_point_screen.png");
@@ -127,6 +128,17 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen {
     private static final ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/button.png");
     static int button_sizeX = 13;
     static int button_sizeY = 13;
+
+    @Override
+    public boolean shouldAlert() {
+        try {
+            return Load.statPoints(Minecraft.getInstance().player)
+                    .getAvailablePoints(Load.Unit(Minecraft.getInstance().player)) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     class IncreaseStatButton extends ImageButton {
 

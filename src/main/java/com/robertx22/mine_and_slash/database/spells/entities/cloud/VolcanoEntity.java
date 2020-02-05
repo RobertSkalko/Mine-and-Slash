@@ -50,7 +50,7 @@ public class VolcanoEntity extends BaseInvisibleEntity {
     }
 
     @Override
-    public void tick() {
+    public void onTick() {
         try {
 
             if (this.ticksExisted % ticksToHitMobs() == 1) {
@@ -98,7 +98,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                     }
                 }
             }
-            super.tick();
 
         } catch (Exception e) {
             e.printStackTrace();

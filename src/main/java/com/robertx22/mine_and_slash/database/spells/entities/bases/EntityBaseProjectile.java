@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.jline.utils.Log;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -187,15 +188,21 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         }
     }
 
-    @Override
-    public void tick() {
+    public abstract void onTick();
 
-        if (this.spellData == null) {
+    @Override
+    public final void tick() {
+
+        if (this.spellData == null || this.spellData.getCaster(world) == null) {
+            Log.info(
+                    "Removing spell entity because data or caster is null. This happens sometimes and is normal, i'm "
+                            + "just logging to see how often it happens.");
             this.remove();
         } else {
             try {
 
                 super.tick();
+                onTick();
 
                 if (this.inGround) {
                     ticksInGround++;

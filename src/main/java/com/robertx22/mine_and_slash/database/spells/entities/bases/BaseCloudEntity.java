@@ -36,7 +36,7 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
     public abstract float radius();
 
     @Override
-    public void tick() {
+    public void onTick() {
         try {
 
             if (this.ticksExisted % ticksToHitMobs() == 1) {
@@ -71,8 +71,6 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
                 }
             }
-
-            super.tick();
 
         } catch (Exception e) {
             e.printStackTrace();

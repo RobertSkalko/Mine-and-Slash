@@ -64,7 +64,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
     }
 
     @Override
-    public void tick() {
+    public void onTick() {
 
         int tickRate = 20;
 
@@ -135,8 +135,6 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                 );
             }
         }
-
-        super.tick();
 
     }
 

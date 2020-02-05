@@ -57,10 +57,9 @@ public class SeedEntity extends EntityBaseProjectile {
     }
 
     @Override
-    public void tick() {
+    public void onTick() {
 
         try {
-            super.tick();
 
             if (!getSpellData().activated && this.getTicksInGround() > 5) {
 

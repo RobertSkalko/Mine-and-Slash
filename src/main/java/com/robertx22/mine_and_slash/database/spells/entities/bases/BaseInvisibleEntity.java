@@ -12,12 +12,13 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.jline.utils.Log;
 
 import javax.annotation.Nullable;
 
 public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsItem, ISpellEntity {
 
-    EntitySpellData syncedSpellData;
+    EntitySpellData spellData;
 
     public BaseInvisibleEntity(EntityType type, World world) {
         super(type, world);
@@ -27,13 +28,26 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
         this.setInvulnerable(true);
     }
 
+    public abstract void onTick();
+
     @Override
     public void tick() {
-
-        super.tick();
-
-        if (this.ticksExisted > getLifeInTicks() && getLifeInTicks() != -1) {
+        if (this.spellData == null || this.spellData.getCaster(world) == null) {
+            Log.info(
+                    "Removing spell entity because data or caster is null. This happens sometimes and is normal, i'm " +
+                            "just logging to see how often it happens.");
             this.remove();
+        } else {
+            try {
+                super.tick();
+                onTick();
+
+                if (this.ticksExisted > getLifeInTicks() && getLifeInTicks() != -1) {
+                    this.remove();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
     }
@@ -45,12 +59,12 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
 
     @Override
     protected void readAdditional(CompoundNBT nbt) {
-        this.syncedSpellData = EntitySpellDataSaving.Load(nbt);
+        this.spellData = EntitySpellDataSaving.Load(nbt);
     }
 
     @Override
     protected void writeAdditional(CompoundNBT nbt) {
-        EntitySpellDataSaving.Save(nbt, syncedSpellData);
+        EntitySpellDataSaving.Save(nbt, spellData);
     }
 
     @Nullable
@@ -80,12 +94,12 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
 
     @Override
     public EntitySpellData getSpellData() {
-        return syncedSpellData;
+        return spellData;
     }
 
     @Override
     public void setSpellData(EntitySpellData data) {
-        this.syncedSpellData = data;
+        this.spellData = data;
     }
 
     @Override

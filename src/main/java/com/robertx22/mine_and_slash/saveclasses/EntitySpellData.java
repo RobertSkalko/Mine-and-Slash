@@ -71,7 +71,6 @@ public class EntitySpellData {
     }
 
     public LivingEntity getCaster(World world) {
-
         if (caster == null) {
             caster = Utilities.getLivingEntityByUUID(world, getCasterUUID());
         }

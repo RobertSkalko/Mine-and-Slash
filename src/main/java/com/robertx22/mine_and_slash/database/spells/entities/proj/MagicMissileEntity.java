@@ -42,8 +42,7 @@ public class MagicMissileEntity extends BaseElementalBoltEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void onTick() {
 
         if (!world.isRemote) {
             goToEnemy();

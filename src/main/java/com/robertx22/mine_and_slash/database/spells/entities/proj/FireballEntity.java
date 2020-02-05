@@ -46,8 +46,7 @@ public class FireballEntity extends BaseElementalBoltEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void onTick() {
 
         if (world.isRemote) {
             if (this.ticksExisted > 1) {

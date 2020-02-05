@@ -74,9 +74,7 @@ public class EntityWandProjectile extends EntityBaseProjectile {
     }
 
     @Override
-    public void tick() {
-
-        super.tick();
+    public void onTick() {
 
         if (world.isRemote) {
             if (this.ticksExisted > 2) {

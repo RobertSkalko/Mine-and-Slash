@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.gui.spell_perk_tree;
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.BasePerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
@@ -13,7 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
-public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerksData, PlayerSpellCap.ISpellsCap> {
+public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerksData, PlayerSpellCap.ISpellsCap> implements IAlertScreen {
 
     public SpellPerkTreeScreen() {
         super();
@@ -68,4 +69,14 @@ public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerk
 
     }
 
+    @Override
+    public boolean shouldAlert() {
+        try {
+            return Load.spells(Minecraft.getInstance().player)
+                    .getFreePoints(Load.Unit(Minecraft.getInstance().player)) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
