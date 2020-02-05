@@ -158,6 +158,8 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
     @Override
     public void render(int x, int y, float ticks) {
 
+        this.ticks++;
+
         if (CapSyncCheck.get(getCapType())) {
             refresh();
         }
@@ -215,6 +217,8 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     }
 
+    int ticks = 0;
+
     public void renderTooltips(List<PerkButton> list, int mouseX, int mouseY) {
 
         TooltipInfo info = new TooltipInfo(mc.player);
@@ -234,6 +238,11 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     @Override
     public boolean mouseReleased(double x, double y, int button) {
+
+        if (this.ticks < 100) {
+            return false; // dont work straight from entering gui, can cause undesired talent allocation
+        }
+
         PerkScreenContext ctx = new PerkScreenContext(this);
 
         getTalentButtons().forEach(t -> t.onClick(ctx, (int) x, (int) y, button));
