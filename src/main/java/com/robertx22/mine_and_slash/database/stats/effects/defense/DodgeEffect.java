@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.effects.defense;
 
-import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -23,23 +23,21 @@ public class DodgeEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
-            if (Effect instanceof DamageEffect && !Effect.getEffectType()
-                    .equals(EffectTypes.SPELL)) {
+            if (Effect instanceof DamageEffect && !Effect.getEffectType().equals(EffectTypes.SPELL)) {
 
-                IUsableStat usable = (IUsableStat) stat;
+                DodgeRating dodge = (DodgeRating) stat;
 
-                float chance = usable.GetUsableValue(Effect.targetData.getLevel(), (int) data.val) * 100;
+                float chance = dodge.GetUsableValue(Effect.targetData.getLevel(), (int) data.val) * 100;
 
                 if (RandomUtils.roll(chance)) {
                     DamageEffect dmgeffect = (DamageEffect) Effect;
 
                     Effect.number = 0;
                     dmgeffect.isDodged = true;
-                    Effect.canceled = true;
+
                 }
 
             }

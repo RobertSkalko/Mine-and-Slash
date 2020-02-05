@@ -106,3 +106,5 @@ added command to summon bosses
 added new traits to talent tree, i'd advise looking at the left of the tree now :p
 spells and area attacks no longer attack caster, pets or other players. I feel this might be undersirable for pvp servers.. I'll see what i can do, maybe a config?
 normal weapons now have chance to do partly elemental attack damage. Should helper elemental builds before players get the uniques.
+leather armor now has dodge as primary stat
+dodging now has sound effect, allowing you to know how useful it is!

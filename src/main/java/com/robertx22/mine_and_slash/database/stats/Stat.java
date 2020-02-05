@@ -172,10 +172,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return StatScaling.NORMAL;
     }
 
-    private static float getNormalScalingMultiplier(int lvl) {
-        return MathHelper.clamp(0.5F + (float) lvl / 50, 0.5F, 1.5F);
-    }
-
     public float roundScalingStatGrowth(float stat, int lvl) {
         return StatUtils.roundNumber(this.calculateScalingStatGrowth(stat, lvl));
     }

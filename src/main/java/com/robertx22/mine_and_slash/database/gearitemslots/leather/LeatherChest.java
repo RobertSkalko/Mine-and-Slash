@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -20,6 +21,11 @@ public class LeatherChest extends BaseChest {
     @Override
     public StatReq getRequirements() {
         return leatherArmorReq;
+    }
+
+    @Override
+    public List<PosStats> PrimaryStats() {
+        return leatherPrimary();
     }
 
     @Override

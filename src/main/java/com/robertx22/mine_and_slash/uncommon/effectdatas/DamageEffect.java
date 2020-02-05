@@ -17,9 +17,11 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -150,6 +152,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         if (this.canceled) {
+            if (event != null) {
+                event.setAmount(0);
+                event.setCanceled(true);
+            }
+
             return;
         }
 
@@ -163,7 +170,14 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             dmgsource.setDamageBypassesArmor();
         }
 
-        if (isDmgAllowed()) {
+        if (isDodged) {
+            if (event != null) {
+                event.setAmount(0);
+                event.setCanceled(true);
+            }
+            SoundUtils.playSound(target, SoundEvents.ITEM_SHIELD_BLOCK, 1, 1.5F);
+
+        } else {
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnDmgDoneEvent(this.source, this));
 

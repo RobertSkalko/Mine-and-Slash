@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.SpellDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
@@ -56,6 +57,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return Arrays.asList(new PosStats(new MagicShieldFlat()));
     }
 
+    public List<PosStats> leatherPrimary() {
+        return Arrays.asList(new PosStats(new DodgeRatingFlat().multi(0.5F), new HealthFlat().multi(0.8F)));
+    }
+
     public List<PosStats> eleDmgs() {
         List<PosStats> list = (List<PosStats>) new ElementalSpellDamageFlat(
                 Elements.Nature).allSingleElementVariations()
@@ -80,7 +85,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     public abstract String resourceID();
 
     public static List<StatMod> leatherArmorStats() {
-        return Arrays.asList(new DodgeRatingFlat(), new DodgeRatingFlat(), new StaminaFlat(), new DexterityFlat());
+        return Arrays.asList(new ArmorFlat(), new StaminaFlat(), new DexterityFlat());
     }
 
     public static List<StatMod> plateArmorStats() {
