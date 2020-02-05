@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LookUtils;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -20,7 +20,6 @@ import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -131,32 +130,43 @@ public class HealthBarRenderer {
                 PlayerEntity p = mc.player;
 
                 Vec3d view = renderManager.info.getProjectedView();
-                float renderPosX = (float) (MathHelper.lerp((double) partialTicks, en.prevPosX, en.posX) - view.getX());
-                float renderPosY = (float) (MathHelper.lerp((double) partialTicks, en.prevPosY, en.posY) - view.getY());
-                float renderPosZ = (float) (MathHelper.lerp((double) partialTicks, en.prevPosZ, en.posZ) - view.getZ());
+                //  float renderPosX = (float) (MathHelper.lerp((double) partialTicks, en.prevPosX, en.posX) - view
+                //  .getX());
+                // float renderPosY = (float) (MathHelper.lerp((double) partialTicks, en.prevPosY, en.posY) - view
+                // .getY());
+                //float renderPosZ = (float) (MathHelper.lerp((double) partialTicks, en.prevPosZ, en.posZ) - view
+                // .getZ());
+
+                Vec3d pp = mc.player.getPositionVector();
+
+                double viewX = en.prevPosX + (en.getPosX() - en.prevPosX) * partialTicks;
+                double viewY = en.prevPosY + (en.getPosY() - en.prevPosY) * partialTicks;
+                double viewZ = en.prevPosZ + (en.getPosZ() - en.prevPosZ) * partialTicks;
+
+                float renderPosX = (float) (-en.posX + viewX);
+                float renderPosY =
+                        (float) (-en.posY + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get() + viewY);
+                float renderPosZ = (float) (-en.posZ + viewZ);
 
                 float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
                 float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
-                GlStateManager.pushMatrix();
-                GlStateManager.translatef((float) (renderPosX),
-                                          (float) (renderPosY + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove
-                                                  .get()), (float) (renderPosZ)
-                );
+                RenderSystem.pushMatrix();
+                RenderSystem.translatef(renderPosX, renderPosY, renderPosZ);
 
-                GlStateManager.rotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
-                GlStateManager.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
+                RenderSystem.rotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
+                RenderSystem.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
 
-                GlStateManager.normal3f(0.0F, 1.0F, 0.0F);
+                RenderSystem.normal3f(0.0F, 1.0F, 0.0F);
 
-                GlStateManager.scalef(-scale, -scale, scale);
+                RenderSystem.scalef(-scale, -scale, scale);
                 boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
-                GlStateManager.disableLighting();
-                GlStateManager.depthMask(false);
-                GlStateManager.disableDepthTest();
-                GlStateManager.disableTexture();
-                GlStateManager.enableBlend();
-                GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                RenderSystem.disableLighting();
+                RenderSystem.depthMask(false);
+                RenderSystem.disableDepthTest();
+                RenderSystem.disableTexture();
+                RenderSystem.enableBlend();
+                RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder buffer = tessellator.getBuffer();
 
@@ -184,7 +194,7 @@ public class HealthBarRenderer {
                     b = color.getBlue();
                 }
 
-                GlStateManager.translatef(0F, pastTranslate, 0F);
+                RenderSystem.translatef(0F, pastTranslate, 0F);
 
                 float s = 0.5F;
                 String name = I18n.format(entity.getDisplayName().getFormattedText());
@@ -224,16 +234,16 @@ public class HealthBarRenderer {
                 buffer.pos(healthSize * 2 - size, 0, 0.0D).color(r, g, b, 127).endVertex();
                 tessellator.draw();
 
-                GlStateManager.enableTexture();
+                RenderSystem.enableTexture();
 
-                GlStateManager.pushMatrix();
-                GlStateManager.translatef(-size, -4.5F, 0F);
-                GlStateManager.scalef(s, s, s);
+                RenderSystem.pushMatrix();
+                RenderSystem.translatef(-size, -4.5F, 0F);
+                RenderSystem.scalef(s, s, s);
                 mc.fontRenderer.drawString(name, 0, 0, 0xFFFFFF);
 
-                GlStateManager.pushMatrix();
+                RenderSystem.pushMatrix();
                 float s1 = 0.75F;
-                GlStateManager.scalef(s1, s1, s1);
+                RenderSystem.scalef(s1, s1, s1);
 
                 int h = ClientContainer.INSTANCE.neatConfig.hpTextHeight.get();
                 String maxHpStr = TextFormatting.BOLD + "" + Math.round(maxHealth * 100.0) / 100.0;
@@ -258,27 +268,27 @@ public class HealthBarRenderer {
                                                0xFFFFFFFF
                     );
 
-                GlStateManager.popMatrix();
+                RenderSystem.popMatrix();
 
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
                 int off = 0;
 
                 s1 = 0.5F;
-                GlStateManager.scalef(s1, s1, s1);
-                GlStateManager.translatef(size / (s * s1) * 2 - 16, 0F, 0F);
+                RenderSystem.scalef(s1, s1, s1);
+                RenderSystem.translatef(size / (s * s1) * 2 - 16, 0F, 0F);
                 mc.textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
 
                 // render icons here
 
-                GlStateManager.popMatrix();
+                RenderSystem.popMatrix();
 
-                GlStateManager.disableBlend();
-                GlStateManager.enableDepthTest();
-                GlStateManager.depthMask(true);
+                RenderSystem.disableBlend();
+                RenderSystem.enableDepthTest();
+                RenderSystem.depthMask(true);
                 if (lighting)
-                    GlStateManager.enableLighting();
-                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                GlStateManager.popMatrix();
+                    RenderSystem.enableLighting();
+                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+                RenderSystem.popMatrix();
 
                 pastTranslate -= bgHeight + barHeight + padding;
             }

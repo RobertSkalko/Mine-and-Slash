@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class Armor extends Stat implements IStatEffects, IUsableStat {
 
-    public static Stat INSTANCE = new Armor();
+    public static Armor INSTANCE = new Armor();
 
     @Override
     public StatGroup statGroup() {

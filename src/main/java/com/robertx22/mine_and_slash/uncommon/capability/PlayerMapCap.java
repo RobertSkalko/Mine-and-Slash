@@ -50,6 +50,8 @@ public class PlayerMapCap {
 
         boolean hasTimeForMap();
 
+        int getMinutesLeft();
+
         int getMinutesPassed();
 
         MapItemData getMap();
@@ -319,7 +321,8 @@ public class PlayerMapCap {
 
         }
 
-        private int getMinutesLeft() {
+        @Override
+        public int getMinutesLeft() {
             return this.getMap().minutes - this.data.minutesPassed;
 
         }

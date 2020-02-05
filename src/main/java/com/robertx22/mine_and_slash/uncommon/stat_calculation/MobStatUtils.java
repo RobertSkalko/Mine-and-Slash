@@ -27,7 +27,7 @@ public class MobStatUtils {
 
     static int spelldmg = 12;
     static int elePene = 8;
-    static int spellresist = 5;
+    static float resMulti = 1.5F;
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
@@ -72,12 +72,12 @@ public class MobStatUtils {
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 
-        unit.getCreateStat(Armor.GUID).addFlat(12 * rar.StatMultiplier(), level);
+        unit.getCreateStat(Armor.GUID).addFlat(Armor.INSTANCE.AverageStat() * resMulti * rar.StatMultiplier(), level);
         unit.getCreateStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
         unit.getCreateStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
 
         ElementalResist.MAP.getList()
-                .forEach(x -> unit.getCreateStat(x).addFlat(spellresist * rar.StatMultiplier(), level));
+                .forEach(x -> unit.getCreateStat(x).addFlat(x.AverageStat() * resMulti * rar.StatMultiplier(), level));
 
         ElementalSpellDamage.MAP.getList()
                 .forEach(x -> unit.getCreateStat(x).addFlat(spelldmg * rar.DamageMultiplier(), level));
