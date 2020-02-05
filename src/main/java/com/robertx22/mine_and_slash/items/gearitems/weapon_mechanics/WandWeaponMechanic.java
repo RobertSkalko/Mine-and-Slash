@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -13,6 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -51,6 +54,10 @@ public class WandWeaponMechanic extends WeaponMechanic {
         List<LivingEntity> entities = EntityFinder.start(source, LivingEntity.class, target.getPositionVector())
                 .radius(RADIUS)
                 .build();
+
+        ParticleEnum.sendToClients(
+                target, new ParticlePacketData(target.getPosition(), ParticleEnum.NOVA).type(ParticleTypes.CRIT)
+                        .amount(20));
 
         int val = (int) unitsource.getUnit().getCreateStat(PhysicalDamage.GUID).val;
         DamageEffect dmg1 = new DamageEffect(

@@ -7,7 +7,10 @@ import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.*;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.SpellDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -15,6 +18,7 @@ import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
@@ -25,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashRegistryEntry<GearItemSlot>,
         ISpecificStatReq {
@@ -47,8 +52,21 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         OffHand
     }
 
-    public float primaryStatMulti() {
-        return 1F / (float) primaryStatsAmount();
+    public List<PosStats> clothPrimary() {
+        return Arrays.asList(new PosStats(new MagicShieldFlat()));
+    }
+
+    public List<PosStats> eleDmgs() {
+        List<PosStats> list = (List<PosStats>) new ElementalSpellDamageFlat(
+                Elements.Nature).allSingleElementVariations()
+                .stream()
+                .map(x -> new PosStats((StatMod) x))
+                .collect(Collectors.toList());
+
+        list.add(new PosStats(new SpellDamageFlat()));
+
+        return list;
+
     }
 
     public int cooldownTicks() {
@@ -112,11 +130,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return Ref.MODID + ".gear_type." + formattedGUID();
     }
 
-    public int primaryStatsAmount() {
-        return 1;
-    }
-
-    public abstract List<StatMod> PrimaryStats();
+    public abstract List<PosStats> PrimaryStats();
 
     public abstract List<StatMod> PossibleSecondaryStats();
 

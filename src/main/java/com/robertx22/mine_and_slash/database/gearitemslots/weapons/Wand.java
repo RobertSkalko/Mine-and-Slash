@@ -32,11 +32,6 @@ public class Wand extends BaseWeapon implements ISpecificStatReq {
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM);
 
     @Override
-    public int primaryStatsAmount() {
-        return 2;
-    }
-
-    @Override
     public StatReq getRequirements() {
         return req;
     }

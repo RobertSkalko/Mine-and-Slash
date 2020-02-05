@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.tooltips.StatTooltipType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -35,26 +36,18 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
             }
 
         } else {
-            int statsAmount = gear.GetBaseGearType().primaryStatsAmount();
 
-            for (int i = 0; i < statsAmount; i++) {
-                StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().PrimaryStats());
+            PosStats pos = RandomUtils.weightedRandom(gear.GetBaseGearType().PrimaryStats());
+
+            int statsAmount = pos.mods.size();
+
+            pos.mods.forEach(mod -> {
                 StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
                 moddata.setPercent(moddata.getPercent() / statsAmount);
+                this.Mods.add(moddata);
 
-                boolean merged = false;
+            });
 
-                for (StatModData data : this.Mods) {
-                    if (data.getStatMod().GUID().equals(mod.GUID())) {
-                        data.setPercent(data.getPercent() + moddata.getPercent());
-                        merged = true;
-                    }
-                }
-
-                if (!merged) {
-                    this.Mods.add(moddata);
-                }
-            }
         }
     }
 

@@ -32,11 +32,6 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public int primaryStatsAmount() {
-        return 2;
-    }
-
-    @Override
     public String GUID() {
         return "Staff";
     }

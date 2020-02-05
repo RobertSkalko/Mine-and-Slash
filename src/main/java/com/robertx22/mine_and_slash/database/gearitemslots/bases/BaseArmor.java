@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 
 import java.util.Arrays;
@@ -14,8 +13,8 @@ public abstract class BaseArmor extends GearItemSlot {
     }
 
     @Override
-    public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new HealthFlat());
+    public List<PosStats> PrimaryStats() {
+        return Arrays.asList(new PosStats(new HealthFlat()));
     }
 
     @Override

@@ -6,7 +6,9 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHit
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.PhysicalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +16,14 @@ import java.util.List;
 public abstract class BaseWeapon extends GearItemSlot implements IWeapon {
 
     @Override
-    public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new PhysicalDamageFlat());
+    public List<PosStats> PrimaryStats() {
+        return Arrays.asList(
+                new PosStats(new PhysicalDamageFlat()).weight(32000),
+                new PosStats(new PhysicalDamageFlat(), new ElementalAttackDamageFlat(Elements.Nature)),
+                new PosStats(new PhysicalDamageFlat(), new ElementalAttackDamageFlat(Elements.Fire)),
+                new PosStats(new PhysicalDamageFlat(), new ElementalAttackDamageFlat(Elements.Water)),
+                new PosStats(new PhysicalDamageFlat(), new ElementalAttackDamageFlat(Elements.Thunder))
+        );
     }
 
     @Override

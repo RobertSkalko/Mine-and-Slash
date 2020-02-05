@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -53,9 +54,10 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
     float multi = 2F;
 
     @Override
-    public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new ManaRegenFlat().multi(multi), new EnergyRegenFlat().multi(multi),
-                             new MagicShieldRegenFlat().multi(multi)
+    public List<PosStats> PrimaryStats() {
+        return Arrays.asList(new PosStats(new ManaRegenFlat().multi(multi)),
+                             new PosStats(new EnergyRegenFlat().multi(multi)),
+                             new PosStats(new MagicShieldRegenFlat().multi(multi))
         );
     }
 

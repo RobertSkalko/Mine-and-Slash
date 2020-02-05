@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.*;
@@ -12,6 +13,7 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Charm extends GearItemSlot {
     public static GearItemSlot INSTANCE = new Charm();
@@ -38,10 +40,13 @@ public class Charm extends GearItemSlot {
     static float multi = 2;
 
     @Override
-    public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Fire).multi(multi), new ElementalPeneFlat(Elements.Water)
-                .multi(multi), new ElementalPeneFlat(Elements.Thunder).multi(multi), new ElementalPeneFlat(Elements.Nature)
-                .multi(multi), new ElementalPeneFlat(Elements.Physical).multi(multi));
+    public List<PosStats> PrimaryStats() {
+        return Arrays.asList(new ElementalPeneFlat(Elements.Fire).multi(multi),
+                             new ElementalPeneFlat(Elements.Water).multi(multi),
+                             new ElementalPeneFlat(Elements.Thunder).multi(multi),
+                             new ElementalPeneFlat(Elements.Nature).multi(multi),
+                             new ElementalPeneFlat(Elements.Physical).multi(multi)
+        ).stream().map(x -> new PosStats(x)).collect(Collectors.toList());
 
     }
 
@@ -52,7 +57,9 @@ public class Charm extends GearItemSlot {
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(), new StaminaFlat(), new DexterityFlat());
+        return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(),
+                             new StaminaFlat(), new DexterityFlat()
+        );
     }
 
     @Override

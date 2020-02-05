@@ -15,8 +15,8 @@ public abstract class BaseOffHand extends GearItemSlot {
     }
 
     @Override
-    public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new BlockStrengthFlat());
+    public List<PosStats> PrimaryStats() {
+        return Arrays.asList(new PosStats(new BlockStrengthFlat()));
     }
 
     @Override

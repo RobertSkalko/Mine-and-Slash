@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
@@ -38,8 +39,10 @@ public class Necklace extends GearItemSlot {
     }
 
     @Override
-    public List<StatMod> PrimaryStats() {
-        return Arrays.asList(new HealthRegenFlat(), new BonusExpFlat(), new MagicShieldRegenFlat());
+    public List<PosStats> PrimaryStats() {
+        return Arrays.asList(new PosStats(new HealthRegenFlat()), new PosStats(new BonusExpFlat()),
+                             new PosStats(new MagicShieldRegenFlat())
+        );
     }
 
     @Override

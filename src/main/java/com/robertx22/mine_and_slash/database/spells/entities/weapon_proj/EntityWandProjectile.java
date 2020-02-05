@@ -18,8 +18,6 @@ import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class EntityWandProjectile extends EntityBaseProjectile {
 
-    ItemStack weapon;
-
     public EntityWandProjectile(EntityType<? extends EntityWandProjectile> type, World world) {
         super(type, world);
     }
@@ -38,13 +36,9 @@ public class EntityWandProjectile extends EntityBaseProjectile {
         super(EntityRegister.WANDPROJECTILE, world);
     }
 
-    public void SetReady(ItemStack staff) {
-        this.weapon = staff;
-    }
-
     @Override
     public double radius() {
-        return 0.5D;
+        return 0.75D;
     }
 
     @Override
@@ -52,7 +46,7 @@ public class EntityWandProjectile extends EntityBaseProjectile {
 
         LivingEntity entity = getEntityHit(result, 0.5D);
 
-        if (entity != null && weapon != null) {
+        if (entity != null) {
 
             if (!world.isRemote) {
                 try {
