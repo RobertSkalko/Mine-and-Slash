@@ -119,6 +119,10 @@ public class PlayerMapCap {
         @Override
         public void loadFromNBT(CompoundNBT nbt) {
             data = LoadSave.Load(PlayerWholeMapData.class, new PlayerWholeMapData(), nbt, LOC);
+
+            if (data == null) {
+                data = new PlayerWholeMapData();
+            }
         }
 
         @Override
@@ -210,18 +214,22 @@ public class PlayerMapCap {
 
         @Override
         public void onTickIfDead(ServerPlayerEntity player) {
-            if (data.isDead) {
-                this.data.isDead = false;
-                teleportPlayerBack(player);
+            if (data != null) {
+                if (data.isDead) {
+                    this.data.isDead = false;
+                    teleportPlayerBack(player);
+                }
             }
         }
 
         @Override
         public float getLootMultiplier(PlayerEntity player) {
 
-            if (WorldUtils.isMapWorldClass(player.world)) {
-                if (data.questFinished) {
-                    return 0.3F;
+            if (data != null) {
+                if (WorldUtils.isMapWorldClass(player.world)) {
+                    if (data.questFinished) {
+                        return 0.3F;
+                    }
                 }
             }
 

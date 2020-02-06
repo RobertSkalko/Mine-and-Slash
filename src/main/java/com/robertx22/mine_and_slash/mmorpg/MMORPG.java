@@ -54,7 +54,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = false;
 
     public static Logger LOGGER = Logger.getLogger(Ref.MOD_NAME);
 
@@ -186,8 +186,6 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
-
-        //MapManager.unregisterDims();
 
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
 

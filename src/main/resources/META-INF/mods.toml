@@ -14,7 +14,7 @@ Turn Minecraft Into a hack and slash looter!
 [[dependencies.mmorpg]]
     modId="forge"
     mandatory=true
-    versionRange="[31.0.1,)"
+    versionRange="[31.1.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.mmorpg]]

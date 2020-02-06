@@ -20,7 +20,7 @@ public abstract class BaseProjectileSpell extends BaseSpell {
 
     @Override
     public int getManaCost() {
-        return 10;
+        return 8;
     }
 
     @Override

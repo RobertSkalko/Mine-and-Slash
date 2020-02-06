@@ -22,7 +22,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jline.utils.Log;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -122,24 +121,42 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
         try {
 
-            this.tickActions.forEach(x -> {
+            boolean delete = false;
+
+            for (OnTickAction x : this.tickActions) {
                 if (en.ticksExisted % x.eachXticks == 0) {
 
-                    ExtraPotionData data = PotionEffectUtils.getDataForTooltips(this);
+                    EffectInstance instance = en.getActivePotionEffect(this);
+
+                    if (instance == null) {
+                        //Log.error("potion instance is null, Deleting potion");
+                        delete = true;
+                        return;
+                    }
+
+                    ExtraPotionData data = PotionDataSaving.getData(instance);
 
                     if (data == null) {
-                        Log.error("Extra potion data is null. Deleting potion");
+                        //Log.error("Extra potion data is null. Deleting potion");
+                        delete = true;
+                        return;
                     }
 
                     LivingEntity caster = data.getCaster(en.world);
 
                     if (caster == null) {
-                        Log.error("Potion can't find caster. Deleting potion");
+                        //Log.error("Potion can't find caster. Deleting potion");
+                        delete = true;
+                        return;
                     }
 
                     x.onTick(new PotionContext(en, data, caster));
                 }
-            });
+            }
+
+            if (delete) {
+                en.removePotionEffect(this);
+            }
 
         } catch (Exception e) {
             en.removePotionEffect(this);
