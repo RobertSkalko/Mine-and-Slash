@@ -143,6 +143,7 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.WorldProviders().getAll().values());
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.Gears.getNormalRarities());
+        list.addAll(Rarities.Mobs.getAllRarities());
         list.addAll(Arrays.asList(Chats.values()));
         list.addAll(Arrays.asList(AdvDescs.values()));
         list.addAll(Arrays.asList(AdvTitles.values()));

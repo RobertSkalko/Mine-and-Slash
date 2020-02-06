@@ -700,14 +700,16 @@ public class EntityCap {
         public ITextComponent getName(LivingEntity entity) {
 
             if (entity instanceof PlayerEntity) {
-
                 return new StringTextComponent("[Lv:").appendText(this.getLevel() + "] " + " ")
                         .appendSibling(entity.getDisplayName());
 
             } else {
                 MobRarity rarity = Rarities.Mobs.get(getRarity());
                 ITextComponent rarityprefix = rarity.locName();
-                ITextComponent name = entity.getDisplayName();
+
+                BossCap.IBossData boss = Load.boss(entity);
+
+                ITextComponent name = boss.isBoss() ? boss.getBoss().getName(entity) : entity.getDisplayName();
 
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
                         .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));

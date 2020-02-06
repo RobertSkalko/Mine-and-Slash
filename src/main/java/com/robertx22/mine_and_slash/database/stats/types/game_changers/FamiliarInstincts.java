@@ -46,10 +46,10 @@ public class FamiliarInstincts extends BaseGameChangerTrait implements IAffectsS
         float num = data.getUnit().getCreateStat(DodgeRating.INSTANCE).Flat * INC / 100;
 
         for (Stat stat : ElementalResist.MAP.getList()) {
-            data.getUnit().getCreateStat(stat).Multi += num;
+            data.getUnit().getCreateStat(stat).Flat += num;
         }
 
-        data.getUnit().getCreateStat(HealthRegen.INSTANCE).Multi += DEC;
+        data.getUnit().getCreateStat(HealthRegen.INSTANCE).Multi -= DEC;
     }
 
     private static class SingletonHolder {

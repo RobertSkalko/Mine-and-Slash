@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRender
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.gui.bar_overlays.PlayerBarsOverlayScreen;
 import com.robertx22.mine_and_slash.gui.gear_overlay.GearOverlayGUI;
+import com.robertx22.mine_and_slash.gui.mob_bar.MobBarScreen;
 import com.robertx22.mine_and_slash.gui.spell_cast_bar.SpellCastBarOverlay;
 import com.robertx22.mine_and_slash.gui.spell_hotbar.SpellHotbarOverlay;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
@@ -23,7 +24,7 @@ public class ClientSetup {
 
         Minecraft.getInstance().getRenderManager().renderers.values().forEach(x -> {
             if (x instanceof LivingRenderer) {
-                ((LivingRenderer) x).addLayer(new TestNameRender((IEntityRenderer) x));
+                ((LivingRenderer) x).addLayer(new TestNameRender((IEntityRenderer) x)); // TODO
             }
         });
 
@@ -39,6 +40,7 @@ public class ClientSetup {
         CurioClientSetup.setup(event);
 
         MinecraftForge.EVENT_BUS.register(new PlayerBarsOverlayScreen(Minecraft.getInstance()));
+        MinecraftForge.EVENT_BUS.register(new MobBarScreen(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new SpellCastBarOverlay());
         MinecraftForge.EVENT_BUS.register(new SpellHotbarOverlay());
 

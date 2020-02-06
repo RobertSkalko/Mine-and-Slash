@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.LookUtils;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.model.IBakedModel;
@@ -110,10 +111,6 @@ public class HealthBarRenderer {
                 if (!ClientContainer.INSTANCE.neatConfig.showOnPlayers.get() && entity instanceof PlayerEntity)
                     break processing;
 
-                double x = en.posX;
-                double y = en.posY;
-                double z = en.posZ;
-
                 float scale = 0.026666672F;
                 float maxHealth = entity.getMaxHealth();
                 float health = Math.min(maxHealth, entity.getHealth());
@@ -129,37 +126,38 @@ public class HealthBarRenderer {
 
                 PlayerEntity p = mc.player;
 
-                Vec3d view = renderManager.info.getProjectedView();
-                //  float renderPosX = (float) (MathHelper.lerp((double) partialTicks, en.prevPosX, en.posX) - view
-                //  .getX());
-                // float renderPosY = (float) (MathHelper.lerp((double) partialTicks, en.prevPosY, en.posY) - view
-                // .getY());
-                //float renderPosZ = (float) (MathHelper.lerp((double) partialTicks, en.prevPosZ, en.posZ) - view
-                // .getZ());
-
                 Vec3d pp = mc.player.getPositionVector();
 
-                double viewX = en.prevPosX + (en.getPosX() - en.prevPosX) * partialTicks;
-                double viewY = en.prevPosY + (en.getPosY() - en.prevPosY) * partialTicks;
-                double viewZ = en.prevPosZ + (en.getPosZ() - en.prevPosZ) * partialTicks;
+                double x = en.prevPosX + (en.getPosX() - en.prevPosX) * partialTicks;
+                double y = en.prevPosY + (en.getPosY() - en.prevPosY) * partialTicks;
+                double z = en.prevPosZ + (en.getPosZ() - en.prevPosZ) * partialTicks;
 
-                float renderPosX = (float) (-en.posX + viewX);
-                float renderPosY =
-                        (float) (-en.posY + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get() + viewY);
-                float renderPosZ = (float) (-en.posZ + viewZ);
+                Vec3d view = renderManager.info.getProjectedView();
 
-                float rotationYaw = (-Minecraft.getInstance().player.rotationYaw);
+                float rotationYaw = (Minecraft.getInstance().player.rotationYaw);
                 float rotationPitch = Minecraft.getInstance().player.rotationPitch;
 
-                RenderSystem.pushMatrix();
-                RenderSystem.translatef(renderPosX, renderPosY, renderPosZ);
+                float renderPosX = (float) (x - view.getX());
+                float renderPosY =
+                        (float) (y + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get() - view
+                        .getY());
+                float renderPosZ = (float) (z - view.getZ());
 
-                RenderSystem.rotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
-                RenderSystem.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
+                matrix.push();
+
+                Quaternion rot = renderManager.info.getRotation().copy();
+
+                //  RenderSystem.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
+
+                matrix.translate(renderPosX, renderPosY, renderPosZ);
+
+                matrix.rotate(rot);
+
+                // renderManager.info.getRotation().
 
                 RenderSystem.normal3f(0.0F, 1.0F, 0.0F);
 
-                RenderSystem.scalef(-scale, -scale, scale);
+                matrix.scale(-scale, -scale, scale);
                 boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
                 RenderSystem.disableLighting();
                 RenderSystem.depthMask(false);
@@ -168,7 +166,7 @@ public class HealthBarRenderer {
                 RenderSystem.enableBlend();
                 RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 Tessellator tessellator = Tessellator.getInstance();
-                BufferBuilder buffer = tessellator.getBuffer();
+                BufferBuilder builder = tessellator.getBuffer();
 
                 float padding = ClientContainer.INSTANCE.neatConfig.backgroundPadding.get();
                 int bgHeight = ClientContainer.INSTANCE.neatConfig.backgroundHeight.get();
@@ -183,7 +181,7 @@ public class HealthBarRenderer {
 
                 ItemStack stack = ItemStack.EMPTY;
 
-                int armor = entity.getTotalArmorValue();
+                int armor = en.getTotalArmorValue();
 
                 boolean useHue = !ClientContainer.INSTANCE.neatConfig.colorByType.get();
                 if (useHue) {
@@ -194,13 +192,11 @@ public class HealthBarRenderer {
                     b = color.getBlue();
                 }
 
-                RenderSystem.translatef(0F, pastTranslate, 0F);
-
                 float s = 0.5F;
-                String name = I18n.format(entity.getDisplayName().getFormattedText());
-                if (entity instanceof LivingEntity && entity.hasCustomName())
-                    name = TextFormatting.ITALIC + entity.getCustomName().toString();
-                else if (entity instanceof VillagerEntity)
+                String name = I18n.format(en.getDisplayName().getFormattedText());
+                if (en instanceof LivingEntity && en.hasCustomName())
+                    name = TextFormatting.ITALIC + en.getCustomName().toString();
+                else if (en instanceof VillagerEntity)
                     name = I18n.format("entity.Villager.name");
 
                 float namel = mc.fontRenderer.getStringWidth(name) * s;
@@ -210,40 +206,40 @@ public class HealthBarRenderer {
 
                 // Background
                 if (ClientContainer.INSTANCE.neatConfig.drawBackground.get()) {
-                    buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(-size - padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
-                    buffer.pos(-size - padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
-                    buffer.pos(size + padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
-                    buffer.pos(size + padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
+                    builder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+                    builder.pos(-size - padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
+                    builder.pos(-size - padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
+                    builder.pos(size + padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
+                    builder.pos(size + padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
                     tessellator.draw();
                 }
 
                 // Gray Space
-                buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                buffer.pos(-size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
-                buffer.pos(-size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
-                buffer.pos(size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
-                buffer.pos(size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
+                builder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+                builder.pos(-size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
+                builder.pos(-size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
+                builder.pos(size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
+                builder.pos(size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
                 tessellator.draw();
 
                 // Health Bar
-                buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                buffer.pos(-size, 0, 0.0D).color(r, g, b, 127).endVertex();
-                buffer.pos(-size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
-                buffer.pos(healthSize * 2 - size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
-                buffer.pos(healthSize * 2 - size, 0, 0.0D).color(r, g, b, 127).endVertex();
+                builder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+                builder.pos(-size, 0, 0.0D).color(r, g, b, 127).endVertex();
+                builder.pos(-size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
+                builder.pos(healthSize * 2 - size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
+                builder.pos(healthSize * 2 - size, 0, 0.0D).color(r, g, b, 127).endVertex();
                 tessellator.draw();
 
                 RenderSystem.enableTexture();
 
-                RenderSystem.pushMatrix();
-                RenderSystem.translatef(-size, -4.5F, 0F);
-                RenderSystem.scalef(s, s, s);
+                matrix.push();
+                matrix.translate(-size, -4.5F, 0F);
+                matrix.scale(s, s, s);
                 mc.fontRenderer.drawString(name, 0, 0, 0xFFFFFF);
 
-                RenderSystem.pushMatrix();
+                matrix.push();
                 float s1 = 0.75F;
-                RenderSystem.scalef(s1, s1, s1);
+                matrix.scale(s1, s1, s1);
 
                 int h = ClientContainer.INSTANCE.neatConfig.hpTextHeight.get();
                 String maxHpStr = TextFormatting.BOLD + "" + Math.round(maxHealth * 100.0) / 100.0;
@@ -268,19 +264,19 @@ public class HealthBarRenderer {
                                                0xFFFFFFFF
                     );
 
-                RenderSystem.popMatrix();
+                matrix.pop();
 
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
                 int off = 0;
 
                 s1 = 0.5F;
-                RenderSystem.scalef(s1, s1, s1);
-                RenderSystem.translatef(size / (s * s1) * 2 - 16, 0F, 0F);
+                matrix.scale(s1, s1, s1);
+                matrix.translate(size / (s * s1) * 2 - 16, 0F, 0F);
                 mc.textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
 
                 // render icons here
 
-                RenderSystem.popMatrix();
+                matrix.pop();
 
                 RenderSystem.disableBlend();
                 RenderSystem.enableDepthTest();
@@ -288,7 +284,7 @@ public class HealthBarRenderer {
                 if (lighting)
                     RenderSystem.enableLighting();
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                RenderSystem.popMatrix();
+                matrix.pop();
 
                 pastTranslate -= bgHeight + barHeight + padding;
             }
