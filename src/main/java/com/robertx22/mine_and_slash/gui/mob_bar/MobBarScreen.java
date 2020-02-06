@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.gui.mob_bar;
 
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -37,59 +38,63 @@ public class MobBarScreen extends AbstractGui {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void onRenderPlayerOverlay(RenderGameOverlayEvent event) {
 
-        if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE) {
-            return;
-        }
-
-        Entity e = LookUtils.getEntityLookedAt(mc.player);
-
-        if (e instanceof LivingEntity) {
-            en = (LivingEntity) e;
-        } else {
-            ticks++;
-            if (ticks > 20) {
-                en = null;
-                ticks = 0;
+        try {
+            if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+                return;
             }
-        }
 
-        if (en != null) {
+            if (!ClientContainer.INSTANCE.RENDER_SIMPLE_MOB_BAR.get()) {
+                return;
+            }
 
-            EntityCap.UnitData data = Load.Unit(en);
+            Entity e = LookUtils.getEntityLookedAt(mc.player);
 
-            float currentHp = data.getUnit().getCurrentEffectiveHealth(en, data);
-            float maxHP = data.getUnit().getMaxEffectiveHealth();
-            int percent = (int) (currentHp / maxHP * 100);
+            if (e instanceof LivingEntity) {
+                en = (LivingEntity) e;
+            } else {
+                ticks++;
+                if (ticks > 20) {
+                    en = null;
+                    ticks = 0;
+                }
+            }
 
-            int height = mc.mainWindow.getScaledHeight();
-            int width = mc.mainWindow.getScaledWidth();
+            if (en != null) {
 
-            int x = width / 2 - xSize / 2;
-            int y = 30;
+                EntityCap.UnitData data = Load.Unit(en);
 
-            mc.getTextureManager().bindTexture(TEX);
+                if (data != null) {
+                    int currentHp = (int) data.getUnit().getCurrentEffectiveHealth(en, data);
+                    int maxHP = (int) data.getUnit().getMaxEffectiveHealth();
+                    int percent = Math.round(currentHp / maxHP * 100);
 
-            blit(x, y, 0, 0, xSize, ySize); // the bar
+                    int height = mc.mainWindow.getScaledHeight();
+                    int width = mc.mainWindow.getScaledWidth();
 
-            blit(x, y, 0, ySize, (int) ((float) xSize * percent / 100), ySize); // inner fill texture
+                    int x = width / 2 - xSize / 2;
+                    int y = 30;
 
-            String name = CLOC.translate(data.getName(en));
+                    mc.getTextureManager().bindTexture(TEX);
 
-            mc.fontRenderer.drawStringWithShadow(name, width / 2 - mc.fontRenderer.getStringWidth(name) / 2, y - 10,
-                                                 TextFormatting.WHITE.getColor()
-            );
+                    blit(x, y, 0, 0, xSize, ySize); // the bar
 
-            String hpText = (int) currentHp + "/" + (int) maxHP;
+                    blit(x, y, 0, ySize, (int) ((float) xSize * percent / 100F), ySize); // inner fill texture
 
-            GuiUtils.renderScaledText(
-                    width / 2, (int) (y + (float) ySize / 2) + 1, 0.75F, hpText, TextFormatting.GREEN);
-/*
-            mc.fontRenderer.drawStringWithShadow(hpText, width / 2 - mc.fontRenderer.getStringWidth(hpText) / 2, y,
-                                                 TextFormatting.GREEN.getColor()
-            );
+                    String name = CLOC.translate(data.getName(en));
 
- */
+                    mc.fontRenderer.drawStringWithShadow(name, width / 2 - mc.fontRenderer.getStringWidth(name) / 2,
+                                                         y - 10, TextFormatting.WHITE.getColor()
+                    );
 
+                    String hpText = (int) currentHp + "/" + (int) maxHP;
+
+                    GuiUtils.renderScaledText(
+                            width / 2, (int) (y + (float) ySize / 2) + 1, 0.75F, hpText, TextFormatting.GREEN);
+
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

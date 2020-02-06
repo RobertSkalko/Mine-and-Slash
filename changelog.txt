@@ -108,3 +108,4 @@ spells and area attacks no longer attack caster, pets or other players. I feel t
 normal weapons now have chance to do partly elemental attack damage. Should helper elemental builds before players get the uniques.
 leather armor now has dodge as primary stat
 dodging now has sound effect, allowing you to know how useful it is!
+added simple mob bar gui until neat mod ports

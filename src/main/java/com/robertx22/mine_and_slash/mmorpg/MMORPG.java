@@ -187,6 +187,8 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
 
+        //MapManager.unregisterDims();
+
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
 
             GameRules.BooleanValue value = ServerLifecycleHooks.getCurrentServer()

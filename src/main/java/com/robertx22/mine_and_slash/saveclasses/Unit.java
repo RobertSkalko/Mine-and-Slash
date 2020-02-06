@@ -190,7 +190,9 @@ public class Unit {
 
     public float getCurrentEffectiveHealth(LivingEntity entity, UnitData data) {
         float curhp = health().CurrentValue(entity, this);
-        curhp += data.getResources().getMagicShield();
+        if (data.getResources() != null) {
+            curhp += data.getResources().getMagicShield();
+        }
         return curhp;
 
     }

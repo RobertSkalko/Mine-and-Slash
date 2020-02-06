@@ -15,15 +15,19 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ForgeRegistry;
 
 public class MapManager {
 
@@ -32,6 +36,9 @@ public class MapManager {
         @SubscribeEvent
         public static void registerModDimensions(RegistryEvent.Register<ModDimension> event) {
 
+            if (true) {
+                return;//TODO
+            }
             for (IWP iwp : SlashRegistry.WorldProviders().getList()) {
 
                 ModDimension moddim = iwp.newModDimension();
@@ -45,6 +52,21 @@ public class MapManager {
                 iwp.setModDimension(moddim);
 
             }
+
+        }
+
+    }
+
+    @Mod.EventBusSubscriber
+    public static class announce {
+        @SubscribeEvent
+        public static void registerModDimensions(RegisterDimensionsEvent event) {
+
+            System.out.println(
+                    TextFormatting.LIGHT_PURPLE + "Don't be afraid of the [Missing Dimension Name] and [in save file "
+                            + "missing" + " ModDimension] errors ");
+            System.out.println(
+                    TextFormatting.LIGHT_PURPLE + "This is a required workaround by Mine and Slash. These are the " + "random adventure map dimensions " + "that are being scrapped.");
 
         }
 
@@ -66,8 +88,11 @@ public class MapManager {
             }
             return false;
         }).forEach(d -> {
-            DimensionManager.unregisterDimension(d.getId());
-
+            try {
+                DimensionManager.unregisterDimension(d.getId());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
     }
@@ -80,23 +105,32 @@ public class MapManager {
 
         IWP iwp = map.getIWP();
         ResourceLocation res = getResourceLocForMap(map);
+        // this gets the random id that allows dynamic dimensions
 
         if (isRegistered(res)) {
             return DimensionType.byName(res);
         }
 
-        ModDimension moddim = iwp.getModDim();
+        ModDimension moddim = iwp.newModDimension();
 
         if (moddim.getRegistryName() == null) {
             moddim.setRegistryName(res);
         }
+
+        ForgeRegistry r = (ForgeRegistry) ForgeRegistries.MOD_DIMENSIONS;
+
+        r.unfreeze(); // cus i'm registering it in the middle of the game
+        // why? because that's the only way i can stop forge from registing my dimensionType back on game load
+        // because it errors out as it can't find a ModDimension for it.
+        ForgeRegistries.MOD_DIMENSIONS.register(moddim);
+        r.freeze();
 
         DimensionType type = DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled.buffer()), true);
 
         DimensionManager.keepLoaded(type, false);
 
         WorldMapCap.IWorldMapData mapcap = Load.world(getWorld(type));
-        mapcap.init(map); // this should work but it doesnt
+        mapcap.init(map); // this should work but it doesnt, i made a bandaid solution elsewhere
 
         return type;
     }
