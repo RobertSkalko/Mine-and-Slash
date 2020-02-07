@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 import java.util.Objects;
@@ -47,11 +46,22 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
 
     static class Pos {
 
+        public int x, z, y;
+
+        public Pos(int x, int z, int y) {
+            this.x = x;
+            this.z = z;
+            this.y = y;
+        }
+
+        public BlockPos getPos() {
+            return new BlockPos(x, y, z);
+        }
     }
 
     public boolean USE_SPECIFIC_LVL_1_POSITION = false;
 
-    public Vec3i SPECIFIC_LVL_1_POSITION = new Vec3i(0, 0, 0);
+    public Pos SPECIFIC_LVL_1_POSITION = new Pos(0, 0, 0);
 
     public transient String GUID = "";
 
@@ -116,7 +126,7 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
         BlockPos pos = null;
 
         if (USE_SPECIFIC_LVL_1_POSITION) {
-            pos = new BlockPos(SPECIFIC_LVL_1_POSITION);
+            pos = SPECIFIC_LVL_1_POSITION.getPos();
         } else {
             pos = world.getSpawnPoint();
         }

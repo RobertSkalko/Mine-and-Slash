@@ -2,6 +2,9 @@ package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.util.InputMappings;
+import net.minecraftforge.client.settings.KeyConflictContext;
+import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
@@ -26,21 +29,18 @@ public class KeybindsRegister {
 
     static String HOTBAR_NAME = Ref.MOD_NAME + " Hotbar";
 
-    static KeyBinding SPELL_1 = new KeyBinding("Spell Hotbar key 1", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_1,
-                                               HOTBAR_NAME
-    );
-    static KeyBinding SPELL_2 = new KeyBinding("Spell Hotbar key 2", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_2,
-                                               HOTBAR_NAME
-    );
-    static KeyBinding SPELL_3 = new KeyBinding("Spell Hotbar key 3", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_3,
-                                               HOTBAR_NAME
-    );
-    static KeyBinding SPELL_4 = new KeyBinding("Spell Hotbar key 4", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_4,
-                                               HOTBAR_NAME
-    );
-    static KeyBinding SPELL_5 = new KeyBinding("Spell Hotbar key 5", GLFW.GLFW_KEY_LEFT_SHIFT + GLFW.GLFW_KEY_5,
-                                               HOTBAR_NAME
-    );
+    static KeyBinding SPELL_1 = hotbar(1, GLFW.GLFW_KEY_1);
+    static KeyBinding SPELL_2 = hotbar(2, GLFW.GLFW_KEY_2);
+    static KeyBinding SPELL_3 = hotbar(3, GLFW.GLFW_KEY_3);
+    static KeyBinding SPELL_4 = hotbar(4, GLFW.GLFW_KEY_4);
+    static KeyBinding SPELL_5 = hotbar(5, GLFW.GLFW_KEY_5);
+
+    public static KeyBinding hotbar(int num, int keycode) {
+        return new KeyBinding("Spell Hotbar key " + num, KeyConflictContext.IN_GAME, KeyModifier.SHIFT,
+                              InputMappings.Type.KEYSYM, keycode, HOTBAR_NAME
+        );
+
+    }
 
     public static HashMap<KeyBinding, Integer> HOTBAR = new HashMap<KeyBinding, Integer>() {{
         put(SPELL_1, 0);

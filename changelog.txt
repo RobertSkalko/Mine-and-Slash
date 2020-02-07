@@ -1,3 +1,8 @@
+3.0.1
+* fixed spell hotbar not having correctly setup keybinds
+* fixed dimensionconfigs names
+* fixed weapons with elemental dmg having more stats than intended
+
 3.0.0
 
 [THIS UPDATE IS BETA, EXPECT BUGS!]
