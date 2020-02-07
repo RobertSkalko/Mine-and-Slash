@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseCloudEntity;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -39,7 +40,8 @@ public class ThunderstormEntity extends BaseCloudEntity {
 
     @Override
     public void summonFallParticle(Vec3d p) {
-        world.addParticle(ParticleTypes.FALLING_WATER, true, p.x, p.y, p.z, 0, 0, 0);
+
+        ParticleUtils.spawn(ParticleTypes.FALLING_WATER, world, p);
 
     }
 

@@ -45,6 +45,7 @@ public class CommandRegister {
         OpenPickStatsGui.register(dispatcher);
         ResetTalents.register(dispatcher);
         OpenTalentsGui.register(dispatcher);
+        OpenHub.register(dispatcher);
 
         GiveCrate.register(dispatcher);
 

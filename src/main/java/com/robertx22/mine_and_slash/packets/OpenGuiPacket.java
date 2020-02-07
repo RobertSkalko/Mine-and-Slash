@@ -13,7 +13,8 @@ public class OpenGuiPacket {
     public enum GuiType {
         TALENTS,
         PICK_STATS,
-        SPELLS
+        SPELLS,
+        MAIN_HUB
     }
 
     GuiType type;
@@ -54,7 +55,9 @@ public class OpenGuiPacket {
                     if (pkt.type == GuiType.SPELLS) {
                         OpenGuiWrapper.openSpellPerks();
                     }
-
+                    if (pkt.type == GuiType.MAIN_HUB) {
+                        OpenGuiWrapper.openMainHub();
+                    }
                 });
 
             } catch (Exception e) {

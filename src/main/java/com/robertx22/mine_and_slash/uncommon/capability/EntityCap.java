@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
-import com.robertx22.mine_and_slash.commands.OpenPickStatsGui;
-import com.robertx22.mine_and_slash.commands.OpenTalentsGui;
+import com.robertx22.mine_and_slash.commands.OpenHub;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
@@ -541,8 +540,8 @@ public class EntityCap {
                         new StringTextComponent(TextFormatting.YELLOW + "" + TextFormatting.BOLD).appendSibling(
                                 Chats.You_have_leveled_up.locName()).appendText("!"));
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
-                onLvlPostStatPickMsg(player);
-                onLvlPostTalentsMsg(player);
+
+                onLvlPostMsg(player);
 
                 try {
                     Load.playersCapBackup(MapManager.getWorld(DimensionType.OVERWORLD))
@@ -557,34 +556,24 @@ public class EntityCap {
             return false;
         }
 
-        public void onLvlPostTalentsMsg(LivingEntity en) {
+        public void onLvlPostMsg(LivingEntity en) {
 
-            int points = Load.talents((PlayerEntity) en).getFreePoints(this);
+            int talents = Load.talents((PlayerEntity) en).getFreePoints(this);
+            int spells = Load.spells((PlayerEntity) en).getFreePoints(this);
+            int stats = Load.statPoints((PlayerEntity) en).getAvailablePoints(this);
 
-            if (points > 0) {
+            int total = talents + spells + stats;
+
+            if (total > 0) {
                 ITextComponent msg = new StringTextComponent(
-                        TextFormatting.BLUE + "You have " + points + " Unspent Talent points." + TextFormatting.ITALIC + " Click to Open Talents");
+                        TextFormatting.BLUE + "You have " + total + " Unspent Level up points." + TextFormatting.ITALIC + " Click to Open Main Hub [Default key: (H)]");
                 msg.setStyle(msg.getStyle()
-                                     .setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                                                                   "/" + OpenTalentsGui.COMMAND
-                                     )));
+                                     .setClickEvent(
+                                             new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + OpenHub.COMMAND)));
                 en.sendMessage(msg);
+
             }
-        }
 
-        public void onLvlPostStatPickMsg(LivingEntity en) {
-
-            int points = Load.statPoints((PlayerEntity) en).getAvailablePoints(this);
-
-            if (points > 0) {
-                ITextComponent msg = new StringTextComponent(
-                        TextFormatting.GREEN + "You have " + points + " Unspent Stat points." + TextFormatting.ITALIC + " " + "Click to Open Gui");
-                msg.setStyle(msg.getStyle()
-                                     .setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                                                                   "/" + OpenPickStatsGui.COMMAND
-                                     )));
-                en.sendMessage(msg);
-            }
         }
 
         @Override

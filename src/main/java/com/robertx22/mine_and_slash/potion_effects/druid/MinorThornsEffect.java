@@ -59,7 +59,7 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
         }));
     }
 
-    static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.1F, 2);
+    static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.15F, 2);
 
     @Override
     public int getDurationInSeconds() {

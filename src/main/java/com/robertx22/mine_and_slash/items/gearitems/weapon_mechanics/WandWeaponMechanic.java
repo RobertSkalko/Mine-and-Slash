@@ -53,6 +53,7 @@ public class WandWeaponMechanic extends WeaponMechanic {
 
         List<LivingEntity> entities = EntityFinder.start(source, LivingEntity.class, target.getPositionVector())
                 .radius(RADIUS)
+                .addPredicate(x -> x != target)
                 .build();
 
         ParticleEnum.sendToClients(

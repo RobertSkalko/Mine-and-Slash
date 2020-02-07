@@ -25,7 +25,7 @@ public class InstantHealRemoveDebuffSynergy extends Synergy<BeforeHealContext> {
         return "instant_heal_remove_debuff_synergy";
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.1F, 2);
+    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.5F, 5);
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {

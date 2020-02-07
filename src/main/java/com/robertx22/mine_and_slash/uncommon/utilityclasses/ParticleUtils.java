@@ -15,6 +15,12 @@ public class ParticleUtils {
         world.addParticle(type, vec.x, vec.y, vec.z, 0, 0, 0);
     }
 
+    public static void spawn(IParticleData particleData, World world, double x, double y, double z, double xSpeed,
+                             double ySpeed, double zSpeed) {
+        world.addParticle(particleData, x, y, z, xSpeed, ySpeed, zSpeed);
+
+    }
+
     public static void spawnHealParticles(LivingEntity en, int amount) {
 
         spawnParticles(ParticleTypes.HEART, en, amount);

@@ -76,7 +76,7 @@ public class WhirlpoolSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 0.2F, 2);
+        return SpellCalcData.one(dmgStat(), 0.25F, 2);
     }
 
     @Override

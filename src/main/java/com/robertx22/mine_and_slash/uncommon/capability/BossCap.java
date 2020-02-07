@@ -11,10 +11,10 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonMobCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -180,7 +180,7 @@ public class BossCap {
 
                 IParticleData p = getBoss().getParticle();
                 if (p != null) {
-                    particle(en, p);
+                    ClientOnly.bossParticle(en, p);
                 }
             }
         }
@@ -220,19 +220,6 @@ public class BossCap {
                     }
                 }
             }
-        }
-
-        private void particle(LivingEntity ent, IParticleData p) {
-            Minecraft.getInstance().worldRenderer.addParticle(p, true,
-                                                              ent.posX + (ent.world.rand.nextDouble() - 0.5D) * (double) ent
-                                                                      .getWidth(),
-                                                              ent.posY + ent.world.rand.nextDouble() * (double) ent.getHeight() - 0.25D,
-                                                              ent.posZ + (ent.world.rand.nextDouble() - 0.5D) * (double) ent
-                                                                      .getWidth(),
-                                                              (ent.world.rand.nextDouble() - 0.5D) * 2.0D,
-                                                              -ent.world.rand.nextDouble(),
-                                                              (ent.world.rand.nextDouble() - 0.5D) * 2.0D
-            );
         }
 
     }

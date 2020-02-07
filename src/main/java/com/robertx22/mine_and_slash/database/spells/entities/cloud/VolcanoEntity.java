@@ -7,10 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetCo
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -85,14 +82,15 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                                 posX, posY + +yRandom, posZ, radius());
 
                         for (int n = 0; n < 3; n++) {
-                            world.addParticle(ParticleTypes.LAVA, true, p.x, p.y, p.z, 0, 0.5f, 0);
+                            ParticleUtils.spawn(ParticleTypes.LAVA, world, p.x, p.y, p.z, 0, 0.5f, 0);
+
                         }
 
-                        world.addParticle(ParticleTypes.FALLING_LAVA, true, p.x, p.y, p.z, 0, 1, 0);
+                        ParticleUtils.spawn(ParticleTypes.FALLING_LAVA, world, p.x, p.y, p.z, 0, 1, 0);
 
                         RGB color = Elements.Fire.getRGBColor();
-                        world.addParticle(new RedstoneParticleData(color.getR(), color.getG(), color.getB(), 1F), true,
-                                          p.x, p.y, p.z, 0, 0, 0
+                        ParticleUtils.spawn(new RedstoneParticleData(color.getR(), color.getG(), color.getB(), 1F),
+                                            world, p.x, p.y, p.z, 0, 0, 0
                         );
 
                     }

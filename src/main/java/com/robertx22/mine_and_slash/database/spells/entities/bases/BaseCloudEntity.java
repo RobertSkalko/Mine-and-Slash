@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -64,7 +65,8 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
                             posX, posY + height + yRandom, posZ, radius());
 
                     for (int a = 1; a < 2; a++) {
-                        this.world.addParticle(ParticleTypes.CLOUD, p.x, p.y + 1, p.z, 0.0D, 0.0D, 0.0D);
+                        ParticleUtils.spawn(ParticleTypes.CLOUD, world, p.add(0, 1, 0));
+
                     }
 
                     summonFallParticle(p);

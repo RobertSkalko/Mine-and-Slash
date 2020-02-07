@@ -60,7 +60,7 @@ public class HeartOfIceSpell extends BaseSpellHeal {
         return 40;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.25F, 5);
+    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 1F, 10);
 
     @Override
     public SpellCalcData getCalculation() {

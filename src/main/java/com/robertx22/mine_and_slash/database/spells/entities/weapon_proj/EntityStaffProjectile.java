@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeapon
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -76,12 +77,7 @@ public class EntityStaffProjectile extends EntityBaseProjectile {
 
         if (world.isRemote) {
             for (int i = 0; i < 5; i++) {
-
-                this.world.addParticle(ParticleTypes.CRIT, true, this.posX + rand.nextFloat() * 0.2 - 0.1,
-                                       this.posY + this.getHeight() / 2 + rand.nextFloat() * 0.2 - 0.1,
-                                       this.posZ + rand.nextFloat() * 0.2 - 0.1, 0, 0, 0
-                );
-
+                ParticleUtils.spawn(ParticleTypes.CRIT, world, getPositionVec());
             }
         }
 

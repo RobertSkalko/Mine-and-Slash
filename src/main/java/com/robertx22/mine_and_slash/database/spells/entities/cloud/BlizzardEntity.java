@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -49,7 +50,8 @@ public class BlizzardEntity extends BaseCloudEntity {
 
     @Override
     public void summonFallParticle(Vec3d p) {
-        world.addParticle(ParticleTypes.ITEM_SNOWBALL, true, p.x, p.y, p.z, 0, 0, 0);
+        ParticleUtils.spawn(ParticleTypes.ITEM_SNOWBALL, world, p);
+
     }
 
     @Override

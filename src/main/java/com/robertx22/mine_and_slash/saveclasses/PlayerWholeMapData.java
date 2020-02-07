@@ -14,6 +14,8 @@ import org.jline.utils.Log;
 public class PlayerWholeMapData {
 
     @Store
+    public boolean isActive = false;
+    @Store
     public BlockPos mapDevicePos;
     @Store
     public MapItemData mapdata = new MapItemData();

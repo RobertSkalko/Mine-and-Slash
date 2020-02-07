@@ -20,6 +20,7 @@ public class ServerContainer {
     public IntValue MAXIMUM_WORN_UNIQUE_ITEMS;
     public IntValue MAPS_DROP_AFTER_LEVEL;
     public IntValue CURRENCY_DROP_AFTER_LEVEL;
+    public IntValue RUNES_AND_RUNED_GEAR_DROP_AFTER_LEVEL;
     public IntValue MAXIMUM_PLAYER_LEVEL;
     public IntValue MAXIMUM_ITEM_INSTABILITY;
 
@@ -119,6 +120,10 @@ public class ServerContainer {
         CURRENCY_DROP_AFTER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")
                 .defineInRange("CURRENCY_DROP_AFTER_LEVEL", 10, 0, Integer.MAX_VALUE);
+
+        RUNES_AND_RUNED_GEAR_DROP_AFTER_LEVEL = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("RUNES_AND_RUNED_GEAR_DROP_AFTER_LEVEL", 8, 0, Integer.MAX_VALUE);
 
         MAXIMUM_PLAYER_LEVEL = builder.comment(".")
                 .translation("mmorpg.word.")

@@ -37,7 +37,7 @@ public class FrostballExtraDmgSynergy extends Synergy<BeforeDamageContext> {
         return list;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.2F, 5);
+    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.75F, 5);
 
     @Override
 

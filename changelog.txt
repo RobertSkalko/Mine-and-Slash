@@ -1,3 +1,14 @@
+3.0.3
+* various spell buffs
+* fix lvl up msg
+
+3.0.2
+* fixed wands doing double dmg on right click
+* changed lvl up message
+* changed default spell hotbar swap key to R
+* runes and runed gear now dont drop bellow lvl 8. 
+* should fix trident server crash
+
 3.0.1
 * fixed spell hotbar not having correctly setup keybinds
 * fixed dimensionconfigs names

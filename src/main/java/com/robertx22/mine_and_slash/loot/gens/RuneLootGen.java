@@ -23,6 +23,11 @@ public class RuneLootGen extends BaseLootGen<RuneBlueprint> {
     }
 
     @Override
+    public boolean condition() {
+        return info.level >= ModConfig.INSTANCE.Server.RUNES_AND_RUNED_GEAR_DROP_AFTER_LEVEL.get();
+    }
+
+    @Override
     public ItemStack generateOne() {
 
         RuneBlueprint blueprint = new RuneBlueprint(info.level);

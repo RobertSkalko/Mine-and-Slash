@@ -54,7 +54,7 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
 
         PlayerMapCap.IPlayerMapData data = Load.playerMapData(mc.player);
 
-        if (data.hasTimeForMap()) {
+        if (data.isMapActive()) {
             List<ITextComponent> questTooltip = new ArrayList<>();
             questTooltip.addAll(data.getMap().getTooltip());
 

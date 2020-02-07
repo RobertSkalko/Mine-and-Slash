@@ -46,6 +46,8 @@ public class PlayerMapCap {
 
         float getLootMultiplier(PlayerEntity player);
 
+        boolean isMapActive();
+
         String getLastMapGUID();
 
         boolean hasTimeForMap();
@@ -193,6 +195,7 @@ public class PlayerMapCap {
             this.data.mapdata = map.clone();
             this.data.questFinished = false;
             this.data.setPlayerId(player);
+            this.data.isActive = true;
 
             MMORPG.syncMapData((ServerPlayerEntity) player);
         }
@@ -234,6 +237,11 @@ public class PlayerMapCap {
             }
 
             return 1;
+        }
+
+        @Override
+        public boolean isMapActive() {
+            return hasTimeForMap() && data != null && data.isActive;
         }
 
         @Override

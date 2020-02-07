@@ -25,7 +25,7 @@ public class KeybindsRegister {
      */
 
     public static KeyBinding hubScreen = new KeyBinding("Main Hub Screen", GLFW.GLFW_KEY_H, Ref.MOD_NAME);
-    public static KeyBinding swapHotbar = new KeyBinding("Swap Spell Hotbar", GLFW.GLFW_KEY_X, Ref.MOD_NAME);
+    public static KeyBinding swapHotbar = new KeyBinding("Swap Spell Hotbar", GLFW.GLFW_KEY_R, Ref.MOD_NAME);
 
     static String HOTBAR_NAME = Ref.MOD_NAME + " Hotbar";
 

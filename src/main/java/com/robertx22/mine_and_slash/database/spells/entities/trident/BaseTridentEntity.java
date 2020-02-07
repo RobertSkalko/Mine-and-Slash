@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -101,11 +102,12 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
             this.removed = true;
         }
 
-        if (this.ticksExisted > 2) {
-            for (int i = 0; i < 10; i++) {
-                Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(posX, posY, posZ, 0.1F);
-
-                world.addParticle(ParticleRegister.THUNDER, true, p.x, p.y, p.z, 0, 0, 0);
+        if (world.isRemote) {
+            if (this.ticksExisted > 2) {
+                for (int i = 0; i < 10; i++) {
+                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(posX, posY, posZ, 0.1F);
+                    ParticleUtils.spawn(ParticleRegister.THUNDER, world, p);
+                }
             }
         }
 

@@ -39,7 +39,7 @@ public class ThunderSpearLightningStrikeSynergy extends Synergy<BeforeDamageCont
         return list;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Thunder), 0.5F, 10);
+    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Thunder), 0.75F, 15);
 
     @Override
 

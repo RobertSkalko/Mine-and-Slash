@@ -46,7 +46,7 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
         return list;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.5F, 10);
+    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.5F, 15);
 
     static float RADIUS = 2;
 
