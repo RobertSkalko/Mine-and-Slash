@@ -8,6 +8,10 @@ import net.minecraft.util.SoundEvents;
 
 public abstract class BaseMat implements IArmorMaterial {
 
+    public int getDurability() {
+        return getDurability(null);
+    }
+
     @Override
     public SoundEvent getSoundEvent() {
         return SoundEvents.ITEM_ARMOR_EQUIP_IRON;

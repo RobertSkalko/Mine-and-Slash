@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
 
 public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, IGearItem {
 
@@ -42,7 +41,7 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
         this.rarity = rarity;
     }
 
-    public static IArmorMaterial GetMat(Type type, int rarity) {
+    public static BaseMat GetMat(Type type, int rarity) {
 
         if (type.equals(Type.PLATE)) {
             if (rarity == 0) {

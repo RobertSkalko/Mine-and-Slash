@@ -27,18 +27,19 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
 
     public BaseWeaponItem(int rar) {
 
-        super(new RarityItemTier(rar), ItemUtils.getDefaultGearProperties()
-                .defaultMaxDamage(1000));
+        super(
+                new RarityItemTier(rar), ItemUtils.getDefaultGearProperties()
+                        .defaultMaxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar).getDurability()));
         this.rarity = rar;
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack,
-                                             net.minecraft.enchantment.Enchantment enchantment) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment) {
         return enchantment.type.canEnchantItem(Items.DIAMOND_SWORD) && isNotInEnchantBlackList(enchantment);
     }
 
-    public static List<Enchantment> blacklist = Arrays.asList(Enchantments.SMITE, Enchantments.SHARPNESS, Enchantments.BANE_OF_ARTHROPODS, Enchantments.SWEEPING);
+    public static List<Enchantment> blacklist = Arrays.asList(
+            Enchantments.SMITE, Enchantments.SHARPNESS, Enchantments.BANE_OF_ARTHROPODS, Enchantments.SWEEPING);
 
     public static boolean isNotInEnchantBlackList(Enchantment ench) {
         return blacklist.contains(ench) == false;
@@ -62,8 +63,7 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
     }
 
     @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target,
-                             LivingEntity attacker) {
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         stack.damageItem(1, attacker, (entity) -> {
             entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
@@ -71,11 +71,15 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
     }
 
     @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(
-            EquipmentSlotType slot) {
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot) {
         Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot);
         if (slot == EquipmentSlotType.MAINHAND) {
-            map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 5 + (this.rarity + 1), AttributeModifier.Operation.ADDITION));
+            map.put(
+                    SharedMonsterAttributes.ATTACK_DAMAGE.getName(),
+                    new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 5 + (this.rarity + 1),
+                                          AttributeModifier.Operation.ADDITION
+                    )
+            );
         }
 
         return map;

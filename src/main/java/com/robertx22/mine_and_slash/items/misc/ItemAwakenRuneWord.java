@@ -19,6 +19,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -92,6 +93,11 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
                 info.minmax = new MinMax(0, 100);
 
                 tooltip.addAll(data.GetTooltipString(info));
+
+                tooltip.add(new SText(""));
+                tooltip.add(new SText(TextFormatting.GOLD + "The stats scale to average level and stats-"));
+                tooltip.add(new SText(TextFormatting.GOLD + "of the runes used to create the runeword."));
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

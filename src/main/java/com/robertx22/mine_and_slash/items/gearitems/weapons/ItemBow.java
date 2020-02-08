@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapons;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.items.gearitems.bases.BaseArmorItem;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.BowWeaponMechanic;
@@ -17,7 +18,9 @@ public class ItemBow extends BowItem implements IWeapon, IAutoLocName, IGearItem
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemBow(int rar) {
-        super(ItemUtils.getDefaultGearProperties().maxStackSize(1).defaultMaxDamage(1000));
+        super(ItemUtils.getDefaultGearProperties()
+                      .maxStackSize(1)
+                      .defaultMaxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar).getDurability()));
         this.rarity = rar;
     }
 

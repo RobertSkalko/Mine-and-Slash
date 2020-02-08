@@ -177,8 +177,6 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
         renderZoomables(x, y, ticks, list);
 
-        drawBorders();
-
         drawPointsLeftNumber();
 
         renderTooltips(list, x, y);
@@ -333,23 +331,32 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
     }
 
     protected void drawSpace() {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX() / 2;
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY() / 2;
-        Minecraft.getInstance().getTextureManager().bindTexture(getSpaceTexture());
-        blit(offsetX + 3, offsetY + 3, this.getBlitOffset(), 0.0F, 0.0F, sizeX() - 6, sizeY() - 6, 2048, 2048);
-    }
 
-    protected void drawBorders() {
-        /*
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX() / 2;
-        int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY() / 2;
-        Minecraft.getInstance().getTextureManager().bindTexture(getBorderTexture());
-        blit(offsetX, offsetY, this.getBlitOffset(), 0.0F, 0.0F, sizeX(), sizeY(), 256, 512);
+        int maxX = 5000;
+        int maxY = 5000;
 
-         */
+        float ticks = 0;
 
+        if (sizeX() > maxX || sizeY() > maxY) {
+            this.renderDirtBackground(0); // if screen is larger than my space picture
+        } else {
+            float x = sizeX();
+            float y = sizeY();
+
+            float scale = x / maxX;
+
+            float antiScale = 1F / scale;
+
+            RenderSystem.scaled(scale, scale, scale);
+
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX() / 2;
+            int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY() / 2;
+            Minecraft.getInstance().getTextureManager().bindTexture(getSpaceTexture());
+            blit(0, 0, 0, 0.0F, 0.0F, 5000, 5000, 5000, 5000);
+
+            RenderSystem.scaled(antiScale, antiScale, antiScale);
+        }
     }
 
     protected void drawPointsLeftNumber() {

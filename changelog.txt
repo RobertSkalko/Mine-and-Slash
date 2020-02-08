@@ -1,3 +1,6 @@
+3.0.4
+* fix spell/talent screens for super HD mega large monitors 
+* fix weapon durability not being affected by rarity, fixes swords having lower dura too
 3.0.3
 * various spell buffs
 * fix lvl up msg
