@@ -37,6 +37,7 @@ public class CommandRegister {
         GiveStat.register(dispatcher);
         RemoveStat.register(dispatcher);
         ClearStats.register(dispatcher);
+        GiveAllStats.register(dispatcher);
 
         ReloadConfigs.register(dispatcher);
         ModifyItem.register(dispatcher);

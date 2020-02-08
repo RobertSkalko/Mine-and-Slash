@@ -15,6 +15,7 @@ public class SetPart extends BlueprintPart<Set> {
 
         this.chance = ((GearRarity) blueprint.rarity.get()).SetChance();
         this.request = request;
+        this.canBeNull = true;
     }
 
     GearRequestedFor request;
@@ -38,6 +39,7 @@ public class SetPart extends BlueprintPart<Set> {
         if (RandomUtils.roll(chance)) {
             return SlashRegistry.Sets()
                     .getWrapped()
+                    .errorIfNothingLeft(false)
                     .of(x -> x.requirements().satisfiesAllRequirements(request))
                     .random();
         } else {

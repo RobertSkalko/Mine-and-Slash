@@ -40,9 +40,9 @@ public class QuestTaskData {
             }
         }
     }
-
-    public int getCurrentCompletition() {
-        return (int) this.currentCompletition;
+    
+    public float getCurrentCompletition() {
+        return this.currentCompletition;
     }
 
     public void increaseCompletition(float add) {

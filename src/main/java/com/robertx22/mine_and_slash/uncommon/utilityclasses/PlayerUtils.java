@@ -65,12 +65,16 @@ public class PlayerUtils {
 
     public static Entity changeDimension(ServerPlayerEntity player, DimensionType destination, BlockPos pos) {
 
+        System.out.println("Teleporting player to " + pos.toString() + " with mine and slash. ");
+
+        player.setMotion(0, 0, 0);
+
         player = (ServerPlayerEntity) player.changeDimension(destination, PORTALLESS);
 
         player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
-        //player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0.0F);
-        // player.moveToBlockPosAndAngles(pos, player.rotationYaw, player.rotationPitch);
+        player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0.0F);
+        player.moveToBlockPosAndAngles(pos, player.rotationYaw, player.rotationPitch);
         player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 
         if (WorldUtils.isMapWorldClass(player.world)) {

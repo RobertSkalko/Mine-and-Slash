@@ -9,6 +9,8 @@ public abstract class BlueprintPart<T> {
 
     ItemBlueprint blueprint;
 
+    public boolean canBeNull = false;
+
     public BlueprintPart(ItemBlueprint blueprint) {
         this.blueprint = blueprint;
     }
@@ -34,8 +36,10 @@ public abstract class BlueprintPart<T> {
             part = generateIfNull();
         }
 
-        if (part == null) {
-            MMORPG.devToolsErrorLog("Item is null even after being generated!");
+        if (!canBeNull) {
+            if (part == null) {
+                MMORPG.devToolsErrorLog("Item is null even after being generated!");
+            }
         }
 
         return part;

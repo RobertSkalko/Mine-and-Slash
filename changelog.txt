@@ -1,3 +1,9 @@
+3.0.7
+* attempting to fix teleport bugs
+* fix elemental affinity crash
+* added giveallstatstesting command
+* fix quest completition being ints and not floats
+
 3.0.6
 * should fix map quest error
 

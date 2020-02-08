@@ -26,6 +26,13 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
         this.list = new ArrayList<C>(list);
     }
 
+    private boolean errorIfNothingLeft = true;
+
+    public FilterListWrap<C> errorIfNothingLeft(boolean bool) {
+        this.errorIfNothingLeft = bool;
+        return this;
+    }
+
     public List<C> list = new ArrayList<C>();
 
     public FilterListWrap<C> ofTierOrLess(int tier) {
@@ -142,7 +149,16 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     public C random() {
 
         if (this.list.isEmpty()) {
-            MMORPG.devToolsLog("Items filtered too much, no possibility left, returning null!");
+            if (errorIfNothingLeft) {
+                try {
+                    throw new Exception("Items filtered too much, no possibility left, returning null!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                MMORPG.devToolsLog("Items filtered too much, no possibility left, returning null!");
+
+            }
             return null;
 
         }

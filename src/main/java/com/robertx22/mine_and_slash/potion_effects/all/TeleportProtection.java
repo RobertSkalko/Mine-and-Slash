@@ -27,6 +27,7 @@ public class TeleportProtection extends BasePotionEffect {
 
             if (entity.world.isRemote == false && entity instanceof ServerPlayerEntity) {
 
+                /*
                 if (entity.ticksExisted > 10) {
                     int tries = 0;
 
@@ -47,6 +48,8 @@ public class TeleportProtection extends BasePotionEffect {
                     }
 
                 }
+
+                 */
             }
             return ctx;
         }, null));

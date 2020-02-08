@@ -21,6 +21,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -58,7 +59,7 @@ public class PlayerMapCap {
 
         MapItemData getMap();
 
-        BlockPos getMapDevicePos();
+        BlockPos getMapDevicePos(World world);
 
         DimensionType getOriginalDimension();
 
@@ -190,7 +191,7 @@ public class PlayerMapCap {
             this.data = new PlayerWholeMapData();
 
             this.data.minutesPassed = 0;
-            this.data.mapDevicePos = new BlockPos(pos);
+            this.data.mapDevicePos = new BlockPos(pos).up();
             this.data.setOriginalDimension(player.world.getDimension().getType());
             this.data.mapdata = map.clone();
             this.data.questFinished = false;
@@ -269,8 +270,13 @@ public class PlayerMapCap {
         }
 
         @Override
-        public BlockPos getMapDevicePos() {
-            return data.mapDevicePos.south(3);
+        public BlockPos getMapDevicePos(World world) {
+
+            if (data.mapDevicePos.getY() < 3) {
+                data.mapDevicePos = WorldUtils.getSurface(world, data.mapDevicePos);
+            }
+
+            return data.mapDevicePos;
         }
 
         @Override
@@ -285,9 +291,9 @@ public class PlayerMapCap {
         @Override
         public void teleportPlayerBack(PlayerEntity player) {
 
-            if (WorldUtils.isMapWorld(player.world)) {
+            if (WorldUtils.isMapWorldClass(player.world)) {
 
-                BlockPos pos = getMapDevicePos();
+                BlockPos pos = getMapDevicePos(player.world);
 
                 if (pos == null) {
                     error("Map device pos is null");
@@ -317,7 +323,7 @@ public class PlayerMapCap {
                     }
                 }
 
-                pos = pos.north(2);
+                // pos = pos.north(2);
                 PlayerUtils.changeDimension((ServerPlayerEntity) player, data.getOriginalDimension(), pos);
 
             }
