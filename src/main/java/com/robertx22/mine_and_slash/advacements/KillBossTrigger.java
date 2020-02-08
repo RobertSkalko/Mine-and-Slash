@@ -41,6 +41,9 @@ public class KillBossTrigger extends AbstractCriterionTrigger<KillBossTrigger.In
         }
 
         public boolean conditionIsMet(BossCap.IBossData boss) {
+            if (boss == null || !boss.isBoss() || boss.getBoss() == null) {
+                return false;
+            }
             return this.boss.equals(boss.getBoss().GUID());
         }
 
