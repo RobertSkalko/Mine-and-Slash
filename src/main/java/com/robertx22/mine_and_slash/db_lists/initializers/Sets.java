@@ -30,8 +30,6 @@ import java.util.List;
 
 public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
 
-    public static final Sets INTANCE = new Sets();
-
     @Override
     public HashMap<String, Set> All() {
         return SlashRegistry.Sets().getAll();

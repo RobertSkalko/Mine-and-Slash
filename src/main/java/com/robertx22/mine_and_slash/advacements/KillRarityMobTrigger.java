@@ -11,8 +11,8 @@ import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class PlayerLevelTrigger extends AbstractCriterionTrigger<PlayerLevelTrigger.Instance> {
-    private static final ResourceLocation ID = new ResourceLocation(Ref.MODID, "player_level");
+public class KillRarityMobTrigger extends AbstractCriterionTrigger<KillRarityMobTrigger.Instance> {
+    private static final ResourceLocation ID = new ResourceLocation(Ref.MODID, "kill_mob_rarity");
 
     @Override
     public ResourceLocation getId() {
@@ -20,34 +20,34 @@ public class PlayerLevelTrigger extends AbstractCriterionTrigger<PlayerLevelTrig
     }
 
     @Override
-    public PlayerLevelTrigger.Instance deserializeInstance(JsonObject json, JsonDeserializationContext context) {
-        int level = json.get("level").getAsInt();
-        return new PlayerLevelTrigger.Instance(level);
+    public Instance deserializeInstance(JsonObject json, JsonDeserializationContext context) {
+        int rarity = json.get("rarity").getAsInt();
+        return new Instance(rarity);
     }
 
-    public void trigger(ServerPlayerEntity player, EntityCap.UnitData data) {
+    public void trigger(ServerPlayerEntity player, EntityCap.UnitData mob) {
         this.func_227070_a_(player.getAdvancements(), (instance) -> {
-            return instance.conditionIsMet(data);
+            return instance.conditionIsMet(mob);
         });
     }
 
     public static class Instance extends CriterionInstance {
 
-        public int level;
+        public int rarity;
 
-        public Instance(int level) {
-            super(PlayerLevelTrigger.ID);
-            this.level = level;
+        public Instance(int rarity) {
+            super(ID);
+            this.rarity = rarity;
         }
 
-        public boolean conditionIsMet(EntityCap.UnitData player) {
-            return player.getLevel() >= level;
+        public boolean conditionIsMet(EntityCap.UnitData mobData) {
+            return mobData.getRarity() == rarity;
         }
 
         @Override
         public JsonElement serialize() {
             JsonObject jsonobject = new JsonObject();
-            jsonobject.add("level", new JsonPrimitive(level));
+            jsonobject.add("rarity", new JsonPrimitive(rarity));
             return jsonobject;
         }
     }

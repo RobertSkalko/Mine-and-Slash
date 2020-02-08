@@ -698,7 +698,7 @@ public class EntityCap {
 
                 BossCap.IBossData boss = Load.boss(entity);
 
-                ITextComponent name = boss.isBoss() ? boss.getBoss().getName(entity) : entity.getDisplayName();
+                ITextComponent name = boss.isBoss() ? boss.getBoss().getNameFor(entity) : entity.getDisplayName();
 
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
                         .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));

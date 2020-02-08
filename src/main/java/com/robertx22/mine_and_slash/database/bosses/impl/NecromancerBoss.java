@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.bosses.impl;
 
 import com.robertx22.mine_and_slash.database.bosses.base.BaseSummonerBoss;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 public class NecromancerBoss extends BaseSummonerBoss {
 
@@ -23,13 +23,13 @@ public class NecromancerBoss extends BaseSummonerBoss {
     }
 
     @Override
-    public ITextComponent getName(LivingEntity en) {
-        return new StringTextComponent("Necromancer ").appendSibling(en.getDisplayName());
+    public IParticleData getParticle() {
+        return ParticleTypes.WITCH;
     }
 
     @Override
-    public IParticleData getParticle() {
-        return ParticleTypes.WITCH;
+    public ITextComponent getName() {
+        return new SText("Necromancer");
     }
 
     @Override

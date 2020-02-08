@@ -89,9 +89,7 @@ public class GearCreationUtils {
                 data.uniqueStats.RerollFully(data);
 
                 if (unique.canGetSet()) {
-                    data.set = new SetData();
-                    data.set = data.set.generate(data);
-
+                    data.set = blueprint.getSet(data).getSetData();
                 }
 
             } else {
@@ -136,10 +134,7 @@ public class GearCreationUtils {
             }
         }
         if (type.canGetSet()) {
-            if (blueprint.canGetSet(data)) {
-                data.set = new SetData();
-                data.set = data.set.generate(data);
-            }
+            data.set = blueprint.getSet(data).getSetData();
         }
 
         if (type == GearItemEnum.RUNED) {

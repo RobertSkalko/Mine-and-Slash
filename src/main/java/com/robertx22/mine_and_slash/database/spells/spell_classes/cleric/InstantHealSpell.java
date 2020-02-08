@@ -100,6 +100,10 @@ public class InstantHealSpell extends BaseSpellHeal {
                     Synergies.INSTANT_HEAL_REMOVE_DEBUFF.tryActivate(new BeforeHealContext(caster, caster, heal));
                 }
 
+                if (Synergies.INSTANT_HEAL_MAGIC_SHIELD.has(caster)) {
+                    Synergies.INSTANT_HEAL_MAGIC_SHIELD.tryActivate(new BeforeHealContext(caster, caster, heal));
+                }
+
                 heal.Activate();
 
                 SoundUtils.playSound(caster, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);

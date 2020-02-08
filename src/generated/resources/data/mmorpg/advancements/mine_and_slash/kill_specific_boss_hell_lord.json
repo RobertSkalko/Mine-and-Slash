@@ -1,0 +1,39 @@
+{
+  "parent": "mmorpg:mine_and_slash/kill_mob_rarity_-2",
+  "display": {
+    "icon": {
+      "item": "minecraft:dragon_head"
+    },
+    "title": {
+      "extra": [
+        {
+          "text": " "
+        },
+        {
+          "text": "Hell Lord"
+        }
+      ],
+      "translate": "mmorpg.word.killboss"
+    },
+    "description": {
+      "translate": "mmorpg.advancement.desc.killspecificboss"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_specific_boss_hell_lord": {
+      "trigger": "mmorpg:kill_boss",
+      "conditions": {
+        "boss": "hell_lord"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_specific_boss_hell_lord"
+    ]
+  ]
+}

@@ -3,9 +3,8 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.containers.GearRarities;
 import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
-import com.robertx22.mine_and_slash.database.sets.Set;
-import com.robertx22.mine_and_slash.db_lists.initializers.Sets;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.SetPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
@@ -22,8 +21,14 @@ public class GearBlueprint extends ItemBlueprint {
     }
 
     public GearItemSlotPart gearItemSlot = new GearItemSlotPart(this);
-
+    private SetPart set;
     public float chaosStatChance = 1;
+
+    public SetPart getSet(GearItemData gear) {
+        this.set = new SetPart(this, new GearRequestedFor(gear));
+        return set;
+
+    }
 
     @Override
     public BaseRaritiesContainer<? extends Rarity> getRarityContainer() {
@@ -43,37 +48,6 @@ public class GearBlueprint extends ItemBlueprint {
     @Override
     ItemStack generate() {
         return GearCreationUtils.CreateStack(createData());
-    }
-
-    public boolean isCustomSetChance = false;
-    public float customSetChance = 0;
-
-    public void SetCustomSetChance(float chance) {
-        isCustomSetChance = true;
-        customSetChance = chance;
-    }
-
-    public boolean canGetSet(GearItemData data) {
-
-        Set set = Sets.INTANCE.random(new GearRequestedFor(data));
-
-        if (set == null) {
-            return false;
-        } else {
-            if (this.isCustomSetChance) {
-
-                if (RandomUtils.roll(this.customSetChance)) {
-                    return true;
-                }
-
-            } else {
-                if (RandomUtils.roll(data.getRarity().SetChance())) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
     }
 
 }

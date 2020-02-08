@@ -31,6 +31,7 @@ public class SpellPerkEffects {
         synergy(Synergies.HEART_OF_ICE_FROST);
         synergy(Synergies.WHIRLPOOL_SHIVER);
         synergy(Synergies.GEYSER_ATTACK);
+        synergy(Synergies.HEART_OF_ICE_MAGIC_SHIELD);
 
         synergy(Synergies.THORN_ARMOR_THORNS);
         synergy(Synergies.THORN_BUSH_MAJOR_TORNS);
@@ -43,6 +44,7 @@ public class SpellPerkEffects {
 
         synergy(Synergies.RIGHTEOUS_FURY_AOE);
         synergy(Synergies.INSTANT_HEAL_REMOVE_DEBUFF);
+        synergy(Synergies.INSTANT_HEAL_MAGIC_SHIELD);
 
         synergy(Synergies.FIREBALL_BURN_CONSUME);
         synergy(Synergies.VOLCANO_BURN);

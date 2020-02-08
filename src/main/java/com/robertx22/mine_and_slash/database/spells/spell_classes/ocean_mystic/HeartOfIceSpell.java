@@ -104,7 +104,10 @@ public class HeartOfIceSpell extends BaseSpellHeal {
 
                 if (Synergies.HEART_OF_ICE_FROST.has(caster)) {
                     Synergies.HEART_OF_ICE_FROST.tryActivate(new BeforeHealContext(caster, caster, heal));
+                }
 
+                if (Synergies.HEART_OF_ICE_MAGIC_SHIELD.has(caster)) {
+                    Synergies.HEART_OF_ICE_MAGIC_SHIELD.tryActivate(new BeforeHealContext(caster, caster, heal));
                 }
 
                 heal.Activate();

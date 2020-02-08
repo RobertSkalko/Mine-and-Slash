@@ -29,7 +29,7 @@ public class HealthRegen extends BaseRegenClass {
     }
 
     private HealthRegen() {
-        this.minimumValue = 1;
+        this.minimumValue = 0.1F;
     }
 
     @Override

@@ -26,12 +26,12 @@ public class EpicMap extends BaseEpic implements MapRarity {
 
     @Override
     public float groupPlayChance() {
-        return 25;
+        return 30;
     }
 
     @Override
     public float specialItemChance() {
-        return 15.5F;
+        return 30;
     }
 
     @Override

@@ -4,13 +4,13 @@ import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.cleric.RighteousFuryEffect;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 public class BerserkerBoss extends Boss {
 
@@ -22,13 +22,13 @@ public class BerserkerBoss extends Boss {
     }
 
     @Override
-    public ITextComponent getName(LivingEntity en) {
-        return new StringTextComponent("Berserker ").appendSibling(en.getDisplayName());
+    public IParticleData getParticle() {
+        return ParticleTypes.WITCH;
     }
 
     @Override
-    public IParticleData getParticle() {
-        return ParticleTypes.WITCH;
+    public ITextComponent getName() {
+        return new SText("Berserker");
     }
 
     @Override

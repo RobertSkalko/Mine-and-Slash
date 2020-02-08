@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.item_modifications.gear_items;
 
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseGearMod;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.ItemModType;
+import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.SetData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -34,7 +36,11 @@ public class AddSetMod extends BaseGearMod {
     @Override
     public void modifyGear(GearItemData gear) {
         gear.set = new SetData();
-        gear.set = gear.set.generate(gear);
+        gear.set = gear.set.generate(SlashRegistry.Sets()
+                                             .getWrapped()
+                                             .of(x -> x.requirements()
+                                                     .satisfiesAllRequirements(new GearRequestedFor(gear)))
+                                             .random());
 
     }
 }

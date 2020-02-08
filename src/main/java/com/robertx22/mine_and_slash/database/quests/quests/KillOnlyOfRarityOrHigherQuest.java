@@ -19,9 +19,9 @@ import java.util.List;
 
 public class KillOnlyOfRarityOrHigherQuest extends Quest {
 
-    public static KillOnlyOfRarityOrHigherQuest EPIC = new KillOnlyOfRarityOrHigherQuest(EpicMob.getInstance(), 20, 30);
+    public static KillOnlyOfRarityOrHigherQuest EPIC = new KillOnlyOfRarityOrHigherQuest(EpicMob.getInstance(), 15, 30);
     public static KillOnlyOfRarityOrHigherQuest LEGENDARY = new KillOnlyOfRarityOrHigherQuest(
-            LegendaryMob.getInstance(), 10, 20);
+            LegendaryMob.getInstance(), 5, 15);
     public static KillOnlyOfRarityOrHigherQuest MYTHIC = new KillOnlyOfRarityOrHigherQuest(
             MythicalMob.getInstance(), 2, 3);
 

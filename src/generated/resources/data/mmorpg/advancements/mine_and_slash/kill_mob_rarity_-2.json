@@ -1,0 +1,39 @@
+{
+  "parent": "mmorpg:mine_and_slash/kill_mob_rarity_5",
+  "display": {
+    "icon": {
+      "item": "minecraft:dragon_head"
+    },
+    "title": {
+      "extra": [
+        {
+          "text": ": "
+        },
+        {
+          "translate": "mmorpg.rarity.boss"
+        }
+      ],
+      "translate": "mmorpg.word.kill"
+    },
+    "description": {
+      "translate": "mmorpg.advancement.desc.bossspawnat"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_mob_rarity_-2": {
+      "trigger": "mmorpg:kill_mob_rarity",
+      "conditions": {
+        "rarity": -2
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_mob_rarity_-2"
+    ]
+  ]
+}

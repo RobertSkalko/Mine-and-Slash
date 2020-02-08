@@ -147,7 +147,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     public int maximumValue = Integer.MAX_VALUE;
 
-    public int minimumValue = Integer.MIN_VALUE;
+    public float minimumValue = Float.MIN_VALUE;
 
     public abstract boolean IsPercent();
 

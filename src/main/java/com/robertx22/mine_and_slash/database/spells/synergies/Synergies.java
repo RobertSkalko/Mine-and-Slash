@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.synergies;
 
+import com.robertx22.mine_and_slash.database.spells.synergies.cleric.InstantHealMagicShieldSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.cleric.InstantHealRemoveDebuffSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.cleric.RighteousFuryAoeSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.druid.RegenerateAoeSynergy;
@@ -24,6 +25,7 @@ public class Synergies {
     public static BlizzardFrostSynergy BLIZZARD_FROST = new BlizzardFrostSynergy();
     public static WhirlpoolShiverSynergy WHIRLPOOL_SHIVER = new WhirlpoolShiverSynergy();
     public static GeyserAttackSynergy GEYSER_ATTACK = new GeyserAttackSynergy();
+    public static HeartOfIceMagicShieldSynergy HEART_OF_ICE_MAGIC_SHIELD = new HeartOfIceMagicShieldSynergy();
 
     public static ThunderSpearLightningStrikeSynergy THUNDER_SPEAR_LIGHTNING = new ThunderSpearLightningStrikeSynergy();
     public static LightningTotemStaticSynergy LIGHTNING_TOTEM_STATIC = new LightningTotemStaticSynergy();
@@ -36,6 +38,7 @@ public class Synergies {
 
     public static RighteousFuryAoeSynergy RIGHTEOUS_FURY_AOE = new RighteousFuryAoeSynergy();
     public static InstantHealRemoveDebuffSynergy INSTANT_HEAL_REMOVE_DEBUFF = new InstantHealRemoveDebuffSynergy();
+    public static InstantHealMagicShieldSynergy INSTANT_HEAL_MAGIC_SHIELD = new InstantHealMagicShieldSynergy();
 
     public static MagmaFlowerEnhancedSynergy MAGMA_FLOWER_ENHANCED = new MagmaFlowerEnhancedSynergy();
     public static FireballBurnConsumeSynergy FIREBALL_BURN_CONSUME = new FireballBurnConsumeSynergy();

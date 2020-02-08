@@ -27,9 +27,13 @@ public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats
         tickActions.forEach(x -> x.onTick(en));
     }
 
-    public abstract ITextComponent getName(LivingEntity en);
-
     public abstract IParticleData getParticle();
+
+    public abstract ITextComponent getName();
+
+    public final ITextComponent getNameFor(LivingEntity en) {
+        return getName().appendText(" ").appendSibling(en.getDisplayName());
+    }
 
     public void onSpawn(LivingEntity en) {
 

@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.QuestLogSaving;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -96,6 +97,13 @@ public class QuestsCap {
             all.forEach(x -> x.tasks.forEach(y -> y.getQuest().onAction(y, actionData)));
 
             all.forEach(x -> x.setupResult(player));
+
+            if (WorldUtils.isMapWorldClass(player.world)) {
+                // make all people inside a map complete quest together
+                List<? extends PlayerEntity> players = player.world.getPlayers();
+                players.removeIf(x -> x == player);
+                players.forEach(x -> x.getCapability(QuestsCap.Data).ifPresent(q -> q.onAction(x, actionData)));
+            }
 
         }
 

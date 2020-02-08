@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class FilterListWrap<C extends ISlashRegistryEntry> {
@@ -29,6 +30,11 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
     public FilterListWrap<C> ofTierOrLess(int tier) {
         this.list = list.stream().filter(x -> ((ITiered) x).Tier() <= tier).collect(Collectors.toList());
+        return this;
+    }
+
+    public FilterListWrap<C> of(Predicate<C> pred) {
+        this.list = list.stream().filter(pred).collect(Collectors.toList());
         return this;
     }
 

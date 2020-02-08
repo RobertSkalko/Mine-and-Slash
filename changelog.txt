@@ -1,3 +1,10 @@
+3.0.5
+* map quests are now shared completition correctly
+* removed torch active effect
+* added 2 new synergies
+* added achievements for mob rarity kills and boss kills
+* updated chinese translations by mcfensi
+
 3.0.4
 * fix spell/talent screens for super HD mega large monitors 
 * fix weapon durability not being affected by rarity, fixes swords having lower dura too

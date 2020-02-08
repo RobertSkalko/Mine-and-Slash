@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
 public enum Words implements IAutoLocName {
+    KillBoss("Kill Boss: "),
+    Kill("Kill"),
     Magic_Missile("Magic Missiles"),
     Arcanist("Arcanist"),
     OpenAnyLootCrates("Open Any Loot Crates"),

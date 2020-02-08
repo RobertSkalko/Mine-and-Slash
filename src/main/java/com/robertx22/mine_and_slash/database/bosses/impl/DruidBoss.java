@@ -34,13 +34,13 @@ public class DruidBoss extends Boss {
     }
 
     @Override
-    public ITextComponent getName(LivingEntity en) {
-        return Words.Druid.locName().appendText(" ").appendSibling(en.getDisplayName());
+    public IParticleData getParticle() {
+        return ParticleTypes.WITCH;
     }
 
     @Override
-    public IParticleData getParticle() {
-        return ParticleTypes.WITCH;
+    public ITextComponent getName() {
+        return Words.Druid.locName();
     }
 
     @Override
