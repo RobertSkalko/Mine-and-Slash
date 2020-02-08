@@ -1,3 +1,6 @@
+3.0.6
+* should fix map quest error
+
 3.0.5
 * map quests are now shared completition correctly
 * removed torch active effect

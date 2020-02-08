@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
@@ -41,6 +42,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nonnull;
 import java.util.*;
+import java.util.stream.Collectors;
 
 // this stores data that can be lost without issue, stats that are recalculated all the time
 // and mob status effects.
@@ -443,25 +445,28 @@ public class Unit {
     // gear check works on everything but the weapon.
     public boolean isGearCombinationValid(List<GearItemData> gears, Entity en) {
 
-        int unique_items = countUniqueItems(gears);
+        List<GearItemData> nonWeapons = gears.stream()
+                .filter(x -> x.GetBaseGearType().slotType() != GearItemSlot.GearSlotType.Weapon)
+                .collect(Collectors.toList());
+
+        int unique_items = (int) nonWeapons.stream().filter(x -> x.isUnique()).count();
 
         if (unique_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS.get()) {
             if (en instanceof ServerPlayerEntity) {
                 en.sendMessage(new StringTextComponent(
                         "Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible " +
-                                "Unique" + " items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
+                                "Unique" + " items (excluding weapon) : " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
                                 .get()));
             }
             return false;
         }
-
-        int runed_items = countRunedItems(gears);
+        int runed_items = (int) nonWeapons.stream().filter(x -> x.isRuned()).count();
 
         if (runed_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS.get()) {
             if (en instanceof ServerPlayerEntity) {
                 en.sendMessage(new StringTextComponent(
                         "Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique "
-                                + "items (excluding weapon): " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
+                                + "items (excluding weapon) : " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
                                 .get()));
             }
             return false;
@@ -493,7 +498,7 @@ public class Unit {
         int amount = 0;
 
         for (GearItemData gear : gears) {
-            if (gear.isUnique) {
+            if (gear.isUnique()) {
                 amount++;
             }
         }

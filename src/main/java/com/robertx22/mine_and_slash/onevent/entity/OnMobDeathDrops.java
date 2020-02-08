@@ -11,10 +11,10 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.QuestsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.QuestUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -49,10 +49,7 @@ public class OnMobDeathDrops {
                         ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
                         UnitData playerData = Load.Unit(player);
 
-                        player.getCapability(QuestsCap.Data)
-                                .ifPresent(x -> x.onAction(player, new KilledMobData(mobKilled, mobKilledData, player,
-                                                                                     playerData
-                                )));
+                        QuestUtils.onAction(player, new KilledMobData(mobKilled, mobKilledData, player, playerData));
 
                         BossCap.IBossData boss = Load.boss(mobKilled);
 

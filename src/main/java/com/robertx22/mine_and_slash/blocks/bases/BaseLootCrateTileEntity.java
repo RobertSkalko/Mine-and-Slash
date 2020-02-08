@@ -5,10 +5,10 @@ import com.robertx22.mine_and_slash.database.quests.actions.OpenedCrateData;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.saveclasses.PlayerOncePerMapData;
-import com.robertx22.mine_and_slash.uncommon.capability.QuestsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.datasaving.PlayerOncePerMap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.QuestUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.item.FireworkRocketEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -106,8 +106,7 @@ public abstract class BaseLootCrateTileEntity extends TileEntity implements ITic
         this.isDroppingLoot = true;
         this.timesToDrop = this.getTimesToDrop();
 
-        player.getCapability(QuestsCap.Data)
-                .ifPresent(x -> x.onAction(player, new OpenedCrateData(player, Load.Unit(player), this)));
+        QuestUtils.onAction(player, new OpenedCrateData(player, Load.Unit(player), this));
 
     }
 
