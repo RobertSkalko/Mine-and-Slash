@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
@@ -35,7 +36,7 @@ public class QuestsCap {
 
         void onAction(PlayerEntity player, ActionDoneData actionData);
 
-        void setMapQuest(Quest quest);
+        void setMapQuest(Quest quest, MapItemData map);
 
         QuestLogData getData();
 
@@ -100,9 +101,9 @@ public class QuestsCap {
         }
 
         @Override
-        public void setMapQuest(Quest quest) {
+        public void setMapQuest(Quest quest, MapItemData map) {
             this.data.mapCompletitionQuest = new QuestSaveData();
-            this.data.mapCompletitionQuest.tasks.add(quest.getTaskData());
+            this.data.mapCompletitionQuest.tasks.add(quest.getTaskData(map.questPerc));
             this.data.mapCompletitionQuest.reward.rewardGUID = MapQuestReward.INSTANCE.GUID();
         }
 

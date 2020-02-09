@@ -69,7 +69,9 @@ public class MapBlueprint extends ItemBlueprint {
 
         data.questGUID = quest.GUID();
 
-        data.minutes = quest.minutes();
+        data.questPerc = RandomUtils.RandomRange(35, 100);
+
+        data.minutes = quest.getMinutes(data.questPerc);
 
         data.tier = tier.get();
 

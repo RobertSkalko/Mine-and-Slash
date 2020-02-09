@@ -77,9 +77,10 @@ public class GearCreationUtils {
 
             IUnique unique = uniqprint.unique.get();
 
-            blueprint.gearItemSlot.set(unique.getGearSlot());
-
             if (unique != null) {
+
+                blueprint.gearItemSlot.set(unique.getGearSlot());
+
                 data.gearTypeName = unique.getGearSlot().GUID();
 
                 data.isUnique = true;

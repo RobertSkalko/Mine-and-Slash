@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
@@ -26,11 +27,11 @@ public abstract class Quest implements ISlashRegistryEntry {
 
     public abstract ITextComponent name();
 
-    public QuestTaskData getTaskData() {
+    public QuestTaskData getTaskData(int percent) {
 
         QuestTaskData data = new QuestTaskData();
 
-        data.amountRequired = (int) this.amountRequired();
+        data.amountRequired = (int) this.getAmountRequired(percent);
         data.questGUID = this.GUID();
 
         return data;
@@ -47,6 +48,10 @@ public abstract class Quest implements ISlashRegistryEntry {
         }
         return WorldUtils.isMapWorldClass(mob.world);
 
+    }
+
+    public final float getAmountRequired(int percent) {
+        return MathHelper.clamp(amountRequired() * percent / 100, 1, amountRequired() + 1);
     }
 
     public abstract float amountRequired();
@@ -76,6 +81,10 @@ public abstract class Quest implements ISlashRegistryEntry {
     @Override
     public int Tier() {
         return 0;
+    }
+
+    public final int getMinutes(int questPercent) {
+        return MathHelper.clamp(5 + minutes() * questPercent / 100, 1, minutes());
     }
 
     public abstract int minutes();

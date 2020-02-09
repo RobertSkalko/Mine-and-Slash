@@ -1,3 +1,8 @@
+3.0.8
+* fix group members having different quest requirement numbers
+* map worlds now have no level restriction for legendary and mythic mobs
+* altered quest time to scale with requirements
+
 3.0.7
 * attempting to fix teleport bugs
 * fix elemental affinity crash

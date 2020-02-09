@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -19,15 +18,14 @@ import java.util.List;
 
 public class KillOnlyOfRarityOrHigherQuest extends Quest {
 
-    public static KillOnlyOfRarityOrHigherQuest EPIC = new KillOnlyOfRarityOrHigherQuest(EpicMob.getInstance(), 15, 30);
+    public static KillOnlyOfRarityOrHigherQuest EPIC = new KillOnlyOfRarityOrHigherQuest(EpicMob.getInstance(), 28);
     public static KillOnlyOfRarityOrHigherQuest LEGENDARY = new KillOnlyOfRarityOrHigherQuest(
-            LegendaryMob.getInstance(), 5, 15);
+            LegendaryMob.getInstance(), 14);
     public static KillOnlyOfRarityOrHigherQuest MYTHIC = new KillOnlyOfRarityOrHigherQuest(
-            MythicalMob.getInstance(), 2, 3);
+            MythicalMob.getInstance(), 3);
 
-    private KillOnlyOfRarityOrHigherQuest(MobRarity rar, int min, int max) {
+    private KillOnlyOfRarityOrHigherQuest(MobRarity rar, int max) {
         this.rarity = rar;
-        this.min = min;
         this.max = max;
     }
 
@@ -37,7 +35,6 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
     }
 
     MobRarity rarity;
-    int min;
     int max;
 
     @Override
@@ -64,7 +61,7 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
 
     @Override
     public float amountRequired() {
-        return RandomUtils.RandomRange(min, max);
+        return max;
     }
 
     @Override
@@ -81,7 +78,7 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
 
     @Override
     public int minutes() {
-        return 45;
+        return 60;
     }
 
     @Override

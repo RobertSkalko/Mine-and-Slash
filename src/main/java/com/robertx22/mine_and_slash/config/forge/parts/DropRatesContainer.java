@@ -11,7 +11,6 @@ public class DropRatesContainer {
     public DoubleValue MAP_DROPRATE;
     public DoubleValue GEAR_DROPRATE;
     public DoubleValue UNIQUE_DROPRATE;
-    public DoubleValue SPELL_DROPRATE;
     public DoubleValue CURRENCY_DROPRATE;
     public DoubleValue AWAKEN_RUNEWORD_DROPRATE;
     public DoubleValue COMPATIBLE_ITEMS_DROPRATE;
@@ -26,7 +25,7 @@ public class DropRatesContainer {
 
         RUNED_GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.runed_gear_droprate")
-                .defineInRange("RUNED_GEAR_DROPRATE", 1.7D, 0, Integer.MAX_VALUE);
+                .defineInRange("RUNED_GEAR_DROPRATE", 1.6D, 0, Integer.MAX_VALUE);
 
         LOOTBOX_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.lootbox_droprate")
@@ -42,15 +41,11 @@ public class DropRatesContainer {
 
         GEAR_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.gear_droprate")
-                .defineInRange("GEAR_DROPRATE", 8F, 0, Integer.MAX_VALUE);
+                .defineInRange("GEAR_DROPRATE", 8.2F, 0, Integer.MAX_VALUE);
 
         UNIQUE_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.unique_droprate")
                 .defineInRange("UNIQUE_DROPRATE", 0.2F, 0, Integer.MAX_VALUE);
-
-        SPELL_DROPRATE = builder.comment(".")
-                .translation("mmorpg.config.spell_droprate")
-                .defineInRange("SPELL_DROPRATE", 4F, 0, Integer.MAX_VALUE);
 
         CURRENCY_DROPRATE = builder.comment(".")
                 .translation("mmorpg.config.currency_droprate")

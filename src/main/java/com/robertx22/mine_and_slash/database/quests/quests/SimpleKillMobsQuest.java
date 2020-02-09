@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.quests.quests;
 import com.robertx22.mine_and_slash.database.quests.base.BaseSimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
@@ -27,12 +26,12 @@ public class SimpleKillMobsQuest extends BaseSimpleKillMobsQuest {
 
     @Override
     public float amountRequired() {
-        return RandomUtils.RandomRange(40, 80);
+        return 80;
     }
 
     @Override
     public int minutes() {
-        return 25;
+        return 40;
     }
 
     @Override

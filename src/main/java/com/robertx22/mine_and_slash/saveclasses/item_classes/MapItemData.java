@@ -80,6 +80,9 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public String questGUID = SimpleKillMobsQuest.INSTANCE.GUID();
 
     @Store
+    public int questPerc = 50;
+
+    @Store
     public String rewardCrateGUID = CommonerCrate.INSTANCE.GUID();
 
     @Store
@@ -218,7 +221,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         player.sendMessage(Styles.GREENCOMP().appendSibling(Chats.MapStarted.locName()));
 
-        Load.quests(player).setMapQuest(SlashRegistry.Quests().get(questGUID));
+        Load.quests(player).setMapQuest(SlashRegistry.Quests().get(questGUID), this);
 
         return MapManager.setupPlayerMapDimension(player, unit, this, pos);
 

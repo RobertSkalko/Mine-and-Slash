@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.quests.quests;
 import com.robertx22.mine_and_slash.database.quests.base.BaseCollectMobRarityKillQuest;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
@@ -27,12 +26,12 @@ public class CollectRarityPointsKillQuest extends BaseCollectMobRarityKillQuest 
 
     @Override
     public float amountRequired() {
-        return RandomUtils.RandomRange(50, 100);
+        return 100;
     }
 
     @Override
     public int minutes() {
-        return 30;
+        return 35;
     }
 
     @Override
