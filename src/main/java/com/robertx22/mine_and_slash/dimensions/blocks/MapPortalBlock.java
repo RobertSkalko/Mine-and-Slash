@@ -77,10 +77,9 @@ public class MapPortalBlock extends EndPortalBlock {
 
                                     MMORPG.devToolsLog("tp to map succeeded");
 
-                                } else {
-                                    entity.sendMessage(Chats.Not_enough_time.locName());
                                 }
-
+                            } else {
+                                entity.sendMessage(Chats.Not_enough_time.locName());
                             }
 
                         }

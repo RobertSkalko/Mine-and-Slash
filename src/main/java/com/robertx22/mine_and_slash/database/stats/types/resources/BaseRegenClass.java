@@ -15,11 +15,6 @@ public abstract class BaseRegenClass extends Stat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return false;
-    }
-
-    @Override
     public Elements getElement() {
         return null;
     }

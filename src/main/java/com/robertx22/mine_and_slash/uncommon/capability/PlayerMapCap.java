@@ -147,7 +147,7 @@ public class PlayerMapCap {
                                            .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
 
             } else {
-                int punishment = 5;
+                int punishment = (int) (5 + this.getMap().tier * 0.5F);
 
                 player.sendMessage(Chats.Player_died_in_a_map_world.locName()
                                            .appendText(" " + player.getDisplayName().getFormattedText() + " ")

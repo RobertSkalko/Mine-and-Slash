@@ -47,15 +47,11 @@ public class EntityTypeUtils {
     }
 
     public static boolean isMob(Entity en) {
-
         return en instanceof IMob;
-
     }
 
     public static boolean isAnimal(Entity en) {
-
         return en instanceof AnimalEntity;
-
     }
 
     /**

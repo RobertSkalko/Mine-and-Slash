@@ -43,11 +43,6 @@ public class Mana extends FillableStat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public Elements getElement() {
         return null;
     }

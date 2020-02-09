@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.SpellToBasicDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.SingleElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -53,8 +54,8 @@ public class ElementalSpellToAttackDMG extends SingleElementalStat implements IS
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return false;
+    public StatScaling getScaling() {
+        return StatScaling.NONE;
     }
 
     @Override

@@ -46,10 +46,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         }
     }
 
-    public boolean hasSameLevelScaling(Stat other) {
-        return (other.ScalesToLevel() && ScalesToLevel()) || (other.ScalesToLevel() && !ScalesToLevel());
-    }
-
     public String getIcon() {
         if (this.getElement() != null) {
             return this.getElement().icon;
@@ -147,11 +143,9 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     public int maximumValue = Integer.MAX_VALUE;
 
-    public float minimumValue = Float.MIN_VALUE;
+    public float minimumValue = -1000;
 
     public abstract boolean IsPercent();
-
-    public abstract boolean ScalesToLevel();
 
     public abstract Elements getElement();
 
@@ -203,9 +197,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         float finalValue = BaseFlat;
 
-        if (ScalesToLevel()) {
-            finalValue *= Source.getLevel();
-        }
+        finalValue = this.getScaling().scale(BaseFlat, Source.getLevel());
 
         finalValue += data.Flat;
 

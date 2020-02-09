@@ -46,11 +46,6 @@ public class Health extends Stat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public Elements getElement() {
         return null;
     }

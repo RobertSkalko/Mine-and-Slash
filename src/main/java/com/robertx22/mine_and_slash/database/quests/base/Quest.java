@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -27,11 +28,11 @@ public abstract class Quest implements ISlashRegistryEntry {
 
     public abstract ITextComponent name();
 
-    public QuestTaskData getTaskData(int percent) {
+    public QuestTaskData getTaskData(MapItemData map) {
 
         QuestTaskData data = new QuestTaskData();
 
-        data.amountRequired = (int) this.getAmountRequired(percent);
+        data.amountRequired = (int) this.getAmountRequired(map);
         data.questGUID = this.GUID();
 
         return data;
@@ -50,8 +51,9 @@ public abstract class Quest implements ISlashRegistryEntry {
 
     }
 
-    public final float getAmountRequired(int percent) {
-        return MathHelper.clamp(amountRequired() * percent / 100, 1, amountRequired() + 1);
+    public final float getAmountRequired(MapItemData map) {
+        float tierMulti = 1 + map.tier * 0.025F;
+        return MathHelper.clamp((amountRequired() * map.questPerc / 100) * tierMulti, 1, Float.MAX_VALUE);
     }
 
     public abstract float amountRequired();
@@ -65,7 +67,7 @@ public abstract class Quest implements ISlashRegistryEntry {
 
     @Override
     public int Weight() {
-        return getRarity().Weight();
+        return 1000;
     }
 
     @Override

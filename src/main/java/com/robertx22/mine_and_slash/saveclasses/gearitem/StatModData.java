@@ -115,7 +115,7 @@ public class StatModData implements ITooltipList {
             val = mod.getFloatByPercentWithoutMin(percent);
         }
 
-        if (stat.ScalesToLevel() && mod.Type().equals(StatTypes.Flat)) {
+        if (mod.Type().equals(StatTypes.Flat)) {
             val = stat.calculateScalingStatGrowth(val, level);
         }
 

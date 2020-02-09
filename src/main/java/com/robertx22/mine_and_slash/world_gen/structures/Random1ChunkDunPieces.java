@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.db_lists.Templates;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.mine_and_slash.world_gen.processors.BiomeProcessor;
 import com.robertx22.mine_and_slash.world_gen.processors.ChestProcessor;
+import com.robertx22.mine_and_slash.world_gen.processors.SpawnerRandProcessor;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.BasePieces;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.StructurePieceData;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.TemplatePiece;
@@ -21,14 +22,14 @@ public class Random1ChunkDunPieces {
 
     private static final List<FeatureType> LIST = Arrays.asList(Templates.dun0, Templates.dun1);
 
-    public static void init(StructurePieceData data, List<StructurePiece> pieces,
-                            Random ran) {
+    public static void init(StructurePieceData data, List<StructurePiece> pieces, Random ran) {
 
         int rannum = ran.nextInt(LIST.size());
 
         FeatureType dun = LIST.get(rannum);
 
-        data.lowerIntoGroundBy = BasePieces.height(data.templateManager, dun.structureResourceLocation) - dun.lowerByXBlocks;
+        data.lowerIntoGroundBy = BasePieces.height(
+                data.templateManager, dun.structureResourceLocation) - dun.lowerByXBlocks;
         data.height = 0;
 
         data.resource(dun.structureResourceLocation);
@@ -45,7 +46,7 @@ public class Random1ChunkDunPieces {
 
         @Override
         public List<StructureProcessor> processors() {
-            return Arrays.asList(new ChestProcessor(25), new BiomeProcessor(iwp));
+            return Arrays.asList(new ChestProcessor(25), new BiomeProcessor(iwp), new SpawnerRandProcessor());
         }
 
         public Dungeon0Piece(TemplateManager templateManager, CompoundNBT nbt) {

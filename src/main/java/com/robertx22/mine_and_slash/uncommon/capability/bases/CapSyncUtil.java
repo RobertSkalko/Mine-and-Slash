@@ -13,10 +13,16 @@ public class CapSyncUtil {
         syncProffs(player);
         syncQuests(player);
         syncSpells(player);
+        syncStatAlloc(player);
     }
 
     public static void syncSpells(PlayerEntity player) {
         PlayerSpellCap.ISpellsCap data = Load.spells(player);
+        data.syncToClient(player);
+    }
+
+    public static void syncStatAlloc(PlayerEntity player) {
+        PlayerStatsPointsCap.IPlayerStatPointsData data = Load.statPoints(player);
         data.syncToClient(player);
     }
 

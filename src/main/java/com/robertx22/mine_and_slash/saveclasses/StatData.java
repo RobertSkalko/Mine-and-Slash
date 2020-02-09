@@ -81,11 +81,7 @@ public class StatData {
     }
 
     public void addFlat(float val, int lvl) {
-        if (this.GetStat().ScalesToLevel()) {
-            this.Flat += this.GetStat().calculateScalingStatGrowth(val, lvl);
-        } else {
-            this.Flat += val;
-        }
+        this.Flat += this.GetStat().calculateScalingStatGrowth(val, lvl);
     }
 
     public void Clear() {

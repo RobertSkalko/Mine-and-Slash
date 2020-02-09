@@ -76,11 +76,6 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public boolean IsPercent() {
         return false;
     }

@@ -44,11 +44,6 @@ public class BlockReflect extends ElementalStat implements IStatEffects {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "When blocking an attack, damage the enemy";
     }

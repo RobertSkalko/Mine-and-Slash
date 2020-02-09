@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.types.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.CriticalHitEffect;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -43,8 +44,8 @@ public class CriticalHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return false;
+    public StatScaling getScaling() {
+        return StatScaling.NONE;
     }
 
     @Override

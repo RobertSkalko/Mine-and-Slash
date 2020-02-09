@@ -2,6 +2,11 @@
 * fix group members having different quest requirement numbers
 * map worlds now have no level restriction for legendary and mythic mobs
 * altered quest time to scale with requirements
+* quest req now scale with map tier
+* map spawners now have chance to be random mob in maps, be careful!
+* map death minute punishment now scales with map tier
+* fixed stat bug that didnt allow them to go into minus. this will make maps a lot harder!
+* fixed infinite map ticket bug
 
 3.0.7
 * attempting to fix teleport bugs

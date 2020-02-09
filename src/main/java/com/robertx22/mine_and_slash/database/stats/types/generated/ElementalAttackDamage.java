@@ -43,11 +43,6 @@ public class ElementalAttackDamage extends SingleElementalStat implements IStatE
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public boolean IsPercent() {
         return false;
     }

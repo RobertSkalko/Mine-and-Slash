@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.StructurePieceRegisters;
 import com.robertx22.mine_and_slash.world_gen.processors.BiomeProcessor;
 import com.robertx22.mine_and_slash.world_gen.processors.ChestProcessor;
+import com.robertx22.mine_and_slash.world_gen.processors.SpawnerRandProcessor;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.BasePieces;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.StructurePieceData;
 import com.robertx22.mine_and_slash.world_gen.structures.bases.TemplatePiece;
@@ -27,8 +28,7 @@ public class TowerPieces extends BasePieces {
 
     static int FOUNDATION_HEIGHT = 4;
 
-    public static void init(StructurePieceData data, List<StructurePiece> pieces,
-                            Random ran) {
+    public static void init(StructurePieceData data, List<StructurePiece> pieces, Random ran) {
 
         int middleAmount = ran.nextInt(3) + 1;
 
@@ -64,7 +64,7 @@ public class TowerPieces extends BasePieces {
 
         @Override
         public List<StructureProcessor> processors() {
-            return Arrays.asList(new ChestProcessor(20), new BiomeProcessor(iwp));
+            return Arrays.asList(new ChestProcessor(20), new BiomeProcessor(iwp), new SpawnerRandProcessor());
         }
 
         public TowerPiece(TemplateManager templateManager, CompoundNBT nbt) {

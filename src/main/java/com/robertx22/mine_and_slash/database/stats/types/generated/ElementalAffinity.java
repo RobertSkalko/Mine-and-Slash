@@ -42,11 +42,6 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public Stat newGeneratedInstance(Elements element) {
         return new ElementalAffinity(element);
     }

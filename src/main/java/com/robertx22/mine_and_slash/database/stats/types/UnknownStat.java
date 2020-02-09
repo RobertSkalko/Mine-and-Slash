@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class UnknownStat extends Stat {
@@ -26,8 +27,8 @@ public class UnknownStat extends Stat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
+    public StatScaling getScaling() {
+        return StatScaling.NONE;
     }
 
     @Override

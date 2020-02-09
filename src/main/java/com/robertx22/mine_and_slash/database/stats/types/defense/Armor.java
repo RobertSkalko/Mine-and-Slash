@@ -43,11 +43,6 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public Elements getElement() {
         return Elements.Physical;
     }

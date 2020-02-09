@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.misc;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class BonusExp extends Stat {
@@ -23,8 +24,8 @@ public class BonusExp extends Stat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return false;
+    public StatScaling getScaling() {
+        return StatScaling.NONE;
     }
 
     @Override

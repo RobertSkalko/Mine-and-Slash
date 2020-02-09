@@ -24,6 +24,16 @@ public class RandomUtils {
 
     }
 
+    public static <T> T randomFromList(List<T> list) {
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+
+        int random = RandomRange(0, list.size() - 1);
+        return list.get(random);
+
+    }
+
     private static <OLD, NEW> List<NEW> CollectionToList(Collection<OLD> coll) {
 
         List<NEW> list = new ArrayList<NEW>();
@@ -58,8 +68,7 @@ public class RandomUtils {
         return false;
     }
 
-    public static <T extends IWeighted> List<T> uniqueWightedRandoms(Collection<T> coll,
-                                                                     int amount) {
+    public static <T extends IWeighted> List<T> uniqueWightedRandoms(Collection<T> coll, int amount) {
 
         if (coll == null || coll.isEmpty()) {
             return null;

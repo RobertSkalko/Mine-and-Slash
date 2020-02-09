@@ -50,11 +50,6 @@ public class ElementalSpellDamage extends ElementalStat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public boolean IsPercent() {
         return false;
     }

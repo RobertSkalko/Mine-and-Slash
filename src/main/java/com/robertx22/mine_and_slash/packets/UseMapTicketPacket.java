@@ -52,6 +52,7 @@ public class UseMapTicketPacket {
 
                         if (map.mapDeviceData.canPlayerUse(player)) {
                             map.mapDeviceData.mapUsed.clone().setupPlayerMapData(pkt.pos, player);
+                            map.mapDeviceData.addPlayer(player);
                         }
 
                     }

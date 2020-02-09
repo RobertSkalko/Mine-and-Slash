@@ -28,11 +28,6 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public Elements getElement() {
         return null;
     }

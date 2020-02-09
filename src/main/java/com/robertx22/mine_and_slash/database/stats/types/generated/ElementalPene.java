@@ -61,11 +61,6 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public boolean IsPercent() {
         return false;
     }

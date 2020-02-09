@@ -30,6 +30,11 @@ public class OpenAnyCratesQuest extends BaseOpenCratesQuest {
     }
 
     @Override
+    public int Weight() {
+        return super.Weight() * 2;
+    }
+
+    @Override
     public int minutes() {
         return 35;
     }

@@ -38,11 +38,6 @@ public class HealthRegen extends BaseRegenClass {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public Elements getElement() {
         return null;
     }

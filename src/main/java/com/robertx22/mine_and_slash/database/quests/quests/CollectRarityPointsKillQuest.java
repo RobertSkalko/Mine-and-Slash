@@ -30,6 +30,11 @@ public class CollectRarityPointsKillQuest extends BaseCollectMobRarityKillQuest 
     }
 
     @Override
+    public int Weight() {
+        return super.Weight() * 4;
+    }
+
+    @Override
     public int minutes() {
         return 35;
     }

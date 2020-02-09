@@ -37,11 +37,6 @@ public class ManaRegen extends BaseRegenClass {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public String locNameForLangFile() {
         return "Mana Regen";
     }

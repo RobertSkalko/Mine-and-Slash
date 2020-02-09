@@ -30,15 +30,10 @@ public class EnergyRegen extends BaseRegenClass {
     private EnergyRegen() {
 
     }
-    
+
     @Override
     public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public boolean ScalesToLevel() {
-        return true;
     }
 
     @Override

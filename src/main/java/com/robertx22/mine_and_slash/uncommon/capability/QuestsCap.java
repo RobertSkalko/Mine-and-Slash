@@ -103,7 +103,7 @@ public class QuestsCap {
         @Override
         public void setMapQuest(Quest quest, MapItemData map) {
             this.data.mapCompletitionQuest = new QuestSaveData();
-            this.data.mapCompletitionQuest.tasks.add(quest.getTaskData(map.questPerc));
+            this.data.mapCompletitionQuest.tasks.add(quest.getTaskData(map));
             this.data.mapCompletitionQuest.reward.rewardGUID = MapQuestReward.INSTANCE.GUID();
         }
 

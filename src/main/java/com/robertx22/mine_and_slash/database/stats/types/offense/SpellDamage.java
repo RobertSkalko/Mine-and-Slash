@@ -48,11 +48,6 @@ public class SpellDamage extends Stat implements IStatEffects {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return true;
-    }
-
-    @Override
     public Elements getElement() {
         return null;
     }

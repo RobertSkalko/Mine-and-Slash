@@ -11,7 +11,6 @@ public class RarityDropratesConfig {
     public RarityWeight MOBS;
     public RarityWeight MAPS;
     public RarityWeight CURRENCY;
-    public RarityWeight SPELLS;
 
     public RarityDropratesConfig(ForgeConfigSpec.Builder builder) {
         builder.push("RARITY_WEIGHT_CONTAINERS");
@@ -40,10 +39,6 @@ public class RarityDropratesConfig {
 
         CURRENCY = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("CURRENCY", builder,
                                                                                           new RarityWeight.DefaultConfig()
-        )).getLeft();
-
-        SPELLS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("SPELLS", builder,
-                                                                                        new RarityWeight.DefaultConfig()
         )).getLeft();
 
         builder.pop();

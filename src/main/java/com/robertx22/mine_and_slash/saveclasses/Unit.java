@@ -133,7 +133,7 @@ public class Unit {
     private void removeEmptyStats() {
 
         for (StatData data : new ArrayList<>(MyStats.values())) {
-            if (data.val <= 0 || data.getId().isEmpty()) {
+            if (data.val == 0 || data.getId().isEmpty()) {
                 //System.out.println(data.Name);
                 MyStats.remove(data.getId());
             }

@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class EmptyStat extends Stat {
@@ -12,8 +13,8 @@ public class EmptyStat extends Stat {
     }
 
     @Override
-    public boolean ScalesToLevel() {
-        return false;
+    public StatScaling getScaling() {
+        return StatScaling.NONE;
     }
 
     @Override
