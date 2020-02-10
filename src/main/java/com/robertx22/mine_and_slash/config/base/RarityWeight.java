@@ -12,9 +12,9 @@ public class RarityWeight {
     public ForgeConfigSpec.IntValue MYTHICAL_WEIGHT;
 
     public static class DefaultConfig {
-
-        public int COMMON_WEIGHT = 30000;
-        public int UNCOMMON_WEIGHT = 20000;
+        
+        public int COMMON_WEIGHT = 27500;
+        public int UNCOMMON_WEIGHT = 17500;
         public int RARE_WEIGHT = 5000;
         public int EPIC_WEIGHT = 3000;
         public int LEGENDARY_WEIGHT = 1250;
@@ -37,8 +37,7 @@ public class RarityWeight {
 
     }
 
-    public RarityWeight(String prefix, ForgeConfigSpec.Builder builder,
-                        DefaultConfig config) {
+    public RarityWeight(String prefix, ForgeConfigSpec.Builder builder, DefaultConfig config) {
         builder.push(prefix);
 
         COMMON_WEIGHT = builder.translation("mmorpg.rarity.common")

@@ -174,48 +174,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7Common Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_1": "§aUncommon Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_2": "§eRare Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§9Epic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_5": "§dMythical Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_0": "§7Common Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_1": "§aUncommon Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_2": "§eRare Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§9Epic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_5": "§dMythical Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_0": "§7Common Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_1": "§aUncommon Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_2": "§eRare Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§9Epic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_5": "§dMythical Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_0": "§7Common Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_1": "§aUncommon Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_2": "§eRare Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§9Epic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_5": "§dMythical Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_0": "§7Common Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_1": "§aUncommon Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_2": "§eRare Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§9Epic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_5": "§dMythical Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_0": "§7Common Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_1": "§aUncommon Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_2": "§eRare Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§9Epic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -234,6 +192,30 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§9Epic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_5": "§dMythical Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§9Epic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_5": "§dMythical Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§9Epic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_5": "§dMythical Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§9Epic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_5": "§dMythical Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§9Epic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_5": "§dMythical Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§9Epic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",

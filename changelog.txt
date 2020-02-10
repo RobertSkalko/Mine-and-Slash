@@ -1,3 +1,7 @@
+3.0.10
+* buffed rarity drops default config (needs config reset)
+* loot crates now dont spawn with low rarities
+
 3.0.9
 * salvage station now stops working if there isn't at least 1 empty output slot
 * fix regen not working if it's less than 1

@@ -24,6 +24,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegister {
@@ -56,16 +57,18 @@ public class ItemRegister {
         for (GearRarity x : Rarities.Gears.getNormalRarities()) {
             AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
             ItemCapacitor.Items.put(x.Rank(), new ItemCapacitor(x.Rank()));
+        }
 
-            for (GearRarity rarity : Rarities.Gears.getNormalRarities()) {
-                for (ItemLootbox.LootTypes type : ItemLootbox.LootTypes.values()) {
-                    for (ItemLootbox.LootBoxSizes size : ItemLootbox.LootBoxSizes.values()) {
-                        String reg = ItemLootbox.GetStringForType(rarity.Rank(), type, size);
-                        ItemLootbox.Items.put(reg,
-                                              (ItemLootbox) new ItemLootbox(size, type, rarity.Rank()).setRegistryName(
-                                                      reg)
-                        );
-                    }
+        for (GearRarity rarity : Rarities.Gears.getNormalRarities()
+                .stream()
+                .filter(x -> x.Rank() > 2)
+                .collect(Collectors.toList())) {
+            for (ItemLootbox.LootTypes type : ItemLootbox.LootTypes.values()) {
+                for (ItemLootbox.LootBoxSizes size : ItemLootbox.LootBoxSizes.values()) {
+                    String reg = ItemLootbox.GetStringForType(rarity.Rank(), type, size);
+                    ItemLootbox.Items.put(reg,
+                                          (ItemLootbox) new ItemLootbox(size, type, rarity.Rank()).setRegistryName(reg)
+                    );
                 }
             }
 
