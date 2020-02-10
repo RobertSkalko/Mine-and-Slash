@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
+import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -210,7 +211,7 @@ public class PlayerMapCap {
             int minutesLeft = getMinutesLeft();
 
             if (minutesLeft > 0) {
-                if (minutesLeft < 5 || minutesLeft % 5 == 0) {
+                if (minutesLeft < 5 || minutesLeft % 10 == 0) {
                     announceTimeLeft(player);
                 }
             }
@@ -336,8 +337,8 @@ public class PlayerMapCap {
         }
 
         private void announceTimeLeft(PlayerEntity player) {
-
-            player.sendMessage(Chats.Remaining_Map_Time_is.locName()
+            player.sendMessage(Styles.REDCOMP()
+                                       .appendSibling(Chats.Remaining_Map_Time_is.locName())
                                        .appendText(" " + this.getMinutesLeft() + " ")
                                        .appendSibling(Words.Minutes.locName()));
 

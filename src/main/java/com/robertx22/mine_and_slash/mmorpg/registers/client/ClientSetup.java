@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRender
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.gui.bar_overlays.PlayerBarsOverlayScreen;
 import com.robertx22.mine_and_slash.gui.gear_overlay.GearOverlayGUI;
+import com.robertx22.mine_and_slash.gui.map_overlay.MapInfoOverlay;
 import com.robertx22.mine_and_slash.gui.mob_bar.MobBarScreen;
 import com.robertx22.mine_and_slash.gui.spell_cast_bar.SpellCastBarOverlay;
 import com.robertx22.mine_and_slash.gui.spell_hotbar.SpellHotbarOverlay;
@@ -43,6 +44,7 @@ public class ClientSetup {
         MinecraftForge.EVENT_BUS.register(new MobBarScreen(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new SpellCastBarOverlay());
         MinecraftForge.EVENT_BUS.register(new SpellHotbarOverlay());
+        MinecraftForge.EVENT_BUS.register(new MapInfoOverlay());
 
         if (ClientContainer.INSTANCE.SHOW_UNMET_GEAR_REQUIREMENTS_GUI.get()) {
             MinecraftForge.EVENT_BUS.register(new GearOverlayGUI(Minecraft.getInstance()));

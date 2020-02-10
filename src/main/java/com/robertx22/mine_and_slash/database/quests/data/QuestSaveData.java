@@ -66,4 +66,11 @@ public class QuestSaveData {
 
     }
 
+    public int getProgressPercent() {
+
+        float current = tasks.stream().mapToInt(x -> (int) x.getCurrentCompletition()).sum();
+        float max = tasks.stream().mapToInt(x -> (int) x.amountRequired).sum();
+
+        return (int) (current / max * 100);
+    }
 }
