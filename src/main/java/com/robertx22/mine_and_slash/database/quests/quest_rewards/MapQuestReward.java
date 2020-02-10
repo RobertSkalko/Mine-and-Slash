@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -46,7 +47,8 @@ public class MapQuestReward extends QuestReward {
 
             ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, player, 50);
 
-            player.entityDropItem(stack, 1F);
+            PlayerUtils.giveItem(stack, player);
+
         }
 
     }

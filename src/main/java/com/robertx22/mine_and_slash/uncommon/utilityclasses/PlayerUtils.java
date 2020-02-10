@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.potion.EffectInstance;
@@ -42,6 +43,12 @@ public class PlayerUtils {
         }
 
         return pos;
+    }
+
+    public static void giveItem(ItemStack stack, PlayerEntity player) {
+        if (player.addItemStackToInventory(stack) == false) {
+            player.entityDropItem(stack, 1F);
+        }
     }
 
     public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos, String name) {

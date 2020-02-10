@@ -39,7 +39,7 @@ public abstract class BaseRaritiesContainer<RarityType extends Rarity> {
     }
 
     public List<RarityType> getNormalRarities() {
-        return normalRarities;
+        return new ArrayList<>(normalRarities);
     }
 
     protected void add(RarityType r) {

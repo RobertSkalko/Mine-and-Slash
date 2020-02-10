@@ -54,6 +54,7 @@ public enum Words implements IAutoLocName {
     Amazing("Amazing"),
     CurrencyCrate("Crafter's Paradise Crate"),
     RuneCrate("Runecrafter's Crate"),
+    CartographerCrate("Cartographer's Crate"),
     CommonerCrate("Commoner's Dream Crate"),
     UniqueCrate("Pharaoh Crate"),
     PressAltForStatInfo("Press Alt for Stat Info"),

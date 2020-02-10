@@ -62,28 +62,28 @@ public class OnServerTick {
 
                             Unit unit = x.getUnit();
 
-                            int manarestored = (int) unit.getCreateStat(ManaRegen.GUID).val;
+                            float manarestored = unit.getCreateStat(ManaRegen.GUID).val;
                             ResourcesData.Context mana = new ResourcesData.Context(x, player, ResourcesData.Type.MANA,
                                                                                    manarestored,
                                                                                    ResourcesData.Use.RESTORE
                             );
                             x.getResources().modify(mana);
 
-                            int energyrestored = (int) unit.getCreateStat(EnergyRegen.GUID).val;
+                            float energyrestored = unit.getCreateStat(EnergyRegen.GUID).val;
                             ResourcesData.Context ene = new ResourcesData.Context(x, player, ResourcesData.Type.ENERGY,
                                                                                   energyrestored,
                                                                                   ResourcesData.Use.RESTORE
                             );
                             x.getResources().modify(ene);
 
-                            int healthrestored = (int) unit.getCreateStat(HealthRegen.GUID).val;
+                            float healthrestored = unit.getCreateStat(HealthRegen.GUID).val;
                             ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
                                                                                  healthrestored,
                                                                                  ResourcesData.Use.RESTORE
                             );
                             x.getResources().modify(hp);
 
-                            int magicshieldrestored = (int) unit.getCreateStat(MagicShieldRegen.GUID).val;
+                            float magicshieldrestored = unit.getCreateStat(MagicShieldRegen.GUID).val;
                             ResourcesData.Context ms = new ResourcesData.Context(x, player,
                                                                                  ResourcesData.Type.MAGIC_SHIELD,
                                                                                  magicshieldrestored,

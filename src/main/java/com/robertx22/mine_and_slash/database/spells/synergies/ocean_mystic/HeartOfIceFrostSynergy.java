@@ -24,7 +24,7 @@ public class HeartOfIceFrostSynergy extends Synergy<BeforeHealContext> {
         return "heart_of_ice_frost_synergy";
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.1F, 2);
+    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.1F, 3);
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {

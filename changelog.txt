@@ -1,3 +1,10 @@
+3.0.9
+* salvage station now stops working if there isn't at least 1 empty output slot
+* fix regen not working if it's less than 1
+* added a new crate type
+* fixed mobs only spawning as epic or rare
+* rarity kill requirements now scale exactly to configured rarity weight. So increasing mythic mob spawns in config will increase quest requirements for them too.
+
 3.0.8
 * fix group members having different quest requirement numbers
 * map worlds now have no level restriction for legendary and mythic mobs
@@ -7,6 +14,7 @@
 * map death minute punishment now scales with map tier
 * fixed stat bug that didnt allow them to go into minus. this will make maps a lot harder!
 * fixed infinite map ticket bug
+* fix map reward crate give method.
 
 3.0.7
 * attempting to fix teleport bugs

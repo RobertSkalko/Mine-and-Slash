@@ -26,12 +26,12 @@ public class OpenAnyCratesQuest extends BaseOpenCratesQuest {
 
     @Override
     public float amountRequired() {
-        return 10;
+        return 8;
     }
 
     @Override
     public int Weight() {
-        return super.Weight() * 2;
+        return super.Weight();
     }
 
     @Override
