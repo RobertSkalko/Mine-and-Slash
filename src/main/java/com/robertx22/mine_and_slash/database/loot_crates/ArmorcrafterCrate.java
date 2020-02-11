@@ -30,6 +30,8 @@ public class ArmorcrafterCrate extends LootCrate {
 
         GearBlueprint blueprint = BlueprintUtils.randomGearBlueprint(info.level, info.tier);
 
+        blueprint.rarity.minRarity = 1;
+
         blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
                                            .getFilterWrapped(x -> x.slotType().equals(GearItemSlot.GearSlotType.Armor))
                                            .random());

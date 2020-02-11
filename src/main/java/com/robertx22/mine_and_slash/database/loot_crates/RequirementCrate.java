@@ -35,9 +35,11 @@ public class RequirementCrate extends LootCrate {
     public ItemStack generateStack(LootInfo info) {
 
         GearBlueprint blueprint = new GearBlueprint(info.level);
+        blueprint.rarity.minRarity = 1;
+
         blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
-                .getFilterWrapped(x -> x.getRequirements().getStats().contains(stat))
-                .random());
+                                           .getFilterWrapped(x -> x.getRequirements().getStats().contains(stat))
+                                           .random());
 
         return GearCreationUtils.CreateStack(blueprint);
 

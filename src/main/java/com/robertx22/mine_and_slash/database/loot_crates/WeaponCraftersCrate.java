@@ -29,6 +29,7 @@ public class WeaponCraftersCrate extends LootCrate {
     public ItemStack generateStack(LootInfo info) {
 
         GearBlueprint blueprint = BlueprintUtils.randomGearBlueprint(info.level, info.tier);
+        blueprint.rarity.minRarity = 1;
 
         blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
                                            .getFilterWrapped(x -> x.slotType().equals(GearItemSlot.GearSlotType.Weapon))

@@ -7,6 +7,8 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.Regenera
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArmorSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornBushSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
+import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
@@ -53,6 +55,12 @@ public class DruidBoss extends Boss {
         if (treshhold == BossData.HealthTreshhold.T_25) {
             ThornArmorSpell.getInstance().cast(en, 0);
         }
+    }
+
+    @Override
+    public void applyStats(EntityCap.UnitData data) {
+        super.applyStats(data);
+        data.getUnit().getCreateStat(HealthRegen.INSTANCE).Multi -= 90;
     }
 
     @Override

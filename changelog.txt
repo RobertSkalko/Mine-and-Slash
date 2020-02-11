@@ -1,3 +1,7 @@
+3.0.11
+* added recipe for increase map tier item in tinkering station
+* most loot crate rewards now cant drop common rarity
+
 3.0.10
 * buffed rarity drops default config (needs config reset)
 * loot crates now dont spawn with low rarities
