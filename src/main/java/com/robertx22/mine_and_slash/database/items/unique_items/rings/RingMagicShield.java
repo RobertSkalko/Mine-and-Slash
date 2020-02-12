@@ -21,8 +21,8 @@ public class RingMagicShield extends BaseUniqueRing {
     private RingMagicShield() {
 
     }
-    
-    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+
+    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {

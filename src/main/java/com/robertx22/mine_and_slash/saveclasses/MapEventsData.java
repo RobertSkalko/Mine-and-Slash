@@ -41,8 +41,11 @@ public class MapEventsData {
     }
 
     public void onMinute(World world) {
-        events.forEach(x -> x.minRem--);
-        events.forEach(x -> SlashRegistry.MapEvents().get(x.event).onMinutePassed(world, x));
+        events.forEach(x -> {
+            SlashRegistry.MapEvents().get(x.event).onMinutePassed(world, x);
+            x.minRem--;
+        });
+
         events.removeIf(x -> x.minRem < 1);
     }
 

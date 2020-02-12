@@ -25,7 +25,7 @@ public class PhantomSpawnsEvent extends MapEvent {
             announceEvent(world, new StringTextComponent(TextFormatting.LIGHT_PURPLE + "A batch of Phantoms arrived."));
 
             for (int i = 0; i < 30; i++) {
-                BlockPos p = randomPosNearPlayer(world).up(10);
+                BlockPos p = randomPosNearPlayer(world).up(15);
                 summonMinion(EntityType.PHANTOM, world, p);
             }
         }
@@ -43,6 +43,11 @@ public class PhantomSpawnsEvent extends MapEvent {
     @Override
     public int minutesEventLasts() {
         return 5;
+    }
+
+    @Override
+    public int Weight() {
+        return super.Weight() / 4;
     }
 
     @Override

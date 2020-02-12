@@ -14,7 +14,8 @@ import java.nio.file.Paths;
 
 public class ModelCreator {
 
-    static String DEFAULT_MODEL = "{\n" + "    \"parent\": \"item/generated\",\n" + "    \"textures\": {\n" + "        \"layer0\": \"mmorpg:REPLACE\"\n" + "    }\n" + "}";
+    static String DEFAULT_MODEL = "{\n" + "    \"parent\": \"item/generated\",\n" + "    \"textures\": {\n" + "      " +
+            "  \"layer0\": \"mmorpg:REPLACE\"\n" + "    }\n" + "}";
 
     public static void createDefaultModelsAndDirs() {
         for (Item item : ForgeRegistries.ITEMS) {
@@ -24,8 +25,10 @@ public class ModelCreator {
                 ResourceLocation loc = item.getRegistryName();
                 String path = loc.getPath();
 
-                String modelpath = DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\models\\item\\" + path + ".json";
-                String texturepath = DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\textures\\items\\" + path + ".png";
+                String modelpath = DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\models\\item\\" + path +
+                        ".json";
+                String texturepath =
+                        DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\textures\\items\\" + path + ".png";
 
                 File model = new File(modelpath);
                 File texture = new File(texturepath);

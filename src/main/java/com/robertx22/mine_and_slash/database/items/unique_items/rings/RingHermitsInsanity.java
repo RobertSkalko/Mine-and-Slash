@@ -16,7 +16,8 @@ import java.util.List;
 
 public class RingHermitsInsanity extends BaseUniqueRing {
 
-    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+    static StatReq req = new StatReq(
+            LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -40,7 +41,7 @@ public class RingHermitsInsanity extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LessHealthMap(), new CriticalDamagePercent().multi(7));
+        return Arrays.asList(new LessHealthMap(), new CriticalDamagePercent().multi(6));
     }
 
     @Override

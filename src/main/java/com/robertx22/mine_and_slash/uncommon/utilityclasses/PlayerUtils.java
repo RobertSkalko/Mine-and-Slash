@@ -74,6 +74,8 @@ public class PlayerUtils {
 
         System.out.println("Teleporting player to " + pos.toString() + " with mine and slash. ");
 
+        MapManager.getWorld(destination).getChunk(pos); // load chunk first
+
         player.setMotion(0, 0, 0);
 
         player = (ServerPlayerEntity) player.changeDimension(destination, PORTALLESS);

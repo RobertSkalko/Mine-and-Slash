@@ -18,7 +18,8 @@ public class RingWaterFire extends BaseUniqueRing {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM, LvlPointStat.STRENGTH, StatReq.Size.MEDIUM);
+    static StatReq req = new StatReq(
+            LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -37,12 +38,16 @@ public class RingWaterFire extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalConversionFlat(Elements.Fire, Elements.Water), new ElementalConversionFlat(Elements.Water, Elements.Fire));
+        return Arrays.asList(
+                new ElementalConversionFlat(Elements.Fire, Elements.Water),
+                new ElementalConversionFlat(Elements.Water, Elements.Fire)
+        );
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Fire), new ElementalSpellDamagePercent(Elements.Water));
+        return Arrays.asList(
+                new ElementalSpellDamagePercent(Elements.Fire), new ElementalSpellDamagePercent(Elements.Water));
 
     }
 

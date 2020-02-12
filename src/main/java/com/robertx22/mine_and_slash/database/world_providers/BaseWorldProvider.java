@@ -100,12 +100,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
 
     @Override
     public ModDimension newModDimension() {
-        return new ModDimension() {
-            @Override
-            public BiFunction<World, DimensionType, ? extends Dimension> getFactory() {
-                return classFactory();
-            }
-        };
+        return ModDimension.withFactory(classFactory());
     }
 
     @Override
