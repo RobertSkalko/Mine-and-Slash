@@ -47,6 +47,7 @@ public class WorldMapCap {
 
         void startEvent(MapEvent event, World world);
 
+        MapEventsData getEvents();
     }
 
     @Mod.EventBusSubscriber
@@ -120,15 +121,22 @@ public class WorldMapCap {
 
         @Override
         public void startRandomMapEvent(World world) {
-
-            this.events.add(SlashRegistry.MapEvents().random(), world);
-
+            this.events.add(SlashRegistry.MapEvents().getFilterWrapped(x -> !events.isActive(x)).random(), world);
         }
 
         @Override
         public void startEvent(MapEvent event, World world) {
             this.events.add(event, world);
 
+        }
+
+        @Override
+        public MapEventsData getEvents() {
+            if (events == null) {
+                events = new MapEventsData();
+            }
+
+            return events;
         }
 
         @Override

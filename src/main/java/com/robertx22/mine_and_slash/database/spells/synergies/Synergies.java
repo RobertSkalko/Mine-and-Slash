@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFl
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.VolcanoBurnSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.*;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderDashEnergySynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearLightningStrikeSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearThunderEssenceSynergy;
 
@@ -26,10 +27,12 @@ public class Synergies {
     public static WhirlpoolShiverSynergy WHIRLPOOL_SHIVER = new WhirlpoolShiverSynergy();
     public static GeyserAttackSynergy GEYSER_ATTACK = new GeyserAttackSynergy();
     public static HeartOfIceMagicShieldSynergy HEART_OF_ICE_MAGIC_SHIELD = new HeartOfIceMagicShieldSynergy();
+    public static BlizzardFrostEssenceSynergy BLIZZARD_FROST_ESSENCE = new BlizzardFrostEssenceSynergy();
 
     public static ThunderSpearLightningStrikeSynergy THUNDER_SPEAR_LIGHTNING = new ThunderSpearLightningStrikeSynergy();
     public static LightningTotemStaticSynergy LIGHTNING_TOTEM_STATIC = new LightningTotemStaticSynergy();
     public static ThunderSpearThunderEssenceSynergy THUNDER_SPEAR_ESSENCE = new ThunderSpearThunderEssenceSynergy();
+    public static ThunderDashEnergySynergy THUNDER_DASH_ENERGY = new ThunderDashEnergySynergy();
 
     public static ThornArmorThornsSynergy THORN_ARMOR_THORNS = new ThornArmorThornsSynergy();
     public static ThornBushMajorThornsSynergy THORN_BUSH_MAJOR_TORNS = new ThornBushMajorThornsSynergy();

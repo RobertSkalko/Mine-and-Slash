@@ -63,7 +63,7 @@ public enum ParticleEnum {
         public void activate(ParticlePacketData data, World world) {
             Vec3d p = getCenter(data.pos);
 
-            for (int i = 0; i < data.radius * 80; i++) {
+            for (int i = 0; i < data.radius * 60; i++) {
                 Vec3d r = GeometryUtils.getRandomPosInRadiusCircle(p.x, p.y, p.z, data.radius);
                 this.spawnRedstone(world, data.color, r.x, r.y, r.z);
             }

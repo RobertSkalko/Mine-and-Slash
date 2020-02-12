@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
+import com.robertx22.mine_and_slash.database.map_events.impl.PhantomSpawnsEvent;
 import com.robertx22.mine_and_slash.database.map_events.impl.SkeletonHordeEvent;
 import com.robertx22.mine_and_slash.database.map_events.impl.SpiderHordeEvent;
 import com.robertx22.mine_and_slash.database.map_events.impl.ZombieHordeEvent;
@@ -19,6 +20,7 @@ public class MapEvents implements ISlashRegistryInit {
         list.add(ZombieHordeEvent.getInstance());
         list.add(SpiderHordeEvent.getInstance());
         list.add(SkeletonHordeEvent.getInstance());
+        list.add(PhantomSpawnsEvent.getInstance());
 
         list.forEach(x -> x.registerToSlashRegistry());
     }

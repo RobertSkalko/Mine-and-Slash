@@ -62,7 +62,7 @@ public class ThornArmorSpell extends BaseBuffSpell {
 
     @Override
     public Elements getElement() {
-        return null;
+        return Elements.Nature;
     }
 
     @Override

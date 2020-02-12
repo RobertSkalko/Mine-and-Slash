@@ -3,6 +3,7 @@
 * most loot crate rewards now cant drop common rarity
 * fix loot crates without nbt crashing game
 * added map events, for now i added a few simple horde spawn events, these events have a chance to happen every minute in maps
+* added new spell and synergies
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

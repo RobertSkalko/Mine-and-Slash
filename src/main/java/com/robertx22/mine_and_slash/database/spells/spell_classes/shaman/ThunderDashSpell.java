@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
@@ -125,10 +127,17 @@ public class ThunderDashSpell extends BaseSpell {
                 .finder(EntityFinder.Finder.IN_FRONT)
                 .build();
 
+        Boolean eneSynergy = Synergies.THUNDER_DASH_ENERGY.has(caster);
+
         entities.forEach(x -> {
             DamageEffect dmg = new DamageEffect(null, caster, x, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
             dmg.element = Elements.Thunder;
             dmg.Activate();
+
+            if (eneSynergy) {
+                Synergies.THUNDER_DASH_ENERGY.tryActivate(new AfterDamageContext(caster, x, dmg));
+            }
+
         });
 
         SoundUtils.playSound(caster, Sounds.DASH, 1, 1);

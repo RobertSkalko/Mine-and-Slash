@@ -43,6 +43,9 @@ public class BlizzardEntity extends BaseCloudEntity {
         if (Synergies.BLIZZARD_FROST.has(getCaster())) {
             Synergies.BLIZZARD_FROST.tryActivate(new BeforeDamageContext(getCaster(), entity, dmg));
         }
+        if (Synergies.BLIZZARD_FROST_ESSENCE.has(getCaster())) {
+            Synergies.BLIZZARD_FROST_ESSENCE.tryActivate(new BeforeDamageContext(getCaster(), entity, dmg));
+        }
 
         dmg.Activate();
 

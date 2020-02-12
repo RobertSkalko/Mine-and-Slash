@@ -18,6 +18,7 @@ public enum Words implements IAutoLocName {
     Cleric("Cleric"),
     HeartOfIce("Heart of Ice"),
     ThornArmor("Thorn Armor"),
+    PoisonedWeapons("Poisoned Weapons"),
     BlazingInferno("Blazing Inferno"),
     Fireball("Fireball"),
     Frostball("Frostball"),

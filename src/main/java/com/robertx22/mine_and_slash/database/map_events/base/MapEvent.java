@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.map_events.base;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -19,6 +20,10 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     public abstract void onActivate(World worlds);
 
     public abstract int minutesEventLasts();
+
+    public void onMinutePassed(World world, MapEventsData.Data data) {
+
+    }
 
     @Override
     public SlashRegistryType getSlashRegistryType() {

@@ -22,6 +22,10 @@ public class MapEventsData {
     @Store
     private List<Data> events = new ArrayList<>();
 
+    public boolean isActive(MapEvent event) {
+        return events.stream().anyMatch(x -> x.event.equals(event.GUID()));
+    }
+
     public void add(MapEvent event, World world) {
 
         event.onActivate(world);
@@ -36,8 +40,9 @@ public class MapEventsData {
         return events.stream().map(x -> SlashRegistry.MapEvents().get(x.event)).collect(Collectors.toList());
     }
 
-    public void onMinute() {
+    public void onMinute(World world) {
         events.forEach(x -> x.minRem--);
+        events.forEach(x -> SlashRegistry.MapEvents().get(x.event).onMinutePassed(world, x));
         events.removeIf(x -> x.minRem < 1);
     }
 

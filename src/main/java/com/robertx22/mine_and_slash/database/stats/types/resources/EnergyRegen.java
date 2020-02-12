@@ -5,7 +5,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class EnergyRegen extends BaseRegenClass {
     public static Stat INSTANCE = new EnergyRegen();
-    public static String GUID = "Energy Regen";
+    public static String GUID = "energy_regen";
 
     @Override
     public TextFormatting getIconFormat() {

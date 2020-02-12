@@ -46,6 +46,7 @@ public class PotionRegister {
         reg.register(BurnEffect.INSTANCE);
         reg.register(ThunderEssenceEffect.INSTANCE);
         reg.register(MajorThornsEffect.INSTANCE);
+        reg.register(PoisonedWeaponsEffect.getInstance());
 
         for (net.minecraft.item.Item item : ForgeRegistries.ITEMS) {
             if (item instanceof BaseBuffPotion) {

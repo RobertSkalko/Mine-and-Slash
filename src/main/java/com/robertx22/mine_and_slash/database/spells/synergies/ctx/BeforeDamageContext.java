@@ -13,5 +13,6 @@ public class BeforeDamageContext extends SynergyContext {
         this.caster = caster;
         this.target = target;
         this.dmg = dmg;
+
     }
 }

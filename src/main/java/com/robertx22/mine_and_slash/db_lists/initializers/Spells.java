@@ -4,10 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.arcanist.Magic
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.RighteousFurySpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.GorgonsGazeSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArmorSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornBushSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.*;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.BlazingInfernoSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
@@ -46,6 +43,7 @@ public class Spells implements ISlashRegistryInit {
                     add(GorgonsGazeSpell.getInstance());
                     add(ThornArmorSpell.getInstance());
                     add(ThornBushSpell.getInstance());
+                    add(PoisonedWeaponsSpell.getInstance());
 
                     add(ThunderstormSpell.getInstance());
                     add(ThunderspearSpell.getInstance());
