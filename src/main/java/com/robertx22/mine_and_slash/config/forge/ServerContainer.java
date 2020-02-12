@@ -38,9 +38,14 @@ public class ServerContainer {
     public DoubleValue UNARMED_ENERGY_COST;
     public DoubleValue PLAYER_HEART_TO_HEALTH_CONVERSION;
     public DoubleValue STAT_REQUIREMENTS_MULTI;
+    public DoubleValue MAP_EVENT_CHANCE_PER_MINUTE;
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
+
+        MAP_EVENT_CHANCE_PER_MINUTE = builder.comment(".")
+                .translation("mmorpg.word.")
+                .defineInRange("MAP_EVENT_CHANCE_PER_MINUTE", 10D, 0, 100);
 
         MOB_BOSS_CHANCE_IN_MAPS = builder.comment(".")
                 .translation("mmorpg.word.")

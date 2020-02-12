@@ -46,6 +46,17 @@ public class RandomUtils {
 
     }
 
+    public static boolean roll(double chance) {
+
+        double ranNum = ran.nextDouble() * 100;
+
+        if (chance > ranNum) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static boolean roll(int chance) {
 
         double ranNum = ran.nextDouble() * 100;

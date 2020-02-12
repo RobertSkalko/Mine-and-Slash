@@ -1,11 +1,15 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
+import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
+import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -39,6 +43,10 @@ public class WorldMapCap {
 
         void init(MapItemData map);
 
+        void startRandomMapEvent(World world);
+
+        void startEvent(MapEvent event, World world);
+
     }
 
     @Mod.EventBusSubscriber
@@ -64,9 +72,12 @@ public class WorldMapCap {
         }
     }
 
+    static String EVENTS_LOC = Ref.MODID + ":events";
+
     public static class DefaultImpl implements IWorldMapData {
 
         MapItemData mapdata = null;
+        MapEventsData events = new MapEventsData();
 
         @Override
         public CompoundNBT saveToNBT() {
@@ -77,15 +88,22 @@ public class WorldMapCap {
                 Map.Save(nbt, mapdata);
             }
 
+            if (events != null) {
+                LoadSave.Save(events, nbt, EVENTS_LOC);
+            }
+
             return nbt;
 
         }
 
         @Override
         public void loadFromNBT(CompoundNBT nbt) {
-
             mapdata = Map.Load(nbt);
+            events = LoadSave.Load(MapEventsData.class, new MapEventsData(), nbt, EVENTS_LOC);
 
+            if (events == null) {
+                events = new MapEventsData();
+            }
         }
 
         @Override
@@ -98,6 +116,19 @@ public class WorldMapCap {
             if (mapdata == null) { // only init once, after that its set in stone
                 this.mapdata = map.clone();
             }
+        }
+
+        @Override
+        public void startRandomMapEvent(World world) {
+
+            this.events.add(SlashRegistry.MapEvents().random(), world);
+
+        }
+
+        @Override
+        public void startEvent(MapEvent event, World world) {
+            this.events.add(event, world);
+
         }
 
         @Override

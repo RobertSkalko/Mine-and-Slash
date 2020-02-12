@@ -175,7 +175,6 @@ public class PlayerMapCap {
             this.data.minutesPassed++;
 
             if (this.getMinutesLeft() < 1) {
-
                 this.announceEnd(player);
                 this.teleportPlayerBack(player);
 

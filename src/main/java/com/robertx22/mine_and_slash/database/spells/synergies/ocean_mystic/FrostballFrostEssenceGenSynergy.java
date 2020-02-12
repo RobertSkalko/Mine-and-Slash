@@ -26,7 +26,7 @@ public class FrostballFrostEssenceGenSynergy extends Synergy<AfterDamageContext>
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Criticals give Frost Essence"));
+        list.add(new StringTextComponent("Attacks give Frost Essence"));
 
         list.addAll(FrostEssenceEffect.INSTANCE.GetTooltipString(info));
 
@@ -40,8 +40,7 @@ public class FrostballFrostEssenceGenSynergy extends Synergy<AfterDamageContext>
 
     @Override
     public void tryActivate(AfterDamageContext ctx) {
-        if (ctx.dmg.isCriticalHit()) {
-            PotionEffectUtils.reApplyToSelf(FrostEssenceEffect.INSTANCE, ctx.caster);
-        }
+        PotionEffectUtils.reApplyToSelf(FrostEssenceEffect.INSTANCE, ctx.caster);
+
     }
 }

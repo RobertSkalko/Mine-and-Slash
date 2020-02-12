@@ -26,7 +26,7 @@ public class ThunderSpearThunderEssenceSynergy extends Synergy<AfterDamageContex
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Criticals give Thunder Essence"));
+        list.add(new StringTextComponent("Attacks give Thunder Essence"));
 
         list.addAll(ThunderEssenceEffect.INSTANCE.GetTooltipString(info));
 
@@ -40,8 +40,6 @@ public class ThunderSpearThunderEssenceSynergy extends Synergy<AfterDamageContex
 
     @Override
     public void tryActivate(AfterDamageContext ctx) {
-        if (ctx.dmg.isCriticalHit()) {
-            PotionEffectUtils.reApplyToSelf(ThunderEssenceEffect.INSTANCE, ctx.caster);
-        }
+        PotionEffectUtils.reApplyToSelf(ThunderEssenceEffect.INSTANCE, ctx.caster);
     }
 }

@@ -57,7 +57,15 @@ public class MapLootCrateItem extends Item {
     public static String LVL = "LVL", SCORE = "SCORE", ID = "REGISTRY_ID", TIER = "TIER";
 
     public LootCrate getCrate(ItemStack stack) {
-        return SlashRegistry.LootCrates().get(stack.getTag().getString(ID));
+        return SlashRegistry.LootCrates().get(getID(stack));
+    }
+
+    public String getID(ItemStack stack) {
+        if (stack.hasTag() && stack.getTag().getString(ID) != null) {
+            return stack.getTag().getString(ID);
+        } else {
+            return "";
+        }
     }
 
     @OnlyIn(Dist.CLIENT)

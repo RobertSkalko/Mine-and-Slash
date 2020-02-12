@@ -1,6 +1,8 @@
 3.0.11
 * added recipe for increase map tier item in tinkering station
 * most loot crate rewards now cant drop common rarity
+* fix loot crates without nbt crashing game
+* added map events, for now i added a few simple horde spawn events, these events have a chance to happen every minute in maps
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

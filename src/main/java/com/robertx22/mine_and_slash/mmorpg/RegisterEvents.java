@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
 import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.onevent.ontick.OnServerTick;
 import com.robertx22.mine_and_slash.onevent.player.*;
+import com.robertx22.mine_and_slash.onevent.world.OnMapWorldTickEvents;
 import com.robertx22.mine_and_slash.uncommon.capability.WeaponSpeedCap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,6 +39,7 @@ public class RegisterEvents {
         register(OnLogin.class);
         register(OnLogout.class);
         register(OnServerTick.class);
+        register(OnMapWorldTickEvents.class);
 
         register(CapSync.class);
         register(StopCastingIfInteract.class);

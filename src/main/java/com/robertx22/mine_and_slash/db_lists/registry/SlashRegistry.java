@@ -19,6 +19,8 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
+import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
+import com.robertx22.mine_and_slash.database.map_events.impl.ZombieHordeEvent;
 import com.robertx22.mine_and_slash.database.quests.base.Quest;
 import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
 import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
@@ -97,6 +99,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<PerkEffect> PerkEffects() {
         return getRegistry(SlashRegistryType.PERK_EFFECT);
+    }
+
+    public static SlashRegistryContainer<MapEvent> MapEvents() {
+        return getRegistry(SlashRegistryType.MAP_EVENT);
     }
 
     public static SlashRegistryContainer<Perk> Perks() {
@@ -268,6 +274,7 @@ public class SlashRegistry {
         new QuestRewards().registerAll();
 
         new Bosses().registerAll();
+        new MapEvents().registerAll();
     }
 
     private static void createRegistries() {
@@ -359,7 +366,9 @@ public class SlashRegistry {
         map.put(SlashRegistryType.BOSS,
                 new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, NecromancerBoss.getInstance())
         );
-
+        map.put(SlashRegistryType.MAP_EVENT,
+                new SlashRegistryContainer<MapEvent>(SlashRegistryType.MAP_EVENT, ZombieHordeEvent.getInstance())
+        );
     }
 
 }

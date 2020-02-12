@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
+import com.robertx22.mine_and_slash.blocks.beacon.CosmeticBeaconBlock;
+import com.robertx22.mine_and_slash.blocks.beacon.CosmeticBeaconTile;
 import com.robertx22.mine_and_slash.blocks.egg_loot_crate.EggLootCrateBlock;
 import com.robertx22.mine_and_slash.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.BlockMapDevice;
@@ -33,9 +35,17 @@ public class BlockRegister {
     public static final String GEAR_REPAIR_ID = Ref.MODID + ":repair_station";
     public static final String EGG_LOOT_CRATE_ID = Ref.MODID + ":egg_loot_crate";
     public static final String MAP_PORTAL_BLOCK_ID = Ref.MODID + ":map_portal_block";
+    public static final String BEACON_ID = Ref.MODID + ":beacon";
 
     static final String ALCHEMY_BLOCK_ID = Ref.MODID + ":" + "alchemy_station";
     static final String TINKERING_BLOCK_ID = Ref.MODID + ":" + "tinkering_station";
+
+    // NEW BLOCK
+    @ObjectHolder(BEACON_ID)
+    public static TileEntityType<CosmeticBeaconTile> BEACON_TILE;
+    @ObjectHolder(BEACON_ID)
+    public static Block BEACON_BLOCK;
+    // NEW BLOCK
 
     // NEW BLOCK
     @ObjectHolder(MagmaFlowerBlock.ID)
@@ -117,6 +127,7 @@ public class BlockRegister {
 
         reg.register(new MagmaFlowerBlock().setRegistryName(MagmaFlowerBlock.ID));
         reg.register(new ThornBushBlock().setRegistryName(ThornBushBlock.ID));
+        reg.register(new CosmeticBeaconBlock().setRegistryName(BEACON_ID));
 
         ItemOre.RegisterBlocks(event);
     }
@@ -134,6 +145,7 @@ public class BlockRegister {
 
         reg.register(new BlockItem(ALCHEMY_BLOCK, stationProp).setRegistryName(ALCHEMY_BLOCK_ID));
         reg.register(new BlockItem(TINKERING_BLOCK, stationProp).setRegistryName(TINKERING_BLOCK_ID));
+        reg.register(new BlockItem(BEACON_BLOCK, stationProp).setRegistryName(BEACON_ID));
 
         ItemOre.RegisterItems(event);
     }

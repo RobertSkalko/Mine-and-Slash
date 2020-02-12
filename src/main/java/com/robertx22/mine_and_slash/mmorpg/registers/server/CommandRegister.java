@@ -48,6 +48,8 @@ public class CommandRegister {
         OpenTalentsGui.register(dispatcher);
         OpenHub.register(dispatcher);
 
+        StartMapEvent.register(dispatcher);
+
         GiveCrate.register(dispatcher);
 
     }

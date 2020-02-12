@@ -30,6 +30,7 @@ public enum SlashRegistryType {
     QUEST(),
     QUEST_REWARD(),
     RECIPE(),
-    BOSS();
+    BOSS(),
+    MAP_EVENT;
 
 }
