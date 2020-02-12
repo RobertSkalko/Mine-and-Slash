@@ -37,7 +37,7 @@ public class BlizzardFrostEssenceSynergy extends Synergy<BeforeDamageContext> {
         return list;
     }
 
-    static SpellCalcData CALC = SpellCalcData.one(ElementalSpellDamage.MAP.get(Elements.Water), 0.05F, 1);
+    static SpellCalcData CALC = SpellCalcData.one(ElementalSpellDamage.MAP.get(Elements.Water), 0.02F, 1);
 
     @Override
     public BaseSpell spellAffected() {

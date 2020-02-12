@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.all.BleedPotion;
 import com.robertx22.mine_and_slash.potion_effects.all.CleansePoisonPotion;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
+import com.robertx22.mine_and_slash.potion_effects.cleric.DivineShieldEffect;
 import com.robertx22.mine_and_slash.potion_effects.cleric.RighteousFuryEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.*;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
@@ -47,6 +48,7 @@ public class PotionRegister {
         reg.register(ThunderEssenceEffect.INSTANCE);
         reg.register(MajorThornsEffect.INSTANCE);
         reg.register(PoisonedWeaponsEffect.getInstance());
+        reg.register(DivineShieldEffect.getInstance());
 
         for (net.minecraft.item.Item item : ForgeRegistries.ITEMS) {
             if (item instanceof BaseBuffPotion) {

@@ -3,10 +3,7 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
-import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
-import com.robertx22.mine_and_slash.database.stats.types.defense.BlockStrength;
-import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
-import com.robertx22.mine_and_slash.database.stats.types.defense.SpellDodge;
+import com.robertx22.mine_and_slash.database.stats.types.defense.*;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleSpellDmg;
 import com.robertx22.mine_and_slash.database.stats.types.game_changers.*;
@@ -175,6 +172,7 @@ public class Stats implements ISlashRegistryInit {
                     add(PhysicalDamage.INSTANCE);
                     add(DodgeRating.INSTANCE);
                     add(new SpellDodge());
+                    add(DamageShield.getInstance());
 
                     // traits
                     add(new Golem());

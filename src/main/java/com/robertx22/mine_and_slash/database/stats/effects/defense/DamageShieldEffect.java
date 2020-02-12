@@ -9,6 +9,13 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
 public class DamageShieldEffect implements IStatEffect {
 
+    private DamageShieldEffect() {
+    }
+
+    public static DamageShieldEffect getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public int GetPriority() {
         return Priority.First.priority;
@@ -20,8 +27,7 @@ public class DamageShieldEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (Effect instanceof DamageEffect) {
@@ -35,4 +41,7 @@ public class DamageShieldEffect implements IStatEffect {
         return Effect;
     }
 
+    private static class SingletonHolder {
+        private static final DamageShieldEffect INSTANCE = new DamageShieldEffect();
+    }
 }
