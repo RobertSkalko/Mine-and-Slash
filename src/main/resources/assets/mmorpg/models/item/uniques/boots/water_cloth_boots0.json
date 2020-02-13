@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "mmorpg:items/uniques/boots/water_cloth_boots0"
+    }
+}

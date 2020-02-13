@@ -6,6 +6,7 @@
 * added divine shield cleric spell
 * added poisoned weapons druid spell
 * added synergies: blizzard, thunder dash, poisoned weapons
+* added new unique items
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

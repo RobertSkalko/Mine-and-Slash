@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.items.unique_items.boots;
+package com.robertx22.mine_and_slash.database.items.unique_items.boots.plate;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
@@ -40,7 +40,10 @@ public class BootsFire extends BaseUniqueBoots {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Axe), new ElementalSpellToAttackDMGFlat(Elements.Fire), new CriticalDamagePercent());
+        return Arrays.asList(
+                new WeaponDamageFlat(WeaponTypes.Axe), new ElementalSpellToAttackDMGFlat(Elements.Fire),
+                new CriticalDamagePercent()
+        );
 
     }
 

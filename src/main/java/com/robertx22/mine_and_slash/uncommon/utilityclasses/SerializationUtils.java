@@ -12,18 +12,31 @@ public class SerializationUtils {
             .toAbsolutePath()
             .toString() + "/" + Ref.MOD_NAME + "/";
 
-    public static void makeFileAndDirAndWrite(String path, String filename, String text) {
+    public static void makeIfDoesNotExist(String path, String filename, String text) {
+        if (!new File(path + "/" + filename).exists()) {
+            makeFileAndDirAndWrite(path, filename, text);
+        }
+    }
 
+    public static void makeFileAndDirAndWrite(String path, String filename, String text) {
+        makeFileAndDirAndWrite(path, filename, text, false);
+
+    }
+
+    public static void makeFileAndDirAndWrite(String path, String filename, String text, boolean overwrite) {
+
+        /*
         if (path.contains(CONFIG_PATH) == false) {
             path = CONFIG_PATH + path;
         }
+                 */
 
         String combined = path + "/" + filename;
 
         try {
             new File(path).mkdirs();
 
-            if (new File(combined).exists() == false) {
+            if (overwrite || new File(combined).exists() == false) {
 
                 new File(combined).createNewFile();
                 FileWriter fileWriter;
@@ -36,4 +49,5 @@ public class SerializationUtils {
         }
 
     }
+
 }

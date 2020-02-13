@@ -4,10 +4,11 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.axes.AxeFire;
 import com.robertx22.mine_and_slash.database.items.unique_items.axes.AxeThunder;
 import com.robertx22.mine_and_slash.database.items.unique_items.axes.AxeWaterFire;
-import com.robertx22.mine_and_slash.database.items.unique_items.boots.BootsFire;
-import com.robertx22.mine_and_slash.database.items.unique_items.boots.BootsNature;
-import com.robertx22.mine_and_slash.database.items.unique_items.boots.BootsThunder;
-import com.robertx22.mine_and_slash.database.items.unique_items.boots.BootsWater;
+import com.robertx22.mine_and_slash.database.items.unique_items.boots.cloth.EleClothBoots;
+import com.robertx22.mine_and_slash.database.items.unique_items.boots.plate.BootsFire;
+import com.robertx22.mine_and_slash.database.items.unique_items.boots.plate.BootsNature;
+import com.robertx22.mine_and_slash.database.items.unique_items.boots.plate.BootsThunder;
+import com.robertx22.mine_and_slash.database.items.unique_items.boots.plate.BootsWater;
 import com.robertx22.mine_and_slash.database.items.unique_items.bows.BowElemental;
 import com.robertx22.mine_and_slash.database.items.unique_items.bracelets.*;
 import com.robertx22.mine_and_slash.database.items.unique_items.charms.CharmFire;
@@ -47,12 +48,13 @@ public class UniqueGears implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        add(new ElementalSaber(Elements.Physical));
-        add(new ShieldElemental(Elements.Physical));
-        add(new BowElemental(Elements.Physical));
-        add(new EleSpellDmgStaff(Elements.Physical));
-        add(new RingElemental(Elements.Physical));
-        add(new HammerElemental(Elements.Physical));
+        add(new ElementalSaber(Elements.Nature));
+        add(new ShieldElemental(Elements.Nature));
+        add(new BowElemental(Elements.Nature));
+        add(new EleSpellDmgStaff(Elements.Nature));
+        add(new RingElemental(Elements.Nature));
+        add(new HammerElemental(Elements.Nature));
+        add(new EleClothBoots(Elements.Nature));
 
         add(new RingHermitsInsanity());
         add(new MagesLuckyAmulet());

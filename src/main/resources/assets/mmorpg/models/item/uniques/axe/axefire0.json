@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "mmorpg:items/paidassets/pixeltiers/axes/axefire0"
+        "layer0": "mmorpg:items/uniques/axe/axefire0"
     }
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/paidassets/pixeltiers/helmets/helmetmana0"
+        "layer0": "mmorpg:items/uniques/helmet/helmetmana0"
     }
 }

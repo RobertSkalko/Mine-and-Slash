@@ -26,8 +26,6 @@ import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistry;
 
 public class MapManager {
 
@@ -36,9 +34,6 @@ public class MapManager {
         @SubscribeEvent
         public static void registerModDimensions(RegistryEvent.Register<ModDimension> event) {
 
-            if (true) {
-                return;//TODO
-            }
             for (IWP iwp : SlashRegistry.WorldProviders().getList()) {
 
                 ModDimension moddim = iwp.newModDimension();
@@ -89,12 +84,17 @@ public class MapManager {
             return false;
         }).forEach(d -> {
             try {
-                DimensionManager.unregisterDimension(d.getId());
+                deleteDimension(d);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
+    }
+
+    public static void deleteDimension(DimensionType type) {
+
+        // TODO DimensionManager.markForDeletition(type);
     }
 
     static ResourceLocation getResourceLocForMap(MapItemData map) {
@@ -111,19 +111,7 @@ public class MapManager {
             return DimensionType.byName(res);
         }
 
-        ModDimension moddim = iwp.newModDimension();
-
-        if (moddim.getRegistryName() == null) {
-            moddim.setRegistryName(res);
-        }
-
-        ForgeRegistry r = (ForgeRegistry) ForgeRegistries.MOD_DIMENSIONS;
-
-        r.unfreeze(); // cus i'm registering it in the middle of the game
-        // why? because that's the only way i can stop forge from registing my dimensionType back on game load
-        // because it errors out as it can't find a ModDimension for it.
-        ForgeRegistries.MOD_DIMENSIONS.register(moddim);
-        r.freeze();
+        ModDimension moddim = iwp.getModDim();
 
         DimensionType type = DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled.buffer()), true);
 

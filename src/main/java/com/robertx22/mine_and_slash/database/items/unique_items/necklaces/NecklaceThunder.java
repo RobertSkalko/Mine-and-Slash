@@ -20,7 +20,8 @@ public class NecklaceThunder extends BaseUniqueNecklace {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+    static StatReq req = new StatReq(
+            LvlPointStat.STAMINA, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -39,7 +40,10 @@ public class NecklaceThunder extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Thunder).multi(2), new ElementalTransferFlat(Elements.Nature, Elements.Thunder), new EnergyRegenFlat());
+        return Arrays.asList(
+                new ElementalSpellToAttackDMGFlat(Elements.Thunder).multi(2),
+                new ElementalTransferFlat(Elements.Nature, Elements.Thunder), new EnergyRegenFlat()
+        );
 
     }
 

@@ -18,8 +18,8 @@ import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
-import com.robertx22.mine_and_slash.tests.ValidateGuids;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
+import com.robertx22.mine_and_slash.uncommon.develeper.GenerateUniqueGearJsons;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -54,7 +54,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = false;
+    public static boolean RUN_DEV_TOOLS = true;
 
     public static Logger LOGGER = Logger.getLogger(Ref.MOD_NAME);
 
@@ -167,8 +167,9 @@ public class MMORPG {
             CreateLangFile.create();
             GenerateCurioDataJsons.generate();
             ModelCreator.createDefaultModelsAndDirs();
-            ValidateGuids.validate();
+            //ValidateGuids.validate();
             CountUniqueGearTypes.count();
+            GenerateUniqueGearJsons.gen();
         }
 
     }

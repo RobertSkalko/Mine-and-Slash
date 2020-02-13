@@ -36,6 +36,10 @@ public class DirUtils {
 
     }
 
+    public static String modelsPath() {
+        return modDir() + "/main/resources/assets/mmorpg/models/";
+    }
+
     public static String curiosItemTagsPath() {
         return modDir() + "/main/resources/data/curios/tags/items/";
     }

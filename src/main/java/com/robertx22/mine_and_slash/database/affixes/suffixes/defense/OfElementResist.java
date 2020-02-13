@@ -20,7 +20,7 @@ public class OfElementResist extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of getElement Resist";
+        return "of_ele_resist";
     }
 
     @Override
@@ -37,7 +37,7 @@ public class OfElementResist extends Suffix {
 
     @Override
     public String locNameForLangFile() {
-        return "Of getElement Resist";
+        return "Of Element Resist";
     }
 
 }

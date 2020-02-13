@@ -1,14 +1,6 @@
 {
-    "parent":"mmorpg:item/uniques/shield/shield_basic_base",
+    "parent": "item/generated",
     "textures": {
-        "layer0":"mmorpg:items/paidassets/pixeltiers/shields/water_ele_shield0"
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "blocking": 1
-            },
-            "model": "mmorpg:item/uniques/shield/water_ele_shield0_blocking"
-        }
-    ]
+        "layer0": "mmorpg:items/uniques/shield/water_ele_shield0"
+    }
 }

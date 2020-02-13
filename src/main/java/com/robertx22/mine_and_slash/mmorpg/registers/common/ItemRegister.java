@@ -86,8 +86,7 @@ public class ItemRegister {
 
         for (IUnique uniq : SlashRegistry.UniqueGears().getList()) {
             Item item = (Item) uniq;
-            item.setRegistryName("uniques/" + uniq.getGearSlot().
-                    resourceID() + "/" + uniq.GUID());
+            item.setRegistryName(Ref.MODID, uniq.getGeneratedResourceID());
             r.register(item);
         }
 

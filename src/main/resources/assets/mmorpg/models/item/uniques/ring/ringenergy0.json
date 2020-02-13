@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/paidassets/pixeltiers/rings/ringenergy0"
+        "layer0": "mmorpg:items/uniques/ring/ringenergy0"
     }
 }

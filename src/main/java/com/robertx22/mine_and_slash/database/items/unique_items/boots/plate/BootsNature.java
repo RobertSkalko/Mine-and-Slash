@@ -1,28 +1,26 @@
-package com.robertx22.mine_and_slash.database.items.unique_items.boots;
+package com.robertx22.mine_and_slash.database.items.unique_items.boots.plate;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class BootsThunder extends BaseUniqueBoots {
+public class BootsNature extends BaseUniqueBoots {
 
-    public BootsThunder() {
+    public BootsNature() {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.MEDIUM);
+    static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -31,17 +29,21 @@ public class BootsThunder extends BaseUniqueBoots {
 
     @Override
     public int Tier() {
-        return 19;
+        return 7;
     }
 
     @Override
     public String GUID() {
-        return "bootsthunder0";
+        return "bootsnature0";
     }
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Hammer), new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalDamagePercent(), new ElementalResistFlat(Elements.Thunder));
+        return Arrays.asList(
+                new HealthPercent().multi(3), new ElementalTransferFlat(Elements.Thunder, Elements.Nature),
+                new ElementalResistFlat(Elements.Nature).multi(4)
+        );
+
     }
 
     @Override
@@ -51,11 +53,11 @@ public class BootsThunder extends BaseUniqueBoots {
 
     @Override
     public String locNameForLangFile() {
-        return Styles.YELLOW + "Lightning Tendril Boots";
+        return Styles.YELLOW + "Tree Trunks";
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Sparks fly wherever I stand.";
+        return "Nothing shall break my roots!";
     }
 }

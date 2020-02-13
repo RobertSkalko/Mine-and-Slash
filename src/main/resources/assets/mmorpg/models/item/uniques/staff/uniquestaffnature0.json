@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "mmorpg:items/paidassets/pixeltiers/magic-weapons/uniquestaffnature0"
+        "layer0": "mmorpg:items/uniques/staff/uniquestaffnature0"
     }
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/uniques/chest/chestmana0"
+        "layer0": "mmorpg:uniques/staff/thunder_ele_staff0"
     }
 }
