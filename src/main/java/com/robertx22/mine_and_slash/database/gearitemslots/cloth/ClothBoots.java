@@ -46,6 +46,6 @@ public class ClothBoots extends BaseBoots {
 
     @Override
     public String GUID() {
-        return "Cloth_Boots";
+        return "cloth_boots";
     }
 }

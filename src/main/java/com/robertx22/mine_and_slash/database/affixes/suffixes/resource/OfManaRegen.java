@@ -17,7 +17,7 @@ public class OfManaRegen extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of Mana Regen";
+        return "of_mana_regen";
     }
 
     @Override

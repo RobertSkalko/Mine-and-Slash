@@ -38,7 +38,7 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
 
     @Override
     public String GUID() {
-        return "Torch";
+        return "torch";
     }
 
     @Override

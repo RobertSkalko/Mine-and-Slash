@@ -29,7 +29,7 @@ public class PlatePants extends BasePants {
 
     @Override
     public String GUID() {
-        return "Pants";
+        return "pants";
     }
 
     @Override

@@ -11,7 +11,7 @@ public class LessDodgeAffix extends DetrimentalMapAffix {
 
     @Override
     public String GUID() {
-        return "LessDodgeAffix";
+        return "less_dodge_affix";
     }
 
     @Override

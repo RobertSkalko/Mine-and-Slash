@@ -11,7 +11,7 @@ public class LessEnergyRegenAffix extends DetrimentalMapAffix {
 
     @Override
     public String GUID() {
-        return "LessEnergyRegenAffix";
+        return "less_energy_regen_affix";
     }
 
     @Override

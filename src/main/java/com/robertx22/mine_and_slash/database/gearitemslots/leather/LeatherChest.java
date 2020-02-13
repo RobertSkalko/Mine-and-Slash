@@ -45,6 +45,6 @@ public class LeatherChest extends BaseChest {
 
     @Override
     public String GUID() {
-        return "Leather_Chest";
+        return "leather_chest";
     }
 }

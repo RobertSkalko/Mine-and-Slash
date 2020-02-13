@@ -11,7 +11,7 @@ public class InnerSpirit extends BaseRareResourcePrefix {
 
     @Override
     public String GUID() {
-        return "Inner Spirit";
+        return "inner_spirit";
     }
 
     @Override

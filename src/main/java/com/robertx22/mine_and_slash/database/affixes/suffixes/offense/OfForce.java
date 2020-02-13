@@ -20,7 +20,7 @@ public class OfForce extends Suffix {
 
     @Override
     public String GUID() {
-        return "OfForce";
+        return "of_force";
     }
 
     @Override

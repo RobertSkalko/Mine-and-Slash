@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Stealthy extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Stealthy";
+    public static String GUID = "stealthy";
 
     @Override
     public String GUID() {

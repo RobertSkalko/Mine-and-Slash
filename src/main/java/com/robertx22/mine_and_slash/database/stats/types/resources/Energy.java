@@ -8,7 +8,7 @@ public class Energy extends FillableStat {
 
     public static Energy INSTANCE = new Energy();
 
-    public static String GUID = "Energy";
+    public static String GUID = "energy";
 
     @Override
     public TextFormatting getIconFormat() {

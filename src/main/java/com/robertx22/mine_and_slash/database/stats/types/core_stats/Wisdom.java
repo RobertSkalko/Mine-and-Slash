@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Wisdom extends BaseCoreStat {
-    public static final String GUID = "Wisdom";
+    public static final String GUID = "wisdom";
     public static final Wisdom INSTANCE = new Wisdom();
 
     private Wisdom() {

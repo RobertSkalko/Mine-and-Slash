@@ -17,7 +17,7 @@ public class HighDodgeAddPhysDamage extends BaseTraitHighDodge {
 
     @Override
     public String GUID() {
-        return "HighDodgeAddPhysDamage";
+        return "high_dodge_add_phys_damage";
     }
 
     @Override

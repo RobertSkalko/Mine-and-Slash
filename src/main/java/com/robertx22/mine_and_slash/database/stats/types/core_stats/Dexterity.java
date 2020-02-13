@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Dexterity extends BaseCoreStat {
 
-    public static final String GUID = "Dexterity";
+    public static final String GUID = "dexterity";
 
     public static final Dexterity INSTANCE = new Dexterity();
 

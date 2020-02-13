@@ -22,7 +22,7 @@ public class LessWeaponDamageMapAffix extends DetrimentalMapAffix implements IGe
 
     public LessWeaponDamageMapAffix(WeaponTypes type) {
         this.weaponType = type;
-        this.GUID = "Less" + this.weaponType.name() + "DamageAffix";
+        this.GUID = "less_" + this.weaponType.id + "_damage_affix";
     }
 
     @Override

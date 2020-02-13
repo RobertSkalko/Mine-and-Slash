@@ -17,7 +17,7 @@ public class HighCritAddLifesteal extends BaseTraitHighCritHit {
 
     @Override
     public String GUID() {
-        return "HighCritAddLifesteal";
+        return "high_crit_add_lifesteal";
     }
 
     @Override

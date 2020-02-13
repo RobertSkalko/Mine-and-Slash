@@ -22,7 +22,7 @@ public class PhantomSpawnsEvent extends MapEvent {
 
         if (data.minRem != minutesEventLasts()) { // take a min to spawn them
 
-            announceEvent(world, new StringTextComponent(TextFormatting.LIGHT_PURPLE + "A batch of Phantoms arrived."));
+            announceEvent(world, new StringTextComponent(TextFormatting.LIGHT_PURPLE + "A wave of Phantoms arrived."));
 
             for (int i = 0; i < 30; i++) {
                 BlockPos p = randomPosNearPlayer(world).up(15);

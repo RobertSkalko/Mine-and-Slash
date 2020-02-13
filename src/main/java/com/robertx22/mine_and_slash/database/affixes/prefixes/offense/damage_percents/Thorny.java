@@ -14,7 +14,7 @@ public class Thorny extends BaseDamagePercentPrefix {
 
     @Override
     public String GUID() {
-        return "Thorny";
+        return "thorny";
     }
 
     @Override

@@ -24,7 +24,7 @@ public class TreasureSeeker extends Prefix {
 
     @Override
     public String GUID() {
-        return "TreasureSeeker";
+        return "treasure_seeker";
     }
 
     @Override

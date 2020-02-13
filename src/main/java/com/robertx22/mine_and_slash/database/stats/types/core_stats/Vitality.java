@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Vitality extends BaseCoreStat {
 
-    public static final String GUID = "Vitality";
+    public static final String GUID = "vitality";
     public static final Vitality INSTANCE = new Vitality();
 
     private Vitality() {

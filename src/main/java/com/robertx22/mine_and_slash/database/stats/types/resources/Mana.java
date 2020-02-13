@@ -6,7 +6,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class Mana extends FillableStat {
     public static Mana INSTANCE = new Mana();
-    public static String GUID = "Mana";
+    public static String GUID = "mana";
 
     @Override
     public TextFormatting getIconFormat() {

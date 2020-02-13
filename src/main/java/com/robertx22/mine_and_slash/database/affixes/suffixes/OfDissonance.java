@@ -27,7 +27,7 @@ public class OfDissonance extends ElementalSuffix {
 
     @Override
     public String GUID() {
-        return element.name() + "_of_dissonance";
+        return element.guidName + "_of_dissonance";
     }
 
     @Override

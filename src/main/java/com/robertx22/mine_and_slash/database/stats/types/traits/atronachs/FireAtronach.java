@@ -11,7 +11,7 @@ import java.util.List;
 
 public class FireAtronach extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Fire Atronach";
+    public static String GUID = "fire_atronach";
 
     @Override
     public String GUID() {

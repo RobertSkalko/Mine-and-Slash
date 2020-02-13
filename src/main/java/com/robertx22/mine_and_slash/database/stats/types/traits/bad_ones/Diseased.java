@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Diseased extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Diseased";
+    public static String GUID = "diseased";
 
     @Override
     public String GUID() {

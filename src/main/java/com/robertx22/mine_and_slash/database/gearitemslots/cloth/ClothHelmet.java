@@ -45,6 +45,6 @@ public class ClothHelmet extends BaseHelmet {
 
     @Override
     public String GUID() {
-        return "Cloth_Helmet";
+        return "cloth_helmet";
     }
 }

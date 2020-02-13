@@ -45,6 +45,6 @@ public class ClothPants extends BasePants {
 
     @Override
     public String GUID() {
-        return "Cloth_Pants";
+        return "cloth_pants";
     }
 }

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.resources;
 import net.minecraft.util.text.TextFormatting;
 
 public class ManaRegen extends BaseRegenClass {
-    public static String GUID = "Mana Regen";
+    public static String GUID = "mana_regen";
 
     public static final ManaRegen INSTANCE = new ManaRegen();
 

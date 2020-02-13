@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     private List<String> registersErrorsAlertedFor = new ArrayList<>();
     private List<String> accessorErrosAletedFor = new ArrayList<>();
+    private List<String> wrongRegistryNames = new ArrayList<>();
+
+    private HashMap<String, C> serializables = new HashMap<>();
 
     public static void logRegistryError(String text) {
         System.out.println("[Mine and Slash Registry Error]: " + text);
@@ -82,21 +86,21 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public C get(String guid) {
 
+        String id = IGUID.getformattedString(guid);
+
         tryLogEmptyRegistry();
 
-        if (guid == null || guid.isEmpty()) {
+        if (id == null || id.isEmpty()) {
             return getDefault();
         }
-        if (map.containsKey(guid)) {
-            return map.get(guid);
+        if (map.containsKey(id)) {
+            return map.get(id);
         } else {
             if (logMissingEntryOnAccess) {
-                if (accessorErrosAletedFor.contains(guid) == false) {
+                if (accessorErrosAletedFor.contains(id) == false) {
                     logRegistryError(
-                            "GUID Error: " + guid + " of type: " + type.toString() + " doesn't exist. This is either "
-                                    + "a removed/renamed old registry, or robertx22 forgot to include it in an " +
-                                    "update" + ".");
-                    accessorErrosAletedFor.add(guid);
+                            "GUID Error: " + id + " of type: " + type.toString() + " doesn't exist. This is either " + "a removed/renamed old registry, or robertx22 forgot to include it in an " + "update" + ".");
+                    accessorErrosAletedFor.add(id);
                 }
             }
             return getDefault();
@@ -121,13 +125,15 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public boolean isRegistered(C c) {
-        return map.containsKey(c.GUID());
+        String id = c.formattedGUID();
+        return map.containsKey(id);
     }
 
     public boolean isRegistered(String guid) {
         return map.containsKey(guid);
     }
 
+    // for mod addon devs if they want to overwrite some of my stuff
     public void registerOverride(C c) {
 
         if (isRegistered(c)) {
@@ -163,4 +169,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     }
 
+    public void addSerializable(C entry) {
+        this.serializables.put(entry.GUID(), entry);
+    }
 }

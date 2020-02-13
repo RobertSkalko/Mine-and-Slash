@@ -9,7 +9,6 @@ import net.minecraft.util.text.TextFormatting;
 public enum StatTypes {
 
     Flat() {
-
     },
     Percent(),
     Multi();
@@ -42,8 +41,7 @@ public enum StatTypes {
         ITextComponent text = new StringTextComponent("");
 
         if (type == StatTypes.Multi) {
-            text.appendText(TextFormatting.GRAY + " ")
-                    .appendSibling(Words.Multi.locName());
+            text.appendText(TextFormatting.GRAY + " ").appendSibling(Words.Multi.locName());
         }
 
         return text;

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TheHierophant extends BaseMajorArcana {
 
-    public static final String GUID = "TheHierophant";
+    public static final String GUID = "the_hierophant";
 
     @Override
     public String GUID() {

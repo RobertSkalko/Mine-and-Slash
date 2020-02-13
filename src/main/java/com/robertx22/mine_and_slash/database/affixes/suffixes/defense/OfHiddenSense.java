@@ -19,7 +19,7 @@ public class OfHiddenSense extends Suffix {
 
     @Override
     public String GUID() {
-        return "OfHiddenSense";
+        return "of_hidden_sense";
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Heretics extends ElementalPrefix {
 
     @Override
     public String GUID() {
-        return element.name() + "_heretic";
+        return element.guidName + "_heretic";
     }
 
     @Override
@@ -37,8 +37,7 @@ public class Heretics extends ElementalPrefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new CriticalDamageFlat().multi(1.5F), new ElementalAffinityFlat(element)
-                .multi(0.25F));
+        return Arrays.asList(new CriticalDamageFlat().multi(1.5F), new ElementalAffinityFlat(element).multi(0.25F));
     }
 
     @Override

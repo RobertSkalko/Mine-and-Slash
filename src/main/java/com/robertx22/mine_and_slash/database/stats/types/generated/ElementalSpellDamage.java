@@ -41,7 +41,7 @@ public class ElementalSpellDamage extends ElementalStat {
 
     @Override
     public String GUID() {
-        return "Spell " + this.getElement().name() + " Damage";
+        return "spell_" + this.getElement().guidName + "_damage";
     }
 
     @Override

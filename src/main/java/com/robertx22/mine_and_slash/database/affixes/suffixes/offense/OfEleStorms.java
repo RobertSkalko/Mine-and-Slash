@@ -27,7 +27,7 @@ public class OfEleStorms extends ElementalSuffix {
 
     @Override
     public String GUID() {
-        return "Of " + element.disasterName;
+        return "of_" + element.guidName + "_storms";
     }
 
     @Override

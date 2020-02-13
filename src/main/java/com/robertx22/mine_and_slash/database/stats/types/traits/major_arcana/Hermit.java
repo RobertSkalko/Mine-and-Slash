@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Hermit extends BaseMajorArcana {
 
-    public static final String GUID = "Hermit";
+    public static final String GUID = "hermit";
 
     @Override
     public String GUID() {
@@ -20,7 +20,8 @@ public class Hermit extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new WisdomFlat(), new CriticalHitFlat().multi(2), new ElementalSpellDamageFlat(Elements.Nature));
+        return Arrays.asList(
+                new WisdomFlat(), new CriticalHitFlat().multi(2), new ElementalSpellDamageFlat(Elements.Nature));
     }
 
     @Override

@@ -36,7 +36,7 @@ public class ElementalFocus extends SingleElementalStat implements IStatEffects 
 
     @Override
     public String GUID() {
-        return element.name() + "_focus";
+        return element.guidName + "_focus";
     }
 
     @Override

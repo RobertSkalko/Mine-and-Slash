@@ -79,7 +79,7 @@ public class ElementalSpellToAttackDMG extends SingleElementalStat implements IS
 
     @Override
     public String GUID() {
-        return getElement().name() + " Spell to Attack DMG";
+        return getElement().guidName + "_spell_to_attack_dmg";
     }
 
 }

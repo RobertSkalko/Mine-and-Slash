@@ -45,6 +45,6 @@ public class LeatherPants extends BasePants {
 
     @Override
     public String GUID() {
-        return "Leather_Pants";
+        return "leather_pants";
     }
 }

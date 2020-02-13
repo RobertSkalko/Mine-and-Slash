@@ -21,7 +21,7 @@ public class ManaToEnergyConversion extends Stat implements IStatConversion {
 
     @Override
     public String GUID() {
-        return "ManaToEnergyConversion";
+        return "mana_to_energy_conversion";
     }
 
     @Override

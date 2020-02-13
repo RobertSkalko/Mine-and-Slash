@@ -45,6 +45,6 @@ public class LeatherBoots extends BaseBoots {
 
     @Override
     public String GUID() {
-        return "Leather_Boots";
+        return "leather_boots";
     }
 }

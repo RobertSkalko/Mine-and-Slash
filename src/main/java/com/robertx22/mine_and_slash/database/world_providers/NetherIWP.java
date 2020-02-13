@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.database.world_providers;
 
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusFireResistAffix;
+import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusEleDmgAffix;
+import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusEleResistAffix;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.world_gen.biome_color_schemes.bases.BiomeColorTheme;
 import net.minecraft.world.World;
@@ -28,7 +29,10 @@ public class NetherIWP extends BaseWorldProvider {
 
     @Override
     public List<MapAffixData> getMapAffixes() {
-        return Arrays.asList(new MapAffixData(new BonusFireDamageAffix(), 80), new MapAffixData(new BonusFireResistAffix(), 100));
+        return Arrays.asList(
+                new MapAffixData(new BonusEleDmgAffix(Elements.Fire), 80),
+                new MapAffixData(new BonusEleResistAffix(Elements.Fire), 100)
+        );
     }
 
     @Override

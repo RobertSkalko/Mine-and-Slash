@@ -24,7 +24,8 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
         return "hammer";
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.VITALITY, StatReq.Size.SMALL);
+    static StatReq req = new StatReq(
+            LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.VITALITY, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -33,7 +34,7 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
 
     @Override
     public String GUID() {
-        return "Hammer";
+        return "hammer";
     }
 
     @Override

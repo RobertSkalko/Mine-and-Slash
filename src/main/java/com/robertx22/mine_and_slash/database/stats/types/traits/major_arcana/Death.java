@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Death extends BaseMajorArcana {
 
-    public static final String GUID = "Death";
+    public static final String GUID = "death";
 
     @Override
     public String GUID() {

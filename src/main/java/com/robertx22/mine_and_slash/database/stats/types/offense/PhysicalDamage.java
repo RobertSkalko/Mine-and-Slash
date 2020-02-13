@@ -7,7 +7,7 @@ public class PhysicalDamage extends Stat {
 
     public static Stat INSTANCE = new PhysicalDamage();
 
-    public static String GUID = "Physical Damage";
+    public static String GUID = "physical_damage";
 
     @Override
     public StatGroup statGroup() {

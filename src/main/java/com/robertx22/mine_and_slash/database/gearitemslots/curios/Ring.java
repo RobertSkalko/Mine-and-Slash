@@ -34,7 +34,7 @@ public class Ring extends GearItemSlot {
 
     @Override
     public String GUID() {
-        return "Ring";
+        return "ring";
     }
 
     @Override

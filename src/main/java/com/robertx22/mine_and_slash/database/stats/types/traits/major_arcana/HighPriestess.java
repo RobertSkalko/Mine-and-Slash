@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HighPriestess extends BaseMajorArcana {
 
-    public static final String GUID = "HighPriestess";
+    public static final String GUID = "high_priestess";
 
     @Override
     public String GUID() {
@@ -20,7 +20,8 @@ public class HighPriestess extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new WisdomFlat(), new IntelligenceFlat().multi(2), new ElementalSpellToAttackDMGFlat(Elements.Water));
+        return Arrays.asList(
+                new WisdomFlat(), new IntelligenceFlat().multi(2), new ElementalSpellToAttackDMGFlat(Elements.Water));
     }
 
     @Override

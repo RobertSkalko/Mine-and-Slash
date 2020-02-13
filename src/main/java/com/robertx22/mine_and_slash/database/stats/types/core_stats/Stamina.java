@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Stamina extends BaseCoreStat {
 
-    public static final String GUID = "Stamina";
+    public static final String GUID = "stamina";
     public static Stamina INSTANCE = new Stamina();
 
     private Stamina() {

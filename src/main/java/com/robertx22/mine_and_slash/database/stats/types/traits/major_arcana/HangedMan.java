@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HangedMan extends BaseMajorArcana {
 
-    public static final String GUID = "HangedMan";
+    public static final String GUID = "hanged_man";
 
     @Override
     public String GUID() {
@@ -20,7 +20,8 @@ public class HangedMan extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new CrippleHealthRegenPercent(), new DodgeMulti().multi(2), new ElementalPeneFlat(Elements.Water));
+        return Arrays.asList(
+                new CrippleHealthRegenPercent(), new DodgeMulti().multi(2), new ElementalPeneFlat(Elements.Water));
     }
 
     @Override

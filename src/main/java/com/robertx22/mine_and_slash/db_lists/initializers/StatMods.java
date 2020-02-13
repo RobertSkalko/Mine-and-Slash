@@ -16,21 +16,11 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.conversio
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.conversions.ManaToEnergyConvFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.*;
 import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bases.LessWeaponDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusEleDamageMap;
+import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusEleResistMap;
 import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusHealthMap;
 import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusLifestealMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_dmg.BonusFireDamageMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_dmg.BonusNatureDamageMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_dmg.BonusThunderDamageMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_dmg.BonusWaterDamageMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_res.BonusFireResistMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_res.BonusNatureResistMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_res.BonusThunderResistMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.ele_res.BonusWaterResistMap;
 import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.*;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.all_ele_dmg.LessAllFireDamageMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.all_ele_dmg.LessAllNatureDamageMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.all_ele_dmg.LessAllThunderDamageMap;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.all_ele_dmg.LessAllWaterDamageMap;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.*;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.ele_minus.MajorMinusFireResistMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.ele_minus.MajorMinusNatureResistMulti;
@@ -48,6 +38,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
@@ -83,6 +74,10 @@ public class StatMods implements ISlashRegistryInit {
                     add(new ElementalPenePercent(Elements.Nature));
                     add(new ElementalFocusFlat(Elements.Nature));
                     add(new BlockReflectFlat(Elements.Nature));
+
+                    add(new BonusEleDamageMap(Elements.Nature));
+                    add(new BonusEleResistMap(Elements.Nature));
+                    add(new LessEleDmgMap(Elements.Nature));
 
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());
@@ -193,21 +188,6 @@ public class StatMods implements ISlashRegistryInit {
                     add(new LessCriticalHitMap());
                     add(new LessDodgeMap());
 
-                    add(new BonusFireDamageMap());
-                    add(new BonusNatureDamageMap());
-                    add(new BonusThunderDamageMap());
-                    add(new BonusWaterDamageMap());
-
-                    add(new BonusFireResistMap());
-                    add(new BonusNatureResistMap());
-                    add(new BonusThunderResistMap());
-                    add(new BonusWaterResistMap());
-
-                    add(new LessAllFireDamageMap());
-                    add(new LessAllNatureDamageMap());
-                    add(new LessAllThunderDamageMap());
-                    add(new LessAllWaterDamageMap());
-
                     add(new LessEnergyRegenMap());
                     add(new LessManaRegenMap());
                     add(new LessHealthRegenMap());
@@ -233,7 +213,7 @@ public class StatMods implements ISlashRegistryInit {
             }
         };
 
-        List<StatMod> All = new ArrayList<>();
+        List<ISerializedRegistryEntry> All = new ArrayList<>();
 
         for (StatMod stat : list) {
             if (stat instanceof IGenerated) {
@@ -255,7 +235,7 @@ public class StatMods implements ISlashRegistryInit {
             }
         }
 
-        All.forEach(x -> x.registerToSlashRegistry());
+        All.forEach(x -> x.addToSerializables());
 
     }
 

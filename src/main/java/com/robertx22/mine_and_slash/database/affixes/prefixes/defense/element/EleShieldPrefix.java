@@ -27,7 +27,7 @@ public class EleShieldPrefix extends ElementalPrefix {
 
     @Override
     public String GUID() {
-        return element.name() + " Shield";
+        return element.guidName + "_shield";
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Tough extends BaseDamagePercentPrefix {
 
     @Override
     public String GUID() {
-        return "Tough";
+        return "tough";
     }
 
     @Override

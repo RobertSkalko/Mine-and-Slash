@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Lucky extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Lucky";
+    public static String GUID = "lucky";
 
     @Override
     public String GUID() {

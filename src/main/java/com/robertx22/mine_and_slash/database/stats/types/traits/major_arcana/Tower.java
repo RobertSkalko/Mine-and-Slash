@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Tower extends BaseMajorArcana {
 
-    public static final String GUID = "Tower";
+    public static final String GUID = "tower";
 
     @Override
     public String GUID() {

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Armored extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Armored";
+    public static String GUID = "armored";
 
     @Override
     public String GUID() {

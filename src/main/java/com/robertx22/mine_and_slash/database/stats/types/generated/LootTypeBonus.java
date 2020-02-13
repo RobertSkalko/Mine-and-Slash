@@ -52,7 +52,7 @@ public class LootTypeBonus extends Stat implements IGenerated<Stat> {
 
     @Override
     public String GUID() {
-        return "bonus_" + type + "_drops";
+        return "bonus_" + type.GUID() + "_drops";
     }
 
     @Override

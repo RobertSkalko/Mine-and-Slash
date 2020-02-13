@@ -32,7 +32,8 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
         return "crossbow";
     }
 
-    static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
+    static StatReq req = new StatReq(
+            LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
 
     @Override
     public StatReq getRequirements() {
@@ -41,7 +42,7 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
 
     @Override
     public String GUID() {
-        return "Crossbow";
+        return "crossbow";
     }
 
     @Override

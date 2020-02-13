@@ -11,7 +11,7 @@ public class DeepMind extends BaseRareResourcePrefix {
 
     @Override
     public String GUID() {
-        return "Deep Mind";
+        return "deep_mind";
     }
 
     @Override

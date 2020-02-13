@@ -14,7 +14,7 @@ public class Frosty extends BaseDamagePercentPrefix {
 
     @Override
     public String GUID() {
-        return "Frosty";
+        return "frosty";
     }
 
     @Override

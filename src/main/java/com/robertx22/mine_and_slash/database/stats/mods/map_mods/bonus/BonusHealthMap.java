@@ -12,7 +12,7 @@ public class BonusHealthMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "BonusHealthMap";
+        return "bonus_health_map";
     }
 
     @Override

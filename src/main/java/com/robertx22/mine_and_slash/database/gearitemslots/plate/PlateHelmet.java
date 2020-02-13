@@ -29,7 +29,7 @@ public class PlateHelmet extends BaseHelmet {
 
     @Override
     public String GUID() {
-        return "Helmet";
+        return "helmet";
     }
 
     @Override

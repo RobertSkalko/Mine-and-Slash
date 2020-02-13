@@ -14,7 +14,7 @@ public class Thundering extends BaseDamagePercentPrefix {
 
     @Override
     public String GUID() {
-        return "Thundering";
+        return "thundering";
     }
 
     @Override

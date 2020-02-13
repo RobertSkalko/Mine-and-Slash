@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Crippled extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Crippled";
+    public static String GUID = "crippled";
 
     @Override
     public String GUID() {

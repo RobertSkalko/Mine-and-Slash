@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TheStar extends BaseMajorArcana {
 
-    public static final String GUID = "Star";
+    public static final String GUID = "star";
 
     @Override
     public String GUID() {
@@ -20,7 +20,8 @@ public class TheStar extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new HealthRegenFlat().multi(2), new ElementalResistFlat(Elements.Thunder), new BonusExpFlat());
+        return Arrays.asList(
+                new HealthRegenFlat().multi(2), new ElementalResistFlat(Elements.Thunder), new BonusExpFlat());
     }
 
     @Override

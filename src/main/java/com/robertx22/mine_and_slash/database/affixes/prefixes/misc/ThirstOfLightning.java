@@ -22,6 +22,6 @@ public class ThirstOfLightning extends BaseThirstPrefix {
 
     @Override
     public String locNameForLangFile() {
-        return "Thirst of Lightning";
+        return "thirst_of_lightning";
     }
 }

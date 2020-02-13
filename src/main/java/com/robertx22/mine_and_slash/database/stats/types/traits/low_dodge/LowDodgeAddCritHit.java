@@ -17,7 +17,7 @@ public class LowDodgeAddCritHit extends BaseTraitLowDodge {
 
     @Override
     public String GUID() {
-        return "LowDodgeAddCritHit";
+        return "low_dodge_add_crit_hit";
     }
 
     @Override

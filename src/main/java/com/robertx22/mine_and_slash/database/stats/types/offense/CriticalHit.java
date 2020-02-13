@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 public class CriticalHit extends Stat implements IStatEffects {
     public static Stat INSTANCE = new CriticalHit();
 
-    public static String GUID = "Critical Hit";
+    public static String GUID = "critical_hit";
 
     @Override
     public StatGroup statGroup() {

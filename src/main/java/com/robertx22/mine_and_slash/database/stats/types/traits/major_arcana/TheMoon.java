@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TheMoon extends BaseMajorArcana {
 
-    public static final String GUID = "Moon";
+    public static final String GUID = "moon";
 
     @Override
     public String GUID() {

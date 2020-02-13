@@ -18,7 +18,7 @@ public class EternalField extends Prefix {
 
     @Override
     public String GUID() {
-        return "EternalField";
+        return "eternal_field";
     }
 
     @Override

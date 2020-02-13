@@ -20,7 +20,7 @@ public class ElementImbued extends ElementalPrefix {
 
     @Override
     public String GUID() {
-        return element.dmgName + " Imbued";
+        return element.guidName + "_imbued";
     }
 
     @Override

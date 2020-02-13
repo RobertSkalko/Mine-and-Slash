@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class ManaOnHit extends Stat implements IStatEffects {
-    public static String GUID = "Mana On Hit";
+    public static String GUID = "mana_on_hit";
 
     @Override
     public StatGroup statGroup() {

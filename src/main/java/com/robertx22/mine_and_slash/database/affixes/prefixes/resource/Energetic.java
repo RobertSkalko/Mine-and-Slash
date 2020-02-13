@@ -17,7 +17,7 @@ public class Energetic extends Prefix {
 
     @Override
     public String GUID() {
-        return "Energetic";
+        return "energetic";
     }
 
     @Override

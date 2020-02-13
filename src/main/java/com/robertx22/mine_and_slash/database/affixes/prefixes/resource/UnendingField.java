@@ -23,7 +23,7 @@ public class UnendingField extends Prefix {
 
     @Override
     public String GUID() {
-        return "UnendingField";
+        return "unending_field";
     }
 
     @Override

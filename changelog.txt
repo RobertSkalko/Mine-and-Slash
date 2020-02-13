@@ -8,6 +8,8 @@
 * added synergies: blizzard, thunder dash, poisoned weapons
 * added new unique items
 * disabled my workaround that allowed dimension deletition because it caused server crashes. But now dimensions won't be deleted until forge accepts a PR
+* fixed some stat names, this might break some stats on old items, sorry! I want to stick to the same naming scheme minecraft uses, which is all lowercase no spaces. 
+I added a temporary system that auto formats all old names to this standard, but it's not perfect and some might not work.
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

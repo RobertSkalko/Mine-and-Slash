@@ -17,7 +17,7 @@ public class OfMagicShield extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of_Magic_Shield";
+        return "of_magic_shield";
     }
 
     @Override

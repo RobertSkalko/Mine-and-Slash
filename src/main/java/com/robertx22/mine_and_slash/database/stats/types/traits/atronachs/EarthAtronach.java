@@ -11,7 +11,7 @@ import java.util.List;
 
 public class EarthAtronach extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Earth Atronach";
+    public static String GUID = "earth_atronach";
 
     @Override
     public String GUID() {

@@ -19,7 +19,7 @@ public class HeavenlyStrikes extends Prefix {
 
     @Override
     public String GUID() {
-        return "Heavenly Strikes";
+        return "heavenly_strikes";
     }
 
     @Override

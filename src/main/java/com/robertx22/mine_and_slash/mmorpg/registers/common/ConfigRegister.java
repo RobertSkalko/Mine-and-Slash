@@ -47,6 +47,8 @@ public class ConfigRegister {
 
         generateIfEmpty();
 
+        CONFIGS.values().forEach(x -> x.autoFixProblems());
+
         load();
 
         createTutorials();

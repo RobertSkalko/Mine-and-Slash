@@ -28,7 +28,7 @@ public class ElementThornsMastery extends ElementalPrefix {
 
     @Override
     public String GUID() {
-        return "Bonus" + element.name() + "ReflectPrefix";
+        return "bonus_" + element.guidName + "reflect_prefix";
     }
 
     @Override

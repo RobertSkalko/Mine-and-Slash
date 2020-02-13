@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 public class DodgeRating extends Stat implements IStatEffects, IUsableStat {
 
     public static Stat INSTANCE = new DodgeRating();
-    public static String GUID = "Dodge";
+    public static String GUID = "dodge";
 
     @Override
     public StatGroup statGroup() {

@@ -32,7 +32,8 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
         return Arrays.asList(new ArmorFlat().multi(2));
     }
 
-    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.SMALL, LvlPointStat.STAMINA, StatReq.Size.SMALL);
+    static StatReq req = new StatReq(
+            LvlPointStat.VITALITY, StatReq.Size.SMALL, LvlPointStat.STAMINA, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -41,7 +42,7 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
 
     @Override
     public String GUID() {
-        return "Shield";
+        return "shield";
     }
 
     @Override

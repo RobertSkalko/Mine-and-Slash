@@ -33,7 +33,7 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
 
     @Override
     public String GUID() {
-        return "Sword";
+        return "sword";
     }
 
     @Override

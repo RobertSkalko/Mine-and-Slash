@@ -17,7 +17,7 @@ public class OfCriticalHits extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of Critical Hits";
+        return "of_critical_hits";
     }
 
     @Override

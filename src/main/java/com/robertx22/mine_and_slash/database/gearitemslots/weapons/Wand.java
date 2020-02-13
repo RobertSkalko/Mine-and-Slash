@@ -38,7 +38,7 @@ public class Wand extends BaseWeapon implements ISpecificStatReq {
 
     @Override
     public String GUID() {
-        return "Wand";
+        return "wand";
     }
 
     @Override

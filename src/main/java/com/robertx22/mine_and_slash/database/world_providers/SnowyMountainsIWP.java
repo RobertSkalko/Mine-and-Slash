@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.database.world_providers;
 
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_dmg.BonusWaterDamageAffix;
+import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusEleDmgAffix;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.world_gen.biome_color_schemes.bases.BiomeColorTheme;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -31,7 +32,7 @@ public class SnowyMountainsIWP extends BaseWorldProvider {
 
     @Override
     public List<MapAffixData> getMapAffixes() {
-        return Arrays.asList(new MapAffixData(new BonusWaterDamageAffix(), 100));
+        return Arrays.asList(new MapAffixData(new BonusEleDmgAffix(Elements.Nature), 100));
     }
 
     @Override

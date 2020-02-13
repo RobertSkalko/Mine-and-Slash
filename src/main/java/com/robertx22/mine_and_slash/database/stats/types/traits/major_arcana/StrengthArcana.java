@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StrengthArcana extends BaseMajorArcana {
 
-    public static final String GUID = "StrengthArcana";
+    public static final String GUID = "strength_arcana";
 
     @Override
     public String GUID() {
@@ -20,7 +20,8 @@ public class StrengthArcana extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new StaminaFlat().multi(2), new EnergyRegenFlat(), new ElementalSpellDamagePercent(Elements.Fire));
+        return Arrays.asList(
+                new StaminaFlat().multi(2), new EnergyRegenFlat(), new ElementalSpellDamagePercent(Elements.Fire));
     }
 
     @Override

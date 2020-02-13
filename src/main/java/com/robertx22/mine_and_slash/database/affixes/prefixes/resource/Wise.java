@@ -17,7 +17,7 @@ public class Wise extends Prefix {
 
     @Override
     public String GUID() {
-        return "Wise";
+        return "wise";
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TheDevil extends BaseMajorArcana {
 
-    public static final String GUID = "Devil";
+    public static final String GUID = "devil";
 
     @Override
     public String GUID() {
@@ -20,8 +20,8 @@ public class TheDevil extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new EnergyRegenFlat(), new ManaRegenFlat(), new ElementalSpellDamagePercent(Elements.Nature)
-                .multi(2));
+        return Arrays.asList(
+                new EnergyRegenFlat(), new ManaRegenFlat(), new ElementalSpellDamagePercent(Elements.Nature).multi(2));
     }
 
     @Override

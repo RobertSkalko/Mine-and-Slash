@@ -8,6 +8,5 @@ public abstract class BaseBeneficialEleAffix extends BeneficialMapAffix {
     @Override
     public int getRarityRank() {
         return IRarity.Rare;
-
     }
 }

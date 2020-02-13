@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 public class LifeOnHit extends Stat implements IStatEffects {
 
     public static Stat INSTANCE = new LifeOnHit();
-    public static String GUID = "Life On Hit";
+    public static String GUID = "life_on_hit";
 
     @Override
     public StatGroup statGroup() {

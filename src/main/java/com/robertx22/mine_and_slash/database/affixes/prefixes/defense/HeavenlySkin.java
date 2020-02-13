@@ -19,7 +19,7 @@ public class HeavenlySkin extends Prefix {
 
     @Override
     public String GUID() {
-        return "Heavenly Skin";
+        return "heavenly_skin";
     }
 
     @Override

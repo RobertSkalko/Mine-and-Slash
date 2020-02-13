@@ -44,4 +44,9 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
     default int Tier() {
         return 0;
     }
+
+    default String getInvalidGuidMessage() {
+        return "Non [a-z0-9_.-] character in Mine and Slash GUID: " + GUID() + " of type " + getSlashRegistryType().name();
+    }
+
 }

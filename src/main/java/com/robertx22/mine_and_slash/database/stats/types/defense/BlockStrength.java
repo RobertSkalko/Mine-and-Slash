@@ -30,7 +30,7 @@ public class BlockStrength extends Stat implements IStatEffects {
         return "Blocks part of DMG when blocking, if all damage is blocked, attack is canceled";
     }
 
-    public static String GUID = "BlockStrength";
+    public static String GUID = "block_strength";
 
     public BlockStrength() {
         this.minimumValue = 0;

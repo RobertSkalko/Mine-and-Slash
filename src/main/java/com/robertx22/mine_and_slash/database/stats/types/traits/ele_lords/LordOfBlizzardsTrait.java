@@ -20,7 +20,7 @@ public class LordOfBlizzardsTrait extends Trait implements IAffectsOtherStats {
 
     @Override
     public String GUID() {
-        return "Lord Of Blizzards";
+        return "lord_of_blizzards";
     }
 
     @Override

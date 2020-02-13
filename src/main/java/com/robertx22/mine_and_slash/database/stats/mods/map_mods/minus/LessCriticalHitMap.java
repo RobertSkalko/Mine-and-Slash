@@ -12,7 +12,7 @@ public class LessCriticalHitMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "LessCriticalHitMap";
+        return "less_critical_hit_Map";
     }
 
     @Override

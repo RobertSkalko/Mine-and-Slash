@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class Lifesteal extends Stat implements IStatEffects {
     public static Stat INSTANCE = new Lifesteal();
-    public static String GUID = "Lifesteal";
+    public static String GUID = "lifesteal";
 
     @Override
     public StatGroup statGroup() {

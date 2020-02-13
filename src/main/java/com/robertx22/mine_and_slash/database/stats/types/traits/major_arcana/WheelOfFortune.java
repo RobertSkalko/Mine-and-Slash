@@ -11,7 +11,7 @@ import java.util.List;
 
 public class WheelOfFortune extends BaseMajorArcana {
 
-    public static final String GUID = "WheelOfFortune";
+    public static final String GUID = "wheel_of_fortune";
 
     @Override
     public String GUID() {
@@ -20,7 +20,8 @@ public class WheelOfFortune extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new CriticalHitFlat().multi(2), new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Fire));
+        return Arrays.asList(
+                new CriticalHitFlat().multi(2), new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Fire));
     }
 
     @Override

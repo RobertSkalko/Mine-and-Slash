@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.database.world_providers;
 
+import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusEleDmgAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusHealthAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_dmg.BonusNatureDamageAffix;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.world_gen.biome_color_schemes.bases.BiomeColorTheme;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -32,7 +33,10 @@ public class RockMountainsIWP extends BaseWorldProvider {
 
     @Override
     public List<MapAffixData> getMapAffixes() {
-        return Arrays.asList(new MapAffixData(new BonusHealthAffix(), 15), new MapAffixData(new BonusNatureDamageAffix(), 85));
+        return Arrays.asList(
+                new MapAffixData(new BonusHealthAffix(), 15),
+                new MapAffixData(new BonusEleDmgAffix(Elements.Nature), 85)
+        );
     }
 
     @Override

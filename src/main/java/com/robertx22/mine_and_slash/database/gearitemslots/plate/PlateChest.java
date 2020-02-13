@@ -29,7 +29,7 @@ public class PlateChest extends BaseChest {
 
     @Override
     public String GUID() {
-        return "Chest";
+        return "chest";
     }
 
     @Override

@@ -52,7 +52,7 @@ public class AscensionOfElement extends ElementalSet {
 
     @Override
     public String GUID() {
-        return "ascension_of_" + element.name();
+        return "ascension_of_" + element.guidName;
     }
 
     @Override

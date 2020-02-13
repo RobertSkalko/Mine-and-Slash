@@ -34,7 +34,7 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
 
     @Override
     public String GUID() {
-        return "Axe";
+        return "axe";
     }
 
     @Override

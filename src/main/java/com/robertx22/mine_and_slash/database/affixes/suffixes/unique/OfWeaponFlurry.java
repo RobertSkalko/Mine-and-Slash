@@ -18,12 +18,14 @@ import java.util.List;
 public class OfWeaponFlurry extends WeaponSuffix {
 
     public OfWeaponFlurry(WeaponTypes type) {
-        super(new Requirements(SlotRequirement.bracelet(), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)), type);
+        super(
+                new Requirements(
+                        SlotRequirement.bracelet(), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)), type);
     }
 
     @Override
     public String GUID() {
-        return "of_" + this.type.name() + "_flurry";
+        return "of_" + this.type.id + "_flurry";
     }
 
     @Override

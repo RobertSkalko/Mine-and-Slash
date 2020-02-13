@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Temperance extends BaseMajorArcana {
 
-    public static final String GUID = "Temperance";
+    public static final String GUID = "temperance";
 
     @Override
     public String GUID() {

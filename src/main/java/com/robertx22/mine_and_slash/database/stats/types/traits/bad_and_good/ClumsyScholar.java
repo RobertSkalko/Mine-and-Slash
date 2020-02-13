@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ClumsyScholar extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Clumsy Scholar";
+    public static String GUID = "clumsy_scholar";
 
     @Override
     public String GUID() {

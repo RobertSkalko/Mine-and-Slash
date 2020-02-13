@@ -11,7 +11,7 @@ public class LessCriticalHitAffix extends DetrimentalMapAffix {
 
     @Override
     public String GUID() {
-        return "LessCriticalHitAffix";
+        return "less_critical_hit_affix";
     }
 
     @Override

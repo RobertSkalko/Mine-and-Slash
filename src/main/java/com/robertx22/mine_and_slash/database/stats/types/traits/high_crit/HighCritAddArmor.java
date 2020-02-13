@@ -18,7 +18,7 @@ public class HighCritAddArmor extends BaseTraitHighCritHit {
 
     @Override
     public String GUID() {
-        return "HighCritAddArmor";
+        return "high_crit_add_armor";
     }
 
     @Override

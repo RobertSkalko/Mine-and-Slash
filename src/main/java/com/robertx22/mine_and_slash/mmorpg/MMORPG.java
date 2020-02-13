@@ -93,13 +93,17 @@ public class MMORPG {
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        SlashRegistry.initRegistries();
+
         RegisterEvents.register();
 
         ConfigRegister.registerForgeConfigs(); // MUST BE IN MAIN CLASS
 
-        OnStartResetMaps.OnStartResetMaps();
+        SlashRegistry.registerAllItems(); // after config registerAll
 
-        SlashRegistry.init(); // after config registerAll
+        OnStartResetMaps.OnStartResetMaps(); // TODO delete this after PR accepted
+
+        SlashRegistry.checkGuidValidity();
 
         StructurePieceRegisters.reg();
 

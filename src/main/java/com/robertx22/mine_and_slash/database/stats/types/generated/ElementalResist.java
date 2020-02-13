@@ -47,7 +47,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
 
     @Override
     public String GUID() {
-        return this.getElement().name() + " Resist";
+        return this.getElement().name() + "_resist";
     }
 
     @Override

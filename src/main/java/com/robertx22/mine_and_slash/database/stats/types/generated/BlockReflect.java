@@ -60,7 +60,7 @@ public class BlockReflect extends ElementalStat implements IStatEffects {
 
     @Override
     public String GUID() {
-        return element.name().toLowerCase() + "_thorns_reflect";
+        return element.guidName + "_thorns_reflect";
     }
 
     @Override

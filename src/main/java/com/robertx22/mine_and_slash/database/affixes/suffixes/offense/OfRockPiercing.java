@@ -22,12 +22,14 @@ public class OfRockPiercing extends Suffix {
 
     @Override
     public String GUID() {
-        return "OfRockPiercing";
+        return "of_rock_piercing";
     }
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Physical), new PhysicalDamagePercent(), new ElementalPenePercent(Elements.Physical));
+        return Arrays.asList(new ElementalPeneFlat(Elements.Physical), new PhysicalDamagePercent(),
+                             new ElementalPenePercent(Elements.Physical)
+        );
     }
 
     @Override

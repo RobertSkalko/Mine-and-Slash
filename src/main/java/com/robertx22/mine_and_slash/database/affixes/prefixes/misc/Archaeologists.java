@@ -24,7 +24,7 @@ public class Archaeologists extends Prefix {
 
     @Override
     public String GUID() {
-        return "Archaeologists";
+        return "archaeologists";
     }
 
     @Override

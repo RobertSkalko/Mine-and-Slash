@@ -11,7 +11,7 @@ public class LessLifeOnHitAffix extends DetrimentalMapAffix {
 
     @Override
     public String GUID() {
-        return "LessLifeOnHitAffix";
+        return "less_life_on_hit_affix";
     }
 
     @Override

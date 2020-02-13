@@ -6,7 +6,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class HealthRegen extends BaseRegenClass {
     public static Stat INSTANCE = new HealthRegen();
-    public static String GUID = "Health Regen";
+    public static String GUID = "health_regen";
 
     @Override
     public TextFormatting getIconFormat() {

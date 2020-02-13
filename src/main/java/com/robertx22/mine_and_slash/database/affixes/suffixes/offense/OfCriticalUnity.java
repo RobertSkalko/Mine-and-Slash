@@ -20,7 +20,7 @@ public class OfCriticalUnity extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of Critical Unity";
+        return "of_critical_unity";
     }
 
     @Override

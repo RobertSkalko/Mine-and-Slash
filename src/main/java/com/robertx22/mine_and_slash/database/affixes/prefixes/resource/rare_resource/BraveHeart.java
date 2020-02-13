@@ -11,7 +11,7 @@ public class BraveHeart extends BaseRareResourcePrefix {
 
     @Override
     public String GUID() {
-        return "Brave Heart";
+        return "brave_heart";
     }
 
     @Override

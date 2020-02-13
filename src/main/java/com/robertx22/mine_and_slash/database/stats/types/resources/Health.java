@@ -7,7 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.TextFormatting;
 
 public class Health extends Stat {
-    public static String GUID = "Health";
+    public static String GUID = "health";
 
     public static Health INSTANCE = new Health();
 

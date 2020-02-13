@@ -17,7 +17,7 @@ public class OfVitality extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of Vitality";
+        return "of_vitality";
     }
 
     @Override

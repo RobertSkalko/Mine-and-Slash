@@ -19,7 +19,7 @@ public class OfImmortality extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of Immortality";
+        return "of_immortality";
     }
 
     @Override

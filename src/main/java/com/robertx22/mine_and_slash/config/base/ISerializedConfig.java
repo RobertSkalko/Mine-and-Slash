@@ -74,6 +74,10 @@ public interface ISerializedConfig<T extends ISlashRegistryInit> {
         return SerializationUtils.CONFIG_PATH;
     }
 
+    default void autoFixProblems() {
+
+    }
+
     default void generateIfEmpty() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(getDefaultObject());

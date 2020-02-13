@@ -228,16 +228,25 @@ public class SlashRegistry {
 
     }
 
-    public static void init() {
+    public static void registerAllItems() {
         try {
-            map = new HashMap<>(); // same reason this is here
-            createRegistries();
             registerFromAllInits();
         } catch (ExceptionInInitializerError e) {
             // leave this, once this error happened and we don't know why. this is to know the cause if it happens again
             e.printStackTrace();
             e.getCause().printStackTrace();
         }
+    }
+
+    public static void checkGuidValidity() {
+
+        map.values().forEach(c -> c.getList().forEach(x -> {
+            ISlashRegistryEntry entry = (ISlashRegistryEntry) x;
+            if (!entry.isGuidFormattedCorrectly()) {
+                System.out.println(entry.getInvalidGuidMessage());
+            }
+        }));
+
     }
 
     private static void registerFromAllInits() {
@@ -277,7 +286,9 @@ public class SlashRegistry {
         new MapEvents().registerAll();
     }
 
-    private static void createRegistries() {
+    public static void initRegistries() {
+        map = new HashMap<>();
+
         map.put(SlashRegistryType.GEAR_TYPE,
                 new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType())
         );

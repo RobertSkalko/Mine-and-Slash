@@ -11,7 +11,7 @@ public class LessManaOnHitAffix extends DetrimentalMapAffix {
 
     @Override
     public String GUID() {
-        return "LessManaOnHitAffix";
+        return "less_mana_on_hit_affix";
     }
 
     @Override

@@ -12,7 +12,7 @@ public class BonusLifestealMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "BonusLifestealMap";
+        return "Bonus_lifesteal_map";
     }
 
     @Override

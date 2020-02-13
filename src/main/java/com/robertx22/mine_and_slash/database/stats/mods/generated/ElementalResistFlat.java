@@ -40,6 +40,6 @@ public class ElementalResistFlat extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return element.name() + "ResistFlat";
+        return element.guidName + "_resist_flat";
     }
 }

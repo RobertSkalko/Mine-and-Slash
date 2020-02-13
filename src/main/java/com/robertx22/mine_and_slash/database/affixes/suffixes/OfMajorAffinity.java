@@ -32,7 +32,7 @@ public class OfMajorAffinity extends ElementalSuffix {
 
     @Override
     public String GUID() {
-        return "of_major_affinity_" + element.name();
+        return "of_major_affinity_" + element.guidName;
     }
 
     @Override

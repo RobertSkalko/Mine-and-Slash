@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Judgement extends BaseMajorArcana {
 
-    public static final String GUID = "Judgement";
+    public static final String GUID = "judgement";
 
     @Override
     public String GUID() {
@@ -19,7 +19,8 @@ public class Judgement extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Water), new ElementalPeneFlat(Elements.Fire), new LifestealFlat());
+        return Arrays.asList(
+                new ElementalPeneFlat(Elements.Water), new ElementalPeneFlat(Elements.Fire), new LifestealFlat());
     }
 
     @Override

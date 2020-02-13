@@ -11,7 +11,7 @@ public class LessHealthRegenAffix extends DetrimentalMapAffix {
 
     @Override
     public String GUID() {
-        return "LessHealthRegenAffix";
+        return "less_health_regen_affix";
     }
 
     @Override

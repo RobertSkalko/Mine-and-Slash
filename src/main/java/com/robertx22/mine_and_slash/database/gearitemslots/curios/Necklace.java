@@ -35,7 +35,7 @@ public class Necklace extends GearItemSlot {
 
     @Override
     public String GUID() {
-        return "Necklace";
+        return "necklace";
     }
 
     @Override

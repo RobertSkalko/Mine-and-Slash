@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Strength extends BaseCoreStat {
 
-    public static final String GUID = "Strength";
+    public static final String GUID = "strength";
     public static final Strength INSTANCE = new Strength();
 
     private Strength() {

@@ -45,6 +45,6 @@ public class LeatherHelmet extends BaseHelmet {
 
     @Override
     public String GUID() {
-        return "Leather_Helmet";
+        return "leather_helmet";
     }
 }

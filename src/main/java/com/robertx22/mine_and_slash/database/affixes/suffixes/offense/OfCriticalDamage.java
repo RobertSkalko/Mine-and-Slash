@@ -18,14 +18,12 @@ public class OfCriticalDamage extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of Critical Damage";
+        return "of_critical_damage";
     }
 
     @Override
     public List<StatMod> StatMods() {
-
         return Arrays.asList(new CriticalDamageFlat());
-
     }
 
     @Override

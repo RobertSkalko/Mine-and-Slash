@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Barbarian extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Barbarian";
+    public static String GUID = "barbarian";
 
     @Override
     public String GUID() {

@@ -70,7 +70,7 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
 
     @Override
     public String GUID() {
-        return getElement().toString() + "_affinity";
+        return getElement().guidName + "_affinity";
     }
 
     @Override

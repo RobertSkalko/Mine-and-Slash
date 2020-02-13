@@ -17,7 +17,7 @@ public class LifeStealing extends Prefix {
 
     @Override
     public String GUID() {
-        return "Life Stealing";
+        return "life_stealing";
     }
 
     @Override

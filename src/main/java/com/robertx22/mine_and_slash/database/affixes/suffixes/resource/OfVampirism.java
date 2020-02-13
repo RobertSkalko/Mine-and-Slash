@@ -20,7 +20,7 @@ public class OfVampirism extends Suffix {
 
     @Override
     public String GUID() {
-        return "OfVampirism";
+        return "of_vampirism";
     }
 
     @Override

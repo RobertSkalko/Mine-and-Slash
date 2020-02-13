@@ -17,7 +17,7 @@ public class OfRockSkin extends Suffix {
 
     @Override
     public String GUID() {
-        return "Of Rock Skin";
+        return "of_rock_skin";
     }
 
     @Override

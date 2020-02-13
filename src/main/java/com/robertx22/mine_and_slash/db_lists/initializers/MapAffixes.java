@@ -1,23 +1,14 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
+import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusEleDmgAffix;
+import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusEleResistAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusHealthAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusLifestealAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_dmg.BonusFireDamageAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_dmg.BonusNatureDamageAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_dmg.BonusThunderDamageAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_dmg.BonusWaterDamageAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusFireResistAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusNatureResistAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusThunderResistAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.beneficial.ele_res.BonusWaterResistAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.*;
-import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllFireDmgAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllNatureDmgAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllThunderDmgAffix;
-import com.robertx22.mine_and_slash.database.map_affixes.detrimental.ele.LessAllWaterDmgAffix;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -39,20 +30,9 @@ public class MapAffixes implements ISlashRegistryInit {
                     add(new BonusHealthAffix());
                     add(new BonusLifestealAffix());
 
-                    add(new BonusFireDamageAffix());
-                    add(new BonusNatureDamageAffix());
-                    add(new BonusThunderDamageAffix());
-                    add(new BonusWaterDamageAffix());
-
-                    add(new BonusFireResistAffix());
-                    add(new BonusNatureResistAffix());
-                    add(new BonusThunderResistAffix());
-                    add(new BonusWaterResistAffix());
-
-                    add(new LessAllFireDmgAffix());
-                    add(new LessAllNatureDmgAffix());
-                    add(new LessAllThunderDmgAffix());
-                    add(new LessAllWaterDmgAffix());
+                    add(new BonusEleDmgAffix(Elements.Nature));
+                    add(new BonusEleResistAffix(Elements.Nature));
+                    add(new LessEleDmgAffix(Elements.Nature));
 
                     add(new LessDodgeAffix());
                     add(new LessCriticalHitAffix());

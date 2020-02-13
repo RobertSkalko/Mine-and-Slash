@@ -14,7 +14,7 @@ public class Flaming extends BaseDamagePercentPrefix {
 
     @Override
     public String GUID() {
-        return "Flaming";
+        return "flaming";
     }
 
     @Override

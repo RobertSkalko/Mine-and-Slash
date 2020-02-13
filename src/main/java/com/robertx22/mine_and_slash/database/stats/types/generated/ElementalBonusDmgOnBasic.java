@@ -36,7 +36,7 @@ public class ElementalBonusDmgOnBasic extends ElementalStat implements IStatEffe
 
     @Override
     public String GUID() {
-        return element.name().toLowerCase() + "_bonus_dmg_on_basic";
+        return element.guidName + "_bonus_dmg_on_basic";
     }
 
     @Override

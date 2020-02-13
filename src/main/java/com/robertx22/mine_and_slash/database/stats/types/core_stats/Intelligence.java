@@ -17,7 +17,7 @@ public class Intelligence extends BaseCoreStat {
     }
 
     public static final Intelligence INSTANCE = new Intelligence();
-    public static String GUID = "Intelligence";
+    public static String GUID = "intelligence";
 
     @Override
     public TextFormatting getIconFormat() {

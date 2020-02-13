@@ -29,7 +29,7 @@ public class PlateBoots extends BaseBoots {
 
     @Override
     public String GUID() {
-        return "Boots";
+        return "boots";
     }
 
     @Override

@@ -17,7 +17,7 @@ public class HighDodgeAddCritDamage extends BaseTraitHighDodge {
 
     @Override
     public String GUID() {
-        return "HighDodgeAddCritDamage";
+        return "high_dodge_add_crit_camage";
     }
 
     @Override

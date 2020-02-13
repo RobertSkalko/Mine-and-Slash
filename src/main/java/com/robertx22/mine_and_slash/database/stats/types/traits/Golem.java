@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Golem extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Golem";
+    public static String GUID = "golem";
 
     @Override
     public String GUID() {

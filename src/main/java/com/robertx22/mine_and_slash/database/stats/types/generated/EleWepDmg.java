@@ -49,7 +49,7 @@ public class EleWepDmg extends Stat implements IStatEffects, IGenerated<EleWepDm
 
     @Override
     public String GUID() {
-        return "ele_" + this.weaponType.name() + "_damage";
+        return "ele_" + this.weaponType.id + "_damage";
     }
 
     @Override

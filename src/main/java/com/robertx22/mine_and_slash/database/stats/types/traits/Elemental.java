@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Elemental extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "Elemental";
+    public static String GUID = "elemental";
 
     @Override
     public String GUID() {

@@ -17,7 +17,7 @@ public class CosmeticBeaconTile extends TileEntity implements ITickableTileEntit
 
     }
 
-    int lifeTicksRemaining = 60 * 20;
+    int lifeTicksRemaining = 60 * 20 * 2;
 
     List<BeaconTileEntity.BeamSegment> list = new ArrayList<>();
 

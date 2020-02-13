@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Justice extends BaseMajorArcana {
 
-    public static final String GUID = "Justice";
+    public static final String GUID = "justice";
 
     @Override
     public String GUID() {
@@ -21,8 +21,10 @@ public class Justice extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Sword), new ElementalPeneFlat(Elements.Physical)
-                .multi(2), new ElementalSpellToAttackDMGFlat(Elements.Water));
+        return Arrays.asList(
+                new WeaponDamageFlat(WeaponTypes.Sword), new ElementalPeneFlat(Elements.Physical).multi(2),
+                new ElementalSpellToAttackDMGFlat(Elements.Water)
+        );
     }
 
     @Override

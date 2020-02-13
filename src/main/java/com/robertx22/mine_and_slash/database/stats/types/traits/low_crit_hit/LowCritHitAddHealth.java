@@ -11,7 +11,7 @@ public class LowCritHitAddHealth extends BaseTraitLowCritHit {
 
     @Override
     public String GUID() {
-        return "LowCritHitAddHealthMulti";
+        return "low_crit_hit_add_health_multi";
     }
 
     @Override

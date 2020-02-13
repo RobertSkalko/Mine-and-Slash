@@ -17,7 +17,7 @@ public class Hardened extends Prefix {
 
     @Override
     public String GUID() {
-        return "Hardened";
+        return "hardened";
     }
 
     @Override

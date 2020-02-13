@@ -34,7 +34,7 @@ public class Charm extends GearItemSlot {
 
     @Override
     public String GUID() {
-        return "Charm";
+        return "charm";
     }
 
     static float multi = 2;
