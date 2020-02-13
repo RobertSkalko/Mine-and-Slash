@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.database.serialization.StatModManager;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -164,6 +165,9 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
+
+        event.getServer().getResourceManager().addReloadListener(new StatModManager());
+
         CommandRegister.Register(event.getServer());
 
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE

@@ -47,7 +47,7 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
 
     @Override
     public String GUID() {
-        return this.getElement().name() + " Penetration";
+        return this.getElement().guidName + "_penetration";
     }
 
     @Override

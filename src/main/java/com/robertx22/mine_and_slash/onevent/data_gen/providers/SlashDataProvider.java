@@ -14,15 +14,15 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
-public class SlashDataProvider implements IDataProvider {
+public class SlashDataProvider<T extends ISerializedRegistryEntry> implements IDataProvider {
 
     private final Logger LOGGER = LogManager.getLogger();
     private final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
     private DataGenerator generator;
     String category;
-    List<ISerializedRegistryEntry> list;
+    List<T> list;
 
-    public SlashDataProvider(DataGenerator gen, List<ISerializedRegistryEntry> list, String category) {
+    public SlashDataProvider(DataGenerator gen, List<T> list, String category) {
         this.generator = gen;
         this.list = list;
         this.category = category;
@@ -49,7 +49,7 @@ public class SlashDataProvider implements IDataProvider {
         for (ISerializedRegistryEntry entry : list) {
             Path target = resolve(path, entry);
             try {
-                IDataProvider.save(GSON, cache, entry.toJson(), target);
+                IDataProvider.save(GSON, cache, entry.getSerializer().toJson(entry), target);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -35,7 +35,7 @@ public class AllElementalDamage extends ElementalStat implements IStatEffects {
 
     @Override
     public String GUID() {
-        return "all_" + this.getElement().name().toLowerCase() + "_damage";
+        return "all_" + this.getElement().guidName + "_damage";
     }
 
     @Override

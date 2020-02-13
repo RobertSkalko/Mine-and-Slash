@@ -38,7 +38,7 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Weapo
 
     @Override
     public String GUID() {
-        return this.weaponType.name() + " Damage";
+        return this.weaponType.id + " Damage";
     }
 
     @Override

@@ -18,6 +18,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     private HashMap<String, C> serializables = new HashMap<>();
 
+    public List<C> getSerializable() {
+        return new ArrayList<>(serializables.values());
+    }
+
     public static void logRegistryError(String text) {
         System.out.println("[Mine and Slash Registry Error]: " + text);
     }

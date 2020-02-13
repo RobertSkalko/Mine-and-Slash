@@ -42,7 +42,7 @@ public class LootTypeBonusFlat extends StatMod implements IGenerated<StatMod> {
 
     @Override
     public String GUID() {
-        return "bonus_" + type + "_drops_flat";
+        return "bonus_" + type.formattedGUID() + "_drops_flat";
     }
 
     @Override

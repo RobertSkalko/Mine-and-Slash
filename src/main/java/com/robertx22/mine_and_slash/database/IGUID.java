@@ -6,6 +6,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Locale;
+
 public interface IGUID {
 
     public String GUID();
@@ -23,9 +25,11 @@ public interface IGUID {
         if (isGUIDFormattedCorrectly(str)) {
             return str;
         } else {
-            String newstring = str.toLowerCase().replaceAll(" ", "_").replaceAll("/", ".").replaceAll(":", ".");
-            newstring = StringUtils.join(
-                    StringUtils.splitByCharacterTypeCamelCase(newstring.replaceAll("\\d+", "")), "_");
+            String newstring = StringUtils.join(
+                    StringUtils.splitByCharacterTypeCamelCase(str.replaceAll("\\d+", "")), "_");
+
+            newstring = str.replaceAll(" ", "_").toLowerCase(Locale.ROOT);
+
             return newstring.replaceAll("__", "_");
         }
     }
