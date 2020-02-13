@@ -17,6 +17,12 @@ public class StatReq {
         map.put(stat.statguid, size);
     }
 
+    public StatReq(StatReq... list) {
+        for (StatReq req : list) {
+            req.map.entrySet().forEach(x -> map.put(x.getKey(), x.getValue()));
+        }
+    }
+
     public StatReq(LvlPointStat stat, Size size, LvlPointStat stat2, Size size2) {
         map.put(stat.statguid, size);
         map.put(stat2.statguid, size2);
@@ -46,10 +52,7 @@ public class StatReq {
     }
 
     public List<Stat> getStats() {
-        return this.map.keySet()
-                .stream()
-                .map(x -> SlashRegistry.Stats().get(x))
-                .collect(Collectors.toList());
+        return this.map.keySet().stream().map(x -> SlashRegistry.Stats().get(x)).collect(Collectors.toList());
     }
 
     private HashMap<String, Size> map = new HashMap<>();
@@ -58,8 +61,7 @@ public class StatReq {
         HashMap<String, Integer> hashmap = new HashMap<>();
 
         for (Map.Entry<String, Size> entry : map.entrySet()) {
-            int val = (int) ((entry.getValue().multi * StatRequirementsData.getAmount(lvl)) * rar
-                    .requirementMulti());
+            int val = (int) ((entry.getValue().multi * StatRequirementsData.getAmount(lvl)) * rar.requirementMulti());
             hashmap.put(entry.getKey(), val);
         }
 

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.offence.PhysicalDamageMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.PhysicalDamagePercent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,11 @@ public class Strength extends BaseCoreStat {
 
     private Strength() {
 
+    }
+
+    @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.RED;
     }
 
     @Override

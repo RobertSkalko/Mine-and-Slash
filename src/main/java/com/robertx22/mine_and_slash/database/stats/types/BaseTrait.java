@@ -67,7 +67,7 @@ public abstract class BaseTrait extends Stat {
 
     public static String MAJOR_ARCANA = "\u25C8";
 
-    public static String SYMBOL = "\u2299";
+    public static String SYMBOL = "\u32A3";
 
     @OnlyIn(Dist.CLIENT)
     @Override

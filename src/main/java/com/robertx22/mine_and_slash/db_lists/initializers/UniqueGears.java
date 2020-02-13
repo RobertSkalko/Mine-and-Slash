@@ -134,6 +134,8 @@ public class UniqueGears implements ISlashRegistryInit {
         add(new NecklaceEnergy());
         add(new NecklaceSetDrop());
         add(NecklaceMagicShield.INSTANCE);
+        add(NecklaceWisdom.getInstance());
+        add(NecklaceStrength.getInstance());
 
         // staffs
         add(new StaffFire());

@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.ArmorPercent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +17,11 @@ public class Stamina extends BaseCoreStat {
 
     private Stamina() {
 
+    }
+
+    @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.YELLOW;
     }
 
     @Override
@@ -35,9 +41,8 @@ public class Stamina extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(
-                new EnergyRegenFlat().multi(0.4F), new EnergyFlat().multi(1.25F), new ArmorFlat().multi(1F),
-                new ArmorPercent()
+        return Arrays.asList(new EnergyRegenFlat().multi(0.4F), new EnergyFlat().multi(1.25F),
+                             new ArmorFlat().multi(1F), new ArmorPercent()
         );
     }
 

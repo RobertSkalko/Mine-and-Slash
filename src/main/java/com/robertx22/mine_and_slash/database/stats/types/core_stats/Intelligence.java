@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmg
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,11 @@ public class Intelligence extends BaseCoreStat {
 
     public static final Intelligence INSTANCE = new Intelligence();
     public static String GUID = "Intelligence";
+
+    @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.BLUE;
+    }
 
     @Override
     public String getIconPath() {

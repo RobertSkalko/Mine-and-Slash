@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShie
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,11 @@ public class Wisdom extends BaseCoreStat {
 
     private Wisdom() {
 
+    }
+
+    @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.LIGHT_PURPLE;
     }
 
     @Override
@@ -37,10 +43,11 @@ public class Wisdom extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new MagicShieldRegenFlat().multi(regenMulti), new ManaRegenFlat()
-                .multi(regenMulti), new ElementalResistFlat(Elements.Nature).multi(resistMulti), new ElementalResistFlat(Elements.Fire)
-                .multi(resistMulti), new ElementalResistFlat(Elements.Thunder).multi(resistMulti), new ElementalResistFlat(Elements.Water)
-                .multi(resistMulti)
+        return Arrays.asList(new MagicShieldRegenFlat().multi(regenMulti), new ManaRegenFlat().multi(regenMulti),
+                             new ElementalResistFlat(Elements.Nature).multi(resistMulti),
+                             new ElementalResistFlat(Elements.Fire).multi(resistMulti),
+                             new ElementalResistFlat(Elements.Thunder).multi(resistMulti),
+                             new ElementalResistFlat(Elements.Water).multi(resistMulti)
 
         )
 

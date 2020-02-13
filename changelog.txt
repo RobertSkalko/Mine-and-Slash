@@ -7,6 +7,7 @@
 * added poisoned weapons druid spell
 * added synergies: blizzard, thunder dash, poisoned weapons
 * added new unique items
+* disabled my workaround that allowed dimension deletition because it caused server crashes. But now dimensions won't be deleted until forge accepts a PR
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

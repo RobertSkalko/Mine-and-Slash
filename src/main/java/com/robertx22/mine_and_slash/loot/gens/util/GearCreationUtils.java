@@ -79,7 +79,7 @@ public class GearCreationUtils {
 
             if (unique != null) {
 
-                blueprint.gearItemSlot.set(unique.getGearSlot());
+                blueprint.gearItemSlot.forceSet(unique.getGearSlot());
 
                 data.gearTypeName = unique.getGearSlot().GUID();
 

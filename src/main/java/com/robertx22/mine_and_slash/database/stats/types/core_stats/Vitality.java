@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,11 @@ public class Vitality extends BaseCoreStat {
 
     private Vitality() {
 
+    }
+
+    @Override
+    public TextFormatting getIconFormat() {
+        return TextFormatting.DARK_RED;
     }
 
     @Override
