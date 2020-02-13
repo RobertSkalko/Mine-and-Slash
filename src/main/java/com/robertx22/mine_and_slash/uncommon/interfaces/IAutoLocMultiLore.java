@@ -21,7 +21,7 @@ public interface IAutoLocMultiLore extends IBaseAutoLoc {
     }
 
     public default String formattedLocLoresLangFileGUID() {
-        return getPrefix() + formatString(locMultiLoreLangFileGUID());
+        return getPrefix() + getFormatedForLangFile(locMultiLoreLangFileGUID());
     }
 
     default List<ITextComponent> getComponents() {

@@ -40,7 +40,6 @@ import com.robertx22.mine_and_slash.database.talent_tree.data.StartPerkEffects;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
-import com.robertx22.mine_and_slash.db_lists.initializers.profession_recipes.AlchemyRecipes;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -240,7 +239,7 @@ public class SlashRegistry {
 
     public static void checkGuidValidity() {
 
-        map.values().forEach(c -> c.getList().forEach(x -> {
+        map.values().forEach(c -> c.getAllIncludingSeriazable().forEach(x -> {
             ISlashRegistryEntry entry = (ISlashRegistryEntry) x;
             if (!entry.isGuidFormattedCorrectly()) {
                 System.out.println(entry.getInvalidGuidMessage());
@@ -269,9 +268,6 @@ public class SlashRegistry {
         new CurrencyItems().registerAll();
         new UniqueRunes().registerAll();
 
-        // professions
-        new AlchemyRecipes().registerAll();
-
         new PerkEffectsInit().registerAll();
         new SpellPerkEffectsInit().registerAll();
 
@@ -284,6 +280,7 @@ public class SlashRegistry {
 
         new Bosses().registerAll();
         new MapEvents().registerAll();
+
     }
 
     public static void initRegistries() {

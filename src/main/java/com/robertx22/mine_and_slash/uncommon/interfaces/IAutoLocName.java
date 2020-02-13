@@ -14,7 +14,7 @@ public interface IAutoLocName extends IBaseAutoLoc {
     String locNameLangFileGUID();
 
     public default String formattedLocNameLangFileGUID() {
-        return getPrefix() + formatString(locNameLangFileGUID());
+        return getPrefix() + getFormatedForLangFile(locNameLangFileGUID());
     }
 
     public default String translate() {
@@ -24,7 +24,7 @@ public interface IAutoLocName extends IBaseAutoLoc {
     public String locNameForLangFile();
 
     public default ITextComponent locName() {
-        return CLOC.blank(formatString(locNameLangFileGUID()));
+        return CLOC.blank(getFormatedForLangFile(locNameLangFileGUID()));
     }
 
 }

@@ -25,6 +25,10 @@ public abstract class AffixData implements IStatModsContainer, IRerollable {
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
 
+        if (percents.isEmpty() || baseAffix == null || baseAffix.isEmpty() || BaseAffix() == null) {
+            return new ArrayList<>();
+        }
+
         BaseAffix base = BaseAffix();
 
         List<StatModData> list = new ArrayList<StatModData>();

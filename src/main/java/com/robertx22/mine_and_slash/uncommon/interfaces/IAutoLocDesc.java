@@ -6,9 +6,7 @@ import net.minecraft.util.text.ITextComponent;
 public interface IAutoLocDesc extends IBaseAutoLoc {
 
     public default String getDescGroupName() {
-        return locDescGroup().name()
-                .toUpperCase()
-                .replaceAll("_", " ") + " - DESCRIPTIONS";
+        return locDescGroup().name().toUpperCase().replaceAll("_", " ") + " - DESCRIPTIONS";
     }
 
     public AutoLocGroup locDescGroup();
@@ -18,7 +16,7 @@ public interface IAutoLocDesc extends IBaseAutoLoc {
     String locDescForLangFile();
 
     public default ITextComponent locDesc() {
-        return CLOC.blank(formatString(formattedLocDescLangFileGUID()));
+        return CLOC.blank(getFormatedForLangFile(formattedLocDescLangFileGUID()));
     }
 
     public default String formattedLocDescLangFileGUID() {

@@ -63,7 +63,9 @@ public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Se
     public void create(GearItemData gear, Prefix prefix) {
 
         baseAffix = prefix.GUID();
+
         RerollNumbers(gear);
+
     }
 
     @Override
@@ -79,9 +81,7 @@ public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Se
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.GRAYCOMP()
-                .appendSibling(Words.Prefix.locName()
-                        .appendText(": ")
-                        .appendSibling(affix.locName())));
+                         .appendSibling(Words.Prefix.locName().appendText(": ").appendSibling(affix.locName())));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {

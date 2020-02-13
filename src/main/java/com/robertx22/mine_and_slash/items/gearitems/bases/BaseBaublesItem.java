@@ -19,9 +19,9 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
     public BaseBaublesItem(int rar) {
 
         super(ItemUtils.getDefaultGearProperties()
-                .maxStackSize(1)
-                .maxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
-                        .getDurability(EquipmentSlotType.CHEST)));
+                      .maxStackSize(1)
+                      .maxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
+                                         .getDurability(EquipmentSlotType.CHEST)));
         this.rarity = rar;
     }
 
@@ -31,8 +31,7 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack,
-                                             net.minecraft.enchantment.Enchantment enchantment) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment) {
         return enchantment == Enchantments.UNBREAKING;
     }
 
@@ -43,7 +42,7 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return formatString(this.getRegistryName().toString());
+        return getFormatedForLangFile(this.getRegistryName().toString());
     }
 
     @Override
@@ -52,8 +51,7 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player,
-                                                    Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 
         return new ActionResult<ItemStack>(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }

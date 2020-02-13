@@ -25,6 +25,7 @@ public class StatModSerializer implements ISerializable<StatMod> {
         json.add("multi", new JsonPrimitive(mod.multiplier));
         json.add("stat", new JsonPrimitive(mod.GetBaseStat().GUID()));
         json.add("type", new JsonPrimitive(mod.Type().name()));
+        json.add("guid", new JsonPrimitive(mod.GUID()));
 
         return json;
     }
@@ -36,9 +37,10 @@ public class StatModSerializer implements ISerializable<StatMod> {
         float max = json.get("max").getAsFloat();
         float multi = json.get("multi").getAsFloat();
         String stat = json.get("stat").getAsString();
+        String guid = json.get("guid").getAsString();
         StatTypes type = StatTypes.valueOf(json.get("type").getAsString());
 
-        return new SerializableStatMod(stat, min, max, type, multi);
+        return new SerializableStatMod(stat, min, max, type, multi, guid);
     }
 
     private static class SingletonHolder {

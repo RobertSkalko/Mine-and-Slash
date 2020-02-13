@@ -38,7 +38,7 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Weapo
 
     @Override
     public String GUID() {
-        return this.weaponType.id + " Damage";
+        return this.weaponType.id + "_damage";
     }
 
     @Override
@@ -68,7 +68,7 @@ public class WeaponDamage extends Stat implements IStatEffects, IGenerated<Weapo
 
     @Override
     public String locNameForLangFile() {
-        return this.weaponType().id + "_damage";
+        return this.weaponType().name() + " Damage";
     }
 
     @Override

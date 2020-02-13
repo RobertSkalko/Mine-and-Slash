@@ -235,7 +235,9 @@ public class StatMods implements ISlashRegistryInit {
             }
         }
 
-        All.forEach(x -> x.addToSerializables());
+        All.forEach(x -> x.registerToSlashRegistry());
+
+        //new StatModManager().registerAll();
 
     }
 

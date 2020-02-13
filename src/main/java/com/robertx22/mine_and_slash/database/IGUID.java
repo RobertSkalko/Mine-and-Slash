@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Locale;
 
@@ -21,17 +20,27 @@ public interface IGUID {
         return getformattedString(str);
     }
 
+    public default String getFormatedForLangFile(String str) {
+        return str.replaceAll(" ", "_").toLowerCase(Locale.ROOT).replaceAll("/", ".").replaceAll(":", ".");
+    }
+
     public static String getformattedString(String str) {
-        if (isGUIDFormattedCorrectly(str)) {
+        if (str == null || str.isEmpty()) {
             return str;
-        } else {
-            String newstring = StringUtils.join(
-                    StringUtils.splitByCharacterTypeCamelCase(str.replaceAll("\\d+", "")), "_");
-
-            newstring = str.replaceAll(" ", "_").toLowerCase(Locale.ROOT);
-
-            return newstring.replaceAll("__", "_");
         }
+
+        return str.replaceAll(" ", "_").toLowerCase(Locale.ROOT);
+
+        /*
+        String newstring = str; //StringUtils.join(
+        //StringUtils.splitByCharacterTypeCamelCase(str.replaceAll("\\d+", "")), "_");
+
+        newstring = str.replaceAll(" ", "_").toLowerCase(Locale.ROOT);
+
+        return newstring.replaceAll("__", "_");
+
+         */
+
     }
 
     default Item getFromForgeRegistry() {

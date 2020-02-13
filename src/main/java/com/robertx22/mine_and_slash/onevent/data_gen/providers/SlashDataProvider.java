@@ -39,7 +39,7 @@ public class SlashDataProvider<T extends ISerializedRegistryEntry> implements ID
     }
 
     private Path resolve(Path path, ISerializedRegistryEntry object) {
-        return path.resolve("data/" + Ref.MODID + "/" + category + "/" + object.GUID() + ".json");
+        return path.resolve("data/" + Ref.MODID + "/" + category + "/" + object.formattedGUID() + ".json");
     }
 
     protected void generateAll(DirectoryCache cache) {

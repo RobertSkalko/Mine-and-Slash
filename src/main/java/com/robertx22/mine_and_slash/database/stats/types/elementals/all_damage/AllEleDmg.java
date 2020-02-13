@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class AllEleDmg extends Stat implements IStatEffects {
 
-    public static String GUID = "AllEleDmg";
+    public static String GUID = "all_ele_dmg";
 
     @Override
     public String locDescForLangFile() {

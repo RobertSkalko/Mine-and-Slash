@@ -11,18 +11,25 @@ public class SerializableStatMod extends StatMod {
     float min;
     float max;
     StatTypes type;
+    String guid;
 
-    public SerializableStatMod(String stat, float min, float max, StatTypes type, float multi) {
+    public SerializableStatMod(String stat, float min, float max, StatTypes type, float multi, String guid) {
         this.stat = stat;
         this.min = min;
         this.max = max;
         this.type = type;
         this.multiplier = multi;
+        this.guid = guid;
     }
 
     @Override
     public Stat GetBaseStat() {
         return SlashRegistry.Stats().get(stat);
+    }
+
+    @Override
+    public String GUID() {
+        return guid;
     }
 
     @Override

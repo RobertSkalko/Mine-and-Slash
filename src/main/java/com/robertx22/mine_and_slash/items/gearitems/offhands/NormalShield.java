@@ -47,7 +47,7 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
 
     @Override
     public String locNameLangFileGUID() {
-        return formatString(this.getRegistryName().toString());
+        return getFormatedForLangFile(this.getRegistryName().toString());
     }
 
     @Override

@@ -59,7 +59,7 @@ public class ElementalAttackDamage extends SingleElementalStat implements IStatE
 
     @Override
     public String locNameForLangFile() {
-        return "attack_" + this.getElement().guidName + "_damage";
+        return "Attack " + getElement().name() + " Damage";
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ElementalAttackDamage extends SingleElementalStat implements IStatE
 
     @Override
     public String GUID() {
-        return "Attack " + getElement().name() + " Damage";
+        return "attack_" + this.getElement().guidName + "_damage";
     }
 
 }

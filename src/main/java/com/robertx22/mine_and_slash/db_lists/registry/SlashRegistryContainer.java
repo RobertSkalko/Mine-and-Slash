@@ -23,7 +23,13 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public static void logRegistryError(String text) {
-        System.out.println("[Mine and Slash Registry Error]: " + text);
+
+        try {
+            throw new Exception("[Mine and Slash Registry Error]: " + text);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private SlashRegistryType type;
@@ -88,6 +94,12 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return new ArrayList<C>(map.values());
     }
 
+    public List<C> getAllIncludingSeriazable() {
+        List<C> list = new ArrayList<C>(map.values());
+        list.addAll(serializables.values());
+        return list;
+    }
+
     public C get(String guid) {
 
         String id = IGUID.getformattedString(guid);
@@ -134,7 +146,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public boolean isRegistered(String guid) {
-        return map.containsKey(guid);
+        String id = IGUID.getformattedString(guid);
+
+        return map.containsKey(id);
     }
 
     // for mod addon devs if they want to overwrite some of my stuff
@@ -159,8 +173,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             }
 
         } else {
+            String id = IGUID.getformattedString(c.GUID());
+
             tryLogAddition(c);
-            map.put(c.GUID(), c);
+            map.put(id, c);
         }
 
     }
@@ -175,5 +191,6 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public void addSerializable(C entry) {
         this.serializables.put(entry.GUID(), entry);
+
     }
 }
