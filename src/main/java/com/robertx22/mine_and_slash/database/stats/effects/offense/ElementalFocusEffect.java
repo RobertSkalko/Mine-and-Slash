@@ -1,14 +1,12 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class ElementalFocusEffect implements IStatEffect {
+public class ElementalFocusEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -21,32 +19,21 @@ public class ElementalFocusEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        float amount = effect.number * data.val / 100;
 
-        try {
-            if (Effect instanceof DamageEffect) {
-
-                DamageEffect dmgeffect = (DamageEffect) Effect;
-
-                if (dmgeffect.element != null && dmgeffect.element != Elements.Physical) {
-
-                    float amount = dmgeffect.number * data.val / 100;
-
-                    if (dmgeffect.element.equals(stat.getElement())) {
-                        dmgeffect.number += amount;
-                    } else {
-                        dmgeffect.number -= amount;
-                    }
-
-                }
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (effect.element.equals(stat.getElement())) {
+            effect.number += amount;
+        } else {
+            effect.number -= amount;
         }
 
-        return Effect;
+        return effect;
+    }
+
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return effect.element != null && effect.element != Elements.Physical;
     }
 
 }

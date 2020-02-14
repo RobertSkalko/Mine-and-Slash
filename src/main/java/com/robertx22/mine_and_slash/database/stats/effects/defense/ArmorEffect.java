@@ -26,7 +26,7 @@ public class ArmorEffect extends BaseStatEffect<DamageEffect> {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         int pene = 0;
 
         if (effect instanceof IPenetrable) {

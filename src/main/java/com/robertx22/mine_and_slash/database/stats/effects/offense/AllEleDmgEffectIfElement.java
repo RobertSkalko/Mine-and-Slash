@@ -19,7 +19,7 @@ public class AllEleDmgEffectIfElement extends BaseDamageEffect {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         effect.number *= data.getMultiplier();
 
         return effect;

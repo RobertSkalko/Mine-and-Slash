@@ -23,7 +23,7 @@ public class RefreshingBreezeEffect extends BaseDamageEffect {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         float energy = effect.targetData.getUnit().peekAtStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
         ResourcesData.Context ene = new ResourcesData.Context(
                 effect.targetData, effect.target, ResourcesData.Type.ENERGY, energy, ResourcesData.Use.RESTORE);

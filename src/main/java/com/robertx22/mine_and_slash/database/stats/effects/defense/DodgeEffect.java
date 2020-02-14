@@ -21,7 +21,7 @@ public class DodgeEffect extends BaseDamageEffect {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         DodgeRating dodge = (DodgeRating) stat;
 
         float chance = dodge.GetUsableValue(effect.targetData.getLevel(), (int) data.val) * 100;

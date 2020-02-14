@@ -19,7 +19,7 @@ public class HealOnHitEffect extends BaseDamageEffect {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         effect.targetData.getResources()
                 .modify(new ResourcesData.Context(effect.targetData, effect.target, ResourcesData.Type.HEALTH, data.val,
                                                   ResourcesData.Use.RESTORE

@@ -25,7 +25,7 @@ public class HarmonyEffect extends BaseStatEffect<ModifyResourceEffect> {
     }
 
     @Override
-    public ModifyResourceEffect modifyEffect(ModifyResourceEffect effect, StatData data, Stat stat) {
+    public ModifyResourceEffect activate(ModifyResourceEffect effect, StatData data, Stat stat) {
 
         effect.ctx.amount /= 2;
 
@@ -45,6 +45,7 @@ public class HarmonyEffect extends BaseStatEffect<ModifyResourceEffect> {
         if (effect.ctx.use == ResourcesData.Use.RESTORE) {
             if (effect.ctx.amount > 0) {
                 if (effect.ctx.type == ResourcesData.Type.HEALTH) {
+                    return true;
                 }
             }
         }

@@ -22,7 +22,7 @@ public class MagicShieldEffect extends BaseDamageEffect {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         float dmgReduced = MathHelper.clamp(effect.number, 0, effect.targetData.getResources().getMagicShield());
 
         if (dmgReduced > 0) {

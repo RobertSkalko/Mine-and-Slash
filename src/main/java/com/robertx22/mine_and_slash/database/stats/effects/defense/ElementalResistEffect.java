@@ -23,7 +23,7 @@ public class ElementalResistEffect extends BaseDamageEffect {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
 
         int pene = 0;
 

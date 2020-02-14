@@ -1,14 +1,12 @@
 package com.robertx22.mine_and_slash.database.stats.effects.resource;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class LifestealEffect implements IStatEffect {
+public class LifestealEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -21,24 +19,18 @@ public class LifestealEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        float healed = ((float) data.val * effect.number / 100);
 
-        try {
-            if (Effect instanceof DamageEffect && Effect.getEffectType().equals(EffectTypes.BASIC_ATTACK)) {
-                if (Effect.canceled == false) {
+        effect.healthHealed += healed;
 
-                    float healed = ((float) data.val * Effect.number / 100);
+        return effect;
 
-                    DamageEffect dmgeffect = (DamageEffect) Effect;
-                    dmgeffect.healthHealed += healed;
+    }
 
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return Effect;
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return effect.getEffectType().equals(EffectTypes.BASIC_ATTACK);
     }
 
 }

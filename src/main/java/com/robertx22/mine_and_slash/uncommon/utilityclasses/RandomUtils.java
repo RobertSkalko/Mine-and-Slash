@@ -72,7 +72,7 @@ public class RandomUtils {
 
         double ranNum = ran.nextDouble() * 100;
 
-        if (chance > ranNum) {
+        if (chance >= ranNum) {
             return true;
         }
 

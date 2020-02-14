@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.mods.percent;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalBonusDmgOnBasic;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellToAttackDMG;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
@@ -15,7 +15,7 @@ public class ElementalSpellToAttackDMGPercent extends ElementalStatMod {
 
     @Override
     public MapWrapper getBaseStatMap() {
-        return ElementalBonusDmgOnBasic.MAP;
+        return ElementalSpellToAttackDMG.MAP;
     }
 
     @Override

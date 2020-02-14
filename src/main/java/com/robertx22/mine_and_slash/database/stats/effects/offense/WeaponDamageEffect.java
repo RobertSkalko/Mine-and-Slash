@@ -1,14 +1,12 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class WeaponDamageEffect implements IStatEffect {
+public class WeaponDamageEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -21,26 +19,18 @@ public class WeaponDamageEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        effect.number *= data.getMultiplier();
+        return effect;
+    }
 
-        try {
-            if (Effect instanceof DamageEffect && stat instanceof WeaponDamage) {
-
-                WeaponDamage weapon = (WeaponDamage) stat;
-
-                if (weapon.weaponType().equals(Effect.weaponType)) {
-                    DamageEffect dmgeffect = (DamageEffect) Effect;
-                    dmgeffect.number *= data.getMultiplier();
-
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        if (stat instanceof WeaponDamage) {
+            WeaponDamage weapon = (WeaponDamage) stat;
+            return weapon.weaponType().equals(effect.weaponType);
         }
-
-        return Effect;
+        return false;
     }
 
 }

@@ -1,14 +1,12 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class PhysicalToHighestEle implements IStatEffect {
+public class PhysicalToHighestEle extends BaseDamageEffect {
 
     public static final PhysicalToHighestEle INSTANCE = new PhysicalToHighestEle();
 
@@ -23,35 +21,25 @@ public class PhysicalToHighestEle implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        float val = effect.number;
 
-        try {
-            if (Effect instanceof DamageEffect) {
+        Elements ele = effect.getHighestBonusElementalDamageElement();
 
-                float val = Effect.number;
-                DamageEffect dmg = (DamageEffect) Effect;
+        if (ele != null) {
+            float multi = data.getMultiplier();
+            float given = (val * multi) - val;
 
-                if (dmg.element == Elements.Physical) {
-
-                    Elements ele = dmg.getHighestBonusElementalDamageElement();
-
-                    float multi = data.getMultiplier();
-
-                    float given = (val * multi) - val;
-
-                    if (ele != null) {
-                        dmg.addBonusEleDmg(ele, given);
-                        dmg.number -= given;
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            effect.addBonusEleDmg(ele, given);
+            effect.number -= given;
         }
 
-        return Effect;
+        return effect;
+    }
+
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return effect.element == Elements.Physical;
     }
 
 }

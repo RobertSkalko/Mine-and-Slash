@@ -24,7 +24,7 @@ public class AllSpellDamageEffect extends BaseStatEffect<SpellDamageEffect> {
     }
 
     @Override
-    public SpellDamageEffect modifyEffect(SpellDamageEffect effect, StatData data, Stat stat) {
+    public SpellDamageEffect activate(SpellDamageEffect effect, StatData data, Stat stat) {
         int add = (int) (data.val * effect.spell.getCalculation().getScalingMultiAverage());
 
         effect.number += add;

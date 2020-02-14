@@ -21,7 +21,7 @@ public class SteadyHandEffect extends BaseDamageEffect {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         float multi = 1 + (float) SteadyHand.DMG_INCREASE_PERCENT / 100;
         effect.number *= multi;
 

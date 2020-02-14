@@ -27,7 +27,7 @@ public class BloodMageRestoreManaEffect extends BaseStatEffect<ModifyResourceEff
     }
 
     @Override
-    public ModifyResourceEffect modifyEffect(ModifyResourceEffect effect, StatData data, Stat stat) {
+    public ModifyResourceEffect activate(ModifyResourceEffect effect, StatData data, Stat stat) {
 
         float bloodrestored = effect.ctx.amount / 2;
 

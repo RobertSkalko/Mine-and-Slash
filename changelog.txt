@@ -13,6 +13,7 @@ I added a temporary system that auto formats all old names to this standard, but
 * decreased item requirements a bit
 * fix runewords
 * only 1 unique rune per runed item is now allowed
+* fix some heals not working
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

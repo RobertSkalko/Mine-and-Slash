@@ -1,14 +1,12 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.generated.EleWepDmg;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class EleWepDmgEffect implements IStatEffect {
+public class EleWepDmgEffect extends BaseDamageEffect {
 
     public static EleWepDmgEffect INSTANCE = new EleWepDmgEffect();
 
@@ -23,27 +21,21 @@ public class EleWepDmgEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        EleWepDmg wepStat = (EleWepDmg) stat;
 
-        try {
-            if (Effect instanceof DamageEffect && stat instanceof EleWepDmg) {
-                EleWepDmg wepStat = (EleWepDmg) stat;
-
-                if (wepStat.weaponType().equals(Effect.weaponType)) {
-                    DamageEffect dmg = (DamageEffect) Effect;
-
-                    if (dmg.isElemental()) {
-                        dmg.number *= data.getMultiplier();
-                    }
-                }
+        if (wepStat.weaponType().equals(effect.weaponType)) {
+            if (effect.isElemental()) {
+                effect.number *= data.getMultiplier();
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-        return Effect;
+        return effect;
+    }
+
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return stat instanceof EleWepDmg;
     }
 
 }

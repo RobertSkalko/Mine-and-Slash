@@ -1,14 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseAnyEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.ICrittable;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
-public class CriticalHitEffect implements IStatEffect {
+public class CriticalHitEffect extends BaseAnyEffect {
 
     @Override
     public int GetPriority() {
@@ -21,23 +20,15 @@ public class CriticalHitEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData activate(EffectData effect, StatData data, Stat stat) {
+        ((ICrittable) effect).setCrit(true);
 
-        try {
-            if (Effect instanceof ICrittable) {
-
-                ICrittable icrit = (ICrittable) Effect;
-
-                if (RandomUtils.roll(data.val)) {
-                    icrit.setCrit(true);
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return Effect;
+        return effect;
     }
+
+    @Override
+    public boolean canActivate(EffectData effect, StatData data, Stat stat) {
+        return effect instanceof ICrittable && RandomUtils.roll(data.val);
+    }
+
 }

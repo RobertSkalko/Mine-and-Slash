@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
-import com.robertx22.mine_and_slash.database.stats.mods.PotionBonusDmgAmountFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.all_stats.CripplePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.all_stats.LessPercent;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.*;
@@ -54,7 +53,6 @@ public class StatMods implements ISlashRegistryInit {
             {
                 {
                     add(new ElementalSpellToAttackDMGPercent(Elements.Nature));
-                    add(new PotionBonusDmgAmountFlat(Elements.Nature));
                     add(new ElementalConversionFlat(Elements.Nature, Elements.Nature));
                     add(new ElementalTransferFlat(Elements.Nature, Elements.Nature));
                     add(new ElementalAffinityFlat(Elements.Nature));

@@ -20,7 +20,7 @@ public class SpellDodgeEffect extends BaseDamageEffect {
     }
 
     @Override
-    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         if (RandomUtils.roll(data.val)) {
             effect.number = 0;
             effect.isDodged = true;

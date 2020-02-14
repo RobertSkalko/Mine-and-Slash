@@ -62,7 +62,7 @@ public class ResourcesData {
             this.targetData = Load.Unit(target);
             this.target = target;
             this.sourceData = Load.Unit(caster);
-            this.source = source;
+            this.source = caster;
             this.type = type;
             this.amount = amount;
             this.use = use;

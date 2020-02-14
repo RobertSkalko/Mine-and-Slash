@@ -1,15 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellToAttackDMG;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class SpellToBasicDamageEffect implements IStatEffect {
+public class SpellToBasicDamageEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -22,30 +20,22 @@ public class SpellToBasicDamageEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        ElementalSpellToAttackDMG basebonus = (ElementalSpellToAttackDMG) stat;
 
-        try {
-            if (Effect instanceof DamageEffect && Effect.getEffectType()
-                    .equals(EffectTypes.BASIC_ATTACK) && stat instanceof ElementalSpellToAttackDMG) {
+        float percent = data.val;
+        float derivedvalue = (float) getSource(effect).getCreateStat(basebonus.StatThatGiveDamage()).val;
 
-                ElementalSpellToAttackDMG basebonus = (ElementalSpellToAttackDMG) stat;
+        int dmg = (int) (percent * derivedvalue / 100);
 
-                float percent = data.val;
-                float derivedvalue = (float) source.getCreateStat(basebonus.StatThatGiveDamage()).val;
+        effect.addBonusEleDmg(stat.getElement(), dmg);
 
-                int dmg = (int) (percent * derivedvalue / 100);
+        return effect;
+    }
 
-                DamageEffect dmgeffect = (DamageEffect) Effect;
-
-                dmgeffect.addBonusEleDmg(stat.getElement(), dmg);
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return Effect;
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return effect.getEffectType().equals(EffectTypes.BASIC_ATTACK) && stat instanceof ElementalSpellToAttackDMG;
     }
 
 }

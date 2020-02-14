@@ -107,7 +107,7 @@ public class GeyserEntity extends EntityBaseProjectile {
 
                         SpellHealEffect heal = healTarget(x);
 
-                        SoundUtils.playSound(this, SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_AMBIENT, 1, 1);
+                        SoundUtils.playSound(this, SoundEvents.ENTITY_DOLPHIN_SPLASH, 1, 1);
 
                         heal.Activate();
 

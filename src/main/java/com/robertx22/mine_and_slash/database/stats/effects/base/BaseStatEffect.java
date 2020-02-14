@@ -16,7 +16,7 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
         this.theclass = theclass;
     }
 
-    public abstract T modifyEffect(T effect, StatData data, Stat stat);
+    public abstract T activate(T effect, StatData data, Stat stat);
 
     public abstract boolean canActivate(T effect, StatData data, Stat stat);
 
@@ -26,19 +26,34 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
         }
     }
 
+    public Unit getSource(EffectData effect) {
+        if (Side() == EffectSides.Target) {
+            return effect.targetData.getUnit();
+        } else {
+            return effect.sourceData.getUnit();
+        }
+    }
+
     @Override
-    public final EffectData TryModifyEffect(EffectData Effect, Unit Source, StatData statData, Stat stat) {
+    public final EffectData TryModifyEffect(EffectData effect, Unit source, StatData data, Stat stat) {
 
         try {
-            if (Effect.getClass().isAssignableFrom(theclass.getClass())) {
-                if (canActivate((T) Effect, statData, stat)) {
-                    return modifyEffect((T) Effect, statData, stat);
+            if (!effect.canceled) {
+                if (theclass.isAssignableFrom(effect.getClass())) {
+                    if (canActivate((T) effect, data, stat)) {
+
+                        EffectData result = activate((T) effect, data, stat);
+
+                        effect.logAfterEffect(this);
+
+                        return result;
+                    }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Effect;
+        return effect;
     }
 }

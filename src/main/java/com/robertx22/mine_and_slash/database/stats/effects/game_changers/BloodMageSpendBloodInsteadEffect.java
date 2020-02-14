@@ -27,7 +27,7 @@ public class BloodMageSpendBloodInsteadEffect extends BaseStatEffect<ModifyResou
     }
 
     @Override
-    public ModifyResourceEffect modifyEffect(ModifyResourceEffect effect, StatData data, Stat stat) {
+    public ModifyResourceEffect activate(ModifyResourceEffect effect, StatData data, Stat stat) {
 
         effect.ctx.type = ResourcesData.Type.BLOOD;
 

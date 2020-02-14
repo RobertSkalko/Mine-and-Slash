@@ -195,8 +195,8 @@ public abstract class EffectData {
         for (EffectUnitStat item : Effects) {
             if (item.stat.val != 0) {
                 if (AffectsThisUnit(item.effect, this, item.source)) {
+
                     item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
-                    logAfterEffect(item.effect);
 
                 }
 

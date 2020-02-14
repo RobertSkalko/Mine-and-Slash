@@ -1,16 +1,14 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseAnyEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IPenetrable;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class ElementalPeneEffect implements IStatEffect {
+public class ElementalPeneEffect extends BaseAnyEffect {
 
     @Override
     public int GetPriority() {
@@ -23,32 +21,27 @@ public class ElementalPeneEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    public EffectData activate(EffectData effect, StatData data, Stat stat) {
+        if (stat.getElement() == Elements.Physical) {
+            IPenetrable ipene = (IPenetrable) effect;
+            ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.val);
 
-        try {
-
-            if (Effect instanceof IElementalPenetrable) {
-
-                IElementalEffect ele = (IElementalEffect) Effect;
-
-                if (ele.GetElement().equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental)) {
-
-                    if (stat.getElement() == Elements.Physical) {
-                        IPenetrable ipene = (IPenetrable) Effect;
-                        ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.val);
-
-                    } else {
-                        IElementalPenetrable ipene = (IElementalPenetrable) Effect;
-                        ipene.addElementalPenetration((int) data.val);
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            IElementalPenetrable ipene = (IElementalPenetrable) effect;
+            ipene.addElementalPenetration((int) data.val);
         }
 
-        return Effect;
+        return effect;
+    }
+
+    @Override
+    public boolean canActivate(EffectData effect, StatData data, Stat stat) {
+        if (effect instanceof IElementalPenetrable) {
+            IElementalPenetrable ele = (IElementalPenetrable) effect;
+            return ele.GetElement().equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental);
+        }
+
+        return false;
     }
 
 }
