@@ -1,15 +1,19 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
-import com.robertx22.mine_and_slash.database.stats.effects.game_changers.BloodMageEffect;
+import com.robertx22.mine_and_slash.database.stats.effects.game_changers.BloodMageRestoreManaEffect;
+import com.robertx22.mine_and_slash.database.stats.effects.game_changers.BloodMageSpendBloodInsteadEffect;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatMultipleEffects;
 
-public class BloodMage extends BaseGameChangerTrait implements IStatEffects, IAffectsStats {
+import java.util.Arrays;
+import java.util.List;
+
+public class BloodMage extends BaseGameChangerTrait implements IStatMultipleEffects, IAffectsStats {
 
     private BloodMage() {
     }
@@ -18,8 +22,8 @@ public class BloodMage extends BaseGameChangerTrait implements IStatEffects, IAf
 
     @Override
     public String locDescForLangFile() {
-        return "Your have no mana, you use blood instead. Max blood is half of your health. You replenish blood with " +
-                "any non spell related health restoration method like hp regen or lifesteal.";
+        return "Your have no mana, you use blood instead. Max blood is half of your health. You replenish blood with "
+                + "any non spell related health restoration method like hp regen or lifesteal.";
     }
 
     @Override
@@ -38,8 +42,8 @@ public class BloodMage extends BaseGameChangerTrait implements IStatEffects, IAf
     }
 
     @Override
-    public IStatEffect getEffect() {
-        return BloodMageEffect.INSTANCE;
+    public List<IStatEffect> getEffects() {
+        return Arrays.asList(BloodMageSpendBloodInsteadEffect.getInstance(), BloodMageRestoreManaEffect.getInstance());
     }
 
     @Override

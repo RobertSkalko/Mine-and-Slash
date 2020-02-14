@@ -4,8 +4,6 @@ import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
-import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
@@ -54,6 +52,10 @@ public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
     public static boolean RUN_DEV_TOOLS = true;
+
+    public static boolean statEffectDebuggingEnabled() {
+        return true && RUN_DEV_TOOLS;
+    }
 
     public static Logger LOGGER = Logger.getLogger(Ref.MOD_NAME);
 
@@ -214,9 +216,6 @@ public class MMORPG {
             value.set(false, ServerLifecycleHooks.getCurrentServer());
 
         }
-
-        Stats.allPreGenMapStatLists = new AllPreGenMapStats(); // in case stat lists are made before all stats are
-        // added up by other mods?
 
     }
 

@@ -61,7 +61,7 @@ public class ResourcesData {
         public Context(LivingEntity caster, LivingEntity target, Type type, float amount, Use use, BaseSpell spell) {
             this.targetData = Load.Unit(target);
             this.target = target;
-            this.sourceData = Load.Unit(source);
+            this.sourceData = Load.Unit(caster);
             this.source = source;
             this.type = type;
             this.amount = amount;
@@ -74,7 +74,7 @@ public class ResourcesData {
             this.targetData = targetData;
             this.target = target;
             this.sourceData = casterData;
-            this.source = source;
+            this.source = caster;
             this.type = type;
             this.amount = amount;
             this.use = use;

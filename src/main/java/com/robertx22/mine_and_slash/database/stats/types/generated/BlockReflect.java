@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.effects.BlockReflectEffect;
+import com.robertx22.mine_and_slash.database.stats.effects.offense.BlockReflectEffect;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;

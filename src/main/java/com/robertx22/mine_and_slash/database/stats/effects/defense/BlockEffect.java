@@ -1,12 +1,10 @@
 package com.robertx22.mine_and_slash.database.stats.effects.defense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.util.DamageSource;
@@ -16,7 +14,7 @@ import java.util.UUID;
 
 import static net.minecraft.entity.SharedMonsterAttributes.KNOCKBACK_RESISTANCE;
 
-public class BlockEffect implements IStatEffect {
+public class BlockEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -29,41 +27,34 @@ public class BlockEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
 
-        try {
-            if (Effect instanceof DamageEffect) {
-                DamageEffect dmgeffect = (DamageEffect) Effect;
+        float blockval = data.val;
 
-                DamageSource dmgsource = DamageSource.causeMobDamage(Effect.source);
+        float afterblock = effect.number - blockval;
 
-                if (canBlockDamageSource(Effect.target, dmgsource)) {
-
-                    float blockval = data.val;
-
-                    float afterblock = Effect.number - blockval;
-
-                    if (afterblock < 0) {
-                        dmgeffect.isFullyBlocked = true;
-                    } else {
-                        dmgeffect.isPartiallyBlocked = true;
-                        applyKnockbackResist(Effect.target);
-                    }
-
-                    dmgeffect.number = afterblock;
-
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (afterblock < 0) {
+            effect.isFullyBlocked = true;
+        } else {
+            effect.isPartiallyBlocked = true;
+            applyKnockbackResist(effect.target);
         }
 
-        return Effect;
+        effect.number = afterblock;
+
+        return effect;
     }
 
-    public static AttributeModifier MOD = new AttributeModifier(UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d"), Ref.MODID + "knockbackresist", 100, AttributeModifier.Operation.ADDITION);
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        DamageSource dmgsource = DamageSource.causeMobDamage(effect.source);
+        return canBlockDamageSource(effect.target, dmgsource);
+    }
+
+    public static AttributeModifier MOD = new AttributeModifier(UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d"),
+                                                                Ref.MODID + "knockbackresist", 100,
+                                                                AttributeModifier.Operation.ADDITION
+    );
 
     public static void applyKnockbackResist(LivingEntity entity) {
 
@@ -81,15 +72,13 @@ public class BlockEffect implements IStatEffect {
 
     }
 
-    private boolean canBlockDamageSource(LivingEntity target,
-                                         DamageSource damageSourceIn) {
+    private boolean canBlockDamageSource(LivingEntity target, DamageSource damageSourceIn) {
         if (target.isActiveItemStackBlocking()) {
             Vec3d vec3d = damageSourceIn.getDamageLocation();
 
             if (vec3d != null) {
                 Vec3d vec3d1 = target.getLook(1.0F);
-                Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(target.posX, target.posY, target.posZ))
-                        .normalize();
+                Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(target.posX, target.posY, target.posZ)).normalize();
                 vec3d2 = new Vec3d(vec3d2.x, 0.0D, vec3d2.z);
 
                 if (vec3d2.dotProduct(vec3d1) < 0.0D) {

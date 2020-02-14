@@ -1,7 +1,6 @@
-package com.robertx22.mine_and_slash.database.stats.effects;
+package com.robertx22.mine_and_slash.database.stats.effects.cause_effects;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.effects.cause_effects.BaseCauseEffect;
 import com.robertx22.mine_and_slash.database.stats.effects.causes.BaseCause;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -11,8 +10,8 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 public class OnCauseDoEffect implements IStatEffect {
 
-    public OnCauseDoEffect(BaseCause cause, int chance, EffectSides whoGetsEffect,
-                           BaseCauseEffect causeEffect, EffectSides side) {
+    public OnCauseDoEffect(BaseCause cause, int chance, EffectSides whoGetsEffect, BaseCauseEffect causeEffect,
+                           EffectSides side) {
         this.cause = cause;
         this.chance = chance;
         this.whoGetsEffect = whoGetsEffect;
@@ -38,8 +37,7 @@ public class OnCauseDoEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (RandomUtils.roll(chance)) {

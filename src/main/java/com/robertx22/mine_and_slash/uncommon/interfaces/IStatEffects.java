@@ -2,7 +2,14 @@ package com.robertx22.mine_and_slash.uncommon.interfaces;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 
+import java.util.Arrays;
+import java.util.List;
+
 public interface IStatEffects extends IGUID {
 
-    public abstract IStatEffect getEffect();
+    IStatEffect getEffect();
+
+    default List<IStatEffect> getEffects() {
+        return Arrays.asList(getEffect());
+    }
 }

@@ -1,15 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.effects.defense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import net.minecraft.util.math.MathHelper;
 
-public class MagicShieldEffect implements IStatEffect {
+public class MagicShieldEffect extends BaseDamageEffect {
 
     public static final MagicShieldEffect INSTANCE = new MagicShieldEffect();
 
@@ -24,32 +22,27 @@ public class MagicShieldEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+        float dmgReduced = MathHelper.clamp(effect.number, 0, effect.targetData.getResources().getMagicShield());
 
-        try {
-            if (Effect instanceof DamageEffect) {
+        if (dmgReduced > 0) {
 
-                float dmgReduced = MathHelper.clamp(Effect.number, 0, Effect.targetData.getResources()
-                        .getMagicShield());
+            effect.number -= dmgReduced;
 
-                if (dmgReduced > 0) {
+            ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
+                                                                  ResourcesData.Type.MAGIC_SHIELD, dmgReduced,
+                                                                  ResourcesData.Use.SPEND
+            );
 
-                    Effect.number -= dmgReduced;
+            effect.targetData.getResources().modify(ctx);
 
-                    ResourcesData.Context ctx = new ResourcesData.Context(Effect.targetData, Effect.target, ResourcesData.Type.MAGIC_SHIELD, dmgReduced, ResourcesData.Use.SPEND);
-
-                    Effect.targetData.getResources().modify(ctx);
-
-                }
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        return effect;
+    }
 
-        return Effect;
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return effect.targetData.getResources().getMagicShield() > 0;
     }
 
 }

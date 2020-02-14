@@ -1,14 +1,17 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseStatEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class AllSpellDamageEffect implements IStatEffect {
+public class AllSpellDamageEffect extends BaseStatEffect<SpellDamageEffect> {
     public static final AllSpellDamageEffect INSTANCE = new AllSpellDamageEffect();
+
+    private AllSpellDamageEffect() {
+        super(SpellDamageEffect.class);
+    }
 
     @Override
     public int GetPriority() {
@@ -21,27 +24,17 @@ public class AllSpellDamageEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    public SpellDamageEffect modifyEffect(SpellDamageEffect effect, StatData data, Stat stat) {
+        int add = (int) (data.val * effect.spell.getCalculation().getScalingMultiAverage());
 
-        try {
-            if (Effect instanceof SpellDamageEffect) {
+        effect.number += add;
 
-                SpellDamageEffect dmgeffect = (SpellDamageEffect) Effect;
+        return effect;
+    }
 
-                if (dmgeffect.getEffectType().equals(EffectData.EffectTypes.SPELL)) {
-
-                    int add = (int) (data.val * dmgeffect.spell.getCalculation().getScalingMultiAverage());
-
-                    dmgeffect.number += add;
-                }
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return Effect;
+    @Override
+    public boolean canActivate(SpellDamageEffect effect, StatData data, Stat stat) {
+        return effect.getEffectType().equals(EffectData.EffectTypes.SPELL);
     }
 
 }

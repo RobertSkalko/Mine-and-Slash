@@ -2,16 +2,15 @@ package com.robertx22.mine_and_slash.database.stats.effects.defense;
 
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class ElementalResistEffect implements IStatEffect {
+public class ElementalResistEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -24,36 +23,37 @@ public class ElementalResistEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
 
-        try {
-            if (Effect instanceof IElementalResistable) {
+        int pene = 0;
 
-                IElementalEffect ele = (IElementalEffect) Effect;
-
-                if (ele.GetElement().equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental)) {
-
-                    int pene = 0;
-
-                    if (Effect instanceof IElementalPenetrable) {
-                        IElementalPenetrable ipen = (IElementalPenetrable) Effect;
-                        pene = ipen.GetElementalPenetration();
-                    }
-
-                    IUsableStat resist = (IUsableStat) stat;
-
-                    float EffectiveArmor = resist.GetUsableValue(Effect.targetData.getLevel(), (int) (data.val - pene));
-
-                    Effect.number -= EffectiveArmor * Effect.number;
-
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (effect instanceof IElementalPenetrable) {
+            IElementalPenetrable ipen = (IElementalPenetrable) effect;
+            pene = ipen.GetElementalPenetration();
         }
 
-        return Effect;
+        IUsableStat resist = (IUsableStat) stat;
+
+        float EffectiveArmor = resist.GetUsableValue(effect.targetData.getLevel(), (int) (data.val - pene));
+
+        effect.number -= EffectiveArmor * effect.number;
+
+        return effect;
+
+    }
+
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        if (effect instanceof IElementalResistable) {
+
+            IElementalEffect ele = (IElementalEffect) effect;
+
+            if (ele.GetElement().equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental)) {
+                return true;
+            }
+
+        }
+        return false;
     }
 
 }

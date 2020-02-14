@@ -1,16 +1,14 @@
 package com.robertx22.mine_and_slash.database.stats.effects.game_changers;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.game_changers.RefreshingBreeze;
 import com.robertx22.mine_and_slash.database.stats.types.resources.EnergyRegen;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class RefreshingBreezeEffect implements IStatEffect {
+public class RefreshingBreezeEffect extends BaseDamageEffect {
 
     public static final RefreshingBreezeEffect INSTANCE = new RefreshingBreezeEffect();
 
@@ -25,29 +23,18 @@ public class RefreshingBreezeEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
+    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+        float energy = effect.targetData.getUnit().peekAtStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
+        ResourcesData.Context ene = new ResourcesData.Context(
+                effect.targetData, effect.target, ResourcesData.Type.ENERGY, energy, ResourcesData.Use.RESTORE);
+        effect.targetData.getResources().modify(ene);
 
-        try {
-            if (Effect instanceof DamageEffect) {
+        return effect;
+    }
 
-                DamageEffect dmg = (DamageEffect) Effect;
-
-                if (dmg.isDodged) {
-                    float energy = dmg.targetData.getUnit()
-                            .peekAtStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
-                    ResourcesData.Context ene = new ResourcesData.Context(
-                            dmg.targetData, dmg.target, ResourcesData.Type.ENERGY, energy, ResourcesData.Use.RESTORE);
-                    dmg.targetData.getResources().modify(ene);
-
-                }
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return Effect;
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return effect.isDodged;
     }
 
 }

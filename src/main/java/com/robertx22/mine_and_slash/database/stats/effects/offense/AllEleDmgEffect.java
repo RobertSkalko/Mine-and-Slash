@@ -1,14 +1,12 @@
 package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 
-public class AllEleDmgEffect implements IStatEffect {
+public class AllEleDmgEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -21,28 +19,16 @@ public class AllEleDmgEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public DamageEffect modifyEffect(DamageEffect effect, StatData data, Stat stat) {
+        float multi = data.getMultiplier();
+        effect.number *= multi;
 
-        try {
-            if (Effect instanceof DamageEffect) {
+        return effect;
+    }
 
-                DamageEffect dmgeffect = (DamageEffect) Effect;
-
-                if (dmgeffect.element.equals(Elements.Physical) == false) {
-
-                    float multi = data.getMultiplier();
-
-                    dmgeffect.number *= multi;
-
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return Effect;
+    @Override
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return effect.element.equals(Elements.Physical) == false;
     }
 
 }

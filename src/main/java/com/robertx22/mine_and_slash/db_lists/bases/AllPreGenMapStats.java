@@ -12,9 +12,13 @@ public class AllPreGenMapStats {
 
     private HashMap<Class, PreGenStatSet> map = new HashMap<>();
 
+    int num = 0;
+
     public <T> HashSet<T> get(Class<T> theclass) {
 
-        if (map.get(theclass) == null) {
+        num++;
+
+        if (num > 5000 || map.get(theclass) == null) {
 
             List<T> list = new ArrayList<>();
 

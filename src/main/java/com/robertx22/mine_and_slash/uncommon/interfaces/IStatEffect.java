@@ -42,7 +42,6 @@ public interface IStatEffect {
 
     public abstract int GetPriority();
 
-    public abstract EffectData TryModifyEffect(EffectData Effect, Unit Source,
-                                               StatData statData, Stat stat);
+    public abstract EffectData TryModifyEffect(EffectData effect, Unit source, StatData data, Stat stat);
 
 }

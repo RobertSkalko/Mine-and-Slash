@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.stats.effects;
+package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.StatData;

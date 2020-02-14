@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.types.traits.cause_stats;
 
-import com.robertx22.mine_and_slash.database.stats.effects.OnCauseDoEffect;
+import com.robertx22.mine_and_slash.database.stats.effects.cause_effects.OnCauseDoEffect;
 import com.robertx22.mine_and_slash.database.stats.effects.cause_effects.GivePotionEffect;
 import com.robertx22.mine_and_slash.database.stats.effects.causes.OnAttackDodgedCause;
 import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;

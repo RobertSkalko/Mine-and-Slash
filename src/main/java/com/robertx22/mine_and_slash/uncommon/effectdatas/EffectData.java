@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -11,6 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect.EffectSides;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,14 +133,49 @@ public abstract class EffectData {
     public void calculateEffects() {
         if (!effectsCalculated) {
             effectsCalculated = true;
-            if (source == null || target == null || canceled == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null)
+            if (source == null || target == null || canceled == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null) {
                 return;
+            }
+
+            logOnStartData();
 
             TryApplyEffects(this.GetSource(), EffectSides.Source);
             TryApplyEffects(this.GetTarget(), EffectSides.Target);
 
+            logOnEndData();
+
         }
 
+    }
+
+    public void logOnStartData() {
+        if (MMORPG.statEffectDebuggingEnabled()) {
+            System.out.println(
+                    TextFormatting.DARK_PURPLE + "Starting to activate effects for: " + getClass().toString() + " " + "Starting Number: " + number);
+        }
+    }
+
+    public void logOnEndData() {
+        if (MMORPG.statEffectDebuggingEnabled()) {
+            System.out.println(
+                    TextFormatting.DARK_PURPLE + "Effects for : " + getClass().toString() + " are finished.");
+        }
+    }
+
+    /*
+    public void logBeforeEffect(IStatEffect effect) {
+        if (MMORPG.statEffectDebuggingEnabled()) {
+            System.out.println(TextFormatting.YELLOW + "Before : " + TextFormatting.BLUE + effect.getClass()
+                    .toString() + TextFormatting.WHITE + ": " + this.number);
+        }
+        }
+     */
+
+    public void logAfterEffect(IStatEffect effect) {
+        if (MMORPG.statEffectDebuggingEnabled()) {
+            System.out.println(TextFormatting.GREEN + "After : " + TextFormatting.BLUE + effect.getClass()
+                    .toString() + TextFormatting.WHITE + ": " + this.number);
+        }
     }
 
     protected abstract void activate();
@@ -161,6 +196,8 @@ public abstract class EffectData {
             if (item.stat.val != 0) {
                 if (AffectsThisUnit(item.effect, this, item.source)) {
                     item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
+                    logAfterEffect(item.effect);
+
                 }
 
             }
@@ -189,23 +226,16 @@ public abstract class EffectData {
 
     private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit, EffectSides side) {
         if (unit != null) {
-
-            for (IStatEffects stateffects : Stats.allPreGenMapStatLists.get(IStatEffects.class)) {
-
-                if (stateffects.getEffect().Side().equals(side)) {
-
-                    if (unit.hasStat(stateffects.GUID())) {
-
-                        StatData stat = unit.peekAtStat((Stat) stateffects);
-
-                        if (stat.val != 0) {
-                            effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));
-                        }
+            unit.getStats().values().forEach(data -> {
+                if (data.val != 0) {
+                    Stat stat = data.GetStat();
+                    if (stat instanceof IStatEffects) {
+                        ((IStatEffects) stat).getEffects().forEach(effect -> {
+                            effects.add(new EffectUnitStat(effect, unit, data));
+                        });
                     }
                 }
-
-            }
-
+            });
         }
 
         return effects;

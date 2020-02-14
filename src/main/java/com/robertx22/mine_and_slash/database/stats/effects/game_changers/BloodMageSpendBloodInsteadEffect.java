@@ -6,17 +6,19 @@ import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.ModifyResourceEffect;
 
-public class HarmonyEffect extends BaseStatEffect<ModifyResourceEffect> {
+public class BloodMageSpendBloodInsteadEffect extends BaseStatEffect<ModifyResourceEffect> {
 
-    public static final HarmonyEffect INSTANCE = new HarmonyEffect();
-
-    private HarmonyEffect() {
+    private BloodMageSpendBloodInsteadEffect() {
         super(ModifyResourceEffect.class);
+    }
+
+    public static BloodMageSpendBloodInsteadEffect getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public int GetPriority() {
-        return Priority.First.priority;
+        return Priority.Last.priority;
     }
 
     @Override
@@ -27,28 +29,27 @@ public class HarmonyEffect extends BaseStatEffect<ModifyResourceEffect> {
     @Override
     public ModifyResourceEffect modifyEffect(ModifyResourceEffect effect, StatData data, Stat stat) {
 
-        effect.ctx.amount /= 2;
-
-        float restored = effect.ctx.amount / 2;
-
-        ResourcesData.Context ctx = new ResourcesData.Context(effect.ctx.sourceData, effect.ctx.source,
-                                                              ResourcesData.Type.MAGIC_SHIELD, restored,
-                                                              ResourcesData.Use.RESTORE
-        );
-        effect.ctx.targetData.getResources().modify(ctx);
+        effect.ctx.type = ResourcesData.Type.BLOOD;
 
         return effect;
     }
 
     @Override
     public boolean canActivate(ModifyResourceEffect effect, StatData data, Stat stat) {
-        if (effect.ctx.use == ResourcesData.Use.RESTORE) {
+
+        if (effect.ctx.use == ResourcesData.Use.SPEND) {
             if (effect.ctx.amount > 0) {
-                if (effect.ctx.type == ResourcesData.Type.HEALTH) {
+                if (effect.ctx.type == ResourcesData.Type.MANA) {
+                    return true;
                 }
             }
         }
+
         return false;
     }
 
+    private static class SingletonHolder {
+        private static final BloodMageSpendBloodInsteadEffect INSTANCE = new BloodMageSpendBloodInsteadEffect();
+    }
 }
+
