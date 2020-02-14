@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses.rune;
 
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatGroupData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -59,6 +61,10 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
         return Arrays.asList(new LevelAndStats(list, this.level));
     }
 
+    public BaseRuneItem getRune() {
+        return SlashRegistry.Runes().get(rune);
+    }
+
     public int getAveragePercents() {
         int per = 0;
 
@@ -86,9 +92,8 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
         RuneRarity rar = this.getRarity();
 
         for (ITextComponent s : list) {
-            list2.add(new StringTextComponent(rar.Color() + rune.toUpperCase() + rar.Color() + ": [")
-                    .appendSibling(s)
-                    .appendText(rar.Color() + " ]"));
+            list2.add(new StringTextComponent(rar.Color() + rune.toUpperCase() + rar.Color() + ": [").appendSibling(s)
+                              .appendText(rar.Color() + " ]"));
         }
 
         return list2;

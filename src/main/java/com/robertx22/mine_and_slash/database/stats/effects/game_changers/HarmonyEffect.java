@@ -23,8 +23,7 @@ public class HarmonyEffect implements IStatEffect {
     }
 
     @Override
-    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data,
-                                      Stat stat) {
+    public EffectData TryModifyEffect(EffectData Effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (Effect instanceof ModifyResourceEffect) {
@@ -39,8 +38,11 @@ public class HarmonyEffect implements IStatEffect {
 
                             float restored = eff.ctx.amount / 2;
 
-                            ResourcesData.Context ctx = new ResourcesData.Context(eff.ctx.sourceData, eff.ctx.source, ResourcesData.Type.MAGIC_SHIELD, restored, ResourcesData.Use.RESTORE);
-                            eff.ctx.sourceData.getResources().modify(ctx);
+                            ResourcesData.Context ctx = new ResourcesData.Context(eff.ctx.sourceData, eff.ctx.source,
+                                                                                  ResourcesData.Type.MAGIC_SHIELD,
+                                                                                  restored, ResourcesData.Use.RESTORE
+                            );
+                            eff.ctx.targetData.getResources().modify(ctx);
 
                         }
                     }

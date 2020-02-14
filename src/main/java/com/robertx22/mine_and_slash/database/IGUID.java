@@ -16,6 +16,22 @@ public interface IGUID {
 
     }
 
+    public static void runTest() {
+
+        String formatted = IGUID.getformattedString("DamageFlat");
+        String finalstr = "damage_flat";
+
+        if (!formatted.equals(finalstr)) {
+            throw new RuntimeException("GUID formatter is incorrect");
+        }
+        formatted = IGUID.getformattedString("DAMageFLAt");
+        finalstr = "damage_flat";
+
+        if (!formatted.equals(finalstr)) {
+            throw new RuntimeException("GUID formatter is incorrect");
+        }
+    }
+
     public default String formatString(String str) {
         return getformattedString(str);
     }
@@ -44,7 +60,9 @@ public interface IGUID {
                 addedUnderscore = true;
             } else {
                 s += c;
-                addedUnderscore = false;
+                if (!Character.isUpperCase(c)) {
+                    addedUnderscore = false;
+                }
             }
 
             i++;

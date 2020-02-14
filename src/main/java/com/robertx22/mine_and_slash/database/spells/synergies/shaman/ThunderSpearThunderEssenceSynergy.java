@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageCon
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.shaman.ThunderEssenceEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -20,13 +21,15 @@ public class ThunderSpearThunderEssenceSynergy extends Synergy<AfterDamageContex
         return "thunder_spear_thunder_essence_synergy";
     }
 
+    static int CHANCE = 50;
+
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Attacks give Thunder Essence"));
+        list.add(new StringTextComponent(CHANCE + " percent chance for attacks give Thunder Essence"));
 
         list.addAll(ThunderEssenceEffect.INSTANCE.GetTooltipString(info));
 
@@ -40,6 +43,8 @@ public class ThunderSpearThunderEssenceSynergy extends Synergy<AfterDamageContex
 
     @Override
     public void tryActivate(AfterDamageContext ctx) {
-        PotionEffectUtils.reApplyToSelf(ThunderEssenceEffect.INSTANCE, ctx.caster);
+        if (RandomUtils.roll(CHANCE)) {
+            PotionEffectUtils.reApplyToSelf(ThunderEssenceEffect.INSTANCE, ctx.caster);
+        }
     }
 }

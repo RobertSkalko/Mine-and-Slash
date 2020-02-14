@@ -135,7 +135,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
             }
             if (rune.weapon != null) {
 
-                tooltip.add(Styles.GRAYCOMP().appendSibling(Words.Weapon.locName().appendText(":")));
+                tooltip.add(Styles.GRAYCOMP().appendSibling(Words.WeaponOffhand.locName().appendText(":")));
                 for (ITextComponent str : rune.weapon.GetTooltipString(info)) {
                     tooltip.add(str);
                 }

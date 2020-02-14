@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.rune;
 
+import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
@@ -74,7 +75,6 @@ public class RunesData implements ITooltipList, IStatModsContainer {
             for (InsertedRuneData inserted : runes) {
                 if (inserted.isNotUsedByAnyRuneWord()) {
                     if (inserted.rune.equals(word.runes().get(i).GUID())) {
-
                         text += word.runes().get(i).name();
                         break;
                     }
@@ -85,7 +85,7 @@ public class RunesData implements ITooltipList, IStatModsContainer {
 
         String wordToAwaken = word.getRuneWordCombo().toUpperCase();
 
-        return text.toUpperCase().equals(wordToAwaken);
+        return text.toUpperCase().contains(wordToAwaken);
 
     }
 
@@ -98,10 +98,8 @@ public class RunesData implements ITooltipList, IStatModsContainer {
 
             for (int i = 0; i < runeword.size(); i++) {
                 for (InsertedRuneData inserted : runes) {
-                    if (inserted.usedForRuneWord.length() == 0 && inserted.rune.equals(runeword
-                            .runes()
-                            .get(i)
-                            .name())) {
+                    if (inserted.usedForRuneWord.length() == 0 && inserted.rune.equals(
+                            runeword.runes().get(i).name())) {
 
                         inserted.usedForRuneWord = runeword.GUID();
                         break;
@@ -199,8 +197,7 @@ public class RunesData implements ITooltipList, IStatModsContainer {
 
         for (int i = 0; i < empty; i++) {
 
-            list.add(Styles.GRAYCOMP()
-                    .appendSibling(new StringTextComponent("Rune: [Empty ]")));
+            list.add(Styles.GRAYCOMP().appendSibling(new StringTextComponent("Rune: [Empty ]")));
 
         }
 
@@ -215,4 +212,7 @@ public class RunesData implements ITooltipList, IStatModsContainer {
         return list;
     }
 
+    public boolean hasUniqueRune() {
+        return runes.stream().anyMatch(x -> x.getRune() instanceof BaseUniqueRuneItem);
+    }
 }

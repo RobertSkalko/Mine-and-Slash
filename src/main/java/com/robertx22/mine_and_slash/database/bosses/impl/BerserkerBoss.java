@@ -34,15 +34,15 @@ public class BerserkerBoss extends Boss {
     @Override
     public void onHealthTreshholdTriggered(LivingEntity en, BossData.HealthTreshhold t) {
         if (t == BossData.HealthTreshhold.T_75) {
-            en.addPotionEffect(new EffectInstance(Effects.SPEED, 5000, 1));
+            en.addPotionEffect(new EffectInstance(Effects.SPEED, 300, 1));
         } else if (t == BossData.HealthTreshhold.T_50) {
             PotionEffectUtils.applyToSelf(RighteousFuryEffect.INSTANCE, en);
         } else if (t == BossData.HealthTreshhold.T_25) {
             PotionEffectUtils.applyToSelf(RighteousFuryEffect.INSTANCE, en);
-            en.addPotionEffect(new EffectInstance(Effects.SPEED, 4000, 2));
+            en.addPotionEffect(new EffectInstance(Effects.SPEED, 3000, 1));
         } else if (t == BossData.HealthTreshhold.T_10) {
             PotionEffectUtils.applyToSelf(RighteousFuryEffect.INSTANCE, en);
-            en.addPotionEffect(new EffectInstance(Effects.SPEED, 3000, 3));
+            en.addPotionEffect(new EffectInstance(Effects.SPEED, 3000, 2));
 
         }
     }

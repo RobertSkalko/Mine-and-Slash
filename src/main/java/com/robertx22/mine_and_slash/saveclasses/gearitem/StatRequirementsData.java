@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
-import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
@@ -21,12 +20,16 @@ import java.util.Map;
 @Storable
 public class StatRequirementsData {
 
+    /*
     @Store
     private List<String> stats = new ArrayList<>();
 
     public List<String> getStatRequirements() {
         return stats;
     }
+
+
+     */
 
     private HashMap<String, Integer> getReqs(GearItemData data) {
         if (data.isUnique()) {
@@ -38,29 +41,15 @@ public class StatRequirementsData {
             }
 
         } else {
-
-            if (data.GetBaseGearType() instanceof ISpecificStatReq) {
-
-                ISpecificStatReq specific = (ISpecificStatReq) data.GetBaseGearType();
-                return specific.getRequirements().getRequirements(data.getLevel(), data.getRarity());
-            } else {
-                HashMap<String, Integer> map = new HashMap<>();
-                float requirementMulti = data.getRarity().requirementMulti();
-
-                for (String str : stats) {
-                    if (SlashRegistry.Stats().isRegistered(str)) {
-                        map.put(str, (int) (this.getAmount(data) / stats.size() * requirementMulti));
-                    }
-                }
-                return map;
-            }
+            ISpecificStatReq specific = (ISpecificStatReq) data.GetBaseGearType();
+            return specific.getRequirements().getRequirements(data.getLevel(), data.getRarity());
         }
 
     }
 
     public void create(GearItemData data) {
 
-        this.stats = new ArrayList<>();
+        //this.stats = new ArrayList<>();
 
         /*
         if (data.isUnique()) {
@@ -78,32 +67,9 @@ public class StatRequirementsData {
     }
 
     public static int getAmount(int lvl) {
-        int req = (int) ((lvl - ((float) lvl / 5F) - 5) * ModConfig.INSTANCE.Server.STAT_REQUIREMENTS_MULTI.get());
+        int req = (int) ((lvl - ((float) lvl / 6F) - 5) * ModConfig.INSTANCE.Server.STAT_REQUIREMENTS_MULTI.get());
         return MathHelper.clamp(req, 0, 100000);
     }
-/*
-    private void singleStat(GearItemData data) {
-        List<Stat> possibleReq = data.GetBaseGearType().statRequirements();
-        Stat stat = RandomUtils.weightedRandom(possibleReq);
-        this.stats.add(stat.GUID());
-
-    }
-
-    private void doubleStat(GearItemData data) {
-
-        List<Stat> possibleReq = data.GetBaseGearType().statRequirements();
-        List<Stat> picked = RandomUtils.uniqueWightedRandoms(possibleReq, 2);
-
-        for (Stat stat : picked) {
-            this.stats.add(stat.GUID());
-        }
-    }
-
-    private void unique(GearItemData data) {
-
-    }
-
- */
 
     public boolean meetsRequirements(UnitData data, GearItemData gear) {
 

@@ -238,11 +238,10 @@ public class SlashRegistry {
     }
 
     public static void checkGuidValidity() {
-
         map.values().forEach(c -> c.getAllIncludingSeriazable().forEach(x -> {
             ISlashRegistryEntry entry = (ISlashRegistryEntry) x;
             if (!entry.isGuidFormattedCorrectly()) {
-                System.out.println(entry.getInvalidGuidMessage());
+                throw new RuntimeException(entry.getInvalidGuidMessage());
             }
         }));
 
@@ -289,8 +288,7 @@ public class SlashRegistry {
         map.put(SlashRegistryType.GEAR_TYPE,
                 new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType())
         );
-        map.put(
-                SlashRegistryType.STAT,
+        map.put(SlashRegistryType.STAT,
                 new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance())
         );
         map.put(SlashRegistryType.STATMOD,

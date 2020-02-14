@@ -46,7 +46,9 @@ public class BlizzardFrostEssenceSynergy extends Synergy<BeforeDamageContext> {
 
     @Override
     public void tryActivate(BeforeDamageContext ctx) {
+
         int stacks = PotionEffectUtils.getStacks(ctx.caster, FrostEssenceEffect.INSTANCE);
         ctx.dmg.number += CALC.getCalculatedValue(Load.Unit(ctx.target)) * stacks;
+        
     }
 }

@@ -173,10 +173,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             }
 
         } else {
-            String id = IGUID.getformattedString(c.GUID());
+            //String id = IGUID.getformattedString(c.GUID());
 
             tryLogAddition(c);
-            map.put(id, c);
+            map.put(c.GUID(), c);
         }
 
     }

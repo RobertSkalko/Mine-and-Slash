@@ -125,7 +125,10 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(RuneEmptySlotReq.INSTANCE, RuneNoDuplicateReq.INSTANCE, RuneLvlReq.INSTANCE);
+        return Arrays.asList(
+                RuneEmptySlotReq.INSTANCE, OnlyOneUniqueRuneReq.getInstance(), RuneNoDuplicateReq.INSTANCE,
+                RuneLvlReq.INSTANCE
+        );
     }
 
     @Override

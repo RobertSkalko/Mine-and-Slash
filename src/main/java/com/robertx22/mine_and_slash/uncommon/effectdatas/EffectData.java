@@ -181,7 +181,7 @@ public abstract class EffectData {
         }
 
         if (affects == false) {
-            System.out.println("works");
+            //System.out.println("works");
         }
 
         return affects;
@@ -194,9 +194,9 @@ public abstract class EffectData {
 
                 if (stateffects.getEffect().Side().equals(side)) {
 
-                    if (unit.getStats().containsKey(stateffects.GUID())) {
+                    if (unit.hasStat(stateffects.GUID())) {
 
-                        StatData stat = unit.getCreateStat((Stat) stateffects);
+                        StatData stat = unit.peekAtStat((Stat) stateffects);
 
                         if (stat.val != 0) {
                             effects.add(new EffectUnitStat(stateffects.getEffect(), unit, stat));

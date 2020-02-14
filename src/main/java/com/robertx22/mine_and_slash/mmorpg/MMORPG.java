@@ -19,6 +19,7 @@ import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
+import com.robertx22.mine_and_slash.tests.OneUniqueRunePerRuneword;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.develeper.GenerateUniqueGearJsons;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
@@ -89,12 +90,7 @@ public class MMORPG {
 
         System.out.println("Starting Mine and Slash");
 
-        String formatted = IGUID.getformattedString("DamageFlat");
-        String finalstr = "damage_flat";
-
-        if (!formatted.equals(finalstr)) {
-            throw new RuntimeException("GUID formatter is incorrect");
-        }
+        IGUID.runTest();
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -178,6 +174,10 @@ public class MMORPG {
     public static void onServerStarting(FMLServerStartingEvent event) {
 
         CommandRegister.Register(event.getServer());
+
+        SlashRegistry.checkGuidValidity();
+
+        OneUniqueRunePerRuneword.test();
 
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();

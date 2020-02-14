@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -47,8 +46,7 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     public static <T extends MobEntity> T summonBoss(EntityType<T> type, World world, BlockPos p,
                                                      com.robertx22.mine_and_slash.database.bosses.base.Boss boss) {
         T bossEntity = (T) type.create(world);
-        bossEntity.onInitialSpawn(
-                world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, (CompoundNBT) null);
+        bossEntity.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         bossEntity.setPosition(p.getX(), p.getY(), p.getZ());
         Load.boss(bossEntity).setBoss(boss);
 
@@ -59,8 +57,7 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
 
     public static <T extends MobEntity> T summonMinion(EntityType<T> type, World world, BlockPos p) {
         T minion = (T) type.create(world);
-        minion.onInitialSpawn(
-                world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, (CompoundNBT) null);
+        minion.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         minion.setPosition(p.getX(), p.getY(), p.getZ());
         world.addEntity(minion);
 

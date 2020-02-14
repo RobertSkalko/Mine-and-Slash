@@ -19,7 +19,7 @@ public class RingCrit extends BaseUniqueRing {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE,
+    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.TINY, LvlPointStat.INTELLIGENCE,
                                      StatReq.Size.SMALL
     );
 
@@ -40,9 +40,8 @@ public class RingCrit extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(
-                new MajorCriticalHitPercent().multi(1.5F), new MajorCriticalDamagePercent().multi(1.5F),
-                new EnergyRegenFlat()
+        return Arrays.asList(new MajorCriticalHitPercent().multi(1.5F), new MajorCriticalDamagePercent().multi(1.5F),
+                             new EnergyRegenFlat()
         );
     }
 

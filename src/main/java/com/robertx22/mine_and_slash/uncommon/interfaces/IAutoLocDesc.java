@@ -20,7 +20,7 @@ public interface IAutoLocDesc extends IBaseAutoLoc {
     }
 
     public default String formattedLocDescLangFileGUID() {
-        return getPrefix() + formatString(locDescLangFileGUID());
+        return getPrefix() + getFormatedForLangFile(locDescLangFileGUID());
     }
 
 }

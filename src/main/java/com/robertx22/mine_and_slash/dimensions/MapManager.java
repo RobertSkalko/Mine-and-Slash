@@ -15,7 +15,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
@@ -56,12 +55,6 @@ public class MapManager {
     public static class announce {
         @SubscribeEvent
         public static void registerModDimensions(RegisterDimensionsEvent event) {
-
-            System.out.println(
-                    TextFormatting.LIGHT_PURPLE + "Don't be afraid of the [Missing Dimension Name] and [in save file "
-                            + "missing" + " ModDimension] errors ");
-            System.out.println(
-                    TextFormatting.LIGHT_PURPLE + "This is a required workaround by Mine and Slash. These are the " + "random adventure map dimensions " + "that are being scrapped.");
 
         }
 

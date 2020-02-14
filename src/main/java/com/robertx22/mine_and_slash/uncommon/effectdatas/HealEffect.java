@@ -23,6 +23,9 @@ public class HealEffect extends EffectData {
 
         if (target.isAlive()) {
             this.calculateEffects();
+
+            //this.targetData.getResources().modify(this.healData);
+
             this.target.heal(getNumber());
         }
     }
