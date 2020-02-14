@@ -40,7 +40,7 @@ public class WeaponDamageFlat extends StatMod implements IGenerated<StatMod> {
 
     @Override
     public String GUID() {
-        return weaponType.name() + "DamageFlat";
+        return weaponType.id + "_damage_flat";
     }
 
     @Override

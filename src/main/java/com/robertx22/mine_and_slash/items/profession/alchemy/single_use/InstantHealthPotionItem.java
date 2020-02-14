@@ -49,7 +49,7 @@ public class InstantHealthPotionItem extends BaseInstantPotion {
 
     @Override
     public float amount() {
-        return Health.INSTANCE.calculateScalingStatGrowth(lvl_1_amount * level.effectMultiplier, level.number);
+        return Health.getInstance().calculateScalingStatGrowth(lvl_1_amount * level.effectMultiplier, level.number);
     }
 
     @Override

@@ -16,6 +16,6 @@ public class IntelligenceFlat extends BaseCoreStatFlat {
 
     @Override
     public String GUID() {
-        return "IntelligenceFlat";
+        return "intelligence_flat";
     }
 }

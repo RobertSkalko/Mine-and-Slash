@@ -30,7 +30,7 @@ public class SpellDamageFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return SpellDamage.INSTANCE;
+        return SpellDamage.getInstance();
     }
 
     @Override

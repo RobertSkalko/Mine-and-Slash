@@ -22,7 +22,7 @@ public class RuneWordProfoundSea extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Profound Sea";
+        return "profound_sea";
     }
 
     @Override

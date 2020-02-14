@@ -11,11 +11,6 @@ public class EnergyFlat extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "EnergyFlat";
-    }
-
-    @Override
     public float Min() {
         return 5;
     }
@@ -32,7 +27,7 @@ public class EnergyFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Energy.INSTANCE;
+        return Energy.getInstance();
     }
 
 }

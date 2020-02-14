@@ -12,11 +12,6 @@ public class CriticalDamageFlat extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "CriticalDamageFlat";
-    }
-
-    @Override
     public float Min() {
         return 5;
 
@@ -34,7 +29,7 @@ public class CriticalDamageFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return CriticalDamage.INSTANCE;
+        return CriticalDamage.getInstance();
     }
 
 }

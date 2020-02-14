@@ -8,9 +8,12 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class CriticalHit extends Stat implements IStatEffects {
-    public static Stat INSTANCE = new CriticalHit();
 
     public static String GUID = "critical_hit";
+
+    public static CriticalHit getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public StatGroup statGroup() {
@@ -61,5 +64,9 @@ public class CriticalHit extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Critical Hit";
+    }
+
+    private static class SingletonHolder {
+        private static final CriticalHit INSTANCE = new CriticalHit();
     }
 }

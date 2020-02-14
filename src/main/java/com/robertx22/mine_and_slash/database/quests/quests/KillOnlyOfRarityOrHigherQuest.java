@@ -137,7 +137,7 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
 
     @Override
     public String GUID() {
-        return "kill_rarity_or_higher_" + rarity.GUID();
+        return "kill_rarity_or_higher_" + rarity.GUID().toLowerCase();
     }
 }
 

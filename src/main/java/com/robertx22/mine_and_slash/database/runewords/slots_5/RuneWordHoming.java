@@ -22,7 +22,7 @@ public class RuneWordHoming extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Follower";
+        return "follower";
     }
 
     @Override

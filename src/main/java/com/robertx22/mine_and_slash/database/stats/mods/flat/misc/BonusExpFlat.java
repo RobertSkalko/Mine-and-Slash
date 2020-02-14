@@ -28,7 +28,7 @@ public class BonusExpFlat extends StatMod {
 
     @Override
     public String GUID() {
-        return "bonusexpflat";
+        return "bonus_exp_flat";
 
     }
 }

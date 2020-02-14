@@ -80,7 +80,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     @Override
     public String GUID() {
-        return name();
+        return name().toLowerCase(Locale.ROOT);
     }
 
     @Override

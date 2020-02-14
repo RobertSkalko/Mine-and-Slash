@@ -20,7 +20,7 @@ public class AxeWeaponMechanic extends WeaponMechanic {
     @Override
     public float GetEnergyCost(int lvl) {
 
-        return Energy.INSTANCE.calculateScalingStatGrowth(8.5F, lvl);
+        return Energy.getInstance().calculateScalingStatGrowth(8.5F, lvl);
 
     }
 

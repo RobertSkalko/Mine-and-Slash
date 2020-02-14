@@ -23,7 +23,7 @@ public class RuneWordMountain extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Mountain";
+        return "mountain";
     }
 
     @Override

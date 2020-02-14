@@ -9,10 +9,12 @@ import net.minecraft.util.text.TextFormatting;
 public class Health extends Stat {
     public static String GUID = "health";
 
-    public static Health INSTANCE = new Health();
-
     private Health() {
         this.minimumValue = 1;
+    }
+
+    public static Health getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -66,5 +68,9 @@ public class Health extends Stat {
     @Override
     public String locNameForLangFile() {
         return "Health";
+    }
+
+    private static class SingletonHolder {
+        private static final Health INSTANCE = new Health();
     }
 }

@@ -12,7 +12,7 @@ public class ThirstOfFrost extends BaseThirstPrefix {
 
     @Override
     public String GUID() {
-        return "Thirst Of Frost";
+        return "thirst_of_frost";
     }
 
     @Override
@@ -22,6 +22,6 @@ public class ThirstOfFrost extends BaseThirstPrefix {
 
     @Override
     public String locNameForLangFile() {
-        return "thirst_of_frost";
+        return "Thirst of Frost";
     }
 }

@@ -14,11 +14,6 @@ public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
     }
 
     @Override
-    public String GUID() {
-        return "bonus_" + element.name() + "_damage_flat";
-    }
-
-    @Override
     public MapWrapper<Elements, ElementalSpellToAttackDMG> getBaseStatMap() {
         return ElementalSpellToAttackDMG.MAP;
     }

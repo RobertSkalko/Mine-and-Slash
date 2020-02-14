@@ -21,7 +21,7 @@ public class RuneWordThief extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Thief";
+        return "thief";
     }
 
     @Override

@@ -8,11 +8,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 public class HealthMulti extends StatMod {
 
     @Override
-    public String GUID() {
-        return "HealthMulti";
-    }
-
-    @Override
     public float Min() {
         return 5;
     }
@@ -29,7 +24,7 @@ public class HealthMulti extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Health.INSTANCE;
+        return Health.getInstance();
     }
 
 }

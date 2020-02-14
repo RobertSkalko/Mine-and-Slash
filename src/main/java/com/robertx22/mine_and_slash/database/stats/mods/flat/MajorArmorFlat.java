@@ -12,7 +12,7 @@ public class MajorArmorFlat extends StatMod {
 
     @Override
     public String GUID() {
-        return "MajorArmorFlat";
+        return "major_armor_flat";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MajorArmorFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Armor.INSTANCE;
+        return Armor.getInstance();
     }
 
 }

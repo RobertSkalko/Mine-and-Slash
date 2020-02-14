@@ -11,11 +11,6 @@ public class LifeOnHitPercent extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "LifeOnHitPercent";
-    }
-
-    @Override
     public float Min() {
         return 10;
     }
@@ -32,7 +27,7 @@ public class LifeOnHitPercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return LifeOnHit.INSTANCE;
+        return LifeOnHit.getInstance();
     }
 
 }

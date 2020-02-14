@@ -59,7 +59,7 @@ public class InstantHealSpell extends BaseSpellHeal {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.one(Health.INSTANCE, 0.2F, 25);
+        return SpellCalcData.one(Health.getInstance(), 0.2F, 25);
     }
 
     @Override

@@ -32,7 +32,7 @@ public class BonusHealthMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Health.INSTANCE;
+        return Health.getInstance();
     }
 
 }

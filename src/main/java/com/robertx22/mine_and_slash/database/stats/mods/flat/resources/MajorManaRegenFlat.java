@@ -12,7 +12,7 @@ public class MajorManaRegenFlat extends StatMod {
 
     @Override
     public String GUID() {
-        return "MajorManaRegenFlat";
+        return "major_mana_regen_flat";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MajorManaRegenFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return ManaRegen.INSTANCE;
+        return ManaRegen.getInstance();
     }
 
 }

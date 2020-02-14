@@ -27,9 +27,4 @@ public class AllEleSpellDmgFlat extends StatMod {
         return StatTypes.Flat;
     }
 
-    @Override
-    public String GUID() {
-        return "AllEleSpellDmgFlat";
-    }
-
 }

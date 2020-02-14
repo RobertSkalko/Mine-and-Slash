@@ -34,11 +34,6 @@ public class ElementalSpellDamageMulti extends ElementalStatMod {
     }
 
     @Override
-    public String GUID() {
-        return "Spell" + element.name() + "DamageMulti";
-    }
-
-    @Override
     public StatMod newGeneratedInstance(Elements element) {
         return new ElementalSpellDamageMulti(element);
     }

@@ -11,11 +11,6 @@ public class LifeOnHitFlat extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "LifeOnHitFlat";
-    }
-
-    @Override
     public float Min() {
         return 0.5F;
     }
@@ -32,7 +27,7 @@ public class LifeOnHitFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return LifeOnHit.INSTANCE;
+        return LifeOnHit.getInstance();
     }
 
 }

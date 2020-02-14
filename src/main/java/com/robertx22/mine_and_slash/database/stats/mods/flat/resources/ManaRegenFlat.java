@@ -11,11 +11,6 @@ public class ManaRegenFlat extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "ManaRegenFlat";
-    }
-
-    @Override
     public float Min() {
         return 2;
     }
@@ -32,7 +27,7 @@ public class ManaRegenFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return ManaRegen.INSTANCE;
+        return ManaRegen.getInstance();
     }
 
 }

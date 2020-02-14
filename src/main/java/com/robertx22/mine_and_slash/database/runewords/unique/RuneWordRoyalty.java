@@ -26,7 +26,7 @@ public class RuneWordRoyalty extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Royalty";
+        return "royalty";
     }
 
     @Override

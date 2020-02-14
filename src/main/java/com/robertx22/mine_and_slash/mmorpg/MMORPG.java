@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -87,6 +88,13 @@ public class MMORPG {
     public MMORPG() {
 
         System.out.println("Starting Mine and Slash");
+
+        String formatted = IGUID.getformattedString("DamageFlat");
+        String finalstr = "damage_flat";
+
+        if (!formatted.equals(finalstr)) {
+            throw new RuntimeException("GUID formatter is incorrect");
+        }
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 

@@ -9,7 +9,7 @@ public class CompletePhysDispersionFlat extends StatMod {
 
     @Override
     public String GUID() {
-        return "CompletePhysDispersionFlat";
+        return "complete_phys_dispersion_flat";
     }
 
     @Override

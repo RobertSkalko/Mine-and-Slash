@@ -95,7 +95,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new AllAttributes());
                     add(new AllEleDmg());
                     add(new AllEleSpellDmg());
-                    add(SpellDamage.INSTANCE);
+                    add(SpellDamage.getInstance());
                     // major arcana tarot
                     add(new Judgement());
                     add(new StrengthArcana());
@@ -152,25 +152,25 @@ public class Stats implements ISlashRegistryInit {
                     add(new UnknownStat());
 
                     // Resources
-                    add(Health.INSTANCE);
-                    add(HealthRegen.INSTANCE);
-                    add(Lifesteal.INSTANCE);
-                    add(LifeOnHit.INSTANCE);
-                    add(Mana.INSTANCE);
-                    add(ManaRegen.INSTANCE);
-                    add(new ManaOnHit());
-                    add(Energy.INSTANCE);
-                    add(EnergyRegen.INSTANCE);
-                    add(MagicShield.INSTANCE);
-                    add(MagicShieldRegen.INSTANCE);
+                    add(Health.getInstance());
+                    add(HealthRegen.getInstance());
+                    add(Lifesteal.getInstance());
+                    add(LifeOnHit.getInstance());
+                    add(Mana.getInstance());
+                    add(ManaRegen.getInstance());
+                    add(ManaOnHit.getInstance());
+                    add(Energy.getInstance());
+                    add(EnergyRegen.getInstance());
+                    add(MagicShield.getInstance());
+                    add(MagicShieldRegen.getInstance());
                     // Resources
 
                     add(new BlockStrength());
-                    add(Armor.INSTANCE);
-                    add(CriticalDamage.INSTANCE);
-                    add(CriticalHit.INSTANCE);
-                    add(PhysicalDamage.INSTANCE);
-                    add(DodgeRating.INSTANCE);
+                    add(Armor.getInstance());
+                    add(CriticalDamage.getInstance());
+                    add(CriticalHit.getInstance());
+                    add(PhysicalDamage.getInstance());
+                    add(DodgeRating.getInstance());
                     add(new SpellDodge());
                     add(DamageShield.getInstance());
 

@@ -44,13 +44,13 @@ public class OverflowingVitality extends BaseGameChangerTrait implements IAffect
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
 
-        float num = data.getUnit().getCreateStat(Health.INSTANCE).val * INCREASE / 100;
+        float num = data.getUnit().getCreateStat(Health.getInstance()).val * INCREASE / 100;
 
         for (Stat stat : ElementalAttackDamage.MAP.getList()) {
             data.getUnit().getCreateStat(stat).Multi -= ELE_DECREASE;
         }
 
-        data.getUnit().getCreateStat(PhysicalDamage.INSTANCE).Flat += num;
+        data.getUnit().getCreateStat(PhysicalDamage.getInstance()).Flat += num;
     }
 
     private static class SingletonHolder {

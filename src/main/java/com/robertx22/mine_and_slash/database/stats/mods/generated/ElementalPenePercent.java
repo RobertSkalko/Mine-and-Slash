@@ -40,7 +40,7 @@ public class ElementalPenePercent extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return element.name() + "PenePercent";
+        return element.guidName + "_pene_percent";
     }
 }
 

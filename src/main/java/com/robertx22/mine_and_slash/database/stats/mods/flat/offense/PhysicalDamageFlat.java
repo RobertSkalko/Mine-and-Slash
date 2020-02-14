@@ -12,7 +12,7 @@ public class PhysicalDamageFlat extends StatMod {
 
     @Override
     public String GUID() {
-        return "DamageFlat";
+        return "damage_flat";
     }
 
     @Override
@@ -33,7 +33,7 @@ public class PhysicalDamageFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return PhysicalDamage.INSTANCE;
+        return PhysicalDamage.getInstance();
     }
 
 }

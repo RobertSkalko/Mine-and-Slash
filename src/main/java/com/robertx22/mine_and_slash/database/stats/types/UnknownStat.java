@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class UnknownStat extends Stat {
-    public static String GUID = "Renamed or Deleted Stat Error";
+    public static String GUID = "renamed_or_deleted_stat";
 
     public UnknownStat() {
 

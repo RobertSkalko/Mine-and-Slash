@@ -11,11 +11,6 @@ public class EnergyRegenPercent extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "EnergyRegenPercent";
-    }
-
-    @Override
     public float Min() {
         return 7;
     }
@@ -32,7 +27,7 @@ public class EnergyRegenPercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return EnergyRegen.INSTANCE;
+        return EnergyRegen.getInstance();
     }
 
 }

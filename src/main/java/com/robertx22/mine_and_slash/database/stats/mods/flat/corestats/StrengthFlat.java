@@ -16,6 +16,6 @@ public class StrengthFlat extends BaseCoreStatFlat {
 
     @Override
     public String GUID() {
-        return "StrengthFlat";
+        return "strength_flat";
     }
 }

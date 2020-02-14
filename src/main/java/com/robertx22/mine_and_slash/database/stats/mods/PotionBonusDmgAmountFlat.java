@@ -19,7 +19,7 @@ public class PotionBonusDmgAmountFlat extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return element.dmgName.toLowerCase() + "_PotionBonusDmgAmountFlat";
+        return element.dmgName.toLowerCase() + "_potion_bonus_dmg__flat";
     }
 
     @Override

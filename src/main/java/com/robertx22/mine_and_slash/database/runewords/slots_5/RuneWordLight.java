@@ -22,7 +22,7 @@ public class RuneWordLight extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Light";
+        return "light";
     }
 
     @Override

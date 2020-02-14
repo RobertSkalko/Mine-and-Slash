@@ -11,11 +11,6 @@ public class ManaRegenPercent extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "ManaRegenPercent";
-    }
-
-    @Override
     public float Min() {
         return 2;
     }
@@ -33,7 +28,7 @@ public class ManaRegenPercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return ManaRegen.INSTANCE;
+        return ManaRegen.getInstance();
     }
 
 }

@@ -16,6 +16,6 @@ public class StaminaFlat extends BaseCoreStatFlat {
 
     @Override
     public String GUID() {
-        return "StaminaFlat";
+        return "stamina_flat";
     }
 }

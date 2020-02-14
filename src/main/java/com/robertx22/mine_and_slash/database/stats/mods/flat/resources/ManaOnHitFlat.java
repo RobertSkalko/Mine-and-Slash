@@ -11,11 +11,6 @@ public class ManaOnHitFlat extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "ManaOnHitFlat";
-    }
-
-    @Override
     public float Min() {
         return 1;
     }
@@ -32,7 +27,7 @@ public class ManaOnHitFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new ManaOnHit();
+        return ManaOnHit.getInstance();
     }
 
 }

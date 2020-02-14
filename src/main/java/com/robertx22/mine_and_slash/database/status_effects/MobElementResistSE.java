@@ -19,16 +19,19 @@ public class MobElementResistSE extends BaseStatusEffect {
 
     @Override
     public String GUID() {
-        return "MobElementResistSE";
+        return "mob_element_resist_se";
     }
 
     int percent = 300;
 
     @Override
     public List<StatModData> Stats() {
-        return Arrays.asList(StatModData.Load(new ElementalResistFlat(Elements.Fire), percent), StatModData
-                .Load(new ElementalResistFlat(Elements.Water), percent), StatModData.Load(new ElementalResistFlat(Elements.Thunder), percent), StatModData
-                .Load(new ElementalResistFlat(Elements.Nature), percent));
+        return Arrays.asList(
+                StatModData.Load(new ElementalResistFlat(Elements.Fire), percent),
+                StatModData.Load(new ElementalResistFlat(Elements.Water), percent),
+                StatModData.Load(new ElementalResistFlat(Elements.Thunder), percent),
+                StatModData.Load(new ElementalResistFlat(Elements.Nature), percent)
+        );
     }
 
 }

@@ -9,8 +9,11 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class DodgeRating extends Stat implements IStatEffects, IUsableStat {
 
-    public static Stat INSTANCE = new DodgeRating();
     public static String GUID = "dodge";
+
+    public static DodgeRating getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public StatGroup statGroup() {
@@ -64,5 +67,9 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat {
     @Override
     public float AverageStat() {
         return 8;
+    }
+
+    private static class SingletonHolder {
+        private static final DodgeRating INSTANCE = new DodgeRating();
     }
 }

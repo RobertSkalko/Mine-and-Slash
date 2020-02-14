@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class AllEleSpellDmg extends Stat implements IStatEffects {
 
-    public static String GUID = "AllEleSpellDmg";
+    public static String GUID = "all_ele_spell_dmg";
 
     @Override
     public String locDescForLangFile() {

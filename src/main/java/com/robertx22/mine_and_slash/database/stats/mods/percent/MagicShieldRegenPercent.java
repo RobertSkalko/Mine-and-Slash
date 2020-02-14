@@ -11,11 +11,6 @@ public class MagicShieldRegenPercent extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "MagicShieldRegenPercent";
-    }
-
-    @Override
     public float Min() {
         return 2;
     }
@@ -32,6 +27,6 @@ public class MagicShieldRegenPercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return MagicShieldRegen.INSTANCE;
+        return MagicShieldRegen.getInstance();
     }
 }

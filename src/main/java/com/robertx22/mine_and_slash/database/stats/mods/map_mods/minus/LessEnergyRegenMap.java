@@ -12,7 +12,7 @@ public class LessEnergyRegenMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "LessEnergyRegenMap";
+        return "less_energy_regen_map";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class LessEnergyRegenMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return EnergyRegen.INSTANCE;
+        return EnergyRegen.getInstance();
     }
 
 }

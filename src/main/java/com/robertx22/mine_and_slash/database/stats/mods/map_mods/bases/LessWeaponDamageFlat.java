@@ -44,7 +44,7 @@ public class LessWeaponDamageFlat extends StatMod implements IGenerated<StatMod>
 
     @Override
     public String GUID() {
-        return "Less" + weaponType.name() + "DamageMap";
+        return "less_" + weaponType.id + "_damage_map";
     }
 
     @Override

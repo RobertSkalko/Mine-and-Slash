@@ -5,11 +5,14 @@ import net.minecraft.util.text.TextFormatting;
 
 public class MagicShieldRegen extends BaseRegenClass {
 
-    public static MagicShieldRegen INSTANCE = new MagicShieldRegen();
     public static String GUID = "magic_shield_regen";
 
     private MagicShieldRegen() {
 
+    }
+
+    public static MagicShieldRegen getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -50,5 +53,9 @@ public class MagicShieldRegen extends BaseRegenClass {
     @Override
     public String locNameForLangFile() {
         return "Magic Shield Regen";
+    }
+
+    private static class SingletonHolder {
+        private static final MagicShieldRegen INSTANCE = new MagicShieldRegen();
     }
 }

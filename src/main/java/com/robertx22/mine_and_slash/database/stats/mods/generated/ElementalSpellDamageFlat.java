@@ -38,8 +38,4 @@ public class ElementalSpellDamageFlat extends ElementalStatMod {
         return StatTypes.Flat;
     }
 
-    @Override
-    public String GUID() {
-        return "Spell" + element.name() + "DamageFlat";
-    }
 }

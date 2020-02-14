@@ -22,7 +22,7 @@ public class RuneWordLimitless extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Limitless";
+        return "limitless";
     }
 
     @Override

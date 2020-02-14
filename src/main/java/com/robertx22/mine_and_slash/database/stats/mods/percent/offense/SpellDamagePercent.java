@@ -9,7 +9,7 @@ public class SpellDamagePercent extends StatMod {
 
     @Override
     public String GUID() {
-        return "spelldamagepercent";
+        return "spell_damage_percent";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SpellDamagePercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return SpellDamage.INSTANCE;
+        return SpellDamage.getInstance();
     }
 
 }

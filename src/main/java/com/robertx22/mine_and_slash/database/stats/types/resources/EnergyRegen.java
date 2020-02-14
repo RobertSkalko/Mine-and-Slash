@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import net.minecraft.util.text.TextFormatting;
 
 public class EnergyRegen extends BaseRegenClass {
-    public static Stat INSTANCE = new EnergyRegen();
     public static String GUID = "energy_regen";
+
+    public static EnergyRegen getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public TextFormatting getIconFormat() {
@@ -39,5 +41,9 @@ public class EnergyRegen extends BaseRegenClass {
     @Override
     public String locNameForLangFile() {
         return "Energy Regen";
+    }
+
+    private static class SingletonHolder {
+        private static final EnergyRegen INSTANCE = new EnergyRegen();
     }
 }

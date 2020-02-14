@@ -5,9 +5,11 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class PhysicalDamage extends Stat {
 
-    public static Stat INSTANCE = new PhysicalDamage();
-
     public static String GUID = "physical_damage";
+
+    public static PhysicalDamage getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public StatGroup statGroup() {
@@ -47,5 +49,9 @@ public class PhysicalDamage extends Stat {
     @Override
     public String locNameForLangFile() {
         return "Physical Damage";
+    }
+
+    private static class SingletonHolder {
+        private static final PhysicalDamage INSTANCE = new PhysicalDamage();
     }
 }

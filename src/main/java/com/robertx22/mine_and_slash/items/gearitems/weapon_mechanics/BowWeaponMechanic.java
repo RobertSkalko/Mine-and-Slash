@@ -20,7 +20,7 @@ public class BowWeaponMechanic extends WeaponMechanic {
     @Override
     public float GetEnergyCost(int lvl) {
 
-        return Energy.INSTANCE.calculateScalingStatGrowth(18, lvl);
+        return Energy.getInstance().calculateScalingStatGrowth(18, lvl);
 
     }
 

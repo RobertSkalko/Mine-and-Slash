@@ -9,7 +9,7 @@ public class BlockStrengthPercent extends StatMod {
 
     @Override
     public String GUID() {
-        return "BlockStrengthPercent";
+        return "block_strength_percent";
     }
 
     @Override

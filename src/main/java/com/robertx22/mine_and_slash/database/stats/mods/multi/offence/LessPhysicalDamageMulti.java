@@ -9,7 +9,7 @@ public class LessPhysicalDamageMulti extends StatMod {
 
     @Override
     public String GUID() {
-        return "LessPhysicalDamageMulti";
+        return "less_physical_damage_multi";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class LessPhysicalDamageMulti extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return PhysicalDamage.INSTANCE;
+        return PhysicalDamage.getInstance();
     }
 
 }

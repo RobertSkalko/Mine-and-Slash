@@ -11,11 +11,6 @@ public class ArmorFlat extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "ArmorFlat";
-    }
-
-    @Override
     public float Min() {
         return 3;
 
@@ -33,7 +28,7 @@ public class ArmorFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Armor.INSTANCE;
+        return Armor.getInstance();
     }
 
 }

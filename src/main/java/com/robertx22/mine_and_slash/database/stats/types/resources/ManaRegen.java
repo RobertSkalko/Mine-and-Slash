@@ -5,7 +5,9 @@ import net.minecraft.util.text.TextFormatting;
 public class ManaRegen extends BaseRegenClass {
     public static String GUID = "mana_regen";
 
-    public static final ManaRegen INSTANCE = new ManaRegen();
+    public static ManaRegen getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public TextFormatting getIconFormat() {
@@ -39,5 +41,9 @@ public class ManaRegen extends BaseRegenClass {
     @Override
     public String locNameForLangFile() {
         return "Mana Regen";
+    }
+
+    private static class SingletonHolder {
+        private static final ManaRegen INSTANCE = new ManaRegen();
     }
 }

@@ -7,6 +7,13 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class EmptyStat extends Stat {
 
+    private EmptyStat() {
+    }
+
+    public static EmptyStat getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public boolean IsPercent() {
         return false;
@@ -24,12 +31,12 @@ public class EmptyStat extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "";
+        return "This stat was probably removed or renamed.";
     }
 
     @Override
     public String locNameForLangFile() {
-        return "";
+        return "Unknown Stat";
     }
 
     @Override
@@ -39,6 +46,10 @@ public class EmptyStat extends Stat {
 
     @Override
     public String GUID() {
-        return "";
+        return "unknown_stat";
+    }
+
+    private static class SingletonHolder {
+        private static final EmptyStat INSTANCE = new EmptyStat();
     }
 }

@@ -12,7 +12,7 @@ public class LessManaRegenMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "LessManaRegenMap";
+        return "less_mana_regen_map";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class LessManaRegenMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return ManaRegen.INSTANCE;
+        return ManaRegen.getInstance();
     }
 
 }

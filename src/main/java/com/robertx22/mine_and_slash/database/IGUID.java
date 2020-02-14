@@ -28,18 +28,29 @@ public interface IGUID {
         if (str == null || str.isEmpty()) {
             return str;
         }
+        return addUnderscoresBehindUppercase(str).replaceAll(" ", "_").toLowerCase(Locale.ROOT);
+    }
 
-        return str.replaceAll(" ", "_").toLowerCase(Locale.ROOT);
+    static String addUnderscoresBehindUppercase(String str) {
+        String s = "";
 
-        /*
-        String newstring = str; //StringUtils.join(
-        //StringUtils.splitByCharacterTypeCamelCase(str.replaceAll("\\d+", "")), "_");
+        int i = 0;
 
-        newstring = str.replaceAll(" ", "_").toLowerCase(Locale.ROOT);
+        boolean addedUnderscore = true;
 
-        return newstring.replaceAll("__", "_");
+        for (char c : str.toCharArray()) {
+            if (Character.isUpperCase(c) && i > 0 && !addedUnderscore) {
+                s += "_" + c;
+                addedUnderscore = true;
+            } else {
+                s += c;
+                addedUnderscore = false;
+            }
 
-         */
+            i++;
+
+        }
+        return s;
 
     }
 

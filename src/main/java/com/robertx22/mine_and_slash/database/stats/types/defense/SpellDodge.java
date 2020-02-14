@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class SpellDodge extends Stat implements IStatEffects {
-    public static String GUID = "Spell Dodge";
+    public static String GUID = "spell_dodge";
 
     @Override
     public String locDescForLangFile() {

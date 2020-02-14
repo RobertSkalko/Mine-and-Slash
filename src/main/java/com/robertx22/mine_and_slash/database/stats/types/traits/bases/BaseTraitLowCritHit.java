@@ -7,7 +7,7 @@ public abstract class BaseTraitLowCritHit extends ConditionalTrait {
 
     @Override
     public Stat stat() {
-        return CriticalHit.INSTANCE;
+        return CriticalHit.getInstance();
     }
 
     @Override

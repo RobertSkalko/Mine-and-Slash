@@ -16,6 +16,6 @@ public class WisdomFlat extends BaseCoreStatFlat {
 
     @Override
     public String GUID() {
-        return "WisdomFlat";
+        return "wisdom_flat";
     }
 }

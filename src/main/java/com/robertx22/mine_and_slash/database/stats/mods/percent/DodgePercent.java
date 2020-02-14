@@ -12,7 +12,7 @@ public class DodgePercent extends StatMod {
 
     @Override
     public String GUID() {
-        return "DodgePercent";
+        return "dodge_percent";
 
     }
 
@@ -34,7 +34,7 @@ public class DodgePercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return DodgeRating.INSTANCE;
+        return DodgeRating.getInstance();
     }
 
 }

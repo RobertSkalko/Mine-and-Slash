@@ -11,11 +11,6 @@ public class LifestealFlat extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "LifestealFlat";
-    }
-
-    @Override
     public float Min() {
         return 2;
     }
@@ -32,7 +27,7 @@ public class LifestealFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Lifesteal.INSTANCE;
+        return Lifesteal.getInstance();
     }
 
 }

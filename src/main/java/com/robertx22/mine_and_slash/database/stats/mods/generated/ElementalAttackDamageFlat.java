@@ -36,7 +36,7 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return "Attack" + element.name() + "DamageFlat";
+        return "attack_" + element.guidName + "_damage_flat";
     }
 
     @Override

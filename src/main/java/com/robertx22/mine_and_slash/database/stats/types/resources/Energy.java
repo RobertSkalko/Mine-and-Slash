@@ -6,9 +6,11 @@ import net.minecraft.util.text.TextFormatting;
 
 public class Energy extends FillableStat {
 
-    public static Energy INSTANCE = new Energy();
-
     public static String GUID = "energy";
+
+    public static Energy getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public TextFormatting getIconFormat() {
@@ -57,5 +59,9 @@ public class Energy extends FillableStat {
     @Override
     public String locNameForLangFile() {
         return "Energy";
+    }
+
+    private static class SingletonHolder {
+        private static final Energy INSTANCE = new Energy();
     }
 }

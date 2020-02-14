@@ -8,8 +8,11 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class LifeOnHit extends Stat implements IStatEffects {
 
-    public static Stat INSTANCE = new LifeOnHit();
     public static String GUID = "life_on_hit";
+
+    public static LifeOnHit getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public StatGroup statGroup() {
@@ -47,5 +50,9 @@ public class LifeOnHit extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Life on Hit";
+    }
+
+    private static class SingletonHolder {
+        private static final LifeOnHit INSTANCE = new LifeOnHit();
     }
 }

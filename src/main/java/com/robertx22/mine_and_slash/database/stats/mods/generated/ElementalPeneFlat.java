@@ -35,7 +35,7 @@ public class ElementalPeneFlat extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return element.name() + "PeneFlat";
+        return element.guidName + "_pene_flat";
     }
 
     @Override

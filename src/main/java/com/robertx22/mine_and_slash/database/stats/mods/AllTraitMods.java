@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 public class AllTraitMods extends StatMod {
 
     public AllTraitMods(BaseTrait stat) {
-        this.GUID = stat.formattedGUID() + "flat";
+        this.GUID = stat.formattedGUID() + "_flat";
         this.baseStat = stat;
         this.weight = stat.Weight();
     }

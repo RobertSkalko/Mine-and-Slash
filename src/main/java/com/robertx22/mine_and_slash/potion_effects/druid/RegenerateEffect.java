@@ -55,7 +55,7 @@ public class RegenerateEffect extends BasePotionEffect {
         return "self_regen";
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(HealthRegen.INSTANCE, 0.75F, 5);
+    public static SpellCalcData CALC = SpellCalcData.one(HealthRegen.getInstance(), 0.75F, 5);
 
     @Override
     public int getDurationInSeconds() {

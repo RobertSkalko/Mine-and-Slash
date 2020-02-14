@@ -7,12 +7,12 @@ public class ManaToEnergyConvFlat extends BaseResourceConversion {
 
     @Override
     public Stat GetBaseStat() {
-	return new ManaToEnergyConversion();
+        return new ManaToEnergyConversion();
     }
 
     @Override
     public String GUID() {
-	return "ManaToEnergyConvFlat";
+        return "mana_to_energy_conv_flat";
     }
 
 }

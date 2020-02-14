@@ -9,7 +9,7 @@ public class CriticalHitMulti extends StatMod {
 
     @Override
     public String GUID() {
-        return "CriticalHitMulti";
+        return "critical_hit_multi";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class CriticalHitMulti extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return CriticalHit.INSTANCE;
+        return CriticalHit.getInstance();
     }
 
 }

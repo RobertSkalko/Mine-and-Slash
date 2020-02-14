@@ -41,7 +41,7 @@ public class ElementalAffinityFlat extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return element.toString() + "_affinity_flat";
+        return element.guidName + "_affinity_flat";
     }
 
 }

@@ -22,13 +22,13 @@ public class StaffWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost(int lvl) {
-        return Energy.INSTANCE.calculateScalingStatGrowth(7, lvl);
+        return Energy.getInstance().calculateScalingStatGrowth(7, lvl);
 
     }
 
     @Override
     public float GetManaCost(int lvl) {
-        return Mana.INSTANCE.calculateScalingStatGrowth(2, lvl);
+        return Mana.getInstance().calculateScalingStatGrowth(2, lvl);
     }
 
     @Override

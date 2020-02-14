@@ -11,7 +11,7 @@ public class BonusLifestealAffix extends BeneficialMapAffix {
 
     @Override
     public String GUID() {
-        return "Bonus Lifesteal";
+        return "bonus_lifesteal";
     }
 
     @Override

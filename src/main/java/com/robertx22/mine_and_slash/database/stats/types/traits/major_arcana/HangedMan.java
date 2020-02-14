@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.all_stats.CripplePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.DodgeMulti;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.much_less.CrippleHealthRegenPercent;
+import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +22,9 @@ public class HangedMan extends BaseMajorArcana {
     @Override
     public List<StatMod> getStats() {
         return Arrays.asList(
-                new CrippleHealthRegenPercent(), new DodgeMulti().multi(2), new ElementalPeneFlat(Elements.Water));
+                new CripplePercent(HealthRegen.getInstance()), new DodgeMulti().multi(2),
+                new ElementalPeneFlat(Elements.Water)
+        );
     }
 
     @Override

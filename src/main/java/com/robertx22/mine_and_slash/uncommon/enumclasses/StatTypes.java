@@ -8,14 +8,16 @@ import net.minecraft.util.text.TextFormatting;
 
 public enum StatTypes {
 
-    Flat() {
+    Flat("flat") {
     },
-    Percent(),
-    Multi();
+    Percent("percent"),
+    Multi("multi");
 
-    StatTypes() {
-
+    StatTypes(String id) {
+        this.id = id;
     }
+
+    public String id;
 
     public static ITextComponent getNumberSuffix(StatTypes type, Stat stat) {
 

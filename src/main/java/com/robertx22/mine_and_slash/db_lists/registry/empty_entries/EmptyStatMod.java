@@ -8,7 +8,7 @@ public class EmptyStatMod extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new EmptyStat();
+        return EmptyStat.getInstance();
     }
 
     @Override

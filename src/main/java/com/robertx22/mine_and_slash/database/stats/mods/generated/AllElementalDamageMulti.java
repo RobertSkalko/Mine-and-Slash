@@ -40,7 +40,7 @@ public class AllElementalDamageMulti extends ElementalStatMod {
 
     @Override
     public String GUID() {
-        return "All" + element.name() + "DamageMulti";
+        return "all_" + element.guidName + "_damage_multi";
     }
 }
 

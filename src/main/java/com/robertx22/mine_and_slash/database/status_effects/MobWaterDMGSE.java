@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpell
 import com.robertx22.mine_and_slash.database.status_effects.bases.BaseMobEleDMG;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import net.minecraft.item.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ public class MobWaterDMGSE extends BaseMobEleDMG {
 
     @Override
     public String GUID() {
-        return "MobWaterDMGSE";
+        return "mob_water_damage_se";
     }
 
     @Override

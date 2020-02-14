@@ -1,12 +1,14 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
 public class HealthRegen extends BaseRegenClass {
-    public static Stat INSTANCE = new HealthRegen();
     public static String GUID = "health_regen";
+
+    public static HealthRegen getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public TextFormatting getIconFormat() {
@@ -50,5 +52,9 @@ public class HealthRegen extends BaseRegenClass {
     @Override
     public String locNameForLangFile() {
         return "Health Regen";
+    }
+
+    private static class SingletonHolder {
+        private static final HealthRegen INSTANCE = new HealthRegen();
     }
 }

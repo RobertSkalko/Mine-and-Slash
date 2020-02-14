@@ -9,7 +9,7 @@ public class LessManaMulti extends StatMod {
 
     @Override
     public String GUID() {
-        return "LessManaMulti";
+        return "less_mana_multi";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class LessManaMulti extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Mana.INSTANCE;
+        return Mana.getInstance();
     }
 
 }

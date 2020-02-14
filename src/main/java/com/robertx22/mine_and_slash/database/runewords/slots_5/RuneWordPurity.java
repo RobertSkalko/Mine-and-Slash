@@ -20,7 +20,7 @@ public class RuneWordPurity extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Purity";
+        return "purity";
     }
 
     @Override

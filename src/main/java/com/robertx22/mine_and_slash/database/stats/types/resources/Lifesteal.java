@@ -8,8 +8,12 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class Lifesteal extends Stat implements IStatEffects {
-    public static Stat INSTANCE = new Lifesteal();
+
     public static String GUID = "lifesteal";
+
+    public static Lifesteal getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public StatGroup statGroup() {
@@ -52,5 +56,9 @@ public class Lifesteal extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Lifesteal";
+    }
+
+    private static class SingletonHolder {
+        private static final Lifesteal INSTANCE = new Lifesteal();
     }
 }

@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.mods.PotionBonusDmgAmountFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.all_stats.CripplePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.all_stats.LessPercent;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
@@ -21,23 +23,19 @@ import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusEleR
 import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusHealthMap;
 import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusLifestealMap;
 import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.*;
+import com.robertx22.mine_and_slash.database.stats.mods.multi.MajorEleResistMinus;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.*;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.ele_minus.MajorMinusFireResistMulti;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.ele_minus.MajorMinusNatureResistMulti;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.ele_minus.MajorMinusThunderResistMulti;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.ele_minus.MajorMinusWaterResistMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.offence.LessPhysicalDamageMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.offence.PhysicalDamageMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.resources.LessHealthRegenMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.resources.LessManaMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.resources.ManaMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.*;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.less.*;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.much_less.*;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyStat;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -79,6 +77,10 @@ public class StatMods implements ISlashRegistryInit {
                     add(new BonusEleResistMap(Elements.Nature));
                     add(new LessEleDmgMap(Elements.Nature));
 
+                    add(new MajorEleResistMinus(Elements.Nature));
+                    add(new CripplePercent(EmptyStat.getInstance()));
+                    add(new LessPercent(EmptyStat.getInstance()));
+
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());
                     add(new AllEleDmgFlat());
@@ -115,26 +117,6 @@ public class StatMods implements ISlashRegistryInit {
                     // less stats
 
                     add(new LessHealthRegenFlat());
-                    add(new LessCriticalDamagePercent());
-                    add(new LessCriticalHitPercent());
-                    add(new LessDodgePercent());
-                    add(new LessHealthRegenPercent());
-                    add(new LessManaRegenPercent());
-                    add(new LessManaOnHitPercent());
-                    add(new LessLifestealPercent());
-                    add(new LessLifeOnHitPercent());
-                    // less stats
-
-                    // cripple stats (much less)
-                    add(new CrippleCriticalDamagePercent());
-                    add(new CrippleCriticalHitPercent());
-                    add(new CrippleDodgePercent());
-                    add(new CrippleHealthRegenPercent());
-                    add(new CrippleManaRegenPercent());
-                    add(new CrippleManaOnHitPercent());
-                    add(new CrippleLifestealPercent());
-                    add(new CrippleLifeOnHitPercent());
-                    // cripple
 
                     add(new MajorCriticalHitPercent());
                     add(new MajorCriticalDamagePercent());
@@ -195,11 +177,6 @@ public class StatMods implements ISlashRegistryInit {
                     add(new LessLifestealMap());
                     add(new LessHealthMap());
                     add(new LessManaOnHitMap());
-                    // Map mods
-                    add(new MajorMinusFireResistMulti());
-                    add(new MajorMinusWaterResistMulti());
-                    add(new MajorMinusThunderResistMulti());
-                    add(new MajorMinusNatureResistMulti());
 
                     add(new AllAttributesFlat());
                     add(new StrengthFlat());

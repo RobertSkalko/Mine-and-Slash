@@ -46,7 +46,7 @@ public class ElementalPurity extends BaseGameChangerTrait implements IAffectsSta
             data.getUnit().getCreateStat(stat).Multi += ELE_INCREASE;
         }
 
-        data.getUnit().getCreateStat(PhysicalDamage.INSTANCE).Multi -= PHYS_DECREASE;
+        data.getUnit().getCreateStat(PhysicalDamage.getInstance()).Multi -= PHYS_DECREASE;
     }
 
     private static class SingletonHolder {

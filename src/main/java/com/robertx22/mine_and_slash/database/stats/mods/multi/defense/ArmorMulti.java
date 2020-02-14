@@ -9,7 +9,7 @@ public class ArmorMulti extends StatMod {
 
     @Override
     public String GUID() {
-        return "ArmorMulti";
+        return "armor_multi";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ArmorMulti extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Armor.INSTANCE;
+        return Armor.getInstance();
     }
 
 }

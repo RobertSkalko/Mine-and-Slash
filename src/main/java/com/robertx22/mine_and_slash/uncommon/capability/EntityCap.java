@@ -898,7 +898,7 @@ public class EntityCap {
 
             float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
 
-            cost = Energy.INSTANCE.calculateScalingStatGrowth(cost, getLvlForResourceCosts());
+            cost = Energy.getInstance().calculateScalingStatGrowth(cost, getLvlForResourceCosts());
 
             ResourcesData.Context energy = new ResourcesData.Context(
                     this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);

@@ -12,7 +12,7 @@ public class LessManaOnHitMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "LessManaOnHitMap";
+        return "less_mana_on_hit_map";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class LessManaOnHitMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new ManaOnHit();
+        return ManaOnHit.getInstance();
     }
 
 }

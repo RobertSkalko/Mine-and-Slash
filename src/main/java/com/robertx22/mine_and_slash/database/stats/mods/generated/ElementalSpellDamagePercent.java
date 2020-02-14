@@ -38,9 +38,5 @@ public class ElementalSpellDamagePercent extends ElementalStatMod {
         return StatTypes.Percent;
     }
 
-    @Override
-    public String GUID() {
-        return "Spell" + element.name() + "DamagePercent";
-    }
 }
 

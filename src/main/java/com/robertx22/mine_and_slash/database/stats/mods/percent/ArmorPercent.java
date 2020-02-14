@@ -12,7 +12,7 @@ public class ArmorPercent extends StatMod {
 
     @Override
     public String GUID() {
-        return "ArmorPercent";
+        return "armor_percent";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ArmorPercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Armor.INSTANCE;
+        return Armor.getInstance();
     }
 
 }

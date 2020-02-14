@@ -42,11 +42,11 @@ public class ArcaneDevotion extends BaseGameChangerTrait implements IAffectsStat
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
 
-        data.getUnit().getCreateStat(Health.INSTANCE).Multi -= 1000;
-        data.getUnit().getCreateStat(HealthRegen.INSTANCE).Multi -= 1000;
-        data.getUnit().getCreateStat(DodgeRating.INSTANCE).Multi -= 1000;
+        data.getUnit().getCreateStat(Health.getInstance()).Multi -= 1000;
+        data.getUnit().getCreateStat(HealthRegen.getInstance()).Multi -= 1000;
+        data.getUnit().getCreateStat(DodgeRating.getInstance()).Multi -= 1000;
 
-        data.getUnit().getCreateStat(MagicShield.INSTANCE).Multi += MS;
+        data.getUnit().getCreateStat(MagicShield.getInstance()).Multi += MS;
 
     }
 

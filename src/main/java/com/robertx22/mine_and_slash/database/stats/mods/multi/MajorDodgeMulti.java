@@ -32,7 +32,7 @@ public class MajorDodgeMulti extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return DodgeRating.INSTANCE;
+        return DodgeRating.getInstance();
     }
 
 }

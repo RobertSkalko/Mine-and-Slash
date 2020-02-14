@@ -9,7 +9,7 @@ public class DodgeMulti extends StatMod {
 
     @Override
     public String GUID() {
-        return "DodgeMulti";
+        return "dodge_multi";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class DodgeMulti extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return DodgeRating.INSTANCE;
+        return DodgeRating.getInstance();
     }
 
 }

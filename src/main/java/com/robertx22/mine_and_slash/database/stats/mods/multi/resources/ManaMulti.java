@@ -9,7 +9,7 @@ public class ManaMulti extends StatMod {
 
     @Override
     public String GUID() {
-        return "ManaMulti";
+        return "mana_multi";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ManaMulti extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Mana.INSTANCE;
+        return Mana.getInstance();
     }
 
 }

@@ -25,7 +25,7 @@ public class RuneWordZephyr extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Zephyr";
+        return "zephyr";
     }
 
     @Override

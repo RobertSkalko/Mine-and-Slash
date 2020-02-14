@@ -50,7 +50,7 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
 
     public ExactStatData getCrit(EntityCap.UnitData data, ExtraPotionData extraData) {
         float statAmount = 0.5F * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, CriticalHit.INSTANCE);
+        return new ExactStatData(statAmount, StatTypes.Flat, CriticalHit.getInstance());
     }
 
     public ExactStatData getThunder(EntityCap.UnitData data, ExtraPotionData extraData) {

@@ -12,7 +12,7 @@ public class LessHealthRegenMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "LessHealthRegenMap";
+        return "less_health_regen_map";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class LessHealthRegenMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return HealthRegen.INSTANCE;
+        return HealthRegen.getInstance();
     }
 
 }

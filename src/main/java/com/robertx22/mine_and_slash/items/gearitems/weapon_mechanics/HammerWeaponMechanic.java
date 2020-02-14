@@ -23,7 +23,7 @@ public class HammerWeaponMechanic extends WeaponMechanic {
 
     @Override
     public float GetEnergyCost(int lvl) {
-        return Energy.INSTANCE.calculateScalingStatGrowth(10, lvl);
+        return Energy.getInstance().calculateScalingStatGrowth(10, lvl);
     }
 
     @Override

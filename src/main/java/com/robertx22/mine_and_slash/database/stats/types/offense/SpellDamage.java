@@ -9,13 +9,15 @@ import net.minecraft.util.text.TextFormatting;
 
 public class SpellDamage extends Stat implements IStatEffects {
 
-    public static Stat INSTANCE = new SpellDamage();
-
     private SpellDamage() {
 
     }
 
     public static String GUID = "spell_damage";
+
+    public static SpellDamage getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public String getIconPath() {
@@ -65,5 +67,9 @@ public class SpellDamage extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Spell Damage";
+    }
+
+    private static class SingletonHolder {
+        private static final SpellDamage INSTANCE = new SpellDamage();
     }
 }

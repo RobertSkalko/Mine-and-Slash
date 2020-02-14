@@ -5,8 +5,11 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
 public class Mana extends FillableStat {
-    public static Mana INSTANCE = new Mana();
     public static String GUID = "mana";
+
+    public static Mana getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public TextFormatting getIconFormat() {
@@ -55,5 +58,9 @@ public class Mana extends FillableStat {
     @Override
     public String locNameForLangFile() {
         return "Mana";
+    }
+
+    private static class SingletonHolder {
+        private static final Mana INSTANCE = new Mana();
     }
 }

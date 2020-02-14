@@ -179,15 +179,15 @@ public class Unit {
 
     // Stat shortcuts
     public Health health() {
-        return Health.INSTANCE;
+        return Health.getInstance();
     }
 
     public Mana mana() {
-        return Mana.INSTANCE;
+        return Mana.getInstance();
     }
 
     public Energy energy() {
-        return Energy.INSTANCE;
+        return Energy.getInstance();
     }
 
     public float getCurrentEffectiveHealth(LivingEntity entity, UnitData data) {
@@ -345,7 +345,7 @@ public class Unit {
 
     private float getHpAdded(LivingEntity entity, MobRarity rar, UnitData data) {
 
-        float hpadded = Health.INSTANCE.calculateScalingStatGrowth(entity.getMaxHealth(), data.getLevel());
+        float hpadded = Health.getInstance().calculateScalingStatGrowth(entity.getMaxHealth(), data.getLevel());
 
         if (entity instanceof PlayerEntity) {
             hpadded *= ModConfig.INSTANCE.Server.PLAYER_HEART_TO_HEALTH_CONVERSION.get();

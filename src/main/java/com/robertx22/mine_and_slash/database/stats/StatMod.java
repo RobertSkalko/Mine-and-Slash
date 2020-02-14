@@ -54,7 +54,7 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
     @Override
     public String GUID() {
-        return this.GetBaseStat().GUID() + "_" + this.Type().name();
+        return this.GetBaseStat().GUID() + "_" + this.Type().id;
     }
 
     public float getFloatByPercent(int percent) {

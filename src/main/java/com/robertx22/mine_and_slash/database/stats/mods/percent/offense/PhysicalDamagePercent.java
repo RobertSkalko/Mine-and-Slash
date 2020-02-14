@@ -12,7 +12,7 @@ public class PhysicalDamagePercent extends StatMod {
 
     @Override
     public String GUID() {
-        return "DamagePercent";
+        return "damage_percent";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PhysicalDamagePercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return PhysicalDamage.INSTANCE;
+        return PhysicalDamage.getInstance();
     }
 
 }

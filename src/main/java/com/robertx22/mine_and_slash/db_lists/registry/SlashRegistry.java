@@ -289,7 +289,10 @@ public class SlashRegistry {
         map.put(SlashRegistryType.GEAR_TYPE,
                 new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType())
         );
-        map.put(SlashRegistryType.STAT, new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, new EmptyStat()));
+        map.put(
+                SlashRegistryType.STAT,
+                new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance())
+        );
         map.put(SlashRegistryType.STATMOD,
                 new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, new EmptyStatMod())
         );

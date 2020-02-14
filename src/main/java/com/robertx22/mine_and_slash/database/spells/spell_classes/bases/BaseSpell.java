@@ -99,7 +99,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     public abstract int getManaCost();
 
     public final int getCalculatedManaCost(UnitData data) {
-        return (int) Mana.INSTANCE.calculateScalingStatGrowth(getManaCost(), data.getLevel());
+        return (int) Mana.getInstance().calculateScalingStatGrowth(getManaCost(), data.getLevel());
     }
 
     public abstract int useTimeTicks();

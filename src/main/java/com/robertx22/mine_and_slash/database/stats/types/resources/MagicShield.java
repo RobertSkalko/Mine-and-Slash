@@ -10,10 +10,12 @@ import net.minecraft.util.text.TextFormatting;
 public class MagicShield extends Stat implements IStatEffects {
     public static String GUID = "magic_shield";
 
-    public static MagicShield INSTANCE = new MagicShield();
-
     private MagicShield() {
 
+    }
+
+    public static MagicShield getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -66,4 +68,7 @@ public class MagicShield extends Stat implements IStatEffects {
         return MagicShieldEffect.INSTANCE;
     }
 
+    private static class SingletonHolder {
+        private static final MagicShield INSTANCE = new MagicShield();
+    }
 }

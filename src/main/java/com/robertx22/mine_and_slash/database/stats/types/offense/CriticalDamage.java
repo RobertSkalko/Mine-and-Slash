@@ -9,8 +9,11 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class CriticalDamage extends Stat implements IStatEffects {
 
-    public static Stat INSTANCE = new CriticalDamage();
     public static String GUID = "critical_damage";
+
+    public static CriticalDamage getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public StatGroup statGroup() {
@@ -60,5 +63,9 @@ public class CriticalDamage extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Critical Damage";
+    }
+
+    private static class SingletonHolder {
+        private static final CriticalDamage INSTANCE = new CriticalDamage();
     }
 }

@@ -130,13 +130,15 @@ public class GearTooltipUtils {
                 tip.add(new StringTextComponent(""));
                 if (iwep.mechanic().GetEnergyCost(data.getLvlForResourceCosts()) > 0) {
                     tip.add(Styles.GREENCOMP()
-                                    .appendSibling(Energy.INSTANCE.locName()
+                                    .appendSibling(Energy.getInstance()
+                                                           .locName()
                                                            .appendText(": " + (int) iwep.mechanic()
                                                                    .GetEnergyCost(data.getLvlForResourceCosts()))));
                 }
                 if (iwep.mechanic().GetManaCost(data.getLvlForResourceCosts()) > 0) {
                     tip.add(Styles.BLUECOMP()
-                                    .appendSibling(Mana.INSTANCE.locName()
+                                    .appendSibling(Mana.getInstance()
+                                                           .locName()
                                                            .appendText(": " + (int) iwep.mechanic()
                                                                    .GetManaCost(data.getLvlForResourceCosts()))));
                 }

@@ -26,7 +26,7 @@ public class RuneWordFortress extends RuneWord {
 
     @Override
     public String GUID() {
-        return "Fortress";
+        return "fortress";
     }
 
     @Override

@@ -12,7 +12,7 @@ public class LessCriticalHitMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "less_critical_hit_Map";
+        return "less_critical_hit_map";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class LessCriticalHitMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return CriticalHit.INSTANCE;
+        return CriticalHit.getInstance();
     }
 
 }

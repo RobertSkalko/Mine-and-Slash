@@ -12,11 +12,6 @@ public class HealthFlat extends StatMod {
     }
 
     @Override
-    public String GUID() {
-        return "HealthFlat";
-    }
-
-    @Override
     public float Min() {
         return 5;
     }
@@ -33,7 +28,7 @@ public class HealthFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return Health.INSTANCE;
+        return Health.getInstance();
     }
 
 }

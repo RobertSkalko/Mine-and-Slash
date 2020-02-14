@@ -34,7 +34,7 @@ public class MagicalLife extends BaseGameChangerTrait implements IStatTransfer {
 
     @Override
     public List<TransferMethod> Transfer() {
-        return Arrays.asList(new TransferMethod(MagicShield.INSTANCE, Health.INSTANCE));
+        return Arrays.asList(new TransferMethod(MagicShield.getInstance(), Health.getInstance()));
     }
 
     @Override

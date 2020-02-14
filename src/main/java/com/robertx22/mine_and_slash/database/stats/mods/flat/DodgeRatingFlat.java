@@ -12,7 +12,7 @@ public class DodgeRatingFlat extends StatMod {
 
     @Override
     public String GUID() {
-        return "DodgeFlat";
+        return "dodge_flat";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class DodgeRatingFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return DodgeRating.INSTANCE;
+        return DodgeRating.getInstance();
     }
 
 }

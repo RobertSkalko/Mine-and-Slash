@@ -21,7 +21,7 @@ public class ElementalTransferFlat extends StatMod implements IGenerated<StatMod
     public ElementalTransferFlat(Elements from, Elements to) {
         this.fromElement = from;
         this.toElement = to;
-        this.GUID = from.name() + "To" + to.name() + "TransferFlat";
+        this.GUID = from.guidName + "_to_" + to.guidName + "_transfer_flat";
 
         ElementalTransfer stat = new ElementalTransfer(from, to);
         this.BaseStatGUID = stat.GUID();

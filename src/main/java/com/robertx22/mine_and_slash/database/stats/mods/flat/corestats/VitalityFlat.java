@@ -16,6 +16,6 @@ public class VitalityFlat extends BaseCoreStatFlat {
 
     @Override
     public String GUID() {
-        return "VitalityFlat";
+        return "vitality_flat";
     }
 }

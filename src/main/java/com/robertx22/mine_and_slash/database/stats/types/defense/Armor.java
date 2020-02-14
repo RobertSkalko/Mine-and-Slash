@@ -9,7 +9,9 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class Armor extends Stat implements IStatEffects, IUsableStat {
 
-    public static Armor INSTANCE = new Armor();
+    public static Armor getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public StatGroup statGroup() {
@@ -31,7 +33,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
         return "Decreases damage taken by a percent";
     }
 
-    public static String GUID = "Armor";
+    public static String GUID = "armor";
 
     private Armor() {
         this.minimumValue = 0;
@@ -70,5 +72,9 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
     @Override
     public String locNameForLangFile() {
         return "Armor";
+    }
+
+    private static class SingletonHolder {
+        private static final Armor INSTANCE = new Armor();
     }
 }

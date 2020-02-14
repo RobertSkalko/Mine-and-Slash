@@ -50,7 +50,7 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
     public ExactStatData getCrit(EntityCap.UnitData data, ExtraPotionData extraData) {
         float statAmount = 0.5F * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, CriticalDamage.INSTANCE);
+        return new ExactStatData(statAmount, StatTypes.Flat, CriticalDamage.getInstance());
     }
 
     public ExactStatData getWater(EntityCap.UnitData data, ExtraPotionData extraData) {

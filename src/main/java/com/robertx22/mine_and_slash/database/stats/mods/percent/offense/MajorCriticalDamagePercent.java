@@ -12,7 +12,7 @@ public class MajorCriticalDamagePercent extends StatMod {
 
     @Override
     public String GUID() {
-        return "MajorCriticalDamagePercent";
+        return "major_critical_damage_percent";
     }
 
     @Override
@@ -33,7 +33,7 @@ public class MajorCriticalDamagePercent extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return CriticalDamage.INSTANCE;
+        return CriticalDamage.getInstance();
     }
 
 }

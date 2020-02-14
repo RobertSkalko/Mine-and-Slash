@@ -12,7 +12,7 @@ public class LessDodgeMap extends StatMod {
 
     @Override
     public String GUID() {
-        return "LessDodgeMap";
+        return "less_dodge_map";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class LessDodgeMap extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return DodgeRating.INSTANCE;
+        return DodgeRating.getInstance();
     }
 
 }

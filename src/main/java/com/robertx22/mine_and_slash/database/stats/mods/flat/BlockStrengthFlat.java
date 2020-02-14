@@ -12,7 +12,7 @@ public class BlockStrengthFlat extends StatMod {
 
     @Override
     public String GUID() {
-        return "BlockStrengthFlat";
+        return "block_strength_flat";
     }
 
     @Override

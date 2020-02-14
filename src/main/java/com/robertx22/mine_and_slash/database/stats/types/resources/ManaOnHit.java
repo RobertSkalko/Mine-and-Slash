@@ -9,6 +9,13 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 public class ManaOnHit extends Stat implements IStatEffects {
     public static String GUID = "mana_on_hit";
 
+    private ManaOnHit() {
+    }
+
+    public static ManaOnHit getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public StatGroup statGroup() {
         return StatGroup.Regeneration;
@@ -22,9 +29,6 @@ public class ManaOnHit extends Stat implements IStatEffects {
     @Override
     public IStatEffect getEffect() {
         return new ManaOnHitEffect();
-    }
-
-    public ManaOnHit() {
     }
 
     @Override
@@ -45,5 +49,9 @@ public class ManaOnHit extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Mana on Hit";
+    }
+
+    private static class SingletonHolder {
+        private static final ManaOnHit INSTANCE = new ManaOnHit();
     }
 }

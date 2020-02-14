@@ -23,29 +23,29 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
 
         //base ones
 
-        c.base(Health.INSTANCE, 100);
-        c.base(HealthRegen.INSTANCE, 2);
-        c.base(MagicShieldRegen.INSTANCE, 2);
-        c.base(PhysicalDamage.INSTANCE, 3);
-        c.base(Armor.INSTANCE, 10);
-        c.base(CriticalHit.INSTANCE, 1);
-        c.base(CriticalDamage.INSTANCE, 0);
-        c.base(SpellDamage.INSTANCE, 3);
+        c.base(Health.getInstance(), 100);
+        c.base(HealthRegen.getInstance(), 2);
+        c.base(MagicShieldRegen.getInstance(), 2);
+        c.base(PhysicalDamage.getInstance(), 3);
+        c.base(Armor.getInstance(), 10);
+        c.base(CriticalHit.getInstance(), 1);
+        c.base(CriticalDamage.getInstance(), 0);
+        c.base(SpellDamage.getInstance(), 3);
 
         //scaling ones
 
-        c.scale(Energy.INSTANCE, 125);
-        c.scale(Mana.INSTANCE, 50);
+        c.scale(Energy.getInstance(), 125);
+        c.scale(Mana.getInstance(), 50);
 
-        c.scale(EnergyRegen.INSTANCE, 7);
-        c.scale(ManaRegen.INSTANCE, 3);
+        c.scale(EnergyRegen.getInstance(), 7);
+        c.scale(ManaRegen.getInstance(), 3);
 
-        c.scale(Health.INSTANCE, 5);
-        c.scale(HealthRegen.INSTANCE, 1);
-        c.scale(MagicShieldRegen.INSTANCE, 1);
-        c.scale(PhysicalDamage.INSTANCE, 0.3D);
-        c.scale(Armor.INSTANCE, 5);
-        c.scale(SpellDamage.INSTANCE, 0.25D);
+        c.scale(Health.getInstance(), 5);
+        c.scale(HealthRegen.getInstance(), 1);
+        c.scale(MagicShieldRegen.getInstance(), 1);
+        c.scale(PhysicalDamage.getInstance(), 0.3D);
+        c.scale(Armor.getInstance(), 5);
+        c.scale(SpellDamage.getInstance(), 0.25D);
 
         return c;
 

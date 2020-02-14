@@ -16,7 +16,7 @@ public class DexterityFlat extends BaseCoreStatFlat {
 
     @Override
     public String GUID() {
-        return "DexterityFlat";
+        return "dexterity_flat";
     }
 
 }

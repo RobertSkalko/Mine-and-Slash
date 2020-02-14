@@ -32,7 +32,7 @@ public class MagicShieldRegenFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return MagicShieldRegen.INSTANCE;
+        return MagicShieldRegen.getInstance();
     }
 
 }
