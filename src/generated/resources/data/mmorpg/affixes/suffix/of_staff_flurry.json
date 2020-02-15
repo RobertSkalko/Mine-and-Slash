@@ -1,5 +1,7 @@
 {
   "id": "of_staff_flurry",
+  "weight": 250,
+  "rarity": 5,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_staff_flurry",
   "type": "suffix",

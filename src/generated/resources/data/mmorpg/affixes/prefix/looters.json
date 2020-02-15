@@ -1,5 +1,7 @@
 {
   "id": "looters",
+  "weight": 1250,
+  "rarity": 4,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.looters",
   "type": "prefix",

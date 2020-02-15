@@ -1,5 +1,7 @@
 {
   "id": "nature_imbued",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.nature_imbued",
   "type": "prefix",

@@ -1,5 +1,7 @@
 {
   "id": "ice_lord",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "item_set",
   "lang_file_string": "mmorpg.set.ice_lord",
   "requirements": {

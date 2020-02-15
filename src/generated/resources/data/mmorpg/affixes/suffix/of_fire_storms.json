@@ -1,5 +1,7 @@
 {
   "id": "of_fire_storms",
+  "weight": 1250,
+  "rarity": 4,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_fire_storms",
   "type": "suffix",

@@ -1,5 +1,7 @@
 {
   "id": "spirit_of_the_arcane",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "item_set",
   "lang_file_string": "mmorpg.set.spirit_of_the_arcane",
   "requirements": {

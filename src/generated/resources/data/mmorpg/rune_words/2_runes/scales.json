@@ -1,0 +1,23 @@
+{
+  "id": "scales",
+  "weight": 11666,
+  "rarity": 1,
+  "registry": "runeword",
+  "lang_file_string": "mmorpg.word.scales",
+  "runes": [
+    "ber",
+    "cen"
+  ],
+  "mods": [
+    {
+      "id": "nature_resist_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "armor_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

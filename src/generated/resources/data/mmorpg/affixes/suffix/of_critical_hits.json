@@ -1,5 +1,7 @@
 {
   "id": "of_critical_hits",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_critical_hits",
   "type": "suffix",

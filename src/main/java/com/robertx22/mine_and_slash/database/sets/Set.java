@@ -127,6 +127,8 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
 
         String guid = getGUIDFromJson(json);
         String lang = getLangNameStringFromJson(json);
+        int weight = getWeightFromJson(json);
+        int rarity = getRarityFromJson(json);
 
         Requirements req = Requirements.EMPTY.fromJson(json.getAsJsonObject("requirements"));
 
@@ -141,7 +143,7 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
             }
         }
 
-        return new SerializableSet(map, guid, lang, req);
+        return new SerializableSet(rarity, weight, map, guid, lang, req);
     }
 
 }

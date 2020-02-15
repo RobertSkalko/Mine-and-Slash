@@ -1,5 +1,7 @@
 {
   "id": "life_stealing",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.life_stealing",
   "type": "prefix",

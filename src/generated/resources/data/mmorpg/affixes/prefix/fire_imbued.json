@@ -1,5 +1,7 @@
 {
   "id": "fire_imbued",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.fire_imbued",
   "type": "prefix",

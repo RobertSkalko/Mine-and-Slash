@@ -88,7 +88,6 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
         JsonObject json = getDefaultJson();
 
         json.addProperty("type", type.name());
-
         json.add("requirements", requirements().toJson());
 
         JsonArray array = new JsonArray();
@@ -104,6 +103,8 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
         try {
             String guid = getGUIDFromJson(json);
             String langName = getLangNameStringFromJson(json);
+            int weight = getWeightFromJson(json);
+            int rarity = getRarityFromJson(json);
 
             Type type = Type.valueOf(json.get("type").getAsString());
 
@@ -112,7 +113,7 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
             List<StatMod> mods = new ArrayList<>();
             json.getAsJsonArray("mods").forEach(x -> mods.add(StatMod.EMPTY.fromRegistryJson(x.getAsJsonObject())));
 
-            return new SerializableAffix(req, guid, mods, langName, type);
+            return new SerializableAffix(rarity, weight, req, guid, mods, langName, type);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,7 @@
 {
   "id": "thunder_heretic",
+  "weight": 3000,
+  "rarity": 3,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.thunder_heretic",
   "type": "prefix",

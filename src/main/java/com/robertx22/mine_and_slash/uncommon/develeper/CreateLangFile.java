@@ -135,7 +135,7 @@ public class CreateLangFile {
         List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
         list.addAll(SlashRegistry.Sets().getSerializable());
-        list.addAll(SlashRegistry.RuneWords().getAll().values());
+        list.addAll(SlashRegistry.RuneWords().getSerializable());
         list.addAll(SlashRegistry.Affixes().getSerializable());
         list.addAll(SlashRegistry.Stats().getAll().values());
         list.addAll(SlashRegistry.GearTypes().getAll().values());

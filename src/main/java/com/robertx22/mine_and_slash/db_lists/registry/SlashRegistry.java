@@ -306,7 +306,7 @@ public class SlashRegistry {
                 new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0))
         );
         map.put(SlashRegistryType.RUNEWORD,
-                new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, new EmptyRuneWord())
+                new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance())
         );
         map.put(SlashRegistryType.MAP_AFFIX,
                 new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix())

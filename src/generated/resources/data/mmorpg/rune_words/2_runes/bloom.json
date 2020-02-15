@@ -1,0 +1,18 @@
+{
+  "id": "bloom",
+  "weight": 11666,
+  "rarity": 1,
+  "registry": "runeword",
+  "lang_file_string": "mmorpg.word.bloom",
+  "runes": [
+    "ano",
+    "goh"
+  ],
+  "mods": [
+    {
+      "id": "health_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

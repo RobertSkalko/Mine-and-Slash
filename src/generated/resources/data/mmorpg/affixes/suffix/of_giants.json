@@ -1,5 +1,7 @@
 {
   "id": "of_giants",
+  "weight": 5000,
+  "rarity": 2,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_giants",
   "type": "suffix",

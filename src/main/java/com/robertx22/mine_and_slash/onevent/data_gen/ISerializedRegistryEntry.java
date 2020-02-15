@@ -15,6 +15,8 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T>, IFr
     static String ID = "id";
     static String REGISTRY = "registry";
     static String LANG_NAME = "lang_file_string";
+    static String WEIGHT = "weight";
+    static String RARITY = "rarity";
 
     default String datapackFolder() {
         return "";
@@ -22,7 +24,14 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T>, IFr
 
     default String getGUIDFromJson(JsonObject json) {
         return json.get(ID).getAsString();
+    }
 
+    default int getWeightFromJson(JsonObject json) {
+        return json.get(WEIGHT).getAsInt();
+    }
+
+    default int getRarityFromJson(JsonObject json) {
+        return json.get(RARITY).getAsInt();
     }
 
     default String getLangNameStringFromJson(JsonObject json) {
@@ -33,6 +42,8 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T>, IFr
         JsonObject json = new JsonObject();
 
         json.addProperty(ID, GUID());
+        json.addProperty(WEIGHT, Weight());
+        json.addProperty(RARITY, getRarityRank());
         json.addProperty(REGISTRY, this.getSlashRegistryType().id);
 
         if (this instanceof IAutoLocName) {

@@ -1,5 +1,7 @@
 {
   "id": "of_swiftness",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_swiftness",
   "type": "suffix",

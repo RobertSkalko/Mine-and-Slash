@@ -1,0 +1,18 @@
+{
+  "id": "royalty",
+  "weight": 1875,
+  "rarity": 4,
+  "registry": "runeword",
+  "lang_file_string": "mmorpg.word.royalty",
+  "runes": [
+    "wor",
+    "goh"
+  ],
+  "mods": [
+    {
+      "id": "bonus_currency_drops_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

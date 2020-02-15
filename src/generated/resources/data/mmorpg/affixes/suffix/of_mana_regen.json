@@ -1,5 +1,7 @@
 {
   "id": "of_mana_regen",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_mana_regen",
   "type": "suffix",

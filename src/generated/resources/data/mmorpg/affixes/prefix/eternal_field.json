@@ -1,5 +1,7 @@
 {
   "id": "eternal_field",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.eternal_field",
   "type": "prefix",

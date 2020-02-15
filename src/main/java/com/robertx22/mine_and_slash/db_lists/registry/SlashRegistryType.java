@@ -2,13 +2,19 @@ package com.robertx22.mine_and_slash.db_lists.registry;
 
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyRuneWord;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 
 public enum SlashRegistryType {
     STAT("stat"),
     STATMOD("stat_mod"),
     RUNE("rune"),
-    RUNEWORD("runeword"),
+    RUNEWORD("runeword") {
+        @Override
+        public ISerializable getEmpty() {
+            return EmptyRuneWord.getInstance();
+        }
+    },
     STATUS_EFFECT("status_effect"),
     GEAR_TYPE("gear_type"),
     SPELL("spell"),

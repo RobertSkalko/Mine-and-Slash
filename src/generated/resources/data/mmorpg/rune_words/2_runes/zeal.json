@@ -1,0 +1,23 @@
+{
+  "id": "zeal",
+  "weight": 11666,
+  "rarity": 1,
+  "registry": "runeword",
+  "lang_file_string": "mmorpg.word.zeal",
+  "runes": [
+    "goh",
+    "mos"
+  ],
+  "mods": [
+    {
+      "id": "energy_regen_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "armor_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

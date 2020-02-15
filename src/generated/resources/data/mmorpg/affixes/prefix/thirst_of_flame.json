@@ -1,5 +1,7 @@
 {
   "id": "thirst_of_flame",
+  "weight": 5000,
+  "rarity": 2,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.thirst_of_flame",
   "type": "prefix",

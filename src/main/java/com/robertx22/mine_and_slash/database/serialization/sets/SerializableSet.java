@@ -12,12 +12,22 @@ public class SerializableSet extends Set {
     HashMap<Integer, StatMod> mods;
     String GUID;
     String langNameId;
+    int weight;
+    int rarity;
 
-    public SerializableSet(HashMap<Integer, StatMod> mods, String GUID, String langNameId, Requirements req) {
+    public SerializableSet(int rarity, int weight, HashMap<Integer, StatMod> mods, String GUID, String langNameId,
+                           Requirements req) {
         this.mods = mods;
         this.GUID = GUID;
         this.langNameId = langNameId;
         this.req = req;
+        this.rarity = rarity;
+        this.weight = weight;
+    }
+
+    @Override
+    public int getRarityRank() {
+        return rarity;
     }
 
     @Override
@@ -45,4 +55,8 @@ public class SerializableSet extends Set {
         return langNameId;
     }
 
+    @Override
+    public int Weight() {
+        return weight;
+    }
 }

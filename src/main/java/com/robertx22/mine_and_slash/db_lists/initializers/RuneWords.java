@@ -57,7 +57,7 @@ public class RuneWords implements ISlashRegistryInit {
             }
         };
 
-        All.forEach(x -> x.registerToSlashRegistry());
+        All.forEach(x -> x.addToSerializables());
 
     }
 }

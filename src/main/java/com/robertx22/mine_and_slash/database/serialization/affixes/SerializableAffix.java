@@ -11,12 +11,17 @@ public class SerializableAffix extends BaseAffix {
     String guid;
     List<StatMod> mods;
     String langName;
+    int weight;
+    int rarity;
 
-    public SerializableAffix(Requirements req, String guid, List<StatMod> mods, String langName, BaseAffix.Type type) {
+    public SerializableAffix(int rarity, int weight, Requirements req, String guid, List<StatMod> mods, String langName,
+                             BaseAffix.Type type) {
         super(req, type);
         this.guid = guid;
         this.mods = mods;
         this.langName = langName;
+        this.weight = weight;
+        this.rarity = rarity;
     }
 
     @Override
@@ -35,8 +40,18 @@ public class SerializableAffix extends BaseAffix {
     }
 
     @Override
+    public int getRarityRank() {
+        return rarity;
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "";
+    }
+
+    @Override
+    public int Weight() {
+        return weight;
     }
 
 }

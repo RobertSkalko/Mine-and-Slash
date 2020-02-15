@@ -1,5 +1,7 @@
 {
   "id": "of_vitality",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_vitality",
   "type": "suffix",

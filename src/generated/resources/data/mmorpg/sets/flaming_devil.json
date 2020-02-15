@@ -1,5 +1,7 @@
 {
   "id": "flaming_devil",
+  "weight": 17500,
+  "rarity": 1,
   "registry": "item_set",
   "lang_file_string": "mmorpg.set.flaming_devil",
   "requirements": {

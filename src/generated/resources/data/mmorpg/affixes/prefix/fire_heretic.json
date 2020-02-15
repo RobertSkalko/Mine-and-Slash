@@ -1,5 +1,7 @@
 {
   "id": "fire_heretic",
+  "weight": 3000,
+  "rarity": 3,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.fire_heretic",
   "type": "prefix",

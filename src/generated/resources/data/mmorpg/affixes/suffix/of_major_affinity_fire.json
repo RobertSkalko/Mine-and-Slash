@@ -1,5 +1,7 @@
 {
   "id": "of_major_affinity_fire",
+  "weight": 1250,
+  "rarity": 4,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_major_affinity_fire",
   "type": "suffix",

@@ -1,0 +1,19 @@
+{
+  "id": "fortress",
+  "weight": 1875,
+  "rarity": 4,
+  "registry": "runeword",
+  "lang_file_string": "mmorpg.word.fortress",
+  "runes": [
+    "cen",
+    "oni",
+    "mos"
+  ],
+  "mods": [
+    {
+      "id": "block_strength_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

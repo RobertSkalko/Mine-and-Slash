@@ -1,5 +1,7 @@
 {
   "id": "of_the_hydra",
+  "weight": 1250,
+  "rarity": 4,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_the_hydra",
   "type": "suffix",

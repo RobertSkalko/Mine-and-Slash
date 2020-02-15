@@ -1,5 +1,7 @@
 {
   "id": "fire_of_dissonance",
+  "weight": 5000,
+  "rarity": 2,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.fire_of_dissonance",
   "type": "suffix",

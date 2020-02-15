@@ -1,13 +1,19 @@
 package com.robertx22.mine_and_slash.database.runewords;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
+import com.robertx22.mine_and_slash.database.serialization.JsonUtils;
+import com.robertx22.mine_and_slash.database.serialization.runewords.SerializableRuneword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyRuneWord;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -16,9 +22,14 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISlashRegistryEntry<RuneWord> {
+public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISerializedRegistryEntry<RuneWord>,
+        ISerializable<RuneWord> {
+
+    public static RuneWord EMPTY = EmptyRuneWord.getInstance();
 
     public abstract List<StatMod> mods();
 
@@ -29,6 +40,16 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISlash
         return 0;
     }
 
+    @Override
+    public String datapackFolder() {
+        return runes().size() + "_runes/";
+    }
+
+    @Override
+    public boolean isFromDatapack() {
+        return true;
+    }
+    
     @Override
     public int getRarityRank() {
         return IRarity.Uncommon;
@@ -105,4 +126,35 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISlash
         return this.getRuneWordCombo().equals(word);
     }
 
+    @Override
+    public JsonObject toJson() {
+        JsonObject json = getDefaultJson();
+
+        json.add(
+                "runes",
+                JsonUtils.stringListToJsonArray(runes().stream().map(x -> x.GUID()).collect(Collectors.toList()))
+        );
+
+        JsonArray array = new JsonArray();
+        mods().stream().map(x -> x.toRegistryJson()).collect(Collectors.toList()).forEach(x -> array.add(x));
+        json.add("mods", array);
+
+        return json;
+    }
+
+    @Override
+    public RuneWord fromJson(JsonObject json) {
+
+        String guid = getGUIDFromJson(json);
+        String lang = getLangNameStringFromJson(json);
+        int weight = getWeightFromJson(json);
+        int rarity = getRarityFromJson(json);
+
+        List<String> runes = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("runes"));
+
+        List<StatMod> mods = new ArrayList<>();
+        json.getAsJsonArray("mods").forEach(x -> mods.add(StatMod.EMPTY.fromRegistryJson(x.getAsJsonObject())));
+
+        return new SerializableRuneword(rarity, weight, guid, mods, lang, runes);
+    }
 }
