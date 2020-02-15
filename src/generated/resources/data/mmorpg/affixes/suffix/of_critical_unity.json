@@ -1,0 +1,37 @@
+{
+  "id": "of_critical_unity",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_critical_unity",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "hammer",
+          "crossbow",
+          "bow",
+          "axe",
+          "staff",
+          "sword",
+          "wand"
+        ]
+      },
+      {
+        "min_level": 10,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "critical_damage_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "critical_hit_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

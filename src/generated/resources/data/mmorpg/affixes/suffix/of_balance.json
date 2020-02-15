@@ -1,0 +1,34 @@
+{
+  "id": "of_balance",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_balance",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      },
+      {
+        "min_level": 20,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "mana_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "energy_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

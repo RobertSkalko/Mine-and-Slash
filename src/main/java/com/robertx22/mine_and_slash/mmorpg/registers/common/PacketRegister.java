@@ -89,6 +89,8 @@ public class PacketRegister {
 
         reg(BossPacket.class, BossPacket::encode, BossPacket::decode, BossPacket::handle);
 
+        reg(RegistryPacket.class, RegistryPacket::encode, RegistryPacket::decode, RegistryPacket::handle);
+
     }
 
 }

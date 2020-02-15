@@ -1,0 +1,40 @@
+{
+  "id": "of_hidden_sense",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_hidden_sense",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "leather_boots",
+          "shield",
+          "cloth_boots",
+          "pants",
+          "helmet",
+          "boots",
+          "leather_chest",
+          "cloth_helmet",
+          "chest",
+          "cloth_pants",
+          "torch",
+          "leather_pants",
+          "cloth_chest",
+          "leather_helmet"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "dodge_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "dodge_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

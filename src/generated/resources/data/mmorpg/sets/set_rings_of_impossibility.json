@@ -1,0 +1,25 @@
+{
+  "id": "set_rings_of_impossibility",
+  "registry": "item_set",
+  "lang_file_string": "mmorpg.set.set_rings_of_impossibility",
+  "requirements": {
+    "list": [
+      {
+        "min_level": 75,
+        "max_level": 100
+      },
+      {
+        "slots": [
+          "ring"
+        ]
+      }
+    ]
+  },
+  "mods": {
+    "2": {
+      "id": "critical_damage_flat",
+      "multi": 4.0,
+      "registry": "stat_mod"
+    }
+  }
+}

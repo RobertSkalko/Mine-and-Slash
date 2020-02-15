@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
@@ -30,6 +31,11 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
     public FilterListWrap<C> errorIfNothingLeft(boolean bool) {
         this.errorIfNothingLeft = bool;
+        return this;
+    }
+
+    public FilterListWrap<C> ofAffixType(BaseAffix.Type type) {
+        this.list = list.stream().filter(x -> ((BaseAffix) x).type == type).collect(Collectors.toList());
         return this;
     }
 

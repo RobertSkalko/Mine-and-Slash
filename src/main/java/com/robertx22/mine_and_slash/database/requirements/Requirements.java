@@ -55,6 +55,7 @@ public class Requirements implements ISerializablePart<Requirements> {
     @Override
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
+
         json.add("list", JsonUtils.partListToJsonArray(requirements));
 
         return json;
@@ -77,4 +78,5 @@ public class Requirements implements ISerializablePart<Requirements> {
         }
 
     }
+
 }

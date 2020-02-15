@@ -1,0 +1,25 @@
+{
+  "id": "wise",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.wise",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "wisdom_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

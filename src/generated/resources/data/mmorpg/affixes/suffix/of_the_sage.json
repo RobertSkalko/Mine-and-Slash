@@ -1,0 +1,30 @@
+{
+  "id": "of_the_sage",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_the_sage",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "mana_regen_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "mana_regen_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

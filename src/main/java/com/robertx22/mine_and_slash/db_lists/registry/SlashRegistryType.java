@@ -1,36 +1,68 @@
 package com.robertx22.mine_and_slash.db_lists.registry;
 
+import com.robertx22.mine_and_slash.database.sets.Set;
+import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
+
 public enum SlashRegistryType {
-    STAT(),
-    STATMOD(),
-    RUNE(),
-    RUNEWORD(),
-    STATUS_EFFECT(),
-    GEAR_TYPE(),
-    SPELL(),
-    SUFFIX(),
-    PREFIX(),
-    UNIQUE_GEAR(),
-    WORLD_PROVIDER(),
-    SET(),
-    EMPTY(),
-    MAP_AFFIX(),
-    ITEM_MODIFICATION(),
-    DIMENSION_CONFIGS(),
-    MOD_ENTITY_CONFIGS(),
-    CURRENCY_ITEMS(),
-    UNIQUE_RUNES(),
-    COMPATIBLE_ITEM(),
-    PERK(),
-    PERK_EFFECT(),
-    SYNERGY_EFFECT(),
-    SPELL_PERK(),
-    SPELL_PERK_EFFECT(),
-    LOOT_CRATE,
-    QUEST(),
-    QUEST_REWARD(),
-    RECIPE(),
-    BOSS(),
-    MAP_EVENT;
+    STAT("stat"),
+    STATMOD("stat_mod"),
+    RUNE("rune"),
+    RUNEWORD("runeword"),
+    STATUS_EFFECT("status_effect"),
+    GEAR_TYPE("gear_type"),
+    SPELL("spell"),
+    AFFIX("affix") {
+        @Override
+        public ISerializable getEmpty() {
+            return EmptyAffix.getInstance();
+        }
+    },
+    UNIQUE_GEAR("unique_gear"),
+    WORLD_PROVIDER("world_provider"),
+    SET("item_set") {
+        @Override
+        public ISerializable getEmpty() {
+            return Set.EMPTY;
+        }
+    },
+    EMPTY("empty"),
+    MAP_AFFIX("map_affix"),
+    ITEM_MODIFICATION("item_modification"),
+    DIMENSION_CONFIGS("dimension_config"),
+    MOD_ENTITY_CONFIGS("mod_entiy_config"),
+    CURRENCY_ITEMS("currency_item"),
+    UNIQUE_RUNES("unique_ruhne"),
+    COMPATIBLE_ITEM("compatible_item"),
+    PERK("talent_perk"),
+    PERK_EFFECT("talent_perk_effect"),
+    SYNERGY_EFFECT("synergy_effect"),
+    SPELL_PERK("spell_perk"),
+    SPELL_PERK_EFFECT("spell_perk_effect"),
+    LOOT_CRATE("loot_crate"),
+    QUEST("quest"),
+    QUEST_REWARD("quest_reward"),
+    RECIPE("recipe"),
+    BOSS("boss"),
+    MAP_EVENT("map_event");
+
+    public String id;
+
+    SlashRegistryType(String id) {
+        this.id = id;
+    }
+
+    public ISerializable getEmpty() { // TODO this could be better
+        return null;
+    }
+
+    public static SlashRegistryType getFromString(String str) {
+        for (SlashRegistryType type : values()) {
+            if (str.equals(type.id)) {
+                return type;
+            }
+        }
+        return null;
+    }
 
 }

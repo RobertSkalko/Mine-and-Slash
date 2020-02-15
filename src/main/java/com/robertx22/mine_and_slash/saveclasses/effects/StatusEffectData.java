@@ -27,6 +27,10 @@ public class StatusEffectData implements IStatModsContainer {
         return SlashRegistry.StatusEffects().get(GUID);
     }
 
+    public boolean isBroken() {
+        return SlashRegistry.StatusEffects().isRegistered(GUID);
+    }
+
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
         return Arrays.asList(new LevelAndStats(GetEffect().Stats(), level));

@@ -1,0 +1,22 @@
+{
+  "id": "enduring_field",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.enduring_field",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "shield"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "magic_shield_flat",
+      "multi": 2.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

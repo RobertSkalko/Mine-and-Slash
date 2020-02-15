@@ -1,0 +1,22 @@
+{
+  "id": "archaeologists",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.archaeologists",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "bracelet"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "bonus_unique_item_drops_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

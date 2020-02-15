@@ -35,6 +35,11 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
     }
 
     @Override
+    public boolean isFromDatapack() {
+        return true;
+    }
+
+    @Override
     public int Tier() {
         return 0;
     }
@@ -61,7 +66,11 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
 
     public int StatPercent = 100;
 
-    public MinMax statPercents = new MinMax(100, 100);
+    public MinMax statPercents() {
+        return new MinMax(StatPercent, StatPercent);
+    }
+
+    ;
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -98,16 +107,14 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
 
     @Override
     public JsonObject toJson() {
-        JsonObject json = new JsonObject();
+        JsonObject json = getDefaultJson();
 
-        json.addProperty("guid", (GUID()));
-        json.addProperty("lang_name_id", locNameLangFileGUID());
         json.add("requirements", requirements().toJson());
 
         JsonObject map = new JsonObject();
 
         AllMods().entrySet().forEach(x -> {
-            map.add(x.getKey() + "", x.getValue().toJson());
+            map.add(x.getKey() + "", x.getValue().toRegistryJson());
         });
 
         json.add("mods", map);
@@ -118,8 +125,9 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
     @Override
     public Set fromJson(JsonObject json) {
 
-        String guid = json.get("guid").getAsString();
-        String lang = json.get("lang_name_id").getAsString();
+        String guid = getGUIDFromJson(json);
+        String lang = getLangNameStringFromJson(json);
+
         Requirements req = Requirements.EMPTY.fromJson(json.getAsJsonObject("requirements"));
 
         JsonObject mapJson = json.getAsJsonObject("mods");
@@ -129,7 +137,7 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
         for (int i = 0; i < 10; i++) {
             JsonElement obj = mapJson.get(i + "");
             if (obj != null) {
-                map.put(i, StatMod.EMPTY.fromJson(obj.getAsJsonObject()));
+                map.put(i, StatMod.EMPTY.fromRegistryJson(obj.getAsJsonObject()));
             }
         }
 

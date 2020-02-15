@@ -54,16 +54,14 @@ public class ExactUniquesRequierement extends UniqueItemRequirement<ExactUniques
     @Override
     public ExactUniquesRequierement fromJson(JsonObject json) {
 
-        ExactUniquesRequierement newobj = null;
         try {
-            newobj = new ExactUniquesRequierement();
+            ExactUniquesRequierement newobj = new ExactUniquesRequierement();
             newobj.uniquesGUIDS = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("possible_uniques"));
+            return newobj;
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
 
-        return newobj;
     }
 
     @Override

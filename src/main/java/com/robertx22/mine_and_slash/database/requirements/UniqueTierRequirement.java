@@ -57,12 +57,11 @@ public class UniqueTierRequirement extends UniqueItemRequirement<UniqueTierRequi
 
     @Override
     public UniqueTierRequirement fromJson(JsonObject json) {
-        ExactUniquesRequierement newobj = null;
         try {
             return new UniqueTierRequirement(json.get("min_tier").getAsInt(), json.get("max_tier").getAsInt());
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
+
 }

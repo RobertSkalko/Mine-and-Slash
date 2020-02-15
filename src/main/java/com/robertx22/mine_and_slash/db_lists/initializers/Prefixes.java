@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.EleShieldPrefix;
@@ -18,10 +19,10 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
+public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
 
     @Override
     public void registerAll() {
@@ -106,15 +107,17 @@ public class Prefixes implements IRandomDefault<Prefix>, ISlashRegistryInit {
             }
         }
 
-        all.forEach(x -> x.registerToSlashRegistry());
+        all.forEach(x -> x.addToSerializables());
 
     }
 
     public static final Prefixes INSTANCE = new Prefixes();
 
     @Override
-    public HashMap<String, Prefix> All() {
-        return SlashRegistry.Prefixes().getAll();
+    public List<BaseAffix> All() {
+        return SlashRegistry.Affixes().getWrapped().ofAffixType(BaseAffix.Type.prefix).list.stream()
+                .map(x -> (BaseAffix) x)
+                .collect(Collectors.toList());
     }
 
 }

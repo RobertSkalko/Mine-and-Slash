@@ -1,0 +1,35 @@
+{
+  "id": "of_staff_flurry",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_staff_flurry",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "bracelet"
+        ]
+      },
+      {
+        "min_level": 50,
+        "max_level": 2147483647
+      },
+      {
+        "min_tier": 10,
+        "max_tier": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "staff_damage_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "stamina_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

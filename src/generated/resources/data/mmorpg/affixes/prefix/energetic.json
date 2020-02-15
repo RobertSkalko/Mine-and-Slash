@@ -1,0 +1,25 @@
+{
+  "id": "energetic",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.energetic",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "energy_regen_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

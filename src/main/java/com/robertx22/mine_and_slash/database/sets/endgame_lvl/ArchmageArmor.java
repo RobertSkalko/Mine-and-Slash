@@ -44,4 +44,5 @@ public class ArchmageArmor extends Set {
     public String GUID() {
         return "archmage_armor";
     }
+
 }

@@ -25,14 +25,12 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
-
     @Override
-    public HashMap<String, Set> All() {
-        return SlashRegistry.Sets().getAll();
+    public List<Set> All() {
+        return (List<Set>) SlashRegistry.Sets().getList();
     }
 
     @Override

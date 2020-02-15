@@ -1,0 +1,31 @@
+{
+  "id": "of_major_affinity_thunder",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_major_affinity_thunder",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring"
+        ]
+      },
+      {
+        "min_level": 50,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "thunder_affinity_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "thunder_spell_to_attack_dmg_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

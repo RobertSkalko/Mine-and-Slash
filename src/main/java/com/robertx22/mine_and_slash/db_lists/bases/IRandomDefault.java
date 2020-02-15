@@ -4,18 +4,14 @@ import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public interface IRandomDefault<T extends IhasRequirements & IWeighted> extends IRandom<T, GearRequestedFor> {
 
-    HashMap<String, T> All();
-
     public default T random(GearRequestedFor gearRequestedFor) {
 
-        List<T> allThatMeetReq = allThatMeetRequirement(new ArrayList<>(All().values()), gearRequestedFor);
+        List<T> allThatMeetReq = allThatMeetRequirement(All(), gearRequestedFor);
 
         if (allThatMeetReq.size() == 0) {
             return null;
@@ -25,11 +21,10 @@ public interface IRandomDefault<T extends IhasRequirements & IWeighted> extends 
     }
 
     public default T random() {
-        return RandomUtils.weightedRandom(All().values());
+        return RandomUtils.weightedRandom(All());
     }
 
-    public default List<T> allThatMeetRequirement(List<T> list,
-                                                  GearRequestedFor gearRequestedFor) {
+    public default List<T> allThatMeetRequirement(List<T> list, GearRequestedFor gearRequestedFor) {
         return list.stream()
                 .filter(x -> x.requirements().satisfiesAllRequirements(gearRequestedFor))
                 .collect(Collectors.toList());

@@ -27,4 +27,5 @@ public class Frosty extends BaseDamagePercentPrefix {
     public String locNameForLangFile() {
         return "Frosty";
     }
+
 }

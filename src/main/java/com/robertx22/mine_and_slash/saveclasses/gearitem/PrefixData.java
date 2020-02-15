@@ -38,8 +38,9 @@ public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Se
     @Override
     public void RerollFully(GearItemData gear) {
 
-        Prefix prefix = SlashRegistry.Prefixes()
+        Prefix prefix = (Prefix) SlashRegistry.Affixes()
                 .getWrapped()
+                .of(x -> x.type == BaseAffix.Type.prefix)
                 .allThatMeetRequirement(new GearRequestedFor(gear))
                 .random();
 
@@ -70,7 +71,7 @@ public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Se
 
     @Override
     public BaseAffix BaseAffix() {
-        return SlashRegistry.Prefixes().get(baseAffix);
+        return SlashRegistry.Affixes().get(baseAffix);
     }
 
     @Override

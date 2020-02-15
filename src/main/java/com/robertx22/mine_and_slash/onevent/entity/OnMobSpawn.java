@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class OnMobSpawn {
 
@@ -72,8 +73,14 @@ public class OnMobSpawn {
                     endata.setUnit(new Unit(), entity);
                 }
 
+                boolean broken = endata.getUnit().statusEffects.values().stream().anyMatch(x -> x.isBroken());
+                if (broken) {
+                    endata.getUnit().statusEffects = new HashMap<>();
+                }
+
                 endata.getUnit().initStats(); // give new stats to mob on spawn
                 endata.forceRecalculateStats(entity);
+
             }
 
             if (boss.isBoss()) {

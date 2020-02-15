@@ -3,8 +3,7 @@ package com.robertx22.mine_and_slash.db_lists.registry;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
-import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.mine_and_slash.database.affixes.Suffix;
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.impl.NecromancerBoss;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -168,12 +167,8 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.SET);
     }
 
-    public static SlashRegistryContainer<Prefix> Prefixes() {
-        return getRegistry(SlashRegistryType.PREFIX);
-    }
-
-    public static SlashRegistryContainer<Suffix> Suffixes() {
-        return getRegistry(SlashRegistryType.SUFFIX);
+    public static SlashRegistryContainer<BaseAffix> Affixes() {
+        return getRegistry(SlashRegistryType.AFFIX);
     }
 
     public static SlashRegistryContainer<GearItemSlot> GearTypes() {
@@ -292,7 +287,7 @@ public class SlashRegistry {
                 new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance())
         );
         map.put(SlashRegistryType.STATMOD,
-                new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, new EmptyStatMod())
+                new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, EmptyStatMod.getInstance())
         );
         map.put(SlashRegistryType.SET, new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()));
         map.put(SlashRegistryType.SPELL,
@@ -304,11 +299,8 @@ public class SlashRegistry {
         map.put(SlashRegistryType.UNIQUE_RUNES,
                 new SlashRegistryContainer<BaseUniqueRuneItem>(SlashRegistryType.UNIQUE_RUNES, new PSIItem())
         );
-        map.put(SlashRegistryType.SUFFIX,
-                new SlashRegistryContainer<Suffix>(SlashRegistryType.SUFFIX, new EmptySuffix())
-        );
-        map.put(SlashRegistryType.PREFIX,
-                new SlashRegistryContainer<Prefix>(SlashRegistryType.PREFIX, new EmptyPrefix())
+        map.put(SlashRegistryType.AFFIX,
+                new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance())
         );
         map.put(SlashRegistryType.RUNE,
                 new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0))

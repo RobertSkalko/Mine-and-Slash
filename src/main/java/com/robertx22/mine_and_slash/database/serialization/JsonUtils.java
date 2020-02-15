@@ -30,12 +30,21 @@ public class JsonUtils {
     public static List<ISerializablePart> jsonArrayToPartList(JsonArray json, List<ISerializablePart> possibleParts) {
         List<ISerializablePart> list = new ArrayList<>();
         json.forEach(element -> {
-            possibleParts.forEach(part -> {
-                ISerializablePart newobj = (ISerializablePart) part.fromJson(element.getAsJsonObject());
-                if (newobj != null) {
-                    list.add(newobj);
-                }
-            });
+            if (element != null && element.getAsJsonObject() != null) {
+                possibleParts.forEach(part -> {
+                    Object newobj = null;
+
+                    try {
+                        newobj = part.fromJson(element.getAsJsonObject());
+                    } catch (Exception e) {
+
+                    }
+
+                    if (newobj instanceof ISerializablePart) {
+                        list.add((ISerializablePart) newobj);
+                    }
+                });
+            }
         });
         return list;
     }

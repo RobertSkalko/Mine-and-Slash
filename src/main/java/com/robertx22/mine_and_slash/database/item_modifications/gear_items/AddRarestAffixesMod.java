@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.item_modifications.gear_items;
 
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseGearMod;
@@ -39,8 +40,9 @@ public class AddRarestAffixesMod extends BaseGearMod {
     @Override
     public void modifyGear(GearItemData gear) {
 
-        Prefix prefix = SlashRegistry.Prefixes()
+        Prefix prefix = (Prefix) SlashRegistry.Affixes()
                 .getWrapped()
+                .ofAffixType(BaseAffix.Type.prefix)
                 .allThatMeetRequirement(gear)
                 .ofHighestRarity()
                 .random();
@@ -50,8 +52,9 @@ public class AddRarestAffixesMod extends BaseGearMod {
 
         // line
 
-        Suffix suffix = SlashRegistry.Suffixes()
+        Suffix suffix = (Suffix) SlashRegistry.Affixes()
                 .getWrapped()
+                .ofAffixType(BaseAffix.Type.suffix)
                 .allThatMeetRequirement(gear)
                 .ofHighestRarity()
                 .random();

@@ -1,0 +1,27 @@
+{
+  "id": "gatekeepers",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.gatekeepers",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "shield"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "major_armor_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "health_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

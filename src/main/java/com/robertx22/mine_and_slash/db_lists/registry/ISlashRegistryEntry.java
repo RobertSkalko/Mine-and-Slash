@@ -20,6 +20,10 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
         SlashRegistry.getRegistry(getSlashRegistryType()).register(this);
     }
 
+    default boolean isFromDatapack() {
+        return false;
+    }
+
     // true for configs cus they sync from server to client, so unregister on loadFromJsons, then registerForgeConfigs
     default boolean unregisterBeforeConfigsLoad() {
         return false;

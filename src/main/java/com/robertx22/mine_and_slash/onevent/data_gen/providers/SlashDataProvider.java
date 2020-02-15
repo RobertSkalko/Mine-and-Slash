@@ -2,8 +2,10 @@ package com.robertx22.mine_and_slash.onevent.data_gen.providers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -14,7 +16,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
-public class SlashDataProvider<T extends ISerializable> implements IDataProvider {
+public class SlashDataProvider<T extends ISerializedRegistryEntry & IGUID & ISerializable<T>> implements IDataProvider {
 
     private final Logger LOGGER = LogManager.getLogger();
     private final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
@@ -38,15 +40,17 @@ public class SlashDataProvider<T extends ISerializable> implements IDataProvider
         return category;
     }
 
-    private Path resolve(Path path, ISerializable object) {
-        return path.resolve("data/" + Ref.MODID + "/" + category + "/" + object.formattedGUID() + ".json");
+    private Path resolve(Path path, T object) {
+        return path.resolve(
+                "data/" + Ref.MODID + "/" + category + "/" + object.datapackFolder() + object.formattedGUID() +
+                        ".json");
     }
 
     protected void generateAll(DirectoryCache cache) {
 
         Path path = this.generator.getOutputFolder();
 
-        for (ISerializable entry : list) {
+        for (T entry : list) {
             Path target = resolve(path, entry);
             try {
                 IDataProvider.save(GSON, cache, entry.toJson(), target);

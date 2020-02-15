@@ -1,0 +1,45 @@
+{
+  "id": "thunder_shield",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.thunder_shield",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "leather_boots",
+          "shield",
+          "cloth_boots",
+          "pants",
+          "helmet",
+          "boots",
+          "leather_chest",
+          "cloth_helmet",
+          "chest",
+          "cloth_pants",
+          "torch",
+          "leather_pants",
+          "cloth_chest",
+          "leather_helmet"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "thunder_resist_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "health_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "armor_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

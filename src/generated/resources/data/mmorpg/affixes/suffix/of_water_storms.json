@@ -1,0 +1,34 @@
+{
+  "id": "of_water_storms",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_water_storms",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      },
+      {
+        "min_level": 20,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "water_pene_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "water_spell_to_attack_dmg_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

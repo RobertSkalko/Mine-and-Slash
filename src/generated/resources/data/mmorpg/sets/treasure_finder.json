@@ -1,0 +1,22 @@
+{
+  "id": "treasure_finder",
+  "registry": "item_set",
+  "lang_file_string": "mmorpg.set.treasure_finder",
+  "requirements": {
+    "list": [
+      {
+        "possible_uniques": [
+          "necklacesetdrop0",
+          "braceletsetdrop0"
+        ]
+      }
+    ]
+  },
+  "mods": {
+    "2": {
+      "id": "bonus_all_drops_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  }
+}

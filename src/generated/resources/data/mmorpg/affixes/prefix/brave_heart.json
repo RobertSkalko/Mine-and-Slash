@@ -1,0 +1,34 @@
+{
+  "id": "brave_heart",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.brave_heart",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      },
+      {
+        "min_level": 10,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "health_regen_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "health_regen_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

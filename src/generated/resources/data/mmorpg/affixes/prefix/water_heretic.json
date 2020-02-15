@@ -1,0 +1,34 @@
+{
+  "id": "water_heretic",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.water_heretic",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "min_level": 50,
+        "max_level": 2147483647
+      },
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "critical_damage_flat",
+      "multi": 1.5,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "water_affinity_flat",
+      "multi": 0.25,
+      "registry": "stat_mod"
+    }
+  ]
+}

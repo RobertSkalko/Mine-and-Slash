@@ -1,0 +1,26 @@
+{
+  "id": "limitless",
+  "registry": "item_set",
+  "lang_file_string": "mmorpg.set.limitless",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "charm"
+        ]
+      },
+      {
+        "min_level": 0,
+        "max_level": 20
+      }
+    ]
+  },
+  "mods": {
+    "2": {
+      "id": "energy_regen_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  }
+}

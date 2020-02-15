@@ -14,8 +14,8 @@ public interface IBaseAutoLoc extends IGUID {
         Gear_Items,
         Words,
         Rarities,
-        Prefixes,
-        Suffixes,
+        Affixes,
+
         Rune_Words,
         Item_Sets,
         Stats,

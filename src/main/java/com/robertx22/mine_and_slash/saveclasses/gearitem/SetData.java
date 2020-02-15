@@ -59,7 +59,7 @@ public class SetData implements ITooltipList {
                 int avgLvl = info.unitdata.getUnit().wornSets.get(baseSet).getAverageLevel();
 
                 TooltipInfo setInfo = info.withLevel(avgLvl).setIsSet();
-                setInfo.minmax = set.statPercents;
+                setInfo.minmax = set.statPercents();
 
                 for (ITextComponent str : StatModData.Load(entry.getValue(), GetSet().StatPercent)
                         .GetTooltipString(setInfo)) {

@@ -1,0 +1,38 @@
+{
+  "id": "archmage_armor",
+  "registry": "item_set",
+  "lang_file_string": "mmorpg.set.archmage_armor",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "cloth_boots",
+          "cloth_helmet",
+          "cloth_chest",
+          "cloth_pants"
+        ]
+      },
+      {
+        "min_level": 75,
+        "max_level": 100
+      }
+    ]
+  },
+  "mods": {
+    "2": {
+      "id": "mana_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    "3": {
+      "id": "magic_shield_regen_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    "4": {
+      "id": "magic_shield_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  }
+}

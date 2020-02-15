@@ -1,0 +1,38 @@
+{
+  "id": "of_vampirism",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_vampirism",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "hammer",
+          "crossbow",
+          "bow",
+          "axe",
+          "staff",
+          "sword",
+          "wand"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "lifesteal_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "life_on_hit_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "lifesteal_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

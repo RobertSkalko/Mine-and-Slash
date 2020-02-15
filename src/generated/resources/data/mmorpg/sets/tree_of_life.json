@@ -1,0 +1,26 @@
+{
+  "id": "tree_of_life",
+  "registry": "item_set",
+  "lang_file_string": "mmorpg.set.tree_of_life",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "charm"
+        ]
+      },
+      {
+        "min_level": 0,
+        "max_level": 20
+      }
+    ]
+  },
+  "mods": {
+    "2": {
+      "id": "health_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  }
+}

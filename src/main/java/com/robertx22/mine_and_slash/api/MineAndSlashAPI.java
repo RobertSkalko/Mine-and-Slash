@@ -2,12 +2,10 @@ package com.robertx22.mine_and_slash.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.robertx22.mine_and_slash.config.compatible_items.CompatibleItemSerial;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItems;
-import com.robertx22.mine_and_slash.config.compatible_items.CompatibleItemSerial;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
-import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
@@ -35,13 +33,7 @@ public class MineAndSlashAPI {
     }
 
     public static void addAffix(BaseAffix affix) {
-        if (affix instanceof Prefix) {
-            SlashRegistry.Prefixes().register((Prefix) affix);
-        } else if (affix instanceof Suffix) {
-            SlashRegistry.Suffixes().register((Suffix) affix);
-        } else {
-            throw new Error("Affix must be derived from the Prefix or the Suffix class!");
-        }
+        SlashRegistry.Affixes().register(affix);
     }
 
     public static void addMapAffix(BaseMapAffix affix) {

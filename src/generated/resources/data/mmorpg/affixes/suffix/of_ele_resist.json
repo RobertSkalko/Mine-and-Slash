@@ -1,0 +1,39 @@
+{
+  "id": "of_ele_resist",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_ele_resist",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "leather_boots",
+          "shield",
+          "cloth_boots",
+          "pants",
+          "helmet",
+          "boots",
+          "leather_chest",
+          "cloth_helmet",
+          "chest",
+          "cloth_pants",
+          "torch",
+          "leather_pants",
+          "cloth_chest",
+          "leather_helmet"
+        ]
+      },
+      {
+        "min_level": 20,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "elemental_resist_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

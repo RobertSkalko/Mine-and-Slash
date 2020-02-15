@@ -136,8 +136,7 @@ public class CreateLangFile {
 
         list.addAll(SlashRegistry.Sets().getAll().values());
         list.addAll(SlashRegistry.RuneWords().getAll().values());
-        list.addAll(SlashRegistry.Prefixes().getAll().values());
-        list.addAll(SlashRegistry.Suffixes().getAll().values());
+        list.addAll(SlashRegistry.Affixes().getAll().values());
         list.addAll(SlashRegistry.Stats().getAll().values());
         list.addAll(SlashRegistry.GearTypes().getAll().values());
         list.addAll(SlashRegistry.WorldProviders().getAll().values());

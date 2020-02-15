@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.database.affixes.Prefix;
+import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -8,14 +8,19 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmptyPrefix extends Prefix {
-    public EmptyPrefix() {
+public class EmptyAffix extends Suffix {
+
+    private EmptyAffix() {
         super(new Requirements(LevelRequirement.fromLVL50()));
+    }
+
+    public static EmptyAffix getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String GUID() {
-        return "";
+        return "unknown_affix";
     }
 
     @Override
@@ -25,6 +30,10 @@ public class EmptyPrefix extends Prefix {
 
     @Override
     public String locNameForLangFile() {
-        return "";
+        return "Unknown Affix";
+    }
+
+    private static class SingletonHolder {
+        private static final EmptyAffix INSTANCE = new EmptyAffix();
     }
 }

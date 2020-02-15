@@ -26,20 +26,31 @@ public class SyncConfigToClientPacket {
 
     public static SyncConfigToClientPacket decode(PacketBuffer buf) {
 
-        SyncConfigToClientPacket newpkt = new SyncConfigToClientPacket();
-        newpkt.configData = ListStringSaving.Load(buf.readCompoundTag());
-        newpkt.configType = ConfigRegister.Config.valueOf(buf.readString());
-        return newpkt;
+        try {
+            SyncConfigToClientPacket newpkt = new SyncConfigToClientPacket();
+            newpkt.configData = ListStringSaving.Load(buf.readCompoundTag());
+            newpkt.configType = ConfigRegister.Config.valueOf(buf.readString());
+            return newpkt;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Failed to decode " + buf.toString());
+            e.printStackTrace();
 
+        }
+        return null;
     }
 
     public static void encode(SyncConfigToClientPacket packet, PacketBuffer buf) {
 
-        CompoundNBT nbt = new CompoundNBT();
-        ListStringSaving.Save(nbt, packet.configData);
+        try {
+            CompoundNBT nbt = new CompoundNBT();
+            ListStringSaving.Save(nbt, packet.configData);
 
-        buf.writeCompoundTag(nbt);
-        buf.writeString(packet.configType.name());
+            buf.writeCompoundTag(nbt);
+            buf.writeString(packet.configType.name());
+        } catch (Exception e) {
+            System.out.println("Failed to encode " + packet.configType.name());
+            e.printStackTrace();
+        }
 
     }
 
@@ -47,7 +58,7 @@ public class SyncConfigToClientPacket {
 
         ctx.get().enqueueWork(() -> {
             try {
-                ConfigRegister.CONFIGS.get(pkt.configType).loadFromJsons(pkt.configData.list);
+                ConfigRegister.CONFIGS.get(pkt.configType).loadFromJsons(pkt.configData.getList());
             } catch (Exception e) {
                 e.printStackTrace();
             }

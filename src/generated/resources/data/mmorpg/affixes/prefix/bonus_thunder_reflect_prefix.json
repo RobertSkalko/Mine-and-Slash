@@ -1,0 +1,27 @@
+{
+  "id": "bonus_thunder_reflect_prefix",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.bonus_thunder_reflect_prefix",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "possible_uniques": [
+          "thunder_ele_shield0"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "thunder_thorns_reflect_flat",
+      "multi": 0.5,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "thunder_resist_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

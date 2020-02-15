@@ -1,0 +1,42 @@
+{
+  "id": "of_godhood",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_godhood",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "helmet",
+          "cloth_helmet",
+          "leather_helmet"
+        ]
+      },
+      {
+        "min_level": 50,
+        "max_level": 2147483647
+      },
+      {
+        "min_tier": 10,
+        "max_tier": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "health_multi",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "major_dodge_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "armor_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

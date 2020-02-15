@@ -1,0 +1,26 @@
+{
+  "id": "looters",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.looters",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "bracelet"
+        ]
+      },
+      {
+        "min_level": 50,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "bonus_all_drops_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

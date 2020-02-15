@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.database.serialization.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.database.serialization.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
@@ -54,7 +55,7 @@ public class MMORPG {
     public static boolean RUN_DEV_TOOLS = true;
 
     public static boolean statEffectDebuggingEnabled() {
-        return true && RUN_DEV_TOOLS;
+        return false && RUN_DEV_TOOLS;
     }
 
     public static Logger LOGGER = Logger.getLogger(Ref.MOD_NAME);
@@ -167,6 +168,7 @@ public class MMORPG {
     public static void onServerAboutToStart(FMLServerAboutToStartEvent event) {
 
         event.getServer().getResourceManager().addReloadListener(new SetDataPackManager());
+        event.getServer().getResourceManager().addReloadListener(new AffixDataPackManager());
 
     }
 

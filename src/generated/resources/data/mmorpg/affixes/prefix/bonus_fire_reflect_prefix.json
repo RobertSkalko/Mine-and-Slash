@@ -1,0 +1,27 @@
+{
+  "id": "bonus_fire_reflect_prefix",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.bonus_fire_reflect_prefix",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "possible_uniques": [
+          "fire_ele_shield0"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "fire_thorns_reflect_flat",
+      "multi": 0.5,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "fire_resist_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

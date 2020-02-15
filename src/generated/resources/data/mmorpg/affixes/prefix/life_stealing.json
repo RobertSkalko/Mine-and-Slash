@@ -1,0 +1,28 @@
+{
+  "id": "life_stealing",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.life_stealing",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "hammer",
+          "crossbow",
+          "bow",
+          "axe",
+          "staff",
+          "sword",
+          "wand"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "lifesteal_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

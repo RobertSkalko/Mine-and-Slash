@@ -1,0 +1,30 @@
+{
+  "id": "thirst_of_flame",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.thirst_of_flame",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "lifesteal_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "spell_fire_damage_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

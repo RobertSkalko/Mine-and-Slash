@@ -1,0 +1,31 @@
+{
+  "id": "heros",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.heros",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "shield"
+        ]
+      },
+      {
+        "min_tier": 7,
+        "max_tier": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "block_strength_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "health_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

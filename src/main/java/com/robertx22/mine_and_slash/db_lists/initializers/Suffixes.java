@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.defense.*;
@@ -19,16 +20,18 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
+public class Suffixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
 
     public static Suffixes INSTANCE = new Suffixes();
 
     @Override
-    public HashMap<String, Suffix> All() {
-        return SlashRegistry.Suffixes().getAll();
+    public List<BaseAffix> All() {
+        return SlashRegistry.Affixes().getWrapped().ofAffixType(BaseAffix.Type.suffix).list.stream()
+                .map(x -> (BaseAffix) x)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -96,7 +99,7 @@ public class Suffixes implements IRandomDefault<Suffix>, ISlashRegistryInit {
             }
         }
 
-        all.forEach(x -> x.registerToSlashRegistry());
+        all.forEach(x -> x.addToSerializables());
 
     }
 }

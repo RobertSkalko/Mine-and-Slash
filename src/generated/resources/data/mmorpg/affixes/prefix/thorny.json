@@ -1,0 +1,35 @@
+{
+  "id": "thorny",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.thorny",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "leather_boots",
+          "shield",
+          "cloth_boots",
+          "pants",
+          "helmet",
+          "boots",
+          "leather_chest",
+          "cloth_helmet",
+          "chest",
+          "cloth_pants",
+          "torch",
+          "leather_pants",
+          "cloth_chest",
+          "leather_helmet"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "spell_nature_damage_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

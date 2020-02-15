@@ -15,11 +15,20 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private List<String> registersErrorsAlertedFor = new ArrayList<>();
     private List<String> accessorErrosAletedFor = new ArrayList<>();
     private List<String> wrongRegistryNames = new ArrayList<>();
+    private List<String> emptyRegistries = new ArrayList<>();
 
     private HashMap<String, C> serializables = new HashMap<>();
 
     public List<C> getSerializable() {
         return new ArrayList<>(serializables.values());
+    }
+
+    public List<C> getFromDatapacks() {
+        return getList().stream().filter(x -> x.isFromDatapack()).collect(Collectors.toList());
+    }
+
+    public SlashRegistryType getType() {
+        return type;
     }
 
     public static void logRegistryError(String text) {
@@ -79,7 +88,11 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private void tryLogEmptyRegistry() {
         if (errorIfEmpty) {
             if (map.isEmpty()) {
-                logRegistryError("Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
+                if (emptyRegistries.contains(this.type.id)) {
+                    emptyRegistries.add(this.type.id);
+                    logRegistryError(
+                            "Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
+                }
             }
         }
     }
@@ -98,6 +111,14 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         List<C> list = new ArrayList<C>(map.values());
         list.addAll(serializables.values());
         return list;
+    }
+
+    public void unregisterAllEntriesFromDatapacks() {
+        new HashMap<String, C>(map).entrySet().forEach(x -> {
+            if (x.getValue().isFromDatapack()) {
+                map.remove(x.getKey());
+            }
+        });
     }
 
     public C get(String guid) {

@@ -5,6 +5,7 @@ import com.google.gson.JsonPrimitive;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.serialization.statmods.SerializableStatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyStatMod;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
@@ -103,6 +104,26 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     public StatMod multi(float multiplier) {
         this.multiplier = multiplier;
         return this;
+    }
+
+    @Override
+    public JsonObject toRegistryJson() {
+        JsonObject json = new JsonObject();
+        json.addProperty("id", GUID());
+        json.addProperty("multi", multiplier);
+        json.addProperty("registry", this.getSlashRegistryType().id);
+        return json;
+    }
+
+    @Override
+    public StatMod fromRegistryJson(JsonObject json) {
+
+        SlashRegistryType type = SlashRegistryType.getFromString(json.get("registry").getAsString());
+        String id = json.get("id").getAsString();
+
+        StatMod mod = (StatMod) SlashRegistry.get(type, id);
+
+        return mod.multi(json.get("multi").getAsFloat());
     }
 
 }

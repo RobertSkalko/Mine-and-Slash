@@ -1,0 +1,34 @@
+{
+  "id": "magical",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.magical",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "ring",
+          "necklace",
+          "bracelet",
+          "charm"
+        ]
+      },
+      {
+        "min_level": 10,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "spell_damage_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "intelligence_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

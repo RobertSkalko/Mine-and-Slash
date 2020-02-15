@@ -1,0 +1,42 @@
+{
+  "id": "of_rock_piercing",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.of_rock_piercing",
+  "type": "suffix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "hammer",
+          "crossbow",
+          "bow",
+          "axe",
+          "staff",
+          "sword",
+          "wand"
+        ]
+      },
+      {
+        "min_level": 50,
+        "max_level": 2147483647
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "physical_pene_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "damage_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "physical_pene_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

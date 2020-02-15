@@ -1,0 +1,22 @@
+{
+  "id": "treasure_seeker",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.treasure_seeker",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "bracelet"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "bonus_map_drops_flat",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

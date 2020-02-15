@@ -1,0 +1,22 @@
+{
+  "id": "defenders",
+  "registry": "affix",
+  "lang_file_string": "mmorpg.affix.defenders",
+  "type": "prefix",
+  "requirements": {
+    "list": [
+      {
+        "slots": [
+          "shield"
+        ]
+      }
+    ]
+  },
+  "mods": [
+    {
+      "id": "block_strength_percent",
+      "multi": 1.0,
+      "registry": "stat_mod"
+    }
+  ]
+}

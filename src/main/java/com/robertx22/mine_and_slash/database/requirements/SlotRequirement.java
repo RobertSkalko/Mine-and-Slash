@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
@@ -229,12 +230,14 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
         try {
             SlotRequirement newobj = new SlotRequirement();
-            newobj.slots = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("slots"))
+
+            JsonArray array = json.getAsJsonArray("slots");
+
+            newobj.slots = JsonUtils.jsonArrayToStringList(array)
                     .stream()
                     .map(x -> SlashRegistry.GearTypes().get(x))
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
         return null;

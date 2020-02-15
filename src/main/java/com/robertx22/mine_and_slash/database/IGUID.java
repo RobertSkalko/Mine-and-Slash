@@ -61,10 +61,15 @@ public interface IGUID {
     }
 
     default boolean isGuidFormattedCorrectly() {
+        if (GUID() == null) {
+            System.out.println("Null guid detected!!! " + getClass().toString());
+        }
+
         return isGUIDFormattedCorrectly(GUID());
     }
 
     public static boolean isGUIDFormattedCorrectly(String id) {
+
         for (char c : id.toCharArray()) {
             if (!isValidPathCharacter(c)) {
                 return false;

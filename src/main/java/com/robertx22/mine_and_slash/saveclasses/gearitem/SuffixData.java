@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
-import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.initializers.Suffixes;
@@ -21,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class SuffixData extends AffixData implements ICreateSpecific<Suffix>, Serializable, ITooltipList, IRerollable {
+public class SuffixData extends AffixData implements ICreateSpecific<BaseAffix>, Serializable, ITooltipList,
+        IRerollable {
 
     private static final long serialVersionUID = 8802998468539898482L;
 
@@ -36,7 +36,7 @@ public class SuffixData extends AffixData implements ICreateSpecific<Suffix>, Se
     }
 
     @Override
-    public void create(GearItemData gear, Suffix suffix) {
+    public void create(GearItemData gear, BaseAffix suffix) {
         baseAffix = suffix.GUID();
         RerollNumbers(gear);
     }
@@ -44,7 +44,7 @@ public class SuffixData extends AffixData implements ICreateSpecific<Suffix>, Se
     @Override
     public void RerollFully(GearItemData gear) {
 
-        Suffix suffix = Suffixes.INSTANCE.random(new GearRequestedFor(gear));
+        BaseAffix suffix = Suffixes.INSTANCE.random(new GearRequestedFor(gear));
 
         this.create(gear, suffix);
 
@@ -63,7 +63,7 @@ public class SuffixData extends AffixData implements ICreateSpecific<Suffix>, Se
 
     @Override
     public BaseAffix BaseAffix() {
-        return SlashRegistry.Suffixes().get(baseAffix);
+        return SlashRegistry.Affixes().get(baseAffix);
     }
 
     @Override
@@ -74,9 +74,7 @@ public class SuffixData extends AffixData implements ICreateSpecific<Suffix>, Se
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.GRAYCOMP()
-                .appendSibling(Words.Suffix.locName()
-                        .appendText(": ")
-                        .appendSibling(affix.locName())));
+                         .appendSibling(Words.Suffix.locName().appendText(": ").appendSibling(affix.locName())));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {

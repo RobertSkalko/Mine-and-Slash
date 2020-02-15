@@ -35,11 +35,9 @@ public class LevelRequirement extends BaseRequirement<LevelRequirement> {
 
     @Override
     public LevelRequirement fromJson(JsonObject json) {
-        ExactUniquesRequierement newobj = null;
         try {
             return new LevelRequirement(json.get("min_level").getAsInt(), json.get("max_level").getAsInt());
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
