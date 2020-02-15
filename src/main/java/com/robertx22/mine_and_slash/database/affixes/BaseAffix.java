@@ -51,7 +51,7 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
     Requirements requirements;
 
     @Override
-    public final String locNameLangFileGUID() {
+    public String locNameLangFileGUID() {
         return Ref.MODID + ".affix." + formattedGUID();
     }
 

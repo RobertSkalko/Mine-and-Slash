@@ -30,8 +30,13 @@ public class SerializableAffix extends BaseAffix {
     }
 
     @Override
-    public String locNameForLangFile() {
+    public String locNameLangFileGUID() {
         return langName;
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "";
     }
 
 }

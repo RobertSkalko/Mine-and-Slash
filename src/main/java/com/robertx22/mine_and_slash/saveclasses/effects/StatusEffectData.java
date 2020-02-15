@@ -28,7 +28,7 @@ public class StatusEffectData implements IStatModsContainer {
     }
 
     public boolean isBroken() {
-        return SlashRegistry.StatusEffects().isRegistered(GUID);
+        return !SlashRegistry.StatusEffects().isRegistered(GUID);
     }
 
     @Override

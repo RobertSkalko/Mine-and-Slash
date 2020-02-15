@@ -53,7 +53,5 @@ public class ListStringData {
 
     public ListStringData(List<String> list) {
         this.list = list.stream().map(x -> new Part(x)).collect(Collectors.toList());
-
-        System.out.println("list saving works");
     }
 }

@@ -18,6 +18,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
+import com.robertx22.mine_and_slash.packets.OnLoginClientPacket;
 import com.robertx22.mine_and_slash.packets.RegistryPacket;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -45,12 +46,13 @@ public class OnLogin {
 
             ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 
+            MMORPG.sendToClient(new OnLoginClientPacket(), player);
+
             ConfigRegister.CONFIGS.values().forEach(x -> x.sendToClient(player));
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
                                            .setStyle(new Style().setColor(Styles.RED)));
-
             }
 
             if (Load.hasUnit(player)) {

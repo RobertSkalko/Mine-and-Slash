@@ -27,7 +27,7 @@ public class SerializableSet extends Set {
 
     @Override
     public String locNameForLangFile() {
-        return langNameId;
+        return "";
     }
 
     @Override
@@ -38,6 +38,11 @@ public class SerializableSet extends Set {
     @Override
     public Requirements requirements() {
         return req;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return langNameId;
     }
 
 }

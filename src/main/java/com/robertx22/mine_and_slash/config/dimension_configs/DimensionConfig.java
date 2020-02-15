@@ -31,6 +31,11 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
         return new DimensionConfig(1, 100);
     }
 
+    @Override
+    public boolean unregisterBeforeConfigsLoad() {
+        return true;
+    }
+
     public DimensionConfig(int min, int max) {
         this.MINIMUM_MOB_LEVEL = min;
         this.MAXIMUM_MOB_LEVEL = max;

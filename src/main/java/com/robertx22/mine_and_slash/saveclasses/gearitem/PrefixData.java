@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
-import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
@@ -20,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Serializable, ITooltipList, IRerollable {
+public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>, Serializable, ITooltipList,
+        IRerollable {
 
     private static final long serialVersionUID = -110285627065158395L;
 
@@ -38,7 +38,7 @@ public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Se
     @Override
     public void RerollFully(GearItemData gear) {
 
-        Prefix prefix = (Prefix) SlashRegistry.Affixes()
+        BaseAffix prefix = SlashRegistry.Affixes()
                 .getWrapped()
                 .of(x -> x.type == BaseAffix.Type.prefix)
                 .allThatMeetRequirement(new GearRequestedFor(gear))
@@ -61,7 +61,7 @@ public class PrefixData extends AffixData implements ICreateSpecific<Prefix>, Se
     }
 
     @Override
-    public void create(GearItemData gear, Prefix prefix) {
+    public void create(GearItemData gear, BaseAffix prefix) {
 
         baseAffix = prefix.GUID();
 

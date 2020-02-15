@@ -68,7 +68,7 @@ public class ConfigRegister {
         CONFIGS.values().forEach(x -> x.generateIfEmpty());
     }
 
-    private static void unregisterFlaggedEntries() {
+    public static void unregisterFlaggedEntries() {
 
         for (SlashRegistryContainer container : SlashRegistry.getAllRegistries()) {
 

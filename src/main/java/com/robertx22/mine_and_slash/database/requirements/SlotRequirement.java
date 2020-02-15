@@ -237,10 +237,11 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
                     .stream()
                     .map(x -> SlashRegistry.GearTypes().get(x))
                     .collect(Collectors.toList());
+
+            return newobj;
         } catch (Exception e) {
             return null;
         }
-        return null;
 
     }
 

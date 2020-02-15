@@ -36,7 +36,7 @@ public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {
 
     @Override
     public boolean unregisterBeforeConfigsLoad() {
-        return false;
+        return true;
     }
 
     @Override

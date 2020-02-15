@@ -134,9 +134,9 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocName>> getMap() {
         List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
-        list.addAll(SlashRegistry.Sets().getAll().values());
+        list.addAll(SlashRegistry.Sets().getSerializable());
         list.addAll(SlashRegistry.RuneWords().getAll().values());
-        list.addAll(SlashRegistry.Affixes().getAll().values());
+        list.addAll(SlashRegistry.Affixes().getSerializable());
         list.addAll(SlashRegistry.Stats().getAll().values());
         list.addAll(SlashRegistry.GearTypes().getAll().values());
         list.addAll(SlashRegistry.WorldProviders().getAll().values());

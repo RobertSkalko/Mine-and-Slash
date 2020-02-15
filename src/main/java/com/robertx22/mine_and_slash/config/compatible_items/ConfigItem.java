@@ -35,7 +35,7 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
     @Override
     public boolean unregisterBeforeConfigsLoad() {
-        return false;
+        return true;
     }
 
     @Override
