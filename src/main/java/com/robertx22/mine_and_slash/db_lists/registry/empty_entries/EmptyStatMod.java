@@ -6,6 +6,13 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class EmptyStatMod extends StatMod {
 
+    private EmptyStatMod() {
+    }
+
+    public static EmptyStatMod getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public Stat GetBaseStat() {
         return EmptyStat.getInstance();
@@ -24,5 +31,9 @@ public class EmptyStatMod extends StatMod {
     @Override
     public StatTypes Type() {
         return StatTypes.Percent;
+    }
+
+    private static class SingletonHolder {
+        private static final EmptyStatMod INSTANCE = new EmptyStatMod();
     }
 }

@@ -1,6 +1,6 @@
-package com.robertx22.mine_and_slash.database.requirements;
+package com.robertx22.mine_and_slash.database.requirements.bases;
 
-public class UniqueItemRequirement extends BaseRequirement {
+public abstract class UniqueItemRequirement<T> extends BaseRequirement<T> {
 
     @Override
     public boolean meetsRequierment(GearRequestedFor requested) {

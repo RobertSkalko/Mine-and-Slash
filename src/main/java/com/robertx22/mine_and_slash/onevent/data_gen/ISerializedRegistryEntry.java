@@ -9,6 +9,4 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T> {
         SlashRegistry.getRegistry(getSlashRegistryType()).addSerializable(this);
     }
 
-    ISerializable<T> getSerializer();
-
 }

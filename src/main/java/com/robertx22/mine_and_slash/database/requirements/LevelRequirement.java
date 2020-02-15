@@ -1,9 +1,13 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
+import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import net.minecraft.util.math.MathHelper;
 
-public class LevelRequirement extends BaseRequirement {
+public class LevelRequirement extends BaseRequirement<LevelRequirement> {
 
     int minLevel = 0;
     int maxLevel = Integer.MAX_VALUE;
@@ -12,9 +16,32 @@ public class LevelRequirement extends BaseRequirement {
         this.minLevel = minLevel;
     }
 
+    public LevelRequirement() {
+
+    }
+
     private LevelRequirement(int minLevel, int maxLevel) {
         this.minLevel = minLevel;
         this.maxLevel = maxLevel;
+    }
+
+    @Override
+    public JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        json.add("min_level", new JsonPrimitive(minLevel));
+        json.add("max_level", new JsonPrimitive(maxLevel));
+        return json;
+    }
+
+    @Override
+    public LevelRequirement fromJson(JsonObject json) {
+        ExactUniquesRequierement newobj = null;
+        try {
+            return new LevelRequirement(json.get("min_level").getAsInt(), json.get("max_level").getAsInt());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static LevelRequirement lowLVLOnly() {
@@ -54,13 +81,11 @@ public class LevelRequirement extends BaseRequirement {
 
         int maxPlayerlvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
 
-        minLevel = MathHelper.clamp(
-                minLevel, 0,
-                maxPlayerlvl
+        minLevel = MathHelper.clamp(minLevel, 0,
+                                    maxPlayerlvl
         );  // make sure min lvl is not higher than the maximum posible level in case it was decreased by config?
-        maxLevel = MathHelper.clamp(
-                maxLevel, 0,
-                maxPlayerlvl
+        maxLevel = MathHelper.clamp(maxLevel, 0,
+                                    maxPlayerlvl
         );  // make sure min lvl is not higher than the maximum posible level in case it was decreased by config?
 
         int level = requested.gearData.level;
@@ -73,4 +98,8 @@ public class LevelRequirement extends BaseRequirement {
 
     }
 
+    @Override
+    public String getJsonID() {
+        return "level_req";
+    }
 }

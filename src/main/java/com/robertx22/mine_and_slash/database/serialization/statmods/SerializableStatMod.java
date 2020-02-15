@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.serialization;
+package com.robertx22.mine_and_slash.database.serialization.statmods;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;

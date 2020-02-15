@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
-import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
+import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.initializers.Suffixes;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;

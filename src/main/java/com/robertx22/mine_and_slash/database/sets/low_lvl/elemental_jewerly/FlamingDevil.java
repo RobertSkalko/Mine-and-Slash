@@ -41,4 +41,5 @@ public class FlamingDevil extends Set {
     public String GUID() {
         return "flaming_devil";
     }
+
 }

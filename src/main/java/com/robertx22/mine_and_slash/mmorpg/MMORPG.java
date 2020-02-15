@@ -3,9 +3,10 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.database.serialization.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
+import com.robertx22.mine_and_slash.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
@@ -17,7 +18,6 @@ import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
-import com.robertx22.mine_and_slash.tests.OneUniqueRunePerRuneword;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.develeper.GenerateUniqueGearJsons;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
@@ -92,7 +92,9 @@ public class MMORPG {
 
         System.out.println("Starting Mine and Slash");
 
-        IGUID.runTest();
+        if (MAP_WORLD_SEED == 0) {
+            MAP_WORLD_SEED = org.apache.commons.lang3.RandomUtils.nextLong();
+        }
 
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -120,10 +122,6 @@ public class MMORPG {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             bus.addListener(this::clientSetup);
         });
-
-        if (MAP_WORLD_SEED == 0) {
-            MAP_WORLD_SEED = org.apache.commons.lang3.RandomUtils.nextLong();
-        }
 
     }
 
@@ -168,7 +166,7 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerAboutToStart(FMLServerAboutToStartEvent event) {
 
-        //event.getServer().getResourceManager().addReloadListener(new StatModManager());
+        event.getServer().getResourceManager().addReloadListener(new SetDataPackManager());
 
     }
 
@@ -179,7 +177,7 @@ public class MMORPG {
 
         SlashRegistry.checkGuidValidity();
 
-        OneUniqueRunePerRuneword.test();
+        ErrorChecks.getAll().forEach(x -> x.check());
 
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.requirements.GearRequestedFor;
+import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;

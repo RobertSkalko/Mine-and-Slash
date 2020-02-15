@@ -96,7 +96,7 @@ public class Sets implements IRandomDefault<Set>, ISlashRegistryInit {
 
         }
 
-        All.forEach(x -> x.registerToSlashRegistry());
+        All.forEach(x -> x.addToSerializables());
 
     }
 
