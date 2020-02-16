@@ -17,8 +17,13 @@ public class BonusEleDmgAffix extends BaseElementalMapAffix {
     }
 
     @Override
+    public StatMod.Size getSize() {
+        return StatMod.Size.VERY_HIGH;
+    }
+
+    @Override
     public IElementalGenerated<StatMod> getGenStat() {
-        return (IElementalGenerated<StatMod>) new ElementalSpellToAttackDMGFlat(Elements.Nature).size(StatMod.Size.VERY_HIGH);
+        return new ElementalSpellToAttackDMGFlat(Elements.Nature);
     }
 
     @Override
@@ -28,7 +33,8 @@ public class BonusEleDmgAffix extends BaseElementalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(getGenStat().newGeneratedInstance(element), percent));
+        return Arrays.asList(StatModData.Load(getGenStat().newGeneratedInstance(element)
+            .size(getSize()), percent));
     }
 
     @Override

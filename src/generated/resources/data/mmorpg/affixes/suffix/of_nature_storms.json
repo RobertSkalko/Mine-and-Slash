@@ -23,7 +23,7 @@
   },
   "mods": [
     {
-      "id": "nature_pene_flat",
+      "id": "nature_penetration_flat",
       "registry": "stat_mod"
     },
     {

@@ -17,8 +17,13 @@ public class BonusEleResistAffix extends BaseElementalMapAffix {
     }
 
     @Override
+    public StatMod.Size getSize() {
+        return StatMod.Size.VERY_HIGH;
+    }
+
+    @Override
     public IElementalGenerated<StatMod> getGenStat() {
-        return (IElementalGenerated<StatMod>) new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HIGH);
+        return new ElementalResistFlat(Elements.Nature);
     }
 
     @Override
@@ -28,7 +33,8 @@ public class BonusEleResistAffix extends BaseElementalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(getGenStat().newGeneratedInstance(element), percent));
+        return Arrays.asList(StatModData.Load(getGenStat().newGeneratedInstance(element)
+            .size(getSize()), percent));
     }
 
     @Override

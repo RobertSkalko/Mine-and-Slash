@@ -23,7 +23,7 @@
   },
   "mods": [
     {
-      "id": "thunder_pene_flat",
+      "id": "thunder_penetration_flat",
       "registry": "stat_mod"
     },
     {

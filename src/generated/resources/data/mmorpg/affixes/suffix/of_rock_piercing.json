@@ -26,15 +26,15 @@
   },
   "mods": [
     {
-      "id": "physical_pene_flat",
+      "id": "physical_penetration_flat",
       "registry": "stat_mod"
     },
     {
-      "id": "damage_percent",
+      "id": "physical_damage_percent",
       "registry": "stat_mod"
     },
     {
-      "id": "physical_pene_percent",
+      "id": "physical_penetration_percent",
       "registry": "stat_mod"
     }
   ]

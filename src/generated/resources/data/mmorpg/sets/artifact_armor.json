@@ -30,7 +30,7 @@
   },
   "mods": {
     "2": {
-      "id": "bonus_exp_flat",
+      "id": "bonusexpflat_flat",
       "registry": "stat_mod"
     },
     "3": {
@@ -38,7 +38,7 @@
       "registry": "stat_mod"
     },
     "4": {
-      "id": "high_armor_flat",
+      "id": "very_high_armor_flat",
       "registry": "stat_mod"
     }
   }

@@ -30,7 +30,7 @@
   },
   "mods": {
     "2": {
-      "id": "fire_pene_flat",
+      "id": "fire_penetration_flat",
       "registry": "stat_mod"
     },
     "3": {

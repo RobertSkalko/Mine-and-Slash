@@ -18,6 +18,8 @@ public abstract class BaseElementalMapAffix extends BaseMapAffix implements IEle
 
     }
 
+    public abstract StatMod.Size getSize();
+
     public abstract IGenerated<StatMod> getGenStat();
 
     @Override
@@ -28,7 +30,8 @@ public abstract class BaseElementalMapAffix extends BaseMapAffix implements IEle
         List<StatMod> all = getGenStat().generateAllPossibleStatVariations();
 
         for (StatMod sg : all) {
-            list.add(this.newGeneratedInstance(sg.GetBaseStat().getElement()));
+            list.add(this.newGeneratedInstance(sg.GetBaseStat()
+                .getElement()));
         }
 
         return list;

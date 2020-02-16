@@ -30,7 +30,7 @@
       "registry": "stat_mod"
     },
     {
-      "id": "damage_percent",
+      "id": "physical_damage_percent",
       "registry": "stat_mod"
     }
   ]

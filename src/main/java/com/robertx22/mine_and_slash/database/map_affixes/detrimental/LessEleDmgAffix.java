@@ -18,8 +18,13 @@ public class LessEleDmgAffix extends BaseElementalMapAffix {
     }
 
     @Override
+    public StatMod.Size getSize() {
+        return StatMod.Size.LESS;
+    }
+
+    @Override
     public IElementalGenerated<StatMod> getGenStat() {
-        return (IElementalGenerated<StatMod>) new AllElementalDamageMulti(Elements.Nature).size(StatMod.Size.LESS);
+        return new AllElementalDamageMulti(Elements.Nature);
     }
 
     @Override
@@ -29,7 +34,8 @@ public class LessEleDmgAffix extends BaseElementalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(getGenStat().newGeneratedInstance(element), percent));
+        return Arrays.asList(StatModData.Load(getGenStat().newGeneratedInstance(element)
+            .size(StatMod.Size.LESS), percent));
     }
 
     @Override

@@ -30,7 +30,7 @@
   },
   "mods": {
     "3": {
-      "id": "dexterity_flat",
+      "id": "stamina_flat",
       "registry": "stat_mod"
     },
     "4": {

@@ -23,14 +23,14 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     public static EmptyStatMod EMPTY = EmptyStatMod.getInstance();
 
     public Size size = Size.NORMAL;
-    protected String afterPrefix = "";
+    //protected String afterPrefix = "";
 
     public enum Size {
-        LESS("less_", -0.25F),
-        MUCH_LESS("much_less_", -0.5F),
+        LESS("less_", -0.5F),
+        MUCH_LESS("much_less_", -1F),
         TINY("tiny_", 0.25F),
         VERY_LOW("very_low_", 0.5F),
-        LOW("low", 0.75F),
+        LOW("low_", 0.75F),
         NORMAL("", 1),
         HIGH("high_", 1.5F),
         VERY_HIGH("very_high_", 2),
@@ -46,7 +46,17 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     }
 
     public StatMod size(Size size) {
-        return new SerializableStatMod(GetBaseStat().GUID(), Min(), Max(), getModType(), GUID(), size);
+        String newGUID = getGUIDFor(GetBaseStat(), size, getModType()); // cus serializablestatmod takes a guid field
+        return new SerializableStatMod(GetBaseStat().GUID(), Min(), Max(), getModType(), newGUID, size);
+    }
+
+    public String getGUIDFor(Stat stat, Size size, StatModTypes type) {
+        return size.prefix + stat.GUID() + "_" + type.id;
+    }
+
+    @Override
+    public String GUID() {
+        return getGUIDFor(GetBaseStat(), size, getModType());
     }
 
     public List<StatMod> getAllSizeVariations() {
@@ -98,11 +108,6 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     }
 
     public abstract StatModTypes getModType();
-
-    @Override
-    public String GUID() {
-        return size.prefix + afterPrefix + GetBaseStat().GUID() + "_" + getModType().id;
-    }
 
     public float getFloatByPercent(int percent) {
         return (getMin() + (getMax() - getMin()) * percent / 100);
