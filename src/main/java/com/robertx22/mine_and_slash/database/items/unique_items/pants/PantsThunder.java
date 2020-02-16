@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighDodgeFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalResistFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -39,8 +39,8 @@ public class PantsThunder extends BaseUniquePantsItem {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighDodgeFlat(), new HighElementalResistFlat(Elements.Fire),
-                             new ElementalTransferFlat(Elements.Fire, Elements.Thunder)
+        return Arrays.asList(new DodgeRatingFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Fire).size(StatMod.Size.HIGH),
+            new ElementalTransferFlat(Elements.Fire, Elements.Thunder)
         );
     }
 

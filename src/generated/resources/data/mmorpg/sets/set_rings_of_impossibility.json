@@ -19,8 +19,7 @@
   },
   "mods": {
     "2": {
-      "id": "critical_damage_flat",
-      "multi": 4.0,
+      "id": "high_critical_damage_flat",
       "registry": "stat_mod"
     }
   }

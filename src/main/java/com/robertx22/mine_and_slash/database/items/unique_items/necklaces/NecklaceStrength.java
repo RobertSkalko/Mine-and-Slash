@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -17,8 +17,8 @@ import java.util.List;
 public class NecklaceStrength extends BaseUniqueNecklace {
 
     static StatReq req = new StatReq(new StatReq(LvlPointStat.WISDOM, StatReq.Size.TINY),
-                                     new StatReq(LvlPointStat.VITALITY, StatReq.Size.TINY),
-                                     new StatReq(LvlPointStat.STAMINA, StatReq.Size.TINY)
+        new StatReq(LvlPointStat.VITALITY, StatReq.Size.TINY),
+        new StatReq(LvlPointStat.STAMINA, StatReq.Size.TINY)
     );
 
     private NecklaceStrength() {
@@ -50,12 +50,12 @@ public class NecklaceStrength extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighArmorFlat(), new LifestealFlat());
+        return Arrays.asList(new ArmorFlat().size(StatMod.Size.HIGH), new LifestealFlat());
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HighCoreStatFlat(Strength.INSTANCE));
+        return Arrays.asList(new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.VERY_HIGH));
     }
 
     @Override

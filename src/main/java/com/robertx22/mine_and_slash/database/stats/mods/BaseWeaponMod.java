@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.mods;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ public abstract class BaseWeaponMod extends StatMod implements IGenerated<StatMo
     public abstract BaseWeaponMod newGeneratedInstance(WeaponTypes type);
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
     @Override

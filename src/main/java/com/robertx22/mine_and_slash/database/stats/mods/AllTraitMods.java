@@ -3,7 +3,10 @@ package com.robertx22.mine_and_slash.database.stats.mods;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AllTraitMods extends StatMod {
 
@@ -18,6 +21,12 @@ public class AllTraitMods extends StatMod {
     private int weight;
 
     @Override
+
+    public List<StatMod> getAllSizeVariations() {
+        return Arrays.asList(this);// traits dont need variations
+    }
+
+    @Override
     public float Min() {
         return 1;
     }
@@ -28,13 +37,8 @@ public class AllTraitMods extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
-    }
-
-    @Override
-    public String GUID() {
-        return GUID;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
     @Override

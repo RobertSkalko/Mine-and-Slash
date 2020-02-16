@@ -13,18 +13,15 @@
   ],
   "mods": [
     {
-      "id": "dodge_flat",
-      "multi": 3.0,
+      "id": "high_dodge_flat",
       "registry": "stat_mod"
     },
     {
       "id": "dodge_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "nature_resist_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

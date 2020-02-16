@@ -14,17 +14,14 @@
   "mods": [
     {
       "id": "health_regen_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "health_flat",
-      "multi": 2.0,
       "registry": "stat_mod"
     },
     {
       "id": "mana_regen_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.database.map_affixes.detrimental;
 
 import com.robertx22.mine_and_slash.database.map_affixes.DetrimentalMapAffix;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.LessLifestealMap;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.LifestealPercent;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public class LessLifestealAffix extends DetrimentalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(new LessLifestealMap(), percent));
+        return Arrays.asList(StatModData.Load(new LifestealPercent().size(StatMod.Size.LESS), percent));
     }
 
 }

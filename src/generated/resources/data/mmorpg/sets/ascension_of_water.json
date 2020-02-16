@@ -31,17 +31,14 @@
   "mods": {
     "2": {
       "id": "water_pene_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "water_focus_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "4": {
       "id": "water_affinity_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

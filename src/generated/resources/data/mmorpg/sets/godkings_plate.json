@@ -31,17 +31,14 @@
   "mods": {
     "2": {
       "id": "damage_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
-      "id": "major_armor_flat",
-      "multi": 1.0,
+      "id": "high_armor_flat",
       "registry": "stat_mod"
     },
     "4": {
       "id": "health_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

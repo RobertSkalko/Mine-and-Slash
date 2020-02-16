@@ -12,12 +12,10 @@
   "mods": [
     {
       "id": "dodge_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "critical_damage_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

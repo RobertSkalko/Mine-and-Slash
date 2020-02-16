@@ -56,7 +56,10 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T>, IFr
 
     @Override
     default JsonObject toRegistryJson() {
-        return getDefaultJson();
+        JsonObject json = new JsonObject();
+        json.addProperty(ID, GUID());
+        json.addProperty(REGISTRY, this.getSlashRegistryType().id);
+        return json;
 
     }
 
@@ -64,7 +67,6 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T>, IFr
     default T fromRegistryJson(JsonObject json) {
         SlashRegistryType type = SlashRegistryType.getFromString(json.get(REGISTRY).getAsString());
         String id = json.get(ID).getAsString();
-
         return (T) SlashRegistry.get(type, id);
 
     }

@@ -27,17 +27,14 @@
   "mods": [
     {
       "id": "physical_pene_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "damage_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "physical_pene_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

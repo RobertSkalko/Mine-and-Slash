@@ -3,17 +3,12 @@ package com.robertx22.mine_and_slash.database.stats.mods.flat.resources;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class MagicShieldFlat extends StatMod {
 
     public MagicShieldFlat() {
 
-    }
-
-    @Override
-    public String GUID() {
-        return "magic_shield_flat";
     }
 
     @Override
@@ -27,8 +22,8 @@ public class MagicShieldFlat extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
     @Override

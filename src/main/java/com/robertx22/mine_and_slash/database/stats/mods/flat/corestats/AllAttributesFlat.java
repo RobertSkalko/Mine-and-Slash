@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.mods.flat.corestats;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttributes;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 public class AllAttributesFlat extends StatMod {
@@ -33,13 +33,8 @@ public class AllAttributesFlat extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
-    }
-
-    @Override
-    public String GUID() {
-        return "all_attributes_flat";
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
 }

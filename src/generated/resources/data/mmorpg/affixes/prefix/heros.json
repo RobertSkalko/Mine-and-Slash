@@ -21,12 +21,10 @@
   "mods": [
     {
       "id": "block_strength_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "health_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

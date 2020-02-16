@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.database.items.runes.XahItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighEnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.DodgePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.DodgeRatingPercent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +17,7 @@ public class RuneWordLimitless extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new HighEnergyRegenFlat(), new DodgePercent());
+        return Arrays.asList(new EnergyRegenFlat().size(StatMod.Size.HIGH), new DodgeRatingPercent());
     }
 
     @Override

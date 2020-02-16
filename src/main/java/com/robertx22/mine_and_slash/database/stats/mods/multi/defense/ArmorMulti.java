@@ -3,14 +3,9 @@ package com.robertx22.mine_and_slash.database.stats.mods.multi.defense;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class ArmorMulti extends StatMod {
-
-    @Override
-    public String GUID() {
-        return "armor_multi";
-    }
 
     @Override
     public float Min() {
@@ -23,8 +18,8 @@ public class ArmorMulti extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Multi;
+    public StatModTypes getModType() {
+        return StatModTypes.Multi;
     }
 
     @Override

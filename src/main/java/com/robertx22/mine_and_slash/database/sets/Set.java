@@ -2,11 +2,11 @@ package com.robertx22.mine_and_slash.database.sets;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.data_packs.sets.SerializableSet;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
-import com.robertx22.mine_and_slash.database.serialization.sets.SerializableSet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements, IAutoLocName,
-        ISerializedRegistryEntry<Set>, ISerializable<Set> {
+    ISerializedRegistryEntry<Set>, ISerializable<Set> {
 
     public static Set EMPTY = new EmptySet();
 

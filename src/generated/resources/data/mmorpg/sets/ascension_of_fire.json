@@ -31,17 +31,14 @@
   "mods": {
     "2": {
       "id": "fire_pene_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "fire_focus_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "4": {
       "id": "fire_affinity_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

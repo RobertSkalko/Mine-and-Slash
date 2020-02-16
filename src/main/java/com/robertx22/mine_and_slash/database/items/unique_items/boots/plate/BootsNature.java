@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.boots.plate;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighHealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.HealthMulti;
@@ -40,14 +40,14 @@ public class BootsNature extends BaseUniqueBoots {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new HealthMulti(), new ElementalTransferFlat(Elements.Thunder, Elements.Nature),
-                             new ElementalResistFlat(Elements.Nature)
+            new ElementalResistFlat(Elements.Nature)
         );
 
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HighHealthFlat());
+        return Arrays.asList(new HealthFlat().size(StatMod.Size.HIGH));
     }
 
     @Override

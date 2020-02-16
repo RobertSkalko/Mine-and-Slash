@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.MathHelper;
@@ -61,10 +61,10 @@ public class StatData {
         return val;
     }
 
-    public void addExact(StatTypes type, float value) {
-        if (type == StatTypes.Flat) {
+    public void addExact(StatModTypes type, float value) {
+        if (type == StatModTypes.Flat) {
             this.Flat += value;
-        } else if (type == StatTypes.Percent) {
+        } else if (type == StatModTypes.Percent) {
             this.Percent += value;
         } else {
             this.Multi += value;

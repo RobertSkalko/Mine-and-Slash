@@ -30,7 +30,6 @@
   "mods": [
     {
       "id": "damage_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

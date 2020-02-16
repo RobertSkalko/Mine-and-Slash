@@ -27,17 +27,14 @@
   "mods": [
     {
       "id": "health_multi",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
-      "id": "major_dodge_flat",
-      "multi": 1.0,
+      "id": "high_dodge_flat",
       "registry": "stat_mod"
     },
     {
       "id": "armor_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

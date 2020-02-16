@@ -3,11 +3,11 @@ package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalResistFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -22,7 +22,7 @@ public class PantsWater extends BaseUniquePantsItem {
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.STAMINA, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
+        LvlPointStat.STAMINA, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -41,9 +41,9 @@ public class PantsWater extends BaseUniquePantsItem {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighArmorFlat(), new HighElementalResistFlat(Elements.Water),
-                             new ElementalTransferFlat(Elements.Fire, Elements.Water),
-                             new ElementalSpellDamagePercent(Elements.Water)
+        return Arrays.asList(new ArmorFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Water).size(StatMod.Size.HIGH),
+            new ElementalTransferFlat(Elements.Fire, Elements.Water),
+            new ElementalSpellDamagePercent(Elements.Water)
         );
 
     }

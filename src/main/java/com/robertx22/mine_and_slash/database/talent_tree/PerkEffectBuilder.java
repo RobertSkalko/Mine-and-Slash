@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.talent_tree;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,14 +20,14 @@ public class PerkEffectBuilder {
 
     public static PerkEffect trait(String guid, Stat stat, PerkType type) {
 
-        ExactStatData data = new ExactStatData(100, StatTypes.Flat, stat.GUID());
+        ExactStatData data = new ExactStatData(100, StatModTypes.Flat, stat.GUID());
 
         return new PerkEffect(guid, data, stat).type(type);
 
     }
 
     public static PerkEffectsWrapper build(String guid, Stat stat, float num,
-                                           StatTypes type) {
+                                           StatModTypes type) {
         ExactStatData statdata = new ExactStatData(num, type, stat);
         return build(guid, stat, statdata);
 

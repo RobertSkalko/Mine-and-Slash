@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.PhysicalDamagePercent;
 
@@ -25,7 +25,7 @@ public class GodKingsPlate extends Set {
             {
                 {
                     put(2, new PhysicalDamagePercent());
-                    put(3, new HighArmorFlat());
+                    put(3, new ArmorFlat().size(StatMod.Size.HIGH));
                     put(4, new HealthFlat());
 
                 }

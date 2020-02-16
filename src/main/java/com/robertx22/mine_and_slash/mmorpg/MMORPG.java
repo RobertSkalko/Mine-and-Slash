@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.serialization.affixes.AffixDataPackManager;
-import com.robertx22.mine_and_slash.database.serialization.runewords.RunewordDataPackManager;
-import com.robertx22.mine_and_slash.database.serialization.sets.SetDataPackManager;
+import com.robertx22.mine_and_slash.data_packs.affixes.AffixDataPackManager;
+import com.robertx22.mine_and_slash.data_packs.runewords.RunewordDataPackManager;
+import com.robertx22.mine_and_slash.data_packs.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.error_checks.base.ErrorChecks;
@@ -84,11 +84,11 @@ public class MMORPG {
     private static final String PROTOCOL_VERSION = Integer.toString(1);
 
     public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder.named(
-            new ResourceLocation(Ref.MODID, "main_channel"))
-            .clientAcceptedVersions(PROTOCOL_VERSION::equals)
-            .serverAcceptedVersions(PROTOCOL_VERSION::equals)
-            .networkProtocolVersion(() -> PROTOCOL_VERSION)
-            .simpleChannel();
+        new ResourceLocation(Ref.MODID, "main_channel"))
+        .clientAcceptedVersions(PROTOCOL_VERSION::equals)
+        .serverAcceptedVersions(PROTOCOL_VERSION::equals)
+        .networkProtocolVersion(() -> PROTOCOL_VERSION)
+        .simpleChannel();
 
     public MMORPG() {
 
@@ -212,8 +212,8 @@ public class MMORPG {
         if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
 
             GameRules.BooleanValue value = ServerLifecycleHooks.getCurrentServer()
-                    .getGameRules()
-                    .get(GameRules.NATURAL_REGENERATION);
+                .getGameRules()
+                .get(GameRules.NATURAL_REGENERATION);
 
             value.set(false, ServerLifecycleHooks.getCurrentServer());
 
@@ -245,7 +245,7 @@ public class MMORPG {
         }
 
         PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(
-                pos.getX(), pos.getY(), pos.getZ(), 50, world.getDimension().getType());
+            pos.getX(), pos.getY(), pos.getZ(), 50, world.getDimension().getType());
 
         Network.send(PacketDistributor.NEAR.with(() -> point), msg);
 

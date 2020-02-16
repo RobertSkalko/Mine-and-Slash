@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRating
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.DodgePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.DodgeRatingPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -43,8 +43,8 @@ public class RingDodge extends BaseUniqueRing {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new DodgeRatingFlat(), new DodgePercent(), new ElementalResistFlat(Elements.Nature),
-                new WeaponDamageFlat(WeaponTypes.Bow)
+            new DodgeRatingFlat(), new DodgeRatingPercent(), new ElementalResistFlat(Elements.Nature),
+            new WeaponDamageFlat(WeaponTypes.Bow)
         );
     }
 

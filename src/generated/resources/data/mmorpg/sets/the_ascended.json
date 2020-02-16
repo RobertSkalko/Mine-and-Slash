@@ -31,17 +31,14 @@
   "mods": {
     "2": {
       "id": "armor_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
-      "id": "vitality_flat",
-      "multi": 2.0,
+      "id": "high_vitality_flat",
       "registry": "stat_mod"
     },
     "4": {
       "id": "health_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

@@ -3,15 +3,10 @@ package com.robertx22.mine_and_slash.database.stats.mods.flat.offense;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 public class SpellDamageFlat extends StatMod {
-
-    @Override
-    public String GUID() {
-        return "spell_damage_flat";
-    }
 
     @Override
     public float Min() {
@@ -24,8 +19,8 @@ public class SpellDamageFlat extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
     @Override

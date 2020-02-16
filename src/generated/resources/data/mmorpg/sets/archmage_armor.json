@@ -23,17 +23,14 @@
   "mods": {
     "2": {
       "id": "mana_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "magic_shield_regen_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "4": {
       "id": "magic_shield_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

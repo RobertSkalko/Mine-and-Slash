@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 public class AllElementalDamageMulti extends ElementalStatMod {
@@ -34,14 +34,10 @@ public class AllElementalDamageMulti extends ElementalStatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
-    @Override
-    public String GUID() {
-        return "all_" + element.guidName + "_damage_multi";
-    }
 }
 
 

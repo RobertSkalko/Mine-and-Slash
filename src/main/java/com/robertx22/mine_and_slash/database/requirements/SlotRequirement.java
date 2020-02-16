@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.requirements;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.data_packs.JsonUtils;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
@@ -19,7 +20,6 @@ import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
-import com.robertx22.mine_and_slash.database.serialization.JsonUtils;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 
 import java.util.ArrayList;
@@ -101,38 +101,38 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     public static SlotRequirement chest() {
         return new SlotRequirement(SlashRegistry.GearTypes()
-                                           .getAll()
-                                           .values()
-                                           .stream()
-                                           .filter(x -> x instanceof BaseChest)
-                                           .collect(Collectors.toList()));
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> x instanceof BaseChest)
+            .collect(Collectors.toList()));
     }
 
     public static SlotRequirement pants() {
         return new SlotRequirement(SlashRegistry.GearTypes()
-                                           .getAll()
-                                           .values()
-                                           .stream()
-                                           .filter(x -> x instanceof BasePants)
-                                           .collect(Collectors.toList()));
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> x instanceof BasePants)
+            .collect(Collectors.toList()));
     }
 
     public static SlotRequirement boots() {
         return new SlotRequirement(SlashRegistry.GearTypes()
-                                           .getAll()
-                                           .values()
-                                           .stream()
-                                           .filter(x -> x instanceof BaseBoots)
-                                           .collect(Collectors.toList()));
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> x instanceof BaseBoots)
+            .collect(Collectors.toList()));
     }
 
     public static SlotRequirement helmet() {
         return new SlotRequirement(SlashRegistry.GearTypes()
-                                           .getAll()
-                                           .values()
-                                           .stream()
-                                           .filter(x -> x instanceof BaseHelmet)
-                                           .collect(Collectors.toList()));
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> x instanceof BaseHelmet)
+            .collect(Collectors.toList()));
     }
 
     public static SlotRequirement weaponsOnly() {
@@ -168,45 +168,45 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     static List<GearItemSlot> weaponSlots() {
 
         return SlashRegistry.GearTypes()
-                .getAll()
-                .values()
-                .stream()
-                .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Weapon))
-                .collect(Collectors.toList());
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Weapon))
+            .collect(Collectors.toList());
 
     }
 
     static List<GearItemSlot> armorSlots() {
 
         return SlashRegistry.GearTypes()
-                .getAll()
-                .values()
-                .stream()
-                .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Armor) || x.slotType()
-                        .equals(GearItemSlot.GearSlotType.OffHand)) // tenp i dont have enough affixes for off hands
-                .collect(Collectors.toList());
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Armor) || x.slotType()
+                .equals(GearItemSlot.GearSlotType.OffHand)) // tenp i dont have enough affixes for off hands
+            .collect(Collectors.toList());
 
     }
 
     static List<GearItemSlot> armorSlotsNoOffHand() {
 
         return SlashRegistry.GearTypes()
-                .getAll()
-                .values()
-                .stream()
-                .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Armor))
-                .collect(Collectors.toList());
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Armor))
+            .collect(Collectors.toList());
 
     }
 
     static List<GearItemSlot> jewerlySlots() {
 
         return SlashRegistry.GearTypes()
-                .getAll()
-                .values()
-                .stream()
-                .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Jewerly))
-                .collect(Collectors.toList());
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> x.slotType().equals(GearItemSlot.GearSlotType.Jewerly))
+            .collect(Collectors.toList());
 
     }
 
@@ -219,8 +219,8 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
         json.add(
-                "slots",
-                JsonUtils.stringListToJsonArray(slots.stream().map(x -> x.GUID()).collect(Collectors.toList()))
+            "slots",
+            JsonUtils.stringListToJsonArray(slots.stream().map(x -> x.GUID()).collect(Collectors.toList()))
         );
         return json;
     }
@@ -234,9 +234,9 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
             JsonArray array = json.getAsJsonArray("slots");
 
             newobj.slots = JsonUtils.jsonArrayToStringList(array)
-                    .stream()
-                    .map(x -> SlashRegistry.GearTypes().get(x))
-                    .collect(Collectors.toList());
+                .stream()
+                .map(x -> SlashRegistry.GearTypes().get(x))
+                .collect(Collectors.toList());
 
             return newobj;
         } catch (Exception e) {

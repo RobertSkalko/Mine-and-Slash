@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class EmptyStatMod extends StatMod {
 
@@ -29,8 +29,8 @@ public class EmptyStatMod extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Percent;
+    public StatModTypes getModType() {
+        return StatModTypes.Percent;
     }
 
     private static class SingletonHolder {

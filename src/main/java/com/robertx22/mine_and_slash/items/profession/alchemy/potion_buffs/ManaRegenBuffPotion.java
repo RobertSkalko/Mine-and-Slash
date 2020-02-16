@@ -28,19 +28,19 @@ public class ManaRegenBuffPotion extends BaseBuffPotion {
     @Override
     public BaseRecipe getRecipe() {
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
-                .addMaterial(new InstantManaPotionItem(level).getFromForgeRegistry(), 1)
-                .addMaterial(Items.LAPIS_LAZULI, 5 * this.level.materialCostMulti)
-                .addMaterial(Items.ENDER_PEARL, 3 * level.materialCostMulti);
+            .addMaterial(new InstantManaPotionItem(level).getFromForgeRegistry(), 1)
+            .addMaterial(Items.LAPIS_LAZULI, 5 * this.level.materialCostMulti)
+            .addMaterial(Items.ENDER_PEARL, 3 * level.materialCostMulti);
 
         if (level.number >= Professions.Levels.FIFTY.number) {
             mats.addMaterial(Items.NETHER_WART, 2 * level.materialCostMulti);
         }
 
         return mats.buildMaterials()
-                .setOutput(this)
-                .levelReq(level.number)
-                .expGained(15)
-                .build();
+            .setOutput(this)
+            .levelReq(level.number)
+            .expGained(15)
+            .build();
 
     }
 

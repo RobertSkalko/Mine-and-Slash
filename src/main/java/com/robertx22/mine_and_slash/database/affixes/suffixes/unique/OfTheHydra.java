@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.requirements.UniqueTierRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.LowWeaponDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -27,8 +27,8 @@ public class OfTheHydra extends Suffix {
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new LowWeaponDamageFlat(WeaponTypes.Axe), new LowWeaponDamageFlat(WeaponTypes.Bow),
-                             new LowWeaponDamageFlat(WeaponTypes.Hammer));
+        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Axe).size(StatMod.Size.LOW), new WeaponDamageFlat(WeaponTypes.Bow).size(StatMod.Size.LOW),
+            new WeaponDamageFlat(WeaponTypes.Hammer).size(StatMod.Size.LOW));
 
     }
 

@@ -1,23 +1,60 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
+import com.robertx22.mine_and_slash.data_packs.statmods.SerializableStatMod;
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.database.serialization.statmods.SerializableStatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyStatMod;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedRegistryEntry<StatMod>,
-        ISerializable<StatMod> {
+    ISerializable<StatMod> {
 
     public static EmptyStatMod EMPTY = EmptyStatMod.getInstance();
+
+    public Size size = Size.NORMAL;
+    protected String afterPrefix = "";
+
+    public enum Size {
+        LESS("less_", -0.25F),
+        MUCH_LESS("much_less_", -0.5F),
+        TINY("tiny_", 0.25F),
+        VERY_LOW("very_low_", 0.5F),
+        LOW("low", 0.75F),
+        NORMAL("", 1),
+        HIGH("high_", 1.5F),
+        VERY_HIGH("very_high_", 2),
+        MAJOR("major_", 3);
+
+        public String prefix;
+        public float multi;
+
+        Size(String prefix, float multi) {
+            this.prefix = prefix;
+            this.multi = multi;
+        }
+    }
+
+    public StatMod size(Size size) {
+        return new SerializableStatMod(GetBaseStat().GUID(), Min(), Max(), getModType(), GUID(), size);
+    }
+
+    public List<StatMod> getAllSizeVariations() {
+        List<StatMod> list = new ArrayList<>();
+        Arrays.stream(Size.values())
+            .forEach(x -> list.add(size(x)));
+        return list;
+    }
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -26,7 +63,8 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
     @Override
     public int Weight() {
-        return this.getRarity().Weight();
+        return this.getRarity()
+            .Weight();
     }
 
     @Override
@@ -51,19 +89,27 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
     public abstract float Max();
 
-    public abstract StatTypes Type();
+    public final float getMin() {
+        return Min() * size.multi;
+    }
+
+    public final float getMax() {
+        return Max() * size.multi;
+    }
+
+    public abstract StatModTypes getModType();
 
     @Override
     public String GUID() {
-        return this.GetBaseStat().GUID() + "_" + this.Type().id;
+        return size.prefix + afterPrefix + GetBaseStat().GUID() + "_" + getModType().id;
     }
 
     public float getFloatByPercent(int percent) {
-        return (Min() + (Max() - Min()) * percent / 100);
+        return (getMin() + (getMax() - getMin()) * percent / 100);
     }
 
     public float getFloatByPercentWithoutMin(int percent) {
-        return (Max() * percent / 100);
+        return (getMax() * percent / 100);
 
     }
 
@@ -72,11 +118,12 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
         JsonObject json = new JsonObject();
 
-        json.add("min", new JsonPrimitive(Min()));
-        json.add("max", new JsonPrimitive(Max()));
-        json.add("stat", new JsonPrimitive(GetBaseStat().GUID()));
-        json.add("type", new JsonPrimitive(Type().name()));
-        json.add("guid", new JsonPrimitive(GUID()));
+        json.addProperty("min", Min());
+        json.addProperty("max", Max());
+        json.addProperty("stat", GetBaseStat().GUID());
+        json.addProperty("type", getModType().name());
+        json.addProperty("guid", GUID());
+        json.addProperty("size", size.name());
 
         return json;
     }
@@ -84,14 +131,21 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     @Override
     public StatMod fromJson(JsonObject json) {
 
-        float min = json.get("min").getAsFloat();
-        float max = json.get("max").getAsFloat();
-        float multi = json.get("multi").getAsFloat();
-        String stat = json.get("stat").getAsString();
-        String guid = json.get("guid").getAsString();
-        StatTypes type = StatTypes.valueOf(json.get("type").getAsString());
+        float min = json.get("min")
+            .getAsFloat();
+        float max = json.get("max")
+            .getAsFloat();
+        String stat = json.get("stat")
+            .getAsString();
+        String guid = json.get("guid")
+            .getAsString();
+        Size size = Size.valueOf(json.get("size")
+            .getAsString());
 
-        return new SerializableStatMod(stat, min, max, type, multi, guid);
+        StatModTypes type = StatModTypes.valueOf(json.get("type")
+            .getAsString());
+
+        return new SerializableStatMod(stat, min, max, type, guid, size);
     }
 
 }

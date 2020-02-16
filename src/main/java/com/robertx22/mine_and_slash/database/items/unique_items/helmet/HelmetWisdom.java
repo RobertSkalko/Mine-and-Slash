@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
@@ -48,7 +48,7 @@ public class HelmetWisdom extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighCoreStatFlat(Wisdom.INSTANCE), new ArmorFlat(), new ManaOnHitFlat());
+        return Arrays.asList(new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HIGH), new ArmorFlat(), new ManaOnHitFlat());
     }
 
     @Override

@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
@@ -32,16 +32,16 @@ public class WisdomOfTheElders extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new HighCoreStatFlat(Wisdom.INSTANCE));
+                    put(2, new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HIGH));
                 }
             }
         };
     }
-    
+
     @Override
     public Requirements requirements() {
         return new Requirements(LevelRequirement.fromLVL50(), new ExactUniquesRequierement(
-                Arrays.asList(HelmetWisdom.INSTANCE, ShieldWisdom.INSTANCE)));
+            Arrays.asList(HelmetWisdom.INSTANCE, ShieldWisdom.INSTANCE)));
     }
 
     @Override

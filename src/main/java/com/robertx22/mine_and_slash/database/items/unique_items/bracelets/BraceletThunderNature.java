@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.bracelets;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -20,7 +20,7 @@ public class BraceletThunderNature extends BaseUniqueBracelet {
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.VITALITY, StatReq.Size.MEDIUM);
+        LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.VITALITY, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -39,7 +39,7 @@ public class BraceletThunderNature extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new HighManaFlat());
+        return Arrays.asList(new ElementalTransferFlat(Elements.Thunder, Elements.Nature), new ManaFlat().size(StatMod.Size.HIGH));
     }
 
     @Override

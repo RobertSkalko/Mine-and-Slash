@@ -12,13 +12,11 @@
   ],
   "mods": [
     {
-      "id": "energy_regen_flat",
-      "multi": 2.0,
+      "id": "high_energy_regen_flat",
       "registry": "stat_mod"
     },
     {
       "id": "dodge_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

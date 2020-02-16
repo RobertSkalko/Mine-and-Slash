@@ -5,9 +5,9 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighManaFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -46,7 +46,7 @@ public class HelmetMana extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighManaFlat(), new HighManaRegenFlat(), new WeaponDamageFlat(WeaponTypes.Staff));
+        return Arrays.asList(new ManaFlat().size(StatMod.Size.HIGH), new ManaRegenFlat().size(StatMod.Size.HIGH), new WeaponDamageFlat(WeaponTypes.Staff));
     }
 
     @Override

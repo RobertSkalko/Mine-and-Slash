@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighHealthRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
@@ -39,7 +39,7 @@ public class HelmetNature extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighHealthRegenFlat(), new HealthPercent(), new ElementalResistFlat(Elements.Nature));
+        return Arrays.asList(new HealthRegenFlat().size(StatMod.Size.HIGH), new HealthPercent(), new ElementalResistFlat(Elements.Nature));
     }
 
     @Override

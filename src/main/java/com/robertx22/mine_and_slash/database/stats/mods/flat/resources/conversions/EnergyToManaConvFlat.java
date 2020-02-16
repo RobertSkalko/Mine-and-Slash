@@ -10,9 +10,4 @@ public class EnergyToManaConvFlat extends BaseResourceConversion {
         return new EnergyToManaConversion();
     }
 
-    @Override
-    public String GUID() {
-        return "energy_to_mana_conv_flat";
-    }
-
 }

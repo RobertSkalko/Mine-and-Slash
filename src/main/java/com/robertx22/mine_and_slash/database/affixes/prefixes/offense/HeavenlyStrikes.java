@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.HighCriticalHitPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class HeavenlyStrikes extends Prefix {
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new CriticalHitFlat(), new HighCriticalHitPercent());
+        return Arrays.asList(new CriticalHitFlat(), new CriticalHitPercent().size(StatMod.Size.HIGH));
 
     }
 

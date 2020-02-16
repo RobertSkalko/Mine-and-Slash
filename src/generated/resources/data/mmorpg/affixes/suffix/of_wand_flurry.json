@@ -25,12 +25,10 @@
   "mods": [
     {
       "id": "wand_damage_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "stamina_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

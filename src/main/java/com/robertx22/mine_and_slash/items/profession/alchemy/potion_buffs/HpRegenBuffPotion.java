@@ -28,19 +28,19 @@ public class HpRegenBuffPotion extends BaseBuffPotion {
     @Override
     public BaseRecipe getRecipe() {
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
-                .addMaterial(new InstantHealthPotionItem(level).getFromForgeRegistry(), 1)
-                .addMaterial(Items.APPLE, 3 * this.level.materialCostMulti)
-                .addMaterial(Items.GLISTERING_MELON_SLICE, 5 * level.materialCostMulti);
+            .addMaterial(new InstantHealthPotionItem(level).getFromForgeRegistry(), 1)
+            .addMaterial(Items.APPLE, 3 * this.level.materialCostMulti)
+            .addMaterial(Items.GLISTERING_MELON_SLICE, 5 * level.materialCostMulti);
 
         if (level.number >= Professions.Levels.FIFTY.number) {
             mats.addMaterial(Items.GOLDEN_CARROT, 1 * level.materialCostMulti);
         }
 
         return mats.buildMaterials()
-                .setOutput(this)
-                .levelReq(level.number)
-                .expGained(15)
-                .build();
+            .setOutput(this)
+            .levelReq(level.number)
+            .expGained(15)
+            .build();
 
     }
 

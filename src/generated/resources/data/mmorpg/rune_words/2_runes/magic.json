@@ -11,7 +11,6 @@
   "mods": [
     {
       "id": "magic_shield_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -50,12 +50,12 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
 
     public ExactStatData getCrit(EntityCap.UnitData data, ExtraPotionData extraData) {
         float statAmount = 0.5F * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, CriticalHit.getInstance());
+        return new ExactStatData(statAmount, StatModTypes.Flat, CriticalHit.getInstance());
     }
 
     public ExactStatData getThunder(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = 1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new AllElementalDamage(Elements.Thunder)).scaleToLvl(
+        return new ExactStatData(statAmount, StatModTypes.Flat, new AllElementalDamage(Elements.Thunder)).scaleToLvl(
                 extraData.casterLvl);
     }
 

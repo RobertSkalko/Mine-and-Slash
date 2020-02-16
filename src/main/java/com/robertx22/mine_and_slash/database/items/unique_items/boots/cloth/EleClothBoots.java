@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.LowElementalAttackDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -28,7 +28,7 @@ public class EleClothBoots extends BaseUniqueBoots implements IElementalUnique {
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.INTELLIGENCE, StatReq.Size.NORMAL, LvlPointStat.WISDOM, StatReq.Size.NORMAL);
+        LvlPointStat.INTELLIGENCE, StatReq.Size.NORMAL, LvlPointStat.WISDOM, StatReq.Size.NORMAL);
 
     @Override
     public StatReq getRequirements() {
@@ -47,7 +47,7 @@ public class EleClothBoots extends BaseUniqueBoots implements IElementalUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new LowElementalAttackDamageFlat(element));
+        return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.LOW));
     }
 
     @Override
@@ -62,7 +62,8 @@ public class EleClothBoots extends BaseUniqueBoots implements IElementalUnique {
 
     @Override
     public String GUID() {
-        return element.name().toLowerCase() + "_cloth_boots0";
+        return element.name()
+            .toLowerCase() + "_cloth_boots0";
     }
 
     @Override

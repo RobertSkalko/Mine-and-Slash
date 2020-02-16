@@ -29,9 +29,12 @@
     ]
   },
   "mods": {
-    "4": {
+    "3": {
       "id": "dexterity_flat",
-      "multi": 4.0,
+      "registry": "stat_mod"
+    },
+    "4": {
+      "id": "high_dexterity_flat",
       "registry": "stat_mod"
     }
   }

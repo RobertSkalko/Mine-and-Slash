@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.requirements.UniqueTierRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighDodgeFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.HealthMulti;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -28,7 +28,7 @@ public class OfGodhood extends Suffix {
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new HealthMulti(), new HighDodgeFlat(), new ArmorFlat());
+        return Arrays.asList(new HealthMulti(), new DodgeRatingFlat().size(StatMod.Size.HIGH), new ArmorFlat());
 
     }
 

@@ -24,17 +24,14 @@
   "mods": [
     {
       "id": "spell_damage_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "intelligence_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "mana_regen_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

@@ -16,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -83,13 +83,13 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
 
     public ExactStatData nature(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -2 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Nature)).scaleToLvl(
+        return new ExactStatData(statAmount, StatModTypes.Flat, new ElementalResist(Elements.Nature)).scaleToLvl(
                 extraData.casterLvl);
     }
 
     public ExactStatData thunder(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -3 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, new ElementalResist(Elements.Thunder)).scaleToLvl(
+        return new ExactStatData(statAmount, StatModTypes.Flat, new ElementalResist(Elements.Thunder)).scaleToLvl(
                 extraData.casterLvl);
     }
 

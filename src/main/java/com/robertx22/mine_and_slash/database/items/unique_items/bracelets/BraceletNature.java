@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthRegenPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -39,7 +39,7 @@ public class BraceletNature extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighElementalResistFlat(Elements.Nature), new HealthFlat(), new HealthRegenPercent());
+        return Arrays.asList(new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HIGH), new HealthFlat(), new HealthRegenPercent());
     }
 
     @Override

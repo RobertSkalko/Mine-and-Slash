@@ -13,13 +13,11 @@
   ],
   "mods": [
     {
-      "id": "magic_shield_percent",
-      "multi": 3.0,
+      "id": "magic_shield_flat",
       "registry": "stat_mod"
     },
     {
       "id": "magic_shield_regen_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

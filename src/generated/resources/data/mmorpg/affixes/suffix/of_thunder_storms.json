@@ -24,12 +24,10 @@
   "mods": [
     {
       "id": "thunder_pene_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "thunder_spell_to_attack_dmg_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

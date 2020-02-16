@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -36,7 +36,7 @@ public class GiveAllStats {
                 SlashRegistry.Stats()
                         .getList()
                         .forEach(x -> data.getCustomExactStats()
-                                .add(UUID.randomUUID().toString(), x.GUID(), 100, StatTypes.Flat));
+                                .add(UUID.randomUUID().toString(), x.GUID(), 100, StatModTypes.Flat));
             }
 
         } catch (Exception e) {

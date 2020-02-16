@@ -3,16 +3,11 @@ package com.robertx22.mine_and_slash.database.stats.mods.percent.offense;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class PhysicalDamagePercent extends StatMod {
 
     public PhysicalDamagePercent() {
-    }
-
-    @Override
-    public String GUID() {
-        return "damage_percent";
     }
 
     @Override
@@ -26,8 +21,8 @@ public class PhysicalDamagePercent extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Percent;
+    public StatModTypes getModType() {
+        return StatModTypes.Percent;
     }
 
     @Override

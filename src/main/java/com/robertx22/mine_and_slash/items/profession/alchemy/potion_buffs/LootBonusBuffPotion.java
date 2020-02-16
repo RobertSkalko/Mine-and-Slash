@@ -29,20 +29,20 @@ public class LootBonusBuffPotion extends BaseBuffPotion {
     @Override
     public BaseRecipe getRecipe() {
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
-                .addMaterial(new InstantEnergyPotionItem(level).getFromForgeRegistry(), 1)
-                .addMaterial(Items.YELLOW_DYE, 3 * this.level.materialCostMulti)
-                .addMaterial(Items.GOLD_NUGGET, 3 * this.level.materialCostMulti)
-                .addMaterial(Items.GOLDEN_CARROT, 1 * this.level.materialCostMulti);
+            .addMaterial(new InstantEnergyPotionItem(level).getFromForgeRegistry(), 1)
+            .addMaterial(Items.YELLOW_DYE, 3 * this.level.materialCostMulti)
+            .addMaterial(Items.GOLD_NUGGET, 3 * this.level.materialCostMulti)
+            .addMaterial(Items.GOLDEN_CARROT, 1 * this.level.materialCostMulti);
 
         if (level.number >= Professions.Levels.FIFTY.number) {
             mats.addMaterial(Items.GOLDEN_APPLE, 1 * level.materialCostMulti);
         }
 
         return mats.buildMaterials()
-                .setOutput(this)
-                .levelReq(level.number)
-                .expGained(15)
-                .build();
+            .setOutput(this)
+            .levelReq(level.number)
+            .expGained(15)
+            .build();
 
     }
 

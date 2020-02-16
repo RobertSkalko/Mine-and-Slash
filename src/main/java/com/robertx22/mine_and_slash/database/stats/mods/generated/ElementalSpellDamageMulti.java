@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 public class ElementalSpellDamageMulti extends ElementalStatMod {
@@ -29,8 +29,8 @@ public class ElementalSpellDamageMulti extends ElementalStatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Multi;
+    public StatModTypes getModType() {
+        return StatModTypes.Multi;
     }
 
     @Override

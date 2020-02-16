@@ -31,17 +31,14 @@
   "mods": {
     "2": {
       "id": "nature_pene_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "nature_focus_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "4": {
       "id": "nature_affinity_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

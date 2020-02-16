@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalFocus;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 public class ElementalFocusFlat extends ElementalStatMod {
@@ -29,13 +29,8 @@ public class ElementalFocusFlat extends ElementalStatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
-    }
-
-    @Override
-    public String GUID() {
-        return element.guidName + "_focus_flat";
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
     @Override

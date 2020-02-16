@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalTransfer;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.List;
 
 public class ElementalTransferFlat extends StatMod implements IGenerated<StatMod> {
 
-    public String GUID;
     public String BaseStatGUID;
     public Elements fromElement;
     public Elements toElement;
@@ -21,7 +20,6 @@ public class ElementalTransferFlat extends StatMod implements IGenerated<StatMod
     public ElementalTransferFlat(Elements from, Elements to) {
         this.fromElement = from;
         this.toElement = to;
-        this.GUID = from.guidName + "_to_" + to.guidName + "_transfer_flat";
 
         ElementalTransfer stat = new ElementalTransfer(from, to);
         this.BaseStatGUID = stat.GUID();
@@ -39,18 +37,13 @@ public class ElementalTransferFlat extends StatMod implements IGenerated<StatMod
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
     @Override
     public Stat GetBaseStat() {
         return SlashRegistry.Stats().get(BaseStatGUID);
-    }
-
-    @Override
-    public String GUID() {
-        return GUID;
     }
 
     public List<StatMod> generateAllPossibleStatVariations() {

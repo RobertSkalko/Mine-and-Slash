@@ -12,7 +12,10 @@
   "mods": [
     {
       "id": "critical_hit_percent",
-      "multi": 2.0,
+      "registry": "stat_mod"
+    },
+    {
+      "id": "critical_hit_multi",
       "registry": "stat_mod"
     }
   ]

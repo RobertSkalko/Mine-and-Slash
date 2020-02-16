@@ -12,7 +12,6 @@
   "mods": [
     {
       "id": "elemental_resist_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

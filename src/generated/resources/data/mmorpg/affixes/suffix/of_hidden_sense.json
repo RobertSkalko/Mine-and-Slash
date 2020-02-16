@@ -30,12 +30,10 @@
   "mods": [
     {
       "id": "dodge_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "dodge_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

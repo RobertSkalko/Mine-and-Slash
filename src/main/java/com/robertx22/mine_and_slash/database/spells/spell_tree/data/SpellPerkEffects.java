@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class SpellPerkEffects {
 
@@ -18,7 +18,7 @@ public class SpellPerkEffects {
     public static void register() {
 
         START = new SpellPerkEffect(
-                "start", new ExactStatData(0, StatTypes.Flat, CriticalHit.GUID), "starts/mage").setStart()
+                "start", new ExactStatData(0, StatModTypes.Flat, CriticalHit.GUID), "starts/mage").setStart()
                 .setGameChanger()
                 .type(PerkType.MAJOR);
 

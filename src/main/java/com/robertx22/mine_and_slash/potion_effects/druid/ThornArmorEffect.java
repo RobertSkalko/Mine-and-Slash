@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -55,13 +55,13 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
 
     public ExactStatData getNatureRes(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = 3 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, ElementalResist.MAP.get(Elements.Nature)).scaleToLvl(
+        return new ExactStatData(statAmount, StatModTypes.Flat, ElementalResist.MAP.get(Elements.Nature)).scaleToLvl(
                 extraData.casterLvl);
     }
 
     public ExactStatData getArmor(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = 1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, Armor.getInstance()).scaleToLvl(extraData.casterLvl);
+        return new ExactStatData(statAmount, StatModTypes.Flat, Armor.getInstance()).scaleToLvl(extraData.casterLvl);
     }
 
     @Override

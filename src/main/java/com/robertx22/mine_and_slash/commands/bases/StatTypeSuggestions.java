@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.commands.bases;
 
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +11,7 @@ public class StatTypeSuggestions extends CommandSuggestions {
     @Override
     public List<String> suggestions() {
 
-        return Arrays.stream(StatTypes.values())
+        return Arrays.stream(StatModTypes.values())
                 .map(x -> x.name())
                 .collect(Collectors.toList());
 

@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.LootTypeBonusFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -36,8 +36,8 @@ public class MagesLuckyAmulet extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighElementalResistFlat(Elements.Elemental), new HighManaFlat(),
-                             new LootTypeBonusFlat(LootType.UniqueItem)
+        return Arrays.asList(new ElementalResistFlat(Elements.Elemental).size(StatMod.Size.HIGH), new ManaFlat().size(StatMod.Size.HIGH),
+            new LootTypeBonusFlat(LootType.UniqueItem)
         );
     }
 

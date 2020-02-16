@@ -3,16 +3,11 @@ package com.robertx22.mine_and_slash.database.stats.mods.flat.offense;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class PhysicalDamageFlat extends StatMod {
 
     public PhysicalDamageFlat() {
-    }
-
-    @Override
-    public String GUID() {
-        return "damage_flat";
     }
 
     @Override
@@ -27,8 +22,8 @@ public class PhysicalDamageFlat extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
     @Override

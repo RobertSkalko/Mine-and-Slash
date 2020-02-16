@@ -17,7 +17,6 @@
   "mods": [
     {
       "id": "bonus_unique_item_drops_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

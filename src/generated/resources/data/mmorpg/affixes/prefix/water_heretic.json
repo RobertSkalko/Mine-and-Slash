@@ -24,12 +24,10 @@
   "mods": [
     {
       "id": "critical_damage_flat",
-      "multi": 1.5,
       "registry": "stat_mod"
     },
     {
-      "id": "water_affinity_flat",
-      "multi": 0.25,
+      "id": "low_water_affinity_flat",
       "registry": "stat_mod"
     }
   ]

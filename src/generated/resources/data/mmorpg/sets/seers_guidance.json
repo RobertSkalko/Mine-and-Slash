@@ -24,12 +24,10 @@
   "mods": {
     "2": {
       "id": "bonus_exp_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "wisdom_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

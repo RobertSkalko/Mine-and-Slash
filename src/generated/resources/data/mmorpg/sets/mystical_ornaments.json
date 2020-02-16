@@ -23,22 +23,18 @@
   "mods": {
     "2": {
       "id": "nature_resist_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "thunder_resist_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "4": {
       "id": "nature_spell_to_attack_dmg_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "5": {
       "id": "thunder_spell_to_attack_dmg_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

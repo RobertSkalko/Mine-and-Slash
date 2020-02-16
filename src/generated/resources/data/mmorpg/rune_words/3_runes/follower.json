@@ -12,17 +12,14 @@
   "mods": [
     {
       "id": "critical_hit_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "critical_damage_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
-      "id": "health_flat",
-      "multi": 0.5,
+      "id": "health_percent",
       "registry": "stat_mod"
     }
   ]

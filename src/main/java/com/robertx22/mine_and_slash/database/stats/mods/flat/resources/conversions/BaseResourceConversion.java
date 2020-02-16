@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.mods.flat.resources.conversions;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public abstract class BaseResourceConversion extends StatMod {
 
@@ -16,8 +16,8 @@ public abstract class BaseResourceConversion extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-	return StatTypes.Flat;
+    public StatModTypes getModType() {
+	return StatModTypes.Flat;
     }
 
 }

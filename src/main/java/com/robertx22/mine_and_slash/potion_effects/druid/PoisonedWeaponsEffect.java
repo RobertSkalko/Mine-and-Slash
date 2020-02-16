@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -54,7 +54,7 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
 
     public ExactStatData getDmg(EntityCap.UnitData data, ExtraPotionData extraData) {
         float statAmount = 2.5F;
-        return new ExactStatData(statAmount, StatTypes.Flat, ElementalAttackDamage.MAP.get(Elements.Nature)).scaleToLvl(
+        return new ExactStatData(statAmount, StatModTypes.Flat, ElementalAttackDamage.MAP.get(Elements.Nature)).scaleToLvl(
                 extraData.casterLvl);
     }
 

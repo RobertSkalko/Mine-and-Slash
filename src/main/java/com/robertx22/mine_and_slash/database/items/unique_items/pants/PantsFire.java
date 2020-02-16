@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.ArmorMulti;
@@ -21,7 +21,7 @@ public class PantsFire extends BaseUniquePantsItem {
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.STAMINA, StatReq.Size.NORMAL, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
+        LvlPointStat.STAMINA, StatReq.Size.NORMAL, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -41,7 +41,7 @@ public class PantsFire extends BaseUniquePantsItem {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new HighArmorFlat(), new ArmorMulti(), new ElementalTransferFlat(Elements.Nature, Elements.Fire));
+            new ArmorFlat().size(StatMod.Size.HIGH), new ArmorMulti(), new ElementalTransferFlat(Elements.Nature, Elements.Fire));
     }
 
     @Override

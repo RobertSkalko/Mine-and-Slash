@@ -23,17 +23,14 @@
   "mods": [
     {
       "id": "lifesteal_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "life_on_hit_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "lifesteal_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

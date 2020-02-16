@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighEnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -40,7 +40,7 @@ public class HelmetThunder extends BaseUniqueHelmet {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new ElementalSpellToAttackDMGFlat(Elements.Thunder), new HighEnergyRegenFlat(), new ArmorFlat());
+            new ElementalSpellToAttackDMGFlat(Elements.Thunder), new EnergyRegenFlat().size(StatMod.Size.HIGH), new ArmorFlat());
     }
 
     @Override

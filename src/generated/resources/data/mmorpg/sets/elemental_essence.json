@@ -23,12 +23,10 @@
   "mods": {
     "2": {
       "id": "elemental_resist_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "all_ele_spell_dmg_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

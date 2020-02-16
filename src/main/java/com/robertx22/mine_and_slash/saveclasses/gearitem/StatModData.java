@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.MathHelper;
@@ -33,7 +33,7 @@ public class StatModData implements ITooltipList {
         StatModData data = new StatModData();
 
         data.baseModName = mod.GUID();
-        data.type = mod.Type();
+        data.type = mod.getModType();
         data.randomize(rar);
 
         return data;
@@ -44,7 +44,7 @@ public class StatModData implements ITooltipList {
         StatModData data = new StatModData();
 
         data.baseModName = mod.GUID();
-        data.type = mod.Type();
+        data.type = mod.getModType();
         data.percent = percent;
 
         return data;
@@ -71,7 +71,7 @@ public class StatModData implements ITooltipList {
     }
 
     @Store
-    private StatTypes type;
+    private StatModTypes type;
 
     @Store
     private int percent;
@@ -109,7 +109,7 @@ public class StatModData implements ITooltipList {
             val = mod.getFloatByPercentWithoutMin(percent);
         }
 
-        if (mod.Type().equals(StatTypes.Flat)) {
+        if (mod.getModType().equals(StatModTypes.Flat)) {
             val = stat.calculateScalingStatGrowth(val, level);
         }
 
@@ -156,11 +156,11 @@ public class StatModData implements ITooltipList {
 
     public void Add(StatData data, int level) {
 
-        if (type == StatTypes.Flat) {
+        if (type == StatModTypes.Flat) {
             data.Flat += GetActualVal(level);
-        } else if (type == StatTypes.Percent) {
+        } else if (type == StatModTypes.Percent) {
             data.Percent += GetActualVal(level);
-        } else if (type == StatTypes.Multi) {
+        } else if (type == StatModTypes.Multi) {
             data.Multi += GetActualVal(level);
 
         }

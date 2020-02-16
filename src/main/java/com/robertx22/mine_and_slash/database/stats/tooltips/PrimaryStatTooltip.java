@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.tooltips;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
@@ -21,7 +21,7 @@ public class PrimaryStatTooltip implements IStatTooltipType {
 
         ITextComponent str = new StringTextComponent("");
 
-        if (info.type.equals(StatTypes.Flat) && stat.IsPercent()) {
+        if (info.type.equals(StatModTypes.Flat) && stat.IsPercent()) {
             str.appendSibling(Words.Flat.locName()).appendText(" ");
         }
 
@@ -51,20 +51,20 @@ public class PrimaryStatTooltip implements IStatTooltipType {
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        StatTypes type = info.type;
+        StatModTypes type = info.type;
         Stat stat = info.stat;
         ITextComponent text = NameAndValueText(info);
 
-        if (type == StatTypes.Flat) {
+        if (type == StatModTypes.Flat) {
 
             if (stat.IsPercent()) {
                 text.appendText("%");
             }
 
-        } else if (type == StatTypes.Percent) {
+        } else if (type == StatModTypes.Percent) {
             text.appendText("%");
 
-            if (type.equals(StatTypes.Percent) && stat.IsPercent()) {
+            if (type.equals(StatModTypes.Percent) && stat.IsPercent()) {
                 if (info.amount > 0) {
                     text.appendText(" ").appendSibling(Words.Increased.locName());
                 } else {

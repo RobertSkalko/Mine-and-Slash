@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.database.map_affixes.detrimental;
 
 import com.robertx22.mine_and_slash.database.map_affixes.DetrimentalMapAffix;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.LessHealthMap;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public class LessHealthAffix extends DetrimentalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(new LessHealthMap(), percent));
+        return Arrays.asList(StatModData.Load(new HealthPercent().size(StatMod.Size.LESS), percent));
     }
 
 }

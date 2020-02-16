@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.database.items.unique_items.chest;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalPeneFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -39,8 +39,8 @@ public class ChestWater extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighElementalPeneFlat(Elements.Water), new HighArmorFlat(),
-                             new ElementalTransferFlat(Elements.Nature, Elements.Water)
+        return Arrays.asList(new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HIGH), new ArmorFlat().size(StatMod.Size.HIGH),
+            new ElementalTransferFlat(Elements.Nature, Elements.Water)
         );
     }
 

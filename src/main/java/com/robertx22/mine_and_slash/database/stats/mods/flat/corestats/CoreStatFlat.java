@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.mods.flat.corestats;
 
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.BaseCoreStat;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class CoreStatFlat extends BaseCoreStatFlat {
 
@@ -25,8 +25,8 @@ public class CoreStatFlat extends BaseCoreStatFlat {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
 }

@@ -16,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
@@ -87,13 +87,13 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
 
     public ExactStatData fire(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, ElementalResist.MAP.get(Elements.Fire)).scaleToLvl(
+        return new ExactStatData(statAmount, StatModTypes.Flat, ElementalResist.MAP.get(Elements.Fire)).scaleToLvl(
                 extraData.casterLvl);
     }
 
     public ExactStatData water(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -2 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatTypes.Flat, ElementalResist.MAP.get(Elements.Water)).scaleToLvl(
+        return new ExactStatData(statAmount, StatModTypes.Flat, ElementalResist.MAP.get(Elements.Water)).scaleToLvl(
                 extraData.casterLvl);
     }
 

@@ -5,10 +5,10 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHammer;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.HighCriticalDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalFocusFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -26,7 +26,7 @@ public class HammerElemental extends BaseUniqueHammer implements IElementalUniqu
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+        LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -35,12 +35,12 @@ public class HammerElemental extends BaseUniqueHammer implements IElementalUniqu
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighCriticalDamageFlat(), new CriticalHitMulti(), new ElementalFocusFlat(element));
+        return Arrays.asList(new CriticalDamageFlat().size(StatMod.Size.VERY_HIGH), new CriticalHitPercent().size(StatMod.Size.VERY_HIGH), new ElementalFocusFlat(element));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element));
+        return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.LOW));
     }
 
     @Override
@@ -55,7 +55,8 @@ public class HammerElemental extends BaseUniqueHammer implements IElementalUniqu
 
     @Override
     public String GUID() {
-        return element.name().toLowerCase() + "_ele_hammer0";
+        return element.name()
+            .toLowerCase() + "_ele_hammer0";
     }
 
     @Override

@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -34,13 +34,13 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
         this.statGUID = other.statGUID;
     }
 
-    public ExactStatData(float value, StatTypes type, String statGUID) {
+    public ExactStatData(float value, StatModTypes type, String statGUID) {
         this.value = value;
         this.type = type;
         this.statGUID = statGUID;
     }
 
-    public ExactStatData(float value, StatTypes type, Stat stat) {
+    public ExactStatData(float value, StatModTypes type, Stat stat) {
         this.value = value;
         this.type = type;
         this.statGUID = stat.GUID();
@@ -54,7 +54,7 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
     private float value = 0;
 
     @Store
-    private StatTypes type = StatTypes.Flat;
+    private StatModTypes type = StatModTypes.Flat;
 
     @Store
     private String statGUID = "";
@@ -63,7 +63,7 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
         return value;
     }
 
-    public StatTypes getType() {
+    public StatModTypes getType() {
         return type;
     }
 

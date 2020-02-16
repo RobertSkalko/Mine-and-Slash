@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.LootTypeBonus;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -36,13 +36,8 @@ public class LootTypeBonusFlat extends StatMod implements IGenerated<StatMod> {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
-    }
-
-    @Override
-    public String GUID() {
-        return "bonus_" + type.formattedGUID() + "_drops_flat";
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
     @Override

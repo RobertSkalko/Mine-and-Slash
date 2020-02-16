@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
@@ -48,7 +48,7 @@ public class RingMagicShield extends BaseUniqueRing {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new MagicShieldPercent(), new MagicShieldRegenFlat(),
-                             new HighCoreStatFlat(Intelligence.INSTANCE)
+            new CoreStatFlat(Intelligence.INSTANCE).size(StatMod.Size.HIGH)
         );
     }
 

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.mods.percent;
 
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.BaseCoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.BaseCoreStat;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class CoreStatPercent extends BaseCoreStatFlat {
 
@@ -26,8 +26,8 @@ public class CoreStatPercent extends BaseCoreStatFlat {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Percent;
+    public StatModTypes getModType() {
+        return StatModTypes.Percent;
     }
 
 }

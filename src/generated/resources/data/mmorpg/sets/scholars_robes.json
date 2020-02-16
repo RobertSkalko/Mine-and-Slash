@@ -31,17 +31,14 @@
   "mods": {
     "2": {
       "id": "bonus_exp_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "bonus_normal_item_drops_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "4": {
       "id": "bonus_map_drops_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

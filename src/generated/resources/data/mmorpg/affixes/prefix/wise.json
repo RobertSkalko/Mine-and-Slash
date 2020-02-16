@@ -20,7 +20,6 @@
   "mods": [
     {
       "id": "wisdom_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

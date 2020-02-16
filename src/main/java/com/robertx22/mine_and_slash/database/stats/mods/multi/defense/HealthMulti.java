@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.mods.multi.defense;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class HealthMulti extends StatMod {
 
@@ -18,8 +18,8 @@ public class HealthMulti extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Multi;
+    public StatModTypes getModType() {
+        return StatModTypes.Multi;
     }
 
     @Override

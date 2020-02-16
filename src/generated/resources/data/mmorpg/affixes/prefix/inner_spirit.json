@@ -24,12 +24,10 @@
   "mods": [
     {
       "id": "energy_regen_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "energy_regen_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

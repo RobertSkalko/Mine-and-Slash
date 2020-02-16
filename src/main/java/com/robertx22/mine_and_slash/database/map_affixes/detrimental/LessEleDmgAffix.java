@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.map_affixes.detrimental;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BaseElementalMapAffix;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.minus.LessEleDmgMap;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.AllElementalDamageMulti;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IElementalGenerated;
@@ -19,7 +19,7 @@ public class LessEleDmgAffix extends BaseElementalMapAffix {
 
     @Override
     public IElementalGenerated<StatMod> getGenStat() {
-        return new LessEleDmgMap(Elements.Nature);
+        return (IElementalGenerated<StatMod>) new AllElementalDamageMulti(Elements.Nature).size(StatMod.Size.LESS);
     }
 
     @Override

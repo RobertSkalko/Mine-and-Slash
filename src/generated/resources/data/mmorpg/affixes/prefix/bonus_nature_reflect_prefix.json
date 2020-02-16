@@ -17,12 +17,10 @@
   "mods": [
     {
       "id": "nature_thorns_reflect_flat",
-      "multi": 0.5,
       "registry": "stat_mod"
     },
     {
       "id": "nature_resist_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

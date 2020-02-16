@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighHealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
@@ -40,8 +40,8 @@ public class NecklaceNature extends BaseUniqueNecklace {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new HighHealthFlat(), new ElementalTransferFlat(Elements.Fire, Elements.Nature),
-                new ElementalResistFlat(Elements.Fire)
+            new HealthFlat().size(StatMod.Size.HIGH), new ElementalTransferFlat(Elements.Fire, Elements.Nature),
+            new ElementalResistFlat(Elements.Fire)
         );
 
     }

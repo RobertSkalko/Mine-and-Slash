@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.LowElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
@@ -39,13 +39,13 @@ public class Wisdom extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new MagicShieldRegenFlat(), new LowElementalResistFlat(Elements.Nature),
-                             new LowElementalResistFlat(Elements.Fire), new LowElementalResistFlat(Elements.Thunder),
-                             new LowElementalResistFlat(Elements.Water)
+        return Arrays.asList(new MagicShieldRegenFlat(), new ElementalResistFlat(Elements.Nature).size(StatMod.Size.LOW),
+            new ElementalResistFlat(Elements.Fire).size(StatMod.Size.LOW), new ElementalResistFlat(Elements.Thunder).size(StatMod.Size.LOW),
+            new ElementalResistFlat(Elements.Water).size(StatMod.Size.LOW)
 
         )
 
-                ;
+            ;
     }
 
     @Override

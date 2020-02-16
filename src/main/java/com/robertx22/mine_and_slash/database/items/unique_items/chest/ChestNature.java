@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.database.items.unique_items.chest;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighHealthFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighHealthRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -40,14 +40,14 @@ public class ChestNature extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighHealthRegenFlat(), new ElementalResistFlat(Elements.Nature),
-                             new ElementalTransferFlat(Elements.Water, Elements.Nature)
+        return Arrays.asList(new HealthRegenFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Nature),
+            new ElementalTransferFlat(Elements.Water, Elements.Nature)
         );
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HighHealthFlat());
+        return Arrays.asList(new HealthFlat().size(StatMod.Size.HIGH));
     }
 
     @Override

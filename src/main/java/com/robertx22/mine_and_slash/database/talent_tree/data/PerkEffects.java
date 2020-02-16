@@ -15,7 +15,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.PerkEffectsWrapper;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 import java.util.HashMap;
 
@@ -64,56 +64,56 @@ public class PerkEffects {
     public static void create() {
 
         PHYSICAL_DMG = PerkEffectBuilder.build(
-                "phys_dmg", PhysicalDamage.getInstance(), new ExactStatData(2, StatTypes.Percent, PhysicalDamage.GUID));
+                "phys_dmg", PhysicalDamage.getInstance(), new ExactStatData(2, StatModTypes.Percent, PhysicalDamage.GUID));
         SPELL_DMG = PerkEffectBuilder.build(
-                "spell_dmg", SpellDamage.getInstance(), new ExactStatData(2, StatTypes.Flat, SpellDamage.GUID));
+                "spell_dmg", SpellDamage.getInstance(), new ExactStatData(2, StatModTypes.Flat, SpellDamage.GUID));
         CRIT_HIT = PerkEffectBuilder.build(
-                "crit_hit", CriticalHit.getInstance(), new ExactStatData(1, StatTypes.Flat, CriticalHit.GUID));
+                "crit_hit", CriticalHit.getInstance(), new ExactStatData(1, StatModTypes.Flat, CriticalHit.GUID));
         CRIT_DMG = PerkEffectBuilder.build(
-                "crit_dmg", CriticalDamage.getInstance(), new ExactStatData(3, StatTypes.Flat, CriticalDamage.GUID));
+                "crit_dmg", CriticalDamage.getInstance(), new ExactStatData(3, StatModTypes.Flat, CriticalDamage.GUID));
         BLOCK_PERCENT = PerkEffectBuilder.build(
-                "block_percent", BlockStrength.INSTANCE, new ExactStatData(3, StatTypes.Percent, BlockStrength.GUID));
+                "block_percent", BlockStrength.INSTANCE, new ExactStatData(3, StatModTypes.Percent, BlockStrength.GUID));
 
         int core_amount = 1;
 
         INTELLIGENCE = PerkEffectBuilder.build(
-                "int", Intelligence.INSTANCE, new ExactStatData(core_amount, StatTypes.Flat, Intelligence.GUID));
+                "int", Intelligence.INSTANCE, new ExactStatData(core_amount, StatModTypes.Flat, Intelligence.GUID));
         WISDOM = PerkEffectBuilder.build(
-                "wis", Wisdom.INSTANCE, new ExactStatData(core_amount, StatTypes.Flat, Wisdom.GUID));
+                "wis", Wisdom.INSTANCE, new ExactStatData(core_amount, StatModTypes.Flat, Wisdom.GUID));
 
         STAMINA = PerkEffectBuilder.build(
-                "sta", Stamina.INSTANCE, new ExactStatData(core_amount, StatTypes.Flat, Stamina.GUID));
+                "sta", Stamina.INSTANCE, new ExactStatData(core_amount, StatModTypes.Flat, Stamina.GUID));
         DEXTERITY = PerkEffectBuilder.build(
-                "dex", Dexterity.INSTANCE, new ExactStatData(core_amount, StatTypes.Flat, Dexterity.GUID));
+                "dex", Dexterity.INSTANCE, new ExactStatData(core_amount, StatModTypes.Flat, Dexterity.GUID));
 
         VITALITY = PerkEffectBuilder.build(
-                "vit", Vitality.INSTANCE, new ExactStatData(core_amount, StatTypes.Flat, Vitality.GUID));
+                "vit", Vitality.INSTANCE, new ExactStatData(core_amount, StatModTypes.Flat, Vitality.GUID));
         STRENGTH = PerkEffectBuilder.build(
-                "str", Strength.INSTANCE, new ExactStatData(core_amount, StatTypes.Flat, Strength.GUID));
+                "str", Strength.INSTANCE, new ExactStatData(core_amount, StatModTypes.Flat, Strength.GUID));
 
         MAGIC_SHIELD_PERCENT = PerkEffectBuilder.build(
-                "ms_percent", MagicShield.getInstance(), new ExactStatData(4, StatTypes.Percent, MagicShield.GUID));
+                "ms_percent", MagicShield.getInstance(), new ExactStatData(4, StatModTypes.Percent, MagicShield.GUID));
         MANA_PERCENT = PerkEffectBuilder.build(
-                "mana_percent", Mana.getInstance(), new ExactStatData(4, StatTypes.Percent, Mana.GUID));
+                "mana_percent", Mana.getInstance(), new ExactStatData(4, StatModTypes.Percent, Mana.GUID));
         HEALTH_PERCENT = PerkEffectBuilder.build(
-                "hp_percent", Health.getInstance(), new ExactStatData(3, StatTypes.Percent, Health.GUID));
+                "hp_percent", Health.getInstance(), new ExactStatData(3, StatModTypes.Percent, Health.GUID));
         ENERGY_PERCENT = PerkEffectBuilder.build(
-                "energy_percent", Energy.getInstance(), new ExactStatData(4, StatTypes.Percent, Energy.GUID));
+                "energy_percent", Energy.getInstance(), new ExactStatData(4, StatModTypes.Percent, Energy.GUID));
         DODGE_PERCENT = PerkEffectBuilder.build(
-                "dodge_percent", DodgeRating.getInstance(), new ExactStatData(5, StatTypes.Percent, DodgeRating.GUID));
+                "dodge_percent", DodgeRating.getInstance(), new ExactStatData(5, StatModTypes.Percent, DodgeRating.GUID));
         ARMOR_PERCENT = PerkEffectBuilder.build(
-                "armor_percent", Armor.getInstance(), new ExactStatData(5, StatTypes.Percent, Armor.GUID));
+                "armor_percent", Armor.getInstance(), new ExactStatData(5, StatModTypes.Percent, Armor.GUID));
 
         MANA_REGEN_PERCENT = PerkEffectBuilder.build(
-                "mana_regen_percent", ManaRegen.getInstance(), new ExactStatData(5, StatTypes.Percent, ManaRegen.GUID));
+                "mana_regen_percent", ManaRegen.getInstance(), new ExactStatData(5, StatModTypes.Percent, ManaRegen.GUID));
         HEALTH_REGEN_PERCENT = PerkEffectBuilder.build("hp_regen_percent", HealthRegen.getInstance(),
-                                                       new ExactStatData(5, StatTypes.Percent, HealthRegen.GUID)
+                                                       new ExactStatData(5, StatModTypes.Percent, HealthRegen.GUID)
         );
         ENERGY_REGEN_PERCENT = PerkEffectBuilder.build("energy_regen_percent", EnergyRegen.getInstance(),
-                                                       new ExactStatData(5, StatTypes.Percent, EnergyRegen.GUID)
+                                                       new ExactStatData(5, StatModTypes.Percent, EnergyRegen.GUID)
         );
         MAGIC_SHIELD_REGEN_PERCENT = PerkEffectBuilder.build("ms_regen_percent", MagicShieldRegen.getInstance(),
-                                                             new ExactStatData(5, StatTypes.Percent,
+                                                             new ExactStatData(5, StatModTypes.Percent,
                                                                                MagicShieldRegen.GUID
                                                              )
         );
@@ -123,12 +123,12 @@ public class PerkEffects {
         for (WeaponTypes wep : WeaponTypes.getAll()) {
             WEP_DMG_MAP.put(
                     wep, PerkEffectBuilder.build(wep.name().toLowerCase() + "_dmg_percent", new WeaponDamage(wep),
-                                                 new ExactStatData(wepDmg, StatTypes.Flat, new WeaponDamage(wep))
+                                                 new ExactStatData(wepDmg, StatModTypes.Flat, new WeaponDamage(wep))
                     ));
 
             WEP_ELE_DMG_MAP.put(
                     wep, PerkEffectBuilder.build(wep.name().toLowerCase() + "_ele_dmg_percent", EleWepDmg.MAP.get(wep),
-                                                 new ExactStatData(wepDmg, StatTypes.Flat, EleWepDmg.MAP.get(wep))
+                                                 new ExactStatData(wepDmg, StatModTypes.Flat, EleWepDmg.MAP.get(wep))
                     ));
 
         }
@@ -139,25 +139,25 @@ public class PerkEffects {
 
             ELE_RES_PERCENT_MAP.put(
                     ele, PerkEffectBuilder.build(ele.name().toLowerCase() + "_res", new ElementalResist(ele),
-                                                 new ExactStatData(elenum, StatTypes.Percent, new ElementalResist(ele))
+                                                 new ExactStatData(elenum, StatModTypes.Percent, new ElementalResist(ele))
                     ));
 
             SPELL_DMG_PERCENT_MAP.put(
                     ele, PerkEffectBuilder.build(ele.name().toLowerCase() + "_spell_dmg", new ElementalSpellDamage(ele),
-                                                 new ExactStatData(elenum, StatTypes.Percent,
+                                                 new ExactStatData(elenum, StatModTypes.Percent,
                                                                    new ElementalSpellDamage(ele)
                                                  )
                     ));
 
             ELE_PENE_PERCENT_MAP.put(
                     ele, PerkEffectBuilder.build(ele.name().toLowerCase() + "_pene", new ElementalPene(ele),
-                                                 new ExactStatData(elenum, StatTypes.Percent, new ElementalPene(ele))
+                                                 new ExactStatData(elenum, StatModTypes.Percent, new ElementalPene(ele))
                     ));
 
             ATTACK_DAMAGE_PERCENT_MAP.put(
                     ele, PerkEffectBuilder.build(ele.name().toLowerCase() + "_attack_dmg",
                                                  new ElementalAttackDamage(ele),
-                                                 new ExactStatData(elenum, StatTypes.Percent,
+                                                 new ExactStatData(elenum, StatModTypes.Percent,
                                                                    new ElementalAttackDamage(ele)
                                                  )
                     ));
@@ -165,7 +165,7 @@ public class PerkEffects {
             SPELL_TO_ATK_DAMAGE_MAP.put(
                     ele, PerkEffectBuilder.build(ele.name().toLowerCase() + "_spell_to_attack_dmg",
                                                  new ElementalSpellToAttackDMG(ele),
-                                                 new ExactStatData(elenum, StatTypes.Flat,
+                                                 new ExactStatData(elenum, StatModTypes.Flat,
                                                                    new ElementalSpellToAttackDMG(ele)
                                                  )
                     ));
@@ -173,14 +173,14 @@ public class PerkEffects {
             SPELL_TO_ATK_DAMAGE_PERCENT_MAP.put(
                     ele, PerkEffectBuilder.build(ele.name().toLowerCase() + "_spell_to_attack_dmg_percent",
                                                  new ElementalSpellToAttackDMG(ele),
-                                                 new ExactStatData(10, StatTypes.Percent,
+                                                 new ExactStatData(10, StatModTypes.Percent,
                                                                    new ElementalSpellToAttackDMG(ele)
                                                  )
                     ));
 
             All_ELE_DMG_MAP.put(
                     ele, PerkEffectBuilder.build(ele.name().toLowerCase() + "_all_dmg", new AllElementalDamage(ele),
-                                                 new ExactStatData(elenum, StatTypes.Flat, new AllElementalDamage(ele))
+                                                 new ExactStatData(elenum, StatModTypes.Flat, new AllElementalDamage(ele))
                     ));
 
         }

@@ -23,12 +23,10 @@
   "mods": {
     "2": {
       "id": "critical_hit_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "spell_thunder_damage_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

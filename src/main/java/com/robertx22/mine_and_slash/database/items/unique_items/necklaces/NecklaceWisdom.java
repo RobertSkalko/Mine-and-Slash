@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighMagicShieldRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -17,7 +17,7 @@ import java.util.List;
 public class NecklaceWisdom extends BaseUniqueNecklace {
 
     static StatReq req = new StatReq(
-            LvlPointStat.INTELLIGENCE, StatReq.Size.NORMAL, LvlPointStat.WISDOM, StatReq.Size.TINY);
+        LvlPointStat.INTELLIGENCE, StatReq.Size.NORMAL, LvlPointStat.WISDOM, StatReq.Size.TINY);
 
     private NecklaceWisdom() {
     }
@@ -48,12 +48,12 @@ public class NecklaceWisdom extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighManaFlat(), new HighMagicShieldRegenFlat());
+        return Arrays.asList(new ManaFlat().size(StatMod.Size.HIGH), new MagicShieldRegenFlat().size(StatMod.Size.HIGH));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HighCoreStatFlat(Wisdom.INSTANCE));
+        return Arrays.asList(new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.VERY_HIGH));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -21,7 +21,7 @@ public class TheEmpress extends BaseMajorArcana {
     @Override
     public List<StatMod> getStats() {
         return Arrays.asList(
-                new HighArmorFlat(), new CriticalDamagePercent(), new ElementalSpellDamageFlat(Elements.Nature));
+            new ArmorFlat().size(StatMod.Size.HIGH), new CriticalDamagePercent(), new ElementalSpellDamageFlat(Elements.Nature));
     }
 
     @Override

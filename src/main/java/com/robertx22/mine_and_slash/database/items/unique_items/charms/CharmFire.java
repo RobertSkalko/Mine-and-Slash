@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.database.items.unique_items.charms;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.ManaRegenPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -21,7 +21,7 @@ public class CharmFire extends BaseUniqueCharm {
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+        LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -41,8 +41,8 @@ public class CharmFire extends BaseUniqueCharm {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new ManaRegenPercent(), new HighElementalPeneFlat(Elements.Fire),
-                new ElementalResistFlat(Elements.Fire)
+            new ManaRegenPercent(), new ElementalPeneFlat(Elements.Fire).size(StatMod.Size.HIGH),
+            new ElementalResistFlat(Elements.Fire)
         );
     }
 

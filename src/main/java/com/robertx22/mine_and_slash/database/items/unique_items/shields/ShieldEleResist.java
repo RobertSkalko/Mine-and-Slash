@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
@@ -37,8 +37,8 @@ public class ShieldEleResist extends BaseUniqueShield implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalResistFlat(Elements.Elemental), new HighCoreStatFlat(Vitality.INSTANCE),
-            new HighCoreStatFlat(Strength.INSTANCE)
+            new ElementalResistFlat(Elements.Elemental), new CoreStatFlat(Vitality.INSTANCE).size(StatMod.Size.HIGH),
+            new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.HIGH)
         );
     }
 

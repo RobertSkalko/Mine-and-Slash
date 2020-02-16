@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.mods.flat.elemental;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleSpellDmg;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class AllEleSpellDmgFlat extends StatMod {
 
@@ -23,8 +23,8 @@ public class AllEleSpellDmgFlat extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Flat;
+    public StatModTypes getModType() {
+        return StatModTypes.Flat;
     }
 
 }

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
 import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.data_packs.JsonUtils;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
-import com.robertx22.mine_and_slash.database.serialization.JsonUtils;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializablePart;
 
 import java.util.ArrayList;
@@ -62,15 +62,15 @@ public class Requirements implements ISerializablePart<Requirements> {
     }
 
     public static List<ISerializablePart> possible = Arrays.asList(
-            new ExactUniquesRequierement(), new LevelRequirement(), new SlotRequirement(), new UniqueTierRequirement());
+        new ExactUniquesRequierement(), new LevelRequirement(), new SlotRequirement(), new UniqueTierRequirement());
 
     @Override
     public Requirements fromJson(JsonObject json) {
         try {
             Requirements newobj = new Requirements(JsonUtils.jsonArrayToPartList(json.getAsJsonArray("list"), possible)
-                                                           .stream()
-                                                           .map(x -> (BaseRequirement) x)
-                                                           .collect(Collectors.toList()));
+                .stream()
+                .map(x -> (BaseRequirement) x)
+                .collect(Collectors.toList()));
             return newobj;
         } catch (Exception e) {
             e.printStackTrace();

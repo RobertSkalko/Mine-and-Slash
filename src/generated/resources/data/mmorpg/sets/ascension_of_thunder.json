@@ -31,17 +31,14 @@
   "mods": {
     "2": {
       "id": "thunder_pene_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "3": {
       "id": "thunder_focus_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "4": {
       "id": "thunder_affinity_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   }

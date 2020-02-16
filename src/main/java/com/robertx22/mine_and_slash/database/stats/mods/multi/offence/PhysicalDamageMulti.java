@@ -3,14 +3,9 @@ package com.robertx22.mine_and_slash.database.stats.mods.multi.offence;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class PhysicalDamageMulti extends StatMod {
-
-    @Override
-    public String GUID() {
-        return "physical_damage_multi";
-    }
 
     @Override
     public float Min() {
@@ -23,8 +18,8 @@ public class PhysicalDamageMulti extends StatMod {
     }
 
     @Override
-    public StatTypes Type() {
-        return StatTypes.Multi;
+    public StatModTypes getModType() {
+        return StatModTypes.Multi;
     }
 
     @Override

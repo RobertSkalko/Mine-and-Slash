@@ -30,18 +30,15 @@
   },
   "mods": {
     "2": {
-      "id": "mana_flat",
-      "multi": 1.0,
+      "id": "high_mana_flat",
       "registry": "stat_mod"
     },
     "3": {
       "id": "all_ele_spell_dmg_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     "4": {
       "id": "all_ele_dmg_flat",
-      "multi": 2.0,
       "registry": "stat_mod"
     }
   }

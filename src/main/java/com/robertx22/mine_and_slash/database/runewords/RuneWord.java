@@ -2,11 +2,11 @@ package com.robertx22.mine_and_slash.database.runewords;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.data_packs.JsonUtils;
+import com.robertx22.mine_and_slash.data_packs.runewords.SerializableRuneword;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
-import com.robertx22.mine_and_slash.database.serialization.JsonUtils;
-import com.robertx22.mine_and_slash.database.serialization.runewords.SerializableRuneword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISerializedRegistryEntry<RuneWord>,
-        ISerializable<RuneWord> {
+    ISerializable<RuneWord> {
 
     public static RuneWord EMPTY = EmptyRuneWord.getInstance();
 
@@ -49,7 +49,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
     public boolean isFromDatapack() {
         return true;
     }
-    
+
     @Override
     public int getRarityRank() {
         return IRarity.Uncommon;
@@ -131,8 +131,8 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
         JsonObject json = getDefaultJson();
 
         json.add(
-                "runes",
-                JsonUtils.stringListToJsonArray(runes().stream().map(x -> x.GUID()).collect(Collectors.toList()))
+            "runes",
+            JsonUtils.stringListToJsonArray(runes().stream().map(x -> x.GUID()).collect(Collectors.toList()))
         );
 
         JsonArray array = new JsonArray();

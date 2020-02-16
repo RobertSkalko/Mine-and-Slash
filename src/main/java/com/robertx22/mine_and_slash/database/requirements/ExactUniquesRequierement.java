@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
 import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.data_packs.JsonUtils;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.requirements.bases.UniqueItemRequirement;
-import com.robertx22.mine_and_slash.database.serialization.JsonUtils;
 
 import java.util.ArrayList;
 import java.util.List;

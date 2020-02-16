@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.commands.bases.StatSuggestions;
 import com.robertx22.mine_and_slash.commands.bases.StatTypeSuggestions;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -46,7 +46,7 @@ public class GiveStat {
             if (en instanceof LivingEntity) {
                 EntityCap.UnitData data = Load.Unit(en);
                 data.getCustomExactStats()
-                        .add(GUID, statGUID, value, StatTypes.valueOf(statType));
+                        .add(GUID, statGUID, value, StatModTypes.valueOf(statType));
             }
 
         } catch (Exception e) {

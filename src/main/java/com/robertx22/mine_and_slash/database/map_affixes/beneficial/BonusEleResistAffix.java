@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.map_affixes.beneficial;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bonus.BonusEleResistMap;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IElementalGenerated;
@@ -18,7 +18,7 @@ public class BonusEleResistAffix extends BaseElementalMapAffix {
 
     @Override
     public IElementalGenerated<StatMod> getGenStat() {
-        return new BonusEleResistMap(Elements.Nature);
+        return (IElementalGenerated<StatMod>) new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HIGH);
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -53,7 +53,7 @@ public class DivineShieldEffect extends BasePotionEffect implements IApplyStatPo
 
     public ExactStatData getDmgShield(EntityCap.UnitData data, ExtraPotionData extraData) {
         float statAmount = 3F;
-        return new ExactStatData(statAmount, StatTypes.Flat, DamageShield.getInstance()).scaleToLvl(
+        return new ExactStatData(statAmount, StatModTypes.Flat, DamageShield.getInstance()).scaleToLvl(
             extraData.casterLvl);
     }
 

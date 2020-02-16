@@ -16,13 +16,11 @@
   },
   "mods": [
     {
-      "id": "major_armor_flat",
-      "multi": 1.0,
+      "id": "high_armor_flat",
       "registry": "stat_mod"
     },
     {
       "id": "health_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

@@ -24,12 +24,10 @@
   "mods": [
     {
       "id": "fire_pene_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "fire_spell_to_attack_dmg_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

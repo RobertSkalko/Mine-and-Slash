@@ -30,17 +30,14 @@
   "mods": [
     {
       "id": "water_resist_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "health_percent",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "armor_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.tooltips;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
@@ -21,7 +21,7 @@ public class NormalStatTooltip implements IStatTooltipType {
 
         ITextComponent text = getValueComp(info).appendText(" ")
                 .appendSibling(getStatComp(info))
-                .appendSibling(StatTypes.getSuffix(info.type));
+                .appendSibling(StatModTypes.getSuffix(info.type));
 
         if (info.useInDepthStats()) {
             if (info.statRange != null) {
@@ -44,7 +44,7 @@ public class NormalStatTooltip implements IStatTooltipType {
 
         ITextComponent str = new StringTextComponent("");
 
-        if (info.type.equals(StatTypes.Percent) && stat.IsPercent()) {
+        if (info.type.equals(StatModTypes.Percent) && stat.IsPercent()) {
             if (info.amount > 0) {
                 str.appendSibling(Words.Increased.locName());
             } else {
@@ -76,7 +76,7 @@ public class NormalStatTooltip implements IStatTooltipType {
 
         ITextComponent comp = new StringTextComponent("");
         comp.appendText(color + minusplus + info.stat.printValue(info.amount));
-        comp.appendSibling(StatTypes.getNumberSuffix(info.type, info.stat));
+        comp.appendSibling(StatModTypes.getNumberSuffix(info.type, info.stat));
         comp.appendText(TextFormatting.RESET + "");
         return comp;
 

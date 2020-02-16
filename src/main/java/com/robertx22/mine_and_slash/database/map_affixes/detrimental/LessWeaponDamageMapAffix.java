@@ -2,7 +2,8 @@ package com.robertx22.mine_and_slash.database.map_affixes.detrimental;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.DetrimentalMapAffix;
-import com.robertx22.mine_and_slash.database.stats.mods.map_mods.bases.LessWeaponDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -32,7 +33,7 @@ public class LessWeaponDamageMapAffix extends DetrimentalMapAffix implements IGe
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(new LessWeaponDamageFlat(weaponType), percent));
+        return Arrays.asList(StatModData.Load(new WeaponDamageFlat(weaponType).size(StatMod.Size.LESS), percent));
 
     }
 
@@ -40,7 +41,8 @@ public class LessWeaponDamageMapAffix extends DetrimentalMapAffix implements IGe
     public List<BaseMapAffix> generateAllPossibleStatVariations() {
 
         List<BaseMapAffix> list = new ArrayList<>();
-        WeaponTypes.getAll().forEach(x -> list.add(new LessWeaponDamageMapAffix(x)));
+        WeaponTypes.getAll()
+            .forEach(x -> list.add(new LessWeaponDamageMapAffix(x)));
         return list;
     }
 }

@@ -21,12 +21,10 @@
   "mods": [
     {
       "id": "nature_affinity_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     },
     {
       "id": "nature_spell_to_attack_dmg_flat",
-      "multi": 1.0,
       "registry": "stat_mod"
     }
   ]

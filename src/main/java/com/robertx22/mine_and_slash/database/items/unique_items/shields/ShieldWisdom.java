@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
@@ -41,7 +41,7 @@ public class ShieldWisdom extends BaseUniqueShield implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighCoreStatFlat(Wisdom.INSTANCE), new MagicShieldFlat());
+        return Arrays.asList(new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HIGH), new MagicShieldFlat());
     }
 
     @Override

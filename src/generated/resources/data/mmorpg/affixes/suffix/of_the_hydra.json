@@ -26,18 +26,15 @@
   },
   "mods": [
     {
-      "id": "axe_damage_flat",
-      "multi": 0.5,
+      "id": "low_axe_damage_flat",
       "registry": "stat_mod"
     },
     {
-      "id": "bow_damage_flat",
-      "multi": 0.5,
+      "id": "low_bow_damage_flat",
       "registry": "stat_mod"
     },
     {
-      "id": "hammer_damage_flat",
-      "multi": 0.5,
+      "id": "low_hammer_damage_flat",
       "registry": "stat_mod"
     }
   ]

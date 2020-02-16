@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nonnull;
@@ -25,7 +25,7 @@ public class TooltipStatInfo implements ITooltipList {
     public float amount;
 
     @Nonnull
-    public StatTypes type;
+    public StatModTypes type;
 
     @Nonnull
     public TooltipInfo tooltipInfo;
@@ -33,7 +33,7 @@ public class TooltipStatInfo implements ITooltipList {
     public TooltipStatInfo(StatModData data, TooltipInfo info) {
         this.stat = data.getStatMod().GetBaseStat();
         this.amount = data.GetActualVal(info.level);
-        this.type = data.getStatMod().Type();
+        this.type = data.getStatMod().getModType();
         this.tooltipInfo = info;
         this.statRange = new StatRangeContext(data, info.minmax, info.level);
 
