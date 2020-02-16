@@ -28,7 +28,7 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return Arrays.asList(new ArmorFlat().size(StatMod.Size.HIGH));
     }
 
@@ -46,7 +46,7 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return NormalShield.Items.get(0);
     }
 
@@ -56,7 +56,7 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return NormalShield.Items;
     }
 

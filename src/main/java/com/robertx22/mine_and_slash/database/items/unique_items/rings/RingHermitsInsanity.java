@@ -41,7 +41,7 @@ public class RingHermitsInsanity extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthPercent().size(StatMod.Size.MUCH_LESS), new CriticalDamagePercent().size(StatMod.Size.MAJOR));
+        return Arrays.asList(new HealthPercent().size(StatMod.Size.CRIPPLED), new CriticalDamagePercent().size(StatMod.Size.MAJOR));
     }
 
     @Override

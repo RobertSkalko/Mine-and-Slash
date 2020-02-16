@@ -38,7 +38,7 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return ItemBow.Items.get(0);
     }
 
@@ -53,7 +53,7 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ItemBow.Items;
     }
 

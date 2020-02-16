@@ -35,7 +35,7 @@ public class Bracelet extends GearItemSlot {
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return eleDmgs();
     }
 
@@ -45,17 +45,17 @@ public class Bracelet extends GearItemSlot {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return ItemBracelet.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ItemBracelet.Items;
     }
 

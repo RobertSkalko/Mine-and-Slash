@@ -19,7 +19,7 @@ public class ClothPants extends BasePants {
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return clothPrimary();
     }
 
@@ -29,12 +29,12 @@ public class ClothPants extends BasePants {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return this.clothArmorStats();
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ClothPantsItem.Items;
     }
 

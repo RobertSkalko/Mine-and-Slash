@@ -37,7 +37,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
         while (Stats > 0) {
             StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
-                    .PossibleSecondaryStats());
+                .getPossibleSecondaryStats());
             this.Mods.add(StatModData.NewRandom(gear.getRarity(), mod));
             Stats--;
 
@@ -47,7 +47,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
     public void AddStat(GearItemData gear) {
         StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
-                .PossibleSecondaryStats());
+            .getPossibleSecondaryStats());
 
         gear.secondaryStats.Mods.add(StatModData.NewRandom(gear.getRarity(), mod));
 
@@ -59,7 +59,9 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
     public void RerollNumbers(GearItemData gear) {
 
         for (StatModData data : this.Mods) {
-            data.setPercent(gear.getRarity().StatPercents().genPercent());
+            data.setPercent(gear.getRarity()
+                .StatPercents()
+                .genPercent());
         }
 
     }
@@ -70,7 +72,8 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.GRAYCOMP()
-                .appendSibling(Words.Secondary_Stats.locName().appendText(":")));
+            .appendSibling(Words.Secondary_Stats.locName()
+                .appendText(":")));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {

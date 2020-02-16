@@ -37,12 +37,12 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return ItemStaff.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ItemStaff.Items;
     }
 

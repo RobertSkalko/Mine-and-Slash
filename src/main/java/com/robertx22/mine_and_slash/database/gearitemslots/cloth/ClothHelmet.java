@@ -19,7 +19,7 @@ public class ClothHelmet extends BaseHelmet {
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return clothPrimary();
     }
 
@@ -29,12 +29,12 @@ public class ClothHelmet extends BaseHelmet {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return this.clothArmorStats();
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ClothHelmetItem.Items;
     }
 

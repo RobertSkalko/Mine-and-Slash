@@ -24,17 +24,17 @@ public class LeatherChest extends BaseChest {
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return leatherPrimary();
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return leatherArmorStats();
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return LeatherChestItem.Items;
     }
 

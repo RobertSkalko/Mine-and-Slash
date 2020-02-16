@@ -25,7 +25,7 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.VITALITY, StatReq.Size.SMALL);
+        LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.VITALITY, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -38,7 +38,7 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return ItemHammer.Items.get(0);
     }
 
@@ -48,7 +48,7 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ItemHammer.Items;
     }
 

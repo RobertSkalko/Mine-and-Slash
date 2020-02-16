@@ -33,7 +33,7 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
+        LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
 
     @Override
     public StatReq getRequirements() {
@@ -46,7 +46,7 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return Items.CROSSBOW;
     }
 
@@ -56,12 +56,12 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Physical));
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return new HashMap<>();
     }
 

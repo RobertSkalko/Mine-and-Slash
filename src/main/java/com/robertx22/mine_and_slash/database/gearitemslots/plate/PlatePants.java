@@ -23,7 +23,7 @@ public class PlatePants extends BasePants {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return this.plateArmorStats();
     }
 
@@ -33,12 +33,12 @@ public class PlatePants extends BasePants {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return PlatePantsItem.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return PlatePantsItem.Items;
     }
 

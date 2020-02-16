@@ -43,12 +43,12 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return ItemAxe.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ItemAxe.Items;
     }
 

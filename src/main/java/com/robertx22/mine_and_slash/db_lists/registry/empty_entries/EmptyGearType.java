@@ -18,7 +18,7 @@ public class EmptyGearType extends GearItemSlot {
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return new ArrayList<>();
     }
 
@@ -33,17 +33,17 @@ public class EmptyGearType extends GearItemSlot {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return new ArrayList<>();
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return Items.AIR;
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return new HashMap<>();
     }
 

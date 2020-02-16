@@ -13,7 +13,7 @@ public abstract class BaseArmor extends GearItemSlot {
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return Arrays.asList(new PosStats(new HealthFlat()));
     }
 

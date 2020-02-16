@@ -40,11 +40,11 @@ public class Charm extends GearItemSlot {
     static float multi = 2;
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         List<PosStats> list = new ArrayList<>();
         new ElementalPeneFlat(Elements.Nature).allSingleElementVariations()
-                .stream()
-                .forEach(x -> list.add(new PosStats((StatMod) x)));
+            .stream()
+            .forEach(x -> list.add(new PosStats((StatMod) x)));
         return list;
 
     }
@@ -55,17 +55,17 @@ public class Charm extends GearItemSlot {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return new CoreStatFlat(Stamina.INSTANCE).generateAllPossibleStatVariations();
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return ItemCharm.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ItemCharm.Items;
     }
 

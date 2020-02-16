@@ -37,7 +37,7 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return ItemSword.Items.get(0);
     }
 
@@ -47,7 +47,7 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ItemSword.Items;
     }
 

@@ -30,14 +30,16 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
         this.Mods = new ArrayList<StatModData>();
 
         if (gear.isUnique()) {
-            for (StatMod mod : gear.uniqueStats.getUniqueItem().primaryStats()) {
+            for (StatMod mod : gear.uniqueStats.getUniqueItem()
+                .primaryStats()) {
                 StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
                 this.Mods.add(moddata);
             }
 
         } else {
 
-            PosStats pos = RandomUtils.weightedRandom(gear.GetBaseGearType().PrimaryStats());
+            PosStats pos = RandomUtils.weightedRandom(gear.GetBaseGearType()
+                .getPossiblePrimaryStats());
 
             int statsAmount = pos.mods.size();
 
@@ -54,7 +56,9 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
     public void RerollNumbers(GearItemData gear) {
 
         for (StatModData data : this.Mods) {
-            data.setPercent(gear.getRarity().StatPercents().genPercent());
+            data.setPercent(gear.getRarity()
+                .StatPercents()
+                .genPercent());
         }
 
     }
@@ -65,7 +69,9 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         if (info.useInDepthStats()) {
-            list.add(Styles.GRAYCOMP().appendSibling(Words.Primary_Stats.locName().appendText(":")));
+            list.add(Styles.GRAYCOMP()
+                .appendSibling(Words.Primary_Stats.locName()
+                    .appendText(":")));
         }
 
         list.add(new StringTextComponent(" "));

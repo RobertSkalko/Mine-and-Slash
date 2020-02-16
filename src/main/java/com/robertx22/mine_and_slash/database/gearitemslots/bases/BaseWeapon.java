@@ -16,18 +16,18 @@ import java.util.List;
 public abstract class BaseWeapon extends GearItemSlot implements IWeapon {
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return Arrays.asList(
-                new PosStats(new PhysicalDamageFlat()).weight(32000),
-                new PosStats(new PhysicalDamageFlat(), new ElementalAttackDamageFlat(Elements.Nature)),
-                new PosStats(new PhysicalDamageFlat(), new ElementalAttackDamageFlat(Elements.Fire)),
-                new PosStats(new PhysicalDamageFlat(), new ElementalAttackDamageFlat(Elements.Water)),
-                new PosStats(new PhysicalDamageFlat(), new ElementalAttackDamageFlat(Elements.Thunder))
+            new PosStats(new PhysicalDamageFlat()).weight(32000),
+            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.VERY_LOW), new ElementalAttackDamageFlat(Elements.Nature).size(StatMod.Size.VERY_LOW)),
+            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.VERY_LOW), new ElementalAttackDamageFlat(Elements.Fire).size(StatMod.Size.VERY_LOW)),
+            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.VERY_LOW), new ElementalAttackDamageFlat(Elements.Water).size(StatMod.Size.VERY_LOW)),
+            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.VERY_LOW), new ElementalAttackDamageFlat(Elements.Thunder).size(StatMod.Size.VERY_LOW))
         );
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new LifestealFlat(), new LifeOnHitFlat());
     }
 

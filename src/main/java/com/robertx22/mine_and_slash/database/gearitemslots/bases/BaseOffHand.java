@@ -15,12 +15,12 @@ public abstract class BaseOffHand extends GearItemSlot {
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return Arrays.asList(new PosStats(new BlockStrengthFlat()));
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return Arrays.asList(new ArmorFlat());
     }
 

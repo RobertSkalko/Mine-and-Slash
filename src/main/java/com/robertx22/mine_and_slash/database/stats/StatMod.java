@@ -26,6 +26,7 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     //protected String afterPrefix = "";
 
     public enum Size {
+        CRIPPLED("crippled_", -3F),
         LESS("less_", -0.5F),
         MUCH_LESS("much_less_", -1F),
         TINY("tiny_", 0.25F),

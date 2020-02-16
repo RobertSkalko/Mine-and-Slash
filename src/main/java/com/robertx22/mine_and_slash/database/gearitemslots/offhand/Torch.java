@@ -42,24 +42,24 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return MyTorch.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return MyTorch.Items;
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return Arrays.asList(new PosStats(new ManaRegenFlat().size(StatMod.Size.HIGH)), new PosStats(new EnergyRegenFlat().size(StatMod.Size.HIGH)),
             new PosStats(new MagicShieldRegenFlat().size(StatMod.Size.HIGH))
         );
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return this.coreStatMods();
     }
 

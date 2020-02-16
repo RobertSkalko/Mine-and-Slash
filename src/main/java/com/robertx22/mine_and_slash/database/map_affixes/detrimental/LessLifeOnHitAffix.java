@@ -17,7 +17,7 @@ public class LessLifeOnHitAffix extends DetrimentalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(new LifeOnHitFlat().size(StatMod.Size.LESS), percent));
+        return Arrays.asList(StatModData.Load(new LifeOnHitFlat().size(StatMod.Size.MUCH_LESS), percent));
     }
 
 }

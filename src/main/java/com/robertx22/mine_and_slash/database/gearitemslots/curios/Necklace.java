@@ -39,9 +39,9 @@ public class Necklace extends GearItemSlot {
     }
 
     @Override
-    public List<PosStats> PrimaryStats() {
+    public List<PosStats> getPossiblePrimaryStats() {
         return Arrays.asList(new PosStats(new HealthRegenFlat()), new PosStats(new BonusExpFlat()),
-                             new PosStats(new MagicShieldRegenFlat())
+            new PosStats(new MagicShieldRegenFlat())
         );
     }
 
@@ -51,19 +51,19 @@ public class Necklace extends GearItemSlot {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
 
         return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
 
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return ItemNecklace.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return ItemNecklace.Items;
     }
 

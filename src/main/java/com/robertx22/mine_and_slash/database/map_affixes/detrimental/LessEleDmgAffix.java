@@ -19,7 +19,7 @@ public class LessEleDmgAffix extends BaseElementalMapAffix {
 
     @Override
     public StatMod.Size getSize() {
-        return StatMod.Size.LESS;
+        return StatMod.Size.CRIPPLED;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LessEleDmgAffix extends BaseElementalMapAffix {
     @Override
     public List<StatModData> Stats(int percent) {
         return Arrays.asList(StatModData.Load(getGenStat().newGeneratedInstance(element)
-            .size(StatMod.Size.LESS), percent));
+            .size(getSize()), percent));
     }
 
     @Override

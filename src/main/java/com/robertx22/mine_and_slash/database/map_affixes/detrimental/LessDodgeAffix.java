@@ -17,7 +17,7 @@ public class LessDodgeAffix extends DetrimentalMapAffix {
 
     @Override
     public List<StatModData> Stats(int percent) {
-        return Arrays.asList(StatModData.Load(new DodgeRatingFlat().size(StatMod.Size.LESS), percent));
+        return Arrays.asList(StatModData.Load(new DodgeRatingFlat().size(StatMod.Size.MUCH_LESS), percent));
     }
 
 }

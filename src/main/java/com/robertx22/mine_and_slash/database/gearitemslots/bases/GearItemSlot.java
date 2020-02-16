@@ -59,7 +59,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public List<PosStats> leatherPrimary() {
-        return Arrays.asList(new PosStats(new DodgeRatingFlat(), new HealthFlat().size(StatMod.Size.HIGH)));
+        return Arrays.asList(new PosStats(new DodgeRatingFlat(), new HealthFlat().size(StatMod.Size.LOW)));
     }
 
     public List<PosStats> eleDmgs() {
@@ -135,15 +135,15 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return Ref.MODID + ".gear_type." + formattedGUID();
     }
 
-    public abstract List<PosStats> PrimaryStats();
+    public abstract List<PosStats> getPossiblePrimaryStats();
 
-    public abstract List<StatMod> PossibleSecondaryStats();
+    public abstract List<StatMod> getPossibleSecondaryStats();
 
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return Items.AIR;
     }
 
-    public abstract HashMap<Integer, Item> ItemsForRarities();
+    public abstract HashMap<Integer, Item> getItemsForRaritiesMap();
 
     public int Weight() {
         return 1000;
@@ -151,21 +151,21 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public ItemStack GetStackForRarity(int rarityNum) {
 
-        if (ItemsForRarities().containsKey(rarityNum)) {
-            return new ItemStack(ItemsForRarities().get(rarityNum));
+        if (getItemsForRaritiesMap().containsKey(rarityNum)) {
+            return new ItemStack(getItemsForRaritiesMap().get(rarityNum));
         }
 
-        return new ItemStack(DefaultItem());
+        return new ItemStack(getDefaultItem());
 
     }
 
     public Item GetItemForRarity(int rarityNum) {
 
-        if (ItemsForRarities().containsKey(rarityNum)) {
-            return ItemsForRarities().get(rarityNum);
+        if (getItemsForRaritiesMap().containsKey(rarityNum)) {
+            return getItemsForRaritiesMap().get(rarityNum);
         }
 
-        return DefaultItem();
+        return getDefaultItem();
 
     }
 
@@ -173,7 +173,9 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
         List<StatMod> list = new ArrayList<StatMod>();
 
-        for (StatMod mod : SlashRegistry.StatMods().getAll().values()) {
+        for (StatMod mod : SlashRegistry.StatMods()
+            .getAll()
+            .values()) {
             if (mod instanceof AllTraitMods) {
                 list.add(mod);
             }

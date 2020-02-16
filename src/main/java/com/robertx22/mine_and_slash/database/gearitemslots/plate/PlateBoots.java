@@ -23,7 +23,7 @@ public class PlateBoots extends BaseBoots {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return this.plateArmorStats();
     }
 
@@ -33,12 +33,12 @@ public class PlateBoots extends BaseBoots {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return PlateBootsItem.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return PlateBootsItem.Items;
     }
 

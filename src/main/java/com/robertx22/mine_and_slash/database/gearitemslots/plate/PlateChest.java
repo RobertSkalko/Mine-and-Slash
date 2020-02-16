@@ -23,7 +23,7 @@ public class PlateChest extends BaseChest {
     }
 
     @Override
-    public List<StatMod> PossibleSecondaryStats() {
+    public List<StatMod> getPossibleSecondaryStats() {
         return this.plateArmorStats();
     }
 
@@ -33,12 +33,12 @@ public class PlateChest extends BaseChest {
     }
 
     @Override
-    public Item DefaultItem() {
+    public Item getDefaultItem() {
         return PlateChestItem.Items.get(0);
     }
 
     @Override
-    public HashMap<Integer, Item> ItemsForRarities() {
+    public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return PlateChestItem.Items;
     }
 
