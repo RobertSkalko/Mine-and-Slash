@@ -34,7 +34,7 @@ public class ShieldElemental extends BaseUniqueShield implements IElementalUniqu
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalAffinityFlat(element).multi(0.5F), new ElementalResistFlat(element));
+        return Arrays.asList(new ElementalAffinityFlat(element), new ElementalResistFlat(element));
     }
 
     @Override

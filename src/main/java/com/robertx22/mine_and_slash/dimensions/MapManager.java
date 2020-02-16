@@ -50,6 +50,7 @@ public class MapManager {
         }
 
     }
+    
 
     @Mod.EventBusSubscriber
     public static class announce {

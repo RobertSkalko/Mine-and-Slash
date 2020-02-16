@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.HighCriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalPeneFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -39,8 +39,8 @@ public class StaffWater extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Water)
-                .multi(4));
+        return Arrays.asList(new HighCriticalDamageFlat(), new CriticalHitFlat(), new HighElementalPeneFlat(Elements.Water)
+        );
     }
 
     @Override

@@ -40,6 +40,7 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GearItemRegisters {
 
+    
     public static List<Item> items = new ArrayList<Item>();
 
     private static void register() {
@@ -70,7 +71,7 @@ public class GearItemRegisters {
 
             // offhands
             regRarities(new NormalShield(rarity.Rank(), shieldprop, "normal_shield" + rarity.Rank()),
-                        NormalShield.Items, "shields/normal_shield", rarity.Rank()
+                NormalShield.Items, "shields/normal_shield", rarity.Rank()
             );
 
             regRarities(new MyTorch(rarity.Rank()), MyTorch.Items, "torch/torch", rarity.Rank());

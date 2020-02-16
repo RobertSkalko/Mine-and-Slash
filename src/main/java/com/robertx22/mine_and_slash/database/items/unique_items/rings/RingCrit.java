@@ -4,9 +4,9 @@ import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.SpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.MajorCriticalDamagePercent;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.MajorCriticalHitPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighEnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.HighCriticalDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.HighCriticalHitPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -20,8 +20,9 @@ public class RingCrit extends BaseUniqueRing {
     }
 
     static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.TINY, LvlPointStat.INTELLIGENCE,
-                                     StatReq.Size.SMALL
+        StatReq.Size.SMALL
     );
+
 
     @Override
     public StatReq getRequirements() {
@@ -40,14 +41,12 @@ public class RingCrit extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new MajorCriticalHitPercent().multi(1.5F), new MajorCriticalDamagePercent().multi(1.5F),
-                             new EnergyRegenFlat()
-        );
+        return Arrays.asList(new HighCriticalHitPercent(), new HighCriticalDamagePercent(), new HighEnergyRegenFlat());
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new SpellDamageFlat().multi(0.2F));
+        return Arrays.asList(new SpellDamageFlat());
     }
 
     @Override

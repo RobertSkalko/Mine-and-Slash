@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPenePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalPeneFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -39,8 +39,8 @@ public class StaffThunder extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalDamageFlat(), new ElementalPenePercent(Elements.Thunder), new ManaOnHitFlat()
-                .multi(1.5F));
+        return Arrays.asList(new CriticalDamageFlat(), new HighElementalPeneFlat(Elements.Thunder), new ManaOnHitFlat()
+        );
     }
 
     @Override

@@ -4,9 +4,10 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.WisdomFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.util.text.TextFormatting;
 
@@ -40,7 +41,7 @@ public class ShieldWisdom extends BaseUniqueShield implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new WisdomFlat().multi(1.5F), new MagicShieldPercent().multi(4));
+        return Arrays.asList(new HighCoreStatFlat(Wisdom.INSTANCE), new MagicShieldFlat());
     }
 
     @Override

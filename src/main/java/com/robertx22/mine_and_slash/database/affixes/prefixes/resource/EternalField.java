@@ -28,6 +28,6 @@ public class EternalField extends Prefix {
 
     @Override
     public String locNameForLangFile() {
-        return "Eternal  Field";
+        return "Eternal Field";
     }
 }

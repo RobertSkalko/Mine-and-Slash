@@ -23,6 +23,7 @@ public class ElementalSpellDamagePercent extends ElementalStatMod {
         return ElementalSpellDamage.MAP;
     }
 
+
     @Override
     public float Min() {
         return 2;

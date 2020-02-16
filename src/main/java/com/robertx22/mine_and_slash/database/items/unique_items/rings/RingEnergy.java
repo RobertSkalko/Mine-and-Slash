@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUnique
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.all_stats.CripplePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.SpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighEnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.EnergyRegenPercent;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -40,14 +40,14 @@ public class RingEnergy extends BaseUniqueRing {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new EnergyRegenFlat(), new EnergyRegenPercent().multi(2.5F),
-                new CripplePercent(CriticalDamage.getInstance())
+            new HighEnergyRegenFlat(), new EnergyRegenPercent(),
+            new CripplePercent(CriticalDamage.getInstance())
         );
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new SpellDamageFlat().multi(0.5F));
+        return Arrays.asList(new SpellDamageFlat());
     }
 
     @Override

@@ -5,9 +5,9 @@ import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUnique
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalResistFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -41,7 +41,7 @@ public class PantsWater extends BaseUniquePantsItem {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HighArmorFlat(), new ElementalResistFlat(Elements.Water).multi(2),
+        return Arrays.asList(new HighArmorFlat(), new HighElementalResistFlat(Elements.Water),
                              new ElementalTransferFlat(Elements.Fire, Elements.Water),
                              new ElementalSpellDamagePercent(Elements.Water)
         );

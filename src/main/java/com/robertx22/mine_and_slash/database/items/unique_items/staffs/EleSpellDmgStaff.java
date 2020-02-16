@@ -6,8 +6,8 @@ import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CompletePhysDispersionFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalSpellToAttackDMGFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.LowElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalSpellToAttackDMGPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -34,13 +34,13 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IElementalUniqu
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellToAttackDMGFlat(element).multi(2), new ElementalSpellToAttackDMGPercent(element)
-                .multi(3F), new CompletePhysDispersionFlat());
+        return Arrays.asList(new HighElementalSpellToAttackDMGFlat(element), new ElementalSpellToAttackDMGPercent(element)
+            , new CompletePhysDispersionFlat());
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.25F));
+        return Arrays.asList(new LowElementalAttackDamageFlat(element));
     }
 
     @Override

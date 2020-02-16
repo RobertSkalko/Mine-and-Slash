@@ -5,10 +5,11 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.IntelligenceFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalPeneFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -34,12 +35,13 @@ public class RingElemental extends BaseUniqueRing implements IElementalUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ManaOnHitFlat().multi(3F), new IntelligenceFlat(), new ElementalPeneFlat(element));
+        return Arrays.asList(
+                new ManaOnHitFlat(), new HighCoreStatFlat(Intelligence.INSTANCE), new HighElementalPeneFlat(element));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(element).multi(1.25F));
+        return Arrays.asList(new ElementalSpellDamageFlat(element));
     }
 
     @Override

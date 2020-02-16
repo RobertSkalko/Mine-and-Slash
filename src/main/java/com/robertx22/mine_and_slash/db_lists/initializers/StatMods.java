@@ -49,6 +49,7 @@ import java.util.List;
 
 public class StatMods implements ISlashRegistryInit {
 
+    
     @Override
     public void registerAll() {
 
@@ -141,8 +142,8 @@ public class StatMods implements ISlashRegistryInit {
 
                     add(new LessHealthRegenFlat());
 
-                    add(new MajorCriticalHitPercent());
-                    add(new MajorCriticalDamagePercent());
+                    add(new HighCriticalHitPercent());
+                    add(new HighCriticalDamagePercent());
 
                     add(new HighDodgeFlat());
                     add(new HighArmorFlat());

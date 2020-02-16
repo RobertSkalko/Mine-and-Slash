@@ -5,9 +5,9 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueSword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalSpellToAttackDMGPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.HighCriticalHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.MediumElementalAttackDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.HighElementalSpellToAttackDMGPercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -34,13 +34,13 @@ public class ElementalSaber extends BaseUniqueSword implements IElementalUnique 
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalHitFlat().multi(2), new CriticalDamagePercent(), new ElementalSpellToAttackDMGPercent(element)
-                .multi(3));
+        return Arrays.asList(new HighCriticalHitFlat(), new CriticalDamagePercent(), new HighElementalSpellToAttackDMGPercent(element)
+        );
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(0.5F));
+        return Arrays.asList(new MediumElementalAttackDamageFlat(element));
     }
 
     @Override

@@ -11,6 +11,7 @@ import java.util.List;
 
 public class WorldProviders implements ISlashRegistryInit {
 
+
     public static WorldProviders INSTANCE = new WorldProviders();
 
     public static IWP byBiome(Biome biome) {
@@ -18,11 +19,11 @@ public class WorldProviders implements ISlashRegistryInit {
 
         try {
             first = SlashRegistry.WorldProviders()
-                    .getList()
-                    .stream()
-                    .filter(x -> x.getBiome().equals(biome))
-                    .findFirst()
-                    .get();
+                .getList()
+                .stream()
+                .filter(x -> x.getBiome().equals(biome))
+                .findFirst()
+                .get();
         } catch (Exception e) {
             e.printStackTrace();
         }

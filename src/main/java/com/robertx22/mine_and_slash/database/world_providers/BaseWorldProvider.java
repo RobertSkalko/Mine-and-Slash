@@ -40,10 +40,11 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 public abstract class BaseWorldProvider extends Dimension implements IWP, IRarity,
-        ISlashRegistryEntry<BaseWorldProvider> {
+    ISlashRegistryEntry<BaseWorldProvider> {
 
     public ModDimension moddim;
     private DimensionType type;
+
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -122,8 +123,8 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
             if (i < 0) {
                 return null;
             } else if (chunk.getTopBlockY(
-                    Heightmap.Type.WORLD_SURFACE, p_206921_1_ & 15, p_206921_2_ & 15) > chunk.getTopBlockY(
-                    Heightmap.Type.OCEAN_FLOOR, p_206921_1_ & 15, p_206921_2_ & 15)) {
+                Heightmap.Type.WORLD_SURFACE, p_206921_1_ & 15, p_206921_2_ & 15) > chunk.getTopBlockY(
+                Heightmap.Type.OCEAN_FLOOR, p_206921_1_ & 15, p_206921_2_ & 15)) {
                 return null;
             } else {
                 for (int j = i + 1; j >= 0; --j) {
@@ -190,7 +191,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         OverworldGenSettings settings = (OverworldGenSettings) chunkType.createSettings();
 
         SingleBiomeProviderSettings set = biomeType.func_226840_a_(this.world.getWorldInfo())
-                .setBiome(this.getBiome()); // todo unsure
+            .setBiome(this.getBiome()); // todo unsure
 
         SingleBiomeProvider biomeProvider = biomeType.create(set.setBiome(this.getBiome()));
 

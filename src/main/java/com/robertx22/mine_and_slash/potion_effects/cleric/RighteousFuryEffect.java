@@ -36,10 +36,11 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
         this.addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "2cd621f2-bd94-442f-b94e-5dd6e4e8d6bc",
-                                   (double) 0.2F, AttributeModifier.Operation.MULTIPLY_TOTAL
+            (double) 0.2F, AttributeModifier.Operation.MULTIPLY_TOTAL
         );
 
     }
+
 
     @Override
     public String GUID() {
@@ -64,7 +65,7 @@ public class RighteousFuryEffect extends BasePotionEffect implements IApplyStatP
     public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
         float statAmount = 0.25F * extraData.getStacks();
         return new ExactStatData(statAmount, StatTypes.Flat, ElementalAttackDamage.MAP.get(ele)).scaleToLvl(
-                extraData.casterLvl);
+            extraData.casterLvl);
     }
 
     @Override

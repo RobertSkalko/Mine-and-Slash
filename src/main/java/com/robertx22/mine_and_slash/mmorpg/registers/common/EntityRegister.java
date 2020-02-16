@@ -84,13 +84,14 @@ public class EntityRegister {
         return newType(factory, bif, id, true);
 
     }
+    
 
     private static <T extends Entity> EntityType<T> newType(EntityType.IFactory<T> factory,
                                                             BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif,
                                                             String id, boolean itemRender) {
 
         EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC).setCustomClientFactory(
-                bif).size(0.5F, 0.5F).build(Ref.MODID + ":" + id.toLowerCase());
+            bif).size(0.5F, 0.5F).build(Ref.MODID + ":" + id.toLowerCase());
 
         type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
 

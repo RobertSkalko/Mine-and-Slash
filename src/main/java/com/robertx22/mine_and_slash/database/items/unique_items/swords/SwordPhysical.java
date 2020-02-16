@@ -4,8 +4,9 @@ import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueSword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.PhysicalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.MajorCriticalDamagePercent;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.MajorCriticalHitPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.HighCriticalDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.HighCriticalHitPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -36,8 +37,7 @@ public class SwordPhysical extends BaseUniqueSword {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new MajorCriticalHitPercent().multi(2), new MajorCriticalDamagePercent()
-                .multi(2));
+        return Arrays.asList(new HighCriticalHitPercent(), new HighCriticalDamagePercent(), new CriticalHitMulti());
     }
 
     @Override

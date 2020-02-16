@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.PhysicalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifeOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.LifestealPercent;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -37,7 +38,7 @@ public class StaffLifesteal extends BaseUniqueStaff {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new LifestealFlat().multi(2), new LifeOnHitFlat());
+        return Arrays.asList(new LifestealFlat(), new LifestealPercent(), new LifeOnHitFlat());
     }
 
     @Override

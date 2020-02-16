@@ -28,6 +28,7 @@ public class ContainerTypeRegisters {
 
     static final String PROFESSION_RECIPE_CONTAINER_ID = Ref.MODID + ":" + "profession_recipe_container";
 
+
     @ObjectHolder(PROFESSION_RECIPE_CONTAINER_ID)
     public static final ContainerType<ProfessionContainer> PROFESSION_RECIPE_CONTAINER = null;
 
@@ -50,31 +51,32 @@ public class ContainerTypeRegisters {
 
     @SubscribeEvent
     public static void registerContainers(
-            final RegistryEvent.Register<ContainerType<?>> event) {
+        final RegistryEvent.Register<ContainerType<?>> event) {
 
         IForgeRegistry<ContainerType<?>> r = event.getRegistry();
 
         r.register(IForgeContainerType.create(ProfessionContainer::new)
-                .setRegistryName(PROFESSION_RECIPE_CONTAINER_ID));
+            .setRegistryName(PROFESSION_RECIPE_CONTAINER_ID));
 
         r.register(IForgeContainerType.create(ContainerGearModify::new)
-                .setRegistryName(BlockRegister.GEAR_MODIFY_ID));
+            .setRegistryName(BlockRegister.GEAR_MODIFY_ID));
         r.register(IForgeContainerType.create(ContainerGearRepair::new)
-                .setRegistryName(BlockRegister.GEAR_REPAIR_ID));
+            .setRegistryName(BlockRegister.GEAR_REPAIR_ID));
 
         r.register(IForgeContainerType.create(ContainerGearSalvage::new)
-                .setRegistryName(BlockRegister.GEAR_SALVAGE_ID));
+            .setRegistryName(BlockRegister.GEAR_SALVAGE_ID));
 
         r.register(IForgeContainerType.create(ContainerMapDevice::new)
-                .setRegistryName(BlockRegister.MAP_DEVICE_ID));
+            .setRegistryName(BlockRegister.MAP_DEVICE_ID));
 
         r.register(IForgeContainerType.create(ContainerMasterBag::new)
-                .setRegistryName(MASTER_BAG_ID));
+            .setRegistryName(MASTER_BAG_ID));
 
         r.register(new ContainerType<>(ContainerMapBag::new).setRegistryName(MAP_BAG_ID));
         r.register(new ContainerType<>(ContainerLootBag::new).setRegistryName(LOOT_BAG_ID));
         r.register(new ContainerType<>(ContainerCurrencyBag::new).setRegistryName(CURRENCY_BAG_ID));
 
     }
+
 
 }

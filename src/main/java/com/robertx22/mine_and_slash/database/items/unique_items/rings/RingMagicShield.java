@@ -3,10 +3,11 @@ package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.IntelligenceFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -46,12 +47,14 @@ public class RingMagicShield extends BaseUniqueRing {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new MagicShieldPercent().multi(4), new MagicShieldRegenFlat(), new IntelligenceFlat());
+        return Arrays.asList(new MagicShieldPercent(), new MagicShieldRegenFlat(),
+                             new HighCoreStatFlat(Intelligence.INSTANCE)
+        );
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new MagicShieldFlat().multi(0.5F));
+        return Arrays.asList(new MagicShieldFlat());
     }
 
     @Override

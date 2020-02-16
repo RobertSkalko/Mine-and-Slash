@@ -26,6 +26,7 @@ public class DivineShieldEffect extends BasePotionEffect implements IApplyStatPo
 
     }
 
+
     public static DivineShieldEffect getInstance() {
         return SingletonHolder.INSTANCE;
     }
@@ -53,7 +54,7 @@ public class DivineShieldEffect extends BasePotionEffect implements IApplyStatPo
     public ExactStatData getDmgShield(EntityCap.UnitData data, ExtraPotionData extraData) {
         float statAmount = 3F;
         return new ExactStatData(statAmount, StatTypes.Flat, DamageShield.getInstance()).scaleToLvl(
-                extraData.casterLvl);
+            extraData.casterLvl);
     }
 
     @Override

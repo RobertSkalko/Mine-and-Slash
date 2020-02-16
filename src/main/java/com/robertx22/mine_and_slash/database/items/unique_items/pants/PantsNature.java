@@ -3,10 +3,11 @@ package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.VitalityFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -20,7 +21,8 @@ public class PantsNature extends BaseUniquePantsItem {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
+    static StatReq req = new StatReq(
+            LvlPointStat.VITALITY, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -39,8 +41,9 @@ public class PantsNature extends BaseUniquePantsItem {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new VitalityFlat(), new ElementalResistFlat(Elements.Nature).multi(2), new ElementalTransferFlat(Elements.Fire, Elements.Nature)
-                .multi(2));
+        return Arrays.asList(new HighCoreStatFlat(Strength.INSTANCE), new HighElementalResistFlat(Elements.Nature),
+                             new ElementalTransferFlat(Elements.Fire, Elements.Nature)
+        );
     }
 
     @Override

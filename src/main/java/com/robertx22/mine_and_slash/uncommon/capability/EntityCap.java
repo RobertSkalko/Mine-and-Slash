@@ -396,7 +396,7 @@ public class EntityCap {
             num *= SlashRegistry.getEntityConfig(source, sourcedata).DMG_MULTI;
 
             DamageEffect dmg = new DamageEffect(event, source, target, (int) num, sourcedata, targetdata,
-                                                EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None
+                EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None
             );
 
             dmg.Activate();
@@ -452,7 +452,7 @@ public class EntityCap {
         private void setMobLvlNormally(LivingEntity entity, PlayerEntity nearestPlayer) {
             ModEntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, this);
             int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition(),
-                                                nearestPlayer
+                nearestPlayer
             ) + entityConfig.LEVEL_MODIFIER;
             this.level = MathHelper.clamp(lvl, entityConfig.MIN_LEVEL, entityConfig.MAX_LEVEL);
         }
@@ -537,16 +537,16 @@ public class EntityCap {
                 this.setLevel(level + 1, player);
                 setExp(getRemainingExp());
                 player.sendMessage(
-                        new StringTextComponent(TextFormatting.YELLOW + "" + TextFormatting.BOLD).appendSibling(
-                                Chats.You_have_leveled_up.locName()).appendText("!"));
+                    new StringTextComponent(TextFormatting.YELLOW + "" + TextFormatting.BOLD).appendSibling(
+                        Chats.You_have_leveled_up.locName()).appendText("!"));
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
 
                 onLvlPostMsg(player);
 
                 try {
                     Load.playersCapBackup(MapManager.getWorld(DimensionType.OVERWORLD))
-                            .getBackup()
-                            .backup((ServerPlayerEntity) player, this);
+                        .getBackup()
+                        .backup((ServerPlayerEntity) player, this);
                 } catch (Exception e) {
                     //  e.printStackTrace();
                 }
@@ -566,10 +566,10 @@ public class EntityCap {
 
             if (total > 0) {
                 ITextComponent msg = new StringTextComponent(
-                        TextFormatting.BLUE + "You have " + total + " Unspent Level up points." + TextFormatting.ITALIC + " Click to Open Main Hub [Default key: (H)]");
+                    TextFormatting.BLUE + "You have " + total + " Unspent Level up points." + TextFormatting.ITALIC + " Click to Open Main Hub [Default key: (H)]");
                 msg.setStyle(msg.getStyle()
-                                     .setClickEvent(
-                                             new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + OpenHub.COMMAND)));
+                    .setClickEvent(
+                        new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + OpenHub.COMMAND)));
                 en.sendMessage(msg);
 
             }
@@ -690,7 +690,7 @@ public class EntityCap {
 
             if (entity instanceof PlayerEntity) {
                 return new StringTextComponent("[Lv:").appendText(this.getLevel() + "] " + " ")
-                        .appendSibling(entity.getDisplayName());
+                    .appendSibling(entity.getDisplayName());
 
             } else {
                 MobRarity rarity = Rarities.Mobs.get(getRarity());
@@ -701,10 +701,10 @@ public class EntityCap {
                 ITextComponent name = boss.isBoss() ? boss.getBoss().getNameFor(entity) : entity.getDisplayName();
 
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
-                        .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));
+                    .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));
 
                 ITextComponent suffix = new StringTextComponent(rarity.textFormatColor() + "").appendSibling(
-                        rarityprefix.appendText(" ").appendSibling(name));
+                    rarityprefix.appendText(" ").appendSibling(name));
 
                 return lvlcomp.appendSibling(suffix);
 
@@ -772,9 +772,9 @@ public class EntityCap {
                     float manaCost = iwep.mechanic().GetManaCost(getLvlForResourceCosts()) * multi;
 
                     ResourcesData.Context ene = new ResourcesData.Context(
-                            this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
+                        this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
                     ResourcesData.Context mana = new ResourcesData.Context(
-                            this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
+                        this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
 
                     if (getResources().hasEnough(ene) == false) {
                         if (source instanceof ServerPlayerEntity) {
@@ -805,6 +805,7 @@ public class EntityCap {
             }
             return false;
         }
+
 
         @Override
         public void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData weaponData,
@@ -901,13 +902,13 @@ public class EntityCap {
             cost = Energy.getInstance().calculateScalingStatGrowth(cost, getLvlForResourceCosts());
 
             ResourcesData.Context energy = new ResourcesData.Context(
-                    this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
+                this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
 
             if (this.getResources().hasEnough(energy)) {
                 this.getResources().modify(energy);
                 int num = (int) unit.getCreateStat(PhysicalDamage.GUID).val;
                 DamageEffect dmg = new DamageEffect(
-                        event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
+                    event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
                 dmg.Activate();
             }

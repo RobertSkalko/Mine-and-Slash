@@ -37,6 +37,7 @@ public class CommonStatUtils {
         }
     }
 
+
     public static void addPotionStats(LivingEntity entity, UnitData data) {
 
         for (EffectInstance instance : entity.getActivePotionEffects()) {
