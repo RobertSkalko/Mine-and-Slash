@@ -8,8 +8,8 @@ import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,7 @@ public class RuneWordUndyingMagic extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new MagicShieldPercent().multi(3), new MagicShieldRegenFlat());
+        return Arrays.asList(new MagicShieldFlat(), new MagicShieldRegenFlat());
     }
 
     @Override

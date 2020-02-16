@@ -41,8 +41,7 @@ public class Intelligence extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(
-                new ManaRegenFlat(), new ManaFlat(), new MagicShieldPercent().multi(2), new AllEleDmgFlat());
+        return Arrays.asList(new ManaRegenFlat(), new ManaFlat(), new MagicShieldPercent(), new AllEleDmgFlat());
     }
 
     @Override

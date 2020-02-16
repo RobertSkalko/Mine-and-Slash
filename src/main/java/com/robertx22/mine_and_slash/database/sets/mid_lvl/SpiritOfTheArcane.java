@@ -25,7 +25,7 @@ public class SpiritOfTheArcane extends Set {
             {
                 {
                     put(2, new ManaFlat());
-                    put(3, new MagicShieldFlat().multi(0.5F));
+                    put(3, new MagicShieldFlat());
                     put(4, new SpellDamageFlat());
 
                 }

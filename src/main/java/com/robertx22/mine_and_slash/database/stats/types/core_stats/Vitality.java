@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LowHealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -40,7 +40,7 @@ public class Vitality extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new HealthFlat().multi(0.25F), new HealthPercent(), new HealthRegenFlat());
+        return Arrays.asList(new LowHealthFlat(), new HealthPercent(), new HealthRegenFlat());
     }
 
     @Override

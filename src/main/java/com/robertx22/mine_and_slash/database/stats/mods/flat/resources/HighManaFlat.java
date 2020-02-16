@@ -1,23 +1,15 @@
-package com.robertx22.mine_and_slash.database.stats.mods.flat;
+package com.robertx22.mine_and_slash.database.stats.mods.flat.resources;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
-public class MajorDodgeFlat extends StatMod {
-
-    public MajorDodgeFlat() {
-    }
-
-    @Override
-    public String GUID() {
-        return "major_dodge_flat";
-    }
+public class HighManaFlat extends StatMod {
 
     @Override
     public float Min() {
-        return 3;
+        return 8;
     }
 
     @Override
@@ -32,7 +24,7 @@ public class MajorDodgeFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return DodgeRating.getInstance();
+        return Mana.getInstance();
     }
 
 }

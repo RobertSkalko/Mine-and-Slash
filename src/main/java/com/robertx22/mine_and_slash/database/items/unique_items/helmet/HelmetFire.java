@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.MajorArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighEnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -20,7 +20,8 @@ public class HelmetFire extends BaseUniqueHelmet {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+    static StatReq req = new StatReq(
+            LvlPointStat.VITALITY, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -39,7 +40,7 @@ public class HelmetFire extends BaseUniqueHelmet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new MajorArmorFlat(), new EnergyRegenFlat().multi(1.5F), new ElementalResistFlat(Elements.Fire));
+        return Arrays.asList(new HighArmorFlat(), new HighEnergyRegenFlat(), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override

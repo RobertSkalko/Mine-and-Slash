@@ -18,7 +18,6 @@ public class SerializableStatMod extends StatMod {
         this.min = min;
         this.max = max;
         this.type = type;
-        this.multiplier = multi;
         this.guid = guid;
     }
 

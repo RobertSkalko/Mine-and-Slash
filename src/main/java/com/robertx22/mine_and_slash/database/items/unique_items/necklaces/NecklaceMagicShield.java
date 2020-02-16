@@ -3,10 +3,11 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.WisdomFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -23,7 +24,8 @@ public class NecklaceMagicShield extends BaseUniqueNecklace {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM, LvlPointStat.WISDOM, StatReq.Size.SMALL);
+    static StatReq req = new StatReq(
+            LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM, LvlPointStat.WISDOM, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -47,7 +49,10 @@ public class NecklaceMagicShield extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Elemental), new MagicShieldRegenFlat(), new WisdomFlat());
+        return Arrays.asList(
+                new ElementalResistFlat(Elements.Elemental), new MagicShieldRegenFlat(),
+                new HighCoreStatFlat(Wisdom.INSTANCE)
+        );
     }
 
     @Override

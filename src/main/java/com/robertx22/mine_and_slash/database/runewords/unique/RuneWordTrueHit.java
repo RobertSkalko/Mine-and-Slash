@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -16,7 +17,7 @@ public class RuneWordTrueHit extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new CriticalHitPercent().multi(2));
+        return Arrays.asList(new CriticalHitPercent(), new CriticalHitMulti());
     }
 
     @Override

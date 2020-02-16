@@ -20,8 +20,7 @@ public class WheelOfFortune extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(
-                new CriticalHitFlat().multi(2), new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Fire));
+        return Arrays.asList(new CriticalHitFlat(), new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Fire));
     }
 
     @Override

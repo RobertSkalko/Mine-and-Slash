@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.items.runes;
 
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthRegenPercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
 import net.minecraft.item.Item;

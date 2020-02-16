@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUnique
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.HighElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -40,9 +40,8 @@ public class NecklaceThunder extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(
-                new ElementalSpellToAttackDMGFlat(Elements.Thunder).multi(2),
-                new ElementalTransferFlat(Elements.Nature, Elements.Thunder), new EnergyRegenFlat()
+        return Arrays.asList(new HighElementalSpellToAttackDMGFlat(Elements.Thunder),
+                             new ElementalTransferFlat(Elements.Nature, Elements.Thunder), new EnergyRegenFlat()
         );
 
     }

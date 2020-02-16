@@ -1,18 +1,18 @@
-package com.robertx22.mine_and_slash.database.stats.mods.flat.resources;
+package com.robertx22.mine_and_slash.database.stats.mods.flat.defense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
+import com.robertx22.mine_and_slash.database.stats.types.defense.BlockStrength;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
-public class MajorManaRegenFlat extends StatMod {
+public class BlockStrengthFlat extends StatMod {
 
-    public MajorManaRegenFlat() {
+    public BlockStrengthFlat() {
     }
 
     @Override
     public String GUID() {
-        return "major_mana_regen_flat";
+        return "block_strength_flat";
     }
 
     @Override
@@ -22,7 +22,7 @@ public class MajorManaRegenFlat extends StatMod {
 
     @Override
     public float Max() {
-        return 6;
+        return 9F;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MajorManaRegenFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return ManaRegen.getInstance();
+        return new BlockStrength();
     }
 
 }

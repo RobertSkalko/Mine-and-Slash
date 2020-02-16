@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleSpellDmgFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighManaFlat;
 
 import java.util.HashMap;
 
@@ -24,9 +24,9 @@ public class ArmorOfTheElements extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new ManaFlat());
+                    put(2, new HighManaFlat());
                     put(3, new AllEleSpellDmgFlat());
-                    put(4, new AllEleDmgFlat().multi(2));
+                    put(4, new AllEleDmgFlat());
 
                 }
             }

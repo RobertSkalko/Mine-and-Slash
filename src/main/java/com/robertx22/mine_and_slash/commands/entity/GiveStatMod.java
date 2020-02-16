@@ -17,21 +17,31 @@ import javax.annotation.Nullable;
 public class GiveStatMod {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(Commands.literal("givestatmod")
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.entity())
-                        .then(Commands.argument("statGUID", StringArgumentType.string())
-                                .suggests(new StatModSuggestions())
-                                .then(Commands.argument("GUID", StringArgumentType.string())
-                                        .then(Commands.argument("percent", IntegerArgumentType
-                                                .integer())
-                                                .executes(ctx -> run(EntityArgument.getPlayer(ctx, "target"), StringArgumentType
-                                                        .getString(ctx, "statGUID"), StringArgumentType
-                                                        .getString(ctx, "GUID"), IntegerArgumentType
-                                                        .getInteger(ctx, "percent"))))))));
+                                           .requires(e -> e.hasPermissionLevel(2))
+                                           .then(Commands.argument("target", EntityArgument.entity())
+                                                         .then(Commands.argument("statGUID",
+                                                                                 StringArgumentType.string()
+                                                         )
+                                                                       .suggests(new StatModSuggestions())
+                                                                       .then(Commands.argument("GUID",
+                                                                                               StringArgumentType.string()
+                                                                       )
+                                                                                     .then(Commands.argument(
+                                                                                             "percent",
+                                                                                             IntegerArgumentType.integer()
+                                                                                     ).executes(ctx -> run(
+                                                                                             EntityArgument.getPlayer(
+                                                                                                     ctx, "target"),
+                                                                                             StringArgumentType.getString(
+                                                                                                     ctx, "statGUID"),
+                                                                                             StringArgumentType.getString(
+                                                                                                     ctx, "GUID"),
+                                                                                             IntegerArgumentType.getInteger(
+                                                                                                     ctx, "percent")
+                                                                                     )))))));
     }
-
-    private static int run(@Nullable Entity en, String statGUID, String GUID,
-                           int percent) {
+    
+    private static int run(@Nullable Entity en, String statGUID, String GUID, int percent) {
 
         try {
 
@@ -39,7 +49,7 @@ public class GiveStatMod {
 
                 EntityCap.UnitData data = Load.Unit(en);
 
-                data.getCustomStats().add(GUID, statGUID, percent, 1);
+                data.getCustomStats().add(GUID, statGUID, percent);
 
             }
 

@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.offence.PhysicalDamageMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.PhysicalDamagePercent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -40,8 +40,7 @@ public class Strength extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(
-                new PhysicalDamagePercent(), new CriticalDamageFlat(), new PhysicalDamageMulti().multi(0.5F));
+        return Arrays.asList(new PhysicalDamagePercent(), new CriticalDamageFlat(), new AllEleDmgFlat());
     }
 
     @Override

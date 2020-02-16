@@ -7,9 +7,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class MagicShieldRegenFlat extends StatMod {
 
-    public MagicShieldRegenFlat() {
-    }
-
     @Override
     public String GUID() {
         return "magic_shield_regen_flat";

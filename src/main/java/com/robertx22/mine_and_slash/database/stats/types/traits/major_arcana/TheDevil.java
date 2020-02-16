@@ -21,7 +21,7 @@ public class TheDevil extends BaseMajorArcana {
     @Override
     public List<StatMod> getStats() {
         return Arrays.asList(
-                new EnergyRegenFlat(), new ManaRegenFlat(), new ElementalSpellDamagePercent(Elements.Nature).multi(2));
+                new EnergyRegenFlat(), new ManaRegenFlat(), new ElementalSpellDamagePercent(Elements.Nature));
     }
 
     @Override

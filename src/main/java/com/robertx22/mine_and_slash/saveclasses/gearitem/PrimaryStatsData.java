@@ -42,8 +42,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
             int statsAmount = pos.mods.size();
 
             pos.mods.forEach(mod -> {
-                StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod.multi(mod.multiplier / statsAmount));
-                //moddata.setPercent(moddata.getPercent() );
+                StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
                 this.Mods.add(moddata);
 
             });

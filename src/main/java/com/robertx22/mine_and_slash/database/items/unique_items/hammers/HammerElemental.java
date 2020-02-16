@@ -5,9 +5,10 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHammer;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.HighCriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalFocusFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -24,7 +25,8 @@ public class HammerElemental extends BaseUniqueHammer implements IElementalUniqu
         this.element = element;
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+    static StatReq req = new StatReq(
+            LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -33,12 +35,12 @@ public class HammerElemental extends BaseUniqueHammer implements IElementalUniqu
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalDamageFlat().multi(5), new ElementalFocusFlat(element));
+        return Arrays.asList(new HighCriticalDamageFlat(), new CriticalHitMulti(), new ElementalFocusFlat(element));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).multi(1F));
+        return Arrays.asList(new ElementalAttackDamageFlat(element));
     }
 
     @Override

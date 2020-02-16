@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.ArmorPercent;
@@ -41,9 +41,7 @@ public class Stamina extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new EnergyRegenFlat().multi(0.4F), new EnergyFlat().multi(1.25F),
-                             new ArmorFlat().multi(1F), new ArmorPercent()
-        );
+        return Arrays.asList(new EnergyRegenFlat(), new EnergyFlat(), new ArmorFlat(), new ArmorPercent());
     }
 
     @Override

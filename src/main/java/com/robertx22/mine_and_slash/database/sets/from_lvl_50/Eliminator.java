@@ -5,7 +5,9 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.DexterityFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.HashMap;
@@ -28,7 +30,8 @@ public class Eliminator extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(4, new DexterityFlat().multi(4));
+                    put(3, new CoreStatFlat(Dexterity.INSTANCE));
+                    put(4, new HighCoreStatFlat(Dexterity.INSTANCE));
                 }
             }
         };

@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.LowElementalResistFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -37,7 +37,7 @@ public class OfDissonance extends ElementalSuffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new CriticalDamageFlat(), new ElementalResistFlat(element).multi(0.4F));
+        return Arrays.asList(new CriticalDamageFlat(), new LowElementalResistFlat(element));
     }
 
     @Override

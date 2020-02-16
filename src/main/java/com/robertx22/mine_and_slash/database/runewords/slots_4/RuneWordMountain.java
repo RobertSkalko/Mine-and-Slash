@@ -18,7 +18,7 @@ public class RuneWordMountain extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new HealthFlat().multi(0.5F), new ArmorPercent(), new HealthRegenFlat());
+        return Arrays.asList(new HealthFlat(), new ArmorPercent(), new HealthRegenFlat());
     }
 
     @Override

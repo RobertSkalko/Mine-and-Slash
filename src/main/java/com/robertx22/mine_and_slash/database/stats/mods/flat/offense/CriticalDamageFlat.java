@@ -7,14 +7,9 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class CriticalDamageFlat extends StatMod {
 
-    public CriticalDamageFlat() {
-
-    }
-
     @Override
     public float Min() {
         return 5;
-
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.MajorArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
 
@@ -26,7 +26,7 @@ public class ArtifactArmor extends Set {
                 {
                     put(2, new BonusExpFlat());
                     put(3, new HealthPercent());
-                    put(4, new MajorArmorFlat());
+                    put(4, new HighArmorFlat());
 
                 }
             }

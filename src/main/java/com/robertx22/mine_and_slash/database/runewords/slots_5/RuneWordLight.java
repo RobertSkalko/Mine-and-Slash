@@ -16,8 +16,7 @@ public class RuneWordLight extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(
-                new HealthRegenFlat(), new HealthFlat().multi(1.5f), new ElementalResistFlat(Elements.Fire));
+        return Arrays.asList(new HealthRegenFlat(), new HealthFlat(), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override

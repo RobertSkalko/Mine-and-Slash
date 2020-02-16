@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.currency.infusions;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.MajorArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -28,13 +28,16 @@ public class DefenseInfusionItem extends BaseInfusionItem {
 
     @Override
     public List<StatMod> weaponInfusions() {
-        return Arrays.asList(new DodgeRatingFlat(), new MajorArmorFlat());
+        return Arrays.asList(new DodgeRatingFlat(), new HighArmorFlat());
     }
 
     @Override
     public List<StatMod> armorInfusions() {
 
-        return ListUtils.newList(new ElementalResistFlat(Elements.Physical).allSingleElementVariations(), new ArmorFlat(), new DodgeRatingFlat());
+        return ListUtils.newList(
+                new ElementalResistFlat(Elements.Physical).allSingleElementVariations(), new ArmorFlat(),
+                new DodgeRatingFlat()
+        );
     }
 
     @Override

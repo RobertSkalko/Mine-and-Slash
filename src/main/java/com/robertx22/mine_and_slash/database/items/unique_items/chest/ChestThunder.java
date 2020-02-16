@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.chest;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.MajorArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
@@ -40,7 +40,10 @@ public class ChestThunder extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Thunder), new MajorArmorFlat(), new ElementalSpellDamageFlat(Elements.Thunder), new ElementalSpellToAttackDMGFlat(Elements.Thunder));
+        return Arrays.asList(new ElementalResistFlat(Elements.Thunder), new HighArmorFlat(),
+                             new ElementalSpellDamageFlat(Elements.Thunder),
+                             new ElementalSpellToAttackDMGFlat(Elements.Thunder)
+        );
     }
 
     @Override

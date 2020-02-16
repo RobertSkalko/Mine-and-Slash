@@ -6,9 +6,9 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighEnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighMagicShieldRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighManaRegenFlat;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.MyTorch;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.item.Item;
@@ -51,13 +51,10 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
         return MyTorch.Items;
     }
 
-    float multi = 2F;
-
     @Override
     public List<PosStats> PrimaryStats() {
-        return Arrays.asList(new PosStats(new ManaRegenFlat().multi(multi)),
-                             new PosStats(new EnergyRegenFlat().multi(multi)),
-                             new PosStats(new MagicShieldRegenFlat().multi(multi))
+        return Arrays.asList(new PosStats(new HighManaRegenFlat()), new PosStats(new HighEnergyRegenFlat()),
+                             new PosStats(new HighMagicShieldRegenFlat())
         );
     }
 

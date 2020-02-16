@@ -46,7 +46,7 @@ public class NecklaceSetDrop extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new SpellDamageFlat().multi(0.2F));
+        return Arrays.asList(new SpellDamageFlat());
     }
 
     @Override

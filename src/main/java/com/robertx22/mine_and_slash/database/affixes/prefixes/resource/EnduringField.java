@@ -28,7 +28,7 @@ public class EnduringField extends Prefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new MagicShieldFlat().multi(2));
+        return Arrays.asList(new MagicShieldFlat());
     }
 
     @Override

@@ -3,9 +3,10 @@ package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.StrengthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -49,12 +50,12 @@ public class NecklaceStrength extends BaseUniqueNecklace {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ArmorFlat(), new LifestealFlat());
+        return Arrays.asList(new HighArmorFlat(), new LifestealFlat());
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new StrengthFlat().multi(5));
+        return Arrays.asList(new HighCoreStatFlat(Strength.INSTANCE));
     }
 
     @Override

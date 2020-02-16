@@ -2,8 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.LowElementalResistFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
@@ -38,16 +37,11 @@ public class Wisdom extends BaseCoreStat {
         return GUID;
     }
 
-    static float regenMulti = 0.3F;
-    static float resistMulti = 0.4F;
-
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new MagicShieldRegenFlat().multi(regenMulti), new ManaRegenFlat().multi(regenMulti),
-                             new ElementalResistFlat(Elements.Nature).multi(resistMulti),
-                             new ElementalResistFlat(Elements.Fire).multi(resistMulti),
-                             new ElementalResistFlat(Elements.Thunder).multi(resistMulti),
-                             new ElementalResistFlat(Elements.Water).multi(resistMulti)
+        return Arrays.asList(new MagicShieldRegenFlat(), new LowElementalResistFlat(Elements.Nature),
+                             new LowElementalResistFlat(Elements.Fire), new LowElementalResistFlat(Elements.Thunder),
+                             new LowElementalResistFlat(Elements.Water)
 
         )
 

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.traits.high_crit;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.ArmorPercent;
 import com.robertx22.mine_and_slash.database.stats.types.traits.bases.BaseTraitHighCritHit;
 

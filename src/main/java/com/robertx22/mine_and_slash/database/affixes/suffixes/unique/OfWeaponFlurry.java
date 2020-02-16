@@ -7,8 +7,9 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.requirements.UniqueTierRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.StaminaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Stamina;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -30,7 +31,7 @@ public class OfWeaponFlurry extends WeaponSuffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new WeaponDamageFlat(this.type), new StaminaFlat());
+        return Arrays.asList(new WeaponDamageFlat(this.type), new CoreStatFlat(Stamina.INSTANCE));
     }
 
     @Override

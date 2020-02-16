@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
@@ -39,7 +39,10 @@ public class PantsThunder extends BaseUniquePantsItem {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new DodgeRatingFlat().multi(4), new ElementalResistFlat(Elements.Fire), new ElementalTransferFlat(Elements.Fire, Elements.Thunder));
+        return Arrays.asList(
+                new DodgeRatingFlat().multi(4), new ElementalResistFlat(Elements.Fire),
+                new ElementalTransferFlat(Elements.Fire, Elements.Thunder)
+        );
     }
 
     @Override

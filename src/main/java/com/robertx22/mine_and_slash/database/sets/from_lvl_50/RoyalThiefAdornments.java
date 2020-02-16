@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.MajorDodgeFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighDodgeFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.DodgePercent;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -26,8 +26,8 @@ public class RoyalThiefAdornments extends Set {
             {
                 {
                     put(2, new DodgePercent());
-                    put(3, new MajorDodgeFlat());
-                    put(4, new WeaponDamageFlat(WeaponTypes.Bow).multi(1.5F));
+                    put(3, new HighDodgeFlat());
+                    put(4, new WeaponDamageFlat(WeaponTypes.Bow));
 
                 }
             }

@@ -5,9 +5,10 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.VitalityFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Vitality;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class TheAscended extends Set {
             {
                 {
                     put(2, new ArmorFlat());
-                    put(3, new VitalityFlat().multi(2));
+                    put(3, new HighCoreStatFlat(Vitality.INSTANCE));
                     put(4, new HealthFlat());
                 }
             }

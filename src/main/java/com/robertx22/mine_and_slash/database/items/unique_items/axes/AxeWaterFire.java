@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueAxe;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.all_stats.CripplePercent;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.MediumElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.LifeOnHit;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaOnHit;
@@ -49,8 +49,8 @@ public class AxeWaterFire extends BaseUniqueAxe {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(Elements.Fire).multi(multi),
-                             new ElementalAttackDamageFlat(Elements.Water).multi(multi)
+        return Arrays.asList(new MediumElementalAttackDamageFlat(Elements.Fire),
+                             new MediumElementalAttackDamageFlat(Elements.Water)
         );
     }
 

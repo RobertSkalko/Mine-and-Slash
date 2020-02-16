@@ -35,7 +35,6 @@ public class StatModData implements ITooltipList {
         data.baseModName = mod.GUID();
         data.type = mod.Type();
         data.randomize(rar);
-        data.multiplier = mod.multiplier;
 
         return data;
     }
@@ -47,7 +46,6 @@ public class StatModData implements ITooltipList {
         data.baseModName = mod.GUID();
         data.type = mod.Type();
         data.percent = percent;
-        data.multiplier = mod.multiplier;
 
         return data;
     }
@@ -73,9 +71,6 @@ public class StatModData implements ITooltipList {
     }
 
     @Store
-    private float multiplier = 1F;
-
-    @Store
     private StatTypes type;
 
     @Store
@@ -92,12 +87,11 @@ public class StatModData implements ITooltipList {
     }
 
     public boolean canBeMerged(StatModData mod) {
-        return type == mod.type && multiplier == mod.multiplier && baseModName == mod.baseModName;
+        return type == mod.type && baseModName == mod.baseModName;
     }
 
     public StatMod getStatMod() {
-
-        return SlashRegistry.StatMods().get(baseModName).multi(multiplier);
+        return SlashRegistry.StatMods().get(baseModName);
 
     }
 

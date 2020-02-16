@@ -25,7 +25,7 @@ public class OfBehemoths extends Suffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new CriticalDamageFlat().multi(2), new HealthPercent());
+        return Arrays.asList(new CriticalDamageFlat(), new HealthPercent());
     }
 
     @Override

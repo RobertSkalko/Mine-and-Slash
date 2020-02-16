@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.IntelligenceFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.resources.ManaMulti;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -21,7 +22,9 @@ public class TheMagician extends BaseMajorArcana {
     @Override
     public List<StatMod> getStats() {
         return Arrays.asList(
-                new IntelligenceFlat(), new ManaMulti().multi(2), new ElementalSpellDamageFlat(Elements.Thunder));
+                new CoreStatFlat(Intelligence.INSTANCE), new ManaMulti(),
+                new ElementalSpellDamageFlat(Elements.Thunder)
+        );
     }
 
     @Override

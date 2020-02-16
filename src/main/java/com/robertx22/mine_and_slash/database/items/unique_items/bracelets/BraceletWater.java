@@ -19,7 +19,8 @@ public class BraceletWater extends BaseUniqueBracelet {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.VITALITY, StatReq.Size.SMALL);
+    static StatReq req = new StatReq(
+            LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.VITALITY, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -38,7 +39,10 @@ public class BraceletWater extends BaseUniqueBracelet {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalTransferFlat(Elements.Fire, Elements.Water).multi(2), new ElementalResistFlat(Elements.Water), new ElementalResistFlat(Elements.Fire));
+        return Arrays.asList(
+                new ElementalTransferFlat(Elements.Fire, Elements.Water), new ElementalResistFlat(Elements.Water),
+                new ElementalResistFlat(Elements.Fire)
+        );
     }
 
     @Override

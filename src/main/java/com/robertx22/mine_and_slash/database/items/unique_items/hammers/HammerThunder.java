@@ -3,9 +3,10 @@ package com.robertx22.mine_and_slash.database.items.unique_items.hammers;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHammer;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -18,7 +19,8 @@ public class HammerThunder extends BaseUniqueHammer {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.STAMINA, StatReq.Size.MEDIUM);
+    static StatReq req = new StatReq(
+            LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.STAMINA, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -37,8 +39,8 @@ public class HammerThunder extends BaseUniqueHammer {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalHitFlat()
-                .multi(4));
+        return Arrays.asList(
+                new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalDamageFlat(), new CriticalHitMulti());
     }
 
     @Override

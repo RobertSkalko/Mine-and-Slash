@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.items.runes.RahItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class RuneWordProfoundSea extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new ManaRegenFlat(), new ManaFlat().multi(2));
+        return Arrays.asList(new ManaRegenFlat(), new HighManaFlat());
     }
 
     @Override

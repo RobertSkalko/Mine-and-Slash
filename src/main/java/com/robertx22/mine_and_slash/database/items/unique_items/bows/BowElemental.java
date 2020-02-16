@@ -5,10 +5,11 @@ import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBow;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.DexterityFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -26,8 +27,9 @@ public class BowElemental extends BaseUniqueBow implements IElementalUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new DexterityFlat().multi(1.5F), new ElementalSpellToAttackDMGFlat(element), new CriticalHitPercent()
-                .multi(2));
+        return Arrays.asList(new CoreStatFlat(Dexterity.INSTANCE), new ElementalSpellToAttackDMGFlat(element),
+                             new CriticalHitMulti()
+        );
     }
 
     static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.NORMAL);

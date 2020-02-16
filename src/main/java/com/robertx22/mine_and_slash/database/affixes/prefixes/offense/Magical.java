@@ -5,8 +5,9 @@ import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.IntelligenceFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.SpellDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
@@ -25,7 +26,7 @@ public class Magical extends Prefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new SpellDamagePercent(), new IntelligenceFlat());
+        return Arrays.asList(new SpellDamagePercent(), new CoreStatFlat(Intelligence.INSTANCE));
     }
 
     @Override

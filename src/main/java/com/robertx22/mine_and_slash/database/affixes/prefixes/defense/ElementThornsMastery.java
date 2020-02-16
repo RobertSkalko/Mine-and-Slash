@@ -38,7 +38,7 @@ public class ElementThornsMastery extends ElementalPrefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new BlockReflectFlat(element).multi(0.5F), new ElementalResistFlat(element));
+        return Arrays.asList(new BlockReflectFlat(element), new ElementalResistFlat(element));
     }
 
     @Override

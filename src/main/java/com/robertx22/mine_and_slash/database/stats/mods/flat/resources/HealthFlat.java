@@ -7,10 +7,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
 public class HealthFlat extends StatMod {
 
-    public HealthFlat() {
-
-    }
-
     @Override
     public float Min() {
         return 5;

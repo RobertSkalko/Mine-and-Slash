@@ -5,8 +5,10 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.mods.all_stats.CripplePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.all_stats.LessPercent;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.*;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.*;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.AllAttributesFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.HighCoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleSpellDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.less.LessHealthRegenFlat;
@@ -32,6 +34,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.multi.resources.ManaMult
 import com.robertx22.mine_and_slash.database.stats.mods.percent.*;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyStat;
@@ -58,6 +61,7 @@ public class StatMods implements ISlashRegistryInit {
                     add(new ElementalAffinityFlat(Elements.Nature));
                     add(new LootTypeBonusFlat(LootType.NormalItem));
                     add(new WeaponDamageFlat(WeaponTypes.None));
+                    add(new LowWeaponDamageFlat(WeaponTypes.None));
                     add(new LessWeaponDamageFlat(WeaponTypes.None));
                     add(new ElementalAttackDamageFlat(Elements.Nature));
                     add(new AllElementalDamageMulti(Elements.Nature));
@@ -79,18 +83,39 @@ public class StatMods implements ISlashRegistryInit {
                     add(new CripplePercent(EmptyStat.getInstance()));
                     add(new LessPercent(EmptyStat.getInstance()));
 
+                    add(new CoreStatFlat(Dexterity.INSTANCE));
+                    add(new HighCoreStatFlat(Dexterity.INSTANCE));
+                    add(new CoreStatPercent(Dexterity.INSTANCE));
+
+                    add(new LowElementalResistFlat(Elements.Nature));
+                    add(new LowElementalAffinityFlat(Elements.Nature));
+                    add(new MediumElementalAttackDamageFlat(Elements.Nature));
+                    add(new LowElementalAttackDamageFlat(Elements.Nature));
+                    add(new HighElementalSpellToAttackDMGFlat(Elements.Nature));
+                    add(new HighElementalResistFlat(Elements.Nature));
+                    add(new HighElementalPeneFlat(Elements.Nature));
+
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());
                     add(new AllEleDmgFlat());
                     add(new AllEleSpellDmgFlat());
+                    add(new HighHealthRegenFlat());
 
                     add(new BlockStrengthPercent());
                     add(new SpellDamageFlat());
                     add(new SpellDamagePercent());
 
+                    add(new HighManaFlat());
+                    add(new LowArmorFlat());
+                    add(new HighHealthFlat());
+                    add(new HighEnergyRegenFlat());
+                    add(new HighMagicShieldRegenFlat());
+
                     add(new BonusExpFlat());
 
                     // spell buffs
+
+                    add(new LowHealthFlat());
 
                     add(new ManaMulti());
                     add(new LessManaMulti());
@@ -119,11 +144,12 @@ public class StatMods implements ISlashRegistryInit {
                     add(new MajorCriticalHitPercent());
                     add(new MajorCriticalDamagePercent());
 
-                    add(new MajorDodgeFlat());
-                    add(new MajorArmorFlat());
+                    add(new HighDodgeFlat());
+                    add(new HighArmorFlat());
                     add(new ArmorFlat());
                     add(new CriticalHitFlat());
                     add(new CriticalDamageFlat());
+                    add(new HighCriticalDamageFlat());
                     add(new PhysicalDamageFlat());
                     add(new CriticalHitPercent());
                     add(new PhysicalDamagePercent());
@@ -132,7 +158,7 @@ public class StatMods implements ISlashRegistryInit {
                     add(new BlockStrengthFlat());
 
                     // Resources
-                    add(new MajorManaRegenFlat());
+                    add(new HighManaRegenFlat());
                     add(new HealthFlat());
                     add(new HealthPercent());
                     add(new HealthRegenPercent());
@@ -177,12 +203,6 @@ public class StatMods implements ISlashRegistryInit {
                     add(new LessManaOnHitMap());
 
                     add(new AllAttributesFlat());
-                    add(new StrengthFlat());
-                    add(new DexterityFlat());
-                    add(new WisdomFlat());
-                    add(new IntelligenceFlat());
-                    add(new StaminaFlat());
-                    add(new VitalityFlat());
 
                 }
             }

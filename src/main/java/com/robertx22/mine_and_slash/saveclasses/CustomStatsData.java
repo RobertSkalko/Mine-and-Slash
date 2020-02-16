@@ -13,12 +13,10 @@ public class CustomStatsData {
     @Store
     public HashMap<String, StatModData> stats = new HashMap<>();
 
-    public void add(String hashmapGUID, String statModGUID, int percent, float multi) {
+    public void add(String hashmapGUID, String statModGUID, int percent) {
 
         try {
-            stats.put(hashmapGUID, StatModData.Load(SlashRegistry.StatMods()
-                    .get(statModGUID)
-                    .multi(multi), percent));
+            stats.put(hashmapGUID, StatModData.Load(SlashRegistry.StatMods().get(statModGUID), percent));
         } catch (Exception e) {
             e.printStackTrace();
         }

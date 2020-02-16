@@ -1,28 +1,20 @@
-package com.robertx22.mine_and_slash.database.stats.mods.flat;
+package com.robertx22.mine_and_slash.database.stats.mods.flat.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.types.defense.BlockStrength;
+import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatTypes;
 
-public class BlockStrengthFlat extends StatMod {
-
-    public BlockStrengthFlat() {
-    }
-
-    @Override
-    public String GUID() {
-        return "block_strength_flat";
-    }
+public class HighCriticalDamageFlat extends StatMod {
 
     @Override
     public float Min() {
-        return 3;
+        return 20;
     }
 
     @Override
     public float Max() {
-        return 9F;
+        return 40;
     }
 
     @Override
@@ -32,7 +24,8 @@ public class BlockStrengthFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new BlockStrength();
+        return CriticalDamage.getInstance();
     }
 
 }
+

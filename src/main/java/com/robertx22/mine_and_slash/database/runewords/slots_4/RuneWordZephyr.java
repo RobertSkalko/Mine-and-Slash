@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.items.runes.XahItem;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -19,8 +19,7 @@ public class RuneWordZephyr extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(
-                new EnergyRegenFlat(), new ElementalResistFlat(Elements.Thunder).multi(2), new ArmorFlat());
+        return Arrays.asList(new EnergyRegenFlat(), new ElementalResistFlat(Elements.Thunder), new HighArmorFlat());
     }
 
     @Override

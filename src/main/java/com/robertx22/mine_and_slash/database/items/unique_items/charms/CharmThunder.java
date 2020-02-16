@@ -20,7 +20,8 @@ public class CharmThunder extends BaseUniqueCharm {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+    static StatReq req = new StatReq(
+            LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -39,12 +40,15 @@ public class CharmThunder extends BaseUniqueCharm {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(), new ElementalPenePercent(Elements.Thunder));
+        return Arrays.asList(
+                new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(),
+                new ElementalPenePercent(Elements.Thunder)
+        );
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAffinityFlat(Elements.Thunder).multi(0.8F));
+        return Arrays.asList(new ElementalAffinityFlat(Elements.Thunder));
     }
 
     @Override

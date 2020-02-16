@@ -4,16 +4,16 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.*;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Stamina;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Charm extends GearItemSlot {
     public static GearItemSlot INSTANCE = new Charm();
@@ -41,12 +41,11 @@ public class Charm extends GearItemSlot {
 
     @Override
     public List<PosStats> PrimaryStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Fire).multi(multi),
-                             new ElementalPeneFlat(Elements.Water).multi(multi),
-                             new ElementalPeneFlat(Elements.Thunder).multi(multi),
-                             new ElementalPeneFlat(Elements.Nature).multi(multi),
-                             new ElementalPeneFlat(Elements.Physical).multi(multi)
-        ).stream().map(x -> new PosStats(x)).collect(Collectors.toList());
+        List<PosStats> list = new ArrayList<>();
+        new ElementalPeneFlat(Elements.Nature).allSingleElementVariations()
+                .stream()
+                .forEach(x -> list.add(new PosStats((StatMod) x)));
+        return list;
 
     }
 
@@ -57,9 +56,7 @@ public class Charm extends GearItemSlot {
 
     @Override
     public List<StatMod> PossibleSecondaryStats() {
-        return Arrays.asList(new StrengthFlat(), new VitalityFlat(), new IntelligenceFlat(), new WisdomFlat(),
-                             new StaminaFlat(), new DexterityFlat()
-        );
+        return new CoreStatFlat(Stamina.INSTANCE).generateAllPossibleStatVariations();
     }
 
     @Override

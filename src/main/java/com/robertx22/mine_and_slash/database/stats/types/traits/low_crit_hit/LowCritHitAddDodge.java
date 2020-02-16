@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.traits.low_crit_hit;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.DodgeRatingFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.types.traits.bases.BaseTraitLowCritHit;
 
 import java.util.Arrays;

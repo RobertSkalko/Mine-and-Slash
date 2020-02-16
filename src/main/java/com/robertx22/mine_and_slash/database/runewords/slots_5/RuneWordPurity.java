@@ -15,7 +15,7 @@ public class RuneWordPurity extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new HealthRegenFlat(), new HealthFlat().multi(2f), new ManaRegenFlat());
+        return Arrays.asList(new HealthRegenFlat(), new HealthFlat(), new ManaRegenFlat());
     }
 
     @Override

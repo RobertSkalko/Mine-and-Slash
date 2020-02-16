@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.database.items.unique_items.boots.plate;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HighHealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.HealthMulti;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -39,16 +39,15 @@ public class BootsNature extends BaseUniqueBoots {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(
-                new HealthPercent().multi(3), new ElementalTransferFlat(Elements.Thunder, Elements.Nature),
-                new ElementalResistFlat(Elements.Nature).multi(4)
+        return Arrays.asList(new HealthMulti(), new ElementalTransferFlat(Elements.Thunder, Elements.Nature),
+                             new ElementalResistFlat(Elements.Nature)
         );
 
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat());
+        return Arrays.asList(new HighHealthFlat());
     }
 
     @Override

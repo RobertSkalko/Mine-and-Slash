@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.LowElementalAffinityFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -37,7 +37,7 @@ public class Heretics extends ElementalPrefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new CriticalDamageFlat().multi(1.5F), new ElementalAffinityFlat(element).multi(0.25F));
+        return Arrays.asList(new CriticalDamageFlat(), new LowElementalAffinityFlat(element));
     }
 
     @Override

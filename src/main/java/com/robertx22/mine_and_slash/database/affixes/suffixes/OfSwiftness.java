@@ -4,7 +4,8 @@ import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.DexterityFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +23,7 @@ public class OfSwiftness extends Suffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new DexterityFlat());
+        return Arrays.asList(new CoreStatFlat(Dexterity.INSTANCE));
     }
 
     @Override

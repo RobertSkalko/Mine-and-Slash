@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueAxe;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.all_stats.CripplePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
@@ -39,9 +40,8 @@ public class AxeThunder extends BaseUniqueAxe {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(
-                new CriticalHitPercent().multi(2.5F), new CriticalDamagePercent().multi(2.5F),
-                new CripplePercent(LifeOnHit.getInstance())
+        return Arrays.asList(new CriticalHitPercent(), new CriticalHitFlat(), new CriticalDamagePercent(),
+                             new CripplePercent(LifeOnHit.getInstance())
         );
     }
 

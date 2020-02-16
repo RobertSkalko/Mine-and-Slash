@@ -21,9 +21,8 @@ public class HangedMan extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(
-                new CripplePercent(HealthRegen.getInstance()), new DodgeMulti().multi(2),
-                new ElementalPeneFlat(Elements.Water)
+        return Arrays.asList(new CripplePercent(HealthRegen.getInstance()), new DodgeMulti(),
+                             new ElementalPeneFlat(Elements.Water)
         );
     }
 

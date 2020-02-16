@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherChest;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.MajorDodgeFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.HighDodgeFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
@@ -48,7 +48,9 @@ public class ChestDodge extends BaseUniqueChest {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new MajorDodgeFlat().multi(1.2F), new WeaponDamageFlat(WeaponTypes.Bow), new ElementalResistFlat(Elements.Nature));
+        return Arrays.asList(new HighDodgeFlat(), new WeaponDamageFlat(WeaponTypes.Bow),
+                             new ElementalResistFlat(Elements.Nature)
+        );
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.HighCriticalDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class RingsOfImpossibility extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new CriticalDamageFlat().multi(4));
+                    put(2, new HighCriticalDamageFlat());
 
                 }
             }

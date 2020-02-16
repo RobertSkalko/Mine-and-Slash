@@ -21,9 +21,8 @@ public class Justice extends BaseMajorArcana {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(
-                new WeaponDamageFlat(WeaponTypes.Sword), new ElementalPeneFlat(Elements.Physical).multi(2),
-                new ElementalSpellToAttackDMGFlat(Elements.Water)
+        return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Sword), new ElementalPeneFlat(Elements.Physical),
+                             new ElementalSpellToAttackDMGFlat(Elements.Water)
         );
     }
 
