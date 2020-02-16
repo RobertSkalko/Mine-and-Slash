@@ -11,9 +11,15 @@ public interface IRandomDefault<T extends IhasRequirements & IWeighted> extends 
 
     public default T random(GearRequestedFor gearRequestedFor) {
 
+        if (gearRequestedFor.gearData != null && gearRequestedFor.gearData.GetBaseGearType() == null) {
+            System.out.println("Gear slot doesn't exist, or was renamed.");
+            return null;
+        }
+
         List<T> allThatMeetReq = allThatMeetRequirement(All(), gearRequestedFor);
 
         if (allThatMeetReq.size() == 0) {
+            System.out.println("No Matching item found for the gear requested, returning null.");
             return null;
         }
 
@@ -26,8 +32,11 @@ public interface IRandomDefault<T extends IhasRequirements & IWeighted> extends 
 
     public default List<T> allThatMeetRequirement(List<T> list, GearRequestedFor gearRequestedFor) {
         return list.stream()
-                .filter(x -> x.requirements().satisfiesAllRequirements(gearRequestedFor))
-                .collect(Collectors.toList());
+            .filter(x -> {
+                return x.requirements()
+                    .satisfiesAllRequirements(gearRequestedFor);
+            })
+            .collect(Collectors.toList());
     }
 
 }

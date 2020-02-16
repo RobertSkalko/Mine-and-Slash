@@ -20,7 +20,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
 
@@ -115,9 +114,9 @@ public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
 
     @Override
     public List<BaseAffix> All() {
-        return SlashRegistry.Affixes().getWrapped().ofAffixType(BaseAffix.Type.prefix).list.stream()
-                .map(x -> (BaseAffix) x)
-                .collect(Collectors.toList());
+        return SlashRegistry.Affixes()
+            .getWrapped()
+            .ofAffixType(BaseAffix.Type.prefix).list;
     }
 
 }

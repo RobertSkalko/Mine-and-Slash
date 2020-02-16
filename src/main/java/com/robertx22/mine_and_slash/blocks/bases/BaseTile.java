@@ -44,28 +44,32 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 
     @Override
     public void tick() {
-        if (!this.world.isRemote) {
+        try {
+            if (!this.world.isRemote) {
 
-            ticks++;
-            if (ticks > tickRate()) {
-                ticks = 0;
+                ticks++;
+                if (ticks > tickRate()) {
+                    ticks = 0;
 
-                doActionEveryTime();
+                    doActionEveryTime();
 
-                if (isCooking()) {
+                    if (isCooking()) {
 
-                    cookTime += tickRate();
+                        cookTime += tickRate();
 
-                    if (cookTime >= ticksRequired()) {
-                        finishCooking();
+                        if (cookTime >= ticksRequired()) {
+                            finishCooking();
+                            cookTime = 0;
+                        }
+
+                    } else {
                         cookTime = 0;
                     }
 
-                } else {
-                    cookTime = 0;
                 }
-
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -260,7 +264,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         final double Z_CENTRE_OFFSET = 0.5;
         final double MAXIMUM_DISTANCE_SQ = 8.0 * 8.0;
         return player.getDistanceSq(pos.getX() + X_CENTRE_OFFSET, pos.getY() + Y_CENTRE_OFFSET, pos
-                .getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
+            .getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
     }
 
     static public boolean isItemValidForFuelSlot(ItemStack itemStack) {

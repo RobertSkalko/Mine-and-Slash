@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
@@ -28,7 +29,7 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
 
         super(prop);
         this.rarity = rarity;
-        resource = new ResourceLocation("mmorpg:textures/shield/" + name + ".png");
+        resource = new ResourceLocation(Ref.MODID, "textures/shield/" + name + ".png");
 
     }
 
@@ -47,7 +48,8 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
 
     @Override
     public String locNameLangFileGUID() {
-        return getFormatedForLangFile(this.getRegistryName().toString());
+        return getFormatedForLangFile(this.getRegistryName()
+            .toString());
     }
 
     @Override
@@ -67,7 +69,7 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent(
-                color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
+            color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
         if (moreInfo) {
             list.add(new StringTextComponent(color() + "DMG Reduced Based on Block Strength"));
         }

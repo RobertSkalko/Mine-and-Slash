@@ -9,6 +9,9 @@
 * added new unique items
 * disabled my workaround that allowed dimension deletition because it caused server crashes. But now dimensions won't be deleted until forge accepts a PR
 * converted all my registry ids to same rules minecraft uses, which means no spaces and all lowercase., this might break some stats on old items, sorry! 
+The good news is that this is in preparation to allow the mod to be more configurable with datapacks. And as that requires things to be intuitive.. I had to rename a lot of things. 
+For example Physical Damage had id of "damage_flat" but the actual stat is called "physical_damage". So if you wanted to add the stat, you'd use "physical_damage_flat" but it wouldn't work.
+Now it should work fine as long as you know the correct stat name and prefix/suffix combos. You can do high_physical_damage_flat, low_physical_damage_flat etc.
 I added a temporary system that auto formats all old names to this standard, but it's not perfect and some might not work. Ignore errors about unknown registries.
 * decreased item requirements a bit
 * fix runewords

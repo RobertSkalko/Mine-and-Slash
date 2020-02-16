@@ -143,12 +143,15 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     // used when upgrading item rarity
     public Item getItem() {
         if (isUnique) {
-            return (Item) SlashRegistry.UniqueGears().get(uniqueGUID);
+            return (Item) SlashRegistry.UniqueGears()
+                .get(uniqueGUID);
         } else {
             if (gearTypeName.isEmpty()) {
                 return Items.AIR;
             } else {
-                return SlashRegistry.GearTypes().get(gearTypeName).GetItemForRarity(getRarity().Rank());
+                return SlashRegistry.GearTypes()
+                    .get(gearTypeName)
+                    .GetItemForRarity(getRarity().Rank());
             }
         }
 
@@ -162,8 +165,8 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     }
 
     public GearItemSlot GetBaseGearType() {
-
-        return SlashRegistry.GearTypes().get(gearTypeName);
+        return SlashRegistry.GearTypes()
+            .get(gearTypeName);
     }
 
     public int getPowerLevel() {
@@ -198,19 +201,27 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     public ITextComponent GetDisplayName(ItemStack stack) {
 
-        ITextComponent text = new StringTextComponent(this.getRarity().textFormatColor() + "");
+        ITextComponent text = new StringTextComponent(this.getRarity()
+            .textFormatColor() + "");
 
         if (this.isRuned()) {
-            text.appendSibling(Words.Runed.locName().appendText(" ").appendSibling(name(stack)));
+            text.appendSibling(Words.Runed.locName()
+                .appendText(" ")
+                .appendSibling(name(stack)));
         } else {
 
             if (prefix != null && showAffix()) {
-                text.appendSibling(prefix.BaseAffix().locName().appendText(" "));
+                text.appendSibling(prefix.BaseAffix()
+                    .locName()
+                    .appendText(" "));
             }
             text.appendSibling(name(stack));
 
             if (suffix != null && showAffix()) {
-                text.appendText(" ").appendSibling(suffix.BaseAffix().locName()).appendText(" ");
+                text.appendText(" ")
+                    .appendSibling(suffix.BaseAffix()
+                        .locName())
+                    .appendText(" ");
             }
 
         }
@@ -290,20 +301,22 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
             if (isUnique) {
                 try {
-                    tier = this.uniqueStats.getUniqueItem().Tier();
+                    tier = this.uniqueStats.getUniqueItem()
+                        .Tier();
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
-            if (isUnique || RandomUtils.roll(this.getRarity().specialItemChance())) {
+            if (isUnique || RandomUtils.roll(this.getRarity()
+                .specialItemChance())) {
 
                 Item item = SlashRegistry.CurrencyItems()
-                        .getWrapped()
-                        .ofCurrencyUsableOnItemType(ItemType.GEAR)
-                        .ofTierRange(tier - 5, tier + 2)
-                        .random();
+                    .getWrapped()
+                    .ofCurrencyUsableOnItemType(ItemType.GEAR)
+                    .ofTierRange(tier - 5, tier + 2)
+                    .random();
 
                 int tierAmountBonus = (tier / 4);
 
@@ -366,7 +379,8 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
         if (this.isUnique()) {
             try {
-                return this.uniqueStats.getUniqueItem().Tier();
+                return this.uniqueStats.getUniqueItem()
+                    .Tier();
             } catch (Exception e) {
                 e.printStackTrace();
             }

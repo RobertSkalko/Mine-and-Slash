@@ -53,7 +53,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = false;
 
     public static boolean statEffectDebuggingEnabled() {
         return false && RUN_DEV_TOOLS;
@@ -98,7 +98,8 @@ public class MMORPG {
             MAP_WORLD_SEED = org.apache.commons.lang3.RandomUtils.nextLong();
         }
 
-        final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        final IEventBus bus = FMLJavaModLoadingContext.get()
+            .getModEventBus();
 
         SlashRegistry.initRegistries();
 
@@ -168,9 +169,15 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerAboutToStart(FMLServerAboutToStartEvent event) {
 
-        event.getServer().getResourceManager().addReloadListener(new SetDataPackManager());
-        event.getServer().getResourceManager().addReloadListener(new AffixDataPackManager());
-        event.getServer().getResourceManager().addReloadListener(new RunewordDataPackManager());
+        event.getServer()
+            .getResourceManager()
+            .addReloadListener(new SetDataPackManager());
+        event.getServer()
+            .getResourceManager()
+            .addReloadListener(new AffixDataPackManager());
+        event.getServer()
+            .getResourceManager()
+            .addReloadListener(new RunewordDataPackManager());
 
     }
 
@@ -181,7 +188,8 @@ public class MMORPG {
 
         SlashRegistry.checkGuidValidity();
 
-        ErrorChecks.getAll().forEach(x -> x.check());
+        ErrorChecks.getAll()
+            .forEach(x -> x.check());
 
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();
@@ -245,7 +253,8 @@ public class MMORPG {
         }
 
         PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(
-            pos.getX(), pos.getY(), pos.getZ(), 50, world.getDimension().getType());
+            pos.getX(), pos.getY(), pos.getZ(), 50, world.getDimension()
+            .getType());
 
         Network.send(PacketDistributor.NEAR.with(() -> point), msg);
 

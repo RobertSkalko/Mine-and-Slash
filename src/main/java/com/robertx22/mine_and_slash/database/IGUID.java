@@ -21,14 +21,19 @@ public interface IGUID {
     }
 
     public default String getFormatedForLangFile(String str) {
-        return str.replaceAll(" ", "_").toLowerCase(Locale.ROOT).replaceAll("/", ".").replaceAll(":", ".");
+        return str.replaceAll(" ", "_")
+            .toLowerCase(Locale.ROOT)
+            .replaceAll("/", ".")
+            .replaceAll(":", ".");
     }
 
     public static String getformattedString(String str) {
         if (str == null || str.isEmpty()) {
             return str;
         }
-        return addUnderscoresBehindUppercase(str).replaceAll(" ", "_").toLowerCase(Locale.ROOT);
+        return addUnderscoresBehindUppercase(str).replaceAll(" ", "_")
+            .replaceAll("__", "_")
+            .toLowerCase(Locale.ROOT);
     }
 
     static String addUnderscoresBehindUppercase(String str) {

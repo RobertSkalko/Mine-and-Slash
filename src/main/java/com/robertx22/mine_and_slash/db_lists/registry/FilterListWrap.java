@@ -35,42 +35,54 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     }
 
     public FilterListWrap<C> ofAffixType(BaseAffix.Type type) {
-        this.list = list.stream().filter(x -> ((BaseAffix) x).type == type).collect(Collectors.toList());
+        this.list = list.stream()
+            .filter(x -> ((BaseAffix) x).type.equals(type))
+            .collect(Collectors.toList());
         return this;
     }
 
     public List<C> list = new ArrayList<C>();
 
     public FilterListWrap<C> ofTierOrLess(int tier) {
-        this.list = list.stream().filter(x -> ((ITiered) x).Tier() <= tier).collect(Collectors.toList());
+        this.list = list.stream()
+            .filter(x -> ((ITiered) x).Tier() <= tier)
+            .collect(Collectors.toList());
         return this;
     }
 
     public FilterListWrap<C> of(Predicate<C> pred) {
-        this.list = list.stream().filter(pred).collect(Collectors.toList());
+        this.list = list.stream()
+            .filter(pred)
+            .collect(Collectors.toList());
         return this;
     }
 
     public FilterListWrap<C> ofCurrencyUsableOnItemType(ItemType type) {
         this.list = list.stream()
-                .filter(x -> ((CurrencyItem) x).itemTypesUsableOn == type)
-                .collect(Collectors.toList());
+            .filter(x -> ((CurrencyItem) x).itemTypesUsableOn == type)
+            .collect(Collectors.toList());
         return this;
     }
 
     public FilterListWrap<C> ofTierRange(int min, int max) {
-        this.list = list.stream().filter(x -> x.Tier() >= min && x.Tier() <= max).collect(Collectors.toList());
+        this.list = list.stream()
+            .filter(x -> x.Tier() >= min && x.Tier() <= max)
+            .collect(Collectors.toList());
         return this;
     }
 
     public FilterListWrap<C> ofExactTier(int tier) {
-        this.list = list.stream().filter(x -> ((ITiered) x).Tier() == tier).collect(Collectors.toList());
+        this.list = list.stream()
+            .filter(x -> ((ITiered) x).Tier() == tier)
+            .collect(Collectors.toList());
 
         return this;
     }
 
     public FilterListWrap<C> ofExactRarity(int rarity) {
-        this.list = list.stream().filter(x -> ((IRarity) x).getRarityRank() == rarity).collect(Collectors.toList());
+        this.list = list.stream()
+            .filter(x -> ((IRarity) x).getRarityRank() == rarity)
+            .collect(Collectors.toList());
         return this;
     }
 
@@ -78,14 +90,16 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
         final int highest;
 
-        Optional<C> optional = list.stream().max(new RarityComparator());
+        Optional<C> optional = list.stream()
+            .max(new RarityComparator());
 
         if (optional.isPresent()) {
-            highest = optional.get().getRarityRank();
+            highest = optional.get()
+                .getRarityRank();
 
             this.list = list.stream()
-                    .filter(x -> ((IRarity) x).getRarityRank() == highest)
-                    .collect(Collectors.toList());
+                .filter(x -> ((IRarity) x).getRarityRank() == highest)
+                .collect(Collectors.toList());
         } else {
             this.list.clear();
         }
@@ -98,8 +112,10 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
             // keep everything the same
         } else {
             this.list = list.stream()
-                    .filter(x -> ((IGearSlotType) x).getGearSlot().GUID().equals(type))
-                    .collect(Collectors.toList());
+                .filter(x -> ((IGearSlotType) x).getGearSlot()
+                    .GUID()
+                    .equals(type))
+                .collect(Collectors.toList());
         }
 
         return this;
@@ -113,7 +129,8 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
             MMORPG.logError("ERROR! Can't have more random items than there are items in registry!");
 
-            amount = SlashRegistry.StatusEffects().getSize() - 1;
+            amount = SlashRegistry.StatusEffects()
+                .getSize() - 1;
         }
         int tries = 0;
 
@@ -146,8 +163,8 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
     public FilterListWrap<C> allThatMeetRequirement(GearRequestedFor request) {
 
         this.list = list.stream()
-                .filter(x -> ((IhasRequirements) x).meetsRequirements(request))
-                .collect(Collectors.toList());
+            .filter(x -> ((IhasRequirements) x).meetsRequirements(request))
+            .collect(Collectors.toList());
 
         return this;
     }
