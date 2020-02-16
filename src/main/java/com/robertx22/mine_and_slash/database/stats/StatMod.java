@@ -39,6 +39,7 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     @Override
     public Rarity getRarity() {
         return Rarities.Gears.get(getRarityRank());
+
     }
 
     @Override

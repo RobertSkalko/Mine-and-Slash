@@ -14,6 +14,8 @@ I added a temporary system that auto formats all old names to this standard, but
 * fix runewords
 * only 1 unique rune per runed item is now allowed
 * fix some heals not working
+* runewords, affixes and sets are now fully moddable with datapacks! This might have some issues so i'll need some guniea pigs to test it! 
+I tested it myself on client and server but it's not foolproof.
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

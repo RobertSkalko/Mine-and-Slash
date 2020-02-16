@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.serialization.runewords;
 
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.database.serialization.statmods.BaseDataPackManager;
+import com.robertx22.mine_and_slash.database.serialization.BaseDataPackManager;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashDataProvider;

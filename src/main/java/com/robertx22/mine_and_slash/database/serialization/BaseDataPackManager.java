@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.serialization.statmods;
+package com.robertx22.mine_and_slash.database.serialization;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

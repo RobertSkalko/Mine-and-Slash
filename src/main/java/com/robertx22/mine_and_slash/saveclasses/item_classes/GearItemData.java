@@ -142,7 +142,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     // used when upgrading item rarity
     public Item getItem() {
-
         if (isUnique) {
             return (Item) SlashRegistry.UniqueGears().get(uniqueGUID);
         } else {
