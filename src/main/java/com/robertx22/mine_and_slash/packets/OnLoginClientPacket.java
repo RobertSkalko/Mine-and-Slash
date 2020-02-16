@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.packets;
 
+import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -23,15 +24,21 @@ public class OnLoginClientPacket {
 
     public static void handle(final OnLoginClientPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
-                ConfigRegister.unregisterFlaggedEntries();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
+                    ConfigRegister.unregisterFlaggedEntries();
+                    SlashRegistry.getAllRegistries()
+                        .forEach(x -> x.
+                            unregisterAllEntriesFromDatapacks());
 
-        ctx.get().setPacketHandled(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
+        ctx.get()
+            .setPacketHandled(true);
 
     }
 

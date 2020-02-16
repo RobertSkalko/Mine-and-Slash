@@ -47,7 +47,8 @@ public class ConfigRegister {
 
         generateIfEmpty();
 
-        CONFIGS.values().forEach(x -> x.autoFixProblems());
+        CONFIGS.values()
+            .forEach(x -> x.autoFixProblems());
 
         load();
 
@@ -61,11 +62,13 @@ public class ConfigRegister {
 
     // should be called only on server, then packets sent to client
     private static void load() {
-        CONFIGS.values().forEach(x -> x.loadOnServer());
+        CONFIGS.values()
+            .forEach(x -> x.loadOnServer());
     }
 
     private static void generateIfEmpty() {
-        CONFIGS.values().forEach(x -> x.generateIfEmpty());
+        CONFIGS.values()
+            .forEach(x -> x.generateIfEmpty());
     }
 
     public static void unregisterFlaggedEntries() {

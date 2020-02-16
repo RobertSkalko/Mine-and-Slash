@@ -31,10 +31,11 @@ public class RegistryPacket {
     public RegistryPacket(SlashRegistryType type) {
         // TODO CACHE THIS
         List<String> list = (List<String>) SlashRegistry.getRegistry(type)
-                .getFromDatapacks()
-                .stream()
-                .map(x -> ((ISerializable) x).toJson().toString())
-                .collect(Collectors.toList());
+            .getFromDatapacks()
+            .stream()
+            .map(x -> ((ISerializable) x).toJson()
+                .toString())
+            .collect(Collectors.toList());
 
         this.data = new ListStringData(list);
 
@@ -76,39 +77,44 @@ public class RegistryPacket {
 
     public static void handle(final RegistryPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
 
-                System.out.println(
+                    System.out.println(
                         "Starting to register " + pkt.type.name() + " from server packet for Mine and Slash.");
 
-                SlashRegistry.getRegistry(pkt.type).unregisterAllEntriesFromDatapacks();
+                    pkt.data.getList()
+                        .stream()
+                        .map(x -> {
+                            try {
+                                JsonObject json = (JsonObject) PARSER.parse(x);
+                                return pkt.type.getEmpty()
+                                    .fromJson(json);
+                            } catch (JsonSyntaxException e) {
+                                System.out.println("Failed to parse Mine and Slash registry Json!!!");
+                                e.printStackTrace();
+                            }
+                            return null;
 
-                pkt.data.getList().stream().map(x -> {
-                    try {
-                        JsonObject json = (JsonObject) PARSER.parse(x);
-                        return pkt.type.getEmpty().fromJson(json);
-                    } catch (JsonSyntaxException e) {
-                        System.out.println("Failed to parse Mine and Slash registry Json!!!");
-                        e.printStackTrace();
-                    }
-                    return null;
+                        })
+                        .collect(Collectors.toList())
+                        .forEach(x -> {
+                            if (x instanceof ISlashRegistryEntry) {
+                                ((ISlashRegistryEntry) x).registerToSlashRegistry();
+                            }
+                        });
 
-                }).collect(Collectors.toList()).forEach(x -> {
-                    if (x instanceof ISlashRegistryEntry) {
-                        ((ISlashRegistryEntry) x).registerToSlashRegistry();
-                    }
-                });
+                    System.out.println("" + pkt.type.name() + " registration completed.");
 
-                System.out.println("" + pkt.type.name() + " registration completed.");
+                } catch (Exception e) {
 
-            } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
 
-                e.printStackTrace();
-            }
-        });
-
-        ctx.get().setPacketHandled(true);
+        ctx.get()
+            .setPacketHandled(true);
 
     }
 
