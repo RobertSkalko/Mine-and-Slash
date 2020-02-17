@@ -31,9 +31,7 @@ public class PlayerWholeMapData {
     public boolean questFinished = false;
 
     @Store
-    public int minutesInMap = 0;
-    @Store
-    public int minutesOutsideMap = 0;
+    public float mapDropPoints = 1;
 
     public void setOriginalDimension(DimensionType type) {
         this.originalDimension = DimensionType.getKey(type)

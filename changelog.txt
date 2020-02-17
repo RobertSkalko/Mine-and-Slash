@@ -1,4 +1,4 @@
-3.0.11
+3.1.0
 * added recipe for increase map tier item in tinkering station
 * most loot crate rewards now cant drop common rarity
 * fix loot crates without nbt crashing game
@@ -24,6 +24,7 @@ I tested it myself on client and server but it's not foolproof.
 * trying out a new system to balance map drops. Bascically i don't want people spamming them all the time, but i don't want people spending hours insta killing overworld mobs for them either.
 So i made a system that buffs drops if you're outside a map dimension, but nerfs them if you're inside. This should make maps a lot more precious and time gated, and allow for people to do
 other minecraft things in the meantime.
+* increased map droprates a bit. 
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

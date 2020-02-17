@@ -29,13 +29,7 @@ public class MapAffixData {
     }
 
     public float getBonusLootMultiplier() {
-        return ((float) percent / 750) * getAffix().lootMulti();
-    }
-
-    public MapAffixData(String guid, int percent, AffectedEntities affects) {
-        this.GUID = guid;
-        this.percent = percent;
-        this.affectedEntities = affects;
+        return ((float) percent / 700) * getAffix().lootMulti();
     }
 
     @Store
@@ -49,7 +43,8 @@ public class MapAffixData {
 
     public BaseMapAffix getAffix() {
 
-        return SlashRegistry.MapAffixes().get(GUID);
+        return SlashRegistry.MapAffixes()
+            .get(GUID);
     }
 
     public List<StatModData> GetAllStats() {

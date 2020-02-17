@@ -182,7 +182,7 @@ public class PlayerMapCap {
         public void onMinute(PlayerEntity player) {
 
             if (WorldUtils.isMapWorldClass(player.world)) {
-                this.data.minutesInMap++;
+                this.data.mapDropPoints -= 0.03F;
 
                 this.data.minutesPassed++;
 
@@ -195,7 +195,7 @@ public class PlayerMapCap {
 
                 }
             } else {
-                this.data.minutesOutsideMap++;
+                this.data.mapDropPoints += 0.01F;
             }
         }
 
@@ -221,18 +221,16 @@ public class PlayerMapCap {
             this.data.questFinished = true;
         }
 
-        @Override // a self balancing map loot droprate that isn't too much or too little.
+        @Override // a self balancing map loot drop rate that isn't too much or too little.
         public float getMapLootMultiplierForTime() {
-            float minus = this.data.minutesInMap * 0.05F;
-            float plus = this.data.minutesOutsideMap * 0.02F;
-            float total = 1 + plus - minus;
+            float total = 1 + data.mapDropPoints;
 
             return MathHelper.clamp(total, 0.01F, 3F);
         }
 
         @Override
         public void onMapDropped() {
-            this.data.minutesOutsideMap = 0;
+            this.data.mapDropPoints = 0;
         }
 
         private void onMinutePassAnnounce(PlayerEntity player) {
