@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 

@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class NecklaceWisdom extends BaseUniqueNecklace {
+public class NecklaceWisdom implements IUnique {
 
     static StatReq req = new StatReq(
         LvlPointStat.INTELLIGENCE, StatReq.Size.NORMAL, LvlPointStat.WISDOM, StatReq.Size.TINY);
@@ -24,6 +26,11 @@ public class NecklaceWisdom extends BaseUniqueNecklace {
 
     public static NecklaceWisdom getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Necklace.INSTANCE;
     }
 
     @Override

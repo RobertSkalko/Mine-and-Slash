@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.map_events.base;
 
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

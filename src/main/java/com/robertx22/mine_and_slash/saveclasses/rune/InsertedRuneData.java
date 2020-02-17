@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.rune;
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatGroupData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;

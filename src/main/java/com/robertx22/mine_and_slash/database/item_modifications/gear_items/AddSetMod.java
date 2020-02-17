@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.item_modifications.gear_items;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseGearMod;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.ItemModType;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.SetData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;

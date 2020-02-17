@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.map_events.impl.PhantomSpawnsEvent;
 import com.robertx22.mine_and_slash.database.map_events.impl.SkeletonHordeEvent;
 import com.robertx22.mine_and_slash.database.map_events.impl.SpiderHordeEvent;
 import com.robertx22.mine_and_slash.database.map_events.impl.ZombieHordeEvent;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;

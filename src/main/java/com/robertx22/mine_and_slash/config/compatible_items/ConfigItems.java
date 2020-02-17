@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.robertx22.mine_and_slash.config.base.IConfig;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 
 import java.util.ArrayList;

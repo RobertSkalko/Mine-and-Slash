@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.loot.blueprints.bases;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.sets.Set;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.SetData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;

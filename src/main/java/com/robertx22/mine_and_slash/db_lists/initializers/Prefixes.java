@@ -13,8 +13,8 @@ import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_reso
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.Heros;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 

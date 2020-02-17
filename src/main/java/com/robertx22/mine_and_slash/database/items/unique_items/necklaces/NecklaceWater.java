@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class NecklaceWater extends BaseUniqueNecklace {
+public class NecklaceWater implements IUnique {
 
     public NecklaceWater() {
 
@@ -22,6 +24,11 @@ public class NecklaceWater extends BaseUniqueNecklace {
 
     static StatReq req = new StatReq(
         LvlPointStat.VITALITY, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Necklace.INSTANCE;
+    }
 
     @Override
     public StatReq getRequirements() {

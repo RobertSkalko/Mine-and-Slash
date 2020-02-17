@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;

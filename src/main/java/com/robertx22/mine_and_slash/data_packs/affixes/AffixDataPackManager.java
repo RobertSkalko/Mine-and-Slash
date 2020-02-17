@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.data_packs.affixes;
 
 import com.robertx22.mine_and_slash.data_packs.BaseDataPackManager;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashDataProvider;
 import net.minecraft.data.DataGenerator;
 

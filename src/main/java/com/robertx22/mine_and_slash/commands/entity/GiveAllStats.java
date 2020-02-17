@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.commands.entity;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;

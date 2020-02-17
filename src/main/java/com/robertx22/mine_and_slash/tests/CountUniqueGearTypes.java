@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.tests;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
 public class CountUniqueGearTypes {
 

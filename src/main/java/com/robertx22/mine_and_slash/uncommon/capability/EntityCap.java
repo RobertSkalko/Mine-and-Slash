@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;

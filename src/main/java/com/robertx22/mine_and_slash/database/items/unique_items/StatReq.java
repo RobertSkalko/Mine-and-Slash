@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.items.unique_items;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializablePart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatRequirementsData;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;

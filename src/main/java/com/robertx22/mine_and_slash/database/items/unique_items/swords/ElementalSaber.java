@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.swords;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.database.items.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueSword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.Arrays;
 import java.util.List;
 
-public class ElementalSaber extends BaseUniqueSword implements IElementalUnique {
+public class ElementalSaber implements IElementalUnique {
 
     public Elements element;
 
@@ -41,6 +42,11 @@ public class ElementalSaber extends BaseUniqueSword implements IElementalUnique 
     @Override
     public List<StatMod> primaryStats() {
         return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.LOW));
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Sword.INSTANCE;
     }
 
     @Override

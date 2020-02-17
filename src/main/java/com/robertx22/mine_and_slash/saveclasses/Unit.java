@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;

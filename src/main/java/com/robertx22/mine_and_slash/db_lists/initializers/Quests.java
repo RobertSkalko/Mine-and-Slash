@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.quests.quests.CollectRarityPointsKi
 import com.robertx22.mine_and_slash.database.quests.quests.KillOnlyOfRarityOrHigherQuest;
 import com.robertx22.mine_and_slash.database.quests.quests.OpenAnyCratesQuest;
 import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.swords;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueSword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class SwordWater extends BaseUniqueSword {
+public class SwordWater implements IUnique {
     public SwordWater() {
 
     }
@@ -39,6 +41,11 @@ public class SwordWater extends BaseUniqueSword {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new ElementalTransferFlat(Elements.Thunder, Elements.Water), new ManaRegenFlat(), new ManaOnHitFlat());
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Sword.INSTANCE;
     }
 
     @Override

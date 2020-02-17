@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.world_gen.structures.bases;
 
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Mirror;

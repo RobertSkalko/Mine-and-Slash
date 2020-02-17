@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.map_events.impl;
 
 import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;

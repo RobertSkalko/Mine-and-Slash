@@ -1,9 +1,9 @@
-package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
+package com.robertx22.mine_and_slash.database.items.unique_items.helmet.cloth;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
@@ -16,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class HelmetWisdom extends BaseUniqueHelmet {
+public class HelmetWisdom implements IUnique {
 
     public static HelmetWisdom INSTANCE = new HelmetWisdom();
 

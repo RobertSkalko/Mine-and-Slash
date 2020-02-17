@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalConversionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
@@ -12,18 +14,23 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class RingWaterFire extends BaseUniqueRing {
+public class RingWaterFire implements IUnique {
 
     public RingWaterFire() {
 
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.SMALL);
+        LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
         return req;
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Ring.INSTANCE;
     }
 
     @Override
@@ -39,15 +46,15 @@ public class RingWaterFire extends BaseUniqueRing {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new ElementalConversionFlat(Elements.Fire, Elements.Water),
-                new ElementalConversionFlat(Elements.Water, Elements.Fire)
+            new ElementalConversionFlat(Elements.Fire, Elements.Water),
+            new ElementalConversionFlat(Elements.Water, Elements.Fire)
         );
     }
 
     @Override
     public List<StatMod> primaryStats() {
         return Arrays.asList(
-                new ElementalSpellDamagePercent(Elements.Fire), new ElementalSpellDamagePercent(Elements.Water));
+            new ElementalSpellDamagePercent(Elements.Fire), new ElementalSpellDamagePercent(Elements.Water));
 
     }
 

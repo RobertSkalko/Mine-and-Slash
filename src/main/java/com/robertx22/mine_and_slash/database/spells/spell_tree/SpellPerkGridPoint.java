@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_tree;
 
 import com.robertx22.mine_and_slash.database.talent_tree.csv_parser.GridPoint;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
 public class SpellPerkGridPoint extends GridPoint<SpellPerk> {
 

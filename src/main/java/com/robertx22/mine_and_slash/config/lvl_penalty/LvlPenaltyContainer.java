@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.config.lvl_penalty;
 
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.Comparator;
 import java.util.HashMap;

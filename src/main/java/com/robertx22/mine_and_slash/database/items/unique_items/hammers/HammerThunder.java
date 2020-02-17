@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.hammers;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Hammer;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHammer;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
@@ -14,17 +16,22 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class HammerThunder extends BaseUniqueHammer {
+public class HammerThunder implements IUnique {
     public HammerThunder() {
 
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.STAMINA, StatReq.Size.MEDIUM);
+        LvlPointStat.STRENGTH, StatReq.Size.MEDIUM, LvlPointStat.STAMINA, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
         return req;
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Hammer.INSTANCE;
     }
 
     @Override
@@ -40,7 +47,7 @@ public class HammerThunder extends BaseUniqueHammer {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalDamageFlat(), new CriticalHitMulti());
+            new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalDamageFlat(), new CriticalHitMulti());
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellTreeParser;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
 public class SpellPerks implements ISlashRegistryInit {
 

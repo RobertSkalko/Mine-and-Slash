@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.items.currency.ItemOrbOfTransmutati
 import com.robertx22.mine_and_slash.database.items.currency.ItemStoneOfHope;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;

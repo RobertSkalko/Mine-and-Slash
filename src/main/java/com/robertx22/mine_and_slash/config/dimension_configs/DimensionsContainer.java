@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.config.dimension_configs;
 
 import com.robertx22.mine_and_slash.config.base.IConfig;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 
 import java.util.HashMap;
 import java.util.Map;

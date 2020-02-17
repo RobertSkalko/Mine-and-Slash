@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.mapitem;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.AffectedEntities;
 import info.loenwind.autosave.annotations.Storable;

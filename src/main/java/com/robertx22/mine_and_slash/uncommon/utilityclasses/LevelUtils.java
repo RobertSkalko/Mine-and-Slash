@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;

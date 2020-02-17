@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;

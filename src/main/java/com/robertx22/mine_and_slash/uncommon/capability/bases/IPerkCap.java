@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.capability.bases;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryContainer;
+import com.robertx22.mine_and_slash.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.saveclasses.talents.BasePerksData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.player.PlayerEntity;

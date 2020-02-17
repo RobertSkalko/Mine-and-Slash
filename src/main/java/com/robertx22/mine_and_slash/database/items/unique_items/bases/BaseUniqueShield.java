@@ -9,7 +9,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseUniqueShield extends ShieldItem implements IEffectItem {
+public final class BaseUniqueShield extends ShieldItem implements IEffectItem {
 
     public BaseUniqueShield() {
         super(new Properties().maxStackSize(1)

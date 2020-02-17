@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.necklaces;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class NecklaceThunder extends BaseUniqueNecklace {
+public class NecklaceThunder implements IUnique {
 
     public NecklaceThunder() {
 
@@ -26,6 +28,11 @@ public class NecklaceThunder extends BaseUniqueNecklace {
     @Override
     public StatReq getRequirements() {
         return req;
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Necklace.INSTANCE;
     }
 
     @Override

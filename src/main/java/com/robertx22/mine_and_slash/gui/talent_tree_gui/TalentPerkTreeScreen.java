@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.gui.talent_tree_gui;
 
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.BasePerkTreeScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;

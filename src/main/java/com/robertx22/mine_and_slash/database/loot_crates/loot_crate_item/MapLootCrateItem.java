@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.MapScoreEnum;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;

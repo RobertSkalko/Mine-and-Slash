@@ -1,10 +1,12 @@
-package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
+package com.robertx22.mine_and_slash.database.items.unique_items.helmet.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -14,13 +16,19 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class HelmetWater extends BaseUniqueHelmet {
+public class HelmetFire implements IUnique {
 
-    public HelmetWater() {
+    public HelmetFire() {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.NORMAL);
+    static StatReq req = new StatReq(
+        LvlPointStat.VITALITY, StatReq.Size.SMALL, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlateHelmet.INSTANCE;
+    }
 
     @Override
     public StatReq getRequirements() {
@@ -29,31 +37,31 @@ public class HelmetWater extends BaseUniqueHelmet {
 
     @Override
     public int Tier() {
-        return 12;
+        return 17;
     }
 
     @Override
     public String GUID() {
-        return "helmetwater0";
+        return "helmetfire0";
     }
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Water), new ManaRegenFlat(), new EnergyRegenFlat());
+        return Arrays.asList(new ArmorFlat().size(StatMod.Size.HIGH), new EnergyRegenFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Water));
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire));
     }
 
     @Override
     public String locNameForLangFile() {
-        return Styles.YELLOW + "Ice Seer Eyes";
+        return Styles.YELLOW + "Flame Atronach Helmet";
     }
 
     @Override
     public String locDescForLangFile() {
-        return "What mortals can't see belongs to me.";
+        return "I see flames all around me.";
     }
 }

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.impl.*;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;

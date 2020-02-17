@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.packets;
 
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionTile;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;

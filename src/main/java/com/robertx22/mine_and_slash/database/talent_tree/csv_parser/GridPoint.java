@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.talent_tree.csv_parser;
 
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 

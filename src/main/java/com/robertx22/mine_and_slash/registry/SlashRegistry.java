@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists.registry;
+package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
@@ -42,6 +42,7 @@ import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.IWorld;

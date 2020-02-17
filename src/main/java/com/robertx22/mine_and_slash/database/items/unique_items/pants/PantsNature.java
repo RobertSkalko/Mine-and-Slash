@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.pants;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
@@ -15,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class PantsNature extends BaseUniquePantsItem {
+public class PantsNature implements IUnique {
 
     public PantsNature() {
 
@@ -23,6 +25,11 @@ public class PantsNature extends BaseUniquePantsItem {
 
     static StatReq req = new StatReq(
         LvlPointStat.VITALITY, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.SMALL);
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlatePants.INSTANCE;
+    }
 
     @Override
     public StatReq getRequirements() {

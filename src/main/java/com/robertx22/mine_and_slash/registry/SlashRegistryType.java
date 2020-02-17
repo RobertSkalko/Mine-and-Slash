@@ -1,9 +1,10 @@
-package com.robertx22.mine_and_slash.db_lists.registry;
+package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.database.sets.Set;
-import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyAffix;
-import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptyRuneWord;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRuneWord;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyUnique;
 
 public enum SlashRegistryType {
     STAT("stat"),
@@ -24,7 +25,12 @@ public enum SlashRegistryType {
             return EmptyAffix.getInstance();
         }
     },
-    UNIQUE_GEAR("unique_gear"),
+    UNIQUE_GEAR("unique_gear") {
+        @Override
+        public ISerializable getEmpty() {
+            return EmptyUnique.getInstance();
+        }
+    },
     WORLD_PROVIDER("world_provider"),
     SET("item_set") {
         @Override

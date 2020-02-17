@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
+package com.robertx22.mine_and_slash.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;

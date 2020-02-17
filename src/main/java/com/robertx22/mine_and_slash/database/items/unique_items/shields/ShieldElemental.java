@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.shields;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.items.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.BlockReflectFlat;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.Arrays;
 import java.util.List;
 
-public class ShieldElemental extends BaseUniqueShield implements IElementalUnique {
+public class ShieldElemental implements IElementalUnique {
 
     public Elements element;
 
@@ -26,6 +27,11 @@ public class ShieldElemental extends BaseUniqueShield implements IElementalUniqu
     }
 
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.NORMAL);
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Shield.INSTANCE;
+    }
 
     @Override
     public StatReq getRequirements() {
@@ -54,7 +60,8 @@ public class ShieldElemental extends BaseUniqueShield implements IElementalUniqu
 
     @Override
     public String GUID() {
-        return element.name().toLowerCase() + "_ele_shield0";
+        return element.name()
+            .toLowerCase() + "_ele_shield0";
     }
 
     @Override

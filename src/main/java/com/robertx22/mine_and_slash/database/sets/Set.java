@@ -10,8 +10,8 @@ import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.db_lists.registry.empty_entries.EmptySet;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptySet;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;

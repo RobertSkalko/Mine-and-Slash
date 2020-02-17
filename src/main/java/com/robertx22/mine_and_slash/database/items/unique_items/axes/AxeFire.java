@@ -62,4 +62,5 @@ public class AxeFire implements IUnique {
     public GearItemSlot getGearSlot() {
         return Axe.INSTANCE;
     }
+
 }

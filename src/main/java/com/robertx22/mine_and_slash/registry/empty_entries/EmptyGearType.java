@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists.registry.empty_entries;
+package com.robertx22.mine_and_slash.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
@@ -25,6 +25,11 @@ public class EmptyGearType extends GearItemSlot {
     @Override
     public StatReq getRequirements() {
         return noReq;
+    }
+
+    @Override
+    public Item getBaseUniqueItem() {
+        return null;
     }
 
     @Override

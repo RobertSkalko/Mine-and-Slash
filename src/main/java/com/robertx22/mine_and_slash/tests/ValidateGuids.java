@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.tests;
 
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 

@@ -20,7 +20,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;

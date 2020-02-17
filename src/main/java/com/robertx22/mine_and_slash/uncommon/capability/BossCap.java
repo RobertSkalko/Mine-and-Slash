@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.MobCaps;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;

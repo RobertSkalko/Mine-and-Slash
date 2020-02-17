@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.config.mod_dmg_whitelist;
 
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 

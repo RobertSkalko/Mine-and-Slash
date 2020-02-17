@@ -1,10 +1,15 @@
 package com.robertx22.mine_and_slash.database.items.unique_items;
 
+import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.data_packs.JsonUtils;
+import com.robertx22.mine_and_slash.data_packs.unique_gears.SerializableUniqueGear;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -18,7 +23,47 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 
 public interface IUnique extends ISpecificStatReq, IRarity, IGearSlotType, ITiered, IAutoLocName, IAutoLocDesc,
-    ISlashRegistryEntry<IUnique> {
+    ISerializedRegistryEntry<IUnique>, ISerializable<IUnique> {
+
+    @Override
+    default JsonObject toJson() {
+        JsonObject json = getDefaultJson();
+
+        JsonUtils.addStatMods(primaryStats(), json, "primary_stats");
+        JsonUtils.addStatMods(uniqueStats(), json, "unique_stats");
+
+        json.addProperty("can_get_set", canGetSet());
+        json.add("requirements", this.getRequirements()
+            .toJson());
+        json.addProperty("gear_type", this.getGearSlot()
+            .GUID());
+
+        return null;
+    }
+
+    @Override
+    default IUnique fromJson(JsonObject json) {
+
+        String guid = getGUIDFromJson(json);
+        String name = getLangNameStringFromJson(json);
+        String desc = getLangDescStringFromJson(json);
+        int tier = getTierFromJson(json);
+        int weight = getWeightFromJson(json);
+        GearRarity rarity = Rarities.Gears.get(getRarityFromJson(json));
+
+        List<StatMod> primary = JsonUtils.getStatMods(json, "primary_stats");
+        List<StatMod> unique = JsonUtils.getStatMods(json, "unique_stats");
+
+        boolean canGetSet = json.get("can_get_set")
+            .getAsBoolean();
+        StatReq req = StatReq.nothing()
+            .fromJson(json.get("requirements")
+                .getAsJsonObject());
+        String slot = json.get("gear_type")
+            .getAsString();
+
+        return new SerializableUniqueGear(primary, unique, tier, rarity, weight, canGetSet, req, guid, name, desc, slot);
+    }
 
     @Override
     public default int Weight() {

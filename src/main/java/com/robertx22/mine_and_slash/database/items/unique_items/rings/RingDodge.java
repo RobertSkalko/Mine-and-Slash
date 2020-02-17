@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
@@ -17,13 +19,18 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class RingDodge extends BaseUniqueRing {
+public class RingDodge implements IUnique {
 
     public RingDodge() {
 
     }
 
     static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.NORMAL);
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Ring.INSTANCE;
+    }
 
     @Override
     public StatReq getRequirements() {

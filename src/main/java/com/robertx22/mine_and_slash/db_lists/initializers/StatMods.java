@@ -29,8 +29,8 @@ import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.Physical
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.SpellDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;

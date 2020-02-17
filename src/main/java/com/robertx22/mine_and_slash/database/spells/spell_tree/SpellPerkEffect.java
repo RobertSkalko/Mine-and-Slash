@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerkEffect;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;

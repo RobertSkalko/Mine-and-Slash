@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class StaffWater extends BaseUniqueStaff {
+public class StaffWater implements IUnique {
 
     public StaffWater() {
 
@@ -41,6 +43,11 @@ public class StaffWater extends BaseUniqueStaff {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new CriticalDamageFlat().size(StatMod.Size.HIGH), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HIGH)
         );
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Staff.INSTANCE;
     }
 
     @Override

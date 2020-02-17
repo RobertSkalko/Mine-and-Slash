@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.shields;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
@@ -14,7 +15,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.Arrays;
 import java.util.List;
 
-public class ShieldWisdom extends BaseUniqueShield implements IUnique {
+public class ShieldWisdom implements IUnique {
 
     public static ShieldWisdom INSTANCE = new ShieldWisdom();
 
@@ -23,6 +24,11 @@ public class ShieldWisdom extends BaseUniqueShield implements IUnique {
     }
 
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.NORMAL);
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Shield.INSTANCE;
+    }
 
     @Override
     public StatReq getRequirements() {

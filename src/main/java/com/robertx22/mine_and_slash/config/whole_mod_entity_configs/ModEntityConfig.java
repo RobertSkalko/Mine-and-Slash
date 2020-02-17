@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.config.whole_mod_entity_configs;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 
 public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {

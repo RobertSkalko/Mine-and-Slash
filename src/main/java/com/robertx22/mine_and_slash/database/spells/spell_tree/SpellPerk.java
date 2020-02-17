@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_tree;
 
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 
 public class SpellPerk extends BasePerk<SpellPerk, IPerkCap> {

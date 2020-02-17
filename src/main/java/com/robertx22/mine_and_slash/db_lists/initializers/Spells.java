@@ -15,7 +15,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.Lightni
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;

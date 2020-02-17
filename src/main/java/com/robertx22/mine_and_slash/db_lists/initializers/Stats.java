@@ -37,7 +37,7 @@ import com.robertx22.mine_and_slash.database.stats.types.traits.low_dodge.LowDod
 import com.robertx22.mine_and_slash.database.stats.types.traits.low_dodge.LowDodgeAddCritHit;
 import com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana.*;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.error_checks;
 
 import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.error_checks.base.IErrorCheck;
 
 public class OneUniqueRunePerRunewordCheck implements IErrorCheck {

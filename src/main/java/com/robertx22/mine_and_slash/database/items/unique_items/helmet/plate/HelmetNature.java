@@ -1,7 +1,9 @@
-package com.robertx22.mine_and_slash.database.items.unique_items.helmet;
+package com.robertx22.mine_and_slash.database.items.unique_items.helmet.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
@@ -14,13 +16,18 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class HelmetNature extends BaseUniqueHelmet {
+public class HelmetNature implements IUnique {
 
     public HelmetNature() {
 
     }
 
     static StatReq req = new StatReq(LvlPointStat.VITALITY, StatReq.Size.NORMAL);
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlateHelmet.INSTANCE;
+    }
 
     @Override
     public StatReq getRequirements() {

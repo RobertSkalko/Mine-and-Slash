@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceEggFeature;

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.NormalShield;
@@ -48,6 +49,11 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
     @Override
     public Item getDefaultItem() {
         return NormalShield.Items.get(0);
+    }
+
+    @Override
+    public Item getBaseUniqueItem() {
+        return new BaseUniqueShield();
     }
 
     @Override

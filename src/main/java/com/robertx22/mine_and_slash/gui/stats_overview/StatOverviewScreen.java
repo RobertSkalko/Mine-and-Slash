@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;

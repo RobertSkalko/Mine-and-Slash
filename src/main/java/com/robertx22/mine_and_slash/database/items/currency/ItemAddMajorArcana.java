@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.SimpleGearL
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana.BaseMajorArcana;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.mmorpg.Ref;

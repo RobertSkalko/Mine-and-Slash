@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -32,9 +32,11 @@ public class CreateLangFile {
 
             json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocName iauto : entry.getValue()) {
-                if (iauto.locNameForLangFile().isEmpty() == false) {
+                if (iauto.locNameForLangFile()
+                    .isEmpty() == false) {
 
-                    if (iauto.locNameForLangFile().contains("\"")) {
+                    if (iauto.locNameForLangFile()
+                        .contains("\"")) {
                         try {
                             throw new Exception(iauto.locNameForLangFile() + " contains double \"");
                         } catch (Exception e) {
@@ -59,9 +61,11 @@ public class CreateLangFile {
 
             json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocDesc iauto : entry.getValue()) {
-                if (iauto.locDescForLangFile().isEmpty() == false) {
+                if (iauto.locDescForLangFile()
+                    .isEmpty() == false) {
 
-                    if (iauto.locDescForLangFile().contains("\"")) {
+                    if (iauto.locDescForLangFile()
+                        .contains("\"")) {
                         try {
                             throw new Exception(iauto.locDescForLangFile() + " contains double \"");
                         } catch (Exception e) {
@@ -92,13 +96,14 @@ public class CreateLangFile {
                 }
                 usedGUIDS.add(iauto.formattedLocLoresLangFileGUID());
 
-                if (iauto.loreLines().size() > 0) {
+                if (iauto.loreLines()
+                    .size() > 0) {
                     int i = 0;
 
                     for (String line : iauto.loreLines()) {
 
                         json += "\t" + "\"" + iauto.getPrefixListForLangFile()
-                                .get(i) + iauto.formattedLocLoresLangFileGUID() + "\": \"" + line + "\",\n";
+                            .get(i) + iauto.formattedLocLoresLangFileGUID() + "\": \"" + line + "\",\n";
                         i++;
                     }
                 }
@@ -123,7 +128,8 @@ public class CreateLangFile {
             FileWriter fw = new FileWriter(file);
             fw.write(json);
             fw.close();
-            System.out.println("Saved lang file to " + file.toPath().toString());
+            System.out.println("Saved lang file to " + file.toPath()
+                .toString());
 
         } catch (Exception e) {
             System.out.println(e);
@@ -134,12 +140,24 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocName>> getMap() {
         List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
-        list.addAll(SlashRegistry.Sets().getSerializable());
-        list.addAll(SlashRegistry.RuneWords().getSerializable());
-        list.addAll(SlashRegistry.Affixes().getSerializable());
-        list.addAll(SlashRegistry.Stats().getAll().values());
-        list.addAll(SlashRegistry.GearTypes().getAll().values());
-        list.addAll(SlashRegistry.WorldProviders().getAll().values());
+        list.addAll(SlashRegistry.Sets()
+            .getSerializable());
+        list.addAll(SlashRegistry.RuneWords()
+            .getSerializable());
+        list.addAll(SlashRegistry.UniqueGears()
+            .getSerializable());
+        list.addAll(SlashRegistry.Affixes()
+            .getSerializable());
+
+        list.addAll(SlashRegistry.Stats()
+            .getAll()
+            .values());
+        list.addAll(SlashRegistry.GearTypes()
+            .getAll()
+            .values());
+        list.addAll(SlashRegistry.WorldProviders()
+            .getAll()
+            .values());
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.Gears.getAllRarities());
         list.addAll(Rarities.Mobs.getAllRarities());
@@ -151,8 +169,11 @@ public class CreateLangFile {
 
         for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
             map.put(
-                    autoLocGroup,
-                    list.stream().filter(x -> x.locNameGroup().equals(autoLocGroup)).collect(Collectors.toList())
+                autoLocGroup,
+                list.stream()
+                    .filter(x -> x.locNameGroup()
+                        .equals(autoLocGroup))
+                    .collect(Collectors.toList())
             );
         }
 
@@ -161,7 +182,9 @@ public class CreateLangFile {
             List<IAutoLocName> sortedlist = new ArrayList<>(entry.getValue());
             CreateLangFileUtils.sortName(sortedlist);
             if (sortedlist.size() > 0) {
-                sortedMap.put(entry.getValue().get(0).getGroupName(), sortedlist);
+                sortedMap.put(entry.getValue()
+                    .get(0)
+                    .getGroupName(), sortedlist);
             }
         }
 
@@ -171,14 +194,19 @@ public class CreateLangFile {
 
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
         List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
-        list.addAll(SlashRegistry.Stats().getAll().values());
+        list.addAll(SlashRegistry.Stats()
+            .getAll()
+            .values());
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> map = new HashMap<>();
 
         for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
             map.put(
-                    autoLocGroup,
-                    list.stream().filter(x -> x.locDescGroup().equals(autoLocGroup)).collect(Collectors.toList())
+                autoLocGroup,
+                list.stream()
+                    .filter(x -> x.locDescGroup()
+                        .equals(autoLocGroup))
+                    .collect(Collectors.toList())
             );
         }
 
@@ -187,7 +215,9 @@ public class CreateLangFile {
             List<IAutoLocDesc> sortedlist = new ArrayList<>(entry.getValue());
             CreateLangFileUtils.sortDesc(sortedlist);
             if (sortedlist.size() > 0) {
-                sortedMap.put(entry.getValue().get(0).getDescGroupName(), sortedlist);
+                sortedMap.put(entry.getValue()
+                    .get(0)
+                    .getDescGroupName(), sortedlist);
             }
         }
 
@@ -202,8 +232,11 @@ public class CreateLangFile {
 
         for (IBaseAutoLoc.AutoLocGroup autoLocGroup : IBaseAutoLoc.AutoLocGroup.values()) {
             map.put(
-                    autoLocGroup,
-                    list.stream().filter(x -> x.locLoresGroup().equals(autoLocGroup)).collect(Collectors.toList())
+                autoLocGroup,
+                list.stream()
+                    .filter(x -> x.locLoresGroup()
+                        .equals(autoLocGroup))
+                    .collect(Collectors.toList())
             );
         }
 
@@ -212,7 +245,9 @@ public class CreateLangFile {
             List<IAutoLocMultiLore> sortedlist = new ArrayList<>(entry.getValue());
             CreateLangFileUtils.sortLores(sortedlist);
             if (sortedlist.size() > 0) {
-                sortedMap.put(entry.getValue().get(0).getMultiGroupName(), sortedlist);
+                sortedMap.put(entry.getValue()
+                    .get(0)
+                    .getMultiGroupName(), sortedlist);
             }
         }
 

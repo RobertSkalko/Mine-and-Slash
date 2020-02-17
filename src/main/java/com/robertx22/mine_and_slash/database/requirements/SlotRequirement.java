@@ -20,7 +20,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
 import java.util.ArrayList;
 import java.util.Arrays;

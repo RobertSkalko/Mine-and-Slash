@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.AwakenRuneW
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;

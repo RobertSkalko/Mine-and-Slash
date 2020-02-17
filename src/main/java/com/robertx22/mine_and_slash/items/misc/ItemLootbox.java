@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;

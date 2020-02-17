@@ -24,7 +24,12 @@ import com.robertx22.mine_and_slash.database.items.unique_items.chest.plate.Ches
 import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerElemental;
 import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerPhysical;
 import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerThunder;
-import com.robertx22.mine_and_slash.database.items.unique_items.helmet.*;
+import com.robertx22.mine_and_slash.database.items.unique_items.helmet.cloth.HelmetMana;
+import com.robertx22.mine_and_slash.database.items.unique_items.helmet.cloth.HelmetWisdom;
+import com.robertx22.mine_and_slash.database.items.unique_items.helmet.plate.HelmetFire;
+import com.robertx22.mine_and_slash.database.items.unique_items.helmet.plate.HelmetNature;
+import com.robertx22.mine_and_slash.database.items.unique_items.helmet.plate.HelmetThunder;
+import com.robertx22.mine_and_slash.database.items.unique_items.helmet.plate.HelmetWater;
 import com.robertx22.mine_and_slash.database.items.unique_items.necklaces.*;
 import com.robertx22.mine_and_slash.database.items.unique_items.pants.PantsFire;
 import com.robertx22.mine_and_slash.database.items.unique_items.pants.PantsNature;
@@ -39,10 +44,9 @@ import com.robertx22.mine_and_slash.database.items.unique_items.swords.Elemental
 import com.robertx22.mine_and_slash.database.items.unique_items.swords.SwordNature;
 import com.robertx22.mine_and_slash.database.items.unique_items.swords.SwordPhysical;
 import com.robertx22.mine_and_slash.database.items.unique_items.swords.SwordWater;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
-import net.minecraft.item.Item;
 
 public class UniqueGears implements ISlashRegistryInit {
 
@@ -151,17 +155,16 @@ public class UniqueGears implements ISlashRegistryInit {
 
     }
 
-    private void add(Item item) {
-
+    private void add(IUnique item) {
         if (item instanceof IGenerated) {
             IGenerated<IUnique> gen = (IGenerated) item;
             for (IUnique uniq : gen.generateAllPossibleStatVariations()) {
-                uniq.registerToSlashRegistry();
+                uniq.addToSerializables();
             }
 
         } else {
             IUnique uniq = (IUnique) item;
-            uniq.registerToSlashRegistry();
+            uniq.addToSerializables();
         }
     }
 

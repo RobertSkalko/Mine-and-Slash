@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class StaffThunder extends BaseUniqueStaff {
+public class StaffThunder implements IUnique {
 
     public StaffThunder() {
 
@@ -35,6 +37,11 @@ public class StaffThunder extends BaseUniqueStaff {
     @Override
     public String GUID() {
         return "uniquestaffthunder0";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Staff.INSTANCE;
     }
 
     @Override

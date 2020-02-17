@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.items.runes.unique_runes.ONIItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.QARItem;
 import com.robertx22.mine_and_slash.database.items.runes.unique_runes.WORItem;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;

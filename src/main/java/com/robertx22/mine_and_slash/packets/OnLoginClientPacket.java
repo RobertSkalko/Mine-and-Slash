@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.packets;
 
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusEleResi
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusHealthAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusLifestealAffix;
 import com.robertx22.mine_and_slash.database.map_affixes.detrimental.*;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;

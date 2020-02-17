@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.items.currency.loc_reqs;
 
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.misc.ItemAwakenRuneWord;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;

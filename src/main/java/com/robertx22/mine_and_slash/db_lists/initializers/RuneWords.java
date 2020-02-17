@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.database.runewords.unique.RuneWordAttuned;
 import com.robertx22.mine_and_slash.database.runewords.unique.RuneWordFortress;
 import com.robertx22.mine_and_slash.database.runewords.unique.RuneWordRoyalty;
 import com.robertx22.mine_and_slash.database.runewords.unique.RuneWordTrueHit;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;

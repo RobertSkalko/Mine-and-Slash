@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.rings;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
@@ -15,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class RingMagicShield extends BaseUniqueRing {
+public class RingMagicShield implements IUnique {
 
     public static RingMagicShield INSTANCE = new RingMagicShield();
 
@@ -24,6 +26,11 @@ public class RingMagicShield extends BaseUniqueRing {
     }
 
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM);
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Ring.INSTANCE;
+    }
 
     @Override
     public StatReq getRequirements() {

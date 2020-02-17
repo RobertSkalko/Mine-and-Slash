@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerTalentsCap;
 
 public class Perk extends BasePerk<Perk, PlayerTalentsCap.IPlayerTalentsData> {

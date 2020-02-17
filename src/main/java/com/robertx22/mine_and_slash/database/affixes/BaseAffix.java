@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.data_packs.JsonUtils;
 import com.robertx22.mine_and_slash.data_packs.affixes.SerializableAffix;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
@@ -17,9 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity,
     ISerializedRegistryEntry<BaseAffix>, ISerializable<BaseAffix> {
@@ -68,7 +66,8 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
 
     @Override
     public int Weight() {
-        return this.getRarity().Weight();
+        return this.getRarity()
+            .Weight();
     }
 
     public abstract List<StatMod> StatMods();
@@ -90,9 +89,7 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
         json.addProperty("type", type.name());
         json.add("requirements", requirements().toJson());
 
-        JsonArray array = new JsonArray();
-        StatMods().stream().map(x -> x.toRegistryJson()).collect(Collectors.toList()).forEach(x -> array.add(x));
-        json.add("mods", array);
+        JsonUtils.addStatMods(StatMods(), json, "mods");
 
         return json;
     }
@@ -106,12 +103,12 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
             int weight = getWeightFromJson(json);
             int rarity = getRarityFromJson(json);
 
-            Type type = Type.valueOf(json.get("type").getAsString());
+            Type type = Type.valueOf(json.get("type")
+                .getAsString());
 
             Requirements req = Requirements.EMPTY.fromJson(json.getAsJsonObject("requirements"));
 
-            List<StatMod> mods = new ArrayList<>();
-            json.getAsJsonArray("mods").forEach(x -> mods.add(StatMod.EMPTY.fromRegistryJson(x.getAsJsonObject())));
+            List<StatMod> mods = JsonUtils.getStatMods(json, "mods");
 
             return new SerializableAffix(rarity, weight, req, guid, mods, langName, type);
         } catch (IllegalArgumentException e) {

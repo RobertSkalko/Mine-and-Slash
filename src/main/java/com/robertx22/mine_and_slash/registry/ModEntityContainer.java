@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.db_lists.registry;
+package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;

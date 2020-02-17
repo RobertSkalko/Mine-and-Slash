@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.config.base_player_stat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 

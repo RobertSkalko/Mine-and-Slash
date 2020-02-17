@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.staffs;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
 import com.robertx22.mine_and_slash.database.items.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CompletePhysDispersionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.Arrays;
 import java.util.List;
 
-public class EleSpellDmgStaff extends BaseUniqueStaff implements IElementalUnique {
+public class EleSpellDmgStaff implements IElementalUnique {
 
     public Elements element;
 
@@ -36,6 +37,11 @@ public class EleSpellDmgStaff extends BaseUniqueStaff implements IElementalUniqu
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new ElementalSpellToAttackDMGFlat(element).size(StatMod.Size.HIGH), new ElementalSpellToAttackDMGPercent(element)
             , new CompletePhysDispersionFlat());
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Staff.INSTANCE;
     }
 
     @Override

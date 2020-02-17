@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.loot_crates;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.BlueprintUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;

@@ -6,7 +6,8 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.data_packs.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_packs.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_packs.sets.SetDataPackManager;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.data_packs.statmods.UniqueGearDatapackManager;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
@@ -26,6 +27,7 @@ import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
@@ -53,7 +55,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = false;
+    public static boolean RUN_DEV_TOOLS = true;
 
     public static boolean statEffectDebuggingEnabled() {
         return false && RUN_DEV_TOOLS;
@@ -169,15 +171,13 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerAboutToStart(FMLServerAboutToStartEvent event) {
 
-        event.getServer()
-            .getResourceManager()
-            .addReloadListener(new SetDataPackManager());
-        event.getServer()
-            .getResourceManager()
-            .addReloadListener(new AffixDataPackManager());
-        event.getServer()
-            .getResourceManager()
-            .addReloadListener(new RunewordDataPackManager());
+        IReloadableResourceManager manager = event.getServer()
+            .getResourceManager();
+
+        manager.addReloadListener(new SetDataPackManager());
+        manager.addReloadListener(new AffixDataPackManager());
+        manager.addReloadListener(new RunewordDataPackManager());
+        manager.addReloadListener(new UniqueGearDatapackManager());
 
     }
 

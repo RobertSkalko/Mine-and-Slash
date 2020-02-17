@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.registry.FilterListWrap;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.FilterListWrap;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 

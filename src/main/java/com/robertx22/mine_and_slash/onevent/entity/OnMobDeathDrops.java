@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.onevent.entity;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.quests.actions.KilledMobData;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;

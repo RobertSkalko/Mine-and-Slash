@@ -19,8 +19,8 @@ import com.robertx22.mine_and_slash.database.sets.mid_lvl.TheProtector;
 import com.robertx22.mine_and_slash.database.sets.uniques.TreasureFinder;
 import com.robertx22.mine_and_slash.database.sets.uniques.WisdomOfTheElders;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 

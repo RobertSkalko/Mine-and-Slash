@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.affixes.Prefix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseGearMod;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.ItemModType;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.PrefixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.SuffixData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;

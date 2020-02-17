@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.config.whole_mod_entity_configs;
 
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 
 import java.util.HashMap;

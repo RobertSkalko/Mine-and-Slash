@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.sets.uniques;
 
-import com.robertx22.mine_and_slash.database.items.unique_items.helmet.HelmetWisdom;
+import com.robertx22.mine_and_slash.database.items.unique_items.helmet.cloth.HelmetWisdom;
 import com.robertx22.mine_and_slash.database.items.unique_items.shields.ShieldWisdom;
 import com.robertx22.mine_and_slash.database.requirements.ExactUniquesRequierement;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;

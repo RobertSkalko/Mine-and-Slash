@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.quests.base.QuestResult;
 import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
 import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
-import com.robertx22.mine_and_slash.db_lists.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

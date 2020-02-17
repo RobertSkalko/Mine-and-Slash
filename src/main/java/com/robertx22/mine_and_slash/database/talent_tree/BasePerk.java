@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 
