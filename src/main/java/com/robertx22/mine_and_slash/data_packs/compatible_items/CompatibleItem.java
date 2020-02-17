@@ -1,9 +1,23 @@
 package com.robertx22.mine_and_slash.data_packs.compatible_items;
 
 import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.config.compatible_items.WeightedType;
+import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
+
+import java.util.Arrays;
 
 public class CompatibleItem implements ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
 
@@ -122,6 +136,11 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     }
 
     @Override
+    public String datapackFolder() {
+        return new ResourceLocation(item_id).getNamespace() + "/";
+    }
+
+    @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.COMPATIBLE_ITEM;
     }
@@ -134,6 +153,110 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     @Override
     public String GUID() {
         return guid;
+    }
+
+    public ItemStack create(ItemStack stack, int level) {
+
+        level = this.getLevel(level);
+
+        switch (getCreationType()) {
+            case NORMAL:
+                createNormal(stack, level);
+                break;
+            case UNIQUE:
+                createUnique(stack, level);
+                break;
+            case RUNED:
+                createRuned(stack, level);
+                break;
+
+        }
+
+        return stack;
+
+    }
+
+    private GearItemEnum getCreationType() {
+        WeightedType result = RandomUtils.weightedRandom(Arrays.asList(
+            new WeightedType(normal_item_weight, GearItemEnum.NORMAL),
+            new WeightedType(unique_item_weight, GearItemEnum.UNIQUE),
+            new WeightedType(runed_item_weight, GearItemEnum.RUNED)
+        ));
+
+        return result.type;
+    }
+
+    private int getLevel(int playerlevel) {
+        return MathHelper.clamp(playerlevel, min_level, max_level);
+    }
+
+    private ItemStack createNormal(ItemStack stack, int level) {
+
+        GearBlueprint blueprint = new GearBlueprint(level);
+        blueprint.gearItemSlot.set(this.item_type);
+        blueprint.level.LevelRange = this.level_variance > 0;
+        blueprint.level.LevelVariance = this.level_variance;
+        blueprint.rarity.minRarity = this.min_rarity;
+        blueprint.rarity.maxRarity = this.max_rarity;
+
+        GearItemData gear = blueprint.createData();
+        gear.isSalvagable = this.can_be_salvaged;
+        gear.isNotFromMyMod = true;
+
+        Gear.Save(stack, gear);
+
+        return stack;
+
+    }
+
+    private ItemStack createUnique(ItemStack stack, int level) {
+
+        UniqueGearBlueprint blueprint = null;
+
+        if (SlashRegistry.UniqueGears()
+            .isRegistered(unique_id)) {
+            blueprint = new UniqueGearBlueprint(level, SlashRegistry.UniqueGears()
+                .get(unique_id));
+        } else {
+            blueprint = new UniqueGearBlueprint(level, if_unique_random_up_to_tier);
+        }
+
+        blueprint.gearItemSlot.set(this.item_type);
+        blueprint.level.LevelRange = this.level_variance > 0;
+        blueprint.level.LevelVariance = this.level_variance;
+
+        GearItemData gear = blueprint.createData();
+        gear.isSalvagable = this.can_be_salvaged;
+        gear.isNotFromMyMod = true;
+
+        if (gear.uniqueGUID == null || !SlashRegistry.UniqueGears()
+            .isRegistered(gear.uniqueGUID)) {
+            return createNormal(stack, level);
+        } else {
+            Gear.Save(stack, gear);
+        }
+
+        return stack;
+
+    }
+
+    private ItemStack createRuned(ItemStack stack, int level) {
+
+        RunedGearBlueprint blueprint = new RunedGearBlueprint(level);
+        blueprint.gearItemSlot.set(this.item_type);
+        blueprint.level.LevelRange = this.level_variance > 0;
+        blueprint.level.LevelVariance = this.level_variance;
+        blueprint.rarity.minRarity = this.min_rarity;
+        blueprint.rarity.maxRarity = this.max_rarity;
+
+        GearItemData gear = blueprint.createData();
+        gear.isSalvagable = this.can_be_salvaged;
+        gear.isNotFromMyMod = true;
+
+        Gear.Save(stack, gear);
+
+        return stack;
+
     }
 
     //this is how the file should look and be separated into

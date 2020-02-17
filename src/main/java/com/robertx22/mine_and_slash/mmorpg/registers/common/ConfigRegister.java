@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatSerial;
-import com.robertx22.mine_and_slash.config.compatible_items.CompatibleItemSerial;
+import com.robertx22.mine_and_slash.config.compatible_items.OldCompatibleItemSerial;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsSerial;
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
@@ -26,7 +26,6 @@ public class ConfigRegister {
     public static HashMap<Config, List<String>> SAVED_JSONS = new HashMap<>();
 
     public enum Config {
-        COMPATIBLE_ITEM,
         MOD_DMG_WHITELIST,
         MOD_ENTITY,
         DIMENSIONS,
@@ -36,7 +35,6 @@ public class ConfigRegister {
 
     public static void registerCustomConfigs() {
 
-        CONFIGS.put(Config.COMPATIBLE_ITEM, CompatibleItemSerial.INSTANCE);
         CONFIGS.put(Config.MOD_DMG_WHITELIST, ModDmgWhitelistSerial.INSTANCE);
         CONFIGS.put(Config.MOD_ENTITY, ModEntityConfigsSerial.INSTANCE);
         CONFIGS.put(Config.DIMENSIONS, DimensionsSerial.INSTANCE);
@@ -57,7 +55,7 @@ public class ConfigRegister {
     }
 
     private static void createTutorials() {
-        CompatibleItemSerial.INSTANCE.generateConfigTutorials();
+        OldCompatibleItemSerial.INSTANCE.generateConfigTutorials();
     }
 
     // should be called only on server, then packets sent to client

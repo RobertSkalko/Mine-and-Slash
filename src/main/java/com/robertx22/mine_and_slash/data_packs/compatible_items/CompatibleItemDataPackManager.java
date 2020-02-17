@@ -18,4 +18,5 @@ public class CompatibleItemDataPackManager extends BaseDataPackManager<Compatibl
         return new SlashDataProvider<CompatibleItem>(gen, SlashRegistry.CompatibleItems()
             .getSerializable(), ID);
     }
+
 }

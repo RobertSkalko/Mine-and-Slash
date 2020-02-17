@@ -1,17 +1,14 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.stream.Collectors;
 
 public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
@@ -21,7 +18,8 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE.get().floatValue();
+        return ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE.get()
+            .floatValue();
     }
 
     @Override
@@ -42,19 +40,15 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
     public static ItemStack gen(int level) {
 
         try {
-            ConfigItem config = RandomUtils.weightedRandom(SlashRegistry.CompatibleItems()
-                                                                   .getList()
-                                                                   .stream()
-                                                                   .filter(x -> x.dropsAsLoot)
-                                                                   .collect(Collectors.toList()));
+            CompatibleItem config = SlashRegistry.CompatibleItems()
+                .getFilterWrapped(x -> x.add_to_loot_drops)
+                .random();
 
             if (config != null) {
-                ResourceLocation res = new ResourceLocation(config.registryName);
+                ResourceLocation res = new ResourceLocation(config.item_id);
 
                 if (ForgeRegistries.ITEMS.containsKey(res)) {
-
                     ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
-
                     return config.create(stack, level);
                 }
             }

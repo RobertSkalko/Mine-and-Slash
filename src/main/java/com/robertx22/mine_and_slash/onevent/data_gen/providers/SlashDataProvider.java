@@ -19,7 +19,8 @@ import java.util.List;
 public class SlashDataProvider<T extends ISerializedRegistryEntry & IGUID & ISerializable<T>> implements IDataProvider {
 
     private final Logger LOGGER = LogManager.getLogger();
-    private final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
+    public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting()
+        .create();
     private DataGenerator generator;
     String category;
     List<T> list;
@@ -42,8 +43,8 @@ public class SlashDataProvider<T extends ISerializedRegistryEntry & IGUID & ISer
 
     private Path resolve(Path path, T object) {
         return path.resolve(
-                "data/" + Ref.MODID + "/" + category + "/" + object.datapackFolder() + object.formattedGUID() +
-                        ".json");
+            "data/" + Ref.MODID + "/" + category + "/" + object.datapackFolder() + object.formattedGUID() +
+                ".json");
     }
 
     protected void generateAll(DirectoryCache cache) {

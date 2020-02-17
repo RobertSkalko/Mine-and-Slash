@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.registry;
 
+import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
@@ -45,7 +46,12 @@ public enum SlashRegistryType {
     MOD_ENTITY_CONFIGS("mod_entiy_config"),
     CURRENCY_ITEMS("currency_item"),
     UNIQUE_RUNES("unique_rune"),
-    COMPATIBLE_ITEM("compatible_item"),
+    COMPATIBLE_ITEM("compatible_item") {
+        @Override
+        public ISerializable getEmpty() {
+            return CompatibleItem.EMPTY;
+        }
+    },
     PERK("talent_perk"),
     PERK_EFFECT("talent_perk_effect"),
     SYNERGY_EFFECT("synergy_effect"),

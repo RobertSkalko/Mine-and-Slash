@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.data_packs.affixes.AffixDataPackManager;
+import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItemDataPackManager;
 import com.robertx22.mine_and_slash.data_packs.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_packs.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_packs.unique_gears.UniqueGearDatapackManager;
@@ -178,6 +179,7 @@ public class MMORPG {
         manager.addReloadListener(new AffixDataPackManager());
         manager.addReloadListener(new RunewordDataPackManager());
         manager.addReloadListener(new UniqueGearDatapackManager());
+        manager.addReloadListener(new CompatibleItemDataPackManager());
 
     }
 
