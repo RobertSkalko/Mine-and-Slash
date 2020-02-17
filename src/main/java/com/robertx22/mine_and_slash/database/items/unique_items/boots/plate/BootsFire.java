@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.boots.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
@@ -15,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class BootsFire extends BaseUniqueBoots {
+public class BootsFire implements IUnique {
 
     public BootsFire() {
 
@@ -41,8 +43,8 @@ public class BootsFire extends BaseUniqueBoots {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new WeaponDamageFlat(WeaponTypes.Axe), new ElementalSpellToAttackDMGFlat(Elements.Fire),
-                new CriticalDamagePercent()
+            new WeaponDamageFlat(WeaponTypes.Axe), new ElementalSpellToAttackDMGFlat(Elements.Fire),
+            new CriticalDamagePercent()
         );
 
     }
@@ -62,4 +64,8 @@ public class BootsFire extends BaseUniqueBoots {
         return "Fire brews wherever I walk.";
     }
 
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlateBoots.INSTANCE;
+    }
 }

@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothBoots;
 import com.robertx22.mine_and_slash.database.items.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
@@ -19,7 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.Arrays;
 import java.util.List;
 
-public class EleClothBoots extends BaseUniqueBoots implements IElementalUnique {
+public class EleClothBoots implements IElementalUnique, IUnique {
 
     public Elements element;
 

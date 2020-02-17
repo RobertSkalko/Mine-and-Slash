@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueWand;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.WandWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemWand;
@@ -30,6 +31,11 @@ public class Wand extends BaseWeapon implements ISpecificStatReq {
     }
 
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM);
+
+    @Override
+    public Item getBaseUniqueItem() {
+        return new BaseUniqueWand();
+    }
 
     @Override
     public StatReq getRequirements() {

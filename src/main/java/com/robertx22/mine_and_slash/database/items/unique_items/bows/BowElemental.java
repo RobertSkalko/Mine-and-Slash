@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.bows;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Bow;
 import com.robertx22.mine_and_slash.database.items.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBow;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
@@ -17,7 +18,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class BowElemental extends BaseUniqueBow implements IElementalUnique {
+public class BowElemental implements IElementalUnique {
 
     public BowElemental(Elements element) {
         this.element = element;
@@ -28,7 +29,7 @@ public class BowElemental extends BaseUniqueBow implements IElementalUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new CoreStatFlat(Dexterity.INSTANCE), new ElementalSpellToAttackDMGFlat(element),
-                             new CriticalHitMulti()
+            new CriticalHitMulti()
         );
     }
 
@@ -69,4 +70,8 @@ public class BowElemental extends BaseUniqueBow implements IElementalUnique {
         return new BowElemental(element);
     }
 
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Bow.INSTANCE;
+    }
 }

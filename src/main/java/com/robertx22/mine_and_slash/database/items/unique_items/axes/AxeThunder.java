@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.axes;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueAxe;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
@@ -15,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class AxeThunder extends BaseUniqueAxe {
+public class AxeThunder implements IUnique {
     public AxeThunder() {
 
     }
@@ -57,5 +59,10 @@ public class AxeThunder extends BaseUniqueAxe {
     @Override
     public String locDescForLangFile() {
         return "Sparks fly, heads roll.";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Axe.INSTANCE;
     }
 }

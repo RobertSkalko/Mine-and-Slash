@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueAxe;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.AxeWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemAxe;
@@ -21,6 +22,11 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
     }
 
     static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.SMALL);
+
+    @Override
+    public Item getBaseUniqueItem() {
+        return new BaseUniqueAxe();
+    }
 
     @Override
     public String resourceID() {

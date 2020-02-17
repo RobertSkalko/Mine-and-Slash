@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.boots.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class BootsNature extends BaseUniqueBoots {
+public class BootsNature implements IUnique {
 
     public BootsNature() {
 
@@ -58,5 +60,10 @@ public class BootsNature extends BaseUniqueBoots {
     @Override
     public String locDescForLangFile() {
         return "Nothing shall break my roots!";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlateBoots.INSTANCE;
     }
 }

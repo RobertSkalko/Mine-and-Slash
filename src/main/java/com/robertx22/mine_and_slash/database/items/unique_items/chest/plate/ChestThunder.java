@@ -1,7 +1,9 @@
-package com.robertx22.mine_and_slash.database.items.unique_items.chest;
+package com.robertx22.mine_and_slash.database.items.unique_items.chest.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
@@ -15,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class ChestThunder extends BaseUniqueChest {
+public class ChestThunder implements IUnique {
 
     public ChestThunder() {
 
@@ -59,5 +61,10 @@ public class ChestThunder extends BaseUniqueChest {
     @Override
     public String locDescForLangFile() {
         return "Those who dared to follow had long since died.";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlateChest.INSTANCE;
     }
 }

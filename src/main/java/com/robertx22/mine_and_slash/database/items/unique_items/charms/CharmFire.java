@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.charms;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class CharmFire extends BaseUniqueCharm {
+public class CharmFire implements IUnique {
 
     public CharmFire() {
 
@@ -59,5 +61,10 @@ public class CharmFire extends BaseUniqueCharm {
     @Override
     public String locDescForLangFile() {
         return "Bath in flames, thrive!";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Charm.INSTANCE;
     }
 }

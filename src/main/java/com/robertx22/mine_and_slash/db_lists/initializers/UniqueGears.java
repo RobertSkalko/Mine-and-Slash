@@ -15,7 +15,12 @@ import com.robertx22.mine_and_slash.database.items.unique_items.charms.CharmFire
 import com.robertx22.mine_and_slash.database.items.unique_items.charms.CharmNature;
 import com.robertx22.mine_and_slash.database.items.unique_items.charms.CharmThunder;
 import com.robertx22.mine_and_slash.database.items.unique_items.charms.CharmWater;
-import com.robertx22.mine_and_slash.database.items.unique_items.chest.*;
+import com.robertx22.mine_and_slash.database.items.unique_items.chest.cloth.ChestMana;
+import com.robertx22.mine_and_slash.database.items.unique_items.chest.leather.ChestDodge;
+import com.robertx22.mine_and_slash.database.items.unique_items.chest.plate.ChestFire;
+import com.robertx22.mine_and_slash.database.items.unique_items.chest.plate.ChestNature;
+import com.robertx22.mine_and_slash.database.items.unique_items.chest.plate.ChestThunder;
+import com.robertx22.mine_and_slash.database.items.unique_items.chest.plate.ChestWater;
 import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerElemental;
 import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerPhysical;
 import com.robertx22.mine_and_slash.database.items.unique_items.hammers.HammerThunder;

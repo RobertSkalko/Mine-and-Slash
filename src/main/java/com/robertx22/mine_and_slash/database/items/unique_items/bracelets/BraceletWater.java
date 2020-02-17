@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.bracelets;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
@@ -13,14 +15,14 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class BraceletWater extends BaseUniqueBracelet {
+public class BraceletWater implements IUnique {
 
     public BraceletWater() {
 
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.VITALITY, StatReq.Size.SMALL);
+        LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.VITALITY, StatReq.Size.SMALL);
 
     @Override
     public StatReq getRequirements() {
@@ -40,9 +42,14 @@ public class BraceletWater extends BaseUniqueBracelet {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new ElementalTransferFlat(Elements.Fire, Elements.Water), new ElementalResistFlat(Elements.Water),
-                new ElementalResistFlat(Elements.Fire)
+            new ElementalTransferFlat(Elements.Fire, Elements.Water), new ElementalResistFlat(Elements.Water),
+            new ElementalResistFlat(Elements.Fire)
         );
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Bracelet.INSTANCE;
     }
 
     @Override

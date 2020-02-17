@@ -1,11 +1,13 @@
-package com.robertx22.mine_and_slash.database.items.unique_items.chest;
+package com.robertx22.mine_and_slash.database.items.unique_items.chest.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -14,9 +16,9 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class ChestFire extends BaseUniqueChest {
+public class ChestWater implements IUnique {
 
-    public ChestFire() {
+    public ChestWater() {
 
     }
 
@@ -29,18 +31,19 @@ public class ChestFire extends BaseUniqueChest {
 
     @Override
     public int Tier() {
-        return 6;
-
+        return 7;
     }
 
     @Override
     public String GUID() {
-        return "chestfire0";
+        return "chestwater0";
     }
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Fire), new ElementalSpellDamageFlat(Elements.Fire), new ElementalTransferFlat(Elements.Nature, Elements.Fire));
+        return Arrays.asList(new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HIGH), new ArmorFlat().size(StatMod.Size.HIGH),
+            new ElementalTransferFlat(Elements.Nature, Elements.Water)
+        );
     }
 
     @Override
@@ -50,11 +53,16 @@ public class ChestFire extends BaseUniqueChest {
 
     @Override
     public String locNameForLangFile() {
-        return Styles.YELLOW + "Burning Man Chestplate";
+        return Styles.YELLOW + "Armor of the Glacier";
     }
 
     @Override
     public String locDescForLangFile() {
-        return "What can't kill me only makes me glow brighter.";
+        return "I am a Fortress of pure Ice.";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlateChest.INSTANCE;
     }
 }

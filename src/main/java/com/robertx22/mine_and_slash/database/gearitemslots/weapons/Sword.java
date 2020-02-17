@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueSword;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.SwordWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
@@ -29,6 +30,11 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
     @Override
     public StatReq getRequirements() {
         return req;
+    }
+
+    @Override
+    public Item getBaseUniqueItem() {
+        return new BaseUniqueSword();
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.boots.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
@@ -16,7 +18,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class BootsThunder extends BaseUniqueBoots {
+public class BootsThunder implements IUnique {
 
     public BootsThunder() {
 
@@ -42,8 +44,8 @@ public class BootsThunder extends BaseUniqueBoots {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new WeaponDamageFlat(WeaponTypes.Hammer), new ElementalSpellToAttackDMGFlat(Elements.Thunder),
-                new CriticalDamagePercent(), new ElementalResistFlat(Elements.Thunder)
+            new WeaponDamageFlat(WeaponTypes.Hammer), new ElementalSpellToAttackDMGFlat(Elements.Thunder),
+            new CriticalDamagePercent(), new ElementalResistFlat(Elements.Thunder)
         );
     }
 
@@ -60,5 +62,10 @@ public class BootsThunder extends BaseUniqueBoots {
     @Override
     public String locDescForLangFile() {
         return "Sparks fly wherever I stand.";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlateBoots.INSTANCE;
     }
 }

@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.bracelets;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.SpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.LootTypeBonusFlat;
@@ -12,7 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class BraceletSetDrop extends BaseUniqueBracelet {
+public class BraceletSetDrop implements IUnique {
 
     public BraceletSetDrop() {
 
@@ -38,6 +40,11 @@ public class BraceletSetDrop extends BaseUniqueBracelet {
     @Override
     public String GUID() {
         return "braceletsetdrop0";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Bracelet.INSTANCE;
     }
 
     @Override

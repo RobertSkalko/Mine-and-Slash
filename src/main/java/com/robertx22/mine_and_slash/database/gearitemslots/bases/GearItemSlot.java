@@ -47,6 +47,8 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public static StatReq noReq = StatReq.nothing();
 
+    public abstract Item getBaseUniqueItem();
+
     public enum GearSlotType {
         Weapon,
         Armor,

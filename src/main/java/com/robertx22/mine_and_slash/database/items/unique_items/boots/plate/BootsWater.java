@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.boots.plate;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
@@ -15,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class BootsWater extends BaseUniqueBoots {
+public class BootsWater implements IUnique {
 
     public BootsWater() {
 
@@ -60,5 +62,10 @@ public class BootsWater extends BaseUniqueBoots {
     @Override
     public String locDescForLangFile() {
         return "Ice forms wherever I walk.";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return PlateBoots.INSTANCE;
     }
 }

@@ -36,6 +36,11 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
         LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
 
     @Override
+    public Item getBaseUniqueItem() {
+        return null;
+    }
+
+    @Override
     public StatReq getRequirements() {
         return req;
     }

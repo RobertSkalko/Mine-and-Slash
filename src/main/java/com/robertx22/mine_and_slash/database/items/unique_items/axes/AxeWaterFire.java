@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.axes;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueAxe;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
@@ -14,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class AxeWaterFire extends BaseUniqueAxe {
+public class AxeWaterFire implements IUnique {
     public AxeWaterFire() {
 
     }
@@ -61,6 +63,11 @@ public class AxeWaterFire extends BaseUniqueAxe {
     @Override
     public String locDescForLangFile() {
         return "My efforts to merge elements shall not be in vain.";
+    }
+
+    @Override
+    public GearItemSlot getGearSlot() {
+        return Axe.INSTANCE;
     }
 }
 

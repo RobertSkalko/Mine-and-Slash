@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.database.items.unique_items.charms;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
+import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPenePercent;
@@ -14,14 +16,14 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.Arrays;
 import java.util.List;
 
-public class CharmThunder extends BaseUniqueCharm {
+public class CharmThunder implements IUnique {
 
     public CharmThunder() {
 
     }
 
     static StatReq req = new StatReq(
-            LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
+        LvlPointStat.WISDOM, StatReq.Size.MEDIUM, LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
     public StatReq getRequirements() {
@@ -39,10 +41,15 @@ public class CharmThunder extends BaseUniqueCharm {
     }
 
     @Override
+    public GearItemSlot getGearSlot() {
+        return Charm.INSTANCE;
+    }
+
+    @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-                new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(),
-                new ElementalPenePercent(Elements.Thunder)
+            new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(),
+            new ElementalPenePercent(Elements.Thunder)
         );
     }
 

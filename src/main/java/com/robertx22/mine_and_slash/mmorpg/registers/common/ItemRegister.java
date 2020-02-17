@@ -60,14 +60,14 @@ public class ItemRegister {
         }
 
         for (GearRarity rarity : Rarities.Gears.getNormalRarities()
-                .stream()
-                .filter(x -> x.Rank() > 2)
-                .collect(Collectors.toList())) {
+            .stream()
+            .filter(x -> x.Rank() > 2)
+            .collect(Collectors.toList())) {
             for (ItemLootbox.LootTypes type : ItemLootbox.LootTypes.values()) {
                 for (ItemLootbox.LootBoxSizes size : ItemLootbox.LootBoxSizes.values()) {
                     String reg = ItemLootbox.GetStringForType(rarity.Rank(), type, size);
                     ItemLootbox.Items.put(reg,
-                                          (ItemLootbox) new ItemLootbox(size, type, rarity.Rank()).setRegistryName(reg)
+                        (ItemLootbox) new ItemLootbox(size, type, rarity.Rank()).setRegistryName(reg)
                     );
                 }
             }
@@ -80,17 +80,21 @@ public class ItemRegister {
 
         IForgeRegistry<Item> r = event.getRegistry();
 
-        AutoSalvageBag.Items.values().forEach((x) -> r.register(x));
-        ItemCapacitor.Items.values().forEach((x) -> r.register(x));
-        ItemLootbox.Items.values().forEach((x) -> r.register(x));
+        AutoSalvageBag.Items.values()
+            .forEach((x) -> r.register(x));
+        ItemCapacitor.Items.values()
+            .forEach((x) -> r.register(x));
+        ItemLootbox.Items.values()
+            .forEach((x) -> r.register(x));
 
-        for (IUnique uniq : SlashRegistry.UniqueGears().getList()) {
-            Item item = (Item) uniq;
-            item.setRegistryName(Ref.MODID, uniq.getGeneratedResourceID());
-            r.register(item);
+        for (IUnique uniq : SlashRegistry.UniqueGears()
+            .getSerializable()) {
+            r.register(uniq.getUniqueItem());
         }
 
-        SlashRegistry.UniqueRunes().getList().forEach(x -> r.register(x.setRegistryName(x.genRegisryName())));
+        SlashRegistry.UniqueRunes()
+            .getList()
+            .forEach(x -> r.register(x.setRegistryName(x.genRegisryName())));
 
     }
 
@@ -120,7 +124,8 @@ public class ItemRegister {
         for (Item item : list) {
             if (item instanceof IGenerated) {
                 IGenerated gen = (IGenerated) item;
-                gen.generateAllPossibleStatVariations().forEach(x -> r.register((Item) x));
+                gen.generateAllPossibleStatVariations()
+                    .forEach(x -> r.register((Item) x));
 
             } else {
                 r.register(item);

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
@@ -25,6 +26,11 @@ public class Charm extends GearItemSlot {
     @Override
     public StatReq getRequirements() {
         return noReq;
+    }
+
+    @Override
+    public Item getBaseUniqueItem() {
+        return new BaseUniqueCharm();
     }
 
     @Override

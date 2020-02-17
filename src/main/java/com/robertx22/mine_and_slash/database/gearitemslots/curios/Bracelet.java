@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemBracelet;
@@ -17,6 +18,11 @@ public class Bracelet extends GearItemSlot {
 
     private Bracelet() {
 
+    }
+
+    @Override
+    public Item getBaseUniqueItem() {
+        return new BaseUniqueBracelet();
     }
 
     @Override
