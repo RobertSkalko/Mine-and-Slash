@@ -6,12 +6,18 @@ import net.minecraft.util.text.ITextComponent;
 public interface IAutoLocName extends IBaseAutoLoc {
 
     public default String getGroupName() {
-        return locNameGroup().name().toUpperCase().replaceAll("_", " ") + " - NAMES";
+        return locNameGroup().name()
+            .toUpperCase()
+            .replaceAll("_", " ") + " - NAMES";
     }
 
     AutoLocGroup locNameGroup();
 
     String locNameLangFileGUID();
+
+    default boolean shouldRegisterLangName() {
+        return true;
+    }
 
     public default String formattedLocNameLangFileGUID() {
         return getPrefix() + getFormatedForLangFile(locNameLangFileGUID());

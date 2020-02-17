@@ -10,4 +10,8 @@ public final class BaseUniqueBow extends ItemBow {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

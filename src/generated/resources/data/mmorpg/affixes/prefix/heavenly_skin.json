@@ -2,6 +2,7 @@
   "id": "heavenly_skin",
   "weight": 3000,
   "rarity": 3,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.heavenly_skin",
   "type": "prefix",

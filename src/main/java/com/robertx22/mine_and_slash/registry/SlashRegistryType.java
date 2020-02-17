@@ -44,7 +44,7 @@ public enum SlashRegistryType {
     DIMENSION_CONFIGS("dimension_config"),
     MOD_ENTITY_CONFIGS("mod_entiy_config"),
     CURRENCY_ITEMS("currency_item"),
-    UNIQUE_RUNES("unique_ruhne"),
+    UNIQUE_RUNES("unique_rune"),
     COMPATIBLE_ITEM("compatible_item"),
     PERK("talent_perk"),
     PERK_EFFECT("talent_perk_effect"),

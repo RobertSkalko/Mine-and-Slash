@@ -10,4 +10,8 @@ public final class BaseUniqueWand extends ItemWand {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

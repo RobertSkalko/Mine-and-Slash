@@ -2,6 +2,7 @@
   "id": "royal_thief_adornments",
   "weight": 17500,
   "rarity": 1,
+  "tier": 0,
   "registry": "item_set",
   "lang_file_string": "mmorpg.set.royal_thief_adornments",
   "requirements": {

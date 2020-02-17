@@ -2,6 +2,7 @@
   "id": "touch_of_magic",
   "weight": 17500,
   "rarity": 1,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.touch_of_magic",
   "type": "prefix",

@@ -32,7 +32,8 @@ public class CreateLangFile {
 
             json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocName iauto : entry.getValue()) {
-                if (iauto.locNameForLangFile()
+
+                if (iauto.shouldRegisterLangName() && iauto.locNameForLangFile()
                     .isEmpty() == false) {
 
                     if (iauto.locNameForLangFile()
@@ -61,7 +62,7 @@ public class CreateLangFile {
 
             json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocDesc iauto : entry.getValue()) {
-                if (iauto.locDescForLangFile()
+                if (iauto.shouldRegisterLangDesc() && iauto.locDescForLangFile()
                     .isEmpty() == false) {
 
                     if (iauto.locDescForLangFile()
@@ -194,6 +195,10 @@ public class CreateLangFile {
 
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
         List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
+
+        list.addAll(SlashRegistry.UniqueGears()
+            .getSerializable());
+
         list.addAll(SlashRegistry.Stats()
             .getAll()
             .values());

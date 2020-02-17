@@ -14,10 +14,10 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -151,17 +151,13 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return 1000;
     }
 
-    public ItemStack GetStackForRarity(int rarityNum) {
+    public ItemStack getStackForRarity(int rarityNum) {
 
-        if (getItemsForRaritiesMap().containsKey(rarityNum)) {
-            return new ItemStack(getItemsForRaritiesMap().get(rarityNum));
-        }
-
-        return new ItemStack(getDefaultItem());
+        return new ItemStack(getItemForRarity(rarityNum));
 
     }
 
-    public Item GetItemForRarity(int rarityNum) {
+    public Item getItemForRarity(int rarityNum) {
 
         if (getItemsForRaritiesMap().containsKey(rarityNum)) {
             return getItemsForRaritiesMap().get(rarityNum);

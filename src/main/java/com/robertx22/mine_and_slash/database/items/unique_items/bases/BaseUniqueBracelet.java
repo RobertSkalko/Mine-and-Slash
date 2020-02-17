@@ -10,4 +10,9 @@ public final class BaseUniqueBracelet extends ItemBracelet {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
+
 }

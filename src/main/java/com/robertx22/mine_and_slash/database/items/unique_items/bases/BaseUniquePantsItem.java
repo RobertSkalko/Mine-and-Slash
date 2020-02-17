@@ -11,4 +11,8 @@ public final class BaseUniquePantsItem extends PlatePantsItem {
 
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

@@ -2,6 +2,7 @@
   "id": "of_bow_flurry",
   "weight": 250,
   "rarity": 5,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_bow_flurry",
   "type": "suffix",

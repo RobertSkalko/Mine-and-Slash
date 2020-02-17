@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.onevent.data_gen;
 import com.robertx22.mine_and_slash.data_packs.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_packs.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_packs.sets.SetDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.statmods.UniqueGearDatapackManager;
+import com.robertx22.mine_and_slash.data_packs.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.MyAdvProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;

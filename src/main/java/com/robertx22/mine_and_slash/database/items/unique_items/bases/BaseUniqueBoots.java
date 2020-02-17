@@ -11,4 +11,9 @@ public final class BaseUniqueBoots extends PlateBootsItem {
 
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
+
 }

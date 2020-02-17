@@ -10,27 +10,32 @@ import net.minecraft.item.Item;
 public class GenerateUniqueGearJsons {
 
     static String JSON = "{\n    \"parent\": \"item/generated\",\n    \"textures\": {\n        \"layer0\": " +
-            "\"REPLACE\"\n    }\n}\n";
+        "\"REPLACE\"\n    }\n}\n";
 
     public static void gen() {
 
-        SlashRegistry.UniqueGears().getList().forEach(x -> {
-            if (x.getGearSlot() != Bow.INSTANCE) {
-                String path = DirUtils.modelsPath() + "item/" + x.getGeneratedResourceFolderPath();
+        SlashRegistry.UniqueGears()
+            .getSerializable()
+            .forEach(x -> {
+                if (x.getGearSlot() != Bow.INSTANCE) {
+                    String path = DirUtils.modelsPath() + "item/" + x.getGeneratedResourceFolderPath();
 
-                Item item = (Item) x;
-                String texLoc = item.getRegistryName().getNamespace() + ":" + "items/" + item.getRegistryName()
+                    Item item = x.getUniqueItem();
+                    String texLoc = item.getRegistryName()
+                        .getNamespace() + ":" + "items/" + item.getRegistryName()
                         .getPath();
 
-                String json = JSON.replace("REPLACE", texLoc);
+                    String json = JSON.replace("REPLACE", texLoc);
 
-                if (x.getGearSlot().slotType() == GearItemSlot.GearSlotType.Weapon) {
-                    json = json.replaceAll("generated", "handheld");
+                    if (x.getGearSlot()
+                        .slotType() == GearItemSlot.GearSlotType.Weapon) {
+                        json = json.replaceAll("generated", "handheld");
+                    }
+
+                    SerializationUtils.makeFileAndDirAndWrite(path, x.GUID()
+                        .toLowerCase() + ".json", json, true);
                 }
-
-                SerializationUtils.makeFileAndDirAndWrite(path, x.GUID().toLowerCase() + ".json", json, true);
-            }
-        });
+            });
 
     }
 }

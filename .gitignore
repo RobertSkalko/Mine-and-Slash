@@ -31,3 +31,5 @@ src/main/resources/assets/mmorpg/textures/items
 src/main/resources/assets/mmorpg/textures/
 src/main/resources/assets/mmorpg/textures
 src/main/resources/assets/mmorpg/lang/en_us.json
+src/generated/
+src/generated

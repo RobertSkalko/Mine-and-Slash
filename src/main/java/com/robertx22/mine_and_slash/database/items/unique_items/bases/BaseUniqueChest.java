@@ -11,4 +11,9 @@ public final class BaseUniqueChest extends PlateChestItem {
 
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
+
 }

@@ -2,6 +2,7 @@
   "id": "of_thunder_dissonance",
   "weight": 5000,
   "rarity": 2,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_thunder_dissonance",
   "type": "suffix",

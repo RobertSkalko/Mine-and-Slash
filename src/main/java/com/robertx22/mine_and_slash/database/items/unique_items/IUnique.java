@@ -6,10 +6,10 @@ import com.robertx22.mine_and_slash.data_packs.unique_gears.SerializableUniqueGe
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -26,6 +26,16 @@ public interface IUnique extends ISpecificStatReq, IRarity, IGearSlotType, ITier
     ISerializedRegistryEntry<IUnique>, ISerializable<IUnique> {
 
     @Override
+    default boolean isFromDatapack() {
+        return true;
+    }
+
+    @Override
+    default String datapackFolder() {
+        return getGearSlot().GUID() + "/";
+    }
+
+    @Override
     default JsonObject toJson() {
         JsonObject json = getDefaultJson();
 
@@ -37,8 +47,10 @@ public interface IUnique extends ISpecificStatReq, IRarity, IGearSlotType, ITier
             .toJson());
         json.addProperty("gear_type", this.getGearSlot()
             .GUID());
+        json.addProperty("item_id", this.getResourceLocForItem()
+            .toString());
 
-        return null;
+        return json;
     }
 
     @Override
@@ -51,6 +63,9 @@ public interface IUnique extends ISpecificStatReq, IRarity, IGearSlotType, ITier
         int weight = getWeightFromJson(json);
         GearRarity rarity = Rarities.Gears.get(getRarityFromJson(json));
 
+        ResourceLocation loc = new ResourceLocation(json.get("item_id")
+            .getAsString());
+
         List<StatMod> primary = JsonUtils.getStatMods(json, "primary_stats");
         List<StatMod> unique = JsonUtils.getStatMods(json, "unique_stats");
 
@@ -62,7 +77,8 @@ public interface IUnique extends ISpecificStatReq, IRarity, IGearSlotType, ITier
         String slot = json.get("gear_type")
             .getAsString();
 
-        return new SerializableUniqueGear(primary, unique, tier, rarity, weight, canGetSet, req, guid, name, desc, slot);
+        return new SerializableUniqueGear(primary, unique, tier, rarity, weight, canGetSet, req, guid, name, desc, slot, loc);
+
     }
 
     @Override
@@ -115,22 +131,26 @@ public interface IUnique extends ISpecificStatReq, IRarity, IGearSlotType, ITier
 
     default Item getItemForRegistration() {
         return getGearSlot().getBaseUniqueItem()
-            .setRegistryName(Ref.MODID, getGeneratedResourceID());
+            .setRegistryName(getResourceLocForItem());
+    }
+
+    default ResourceLocation getResourceLocForItem() {
+        return new ResourceLocation(Ref.MODID, getGeneratedResourceID());
     }
 
     default Item getUniqueItem() {
-        return ForgeRegistries.ITEMS.getValue(new ResourceLocation(Ref.MODID, getGeneratedResourceID()));
+        return ForgeRegistries.ITEMS.getValue(getResourceLocForItem());
     }
 
     @Override
     default String locDescLangFileGUID() {
-        return getUniqueItem().getRegistryName()
+        return getResourceLocForItem()
             .toString() + ".desc";
     }
 
     @Override
     default String locNameLangFileGUID() {
-        return getUniqueItem().getRegistryName()
+        return getResourceLocForItem()
             .toString();
     }
 

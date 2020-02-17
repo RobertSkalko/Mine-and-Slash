@@ -2,6 +2,7 @@
   "id": "nature_shield",
   "weight": 3000,
   "rarity": 3,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.nature_shield",
   "type": "prefix",

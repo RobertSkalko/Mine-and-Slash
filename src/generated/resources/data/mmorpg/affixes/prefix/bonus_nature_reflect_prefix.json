@@ -2,6 +2,7 @@
   "id": "bonus_nature_reflect_prefix",
   "weight": 3000,
   "rarity": 3,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.bonus_nature_reflect_prefix",
   "type": "prefix",

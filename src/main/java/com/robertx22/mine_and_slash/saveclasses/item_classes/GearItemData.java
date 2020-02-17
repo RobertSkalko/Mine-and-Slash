@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
@@ -143,15 +143,16 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     // used when upgrading item rarity
     public Item getItem() {
         if (isUnique) {
-            return (Item) SlashRegistry.UniqueGears()
-                .get(uniqueGUID);
+            return SlashRegistry.UniqueGears()
+                .get(uniqueGUID)
+                .getUniqueItem();
         } else {
             if (gearTypeName.isEmpty()) {
                 return Items.AIR;
             } else {
                 return SlashRegistry.GearTypes()
                     .get(gearTypeName)
-                    .GetItemForRarity(getRarity().Rank());
+                    .getItemForRarity(getRarity().Rank());
             }
         }
 
@@ -301,7 +302,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
             if (isUnique) {
                 try {
-                    tier = this.uniqueStats.getUniqueItem()
+                    tier = this.uniqueStats.getUnique()
                         .Tier();
 
                 } catch (Exception e) {
@@ -379,7 +380,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
         if (this.isUnique()) {
             try {
-                return this.uniqueStats.getUniqueItem()
+                return this.uniqueStats.getUnique()
                     .Tier();
             } catch (Exception e) {
                 e.printStackTrace();

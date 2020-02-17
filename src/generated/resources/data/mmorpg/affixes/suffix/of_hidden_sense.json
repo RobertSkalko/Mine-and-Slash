@@ -2,6 +2,7 @@
   "id": "of_hidden_sense",
   "weight": 3000,
   "rarity": 3,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_hidden_sense",
   "type": "suffix",

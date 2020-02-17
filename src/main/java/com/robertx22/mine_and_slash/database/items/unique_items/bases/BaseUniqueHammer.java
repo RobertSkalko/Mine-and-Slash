@@ -10,4 +10,9 @@ public final class BaseUniqueHammer extends ItemHammer {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
+
 }

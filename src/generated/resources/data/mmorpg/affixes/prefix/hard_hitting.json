@@ -2,6 +2,7 @@
   "id": "hard_hitting",
   "weight": 17500,
   "rarity": 1,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.hard_hitting",
   "type": "prefix",

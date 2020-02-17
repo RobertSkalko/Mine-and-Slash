@@ -34,7 +34,9 @@ public class StatRequirementsData {
     private HashMap<String, Integer> getReqs(GearItemData data) {
         if (data.isUnique()) {
             try {
-                return data.uniqueStats.getUniqueItem().getRequirements().getRequirements(data.level, data.getRarity());
+                return data.uniqueStats.getUnique()
+                    .getRequirements()
+                    .getRequirements(data.level, data.getRarity());
             } catch (Exception e) {
                 e.printStackTrace();
                 return new HashMap<>();
@@ -42,7 +44,8 @@ public class StatRequirementsData {
 
         } else {
             ISpecificStatReq specific = (ISpecificStatReq) data.GetBaseGearType();
-            return specific.getRequirements().getRequirements(data.getLevel(), data.getRarity());
+            return specific.getRequirements()
+                .getRequirements(data.getLevel(), data.getRarity());
         }
 
     }
@@ -77,17 +80,21 @@ public class StatRequirementsData {
 
             for (Map.Entry<String, Integer> entry : getReqs(gear).entrySet()) {
 
-                if (SlashRegistry.Stats().isRegistered(entry.getKey())) {
+                if (SlashRegistry.Stats()
+                    .isRegistered(entry.getKey())) {
 
                     if (entry.getValue() <= 0) {
                         return true;
                     }
 
-                    if (!data.getUnit().getStats().containsKey(entry.getKey())) {
+                    if (!data.getUnit()
+                        .getStats()
+                        .containsKey(entry.getKey())) {
                         return false;
                     }
 
-                    if (data.getUnit().peekAtStat(entry.getKey()).val < entry.getValue()) {
+                    if (data.getUnit()
+                        .peekAtStat(entry.getKey()).val < entry.getValue()) {
                         return false;
                     }
 
@@ -104,12 +111,15 @@ public class StatRequirementsData {
 
         for (Map.Entry<String, Integer> entry : getReqs(gear).entrySet()) {
             if (entry.getValue() > 0) {
-                if (SlashRegistry.Stats().isRegistered(entry.getKey())) {
-                    Stat stat = SlashRegistry.Stats().get(entry.getKey());
+                if (SlashRegistry.Stats()
+                    .isRegistered(entry.getKey())) {
+                    Stat stat = SlashRegistry.Stats()
+                        .get(entry.getKey());
 
                     list.add(TooltipUtils.requirement(stat.locName(),
-                                                      (int) info.unitdata.getUnit().getCreateStat(stat).val,
-                                                      entry.getValue()
+                        (int) info.unitdata.getUnit()
+                            .getCreateStat(stat).val,
+                        entry.getValue()
                     ));
                 }
             }

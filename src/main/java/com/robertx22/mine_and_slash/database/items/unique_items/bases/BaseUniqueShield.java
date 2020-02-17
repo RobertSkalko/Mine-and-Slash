@@ -28,5 +28,6 @@ public final class BaseUniqueShield extends ShieldItem implements IEffectItem {
         }
         return list;
     }
+
 }
 

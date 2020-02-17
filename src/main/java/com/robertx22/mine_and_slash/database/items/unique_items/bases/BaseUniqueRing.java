@@ -9,4 +9,8 @@ public final class BaseUniqueRing extends ItemRing {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

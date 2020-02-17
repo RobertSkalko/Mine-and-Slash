@@ -9,4 +9,8 @@ public final class BaseUniqueNecklace extends ItemNecklace {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

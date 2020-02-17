@@ -36,7 +36,8 @@ public class ExactUniquesRequierement extends UniqueItemRequirement<ExactUniques
             return false;
         }
 
-        if (uniquesGUIDS.contains(requested.gearData.uniqueStats.getUniqueItem().GUID()) == false) {
+        if (uniquesGUIDS.contains(requested.gearData.uniqueStats.getUnique()
+            .GUID()) == false) {
             return false;
         }
 

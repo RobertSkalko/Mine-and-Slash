@@ -6,6 +6,9 @@ import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
@@ -22,8 +25,9 @@ public class SerializableUniqueGear implements IUnique {
     String langNameID;
     String langDescID;
     String gearType;
+    ResourceLocation itemID;
 
-    public SerializableUniqueGear(List<StatMod> primaryStats, List<StatMod> uniqueStats, int tier, GearRarity rarity, int weight, boolean canGetSet, StatReq requirements, String guid, String langNameID, String langDescID, String gearType) {
+    public SerializableUniqueGear(List<StatMod> primaryStats, List<StatMod> uniqueStats, int tier, GearRarity rarity, int weight, boolean canGetSet, StatReq requirements, String guid, String langNameID, String langDescID, String gearType, ResourceLocation itemID) {
         this.primaryStats = primaryStats;
         this.uniqueStats = uniqueStats;
         this.tier = tier;
@@ -35,6 +39,22 @@ public class SerializableUniqueGear implements IUnique {
         this.langNameID = langNameID;
         this.langDescID = langDescID;
         this.gearType = gearType;
+        this.itemID = itemID;
+    }
+
+    @Override
+    public ResourceLocation getResourceLocForItem() {
+        return itemID;
+    }
+
+    @Override
+    public Item getUniqueItem() {
+        return ForgeRegistries.ITEMS.getValue(itemID);
+    }
+
+    @Override
+    public int Tier() {
+        return tier;
     }
 
     @Override

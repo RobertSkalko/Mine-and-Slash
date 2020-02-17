@@ -30,7 +30,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
         this.Mods = new ArrayList<StatModData>();
 
         if (gear.isUnique()) {
-            for (StatMod mod : gear.uniqueStats.getUniqueItem()
+            for (StatMod mod : gear.uniqueStats.getUnique()
                 .primaryStats()) {
                 StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
                 this.Mods.add(moddata);

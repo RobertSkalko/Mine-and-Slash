@@ -32,7 +32,8 @@ public class UniqueTierRequirement extends UniqueItemRequirement<UniqueTierRequi
             return false;
         }
 
-        int tier = requested.gearData.uniqueStats.getUniqueItem().Tier();
+        int tier = requested.gearData.uniqueStats.getUnique()
+            .Tier();
 
         if (tier < minTier || tier > maxTier) {
             return false;
@@ -58,7 +59,9 @@ public class UniqueTierRequirement extends UniqueItemRequirement<UniqueTierRequi
     @Override
     public UniqueTierRequirement fromJson(JsonObject json) {
         try {
-            return new UniqueTierRequirement(json.get("min_tier").getAsInt(), json.get("max_tier").getAsInt());
+            return new UniqueTierRequirement(json.get("min_tier")
+                .getAsInt(), json.get("max_tier")
+                .getAsInt());
         } catch (Exception e) {
             return null;
         }

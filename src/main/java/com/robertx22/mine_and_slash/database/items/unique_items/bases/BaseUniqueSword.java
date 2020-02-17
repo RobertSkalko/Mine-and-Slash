@@ -9,4 +9,8 @@ public final class BaseUniqueSword extends ItemSword {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

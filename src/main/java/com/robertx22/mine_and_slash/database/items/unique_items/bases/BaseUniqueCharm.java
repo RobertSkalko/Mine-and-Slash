@@ -9,4 +9,8 @@ public final class BaseUniqueCharm extends ItemCharm {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

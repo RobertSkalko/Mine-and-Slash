@@ -2,6 +2,7 @@
   "id": "unending_field",
   "weight": 3000,
   "rarity": 3,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.unending_field",
   "type": "prefix",

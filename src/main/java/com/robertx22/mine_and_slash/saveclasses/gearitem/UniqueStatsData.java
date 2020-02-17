@@ -47,15 +47,17 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatModsCont
 
         // wont ever have more than 10 unique stats.
         for (int i = 0; i < 10; i++) {
-            percents.add(gear.getRarity().StatPercents().genPercent());
+            percents.add(gear.getRarity()
+                .StatPercents()
+                .genPercent());
         }
 
     }
 
     public ITextComponent getHeader() {
         return new StringTextComponent(Styles.YELLOW + "").appendSibling(Words.Unique_Stats
-                .locName()
-                .appendText(":"));
+            .locName()
+            .appendText(":"));
     }
 
     @Override
@@ -76,21 +78,23 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatModsCont
 
     }
 
-    public IUnique getUniqueItem() {
-
-        return SlashRegistry.UniqueGears().get(this.uniqueGUID);
+    public IUnique getUnique() {
+        return SlashRegistry.UniqueGears()
+            .get(this.uniqueGUID);
 
     }
 
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
 
-        IUnique unique = getUniqueItem();
+        IUnique unique = getUnique();
 
         List<StatModData> list = new ArrayList<StatModData>();
 
-        for (int i = 0; i < unique.uniqueStats().size(); i++) {
-            StatMod mod = unique.uniqueStats().get(i);
+        for (int i = 0; i < unique.uniqueStats()
+            .size(); i++) {
+            StatMod mod = unique.uniqueStats()
+                .get(i);
             list.add(StatModData.Load(mod, percents.get(i)));
         }
 

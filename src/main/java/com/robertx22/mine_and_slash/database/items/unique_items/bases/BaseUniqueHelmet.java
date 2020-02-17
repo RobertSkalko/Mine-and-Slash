@@ -11,4 +11,8 @@ public final class BaseUniqueHelmet extends PlateHelmetItem {
 
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

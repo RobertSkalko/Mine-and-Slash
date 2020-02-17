@@ -2,6 +2,7 @@
   "id": "thunder_shield",
   "weight": 3000,
   "rarity": 3,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.thunder_shield",
   "type": "prefix",

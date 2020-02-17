@@ -2,6 +2,7 @@
   "id": "of_critical_damage",
   "weight": 17500,
   "rarity": 1,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_critical_damage",
   "type": "suffix",

@@ -2,6 +2,7 @@
   "id": "of_hammer_flurry",
   "weight": 250,
   "rarity": 5,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.of_hammer_flurry",
   "type": "suffix",

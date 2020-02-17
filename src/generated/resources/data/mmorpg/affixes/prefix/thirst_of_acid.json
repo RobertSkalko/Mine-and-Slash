@@ -2,6 +2,7 @@
   "id": "thirst_of_acid",
   "weight": 5000,
   "rarity": 2,
+  "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.thirst_of_acid",
   "type": "prefix",

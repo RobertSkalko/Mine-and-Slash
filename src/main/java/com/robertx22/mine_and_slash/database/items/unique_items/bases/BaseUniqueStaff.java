@@ -10,4 +10,8 @@ public final class BaseUniqueStaff extends ItemStaff {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }

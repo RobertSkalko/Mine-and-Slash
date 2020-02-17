@@ -2,6 +2,7 @@
   "id": "eliminator",
   "weight": 5000,
   "rarity": 2,
+  "tier": 0,
   "registry": "item_set",
   "lang_file_string": "mmorpg.set.eliminator",
   "requirements": {

@@ -10,4 +10,8 @@ public final class BaseUniqueAxe extends ItemAxe {
             .Rank());
     }
 
+    @Override
+    public boolean shouldRegisterLangName() {
+        return true;
+    }
 }
