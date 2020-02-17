@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.gens.util;
 
-import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;

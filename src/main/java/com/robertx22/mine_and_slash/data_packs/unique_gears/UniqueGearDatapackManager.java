@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.data_packs.unique_gears;
 
 import com.robertx22.mine_and_slash.data_packs.BaseDataPackManager;
-import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashDataProvider;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;

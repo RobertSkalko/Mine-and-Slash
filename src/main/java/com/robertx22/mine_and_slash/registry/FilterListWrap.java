@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
-import com.robertx22.mine_and_slash.database.items.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.localization;
 
-import com.robertx22.mine_and_slash.database.items.currency.ItemStoneOfHope;
+import com.robertx22.mine_and_slash.database.currency.ItemStoneOfHope;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 

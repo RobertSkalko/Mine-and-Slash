@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_5;
 
-import com.robertx22.mine_and_slash.database.items.runes.AnoItem;
-import com.robertx22.mine_and_slash.database.items.runes.CenItem;
-import com.robertx22.mine_and_slash.database.items.runes.MosItem;
-import com.robertx22.mine_and_slash.database.items.runes.RahItem;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
+import com.robertx22.mine_and_slash.database.runes.AnoItem;
+import com.robertx22.mine_and_slash.database.runes.CenItem;
+import com.robertx22.mine_and_slash.database.runes.MosItem;
+import com.robertx22.mine_and_slash.database.runes.RahItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.runewords.unique;
 
-import com.robertx22.mine_and_slash.database.items.runes.AnoItem;
-import com.robertx22.mine_and_slash.database.items.runes.VohItem;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.items.runes.unique_runes.PSIItem;
+import com.robertx22.mine_and_slash.database.runes.AnoItem;
+import com.robertx22.mine_and_slash.database.runes.VohItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;

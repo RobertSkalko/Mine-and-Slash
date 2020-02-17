@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.items.runes.*;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.runes.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothChestItem;

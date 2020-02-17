@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.advacements;
 
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
-import com.robertx22.mine_and_slash.database.items.currency.ItemChaosOrb;
-import com.robertx22.mine_and_slash.database.items.currency.ItemOrbOfTransmutation;
-import com.robertx22.mine_and_slash.database.items.currency.ItemStoneOfHope;
+import com.robertx22.mine_and_slash.database.currency.ItemChaosOrb;
+import com.robertx22.mine_and_slash.database.currency.ItemOrbOfTransmutation;
+import com.robertx22.mine_and_slash.database.currency.ItemStoneOfHope;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
-import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;

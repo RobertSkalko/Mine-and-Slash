@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.sets.uniques;
 
-import com.robertx22.mine_and_slash.database.items.unique_items.bracelets.BraceletSetDrop;
-import com.robertx22.mine_and_slash.database.items.unique_items.necklaces.NecklaceSetDrop;
+import com.robertx22.mine_and_slash.database.unique_items.bracelets.BraceletSetDrop;
+import com.robertx22.mine_and_slash.database.unique_items.necklaces.NecklaceSetDrop;
 import com.robertx22.mine_and_slash.database.requirements.ExactUniquesRequierement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.sets.Set;

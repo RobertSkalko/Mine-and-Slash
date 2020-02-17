@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.runewords.unique;
 
-import com.robertx22.mine_and_slash.database.items.runes.GohItem;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.items.runes.unique_runes.WORItem;
+import com.robertx22.mine_and_slash.database.runes.GohItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.WORItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.LootTypeBonusFlat;

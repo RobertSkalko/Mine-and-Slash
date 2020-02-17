@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.runewords.unique;
 
-import com.robertx22.mine_and_slash.database.items.runes.BerItem;
-import com.robertx22.mine_and_slash.database.items.runes.RahItem;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.items.runes.unique_runes.QARItem;
+import com.robertx22.mine_and_slash.database.runes.BerItem;
+import com.robertx22.mine_and_slash.database.runes.RahItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.QARItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;

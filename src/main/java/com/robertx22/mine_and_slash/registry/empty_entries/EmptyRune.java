@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
 
 import java.util.ArrayList;
 import java.util.List;

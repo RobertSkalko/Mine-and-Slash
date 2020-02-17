@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.UniqueGearPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;

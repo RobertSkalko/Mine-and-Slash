@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.affixes.prefixes.defense;
 
 import com.robertx22.mine_and_slash.database.affixes.ElementalPrefix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.mine_and_slash.database.items.unique_items.shields.ShieldElemental;
+import com.robertx22.mine_and_slash.database.unique_items.shields.ShieldElemental;
 import com.robertx22.mine_and_slash.database.requirements.ExactUniquesRequierement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;

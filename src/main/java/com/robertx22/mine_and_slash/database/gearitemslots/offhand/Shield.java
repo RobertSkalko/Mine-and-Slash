@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniqueShield;
+import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.NormalShield;

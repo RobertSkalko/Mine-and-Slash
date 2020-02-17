@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
-import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothHelmetItem;
 import net.minecraft.item.Item;

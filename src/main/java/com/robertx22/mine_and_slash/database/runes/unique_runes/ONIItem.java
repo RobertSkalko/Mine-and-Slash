@@ -1,0 +1,27 @@
+package com.robertx22.mine_and_slash.database.runes.unique_runes;
+
+import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRuneItem;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class ONIItem extends BaseUniqueRuneItem {
+
+    @Override
+    public List<StatMod> mods() {
+        return Arrays.asList(new ArmorFlat().size(StatMod.Size.HIGH));
+    }
+
+    @Override
+    public String name() {
+        return "ONI";
+    }
+
+    @Override
+    public int Tier() {
+        return 4;
+    }
+
+}

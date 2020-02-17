@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.items.currency.IAddsInstability;
-import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
+import com.robertx22.mine_and_slash.database.currency.IAddsInstability;
+import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;

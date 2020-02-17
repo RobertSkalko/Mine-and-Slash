@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases.armor;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseArmor;
-import com.robertx22.mine_and_slash.database.items.unique_items.bases.BaseUniquePantsItem;
+import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniquePantsItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;

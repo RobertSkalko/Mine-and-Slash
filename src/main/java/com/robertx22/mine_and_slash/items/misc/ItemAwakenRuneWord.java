@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.database.MinMax;
-import com.robertx22.mine_and_slash.database.items.currency.ICurrencyItemEffect;
-import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.AwakenRuneWordLocReq;
-import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.BaseLocRequirement;
-import com.robertx22.mine_and_slash.database.items.currency.loc_reqs.LocReqContext;
+import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.loc_reqs.AwakenRuneWordLocReq;
+import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
-import com.robertx22.mine_and_slash.database.items.unique_items.ISpecificStatReq;
-import com.robertx22.mine_and_slash.database.items.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;

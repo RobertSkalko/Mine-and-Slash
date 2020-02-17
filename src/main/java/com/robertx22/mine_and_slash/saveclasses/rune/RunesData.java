@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.rune;
 
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseUniqueRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;

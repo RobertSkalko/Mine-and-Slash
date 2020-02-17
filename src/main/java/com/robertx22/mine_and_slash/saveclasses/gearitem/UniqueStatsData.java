@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
-import com.robertx22.mine_and_slash.database.items.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;

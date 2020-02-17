@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.RunePart;

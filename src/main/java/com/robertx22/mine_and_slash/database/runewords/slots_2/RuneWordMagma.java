@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_2;
 
-import com.robertx22.mine_and_slash.database.items.runes.DosItem;
-import com.robertx22.mine_and_slash.database.items.runes.VohItem;
-import com.robertx22.mine_and_slash.database.items.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.DosItem;
+import com.robertx22.mine_and_slash.database.runes.VohItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
