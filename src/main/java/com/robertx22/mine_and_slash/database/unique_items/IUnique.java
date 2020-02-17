@@ -144,13 +144,13 @@ public interface IUnique extends ISpecificStatReq, IRarity, IGearSlotType, ITier
 
     @Override
     default String locDescLangFileGUID() {
-        return getResourceLocForItem()
+        return "item." + getResourceLocForItem()
             .toString() + ".desc";
     }
 
     @Override
     default String locNameLangFileGUID() {
-        return getResourceLocForItem()
+        return "item." + getResourceLocForItem()
             .toString();
     }
 

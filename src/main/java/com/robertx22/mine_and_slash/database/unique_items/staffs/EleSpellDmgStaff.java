@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.staffs;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
-import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CompletePhysDispersionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalSpellToAttackDMGPercent;
+import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -35,7 +35,7 @@ public class EleSpellDmgStaff implements IElementalUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellToAttackDMGFlat(element).size(StatMod.Size.HIGH), new ElementalSpellToAttackDMGPercent(element)
+        return Arrays.asList(new ElementalSpellToAttackDMGFlat(element).size(StatMod.Size.VERY_HIGH), new ElementalSpellToAttackDMGPercent(element).size(StatMod.Size.VERY_HIGH)
             , new CompletePhysDispersionFlat());
     }
 

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_5;
 
-import com.robertx22.mine_and_slash.database.items.runes.*;
 import com.robertx22.mine_and_slash.database.runes.*;
 import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;

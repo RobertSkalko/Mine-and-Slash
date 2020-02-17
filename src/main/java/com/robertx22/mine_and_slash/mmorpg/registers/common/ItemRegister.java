@@ -1,10 +1,9 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.currency.*;
-import com.robertx22.mine_and_slash.database.items.currency.*;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;

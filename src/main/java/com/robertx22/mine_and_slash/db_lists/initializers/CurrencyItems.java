@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.currency.*;
-import com.robertx22.mine_and_slash.database.items.currency.*;
 import com.robertx22.mine_and_slash.database.currency.infusions.AttackInfusionItem;
 import com.robertx22.mine_and_slash.database.currency.infusions.DefenseInfusionItem;
 import com.robertx22.mine_and_slash.database.currency.infusions.ResourceInfusionItem;
@@ -11,8 +10,8 @@ import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.Wondrous
 import com.robertx22.mine_and_slash.database.currency.map.ItemAddGroupMap;
 import com.robertx22.mine_and_slash.database.currency.map.ItemAddMapLevel;
 import com.robertx22.mine_and_slash.database.currency.map.ItemAddMapTier;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ItemRegister;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 public class CurrencyItems implements ISlashRegistryInit {
 

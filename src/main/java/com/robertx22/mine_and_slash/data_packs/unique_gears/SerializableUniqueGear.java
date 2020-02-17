@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.data_packs.unique_gears;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -36,8 +36,8 @@ public class SerializableUniqueGear implements IUnique {
         this.canGetSet = canGetSet;
         this.requirements = requirements;
         this.guid = guid;
-        this.langNameID = langNameID;
-        this.langDescID = langDescID;
+        this.langNameID = langNameID.contains("item.") ? langNameID : "item." + langNameID;
+        this.langDescID = langDescID.contains("item.") ? langDescID : "item." + langDescID;
         this.gearType = gearType;
         this.itemID = itemID;
     }
