@@ -1,15 +1,12 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
+import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -19,7 +16,7 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 
-public class ConfigItem implements IWeighted, ISlashRegistryEntry {
+public class ConfigItem implements IWeighted {
 
     @Override
     public int Weight() {
@@ -27,36 +24,6 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
     }
 
     public transient String registryName = "";
-
-    @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.COMPATIBLE_ITEM;
-    }
-
-    @Override
-    public boolean unregisterBeforeConfigsLoad() {
-        return true;
-    }
-
-    @Override
-    public String GUID() {
-        return this.registryName;
-    }
-
-    @Override
-    public int getRarityRank() {
-        return 0;
-    }
-
-    @Override
-    public Rarity getRarity() {
-        return Rarities.Gears.get(getRarityRank());
-    }
-
-    @Override
-    public int Tier() {
-        return 0;
-    }
 
     public enum creationTypes {
         NORMAL,
@@ -88,6 +55,31 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
     public boolean statsAddedOnlyOnDrop = false;
     public boolean dropsAsLoot = true;
+
+    public CompatibleItem convertToNewFormat() {
+        CompatibleItem item = new CompatibleItem();
+
+        item.guid = registryName;
+        item.item_id = registryName;
+
+        item.level_variance = levelVariance;
+        item.max_level = maxLevel;
+        item.min_level = minLevel;
+
+        item.can_be_salvaged = isSalvagable;
+        item.only_add_stats_if_loot_drop = statsAddedOnlyOnDrop;
+        item.add_to_loot_drops = dropsAsLoot;
+        item.loot_drop_weight = dropWeight;
+
+        item.unique_id = uniqueId;
+        item.if_unique_random_up_to_tier = randomUniqueUpToTier;
+
+        item.normal_item_weight = normalItemWeight;
+        item.runed_item_weight = runedItemWeight;
+        item.unique_item_weight = uniqueItemWeight;
+
+        return item;
+    }
 
     public ConfigItem setUniqueId(IUnique uniq) {
         this.uniqueId = uniq.GUID();
@@ -181,14 +173,18 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
     public boolean isValid() throws Exception {
 
         if (uniqueIsRandom == false) {
-            if (SlashRegistry.UniqueGears().isRegistered(uniqueId) == false) {
+            if (SlashRegistry.UniqueGears()
+                .isRegistered(uniqueId) == false) {
                 throw new Exception("Unique Id doesn't exist: " + this.uniqueId);
             }
         }
 
         boolean matchtype = false;
-        for (GearItemSlot slot : SlashRegistry.GearTypes().getAll().values()) {
-            if (slot.GUID().equals(this.itemType)) {
+        for (GearItemSlot slot : SlashRegistry.GearTypes()
+            .getAll()
+            .values()) {
+            if (slot.GUID()
+                .equals(this.itemType)) {
                 matchtype = true;
             }
         }
@@ -227,9 +223,9 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
     private creationTypes getCreationType() {
 
         WeightedType result = RandomUtils.weightedRandom(Arrays.asList(
-                new WeightedType(normalItemWeight, creationTypes.NORMAL),
-                new WeightedType(uniqueItemWeight, creationTypes.UNIQUE),
-                new WeightedType(runedItemWeight, creationTypes.RUNED)
+            new WeightedType(normalItemWeight, creationTypes.NORMAL),
+            new WeightedType(uniqueItemWeight, creationTypes.UNIQUE),
+            new WeightedType(runedItemWeight, creationTypes.RUNED)
         ));
 
         return result.type;
@@ -262,8 +258,10 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
 
         UniqueGearBlueprint blueprint = null;
 
-        if (SlashRegistry.UniqueGears().isRegistered(uniqueId)) {
-            new UniqueGearBlueprint(level, SlashRegistry.UniqueGears().get(uniqueId));
+        if (SlashRegistry.UniqueGears()
+            .isRegistered(uniqueId)) {
+            new UniqueGearBlueprint(level, SlashRegistry.UniqueGears()
+                .get(uniqueId));
         } else {
             new UniqueGearBlueprint(level, randomUniqueUpToTier);
         }
@@ -276,7 +274,8 @@ public class ConfigItem implements IWeighted, ISlashRegistryEntry {
         gear.isSalvagable = this.isSalvagable;
         gear.isNotFromMyMod = true;
 
-        if (gear.uniqueGUID == null || !SlashRegistry.UniqueGears().isRegistered(gear.uniqueGUID)) {
+        if (gear.uniqueGUID == null || !SlashRegistry.UniqueGears()
+            .isRegistered(gear.uniqueGUID)) {
             return createNormal(stack, level);
         } else {
             Gear.Save(stack, gear);

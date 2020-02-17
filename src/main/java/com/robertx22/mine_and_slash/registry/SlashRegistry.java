@@ -1,20 +1,16 @@
 package com.robertx22.mine_and_slash.registry;
 
-import com.robertx22.mine_and_slash.config.compatible_items.ConfigItem;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.impl.NecromancerBoss;
+import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.database.currency.ItemOrbOfTransmutation;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseItemModification;
 import com.robertx22.mine_and_slash.database.item_modifications.gear_items.AddChaosStatMod;
-import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
-import com.robertx22.mine_and_slash.database.currency.ItemOrbOfTransmutation;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRuneItem;
-import com.robertx22.mine_and_slash.database.runes.unique_runes.PSIItem;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
@@ -24,6 +20,9 @@ import com.robertx22.mine_and_slash.database.quests.base.Quest;
 import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
 import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
 import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRuneItem;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.PSIItem;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
@@ -36,6 +35,7 @@ import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffe
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.data.StartPerkEffects;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
@@ -143,7 +143,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.LOOT_CRATE);
     }
 
-    public static SlashRegistryContainer<ConfigItem> CompatibleItems() {
+    public static SlashRegistryContainer<CompatibleItem> CompatibleItems() {
         return getRegistry(SlashRegistryType.COMPATIBLE_ITEM);
     }
 
@@ -336,8 +336,8 @@ public class SlashRegistry {
         );
         map.put(SlashRegistryType.RECIPE, new SlashRegistryContainer<BaseRecipe>(SlashRegistryType.RECIPE, null));
         map.put(SlashRegistryType.COMPATIBLE_ITEM,
-            new SlashRegistryContainer<ConfigItem>(SlashRegistryType.COMPATIBLE_ITEM,
-                new ConfigItem()
+            new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
+                CompatibleItem.EMPTY
             ).dontErrorIfEmpty()
                 .logAdditions()
         );
@@ -347,6 +347,7 @@ public class SlashRegistry {
             ).logAdditions()
                 .dontErrorMissingEntriesOnAccess()
         );
+
         map.put(SlashRegistryType.MOD_ENTITY_CONFIGS,
             new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS).logAdditions()
         );

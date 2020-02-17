@@ -7,8 +7,11 @@ import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 
 public class CompatibleItem implements ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
 
+    public static CompatibleItem EMPTY = new CompatibleItem();
+
     public String item_type = "sword";
-    public String guid = "registry_id_for_this_entry";
+    public String guid = "guid_for_this_entry";
+    public String item_id = "item_id";
 
     public int unique_item_weight = 0;
     public int normal_item_weight = 80;
@@ -117,10 +120,15 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         return obj;
     }
-    
+
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.COMPATIBLE_ITEM;
+    }
+
+    @Override
+    public boolean isFromDatapack() {
+        return true;
     }
 
     @Override
