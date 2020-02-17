@@ -25,6 +25,8 @@ I tested it myself on client and server but it's not foolproof.
 So i made a system that buffs drops if you're outside a map dimension, but nerfs them if you're inside. This should make maps a lot more precious and time gated, and allow for people to do
 other minecraft things in the meantime.
 * increased map droprates a bit. 
+* changed compatible items into datapacks. If you're worried you lose your old progress, there's a command that outputs them into new format: "convert_compatible_items_to_new_format".
+Also there's a similar method convertToNewFormat for mod devs.
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

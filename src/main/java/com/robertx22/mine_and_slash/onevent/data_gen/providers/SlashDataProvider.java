@@ -21,9 +21,9 @@ public class SlashDataProvider<T extends ISerializedRegistryEntry & IGUID & ISer
     private final Logger LOGGER = LogManager.getLogger();
     public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting()
         .create();
-    private DataGenerator generator;
-    String category;
-    List<T> list;
+    public DataGenerator generator;
+    public String category;
+    public List<T> list;
 
     public SlashDataProvider(DataGenerator gen, List<T> list, String category) {
         this.generator = gen;
@@ -41,7 +41,7 @@ public class SlashDataProvider<T extends ISerializedRegistryEntry & IGUID & ISer
         return category;
     }
 
-    private Path resolve(Path path, T object) {
+    public Path resolve(Path path, T object) {
         return path.resolve(
             "data/" + Ref.MODID + "/" + category + "/" + object.datapackFolder() + object.formattedGUID() +
                 ".json");

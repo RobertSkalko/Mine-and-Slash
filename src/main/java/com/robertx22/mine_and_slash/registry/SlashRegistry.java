@@ -282,8 +282,6 @@ public class SlashRegistry {
         new Bosses().registerAll();
         new MapEvents().registerAll();
 
-        new CompatibleItems().registerAll();
-
     }
 
     public static void initRegistries() {

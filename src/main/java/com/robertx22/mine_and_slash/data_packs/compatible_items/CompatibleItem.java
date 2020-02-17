@@ -51,6 +51,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         JsonObject json = new JsonObject();
 
         json.addProperty("item_type", item_type);
+        json.addProperty("item_id", item_id);
         json.addProperty("guid", guid);
 
         JsonObject gearType = new JsonObject();
@@ -90,6 +91,8 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         CompatibleItem obj = new CompatibleItem();
 
         obj.item_type = json.get("item_type")
+            .getAsString();
+        obj.item_id = json.get("item_id")
             .getAsString();
         obj.guid = json.get("guid")
             .getAsString();
@@ -148,6 +151,10 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     @Override
     public boolean isFromDatapack() {
         return true;
+    }
+
+    public String getFileName() {
+        return new ResourceLocation(item_id).getPath();
     }
 
     @Override

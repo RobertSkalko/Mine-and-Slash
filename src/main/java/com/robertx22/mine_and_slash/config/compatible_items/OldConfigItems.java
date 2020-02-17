@@ -28,14 +28,12 @@ public class OldConfigItems implements IConfig, ISlashRegistryInit {
 
     public HashMap<String, OldConfigItem> map = new HashMap();
 
-    private List<OldConfigItem> list = new ArrayList();
-
     @Override
     public void registerAll() {
 
         if (enabled) {
 
-            list = new ArrayList<>();
+            List<OldConfigItem> list = new ArrayList();
 
             for (Map.Entry<String, OldConfigItem> entry : map.entrySet()) {
                 entry.getValue().registryName = entry.getKey();

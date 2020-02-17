@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
+import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -45,10 +46,14 @@ public class OldConfigItem implements IWeighted {
 
         item.guid = registryName;
         item.item_id = registryName;
+        item.item_type = IGUID.getformattedString(itemType);
 
         item.level_variance = levelVariance;
         item.max_level = maxLevel;
         item.min_level = minLevel;
+
+        item.min_rarity = minRarity;
+        item.max_rarity = maxRarity;
 
         item.can_be_salvaged = isSalvagable;
         item.only_add_stats_if_loot_drop = statsAddedOnlyOnDrop;

@@ -31,7 +31,14 @@ public class OldCompatibleItemSerial implements ISerializedConfig<OldConfigItems
 
         List<String> list = new ArrayList<>();
         for (File file : Objects.requireNonNull(new File(folder()).listFiles())) {
-            list.add(getJsonFromFile(file.getPath()));
+            try {
+                String json = getJsonFromFile(file.getPath());
+                if (json != null) {
+                    list.add(json);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return list;
