@@ -40,14 +40,14 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GearItemRegisters {
 
-    
     public static List<Item> items = new ArrayList<Item>();
 
     private static void register() {
 
         for (GearRarity rarity : Rarities.Gears.getNormalRarities()) {
 
-            Item.Properties shieldprop = ItemUtils.getDefaultGearProperties().defaultMaxDamage(750);
+            Item.Properties shieldprop = ItemUtils.getDefaultGearProperties()
+                .defaultMaxDamage(750);
 
             DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
                 shieldprop.setISTER(ShieldRenderer::new);
@@ -58,19 +58,29 @@ public class GearItemRegisters {
             int rank = rarity.Rank();
 
             // runes
-            regRune(new CenItem(rank), CenItem.Items, new CenItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new BerItem(rank), BerItem.Items, new BerItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new DosItem(rank), DosItem.Items, new DosItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new GohItem(rank), GohItem.Items, new GohItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new MosItem(rank), MosItem.Items, new MosItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new RahItem(rank), RahItem.Items, new RahItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new VohItem(rank), VohItem.Items, new VohItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new XahItem(rank), XahItem.Items, new XahItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new AnoItem(rank), AnoItem.Items, new AnoItem(rank).genRegisryName().toLowerCase(), rank);
-            regRune(new ItaItem(rank), ItaItem.Items, new ItaItem(rank).genRegisryName().toLowerCase(), rank);
+            regRune(new CenItem(rank), CenItem.Items, new CenItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new BerItem(rank), BerItem.Items, new BerItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new DosItem(rank), DosItem.Items, new DosItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new GohItem(rank), GohItem.Items, new GohItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new MosItem(rank), MosItem.Items, new MosItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new RahItem(rank), RahItem.Items, new RahItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new VohItem(rank), VohItem.Items, new VohItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new XahItem(rank), XahItem.Items, new XahItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new AnoItem(rank), AnoItem.Items, new AnoItem(rank).genRegisryName()
+                .toLowerCase(), rank);
+            regRune(new ItaItem(rank), ItaItem.Items, new ItaItem(rank).genRegisryName()
+                .toLowerCase(), rank);
 
             // offhands
-            regRarities(new NormalShield(rarity.Rank(), shieldprop, "normal_shield" + rarity.Rank()),
+            regRarities(new NormalShield(rarity.Rank(), shieldprop),
                 NormalShield.Items, "shields/normal_shield", rarity.Rank()
             );
 
@@ -143,7 +153,8 @@ public class GearItemRegisters {
         register();
 
         for (Item item : items) {
-            event.getRegistry().register(item);
+            event.getRegistry()
+                .register(item);
         }
 
     }

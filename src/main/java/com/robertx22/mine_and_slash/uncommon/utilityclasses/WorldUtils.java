@@ -11,7 +11,6 @@ import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -84,8 +83,10 @@ public class WorldUtils {
 
     public static BlockPos getSurfaceCenterOfChunk(IWorld world, BlockPos pos) {
 
-        int x = world.getChunk(pos).getPos().x + 8;
-        int z = world.getChunk(pos).getPos().z + 8;
+        int x = world.getChunk(pos)
+            .getPos().x + 8;
+        int z = world.getChunk(pos)
+            .getPos().z + 8;
 
         pos = furtherby8(pos);
 
@@ -122,7 +123,8 @@ public class WorldUtils {
         BlockPos surface = getSurface(world, pos);
 
         for (BlockPos x : Arrays.asList(surface.up(), surface.up(2), surface.down(), surface.down(2), surface)) {
-            if (world.getBlockState(x).getMaterial() == Material.WATER) {
+            if (world.getBlockState(x)
+                .getMaterial() == Material.WATER) {
                 return true;
             }
         }
@@ -137,7 +139,8 @@ public class WorldUtils {
 
         boolean goingDown = world.isAirBlock(pos);
 
-        while (world.isAirBlock(pos) || world.getBlockState(pos).getBlock() instanceof LeavesBlock) {
+        while (world.isAirBlock(pos) || world.getBlockState(pos)
+            .getBlock() instanceof LeavesBlock) {
 
             if (goingDown) {
                 pos = pos.down();
@@ -163,7 +166,8 @@ public class WorldUtils {
         if (isMapWorldClass(world)) {
             return true;
         } else {
-            return SlashRegistry.getDimensionConfig(world).isMapWorld();
+            return SlashRegistry.getDimensionConfig(world)
+                .isMapWorld();
         }
     }
 
@@ -186,7 +190,7 @@ public class WorldUtils {
         return null;
     }
 
-    public static int getTier(World world, WorldMapCap.IWorldMapData data, PlayerEntity player) {
+    public static int getTier(World world, WorldMapCap.IWorldMapData data) {
 
         if (WorldUtils.isMapWorldClass(world)) {
             return data.getTier();

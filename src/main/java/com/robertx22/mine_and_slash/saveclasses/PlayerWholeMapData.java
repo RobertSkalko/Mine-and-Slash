@@ -30,13 +30,20 @@ public class PlayerWholeMapData {
     @Store
     public boolean questFinished = false;
 
+    @Store
+    public int minutesInMap = 0;
+    @Store
+    public int minutesOutsideMap = 0;
+
     public void setOriginalDimension(DimensionType type) {
-        this.originalDimension = DimensionType.getKey(type).toString();
+        this.originalDimension = DimensionType.getKey(type)
+            .toString();
     }
 
     public void setPlayerId(PlayerEntity player) {
 
-        String id = player.getUniqueID().toString();
+        String id = player.getUniqueID()
+            .toString();
 
         if (this.playerID.isEmpty()) {
             this.playerID = id;

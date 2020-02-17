@@ -19,6 +19,11 @@ I added a temporary system that auto formats all old names to this standard, but
 * fix some heals not working
 * runewords, affixes and sets are now fully moddable with datapacks! This might have some issues so i'll need some guniea pigs to test it! 
 I tested it myself on client and server but it's not foolproof.
+* reduced boss hp, increased xp and loot
+* fixed shield textures
+* trying out a new system to balance map drops. Bascically i don't want people spamming them all the time, but i don't want people spending hours insta killing overworld mobs for them either.
+So i made a system that buffs drops if you're outside a map dimension, but nerfs them if you're inside. This should make maps a lot more precious and time gated, and allow for people to do
+other minecraft things in the meantime.
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

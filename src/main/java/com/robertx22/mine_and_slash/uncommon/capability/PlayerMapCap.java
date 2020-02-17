@@ -22,6 +22,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
@@ -75,6 +76,11 @@ public class PlayerMapCap {
         void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player);
 
         void onQuestFinished();
+
+        float getMapLootMultiplierForTime();
+
+        void onMapDropped();
+
     }
 
     @Mod.EventBusSubscriber
@@ -144,15 +150,17 @@ public class PlayerMapCap {
                 this.data.minutesPassed += 555555;
 
                 player.sendMessage(Chats.Player_died_in_a_map_world.locName()
-                                           .appendText(" " + player.getDisplayName().getFormattedText() + " ")
-                                           .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
+                    .appendText(" " + player.getDisplayName()
+                        .getFormattedText() + " ")
+                    .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
 
             } else {
                 int punishment = (int) (5 + this.getMap().tier * 0.5F);
 
                 player.sendMessage(Chats.Player_died_in_a_map_world.locName()
-                                           .appendText(" " + player.getDisplayName().getFormattedText() + " ")
-                                           .appendSibling(Chats.Map_time_penalty_activated.locName()));
+                    .appendText(" " + player.getDisplayName()
+                        .getFormattedText() + " ")
+                    .appendSibling(Chats.Map_time_penalty_activated.locName()));
 
                 this.data.minutesPassed += punishment;
 
@@ -172,17 +180,23 @@ public class PlayerMapCap {
 
         @Override
         public void onMinute(PlayerEntity player) {
-            this.data.minutesPassed++;
 
-            if (this.getMinutesLeft() < 1) {
-                this.announceEnd(player);
-                this.teleportPlayerBack(player);
+            if (WorldUtils.isMapWorldClass(player.world)) {
+                this.data.minutesInMap++;
 
+                this.data.minutesPassed++;
+
+                if (this.getMinutesLeft() < 1) {
+                    this.announceEnd(player);
+                    this.teleportPlayerBack(player);
+
+                } else {
+                    onMinutePassAnnounce(player);
+
+                }
             } else {
-                onMinutePassAnnounce(player);
-
+                this.data.minutesOutsideMap++;
             }
-
         }
 
         @Override
@@ -192,7 +206,8 @@ public class PlayerMapCap {
 
             this.data.minutesPassed = 0;
             this.data.mapDevicePos = new BlockPos(pos).up();
-            this.data.setOriginalDimension(player.world.getDimension().getType());
+            this.data.setOriginalDimension(player.world.getDimension()
+                .getType());
             this.data.mapdata = map.clone();
             this.data.questFinished = false;
             this.data.setPlayerId(player);
@@ -204,6 +219,20 @@ public class PlayerMapCap {
         @Override
         public void onQuestFinished() {
             this.data.questFinished = true;
+        }
+
+        @Override // a self balancing map loot droprate that isn't too much or too little.
+        public float getMapLootMultiplierForTime() {
+            float minus = this.data.minutesInMap * 0.05F;
+            float plus = this.data.minutesOutsideMap * 0.02F;
+            float total = 1 + plus - minus;
+
+            return MathHelper.clamp(total, 0.01F, 3F);
+        }
+
+        @Override
+        public void onMapDropped() {
+            this.data.minutesOutsideMap = 0;
         }
 
         private void onMinutePassAnnounce(PlayerEntity player) {
@@ -315,7 +344,8 @@ public class PlayerMapCap {
                 }
                 if (pos == null) {
                     try {
-                        pos = MapManager.getWorld(DimensionType.OVERWORLD).getSpawnPoint();
+                        pos = MapManager.getWorld(DimensionType.OVERWORLD)
+                            .getSpawnPoint();
                     } catch (Exception e) {
                         error("Last safeguard failed, can't even get spawn point of overworld");
                         e.printStackTrace();
@@ -337,9 +367,9 @@ public class PlayerMapCap {
 
         private void announceTimeLeft(PlayerEntity player) {
             player.sendMessage(Styles.REDCOMP()
-                                       .appendSibling(Chats.Remaining_Map_Time_is.locName())
-                                       .appendText(" " + this.getMinutesLeft() + " ")
-                                       .appendSibling(Words.Minutes.locName()));
+                .appendSibling(Chats.Remaining_Map_Time_is.locName())
+                .appendText(" " + this.getMinutesLeft() + " ")
+                .appendSibling(Words.Minutes.locName()));
 
         }
 

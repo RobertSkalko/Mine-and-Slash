@@ -53,44 +53,49 @@ public class OnServerTick {
                     data.regenTicks = 0;
                     if (player.isAlive()) {
 
-                        player.getCapability(EntityCap.Data).ifPresent(x -> {
-                            x.forceRecalculateStats(player);
-                            // has to do
-                            // this cus curios doesnt call
-                            // equipsChanged event - actually
-                            // there's one, but i fear  bugs
+                        player.getCapability(EntityCap.Data)
+                            .ifPresent(x -> {
+                                x.forceRecalculateStats(player);
+                                // has to do
+                                // this cus curios doesnt call
+                                // equipsChanged event - actually
+                                // there's one, but i fear  bugs
 
-                            Unit unit = x.getUnit();
+                                Unit unit = x.getUnit();
 
-                            float manarestored = unit.getCreateStat(ManaRegen.GUID).val;
-                            ResourcesData.Context mana = new ResourcesData.Context(x, player, ResourcesData.Type.MANA,
-                                                                                   manarestored,
-                                                                                   ResourcesData.Use.RESTORE
-                            );
-                            x.getResources().modify(mana);
+                                float manarestored = unit.getCreateStat(ManaRegen.GUID).val;
+                                ResourcesData.Context mana = new ResourcesData.Context(x, player, ResourcesData.Type.MANA,
+                                    manarestored,
+                                    ResourcesData.Use.RESTORE
+                                );
+                                x.getResources()
+                                    .modify(mana);
 
-                            float energyrestored = unit.getCreateStat(EnergyRegen.GUID).val;
-                            ResourcesData.Context ene = new ResourcesData.Context(x, player, ResourcesData.Type.ENERGY,
-                                                                                  energyrestored,
-                                                                                  ResourcesData.Use.RESTORE
-                            );
-                            x.getResources().modify(ene);
+                                float energyrestored = unit.getCreateStat(EnergyRegen.GUID).val;
+                                ResourcesData.Context ene = new ResourcesData.Context(x, player, ResourcesData.Type.ENERGY,
+                                    energyrestored,
+                                    ResourcesData.Use.RESTORE
+                                );
+                                x.getResources()
+                                    .modify(ene);
 
-                            float healthrestored = unit.getCreateStat(HealthRegen.GUID).val;
-                            ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
-                                                                                 healthrestored,
-                                                                                 ResourcesData.Use.RESTORE
-                            );
-                            x.getResources().modify(hp);
+                                float healthrestored = unit.getCreateStat(HealthRegen.GUID).val;
+                                ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
+                                    healthrestored,
+                                    ResourcesData.Use.RESTORE
+                                );
+                                x.getResources()
+                                    .modify(hp);
 
-                            float magicshieldrestored = unit.getCreateStat(MagicShieldRegen.GUID).val;
-                            ResourcesData.Context ms = new ResourcesData.Context(x, player,
-                                                                                 ResourcesData.Type.MAGIC_SHIELD,
-                                                                                 magicshieldrestored,
-                                                                                 ResourcesData.Use.RESTORE
-                            );
-                            x.getResources().modify(ms);
-                        });
+                                float magicshieldrestored = unit.getCreateStat(MagicShieldRegen.GUID).val;
+                                ResourcesData.Context ms = new ResourcesData.Context(x, player,
+                                    ResourcesData.Type.MAGIC_SHIELD,
+                                    magicshieldrestored,
+                                    ResourcesData.Use.RESTORE
+                                );
+                                x.getResources()
+                                    .modify(ms);
+                            });
                     }
                 }
 
@@ -108,18 +113,21 @@ public class OnServerTick {
                 }
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
-                    if (WorldUtils.isMapWorldClass(player.world)) {
-                        player.getCapability(PlayerMapCap.Data).ifPresent(x -> x.onMinute(player));
-                    }
+                    player.getCapability(PlayerMapCap.Data)
+                        .ifPresent(x -> x.onMinute(player));
+
                 }
 
                 if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
                     data.ticksToSpellCooldowns = 0;
 
-                    player.getCapability(PlayerSpellCap.Data).ifPresent(x -> {
-                        x.getSpellData().onTimePass(TicksToSpellCooldowns);
-                        x.getSpellData().tryCast(player, x);
-                    });
+                    player.getCapability(PlayerSpellCap.Data)
+                        .ifPresent(x -> {
+                            x.getSpellData()
+                                .onTimePass(TicksToSpellCooldowns);
+                            x.getSpellData()
+                                .tryCast(player, x);
+                        });
                 }
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {

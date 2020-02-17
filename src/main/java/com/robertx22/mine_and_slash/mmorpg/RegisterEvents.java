@@ -49,7 +49,7 @@ public class RegisterEvents {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnKeyPress.class);
             register(OnClientTick.class);
-            // register(OnClientTickRenderBoss.class);
+            //register(StitchTextures.class);
         });
 
     }
@@ -81,7 +81,9 @@ public class RegisterEvents {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnTooltip.class);
 
-            FMLJavaModLoadingContext.get().getModEventBus().register(ItemDyeRegister.class);
+            FMLJavaModLoadingContext.get()
+                .getModEventBus()
+                .register(ItemDyeRegister.class);
 
         });
 

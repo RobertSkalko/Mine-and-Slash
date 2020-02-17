@@ -60,9 +60,9 @@ public class LootInfo {
         if (this.mobData != null) {
             this.tier = mobData.getTier();
         } else {
-            if (killer != null) {
-                if (WorldUtils.isMapWorld(killer.world)) {
-                    this.tier = WorldUtils.getTier(killer.world, mapData, killer);
+            if (world != null && mapData != null) {
+                if (WorldUtils.isMapWorld(world)) {
+                    this.tier = WorldUtils.getTier(world, mapData);
                 }
             }
         }
@@ -111,9 +111,13 @@ public class LootInfo {
 
         if (this.playerData != null) {
 
-            chance *= this.playerData.getUnit().getCreateStat(new LootTypeBonus(gen.lootType())).getMultiplier();
+            chance *= this.playerData.getUnit()
+                .getCreateStat(new LootTypeBonus(gen.lootType()))
+                .getMultiplier();
 
-            chance *= this.playerData.getUnit().getCreateStat(new LootTypeBonus(LootType.All)).getMultiplier();
+            chance *= this.playerData.getUnit()
+                .getCreateStat(new LootTypeBonus(LootType.All))
+                .getMultiplier();
 
             if (mobData != null) {
                 if (playerData.getLevel() < 5 && mobData.getLevel() < 5) {
@@ -124,7 +128,8 @@ public class LootInfo {
         }
 
         if (killer != null) {
-            chance *= Load.playerMapData(killer).getLootMultiplier(killer);
+            chance *= Load.playerMapData(killer)
+                .getLootMultiplier(killer);
         }
 
         if (world != null) {
@@ -135,7 +140,8 @@ public class LootInfo {
                 chance *= iwp.getBonusLootMulti();
             }
 
-            chance *= Load.world(world).getLootMultiplier();
+            chance *= Load.world(world)
+                .getLootMultiplier();
         }
 
         if (mobData != null && victim != null) {

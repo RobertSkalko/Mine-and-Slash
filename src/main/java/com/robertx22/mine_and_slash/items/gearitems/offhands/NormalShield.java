@@ -25,12 +25,16 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
 
     public ResourceLocation resource = new ResourceLocation("");
 
-    public NormalShield(int rarity, Properties prop, String name) {
+    public NormalShield(int rarity, Properties prop) {
 
         super(prop);
         this.rarity = rarity;
-        resource = new ResourceLocation(Ref.MODID, "textures/shield/" + name + ".png");
+        resource = getResource(rarity);
 
+    }
+
+    public static ResourceLocation getResource(int rarity) {
+        return new ResourceLocation(Ref.MODID, "shield/normal_shield" + rarity);
     }
 
     @Override

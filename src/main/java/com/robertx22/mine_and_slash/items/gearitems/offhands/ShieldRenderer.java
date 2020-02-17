@@ -36,14 +36,14 @@ public class ShieldRenderer extends ItemStackTileEntityRenderer implements Calla
 
             Material material = new Material(AtlasTexture.LOCATION_BLOCKS_TEXTURE, shield.resource);
 
-            IVertexBuilder ivertexbuilder = material.getSprite()
+            IVertexBuilder builder = material.getSprite()
                 .wrapBuffer(ItemRenderer.getBuffer(renderType, modelShield.getRenderType(material.getAtlasLocation()), false, stack.hasEffect()));
 
             modelShield.func_228294_b_()
-                .render(mat, ivertexbuilder, light, overlayLight, 1.0F, 1.0F, 1.0F, 1.0F);
+                .render(mat, builder, light, overlayLight, 1.0F, 1.0F, 1.0F, 1.0F);
 
             modelShield.func_228293_a_()
-                .render(mat, ivertexbuilder, light, overlayLight, 1.0F, 1.0F, 1.0F, 1.0F);
+                .render(mat, builder, light, overlayLight, 1.0F, 1.0F, 1.0F, 1.0F);
 
             mat.pop();
 
