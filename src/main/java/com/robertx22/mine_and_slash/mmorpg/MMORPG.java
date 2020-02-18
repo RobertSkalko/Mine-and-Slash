@@ -39,7 +39,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
-import net.minecraftforge.fml.event.server.*;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
@@ -186,10 +189,14 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStarting(FMLServerStartingEvent event) {
 
+    }
+
+    @SubscribeEvent
+    public static void onServerStop(FMLServerStartedEvent event) {
+
         CommandRegister.Register(event.getServer());
 
         SlashRegistry.checkGuidValidity();
-
         ErrorChecks.getAll()
             .forEach(x -> x.check());
 
@@ -198,16 +205,9 @@ public class MMORPG {
             CreateLangFile.create();
             GenerateCurioDataJsons.generate();
             ModelCreator.createDefaultModelsAndDirs();
-            //ValidateGuids.validate();
             CountUniqueGearTypes.count();
             GenerateUniqueGearJsons.gen();
         }
-
-    }
-
-    @SubscribeEvent
-
-    public static void onServerStop(FMLServerStoppedEvent event) {
 
     }
 
