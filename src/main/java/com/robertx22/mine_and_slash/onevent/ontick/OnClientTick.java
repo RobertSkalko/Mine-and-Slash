@@ -27,15 +27,19 @@ public class OnClientTick {
 
                 PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                List<String> onCooldown = spells.getSpellData().getSpellsOnCooldown();
+                List<String> onCooldown = spells.getSpellData()
+                    .getSpellsOnCooldown();
 
-                spells.getSpellData().onTimePass(1); // ticks spells so i dont need to sync packets every tick
+                spells.getSpellData()
+                    .onTimePass(player, spells, 1); // ticks spells so i dont need to sync packets every tick
 
-                List<String> onCooldownAfter = spells.getSpellData().getSpellsOnCooldown();
+                List<String> onCooldownAfter = spells.getSpellData()
+                    .getSpellsOnCooldown();
 
                 onCooldown.removeAll(onCooldownAfter);
 
-                COOLDOWN_READY_MAP.entrySet().forEach(x -> x.setValue(x.getValue() - 1));
+                COOLDOWN_READY_MAP.entrySet()
+                    .forEach(x -> x.setValue(x.getValue() - 1));
 
                 onCooldown.forEach(x -> {
                     COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);

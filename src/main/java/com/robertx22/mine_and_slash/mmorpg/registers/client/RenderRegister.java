@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.MySpriteRenderer;
 import com.robertx22.mine_and_slash.database.spells.entities.magic_missiles.MagicMissileRenderer;
+import com.robertx22.mine_and_slash.database.spells.entities.special.RangerArrowRenderer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import net.minecraft.client.Minecraft;
@@ -25,10 +26,12 @@ public class RenderRegister {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.THUNDER_SPEAR, TridentRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.MAGIC_MISSILE, MagicMissileRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.RANGER_ARROW, RangerArrowRenderer::new);
 
     }
 
     private static <T extends Entity> IRenderFactory<? super T> newRenFac() {
-        return manager -> new MySpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer());
+        return manager -> new MySpriteRenderer<>(manager, Minecraft.getInstance()
+            .getItemRenderer());
     }
 }

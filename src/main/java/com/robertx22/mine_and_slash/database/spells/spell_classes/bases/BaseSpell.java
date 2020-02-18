@@ -5,17 +5,18 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
@@ -33,8 +34,17 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell>, ITooltipList {
+    protected List<Predicate<LivingEntity>> castRequirements = new ArrayList<>();
+
+    public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
+        return true;
+    }
+
+    public void onCastingTick(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int tick) {
+    }
 
     public enum SpellType {
         Single_Target_Projectile,
@@ -62,6 +72,11 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return new ElementalSpellDamage(getElement());
     }
 
+    public boolean goesOnCooldownIfCastCanceled() {
+        // override for spells that do oncastingtick
+        return false;
+    }
+
     @Override
     public int Tier() {
         return 0;
@@ -85,7 +100,9 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public String typeString() {
-        return this.getSpellType().toString().replaceAll("_", " ");
+        return this.getSpellType()
+            .toString()
+            .replaceAll("_", " ");
     }
 
     public boolean hasScalingValue() {
@@ -99,7 +116,8 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     public abstract int getManaCost();
 
     public final int getCalculatedManaCost(UnitData data) {
-        return (int) Mana.getInstance().calculateScalingStatGrowth(getManaCost(), data.getLevel());
+        return (int) Mana.getInstance()
+            .calculateScalingStatGrowth(getManaCost(), data.getLevel());
     }
 
     public abstract int useTimeTicks();
@@ -126,7 +144,18 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public abstract boolean cast(LivingEntity caster, int ticksInUse);
 
-    public boolean CanCast(LivingEntity caster) {
+    public void spendResources(LivingEntity caster) {
+        UnitData data = Load.Unit(caster);
+        data.getResources()
+            .modify(getManaCostCtx(caster, data));
+    }
+
+    public ResourcesData.Context getManaCostCtx(LivingEntity caster, UnitData data) {
+        return new ResourcesData.Context(
+            data, caster, ResourcesData.Type.MANA, getCalculatedManaCost(data), ResourcesData.Use.SPEND);
+    }
+
+    public boolean canCast(LivingEntity caster) {
 
         if (caster instanceof PlayerEntity == false) {
             return true;
@@ -140,13 +169,17 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
             if (data != null) {
 
-                ResourcesData.Context ctx = new ResourcesData.Context(
-                        data, caster, ResourcesData.Type.MANA, getCalculatedManaCost(data), ResourcesData.Use.SPEND);
+                ResourcesData.Context ctx = getManaCostCtx(caster, data);
 
-                if (data.getResources().hasEnough(ctx)) {
-                    data.getResources().modify(ctx);
+                if (data.getResources()
+                    .hasEnough(ctx)) {
+
+                    if (this.castRequirements.stream()
+                        .anyMatch(x -> !x.test(player))) {
+                        return false;
+                    }
+
                     return true;
-
                 } else {
                     if (caster instanceof ServerPlayerEntity) {
                         MMORPG.sendToClient(new NoEnergyPacket(), (ServerPlayerEntity) caster);
@@ -167,7 +200,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent(TextFormatting.BOLD + "" + getSchool().format).appendSibling(
-                getName().locName()));
+            getName().locName()));
 
         TooltipUtils.addEmpty(list);
 

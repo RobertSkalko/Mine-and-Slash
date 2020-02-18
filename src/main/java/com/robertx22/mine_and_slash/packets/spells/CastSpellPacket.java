@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.packets.spells;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -44,25 +45,36 @@ public class CastSpellPacket {
 
     public static void handle(final CastSpellPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
 
-                ServerPlayerEntity player = ctx.get().getSender();
+                    ServerPlayerEntity player = ctx.get()
+                        .getSender();
 
-                PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+                    PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                if (spells.getSpellData().canCast(pkt.hotbarNumber, pkt.hotbar, player)) {
-                    spells.getSpellData().setToCast(pkt.hotbarNumber, pkt.hotbar, player, 0);
+                    if (spells.getSpellData()
+                        .canCast(pkt.hotbarNumber, pkt.hotbar, player)) {
+                        spells.getSpellData()
+                            .setToCast(pkt.hotbarNumber, pkt.hotbar, player, 0);
 
-                    spells.syncToClient(player);
+                        BaseSpell spell = spells.getSpellData()
+                            .getSpellBeingCast();
+                        if (spell != null) {
+                            spell.spendResources(player);
+                        }
+
+                        spells.syncToClient(player);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            });
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        ctx.get().setPacketHandled(true);
+        ctx.get()
+            .setPacketHandled(true);
     }
 
 }

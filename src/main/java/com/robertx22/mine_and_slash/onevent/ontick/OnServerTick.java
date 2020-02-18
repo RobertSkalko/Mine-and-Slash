@@ -124,7 +124,7 @@ public class OnServerTick {
                     player.getCapability(PlayerSpellCap.Data)
                         .ifPresent(x -> {
                             x.getSpellData()
-                                .onTimePass(TicksToSpellCooldowns);
+                                .onTimePass(player, x, TicksToSpellCooldowns);
                             x.getSpellData()
                                 .tryCast(player, x);
                         });

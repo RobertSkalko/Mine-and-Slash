@@ -32,7 +32,8 @@ public class EntityRegister {
     @SubscribeEvent
     public static void registerEntityTypes(final RegistryEvent.Register<EntityType<?>> event) {
 
-        ENTITY_TYPES.forEach(entityType -> event.getRegistry().register(entityType));
+        ENTITY_TYPES.forEach(entityType -> event.getRegistry()
+            .register(entityType));
 
     }
 
@@ -48,6 +49,7 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> BLIZZARD;
     public static final EntityType<? extends Entity> GEYSER;
 
+    public static final EntityType<RangerArrowEntity> RANGER_ARROW;
     public static final EntityType<MagicMissileEntity> MAGIC_MISSILE;
 
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
@@ -74,6 +76,8 @@ public class EntityRegister {
         STAFFPROJECTILE = newType(EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
         WANDPROJECTILE = newType(EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
 
+        RANGER_ARROW = newType(RangerArrowEntity::new, RangerArrowEntity::new, "ranger_arrow");
+
         SEED = newType(SeedEntity::new, SeedEntity::new, "seed_entity");
     }
 
@@ -84,14 +88,15 @@ public class EntityRegister {
         return newType(factory, bif, id, true);
 
     }
-    
 
     private static <T extends Entity> EntityType<T> newType(EntityType.IFactory<T> factory,
                                                             BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif,
                                                             String id, boolean itemRender) {
 
         EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC).setCustomClientFactory(
-            bif).size(0.5F, 0.5F).build(Ref.MODID + ":" + id.toLowerCase());
+            bif)
+            .size(0.5F, 0.5F)
+            .build(Ref.MODID + ":" + id.toLowerCase());
 
         type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
 

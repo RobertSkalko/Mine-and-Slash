@@ -63,6 +63,4 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
         this.remove();
     }
 
-    int ticks = 0;
-
 }

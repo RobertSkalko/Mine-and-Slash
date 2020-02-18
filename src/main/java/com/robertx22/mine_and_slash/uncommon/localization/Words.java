@@ -12,7 +12,7 @@ public enum Words implements IAutoLocName {
     ThornBush("Thorn Bush"),
     MagmaFlower("Magma Flower"),
     EmberMage("Ember Mage"),
-    OceanMystic("Ocean Mystic"),
+    OceanMystic("Ocean Mystic"), Ranger("Ranger"),
     Shaman("Shaman"),
     Druid("Druid"),
     Cleric("Cleric"),
@@ -24,7 +24,7 @@ public enum Words implements IAutoLocName {
     Frostball("Frostball"),
     ThunderSpear("Thunder Spear"),
     ThunderDash("Thunder Dash"),
-    Thunderstorm("Thunderstorm"),
+    Thunderstorm("Thunderstorm"), ArrowBarrage("Arrow Barrage"),
     LightningTotem("Lightning Totem"),
     Volcano("Volcano"),
     Blizzard("Blizzard"),
@@ -339,6 +339,7 @@ public enum Words implements IAutoLocName {
 
     @Override
     public String GUID() {
-        return this.name().toLowerCase();
+        return this.name()
+            .toLowerCase();
     }
 }

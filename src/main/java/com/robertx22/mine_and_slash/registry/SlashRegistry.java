@@ -284,101 +284,51 @@ public class SlashRegistry {
 
     }
 
+    private static void addRegistry(SlashRegistryContainer cont) {
+        map.put(cont.getType(), cont);
+    }
+
     public static void initRegistries() {
         map = new HashMap<>();
 
-        map.put(SlashRegistryType.GEAR_TYPE,
-            new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType())
-        );
-        map.put(SlashRegistryType.STAT,
-            new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance())
-        );
-        map.put(SlashRegistryType.STATMOD,
-            new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, EmptyStatMod.getInstance())
-        );
-        map.put(SlashRegistryType.SET, new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()));
-        map.put(SlashRegistryType.SPELL,
-            new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell())
-        );
-        map.put(SlashRegistryType.UNIQUE_GEAR,
-            new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, EmptyUnique.getInstance())
-        );
-        map.put(SlashRegistryType.UNIQUE_RUNES,
-            new SlashRegistryContainer<BaseUniqueRuneItem>(SlashRegistryType.UNIQUE_RUNES, new PSIItem())
-        );
-        map.put(SlashRegistryType.AFFIX,
-            new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance())
-        );
-        map.put(SlashRegistryType.RUNE,
-            new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0))
-        );
-        map.put(SlashRegistryType.RUNEWORD,
-            new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance())
-        );
-        map.put(SlashRegistryType.MAP_AFFIX,
-            new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix())
-        );
-        map.put(SlashRegistryType.STATUS_EFFECT,
-            new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect())
-        );
-        map.put(SlashRegistryType.WORLD_PROVIDER,
-            new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER,
-                new BirchForestIWP(null, null)
-            )
-        );
-        map.put(SlashRegistryType.ITEM_MODIFICATION,
-            new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION,
-                new AddChaosStatMod()
-            )
-        );
-        map.put(SlashRegistryType.CURRENCY_ITEMS,
-            new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new ItemOrbOfTransmutation())
-        );
-        map.put(SlashRegistryType.RECIPE, new SlashRegistryContainer<BaseRecipe>(SlashRegistryType.RECIPE, null));
-        map.put(SlashRegistryType.COMPATIBLE_ITEM,
-            new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
-                CompatibleItem.EMPTY
-            ).dontErrorIfEmpty()
-                .logAdditions()
-        );
-        map.put(SlashRegistryType.DIMENSION_CONFIGS,
-            new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS,
-                DimensionConfig.DefaultExtra()
+        // data pack ones
+        addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, EmptyUnique.getInstance()).isDatapack());
+        addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
+        addRegistry(new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance()).isDatapack());
+        addRegistry(new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()).isDatapack());
+        addRegistry(new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
+            CompatibleItem.EMPTY).dontErrorIfEmpty()
+            .isDatapack()
+            .logAdditions());
+        // data pack ones
+
+        addRegistry(new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType()));
+        addRegistry(new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance()));
+        addRegistry(new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, EmptyStatMod.getInstance()));
+        addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
+        addRegistry(new SlashRegistryContainer<BaseUniqueRuneItem>(SlashRegistryType.UNIQUE_RUNES, new PSIItem()));
+        addRegistry(new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0)));
+        addRegistry(new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
+        addRegistry(new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
+        addRegistry(new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new BirchForestIWP(null, null)));
+        addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
+        addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new ItemOrbOfTransmutation()));
+        addRegistry(new SlashRegistryContainer<BaseRecipe>(SlashRegistryType.RECIPE, null));
+        addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
             ).logAdditions()
                 .dontErrorMissingEntriesOnAccess()
         );
-
-        map.put(SlashRegistryType.MOD_ENTITY_CONFIGS,
-            new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS).logAdditions()
-        );
-        map.put(SlashRegistryType.PERK, new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
-        map.put(SlashRegistryType.PERK_EFFECT,
-            new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN)
-        );
-        map.put(SlashRegistryType.LOOT_CRATE,
-            new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE)
-        );
-        map.put(SlashRegistryType.QUEST,
-            new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE)
-        );
-        map.put(SlashRegistryType.QUEST_REWARD,
-            new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, MapQuestReward.INSTANCE)
-        );
-        map.put(SlashRegistryType.SPELL_PERK,
-            new SlashRegistryContainer<SpellPerk>(SlashRegistryType.SPELL_PERK, null)
-        );
-        map.put(SlashRegistryType.SPELL_PERK_EFFECT,
-            new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null)
-        );
-        map.put(SlashRegistryType.SYNERGY_EFFECT,
-            new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null)
-        );
-        map.put(SlashRegistryType.BOSS,
-            new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, NecromancerBoss.getInstance())
-        );
-        map.put(SlashRegistryType.MAP_EVENT,
-            new SlashRegistryContainer<MapEvent>(SlashRegistryType.MAP_EVENT, ZombieHordeEvent.getInstance())
-        );
+        addRegistry(new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS).logAdditions());
+        addRegistry(new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
+        addRegistry(new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
+        addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
+        addRegistry(new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE));
+        addRegistry(new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, MapQuestReward.INSTANCE));
+        addRegistry(new SlashRegistryContainer<SpellPerk>(SlashRegistryType.SPELL_PERK, null));
+        addRegistry(new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null));
+        addRegistry(new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null));
+        addRegistry(new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, NecromancerBoss.getInstance()));
+        addRegistry(new SlashRegistryContainer<MapEvent>(SlashRegistryType.MAP_EVENT, ZombieHordeEvent.getInstance()));
     }
 
 }

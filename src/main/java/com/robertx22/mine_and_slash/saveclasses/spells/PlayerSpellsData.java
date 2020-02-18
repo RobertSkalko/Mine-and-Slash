@@ -23,43 +23,25 @@ public class PlayerSpellsData {
 
     @Store
     public String spellBeingCast = "";
-
+    
     public void cancelCast() {
+
+        BaseSpell spell = getSpellBeingCast();
+        if (spell != null && spell.goesOnCooldownIfCastCanceled()) {
+            SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
+            data.setCooldown(spell.getCooldownInTicks());
+        }
+
         spellBeingCast = "";
         castingTicksLeft = 0;
         lastSpellCastTimeInTicks = 0;
+
     }
 
     public void clear() {
         getMap(PlayerSpellsData.Hotbar.FIRST).clear();
         getMap(PlayerSpellsData.Hotbar.SECOND).clear();
-
     }
-
-    /*
-    public void deleteUnownedSpells(SpellPerksData perksData) {
-
-        List<BaseSpell> spells = perksData.getAvailableSpells();
-
-        for (Hotbar hotbar : Hotbar.values()) {
-
-            List<Integer> toRemove = new ArrayList<>();
-
-            HashMap<Integer, String> map = getMap(hotbar);
-
-            map.entrySet().forEach(e -> {
-                BaseSpell spell = SlashRegistry.Spells().get(e.getValue());
-
-                if (!spells.contains(spell)) {
-                    toRemove.add(e.getKey());
-                }
-            });
-            toRemove.forEach(x -> map.put(x, null));
-
-        }
-}
-
-     */
 
     public enum Hotbar {
         FIRST,
@@ -79,18 +61,32 @@ public class PlayerSpellsData {
         return castingTicksLeft > 0;
     }
 
-    public void onTimePass(int ticks) {
-        spellDatas.values().forEach(x -> x.tickCooldown(ticks));
+    public void onTimePass(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int ticks) {
+        try {
+            spellDatas.values()
+                .forEach(x -> x.tickCooldown(ticks));
 
-        castingTicksLeft--;
+            castingTicksLeft--;
+
+            BaseSpell spell = SlashRegistry.Spells()
+                .get(spellBeingCast);
+
+            if (spell != null && spells != null) {
+                spell.onCastingTick(player, spells, castingTicksLeft);
+            }
+        } finally {
+
+        }
+
     }
 
     public List<String> getSpellsOnCooldown() {
         return spellDatas.entrySet()
-                .stream()
-                .filter(x -> !x.getValue().cooldownIsReady())
-                .map(x -> x.getKey())
-                .collect(Collectors.toList());
+            .stream()
+            .filter(x -> !x.getValue()
+                .cooldownIsReady())
+            .map(x -> x.getKey())
+            .collect(Collectors.toList());
 
     }
 
@@ -108,14 +104,17 @@ public class PlayerSpellsData {
 
         if (!spellBeingCast.isEmpty()) {
             if (castingTicksLeft <= 0) {
-                BaseSpell spell = SlashRegistry.Spells().get(spellBeingCast);
+                BaseSpell spell = SlashRegistry.Spells()
+                    .get(spellBeingCast);
 
-                if (spells.getPerksData().getAvailableSpells().contains(spell)) {
+                if (spells.getPerksData()
+                    .getAvailableSpells()
+                    .contains(spell)) {
                     spell.cast(player, spell.useTimeTicks());
 
                     spellBeingCast = "";
 
-                    onSpellCast(spell);
+                    onSpellCast(spell, player, spells);
 
                 }
             }
@@ -126,7 +125,8 @@ public class PlayerSpellsData {
     public void setHotbar(int number, Hotbar hotbar, String spellID) {
 
         if (!spellID.isEmpty()) {
-            if (!SlashRegistry.Spells().isRegistered(spellID)) {
+            if (!SlashRegistry.Spells()
+                .isRegistered(spellID)) {
                 try {
                     throw new Exception("Trying to setup spell that isn't registered!");
                 } catch (Exception e) {
@@ -136,6 +136,11 @@ public class PlayerSpellsData {
         }
 
         getMap(hotbar).put(number, spellID);
+    }
+
+    public BaseSpell getSpellBeingCast() {
+        return SlashRegistry.Spells()
+            .get(spellBeingCast);
     }
 
     public boolean canCast(int key, Hotbar hotbar, PlayerEntity player) {
@@ -156,14 +161,16 @@ public class PlayerSpellsData {
             return false;
         }
 
-        return spell.CanCast(player);
+        return spell.canCast(player);
 
     }
 
-    private void onSpellCast(BaseSpell spell) {
+    private void onSpellCast(BaseSpell spell, PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
         SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
-        data.setCooldown(spell.getCooldownInTicks());
+        if (spell.shouldActivateCooldown(player, spells)) {
+            data.setCooldown(spell.getCooldownInTicks());
+        }
 
         spellDatas.put(spell.GUID(), data);
 
@@ -205,8 +212,10 @@ public class PlayerSpellsData {
     public BaseSpell getSpellByKeybind(int key, Hotbar hotbar) {
         String id = getMap(hotbar).get(key);
 
-        if (SlashRegistry.Spells().isRegistered(id)) {
-            return SlashRegistry.Spells().get(id);
+        if (SlashRegistry.Spells()
+            .isRegistered(id)) {
+            return SlashRegistry.Spells()
+                .get(id);
         } else {
             return null;
         }

@@ -17,6 +17,13 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private List<String> wrongRegistryNames = new ArrayList<>();
     private List<String> emptyRegistries = new ArrayList<>();
 
+    private boolean dataPacksAreRegistered = true;
+
+    public SlashRegistryContainer<C> isDatapack() {
+        this.dataPacksAreRegistered = false;
+        return this;
+    }
+
     private HashMap<String, C> serializables = new HashMap<>();
 
     public List<C> getSerializable() {
@@ -24,7 +31,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public List<C> getFromDatapacks() {
-        return getList().stream().filter(x -> x.isFromDatapack()).collect(Collectors.toList());
+        return getList().stream()
+            .filter(x -> x.isFromDatapack())
+            .collect(Collectors.toList());
     }
 
     public SlashRegistryType getType() {
@@ -88,10 +97,13 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private void tryLogEmptyRegistry() {
         if (errorIfEmpty) {
             if (map.isEmpty()) {
-                if (emptyRegistries.contains(this.type.id)) {
-                    emptyRegistries.add(this.type.id);
-                    logRegistryError(
+                if (this.dataPacksAreRegistered) { // dont error for client side stuff if datapacks have yet to arrive from packets
+                    if (emptyRegistries.contains(this.type.id)) {
+
+                        emptyRegistries.add(this.type.id);
+                        logRegistryError(
                             "Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
+                    }
                 }
             }
         }
@@ -114,11 +126,13 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public void unregisterAllEntriesFromDatapacks() {
-        new HashMap<String, C>(map).entrySet().forEach(x -> {
-            if (x.getValue().isFromDatapack()) {
-                map.remove(x.getKey());
-            }
-        });
+        new HashMap<String, C>(map).entrySet()
+            .forEach(x -> {
+                if (x.getValue()
+                    .isFromDatapack()) {
+                    map.remove(x.getKey());
+                }
+            });
     }
 
     public C get(String guid) {
@@ -136,7 +150,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             if (logMissingEntryOnAccess) {
                 if (accessorErrosAletedFor.contains(id) == false) {
                     logRegistryError(
-                            "GUID Error: " + id + " of type: " + type.toString() + " doesn't exist. This is either " + "a removed/renamed old registry, or robertx22 forgot to include it in an " + "update" + ".");
+                        "GUID Error: " + id + " of type: " + type.toString() + " doesn't exist. This is either " + "a removed/renamed old registry, or robertx22 forgot to include it in an " + "update" + ".");
                     accessorErrosAletedFor.add(id);
                 }
             }
@@ -154,7 +168,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     // just do gearsThatCanDoThis.and() .or() etc. if need multiple
     public List<C> getFiltered(Predicate<C> predicate) {
-        return this.getList().stream().filter(predicate).collect(Collectors.toList());
+        return this.getList()
+            .stream()
+            .filter(predicate)
+            .collect(Collectors.toList());
     }
 
     public C random() {
@@ -189,7 +206,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
             if (registersErrorsAlertedFor.contains(c.GUID()) == false) {
                 logRegistryError("Key: " + c.GUID() + " has already been registered to: " + c.getSlashRegistryType()
-                        .toString() + " registry.");
+                    .toString() + " registry.");
                 registersErrorsAlertedFor.add(c.GUID());
             }
 
@@ -205,7 +222,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private void tryLogAddition(C c) {
         if (logAdditionsToRegistry && ModConfig.INSTANCE.Server.LOG_REGISTRY_ENTRIES.get()) {
             System.out.println(
-                    "[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
+                "[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
         }
 
     }
