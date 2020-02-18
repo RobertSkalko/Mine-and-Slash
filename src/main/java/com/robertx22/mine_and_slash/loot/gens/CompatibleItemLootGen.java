@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
@@ -40,16 +41,20 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
     public static ItemStack gen(int level) {
 
         try {
-            CompatibleItem config = SlashRegistry.CompatibleItems()
-                .getFilterWrapped(x -> x.add_to_loot_drops)
-                .random();
+            FilterListWrap<CompatibleItem> possible = SlashRegistry.CompatibleItems()
+                .getFilterWrapped(x -> x.add_to_loot_drops);
 
-            if (config != null) {
-                ResourceLocation res = new ResourceLocation(config.item_id);
+            if (!possible.list.isEmpty()) {
 
-                if (ForgeRegistries.ITEMS.containsKey(res)) {
-                    ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
-                    return config.create(stack, level);
+                CompatibleItem config = possible.random();
+
+                if (config != null) {
+                    ResourceLocation res = new ResourceLocation(config.item_id);
+
+                    if (ForgeRegistries.ITEMS.containsKey(res)) {
+                        ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
+                        return config.create(stack, level);
+                    }
                 }
             }
         } catch (Exception e) {

@@ -23,7 +23,7 @@ public class PlayerSpellsData {
 
     @Store
     public String spellBeingCast = "";
-    
+
     public void cancelCast() {
 
         BaseSpell spell = getSpellBeingCast();

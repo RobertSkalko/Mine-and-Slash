@@ -27,6 +27,8 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ShootableItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -38,6 +40,12 @@ import java.util.function.Predicate;
 
 public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell>, ITooltipList {
     protected List<Predicate<LivingEntity>> castRequirements = new ArrayList<>();
+
+    public static Predicate<LivingEntity> REQUIRE_SHOOTABLE_ITEM = x -> {
+        Item item = x.getHeldItemMainhand()
+            .getItem();
+        return item instanceof ShootableItem;
+    };
 
     public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
         return true;

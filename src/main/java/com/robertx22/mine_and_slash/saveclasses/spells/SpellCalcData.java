@@ -1,9 +1,12 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
+import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -23,6 +26,18 @@ public class SpellCalcData implements ITooltipList {
         d.empty = true;
 
         return d;
+    }
+
+    public static SpellCalcData allAttackDamages(float multi, int base) {
+        SpellCalcData data = new SpellCalcData();
+
+        data.scalingValues.add(new ScalingStatCalc(PhysicalDamage.getInstance(), multi));
+        new ElementalAttackDamage(Elements.Nature).generateAllSingleVariations()
+            .forEach(x -> data.scalingValues.add(new ScalingStatCalc(x, multi)));
+
+        data.baseValue = base;
+
+        return data;
     }
 
     public static SpellCalcData one(Stat stat, float multi, int base) {
@@ -56,7 +71,9 @@ public class SpellCalcData implements ITooltipList {
     }
 
     public double getScalingMultiAverage() {
-        return scalingValues.stream().mapToDouble(x -> x.multi).sum() / scalingValues.size();
+        return scalingValues.stream()
+            .mapToDouble(x -> x.multi)
+            .sum() / scalingValues.size();
 
     }
 
@@ -76,7 +93,9 @@ public class SpellCalcData implements ITooltipList {
     }
 
     public int getCalculatedScalingValue(EntityCap.UnitData data) {
-        return scalingValues.stream().mapToInt(x -> x.getCalculatedValue(data)).sum();
+        return scalingValues.stream()
+            .mapToInt(x -> x.getCalculatedValue(data))
+            .sum();
     }
 
     public int getCalculatedValue(EntityCap.UnitData data) {
@@ -96,7 +115,7 @@ public class SpellCalcData implements ITooltipList {
 
             if (baseValue > 0) {
                 list.add(new StringTextComponent(
-                        TextFormatting.RED + "Base value: " + getCalculatedBaseValue(info.unitdata)));
+                    TextFormatting.RED + "Base value: " + getCalculatedBaseValue(info.unitdata)));
             }
         }
 

@@ -100,13 +100,10 @@ public class ThunderDashSpell extends BaseSpell {
     public static void dashForward(LivingEntity caster) {
 
         float distance = 0.017453292f;
-
         caster.setMotion(new Vec3d(0, 0, 0));
-
         caster.knockBack(caster, 3.5f, (double) MathHelper.sin(caster.rotationYaw * distance),
-                         (double) (-MathHelper.cos(caster.rotationYaw * distance))
+            (double) (-MathHelper.cos(caster.rotationYaw * distance))
         );
-
         if (caster instanceof ServerPlayerEntity) {
             ((ServerPlayerEntity) caster).connection.sendPacket(new SEntityVelocityPacket(caster));
             caster.velocityChanged = false;
@@ -122,10 +119,10 @@ public class ThunderDashSpell extends BaseSpell {
         int num = getCalculation().getCalculatedValue(Load.Unit(caster));
 
         List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
-                .radius(2)
-                .distance(10)
-                .finder(EntityFinder.Finder.IN_FRONT)
-                .build();
+            .radius(2)
+            .distance(10)
+            .finder(EntityFinder.Finder.IN_FRONT)
+            .build();
 
         Boolean eneSynergy = Synergies.THUNDER_DASH_ENERGY.has(caster);
 
