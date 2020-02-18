@@ -1,22 +1,17 @@
-package com.robertx22.mine_and_slash.saveclasses.spells;
+package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ScalingStatCalc implements ITooltipList {
+public class ScalingStatCalc extends BaseStatCalc {
 
     @Store
     public String statID;
@@ -35,25 +30,15 @@ public class ScalingStatCalc implements ITooltipList {
         this.multi = multi;
     }
 
+    @Override
+    public float getMulti() {
+        return multi;
+    }
+
+    @Override
     public int getCalculatedValue(EntityCap.UnitData data) {
         return (int) (data.getUnit()
             .peekAtStat(statID).val * multi);
-    }
-
-    public List<ITextComponent> getTooltipFor(float multi, float value, ITextComponent statname, Elements el) {
-        List<ITextComponent> list = new ArrayList<>();
-        String eleStr = "";
-
-        if (el != null) {
-            eleStr = el.format + el.icon;
-        }
-
-        list.add(new StringTextComponent(
-            TextFormatting.RED + "Scales with " + (int) (multi * 100F) + "% " + eleStr + " ").appendSibling(
-            statname)
-            .appendText(" (" + value + ")"));
-
-        return list;
     }
 
     @Override

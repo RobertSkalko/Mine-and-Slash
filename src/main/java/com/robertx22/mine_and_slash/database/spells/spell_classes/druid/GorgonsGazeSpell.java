@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -96,11 +96,11 @@ public class GorgonsGazeSpell extends BaseSpell {
         SoundUtils.playSound(caster, Sounds.STONE_CRACK, 1, 1);
 
         EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
-                .radius(3)
-                .distance(15)
-                .finder(EntityFinder.Finder.IN_FRONT)
-                .build()
-                .forEach(x -> PotionEffectUtils.apply(PetrifyEffect.INSTANCE, caster, x));
+            .radius(3)
+            .distance(15)
+            .finder(EntityFinder.Finder.IN_FRONT)
+            .build()
+            .forEach(x -> PotionEffectUtils.apply(PetrifyEffect.INSTANCE, caster, x));
 
         return true;
     }

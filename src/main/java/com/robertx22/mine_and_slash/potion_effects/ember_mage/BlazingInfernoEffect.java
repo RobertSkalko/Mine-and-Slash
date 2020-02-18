@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -52,19 +52,20 @@ public class BlazingInfernoEffect extends BasePotionEffect {
 
         if (!entity.world.isRemote) {
 
-            ParticlePacketData pdata = new ParticlePacketData(entity.getPosition().up(1), ParticleEnum.BLAZING_INFERNO);
+            ParticlePacketData pdata = new ParticlePacketData(entity.getPosition()
+                .up(1), ParticleEnum.BLAZING_INFERNO);
             pdata.radius = RADIUS;
             ParticleEnum.BLAZING_INFERNO.sendToClients(entity, pdata);
 
             int num = CALC.getCalculatedValue(Load.Unit(caster));
 
             List<LivingEntity> entities = EntityFinder.start(entity, LivingEntity.class, entity.getPositionVector())
-                    .radius(RADIUS)
-                    .build();
+                .radius(RADIUS)
+                .build();
 
             for (LivingEntity en : entities) {
                 DamageEffect dmg = new DamageEffect(
-                        null, caster, en, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
+                    null, caster, en, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
                 dmg.element = Elements.Fire;
                 dmg.Activate();
 

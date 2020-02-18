@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
@@ -97,10 +97,10 @@ public class HeartOfIceSpell extends BaseSpellHeal {
                 UnitData data = Load.Unit(caster);
 
                 SpellHealEffect heal = new SpellHealEffect(
-                        new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
-                                                  getCalculation().getCalculatedValue(data), ResourcesData.Use.RESTORE,
-                                                  this
-                        ));
+                    new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
+                        getCalculation().getCalculatedValue(data), ResourcesData.Use.RESTORE,
+                        this
+                    ));
 
                 if (Synergies.HEART_OF_ICE_FROST.has(caster)) {
                     Synergies.HEART_OF_ICE_FROST.tryActivate(new BeforeHealContext(caster, caster, heal));

@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -39,14 +39,14 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
             int num = CALC.getCalculatedValue(ctx.casterData);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
-                                                EffectData.EffectTypes.SPELL, WeaponTypes.None
+                EffectData.EffectTypes.SPELL, WeaponTypes.None
             );
             dmg.element = Elements.Nature;
             dmg.removeKnockback();
             dmg.Activate();
 
             ParticleEnum.sendToClients(
-                    ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.THORNS).amount(10));
+                ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.THORNS).amount(10));
 
             SoundUtils.playSound(ctx.entity, SoundEvents.BLOCK_GRASS_BREAK, 1, 1);
             return ctx;
@@ -84,13 +84,13 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
     public ExactStatData nature(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -2 * extraData.getStacks();
         return new ExactStatData(statAmount, StatModTypes.Flat, new ElementalResist(Elements.Nature)).scaleToLvl(
-                extraData.casterLvl);
+            extraData.casterLvl);
     }
 
     public ExactStatData thunder(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -3 * extraData.getStacks();
         return new ExactStatData(statAmount, StatModTypes.Flat, new ElementalResist(Elements.Thunder)).scaleToLvl(
-                extraData.casterLvl);
+            extraData.casterLvl);
     }
 
     @Override

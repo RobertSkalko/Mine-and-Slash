@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.proj.WhirlpoolEntit
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;

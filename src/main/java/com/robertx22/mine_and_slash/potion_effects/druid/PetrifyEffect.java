@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -37,14 +37,14 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
         this.addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160892",
-                                   (double) -0.95F, AttributeModifier.Operation.MULTIPLY_TOTAL
+            (double) -0.95F, AttributeModifier.Operation.MULTIPLY_TOTAL
         );
 
         this.tickActions.add(new OnTickAction(20, ctx -> {
             ParticleEnum.sendToClients(
-                    ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.PETRIFY).radius(1)
-                            .type(ParticleTypes.CLOUD)
-                            .amount(15));
+                ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.PETRIFY).radius(1)
+                    .type(ParticleTypes.CLOUD)
+                    .amount(15));
 
             SoundUtils.playSound(ctx.entity, SoundEvents.BLOCK_STONE_BREAK, 0.5F, 0.5F);
             return ctx;
@@ -95,9 +95,9 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
         dmg.Activate();
 
         ParticleEnum.sendToClients(
-                target, new ParticlePacketData(target.getPosition(), ParticleEnum.PETRIFY).radius(1)
-                        .type(ParticleTypes.CLOUD)
-                        .amount(20));
+            target, new ParticlePacketData(target.getPosition(), ParticleEnum.PETRIFY).radius(1)
+                .type(ParticleTypes.CLOUD)
+                .amount(20));
 
         target.playSound(SoundEvents.BLOCK_STONE_BREAK, 1, 1);
 

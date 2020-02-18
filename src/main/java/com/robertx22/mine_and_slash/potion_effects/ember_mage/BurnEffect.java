@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -41,7 +41,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
             int num = CALC.getCalculatedValue(ctx.casterData);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
-                                                EffectData.EffectTypes.SPELL, WeaponTypes.None
+                EffectData.EffectTypes.SPELL, WeaponTypes.None
             );
             dmg.element = Elements.Fire;
             dmg.removeKnockback();
@@ -50,8 +50,10 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
             SoundUtils.playSound(ctx.entity, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5F, 1F);
 
             ParticleEnum.sendToClients(
-                    ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.AOE).type(
-                            ParticleTypes.FLAME).motion(new Vec3d(0, 0, 0)).amount(5));
+                ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.AOE).type(
+                    ParticleTypes.FLAME)
+                    .motion(new Vec3d(0, 0, 0))
+                    .amount(5));
 
             return ctx;
         }, info -> {
@@ -88,13 +90,13 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
     public ExactStatData fire(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -1 * extraData.getStacks();
         return new ExactStatData(statAmount, StatModTypes.Flat, ElementalResist.MAP.get(Elements.Fire)).scaleToLvl(
-                extraData.casterLvl);
+            extraData.casterLvl);
     }
 
     public ExactStatData water(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = -2 * extraData.getStacks();
         return new ExactStatData(statAmount, StatModTypes.Flat, ElementalResist.MAP.get(Elements.Water)).scaleToLvl(
-                extraData.casterLvl);
+            extraData.casterLvl);
     }
 
     @Override

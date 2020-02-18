@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -58,7 +58,7 @@ public class ImbueSpell extends BaseBuffSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return null;
+        return SpellCalcData.allSpellDamages(0.2F, 1);
     }
 
     @Override

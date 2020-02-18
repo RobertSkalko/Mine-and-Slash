@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.ranger;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.ImbueSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -47,7 +48,12 @@ public class ImbueEffect extends BasePotionEffect {
     public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new SText(TextFormatting.GREEN + "This buff provides extra effects to other Ranger spells."));
+        list.add(new SText(TextFormatting.GREEN + "This buff provides extra damage to other Ranger spells."));
+        list.add(new SText(TextFormatting.BLUE + "The effect scales to scaling damage of those other spells."));
+
+        list.addAll(ImbueSpell.getInstance()
+            .getCalculation()
+            .GetTooltipString(info));
 
         return list;
 

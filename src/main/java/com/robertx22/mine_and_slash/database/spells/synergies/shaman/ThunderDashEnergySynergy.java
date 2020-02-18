@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageCon
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.ITextComponent;
@@ -49,9 +49,11 @@ public class ThunderDashEnergySynergy extends Synergy<AfterDamageContext> {
         float energyrestored = CALC.getCalculatedValue(ctx.casterData);
 
         ResourcesData.Context ene = new ResourcesData.Context(ctx.casterData, ctx.caster, ResourcesData.Type.ENERGY,
-                                                              energyrestored, ResourcesData.Use.RESTORE
+            energyrestored, ResourcesData.Use.RESTORE
         );
 
-        Load.Unit(ctx.caster).getResources().modify(ene);
+        Load.Unit(ctx.caster)
+            .getResources()
+            .modify(ene);
     }
 }

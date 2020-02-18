@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -37,14 +37,14 @@ public class MajorThornsEffect extends BasePotionEffect implements IApplyStatPot
             int num = CALC.getCalculatedValue(ctx.casterData);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
-                                                EffectData.EffectTypes.SPELL, WeaponTypes.None
+                EffectData.EffectTypes.SPELL, WeaponTypes.None
             );
             dmg.element = Elements.Nature;
             dmg.removeKnockback();
             dmg.Activate();
 
             ParticleEnum.sendToClients(
-                    ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.THORNS).amount(30));
+                ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.THORNS).amount(30));
 
             SoundUtils.playSound(ctx.entity, SoundEvents.BLOCK_GRASS_BREAK, 1, 1);
             return ctx;

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealCont
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
@@ -91,10 +91,10 @@ public class InstantHealSpell extends BaseSpellHeal {
                 UnitData data = Load.Unit(caster);
 
                 SpellHealEffect heal = new SpellHealEffect(
-                        new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
-                                                  getCalculation().getCalculatedValue(data), ResourcesData.Use.RESTORE,
-                                                  this
-                        ));
+                    new ResourcesData.Context(data, caster, ResourcesData.Type.HEALTH,
+                        getCalculation().getCalculatedValue(data), ResourcesData.Use.RESTORE,
+                        this
+                    ));
 
                 if (Synergies.INSTANT_HEAL_REMOVE_DEBUFF.has(caster)) {
                     Synergies.INSTANT_HEAL_REMOVE_DEBUFF.tryActivate(new BeforeHealContext(caster, caster, heal));

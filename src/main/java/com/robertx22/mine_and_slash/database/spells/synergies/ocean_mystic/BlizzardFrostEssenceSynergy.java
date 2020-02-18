@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpel
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.ITextComponent;
@@ -49,6 +49,6 @@ public class BlizzardFrostEssenceSynergy extends Synergy<BeforeDamageContext> {
 
         int stacks = PotionEffectUtils.getStacks(ctx.caster, FrostEssenceEffect.INSTANCE);
         ctx.dmg.number += CALC.getCalculatedValue(Load.Unit(ctx.target)) * stacks;
-        
+
     }
 }

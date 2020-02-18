@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.MajorThornsEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -55,19 +55,19 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
     public void tryActivate(CasterTargetContext ctx) {
 
         if (PotionEffectUtils.has(ctx.target, MinorThornsEffect.INSTANCE) || PotionEffectUtils.has(
-                ctx.target, MajorThornsEffect.INSTANCE)) {
+            ctx.target, MajorThornsEffect.INSTANCE)) {
 
             ParticleEnum.sendToClients(ctx.target,
-                                       new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.NOVA).radius(
-                                               RADIUS)
-                                               .type(ParticleTypes.CRIT)
-                                               .amount(30)
+                new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.NOVA).radius(
+                    RADIUS)
+                    .type(ParticleTypes.CRIT)
+                    .amount(30)
             );
 
             int num = CALC.getCalculatedValue(Load.Unit(ctx.caster));
 
             SpellDamageEffect dmg = new SpellDamageEffect(
-                    ctx.caster, ctx.target, num, ctx.casterData, ctx.targetData, spellAffected());
+                ctx.caster, ctx.target, num, ctx.casterData, ctx.targetData, spellAffected());
             dmg.element = Elements.Nature;
             dmg.Activate();
 

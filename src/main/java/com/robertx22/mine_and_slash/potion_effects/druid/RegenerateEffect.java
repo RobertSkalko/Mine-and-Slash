@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
@@ -33,9 +33,9 @@ public class RegenerateEffect extends BasePotionEffect {
                 int num = CALC.getCalculatedValue(ctx.casterData);
 
                 ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
-                                                                     ctx.entityData, ResourcesData.Type.HEALTH, num,
-                                                                     ResourcesData.Use.RESTORE,
-                                                                     RegenerateSpell.getInstance()
+                    ctx.entityData, ResourcesData.Type.HEALTH, num,
+                    ResourcesData.Use.RESTORE,
+                    RegenerateSpell.getInstance()
                 );
 
                 ctx.entityData.modifyResource(hp);

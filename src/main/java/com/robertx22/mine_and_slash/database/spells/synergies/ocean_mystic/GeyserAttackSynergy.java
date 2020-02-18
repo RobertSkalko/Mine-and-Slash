@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterAndSpellEntityContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -52,14 +52,16 @@ public class GeyserAttackSynergy extends Synergy<CasterAndSpellEntityContext<Gey
     public void tryActivate(CasterAndSpellEntityContext<GeyserEntity> ctx) {
 
         List<LivingEntity> entities = EntityFinder.start(
-                ctx.caster, LivingEntity.class, ctx.spellEntity.getPositionVector()).radius(GeyserSpell.RADIUS).build();
+            ctx.caster, LivingEntity.class, ctx.spellEntity.getPositionVector())
+            .radius(GeyserSpell.RADIUS)
+            .build();
 
         entities.forEach(x -> {
 
             int num = CALC.getCalculatedValue(ctx.casterData);
 
             SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, x, num, ctx.casterData, Load.Unit(x),
-                                                          spellAffected()
+                spellAffected()
             );
 
             dmg.Activate();

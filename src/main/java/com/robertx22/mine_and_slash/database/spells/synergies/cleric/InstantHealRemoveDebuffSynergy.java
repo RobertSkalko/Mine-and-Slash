@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.potion.EffectInstance;
@@ -53,12 +53,14 @@ public class InstantHealRemoveDebuffSynergy extends Synergy<BeforeHealContext> {
         ctx.heal.number += CALC.getCalculatedValue(Load.Unit(ctx.caster));
 
         Optional<EffectInstance> neg = ctx.target.getActivePotionEffects()
-                .stream()
-                .filter(x -> x.getPotion().getEffectType() == EffectType.HARMFUL)
-                .findAny();
+            .stream()
+            .filter(x -> x.getPotion()
+                .getEffectType() == EffectType.HARMFUL)
+            .findAny();
 
         if (neg.isPresent()) {
-            ctx.target.removePotionEffect(neg.get().getPotion());
+            ctx.target.removePotionEffect(neg.get()
+                .getPotion());
         }
 
     }

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.cleric.DivineShieldEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -73,7 +73,8 @@ public class DivineShieldSpell extends BaseBuffSpell {
 
         list.add(SpellTooltips.buff());
 
-        list.addAll(DivineShieldEffect.getInstance().GetTooltipString(info));
+        list.addAll(DivineShieldEffect.getInstance()
+            .GetTooltipString(info));
 
         return list;
 

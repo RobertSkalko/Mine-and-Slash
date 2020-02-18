@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.ScalingStatCalc;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.ScalingStatCalc;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -34,7 +34,7 @@ public class BleedPotion extends BasePotionEffect {
                 ParticleUtils.spawnParticles(ParticleTypes.LAVA, ctx.entity, 5);
             } else {
                 DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
-                                                    EffectData.EffectTypes.DOT_DMG, WeaponTypes.None
+                    EffectData.EffectTypes.DOT_DMG, WeaponTypes.None
                 );
                 dmg.removeKnockback();
                 dmg.Activate();

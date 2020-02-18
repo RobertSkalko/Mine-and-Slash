@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealCont
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.ITextComponent;
@@ -47,11 +47,12 @@ public class InstantHealMagicShieldSynergy extends Synergy<BeforeHealContext> {
     public void tryActivate(BeforeHealContext ctx) {
 
         ResourcesData.Context heal = new ResourcesData.Context(ctx.casterData, ctx.caster,
-                                                               ResourcesData.Type.MAGIC_SHIELD,
-                                                               CALC.getCalculatedValue(ctx.casterData),
-                                                               ResourcesData.Use.RESTORE, spellAffected()
+            ResourcesData.Type.MAGIC_SHIELD,
+            CALC.getCalculatedValue(ctx.casterData),
+            ResourcesData.Use.RESTORE, spellAffected()
         );
 
-        Load.Unit(ctx.target).modifyResource(heal);
+        Load.Unit(ctx.target)
+            .modifyResource(heal);
     }
 }

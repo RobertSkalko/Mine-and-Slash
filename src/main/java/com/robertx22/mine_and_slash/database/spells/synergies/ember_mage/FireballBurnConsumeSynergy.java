@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -62,9 +62,9 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
         if (PotionEffectUtils.has(ctx.target, BurnEffect.INSTANCE)) {
 
             ParticleEnum.sendToClients(ctx.target,
-                                       new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.AOE).radius(RADIUS)
-                                               .type(ParticleTypes.EXPLOSION)
-                                               .amount(1)
+                new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.AOE).radius(RADIUS)
+                    .type(ParticleTypes.EXPLOSION)
+                    .amount(1)
             );
 
             SoundUtils.playSound(ctx.target, SoundEvents.ENTITY_DRAGON_FIREBALL_EXPLODE, 1, 0.5F);
@@ -77,11 +77,13 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
             EntityCap.UnitData targetData = Load.Unit(ctx.target);
 
             List<LivingEntity> entities = EntityFinder.start(
-                    ctx.caster, LivingEntity.class, ctx.target.getPositionVector()).radius(RADIUS).build();
+                ctx.caster, LivingEntity.class, ctx.target.getPositionVector())
+                .radius(RADIUS)
+                .build();
 
             entities.forEach(e -> {
                 SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, e, num, casterData, targetData,
-                                                              spellAffected()
+                    spellAffected()
                 );
                 dmg.element = Elements.Fire;
                 dmg.Activate();
