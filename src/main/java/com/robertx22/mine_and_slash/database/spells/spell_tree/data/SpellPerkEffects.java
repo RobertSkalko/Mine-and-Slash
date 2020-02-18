@@ -18,11 +18,13 @@ public class SpellPerkEffects {
     public static void register() {
 
         START = new SpellPerkEffect(
-                "start", new ExactStatData(0, StatModTypes.Flat, CriticalHit.GUID), "starts/mage").setStart()
-                .setGameChanger()
-                .type(PerkType.MAJOR);
+            "start", new ExactStatData(0, StatModTypes.Flat, CriticalHit.GUID), "starts/mage").setStart()
+            .setGameChanger()
+            .type(PerkType.MAJOR);
 
-        SlashRegistry.Spells().getList().forEach(x -> spell(x)); // registers all spells as perks
+        SlashRegistry.Spells()
+            .getList()
+            .forEach(x -> spell(x)); // registers all spells as perks
 
         synergy(Synergies.FROSTBALL_EXTRA_DMG);
         synergy(Synergies.FROSTBALL_FROST_ESSENCE_GEN);
@@ -54,14 +56,21 @@ public class SpellPerkEffects {
         synergy(Synergies.MAGMA_FLOWER_HEAL);
         synergy(Synergies.MAGMA_FLOWER_ENHANCED);
 
+        synergy(Synergies.TRIPLE_SHOT_HUNTER);
+        synergy(Synergies.IMBUE_CRIT_HUNTER);
+        synergy(Synergies.RECOIL_ADD_HUNTER);
+        synergy(Synergies.RECOIL_ADD_WOUNDS);
+
     }
 
     static SpellPerkEffect spell(BaseSpell spell) {
-        return new SpellPerkEffect(spell).setGameChanger().type(PerkType.MAJOR);
+        return new SpellPerkEffect(spell).setGameChanger()
+            .type(PerkType.MAJOR);
     }
 
     static SynergyPerkEffect synergy(Synergy synergy) {
-        return new SynergyPerkEffect(synergy).setGameChanger().type(PerkType.BIG);
+        return new SynergyPerkEffect(synergy).setGameChanger()
+            .type(PerkType.BIG);
     }
 
 }

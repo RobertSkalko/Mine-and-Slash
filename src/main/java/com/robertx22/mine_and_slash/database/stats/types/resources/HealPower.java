@@ -10,6 +10,13 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 public class HealPower extends Stat implements IStatEffects {
     public static String GUID = "increase_healing";
 
+    private HealPower() {
+    }
+
+    public static HealPower getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public StatGroup statGroup() {
         return StatGroup.Regeneration;
@@ -48,6 +55,10 @@ public class HealPower extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Heal Power";
+    }
+
+    private static class SingletonHolder {
+        private static final HealPower INSTANCE = new HealPower();
     }
 }
 

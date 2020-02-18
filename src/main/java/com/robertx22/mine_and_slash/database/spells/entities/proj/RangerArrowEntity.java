@@ -1,7 +1,11 @@
 package com.robertx22.mine_and_slash.database.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.ImbueSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.RecoilShotSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -69,13 +73,17 @@ public class RangerArrowEntity extends EntityBaseProjectile {
 
     public void onHit(LivingEntity entity) {
         try {
+            LivingEntity caster = getCaster();
+
+            BaseSpell spell = getSpellData().getSpell();
+
             SpellDamageEffect dmg = this.getSetupSpellDamage(entity);
 
             if (imbued) {
 
                 float add = (float) (ImbueSpell.getInstance()
                     .getCalculation()
-                    .getCalculatedValue(Load.Unit(getCaster())) * getSpellData().getSpell()
+                    .getCalculatedValue(Load.Unit(caster)) * spell
                     .getCalculation()
                     .getScalingMultiAverage());
 
@@ -83,6 +91,21 @@ public class RangerArrowEntity extends EntityBaseProjectile {
             }
 
             dmg.Activate();
+
+            if (Synergies.IMBUE_CRIT_HUNTER.has(caster)) {
+                Synergies.IMBUE_CRIT_HUNTER.tryActivate(new AfterDamageContext(caster, entity, dmg));
+            }
+            if (spell.GUID()
+                .equals(RecoilShotSpell.getInstance()
+                    .GUID())) {
+                if (Synergies.RECOIL_ADD_HUNTER.has(caster)) {
+                    Synergies.RECOIL_ADD_HUNTER.tryActivate(new AfterDamageContext(caster, entity, dmg));
+                }
+                if (Synergies.RECOIL_ADD_WOUNDS.has(caster)) {
+                    Synergies.RECOIL_ADD_WOUNDS.tryActivate(new AfterDamageContext(caster, entity, dmg));
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

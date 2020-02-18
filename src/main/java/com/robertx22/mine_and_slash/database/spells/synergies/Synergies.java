@@ -9,6 +9,10 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFl
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFlowerHealSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.VolcanoBurnSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.*;
+import com.robertx22.mine_and_slash.database.spells.synergies.ranger.ImbueCritAddHunterSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddHunterSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddWoundsSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.ranger.TripleShotConsumeHunterSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderDashEnergySynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearLightningStrikeSynergy;
@@ -45,4 +49,9 @@ public class Synergies {
     public static FireballBurnConsumeSynergy FIREBALL_BURN_CONSUME = new FireballBurnConsumeSynergy();
     public static VolcanoBurnSynergy VOLCANO_BURN = new VolcanoBurnSynergy();
     public static MagmaFlowerHealSynergy MAGMA_FLOWER_HEAL = new MagmaFlowerHealSynergy();
+
+    public static TripleShotConsumeHunterSynergy TRIPLE_SHOT_HUNTER = new TripleShotConsumeHunterSynergy();
+    public static ImbueCritAddHunterSynergy IMBUE_CRIT_HUNTER = new ImbueCritAddHunterSynergy();
+    public static RecoilAddHunterSynergy RECOIL_ADD_HUNTER = new RecoilAddHunterSynergy();
+    public static RecoilAddWoundsSynergy RECOIL_ADD_WOUNDS = new RecoilAddWoundsSynergy();
 }
