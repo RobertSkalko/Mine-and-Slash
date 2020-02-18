@@ -36,7 +36,7 @@ public enum Words implements IAutoLocName {
     Regenerate("Regenerate"),
     InstantHeal("Instant Heal"),
     RighteousFury("Righteous Fury"),
-    DivineShield("Divine Shield"),
+    DivineShield("Divine Shield"), Imbue("Imbue"),
     Spellbar("Spellbar"),
     StormCloudSpellDesc("Summons a storm cloud that deals damage over time."),
     Crate("Crate"),

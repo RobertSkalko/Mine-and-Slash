@@ -78,7 +78,7 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackDamages(0.5F, 4);
+        return SpellCalcData.allAttackAndSpellDamages(0.5F, 0.5F, 5);
     }
 
     @Override
@@ -109,7 +109,6 @@ public class TripleShotSpell extends BaseProjectileSpell {
             SpellUtils.setupProjectileForCasting(en, caster, getShootSpeed(), caster.rotationPitch,
                 caster.rotationYaw + f
             );
-
             caster.world.addEntity(en);
 
             if (getShootSound() != null) {

@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
+import com.robertx22.mine_and_slash.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.potion_effects.shaman.ThunderEssenceEffect;
 import net.minecraft.potion.Effect;
@@ -49,11 +50,13 @@ public class PotionRegister {
         reg.register(MajorThornsEffect.INSTANCE);
         reg.register(PoisonedWeaponsEffect.getInstance());
         reg.register(DivineShieldEffect.getInstance());
+        reg.register(ImbueEffect.getInstance());
 
         for (net.minecraft.item.Item item : ForgeRegistries.ITEMS) {
             if (item instanceof BaseBuffPotion) {
                 BaseBuffPotion pot = (BaseBuffPotion) item;
-                reg.register(pot.createEffect().setRegistryName(pot.GUID()));
+                reg.register(pot.createEffect()
+                    .setRegistryName(pot.GUID()));
             }
 
         }

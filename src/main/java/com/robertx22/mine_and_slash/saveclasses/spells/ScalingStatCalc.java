@@ -25,7 +25,8 @@ public class ScalingStatCalc implements ITooltipList {
     public float multi;
 
     public Stat getStat() {
-        return SlashRegistry.Stats().get(statID);
+        return SlashRegistry.Stats()
+            .get(statID);
     }
 
     public ScalingStatCalc(Stat stat, float multi) {
@@ -35,17 +36,12 @@ public class ScalingStatCalc implements ITooltipList {
     }
 
     public int getCalculatedValue(EntityCap.UnitData data) {
-        return (int) (data.getUnit().peekAtStat(statID).val * multi);
+        return (int) (data.getUnit()
+            .peekAtStat(statID).val * multi);
     }
 
-    @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getTooltipFor(float multi, float value, ITextComponent statname, Elements el) {
         List<ITextComponent> list = new ArrayList<>();
-
-        Stat stat = getStat();
-
-        Elements el = stat.getElement();
-
         String eleStr = "";
 
         if (el != null) {
@@ -53,9 +49,15 @@ public class ScalingStatCalc implements ITooltipList {
         }
 
         list.add(new StringTextComponent(
-                TextFormatting.RED + "Scales with " + (int) (multi * 100F) + "% " + eleStr + " ").appendSibling(
-                stat.locName()).appendText(" (" + getCalculatedValue(info.unitdata) + ")"));
+            TextFormatting.RED + "Scales with " + (int) (multi * 100F) + "% " + eleStr + " ").appendSibling(
+            statname)
+            .appendText(" (" + value + ")"));
 
         return list;
+    }
+
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        return getTooltipFor(multi, getCalculatedValue(info.unitdata), getStat().locName(), getStat().getElement());
     }
 }

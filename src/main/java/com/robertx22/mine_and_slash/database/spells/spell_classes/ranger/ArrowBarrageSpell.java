@@ -77,7 +77,7 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackDamages(0.1F, 1);
+        return SpellCalcData.allAttackAndSpellDamages(0.05F, 0.1F, 1);
     }
 
     @Override

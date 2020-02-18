@@ -2,11 +2,13 @@ package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -16,6 +18,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Storable
 public class SpellCalcData implements ITooltipList {
@@ -28,13 +31,20 @@ public class SpellCalcData implements ITooltipList {
         return d;
     }
 
-    public static SpellCalcData allAttackDamages(float multi, int base) {
+    @Store
+    public boolean mergeTooltips = false;
+
+    public static SpellCalcData allAttackAndSpellDamages(float attack, float spell, int base) {
         SpellCalcData data = new SpellCalcData();
 
-        data.scalingValues.add(new ScalingStatCalc(PhysicalDamage.getInstance(), multi));
+        data.scalingValues.add(new ScalingStatCalc(PhysicalDamage.getInstance(), attack));
         new ElementalAttackDamage(Elements.Nature).generateAllSingleVariations()
-            .forEach(x -> data.scalingValues.add(new ScalingStatCalc(x, multi)));
+            .forEach(x -> data.scalingValues.add(new ScalingStatCalc(x, attack)));
 
+        new ElementalSpellDamage(Elements.Nature).generateAllSingleVariations()
+            .forEach(x -> data.scalingValues.add(new ScalingStatCalc(x, spell)));
+
+        data.mergeTooltips = true;
         data.baseValue = base;
 
         return data;
@@ -111,7 +121,48 @@ public class SpellCalcData implements ITooltipList {
         List<ITextComponent> list = new ArrayList<>();
 
         if (!empty) {
-            scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
+            if (mergeTooltips) {
+                List<ScalingStatCalc> copy = new ArrayList<>(scalingValues);
+
+                float multiAttack = 0;
+                float totalAttack = 0;
+
+                float multiSpell = 0;
+                float totalSpell = 0;
+
+                List<ScalingStatCalc> attacks = copy.stream()
+                    .filter(x -> x.getStat() instanceof ElementalAttackDamage || x.getStat() instanceof PhysicalDamage)
+                    .collect(Collectors.toList());
+
+                List<ScalingStatCalc> spells = copy.stream()
+                    .filter(x -> x.getStat() instanceof ElementalSpellDamage)
+                    .collect(Collectors.toList());
+
+                if (attacks.stream()
+                    .allMatch(x -> x.multi == attacks.get(0).multi) && spells.stream()
+                    .allMatch(x -> x.multi == spells.get(0).multi)) {
+
+                    for (ScalingStatCalc x : attacks) {
+                        multiAttack = x.multi;
+                        totalAttack += x.getCalculatedValue(info.unitdata);
+                    }
+                    for (ScalingStatCalc x : spells) {
+                        multiSpell = x.multi;
+                        totalSpell += x.getCalculatedValue(info.unitdata);
+                    }
+
+                    list.addAll(scalingValues.get(0)
+                        .getTooltipFor(multiAttack, totalAttack, new SText(TextFormatting.GOLD + "Weapon Damage"), Elements.Elemental));
+                    list.addAll(scalingValues.get(0)
+                        .getTooltipFor(multiSpell, totalSpell, new SText(TextFormatting.GOLD + "Spell Damage"), Elements.Elemental));
+
+                } else {
+                    scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
+                }
+
+            } else {
+                scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
+            }
 
             if (baseValue > 0) {
                 list.add(new StringTextComponent(
