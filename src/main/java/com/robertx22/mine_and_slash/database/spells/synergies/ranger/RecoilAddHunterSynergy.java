@@ -29,7 +29,7 @@ public class RecoilAddHunterSynergy extends Synergy<AfterDamageContext> {
         list.add(new StringTextComponent("Gives Hunter Instinct if it hits a target"));
 
         list.addAll(HunterInstinctEffect.getInstance()
-            .getEffectTooltip(info));
+            .GetTooltipString(info));
 
         return list;
     }
@@ -42,8 +42,7 @@ public class RecoilAddHunterSynergy extends Synergy<AfterDamageContext> {
 
     @Override
     public void tryActivate(AfterDamageContext ctx) {
-        if (ctx.dmg.isCriticalHit()) {
-            PotionEffectUtils.reApplyToSelf(HunterInstinctEffect.getInstance(), ctx.caster);
-        }
+        PotionEffectUtils.reApplyToSelf(HunterInstinctEffect.getInstance(), ctx.caster);
+
     }
 }

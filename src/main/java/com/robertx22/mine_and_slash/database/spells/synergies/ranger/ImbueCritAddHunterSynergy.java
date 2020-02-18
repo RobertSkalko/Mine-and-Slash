@@ -29,7 +29,7 @@ public class ImbueCritAddHunterSynergy extends Synergy<AfterDamageContext> {
         list.add(new StringTextComponent("Gives Hunter Instinct on criticals."));
 
         list.addAll(HunterInstinctEffect.getInstance()
-            .getEffectTooltip(info));
+            .GetTooltipString(info));
 
         return list;
     }

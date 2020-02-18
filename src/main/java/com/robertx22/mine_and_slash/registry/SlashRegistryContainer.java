@@ -231,4 +231,8 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         this.serializables.put(entry.GUID(), entry);
 
     }
+
+    public boolean isEmpty() {
+        return map.isEmpty();
+    }
 }

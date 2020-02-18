@@ -87,7 +87,7 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public int getManaCost() {
-        return 20;
+        return 15;
     }
 
     @Override
