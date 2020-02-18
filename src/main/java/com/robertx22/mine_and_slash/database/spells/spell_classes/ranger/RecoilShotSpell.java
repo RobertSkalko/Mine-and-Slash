@@ -40,7 +40,7 @@ public class RecoilShotSpell extends BaseProjectileSpell {
 
     @Override
     public int getCooldownInSeconds() {
-        return 5;
+        return 15;
     }
 
     @Override

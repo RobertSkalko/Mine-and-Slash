@@ -36,6 +36,10 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
     public abstract float radius();
 
+    public boolean spawnCloudParticles() {
+        return true;
+    }
+
     @Override
     public void onTick() {
         try {
@@ -45,7 +49,9 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
                 if (!this.world.isRemote) {
 
                     List<LivingEntity> entities = EntityFinder.start(
-                            getCaster(), LivingEntity.class, getPositionVector()).radius(radius()).build();
+                        getCaster(), LivingEntity.class, getPositionVector())
+                        .radius(radius())
+                        .build();
 
                     entities.forEach(x -> onHit(x));
 
@@ -62,11 +68,12 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
                     float height = 4;
 
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                            posX, posY + height + yRandom, posZ, radius());
+                        posX, posY + height + yRandom, posZ, radius());
 
-                    for (int a = 1; a < 2; a++) {
-                        ParticleUtils.spawn(ParticleTypes.CLOUD, world, p.add(0, 1, 0));
-
+                    if (spawnCloudParticles()) {
+                        for (int a = 1; a < 2; a++) {
+                            ParticleUtils.spawn(ParticleTypes.CLOUD, world, p.add(0, 1, 0));
+                        }
                     }
 
                     summonFallParticle(p);

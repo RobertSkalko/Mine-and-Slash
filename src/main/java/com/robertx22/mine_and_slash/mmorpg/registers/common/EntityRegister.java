@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.ArrowStormEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.VolcanoEntity;
@@ -50,6 +51,8 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> GEYSER;
 
     public static final EntityType<RangerArrowEntity> RANGER_ARROW;
+    public static final EntityType<? extends Entity> ARROW_STORM;
+
     public static final EntityType<MagicMissileEntity> MAGIC_MISSILE;
 
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
@@ -77,6 +80,7 @@ public class EntityRegister {
         WANDPROJECTILE = newType(EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
 
         RANGER_ARROW = newType(RangerArrowEntity::new, RangerArrowEntity::new, "ranger_arrow");
+        ARROW_STORM = newType(ArrowStormEntity::new, ArrowStormEntity::new, "arrow_storm");
 
         SEED = newType(SeedEntity::new, SeedEntity::new, "seed_entity");
     }

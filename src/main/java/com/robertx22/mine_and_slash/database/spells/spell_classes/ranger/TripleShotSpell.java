@@ -42,7 +42,7 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public int getCooldownInSeconds() {
-        return 5;
+        return 10;
     }
 
     @Override
