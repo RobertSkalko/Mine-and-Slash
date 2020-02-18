@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.potion_effects.bases;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 
@@ -17,18 +16,11 @@ public class PotionEffectUtils {
         apply(effect, caster, caster);
     }
 
-    public static ExtraPotionData getDataForTooltips(BasePotionEffect effect) {
-        LivingEntity caster = ClientOnly.getPlayer();
-
-        ExtraPotionData data = new ExtraPotionData();
-        data.casterID = caster.getUniqueID().toString();
-        data.casterLvl = Load.Unit(caster).getLevel();
-
-        return data;
-
-    }
-
     public static void apply(BasePotionEffect effect, LivingEntity caster, LivingEntity target) {
+
+        if (caster.world.isRemote) {
+            return;
+        }
 
         int duration = effect.getDurationInTicks();
 
@@ -56,7 +48,8 @@ public class PotionEffectUtils {
         if (instance == null) {
 
             extraData.casterLvl = casterData.getLevel();
-            extraData.casterID = caster.getUniqueID().toString();
+            extraData.casterID = caster.getUniqueID()
+                .toString();
             extraData.setInitialDurationTicks(duration);
 
             PotionDataSaving.saveData(newInstance, extraData);
@@ -69,22 +62,19 @@ public class PotionEffectUtils {
             }
 
             extraData.casterLvl = casterData.getLevel();
-            extraData.casterID = caster.getUniqueID().toString();
+            extraData.casterID = caster.getUniqueID()
+                .toString();
             extraData.setInitialDurationTicks(duration);
             extraData.addStacks(1, effect);
 
             PotionDataSaving.saveData(newInstance, extraData);
 
             target.removePotionEffect(effect); // HAVE TO REMOVE OR IT WONT ACTUALLY ADD CORRECTLY
-            target.addPotionEffect(newInstance);
-
-            net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(
-                    new net.minecraftforge.event.entity.living.PotionEvent.PotionAddedEvent(target,
-                                                                                            target.getActivePotionEffect(
-                                                                                                    effect), instance
-                    ));
+            target.addPotionEffect(newInstance); // so it can recalc stats cus onpotion remoove/add
 
         }
+
+        //target.sendMessage(new SText("You have " + getStacks(target, effect) + " " + effect.GUID() + " stacks "));
 
     }
 

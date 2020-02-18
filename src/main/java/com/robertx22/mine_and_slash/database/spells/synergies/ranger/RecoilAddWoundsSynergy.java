@@ -29,7 +29,7 @@ public class RecoilAddWoundsSynergy extends Synergy<AfterDamageContext> {
         list.add(new StringTextComponent("Applies Wounds to enemy"));
 
         list.addAll(WoundsEffect.getInstance()
-            .getEffectTooltip(info));
+            .GetTooltipString(info));
 
         return list;
     }

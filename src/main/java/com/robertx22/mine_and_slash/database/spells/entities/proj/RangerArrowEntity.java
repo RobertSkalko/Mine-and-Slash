@@ -72,7 +72,9 @@ public class RangerArrowEntity extends EntityBaseProjectile {
     }
 
     public void onHit(LivingEntity entity) {
+
         try {
+
             LivingEntity caster = getCaster();
 
             BaseSpell spell = getSpellData().getSpell();
@@ -92,9 +94,12 @@ public class RangerArrowEntity extends EntityBaseProjectile {
 
             dmg.Activate();
 
-            if (Synergies.IMBUE_CRIT_HUNTER.has(caster)) {
-                Synergies.IMBUE_CRIT_HUNTER.tryActivate(new AfterDamageContext(caster, entity, dmg));
+            if (imbued) {
+                if (Synergies.IMBUE_CRIT_HUNTER.has(caster)) {
+                    Synergies.IMBUE_CRIT_HUNTER.tryActivate(new AfterDamageContext(caster, entity, dmg));
+                }
             }
+
             if (spell.GUID()
                 .equals(RecoilShotSpell.getInstance()
                     .GUID())) {
@@ -122,7 +127,9 @@ public class RangerArrowEntity extends EntityBaseProjectile {
                     SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 1F, 0.9F);
                 }
 
-                onHit(entityHit);
+                if (!entityHit.world.isRemote) {
+                    onHit(entityHit);
+                }
 
             } else {
                 if (world.isRemote) {

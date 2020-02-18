@@ -48,6 +48,10 @@ public class TripleShotSpell extends BaseProjectileSpell {
     @Override
     public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
 
+        if (player.world.isRemote) {
+            return true;
+        }
+
         if (Synergies.TRIPLE_SHOT_HUNTER.has(player) && Synergies.TRIPLE_SHOT_HUNTER.canActivate(player)) {
             Synergies.TRIPLE_SHOT_HUNTER.tryActivate(new CasterContext(player));
             return false;

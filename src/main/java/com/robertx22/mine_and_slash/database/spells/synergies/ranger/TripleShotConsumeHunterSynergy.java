@@ -31,7 +31,7 @@ public class TripleShotConsumeHunterSynergy extends Synergy<CasterContext> {
 
         return list;
     }
-    
+
     @Override
 
     public BaseSpell spellAffected() {

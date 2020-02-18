@@ -188,7 +188,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new FireAtronach());
                     add(new ThunderAtronach());
                     add(new OnDodgeBuffSpeed());
-                    add(new HealPower());
+                    add(HealPower.getInstance());
                     // traits
 
                 }

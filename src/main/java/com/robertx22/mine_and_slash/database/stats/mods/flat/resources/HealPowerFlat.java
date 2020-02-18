@@ -24,7 +24,7 @@ public class HealPowerFlat extends StatMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new HealPower();
+        return HealPower.getInstance();
     }
 
 }
