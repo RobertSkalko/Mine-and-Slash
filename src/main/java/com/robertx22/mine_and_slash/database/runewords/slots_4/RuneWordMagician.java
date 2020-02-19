@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_4;
 
-import com.robertx22.mine_and_slash.database.runes.AnoItem;
-import com.robertx22.mine_and_slash.database.runes.DosItem;
-import com.robertx22.mine_and_slash.database.runes.RahItem;
-import com.robertx22.mine_and_slash.database.runes.XahItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.Ano;
+import com.robertx22.mine_and_slash.database.runes.Dos;
+import com.robertx22.mine_and_slash.database.runes.Rah;
+import com.robertx22.mine_and_slash.database.runes.Xah;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
@@ -28,8 +28,8 @@ public class RuneWordMagician extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new DosItem(0), new AnoItem(0), new XahItem(0), new RahItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new Dos(0), new Ano(0), new Xah(0), new Rah(0));
 
     }
 

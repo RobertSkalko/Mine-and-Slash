@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_5;
 
-import com.robertx22.mine_and_slash.database.runes.AnoItem;
-import com.robertx22.mine_and_slash.database.runes.CenItem;
-import com.robertx22.mine_and_slash.database.runes.MosItem;
-import com.robertx22.mine_and_slash.database.runes.RahItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.runes.unique_runes.PSIItem;
+import com.robertx22.mine_and_slash.database.runes.Ano;
+import com.robertx22.mine_and_slash.database.runes.Cen;
+import com.robertx22.mine_and_slash.database.runes.Mos;
+import com.robertx22.mine_and_slash.database.runes.Rah;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.PSI;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
@@ -27,8 +27,8 @@ public class RuneWordUndyingMagic extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new RahItem(0), new AnoItem(0), new PSIItem(), new CenItem(0), new MosItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new Rah(0), new Ano(0), new PSI(), new Cen(0), new Mos(0));
     }
 
     @Override

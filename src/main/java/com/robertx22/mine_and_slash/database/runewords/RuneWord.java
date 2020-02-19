@@ -5,8 +5,8 @@ import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_packs.JsonUtils;
 import com.robertx22.mine_and_slash.data_packs.runewords.SerializableRuneword;
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
+import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRune;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -70,7 +70,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
         return Ref.MODID + ".word." + formattedGUID();
     }
 
-    public abstract List<BaseRuneItem> runes();
+    public abstract List<BaseRune> runes();
 
     public int size() {
         return runes().size();
@@ -91,7 +91,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
 
         String text = "";
 
-        for (BaseRuneItem item : runes()) {
+        for (BaseRune item : runes()) {
             text += item.name()
                 .toUpperCase();
         }
@@ -105,7 +105,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
             return false;
         }
         if (runes().stream()
-            .filter(rune -> rune instanceof BaseUniqueRuneItem)
+            .filter(rune -> rune instanceof BaseUniqueRune)
             .count() > 1) {
             System.out.println(GUID() + " needs more than 1 unique rune, runewords should not be able to require " + "more than 1.!");
             return false;
@@ -124,7 +124,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
 
         int current = 0;
 
-        for (BaseRuneItem item : runes()) {
+        for (BaseRune item : runes()) {
 
             String runetext = item.name()
                 .toUpperCase();
@@ -133,7 +133,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
                 runetext += " + ";
             }
 
-            if (item instanceof BaseUniqueRuneItem) {
+            if (item instanceof BaseUniqueRune) {
                 comp.appendText(TextFormatting.YELLOW + runetext);
             } else {
                 comp.appendText(TextFormatting.GREEN + runetext);

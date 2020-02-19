@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_5;
 
 import com.robertx22.mine_and_slash.database.runes.*;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
@@ -25,8 +25,8 @@ public class RuneWordLight extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new ItaItem(0), new AnoItem(0), new DosItem(0), new XahItem(0), new GohItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new Ita(0), new Ano(0), new Dos(0), new Xah(0), new Goh(0));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.rune;
 
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatGroupData;
@@ -61,8 +61,9 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
         return Arrays.asList(new LevelAndStats(list, this.level));
     }
 
-    public BaseRuneItem getRune() {
-        return SlashRegistry.Runes().get(rune);
+    public BaseRune getRune() {
+        return SlashRegistry.Runes()
+            .get(rune);
     }
 
     public int getAveragePercents() {
@@ -93,7 +94,7 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
 
         for (ITextComponent s : list) {
             list2.add(new StringTextComponent(rar.Color() + rune.toUpperCase() + rar.Color() + ": [").appendSibling(s)
-                              .appendText(rar.Color() + " ]"));
+                .appendText(rar.Color() + " ]"));
         }
 
         return list2;

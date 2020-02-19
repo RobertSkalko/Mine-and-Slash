@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.UniqueRunePart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class UniqueRuneBlueprint extends ItemBlueprint {
@@ -25,25 +26,27 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
 
     @Override
     ItemStack generate() {
-        BaseRuneItem item = uniqueRunePart.get();
+        BaseRune rune = uniqueRunePart.get();
+
+        Item item = rune.getItemFromRegistry();
 
         ItemStack stack = ItemStack.EMPTY;
 
-        if (item != null) {
+        if (rune != null && item != null) {
             stack = new ItemStack(item);
 
             RuneItemData data = new RuneItemData();
 
-            data.rarity = item.rarity;
-            data.name = item.GUID();
+            data.rarity = rune.rarity;
+            data.name = rune.GUID();
             data.level = level.get();
-            data.tier = item.Tier();
+            data.tier = rune.Tier();
 
-            data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.armorStat()));
+            data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(rune.armorStat()));
 
-            data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.weaponStat()));
+            data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(rune.weaponStat()));
 
-            data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.jewerlyStat()));
+            data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(rune.jewerlyStat()));
 
             Rune.Save(stack, data);
         }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 
@@ -26,7 +26,7 @@ public class EmptyRuneWord extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
+    public List<BaseRune> runes() {
         return new ArrayList<>();
     }
 

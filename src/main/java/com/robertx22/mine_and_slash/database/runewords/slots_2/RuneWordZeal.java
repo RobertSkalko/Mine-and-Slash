@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_2;
 
-import com.robertx22.mine_and_slash.database.runes.GohItem;
-import com.robertx22.mine_and_slash.database.runes.MosItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.Goh;
+import com.robertx22.mine_and_slash.database.runes.Mos;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
@@ -24,8 +24,8 @@ public class RuneWordZeal extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new GohItem(0), new MosItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new Goh(0), new Mos(0));
     }
 
     @Override

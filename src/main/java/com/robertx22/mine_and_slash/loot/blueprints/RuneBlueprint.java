@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
+import com.robertx22.mine_and_slash.database.runes.base.RuneItem;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.RunePart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -23,25 +24,34 @@ public class RuneBlueprint extends ItemBlueprint {
     @Override
     public ItemStack generate() {
 
-        BaseRuneItem item = runePart.get().byRarity(rarity.get().Rank());
+        BaseRune rune = runePart.get();
+        rune.rarity = rarity.get()
+            .Rank();
+        RuneItem item = rune.byRarityItem(rarity.get()
+            .Rank());
 
-        ItemStack stack = new ItemStack(item);
+        if (rune != null && item != null) {
 
-        RuneItemData data = new RuneItemData();
+            ItemStack stack = new ItemStack(item);
 
-        data.rarity = item.rarity;
-        data.name = item.GUID();
-        data.level = level.get();
+            RuneItemData data = new RuneItemData();
 
-        data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.armorStat()));
+            data.rarity = item.rarity;
+            data.name = rune.GUID();
+            data.level = level.get();
 
-        data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.weaponStat()));
+            data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(rune.armorStat()));
 
-        data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(item.jewerlyStat()));
+            data.weapon = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(rune.weaponStat()));
 
-        Rune.Save(stack, data);
+            data.jewerly = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(rune.jewerlyStat()));
 
-        return stack;
+            Rune.Save(stack, data);
+
+            return stack;
+        } else {
+            return ItemStack.EMPTY;
+        }
     }
 
     @Override

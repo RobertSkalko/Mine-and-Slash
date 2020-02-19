@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.runewords.unique;
 
-import com.robertx22.mine_and_slash.database.runes.AnoItem;
-import com.robertx22.mine_and_slash.database.runes.VohItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.runes.unique_runes.PSIItem;
+import com.robertx22.mine_and_slash.database.runes.Ano;
+import com.robertx22.mine_and_slash.database.runes.Voh;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.PSI;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
@@ -31,8 +31,8 @@ public class RuneWordTrueHit extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new AnoItem(0), new PSIItem(), new VohItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new Ano(0), new PSI(), new Voh(0));
     }
 
     @Override

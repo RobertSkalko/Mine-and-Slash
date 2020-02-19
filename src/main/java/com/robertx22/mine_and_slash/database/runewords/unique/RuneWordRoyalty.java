@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.runewords.unique;
 
-import com.robertx22.mine_and_slash.database.runes.GohItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.runes.unique_runes.WORItem;
+import com.robertx22.mine_and_slash.database.runes.Goh;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.WOR;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.LootTypeBonusFlat;
@@ -30,8 +30,8 @@ public class RuneWordRoyalty extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new WORItem(), new GohItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new WOR(), new Goh(0));
     }
 
     @Override

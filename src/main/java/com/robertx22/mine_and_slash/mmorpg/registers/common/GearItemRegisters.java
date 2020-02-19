@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.runes.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothChestItem;
@@ -57,28 +56,6 @@ public class GearItemRegisters {
 
             int rank = rarity.Rank();
 
-            // runes
-            regRune(new CenItem(rank), CenItem.Items, new CenItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new BerItem(rank), BerItem.Items, new BerItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new DosItem(rank), DosItem.Items, new DosItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new GohItem(rank), GohItem.Items, new GohItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new MosItem(rank), MosItem.Items, new MosItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new RahItem(rank), RahItem.Items, new RahItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new VohItem(rank), VohItem.Items, new VohItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new XahItem(rank), XahItem.Items, new XahItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new AnoItem(rank), AnoItem.Items, new AnoItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-            regRune(new ItaItem(rank), ItaItem.Items, new ItaItem(rank).genRegisryName()
-                .toLowerCase(), rank);
-
             // offhands
             regRarities(new NormalShield(rarity.Rank(), shieldprop),
                 NormalShield.Items, "shields/normal_shield", rarity.Rank()
@@ -125,14 +102,6 @@ public class GearItemRegisters {
             regRarities(new ItemMap(rank), ItemMap.Items, "map/map", rarity.Rank()); // not gearitem but yeah
 
         }
-
-    }
-
-    private static void regRune(Item item, HashMap<Integer, Item> map, String name, int rarity) {
-        String reg = name;
-        item.setRegistryName(Ref.MODID, reg);
-        map.put(rarity, item);
-        items.add(item);
 
     }
 

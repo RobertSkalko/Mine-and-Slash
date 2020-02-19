@@ -20,9 +20,7 @@ import com.robertx22.mine_and_slash.database.quests.base.Quest;
 import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
 import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
 import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRuneItem;
-import com.robertx22.mine_and_slash.database.runes.unique_runes.PSIItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
@@ -130,10 +128,6 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.CURRENCY_ITEMS);
     }
 
-    public static SlashRegistryContainer<BaseUniqueRuneItem> UniqueRunes() {
-        return getRegistry(SlashRegistryType.UNIQUE_RUNES);
-    }
-
     private static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
         return getRegistry(SlashRegistryType.DIMENSION_CONFIGS);
     }
@@ -186,7 +180,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.SPELL);
     }
 
-    public static SlashRegistryContainer<BaseRuneItem> Runes() {
+    public static SlashRegistryContainer<BaseRune> Runes() {
         return getRegistry(SlashRegistryType.RUNE);
     }
 
@@ -301,7 +295,6 @@ public class SlashRegistry {
         new Sets().registerAll();
         new ItemModifications().registerAll();
         new CurrencyItems().registerAll();
-        new UniqueRunes().registerAll();
 
         new PerkEffectsInit().registerAll();
         new SpellPerkEffectsInit().registerAll();
@@ -326,6 +319,7 @@ public class SlashRegistry {
         map = new HashMap<>();
 
         // data pack ones
+        addRegistry(new SlashRegistryContainer<BaseRune>(SlashRegistryType.RUNE, EmptyRune.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, EmptyUnique.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance()).isDatapack());
@@ -340,8 +334,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance()));
         addRegistry(new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, EmptyStatMod.getInstance()));
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
-        addRegistry(new SlashRegistryContainer<BaseUniqueRuneItem>(SlashRegistryType.UNIQUE_RUNES, new PSIItem()));
-        addRegistry(new SlashRegistryContainer<BaseRuneItem>(SlashRegistryType.RUNE, new EmptyRune(0)));
         addRegistry(new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
         addRegistry(new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
         addRegistry(new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new BirchForestIWP(null, null)));

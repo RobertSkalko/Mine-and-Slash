@@ -4,13 +4,19 @@ import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRune;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRuneWord;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyUnique;
 
 public enum SlashRegistryType {
     STAT("stat"),
     STATMOD("stat_mod"),
-    RUNE("rune"),
+    RUNE("rune") {
+        @Override
+        public ISerializable getEmpty() {
+            return EmptyRune.getInstance();
+        }
+    },
     RUNEWORD("runeword") {
         @Override
         public ISerializable getEmpty() {
@@ -45,7 +51,6 @@ public enum SlashRegistryType {
     DIMENSION_CONFIGS("dimension_config"),
     MOD_ENTITY_CONFIGS("mod_entiy_config"),
     CURRENCY_ITEMS("currency_item"),
-    UNIQUE_RUNES("unique_rune"),
     COMPATIBLE_ITEM("compatible_item") {
         @Override
         public ISerializable getEmpty() {

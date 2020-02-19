@@ -31,15 +31,15 @@ public class ItemModelManager extends ItemModelProvider {
             .getList()
             .forEach(x -> generated(x));
         SlashRegistry.Runes()
-            .getList()
+            .getFiltered(x -> !x.isUnique())
             .forEach(x -> {
                 for (RuneRarity rarity : Rarities.Runes.getNormalRarities()) {
-                    generated(x.byRarity(rarity.Rank()));
+                    generated(x.byRarityItem(rarity.Rank()));
                 }
             });
-        SlashRegistry.UniqueRunes()
-            .getList()
-            .forEach(x -> generated(x));
+        SlashRegistry.Runes()
+            .getFiltered(x -> x.isUnique())
+            .forEach(x -> generated(x.getItemFromRegistry()));
         SlashRegistry.UniqueGears()
             .getSerializable()
             .forEach(x -> {

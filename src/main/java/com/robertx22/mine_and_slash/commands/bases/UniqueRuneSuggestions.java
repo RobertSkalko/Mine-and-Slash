@@ -9,11 +9,11 @@ public class UniqueRuneSuggestions extends CommandSuggestions {
 
     @Override
     public List<String> suggestions() {
-        return SlashRegistry.UniqueRunes()
-                .getList()
-                .stream()
-                .map(x -> x.GUID())
-                .collect(Collectors.toList());
+        return SlashRegistry.Runes()
+            .getFiltered(x -> x.isUnique())
+            .stream()
+            .map(x -> x.GUID())
+            .collect(Collectors.toList());
     }
 
 }

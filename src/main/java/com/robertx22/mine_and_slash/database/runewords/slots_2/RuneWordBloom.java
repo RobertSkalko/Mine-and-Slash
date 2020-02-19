@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_2;
 
-import com.robertx22.mine_and_slash.database.runes.AnoItem;
-import com.robertx22.mine_and_slash.database.runes.GohItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.Ano;
+import com.robertx22.mine_and_slash.database.runes.Goh;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
@@ -23,8 +23,8 @@ public class RuneWordBloom extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new AnoItem(0), new GohItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new Ano(0), new Goh(0));
     }
 
     @Override

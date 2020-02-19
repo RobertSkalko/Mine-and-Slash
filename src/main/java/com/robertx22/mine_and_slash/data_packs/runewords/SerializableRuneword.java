@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.data_packs.runewords;
 
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -43,8 +43,10 @@ public class SerializableRuneword extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return runes.stream().map(x -> getRune(x)).collect(Collectors.toList());
+    public List<BaseRune> runes() {
+        return runes.stream()
+            .map(x -> getRune(x))
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -57,11 +59,11 @@ public class SerializableRuneword extends RuneWord {
         return "";
     }
 
-    BaseRuneItem getRune(String str) {
-        if (SlashRegistry.Runes().isRegistered(str)) {
-            return SlashRegistry.Runes().get(str);
-        } else if (SlashRegistry.UniqueRunes().isRegistered(str)) {
-            return SlashRegistry.UniqueRunes().get(str);
+    BaseRune getRune(String str) {
+        if (SlashRegistry.Runes()
+            .isRegistered(str)) {
+            return SlashRegistry.Runes()
+                .get(str);
         }
         return null;
 

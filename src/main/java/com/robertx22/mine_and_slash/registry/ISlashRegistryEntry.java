@@ -24,6 +24,10 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
             .register(this);
     }
 
+    default boolean isUnique() {
+        return getRarityRank() == IRarity.Unique;
+    }
+
     default void unregisterDueToInvalidity() {
         SlashRegistry.getRegistry(getSlashRegistryType())
             .unRegister(this);

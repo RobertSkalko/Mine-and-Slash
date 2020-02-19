@@ -10,10 +10,10 @@ public class RuneItemSuggestions extends CommandSuggestions {
     @Override
     public List<String> suggestions() {
         return SlashRegistry.Runes()
-                .getList()
-                .stream()
-                .map(x -> x.GUID())
-                .collect(Collectors.toList());
+            .getFiltered(x -> !x.isUnique())
+            .stream()
+            .map(x -> x.GUID())
+            .collect(Collectors.toList());
     }
 
 }

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.runewords.unique;
 
-import com.robertx22.mine_and_slash.database.runes.CenItem;
-import com.robertx22.mine_and_slash.database.runes.MosItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
-import com.robertx22.mine_and_slash.database.runes.unique_runes.ONIItem;
+import com.robertx22.mine_and_slash.database.runes.Cen;
+import com.robertx22.mine_and_slash.database.runes.Mos;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
+import com.robertx22.mine_and_slash.database.runes.unique_runes.ONI;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
@@ -30,8 +30,8 @@ public class RuneWordFortress extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new CenItem(0), new ONIItem(), new MosItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new Cen(0), new ONI(), new Mos(0));
     }
 
     @Override

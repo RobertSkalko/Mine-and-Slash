@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.runewords.slots_4;
 
-import com.robertx22.mine_and_slash.database.runes.BerItem;
-import com.robertx22.mine_and_slash.database.runes.CenItem;
-import com.robertx22.mine_and_slash.database.runes.MosItem;
-import com.robertx22.mine_and_slash.database.runes.XahItem;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.Ber;
+import com.robertx22.mine_and_slash.database.runes.Cen;
+import com.robertx22.mine_and_slash.database.runes.Mos;
+import com.robertx22.mine_and_slash.database.runes.Xah;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
@@ -28,8 +28,8 @@ public class RuneWordZephyr extends RuneWord {
     }
 
     @Override
-    public List<BaseRuneItem> runes() {
-        return Arrays.asList(new MosItem(0), new XahItem(0), new CenItem(0), new BerItem(0));
+    public List<BaseRune> runes() {
+        return Arrays.asList(new Mos(0), new Xah(0), new Cen(0), new Ber(0));
     }
 
     @Override

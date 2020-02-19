@@ -11,7 +11,7 @@ The bad news for users is that a lot of items will either break, like plate armo
 I added a temporary system that auto formats all old names to this standard, but it's not perfect and some might not work. Ignore errors about unknown registries.
 Now the good news:
 * This is in preparation to allow the mod to be more configurable with datapacks. And as that requires things to be intuitive.. I had to rename a lot of things. 
-* runewords, affixes, sets and unique gears are now fully moddable with datapacks! This might have some issues so i'll need some guniea pigs to test it! 
+* runes, runewords, affixes, sets and unique gears are now fully moddable with datapacks! This might have some issues so i'll need some guniea pigs to test it! 
 I tested it myself on client and server but it's not foolproof.
 * changed compatible items into datapacks. If you're worried you lose your old progress, there's a command that outputs them into new format: "convert_compatible_items_to_new_format".
 Also there's a similar method convertToNewFormat for mod devs that use code. But i strongly suggest they switch to datapacks too. If you need help switching, call me on discord.

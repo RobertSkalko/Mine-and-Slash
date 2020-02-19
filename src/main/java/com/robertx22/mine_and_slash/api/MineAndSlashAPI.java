@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.api;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
+import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
@@ -68,7 +68,7 @@ public class MineAndSlashAPI {
             .register(type);
     }
 
-    public static void addRune(BaseRuneItem rune) {
+    public static void addRune(BaseRune rune) {
         SlashRegistry.Runes()
             .register(rune);
     }
