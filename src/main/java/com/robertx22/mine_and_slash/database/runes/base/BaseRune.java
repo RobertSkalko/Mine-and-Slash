@@ -49,6 +49,10 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
         }
     }
 
+    public BaseRune(boolean startMap) {
+
+    }
+
     @Override
     public boolean isFromDatapack() {
         return true;

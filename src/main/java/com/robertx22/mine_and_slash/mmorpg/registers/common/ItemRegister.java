@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.database.currency.*;
 import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
@@ -16,7 +15,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items.AlchemyItemRegister;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -97,17 +95,9 @@ public class ItemRegister {
         SlashRegistry.Runes()
             .getSerializable()
             .stream()
-            .filter(x -> x.isUnique())
-            .forEach(x -> r.register(x.genItemForRegistration(IRarity.Unique)));
-
-        SlashRegistry.Runes()
-            .getSerializable()
-            .stream()
-            .filter(x -> !x.isUnique())
             .forEach(x -> {
-                for (RuneRarity rarity : Rarities.Runes.getNormalRarities()) {
-                    r.register(x.genItemForRegistration(rarity.Rank()));
-                }
+                x.itemMap.values()
+                    .forEach(i -> r.register(i));
             });
 
     }

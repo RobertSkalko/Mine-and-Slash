@@ -17,8 +17,9 @@ public class SerializedRune extends BaseRune {
     List<StatMod> jewerly;
 
     public SerializedRune(int rarity, String guid, int weight, int tier, List<StatMod> weapon, List<StatMod> armor, List<StatMod> jewerly, HashMap<Integer, RuneItem> ItemMap) {
-        super(rarity);
+        super(false);
         this.guid = guid;
+        this.rarity = rarity;
         this.weight = weight;
         this.tier = tier;
         this.weapon = weapon;
@@ -26,7 +27,7 @@ public class SerializedRune extends BaseRune {
         this.jewerly = jewerly;
         this.itemMap = ItemMap;
     }
-
+    
     @Override
     public String name() {
         return guid;

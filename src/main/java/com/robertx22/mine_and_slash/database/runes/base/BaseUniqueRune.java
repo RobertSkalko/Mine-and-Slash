@@ -14,11 +14,6 @@ public abstract class BaseUniqueRune extends BaseRune {
     }
 
     @Override
-    public int getRarityRank() {
-        return IRarity.Uncommon;
-    }
-
-    @Override
     public String genRegistryName(int rar) {
         return "runes/uniques/" + name().toLowerCase(Locale.ROOT);
     }
