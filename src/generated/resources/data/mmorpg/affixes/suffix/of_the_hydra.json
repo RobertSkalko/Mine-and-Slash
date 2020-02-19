@@ -10,9 +10,9 @@
     "list": [
       {
         "slots": [
-          "helmet",
           "cloth_helmet",
-          "leather_helmet"
+          "leather_helmet",
+          "plate_helmet"
         ]
       },
       {

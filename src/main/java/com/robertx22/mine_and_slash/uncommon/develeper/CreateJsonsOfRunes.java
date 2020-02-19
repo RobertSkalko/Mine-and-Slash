@@ -14,26 +14,32 @@ public class CreateJsonsOfRunes {
     public void doit() {
 
         String text = "{\n    \"instance\": \"item/generated\",\n    \"textures\": {\n        \"layer0\": " +
-                "\"mmorpg:items/runes/cen/1\"\n    }\n}\n";
+            "\"mmorpg:items/runes/cen/1\"\n    }\n}\n";
 
         String lang = "";
 
-        for (BaseRuneItem rune : SlashRegistry.Runes().getAll().values()) {
+        for (BaseRuneItem rune : SlashRegistry.Runes()
+            .getAll()
+            .values()) {
 
             for (int i = 0; i < 6; i++) {
 
-                String runename = Rarities.Gears.get(i).Color() + "" + rune.name() + " - " + Rarities.Gears.get(i)
-                        .GUID() + " Rune ";
+                String runename = Rarities.Gears.get(i)
+                    .Color() + "" + rune.name() + " - " + Rarities.Gears.get(i)
+                    .GUID() + " Rune ";
 
                 // for lang file
-                lang += "item.mmorpg:runes/" + rune.name().toLowerCase() + i + ".name=" + runename + "\n";
+                lang += "item.mmorpg:runes/" + rune.name()
+                    .toLowerCase() + i + ".name=" + runename + "\n";
 
                 // for model files
                 String newtext = text.replaceAll("1", i + "");
 
-                String textfinal = newtext.replace("cen", rune.name().toLowerCase());
+                String textfinal = newtext.replace("cen", rune.name()
+                    .toLowerCase());
 
-                String name = rune.name().toLowerCase() + i;
+                String name = rune.name()
+                    .toLowerCase() + i;
 
                 Path path = Paths.get("C:\\Users\\User\\Desktop\\here\\" + name + ".json");
                 byte[] strToBytes = textfinal.getBytes();

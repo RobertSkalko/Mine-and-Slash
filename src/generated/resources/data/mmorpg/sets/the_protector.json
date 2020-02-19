@@ -9,8 +9,8 @@
     "list": [
       {
         "slots": [
+          "plate_chest",
           "leather_chest",
-          "chest",
           "cloth_chest",
           "shield"
         ]

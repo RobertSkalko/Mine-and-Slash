@@ -54,7 +54,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         json.addProperty("item_type", item_type);
         json.addProperty("item_id", item_id);
-        json.addProperty("guid", guid);
+        json.addProperty("id", guid);
 
         JsonObject gearType = new JsonObject();
         gearType.addProperty("normal_item_weight", normal_item_weight);
@@ -96,8 +96,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
             .getAsString();
         obj.item_id = json.get("item_id")
             .getAsString();
-        obj.guid = json.get("guid")
-            .getAsString();
+        obj.guid = getGUIDFromJson(json);
 
         JsonObject gearType = json.getAsJsonObject("gear_type");
         obj.normal_item_weight = gearType.get("normal_item_weight")

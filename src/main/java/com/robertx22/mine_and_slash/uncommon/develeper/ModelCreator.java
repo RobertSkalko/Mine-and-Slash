@@ -1,5 +1,6 @@
-package com.robertx22.mine_and_slash.mmorpg;
+package com.robertx22.mine_and_slash.uncommon.develeper;
 
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.DirUtils;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -15,20 +16,22 @@ import java.nio.file.Paths;
 public class ModelCreator {
 
     static String DEFAULT_MODEL = "{\n" + "    \"parent\": \"item/generated\",\n" + "    \"textures\": {\n" + "      " +
-            "  \"layer0\": \"mmorpg:REPLACE\"\n" + "    }\n" + "}";
+        "  \"layer0\": \"mmorpg:REPLACE\"\n" + "    }\n" + "}";
 
     public static void createDefaultModelsAndDirs() {
         for (Item item : ForgeRegistries.ITEMS) {
 
-            if (item.getRegistryName().getNamespace().equals(Ref.MODID)) {
+            if (item.getRegistryName()
+                .getNamespace()
+                .equals(Ref.MODID)) {
 
                 ResourceLocation loc = item.getRegistryName();
                 String path = loc.getPath();
 
                 String modelpath = DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\models\\item\\" + path +
-                        ".json";
+                    ".json";
                 String texturepath =
-                        DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\textures\\items\\" + path + ".png";
+                    DirUtils.modDir() + "\\main\\resources\\assets\\mmorpg\\textures\\items\\" + path + ".png";
 
                 File model = new File(modelpath);
                 File texture = new File(texturepath);

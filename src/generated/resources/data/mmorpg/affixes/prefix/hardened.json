@@ -13,17 +13,17 @@
           "leather_boots",
           "shield",
           "cloth_boots",
-          "pants",
-          "helmet",
-          "boots",
+          "plate_chest",
+          "plate_boots",
           "leather_chest",
           "cloth_helmet",
-          "chest",
           "cloth_pants",
           "torch",
           "leather_pants",
           "cloth_chest",
-          "leather_helmet"
+          "plate_pants",
+          "leather_helmet",
+          "plate_helmet"
         ]
       }
     ]
