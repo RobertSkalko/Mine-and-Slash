@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateBootsItem;
 import net.minecraft.item.Item;
 
@@ -29,7 +29,7 @@ public class PlateBoots extends BaseBoots {
 
     @Override
     public String GUID() {
-        return "boots";
+        return "plate_boots";
     }
 
     @Override

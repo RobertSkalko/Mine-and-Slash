@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateHelmetItem;
 import net.minecraft.item.Item;
 
@@ -29,7 +29,7 @@ public class PlateHelmet extends BaseHelmet {
 
     @Override
     public String GUID() {
-        return "helmet";
+        return "plate_helmet";
     }
 
     @Override

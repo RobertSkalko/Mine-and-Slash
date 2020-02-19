@@ -1,4 +1,22 @@
 3.1.0
+THIS UPDATE WILL BREAK SOME EXISTING ITEMS FROM OLDER SAVES. 
+This is not something i do lightly, but with me starting to turn my stuff into datapacks, it's something i would have to do sooner or later. 
+Better now than after people already make datapacks.
+
+So bad news first:
+* converted all my registry ids to same rules minecraft uses, which means no spaces and all lowercase., this might break some stats on old items, sorry! 
+For example Physical Damage had id of "damage_flat" but the actual stat is called "physical_damage". So if you wanted to add the stat, you'd use "physical_damage_flat" but it wouldn't work.
+Now it should work fine as long as you know the correct stat name and prefix/suffix combos. You can do high_physical_damage_flat, low_physical_damage_flat etc.
+The bad news for users is that a lot of items will either break, like plate armors. Or have invalid affixes/chaos stats/primary stats etc. I suggest a new world.
+I added a temporary system that auto formats all old names to this standard, but it's not perfect and some might not work. Ignore errors about unknown registries.
+Now the good news:
+* This is in preparation to allow the mod to be more configurable with datapacks. And as that requires things to be intuitive.. I had to rename a lot of things. 
+* runewords, affixes, sets and unique gears are now fully moddable with datapacks! This might have some issues so i'll need some guniea pigs to test it! 
+I tested it myself on client and server but it's not foolproof.
+* changed compatible items into datapacks. If you're worried you lose your old progress, there's a command that outputs them into new format: "convert_compatible_items_to_new_format".
+Also there's a similar method convertToNewFormat for mod devs that use code. But i strongly suggest they switch to datapacks too. If you need help switching, call me on discord.
+It's not really that hard, as the object has a .toJson() method, and that's most of the hard work.
+
 * added recipe for increase map tier item in tinkering station
 * most loot crate rewards now cant drop common rarity
 * fix loot crates without nbt crashing game
@@ -6,27 +24,19 @@
 * added divine shield cleric spell
 * added poisoned weapons druid spell
 * added synergies: blizzard, thunder dash, poisoned weapons
+* added a whole new ranger skill tree with its own synergies!
 * added new unique items
 * disabled my workaround that allowed dimension deletition because it caused server crashes. But now dimensions won't be deleted until forge accepts a PR
-* converted all my registry ids to same rules minecraft uses, which means no spaces and all lowercase., this might break some stats on old items, sorry! 
-The good news is that this is in preparation to allow the mod to be more configurable with datapacks. And as that requires things to be intuitive.. I had to rename a lot of things. 
-For example Physical Damage had id of "damage_flat" but the actual stat is called "physical_damage". So if you wanted to add the stat, you'd use "physical_damage_flat" but it wouldn't work.
-Now it should work fine as long as you know the correct stat name and prefix/suffix combos. You can do high_physical_damage_flat, low_physical_damage_flat etc.
-I added a temporary system that auto formats all old names to this standard, but it's not perfect and some might not work. Ignore errors about unknown registries.
 * decreased item requirements a bit
 * fix runewords
 * only 1 unique rune per runed item is now allowed
 * fix some heals not working
-* runewords, affixes and sets are now fully moddable with datapacks! This might have some issues so i'll need some guniea pigs to test it! 
-I tested it myself on client and server but it's not foolproof.
 * reduced boss hp, increased xp and loot
 * fixed shield textures
 * trying out a new system to balance map drops. Bascically i don't want people spamming them all the time, but i don't want people spending hours insta killing overworld mobs for them either.
 So i made a system that buffs drops if you're outside a map dimension, but nerfs them if you're inside. This should make maps a lot more precious and time gated, and allow for people to do
 other minecraft things in the meantime.
-* increased map droprates a bit. 
-* changed compatible items into datapacks. If you're worried you lose your old progress, there's a command that outputs them into new format: "convert_compatible_items_to_new_format".
-Also there's a similar method convertToNewFormat for mod devs.
+* increased loot droprates in maps a bit. 
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

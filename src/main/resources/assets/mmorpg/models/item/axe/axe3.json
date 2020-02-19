@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "mmorpg:items/paidassets/pixeltiers/rarity_axes/axe3"
+        "layer0": "mmorpg:items/axe/axe3"
     }
 }

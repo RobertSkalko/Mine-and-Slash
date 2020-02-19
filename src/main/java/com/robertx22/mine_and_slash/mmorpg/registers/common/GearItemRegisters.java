@@ -104,10 +104,10 @@ public class GearItemRegisters {
             regRarities(new ItemCharm(rarity.Rank()), ItemCharm.Items, "charm/charm", rarity.Rank());
 
             // armors
-            regRarities(new PlateBootsItem(rank), PlateBootsItem.Items, "boots/boots", rarity.Rank());
-            regRarities(new PlateChestItem(rank), PlateChestItem.Items, "chest/chest", rarity.Rank());
-            regRarities(new PlateHelmetItem(rank), PlateHelmetItem.Items, "helmet/helmet", rarity.Rank());
-            regRarities(new PlatePantsItem(rank), PlatePantsItem.Items, "pants/pants", rarity.Rank());
+            regRarities(new PlateBootsItem(rank), PlateBootsItem.Items, "boots/plate/boots", rarity.Rank());
+            regRarities(new PlateChestItem(rank), PlateChestItem.Items, "chest/plate/chest", rarity.Rank());
+            regRarities(new PlateHelmetItem(rank), PlateHelmetItem.Items, "helmet/plate/helmet", rarity.Rank());
+            regRarities(new PlatePantsItem(rank), PlatePantsItem.Items, "pants/plate/pants", rarity.Rank());
 
             //LEATHER
             regRarities(new LeatherBootsItem(rank), LeatherBootsItem.Items, "boots/leather/boots", rarity.Rank());
