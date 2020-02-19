@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -19,7 +18,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.packets.OnLoginClientPacket;
-import com.robertx22.mine_and_slash.packets.RegistryPacket;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -48,11 +47,12 @@ public class OnLogin {
 
             MMORPG.sendToClient(new OnLoginClientPacket(), player);
 
-            ConfigRegister.CONFIGS.values().forEach(x -> x.sendToClient(player));
+            ConfigRegister.CONFIGS.values()
+                .forEach(x -> x.sendToClient(player));
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
-                                           .setStyle(new Style().setColor(Styles.RED)));
+                    .setStyle(new Style().setColor(Styles.RED)));
             }
 
             if (Load.hasUnit(player)) {
@@ -63,22 +63,15 @@ public class OnLogin {
 
                 data.syncToClient(player);
 
-                Load.playerMapData(player).teleportPlayerBack(player);
+                Load.playerMapData(player)
+                    .teleportPlayerBack(player);
 
             } else {
                 player.sendMessage(
-                        new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
+                    new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
             }
 
-            SlashRegistry.getAllRegistries().forEach(x -> {
-                if (x.getType().getEmpty() != null) {
-                    try {
-                        MMORPG.sendToClient(new RegistryPacket(x.getType()), player);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            SlashRegistry.sendAllPacketsToClientOnLogin(player);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,6 +89,10 @@ public class OnLogin {
     }
 
     public static void GiveStarterItems(PlayerEntity player) {
+
+        if (player.world.isRemote) {
+            return;
+        }
 
         giveGear(PlatePants.INSTANCE, player);
         giveGear(PlateChest.INSTANCE, player);

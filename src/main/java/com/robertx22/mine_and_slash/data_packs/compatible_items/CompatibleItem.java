@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.data_packs.compatible_items;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.config.compatible_items.WeightedType;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
@@ -18,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class CompatibleItem implements ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
 
@@ -264,6 +266,37 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         return stack;
 
+    }
+
+    @Override
+    public boolean isRegistryEntryValid() {
+
+        if (!SlashRegistry.GearTypes()
+            .isRegistered(this.item_type)) {
+            System.out.println("Invalid gear slot: " + item_type);
+            return false;
+        }
+        if (!unique_id.isEmpty()) {
+            if (!SlashRegistry.UniqueGears()
+                .isRegistered(unique_id)) {
+                System.out.println("Invalid unique gear id: " + unique_id);
+                return false;
+            }
+        }
+
+        if (unique_id.isEmpty() && unique_item_weight > 0) {
+            List<IUnique> possible = SlashRegistry.UniqueGears()
+                .getFiltered(x -> x.getGearSlot()
+                    .GUID()
+                    .equals(item_type) && x.Tier() <= if_unique_random_up_to_tier);
+            if (possible.isEmpty()) {
+                System.out.println("There are no possible random uniques for item type of: " + item_type + " of unique tier of " + if_unique_random_up_to_tier + " or less.");
+                System.out.println("This won't prevent the compatible item from functioning, but it means whenever it tries to generate as unique, it will turn to fallback normal item.");
+                return true;
+            }
+        }
+
+        return true;
     }
 
     //this is how the file should look and be separated into

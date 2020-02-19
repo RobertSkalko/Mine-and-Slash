@@ -4,11 +4,9 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.text.ITextComponent;
@@ -25,7 +23,7 @@ public class InstantHealRemoveDebuffSynergy extends Synergy<BeforeHealContext> {
         return "instant_heal_remove_debuff_synergy";
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.5F, 5);
+    public static SpellCalcData CALC = SpellCalcData.allSpellDamages(0.5F, 5);
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {

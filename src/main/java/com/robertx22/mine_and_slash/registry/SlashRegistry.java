@@ -40,10 +40,13 @@ import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.packets.RegistryPacket;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.IWorld;
 
 import java.util.ArrayList;
@@ -237,6 +240,20 @@ public class SlashRegistry {
         }
     }
 
+    public static void sendAllPacketsToClientOnLogin(ServerPlayerEntity player) {
+        getAllRegistries()
+            .forEach(x -> {
+                if (x.getType()
+                    .getEmpty() != null) {
+                    try {
+                        MMORPG.sendToClient(new RegistryPacket(x.getType()), player);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+    }
+
     public static void checkGuidValidity() {
         map.values()
             .forEach(c -> c.getAllIncludingSeriazable()
@@ -246,6 +263,23 @@ public class SlashRegistry {
                         throw new RuntimeException(entry.getInvalidGuidMessage());
                     }
                 }));
+
+    }
+
+    public static void unregisterInvalidEntries() {
+
+        List<ISlashRegistryEntry> invalid = new ArrayList<>();
+
+        map.values()
+            .forEach(c -> c.getList()
+                .forEach(x -> {
+                    ISlashRegistryEntry entry = (ISlashRegistryEntry) x;
+                    if (!entry.isRegistryEntryValid()) {
+                        invalid.add(entry);
+                    }
+                }));
+
+        invalid.forEach(x -> x.unregisterDueToInvalidity());
 
     }
 

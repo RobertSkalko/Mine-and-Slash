@@ -9,11 +9,11 @@ import com.robertx22.mine_and_slash.database.runes.base.BaseRuneItem;
 import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRuneWord;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRuneWord;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -83,7 +83,8 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
 
     @Override
     public int Weight() {
-        return this.getRarity().Weight();
+        return this.getRarity()
+            .Weight();
     }
 
     public String getRuneWordCombo() {
@@ -91,9 +92,30 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
         String text = "";
 
         for (BaseRuneItem item : runes()) {
-            text += item.name().toUpperCase();
+            text += item.name()
+                .toUpperCase();
         }
         return text;
+    }
+
+    @Override
+    public boolean isRegistryEntryValid() {
+
+        if (!checkStatModsValidity(this.mods())) {
+            return false;
+        }
+        if (runes().stream()
+            .filter(rune -> rune instanceof BaseUniqueRuneItem)
+            .count() > 1) {
+            System.out.println(GUID() + " needs more than 1 unique rune, runewords should not be able to require " + "more than 1.!");
+            return false;
+        }
+        if (runes().size() > 5) {
+            System.out.println("Can't have more than 5 runes required in a runeword");
+            return false;
+        }
+
+        return true;
     }
 
     public ITextComponent getRuneWordComboString() {
@@ -104,7 +126,8 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
 
         for (BaseRuneItem item : runes()) {
 
-            String runetext = item.name().toUpperCase();
+            String runetext = item.name()
+                .toUpperCase();
 
             if (current < runes().size() - 1) {
                 runetext += " + ";
@@ -123,7 +146,8 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
     }
 
     public boolean runesMatch(String word) {
-        return this.getRuneWordCombo().equals(word);
+        return this.getRuneWordCombo()
+            .equals(word);
     }
 
     @Override
@@ -132,11 +156,16 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
 
         json.add(
             "runes",
-            JsonUtils.stringListToJsonArray(runes().stream().map(x -> x.GUID()).collect(Collectors.toList()))
+            JsonUtils.stringListToJsonArray(runes().stream()
+                .map(x -> x.GUID())
+                .collect(Collectors.toList()))
         );
 
         JsonArray array = new JsonArray();
-        mods().stream().map(x -> x.toRegistryJson()).collect(Collectors.toList()).forEach(x -> array.add(x));
+        mods().stream()
+            .map(x -> x.toRegistryJson())
+            .collect(Collectors.toList())
+            .forEach(x -> array.add(x));
         json.add("mods", array);
 
         return json;
@@ -153,7 +182,8 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
         List<String> runes = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("runes"));
 
         List<StatMod> mods = new ArrayList<>();
-        json.getAsJsonArray("mods").forEach(x -> mods.add(StatMod.EMPTY.fromRegistryJson(x.getAsJsonObject())));
+        json.getAsJsonArray("mods")
+            .forEach(x -> mods.add(StatMod.EMPTY.fromRegistryJson(x.getAsJsonObject())));
 
         return new SerializableRuneword(rarity, weight, guid, mods, lang, runes);
     }

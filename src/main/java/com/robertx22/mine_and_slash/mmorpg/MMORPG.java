@@ -199,6 +199,7 @@ public class MMORPG {
         SlashRegistry.checkGuidValidity();
         ErrorChecks.getAll()
             .forEach(x -> x.check());
+        SlashRegistry.unregisterInvalidEntries();
 
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();

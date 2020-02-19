@@ -10,11 +10,11 @@ import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptySet;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptySet;
 import com.robertx22.mine_and_slash.saveclasses.WornSetData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -70,7 +70,15 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
         return new MinMax(StatPercent, StatPercent);
     }
 
-    ;
+    @Override
+    public boolean isRegistryEntryValid() {
+
+        if (!checkStatModsValidity(new ArrayList<>(AllMods().values()))) {
+            return false;
+        }
+
+        return true;
+    }
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -79,7 +87,8 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
 
     @Override
     public int Weight() {
-        return this.getRarity().Weight();
+        return this.getRarity()
+            .Weight();
     }
 
     public abstract HashMap<Integer, StatMod> AllMods();
@@ -95,7 +104,8 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
         List<StatMod> mods = new ArrayList();
 
         if (data.setGUID == this.GUID()) {
-            for (Entry<Integer, StatMod> mod : this.AllMods().entrySet()) {
+            for (Entry<Integer, StatMod> mod : this.AllMods()
+                .entrySet()) {
                 if (data.count >= mod.getKey()) {
                     mods.add(mod.getValue());
                 }
@@ -113,9 +123,11 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
 
         JsonObject map = new JsonObject();
 
-        AllMods().entrySet().forEach(x -> {
-            map.add(x.getKey() + "", x.getValue().toRegistryJson());
-        });
+        AllMods().entrySet()
+            .forEach(x -> {
+                map.add(x.getKey() + "", x.getValue()
+                    .toRegistryJson());
+            });
 
         json.add("mods", map);
 

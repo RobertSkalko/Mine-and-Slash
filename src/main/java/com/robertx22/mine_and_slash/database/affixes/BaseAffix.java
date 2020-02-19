@@ -8,10 +8,10 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -80,6 +80,16 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
     @Override
     public Rarity getRarity() {
         return Rarities.Gears.get(getRarityRank());
+    }
+
+    @Override
+    public boolean isRegistryEntryValid() {
+
+        if (!checkStatModsValidity(StatMods())) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
