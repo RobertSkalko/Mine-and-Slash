@@ -27,7 +27,7 @@ public class SerializedRune extends BaseRune {
         this.jewerly = jewerly;
         this.itemMap = ItemMap;
     }
-    
+
     @Override
     public String name() {
         return guid;

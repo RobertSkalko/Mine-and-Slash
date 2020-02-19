@@ -34,7 +34,7 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
     }
 
     public static ResourceLocation getResource(int rarity) {
-        return new ResourceLocation(Ref.MODID, "shield/normal_shield" + rarity);
+        return new ResourceLocation(Ref.MODID, "items/shields/normal_shield" + rarity);
     }
 
     @Override
