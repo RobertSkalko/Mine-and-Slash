@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.data_packs.runes;
 
 import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
+import com.robertx22.mine_and_slash.database.runes.base.RuneItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +16,7 @@ public class SerializedRune extends BaseRune {
     List<StatMod> armor;
     List<StatMod> jewerly;
 
-    public SerializedRune(int rarity, String guid, int weight, int tier, List<StatMod> weapon, List<StatMod> armor, List<StatMod> jewerly, HashMap<Integer, Item> ItemMap) {
+    public SerializedRune(int rarity, String guid, int weight, int tier, List<StatMod> weapon, List<StatMod> armor, List<StatMod> jewerly, HashMap<Integer, RuneItem> ItemMap) {
         super(rarity);
         this.guid = guid;
         this.weight = weight;

@@ -19,7 +19,6 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
@@ -32,11 +31,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class BaseRune implements IWeighted, ICurrencyItemEffect, IAutoLocName,
+public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
     ISerializedRegistryEntry<BaseRune>, ISerializable<BaseRune> {
 
     public int rarity;
-    public HashMap<Integer, Item> itemMap = new HashMap<>();
+    public HashMap<Integer, RuneItem> itemMap = new HashMap<>();
 
     public BaseRune(int rarity) {
         this.rarity = rarity;
@@ -87,7 +86,7 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect, IAutoL
         List<StatMod> armor = JsonUtils.getStatMods(json, "possible_armor_stats");
         List<StatMod> jewerly = JsonUtils.getStatMods(json, "possible_jewerly_stats");
 
-        HashMap<Integer, Item> itemMap = new HashMap<>();
+        HashMap<Integer, RuneItem> itemMap = new HashMap<>();
         JsonObject map = json.getAsJsonObject("item_id_per_rarity");
         for (RuneRarity rar : Rarities.Runes.getAllRarities()) {
             String id = rar.Rank() + "";
@@ -96,25 +95,20 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect, IAutoL
                 String itemid = map.get(id)
                     .getAsString();
                 Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemid));
-                itemMap.put(rar.Rank(), item);
+
+                itemMap.put(rar.Rank(), (RuneItem) item);
 
             }
         }
-        
+
         return new SerializedRune(rarity, guid, weight, tier, weapon, armor, jewerly, itemMap);
     }
 
-    @Override
-    public String locNameLangFileGUID() {
-        return genItemForRegistration(rarity).getRegistryName()
-            .toString();
+    public RuneItem genItemForRegistration(int rarity) {
+        return (RuneItem) new RuneItem(this).setRegistryName(Ref.MODID, genRegistryName(rarity));
     }
 
-    public Item genItemForRegistration(int rarity) {
-        return new RuneItem(this).setRegistryName(Ref.MODID, genRegistryName(rarity));
-    }
-
-    public Item getItemFromRegistry() {
+    public RuneItem getItemFromRegistry() {
         return itemMap.get(rarity);
     }
 
@@ -144,21 +138,6 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect, IAutoL
     @Override
     public int Tier() {
         return 0;
-    }
-
-    @Override
-    public String locNameForLangFile() {
-
-        Rarity rar = Rarities.Runes.get(rarity);
-
-        return rar.textFormatColor() + this.name()
-            .toUpperCase(Locale.ROOT) + " - " + rar.locNameForLangFile() + " Rune";
-
-    }
-
-    @Override
-    public AutoLocGroup locNameGroup() {
-        return AutoLocGroup.Runes;
     }
 
     @Override

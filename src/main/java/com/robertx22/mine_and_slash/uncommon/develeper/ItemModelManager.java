@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Bow;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.CrossBow;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
@@ -58,7 +59,7 @@ public class ItemModelManager extends ItemModelProvider {
             .forEach(x -> x.getItemsForRaritiesMap()
                 .values()
                 .forEach(i -> {
-                    if (x != Bow.INSTANCE && x != CrossBow.INSTANCE) {
+                    if (x != Bow.INSTANCE && x != CrossBow.INSTANCE && x != Shield.INSTANCE) {
                         if (x.GUID()
                             .contains("cloth") || x.GUID()
                             .contains("leather")) {
@@ -120,4 +121,5 @@ public class ItemModelManager extends ItemModelProvider {
     public ItemModelBuilder handheld(Item item, ResourceLocation texture) {
         return withExistingParent(name(item), "item/handheld").texture("layer0", texture);
     }
+
 }
