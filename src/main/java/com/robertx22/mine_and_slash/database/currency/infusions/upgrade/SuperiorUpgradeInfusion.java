@@ -15,7 +15,7 @@ public class SuperiorUpgradeInfusion extends BaseUpgradeInfusion {
 
     }
 
-    private static final String name = "superior_upgrade_infusion";
+    private static final String name = "currency/superior_upgrade_infusion";
 
     @ObjectHolder(Ref.MODID + ":" + name)
     public static final Item ITEM = null;

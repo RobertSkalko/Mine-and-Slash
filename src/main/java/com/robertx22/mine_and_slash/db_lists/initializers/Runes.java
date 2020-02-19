@@ -11,6 +11,7 @@ public class Runes implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
         List<BaseRuneItem> All = new ArrayList<BaseRuneItem>() {
             {
                 {

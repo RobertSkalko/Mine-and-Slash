@@ -39,8 +39,8 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
         p_225623_4_.rotate(this.renderManager.getCameraOrientation());
         p_225623_4_.rotate(Vector3f.YP.rotationDegrees(180.0F));
         this.itemRenderer.renderItem(((IMyRenderAsItem) p_225623_1_).getItem(),
-                                     ItemCameraTransforms.TransformType.GROUND, p_225623_6_,
-                                     OverlayTexture.DEFAULT_LIGHT, p_225623_4_, p_225623_5_
+            ItemCameraTransforms.TransformType.GROUND, p_225623_6_,
+            OverlayTexture.NO_OVERLAY, p_225623_4_, p_225623_5_
         );
         p_225623_4_.pop();
         super.render(p_225623_1_, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);

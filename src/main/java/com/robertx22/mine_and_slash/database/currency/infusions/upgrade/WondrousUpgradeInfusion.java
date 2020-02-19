@@ -13,7 +13,7 @@ public class WondrousUpgradeInfusion extends BaseUpgradeInfusion {
         super(name);
     }
 
-    private static final String name = "wondrous_upgrade_infusion";
+    private static final String name = "currency/wondrous_upgrade_infusion";
 
     @ObjectHolder(Ref.MODID + ":" + name)
     public static final Item ITEM = null;

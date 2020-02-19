@@ -13,7 +13,7 @@ public class StitchTextures {
     @SubscribeEvent
     public static void onStitch(TextureStitchEvent.Pre event) {
         if (event.getMap()
-            .getBasePath()
+            .getTextureLocation()
             .equals(AtlasTexture.LOCATION_BLOCKS_TEXTURE)) {
             for (int i = 0; i <= 5; i++) {
                 event.addSprite(NormalShield.getResource(i));

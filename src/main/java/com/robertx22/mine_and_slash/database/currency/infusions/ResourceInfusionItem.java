@@ -16,7 +16,7 @@ public class ResourceInfusionItem extends BaseInfusionItem {
 
     }
 
-    private static final String name = "resource_infusion";
+    private static final String name = "currency/resource_infusion";
 
     @ObjectHolder(Ref.MODID + ":" + name)
     public static final Item ITEM = null;

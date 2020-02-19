@@ -21,7 +21,7 @@ public class DefenseInfusionItem extends BaseInfusionItem {
 
     }
 
-    private static final String name = "defense_infusion";
+    private static final String name = "currency/defense_infusion";
 
     @ObjectHolder(Ref.MODID + ":" + name)
     public static final Item ITEM = null;

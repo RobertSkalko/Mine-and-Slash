@@ -67,9 +67,10 @@ public class HealthBarRenderer {
                 Int2ObjectMap<Entity> entitiesById = mc.world.entitiesById;
                 for (Entity entity : entitiesById.values()) {
                     if (entity != null && entity instanceof LivingEntity && entity != mc.player && entity.isInRangeToRender3d(
-                            renderingVector.getX(), renderingVector.getY(),
-                            renderingVector.getZ()
-                    ) && entity.isAlive() && entity.getRecursivePassengers().isEmpty())
+                        renderingVector.getX(), renderingVector.getY(),
+                        renderingVector.getZ()
+                    ) && entity.isAlive() && entity.getRecursivePassengers()
+                        .isEmpty())
                         renderHealthBar((LivingEntity) entity, partialTicks, cameraEntity, event.getMatrixStack());
                 }
 
@@ -104,7 +105,7 @@ public class HealthBarRenderer {
             {
                 float distance = en.getDistance(viewPoint);
                 if (distance > ClientContainer.INSTANCE.neatConfig.maxDistance.get() || !en.canEntityBeSeen(
-                        viewPoint) || entity.isInvisible())
+                    viewPoint) || entity.isInvisible())
                     break processing;
                 if (!ClientContainer.INSTANCE.neatConfig.showOnBosses.get() && !boss)
                     break processing;
@@ -120,7 +121,8 @@ public class HealthBarRenderer {
 
                 float percent = (int) ((health / maxHealth) * 100F);
 
-                EntityRendererManager renderManager = Minecraft.getInstance().getRenderManager();
+                EntityRendererManager renderManager = Minecraft.getInstance()
+                    .getRenderManager();
 
                 Vec3d pos = renderManager.info.getProjectedView();
 
@@ -139,13 +141,14 @@ public class HealthBarRenderer {
 
                 float renderPosX = (float) (x - view.getX());
                 float renderPosY =
-                        (float) (y + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get() - view
+                    (float) (y + en.getHeight() + ClientContainer.INSTANCE.neatConfig.heightAbove.get() - view
                         .getY());
                 float renderPosZ = (float) (z - view.getZ());
 
                 matrix.push();
 
-                Quaternion rot = renderManager.info.getRotation().copy();
+                Quaternion rot = renderManager.info.getRotation()
+                    .copy();
 
                 //  RenderSystem.rotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
 
@@ -172,7 +175,7 @@ public class HealthBarRenderer {
                 int bgHeight = ClientContainer.INSTANCE.neatConfig.backgroundHeight.get();
                 int barHeight = ClientContainer.INSTANCE.neatConfig.barHeight.get();
                 float size = boss ? ClientContainer.INSTANCE.neatConfig.plateSizeBoss.get() :
-                        ClientContainer.INSTANCE.neatConfig.plateSize
+                    ClientContainer.INSTANCE.neatConfig.plateSize
                         .get();
 
                 int r = 0;
@@ -193,9 +196,11 @@ public class HealthBarRenderer {
                 }
 
                 float s = 0.5F;
-                String name = I18n.format(en.getDisplayName().getFormattedText());
+                String name = I18n.format(en.getDisplayName()
+                    .getFormattedText());
                 if (en instanceof LivingEntity && en.hasCustomName())
-                    name = TextFormatting.ITALIC + en.getCustomName().toString();
+                    name = TextFormatting.ITALIC + en.getCustomName()
+                        .toString();
                 else if (en instanceof VillagerEntity)
                     name = I18n.format("entity.Villager.name");
 
@@ -207,27 +212,51 @@ public class HealthBarRenderer {
                 // Background
                 if (ClientContainer.INSTANCE.neatConfig.drawBackground.get()) {
                     builder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    builder.pos(-size - padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
-                    builder.pos(-size - padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
-                    builder.pos(size + padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
-                    builder.pos(size + padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
+                    builder.pos(-size - padding, -bgHeight, 0.0D)
+                        .color(0, 0, 0, 64)
+                        .endVertex();
+                    builder.pos(-size - padding, barHeight + padding, 0.0D)
+                        .color(0, 0, 0, 64)
+                        .endVertex();
+                    builder.pos(size + padding, barHeight + padding, 0.0D)
+                        .color(0, 0, 0, 64)
+                        .endVertex();
+                    builder.pos(size + padding, -bgHeight, 0.0D)
+                        .color(0, 0, 0, 64)
+                        .endVertex();
                     tessellator.draw();
                 }
 
                 // Gray Space
                 builder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                builder.pos(-size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
-                builder.pos(-size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
-                builder.pos(size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
-                builder.pos(size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
+                builder.pos(-size, 0, 0.0D)
+                    .color(127, 127, 127, 127)
+                    .endVertex();
+                builder.pos(-size, barHeight, 0.0D)
+                    .color(127, 127, 127, 127)
+                    .endVertex();
+                builder.pos(size, barHeight, 0.0D)
+                    .color(127, 127, 127, 127)
+                    .endVertex();
+                builder.pos(size, 0, 0.0D)
+                    .color(127, 127, 127, 127)
+                    .endVertex();
                 tessellator.draw();
 
                 // Health Bar
                 builder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                builder.pos(-size, 0, 0.0D).color(r, g, b, 127).endVertex();
-                builder.pos(-size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
-                builder.pos(healthSize * 2 - size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
-                builder.pos(healthSize * 2 - size, 0, 0.0D).color(r, g, b, 127).endVertex();
+                builder.pos(-size, 0, 0.0D)
+                    .color(r, g, b, 127)
+                    .endVertex();
+                builder.pos(-size, barHeight, 0.0D)
+                    .color(r, g, b, 127)
+                    .endVertex();
+                builder.pos(healthSize * 2 - size, barHeight, 0.0D)
+                    .color(r, g, b, 127)
+                    .endVertex();
+                builder.pos(healthSize * 2 - size, 0, 0.0D)
+                    .color(r, g, b, 127)
+                    .endVertex();
                 tessellator.draw();
 
                 RenderSystem.enableTexture();
@@ -255,13 +284,13 @@ public class HealthBarRenderer {
                     mc.fontRenderer.drawString(hpStr, 2, h, 0xFFFFFF);
                 if (ClientContainer.INSTANCE.neatConfig.showMaxHP.get())
                     mc.fontRenderer.drawString(maxHpStr,
-                                               (int) (size / (s * s1) * 2) - 2 - mc.fontRenderer.getStringWidth(
-                                                       maxHpStr), h, 0xFFFFFF
+                        (int) (size / (s * s1) * 2) - 2 - mc.fontRenderer.getStringWidth(
+                            maxHpStr), h, 0xFFFFFF
                     );
                 if (ClientContainer.INSTANCE.neatConfig.showPercentage.get())
                     mc.fontRenderer.drawString(percStr,
-                                               (int) (size / (s * s1)) - mc.fontRenderer.getStringWidth(percStr) / 2, h,
-                                               0xFFFFFFFF
+                        (int) (size / (s * s1)) - mc.fontRenderer.getStringWidth(percStr) / 2, h,
+                        0xFFFFFFFF
                     );
 
                 matrix.pop();
@@ -294,27 +323,33 @@ public class HealthBarRenderer {
     public static void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU, int intV) {
         try {
             Minecraft mc = Minecraft.getInstance();
-            IBakedModel iBakedModel = mc.getItemRenderer().getItemModelMesher().getItemModel(stack);
+            IBakedModel iBakedModel = mc.getItemRenderer()
+                .getItemModelMesher()
+                .getItemModel(stack);
 
-            TextureAtlasSprite textureAtlasSprite = mc.getTextureGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE)
-                    .apply(iBakedModel.getParticleTexture().getName());
+            TextureAtlasSprite textureAtlasSprite = mc.getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE)
+                .apply(iBakedModel.getParticleTexture()
+                    .getName());
 
-            mc.getTextureManager().bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
+            mc.getTextureManager()
+                .bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder buffer = tessellator.getBuffer();
             buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
 
             buffer.pos((double) (vertexX), (double) (vertexY + intV), 0.0D)
-                    .tex((float) textureAtlasSprite.getMinU(), (float) textureAtlasSprite.getMaxV())
-                    .endVertex();
-            buffer.pos((double) (vertexX + intU), (double) (vertexY + intV), 0.0D).
-                    tex((float) textureAtlasSprite.getMaxU(), (float) textureAtlasSprite.getMaxV()).endVertex();
+                .tex((float) textureAtlasSprite.getMinU(), (float) textureAtlasSprite.getMaxV())
+                .endVertex();
+            buffer.pos((double) (vertexX + intU), (double) (vertexY + intV), 0.0D)
+                .
+                    tex((float) textureAtlasSprite.getMaxU(), (float) textureAtlasSprite.getMaxV())
+                .endVertex();
             buffer.pos((double) (vertexX + intU), (double) (vertexY), 0.0D)
-                    .tex((float) textureAtlasSprite.getMaxU(), (float) textureAtlasSprite.getMinV())
-                    .endVertex();
+                .tex((float) textureAtlasSprite.getMaxU(), (float) textureAtlasSprite.getMinV())
+                .endVertex();
             buffer.pos((double) (vertexX), (double) (vertexY), 0.0D)
-                    .tex((float) textureAtlasSprite.getMinU(), (float) textureAtlasSprite.getMinV())
-                    .endVertex();
+                .tex((float) textureAtlasSprite.getMinU(), (float) textureAtlasSprite.getMinV())
+                .endVertex();
             tessellator.draw();
         } catch (Exception e) {
         }

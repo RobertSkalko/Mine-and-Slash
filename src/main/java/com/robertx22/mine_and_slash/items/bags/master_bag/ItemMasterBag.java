@@ -75,7 +75,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
             }
         }
 
-        return ActionResult.func_226248_a_(player.getHeldItemMainhand());
+        return ActionResult.resultFail(player.getHeldItemMainhand());
     }
 
     @Override
@@ -95,7 +95,8 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @Override

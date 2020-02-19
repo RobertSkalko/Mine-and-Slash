@@ -31,13 +31,14 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyItemEffect, IAutoLocName,
-        ISlashRegistryEntry<BaseRuneItem> {
+    ISlashRegistryEntry<BaseRuneItem> {
 
     public int rarity;
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @Override
@@ -51,7 +52,7 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     }
 
     public String genRegisryName() {
-        return "runes/" + name().toLowerCase(Locale.ROOT) + rarity;
+        return "runes/" + GUID() + "/" + rarity;
     }
 
     @Override
@@ -69,7 +70,8 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
         Rarity rar = Rarities.Runes.get(rarity);
 
-        return rar.textFormatColor() + this.name().toUpperCase() + " - " + rar.locNameForLangFile() + " Rune";
+        return rar.textFormatColor() + this.name()
+            .toUpperCase() + " - " + rar.locNameForLangFile() + " Rune";
 
     }
 
@@ -92,7 +94,8 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
 
     public BaseRuneItem(int rarity) {
 
-        super(new Properties().maxStackSize(1).defaultMaxDamage(0));
+        super(new Properties().maxStackSize(1)
+            .defaultMaxDamage(0));
         this.rarity = rarity;
 
     }
@@ -126,8 +129,8 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     @Override
     public List<BaseLocRequirement> requirements() {
         return Arrays.asList(
-                RuneEmptySlotReq.INSTANCE, OnlyOneUniqueRuneReq.getInstance(), RuneNoDuplicateReq.INSTANCE,
-                RuneLvlReq.INSTANCE
+            RuneEmptySlotReq.INSTANCE, OnlyOneUniqueRuneReq.getInstance(), RuneNoDuplicateReq.INSTANCE,
+            RuneLvlReq.INSTANCE
         );
     }
 
@@ -149,9 +152,9 @@ public abstract class BaseRuneItem extends Item implements IWeighted, ICurrencyI
     private List<StatMod> allElements(ElementalStatMod mod) {
 
         return (List<StatMod>) mod.generateAllPossibleStatVariations()
-                .stream()
-                .filter(x -> ((ElementalStatMod) x).element.isSingleElement)
-                .collect(Collectors.toList());
+            .stream()
+            .filter(x -> ((ElementalStatMod) x).element.isSingleElement)
+            .collect(Collectors.toList());
     }
 
     public List<StatMod> spellDamageFlats() {

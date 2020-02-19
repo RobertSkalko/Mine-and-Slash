@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceEggFeature;
 import com.robertx22.mine_and_slash.world_gen.structures.Random1ChunkDunStructure;
@@ -32,18 +32,18 @@ public class WorldGenRegisters {
     public static final int SMALL_DECO_CHANCE = 50;
 
     public static final ConfiguredFeature randomSurfaceChest = create(
-            new RandomSurfaceEggFeature(NoFeatureConfig::deserialize),
-            new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(1000)
+        new RandomSurfaceEggFeature(NoFeatureConfig::deserialize),
+        new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(1000)
     );
 
     public static final ConfiguredFeature smallRandomSurfaceDecoration = create(
-            new RandomSurfaceDecoration(NoFeatureConfig::deserialize),
-            new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(40)
+        new RandomSurfaceDecoration(NoFeatureConfig::deserialize),
+        new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(40)
     );
 
     public static final ConfiguredFeature smallRandomSurfaceTreasure = create(
-            new RandomSurfaceDecoration(NoFeatureConfig::deserialize),
-            new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(300)
+        new RandomSurfaceDecoration(NoFeatureConfig::deserialize),
+        new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(300)
     );
 
     public static Structure<NoFeatureConfig> towerStructure = null;
@@ -61,21 +61,22 @@ public class WorldGenRegisters {
 
             // only registerForgeConfigs world getMap where it can actually be used
             if (SlashRegistry.WorldProviders()
-                    .getAll()
-                    .values()
-                    .stream()
-                    .filter(iwp -> iwp.getBiome().equals(biome))
-                    .collect(Collectors.toList())
-                    .size() > 0) {
+                .getAll()
+                .values()
+                .stream()
+                .filter(iwp -> iwp.getBiome()
+                    .equals(biome))
+                .collect(Collectors.toList())
+                .size() > 0) {
 
                 add(biome, randomSurfaceChest);
                 add(biome, smallRandomSurfaceDecoration);
                 add(biome, smallRandomSurfaceTreasure);
 
                 ConfiguredFeature<?, ?> tower0 = towerStructure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
-                        .func_227228_a_(Placement.NOPE.func_227446_a_(IPlacementConfig.NO_PLACEMENT_CONFIG));
+                    .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
                 ConfiguredFeature<?, ?> dungeon0 = dungeon0Structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
-                        .func_227228_a_(Placement.NOPE.func_227446_a_(IPlacementConfig.NO_PLACEMENT_CONFIG));
+                    .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
                 biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, tower0);
                 biome.addStructure(towerStructure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
@@ -95,8 +96,10 @@ public class WorldGenRegisters {
         towerStructure = registerStructure(new TowerStructure(NoFeatureConfig::deserialize));
         dungeon0Structure = registerStructure(new Random1ChunkDunStructure(NoFeatureConfig::deserialize));
 
-        event.getRegistry().register(towerStructure);
-        event.getRegistry().register(dungeon0Structure);
+        event.getRegistry()
+            .register(towerStructure);
+        event.getRegistry()
+            .register(dungeon0Structure);
 
         register();
 
@@ -121,11 +124,11 @@ public class WorldGenRegisters {
     }
 
     public static <FC extends Feature<C>, C extends IFeatureConfig, P extends IPlacementConfig> ConfiguredFeature<C,
-            FC> create(
-            Feature feature, Placement<P> place, P placeConfig) {
+        FC> create(
+        Feature feature, Placement<P> place, P placeConfig) {
 
         return feature.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
-                .func_227228_a_(place.func_227446_a_(placeConfig));
+            .withPlacement(place.configure(placeConfig));
 
     }
 

@@ -28,10 +28,10 @@ public abstract class BaseProjectileRenderer<T extends Entity> extends EntityRen
         matrix.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(f2, en.prevRotationYaw, en.rotationYaw) - 90.0F));
         matrix.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(f2, en.prevRotationPitch, en.rotationPitch) + 90.0F));
         IVertexBuilder builder = ItemRenderer.getBuffer(buffer, this.model.getRenderType(this.getEntityTexture(en)),
-                                                        false, true
+            false, true
         );
 
-        this.model.render(matrix, builder, int1, OverlayTexture.DEFAULT_LIGHT, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.render(matrix, builder, int1, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         matrix.pop();
         super.render(en, f1, f2, matrix, buffer, int1);
     }

@@ -1,9 +1,15 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Bow;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.CrossBow;
+import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -19,9 +25,52 @@ public class ItemModelManager extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        ItemModelBuilder test = generated(Items.BLAZE_POWDER);
+        Item necklace = ItemNecklace.Items.get(0);
 
-        this.generatedModels.put(Items.BLAZE_POWDER.getRegistryName(), test);
+        SlashRegistry.CurrencyItems()
+            .getList()
+            .forEach(x -> generated(x));
+        SlashRegistry.Runes()
+            .getList()
+            .forEach(x -> {
+                for (RuneRarity rarity : Rarities.Runes.getNormalRarities()) {
+                    generated(x.byRarity(rarity.Rank()));
+                }
+            });
+        SlashRegistry.UniqueRunes()
+            .getList()
+            .forEach(x -> generated(x));
+        SlashRegistry.UniqueGears()
+            .getSerializable()
+            .forEach(x -> {
+                if (x.getGearSlot() != Bow.INSTANCE && x.getGearSlot() != CrossBow.INSTANCE) {
+                    if (x.getGearSlot()
+                        .slotType()
+                        .equals(GearItemSlot.GearSlotType.Weapon)) {
+                        handheld(x.getUniqueItem());
+                    } else {
+                        generated(x.getItemForRegistration());
+                    }
+                }
+            });
+        SlashRegistry.GearTypes()
+            .getList()
+            .forEach(x -> x.getItemsForRaritiesMap()
+                .values()
+                .forEach(i -> {
+                    if (x != Bow.INSTANCE && x != CrossBow.INSTANCE) {
+                        if (x.GUID()
+                            .contains("cloth") || x.GUID()
+                            .contains("leather")) {
+                            //generated(i, itemTexture(i), overlay(i));
+                        } else if (x.slotType()
+                            .equals(GearItemSlot.GearSlotType.Weapon)) {
+                            handheld(i);
+                        } else {
+                            generated(i);
+                        }
+                    }
+                }));
 
     }
 
@@ -58,6 +107,10 @@ public class ItemModelManager extends ItemModelProvider {
 
     public ResourceLocation itemTexture(Item item) {
         return modLoc("items/" + name(item));
+    }
+
+    public ResourceLocation overlay(Item item) {
+        return modLoc("items/" + name(item) + "_overlay");
     }
 
     public ItemModelBuilder handheld(Item item) {

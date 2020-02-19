@@ -9,7 +9,7 @@ import java.util.List;
 
 public class NormalUpgradeInfusion extends BaseUpgradeInfusion {
 
-    private static final String name = "normal_upgrade_infusion";
+    private static final String name = "currency/normal_upgrade_infusion";
 
     @ObjectHolder(Ref.MODID + ":" + name)
     public static final Item ITEM = null;

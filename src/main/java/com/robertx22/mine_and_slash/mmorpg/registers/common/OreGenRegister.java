@@ -33,10 +33,10 @@ public class OreGenRegister {
 
         CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 60);
         OreFeatureConfig minableConfig = new OreFeatureConfig(
-                OreFeatureConfig.FillerBlockType.NATURAL_STONE, block.getDefaultState(), 8);
+            OreFeatureConfig.FillerBlockType.NATURAL_STONE, block.getDefaultState(), 8);
 
         ConfiguredFeature feature = Feature.ORE.withConfiguration(minableConfig)
-                .func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(countConfig));
+            .withPlacement(Placement.COUNT_RANGE.configure(countConfig));
 
         for (Biome biome : Biome.BIOMES) {
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, feature);

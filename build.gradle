@@ -68,7 +68,6 @@ minecraft {
             environment 'MOD_CLASSES', "${project.file("out/production/resources").canonicalPath};${project.file("out/production/classes").canonicalPath}"
         }
 
-
         data {
             workingDirectory project.file('run')
 
@@ -76,15 +75,16 @@ minecraft {
             //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP,CORE,PULSARCONFIG'
 
             // Recommended logging level for the console
-            //property 'forge.logging.console.level', 'debug'
-
-            args '--mod', 'mmorpg', '--all', '--output', file('src/generated/resources/')
-
+            //property 'forge.logging.console.level', 'debug'           
+          
             mods {
                 mmorpg {
                     source sourceSets.main
                 }
             }
+			
+			  args '--mod', 'mmorpg', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
+			
         }
     }
 }

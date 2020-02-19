@@ -11,7 +11,7 @@ public class MagicMissileModel extends Model {
     private final ModelRenderer modelRenderer = new ModelRenderer(16, 16, 0, 0);
 
     public MagicMissileModel() {
-        super(RenderType::entitySolid);
+        super(RenderType::getEntitySolid);
 
         modelRenderer.setRotationPoint(0.0F, 24.0F, 0.0F);
         modelRenderer.addBox(0, 0, -3.0F, -4.0F, 0.0F, 3, 3, 5, 0.0F);
@@ -25,6 +25,6 @@ public class MagicMissileModel extends Model {
     public void render(MatrixStack matrix, IVertexBuilder vertex, int p_225598_3_, int p_225598_4_, float p_225598_5_,
                        float p_225598_6_, float p_225598_7_, float p_225598_8_) {
         this.modelRenderer.render(
-                matrix, vertex, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
+            matrix, vertex, p_225598_3_, p_225598_4_, p_225598_5_, p_225598_6_, p_225598_7_, p_225598_8_);
     }
 }
