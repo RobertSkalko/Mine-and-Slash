@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
-import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
+import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;

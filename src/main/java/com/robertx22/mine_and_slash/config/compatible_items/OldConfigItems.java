@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
 import com.robertx22.mine_and_slash.config.base.IConfig;
-import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
+import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 

@@ -27,7 +27,7 @@ import java.util.List;
 public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
     static ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(
-            Ref.MODID, "textures/gui/hotbar_setup/window.png");
+        Ref.MODID, "textures/gui/hotbar_setup/window.png");
     public Minecraft mc;
 
     static int x = 212;
@@ -76,7 +76,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         y = guiTop + 80;
 
         for (PlayerSpellsData.Hotbar bar : Arrays.asList(
-                PlayerSpellsData.Hotbar.FIRST, PlayerSpellsData.Hotbar.SECOND)) {
+            PlayerSpellsData.Hotbar.FIRST, PlayerSpellsData.Hotbar.SECOND)) {
 
             y += 50;
             x = guiLeft + 55;
@@ -101,7 +101,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         drawBackground(ticks, x, y);
 
         drawText();
-        
+
         super.render(x, y, ticks);
 
         this.buttons.forEach(b -> b.renderToolTip(x, y));
@@ -128,7 +128,9 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
     }
 
     protected void drawBackground(float partialTicks, int x, int y) {
-        Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 256);
 
@@ -152,9 +154,9 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         public static int ySize = 20;
 
         static ResourceLocation NORMAL_TEX = new ResourceLocation(
-                Ref.MODID, "textures/gui/hotbar_setup/hotbar_button.png");
+            Ref.MODID, "textures/gui/hotbar_setup/hotbar_button.png");
         static ResourceLocation PICKED_TEX = new ResourceLocation(
-                Ref.MODID, "textures/gui/hotbar_setup/picked_bar.png");
+            Ref.MODID, "textures/gui/hotbar_setup/picked_bar.png");
 
         int number;
         PlayerSpellsData.Hotbar hotbar;
@@ -191,7 +193,9 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         @Nullable
         public BaseSpell getSpell() {
-            return Load.spells(Minecraft.getInstance().player).getSpellData().getSpellByKeybind(number, hotbar);
+            return Load.spells(Minecraft.getInstance().player)
+                .getSpellData()
+                .getSpellByKeybind(number, hotbar);
 
         }
 
@@ -201,9 +205,11 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             Minecraft mc = Minecraft.getInstance();
 
             if (SpellHotbatSetupScreen.barBeingPicked == this) {
-                mc.getTextureManager().bindTexture(PICKED_TEX);
+                mc.getTextureManager()
+                    .bindTexture(PICKED_TEX);
             } else {
-                mc.getTextureManager().bindTexture(NORMAL_TEX);
+                mc.getTextureManager()
+                    .bindTexture(NORMAL_TEX);
             }
 
             RenderSystem.disableDepthTest();
@@ -215,7 +221,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             BaseSpell spell = getSpell();
 
             if (spell != null) {
-                RenderUtils.renderIcon(spell.getIcon(), this.x + 2, this.y + 2);
+                RenderUtils.render16Icon(spell.getIcon(), this.x + 2, this.y + 2);
             }
         }
 
@@ -264,7 +270,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             //super.renderButton(x, y, ticks);
 
             if (spell != null && spell.getIcon() != null) {
-                RenderUtils.renderIcon(spell.getIcon(), this.x, this.y);
+                RenderUtils.render16Icon(spell.getIcon(), this.x, this.y);
             }
         }
 

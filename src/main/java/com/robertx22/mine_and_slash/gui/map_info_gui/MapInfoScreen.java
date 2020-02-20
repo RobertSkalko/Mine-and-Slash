@@ -56,14 +56,16 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
 
         if (data.isMapActive()) {
             List<ITextComponent> questTooltip = new ArrayList<>();
-            questTooltip.addAll(data.getMap().getTooltip());
+            questTooltip.addAll(data.getMap()
+                .getTooltip());
 
             addButton(new ItemButton(
-                    new ItemStack(ItemMap.Items.getOrDefault(data.getMap().rarity, ItemMap.Items.get(0))), questTooltip,
-                    mapX, mapY
+                new ItemStack(ItemMap.Items.getOrDefault(data.getMap().rarity, ItemMap.Items.get(0))), questTooltip,
+                mapX, mapY
             ));
 
-            QuestSaveData questData = Load.quests(mc.player).getMapQuestData();
+            QuestSaveData questData = Load.quests(mc.player)
+                .getMapQuestData();
 
             if (questData != null) {
 
@@ -72,8 +74,10 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
                 ResourceLocation icon = new ResourceLocation("");
 
                 for (QuestTaskData task : questData.tasks) {
-                    taskTooltip.addAll(task.getQuest().getTooltip(task));
-                    icon = task.getQuest().icon();
+                    taskTooltip.addAll(task.getQuest()
+                        .getTooltip(task));
+                    icon = task.getQuest()
+                        .icon();
                 }
 
                 addButton(new ItemButton(icon, taskTooltip, questX, questY));
@@ -103,7 +107,8 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
 
         GuiUtils.renderScaledText(guiLeft + x / 2, guiTop + 15, 1.6D, title, TextFormatting.YELLOW);
 
-        String timeLeft = "Time left: " + Load.playerMapData(mc.player).getMinutesLeft() + " minutes";
+        String timeLeft = "Time left: " + Load.playerMapData(mc.player)
+            .getMinutesLeft() + " minutes";
 
         GuiUtils.renderScaledText(guiLeft + x / 2, guiTop + 50, 1.5D, timeLeft, TextFormatting.AQUA);
 
@@ -116,7 +121,9 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
     }
 
     protected void drawBackground(float partialTicks, int x, int y) {
-        Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 512);
 
@@ -163,9 +170,10 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
         @Override
         public void renderButton(int x, int y, float ticks) {
             if (stack != null) {
-                mc.getItemRenderer().renderItemAndEffectIntoGUI(stack, this.x, this.y);
+                mc.getItemRenderer()
+                    .renderItemAndEffectIntoGUI(stack, this.x, this.y);
             } else {
-                RenderUtils.renderIcon(icon, this.x, this.y);
+                RenderUtils.render16Icon(icon, this.x, this.y);
             }
         }
 
@@ -174,7 +182,7 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
             if (GuiUtils.isInRect(this.x, this.y, xSize, ySize, x, y)) {
 
                 MapInfoScreen.this.renderTooltip(
-                        TooltipUtils.compsToStrings(tooltip), x, y, Minecraft.getInstance().fontRenderer);
+                    TooltipUtils.compsToStrings(tooltip), x, y, Minecraft.getInstance().fontRenderer);
 
             }
         }

@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.onevent.data_gen;
 
-import com.robertx22.mine_and_slash.data_packs.affixes.AffixDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItemDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.runes.RuneDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.runewords.RunewordDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.sets.SetDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.unique_gears.UniqueGearDatapackManager;
+import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
+import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.MyAdvProvider;
-import com.robertx22.mine_and_slash.uncommon.develeper.ItemModelManager;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 

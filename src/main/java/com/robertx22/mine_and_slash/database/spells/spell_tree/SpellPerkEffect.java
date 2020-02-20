@@ -3,10 +3,12 @@ package com.robertx22.mine_and_slash.database.spells.spell_tree;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerkEffect;
+import com.robertx22.mine_and_slash.database.talent_tree.PerkType;
+import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -52,6 +54,18 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         setupTexture(spell);
 
         this.registerToSlashRegistry();
+    }
+
+    @Override
+    public void render(int x, int y) {
+        if (hasTexture) {
+            if (isGameChanger && this.getPerkType()
+                .equals(PerkType.MAJOR)) {
+                RenderUtils.render32Icon(TEXTURE, x, y);
+            } else {
+                RenderUtils.render16Icon(this.TEXTURE, x, y);
+            }
+        }
     }
 
     public boolean isGameChanger() {

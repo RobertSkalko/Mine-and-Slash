@@ -108,8 +108,8 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
     public void refreshAllocatedStatus() {
 
         this.buttons.stream()
-                .filter(x -> x instanceof PerkButton)
-                .forEach(y -> ((PerkButton) y).status = ((PerkButton) y).perk.getStatus(capData));
+            .filter(x -> x instanceof PerkButton)
+            .forEach(y -> ((PerkButton) y).status = ((PerkButton) y).perk.getStatus(capData));
 
     }
 
@@ -199,6 +199,8 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
     }
 
+    public float maxZoomOut = 0.23F;
+
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
 
@@ -209,7 +211,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
             this.zoom += 0.1F;
         }
 
-        this.zoom = MathHelper.clamp(zoom, 0.23F, 1);
+        this.zoom = MathHelper.clamp(zoom, maxZoomOut, 1);
 
         return true;
 
@@ -227,7 +229,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
 
             if (button.isInsideSlot(ctx, mouseX, mouseY)) {
                 this.renderTooltip(TooltipUtils.compsToStrings(button.perk.effect.GetTooltipString(info)), mouseX,
-                                   mouseY, mc.fontRenderer
+                    mouseY, mc.fontRenderer
                 );
             }
         });
@@ -262,12 +264,14 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
         for (PerkConnection connection : connections) {
 
             Optional<PerkButton> but1 = list.stream()
-                    .filter(button -> button.perk.GUID().equals(connection.one.GUID()))
-                    .findAny();
+                .filter(button -> button.perk.GUID()
+                    .equals(connection.one.GUID()))
+                .findAny();
 
             Optional<PerkButton> but2 = list.stream()
-                    .filter(button -> button.perk.GUID().equals(connection.two.GUID()))
-                    .findAny();
+                .filter(button -> button.perk.GUID()
+                    .equals(connection.two.GUID()))
+                .findAny();
 
             if (but1.isPresent() && but2.isPresent()) {
                 conns.add(new PerkConnectionRender(but1.get(), but2.get(), connection));
@@ -281,7 +285,9 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
         PerkScreenContext ctx = new PerkScreenContext(this);
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        Minecraft.getInstance().getTextureManager().bindTexture(getLineTexture());
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(getLineTexture());
 
         for (PerkConnectionRender c : this.buttonConnections) {
             renderConnection(c.perk1, c.perk2, c.connection, ctx);
@@ -352,7 +358,9 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
             int offsetX = mc.mainWindow.getScaledWidth() / 2 - sizeX() / 2;
             int offsetY = mc.mainWindow.getScaledHeight() / 2 - sizeY() / 2;
-            Minecraft.getInstance().getTextureManager().bindTexture(getSpaceTexture());
+            Minecraft.getInstance()
+                .getTextureManager()
+                .bindTexture(getSpaceTexture());
             blit(0, 0, 0, 0.0F, 0.0F, 5000, 5000, 5000, 5000);
 
             RenderSystem.scaled(antiScale, antiScale, antiScale);
@@ -371,7 +379,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
         String str = "Points (LMB): " + this.capData.getFreePoints(unitData);
 
         mc.fontRenderer.drawStringWithShadow(
-                str, offsetX, offsetY + mc.fontRenderer.FONT_HEIGHT + 5, TextFormatting.GREEN.getColor());
+            str, offsetX, offsetY + mc.fontRenderer.FONT_HEIGHT + 5, TextFormatting.GREEN.getColor());
 
     }
 }

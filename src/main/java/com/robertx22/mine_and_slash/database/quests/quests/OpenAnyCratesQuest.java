@@ -26,7 +26,7 @@ public class OpenAnyCratesQuest extends BaseOpenCratesQuest {
 
     @Override
     public float amountRequired() {
-        return 8;
+        return 7;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class OpenAnyCratesQuest extends BaseOpenCratesQuest {
 
     @Override
     public int minutes() {
-        return 35;
+        return 40;
     }
 
     @Override

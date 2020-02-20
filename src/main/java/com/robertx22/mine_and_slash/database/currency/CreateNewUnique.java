@@ -119,4 +119,5 @@ public class CreateNewUnique extends CurrencyItem implements ICurrencyItemEffect
             .build();
 
     }
+
 }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.registry;
 
-import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItem;
+import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;

@@ -3,12 +3,12 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.data_packs.affixes.AffixDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.compatible_items.CompatibleItemDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.runes.RuneDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.runewords.RunewordDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.sets.SetDataPackManager;
-import com.robertx22.mine_and_slash.data_packs.unique_gears.UniqueGearDatapackManager;
+import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
@@ -59,7 +59,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = false;
 
     public static boolean statEffectDebuggingEnabled() {
         return false && RUN_DEV_TOOLS;

@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.gui.spell_perk_tree;
 
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.gui.bases.BasePerkTreeScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.PerkButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellPerksData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -18,6 +18,8 @@ public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerk
 
     public SpellPerkTreeScreen() {
         super();
+
+        this.maxZoomOut = 0.5F;
     }
 
     @Override
@@ -59,7 +61,8 @@ public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerk
     public void init(Minecraft mc, int x, int y) {
         super.init(mc, x, y);
 
-        for (SpellPerk perk : SlashRegistry.SpellPerks().getList()) {
+        for (SpellPerk perk : SlashRegistry.SpellPerks()
+            .getList()) {
             this.addButton(new PerkButton(perk.getStatus(capData), perk, unitData));
         }
 
@@ -73,7 +76,7 @@ public class SpellPerkTreeScreen extends BasePerkTreeScreen<SpellPerk, SpellPerk
     public boolean shouldAlert() {
         try {
             return Load.spells(Minecraft.getInstance().player)
-                    .getFreePoints(Load.Unit(Minecraft.getInstance().player)) > 0;
+                .getFreePoints(Load.Unit(Minecraft.getInstance().player)) > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }

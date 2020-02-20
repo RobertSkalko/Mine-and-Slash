@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.requirements;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_packs.JsonUtils;
+import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializablePart;

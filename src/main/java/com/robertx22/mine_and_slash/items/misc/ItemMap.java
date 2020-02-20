@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.items.misc;
 
+import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
+import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
@@ -15,7 +17,7 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.HashMap;
 
-public class ItemMap extends Item implements IAutoLocName {
+public class ItemMap extends Item implements IAutoLocName, IAutoModel {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     int rarity = 0;
@@ -23,6 +25,11 @@ public class ItemMap extends Item implements IAutoLocName {
     public ItemMap(int rarity) {
         super(new Properties());
         this.rarity = rarity;
+    }
+
+    @Override
+    public void generateModel(ItemModelManager manager) {
+        manager.generated(this);
     }
 
     public static boolean createMapPortal(DimensionType type, BlockPos pos, World world, MapItemData data) {
@@ -47,17 +54,22 @@ public class ItemMap extends Item implements IAutoLocName {
         spawnFrameBlock(world, pos.east());
         spawnFrameBlock(world, pos.west());
 
-        spawnFrameBlock(world, pos.south().east());
-        spawnFrameBlock(world, pos.south().west());
-        spawnFrameBlock(world, pos.north().east());
-        spawnFrameBlock(world, pos.north().west());
+        spawnFrameBlock(world, pos.south()
+            .east());
+        spawnFrameBlock(world, pos.south()
+            .west());
+        spawnFrameBlock(world, pos.north()
+            .east());
+        spawnFrameBlock(world, pos.north()
+            .west());
 
         return spawnPortalBlock(world, pos, type);
 
     }
 
     private static boolean spawnPortalBlock(World world, BlockPos pos, DimensionType type) {
-        Block block = world.getBlockState(pos).getBlock();
+        Block block = world.getBlockState(pos)
+            .getBlock();
 
         if (block.equals(Blocks.AIR) || block.equals(BlockRegister.PORTAL_BLOCK)) {
 
@@ -73,7 +85,8 @@ public class ItemMap extends Item implements IAutoLocName {
 
     private static void spawnFrameBlock(World world, BlockPos pos) {
 
-        Block block = world.getBlockState(pos).getBlock();
+        Block block = world.getBlockState(pos)
+            .getBlock();
         if (block.equals(Blocks.AIR) || block.equals(FRAME_BLOCK)) {
 
             world.setBlockState(pos, FRAME_BLOCK.getDefaultState(), 2);
@@ -87,12 +100,14 @@ public class ItemMap extends Item implements IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @Override
     public String locNameForLangFile() {
-        return Rarities.Maps.get(this.rarity).Color() + "Adventure Map";
+        return Rarities.Maps.get(this.rarity)
+            .Color() + "Adventure Map";
     }
 
     @Override

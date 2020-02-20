@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.runes.base;
 
+import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
+import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -16,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class RuneItem extends Item implements IAutoLocName, ICurrencyItemEffect {
+public class RuneItem extends Item implements IAutoLocName, ICurrencyItemEffect, IAutoModel {
 
     public int rarity;
     public String rune;
@@ -27,6 +29,11 @@ public class RuneItem extends Item implements IAutoLocName, ICurrencyItemEffect 
         this.rarity = rarity;
         this.rune = rune.GUID();
 
+    }
+
+    @Override
+    public void generateModel(ItemModelManager manager) {
+        manager.generated(this);
     }
 
     @Override

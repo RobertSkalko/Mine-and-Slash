@@ -1,12 +1,14 @@
 package com.robertx22.mine_and_slash.database.currency;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
+import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
@@ -32,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class CurrencyItem extends Item implements IAddsInstability, ISlashRegistryEntry<CurrencyItem>,
-        ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName {
+    ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName, IAutoModel {
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 
@@ -43,6 +45,11 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
     public CurrencyItem(String name) {
         super(new ItemDefault().maxStackSize(64));
         RegisterItemUtils.RegisterItemName(this, name);
+    }
+
+    @Override
+    public void generateModel(ItemModelManager manager) {
+        manager.generated(this);
     }
 
     @Override
@@ -68,7 +75,8 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
 
     @Override
     public String locDescLangFileGUID() {
-        return this.getRegistryName().toString() + ".desc";
+        return this.getRegistryName()
+            .toString() + ".desc";
     }
 
     @Override
@@ -83,7 +91,8 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -94,13 +103,17 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
         if (this instanceof IAutoLocMultiLore) {
             IAutoLocMultiLore auto = (IAutoLocMultiLore) this;
             for (ITextComponent comp : auto.getComponents()) {
-                tooltip.add(Styles.GREENCOMP().appendText("'").appendSibling(comp).appendText("'"));
+                tooltip.add(Styles.GREENCOMP()
+                    .appendText("'")
+                    .appendSibling(comp)
+                    .appendText("'"));
             }
         }
 
         if (this instanceof IAutoLocDesc) {
             IAutoLocDesc auto = (IAutoLocDesc) this;
-            tooltip.add(Styles.YELLOWCOMP().appendSibling(auto.locDesc()));
+            tooltip.add(Styles.YELLOWCOMP()
+                .appendSibling(auto.locDesc()));
         }
 
         tooltip.add(ItemType.getTooltipString(this.itemTypesUsableOn));
@@ -112,11 +125,13 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
         TooltipUtils.addEmpty(tooltip);
 
         if (this instanceof IAddsInstability && ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM.get()) {
-            tooltip.add(Styles.REDCOMP().appendText("Adds " + this.instabilityAddAmount() + " Instability"));
+            tooltip.add(Styles.REDCOMP()
+                .appendText("Adds " + this.instabilityAddAmount() + " Instability"));
         }
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Styles.BLUECOMP().appendSibling(Words.Item_modifiable_in_station.locName()));
+        tooltip.add(Styles.BLUECOMP()
+            .appendSibling(Words.Item_modifiable_in_station.locName()));
 
         TooltipUtils.addEmpty(tooltip);
 

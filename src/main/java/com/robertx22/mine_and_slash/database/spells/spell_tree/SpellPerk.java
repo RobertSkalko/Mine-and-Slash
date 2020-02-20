@@ -11,7 +11,9 @@ public class SpellPerk extends BasePerk<SpellPerk, IPerkCap> {
     }
 
     public void render(int x, int y) {
-        this.effect.render(x, y);
+
+        effect.render(x, y);
+
     }
 
     @Override

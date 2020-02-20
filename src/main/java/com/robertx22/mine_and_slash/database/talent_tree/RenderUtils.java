@@ -9,9 +9,18 @@ import java.util.List;
 
 public class RenderUtils {
 
-    public static void renderIcon(ResourceLocation tex, int x, int y) {
-        Minecraft.getInstance().getTextureManager().bindTexture(tex);
+    public static void render16Icon(ResourceLocation tex, int x, int y) {
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(tex);
         AbstractGui.blit(x, y, 0, 0, 16, 16, 16, 16);
+    }
+
+    public static void render32Icon(ResourceLocation tex, int x, int y) {
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(tex);
+        AbstractGui.blit(x - 8, y - 8, 0, 0, 32, 32, 32, 32);
     }
 
     public static void renderIcons(List<ExactStatData> list, int x, int y) {
@@ -21,8 +30,9 @@ public class RenderUtils {
         for (ExactStatData stat : list) {
 
             Minecraft.getInstance()
-                    .getTextureManager()
-                    .bindTexture(stat.getStat().getIconLocation());
+                .getTextureManager()
+                .bindTexture(stat.getStat()
+                    .getIconLocation());
 
             AbstractGui.blit(x, y, 0, 0, 16, 16, 16, 16);
 

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.sets;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_packs.sets.SerializableSet;
+import com.robertx22.mine_and_slash.data_generation.sets.SerializableSet;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;

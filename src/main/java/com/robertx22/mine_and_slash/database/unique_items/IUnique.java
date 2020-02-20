@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.unique_items;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_packs.JsonUtils;
-import com.robertx22.mine_and_slash.data_packs.unique_gears.SerializableUniqueGear;
+import com.robertx22.mine_and_slash.data_generation.JsonUtils;
+import com.robertx22.mine_and_slash.data_generation.unique_gears.SerializableUniqueGear;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;

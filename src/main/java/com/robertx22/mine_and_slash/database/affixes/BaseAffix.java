@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_packs.JsonUtils;
-import com.robertx22.mine_and_slash.data_packs.affixes.SerializableAffix;
+import com.robertx22.mine_and_slash.data_generation.JsonUtils;
+import com.robertx22.mine_and_slash.data_generation.affixes.SerializableAffix;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.StatMod;

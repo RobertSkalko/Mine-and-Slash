@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -91,7 +91,8 @@ public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlas
         if (after > before) {
             if (!Screen.hasAltDown()) {
                 list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(
-                        Words.PressAltForStatInfo.locName()).appendText("]"));
+                    Words.PressAltForStatInfo.locName())
+                    .appendText("]"));
             }
         }
 
@@ -103,18 +104,20 @@ public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlas
         exactStats.forEach(x -> x.applyStats(data));
     }
 
+    @Override
     public void render(int x, int y) {
-
-        if (hasTexture) {
-            RenderUtils.renderIcon(this.TEXTURE, x, y);
-        } else {
-
+        if (!hasTexture) {
             if (this.exactStats.size() > 1) {
                 RenderUtils.renderIcons(exactStats, x, y);
             }
-
+        } else {
+            if (isGameChanger && this.getPerkType()
+                .equals(PerkType.MAJOR)) {
+                RenderUtils.render32Icon(TEXTURE, x, y);
+            } else {
+                RenderUtils.render16Icon(this.TEXTURE, x, y);
+            }
         }
-
     }
 
     @Override

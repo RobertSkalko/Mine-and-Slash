@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.runewords;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_packs.JsonUtils;
-import com.robertx22.mine_and_slash.data_packs.runewords.SerializableRuneword;
+import com.robertx22.mine_and_slash.data_generation.JsonUtils;
+import com.robertx22.mine_and_slash.data_generation.runewords.SerializableRuneword;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRune;

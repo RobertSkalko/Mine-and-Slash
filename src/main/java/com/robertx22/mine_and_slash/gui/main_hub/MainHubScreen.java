@@ -27,7 +27,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
     ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/main_hub/window.png");
     public static ResourceLocation EXLAMATION_MARK_TEX = new ResourceLocation(
-            Ref.MODID, "textures/gui/main_hub/exclamation_mark.png");
+        Ref.MODID, "textures/gui/main_hub/exclamation_mark.png");
 
     public Minecraft mc;
 
@@ -95,7 +95,9 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
     }
 
     protected void drawBackground(float partialTicks, int x, int y) {
-        Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 512);
 
@@ -124,7 +126,8 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         public Button(INamedScreen screen, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, buttonLoc, (button) -> {
-                Minecraft.getInstance().displayGuiScreen((Screen) screen);
+                Minecraft.getInstance()
+                    .displayGuiScreen((Screen) screen);
 
             });
 
@@ -141,16 +144,17 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         public void renderButton(int x, int y, float ticks) {
             super.renderButton(x, y, ticks);
 
-            RenderUtils.renderIcon(screen.iconLocation(), this.x + 9, this.y + 7);
+            RenderUtils.render16Icon(screen.iconLocation(), this.x + 9, this.y + 7);
 
             if (shouldAlert) {
-                RenderUtils.renderIcon(EXLAMATION_MARK_TEX, this.x + 5, this.y + 7);
+                RenderUtils.render16Icon(EXLAMATION_MARK_TEX, this.x + 5, this.y + 7);
             }
 
-            String str = screen.screenName().translate();
+            String str = screen.screenName()
+                .translate();
 
             Minecraft.getInstance().fontRenderer.drawStringWithShadow(
-                    str, this.x + 30, this.y + 10, TextFormatting.GREEN.getColor());
+                str, this.x + 30, this.y + 10, TextFormatting.GREEN.getColor());
         }
 
     }

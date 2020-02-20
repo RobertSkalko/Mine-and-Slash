@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.runes.base;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_packs.JsonUtils;
-import com.robertx22.mine_and_slash.data_packs.runes.SerializedRune;
+import com.robertx22.mine_and_slash.data_generation.JsonUtils;
+import com.robertx22.mine_and_slash.data_generation.runes.SerializedRune;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.*;

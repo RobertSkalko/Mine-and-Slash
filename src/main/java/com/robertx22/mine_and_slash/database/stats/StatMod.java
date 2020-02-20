@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_packs.statmods.SerializableStatMod;
+import com.robertx22.mine_and_slash.data_generation.statmods.SerializableStatMod;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;

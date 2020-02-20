@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 public abstract class BasePerkEffect implements ITooltipList {
 
     protected String guid;
-    protected ResourceLocation TEXTURE;
+    public ResourceLocation TEXTURE;
 
     public PerkType type = PerkType.SMALL;
     public boolean hasTexture = false;
@@ -29,7 +29,8 @@ public abstract class BasePerkEffect implements ITooltipList {
 
     public void render(int x, int y) {
         if (hasTexture) {
-            RenderUtils.renderIcon(this.TEXTURE, x, y);
+
+            RenderUtils.render16Icon(this.TEXTURE, x, y);
         }
     }
 

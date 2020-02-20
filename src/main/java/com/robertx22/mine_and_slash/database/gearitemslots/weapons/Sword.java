@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.SwordWeapon
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.item.Item;
+import net.minecraft.item.SwordItem;
 
 import java.util.HashMap;
 
@@ -40,6 +41,11 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
     @Override
     public String GUID() {
         return "sword";
+    }
+
+    @Override
+    public boolean isGearOfThisType(Item item) {
+        return item instanceof SwordItem;
     }
 
     @Override

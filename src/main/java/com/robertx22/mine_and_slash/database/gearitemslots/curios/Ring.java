@@ -2,12 +2,12 @@ package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemRing;
 import net.minecraft.item.Item;
 
@@ -69,8 +69,11 @@ public class Ring extends GearItemSlot {
     }
 
     @Override
-    public boolean isGearOfThisType(Item item) {
-        return false;
+    public boolean isGearOfThisType(Item item) { // TODO unsure if this works
+        return item.getTags()
+            .stream()
+            .anyMatch(x -> x.toString()
+                .contains("ring"));
     }
 
     @Override
