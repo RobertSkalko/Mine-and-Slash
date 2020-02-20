@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
 
-import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -15,8 +14,8 @@ public class SwordWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public float GetEnergyCost(int lvl) {
-        return Energy.getInstance().calculateScalingStatGrowth(2F, lvl);
+    public float energyCostLevelOne() {
+        return 2;
     }
 
     @Override

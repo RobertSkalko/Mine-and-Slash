@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
 
-import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -18,10 +17,8 @@ public class BowWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public float GetEnergyCost(int lvl) {
-
-        return Energy.getInstance().calculateScalingStatGrowth(18, lvl);
-
+    public float energyCostLevelOne() {
+        return 18;
     }
 
     @Override

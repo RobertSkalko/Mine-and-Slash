@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
 
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -22,8 +21,8 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public float GetEnergyCost(int lvl) {
-        return Energy.getInstance().calculateScalingStatGrowth(10, lvl);
+    public float energyCostLevelOne() {
+        return 10;
     }
 
     @Override
@@ -37,20 +36,21 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     public boolean Attack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData unitsource,
                           UnitData targetUnit) {
 
-        int num = (int) unitsource.getUnit().getCreateStat(PhysicalDamage.GUID).val;
+        int num = (int) unitsource.getUnit()
+            .getCreateStat(PhysicalDamage.GUID).val;
 
         for (LivingEntity en : EntityFinder.start(source, LivingEntity.class, target.getPositionVector())
-                .radius(radius)
-                .build()) {
+            .radius(radius)
+            .build()) {
 
             if (en.equals(target)) {
                 DamageEffect dmg = new DamageEffect(event, source, en, num, unitsource, targetUnit,
-                                                    EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
+                    EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
                 );
                 dmg.Activate();
             } else {
                 DamageEffect dmg = new DamageEffect(null, source, en, num, unitsource, targetUnit,
-                                                    EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
+                    EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
                 );
                 dmg.Activate();
             }

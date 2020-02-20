@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
 
-import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -21,14 +19,13 @@ public class StaffWeaponMechanic extends WeaponMechanic {
     }
 
     @Override
-    public float GetEnergyCost(int lvl) {
-        return Energy.getInstance().calculateScalingStatGrowth(7, lvl);
-
+    public float energyCostLevelOne() {
+        return 7;
     }
 
     @Override
-    public float GetManaCost(int lvl) {
-        return Mana.getInstance().calculateScalingStatGrowth(2, lvl);
+    public float manaCostLevelOne() {
+        return 2;
     }
 
     @Override
