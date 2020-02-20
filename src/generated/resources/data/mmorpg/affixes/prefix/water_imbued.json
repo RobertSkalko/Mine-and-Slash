@@ -23,9 +23,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "water_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "water_spell_to_attack_dmg_flat"
   ]
 }

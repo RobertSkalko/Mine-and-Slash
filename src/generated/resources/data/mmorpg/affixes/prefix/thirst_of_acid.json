@@ -19,13 +19,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "lifesteal_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "spell_nature_damage_percent",
-      "registry": "stat_mod"
-    }
+    "lifesteal_flat",
+    "spell_nature_damage_percent"
   ]
 }

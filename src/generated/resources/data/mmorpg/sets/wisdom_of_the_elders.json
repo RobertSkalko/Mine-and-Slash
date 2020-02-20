@@ -20,9 +20,6 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "high_wisdom_flat",
-      "registry": "stat_mod"
-    }
+    "2": "high_wisdom_flat"
   }
 }

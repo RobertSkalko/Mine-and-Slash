@@ -11,13 +11,7 @@
     "goh"
   ],
   "mods": [
-    {
-      "id": "dodge_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "critical_damage_flat",
-      "registry": "stat_mod"
-    }
+    "dodge_flat",
+    "critical_damage_flat"
   ]
 }

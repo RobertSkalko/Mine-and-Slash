@@ -30,17 +30,8 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "bonusexpflat_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "health_percent",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "very_high_armor_flat",
-      "registry": "stat_mod"
-    }
+    "2": "bonus_exp_flat",
+    "3": "health_percent",
+    "4": "very_high_armor_flat"
   }
 }

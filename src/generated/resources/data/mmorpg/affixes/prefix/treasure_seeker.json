@@ -16,9 +16,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "bonus_map_drops_flat",
-      "registry": "stat_mod"
-    }
+    "bonus_map_drops_flat"
   ]
 }

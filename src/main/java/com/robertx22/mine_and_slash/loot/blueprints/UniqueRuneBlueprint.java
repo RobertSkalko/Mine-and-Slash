@@ -28,7 +28,7 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
     ItemStack generate() {
         BaseRune rune = uniqueRunePart.get();
 
-        Item item = rune.getItemFromRegistry();
+        Item item = rune.getItemFromRegistry(IRarity.Unique);
 
         ItemStack stack = ItemStack.EMPTY;
 
@@ -37,7 +37,8 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
 
             RuneItemData data = new RuneItemData();
 
-            data.rarity = rune.rarity;
+            data.rarity = rarity.get()
+                .Rank();
             data.name = rune.GUID();
             data.level = level.get();
             data.tier = rune.Tier();

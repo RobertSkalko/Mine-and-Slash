@@ -30,17 +30,8 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "fire_penetration_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "fire_focus_flat",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "fire_affinity_flat",
-      "registry": "stat_mod"
-    }
+    "2": "fire_penetration_flat",
+    "3": "fire_focus_flat",
+    "4": "fire_affinity_flat"
   }
 }

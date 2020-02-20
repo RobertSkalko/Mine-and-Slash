@@ -24,13 +24,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "bow_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "stamina_flat",
-      "registry": "stat_mod"
-    }
+    "bow_damage_flat",
+    "stamina_flat"
   ]
 }

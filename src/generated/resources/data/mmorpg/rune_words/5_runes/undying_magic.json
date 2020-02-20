@@ -13,13 +13,7 @@
     "mos"
   ],
   "mods": [
-    {
-      "id": "magic_shield_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "magic_shield_regen_flat",
-      "registry": "stat_mod"
-    }
+    "magic_shield_flat",
+    "magic_shield_regen_flat"
   ]
 }

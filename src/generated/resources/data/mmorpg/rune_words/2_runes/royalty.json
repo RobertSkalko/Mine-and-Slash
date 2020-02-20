@@ -10,9 +10,6 @@
     "goh"
   ],
   "mods": [
-    {
-      "id": "bonus_currency_drops_flat",
-      "registry": "stat_mod"
-    }
+    "bonus_currency_drops_flat"
   ]
 }

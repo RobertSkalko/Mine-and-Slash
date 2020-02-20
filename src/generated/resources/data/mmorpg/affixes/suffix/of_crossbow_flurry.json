@@ -24,13 +24,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "crossbow_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "stamina_flat",
-      "registry": "stat_mod"
-    }
+    "crossbow_damage_flat",
+    "stamina_flat"
   ]
 }

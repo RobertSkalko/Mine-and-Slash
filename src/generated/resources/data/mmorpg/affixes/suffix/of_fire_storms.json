@@ -23,13 +23,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "fire_penetration_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "fire_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "fire_penetration_flat",
+    "fire_spell_to_attack_dmg_flat"
   ]
 }

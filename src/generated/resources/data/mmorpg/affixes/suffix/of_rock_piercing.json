@@ -26,17 +26,8 @@
     ]
   },
   "mods": [
-    {
-      "id": "physical_penetration_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "physical_damage_percent",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "physical_penetration_percent",
-      "registry": "stat_mod"
-    }
+    "physical_penetration_flat",
+    "physical_damage_percent",
+    "physical_penetration_percent"
   ]
 }

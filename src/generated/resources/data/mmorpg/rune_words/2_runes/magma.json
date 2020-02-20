@@ -10,13 +10,7 @@
     "voh"
   ],
   "mods": [
-    {
-      "id": "fire_resist_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "armor_flat",
-      "registry": "stat_mod"
-    }
+    "fire_resist_flat",
+    "armor_flat"
   ]
 }

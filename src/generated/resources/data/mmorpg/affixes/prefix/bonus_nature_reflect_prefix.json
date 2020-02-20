@@ -16,13 +16,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "nature_thorns_reflect_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "nature_resist_flat",
-      "registry": "stat_mod"
-    }
+    "nature_thorns_reflect_flat",
+    "nature_resist_flat"
   ]
 }

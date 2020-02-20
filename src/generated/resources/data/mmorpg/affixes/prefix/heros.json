@@ -20,13 +20,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "block_strength_percent",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "health_percent",
-      "registry": "stat_mod"
-    }
+    "block_strength_percent",
+    "health_percent"
   ]
 }

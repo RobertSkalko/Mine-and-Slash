@@ -16,13 +16,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "fire_thorns_reflect_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "fire_resist_flat",
-      "registry": "stat_mod"
-    }
+    "fire_thorns_reflect_flat",
+    "fire_resist_flat"
   ]
 }

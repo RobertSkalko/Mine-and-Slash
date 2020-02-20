@@ -19,9 +19,6 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "high_critical_damage_flat",
-      "registry": "stat_mod"
-    }
+    "2": "high_critical_damage_flat"
   }
 }

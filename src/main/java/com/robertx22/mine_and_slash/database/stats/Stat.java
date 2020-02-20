@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -36,7 +36,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public Stat() {
     }
 
-    // 14 per 14
+    @Override
+    public boolean isRegistryEntryValid() {
+
+        return true;
+    }
 
     public TextFormatting getIconFormat() {
         if (this.getElement() != null) {
@@ -94,7 +98,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     // this is used for alltraitmods, check if confused
     @Override
     public int Weight() {
-        return this.getRarity().Weight();
+        return this.getRarity()
+            .Weight();
     }
 
     @Override
@@ -197,7 +202,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         float finalValue = BaseFlat;
 
-        finalValue = this.getScaling().scale(BaseFlat, Source.getLevel());
+        finalValue = this.getScaling()
+            .scale(BaseFlat, Source.getLevel());
 
         finalValue += data.Flat;
 

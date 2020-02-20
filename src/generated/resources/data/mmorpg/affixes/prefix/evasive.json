@@ -29,9 +29,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "dodge_flat",
-      "registry": "stat_mod"
-    }
+    "dodge_flat"
   ]
 }

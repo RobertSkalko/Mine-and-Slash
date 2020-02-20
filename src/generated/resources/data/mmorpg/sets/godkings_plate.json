@@ -30,17 +30,8 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "physical_damage_percent",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "high_armor_flat",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "health_flat",
-      "registry": "stat_mod"
-    }
+    "2": "physical_damage_percent",
+    "3": "high_armor_flat",
+    "4": "health_flat"
   }
 }

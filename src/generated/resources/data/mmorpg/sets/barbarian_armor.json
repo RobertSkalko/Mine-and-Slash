@@ -30,9 +30,6 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "lifesteal_flat",
-      "registry": "stat_mod"
-    }
+    "2": "lifesteal_flat"
   }
 }

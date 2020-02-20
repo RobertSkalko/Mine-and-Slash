@@ -26,13 +26,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "critical_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "physical_damage_percent",
-      "registry": "stat_mod"
-    }
+    "critical_damage_flat",
+    "physical_damage_percent"
   ]
 }

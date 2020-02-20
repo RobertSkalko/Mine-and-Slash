@@ -10,9 +10,6 @@
     "mos"
   ],
   "mods": [
-    {
-      "id": "magic_shield_percent",
-      "registry": "stat_mod"
-    }
+    "magic_shield_percent"
   ]
 }

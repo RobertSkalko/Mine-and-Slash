@@ -16,13 +16,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "thunder_thorns_reflect_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "thunder_resist_flat",
-      "registry": "stat_mod"
-    }
+    "thunder_thorns_reflect_flat",
+    "thunder_resist_flat"
   ]
 }

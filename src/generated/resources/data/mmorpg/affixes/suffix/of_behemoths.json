@@ -33,13 +33,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "critical_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "health_percent",
-      "registry": "stat_mod"
-    }
+    "critical_damage_flat",
+    "health_percent"
   ]
 }

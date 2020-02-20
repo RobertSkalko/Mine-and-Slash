@@ -30,17 +30,8 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "armor_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "high_vitality_flat",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "health_flat",
-      "registry": "stat_mod"
-    }
+    "2": "armor_flat",
+    "3": "high_vitality_flat",
+    "4": "health_flat"
   }
 }

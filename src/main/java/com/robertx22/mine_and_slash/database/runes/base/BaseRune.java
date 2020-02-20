@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.database.runes.base;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_packs.JsonUtils;
 import com.robertx22.mine_and_slash.data_packs.runes.SerializedRune;
-import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
-import com.robertx22.mine_and_slash.database.currency.loc_reqs.*;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.*;
@@ -14,31 +12,24 @@ import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
+public abstract class BaseRune implements IWeighted,
     ISerializedRegistryEntry<BaseRune>, ISerializable<BaseRune> {
 
-    public int rarity;
+    public boolean isUnique = false;
     public HashMap<Integer, RuneItem> itemMap = new HashMap<>();
 
     public BaseRune(int rarity) {
-        this.rarity = rarity;
 
         if (this instanceof BaseUniqueRune) {
             itemMap.put(IRarity.Unique, genItemForRegistration(IRarity.Unique));
@@ -49,8 +40,13 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
         }
     }
 
-    public BaseRune(boolean startMap) {
+    public BaseRune(boolean isUnique) {
+        this.isUnique = isUnique;
+    }
 
+    @Override
+    public boolean isUnique() {
+        return this.isUnique;
     }
 
     @Override
@@ -61,6 +57,8 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
     @Override
     public JsonObject toJson() {
         JsonObject json = getDefaultJson();
+
+        json.addProperty("is_unique", isUnique);
 
         JsonUtils.addStatMods(weaponStat(), json, "possible_weapon_stats");
         JsonUtils.addStatMods(armorStat(), json, "possible_armor_stats");
@@ -86,6 +84,9 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
         int weight = getWeightFromJson(json);
         int rarity = getRarityFromJson(json);
 
+        Boolean isUnique = json.get("is_unique")
+            .getAsBoolean();
+
         List<StatMod> weapon = JsonUtils.getStatMods(json, "possible_weapon_stats");
         List<StatMod> armor = JsonUtils.getStatMods(json, "possible_armor_stats");
         List<StatMod> jewerly = JsonUtils.getStatMods(json, "possible_jewerly_stats");
@@ -105,14 +106,14 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
             }
         }
 
-        return new SerializedRune(rarity, guid, weight, tier, weapon, armor, jewerly, itemMap);
+        return new SerializedRune(isUnique, guid, weight, tier, weapon, armor, jewerly, itemMap);
     }
 
     public RuneItem genItemForRegistration(int rarity) {
-        return (RuneItem) new RuneItem(this).setRegistryName(Ref.MODID, genRegistryName(rarity));
+        return (RuneItem) new RuneItem(this, rarity).setRegistryName(Ref.MODID, genRegistryName(rarity));
     }
 
-    public RuneItem getItemFromRegistry() {
+    public RuneItem getItemFromRegistry(int rarity) {
         return itemMap.get(rarity);
     }
 
@@ -131,7 +132,7 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
 
     @Override
     public int getRarityRank() {
-        return rarity;
+        return 0;
     }
 
     @Override
@@ -152,40 +153,6 @@ public abstract class BaseRune implements IWeighted, ICurrencyItemEffect,
     @Override
     public int Weight() {
         return 1000;
-    }
-
-    @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
-        GearItemData gear = Gear.Load(stack);
-
-        RuneItemData rune = Rune.Load(currency);
-
-        if (gear != null && rune != null) {
-            gear.runes.insert(rune, gear);
-            Gear.Save(stack, gear);
-        }
-        return stack;
-
-    }
-
-    @Override
-    public boolean canItemBeModified(LocReqContext context) {
-
-        for (BaseLocRequirement req : requirements()) {
-            if (req.isNotAllowed(context)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    @Override
-    public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(
-            RuneEmptySlotReq.INSTANCE, OnlyOneUniqueRuneReq.getInstance(), RuneNoDuplicateReq.INSTANCE,
-            RuneLvlReq.INSTANCE
-        );
     }
 
     public abstract String name();

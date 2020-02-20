@@ -29,17 +29,8 @@
     ]
   },
   "mods": [
-    {
-      "id": "nature_resist_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "health_percent",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "armor_flat",
-      "registry": "stat_mod"
-    }
+    "nature_resist_flat",
+    "health_percent",
+    "armor_flat"
   ]
 }

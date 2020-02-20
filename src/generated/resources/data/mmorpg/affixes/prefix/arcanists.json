@@ -23,17 +23,8 @@
     ]
   },
   "mods": [
-    {
-      "id": "spell_damage_percent",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "intelligence_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "mana_regen_flat",
-      "registry": "stat_mod"
-    }
+    "spell_damage_percent",
+    "intelligence_flat",
+    "mana_regen_flat"
   ]
 }

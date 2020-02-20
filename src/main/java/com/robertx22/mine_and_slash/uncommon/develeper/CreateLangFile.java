@@ -150,17 +150,6 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.Affixes()
             .getSerializable());
 
-        /*
-        SlashRegistry.Runes()
-            .getSerializable()
-            .forEach(x -> {
-                x.itemMap.values()
-                    .forEach(i -> {
-                        list.add(i);
-                    });
-            });
-
-         */
         list.addAll(SlashRegistry.Stats()
             .getAll()
             .values());

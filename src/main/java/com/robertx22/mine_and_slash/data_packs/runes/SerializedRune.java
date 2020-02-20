@@ -16,10 +16,9 @@ public class SerializedRune extends BaseRune {
     List<StatMod> armor;
     List<StatMod> jewerly;
 
-    public SerializedRune(int rarity, String guid, int weight, int tier, List<StatMod> weapon, List<StatMod> armor, List<StatMod> jewerly, HashMap<Integer, RuneItem> ItemMap) {
+    public SerializedRune(boolean isUnique, String guid, int weight, int tier, List<StatMod> weapon, List<StatMod> armor, List<StatMod> jewerly, HashMap<Integer, RuneItem> ItemMap) {
         super(false);
         this.guid = guid;
-        this.rarity = rarity;
         this.weight = weight;
         this.tier = tier;
         this.weapon = weapon;

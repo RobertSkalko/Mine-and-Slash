@@ -20,9 +20,6 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "energy_regen_percent",
-      "registry": "stat_mod"
-    }
+    "2": "energy_regen_percent"
   }
 }

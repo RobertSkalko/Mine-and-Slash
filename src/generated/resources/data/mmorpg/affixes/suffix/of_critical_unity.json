@@ -26,13 +26,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "critical_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "critical_hit_flat",
-      "registry": "stat_mod"
-    }
+    "critical_damage_flat",
+    "critical_hit_flat"
   ]
 }

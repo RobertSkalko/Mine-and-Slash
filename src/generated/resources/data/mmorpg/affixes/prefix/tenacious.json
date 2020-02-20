@@ -29,9 +29,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "stamina_flat",
-      "registry": "stat_mod"
-    }
+    "stamina_flat"
   ]
 }

@@ -23,13 +23,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "nature_penetration_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "nature_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "nature_penetration_flat",
+    "nature_spell_to_attack_dmg_flat"
   ]
 }

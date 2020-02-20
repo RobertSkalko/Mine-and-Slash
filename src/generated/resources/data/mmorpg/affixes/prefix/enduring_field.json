@@ -16,9 +16,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "magic_shield_flat",
-      "registry": "stat_mod"
-    }
+    "magic_shield_flat"
   ]
 }

@@ -29,9 +29,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "health_percent",
-      "registry": "stat_mod"
-    }
+    "health_percent"
   ]
 }

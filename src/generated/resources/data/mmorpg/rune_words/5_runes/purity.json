@@ -13,17 +13,8 @@
     "mos"
   ],
   "mods": [
-    {
-      "id": "health_regen_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "health_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "mana_regen_flat",
-      "registry": "stat_mod"
-    }
+    "health_regen_flat",
+    "health_flat",
+    "mana_regen_flat"
   ]
 }

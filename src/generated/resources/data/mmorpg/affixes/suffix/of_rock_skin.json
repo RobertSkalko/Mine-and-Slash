@@ -29,9 +29,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "armor_percent",
-      "registry": "stat_mod"
-    }
+    "armor_percent"
   ]
 }

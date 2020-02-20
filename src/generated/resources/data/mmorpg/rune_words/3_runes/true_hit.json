@@ -11,13 +11,7 @@
     "voh"
   ],
   "mods": [
-    {
-      "id": "critical_hit_percent",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "critical_hit_multi",
-      "registry": "stat_mod"
-    }
+    "critical_hit_percent",
+    "critical_hit_multi"
   ]
 }

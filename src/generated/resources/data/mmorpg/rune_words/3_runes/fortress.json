@@ -11,9 +11,6 @@
     "mos"
   ],
   "mods": [
-    {
-      "id": "block_strength_flat",
-      "registry": "stat_mod"
-    }
+    "block_strength_flat"
   ]
 }

@@ -23,13 +23,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "health_regen_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "health_regen_percent",
-      "registry": "stat_mod"
-    }
+    "health_regen_flat",
+    "health_regen_percent"
   ]
 }

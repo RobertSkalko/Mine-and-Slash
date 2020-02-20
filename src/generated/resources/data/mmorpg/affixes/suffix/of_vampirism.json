@@ -22,17 +22,8 @@
     ]
   },
   "mods": [
-    {
-      "id": "lifesteal_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "life_on_hit_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "lifesteal_percent",
-      "registry": "stat_mod"
-    }
+    "lifesteal_flat",
+    "life_on_hit_flat",
+    "lifesteal_percent"
   ]
 }

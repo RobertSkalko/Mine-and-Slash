@@ -11,13 +11,7 @@
     "rah"
   ],
   "mods": [
-    {
-      "id": "mana_on_hit_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "mana_regen_percent",
-      "registry": "stat_mod"
-    }
+    "mana_on_hit_flat",
+    "mana_regen_percent"
   ]
 }

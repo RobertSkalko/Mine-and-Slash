@@ -13,17 +13,8 @@
     "cen"
   ],
   "mods": [
-    {
-      "id": "high_dodge_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "dodge_percent",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "nature_resist_flat",
-      "registry": "stat_mod"
-    }
+    "high_dodge_flat",
+    "dodge_percent",
+    "nature_resist_flat"
   ]
 }

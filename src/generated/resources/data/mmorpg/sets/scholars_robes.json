@@ -30,17 +30,8 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "bonusexpflat_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "bonus_normal_item_drops_flat",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "bonus_map_drops_flat",
-      "registry": "stat_mod"
-    }
+    "2": "bonus_exp_flat",
+    "3": "bonus_normal_item_drops_flat",
+    "4": "bonus_map_drops_flat"
   }
 }

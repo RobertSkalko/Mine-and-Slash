@@ -30,13 +30,7 @@
     ]
   },
   "mods": {
-    "3": {
-      "id": "stamina_flat",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "high_dexterity_flat",
-      "registry": "stat_mod"
-    }
+    "3": "stamina_flat",
+    "4": "high_dexterity_flat"
   }
 }

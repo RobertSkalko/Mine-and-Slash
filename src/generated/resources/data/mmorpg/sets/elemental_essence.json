@@ -22,13 +22,7 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "elemental_resist_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "all_ele_spell_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "2": "elemental_resist_flat",
+    "3": "all_ele_spell_dmg_flat"
   }
 }

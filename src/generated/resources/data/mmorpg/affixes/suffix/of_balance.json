@@ -23,13 +23,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "mana_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "energy_flat",
-      "registry": "stat_mod"
-    }
+    "mana_flat",
+    "energy_flat"
   ]
 }

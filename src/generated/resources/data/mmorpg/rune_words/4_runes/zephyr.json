@@ -12,17 +12,8 @@
     "ber"
   ],
   "mods": [
-    {
-      "id": "energy_regen_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "thunder_resist_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "high_armor_flat",
-      "registry": "stat_mod"
-    }
+    "energy_regen_flat",
+    "thunder_resist_flat",
+    "high_armor_flat"
   ]
 }

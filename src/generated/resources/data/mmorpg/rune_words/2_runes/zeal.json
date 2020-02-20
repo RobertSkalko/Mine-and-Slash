@@ -10,13 +10,7 @@
     "mos"
   ],
   "mods": [
-    {
-      "id": "energy_regen_percent",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "armor_flat",
-      "registry": "stat_mod"
-    }
+    "energy_regen_percent",
+    "armor_flat"
   ]
 }

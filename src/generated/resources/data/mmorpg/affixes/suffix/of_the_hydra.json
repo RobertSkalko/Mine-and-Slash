@@ -26,17 +26,8 @@
     ]
   },
   "mods": [
-    {
-      "id": "low_axe_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "low_bow_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "low_hammer_damage_flat",
-      "registry": "stat_mod"
-    }
+    "low_axe_damage_flat",
+    "low_bow_damage_flat",
+    "low_hammer_damage_flat"
   ]
 }

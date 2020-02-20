@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class BonusExp extends Stat {
 
-    public static String GUID = "bonusexpflat";
+    public static String GUID = "bonus_exp";
 
     @Override
     public String locDescForLangFile() {

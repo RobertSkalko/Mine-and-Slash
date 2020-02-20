@@ -12,13 +12,7 @@
     "xah"
   ],
   "mods": [
-    {
-      "id": "high_energy_regen_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "dodge_percent",
-      "registry": "stat_mod"
-    }
+    "high_energy_regen_flat",
+    "dodge_percent"
   ]
 }

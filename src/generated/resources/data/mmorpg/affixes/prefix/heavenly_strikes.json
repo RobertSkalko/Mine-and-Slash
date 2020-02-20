@@ -22,13 +22,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "critical_hit_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "high_critical_hit_percent",
-      "registry": "stat_mod"
-    }
+    "critical_hit_flat",
+    "high_critical_hit_percent"
   ]
 }

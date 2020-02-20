@@ -18,9 +18,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "bonusexpflat_flat",
-      "registry": "stat_mod"
-    }
+    "bonus_exp_flat"
   ]
 }

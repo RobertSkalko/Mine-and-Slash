@@ -20,13 +20,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "water_affinity_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "water_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "water_affinity_flat",
+    "water_spell_to_attack_dmg_flat"
   ]
 }

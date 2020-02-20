@@ -22,13 +22,7 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "lifesteal_percent",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "spell_fire_damage_percent",
-      "registry": "stat_mod"
-    }
+    "2": "lifesteal_percent",
+    "3": "spell_fire_damage_percent"
   }
 }

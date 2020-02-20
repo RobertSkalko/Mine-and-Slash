@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptySet;
 import com.robertx22.mine_and_slash.saveclasses.WornSetData;
@@ -125,8 +126,8 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
 
         AllMods().entrySet()
             .forEach(x -> {
-                map.add(x.getKey() + "", x.getValue()
-                    .toRegistryJson());
+                map.addProperty(x.getKey() + "", x.getValue()
+                    .GUID());
             });
 
         json.add("mods", map);
@@ -151,7 +152,8 @@ public abstract class Set implements IWeighted, IGUID, IRarity, IhasRequirements
         for (int i = 0; i < 10; i++) {
             JsonElement obj = mapJson.get(i + "");
             if (obj != null) {
-                map.put(i, StatMod.EMPTY.fromRegistryJson(obj.getAsJsonObject()));
+                map.put(i, SlashRegistry.StatMods()
+                    .get(obj.getAsString()));
             }
         }
 

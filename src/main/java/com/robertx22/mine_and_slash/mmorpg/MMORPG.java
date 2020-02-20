@@ -24,8 +24,6 @@ import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
-import com.robertx22.mine_and_slash.uncommon.develeper.GenerateUniqueGearJsons;
-import com.robertx22.mine_and_slash.uncommon.develeper.ModelCreator;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -208,9 +206,7 @@ public class MMORPG {
             TestManager.RunAllTests();
             CreateLangFile.create();
             GenerateCurioDataJsons.generate();
-            ModelCreator.createDefaultModelsAndDirs();
             CountUniqueGearTypes.count();
-            GenerateUniqueGearJsons.gen();
         }
 
     }

@@ -20,13 +20,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "fire_affinity_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "fire_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "fire_affinity_flat",
+    "fire_spell_to_attack_dmg_flat"
   ]
 }

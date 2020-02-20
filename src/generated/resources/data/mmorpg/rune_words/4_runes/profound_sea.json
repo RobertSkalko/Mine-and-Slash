@@ -12,13 +12,7 @@
     "cen"
   ],
   "mods": [
-    {
-      "id": "mana_regen_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "high_mana_flat",
-      "registry": "stat_mod"
-    }
+    "mana_regen_flat",
+    "high_mana_flat"
   ]
 }

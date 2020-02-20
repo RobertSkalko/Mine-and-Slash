@@ -22,21 +22,9 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "nature_resist_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "thunder_resist_flat",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "nature_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    },
-    "5": {
-      "id": "thunder_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "2": "nature_resist_flat",
+    "3": "thunder_resist_flat",
+    "4": "nature_spell_to_attack_dmg_flat",
+    "5": "thunder_spell_to_attack_dmg_flat"
   }
 }

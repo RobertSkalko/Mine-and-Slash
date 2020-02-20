@@ -30,17 +30,8 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "thunder_penetration_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "thunder_focus_flat",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "thunder_affinity_flat",
-      "registry": "stat_mod"
-    }
+    "2": "thunder_penetration_flat",
+    "3": "thunder_focus_flat",
+    "4": "thunder_affinity_flat"
   }
 }

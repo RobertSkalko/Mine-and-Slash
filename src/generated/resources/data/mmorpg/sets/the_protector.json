@@ -22,9 +22,6 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "block_strength_percent",
-      "registry": "stat_mod"
-    }
+    "2": "block_strength_percent"
   }
 }

@@ -23,13 +23,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "water_penetration_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "water_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "water_penetration_flat",
+    "water_spell_to_attack_dmg_flat"
   ]
 }

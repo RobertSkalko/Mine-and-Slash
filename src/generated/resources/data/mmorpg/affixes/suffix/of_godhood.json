@@ -26,17 +26,8 @@
     ]
   },
   "mods": [
-    {
-      "id": "health_multi",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "high_dodge_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "armor_flat",
-      "registry": "stat_mod"
-    }
+    "health_multi",
+    "high_dodge_flat",
+    "armor_flat"
   ]
 }

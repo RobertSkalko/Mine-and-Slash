@@ -24,13 +24,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "sword_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "stamina_flat",
-      "registry": "stat_mod"
-    }
+    "sword_damage_flat",
+    "stamina_flat"
   ]
 }

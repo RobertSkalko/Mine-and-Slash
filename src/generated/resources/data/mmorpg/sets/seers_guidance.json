@@ -23,13 +23,7 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "bonusexpflat_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "wisdom_flat",
-      "registry": "stat_mod"
-    }
+    "2": "bonus_exp_flat",
+    "3": "wisdom_flat"
   }
 }

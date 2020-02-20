@@ -16,9 +16,6 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "bonus_all_drops_flat",
-      "registry": "stat_mod"
-    }
+    "2": "bonus_all_drops_flat"
   }
 }

@@ -22,13 +22,7 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "mana_regen_percent",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "spell_water_damage_percent",
-      "registry": "stat_mod"
-    }
+    "2": "mana_regen_percent",
+    "3": "spell_water_damage_percent"
   }
 }

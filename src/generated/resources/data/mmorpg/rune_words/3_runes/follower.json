@@ -11,17 +11,8 @@
     "voh"
   ],
   "mods": [
-    {
-      "id": "critical_hit_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "critical_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "health_percent",
-      "registry": "stat_mod"
-    }
+    "critical_hit_flat",
+    "critical_damage_flat",
+    "health_percent"
   ]
 }

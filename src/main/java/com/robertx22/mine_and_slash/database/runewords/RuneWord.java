@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.runewords;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_packs.JsonUtils;
 import com.robertx22.mine_and_slash.data_packs.runewords.SerializableRuneword;
@@ -22,7 +21,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -161,12 +159,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
                 .collect(Collectors.toList()))
         );
 
-        JsonArray array = new JsonArray();
-        mods().stream()
-            .map(x -> x.toRegistryJson())
-            .collect(Collectors.toList())
-            .forEach(x -> array.add(x));
-        json.add("mods", array);
+        JsonUtils.addStatMods(mods(), json, "mods");
 
         return json;
     }
@@ -181,9 +174,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
 
         List<String> runes = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("runes"));
 
-        List<StatMod> mods = new ArrayList<>();
-        json.getAsJsonArray("mods")
-            .forEach(x -> mods.add(StatMod.EMPTY.fromRegistryJson(x.getAsJsonObject())));
+        List<StatMod> mods = JsonUtils.getStatMods(json, "mods");
 
         return new SerializableRuneword(rarity, weight, guid, mods, lang, runes);
     }

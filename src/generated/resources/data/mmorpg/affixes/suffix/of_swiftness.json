@@ -29,9 +29,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "dexterity_flat",
-      "registry": "stat_mod"
-    }
+    "dexterity_flat"
   ]
 }

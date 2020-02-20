@@ -23,13 +23,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "critical_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "low_thunder_resist_flat",
-      "registry": "stat_mod"
-    }
+    "critical_damage_flat",
+    "low_thunder_resist_flat"
   ]
 }

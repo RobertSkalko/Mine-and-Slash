@@ -19,13 +19,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "mana_regen_percent",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "mana_regen_flat",
-      "registry": "stat_mod"
-    }
+    "mana_regen_percent",
+    "mana_regen_flat"
   ]
 }

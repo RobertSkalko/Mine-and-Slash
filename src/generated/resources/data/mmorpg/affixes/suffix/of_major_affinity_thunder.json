@@ -20,13 +20,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "thunder_affinity_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "thunder_spell_to_attack_dmg_flat",
-      "registry": "stat_mod"
-    }
+    "thunder_affinity_flat",
+    "thunder_spell_to_attack_dmg_flat"
   ]
 }

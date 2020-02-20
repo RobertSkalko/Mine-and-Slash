@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializablePart;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class JsonUtils {
     public static void addStatMods(List<StatMod> mods, JsonObject json, String id) {
         JsonArray array = new JsonArray();
         mods.stream()
-            .map(x -> x.toRegistryJson())
+            .map(x -> x.GUID())
             .collect(Collectors.toList())
             .forEach(x -> array.add(x));
         json.add(id, array);
@@ -24,8 +25,8 @@ public class JsonUtils {
     public static List<StatMod> getStatMods(JsonObject json, String id) {
         List<StatMod> mods = new ArrayList<>();
         json.getAsJsonArray(id)
-            .forEach(x -> mods.add(StatMod.EMPTY.fromRegistryJson(x.getAsJsonObject())));
-
+            .forEach(x -> mods.add(SlashRegistry.StatMods()
+                .get(x.getAsString())));
         return mods;
     }
 

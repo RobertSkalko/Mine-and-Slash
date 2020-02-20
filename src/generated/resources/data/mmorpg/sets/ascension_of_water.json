@@ -30,17 +30,8 @@
     ]
   },
   "mods": {
-    "2": {
-      "id": "water_penetration_flat",
-      "registry": "stat_mod"
-    },
-    "3": {
-      "id": "water_focus_flat",
-      "registry": "stat_mod"
-    },
-    "4": {
-      "id": "water_affinity_flat",
-      "registry": "stat_mod"
-    }
+    "2": "water_penetration_flat",
+    "3": "water_focus_flat",
+    "4": "water_affinity_flat"
   }
 }

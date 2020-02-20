@@ -10,7 +10,7 @@ public abstract class BaseUniqueRune extends BaseRune {
 
     public BaseUniqueRune() {
         super(IRarity.Unique);
-
+        this.isUnique = true;
     }
 
     @Override

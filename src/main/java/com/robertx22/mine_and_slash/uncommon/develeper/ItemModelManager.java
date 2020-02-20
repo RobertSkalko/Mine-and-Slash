@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Bow;
@@ -7,11 +9,16 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.CrossBow;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DirectoryCache;
+import net.minecraft.data.IDataProvider;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+
+import java.io.IOException;
+import java.nio.file.Path;
 
 public class ItemModelManager extends ItemModelProvider {
 
@@ -31,7 +38,6 @@ public class ItemModelManager extends ItemModelProvider {
                 x.itemMap.values()
                     .forEach(i -> generated(i));
             });
-
         SlashRegistry.UniqueGears()
             .getSerializable()
             .forEach(x -> {
@@ -113,4 +119,26 @@ public class ItemModelManager extends ItemModelProvider {
         return withExistingParent(name(item), "item/handheld").texture("layer0", texture);
     }
 
+    // TEMP WORKAROUND UNTIL FORGE FIXES SHIT
+    private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting()
+        .create();
+
+    @Override
+    protected void generateAll(DirectoryCache cache) {
+        for (ItemModelBuilder model : generatedModels.values()) {
+            Path target = getPath(model);
+            try {
+                IDataProvider.save(GSON, cache, model.toJson(), target);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private Path getPath(ItemModelBuilder model) {
+        ResourceLocation loc = model.getLocation();
+        return generator.getOutputFolder()
+            .resolve("assets/" + loc.getNamespace() + "/models/item/" + loc.getPath() + ".json");
+    }
+    // TEMP WORKAROUND UNTIL FORGE FIXES SHIT
 }

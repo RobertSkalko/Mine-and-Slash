@@ -24,13 +24,7 @@
     ]
   },
   "mods": [
-    {
-      "id": "hammer_damage_flat",
-      "registry": "stat_mod"
-    },
-    {
-      "id": "stamina_flat",
-      "registry": "stat_mod"
-    }
+    "hammer_damage_flat",
+    "stamina_flat"
   ]
 }

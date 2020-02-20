@@ -22,9 +22,6 @@
     ]
   },
   "mods": [
-    {
-      "id": "lifesteal_percent",
-      "registry": "stat_mod"
-    }
+    "lifesteal_percent"
   ]
 }
