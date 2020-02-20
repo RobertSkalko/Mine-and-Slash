@@ -4,10 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityStaffProjectile;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.bases.BaseWeaponItem;
-import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
-import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
-import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -34,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
+public class ItemStaff extends BaseWeaponItem implements IEffectItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemStaff(int rar) {
@@ -80,7 +77,7 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
 
                         Vec3d pos = player.getPositionVector();
                         EntityStaffProjectile en = SpellUtils.getSpellEntity(
-                                new EntityStaffProjectile(world), null, player);
+                            new EntityStaffProjectile(world), null, player);
                         SpellUtils.setupProjectileForCasting(en, player, 2);
                         en.getSpellData().charge = multi;
                         world.addEntity(en);
@@ -114,11 +111,6 @@ public class ItemStaff extends BaseWeaponItem implements IWeapon, IEffectItem {
         ItemStack itemstack = player.getHeldItem(handIn);
         player.setActiveHand(handIn);
         return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
-    }
-
-    @Override
-    public WeaponMechanic mechanic() {
-        return new StaffWeaponMechanic();
     }
 
     @Override

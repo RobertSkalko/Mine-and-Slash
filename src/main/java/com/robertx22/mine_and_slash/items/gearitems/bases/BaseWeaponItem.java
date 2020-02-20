@@ -21,15 +21,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAutoLocName, IGearItem, MyForgeItem {
+public abstract class BaseWeaponItem extends TieredItem implements IAutoLocName, IGearItem, MyForgeItem {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
 
     public BaseWeaponItem(int rar) {
 
         super(
-                new RarityItemTier(rar), ItemUtils.getDefaultGearProperties()
-                        .defaultMaxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar).getDurability()));
+            new RarityItemTier(rar), ItemUtils.getDefaultGearProperties()
+                .defaultMaxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
+                    .getDurability()));
         this.rarity = rar;
     }
 
@@ -39,7 +40,7 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
     }
 
     public static List<Enchantment> blacklist = Arrays.asList(
-            Enchantments.SMITE, Enchantments.SHARPNESS, Enchantments.BANE_OF_ARTHROPODS, Enchantments.SWEEPING);
+        Enchantments.SMITE, Enchantments.SHARPNESS, Enchantments.BANE_OF_ARTHROPODS, Enchantments.SWEEPING);
 
     public static boolean isNotInEnchantBlackList(Enchantment ench) {
         return blacklist.contains(ench) == false;
@@ -54,7 +55,8 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @Override
@@ -75,10 +77,10 @@ public abstract class BaseWeaponItem extends TieredItem implements IWeapon, IAut
         Multimap<String, AttributeModifier> map = super.getAttributeModifiers(slot);
         if (slot == EquipmentSlotType.MAINHAND) {
             map.put(
-                    SharedMonsterAttributes.ATTACK_DAMAGE.getName(),
-                    new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 5 + (this.rarity + 1),
-                                          AttributeModifier.Operation.ADDITION
-                    )
+                SharedMonsterAttributes.ATTACK_DAMAGE.getName(),
+                new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 5 + (this.rarity + 1),
+                    AttributeModifier.Operation.ADDITION
+                )
             );
         }
 

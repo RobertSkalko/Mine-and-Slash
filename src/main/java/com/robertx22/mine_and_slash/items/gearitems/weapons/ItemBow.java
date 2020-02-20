@@ -2,9 +2,6 @@ package com.robertx22.mine_and_slash.items.gearitems.weapons;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.bases.BaseArmorItem;
-import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
-import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
-import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.BowWeaponMechanic;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
@@ -14,13 +11,14 @@ import net.minecraft.item.Item;
 
 import java.util.HashMap;
 
-public class ItemBow extends BowItem implements IWeapon, IAutoLocName, IGearItem {
+public class ItemBow extends BowItem implements IAutoLocName, IGearItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemBow(int rar) {
         super(ItemUtils.getDefaultGearProperties()
-                      .maxStackSize(1)
-                      .defaultMaxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar).getDurability()));
+            .maxStackSize(1)
+            .defaultMaxDamage(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
+                .getDurability()));
         this.rarity = rar;
     }
 
@@ -38,13 +36,9 @@ public class ItemBow extends BowItem implements IWeapon, IAutoLocName, IGearItem
     }
 
     @Override
-    public WeaponMechanic mechanic() {
-        return new BowWeaponMechanic();
-    }
-
-    @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @Override

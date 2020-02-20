@@ -4,10 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityWandProjectile;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.gearitems.bases.BaseWeaponItem;
-import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
-import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
-import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.WandWeaponMechanic;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
@@ -34,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class ItemWand extends BaseWeaponItem implements IWeapon, IEffectItem {
+public class ItemWand extends BaseWeaponItem implements IEffectItem {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -84,7 +81,7 @@ public class ItemWand extends BaseWeaponItem implements IWeapon, IEffectItem {
 
                         Vec3d pos = player.getPositionVector();
                         EntityWandProjectile en = SpellUtils.getSpellEntity(
-                                new EntityWandProjectile(world), null, player);
+                            new EntityWandProjectile(world), null, player);
                         SpellUtils.setupProjectileForCasting(en, player, 2);
                         en.getSpellData().charge = multi;
                         world.addEntity(en);
@@ -107,11 +104,6 @@ public class ItemWand extends BaseWeaponItem implements IWeapon, IEffectItem {
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
         return rar.textFormatColor() + "Wand";
-    }
-
-    @Override
-    public WeaponMechanic mechanic() {
-        return new WandWeaponMechanic();
     }
 
     @Override

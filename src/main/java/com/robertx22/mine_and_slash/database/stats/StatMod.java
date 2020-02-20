@@ -4,10 +4,10 @@ import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_packs.statmods.SerializableStatMod;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptyStatMod;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyStatMod;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -26,9 +26,9 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     //protected String afterPrefix = "";
 
     public enum Size {
-        CRIPPLED("crippled_", -3F),
-        LESS("less_", -0.5F),
+        CRIPPLED("crippled_", -5F),
         MUCH_LESS("much_less_", -1F),
+        LESS("less_", -0.5F),
         TINY("tiny_", 0.25F),
         VERY_LOW("very_low_", 0.5F),
         LOW("low_", 0.75F),
