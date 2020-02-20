@@ -20,7 +20,7 @@ public class ClientSetup {
 
     public static void setup(final FMLClientSetupEvent event) {
 
-        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_MODIFY, RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_MODIFY, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_SALVAGE, RenderType.getCutout());//cutout
         RenderTypeLookup.setRenderLayer(BlockRegister.ALCHEMY_BLOCK, RenderType.getCutout());//cutout
         RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_REPAIR, RenderType.getCutout());//cutout

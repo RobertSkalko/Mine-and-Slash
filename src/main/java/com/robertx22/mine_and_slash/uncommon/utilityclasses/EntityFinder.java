@@ -29,13 +29,15 @@ public class EntityFinder {
         ALLIES() {
             @Override
             public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
-                return list.stream().filter(x -> {
-                    if (setup.caster instanceof PlayerEntity) {
-                        return x instanceof PlayerEntity || isTamed(x);
-                    } else {
-                        return x instanceof PlayerEntity == false && !isTamed(x);
-                    }
-                }).collect(Collectors.toList());
+                return list.stream()
+                    .filter(x -> {
+                        if (setup.caster instanceof PlayerEntity) {
+                            return x instanceof PlayerEntity || isTamed(x);
+                        } else {
+                            return x instanceof PlayerEntity == false && !isTamed(x);
+                        }
+                    })
+                    .collect(Collectors.toList());
             }
 
             @Override
@@ -46,13 +48,15 @@ public class EntityFinder {
         ENEMIES {
             @Override
             public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
-                return list.stream().filter(x -> {
-                    if (setup.caster instanceof PlayerEntity) {
-                        return x instanceof PlayerEntity == false && !isTamed(x);
-                    } else {
-                        return x instanceof PlayerEntity;
-                    }
-                }).collect(Collectors.toList());
+                return list.stream()
+                    .filter(x -> {
+                        if (setup.caster instanceof PlayerEntity) {
+                            return x instanceof PlayerEntity == false && !isTamed(x);
+                        } else {
+                            return x instanceof PlayerEntity;
+                        }
+                    })
+                    .collect(Collectors.toList());
             }
 
             @Override
@@ -125,7 +129,7 @@ public class EntityFinder {
                 double maxZ = z > l.z ? z : l.z;
 
                 AxisAlignedBB aabb = new AxisAlignedBB(minX - horizontal, minY - vertical, minZ - horizontal,
-                                                       maxX + horizontal, maxY + vertical, maxZ + horizontal
+                    maxX + horizontal, maxY + vertical, maxZ + horizontal
                 );
 
                 List<T> entityList = entity.world.getEntitiesWithinAABB(setup.entityType, aabb);
@@ -178,6 +182,8 @@ public class EntityFinder {
             Objects.requireNonNull(caster, "World can't be null");
 
             List<T> list = this.finder.getEntities(this);
+
+            list.removeIf(x -> x == null);
 
             for (Predicate<T> predicate : predicates) {
                 list.removeIf(y -> !predicate.test(y));

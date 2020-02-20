@@ -64,6 +64,7 @@ public class RegisterEvents {
         register(OnPotionChange.class);
         register(OnTrackEntity.class);
         register(OnMobSpawn.class);
+        register(OnTargetEvent.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 

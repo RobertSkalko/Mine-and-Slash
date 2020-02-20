@@ -76,9 +76,7 @@ public class RegenerateSpell extends BaseBuffSpell {
     public List<ITextComponent> GetDescription(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<>();
-
         list.add(new StringTextComponent("Applies buff: "));
-
         list.addAll(RegenerateEffect.INSTANCE.GetTooltipString(info));
 
         return list;

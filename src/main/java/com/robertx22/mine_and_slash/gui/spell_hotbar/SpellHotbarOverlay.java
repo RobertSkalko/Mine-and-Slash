@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,13 +21,13 @@ public class SpellHotbarOverlay extends AbstractGui {
     public static PlayerSpellsData.Hotbar CURRENT_HOTBAR = PlayerSpellsData.Hotbar.FIRST;
 
     private static final ResourceLocation HOTBAR_TEX = new ResourceLocation(Ref.MODID,
-                                                                            "textures/gui/spells/hotbar.png"
+        "textures/gui/spells/hotbar.png"
     );
     private static final ResourceLocation COOLDOWN_TEX = new ResourceLocation(Ref.MODID,
-                                                                              "textures/gui/spells/cooldown.png"
+        "textures/gui/spells/cooldown.png"
     );
     private static final ResourceLocation SPELL_READY_TEXT = new ResourceLocation(Ref.MODID,
-                                                                                  "textures/gui/spells/spell_ready.png"
+        "textures/gui/spells/spell_ready.png"
     );
     static int WIDTH = 22;
     static int HEIGHT = 102;
@@ -69,18 +70,23 @@ public class SpellHotbarOverlay extends AbstractGui {
 
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-                mc.getTextureManager().bindTexture(spell.getIcon());
+                mc.getTextureManager()
+                    .bindTexture(spell.getIcon());
                 this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
 
-                SpellData spelldata = data.getSpellData().getDataBySpell(spell, CURRENT_HOTBAR);
+                SpellData spelldata = data.getSpellData()
+                    .getDataBySpell(spell, CURRENT_HOTBAR);
 
                 if (spelldata != null) {
                     if (spelldata.cooldownIsReady() == false) {
                         float percent = (float) spelldata.getRemainingCooldown() / (float) spell.getCooldownInTicks();
 
+                        percent = MathHelper.clamp(percent + 0.1F, 0.03F, 1F); // this is a hacky way to make spell cooldowns more predictable
+
                         RenderSystem.enableBlend(); // enables transparency
 
-                        mc.getTextureManager().bindTexture(COOLDOWN_TEX);
+                        mc.getTextureManager()
+                            .bindTexture(COOLDOWN_TEX);
                         this.blit(xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
 
                         RenderSystem.disableBlend(); // enables transparency
@@ -95,7 +101,8 @@ public class SpellHotbarOverlay extends AbstractGui {
                         if (OnClientTick.COOLDOWN_READY_MAP.getOrDefault(spell.GUID(), 0) > 0) {
 
                             RenderSystem.enableBlend(); // enables transparency
-                            mc.getTextureManager().bindTexture(SPELL_READY_TEXT);
+                            mc.getTextureManager()
+                                .bindTexture(SPELL_READY_TEXT);
                             this.blit(x - 2, y - 2, 0, 0, 20, 20, 20, 20);
                             RenderSystem.disableBlend(); // enables transparency
 
@@ -110,7 +117,8 @@ public class SpellHotbarOverlay extends AbstractGui {
     private void renderHotbar(int x, int y) {
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.getTextureManager().bindTexture(HOTBAR_TEX);
+        mc.getTextureManager()
+            .bindTexture(HOTBAR_TEX);
 
         this.blit(x, y, 0, 0, WIDTH, HEIGHT);
 

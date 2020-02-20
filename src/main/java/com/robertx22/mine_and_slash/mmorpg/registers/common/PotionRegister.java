@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.potion_effects.ranger.HunterInstinctEffect;
 import com.robertx22.mine_and_slash.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.potion_effects.ranger.WoundsEffect;
+import com.robertx22.mine_and_slash.potion_effects.rogue.StealthEffect;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.potion_effects.shaman.ThunderEssenceEffect;
 import net.minecraft.potion.Effect;
@@ -55,6 +56,7 @@ public class PotionRegister {
         reg.register(ImbueEffect.getInstance());
         reg.register(HunterInstinctEffect.getInstance());
         reg.register(WoundsEffect.getInstance());
+        reg.register(StealthEffect.getInstance());
 
         for (net.minecraft.item.Item item : ForgeRegistries.ITEMS) {
             if (item instanceof BaseBuffPotion) {

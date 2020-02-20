@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class OnPotionChange {
 
+    //PotionAddedEvent is called BEFORE adding the potion
     @SubscribeEvent
     public static void onAdded(PotionEvent.PotionAddedEvent event) {
 
@@ -16,11 +17,12 @@ public class OnPotionChange {
         if (entity != null) {
             EntityCap.UnitData data = Load.Unit(entity);
             data.setEquipsChanged(true);
-            data.tryRecalculateStats(entity);
+            //data.tryRecalculateStats(entity); dont calc stats, PotionAddedEvent is called BEFORE adding the potion O_O
         }
 
     }
 
+    //PotionExpiryEvent is called BEFORE removing the potion
     @SubscribeEvent
     public static void onExpired(PotionEvent.PotionExpiryEvent event) {
 
@@ -29,7 +31,7 @@ public class OnPotionChange {
         if (entity != null) {
             EntityCap.UnitData data = Load.Unit(entity);
             data.setEquipsChanged(true);
-            data.tryRecalculateStats(entity);
+            //data.tryRecalculateStats(entity);
         }
 
     }

@@ -13,6 +13,7 @@ public enum SpellSchools {
     DRUID("druid", Elements.Nature.format, Words.Druid),
     SHAMAN("shaman", Elements.Thunder.format, Words.Shaman),
     RANGER("ranger", TextFormatting.GREEN, Words.Ranger),
+    ROGUE("rogue", TextFormatting.AQUA, Words.Rogue),
     CLERIC("cleric", TextFormatting.WHITE, Words.Cleric);
 
     SpellSchools(String id, TextFormatting format, Words locName) {

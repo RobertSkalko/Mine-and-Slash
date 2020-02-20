@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
+import com.robertx22.mine_and_slash.database.stats.types.class_based.RogueStealth;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
 import com.robertx22.mine_and_slash.database.stats.types.defense.*;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
@@ -90,6 +91,7 @@ public class Stats implements ISlashRegistryInit {
 
                     // generated
 
+                    add(RogueStealth.getInstance());
                     add(new PhysicalDispersion());
                     add(new AllAttributes());
                     add(new AllEleDmg());

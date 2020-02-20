@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.Mag
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.VolcanoSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.*;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.*;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.rogue.StealthSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.LightningTotemSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
@@ -63,6 +64,8 @@ public class Spells implements ISlashRegistryInit {
                     add(TripleShotSpell.getInstance());
                     add(ImbueSpell.getInstance());
                     add(ArrowStormSpell.getInstance());
+
+                    add(StealthSpell.getInstance());
 
                 }
             }
