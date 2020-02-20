@@ -25,6 +25,11 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
         return "staff";
     }
 
+    @Override
+    public boolean isMeleeWeapon() {
+        return true;
+    }
+
     static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override

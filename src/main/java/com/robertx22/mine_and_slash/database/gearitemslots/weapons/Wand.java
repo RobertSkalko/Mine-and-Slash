@@ -26,6 +26,11 @@ public class Wand extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
+    public boolean isMeleeWeapon() {
+        return true;
+    }
+
+    @Override
     public int cooldownTicks() {
         return 40;
     }

@@ -13,6 +13,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
@@ -36,7 +37,8 @@ public class PlayerUtils {
             }
         }
         if (pos == null) {
-            pos = player.getBedLocation(player.world.getDimension().getType());
+            pos = player.getBedLocation(player.world.getDimension()
+                .getType());
         }
         if (pos == null) {
             pos = player.getBedLocation();
@@ -54,7 +56,9 @@ public class PlayerUtils {
     public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos, String name) {
 
         if (MMORPG.RUN_DEV_TOOLS) {
-            for (ServerPlayerEntity player : MapManager.getServer().getPlayerList().getPlayers()) {
+            for (ServerPlayerEntity player : MapManager.getServer()
+                .getPlayerList()
+                .getPlayers()) {
 
                 player.sendMessage(new StringTextComponent(name + " Structure spawned at : " + pos.toString()));
 
@@ -74,7 +78,8 @@ public class PlayerUtils {
 
         System.out.println("Teleporting player to " + pos.toString() + " with mine and slash. ");
 
-        MapManager.getWorld(destination).getChunk(pos); // load chunk first
+        MapManager.getWorld(destination)
+            .getChunk(pos); // load chunk first
 
         player.setMotion(0, 0, 0);
 
@@ -82,12 +87,12 @@ public class PlayerUtils {
 
         player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
-        player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0.0F);
-        player.moveToBlockPosAndAngles(pos, player.rotationYaw, player.rotationPitch);
-        player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+        EntityUtils.setLoc(player, new Vec3d(pos), player.rotationYaw, player.rotationPitch);
 
         if (WorldUtils.isMapWorldClass(player.world)) {
-            Load.world(player.world).init(Load.playerMapData(player).getMap()); // TODO
+            Load.world(player.world)
+                .init(Load.playerMapData(player)
+                    .getMap()); // TODO
         }
 
         return player;
@@ -167,8 +172,8 @@ public class PlayerUtils {
     public static PlayerEntity nearestPlayer(ServerWorld world, LivingEntity entity) {
 
         Optional<ServerPlayerEntity> player = world.getPlayers()
-                .stream()
-                .min(Comparator.comparingDouble(entity::getDistanceSq));
+            .stream()
+            .min(Comparator.comparingDouble(entity::getDistanceSq));
 
         if (player.isPresent()) {
             return player.get();
@@ -204,7 +209,8 @@ public class PlayerUtils {
 
     public static void setPestistentNBT(PlayerEntity player, CompoundNBT nbt) {
 
-        player.getPersistentData().put(PlayerEntity.PERSISTED_NBT_TAG, nbt);
+        player.getPersistentData()
+            .put(PlayerEntity.PERSISTED_NBT_TAG, nbt);
     }
 
 }

@@ -29,6 +29,11 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
+    public boolean isMeleeWeapon() {
+        return true;
+    }
+
+    @Override
     public String resourceID() {
         return "axe";
     }

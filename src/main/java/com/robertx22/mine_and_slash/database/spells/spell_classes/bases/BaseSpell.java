@@ -14,9 +14,11 @@ import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
@@ -45,6 +47,16 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Item item = x.getHeldItemMainhand()
             .getItem();
         return item instanceof ShootableItem;
+    };
+
+    public static Predicate<LivingEntity> REQUIRE_MELEE_WEAPON = x -> {
+        try {
+            GearItemData data = Gear.Load(x.getHeldItemMainhand());
+            return data != null && data.GetBaseGearType()
+                .isMeleeWeapon();
+        } catch (Exception e) {
+            return false;
+        }
     };
 
     public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {

@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
-import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
@@ -13,6 +11,8 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShie
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
+import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
@@ -48,6 +48,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     public static StatReq noReq = StatReq.nothing();
 
     public abstract Item getBaseUniqueItem();
+
+    public boolean isMeleeWeapon() {
+        return false;
+    }
 
     public enum GearSlotType {
         Weapon,

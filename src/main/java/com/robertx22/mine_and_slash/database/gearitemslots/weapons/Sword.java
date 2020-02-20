@@ -26,6 +26,11 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
         return "sword";
     }
 
+    @Override
+    public boolean isMeleeWeapon() {
+        return true;
+    }
+
     static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.TINY);
 
     @Override
