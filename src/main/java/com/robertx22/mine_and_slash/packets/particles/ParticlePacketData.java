@@ -22,7 +22,14 @@ public class ParticlePacketData {
     }
 
     @Store
-    public BlockPos pos;
+    public double x = 1;
+    @Store
+    public double y = 1;
+    @Store
+    public double z = 1;
+
+    @Store
+    public boolean isVecPos = false;
 
     @Store
     public double mx = 1;
@@ -58,7 +65,8 @@ public class ParticlePacketData {
     }
 
     public ParticlePacketData type(ParticleType type) {
-        this.particleID = type.getRegistryName().toString();
+        this.particleID = type.getRegistryName()
+            .toString();
         return this;
     }
 
@@ -82,8 +90,26 @@ public class ParticlePacketData {
         return this;
     }
 
+    public Vec3d getPos() {
+        return new Vec3d(x, y, z);
+    }
+
+    public BlockPos getBlockPos() {
+        return new BlockPos(x, y, z);
+    }
+
+    public ParticlePacketData(Vec3d pos, ParticleEnum type) {
+        x = pos.getX();
+        y = pos.getY();
+        z = pos.getZ();
+        this.isVecPos = true;
+        this.type = type;
+    }
+
     public ParticlePacketData(BlockPos pos, ParticleEnum type) {
-        this.pos = pos;
+        x = pos.getX();
+        y = pos.getY();
+        z = pos.getZ();
         this.type = type;
     }
 }

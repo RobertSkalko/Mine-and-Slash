@@ -1,9 +1,13 @@
 package com.robertx22.mine_and_slash.potion_effects.rogue;
 
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.database.stats.types.class_based.RogueStealth;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
@@ -17,6 +21,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
@@ -89,8 +94,7 @@ public class StealthEffect extends BasePotionEffect implements IApplyStatPotion 
 
     }
 
-    @Override
-    public void onPotionAdd(LivingEntity caster) {
+    public void removeTargetingFromNearbyMobs(LivingEntity caster) {
         EntityFinder.start(caster, MobEntity.class, caster.getPositionVector())
             .radius(20)
             .build()
@@ -100,6 +104,21 @@ public class StealthEffect extends BasePotionEffect implements IApplyStatPotion 
                     x.setAttackTarget(null);
                 }
             });
+    }
+
+    @Override
+    public void onPotionAdd(LivingEntity caster) {
+        if (Synergies.STEALTH_DISAPPEAR.has(caster)) {
+            Synergies.STEALTH_DISAPPEAR.tryActivate(new CasterContext(caster));
+        }
+
+        ParticleEnum.sendToClients(
+            caster,
+            new ParticlePacketData(caster.getPositionVector(), ParticleEnum.NOVA)
+                .radius(1F)
+                .amount(30)
+                .type(ParticleTypes.CLOUD));
+
     }
 
     private static class SingletonHolder {

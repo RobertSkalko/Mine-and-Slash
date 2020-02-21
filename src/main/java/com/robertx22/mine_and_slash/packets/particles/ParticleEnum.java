@@ -17,14 +17,14 @@ public enum ParticleEnum {
     THORNS() {
         @Override
         public void activate(ParticlePacketData data, World world) {
-            Vec3d center = getCenter(data.pos);
+            Vec3d center = getCenter(data);
 
             for (int i = 0; i < data.amount; i++) {
                 Vec3d p = GeometryUtils.randomPos(center, world.rand, data.radius);
                 Vec3d m = GeometryUtils.randomMotion(center, world.rand);
 
                 world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.BIRCH_LEAVES.getDefaultState()),
-                                  p.x, p.y, p.z, m.x, m.y, m.z
+                    p.x, p.y, p.z, m.x, m.y, m.z
                 );
                 world.addParticle(ParticleTypes.ITEM_SLIME, p.x, p.y, p.z, m.x, m.y, m.z);
 
@@ -35,14 +35,14 @@ public enum ParticleEnum {
     PETRIFY() {
         @Override
         public void activate(ParticlePacketData data, World world) {
-            Vec3d center = getCenter(data.pos);
+            Vec3d center = getCenter(data);
 
             for (int i = 0; i < data.amount; i++) {
                 Vec3d p = GeometryUtils.randomPos(center, world.rand, data.radius);
                 Vec3d m = GeometryUtils.randomMotion(center, world.rand);
 
                 world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()), p.x, p.y,
-                                  p.z, m.x, m.y, m.z
+                    p.z, m.x, m.y, m.z
                 );
             }
         }
@@ -50,7 +50,7 @@ public enum ParticleEnum {
     AOE() {
         @Override
         public void activate(ParticlePacketData data, World world) {
-            Vec3d p = getCenter(data.pos);
+            Vec3d p = getCenter(data);
 
             for (int i = 0; i < data.amount; i++) {
                 Vec3d r = GeometryUtils.getRandomPosInRadiusCircle(p.x, p.y, p.z, data.radius);
@@ -61,7 +61,7 @@ public enum ParticleEnum {
     CIRCLE_REDSTONE() {
         @Override
         public void activate(ParticlePacketData data, World world) {
-            Vec3d p = getCenter(data.pos);
+            Vec3d p = getCenter(data);
 
             for (int i = 0; i < data.radius * 60; i++) {
                 Vec3d r = GeometryUtils.getRandomPosInRadiusCircle(p.x, p.y, p.z, data.radius);
@@ -74,7 +74,7 @@ public enum ParticleEnum {
         @Override
         public void activate(ParticlePacketData data, World world) {
 
-            Vec3d p = getCenter(data.pos);
+            Vec3d p = getCenter(data);
 
             for (int i = 0; i < data.radius * 50; i++) {
                 Vec3d r = GeometryUtils.getRandomHorizontalPosInRadiusCircle(p.x, p.y, p.z, data.radius);
@@ -86,7 +86,7 @@ public enum ParticleEnum {
         @Override
         public void activate(ParticlePacketData data, World world) {
 
-            Vec3d p = getCenter(data.pos);
+            Vec3d p = getCenter(data);
 
             for (int i = 0; i < data.amount; i++) {
 
@@ -100,7 +100,7 @@ public enum ParticleEnum {
         public void activate(ParticlePacketData data, World world) {
 
             for (int i = 0; i < 150; i++) {
-                Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(new Vec3d(data.pos), data.radius);
+                Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(data.getPos(), data.radius);
                 world.addParticle(ParticleTypes.FLAME, p.x, p.y, p.z, 0, 0, 0);
                 world.addParticle(ParticleTypes.SMOKE, p.x, p.y, p.z, 0, 0, 0);
 
@@ -133,9 +133,13 @@ public enum ParticleEnum {
         }
     }
 
-    public Vec3d getCenter(BlockPos pos) {
-
-        return new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+    public Vec3d getCenter(ParticlePacketData data) {
+        if (data.isVecPos) {
+            return data.getPos();
+        } else {
+            BlockPos pos = data.getBlockPos();
+            return new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+        }
     }
 
     public void spawnRedstone(World world, RGB color, double xpos, double ypos, double zpos) {

@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ranger.ImbueCritAd
 import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddHunterSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddWoundsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ranger.TripleShotConsumeHunterSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.rogue.StealthDisappearSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderDashEnergySynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearLightningStrikeSynergy;
@@ -54,4 +55,6 @@ public class Synergies {
     public static ImbueCritAddHunterSynergy IMBUE_CRIT_HUNTER = new ImbueCritAddHunterSynergy();
     public static RecoilAddHunterSynergy RECOIL_ADD_HUNTER = new RecoilAddHunterSynergy();
     public static RecoilAddWoundsSynergy RECOIL_ADD_WOUNDS = new RecoilAddWoundsSynergy();
+
+    public static StealthDisappearSynergy STEALTH_DISAPPEAR = new StealthDisappearSynergy();
 }

@@ -1,0 +1,43 @@
+package com.robertx22.mine_and_slash.database.spells.synergies.rogue;
+
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.rogue.StealthSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class StealthDisappearSynergy extends Synergy<CasterContext> {
+
+    @Override
+    public String GUID() {
+        return "stealth_disappear_synergy";
+    }
+
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        List<ITextComponent> list = new ArrayList<>();
+
+        addSpellName(list);
+
+        list.add(new StringTextComponent("Clears you as target from mobs nearby"));
+        list.add(new StringTextComponent("This allows stealth to be useful while in combat."));
+
+        return list;
+    }
+
+    @Override
+
+    public BaseSpell spellAffected() {
+        return StealthSpell.getInstance();
+    }
+
+    @Override
+    public void tryActivate(CasterContext ctx) {
+
+    }
+}
