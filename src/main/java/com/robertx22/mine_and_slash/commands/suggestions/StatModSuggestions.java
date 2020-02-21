@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.commands.bases;
+package com.robertx22.mine_and_slash.commands.suggestions;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -12,7 +12,9 @@ public class StatModSuggestions extends CommandSuggestions {
     public List<String> suggestions() {
 
         List<String> list = new ArrayList();
-        for (StatMod item : SlashRegistry.StatMods().getAll().values()) {
+        for (StatMod item : SlashRegistry.StatMods()
+            .getAll()
+            .values()) {
             list.add(item.GUID());
         }
 

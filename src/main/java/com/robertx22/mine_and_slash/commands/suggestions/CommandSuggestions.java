@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.commands.bases;
+package com.robertx22.mine_and_slash.commands.suggestions;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;

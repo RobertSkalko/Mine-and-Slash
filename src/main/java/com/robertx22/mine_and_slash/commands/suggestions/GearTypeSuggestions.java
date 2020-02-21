@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.commands.bases;
+package com.robertx22.mine_and_slash.commands.suggestions;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -12,7 +12,9 @@ public class GearTypeSuggestions extends CommandSuggestions {
     public List<String> suggestions() {
 
         List<String> list = new ArrayList();
-        for (GearItemSlot slot : SlashRegistry.GearTypes().getAll().values()) {
+        for (GearItemSlot slot : SlashRegistry.GearTypes()
+            .getAll()
+            .values()) {
             list.add(slot.GUID());
         }
         list.add("random");

@@ -4,6 +4,12 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.mine_and_slash.commands.*;
 import com.robertx22.mine_and_slash.commands.entity.*;
 import com.robertx22.mine_and_slash.commands.giveitems.*;
+import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
+import com.robertx22.mine_and_slash.commands.party.PartyCommand;
+import com.robertx22.mine_and_slash.commands.reset.ResetSpellCooldowns;
+import com.robertx22.mine_and_slash.commands.reset.ResetSpells;
+import com.robertx22.mine_and_slash.commands.reset.ResetTalents;
+import com.robertx22.mine_and_slash.commands.stats.*;
 import net.minecraft.command.CommandSource;
 import net.minecraft.server.MinecraftServer;
 
@@ -43,15 +49,14 @@ public class CommandRegister {
         ReloadConfigs.register(dispatcher);
         ModifyItem.register(dispatcher);
         GiveUniqueRune.register(dispatcher);
-        SayMapInfo.register(dispatcher);
-        OpenPickStatsGui.register(dispatcher);
         ResetTalents.register(dispatcher);
-        OpenTalentsGui.register(dispatcher);
         OpenHub.register(dispatcher);
 
         StartMapEvent.register(dispatcher);
 
         GiveCrate.register(dispatcher);
+
+        PartyCommand.register(dispatcher);
 
         ConvertCompItemsToNewFormat.register(dispatcher);
 

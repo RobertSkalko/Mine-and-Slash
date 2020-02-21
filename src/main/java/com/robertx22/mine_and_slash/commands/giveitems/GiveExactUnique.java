@@ -4,34 +4,42 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.mine_and_slash.commands.bases.UniqueGearsSuggestions;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.commands.CommandRefs;
+import com.robertx22.mine_and_slash.commands.suggestions.UniqueGearsSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
 
+import static net.minecraft.command.Commands.argument;
+import static net.minecraft.command.Commands.literal;
+
 public class GiveExactUnique {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
-        commandDispatcher.register(Commands.literal("giveexactunique")
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.player())
-                        .then(Commands.argument("uniqueID", StringArgumentType.word())
-                                .suggests(new UniqueGearsSuggestions())
-                                .then(Commands.argument("level", IntegerArgumentType.integer())
-                                        .then(Commands.argument("amount", IntegerArgumentType
-                                                .integer(1, 5000))
-                                                .executes(e -> execute(e.getSource(), EntityArgument
-                                                        .getPlayer(e, "target"), StringArgumentType
-                                                        .getString(e, "uniqueID"), IntegerArgumentType
-                                                        .getInteger(e, "level"), IntegerArgumentType
-                                                        .getInteger(e, "amount")
 
-                                                )))))));
+        commandDispatcher.register(
+            literal(CommandRefs.ID)
+                .requires(e -> e.hasPermissionLevel(2))
+                .then(literal("give")
+                    .then(literal("exact_unique")
+                        .requires(e -> e.hasPermissionLevel(2))
+                        .then(argument("target", EntityArgument.player())
+                            .then(argument("uniqueID", StringArgumentType.word())
+                                .suggests(new UniqueGearsSuggestions())
+                                .then(argument("level", IntegerArgumentType.integer())
+                                    .then(argument("amount", IntegerArgumentType
+                                        .integer(1, 5000))
+                                        .executes(e -> execute(e.getSource(), EntityArgument
+                                            .getPlayer(e, "target"), StringArgumentType
+                                            .getString(e, "uniqueID"), IntegerArgumentType
+                                            .getInteger(e, "level"), IntegerArgumentType
+                                            .getInteger(e, "amount")
+
+                                        )))))))));
     }
 
     private static int execute(CommandSource commandSource, @Nullable PlayerEntity player,
@@ -49,7 +57,8 @@ public class GiveExactUnique {
         for (int i = 0; i < amount; i++) {
             UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, 0, true);
 
-            blueprint.unique.set(SlashRegistry.UniqueGears().get(id));
+            blueprint.unique.set(SlashRegistry.UniqueGears()
+                .get(id));
 
             blueprint.level.LevelRange = false;
 

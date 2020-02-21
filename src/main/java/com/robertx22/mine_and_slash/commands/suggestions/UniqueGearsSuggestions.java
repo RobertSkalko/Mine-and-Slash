@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.commands.bases;
+package com.robertx22.mine_and_slash.commands.suggestions;
 
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
@@ -10,10 +10,10 @@ public class UniqueGearsSuggestions extends CommandSuggestions {
     @Override
     public List<String> suggestions() {
         return SlashRegistry.UniqueGears()
-                .getList()
-                .stream()
-                .map(x -> x.GUID())
-                .collect(Collectors.toList());
+            .getList()
+            .stream()
+            .map(x -> x.GUID())
+            .collect(Collectors.toList());
     }
 
 }

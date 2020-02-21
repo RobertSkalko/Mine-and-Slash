@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
-import com.robertx22.mine_and_slash.commands.OpenHub;
+import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
@@ -20,6 +19,7 @@ import com.robertx22.mine_and_slash.onevent.player.OnLogin;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
@@ -479,7 +479,8 @@ public class EntityCap {
 
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
 
-            i *= (double) this.getUnit().peekAtStat(BonusExp.GUID).val / 100 + 1;
+            i *= (double) this.getUnit()
+                .peekAtStat(BonusExp.GUID).val / 100 + 1;
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(killed, player, this, i));
 
@@ -538,7 +539,8 @@ public class EntityCap {
                 setExp(getRemainingExp());
                 player.sendMessage(
                     new StringTextComponent(TextFormatting.YELLOW + "" + TextFormatting.BOLD).appendSibling(
-                        Chats.You_have_leveled_up.locName()).appendText("!"));
+                        Chats.You_have_leveled_up.locName())
+                        .appendText("!"));
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
 
                 onLvlPostMsg(player);
@@ -558,9 +560,12 @@ public class EntityCap {
 
         public void onLvlPostMsg(LivingEntity en) {
 
-            int talents = Load.talents((PlayerEntity) en).getFreePoints(this);
-            int spells = Load.spells((PlayerEntity) en).getFreePoints(this);
-            int stats = Load.statPoints((PlayerEntity) en).getAvailablePoints(this);
+            int talents = Load.talents((PlayerEntity) en)
+                .getFreePoints(this);
+            int spells = Load.spells((PlayerEntity) en)
+                .getFreePoints(this);
+            int stats = Load.statPoints((PlayerEntity) en)
+                .getAvailablePoints(this);
 
             int total = talents + spells + stats;
 
@@ -698,13 +703,15 @@ public class EntityCap {
 
                 BossCap.IBossData boss = Load.boss(entity);
 
-                ITextComponent name = boss.isBoss() ? boss.getBoss().getNameFor(entity) : entity.getDisplayName();
+                ITextComponent name = boss.isBoss() ? boss.getBoss()
+                    .getNameFor(entity) : entity.getDisplayName();
 
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
                     .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));
 
                 ITextComponent suffix = new StringTextComponent(rarity.textFormatColor() + "").appendSibling(
-                    rarityprefix.appendText(" ").appendSibling(name));
+                    rarityprefix.appendText(" ")
+                        .appendSibling(name));
 
                 return lvlcomp.appendSibling(suffix);
 
@@ -768,8 +775,10 @@ public class EntityCap {
 
                     IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
 
-                    float energyCost = iwep.mechanic().GetEnergyCost(getLvlForResourceCosts()) * multi;
-                    float manaCost = iwep.mechanic().GetManaCost(getLvlForResourceCosts()) * multi;
+                    float energyCost = iwep.mechanic()
+                        .GetEnergyCost(getLvlForResourceCosts()) * multi;
+                    float manaCost = iwep.mechanic()
+                        .GetManaCost(getLvlForResourceCosts()) * multi;
 
                     ResourcesData.Context ene = new ResourcesData.Context(
                         this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
@@ -805,7 +814,6 @@ public class EntityCap {
             }
             return false;
         }
-
 
         @Override
         public void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData weaponData,
@@ -897,15 +905,19 @@ public class EntityCap {
         public void unarmedAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
                                   UnitData targetdata) {
 
-            float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get().floatValue();
+            float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get()
+                .floatValue();
 
-            cost = Energy.getInstance().calculateScalingStatGrowth(cost, getLvlForResourceCosts());
+            cost = Energy.getInstance()
+                .calculateScalingStatGrowth(cost, getLvlForResourceCosts());
 
             ResourcesData.Context energy = new ResourcesData.Context(
                 this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
 
-            if (this.getResources().hasEnough(energy)) {
-                this.getResources().modify(energy);
+            if (this.getResources()
+                .hasEnough(energy)) {
+                this.getResources()
+                    .modify(energy);
                 int num = (int) unit.getCreateStat(PhysicalDamage.GUID).val;
                 DamageEffect dmg = new DamageEffect(
                     event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);

@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.commands.bases;
+package com.robertx22.mine_and_slash.commands.suggestions;
 
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
@@ -12,8 +12,8 @@ public class StatTypeSuggestions extends CommandSuggestions {
     public List<String> suggestions() {
 
         return Arrays.stream(StatModTypes.values())
-                .map(x -> x.name())
-                .collect(Collectors.toList());
+            .map(x -> x.name())
+            .collect(Collectors.toList());
 
     }
 

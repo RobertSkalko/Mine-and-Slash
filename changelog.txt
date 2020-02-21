@@ -36,7 +36,9 @@ It's not really that hard, as the object has a .toJson() method, and that's most
 * trying out a new system to balance map drops. Bascically i don't want people spamming them all the time, but i don't want people spending hours insta killing overworld mobs for them either.
 So i made a system that buffs drops if you're outside a map dimension, but nerfs them if you're inside. This should make maps a lot more precious and time gated, and allow for people to do
 other minecraft things in the meantime.
-* increased loot droprates in maps a bit. 
+* increased loot droprates in maps a bit.
+* grouped all my commands under /slash
+This should make using commands a lot easier 
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

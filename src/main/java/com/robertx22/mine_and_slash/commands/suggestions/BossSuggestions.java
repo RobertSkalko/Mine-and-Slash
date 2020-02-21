@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.commands.bases;
+package com.robertx22.mine_and_slash.commands.suggestions;
 
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -12,7 +12,9 @@ public class BossSuggestions extends CommandSuggestions {
     public List<String> suggestions() {
 
         List<String> list = new ArrayList();
-        for (Boss boss : SlashRegistry.Bosses().getAll().values()) {
+        for (Boss boss : SlashRegistry.Bosses()
+            .getAll()
+            .values()) {
             list.add(boss.GUID());
         }
 

@@ -2,24 +2,33 @@ package com.robertx22.mine_and_slash.commands.entity;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 
 import javax.annotation.Nullable;
 
+import static net.minecraft.command.Commands.argument;
+import static net.minecraft.command.Commands.literal;
+
 public class SetEntityLevel {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
-        commandDispatcher.register(Commands.literal("setentitylevel")
+        commandDispatcher.register(
+
+            literal(CommandRefs.ID)
                 .requires(e -> e.hasPermissionLevel(2))
-                .then(Commands.argument("target", EntityArgument.entity())
-                        .then(Commands.argument("level", IntegerArgumentType.integer())
-                                .executes(e -> execute(e.getSource(), EntityArgument.getEntity(e, "target"), IntegerArgumentType
-                                        .getInteger(e, "level"))))));
+                .then(literal("set")
+                    .then(literal("entity")
+                        .then(literal("level")
+                            .requires(e -> e.hasPermissionLevel(2))
+                            .then(argument("target", EntityArgument.entity())
+                                .then(argument("level", IntegerArgumentType.integer())
+                                    .executes(e -> execute(e.getSource(), EntityArgument.getEntity(e, "target"), IntegerArgumentType
+                                        .getInteger(e, "level")))))))));
     }
 
     private static int execute(CommandSource commandSource, @Nullable Entity entity,

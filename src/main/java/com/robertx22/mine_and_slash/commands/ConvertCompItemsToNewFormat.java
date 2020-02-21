@@ -8,22 +8,24 @@ import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleI
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashDataProvider;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static net.minecraft.command.Commands.literal;
+
 public class ConvertCompItemsToNewFormat {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
-            Commands.literal(COMMAND)
+            literal(CommandRefs.ID)
                 .requires(e -> e.hasPermissionLevel(2))
-                .executes(ctx -> run(ctx.getSource())));
+                .then(literal("old")
+                    .then(literal("convert")
+                        .then(literal("compatible_items")
+                            .executes(ctx -> run(ctx.getSource()))))));
     }
-
-    public static final String COMMAND = "convert_compatible_items_to_new_format";
 
     private static int run(CommandSource source) {
 
