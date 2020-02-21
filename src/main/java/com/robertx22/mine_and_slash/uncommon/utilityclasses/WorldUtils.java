@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
-import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;

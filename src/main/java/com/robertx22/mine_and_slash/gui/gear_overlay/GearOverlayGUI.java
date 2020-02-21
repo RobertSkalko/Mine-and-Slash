@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.gui.gear_overlay;
 
 import com.robertx22.mine_and_slash.onevent.my_events.CollectGearEvent;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;

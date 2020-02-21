@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -28,7 +28,7 @@ public class PlayersCapBackup {
             map.put(getKey(player), data.getLevel());
         }
     }
-    
+
     public void restoreFromBackup(ServerPlayerEntity player) {
 
         int currentLvl = Load.Unit(player).getLevel();

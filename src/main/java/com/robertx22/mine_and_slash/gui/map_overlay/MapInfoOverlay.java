@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.gui.map_overlay;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.capability.QuestsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.QuestsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.client.Minecraft;

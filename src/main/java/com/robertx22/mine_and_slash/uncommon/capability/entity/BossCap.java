@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.capability;
+package com.robertx22.mine_and_slash.uncommon.capability.entity;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;

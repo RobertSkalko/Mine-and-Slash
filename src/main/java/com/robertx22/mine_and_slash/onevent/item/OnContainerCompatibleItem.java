@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleI
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.item.ItemStack;

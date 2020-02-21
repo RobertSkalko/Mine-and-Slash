@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.commands.reset;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;

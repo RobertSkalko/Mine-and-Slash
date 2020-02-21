@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.quests.actions;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseLootCrateTileEntity;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class OpenedCrateData extends ActionDoneData {

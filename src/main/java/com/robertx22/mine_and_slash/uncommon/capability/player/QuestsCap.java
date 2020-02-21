@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.capability;
+package com.robertx22.mine_and_slash.uncommon.capability.player;
 
 import com.robertx22.mine_and_slash.database.quests.actions.ActionDoneData;
 import com.robertx22.mine_and_slash.database.quests.base.Quest;

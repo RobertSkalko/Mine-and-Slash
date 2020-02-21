@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.traits.bases;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.Trait;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 
 public abstract class ConditionalTrait extends Trait {
 

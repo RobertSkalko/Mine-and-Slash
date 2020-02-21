@@ -1,7 +1,11 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
-import com.robertx22.mine_and_slash.uncommon.capability.*;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.player.*;
+import com.robertx22.mine_and_slash.uncommon.capability.server_wide.PlayerCapBackupCap;
+import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -13,15 +17,19 @@ public class Load {
 
     public static boolean hasUnit(ICapabilityProvider provider) { // tterag said this is correct
         if (provider != null) {
-            return provider.getCapability(EntityCap.Data).isPresent();
+            return provider.getCapability(EntityCap.Data)
+                .isPresent();
         }
         return false;
     }
 
     public static boolean isBoss(ICapabilityProvider provider) { // tterag said this is correct
         if (provider != null) {
-            if (provider.getCapability(BossCap.Data).isPresent()) {
-                return provider.getCapability(BossCap.Data).orElse(new BossCap.DefaultImpl()).isBoss();
+            if (provider.getCapability(BossCap.Data)
+                .isPresent()) {
+                return provider.getCapability(BossCap.Data)
+                    .orElse(new BossCap.DefaultImpl())
+                    .isBoss();
             }
         }
         return false;
@@ -31,7 +39,8 @@ public class Load {
 
         if (provider != null) {
 
-            return provider.getCapability(PlayerStatsPointsCap.Data).orElse(new PlayerStatsPointsCap.DefaultImpl());
+            return provider.getCapability(PlayerStatsPointsCap.Data)
+                .orElse(new PlayerStatsPointsCap.DefaultImpl());
 
         }
         return null;
@@ -49,29 +58,22 @@ public class Load {
     @Nonnull
     public static PlayerTalentsCap.IPlayerTalentsData talents(PlayerEntity provider) {
 
-        return provider.getCapability(PlayerTalentsCap.Data).orElse(new PlayerTalentsCap.DefaultImpl());
+        return provider.getCapability(PlayerTalentsCap.Data)
+            .orElse(new PlayerTalentsCap.DefaultImpl());
     }
 
     @Nonnull
     public static PlayerSpellCap.ISpellsCap spells(PlayerEntity provider) {
 
-        return provider.getCapability(PlayerSpellCap.Data).orElse(new PlayerSpellCap.DefaultImpl());
-    }
-
-    public static WeaponSpeedCap.IWeaponSpeedCap weaponSpeed(PlayerEntity provider) {
-
-        if (provider != null) {
-
-            return provider.getCapability(WeaponSpeedCap.Data).orElse(new WeaponSpeedCap.DefaultImpl());
-
-        }
-        return null;
+        return provider.getCapability(PlayerSpellCap.Data)
+            .orElse(new PlayerSpellCap.DefaultImpl());
     }
 
     public static QuestsCap.IQuestsData quests(PlayerEntity provider) {
 
         if (provider != null) {
-            return provider.getCapability(QuestsCap.Data).orElse(new QuestsCap.DefaultImpl());
+            return provider.getCapability(QuestsCap.Data)
+                .orElse(new QuestsCap.DefaultImpl());
 
         }
         return null;
@@ -81,7 +83,8 @@ public class Load {
 
         if (provider != null) {
 
-            return provider.getCapability(ProfessionsCap.Data).orElse(new ProfessionsCap.DefaultImpl());
+            return provider.getCapability(ProfessionsCap.Data)
+                .orElse(new ProfessionsCap.DefaultImpl());
 
         }
         return null;
@@ -91,7 +94,8 @@ public class Load {
 
         if (world != null) {
 
-            return world.getCapability(PlayerCapBackupCap.Data).orElse(new PlayerCapBackupCap.DefaultImpl());
+            return world.getCapability(PlayerCapBackupCap.Data)
+                .orElse(new PlayerCapBackupCap.DefaultImpl());
 
         }
         return null;
@@ -101,7 +105,8 @@ public class Load {
 
         if (provider != null) {
 
-            return provider.getCapability(EntityCap.Data).orElse(new EntityCap.DefaultImpl());
+            return provider.getCapability(EntityCap.Data)
+                .orElse(new EntityCap.DefaultImpl());
 
         }
         return null;
@@ -111,7 +116,8 @@ public class Load {
 
         if (provider != null) {
 
-            return provider.getCapability(BossCap.Data).orElse(new BossCap.DefaultImpl());
+            return provider.getCapability(BossCap.Data)
+                .orElse(new BossCap.DefaultImpl());
 
         }
         return null;
@@ -120,7 +126,8 @@ public class Load {
     public static PlayerMapCap.IPlayerMapData playerMapData(PlayerEntity provider) {
 
         if (provider != null) {
-            return provider.getCapability(PlayerMapCap.Data).orElse(new PlayerMapCap.DefaultImpl());
+            return provider.getCapability(PlayerMapCap.Data)
+                .orElse(new PlayerMapCap.DefaultImpl());
         }
         return null;
     }

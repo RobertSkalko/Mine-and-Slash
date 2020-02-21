@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability.bases;
 
-import com.robertx22.mine_and_slash.uncommon.capability.*;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.*;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 

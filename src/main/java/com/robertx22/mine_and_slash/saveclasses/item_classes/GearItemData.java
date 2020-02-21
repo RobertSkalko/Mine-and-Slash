@@ -13,7 +13,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsCon
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;

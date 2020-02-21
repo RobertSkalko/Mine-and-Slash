@@ -14,14 +14,14 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
@@ -59,7 +59,8 @@ public class Unit {
     public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
 
     @Store
-    public String GUID = UUID.randomUUID().toString();
+    public String GUID = UUID.randomUUID()
+        .toString();
 
     @Nonnull
     public HashMap<String, StatData> getStats() {
@@ -109,7 +110,8 @@ public class Unit {
         StatData data = MyStats.get(guid);
 
         if (data == null) {
-            Stat stat = SlashRegistry.Stats().get(guid);
+            Stat stat = SlashRegistry.Stats()
+                .get(guid);
             if (stat != null) {
                 MyStats.put(stat.GUID(), new StatData(stat));
 
@@ -133,7 +135,8 @@ public class Unit {
     private void removeEmptyStats() {
 
         for (StatData data : new ArrayList<>(MyStats.values())) {
-            if (data.val == 0 || data.getId().isEmpty()) {
+            if (data.val == 0 || data.getId()
+                .isEmpty()) {
                 //System.out.println(data.Name);
                 MyStats.remove(data.getId());
             }
@@ -153,7 +156,8 @@ public class Unit {
 
             StatData data = entry.getValue();
 
-            if (!SlashRegistry.Stats().isRegistered(data.getId())) {
+            if (!SlashRegistry.Stats()
+                .isRegistered(data.getId())) {
                 MyStats.remove(entry.getKey());
             }
         }
@@ -193,7 +197,8 @@ public class Unit {
     public float getCurrentEffectiveHealth(LivingEntity entity, UnitData data) {
         float curhp = health().CurrentValue(entity, this);
         if (data.getResources() != null) {
-            curhp += data.getResources().getMagicShield();
+            curhp += data.getResources()
+                .getMagicShield();
         }
         return curhp;
 
@@ -308,7 +313,9 @@ public class Unit {
 
     protected void CalcStats(UnitData data) {
 
-        MyStats.values().forEach((StatData stat) -> stat.GetStat().CalcVal(stat, data));
+        MyStats.values()
+            .forEach((StatData stat) -> stat.GetStat()
+                .CalcVal(stat, data));
     }
 
     class DirtyCheck {
@@ -345,7 +352,8 @@ public class Unit {
 
     private float getHpAdded(LivingEntity entity, MobRarity rar, UnitData data) {
 
-        float hpadded = Health.getInstance().calculateScalingStatGrowth(entity.getMaxHealth(), data.getLevel());
+        float hpadded = Health.getInstance()
+            .calculateScalingStatGrowth(entity.getMaxHealth(), data.getLevel());
 
         if (entity instanceof PlayerEntity) {
             hpadded *= ModConfig.INSTANCE.Server.PLAYER_HEART_TO_HEALTH_CONVERSION.get();
@@ -395,7 +403,10 @@ public class Unit {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
             PlayerStatUtils.addTalentStats(data, (PlayerEntity) entity);
 
-            Load.statPoints((PlayerEntity) entity).getData().getAllStatDatas().forEach(x -> x.applyStats(data));
+            Load.statPoints((PlayerEntity) entity)
+                .getData()
+                .getAllStatDatas()
+                .forEach(x -> x.applyStats(data));
 
         } else {
             MobStatUtils.AddMobcStats(data, data.getLevel());
@@ -424,7 +435,7 @@ public class Unit {
         CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
 
         CommonStatUtils.CalcTraitsAndCoreStats(
-                data); // has to be at end for the conditionals like if crit higher than x
+            data); // has to be at end for the conditionals like if crit higher than x
 
         MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnStatCalculation(entity, data));
 
@@ -448,28 +459,33 @@ public class Unit {
     public boolean isGearCombinationValid(List<GearItemData> gears, Entity en) {
 
         List<GearItemData> nonWeapons = gears.stream()
-                .filter(x -> x.GetBaseGearType().slotType() != GearItemSlot.GearSlotType.Weapon)
-                .collect(Collectors.toList());
+            .filter(x -> x.GetBaseGearType()
+                .slotType() != GearItemSlot.GearSlotType.Weapon)
+            .collect(Collectors.toList());
 
-        int unique_items = (int) nonWeapons.stream().filter(x -> x.isUnique()).count();
+        int unique_items = (int) nonWeapons.stream()
+            .filter(x -> x.isUnique())
+            .count();
 
         if (unique_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS.get()) {
             if (en instanceof ServerPlayerEntity) {
                 en.sendMessage(new StringTextComponent(
-                        "Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible " +
-                                "Unique" + " items (excluding weapon) : " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
-                                .get()));
+                    "Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible " +
+                        "Unique" + " items (excluding weapon) : " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
+                        .get()));
             }
             return false;
         }
-        int runed_items = (int) nonWeapons.stream().filter(x -> x.isRuned()).count();
+        int runed_items = (int) nonWeapons.stream()
+            .filter(x -> x.isRuned())
+            .count();
 
         if (runed_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS.get()) {
             if (en instanceof ServerPlayerEntity) {
                 en.sendMessage(new StringTextComponent(
-                        "Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique "
-                                + "items (excluding weapon) : " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
-                                .get()));
+                    "Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique "
+                        + "items (excluding weapon) : " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
+                        .get()));
             }
             return false;
         }

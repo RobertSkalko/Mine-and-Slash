@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.gui.bar_overlays;
 
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.gui.bar_overlays.types.*;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
 import net.minecraft.client.Minecraft;

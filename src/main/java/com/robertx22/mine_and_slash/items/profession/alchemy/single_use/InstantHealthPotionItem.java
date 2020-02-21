@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.professions.recipe.builders.SimpleRecipeBuilders;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

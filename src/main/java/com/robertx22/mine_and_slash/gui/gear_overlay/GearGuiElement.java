@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.gui.gear_overlay;
 
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
 import net.minecraft.client.Minecraft;

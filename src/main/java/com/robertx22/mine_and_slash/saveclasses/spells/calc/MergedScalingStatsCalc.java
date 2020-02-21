@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;

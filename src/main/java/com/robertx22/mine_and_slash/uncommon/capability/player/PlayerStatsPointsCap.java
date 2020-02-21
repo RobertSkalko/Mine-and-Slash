@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.capability;
+package com.robertx22.mine_and_slash.uncommon.capability.player;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.PlayerStatPointsData;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.SingleStatPointData;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;

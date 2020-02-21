@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.capability;
+package com.robertx22.mine_and_slash.uncommon.capability.server_wide;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
@@ -36,7 +36,9 @@ public class PlayerCapBackupCap {
 
         @SubscribeEvent
         public static void onWorld(AttachCapabilitiesEvent<World> event) {
-            if (event.getObject().getDimension().getType() == DimensionType.OVERWORLD) {
+            if (event.getObject()
+                .getDimension()
+                .getType() == DimensionType.OVERWORLD) {
                 event.addCapability(RESOURCE, new Provider());
             }
         }

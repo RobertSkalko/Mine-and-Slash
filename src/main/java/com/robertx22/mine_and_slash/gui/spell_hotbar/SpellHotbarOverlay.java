@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;

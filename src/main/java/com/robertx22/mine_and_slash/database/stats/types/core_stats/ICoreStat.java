@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 
 import java.util.List;
 

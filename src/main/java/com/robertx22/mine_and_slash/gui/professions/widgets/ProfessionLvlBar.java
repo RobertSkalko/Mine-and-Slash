@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.gui.professions.widgets;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.ProfessionsCap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;

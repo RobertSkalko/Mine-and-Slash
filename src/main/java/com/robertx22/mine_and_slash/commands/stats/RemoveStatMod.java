@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.commands.stats;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;

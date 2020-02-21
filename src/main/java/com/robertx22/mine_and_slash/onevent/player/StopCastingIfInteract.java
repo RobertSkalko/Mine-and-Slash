@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;

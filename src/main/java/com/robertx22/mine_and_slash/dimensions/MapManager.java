@@ -2,12 +2,12 @@ package com.robertx22.mine_and_slash.dimensions;
 
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,7 +33,8 @@ public class MapManager {
         @SubscribeEvent
         public static void registerModDimensions(RegistryEvent.Register<ModDimension> event) {
 
-            for (IWP iwp : SlashRegistry.WorldProviders().getList()) {
+            for (IWP iwp : SlashRegistry.WorldProviders()
+                .getList()) {
 
                 ModDimension moddim = iwp.newModDimension();
 
@@ -41,7 +42,8 @@ public class MapManager {
                     moddim.setRegistryName(iwp.getResourceLoc());
                 }
 
-                event.getRegistry().register(moddim);
+                event.getRegistry()
+                    .register(moddim);
 
                 iwp.setModDimension(moddim);
 
@@ -50,7 +52,6 @@ public class MapManager {
         }
 
     }
-    
 
     @Mod.EventBusSubscriber
     public static class announce {
@@ -63,26 +64,31 @@ public class MapManager {
 
     // this is INCOMPLETE AND DOES NOTHING
     public static void unregisterDims() {
-        DimensionManager.getRegistry().stream().filter(x -> {
-            try {
-                if (x.getModType() != null) {
-                    String path = x.getModType().getRegistryName().getNamespace();
+        DimensionManager.getRegistry()
+            .stream()
+            .filter(x -> {
+                try {
+                    if (x.getModType() != null) {
+                        String path = x.getModType()
+                            .getRegistryName()
+                            .getNamespace();
 
-                    if (path.equals(Ref.MODID)) {
-                        return true;
+                        if (path.equals(Ref.MODID)) {
+                            return true;
+                        }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return false;
-        }).forEach(d -> {
-            try {
-                deleteDimension(d);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+                return false;
+            })
+            .forEach(d -> {
+                try {
+                    deleteDimension(d);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
 
     }
 
@@ -125,7 +131,9 @@ public class MapManager {
 
     public static DimensionType getDimensionType(PlayerMapCap.IPlayerMapData data) {
 
-        return DimensionType.byName(data.getMap().getIWP().getResourceLoc());
+        return DimensionType.byName(data.getMap()
+            .getIWP()
+            .getResourceLoc());
 
     }
 
@@ -140,7 +148,8 @@ public class MapManager {
 
     public static String getId(IWorld world) {
         try {
-            return getResourceLocation(world.getDimension().getType()).toString();
+            return getResourceLocation(world.getDimension()
+                .getType()).toString();
         } catch (Exception e) {
             e.printStackTrace();
         }

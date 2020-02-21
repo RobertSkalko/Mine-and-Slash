@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.gui.bar_overlays.bases;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;

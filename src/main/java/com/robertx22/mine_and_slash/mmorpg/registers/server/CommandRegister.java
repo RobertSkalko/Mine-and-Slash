@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.robertx22.mine_and_slash.commands.*;
 import com.robertx22.mine_and_slash.commands.entity.*;
 import com.robertx22.mine_and_slash.commands.giveitems.*;
+import com.robertx22.mine_and_slash.commands.misc.*;
 import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
 import com.robertx22.mine_and_slash.commands.party.PartyCommand;
 import com.robertx22.mine_and_slash.commands.reset.ResetSpellCooldowns;

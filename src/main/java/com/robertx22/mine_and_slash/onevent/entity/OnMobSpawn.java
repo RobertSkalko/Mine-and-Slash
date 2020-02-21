@@ -4,9 +4,9 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
@@ -47,7 +47,8 @@ public class OnMobSpawn {
         UnitData endata = Load.Unit(entity);
 
         if (endata.getUnit() != null) {
-            endata.getUnit().removeUnregisteredStats();
+            endata.getUnit()
+                .removeUnregisteredStats();
         }
 
         if (endata != null) {
@@ -73,12 +74,15 @@ public class OnMobSpawn {
                     endata.setUnit(new Unit(), entity);
                 }
 
-                boolean broken = endata.getUnit().statusEffects.values().stream().anyMatch(x -> x.isBroken());
+                boolean broken = endata.getUnit().statusEffects.values()
+                    .stream()
+                    .anyMatch(x -> x.isBroken());
                 if (broken) {
                     endata.getUnit().statusEffects = new HashMap<>();
                 }
 
-                endata.getUnit().initStats(); // give new stats to mob on spawn
+                endata.getUnit()
+                    .initStats(); // give new stats to mob on spawn
                 endata.forceRecalculateStats(entity);
 
             }

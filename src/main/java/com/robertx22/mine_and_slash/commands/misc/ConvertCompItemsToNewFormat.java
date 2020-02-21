@@ -1,7 +1,8 @@
-package com.robertx22.mine_and_slash.commands;
+package com.robertx22.mine_and_slash.commands.misc;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.config.compatible_items.OldCompatibleItemSerial;
 import com.robertx22.mine_and_slash.config.compatible_items.OldConfigItems;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;

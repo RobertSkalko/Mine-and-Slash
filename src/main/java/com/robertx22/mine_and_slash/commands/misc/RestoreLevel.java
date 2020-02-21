@@ -1,6 +1,7 @@
-package com.robertx22.mine_and_slash.commands;
+package com.robertx22.mine_and_slash.commands.misc;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.command.CommandSource;

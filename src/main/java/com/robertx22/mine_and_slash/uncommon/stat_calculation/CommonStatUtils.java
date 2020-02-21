@@ -12,8 +12,8 @@ import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatConversion;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatTransfer;
@@ -37,7 +37,6 @@ public class CommonStatUtils {
         }
     }
 
-
     public static void addPotionStats(LivingEntity entity, UnitData data) {
 
         for (EffectInstance instance : entity.getActivePotionEffects()) {
@@ -59,7 +58,8 @@ public class CommonStatUtils {
             for (IStatModsContainer.LevelAndStats levelstat : levelsandstats) {
                 for (StatModData data : levelstat.mods) {
 
-                    StatData stat = unit.getCreateStat(data.getStatMod().GetBaseStat());
+                    StatData stat = unit.getCreateStat(data.getStatMod()
+                        .GetBaseStat());
                     if (stat == null) {
 
                     } else {
@@ -140,7 +140,8 @@ public class CommonStatUtils {
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
             List<StatModData> datas = status.GetAllStats();
             for (StatModData data : datas) {
-                StatData stat = unit.getCreateStat(data.getStatMod().GetBaseStat());
+                StatData stat = unit.getCreateStat(data.getStatMod()
+                    .GetBaseStat());
                 if (stat == null) {
                 } else {
 

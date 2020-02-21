@@ -1,8 +1,9 @@
-package com.robertx22.mine_and_slash.commands;
+package com.robertx22.mine_and_slash.commands.misc;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.commands.suggestions.ItemModSuggestions;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseItemModification;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;

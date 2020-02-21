@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.capability;
+package com.robertx22.mine_and_slash.uncommon.capability.player;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;

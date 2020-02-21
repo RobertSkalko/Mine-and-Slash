@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.loot.gens;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -48,7 +48,7 @@ public class MapLootGen extends BaseLootGen<MapBlueprint> {
     public boolean hasLevelDistancePunishment() {
         return false;
     }
-    
+
     @Override
     public ItemStack generateOne() {
         MapBlueprint blueprint = new MapBlueprint(info.level, info.tier);

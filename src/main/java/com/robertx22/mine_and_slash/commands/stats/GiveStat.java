@@ -6,7 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.commands.suggestions.StatSuggestions;
 import com.robertx22.mine_and_slash.commands.suggestions.StatTypeSuggestions;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.command.CommandSource;

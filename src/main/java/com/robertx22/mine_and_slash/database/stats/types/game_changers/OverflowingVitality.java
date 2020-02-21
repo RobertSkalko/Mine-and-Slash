@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAtta
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 
 public class OverflowingVitality extends BaseGameChangerTrait implements IAffectsStats {

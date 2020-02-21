@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.bases;
 
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;

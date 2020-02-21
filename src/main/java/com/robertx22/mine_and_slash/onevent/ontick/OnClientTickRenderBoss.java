@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.ontick;
 
-import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;

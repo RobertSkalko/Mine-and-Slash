@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.loot_crates.bases;
 
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.player.PlayerEntity;

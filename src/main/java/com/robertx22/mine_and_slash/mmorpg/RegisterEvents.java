@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.onevent.ontick.OnServerTick;
 import com.robertx22.mine_and_slash.onevent.player.*;
 import com.robertx22.mine_and_slash.onevent.world.OnMapWorldTickEvents;
-import com.robertx22.mine_and_slash.uncommon.capability.WeaponSpeedCap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -32,7 +31,6 @@ public class RegisterEvents {
 
     private static void registerPlayerEvents() {
 
-        register(WeaponSpeedCap.class);
         register(GiveExpSub.class);
         register(OnDeath.class);
         register(OnPlayerClone.class);

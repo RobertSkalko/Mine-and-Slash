@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.quests.base.QuestResult;
 import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
 import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.capability.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.capability.WorldMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
@@ -31,17 +31,19 @@ public class MapQuestReward extends QuestReward {
 
         if (data.questResult == QuestResult.COMPLETED) {
 
-            player.getCapability(PlayerMapCap.Data).ifPresent(x -> x.onQuestFinished());
+            player.getCapability(PlayerMapCap.Data)
+                .ifPresent(x -> x.onQuestFinished());
 
             WorldMapCap.IWorldMapData worldmapdata = Load.world(player.world);
 
-            LootCrate crate = SlashRegistry.LootCrates().get(worldmapdata.getMap().rewardCrateGUID);
+            LootCrate crate = SlashRegistry.LootCrates()
+                .get(worldmapdata.getMap().rewardCrateGUID);
 
             ItemStack stack = crate.getCrateStack(
-                    worldmapdata.getLevel(), worldmapdata.getTier(), data.reward.score.number);
+                worldmapdata.getLevel(), worldmapdata.getTier(), data.reward.score.number);
 
             player.sendMessage(new StringTextComponent(
-                    TextFormatting.GREEN + "Map Completed! Further exploration seems to give little benefit."));
+                TextFormatting.GREEN + "Map Completed! Further exploration seems to give little benefit."));
 
             SoundUtils.playSound(player, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
 

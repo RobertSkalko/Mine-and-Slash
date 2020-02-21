@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionTile;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RecipeItemData;
-import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.ProfessionsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Recipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;

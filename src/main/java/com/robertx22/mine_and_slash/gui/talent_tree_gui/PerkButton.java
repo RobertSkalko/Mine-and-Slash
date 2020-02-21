@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.PerkScreenContext;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.TryAllocatePerkPacket;
 import com.robertx22.mine_and_slash.packets.TryRemovePerkPacket;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;

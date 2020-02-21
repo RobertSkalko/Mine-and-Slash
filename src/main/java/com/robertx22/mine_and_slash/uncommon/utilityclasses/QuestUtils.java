@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.database.quests.actions.ActionDoneData;
-import com.robertx22.mine_and_slash.uncommon.capability.QuestsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.QuestsCap;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class QuestUtils {

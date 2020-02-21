@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArm
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornBushSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;

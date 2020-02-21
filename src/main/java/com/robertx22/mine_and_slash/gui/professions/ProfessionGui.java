@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.packets.RequestTilePacket;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionTile;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.ProfessionsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;

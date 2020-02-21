@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.bosses.base;
 
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.capability.BossCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;

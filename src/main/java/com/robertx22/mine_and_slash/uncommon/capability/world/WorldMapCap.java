@@ -1,8 +1,8 @@
-package com.robertx22.mine_and_slash.uncommon.capability;
+package com.robertx22.mine_and_slash.uncommon.capability.world;
 
 import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
@@ -121,7 +121,9 @@ public class WorldMapCap {
 
         @Override
         public void startRandomMapEvent(World world) {
-            this.events.add(SlashRegistry.MapEvents().getFilterWrapped(x -> !events.isActive(x)).random(), world);
+            this.events.add(SlashRegistry.MapEvents()
+                .getFilterWrapped(x -> !events.isActive(x))
+                .random(), world);
         }
 
         @Override
@@ -142,7 +144,8 @@ public class WorldMapCap {
         @Override
         public float getLootMultiplier() {
 
-            return this.getMap().getBonusLootMulti();
+            return this.getMap()
+                .getBonusLootMulti();
 
         }
 

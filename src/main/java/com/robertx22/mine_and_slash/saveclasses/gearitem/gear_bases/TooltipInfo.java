@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.stats.tooltips.StatTooltipType;
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;

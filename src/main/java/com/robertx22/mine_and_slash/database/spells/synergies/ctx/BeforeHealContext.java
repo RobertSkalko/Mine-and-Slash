@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ctx;
 
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
 import net.minecraft.entity.LivingEntity;

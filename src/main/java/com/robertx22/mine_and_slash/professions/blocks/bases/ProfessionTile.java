@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.professions.blocks.bases;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.uncommon.capability.ProfessionsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.ProfessionsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

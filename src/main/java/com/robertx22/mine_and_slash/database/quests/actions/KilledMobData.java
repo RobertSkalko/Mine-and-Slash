@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.quests.actions;
 
-import com.robertx22.mine_and_slash.uncommon.capability.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 
