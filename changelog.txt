@@ -13,7 +13,7 @@ Now the good news:
 * This is in preparation to allow the mod to be more configurable with datapacks. And as that requires things to be intuitive.. I had to rename a lot of things. 
 * runes, runewords, affixes, sets and unique gears are now fully moddable with datapacks! This might have some issues so i'll need some guniea pigs to test it! 
 I tested it myself on client and server but it's not foolproof.
-* changed compatible items into datapacks. If you're worried you lose your old progress, there's a command that outputs them into new format: "convert_compatible_items_to_new_format".
+* changed compatible items into datapacks. If you're worried you lose your old progress, there's a command that outputs them into new format: "/slash old convert compatible_items".
 Also there's a similar method convertToNewFormat for mod devs that use code. But i strongly suggest they switch to datapacks too. If you need help switching, call me on discord.
 It's not really that hard, as the object has a .toJson() method, and that's most of the hard work.
 
@@ -38,7 +38,8 @@ So i made a system that buffs drops if you're outside a map dimension, but nerfs
 other minecraft things in the meantime.
 * increased loot droprates in maps a bit.
 * grouped all my commands under /slash
-This should make using commands a lot easier 
+This should make using commands a lot easier
+* added simple party system, untested. /slash party. For now it should disable friendly fire
 
 3.0.10
 * buffed rarity drops default config (needs config reset)
