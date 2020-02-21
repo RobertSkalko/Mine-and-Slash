@@ -1,12 +1,17 @@
 package com.robertx22.mine_and_slash.commands.party;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.ITextComponent;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static net.minecraft.command.Commands.literal;
 
@@ -19,11 +24,23 @@ public class PartyCommand {
                     literal("party")
                         .then(literal("list").executes(c -> {
 
-                            ServerPlayerEntity player = c.getSource()
-                                .asPlayer();
-                            player
-                                .sendMessage(new SText("Party List: " + TeamCap.getCapability()
-                                    .getPlayersInTeam(player)));
+                            try {
+                                ServerPlayerEntity player = c.getSource()
+                                    .asPlayer();
+
+                                ITextComponent text = new SText("Party List: ");
+                                List<ITextComponent> list = TeamCap.getCapability()
+                                    .getPlayersInTeam(player)
+                                    .stream()
+                                    .map(x -> x.getDisplayName())
+                                    .collect(Collectors.toList());
+                                list.forEach(x -> text.appendSibling(x));
+
+                                player
+                                    .sendMessage(text);
+                            } catch (CommandSyntaxException e) {
+                                e.printStackTrace();
+                            }
                             return 0;
                         }))
                         .then(literal("create").executes(c -> {

@@ -42,7 +42,9 @@ public class PlayerTeamsData {
         public void tryJoin(ServerPlayerEntity player) {
             String playerID = getPlayerId(player);
 
-            if (invites.contains(player)) {
+            if (players.contains(playerID)) {
+                player.sendMessage(new SText("You are already inside the team."));
+            } else if (invites.contains(playerID)) {
                 invites.removeIf(x -> playerID.equals(x));
                 players.add(playerID);
                 player.sendMessage(new SText("Team joined."));

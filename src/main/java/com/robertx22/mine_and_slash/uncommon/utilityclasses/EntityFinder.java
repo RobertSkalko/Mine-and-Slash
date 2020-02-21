@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
+import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -24,6 +26,10 @@ public class EntityFinder {
         return false;
     }
 
+    private static boolean isPlayer(Entity en) {
+        return en instanceof PlayerEntity;
+    }
+
     public enum SearchFor {
 
         ALLIES() {
@@ -31,8 +37,18 @@ public class EntityFinder {
             public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
                 return list.stream()
                     .filter(x -> {
-                        if (setup.caster instanceof PlayerEntity) {
-                            return x instanceof PlayerEntity || isTamed(x);
+                        if (setup.isCasterPlayer()) {
+                            if (isPlayer(x)) {
+                                if (x.world.isRemote) {
+                                    return true;
+                                } else {
+                                    return setup.teams
+                                        .isOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
+                                }
+                            } else {
+                                return isTamed(x);
+                            }
+
                         } else {
                             return x instanceof PlayerEntity == false && !isTamed(x);
                         }
@@ -50,12 +66,21 @@ public class EntityFinder {
             public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
                 return list.stream()
                     .filter(x -> {
-                        if (setup.caster instanceof PlayerEntity) {
-                            return x instanceof PlayerEntity == false && !isTamed(x);
-                        } else {
-                            return x instanceof PlayerEntity;
+                            if (setup.isCasterPlayer()) {
+                                if (isPlayer(x)) {
+                                    if (x.world.isRemote) {
+                                        return false;
+                                    } else {
+                                        return !setup.teams
+                                            .isOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
+                                    }
+                                } else {
+                                    return !isTamed(x);
+                                }
+                            } else
+                                return isPlayer(x);
                         }
-                    })
+                    )
                     .collect(Collectors.toList());
             }
 
@@ -162,6 +187,8 @@ public class EntityFinder {
         double horizontal = 1;
         double vertical = 1;
 
+        TeamCap.ITeamData teams = TeamCap.getCapability();
+
         List<Predicate<T>> predicates = new ArrayList();
 
         boolean setRadius = false;
@@ -173,6 +200,10 @@ public class EntityFinder {
             this.caster = caster;
             this.world = caster.world;
             this.pos = pos;
+        }
+
+        public boolean isCasterPlayer() {
+            return caster instanceof PlayerEntity;
         }
 
         public List<T> build() {

@@ -159,7 +159,9 @@ public class TeamCap {
         @Override
         public boolean isPlayerInATeam(ServerPlayerEntity player) {
             try {
-                return teams.playerIDxTeamIDMap.containsKey(teams.getPlayerId(player));
+                PlayerTeamsData.Team team = teams.teamIDxTeamDataMap.get(teams.getTeamId(player));
+                return team != null && team.getPlayerIds()
+                    .contains(teams.getTeamId(player));
             } catch (Exception e) {
                 e.printStackTrace();
             }
