@@ -1,24 +1,37 @@
 package com.robertx22.mine_and_slash.uncommon.capability.server_wide;
 
+import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.saveclasses.PlayerTeamsData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 @Mod.EventBusSubscriber
 public class TeamCap {
+
+    public static ITeamData getCapability() {
+        return MapManager.getWorld(DimensionType.OVERWORLD)
+            .getCapability(Data)
+            .orElse(new DefaultImpl());
+    }
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "teams");
 
@@ -27,6 +40,21 @@ public class TeamCap {
 
     public interface ITeamData extends ICommonCap {
 
+        boolean isOnSameTeam(ServerPlayerEntity p1, ServerPlayerEntity p2);
+
+        void joinTeam(ServerPlayerEntity player, String teamID);
+
+        void createTeam(ServerPlayerEntity player);
+
+        boolean isPlayerInATeam(ServerPlayerEntity player);
+
+        void invite(ServerPlayerEntity player, String teamID);
+
+        void leaveTeam(ServerPlayerEntity player);
+
+        String getTeamId(ServerPlayerEntity player);
+
+        List<PlayerEntity> getPlayersInTeam(ServerPlayerEntity player);
     }
 
     @Mod.EventBusSubscriber
@@ -54,20 +82,15 @@ public class TeamCap {
 
     public static class DefaultImpl implements ITeamData {
 
-        MapItemData mapdata = null;
-        MapEventsData events = new MapEventsData();
+        PlayerTeamsData teams = new PlayerTeamsData();
 
         @Override
         public CompoundNBT saveToNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
-            if (mapdata != null) {
-                Map.Save(nbt, mapdata);
-            }
-
-            if (events != null) {
-                LoadSave.Save(events, nbt, DATA_LOC);
+            if (teams != null) {
+                LoadSave.Save(teams, nbt, DATA_LOC);
             }
 
             return nbt;
@@ -76,14 +99,115 @@ public class TeamCap {
 
         @Override
         public void loadFromNBT(CompoundNBT nbt) {
-            mapdata = Map.Load(nbt);
-            events = LoadSave.Load(MapEventsData.class, new MapEventsData(), nbt, DATA_LOC);
 
-            if (events == null) {
-                events = new MapEventsData();
+            teams = LoadSave.Load(PlayerTeamsData.class, new PlayerTeamsData(), nbt, DATA_LOC);
+
+            if (teams == null) {
+                teams = new PlayerTeamsData();
             }
         }
 
+        @Override
+        public boolean isOnSameTeam(ServerPlayerEntity p1, ServerPlayerEntity p2) {
+            try {
+                return teams.getTeamId(p1)
+                    .equals(teams.getTeamId(p2));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        @Override
+        public void joinTeam(ServerPlayerEntity player, String teamID) {
+
+            try {
+                PlayerTeamsData.Team team = teams.teamIDxTeamDataMap.get(teamID);
+                team.tryJoin(player);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @Override
+        public void createTeam(ServerPlayerEntity player) {
+
+            try {
+                if (isPlayerInATeam(player)) {
+                    player.sendMessage(new SText("Can't create a team if you're already in one. Leave first."));
+                } else {
+
+                    PlayerTeamsData.Team team = new PlayerTeamsData.Team();
+                    team.addPlayer(player);
+
+                    String teamID = UUID.randomUUID()
+                        .toString();
+
+                    teams.playerIDxTeamIDMap.put(teams.getPlayerId(player), teamID);
+                    teams.teamIDxTeamDataMap.put(teamID, team);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @Override
+        public boolean isPlayerInATeam(ServerPlayerEntity player) {
+            try {
+                return teams.playerIDxTeamIDMap.containsKey(teams.getPlayerId(player));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        @Override
+        public void invite(ServerPlayerEntity player, String teamID) {
+            try {
+                teams.teamIDxTeamDataMap.get(teamID)
+                    .invite(player);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void leaveTeam(ServerPlayerEntity player) {
+            try {
+                if (!isPlayerInATeam(player)) {
+                    player.sendMessage(new SText("You are not inside a team."));
+                } else {
+                    teams.playerIDxTeamIDMap.remove(teams.getTeamId(player));
+                    teams.teamIDxTeamDataMap.get(teams.getTeamId(player))
+                        .removePlayer(player);
+                    player.sendMessage(new SText("Left team."));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public String getTeamId(ServerPlayerEntity player) {
+            return teams.getTeamId(player);
+        }
+
+        @Override
+        public List<PlayerEntity> getPlayersInTeam(ServerPlayerEntity player) {
+            return teams.teamIDxTeamDataMap.get(teams.getTeamId(player))
+                .getPlayerIds()
+                .stream()
+                .map(x -> MapManager.getServer()
+                    .getPlayerList()
+                    .getPlayerByUUID(UUID.fromString(x)))
+                .collect(Collectors.toList());
+        }
     }
 
     public static class Storage extends BaseStorage<ITeamData> {
