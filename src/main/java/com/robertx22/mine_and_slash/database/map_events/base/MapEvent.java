@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.map_events.base;
 
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -30,11 +30,13 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     }
 
     public static void summonBeacon(BlockPos pos, World world) {
-        world.setBlockState(WorldUtils.getSurface(world, pos), BlockRegister.BEACON_BLOCK.getDefaultState());
+        world.setBlockState(WorldUtils.getSurface(world, pos), BlockRegister.BEACON.get()
+            .getDefaultState());
     }
 
     public static void announceEvent(World world, ITextComponent comp) {
-        world.getPlayers().forEach(x -> x.sendMessage(comp));
+        world.getPlayers()
+            .forEach(x -> x.sendMessage(comp));
     }
 
     public static <T extends MobEntity> void summonMinions(EntityType<T> type, int amount, World world, BlockPos p) {
@@ -48,7 +50,8 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
         T bossEntity = (T) type.create(world);
         bossEntity.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         bossEntity.setPosition(p.getX(), p.getY(), p.getZ());
-        Load.boss(bossEntity).setBoss(boss);
+        Load.boss(bossEntity)
+            .setBoss(boss);
 
         world.addEntity(bossEntity);
 
@@ -65,11 +68,14 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     }
 
     public static BlockPos randomPosNearPlayer(World world) {
-        BlockPos pos = world.getPlayers().get(0).getPosition();
+        BlockPos pos = world.getPlayers()
+            .get(0)
+            .getPosition();
         pos = new BlockPos(pos.getX() + RandomUtils.RandomRange(-50, 50), pos.getY(),
-                           pos.getZ() + RandomUtils.RandomRange(-50, 50)
+            pos.getZ() + RandomUtils.RandomRange(-50, 50)
         );
-        pos = WorldUtils.getSurface(world, pos).up();
+        pos = WorldUtils.getSurface(world, pos)
+            .up();
 
         return pos;
 

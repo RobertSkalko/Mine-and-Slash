@@ -4,22 +4,42 @@ import com.robertx22.mine_and_slash.blocks.item_modify_station.ContainerGearModi
 import com.robertx22.mine_and_slash.blocks.map_device.ContainerMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.ContainerGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.ContainerGearSalvage;
+import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ContainerCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
+import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ContainerTypeRegisters {
+
+    public static DeferredRegister<ContainerType<?>> REG = new DeferredRegister<>(ForgeRegistries.CONTAINERS, Ref.MODID);
+
+    public static RegistryObject<ContainerType<ContainerGearModify>> GEAR_MODIFY = REG.register(of(BlockRegister.GEAR_MODIFY), () -> IForgeContainerType.create(ContainerGearModify::new));
+    public static RegistryObject<ContainerType<ContainerGearRepair>> GEAR_REPAIR = REG.register(of(BlockRegister.GEAR_REPAIR), () -> IForgeContainerType.create(ContainerGearRepair::new));
+    public static RegistryObject<ContainerType<ContainerGearSalvage>> GEAR_SALVAGE = REG.register(of(BlockRegister.GEAR_SALVAGE), () -> IForgeContainerType.create(ContainerGearSalvage::new));
+    public static RegistryObject<ContainerType<ContainerMapDevice>> MAP_DEVICE = REG.register(of(BlockRegister.MAP_DEVICE), () -> IForgeContainerType.create(ContainerMapDevice::new));
+
+    static Item.Properties stationProp = new Item.Properties().group(CreativeTabs.MyModTab);
+
+    static <T extends Block> String of(RegistryObject<T> block) {
+        return block.getId()
+            .getPath();
+    }
 
     static final String LOOT_BAG_ID = Ref.MODID + ":" + "loot_bag";
     static final String MAP_BAG_ID = Ref.MODID + ":" + "map_bag";
@@ -28,18 +48,9 @@ public class ContainerTypeRegisters {
 
     static final String PROFESSION_RECIPE_CONTAINER_ID = Ref.MODID + ":" + "profession_recipe_container";
 
-
     @ObjectHolder(PROFESSION_RECIPE_CONTAINER_ID)
     public static final ContainerType<ProfessionContainer> PROFESSION_RECIPE_CONTAINER = null;
 
-    @ObjectHolder(BlockRegister.GEAR_MODIFY_ID)
-    public static final ContainerType<ContainerGearModify> GEAR_MODIFY = null;
-    @ObjectHolder(BlockRegister.GEAR_REPAIR_ID)
-    public static final ContainerType<ContainerGearRepair> GEAR_REPAIR = null;
-    @ObjectHolder(BlockRegister.GEAR_SALVAGE_ID)
-    public static final ContainerType<ContainerGearSalvage> GEAR_SALVAGE = null;
-    @ObjectHolder(BlockRegister.MAP_DEVICE_ID)
-    public static final ContainerType<ContainerMapDevice> MAP_DEVICE = null;
     @ObjectHolder(LOOT_BAG_ID)
     public static final ContainerType<ContainerLootBag> LOOT_BAG = null;
     @ObjectHolder(MAP_BAG_ID)
@@ -58,17 +69,6 @@ public class ContainerTypeRegisters {
         r.register(IForgeContainerType.create(ProfessionContainer::new)
             .setRegistryName(PROFESSION_RECIPE_CONTAINER_ID));
 
-        r.register(IForgeContainerType.create(ContainerGearModify::new)
-            .setRegistryName(BlockRegister.GEAR_MODIFY_ID));
-        r.register(IForgeContainerType.create(ContainerGearRepair::new)
-            .setRegistryName(BlockRegister.GEAR_REPAIR_ID));
-
-        r.register(IForgeContainerType.create(ContainerGearSalvage::new)
-            .setRegistryName(BlockRegister.GEAR_SALVAGE_ID));
-
-        r.register(IForgeContainerType.create(ContainerMapDevice::new)
-            .setRegistryName(BlockRegister.MAP_DEVICE_ID));
-
         r.register(IForgeContainerType.create(ContainerMasterBag::new)
             .setRegistryName(MASTER_BAG_ID));
 
@@ -77,6 +77,5 @@ public class ContainerTypeRegisters {
         r.register(new ContainerType<>(ContainerCurrencyBag::new).setRegistryName(CURRENCY_BAG_ID));
 
     }
-
 
 }

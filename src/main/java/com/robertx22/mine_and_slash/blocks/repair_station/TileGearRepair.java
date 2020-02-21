@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.blocks.repair_station;
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
@@ -58,7 +58,8 @@ public class TileGearRepair extends BaseTile {
     public int MaximumFuel = 5000;
 
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
-        if (stack.getItem().isDamageable()) {
+        if (stack.getItem()
+            .isDamageable()) {
             ICommonDataItem data = ICommonDataItem.load(stack);
             if (data != null) {
                 ItemStack copy = stack.copy();
@@ -94,7 +95,7 @@ public class TileGearRepair extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearRepair() {
-        super(BlockRegister.GEAR_REPAIR);
+        super(TileEntityRegister.GEAR_REPAIR.get());
 
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
@@ -181,7 +182,7 @@ public class TileGearRepair extends BaseTile {
                         // to null
                         if (itemStacks[fuelSlotNumber].getCount() == 0) { // getStackSize()
                             itemStacks[fuelSlotNumber] = itemStacks[fuelSlotNumber].getItem()
-                                    .getContainerItem(itemStacks[fuelSlotNumber]);
+                                .getContainerItem(itemStacks[fuelSlotNumber]);
                         }
                     }
                 }
@@ -253,7 +254,7 @@ public class TileGearRepair extends BaseTile {
 
                         if (outputStack.getItem() == result.getItem()
 
-                                && ItemStack.areItemStackTagsEqual(outputStack, result)) {
+                            && ItemStack.areItemStackTagsEqual(outputStack, result)) {
                             int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
                             if (combinedSize <= getInventoryStackLimit() && combinedSize <= itemStacks[outputSlot].getMaxStackSize()) {
                                 firstSuitableInputSlot = inputSlot;

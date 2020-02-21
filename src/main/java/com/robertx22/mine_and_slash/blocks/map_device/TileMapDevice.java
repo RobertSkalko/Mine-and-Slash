@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.MapDeviceSaving;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -45,7 +45,7 @@ public class TileMapDevice extends BaseTile {
     }
 
     public TileMapDevice() {
-        super(BlockRegister.MAP_DEVICE);
+        super(TileEntityRegister.MAP_DEVICE.get());
 
         itemStacks = new ItemStack[size];
         clear();
@@ -94,13 +94,14 @@ public class TileMapDevice extends BaseTile {
         BlockPos p = this.pos;
 
         world.playSound(
-                null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.6f, 0);
+            null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_END_PORTAL_SPAWN, SoundCategory.BLOCKS, 0.6f, 0);
         world.playSound(
-                null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
+            null, p.getX(), p.getY(), p.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.BLOCKS, 0.4f, 0);
 
         try {
 
-            DimensionType type = MapManager.getDimensionType(map.getIWP().getResourceLoc());
+            DimensionType type = MapManager.getDimensionType(map.getIWP()
+                .getResourceLoc());
 
             // start map
 
@@ -119,7 +120,7 @@ public class TileMapDevice extends BaseTile {
             if (!spawnedPortal1 && !spawnedPortal2 && !spawnedPortal3 && !spawnedPortal4) {
                 AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(10);
                 world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab)
-                        .forEach(x -> x.sendMessage(Chats.NoSpaceForPortal.locName()));
+                    .forEach(x -> x.sendMessage(Chats.NoSpaceForPortal.locName()));
                 return false;
             }
 

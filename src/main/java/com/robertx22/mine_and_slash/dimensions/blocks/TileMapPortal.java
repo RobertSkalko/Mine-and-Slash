@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.dimensions.blocks;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class TileMapPortal extends TileEntity {
 
     public TileMapPortal() {
-        super(BlockRegister.TILE_PORTAL_BLOCK);
+        super(TileEntityRegister.MAP_PORTAL.get());
     }
 
     int ticks = 0;

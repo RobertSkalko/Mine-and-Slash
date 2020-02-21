@@ -133,6 +133,10 @@ public class MMORPG {
         });
 
         Sounds.REG.register(bus);
+        BlockRegister.REG.register(bus);
+        BlockItemRegister.REG.register(bus);
+        TileEntityRegister.REG.register(bus);
+        ContainerTypeRegisters.REG.register(bus);
 
     }
 

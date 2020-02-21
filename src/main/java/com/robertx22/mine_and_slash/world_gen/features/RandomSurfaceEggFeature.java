@@ -16,7 +16,7 @@ import java.util.function.Function;
 public class RandomSurfaceEggFeature extends Feature<NoFeatureConfig> {
 
     public RandomSurfaceEggFeature(
-            Function<Dynamic<?>, ? extends NoFeatureConfig> dynamic) {
+        Function<Dynamic<?>, ? extends NoFeatureConfig> dynamic) {
         super(dynamic);
     }
 
@@ -29,7 +29,8 @@ public class RandomSurfaceEggFeature extends Feature<NoFeatureConfig> {
 
             if (WorldUtils.isMapWorld(iworld)) {
 
-                iworld.setBlockState(pos, BlockRegister.EGG_LOOT_CRATE_BLOCK.getDefaultState(), 2); // setblockstate needs to use IWORLD, NOT WORLD
+                iworld.setBlockState(pos, BlockRegister.EGG_LOOT_CRATE.get()
+                    .getDefaultState(), 2); // setblockstate needs to use IWORLD, NOT WORLD
 
                 return true;
             }

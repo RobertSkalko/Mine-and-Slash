@@ -92,7 +92,8 @@ public class MagmaFlowerSpell extends BaseSeedSpell implements IBlockSpawner {
 
     @Override
     public void spawnBlock(LivingEntity caster, World world, BlockPos pos, BaseSpell spell) {
-        caster.world.setBlockState(pos, BlockRegister.MAGMA_FLOWER_BLOCK.getDefaultState());
+        caster.world.setBlockState(pos, BlockRegister.MAGMA_FLOWER.get()
+            .getDefaultState());
         MagmaFlowerTileEntity tile = new MagmaFlowerTileEntity();
         tile.setSpellData(new EntitySpellData(spell, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));
         world.setTileEntity(pos, tile);

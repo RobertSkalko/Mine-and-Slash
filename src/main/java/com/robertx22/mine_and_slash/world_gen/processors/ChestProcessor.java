@@ -40,8 +40,8 @@ public class ChestProcessor extends StructureProcessor {
         if (block.equals(Blocks.CHEST)) {
 
             if (RandomUtils.roll(treasureChance)) {
-                return new Template.BlockInfo(blockInfo1.pos, BlockRegister.EGG_LOOT_CRATE_BLOCK
-                        .getDefaultState(), blockInfo1.nbt);
+                return new Template.BlockInfo(blockInfo1.pos, BlockRegister.EGG_LOOT_CRATE.get()
+                    .getDefaultState(), blockInfo1.nbt);
             } else {
                 return new Template.BlockInfo(blockInfo1.pos, Blocks.AIR.getDefaultState(), blockInfo1.nbt);
             }

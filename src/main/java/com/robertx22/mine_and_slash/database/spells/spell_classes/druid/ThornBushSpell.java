@@ -92,7 +92,8 @@ public class ThornBushSpell extends BaseSeedSpell implements IBlockSpawner {
 
     @Override
     public void spawnBlock(LivingEntity caster, World world, BlockPos pos, BaseSpell spell) {
-        caster.world.setBlockState(pos, BlockRegister.THORN_BUSH_BLOCK.getDefaultState());
+        caster.world.setBlockState(pos, BlockRegister.THORN_BUSH.get()
+            .getDefaultState());
         ThornBushTileEntity tile = new ThornBushTileEntity();
         tile.setSpellData(new EntitySpellData(spell, caster, ThornBushTileEntity.DURATION_SEC * 20));
 

@@ -25,12 +25,12 @@ public class ContainerGuiRegisters {
     public static void reg() {
 
         // BLACKED "OBSOLTE" PARTS ARE NEEDED OR IT ERROS !!!!
-        ScreenManager.<ContainerGearModify, GuiGearModify>registerFactory(ContainerTypeRegisters.GEAR_MODIFY, GuiGearModify::new);
+        ScreenManager.<ContainerGearModify, GuiGearModify>registerFactory(ContainerTypeRegisters.GEAR_MODIFY.get(), GuiGearModify::new);
 
-        ScreenManager.<ContainerMapDevice, GuiMapDevice>registerFactory(ContainerTypeRegisters.MAP_DEVICE, GuiMapDevice::new);
+        ScreenManager.<ContainerMapDevice, GuiMapDevice>registerFactory(ContainerTypeRegisters.MAP_DEVICE.get(), GuiMapDevice::new);
 
-        ScreenManager.<ContainerGearRepair, GuiGearRepair>registerFactory(ContainerTypeRegisters.GEAR_REPAIR, GuiGearRepair::new);
-        ScreenManager.<ContainerGearSalvage, GuiGearSalvage>registerFactory(ContainerTypeRegisters.GEAR_SALVAGE, GuiGearSalvage::new);
+        ScreenManager.<ContainerGearRepair, GuiGearRepair>registerFactory(ContainerTypeRegisters.GEAR_REPAIR.get(), GuiGearRepair::new);
+        ScreenManager.<ContainerGearSalvage, GuiGearSalvage>registerFactory(ContainerTypeRegisters.GEAR_SALVAGE.get(), GuiGearSalvage::new);
 
         ScreenManager.<ContainerLootBag, GuiLootBag>registerFactory(ContainerTypeRegisters.LOOT_BAG, GuiLootBag::new);
         ScreenManager.<ContainerMapBag, GuiMapBag>registerFactory(ContainerTypeRegisters.MAP_BAG, GuiMapBag::new);

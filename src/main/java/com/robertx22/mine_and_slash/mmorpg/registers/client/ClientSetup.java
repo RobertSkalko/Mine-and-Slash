@@ -20,13 +20,13 @@ public class ClientSetup {
 
     public static void setup(final FMLClientSetupEvent event) {
 
-        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_MODIFY, RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_SALVAGE, RenderType.getCutout());//cutout
-        RenderTypeLookup.setRenderLayer(BlockRegister.ALCHEMY_BLOCK, RenderType.getCutout());//cutout
-        RenderTypeLookup.setRenderLayer(BlockRegister.BLOCK_GEAR_REPAIR, RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.GEAR_MODIFY.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BlockRegister.GEAR_SALVAGE.get(), RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.ALCHEMY.get(), RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(BlockRegister.GEAR_REPAIR.get(), RenderType.getCutout());//cutout
 
-        RenderTypeLookup.setRenderLayer(BlockRegister.MAGMA_FLOWER_BLOCK, RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BlockRegister.THORN_BUSH_BLOCK, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BlockRegister.MAGMA_FLOWER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BlockRegister.THORN_BUSH.get(), RenderType.getCutout());
 
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);

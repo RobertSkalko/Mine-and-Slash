@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.blocks.conditions.LootCrateCondition;
 import com.robertx22.mine_and_slash.blocks.conditions.NoMobAroundCondition;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class EggLootCrateTileEntity extends BaseLootCrateTileEntity {
 
     public EggLootCrateTileEntity() {
-        super(BlockRegister.EGG_LOOT_CRATE);
+        super(TileEntityRegister.EGG_LOOT_CRATE.get());
     }
 
     @Override

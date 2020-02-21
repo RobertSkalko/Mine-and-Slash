@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.blocks.beacon;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.BeaconTileEntity;
@@ -13,7 +13,7 @@ import java.util.List;
 public class CosmeticBeaconTile extends TileEntity implements ITickableTileEntity {
 
     public CosmeticBeaconTile() {
-        super(BlockRegister.BEACON_TILE);
+        super(TileEntityRegister.BEACON.get());
 
     }
 
@@ -23,7 +23,11 @@ public class CosmeticBeaconTile extends TileEntity implements ITickableTileEntit
 
     public List<BeaconTileEntity.BeamSegment> getBeams() {
         if (list.isEmpty()) {
-            float[] afloat = new float[]{1, 0, 1};
+            float[] afloat = new float[]{
+                1,
+                0,
+                1
+            };
             list.add(new BeaconTileEntity.BeamSegment(afloat));
         }
         return list;

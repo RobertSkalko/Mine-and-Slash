@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellTileEnt
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterAndSpellEntityContext;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -25,7 +25,7 @@ public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
     public float TICK_RATE = 30;
 
     public MagmaFlowerTileEntity() {
-        super(BlockRegister.MAGMA_FLOWER_TILE);
+        super(TileEntityRegister.MAGMA_FLOWER.get());
     }
 
     @Override
@@ -35,7 +35,7 @@ public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
 
         if (Synergies.MAGMA_FLOWER_ENHANCED.has(caster)) {
             Synergies.MAGMA_FLOWER_ENHANCED.tryActivate(
-                    new CasterAndSpellEntityContext<MagmaFlowerTileEntity>(caster, this));
+                new CasterAndSpellEntityContext<MagmaFlowerTileEntity>(caster, this));
         }
 
     }
@@ -51,13 +51,15 @@ public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
                 EntityCap.UnitData data = Load.Unit(caster);
 
                 ParticleEnum.sendToClients(
-                        pos, world, new ParticlePacketData(pos, ParticleEnum.AOE).radius(RADIUS)
-                                .motion(new Vec3d(0, 0, 0))
-                                .type(ParticleTypes.FLAME)
-                                .amount((int) (15 * RADIUS)));
+                    pos, world, new ParticlePacketData(pos, ParticleEnum.AOE).radius(RADIUS)
+                        .motion(new Vec3d(0, 0, 0))
+                        .type(ParticleTypes.FLAME)
+                        .amount((int) (15 * RADIUS)));
 
                 List<LivingEntity> entities = EntityFinder.start(
-                        caster, LivingEntity.class, new Vec3d(getPos()).add(0.5F, 0, 0.5F)).radius(RADIUS).build();
+                    caster, LivingEntity.class, new Vec3d(getPos()).add(0.5F, 0, 0.5F))
+                    .radius(RADIUS)
+                    .build();
 
                 entities.forEach(x -> {
                     SpellDamageEffect dmg = getSetupSpellDamage(x);

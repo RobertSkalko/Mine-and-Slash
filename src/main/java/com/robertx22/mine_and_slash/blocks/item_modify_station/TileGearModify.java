@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.currency.IAddsInstability;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -65,7 +65,7 @@ public class TileGearModify extends BaseTile {
                             if (insta.usesBreakChance()) {
                                 if (addsInta.activatesBreakRoll()) {
                                     float breakChance =
-                                            (addsInta.additionalBreakChance() + insta.getBreakChance()) * addsInta
+                                        (addsInta.additionalBreakChance() + insta.getBreakChance()) * addsInta
                                             .breakChanceMulti();
                                     if (RandomUtils.roll(breakChance)) {
                                         copy = new ItemStack(Items.GUNPOWDER);
@@ -132,7 +132,7 @@ public class TileGearModify extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 100; // vanilla value is 200 = 10 seconds
 
     public TileGearModify() {
-        super(BlockRegister.GEAR_MODIFY);
+        super(TileEntityRegister.GEAR_MODIFY.get());
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
 
@@ -200,10 +200,12 @@ public class TileGearModify extends BaseTile {
 
             ItemStack result = this.getResult();
 
-            this.GearSlot().shrink(1);
+            this.GearSlot()
+                .shrink(1);
             this.setOutputSot(result.copy());
             result = ItemStack.EMPTY;
-            this.CraftItemSlot().shrink(1);
+            this.CraftItemSlot()
+                .shrink(1);
 
             markDirty();
             return true;

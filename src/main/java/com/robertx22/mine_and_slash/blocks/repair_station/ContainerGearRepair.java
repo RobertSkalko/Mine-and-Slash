@@ -48,7 +48,7 @@ public class ContainerGearRepair extends BaseTileContainer {
 
     public ContainerGearRepair(int num, PlayerInventory invPlayer, IInventory inv,
                                BlockPos pos) {
-        super(FURNACE_SLOTS_COUNT, ContainerTypeRegisters.GEAR_REPAIR, num);
+        super(FURNACE_SLOTS_COUNT, ContainerTypeRegisters.GEAR_REPAIR.get(), num);
 
         this.pos = pos;
 

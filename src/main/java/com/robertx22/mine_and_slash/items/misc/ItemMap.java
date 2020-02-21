@@ -71,9 +71,10 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
         Block block = world.getBlockState(pos)
             .getBlock();
 
-        if (block.equals(Blocks.AIR) || block.equals(BlockRegister.PORTAL_BLOCK)) {
+        if (block.equals(Blocks.AIR) || block.equals(BlockRegister.MAP_PORTAL.get())) {
 
-            world.setBlockState(pos, BlockRegister.PORTAL_BLOCK.getDefaultState(), 2);
+            world.setBlockState(pos, BlockRegister.MAP_PORTAL.get()
+                .getDefaultState(), 2);
             TileMapPortal portal = new TileMapPortal();
             world.setTileEntity(pos, portal);
             return true;

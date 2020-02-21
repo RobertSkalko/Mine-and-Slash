@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.professions.blocks.bases;
 
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import com.robertx22.mine_and_slash.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.professions.recipe.BaseOutputItem;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
@@ -15,8 +15,8 @@ import java.util.List;
 
 public enum Professions {
 
-    ALCHEMY(Words.Alchemy, BlockRegister.ALCHEMY_TILE),
-    TINKERERING(Words.Tinkering, BlockRegister.TINKERING_TILE);
+    ALCHEMY(Words.Alchemy, TileEntityRegister.ALCHEMY.get()),
+    TINKERERING(Words.Tinkering, TileEntityRegister.TINKERING.get());
 
     Professions(Words word, TileEntityType<?> tileEntityType) {
         this.tileEntityType = tileEntityType;
@@ -28,7 +28,9 @@ public enum Professions {
     public static int MAX_LEVEL_OF_RECIPES = 100;
 
     public List<BaseRecipe> recipes() {
-        return SlashRegistry.Recipes().getFiltered(x -> x.profession().equals(this));
+        return SlashRegistry.Recipes()
+            .getFiltered(x -> x.profession()
+                .equals(this));
     }
 
     public Words word;
@@ -57,14 +59,17 @@ public enum Professions {
     public int tryReduceMaterialRequirement(ProfessionTile tile, BaseMaterial mat,
                                             int lvl) {
 
-        if (mat.getItemStack().getCount() > 1) {
+        if (mat.getItemStack()
+            .getCount() > 1) {
             float chance = this.getReduceMatConsumptionChance(lvl);
             if (RandomUtils.roll(chance)) {
-                return mat.getItemStack().getCount() / 2;
+                return mat.getItemStack()
+                    .getCount() / 2;
             }
         }
 
-        return mat.getItemStack().getCount();
+        return mat.getItemStack()
+            .getCount();
     }
 
     public enum Levels {

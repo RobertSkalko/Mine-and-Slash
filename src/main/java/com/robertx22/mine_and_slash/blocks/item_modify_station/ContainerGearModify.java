@@ -26,14 +26,14 @@ public class ContainerGearModify extends BaseTileContainer {
     public ContainerGearModify(int i, PlayerInventory playerInventory,
                                PacketBuffer packetBuffer) {
         this(i, playerInventory, new Inventory(TileGearModify.TOTAL_SLOTS_COUNT), packetBuffer
-                .readBlockPos());
+            .readBlockPos());
 
     }
 
     public ContainerGearModify(int i, PlayerInventory invPlayer, IInventory inventory,
                                BlockPos pos) {
 
-        super(MODIFY_SLOTS_COUNT, ContainerTypeRegisters.GEAR_MODIFY, i);
+        super(MODIFY_SLOTS_COUNT, ContainerTypeRegisters.GEAR_MODIFY.get(), i);
 
         this.pos = pos;
 

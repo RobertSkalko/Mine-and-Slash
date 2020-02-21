@@ -27,7 +27,7 @@ public class ContainerMapDevice extends BaseTileContainer {
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory,
                               IInventory inventory, BlockPos pos) {
-        super(MAP_DEVICE_SLOTS_COUNT, ContainerTypeRegisters.MAP_DEVICE, i);
+        super(MAP_DEVICE_SLOTS_COUNT, ContainerTypeRegisters.MAP_DEVICE.get(), i);
 
         this.pos = pos;
 

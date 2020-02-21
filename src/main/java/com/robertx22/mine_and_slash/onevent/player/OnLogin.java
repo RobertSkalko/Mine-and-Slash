@@ -15,7 +15,7 @@ import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockItemRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.packets.OnLoginClientPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -113,7 +113,7 @@ public class OnLogin {
             MapBlueprint map = new MapBlueprint(1, 1);
             player.inventory.addItemStackToInventory(map.createStack());
 
-            ItemStack mapdevice = new ItemStack(BlockRegister.ITEMBLOCK_MAP_DEVICE);
+            ItemStack mapdevice = new ItemStack(BlockItemRegister.MAP_DEVICE.get());
             mapdevice.setCount(64);
             player.inventory.addItemStackToInventory(mapdevice);
         }

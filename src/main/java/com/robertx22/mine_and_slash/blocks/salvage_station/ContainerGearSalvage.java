@@ -45,7 +45,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
 
     public ContainerGearSalvage(int num, PlayerInventory invPlayer, IInventory inventory,
                                 BlockPos pos) {
-        super(SALVAGE_SLOTS_COUNT, ContainerTypeRegisters.GEAR_SALVAGE, num);
+        super(SALVAGE_SLOTS_COUNT, ContainerTypeRegisters.GEAR_SALVAGE.get(), num);
 
         this.pos = pos;
 
