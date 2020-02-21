@@ -51,7 +51,7 @@ public class GeyserSpell extends BaseProjectileSpell {
 
     @Override
     public SoundEvent getShootSound() {
-        return Sounds.SPLASH;
+        return Sounds.SPLASH.get();
     }
 
     @Override

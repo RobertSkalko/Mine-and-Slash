@@ -112,12 +112,12 @@ public class HeartOfIceSpell extends BaseSpellHeal {
 
                 heal.Activate();
 
-                SoundUtils.playSound(caster, Sounds.FREEZE, 1, 1);
+                SoundUtils.playSound(caster, Sounds.FREEZE.get(), 1, 1);
 
                 ParticleUtils.spawnParticles(ParticleRegister.BUBBLE, caster, 25);
 
             } else {
-                SoundUtils.playSound(caster, Sounds.FREEZE, 1, 1);
+                SoundUtils.playSound(caster, Sounds.FREEZE.get(), 1, 1);
 
             }
         } catch (Exception e) {

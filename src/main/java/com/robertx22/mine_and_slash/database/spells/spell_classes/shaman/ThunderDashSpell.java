@@ -137,7 +137,7 @@ public class ThunderDashSpell extends BaseSpell {
 
         });
 
-        SoundUtils.playSound(caster, Sounds.DASH, 1, 1);
+        SoundUtils.playSound(caster, Sounds.DASH.get(), 1, 1);
 
         return true;
     }

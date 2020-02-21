@@ -3,48 +3,25 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+import java.util.function.Supplier;
+
 public class Sounds {
 
-    static final String DASH_ID = "dash";
-    static final String SPLASH_ID = "splash";
-    static final String FREEZE_ID = "freeze";
-    static final String STONE_CRACK_ID = "stone_crack";
-    static final String FIREBALL_ID = "fireball";
+    public static DeferredRegister<SoundEvent> REG = new DeferredRegister<>(ForgeRegistries.SOUND_EVENTS, Ref.MODID);
 
-    @ObjectHolder(Ref.MODID + ":" + STONE_CRACK_ID)
-    public static SoundEvent STONE_CRACK;
+    public static RegistryObject<SoundEvent> FREEZE = REG.register("freeze", reg("freeze"));
+    public static RegistryObject<SoundEvent> DASH = REG.register("dash", reg("dash"));
+    public static RegistryObject<SoundEvent> SPLASH = REG.register("splash", reg("splash"));
+    public static RegistryObject<SoundEvent> STONE_CRACK = REG.register("stone_crack", reg("stone_crack"));
+    public static RegistryObject<SoundEvent> FIREBALL = REG.register("fireball", reg("fireball"));
 
-    @ObjectHolder(Ref.MODID + ":" + FIREBALL_ID)
-    public static SoundEvent FIREBALL;
-
-    @ObjectHolder(Ref.MODID + ":" + DASH_ID)
-    public static SoundEvent DASH;
-
-    @ObjectHolder(Ref.MODID + ":" + SPLASH_ID)
-    public static SoundEvent SPLASH;
-
-    @ObjectHolder(Ref.MODID + ":" + FREEZE_ID)
-    public static SoundEvent FREEZE;
-
-    @SubscribeEvent
-    public static void register(RegistryEvent.Register<SoundEvent> event) {
-        reg(event, DASH_ID);
-        reg(event, SPLASH_ID);
-        reg(event, FREEZE_ID);
-        reg(event, STONE_CRACK_ID);
-        reg(event, FIREBALL_ID);
-    }
-
-    private static void reg(RegistryEvent.Register<SoundEvent> event, String id) {
+    private static Supplier<SoundEvent> reg(String id) {
         ResourceLocation loc = new ResourceLocation(Ref.MODID, id);
-        event.getRegistry().register(new SoundEvent(loc).setRegistryName(loc));
-
+        return () -> new SoundEvent(loc);
     }
 
 }

@@ -108,6 +108,7 @@ public class StealthEffect extends BasePotionEffect implements IApplyStatPotion 
 
     @Override
     public void onPotionAdd(LivingEntity caster) {
+
         if (Synergies.STEALTH_DISAPPEAR.has(caster)) {
             Synergies.STEALTH_DISAPPEAR.tryActivate(new CasterContext(caster));
         }

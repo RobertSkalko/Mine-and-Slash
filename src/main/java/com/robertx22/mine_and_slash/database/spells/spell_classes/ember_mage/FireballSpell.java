@@ -33,7 +33,7 @@ public class FireballSpell extends BaseProjectileSpell {
 
     @Override
     public SoundEvent getShootSound() {
-        return Sounds.FIREBALL;
+        return Sounds.FIREBALL.get();
     }
 
     @Override

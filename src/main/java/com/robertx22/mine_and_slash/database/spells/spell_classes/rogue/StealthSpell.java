@@ -45,7 +45,7 @@ public class StealthSpell extends BaseBuffSpell {
 
     @Override
     public int getCooldownInSeconds() {
-        return 5;
+        return 60;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class StealthSpell extends BaseBuffSpell {
 
     @Override
     public int getManaCost() {
-        return 15;
+        return 25;
     }
 
     @Override

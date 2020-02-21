@@ -132,6 +132,8 @@ public class MMORPG {
             bus.addListener(this::clientSetup);
         });
 
+        Sounds.REG.register(bus);
+
     }
 
     public static void logError(String s) {

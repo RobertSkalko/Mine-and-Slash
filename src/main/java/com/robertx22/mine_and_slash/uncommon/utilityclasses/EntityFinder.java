@@ -42,7 +42,7 @@ public class EntityFinder {
                                 if (x.world.isRemote) {
                                     return true;
                                 } else {
-                                    return setup.teams
+                                    return TeamCap.getCapability()
                                         .isOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
                                 }
                             } else {
@@ -71,7 +71,7 @@ public class EntityFinder {
                                     if (x.world.isRemote) {
                                         return false;
                                     } else {
-                                        return !setup.teams
+                                        return !TeamCap.getCapability()
                                             .isOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
                                     }
                                 } else {
@@ -186,8 +186,6 @@ public class EntityFinder {
         double radius = 1;
         double horizontal = 1;
         double vertical = 1;
-
-        TeamCap.ITeamData teams = TeamCap.getCapability();
 
         List<Predicate<T>> predicates = new ArrayList();
 

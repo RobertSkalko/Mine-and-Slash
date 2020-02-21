@@ -93,7 +93,7 @@ public class GorgonsGazeSpell extends BaseSpell {
 
         World world = caster.world;
 
-        SoundUtils.playSound(caster, Sounds.STONE_CRACK, 1, 1);
+        SoundUtils.playSound(caster, Sounds.STONE_CRACK.get(), 1, 1);
 
         EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
             .radius(3)
