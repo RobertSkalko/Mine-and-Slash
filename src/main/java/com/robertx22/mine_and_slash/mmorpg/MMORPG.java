@@ -132,11 +132,7 @@ public class MMORPG {
             bus.addListener(this::clientSetup);
         });
 
-        Sounds.REG.register(bus);
-        BlockRegister.REG.register(bus);
-        BlockItemRegister.REG.register(bus);
-        TileEntityRegister.REG.register(bus);
-        ContainerTypeRegisters.REG.register(bus);
+        RegDeffered.register(bus);
 
     }
 
@@ -199,7 +195,7 @@ public class MMORPG {
     }
 
     @SubscribeEvent
-    public static void onServerStop(FMLServerStartedEvent event) {
+    public static void onServerStarted(FMLServerStartedEvent event) {
 
         CommandRegister.Register(event.getServer());
 
@@ -215,26 +211,18 @@ public class MMORPG {
             CountUniqueGearTypes.count();
         }
 
+        if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
+            GameRules.BooleanValue value = ServerLifecycleHooks.getCurrentServer()
+                .getGameRules()
+                .get(GameRules.NATURAL_REGENERATION);
+            value.set(false, ServerLifecycleHooks.getCurrentServer());
+        }
+
     }
 
     @SubscribeEvent
     public static void onServerStopping(FMLServerStoppingEvent event) {
         MapManager.unregisterDims();
-    }
-
-    @SubscribeEvent
-    public static void onServerStarted(FMLServerStartedEvent event) {
-
-        if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
-
-            GameRules.BooleanValue value = ServerLifecycleHooks.getCurrentServer()
-                .getGameRules()
-                .get(GameRules.NATURAL_REGENERATION);
-
-            value.set(false, ServerLifecycleHooks.getCurrentServer());
-
-        }
-
     }
 
     public static <MSG> void sendToTracking(MSG msg, Entity entity) {

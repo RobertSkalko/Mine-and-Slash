@@ -65,7 +65,7 @@ public class StealthSpell extends BaseBuffSpell {
 
     @Override
     public int useTimeTicks() {
-        return 5;
+        return 15;
     }
 
     @Override
