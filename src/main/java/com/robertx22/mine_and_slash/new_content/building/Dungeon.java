@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.new_content.BuiltRoom;
 import com.robertx22.mine_and_slash.new_content.RoomSides;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
 import com.robertx22.mine_and_slash.new_content.enums.RoomSide;
+import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.ChunkPos;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -15,11 +16,53 @@ public class Dungeon {
 
     public Dungeon(int size) {
         this.size = size;
+        this.capacity = size * 4;
+
+        rooms = new BuiltRoom[capacity][capacity];
+
     }
 
-    private BuiltRoom[][] rooms = new BuiltRoom[100][100];
+    int capacity;
+    private int size;
+    private boolean started = false;
+    int amount = 0;
+    int ends = 0;
 
-    public List<ImmutablePair<Integer, Integer>> unbuiltRooms = new ArrayList<>();
+    private BuiltRoom[][] rooms;
+
+    private List<ImmutablePair<Integer, Integer>> unbuiltRooms = new ArrayList<>();
+
+    public List<ImmutablePair<Integer, Integer>> getUnbuiltCopy() {
+        return new ArrayList<>(unbuiltRooms);
+    }
+
+    public void printDungeonAsSymbolsForDebug() {
+
+        String all = "";
+
+        for (int x = 0; x < capacity; x++) {
+
+            String line = "";
+
+            for (int z = 0; z < capacity; z++) {
+                if (getRoom(x, z) != null) {
+                    line += getRoom(x, z).data.sides.getFirstLineDebug() + ";";
+                    line += getRoom(x, z).data.sides.getSecondString() + ";";
+                    line += getRoom(x, z).data.sides.getThirdString() + ";";
+
+                } else {
+                    line += "E;E;E;";
+                    line += "E;E;E;";
+                    line += "E;E;E;";
+                }
+            }
+
+            all += line + "\n";
+        }
+
+        System.out.println(all);
+
+    }
 
     public boolean isFinished() {
         return started && unbuiltRooms.isEmpty();
@@ -29,22 +72,30 @@ public class Dungeon {
         return amount > size;
     }
 
-    private int size;
-    private boolean started = false;
-
     public BuiltRoom getRoomForChunk(ChunkPos pos) {
         return rooms[pos.x][pos.z];
     }
 
+    public boolean hasRoomForChunk(ChunkPos pos) {
+        try {
+            return rooms[pos.x][pos.z] != null;
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
     public BuiltRoom getRoom(int x, int z) {
+
+        if (x > capacity || z > capacity || x < 0 || z < 0) {
+            return null;
+        }
+
         return rooms[x][z];
     }
 
     public int getMiddle() {
         return rooms.length / 2;
     }
-
-    int amount = 0;
 
     public ImmutablePair<Integer, Integer> getCoordsOfRoomFacing(Direction dir, int x, int z) {
         if (dir == Direction.NORTH) {
@@ -56,7 +107,8 @@ public class Dungeon {
         } else if (dir == Direction.WEST) {
             return ImmutablePair.of(x, z - 1);
         }
-        return null;
+
+        throw new RuntimeException("getCoordsOfRoomFacing is null? Wrong direction?");
     }
 
     public BuiltRoom getRoomFacing(Direction dir, int x, int z) {
@@ -64,7 +116,8 @@ public class Dungeon {
         if (coords != null) {
             return getRoom(coords.left, coords.right);
         }
-        return null;
+
+        throw new RuntimeException("getRoomFacing is null? Wrong direction?");
     }
 
     public RoomSide getSideOfRoomFacing(Direction dir, int x, int z) {
@@ -81,9 +134,8 @@ public class Dungeon {
             return room != null ? room.data.sides.EAST : RoomSide.NONE;
         }
 
-        System.out.println("No room found facing in direction of: " + dir.toString() + ": " + x + " , " + z);
+        throw new RuntimeException("No room found facing in direction of: " + dir.toString() + ": " + x + " , " + z);
 
-        return null;
     }
 
     public UnbuiltRoom getUnbuiltFor(int x, int z) {
@@ -102,6 +154,14 @@ public class Dungeon {
 
     private void addUnbuilts(int x, int z, BuiltRoom room) {
 
+        if (ends > size) {
+            return;
+        }
+        if (x > capacity * 0.7F || z > capacity * 0.7F) {
+            System.out.println("Pushing too close to capacity, not adding any unbuilt rooms. This means it will look broken.");
+            return;
+        }
+
         List<Direction> dirs = new ArrayList<>();
         dirs.add(Direction.SOUTH);
         dirs.add(Direction.NORTH);
@@ -112,7 +172,7 @@ public class Dungeon {
 
         dirs.forEach(dir -> {
             ImmutablePair<Integer, Integer> coord = getCoordsOfRoomFacing(dir, x, z);
-            if (rooms[coord.left][coord.right] == null) {
+            if (getRoom(coord.left, coord.right) == null) {
                 if (room.data.sides.getSideOfDirection(dir) == RoomSide.DOOR) {
                     this.unbuiltRooms.add(coord);
                 }
@@ -125,6 +185,10 @@ public class Dungeon {
             rooms[x][z] = room;
             amount++;
 
+            if (room.data.type.equals(RoomType.END)) {
+                ends++;
+            }
+
             this.started = true;
 
             addUnbuilts(x, z, room);
@@ -134,7 +198,7 @@ public class Dungeon {
             });
 
         } else {
-            System.out.println("Error, setting room that already exists!");
+            //System.out.println("Error, setting room that already exists!");
         }
     }
 

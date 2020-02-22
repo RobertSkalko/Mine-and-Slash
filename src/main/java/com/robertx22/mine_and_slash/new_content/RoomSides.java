@@ -17,6 +17,35 @@ public class RoomSides {
         this.WEST = WEST;
     }
 
+    public String getFirstLineDebug() {
+        String s = "";
+        s += "X;" + NORTH.debugString + ";X";
+        return s;
+    }
+
+    public String getSecondString() {
+        String s = "";
+        s += WEST.debugString + ";O;" + EAST.debugString;
+        return s;
+
+    }
+
+    public String getThirdString() {
+        String s = "";
+        s += "X;" + SOUTH.debugString + ";X";
+        return s;
+
+    }
+
+    public String getDebugString() {
+        String s = "";
+        s += "X" + NORTH.debugString + "X" + "\n";
+        s += WEST.debugString + "O" + EAST.debugString + "\n";
+        s += "X" + SOUTH.debugString + "X" + "\n";
+        return s;
+
+    }
+
     public RoomSide getSideOfDirection(Direction dir) {
         if (dir == Direction.NORTH) {
             return NORTH;

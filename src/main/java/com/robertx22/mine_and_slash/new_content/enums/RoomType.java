@@ -17,7 +17,7 @@ public enum RoomType implements IWeighted {
     CURVED_HALLWAY(RoomSide.DOOR, RoomSide.BLOCKED, RoomSide.DOOR, RoomSide.BLOCKED, "curved_hallway"),
     TRIPLE_HALLWAY(RoomSide.BLOCKED, RoomSide.DOOR, RoomSide.DOOR, RoomSide.DOOR, "triple_hallway"),
     END(RoomSide.DOOR, RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED, "end"),
-    ENTRANCE(RoomSide.DOOR, RoomSide.BLOCKED, RoomSide.DOOR, RoomSide.DOOR, "entrance");
+    ENTRANCE(RoomSide.BLOCKED, RoomSide.DOOR, RoomSide.BLOCKED, RoomSide.BLOCKED, "entrance");
 
     public RoomSides sides;
     List<RoomRotation> rotations;
@@ -35,11 +35,18 @@ public enum RoomType implements IWeighted {
 
         rotations.add(new RoomRotation(this, current, rotation));
 
-        for (int i = 0; i < 3; i++) {
-            rotation = rotation.add(Rotation.CLOCKWISE_90);
-            current = new RoomSides(WEST, EAST, SOUTH, NORTH);
-            rotations.add(new RoomRotation(this, current, rotation));
-        }
+        rotation = rotation.add(Rotation.CLOCKWISE_90);
+        current = new RoomSides(WEST, EAST, SOUTH, NORTH);
+        rotations.add(new RoomRotation(this, current, rotation));
+
+        rotation = rotation.add(Rotation.CLOCKWISE_90);
+        current = new RoomSides(NORTH, SOUTH, WEST, EAST);
+        rotations.add(new RoomRotation(this, current, rotation));
+
+        rotation = rotation.add(Rotation.CLOCKWISE_90);
+        current = new RoomSides(EAST, WEST, NORTH, SOUTH);
+        rotations.add(new RoomRotation(this, current, rotation));
+
     }
 
     public List<RoomRotation> getPossibleFor(UnbuiltRoom room) {

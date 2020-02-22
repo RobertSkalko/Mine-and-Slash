@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content.DungeonFeature;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceEggFeature;
@@ -45,6 +46,9 @@ public class WorldGenRegisters {
         new RandomSurfaceDecoration(NoFeatureConfig::deserialize),
         new AtSurfaceWithChance(ChanceConfig::deserialize), new ChanceConfig(300)
     );
+    public static final ConfiguredFeature DUNGEON_WORLD_FEATURE =
+        new DungeonFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+            .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
     public static Structure<NoFeatureConfig> towerStructure = null;
     public static Structure<NoFeatureConfig> dungeon0Structure = null;
@@ -72,6 +76,7 @@ public class WorldGenRegisters {
                 add(biome, randomSurfaceChest);
                 add(biome, smallRandomSurfaceDecoration);
                 add(biome, smallRandomSurfaceTreasure);
+                add(biome, DUNGEON_WORLD_FEATURE);
 
                 ConfiguredFeature<?, ?> tower0 = towerStructure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
                     .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));

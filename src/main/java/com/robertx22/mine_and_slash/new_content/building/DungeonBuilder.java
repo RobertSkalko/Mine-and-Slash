@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.building;
 
+import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.new_content.BuiltRoom;
 import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
@@ -30,9 +31,9 @@ public class DungeonBuilder {
 
     }
 
-    Dungeon dungeon;
+    public Dungeon dungeon;
     Random rand;
-    public int size = 25;
+    public int size = 15;
     public boolean isTesting = false;
 
     public void build() {
@@ -42,40 +43,75 @@ public class DungeonBuilder {
 
         while (!dungeon.isFinished()) {
 
-            dungeon.unbuiltRooms.forEach(x -> {
+            dungeon.getUnbuiltCopy()
+                .forEach(x -> {
 
-                UnbuiltRoom unbuilt = dungeon.getUnbuiltFor(x.left, x.right);
-                RoomRotation rot = randomDungeonRoom(unbuilt);
-                DungeonRoom dRoom = RoomsList.randomDungeonRoom(RoomsList.getAllOfType(rot.type), rand);
-                BuiltRoom room = new BuiltRoom(rot, dRoom.loc);
+                    try {
+                        UnbuiltRoom unbuilt = dungeon.getUnbuiltFor(x.left, x.right);
 
-                dungeon.addRoom(x.left, x.right, room);
-            });
+                        Preconditions.checkNotNull(unbuilt);
+
+                        RoomRotation rot = randomDungeonRoom(unbuilt);
+
+                        Preconditions.checkNotNull(rot);
+
+                        DungeonRoom dRoom = RoomsList.randomDungeonRoom(RoomsList.getAllOfType(rot.type), rand);
+
+                        Preconditions.checkNotNull(dRoom);
+
+                        BuiltRoom room = new BuiltRoom(rot, dRoom.loc);
+
+                        Preconditions.checkNotNull(room);
+
+                        dungeon.addRoom(x.left, x.right, room);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+
+                });
 
         }
+
+        System.out.println("Dungeon generated.");
+
+        //dungeon.printDungeonAsSymbolsForDebug();
 
     }
 
     public RoomRotation randomDungeonRoom(UnbuiltRoom unbuilt) {
 
         if (dungeon.shouldStartFinishing()) {
-            return random(RoomType.END.getPossibleFor(unbuilt));
+            List<RoomRotation> pos = RoomType.END.getPossibleFor(unbuilt);
+            if (pos.isEmpty()) { //its not possible to set end for all of them
+                return randomRoom(unbuilt);
+            } else {
+                return random(pos);
+            }
         } else {
-            List<RoomType> types = new ArrayList<>();
-            types.add(RoomType.CURVED_HALLWAY);
-            types.add(RoomType.STRAIGHT_HALLWAY);
-            types.add(RoomType.FOUR_WAY);
-            types.add(RoomType.TRIPLE_HALLWAY);
-
-            List<RoomRotation> possible = new ArrayList<>();
-
-            types.forEach(x -> {
-                x.getPossibleFor(unbuilt);
-            });
-
-            return random(possible);
-
+            return randomRoom(unbuilt);
         }
+    }
+
+    public RoomRotation randomRoom(UnbuiltRoom unbuilt) {
+        List<RoomType> types = new ArrayList<>();
+        types.add(RoomType.CURVED_HALLWAY);
+        types.add(RoomType.STRAIGHT_HALLWAY);
+        types.add(RoomType.FOUR_WAY);
+        types.add(RoomType.TRIPLE_HALLWAY);
+
+        List<RoomRotation> possible = new ArrayList<>();
+
+        types.forEach(x -> {
+            possible.addAll(x.getPossibleFor(unbuilt));
+        });
+
+        if (possible.isEmpty()) {
+            throw new RuntimeException("No possible rooms at all for unbuilt room, this is horrible.");
+        }
+
+        return random(possible);
     }
 
     public RoomRotation random(List<RoomRotation> list) {
