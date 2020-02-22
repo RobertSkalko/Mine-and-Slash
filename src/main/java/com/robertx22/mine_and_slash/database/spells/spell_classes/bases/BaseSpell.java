@@ -26,6 +26,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -41,15 +42,15 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell>, ITooltipList {
-    protected List<Predicate<LivingEntity>> castRequirements = new ArrayList<>();
+    protected List<SpellPredicate> castRequirements = new ArrayList<>();
 
-    public static Predicate<LivingEntity> REQUIRE_SHOOTABLE_ITEM = x -> {
+    private static Predicate<LivingEntity> SHOOTABLE_PRED = x -> {
         Item item = x.getHeldItemMainhand()
             .getItem();
         return item instanceof ShootableItem;
     };
 
-    public static Predicate<LivingEntity> REQUIRE_MELEE_WEAPON = x -> {
+    private static Predicate<LivingEntity> MELEE_PRED = x -> {
         try {
             GearItemData data = Gear.Load(x.getHeldItemMainhand());
             return data != null && data.GetBaseGearType()
@@ -58,6 +59,9 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
             return false;
         }
     };
+
+    public static SpellPredicate REQUIRE_SHOOTABLE = new SpellPredicate(SHOOTABLE_PRED, new SText(TextFormatting.GREEN + "Requires Bow/Crossbow to use: "));
+    public static SpellPredicate REQUIRE_MELEE = new SpellPredicate(MELEE_PRED, new SText(TextFormatting.GOLD + "Requires Melee weapon to use: "));
 
     public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
         return true;
@@ -95,6 +99,10 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     public boolean goesOnCooldownIfCastCanceled() {
         // override for spells that do oncastingtick
         return false;
+    }
+
+    public final boolean isLastTick(int tick) {
+        return tick % useTimeTicks() == 0;
     }
 
     @Override
@@ -195,7 +203,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
                     .hasEnough(ctx)) {
 
                     if (this.castRequirements.stream()
-                        .anyMatch(x -> !x.test(player))) {
+                        .anyMatch(x -> !x.predicate.test(player))) {
                         return false;
                     }
 
@@ -235,6 +243,10 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         TooltipUtils.addEmpty(list);
 
         list.add(new StringTextComponent(getSchool().format + "School: ").appendSibling(getSchool().locName.locName()));
+
+        TooltipUtils.addEmpty(list);
+
+        this.castRequirements.forEach(x -> list.add(x.text));
 
         return list;
 

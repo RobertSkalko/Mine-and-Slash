@@ -22,7 +22,7 @@ import java.util.List;
 public class BlinkStrikeSpell extends BaseSpell {
 
     private BlinkStrikeSpell() {
-        this.castRequirements.add(REQUIRE_MELEE_WEAPON);
+        this.castRequirements.add(REQUIRE_MELEE);
     }
 
     public static BlinkStrikeSpell getInstance() {
@@ -74,7 +74,6 @@ public class BlinkStrikeSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
         list.add(new StringTextComponent("Teleport behind enemy and attack: "));
-        list.add(new StringTextComponent("Requires Melee weapon."));
         list.addAll(getCalculation()
             .GetTooltipString(info));
 

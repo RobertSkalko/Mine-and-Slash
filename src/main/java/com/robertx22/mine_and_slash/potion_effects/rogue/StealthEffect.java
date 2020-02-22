@@ -15,10 +15,8 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.particles.ParticleTypes;
@@ -92,18 +90,6 @@ public class StealthEffect extends BasePotionEffect implements IApplyStatPotion 
 
         return list;
 
-    }
-
-    public void removeTargetingFromNearbyMobs(LivingEntity caster) {
-        EntityFinder.start(caster, MobEntity.class, caster.getPositionVector())
-            .radius(20)
-            .build()
-            .forEach(x -> {
-                if (x.getAttackTarget()
-                    == caster) {
-                    x.setAttackTarget(null);
-                }
-            });
     }
 
     @Override

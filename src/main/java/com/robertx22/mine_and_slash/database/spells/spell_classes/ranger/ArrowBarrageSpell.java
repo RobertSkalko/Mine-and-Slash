@@ -23,7 +23,7 @@ import java.util.List;
 public class ArrowBarrageSpell extends BaseProjectileSpell {
 
     private ArrowBarrageSpell() {
-        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE_ITEM);
+        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE);
     }
 
     public static ArrowBarrageSpell getInstance() {

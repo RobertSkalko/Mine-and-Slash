@@ -62,6 +62,7 @@ public class SpellPerkEffects {
         synergy(Synergies.RECOIL_ADD_WOUNDS);
 
         synergy(Synergies.STEALTH_DISAPPEAR);
+        synergy(Synergies.TRIPLE_SLASH_WOUNDS);
 
     }
 

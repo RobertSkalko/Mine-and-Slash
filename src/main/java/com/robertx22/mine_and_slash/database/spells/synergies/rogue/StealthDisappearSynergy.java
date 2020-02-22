@@ -5,6 +5,9 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.rogue.StealthS
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -38,6 +41,18 @@ public class StealthDisappearSynergy extends Synergy<CasterContext> {
 
     @Override
     public void tryActivate(CasterContext ctx) {
+        removeTargetingFromNearbyMobs(ctx.caster);
+    }
 
+    public static void removeTargetingFromNearbyMobs(LivingEntity caster) {
+        EntityFinder.start(caster, MobEntity.class, caster.getPositionVector())
+            .radius(20)
+            .build()
+            .forEach(x -> {
+                if (x.getAttackTarget()
+                    == caster) {
+                    x.setAttackTarget(null);
+                }
+            });
     }
 }

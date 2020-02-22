@@ -26,7 +26,7 @@ import java.util.List;
 public class RecoilShotSpell extends BaseProjectileSpell {
 
     private RecoilShotSpell() {
-        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE_ITEM);
+        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE);
     }
 
     public static RecoilShotSpell getInstance() {
@@ -116,7 +116,6 @@ public class RecoilShotSpell extends BaseProjectileSpell {
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Shoots an arrow and dash back: "));
-        list.add(new StringTextComponent("Requires Bow/Crossbow to use: "));
 
         list.addAll(getCalculation().GetTooltipString(info));
 

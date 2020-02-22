@@ -19,7 +19,7 @@ import java.util.List;
 public class ArrowStormSpell extends BaseSummonAtSightSpell {
 
     private ArrowStormSpell() {
-        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE_ITEM);
+        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE);
     }
 
     public static ArrowStormSpell getInstance() {
@@ -77,7 +77,6 @@ public class ArrowStormSpell extends BaseSummonAtSightSpell {
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Summons an arrow storm, dealing damage with each arrow: "));
-        list.add(new StringTextComponent("Requires Bow/Crossbow to use: "));
 
         list.addAll(getCalculation().GetTooltipString(info));
 

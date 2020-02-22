@@ -62,6 +62,7 @@ public class PlayerSpellsData {
     }
 
     public void onTimePass(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int ticks) {
+
         try {
             spellDatas.values()
                 .forEach(x -> x.tickCooldown(ticks));
@@ -74,7 +75,7 @@ public class PlayerSpellsData {
             if (spell != null && spells != null) {
                 spell.onCastingTick(player, spells, castingTicksLeft);
             }
-        } finally {
+        } catch (Exception e) {
 
         }
 

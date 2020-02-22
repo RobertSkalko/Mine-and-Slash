@@ -28,7 +28,7 @@ import java.util.List;
 public class TripleShotSpell extends BaseProjectileSpell {
 
     private TripleShotSpell() {
-        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE_ITEM);
+        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE);
     }
 
     public static TripleShotSpell getInstance() {
@@ -143,7 +143,6 @@ public class TripleShotSpell extends BaseProjectileSpell {
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Shoots multiple arrows in an arc: "));
-        list.add(new StringTextComponent("Requires Bow/Crossbow to use: "));
 
         list.addAll(getCalculation().GetTooltipString(info));
 
