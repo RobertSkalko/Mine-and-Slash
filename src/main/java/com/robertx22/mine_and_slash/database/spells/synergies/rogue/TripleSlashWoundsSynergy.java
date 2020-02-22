@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.rogue;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.rogue.StealthSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.rogue.TripleSlashSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
@@ -36,7 +36,7 @@ public class TripleSlashWoundsSynergy extends Synergy<AfterDamageContext> {
     @Override
 
     public BaseSpell spellAffected() {
-        return StealthSpell.getInstance();
+        return TripleSlashSpell.getInstance();
     }
 
     @Override

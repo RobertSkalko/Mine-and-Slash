@@ -156,7 +156,7 @@ public class PlayerSpellsData {
             return false;
         }
 
-        SpellData data = getDataBySpell(spell, Hotbar.FIRST);
+        SpellData data = getDataBySpell(spell);
 
         if (data.cooldownIsReady() == false) {
             return false;
@@ -185,7 +185,7 @@ public class PlayerSpellsData {
         }
     }
 
-    public SpellData getDataBySpell(BaseSpell spell, Hotbar hotbar) {
+    public SpellData getDataBySpell(BaseSpell spell) {
 
         String id = spell.GUID();
 

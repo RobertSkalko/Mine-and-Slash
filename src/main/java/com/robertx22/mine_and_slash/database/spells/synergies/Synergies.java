@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddHu
 import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddWoundsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ranger.TripleShotConsumeHunterSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.rogue.StealthDisappearSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.rogue.TripleSlashStealthSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.rogue.TripleSlashWoundsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderDashEnergySynergy;
@@ -59,5 +60,6 @@ public class Synergies {
 
     public static StealthDisappearSynergy STEALTH_DISAPPEAR = new StealthDisappearSynergy();
     public static TripleSlashWoundsSynergy TRIPLE_SLASH_WOUNDS = new TripleSlashWoundsSynergy();
+    public static TripleSlashStealthSynergy TRIPLE_SLASH_STEALTH = new TripleSlashStealthSynergy();
 
 }

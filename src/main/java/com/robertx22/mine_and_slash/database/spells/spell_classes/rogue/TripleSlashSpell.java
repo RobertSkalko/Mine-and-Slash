@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.rogue;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -66,7 +67,7 @@ public class TripleSlashSpell extends BaseSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.05F, 0.25F, 2);
+        return SpellCalcData.allAttackAndSpellDamages(0.5F, 0.25F, 2);
     }
 
     @Override
@@ -100,6 +101,9 @@ public class TripleSlashSpell extends BaseSpell {
 
                         if (Synergies.TRIPLE_SLASH_WOUNDS.has(caster)) {
                             Synergies.TRIPLE_SLASH_WOUNDS.tryActivate(new AfterDamageContext(caster, x, dmg));
+                        }
+                        if (Synergies.TRIPLE_SLASH_STEALTH.has(caster)) {
+                            Synergies.TRIPLE_SLASH_STEALTH.tryActivate(new CasterContext(caster));
                         }
                     }
                 }

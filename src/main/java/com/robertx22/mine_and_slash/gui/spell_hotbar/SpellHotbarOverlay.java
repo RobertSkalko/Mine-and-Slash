@@ -75,7 +75,7 @@ public class SpellHotbarOverlay extends AbstractGui {
                 this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
 
                 SpellData spelldata = data.getSpellData()
-                    .getDataBySpell(spell, CURRENT_HOTBAR);
+                    .getDataBySpell(spell);
 
                 if (spelldata != null) {
                     if (spelldata.cooldownIsReady() == false) {
