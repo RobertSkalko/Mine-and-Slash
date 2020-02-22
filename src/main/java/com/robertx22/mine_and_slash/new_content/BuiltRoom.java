@@ -11,4 +11,5 @@ public class BuiltRoom {
         this.data = data;
         this.structure = structure;
     }
+
 }

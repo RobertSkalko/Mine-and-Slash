@@ -2,12 +2,16 @@ package com.robertx22.mine_and_slash.new_content.building;
 
 import com.robertx22.mine_and_slash.new_content.BuiltRoom;
 import com.robertx22.mine_and_slash.new_content.RoomRotation;
+import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 import com.robertx22.mine_and_slash.new_content.registry.RoomsList;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.ChunkPos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class DungeonBuilder {
@@ -32,9 +36,50 @@ public class DungeonBuilder {
     public boolean isTesting = false;
 
     public void build() {
-        dungeon = new Dungeon();
+        dungeon = new Dungeon(size);
 
         setupEntrance();
+
+        while (!dungeon.isFinished()) {
+
+            dungeon.unbuiltRooms.forEach(x -> {
+
+                UnbuiltRoom unbuilt = dungeon.getUnbuiltFor(x.left, x.right);
+                RoomRotation rot = randomDungeonRoom(unbuilt);
+                DungeonRoom dRoom = RoomsList.randomDungeonRoom(RoomsList.getAllOfType(rot.type), rand);
+                BuiltRoom room = new BuiltRoom(rot, dRoom.loc);
+
+                dungeon.addRoom(x.left, x.right, room);
+            });
+
+        }
+
+    }
+
+    public RoomRotation randomDungeonRoom(UnbuiltRoom unbuilt) {
+
+        if (dungeon.shouldStartFinishing()) {
+            return random(RoomType.END.getPossibleFor(unbuilt));
+        } else {
+            List<RoomType> types = new ArrayList<>();
+            types.add(RoomType.CURVED_HALLWAY);
+            types.add(RoomType.STRAIGHT_HALLWAY);
+            types.add(RoomType.FOUR_WAY);
+            types.add(RoomType.TRIPLE_HALLWAY);
+
+            List<RoomRotation> possible = new ArrayList<>();
+
+            types.forEach(x -> {
+                x.getPossibleFor(unbuilt);
+            });
+
+            return random(possible);
+
+        }
+    }
+
+    public RoomRotation random(List<RoomRotation> list) {
+        return RandomUtils.weightedRandom(list, rand.nextDouble());
     }
 
     private void setupEntrance() {
@@ -43,7 +88,7 @@ public class DungeonBuilder {
         BuiltRoom entrance = new BuiltRoom(rotation, entranceRoom.loc);
 
         int mid = dungeon.getMiddle();
-        dungeon.setRoomFor(mid, mid, entrance);
+        dungeon.addRoom(mid, mid, entrance);
     }
 
 }
