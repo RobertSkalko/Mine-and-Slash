@@ -9,8 +9,9 @@ import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleI
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashDataProvider;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.command.CommandSource;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Files;
@@ -71,7 +72,10 @@ public class GenDefaultCompItemsOfMod {
 
         try {
             source.asPlayer()
-                .sendMessage(new StringTextComponent("Outputed All auto generated default compatible item files format to: " + SerializationUtils.CONFIG_PATH + " in /generated folder"));
+                .sendMessage(new SText("Outputted All auto generated default compatible item files to: " + TextFormatting.GREEN + folder(mod)));
+            source.asPlayer()
+                .sendMessage(new SText(TextFormatting.RED + "Do note this is prone to error. Some gear types can't be found automatically, and others might be wrong. But it should work for most things."));
+
         } catch (CommandSyntaxException e) {
             e.printStackTrace();
         }
@@ -79,9 +83,13 @@ public class GenDefaultCompItemsOfMod {
         return 1;
     }
 
+    static String folder(String mod) {
+        return SerializationUtils.CONFIG_PATH + "generated/" + mod + "/";
+    }
+
     static void output(CompatibleItem item, String mod) {
         try {
-            Path path = Paths.get(SerializationUtils.CONFIG_PATH + "generated/" + mod + "/")
+            Path path = Paths.get(folder(mod))
                 .resolve(item.getFileName() + ".json");
 
             String json = SlashDataProvider.GSON.toJson(item.toJson());

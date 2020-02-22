@@ -3,16 +3,12 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.world_providers.*;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.world.biome.Biome;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorldProviders implements ISlashRegistryInit {
-
-
-    public static WorldProviders INSTANCE = new WorldProviders();
 
     public static IWP byBiome(Biome biome) {
         IWP first = null;
@@ -21,7 +17,8 @@ public class WorldProviders implements ISlashRegistryInit {
             first = SlashRegistry.WorldProviders()
                 .getList()
                 .stream()
-                .filter(x -> x.getBiome().equals(biome))
+                .filter(x -> x.getBiome()
+                    .equals(biome))
                 .findFirst()
                 .get();
         } catch (Exception e) {
@@ -33,17 +30,6 @@ public class WorldProviders implements ISlashRegistryInit {
         } else {
             return new BirchForestIWP(null, null);
         }
-    }
-
-    public BaseWorldProvider random(IWPRandomConfig config) {
-        return (RandomUtils.weightedRandom(SlashRegistry.WorldProviders().getList()));
-    }
-
-    public BaseWorldProvider random() {
-        return random(new IWPRandomConfig());
-    }
-
-    public static class IWPRandomConfig {
     }
 
     @Override

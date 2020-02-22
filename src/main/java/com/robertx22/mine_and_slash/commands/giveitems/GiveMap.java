@@ -2,9 +2,12 @@ package com.robertx22.mine_and_slash.commands.giveitems;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
+import com.robertx22.mine_and_slash.commands.suggestions.WorldTypesSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -25,24 +28,25 @@ public class GiveMap {
                     .then(literal("map")
                         .then(Commands.argument("target", EntityArgument.player())
                             .then(Commands.argument("level", IntegerArgumentType.integer())
-                                .then(Commands.argument("rarity", IntegerArgumentType.integer(0, 5))
-                                    .then(Commands.argument("tier", IntegerArgumentType
-                                        .integer(0, 30))
-                                        .then(Commands.argument("amount", IntegerArgumentType
-                                            .integer(1, 30000))
-
-                                            .executes(e -> run(e.getSource(), EntityArgument
-                                                .getPlayer(e, "target"), IntegerArgumentType
-                                                .getInteger(e, "level"), IntegerArgumentType
-                                                .getInteger(e, "rarity"), IntegerArgumentType
-                                                .getInteger(e, "tier"), IntegerArgumentType
-                                                .getInteger(e, "amount")
-
-                                            ))))))))));
+                                .then(Commands.argument("world_type", StringArgumentType.string())
+                                    .suggests(new WorldTypesSuggestions())
+                                    .then(Commands.argument("rarity", IntegerArgumentType.integer(0, 5))
+                                        .then(Commands.argument("tier", IntegerArgumentType
+                                            .integer(0, 30))
+                                            .then(Commands.argument("amount", IntegerArgumentType
+                                                .integer(1, 30000))
+                                                .executes(e -> run(e.getSource(),
+                                                    EntityArgument.getPlayer(e, "target"),
+                                                    IntegerArgumentType.getInteger(e, "level"),
+                                                    StringArgumentType.getString(e, "world_type"),
+                                                    IntegerArgumentType.getInteger(e, "rarity"),
+                                                    IntegerArgumentType.getInteger(e, "tier"),
+                                                    IntegerArgumentType.getInteger(e, "amount")
+                                                )))))))))));
     }
 
     private static int run(CommandSource commandSource, @Nullable PlayerEntity player,
-                           int lvl, int rarity, int tier, int amount) {
+                           int lvl, String worldtype, int rarity, int tier, int amount) {
 
         if (Objects.isNull(player)) {
             try {
@@ -58,6 +62,13 @@ public class GiveMap {
             if (rarity > -1) {
                 blueprint.rarity.setSpecificRarity(rarity);
             }
+
+            if (SlashRegistry.WorldProviders()
+                .isRegistered(worldtype)) {
+                blueprint.iwp.set(SlashRegistry.WorldProviders()
+                    .get(worldtype));
+            }
+
             blueprint.level.LevelRange = false;
 
             player.addItemStackToInventory(blueprint.createStack());
