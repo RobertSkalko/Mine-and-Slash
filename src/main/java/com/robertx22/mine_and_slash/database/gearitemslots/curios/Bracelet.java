@@ -1,11 +1,12 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
@@ -13,7 +14,7 @@ import net.minecraft.item.Item;
 import java.util.HashMap;
 import java.util.List;
 
-public class Bracelet extends GearItemSlot {
+public class Bracelet extends BaseCurio {
     public static GearItemSlot INSTANCE = new Bracelet();
 
     private Bracelet() {
@@ -43,11 +44,6 @@ public class Bracelet extends GearItemSlot {
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
         return eleDmgs();
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return false;
     }
 
     @Override

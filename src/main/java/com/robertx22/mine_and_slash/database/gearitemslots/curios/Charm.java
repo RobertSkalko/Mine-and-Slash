@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Stamina;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
+import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Charm extends GearItemSlot {
+public class Charm extends BaseCurio {
     public static GearItemSlot INSTANCE = new Charm();
 
     private Charm() {
@@ -43,8 +44,6 @@ public class Charm extends GearItemSlot {
         return "charm";
     }
 
-    static float multi = 2;
-
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
         List<PosStats> list = new ArrayList<>();
@@ -53,11 +52,6 @@ public class Charm extends GearItemSlot {
             .forEach(x -> list.add(new PosStats((StatMod) x)));
         return list;
 
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return false;
     }
 
     @Override

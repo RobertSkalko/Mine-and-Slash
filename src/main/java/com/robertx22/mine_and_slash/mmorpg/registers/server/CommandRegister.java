@@ -52,6 +52,8 @@ public class CommandRegister {
         ResetTalents.register(dispatcher);
         OpenHub.register(dispatcher);
 
+        GenDefaultCompItemsOfMod.register(dispatcher);
+
         StartMapEvent.register(dispatcher);
 
         GiveCrate.register(dispatcher);

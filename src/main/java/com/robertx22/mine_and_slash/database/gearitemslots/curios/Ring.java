@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class Ring extends GearItemSlot {
+public class Ring extends BaseCurio {
 
     public static GearItemSlot INSTANCE = new Ring();
 
@@ -66,14 +67,6 @@ public class Ring extends GearItemSlot {
     @Override
     public int Weight() {
         return 1500;
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) { // TODO unsure if this works
-        return item.getTags()
-            .stream()
-            .anyMatch(x -> x.toString()
-                .contains("ring"));
     }
 
     @Override
