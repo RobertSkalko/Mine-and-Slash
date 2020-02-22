@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content;
+package com.robertx22.mine_and_slash.new_content.enums;
 
 public enum RoomSide {
     DOOR, BLOCKED, NONE;

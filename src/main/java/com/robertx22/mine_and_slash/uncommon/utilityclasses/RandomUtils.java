@@ -95,7 +95,7 @@ public class RandomUtils {
         while (list.size() < amount && tries < 15) {
             tries++;
 
-            T t = (T) WeightedRandom(CollectionToList(coll));
+            T t = (T) WeightedRandom(CollectionToList(coll), Math.random());
 
             if (!list.contains(t)) {
                 list.add(t);
@@ -108,16 +108,19 @@ public class RandomUtils {
     }
 
     public static <T extends IWeighted> T weightedRandom(Collection<T> coll) {
+        return weightedRandom(coll, Math.random());
+    }
+
+    public static <T extends IWeighted> T weightedRandom(Collection<T> coll, double nextDouble) {
         if (coll == null || coll.isEmpty()) {
             return null;
         }
-        return (T) WeightedRandom(CollectionToList(coll));
-
+        return (T) WeightedRandom(CollectionToList(coll), nextDouble);
     }
 
-    private static IWeighted WeightedRandom(List<IWeighted> lootTable) {
+    private static IWeighted WeightedRandom(List<IWeighted> lootTable, double nextDouble) {
 
-        double value = Total(lootTable) * Math.random();
+        double value = Total(lootTable) * nextDouble;
         double weight = 0;
 
         for (IWeighted item : lootTable) {
@@ -127,7 +130,6 @@ public class RandomUtils {
         }
 
         return null;
-
     }
 
     private static int Total(List<IWeighted> list) {
