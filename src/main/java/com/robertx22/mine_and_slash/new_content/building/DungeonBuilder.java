@@ -19,16 +19,23 @@ public class DungeonBuilder {
 
     public DungeonBuilder(long worldSeed, ChunkPos cpos) {
 
-        int chunkX = cpos.x;
-        int chunkZ = cpos.z;
+        int chunkX = getStartChunk(cpos).x;
+        int chunkZ = getStartChunk(cpos).z;
+
+        long newSeed = (worldSeed + (long) (chunkX * chunkX * 4987142) + (long) (chunkX * 5947611) + (long) (chunkZ * chunkZ) * 4392871L + (long) (chunkZ * 389711) ^ worldSeed);
+        rand = new Random(newSeed);
+
+    }
+
+    public static ChunkPos getStartChunk(ChunkPos pos) {
+        int chunkX = pos.x;
+        int chunkZ = pos.z;
         int distToEntranceX = 8 - (chunkX % 16);
         int distToEntranceZ = 11 - (chunkZ % 16);
         chunkX += distToEntranceX;
         chunkZ += distToEntranceZ;
 
-        long newSeed = (worldSeed + (long) (chunkX * chunkX * 4987142) + (long) (chunkX * 5947611) + (long) (chunkZ * chunkZ) * 4392871L + (long) (chunkZ * 389711) ^ worldSeed);
-        rand = new Random(newSeed);
-
+        return new ChunkPos(chunkX, chunkZ);
     }
 
     public Dungeon dungeon;
@@ -74,7 +81,7 @@ public class DungeonBuilder {
 
         }
 
-        System.out.println("Dungeon generated.");
+        //System.out.println("Dungeon generated.");
 
         //dungeon.printDungeonAsSymbolsForDebug();
 

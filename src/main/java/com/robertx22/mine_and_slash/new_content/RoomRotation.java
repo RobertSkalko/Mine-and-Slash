@@ -8,7 +8,7 @@ public class RoomRotation implements IWeighted {
 
     public RoomType type;
     public RoomSides sides;
-    public Rotation rotation = Rotation.NONE;
+    public Rotation rotation;
 
     public RoomRotation(RoomType type, RoomSides sides, Rotation rotation) {
         this.type = type;

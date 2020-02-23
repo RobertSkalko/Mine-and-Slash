@@ -65,7 +65,7 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                 BlockPos position = new BlockPos(cpos.getXStart(), 120, cpos.getZStart());
 
                 if (template == null) {
-                    System.out.println("DIMDUNGEONS FATAL ERROR: Structure does not exist (" + room.structure + ")");
+                    System.out.println("FATAL ERROR: Structure does not exist (" + room.structure + ")");
                     return false;
                 }
 

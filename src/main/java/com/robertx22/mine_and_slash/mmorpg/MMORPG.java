@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackMa
 import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
+import com.robertx22.mine_and_slash.error_checks.DunSameSeedAreSame;
 import com.robertx22.mine_and_slash.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
@@ -17,7 +18,6 @@ import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ClientSetup;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.*;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
-import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
@@ -32,7 +32,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -136,10 +135,7 @@ public class MMORPG {
 
         RegDeffered.register(bus);
 
-        DungeonBuilder builder =
-            new DungeonBuilder(100, new ChunkPos(1, 1));
-        builder.build();
-        builder.dungeon.printDungeonAsSymbolsForDebug();
+        new DunSameSeedAreSame().check();
     }
 
     public static void logError(String s) {

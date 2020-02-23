@@ -11,6 +11,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Dungeon {
 
@@ -46,14 +47,11 @@ public class Dungeon {
 
             for (int z = 0; z < capacity; z++) {
                 if (getRoom(x, z) != null) {
-                    line += getRoom(x, z).data.sides.getFirstLineDebug() + ";";
-                    line += getRoom(x, z).data.sides.getSecondString() + ";";
-                    line += getRoom(x, z).data.sides.getThirdString() + ";";
+
+                    line += getRoom(x, z).data.type.id + ";";
 
                 } else {
-                    line += "E;E;E;";
-                    line += "E;E;E;";
-                    line += "E;E;E;";
+                    line += "empty;";
                 }
             }
 
@@ -73,15 +71,25 @@ public class Dungeon {
     }
 
     public BuiltRoom getRoomForChunk(ChunkPos pos) {
-        return rooms[pos.x][pos.z];
+
+        try {
+
+            ChunkPos start = DungeonBuilder.getStartChunk(pos);
+
+            // int x = (pos.x % 16) - 4;
+            //int z = (pos.z % 16) - 4;
+
+            ChunkPos relative = new ChunkPos(pos.x - start.x, pos.z - start.z);
+
+            return rooms[getMiddle() + relative.x][getMiddle() + relative.z];
+        } catch (Exception e) {
+        }
+        return null;
+
     }
 
     public boolean hasRoomForChunk(ChunkPos pos) {
-        try {
-            return rooms[pos.x][pos.z] != null;
-        } catch (Exception e) {
-        }
-        return false;
+        return getRoomForChunk(pos) != null;
     }
 
     public BuiltRoom getRoom(int x, int z) {
@@ -99,9 +107,9 @@ public class Dungeon {
 
     public ImmutablePair<Integer, Integer> getCoordsOfRoomFacing(Direction dir, int x, int z) {
         if (dir == Direction.NORTH) {
-            return ImmutablePair.of(x + 1, z);
-        } else if (dir == Direction.SOUTH) {
             return ImmutablePair.of(x - 1, z);
+        } else if (dir == Direction.SOUTH) {
+            return ImmutablePair.of(x + 1, z);
         } else if (dir == Direction.EAST) {
             return ImmutablePair.of(x, z + 1);
         } else if (dir == Direction.WEST) {
@@ -168,8 +176,6 @@ public class Dungeon {
         dirs.add(Direction.WEST);
         dirs.add(Direction.EAST);
 
-        RoomSides sides = room.data.sides;
-
         dirs.forEach(dir -> {
             ImmutablePair<Integer, Integer> coord = getCoordsOfRoomFacing(dir, x, z);
             if (getRoom(coord.left, coord.right) == null) {
@@ -181,6 +187,12 @@ public class Dungeon {
     }
 
     public void addRoom(int x, int z, BuiltRoom room) {
+
+        if (room == null) {
+
+            return;
+        }
+
         if (rooms[x][z] == null) {
             rooms[x][z] = room;
             amount++;
@@ -202,4 +214,18 @@ public class Dungeon {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dungeon d = (Dungeon) o;
+
+        return d.amount == amount && d.ends == ends;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this);
+    }
 }
