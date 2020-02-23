@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 import com.robertx22.mine_and_slash.new_content.registry.RoomsList;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.ChunkPos;
 
 import java.util.ArrayList;
@@ -18,6 +17,9 @@ import java.util.Random;
 public class DungeonBuilder {
 
     public DungeonBuilder(long worldSeed, ChunkPos cpos) {
+
+        worldSeed = 500000; // TODO FOR TEST
+        cpos = new ChunkPos(0, 0); // TODO TEST
 
         int chunkX = getStartChunk(cpos).x;
         int chunkZ = getStartChunk(cpos).z;
@@ -40,7 +42,7 @@ public class DungeonBuilder {
 
     public Dungeon dungeon;
     Random rand;
-    public int size = 15;
+    public int size = 25;
     public boolean isTesting = false;
 
     public void build() {
@@ -127,7 +129,11 @@ public class DungeonBuilder {
 
     private void setupEntrance() {
         DungeonRoom entranceRoom = RoomsList.randomDungeonRoom(RoomsList.getAllOfType(RoomType.ENTRANCE), rand);
-        RoomRotation rotation = new RoomRotation(RoomType.ENTRANCE, RoomType.ENTRANCE.sides, Rotation.NONE);
+
+        List<RoomRotation> possible = new ArrayList<>();
+        possible.addAll(RoomType.ENTRANCE.getRotations());
+        RoomRotation rotation = random(possible);
+
         BuiltRoom entrance = new BuiltRoom(rotation, entranceRoom.loc);
 
         int mid = dungeon.getMiddle();

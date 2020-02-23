@@ -42,7 +42,7 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                     return false;
                 }
 
-                BuiltRoom room = builder.dungeon.getRoomForChunk(cpos); // TODO
+                BuiltRoom room = builder.dungeon.getRoomForChunk(cpos);
 
                 if (room == null) {
                     return false;

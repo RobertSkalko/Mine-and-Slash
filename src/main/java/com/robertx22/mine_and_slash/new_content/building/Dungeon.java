@@ -71,16 +71,9 @@ public class Dungeon {
     }
 
     public BuiltRoom getRoomForChunk(ChunkPos pos) {
-
         try {
-
             ChunkPos start = DungeonBuilder.getStartChunk(pos);
-
-            // int x = (pos.x % 16) - 4;
-            //int z = (pos.z % 16) - 4;
-
             ChunkPos relative = new ChunkPos(pos.x - start.x, pos.z - start.z);
-
             return rooms[getMiddle() + relative.x][getMiddle() + relative.z];
         } catch (Exception e) {
         }
@@ -107,13 +100,13 @@ public class Dungeon {
 
     public ImmutablePair<Integer, Integer> getCoordsOfRoomFacing(Direction dir, int x, int z) {
         if (dir == Direction.NORTH) {
-            return ImmutablePair.of(x - 1, z);
-        } else if (dir == Direction.SOUTH) {
-            return ImmutablePair.of(x + 1, z);
-        } else if (dir == Direction.EAST) {
-            return ImmutablePair.of(x, z + 1);
-        } else if (dir == Direction.WEST) {
             return ImmutablePair.of(x, z - 1);
+        } else if (dir == Direction.SOUTH) {
+            return ImmutablePair.of(x, z + 1);
+        } else if (dir == Direction.EAST) {
+            return ImmutablePair.of(x + 1, z);
+        } else if (dir == Direction.WEST) {
+            return ImmutablePair.of(x - 1, z);
         }
 
         throw new RuntimeException("getCoordsOfRoomFacing is null? Wrong direction?");
@@ -163,7 +156,7 @@ public class Dungeon {
     private void addUnbuilts(int x, int z, BuiltRoom room) {
 
         if (ends > size) {
-            return;
+            //return;
         }
         if (x > capacity * 0.7F || z > capacity * 0.7F) {
             System.out.println("Pushing too close to capacity, not adding any unbuilt rooms. This means it will look broken.");
@@ -189,7 +182,6 @@ public class Dungeon {
     public void addRoom(int x, int z, BuiltRoom room) {
 
         if (room == null) {
-
             return;
         }
 
