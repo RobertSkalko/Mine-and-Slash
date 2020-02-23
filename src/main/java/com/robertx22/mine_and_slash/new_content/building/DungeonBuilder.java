@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
-import com.robertx22.mine_and_slash.new_content.registry.RoomsList;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.ChunkPos;
 
@@ -18,8 +17,8 @@ public class DungeonBuilder {
 
     public DungeonBuilder(long worldSeed, ChunkPos cpos) {
 
-        worldSeed = 500000; // TODO FOR TEST
-        cpos = new ChunkPos(0, 0); // TODO TEST
+        // worldSeed = 500000; // TODO FOR TEST
+        //cpos = new ChunkPos(0, 0); // TODO TEST
 
         int chunkX = getStartChunk(cpos).x;
         int chunkZ = getStartChunk(cpos).z;
@@ -40,6 +39,7 @@ public class DungeonBuilder {
         return new ChunkPos(chunkX, chunkZ);
     }
 
+    boolean debug = true;
     public Dungeon dungeon;
     Random rand;
     public int size = 25;
@@ -64,7 +64,7 @@ public class DungeonBuilder {
 
                         Preconditions.checkNotNull(rot);
 
-                        DungeonRoom dRoom = RoomsList.randomDungeonRoom(RoomsList.getAllOfType(rot.type), rand);
+                        DungeonRoom dRoom = rot.type.getRandomRoom(rand, debug);
 
                         Preconditions.checkNotNull(dRoom);
 
@@ -82,10 +82,6 @@ public class DungeonBuilder {
                 });
 
         }
-
-        //System.out.println("Dungeon generated.");
-
-        //dungeon.printDungeonAsSymbolsForDebug();
 
     }
 
@@ -128,7 +124,7 @@ public class DungeonBuilder {
     }
 
     private void setupEntrance() {
-        DungeonRoom entranceRoom = RoomsList.randomDungeonRoom(RoomsList.getAllOfType(RoomType.ENTRANCE), rand);
+        DungeonRoom entranceRoom = RoomType.ENTRANCE.getRandomRoom(rand, debug);
 
         List<RoomRotation> possible = new ArrayList<>();
         possible.addAll(RoomType.ENTRANCE.getRotations());

@@ -155,9 +155,6 @@ public class Dungeon {
 
     private void addUnbuilts(int x, int z, BuiltRoom room) {
 
-        if (ends > size) {
-            //return;
-        }
         if (x > capacity * 0.7F || z > capacity * 0.7F) {
             System.out.println("Pushing too close to capacity, not adding any unbuilt rooms. This means it will look broken.");
             return;
