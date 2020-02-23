@@ -3,7 +3,10 @@ package com.robertx22.mine_and_slash.new_content;
 import com.mojang.datafixers.Dynamic;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
+import com.robertx22.mine_and_slash.new_content.registry.DataProcessors;
+import net.minecraft.block.Blocks;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.state.properties.StructureMode;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -92,6 +95,22 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                 }
 
                 boolean success = template.addBlocksToWorld(world, position, settings, 2);
+                if (success) {
+                    for (Template.BlockInfo template$blockinfo : template.func_215381_a(position, settings, Blocks.STRUCTURE_BLOCK)) {
+                        if (template$blockinfo.nbt != null) {
+                            StructureMode structuremode = StructureMode.valueOf(template$blockinfo.nbt.getString("mode"));
+                            if (structuremode == StructureMode.DATA) {
+
+                                String data = template$blockinfo.nbt.getString("metadata");
+                                BlockPos data_pos = template$blockinfo.pos;
+
+                                DataProcessors.getAll()
+                                    .forEach(x -> x.process(data, data_pos, world));
+
+                            }
+                        }
+                    }
+                }
 
                 return success;
 

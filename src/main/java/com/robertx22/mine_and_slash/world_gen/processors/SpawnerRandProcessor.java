@@ -36,13 +36,24 @@ public class SpawnerRandProcessor extends StructureProcessor {
 
     static List<EntityType<?>> possibleMobs = new ArrayList<>();
 
+    public static List<EntityType<?>> getPossibleMobs(World world) {
+        if (possibleMobs.isEmpty()) {
+            setupList(world);
+        }
+
+        return possibleMobs;
+    }
+
     static void setupList(World world) {
 
         if (possibleMobs.isEmpty()) {
-            possibleMobs = ForgeRegistries.ENTITIES.getValues().stream().filter(x -> {
-                Entity en = x.create(world);
-                return EntityTypeUtils.isMob(en) && en.isNonBoss();
-            }).collect(Collectors.toList());
+            possibleMobs = ForgeRegistries.ENTITIES.getValues()
+                .stream()
+                .filter(x -> {
+                    Entity en = x.create(world);
+                    return EntityTypeUtils.isMob(en) && en.isNonBoss();
+                })
+                .collect(Collectors.toList());
         }
 
     }
@@ -60,13 +71,15 @@ public class SpawnerRandProcessor extends StructureProcessor {
                 if (RandomUtils.roll(10)) {
 
                     if (possibleMobs.isEmpty()) {
-                        World world = MapManager.getWorld(iWorldReader.getDimension().getType());
+                        World world = MapManager.getWorld(iWorldReader.getDimension()
+                            .getType());
                         setupList(world);
                     }
 
                     EntityType<?> type = RandomUtils.randomFromList(possibleMobs);
 
-                    ((CompoundNBT) blockInfo1.nbt.get("SpawnData")).putString("id", type.getRegistryName().toString());
+                    ((CompoundNBT) blockInfo1.nbt.get("SpawnData")).putString("id", type.getRegistryName()
+                        .toString());
 
                 }
             }
