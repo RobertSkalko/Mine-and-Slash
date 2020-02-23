@@ -12,6 +12,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
@@ -45,9 +46,9 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
         }
     }
 
-    public static <T extends MobEntity> T summonBoss(EntityType<T> type, World world, BlockPos p,
+    public static <T extends MobEntity> T summonBoss(EntityType<T> type, IWorld world, BlockPos p,
                                                      com.robertx22.mine_and_slash.database.bosses.base.Boss boss) {
-        T bossEntity = (T) type.create(world);
+        T bossEntity = (T) type.create(world.getWorld());
         bossEntity.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         bossEntity.setPosition(p.getX(), p.getY(), p.getZ());
         Load.boss(bossEntity)

@@ -64,6 +64,8 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                     .setChunk(cpos);
                 settings.setBoundingBox(settings.getBoundingBox());
 
+                // settings.addProcessor();
+
                 settings.setRotation(room.data.rotation);
                 BlockPos position = new BlockPos(cpos.getXStart(), 120, cpos.getZStart());
 
@@ -95,17 +97,19 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                 }
 
                 boolean success = template.addBlocksToWorld(world, position, settings, 2);
-                if (success) {
-                    for (Template.BlockInfo template$blockinfo : template.func_215381_a(position, settings, Blocks.STRUCTURE_BLOCK)) {
-                        if (template$blockinfo.nbt != null) {
-                            StructureMode structuremode = StructureMode.valueOf(template$blockinfo.nbt.getString("mode"));
-                            if (structuremode == StructureMode.DATA) {
 
-                                String data = template$blockinfo.nbt.getString("metadata");
-                                BlockPos data_pos = template$blockinfo.pos;
+                if (success) {
+                    for (Template.BlockInfo blockInfo : template.func_215381_a(position, settings, Blocks.STRUCTURE_BLOCK)) {
+                        if (blockInfo.nbt != null) {
+                            StructureMode structuremode = StructureMode.valueOf(blockInfo.nbt.getString("mode"));
+                            if (structuremode == StructureMode.DATA) {
+                                String data = blockInfo.nbt.getString("metadata");
+                                BlockPos data_pos = blockInfo.pos;
 
                                 DataProcessors.getAll()
                                     .forEach(x -> x.process(data, data_pos, world));
+
+                                world.setBlockState(data_pos, Blocks.AIR.getDefaultState(), 2); // delete data block
 
                             }
                         }

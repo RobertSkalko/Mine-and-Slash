@@ -12,7 +12,7 @@ public abstract class DataProcessor {
     String data;
 
     public final void process(String data, BlockPos pos, IWorld world) {
-        if (data.equals(data)) {
+        if (this.data.equals(data)) {
             processImplementation(pos, world);
         }
     }

@@ -19,7 +19,7 @@ public class BossProcessor extends DataProcessor {
 
         EntityType<? extends MobEntity> type = EntityType.WITHER_SKELETON;
 
-        MapEvent.summonBoss(type, world.getWorld(), pos, SlashRegistry.Bosses()
+        MapEvent.summonBoss(type, world, pos, SlashRegistry.Bosses()
             .random());
 
     }
