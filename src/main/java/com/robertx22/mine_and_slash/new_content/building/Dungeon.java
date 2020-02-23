@@ -1,11 +1,16 @@
 package com.robertx22.mine_and_slash.new_content.building;
 
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.BuiltRoom;
+import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.RoomSides;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
 import com.robertx22.mine_and_slash.new_content.enums.RoomSide;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
+import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.ChunkPos;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
@@ -17,7 +22,7 @@ public class Dungeon {
 
     public Dungeon(int size) {
         this.size = size;
-        this.capacity = size * 4;
+        this.capacity = size;
 
         rooms = new BuiltRoom[capacity][capacity];
 
@@ -112,6 +117,22 @@ public class Dungeon {
         throw new RuntimeException("getCoordsOfRoomFacing is null? Wrong direction?");
     }
 
+    public void setupBarriers() {
+        DungeonRoom barrier = new DungeonRoom("", RoomType.END);
+        barrier.loc = new ResourceLocation(Ref.MODID, "dun/barrier");
+        RoomRotation rot = new RoomRotation(RoomType.END, new RoomSides(RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED), Rotation.NONE);
+        BuiltRoom built = new BuiltRoom(rot, barrier.loc);
+
+        // add barriers to edges
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms[i].length; j++) {
+                if (i == 0 || j == 0 || i == rooms.length - 1 || j == rooms[i].length - 1) {
+                    addBarrier(i, j, built);
+                }
+            }
+        }
+    }
+
     public BuiltRoom getRoomFacing(Direction dir, int x, int z) {
         ImmutablePair<Integer, Integer> coords = getCoordsOfRoomFacing(dir, x, z);
         if (coords != null) {
@@ -155,7 +176,7 @@ public class Dungeon {
 
     private void addUnbuilts(int x, int z, BuiltRoom room) {
 
-        if (x > capacity * 0.7F || z > capacity * 0.7F) {
+        if (x > capacity * 0.9F || z > capacity * 0.9F) {
             System.out.println("Pushing too close to capacity, not adding any unbuilt rooms. This means it will look broken.");
             return;
         }
@@ -174,6 +195,10 @@ public class Dungeon {
                 }
             }
         });
+    }
+
+    public void addBarrier(int x, int z, BuiltRoom room) {
+        rooms[x][z] = room;
     }
 
     public void addRoom(int x, int z, BuiltRoom room) {

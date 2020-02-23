@@ -31,8 +31,8 @@ public class DungeonBuilder {
     public static ChunkPos getStartChunk(ChunkPos pos) {
         int chunkX = pos.x;
         int chunkZ = pos.z;
-        int distToEntranceX = 8 - (chunkX % 16);
-        int distToEntranceZ = 11 - (chunkZ % 16);
+        int distToEntranceX = 8 - (chunkX % 50);
+        int distToEntranceZ = 11 - (chunkZ % 50);
         chunkX += distToEntranceX;
         chunkZ += distToEntranceZ;
 
@@ -49,6 +49,8 @@ public class DungeonBuilder {
         dungeon = new Dungeon(size);
 
         setupEntrance();
+
+        dungeon.setupBarriers();
 
         while (!dungeon.isFinished()) {
 
