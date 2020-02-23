@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.DungeonFeature;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.new_content.dimension.BiomeRegister;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceDecoration;
 import com.robertx22.mine_and_slash.world_gen.features.RandomSurfaceEggFeature;
 import com.robertx22.mine_and_slash.world_gen.structures.Random1ChunkDunStructure;
@@ -25,7 +25,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class WorldGenRegisters {
@@ -59,10 +58,16 @@ public class WorldGenRegisters {
 
         OreGenRegister.register();
 
-        registerStructure(towerStructure);
+        //registerStructure(towerStructure);
 
         for (Biome biome : ForgeRegistries.BIOMES) { // this works!
 
+            if (biome.equals(BiomeRegister.DUNGEON_BIOME)) {
+                add(biome, DUNGEON_WORLD_FEATURE);
+            }
+
+
+            /*
             // only registerForgeConfigs world getMap where it can actually be used
             if (SlashRegistry.WorldProviders()
                 .getAll()
@@ -90,6 +95,8 @@ public class WorldGenRegisters {
                 biome.addStructure(dungeon0Structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 
             }
+
+             */
 
         }
 

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.new_content;
 import com.mojang.datafixers.Dynamic;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
+import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessors;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.MinecraftServer;
@@ -29,6 +30,8 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
     public DungeonFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
         super(function);
     }
+
+    public static int Y_POS = 50;
 
     @Override
     public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> chunkGenerator, Random rand, BlockPos pos, NoFeatureConfig config) {
@@ -67,7 +70,7 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                 // settings.addProcessor();
 
                 settings.setRotation(room.data.rotation);
-                BlockPos position = new BlockPos(cpos.getXStart(), 120, cpos.getZStart());
+                BlockPos position = new BlockPos(cpos.getXStart(), Y_POS, cpos.getZStart());
 
                 if (template == null) {
                     System.out.println("FATAL ERROR: Structure does not exist (" + room.structure + ")");
@@ -106,10 +109,20 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                                 String data = blockInfo.nbt.getString("metadata");
                                 BlockPos data_pos = blockInfo.pos;
 
-                                DataProcessors.getAll()
-                                    .forEach(x -> x.process(data, data_pos, world));
+                                boolean any = false;
 
-                                world.setBlockState(data_pos, Blocks.AIR.getDefaultState(), 2); // delete data block
+                                for (DataProcessor x : DataProcessors.getAll()) {
+                                    boolean did = x.process(data, data_pos, world);
+                                    if (did) {
+                                        any = true;
+                                    }
+                                }
+
+                                if (any) {
+                                    world.setBlockState(data_pos, Blocks.AIR.getDefaultState(), 2); // delete data block
+                                } else {
+                                    System.out.println("Data block with tag: " + data + " had no matching processors!");
+                                }
 
                             }
                         }

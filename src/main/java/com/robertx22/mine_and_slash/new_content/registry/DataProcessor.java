@@ -11,10 +11,12 @@ public abstract class DataProcessor {
 
     String data;
 
-    public final void process(String data, BlockPos pos, IWorld world) {
+    public final boolean process(String data, BlockPos pos, IWorld world) {
         if (this.data.equals(data)) {
             processImplementation(pos, world);
+            return true;
         }
+        return false;
     }
 
     public abstract void processImplementation(BlockPos pos, IWorld world);

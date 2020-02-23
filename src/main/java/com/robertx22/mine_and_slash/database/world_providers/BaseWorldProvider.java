@@ -3,14 +3,20 @@ package com.robertx22.mine_and_slash.database.world_providers;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.Templates;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content.dimension.DungeonBiomeProvider;
+import com.robertx22.mine_and_slash.new_content.dimension.DungeonChunkGenerator;
+import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.world_gen.types.FeatureType;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -19,9 +25,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProviderType;
-import net.minecraft.world.biome.provider.SingleBiomeProvider;
-import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
@@ -44,7 +47,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
 
     public ModDimension moddim;
     private DimensionType type;
-
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -114,8 +116,10 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
     public BlockPos findSpawn(int p_206921_1_, int p_206921_2_, boolean p_206921_3_) {
         BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable(p_206921_1_, 0, p_206921_2_);
         Biome biome = this.world.getBiome(blockpos$mutable);
-        BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
-        if (p_206921_3_ && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
+        BlockState blockstate = biome.getSurfaceBuilderConfig()
+            .getTop();
+        if (p_206921_3_ && !blockstate.getBlock()
+            .isIn(BlockTags.VALID_SPAWN)) {
             return null;
         } else {
             Chunk chunk = this.world.getChunk(p_206921_1_ >> 4, p_206921_2_ >> 4);
@@ -130,12 +134,14 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
                 for (int j = i + 1; j >= 0; --j) {
                     blockpos$mutable.setPos(p_206921_1_, j, p_206921_2_);
                     BlockState blockstate1 = this.world.getBlockState(blockpos$mutable);
-                    if (!blockstate1.getFluidState().isEmpty()) {
+                    if (!blockstate1.getFluidState()
+                        .isEmpty()) {
                         break;
                     }
 
                     if (blockstate1.equals(blockstate)) {
-                        return blockpos$mutable.up().toImmutable();
+                        return blockpos$mutable.up()
+                            .toImmutable();
                     }
                 }
 
@@ -181,27 +187,60 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         this.moddim = this.newModDimension();
     }
 
+    @Override
+    public SleepResult canSleepAt(PlayerEntity player, BlockPos pos) {
+        return SleepResult.DENY;
+    }
+
+    @Override
+    public DimensionType getRespawnDimension(ServerPlayerEntity player) {
+        return player.getSpawnDimension();
+    }
+
+    @Override
+    public float getCloudHeight() {
+        return 199.0f;
+    }
+
+    @Override
+    public boolean canMineBlock(PlayerEntity player, BlockPos pos) {
+        Block block = getWorld().getBlockState(pos)
+            .getBlock();
+
+        // okay, except some interactable blocks need to return true so that they can be interacted with
+        if (block.isIn(BlockTags.WOODEN_DOORS) || block.isIn(BlockTags.WOODEN_TRAPDOORS)) {
+            return true;
+        }
+        if (block == Blocks.LEVER || block.isIn(BlockTags.BUTTONS) || block == Blocks.CAULDRON) {
+            return true;
+        }
+        if (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST || block == Blocks.BARREL) {
+            return true;
+        }
+        if (block.getRegistryName()
+            .getNamespace() == "gravestones") {
+            return true;
+        }
+
+        return false;
+    }
+
     @Nonnull
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
 
-        BiomeProviderType<SingleBiomeProviderSettings, SingleBiomeProvider> biomeType = BiomeProviderType.FIXED;
-        ChunkGeneratorType chunkType = ChunkGeneratorType.SURFACE;
+        DungeonBiomeProvider biomeProvider = new DungeonBiomeProvider();
+        ChunkGeneratorType<OverworldGenSettings, DungeonChunkGenerator> generator = new ChunkGeneratorType<>(DungeonChunkGenerator::new, true, OverworldGenSettings::new);
+        OverworldGenSettings gensettings = new OverworldGenSettings();
 
-        OverworldGenSettings settings = (OverworldGenSettings) chunkType.createSettings();
-
-        SingleBiomeProviderSettings set = biomeType.func_226840_a_(this.world.getWorldInfo())
-            .setBiome(this.getBiome()); // todo unsure
-
-        SingleBiomeProvider biomeProvider = biomeType.create(set.setBiome(this.getBiome()));
-
-        ChunkGenerator gen = chunkType.create(this.world, biomeProvider, settings);
+        ChunkGenerator gen = generator.create(this.world, biomeProvider, gensettings);
 
         if (ModConfig.INSTANCE.Server.RESET_MAP_DIMENSIONS_ON_LOAD.get()) {
             gen.seed = MMORPG.MAP_WORLD_SEED;
         }
 
         return gen;
+
     }
 
     @Override
