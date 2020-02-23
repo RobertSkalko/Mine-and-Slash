@@ -26,7 +26,7 @@ public enum RoomType implements IWeighted {
         @Override
         public List<DungeonRoom> getAllRooms() {
             List<DungeonRoom> all = new ArrayList<>();
-
+            all.add(new DungeonRoom("basic_stone_brick", this));
             return all;
         }
     },
@@ -44,6 +44,7 @@ public enum RoomType implements IWeighted {
         @Override
         public List<DungeonRoom> getAllRooms() {
             List<DungeonRoom> all = new ArrayList<>();
+            all.add(new DungeonRoom("stone_brick0", this));
 
             return all;
         }
@@ -62,6 +63,8 @@ public enum RoomType implements IWeighted {
         @Override
         public List<DungeonRoom> getAllRooms() {
             List<DungeonRoom> all = new ArrayList<>();
+
+            all.add(new DungeonRoom("simple_stone_brick", this));
 
             return all;
         }
@@ -82,6 +85,8 @@ public enum RoomType implements IWeighted {
         public List<DungeonRoom> getAllRooms() {
             List<DungeonRoom> all = new ArrayList<>();
 
+            all.add(new DungeonRoom("stone_brick_parkour0", this));
+
             return all;
         }
     },
@@ -100,6 +105,8 @@ public enum RoomType implements IWeighted {
         public List<DungeonRoom> getAllRooms() {
             List<DungeonRoom> all = new ArrayList<>();
 
+            all.add(new DungeonRoom("stone_brick_boss", this));
+
             return all;
         }
     },
@@ -117,6 +124,8 @@ public enum RoomType implements IWeighted {
         @Override
         public List<DungeonRoom> getAllRooms() {
             List<DungeonRoom> all = new ArrayList<>();
+
+            all.add(new DungeonRoom("basic_stone_brick", this));
 
             return all;
         }

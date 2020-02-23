@@ -39,7 +39,7 @@ public class DungeonBuilder {
         return new ChunkPos(chunkX, chunkZ);
     }
 
-    boolean debug = true;
+    boolean debug = false;
     public Dungeon dungeon;
     Random rand;
     public int size = 25;
