@@ -27,7 +27,8 @@ MAP DIMENSIONS REWORK!
 * finishing quest no longer reduces lootdrops in map
 * you are now encouraged to explore the map slowly, in fear of traps or dying from unseen mobs. Instead of running like a chicken and aoeing mobs to death.
 * balance will be wack, except either too easy or too hard exploring. Will be ironed out.
-* maps are no longer limited by time. The reason is simple, there are ZERO ongoing spawners. You can't farm anything. If you clear all the mobs, that's it.
+* maps are no longer limited by time. The reason is simple, there are ZERO ongoing spawners. You can't farm anything. If you clear all the mobs, that's it. Find another map for a new adventure!
+* you can't BREAK or PLACE ANY blocks in maps! This will change the gameplay a bunch. Parkour has to be done, mistakes can't be undone and mobs can't be blocked under a dirthut.
 
 * added recipe for increase map tier item in tinkering station
 * most loot crate rewards now cant drop common rarity
@@ -37,7 +38,7 @@ MAP DIMENSIONS REWORK!
 * added synergies: blizzard, thunder dash, poisoned weapons
 * added a whole new ranger skill tree with its own synergies!
 * added new unique items
-* disabled my workaround that allowed dimension deletition because it caused server crashes. But now dimensions won't be deleted until forge accepts a PR
+* disabled my workaround that allowed dimension deletition because it caused server crashes, it's no longer needed anyway.
 * decreased item requirements a bit
 * fix runewords
 * only 1 unique rune per runed item is now allowed

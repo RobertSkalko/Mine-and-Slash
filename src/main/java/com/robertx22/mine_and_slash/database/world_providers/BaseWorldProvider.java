@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.world_providers;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
@@ -189,6 +188,8 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         return 199.0f;
     }
 
+    // i use this as CAN_INTERACT_WITH. Then stop all block breaking in another event by forge
+    // otherwise you can break interactables, and that's bad. breaking a button might mean you're stuck forever
     @Override
     public boolean canMineBlock(PlayerEntity player, BlockPos pos) {
         Block block = getWorld().getBlockState(pos)
@@ -227,10 +228,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         OverworldGenSettings gensettings = new OverworldGenSettings();
 
         ChunkGenerator gen = generator.create(this.world, biomeProvider, gensettings);
-
-        if (ModConfig.INSTANCE.Server.RESET_MAP_DIMENSIONS_ON_LOAD.get()) {
-            //gen.seed = MMORPG.MAP_WORLD_SEED;
-        }
 
         return gen;
 

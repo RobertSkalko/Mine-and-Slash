@@ -44,6 +44,8 @@ public class PlayerMapCap {
 
         void onTickIfDead(ServerPlayerEntity player);
 
+        void onMinute(PlayerEntity player);
+
         float getLootMultiplier(PlayerEntity player);
 
         boolean isMapActive();
@@ -176,6 +178,16 @@ public class PlayerMapCap {
         @Override
         public void onMapDropped() {
             this.data.mapDropPoints = 0;
+        }
+
+        @Override
+        public void onMinute(PlayerEntity player) {
+
+            if (WorldUtils.isMapWorldClass(player.world)) {
+                this.data.mapDropPoints -= 0.03F;
+            } else {
+                this.data.mapDropPoints += 0.01F;
+            }
         }
 
         @Override
