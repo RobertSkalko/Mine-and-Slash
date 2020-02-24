@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.event.TickEvent;
@@ -99,8 +98,6 @@ public class OnServerTick {
 
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
-                    player.getCapability(PlayerMapCap.Data)
-                        .ifPresent(x -> x.onMinute(player));
 
                 }
                 if (data.ticksToProcessChunks > TicksToProcessChunks) {

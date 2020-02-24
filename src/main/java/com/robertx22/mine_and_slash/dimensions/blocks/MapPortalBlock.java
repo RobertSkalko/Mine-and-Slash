@@ -57,7 +57,7 @@ public class MapPortalBlock extends EndPortalBlock {
 
                                 PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
-                                if (data.hasTimeForMap()) {
+                                if (data.isMapActive()) {
 
                                     World mapworld = MapManager.getWorld(MapManager.getDungeonDimensionType());
 

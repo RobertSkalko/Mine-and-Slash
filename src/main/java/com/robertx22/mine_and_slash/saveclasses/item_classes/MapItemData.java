@@ -60,8 +60,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     }
 
     @Store
-    public int minutes = 30; // default
-    @Store
     public int level = 1;
     @Store
     public int tier = 0;
@@ -283,12 +281,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        TooltipUtils.addEmpty(tooltip);
-
-        tooltip.add(Styles.GREENCOMP()
-            .appendSibling(Words.Minutes.locName()
-                .appendText(": " + this.minutes)));
 
         TooltipUtils.addEmpty(tooltip);
 

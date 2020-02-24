@@ -11,9 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
-import com.robertx22.mine_and_slash.uncommon.localization.Chats;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
-import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
@@ -53,12 +50,6 @@ public class PlayerMapCap {
 
         String getLastMapGUID();
 
-        boolean hasTimeForMap();
-
-        int getMinutesLeft();
-
-        int getMinutesPassed();
-
         MapItemData getMap();
 
         BlockPos getMapDevicePos(World world);
@@ -70,8 +61,6 @@ public class PlayerMapCap {
         void onPlayerDeath(PlayerEntity player);
 
         boolean isPermaDeath();
-
-        void onMinute(PlayerEntity player);
 
         void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player);
 
@@ -145,28 +134,6 @@ public class PlayerMapCap {
 
             this.data.isDead = true;
 
-            if (this.isPermaDeath()) {
-
-                this.data.minutesPassed += 555555;
-
-                player.sendMessage(Chats.Player_died_in_a_map_world.locName()
-                    .appendText(" " + player.getDisplayName()
-                        .getFormattedText() + " ")
-                    .appendSibling(Chats.Time_ran_out_due_to_Permadeath.locName()));
-
-            } else {
-                int punishment = (int) (5 + this.getMap().tier * 0.5F);
-
-                player.sendMessage(Chats.Player_died_in_a_map_world.locName()
-                    .appendText(" " + player.getDisplayName()
-                        .getFormattedText() + " ")
-                    .appendSibling(Chats.Map_time_penalty_activated.locName()));
-
-                this.data.minutesPassed += punishment;
-
-                announceTimeLeft(player);
-            }
-
             if (ModConfig.INSTANCE.Server.DISABLE_DEATH_IN_MAPS.get()) {
                 player.setHealth(player.getMaxHealth()); // needs to have more hp to actually teleport lol and not die
             }
@@ -179,32 +146,10 @@ public class PlayerMapCap {
         }
 
         @Override
-        public void onMinute(PlayerEntity player) {
-
-            if (WorldUtils.isMapWorldClass(player.world)) {
-                this.data.mapDropPoints -= 0.03F;
-
-                this.data.minutesPassed++;
-
-                if (this.getMinutesLeft() < 1) {
-                    this.announceEnd(player);
-                    this.teleportPlayerBack(player);
-
-                } else {
-                    onMinutePassAnnounce(player);
-
-                }
-            } else {
-                this.data.mapDropPoints += 0.01F;
-            }
-        }
-
-        @Override
         public void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player) {
 
             this.data = new PlayerWholeMapData();
 
-            this.data.minutesPassed = 0;
             this.data.mapDevicePos = new BlockPos(pos).up();
             this.data.setOriginalDimension(player.world.getDimension()
                 .getType());
@@ -233,16 +178,6 @@ public class PlayerMapCap {
             this.data.mapDropPoints = 0;
         }
 
-        private void onMinutePassAnnounce(PlayerEntity player) {
-            int minutesLeft = getMinutesLeft();
-
-            if (minutesLeft > 0) {
-                if (minutesLeft < 5 || minutesLeft % 10 == 0) {
-                    announceTimeLeft(player);
-                }
-            }
-        }
-
         @Override
         public void onTickIfDead(ServerPlayerEntity player) {
             if (data != null) {
@@ -256,35 +191,17 @@ public class PlayerMapCap {
         @Override
         public float getLootMultiplier(PlayerEntity player) {
 
-            if (data != null) {
-                if (WorldUtils.isMapWorldClass(player.world)) {
-                    if (data.questFinished) {
-                        return 0.3F;
-                    }
-                }
-            }
-
             return 1;
         }
 
         @Override
         public boolean isMapActive() {
-            return hasTimeForMap() && data != null && data.isActive;
+            return data != null && data.isActive;
         }
 
         @Override
         public String getLastMapGUID() {
             return this.getMap().mapUUID;
-        }
-
-        @Override
-        public boolean hasTimeForMap() {
-            return this.getMinutesLeft() > 0;
-        }
-
-        @Override
-        public int getMinutesPassed() {
-            return this.data.minutesPassed;
         }
 
         @Override
@@ -357,25 +274,6 @@ public class PlayerMapCap {
             }
         }
 
-        private void announceEnd(PlayerEntity player) {
-
-            player.sendMessage(Chats.Ran_Out_Of_Time.locName());
-
-        }
-
-        private void announceTimeLeft(PlayerEntity player) {
-            player.sendMessage(Styles.REDCOMP()
-                .appendSibling(Chats.Remaining_Map_Time_is.locName())
-                .appendText(" " + this.getMinutesLeft() + " ")
-                .appendSibling(Words.Minutes.locName()));
-
-        }
-
-        @Override
-        public int getMinutesLeft() {
-            return this.getMap().minutes - this.data.minutesPassed;
-
-        }
     }
 
     public static class Storage extends BaseStorage<IPlayerMapData> {

@@ -64,8 +64,6 @@ public class MapBlueprint extends ItemBlueprint {
 
         data.questPerc = RandomUtils.RandomRange(35, 100);
 
-        data.minutes = quest.getMinutes(data.questPerc);
-
         data.tier = tier.get();
 
         data.rewardCrateGUID = SlashRegistry.LootCrates()

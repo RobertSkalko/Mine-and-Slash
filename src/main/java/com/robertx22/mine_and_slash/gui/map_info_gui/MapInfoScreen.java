@@ -107,11 +107,6 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
 
         GuiUtils.renderScaledText(guiLeft + x / 2, guiTop + 15, 1.6D, title, TextFormatting.YELLOW);
 
-        String timeLeft = "Time left: " + Load.playerMapData(mc.player)
-            .getMinutesLeft() + " minutes";
-
-        GuiUtils.renderScaledText(guiLeft + x / 2, guiTop + 50, 1.5D, timeLeft, TextFormatting.AQUA);
-
         int y = 20;
         int x = 8;
 

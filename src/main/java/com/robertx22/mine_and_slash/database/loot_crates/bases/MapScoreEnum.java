@@ -28,10 +28,10 @@ public enum MapScoreEnum {
 
     public static MapScoreEnum byNumber(int score) {
         return Arrays.asList(MapScoreEnum.values())
-                .stream()
-                .filter(x -> ((MapScoreEnum) x).number == score)
-                .findFirst()
-                .get();
+            .stream()
+            .filter(x -> ((MapScoreEnum) x).number == score)
+            .findFirst()
+            .get();
     }
 
     public static MapScoreEnum getScore(PlayerEntity player) {
@@ -39,11 +39,11 @@ public enum MapScoreEnum {
         PlayerMapCap.IPlayerMapData mapdata = Load.playerMapData(player);
 
         MapScoreEnum best = Arrays.stream(MapScoreEnum.values())
-                .filter(x -> x.meetsTimeRequirement(mapdata))
-                .collect(Collectors.toList())
-                .stream()
-                .max(Comparator.comparing(v -> v.number))
-                .get();
+            .filter(x -> x.meetsTimeRequirement(mapdata))
+            .collect(Collectors.toList())
+            .stream()
+            .max(Comparator.comparing(v -> v.number))
+            .get();
 
         return best;
     }
@@ -59,9 +59,14 @@ public enum MapScoreEnum {
 
     public boolean meetsTimeRequirement(PlayerMapCap.IPlayerMapData data) {
 
+        return true;
+
+        /*
         float percentTimeItTook = (float) data.getMinutesPassed() / (float) data.getMap().minutes;
 
         return timeNeeded >= percentTimeItTook;
+
+         */
 
     }
 

@@ -24,7 +24,10 @@ MAP DIMENSIONS REWORK!
 * dying in maps no longer prevented. This means dying will be painful and you will have to go back to your gear! 
 * map leave pearls are no longer free! You now have to kill a boss to get one, otherwise use the portal at the dungeon entrance to go back.
 * increased loot drops by a bunch in maps
-
+* finishing quest no longer reduces lootdrops in map
+* you are now encouraged to explore the map slowly, in fear of traps or dying from unseen mobs. Instead of running like a chicken and aoeing mobs to death.
+* balance will be wack, except either too easy or too hard exploring. Will be ironed out.
+* maps are no longer limited by time. The reason is simple, there are ZERO ongoing spawners. You can't farm anything. If you clear all the mobs, that's it.
 
 * added recipe for increase map tier item in tinkering station
 * most loot crate rewards now cant drop common rarity

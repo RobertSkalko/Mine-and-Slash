@@ -46,9 +46,9 @@ public class MapQuestReward extends QuestReward {
                 worldmapdata.getLevel(pos), worldmapdata.getTier(pos), data.reward.score.number);
 
             player.sendMessage(new StringTextComponent(
-                TextFormatting.GREEN + "Map Completed! Further exploration seems to give little benefit."));
+                TextFormatting.GREEN + "Map Quest Completed!"));
 
-            SoundUtils.playSound(player, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
+            SoundUtils.playSound(player, SoundEvents.UI_TOAST_IN, 1, 1);
 
             ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, player, 50);
 

@@ -24,8 +24,6 @@ public class PlayerWholeMapData {
     @Store
     String playerID = ""; // for debug purposes
     @Store
-    public int minutesPassed = 0;
-    @Store
     public boolean isDead = false;
     @Store
     public boolean questFinished = false;
